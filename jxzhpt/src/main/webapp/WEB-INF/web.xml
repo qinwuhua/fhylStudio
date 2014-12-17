@@ -1,7 +1,118 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>daoLocation</param-name>
+		<param-value>classpath:dao.xml</param-value>
+	</context-param>
+	<!-- 配置dao -->
+	<listener>
+		<listener-class>com.hdsx.dao.listener.DaoInitListener</listener-class>
+	</listener>
+	<!-- 配置Spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- 设置连接的编码方式 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 配置Struts2 -->
+	<filter>
+		<filter-name>struts</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<!-- 配置sitemesh -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+	
+	<servlet>
+	   <servlet-name>flexDataSourceXml8</servlet-name>
+	   <servlet-class>com.hdsx.jxzhpt.controller.AnyChartSslkAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>flexDataSourceXml8</servlet-name>
+	   <url-pattern>/flexsslk</url-pattern>
+	</servlet-mapping>
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	<!-- 配置dwr -->
+	<servlet>
+		<servlet-name>dwr-invoke</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>crossDomainSessionSecurity</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allowScriptTagRemoting</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>config-dwr</param-name>
+			<param-value>
+			  WEB-INF/dwr-user.xml
+			</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet>
+       <servlet-name>initServlet</servlet-name>
+       <servlet-class>com.hdsx.jxzhpt.utile.InitServlet</servlet-class>
+       <load-on-startup>1</load-on-startup>
+    </servlet> 
+    
+	<servlet-mapping>
+		<servlet-name>dwr-invoke</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
+	<welcome-file-list>
+			<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	
 </web-app>
