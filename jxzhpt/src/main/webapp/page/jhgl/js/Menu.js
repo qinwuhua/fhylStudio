@@ -5,7 +5,7 @@ $(function() {
 		title:'工程改造路面升级项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gclmsj.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
