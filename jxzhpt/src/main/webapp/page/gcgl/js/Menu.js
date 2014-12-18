@@ -5,78 +5,78 @@ $(function() {
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/wqgz/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/abgc/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/zhfz/zhfz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu4',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu5',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/sh/sh.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu6',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu7',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu8',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./gljsjyhgl/hsly/hsly.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu9',
-		title:'农村公路建设项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
-		title:'农村新建桥梁项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
-		title:'农村改渡建桥项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
-	});
+//	createMenu2('LeftMenu',{
+//		id:'menu9',
+//		title:'农村公路建设项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu1',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu10',
+//		title:'农村新建桥梁项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu1',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu11',
+//		title:'农村改渡建桥项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu1',
+//		href:'./lxxx.jsp'
+//	});
 	
 	
 	createMenu2('LeftMenu',{
@@ -135,27 +135,27 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./lxxx.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu9',
-		title:'农村公路建设项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
-		title:'农村新建桥梁项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
-		title:'农村改渡建桥项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
-	});
+//	createMenu2('LeftMenu',{
+//		id:'menu9',
+//		title:'农村公路建设项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu2',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu10',
+//		title:'农村新建桥梁项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu2',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu11',
+//		title:'农村改渡建桥项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu2',
+//		href:'./lxxx.jsp'
+//	});
 	
 	
 	createMenu2('LeftMenu',{
@@ -214,28 +214,28 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./lxxx.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu9',
-		title:'农村公路建设项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
-		title:'农村新建桥梁项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
-		title:'农村改渡建桥项目施工过程管理',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
-	});
-	
+//	createMenu2('LeftMenu',{
+//		id:'menu9',
+//		title:'农村公路建设项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu3',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu10',
+//		title:'农村新建桥梁项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu3',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu11',
+//		title:'农村改渡建桥项目施工过程管理',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu3',
+//		href:'./lxxx.jsp'
+//	});
+//	
 	
 	createMenu2('LeftMenu',{
 		id:'menu1',
@@ -293,28 +293,28 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./lxxx.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu9',
-		title:'农村公路建设工程完工统计',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
-		title:'农村新建桥梁工程完工统计',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
-		title:'农村改渡建桥工程完工统计',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
-	});
-	
+//	createMenu2('LeftMenu',{
+//		id:'menu9',
+//		title:'农村公路建设工程完工统计',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu4',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu10',
+//		title:'农村新建桥梁工程完工统计',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu4',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu11',
+//		title:'农村改渡建桥工程完工统计',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu4',
+//		href:'./lxxx.jsp'
+//	});
+//	
 	
 	
 	createMenu2('LeftMenu',{
@@ -411,26 +411,26 @@ $(function() {
 		renderTo:'left_menu6',
 		href:'./lxxx.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu10',
-		title:'农村改渡建桥项目',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu11',
-		title:'农村新建桥梁项目',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu2('LeftMenu',{
-		id:'menu12',
-		title:'农村改渡建桥项目',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
+//	createMenu2('LeftMenu',{
+//		id:'menu10',
+//		title:'农村改渡建桥项目',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu11',
+//		title:'农村新建桥梁项目',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu2('LeftMenu',{
+//		id:'menu12',
+//		title:'农村改渡建桥项目',
+//		imgSrc:'../../images/left_kj.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
 
 });
