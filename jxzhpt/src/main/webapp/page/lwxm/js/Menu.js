@@ -5,21 +5,21 @@ $(function() {
 		title:'危桥改造项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./jckgl/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./jckgl/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./jckgl/zhfz.jsp'
 	});
 	
 	createMenu2('LeftMenu',{
@@ -27,21 +27,21 @@ $(function() {
 		title:'危桥改造项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jcksh/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jcksh/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jcksh/zhfz.jsp'
 	});
 	
 	createMenu2('LeftMenu',{
@@ -49,21 +49,21 @@ $(function() {
 		title:'危桥改造项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./sckgl/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./sckgl/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./sckgl/zhfz.jsp'
 	});
 	
 	createMenu2('LeftMenu',{
@@ -71,21 +71,21 @@ $(function() {
 		title:'危桥改造项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./scksh/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./scksh/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./scksh/zhfz.jsp'
 	});
 
 });
