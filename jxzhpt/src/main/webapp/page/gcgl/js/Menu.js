@@ -84,14 +84,14 @@ $(function() {
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/wqgz/wqgz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu2',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/abgc/abgc.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu3',
