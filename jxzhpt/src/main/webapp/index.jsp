@@ -26,7 +26,7 @@
             <tr align="center">
             <td><a href="./jhgl_index.jsp" target="_self"><img src="images/xz_1.png" width="182" height="250"/></a></td>
             <td><a href="./jhgl_index.jsp" target="_blank"><img src="images/xz_2.png" width="182" height="250" /></a></td>
-            <td><a href="./jhgl_index.jsp" target="_blank"><img src="images/xz_3.png" width="182" height="250" /></a></td>
+            <td><a href="./wjxt_index.jsp" target="_blank"><img src="images/xz_3.png" width="182" height="250" /></a></td>
             <td><a href="./xtgl_index.jsp" target="_self"><img src="images/xz_4.png" width="182" height="250" /></a></td>
             </tr>
             </table>

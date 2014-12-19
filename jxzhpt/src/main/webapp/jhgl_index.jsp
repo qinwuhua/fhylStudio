@@ -39,10 +39,10 @@
 		</div>
 	</div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden">
-		<div id="c1" style="width:100%;height:100%;">
+		<div id="c1" style="width:100%;height:100%;display:none">
 			<iframe id="c1f" name="c1f"  src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
-		<div id="c2" style="width:100%;height:100%;display:none">
+		<div id="c2" style="width:100%;height:100%;">
 			<iframe id="c2f" name="c2f"  src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
 		<div id="c3" style="width:100%;height:100%;display:none">
@@ -62,7 +62,7 @@
 		</div>
     </div>
     <div data-options="region:'south',border:false,split:false" style="height: 25px;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
-        <p>版权所有：河北省交通运输厅公路管理局 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持：北京恒达时讯科技开发有限责任公司</p>
+        <p>监制单位：江西省公路管理局&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京恒达时讯科技开发有限公司</p>
     </div>
 </body>
 </html>
