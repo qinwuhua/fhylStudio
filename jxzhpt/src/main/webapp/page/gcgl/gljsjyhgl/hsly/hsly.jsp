@@ -17,6 +17,7 @@
 			$('#gydw').combotree({   
 				url:"js/gydw.json"
 			}); 
+			showAll();
 		});
 	</script>
 	<style type="text/css">
@@ -78,61 +79,9 @@ a:active {
          <td style="padding-left: 10px; padding-top: 5px; font-size: 12px;">
             <div>
 
-	<table cellspacing="0" rules="all" border="1" id="GrdHSLY" style="border-collapse:collapse;">
-		<tr align="center" valign="middle" style="color:#33AECC;background-color:#EFF8FE;border-width:1px;border-style:Solid;height:40px;">
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">操作</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">是否全线开工</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">计划年份</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">项目名称</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">行政区划名称</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">建设性质</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">总投资</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">开工年</th>
-			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">完工年</th>
-		</tr>
-
-			<tbody>
-				<tr align="center" valign="middle" >
-					<td style="height:30px;width:300px;">
-						<a href="#" onclick="wqxiangxi()">
-							<font color="#0066CB">详细</font>
-						</a>| 
-						<a href="#" onclick="sfkaigong()">
-							<font color="#0066CB">开工</font>
-						</a>| 
-						<a href="#" onclick="ybsb()">
-							<font color="#0066CB">月报上报</font>
-						</a>| 
-						<a href="#" onclick="sfkaigong()">
-							<font color="#0066CB">完工</font>
-						</a>| 
-						<a href="#" onclick="sfkaigong()">
-							<font color="#0066CB">未完工</font>
-						</a>
-					</td>
-					<td style="height: 30px; width: 100px;"><a
-							href='javascript:void(0)' style='color: #0066CB;'
-							onclick="EditQXKG('03A32A0676FF9D03E050007F01002158','0')">否</a>
-					</td>
-					<td style="height: 30px; width: 100px;">2014年</td>
-					<td style="height: 30px; width: 300px;">grr</td>
-					<td style="height: 30px; width: 200px;">南昌市</td>
-					<td style="height: 30px; width: 150px;">新改建</td>
-					<td style="height: 30px; width: 150px;">44</td>
-					<td style="height: 30px; width: 100px;">2014</td>
-					<td style="height: 30px; width: 100px;">2016</td>
-
-								</tr>
-			</tbody>
+		<table id="datagrid">
 			</table>
-			<div id="AspNetPager1" dir="ltr" style="width:98%;text-align:left;">
-			<div style="width:40%;float:left;">
-					共1条 每页10条 当前第1页/1页
-			</div>
-			<div align="left" style="width:60%;float:left;">
-			<a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled" style="margin-right:5px;">上一页</a><a href="javascript:__doPostBack('AspNetPager1','2')" style="margin-right:5px;">下一页</a><a href="javascript:__doPostBack('AspNetPager1','28')" style="margin-right:5px;">末页</a>&nbsp;&nbsp;转到<input type="text" value="1" name="AspNetPager1_input" id="AspNetPager1_input" onkeydown="ANP_keydown(event,'AspNetPager1_btn');" style="width:30px;" />页<input type="submit" value="Go" name="AspNetPager1" id="AspNetPager1_btn" onclick="if(ANP_checkInput('AspNetPager1_input',28)){__doPostBack('AspNetPager1','')} else{return false}" />
-			</div>
-			</div>
+
 			
 		</table>
 	</div>
