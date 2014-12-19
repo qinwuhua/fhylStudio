@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.xtgl">
+	<update id="czPassword" parameterType="hashmap" >
+ 	update xtgl_master set PASSWORD = #{password} where ID = #{id}
+ </update>
+ <select id="seldw"  resultType="treenode">
+		select id ,name text from unit x where x.id = #{yhdw} order by id
+	</select>
+	<select id="selchildedw"  resultType="treenode">
+		select id ,name text  from unit x where x.id like #{yhdw} order by id
+	</select>
+	<update id="updatePassword" parameterType="HashMap" >
+		UPDATE MASTER SET PASSWORD=#{mm} WHERE truename=#{id}
+	</update>
+	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
+	select * from MASTER M WHERE M.truename=#{username} AND M.PASSWORD=#{password} AND M.ZT!=#{zt}
+	</select>
+	<select id="selAllXzqh" parameterType="String" resultType="treenode">
+	    select distinct x.id ,x.id text from xzqh x where  x.id = #{yhdw} order by id
+	</select>
+	<select id="selAllXzqh2" parameterType="String" resultType="treenode">
+	  select  distinct x.id , x.id text from xzqh x where  x.parent = #{yhdw} order by id
+	</select>
+	<select id="selectYhList" parameterType="hashmap" resultType="master">
+		select * from (
+		select m.*,rownum rn from (select * from master 
+		where 1=1
+		 <if test="yhm != null and  yhm != ''">
+		and truename like #{yhm}||'%'
+		</if>
+		<if test="tbdw != null and  tbdw != ''">
+		and unit like #{tbdw}||'%'
+		</if>
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selectYhListCount" parameterType="hashmap" resultType="int">
+		select count(*) from master 
+		where 1=1
+		<if test="yhm != null and  yhm != ''">
+			and truename like #{yhm}||'%'
+		</if>
+		<if test="tbdw != null and  tbdw != ''">
+			and unit like #{tbdw}||'%'
+		</if>
+	</select>
+	<select id="selQxList" parameterType="hashmap" resultType="hashmap">
+		select id,name from role order by id
+	</select>
+	<insert id="insertYh" parameterType="master">
+		insert into master (id,truename,password,tel,unit,name,sex,role,zt,gmgid) values (SYS_GUID(),#{truename},#{password}
+		,#{tel},#{unit},#{name},#{sex},#{role},#{zt},#{gmgid})
+	</insert>
+	<update id="updatezt" parameterType="hashmap">
+		update master set zt=#{zt} where id=#{id}
+	</update>
+	<update id="mimareset" parameterType="hashmap">
+		update master set password=#{password} where id=#{id}
+	</update>
+	<delete id="deleteYh" parameterType="String">
+		delete from master where id=#{id}
+	</delete>
+	<update id="updateYh" parameterType="master">
+		update master set truename=#{truename},name =#{name}
+		<if test="password != null and  password != ''">
+			 ,password=#{password} 
+		</if>
+		<if test="sex != null and  sex != ''">
+			 ,sex=#{sex} 
+		</if>
+		<if test="tel != null and  tel != ''">
+			 ,tel=#{tel} 
+		</if>
+		<if test="role != null and  role != ''">
+			 ,role=#{role} 
+		</if>
+		<if test="unit != null and  unit != ''">
+			 ,unit=#{unit} 
+		</if>
+		where id=#{id}
+	</update>
+	<select id="selectJsList" parameterType="param" resultType="param">
+		select * from xtgl_role
+	</select>
+	<insert id="insertJs" parameterType="param">
+		insert into role(id,name,descr) values (#{id},#{name},#{descr})
+	</insert>
+	<insert id="insertRoleSourceBatch" parameterType="param">
+		insert into role_source(id,roleid,sourceid) values (SYS_GUID(),#{roleid},#{sourceid})
+	</insert>
+	<delete id="deleteJsById" parameterType="param">
+		DELETE FROM ROLE WHERE id = #{id}
+	</delete>
+	<delete id="deleteRoleSourceById" parameterType="param">
+		DELETE FROM ROLE_SOURCE WHERE ROLEID = #{id}
+	</delete>
+	<select id="selectDwList" parameterType="unit" resultType="unit">
+		select * from unit where id like #{id}||'%' order by id 
+	</select>
+	<select id="selectDwListCount" parameterType="unit" resultType="int">
+		select count(*) from unit where id like #{id}||'%'
+	</select>
+	<select id="getBmbmTreeByName" parameterType="hashmap" resultType="treenode">
+		select * from bmbm where parent in (select id from bmbm where name=#{name} )
+		order by id
+	</select>
+	<insert id="insertDw" parameterType="unit">
+		insert into unit (id,parent,name,jgdm,dist,jglx,zxkjbzlb,zxkjzzlb,djzclx,sfzy,dwfzr,lxdh,sfgl) values ((select max(decode(id,4498,null,4499,null,id))+1 id from unit t where  parent=#{id}),
+		#{id},#{name},#{jgdm},#{dist},#{jglx},#{zxkjbzlb},#{zxkjzzlb},#{djzclx},#{sfzy},#{dwfzr},#{lxdh},#{sfgl})
+	</insert>
+	<delete id="deleteDwById" parameterType="unit">
+		delete from unit where id=#{id}
+	</delete>
+	<select id="selectDwById" parameterType="unit" resultType="unit">
+		select * from unit where id=#{id}
+	</select>
+	<update id="updateDw" parameterType="unit">
+		update unit set name=#{name}
+		<if test="jglx !=null and jglx!=''">,jglx=#{jglx}</if>
+		<if test="zxkjbzlb !=null and zxkjbzlb!=''">,zxkjbzlb=#{zxkjbzlb}</if>
+		<if test="zxkjzzlb !=null and zxkjzzlb!=''">,zxkjzzlb=#{zxkjzzlb}</if>
+		<if test="djzclx !=null and djzclx!=''">,djzclx=#{djzclx}</if>
+		<if test="sfzy !=null and sfzy!=''">,sfzy=#{sfzy}</if>
+		<if test="dwfzr !=null and dwfzr!=''">,dwfzr=#{dwfzr}</if>
+		<if test="lxdh !=null and lxdh!=''">,lxdh=#{lxdh}</if>
+		<if test="sfgl !=null and sfgl!=''">,sfgl=#{sfgl}</if>
+		<if test="dist !=null and dist!=''">,dist=#{dist}</if>
+		where id=#{id}
+	</update>
+	<select id="selectBmbmList" parameterType="unit" resultType="unit">
+		select * from bmbm order by id
+	</select>
+	<select id="selectBmbmListCount" parameterType="unit" resultType="int">
+		select count(*) from bmbm 
+	</select>
+	<insert id="insertBmbm" parameterType="unit">
+		insert into bmbm(id,name,parent) values (#{id},#{name},#{parent})
+	</insert>
+	<update id="updateBmbm" parameterType="unit">
+		update bmbm set name=#{name} where id=#{id}
+	</update>
+	<delete id="deleteBmbmById" parameterType="unit">
+		delete from bmbm where id=#{id} or parent=#{id}
+	</delete>
+	<insert id="insertQY" parameterType="unit">
+		insert into sfcwzkqy (id,dwmc,jgdm,dist,zxkjzzlb,unit) values (SYS_GUID(),#{name},#{jgdm},#{dist},#{zxkjzzlb},(select id from unit where jgdm=#{jgdm} and rownum=1))
+	</insert>
+	<insert id="insertXzsy" parameterType="unit">
+		insert into sfcwzkqy (id,dwmc,jgdm,dist,unit) values (SYS_GUID(),#{name},#{jgdm},#{dist},(select id from unit where jgdm=#{jgdm} and rownum=1))
+	</insert>
+	<select id="checkname" parameterType="hashmap" resultType="master">
+		select * from master where truename=#{username}
+	</select>
+</mapper>

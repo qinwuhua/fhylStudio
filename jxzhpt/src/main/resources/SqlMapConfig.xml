@@ -6,6 +6,10 @@
   <typeAliases>
      <!-- BONECP数据库连接池 -->
      <typeAlias type="com.hdsx.dao.util.BoneCPFactory" alias="BONECP"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.TreeNode" alias="treenode"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Master" alias="master"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Unit" alias="unit"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Param" alias="param"/>
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -31,8 +35,8 @@
 <!--         </dataSource> -->
      </environment>
   </environments>
- <!--  <mappers>
-     <mapper resource="com/hdsx/hbdtxt/xtgl/config/xtgl.xml"/>
+	<mappers>
+     <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
 
-  </mappers> -->
+  </mappers>
 </configuration>
