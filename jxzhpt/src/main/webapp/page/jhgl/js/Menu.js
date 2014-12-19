@@ -54,14 +54,14 @@ $(function() {
 		title:'红色旅游公路项目',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./jhkgl/hslygl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu9',
 		title:'战备公路项目',
 		imgSrc:'../../images/zb.png',
 		renderTo:'left_menu1',
-		href:'./lxxx.jsp'
+		href:'./jhkgl/zbgl.jsp'
 	});
 	
 	

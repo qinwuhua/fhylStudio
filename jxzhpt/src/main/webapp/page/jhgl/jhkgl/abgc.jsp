@@ -10,14 +10,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/grid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({
-				animate:true,
-				url:"../js/gydw.json",
-				lines:true
-			}); 
+			gydwComboxTree("gydw");
+			xzqhComboxTree("xzqh");
 			abgcxm();
 		});
 		
@@ -48,7 +46,7 @@
         						<select id="gydw" style="width:227px;"></select>
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
+        						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
         					</p>
         					<p style="margin-left: 20px;">
@@ -94,7 +92,7 @@
         					</p>
         					<table style="margin: 0px; padding: 0px;margin-left: 20px;">
         						<tr>
-        							<td>
+        							<td align="left">
         								<span>行政区划：</span>
         								<select name="ddlXMtype" id="ddlXMtype" style="width:80px;">
 											<option selected="selected" value="">全部</option>
