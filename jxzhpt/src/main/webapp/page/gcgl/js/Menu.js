@@ -98,14 +98,14 @@ $(function() {
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
