@@ -20,7 +20,7 @@ var objHomeOpen={};
 $(function(){
 	//默认加载的页面Index.html
 	$("#Menu_2").addClass('now');
-	$("#c2f").attr("src", "page/lxwm/Menu.jsp");
+	$("#c2f").attr("src", "./page/lxwm/Menu.jsp");
 	
 	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
 		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
