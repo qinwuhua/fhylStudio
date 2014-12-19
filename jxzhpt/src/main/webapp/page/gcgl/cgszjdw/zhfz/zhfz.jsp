@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/abgc.js"></script>
+	<script type="text/javascript" src="js/zhfz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#gydw').combotree({   
@@ -44,7 +44,7 @@ a:active {
 	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
 	                <a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp;
 	                <a style="color: #1a5780" href="#">项目进度管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;安保工程施工过程管理</font>
+	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;灾害防治施工过程管理</font>
 	            </td>
         	</tr>
         	<tr>
@@ -57,10 +57,12 @@ a:active {
         					<p>
         						<span>管养单位：</span>
         						<select id="gydw" style="width:200px;"></select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>开工状态：</span>
+        						<select id="sbnf" style="width: 65px;">
+        							<option value="">全部</option>
+        							<option value="已开工">已开工</option>
+        							<option value="未开工">未开工</option>
+        						</select>
         						<span>路线：</span>
         							<input type="text" id="lx" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,9 +78,10 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid">
-	</table>
+			<table id="datagrid" >
+			</table>
 
+			
 		</table>
 	</div>
 </body>

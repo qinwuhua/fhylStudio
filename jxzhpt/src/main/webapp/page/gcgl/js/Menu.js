@@ -98,7 +98,7 @@ $(function() {
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenu2('LeftMenu',{
 		id:'menu4',
