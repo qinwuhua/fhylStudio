@@ -24,7 +24,7 @@ $(function(){
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height: 96px;" >
+    <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
 			<div class="header_content4">
 			    <div style="position:absolute;top:15px;right:370px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
