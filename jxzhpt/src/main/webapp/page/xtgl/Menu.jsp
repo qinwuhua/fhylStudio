@@ -22,7 +22,7 @@ $(function(){
 </head>
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:false, iconCls: 'icon-west'" style="width:253px;overflow:hidden">
-		<div id="aa" class="easyui-accordion" style="width:251px;">  
+		<div id="aa" fit="true" class="easyui-accordion" style="width:251px;">  
 		    <div id="left_menu1" title="系统管理" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;padding:10px;">
 		    	
 		    </div>

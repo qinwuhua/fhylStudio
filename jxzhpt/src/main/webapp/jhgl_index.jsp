@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="./easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="./css/Top.css" />
 <link rel="stylesheet" type="text/css" href="./css/index2.css" />
- <link rel="stylesheet" type="text/css" href="./css/style.css" />
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
@@ -19,7 +18,7 @@
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height: 100px;" >
+    <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
 			<div class="header_content">
 			    <div style="position:absolute;top:15px;right:370px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>

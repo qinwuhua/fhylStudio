@@ -7,10 +7,9 @@
 <title>角色添加</title>
 <link rel="stylesheet" type="text/css" href="../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/button.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
-<script type="text/javascript" src="../../easyui/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
@@ -93,29 +92,18 @@ $(function(){
 <div id="jsgl_layout" class="easyui-layout" fit="true">
 	<div region="center" border="false" style="padding:0px;border-bottom-width:1px;">
 	<form id="jsgl_form" style="overflow-x:hidden">
-		<table id="jsgl_form_table" cellspacing="0"  class="table_grid">
-			<tr>
-				<td>
+		<table id="jsgl_form_table" cellspacing="0"  class="table_grid3">
+			<tr height="30px">
+				<td width="80px" align="right">
 					角色名称：
 				</td>
 				<td>
-					<input style="width:248px;" class="easyui-validatebox" required="true" validType="notNULL" type="text" id="name" name="param.name"  maxlength="40"/>
+					<input style="width:248px;" type="text" id="name" name="param.name"/>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					角色描述：
-				</td>
-				<td>
-					<input id="descr" class="easyui-validatebox" required="true" validType="notNULL" name="param.descr" type="text" style="width:248px;" maxlength="60"/>
-					<input type="hidden" name="param.source" id="resourceid" />
-					<input type="hidden" name="param.czr" id="czt" />
-					<input type="hidden" name="param.czsj" id="czsj" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					资源管理：
+				<td width="80px" align="right">
+					权限分配：
 				</td>
 				<td>
 					<table border="0" cellspacing="0" style="height: 26px;border:1px solid #C1DAD7;border-right: 0px;border-bottom: 0px;" id="resource">
@@ -158,9 +146,16 @@ $(function(){
 						<td><input name="checkbox"  style="text-align: right; 
 						vertical-align: text-top;width:50px;" type="checkbox" value="0504" id="a1a14"/><label for="a1a13">编目编码</label></td>
 						</tr>
-						
-						
 					</table>
+				</td>
+			</tr>
+			<tr>
+				<td width="80px" align="right">
+					角色描述：
+				</td>
+				<td>
+					<input id="descr" class="easyui-validatebox" required="true" validType="notNULL" name="param.descr" type="text" style="width:248px;" maxlength="60"/>
+					<input type="hidden" name="param.czsj" id="czsj" />
 				</td>
 			</tr>
 		</table>

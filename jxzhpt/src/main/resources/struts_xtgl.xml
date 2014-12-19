@@ -33,6 +33,8 @@
 	<action name="updateBmbm" class="xtglController" method="updateBmbm"></action>
 	<action name="deleteBmbmById" class="xtglController" method="deleteBmbmById"></action>
 	<action name="checkname" class="xtglController" method="checkname"></action>
+	<action name="selectTsdqList" class="xtglController" method="selectTsdqList"></action>
+	<action name="selectXzqhList" class="xtglController" method="selectXzqhList"></action>
 	
  </package>
 </struts>

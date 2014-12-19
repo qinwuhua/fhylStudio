@@ -1,12 +1,12 @@
 /*
 --------------
-Site:河北省公路工程项目动态管理系统
+Site:娌冲寳鐪佸叕璺伐绋嬮」鐩姩鎬佺鐞嗙郴缁�
 Author:Christy
 Updated:December 20 2013
 Updated by:December 20 2013
 --------------
 */
-/*声明公共样式*/
+/*澹版槑鍏叡鏍峰紡*/
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p,
  blockquote, pre, a,big, cite,em, font, img, small, dd, dl, dt,
  li, ol, ul, fieldset, form, label, input, select, textarea, table,
@@ -25,7 +25,7 @@ select, textarea, input, button {vertical-align:middle;font-family:inherit;font-
 .clearFix:after{clear:both;display:block;visibility:hidden;height:0;content:'';}
 .clearFix{zoom:1;}
 img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = "./images/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none")), this.pngSet=true);
-}/*解决IE6不支持png的透明问题*/
+}/*瑙ｅ喅IE6涓嶆敮鎸乸ng鐨勯�鏄庨棶棰�/
 /* .right_zjhf1{float:left;width: 100%;height:100%;font-size:12px;background:#E3F2F9} */
 *{margin:0;padding:0;}
 .right_zjhf1{height:100%;width: 100%;}
@@ -132,7 +132,7 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
  TEXT-DECORATION: none
 }
 
-/*左侧列的菜单  class="left_div"*/
+/*宸︿晶鍒楃殑鑿滃崟  class="left_div"*/
 .left_div A:visited {
  COLOR: #000000;
  TEXT-DECORATION: none
@@ -154,7 +154,7 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 	margin : 10px;
 }
 
-/*查询条件table  class="searchTj"*/
+/*鏌ヨ鏉′欢table  class="searchTj"*/
 .searchTj td{ text-align:right; width: 250px;padding-right:10px}
 .searchTj input{width:180px;border:1px solid #95B8E7;}
 .searchTj select{width:182px;height:22px;border:1px solid #95B8E7;}

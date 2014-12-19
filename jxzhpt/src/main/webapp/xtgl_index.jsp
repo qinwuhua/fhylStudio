@@ -24,9 +24,9 @@ $(function(){
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height: 100px;" >
+    <div data-options="region:'north',border:false" style="height: 96px;" >
 		<div class="header">
-			<div class="header_content">
+			<div class="header_content4">
 			    <div style="position:absolute;top:15px;right:370px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
 			    <div id="www_zzje_net2" style="position:absolute;top:15px;right:230px;color:#f2f8fe;font-family:arial;line-height:1.5em;"></div>
 			    <div id="www_zzje_net1" style="position:absolute;top:15px;right:170px;color:#f2f8fe;font-family:arial;line-height:1.5em;"></div>

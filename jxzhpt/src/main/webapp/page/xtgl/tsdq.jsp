@@ -24,7 +24,7 @@
 function openJsUpdate(_id){
 	$("#jsgl_table").datagrid('unselectAll');
 	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',422,400);
+	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',422,400);
 }
 function deleteJs(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -53,12 +53,12 @@ function deleteJs(_id){
 $(function(){
 	$("#jsgl_table").datagrid({
 		border : false,
-		height:500,
-		width:1000,
-		//fit : true,
+		//height:500,
+		//width:1000,
+		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'../../xtgl/selectTsdqList.do',
 		striped : true,
 		singleSelect : false,
 		columns : [[
@@ -72,24 +72,28 @@ $(function(){
 				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
 			}
 		},{
-			field : 'rolename',
+			field : 'state',
 			title : '使用状态',
-			width : 300,
-			align : 'center'
+			width : 100,
+			align : 'center',
+			formatter : function(value,rec,index){
+				if(value=="启用") return '<a onclick=updateZt("'+value+'") href="#" style="color:blue;">启用</a>';
+				else return '<a onclick=updateZt("'+value+'") href="#" style="color:red;">禁用</a>';
+			}
 		},{
-			field : 'description',
+			field : 'name',
 			title : '特殊地区',
-			width : 300,
+			width : 100,
 			align : 'center'
 		},{
-			field : 'description',
+			field : 'xzqh',
 			title : '包含行政区域',
-			width : 300,
+			width : 100,
 			align : 'center'
 		},{
-			field : 'description',
+			field : 'bz',
 			title : '备注',
-			width : 300,
+			width : 100,
 			align : 'center'
 		}
 		]],toolbar : [{
@@ -105,7 +109,7 @@ $(function(){
 		},{
 			text : '添加',
 			handler : function(){
-				YMLib.UI.createWindow('jsgl_add_win','添加角色','./jsgl_add.jsp','app_add',422,400);
+				YMLib.UI.createWindow('jsgl_add_win','添加特殊地区','./tsdq_add.jsp','app_add',422,400);
 			}
 		}]
 	});
@@ -117,8 +121,8 @@ $(function(){
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;特殊地区管理</div>
 		</div>
     </div>
-    <div style="height:100%;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
+    <div style="height:700px;">
+    	<table id="jsgl_table" width="100%"></table>
     </div>
 </div>
 </body>

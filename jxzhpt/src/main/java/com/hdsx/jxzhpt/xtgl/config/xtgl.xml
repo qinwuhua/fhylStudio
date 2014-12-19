@@ -24,27 +24,28 @@
 	</select>
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
-		select m.*,rownum rn from (select * from master 
+		select m.*,rownum rn from (select * from xtgl_master 
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
 		and truename like #{yhm}||'%'
 		</if>
-		<if test="tbdw != null and  tbdw != ''">
-		and unit like #{tbdw}||'%'
+		<if test="unit != null and  unit != ''">
+		and unit like #{unit}||'%'
 		</if>
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
+		order by unit
 	</select>
 	<select id="selectYhListCount" parameterType="hashmap" resultType="int">
-		select count(*) from master 
+		select count(*) from xtgl_master 
 		where 1=1
 		<if test="yhm != null and  yhm != ''">
 			and truename like #{yhm}||'%'
 		</if>
-		<if test="tbdw != null and  tbdw != ''">
-			and unit like #{tbdw}||'%'
+		<if test="unit != null and  unit != ''">
+			and unit like #{unit}||'%'
 		</if>
 	</select>
 	<select id="selQxList" parameterType="hashmap" resultType="hashmap">
@@ -98,10 +99,10 @@
 		DELETE FROM ROLE_SOURCE WHERE ROLEID = #{id}
 	</delete>
 	<select id="selectDwList" parameterType="unit" resultType="unit">
-		select * from unit where id like #{id}||'%' order by id 
+		select * from xtgl_department where id like #{id}||'%' order by id 
 	</select>
 	<select id="selectDwListCount" parameterType="unit" resultType="int">
-		select count(*) from unit where id like #{id}||'%'
+		select count(*) from xtgl_department where id like #{id}||'%'
 	</select>
 	<select id="getBmbmTreeByName" parameterType="hashmap" resultType="treenode">
 		select * from bmbm where parent in (select id from bmbm where name=#{name} )
@@ -153,5 +154,14 @@
 	</insert>
 	<select id="checkname" parameterType="hashmap" resultType="master">
 		select * from master where truename=#{username}
+	</select>
+	<select id="selectTsdqList" parameterType="param" resultType="param">
+		select * from xtgl_tsdq
+	</select>
+	<select id="selectXzqhListCount" parameterType="unit" resultType="int">
+		select count(*) from xtgl_xzqh
+	</select>
+	<select id="selectXzqhList" parameterType="unit" resultType="unit">
+		select * from xtgl_xzqh order by bmid
 	</select>
 </mapper>

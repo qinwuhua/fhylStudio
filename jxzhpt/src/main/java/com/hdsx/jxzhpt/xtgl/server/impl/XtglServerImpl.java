@@ -163,10 +163,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public boolean insertDw(Unit unit) {
 		int b=insert("insertDw", unit);
 		int b2;
-		if(b>0){
-			if("1.企业".equals(unit.getJglx())) b2=insert("insertQY", unit);
-			else if("2.事业单位".equals(unit.getJglx())||"9.其它组织机构".equals(unit.getJglx())) b2=insert("insertXzsy", unit);
-		}
+		
 		return b>0?true:false;
 	}
 
@@ -218,5 +215,20 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<Master> checkname(HashMap hm) {
 		return queryList("checkname",hm);
+	}
+
+	@Override
+	public List<Param> selectTsdqList(Param param) {
+		return queryList("selectTsdqList", param);
+	}
+
+	@Override
+	public int selectXzqhListCount(Unit unit) {
+		return queryOne("selectXzqhListCount", unit);
+	}
+
+	@Override
+	public List<Unit> selectXzqhList(Unit unit) {
+		return queryList("selectXzqhList", unit);
 	}
 }

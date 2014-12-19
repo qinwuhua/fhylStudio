@@ -213,7 +213,7 @@ public class XtglController extends BaseActionSupport{
 		hm.put("page", page);
 		hm.put("rows", rows);
 		hm.put("yhm", yhm);
-		hm.put("tbdw", unit.getTbdw());
+		//hm.put("unit", master.getUnit());
 		int count=xtglServer.selectYhListCount(hm);
 		List<Master> list=xtglServer.selectYhList(hm);
 		EasyUIPage<Master> e=new EasyUIPage<Master>();
@@ -361,6 +361,32 @@ public class XtglController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	
+	/**
+	 * 行政区划树列表
+	 */
+	public void selectXzqhList(){
+		int count = xtglServer.selectXzqhListCount(unit);
+		List<Unit> list = xtglServer.selectXzqhList(unit);
+		int len=unit.getId().length();
+		for(int i=0;i<list.size();i++){
+			if(!unit.getId().equals(list.get(i).getId()))
+			{
+				list.get(i).set_parentId(list.get(i).getParent());
+			}
+			if(list.get(i).getBmid().length()>=12){
+				list.get(i).setState("closed");
+			}
+		}
+		EasyUIPage<Unit> ep = new EasyUIPage<Unit>();
+		ep.setTotal(count);
+		ep.setRows(list);
+		try {
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 单位树列表
 	 */
@@ -373,7 +399,7 @@ public class XtglController extends BaseActionSupport{
 			{
 				list.get(i).set_parentId(list.get(i).getParent());
 			}
-			if(list.get(i).getId().length()==len+4){
+			if(list.get(i).getId().length()==len+11){
 				list.get(i).setState("closed");
 			}
 		}
@@ -512,6 +538,19 @@ public class XtglController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 特殊地区列表
+	 */
+	public void selectTsdqList(){
+		List<Param> list=xtglServer.selectTsdqList(param);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	
 	public String getYhdw() {
 		return yhdw;

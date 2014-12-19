@@ -1,89 +1,89 @@
 $(function() {
 
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'危桥改造项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu1',
 		href:'./jckgl/wqgz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu1',
 		href:'./jckgl/abgc.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu1',
 		href:'./jckgl/zhfz.jsp'
 	});
 	
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'危桥改造项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/wqgz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/abgc.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
 		href:'./jcksh/zhfz.jsp'
 	});
 	
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'危桥改造项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu3',
 		href:'./sckgl/wqgz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu3',
 		href:'./sckgl/abgc.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu3',
 		href:'./sckgl/zhfz.jsp'
 	});
 	
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'危桥改造项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu4',
 		href:'./scksh/wqgz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu4',
 		href:'./scksh/abgc.jsp'
 	});
-	createMenu2('LeftMenu',{
+	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治项目',
-		imgSrc:'../../images/left_kj.png',
+		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu4',
 		href:'./scksh/zhfz.jsp'
 	});

@@ -72,4 +72,10 @@ public interface XtglServer {
 
 	List<Master> checkname(HashMap hm);
 
+	List<Param> selectTsdqList(Param param);
+
+	int selectXzqhListCount(Unit unit);
+
+	List<Unit> selectXzqhList(Unit unit);
+
 }

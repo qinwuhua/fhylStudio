@@ -24,7 +24,7 @@
 function openJsUpdate(_id){
 	$("#jsgl_table").datagrid('unselectAll');
 	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',422,400);
+	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
 }
 function deleteJs(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -52,10 +52,10 @@ function deleteJs(_id){
 
 $(function(){
 	$("#jsgl_table").datagrid({
-		border : false,
-		height:500,
-		width:1000,
-		//fit : true,
+		border : true,
+		//height:500,
+		//width:1000,
+		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectJsList.do',
@@ -99,7 +99,7 @@ $(function(){
 		},{
 			text : '添加',
 			handler : function(){
-				YMLib.UI.createWindow('jsgl_add_win','添加角色','./jsgl_add.jsp','app_add',422,400);
+				YMLib.UI.createWindow('jsgl_add_win','添加角色','./jsgl_add.jsp','app_add',630,330);
 			}
 		}]
 	});
@@ -111,7 +111,7 @@ $(function(){
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;角色分配管理</div>
 		</div>
     </div>
-    <div style="height:100%;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>

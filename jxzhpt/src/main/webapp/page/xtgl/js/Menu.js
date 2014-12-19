@@ -35,14 +35,5 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./yhgl.jsp'
 	});
-	createMenu2('LeftMenu',{
-		id:'menu6',
-		title:'个人信息维护',
-		imgSrc:'../../images/left_kj.png',
-		renderTo:'left_menu1',
-		href:'./grxx.jsp'
-	});
-	
-	
 
 });

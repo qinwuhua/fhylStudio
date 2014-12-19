@@ -17,7 +17,42 @@ public class Param implements Serializable{
 	private String sourceid;
 	private String czr;
 	private String czsj;
+	private String name;
+	private String xzqh;
+	private String xzqhdm;
+	private String state;
+	private String bz;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getBz() {
+		return bz;
+	}
+	public void setBz(String bz) {
+		this.bz = bz;
+	}
 	public String getRoleid() {
 		return roleid;
 	}

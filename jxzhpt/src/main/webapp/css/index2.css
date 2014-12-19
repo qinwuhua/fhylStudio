@@ -1,12 +1,3 @@
-/*
---------------
-Site:贵州省交通公共出行信息服务网
-Author:Christy
-Updated:September 25 2013
-Updated by:September 25 2013
---------------
-*/
-/*声明公共样式*/
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p,
  blockquote, pre, a,big, cite,em, font, img, small, dd, dl, dt,
  li, ol, ul, fieldset, form, label, input, select, textarea, table,
@@ -25,10 +16,14 @@ select, textarea, input, button {vertical-align:middle;font-family:inherit;font-
 .clearFix:after{clear:both;display:block;visibility:hidden;height:0;content:'';}
 .clearFix{zoom:1;}
 img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = "./images/blank.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none")), this.pngSet=true);
-}/*解决IE6不支持png的透明问题*/
+}
 
-.header{height:100px;background:url(../images/bg_x.jpg) 0 0 repeat-x;}
-.header_content{position:relative;height:100px;background:url(../images/top_bg.jpg) 0 0 no-repeat;}
+.header{height:98px;background:url(../images/bg_x.jpg) 0 0 repeat-x;}
+.header_content{position:relative;height:96px;background:url(../images/top_bg1.jpg) 0 0 no-repeat;}
+.header_content2{position:relative;height:96px;background:url(../images/top_bg2.jpg) 0 0 no-repeat;}
+.header_content3{position:relative;height:96px;background:url(../images/top_bg3.jpg) 0 0 no-repeat;}
+.header_content4{position:relative;height:96px;background:url(../images/top_bg4.jpg) 0 0 no-repeat;}
+
 .date{position:absolute;top:16px;right:178px;color:#d3dfee;}
 .system{position:absolute;top:16px;right:17px;}
 .system a{color:#d36e22;font-weight:bold;}

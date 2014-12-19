@@ -7,13 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>江西省公路业务综合管理平台</title>
 <link rel="stylesheet" type="text/css" href="css/xzjm.css" />
-<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/grid.js"></script>
+<link href="./css/searchAndNavigation.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="./easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="./easyui/themes/icon.css" />
+<script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="./page/jhgl/js/grid.js"></script>
 </head>
 <body style="margin:0 0 0 0;min-width: 1000px;height:100%; overflow:hidden;">
 <div id="topbg">
