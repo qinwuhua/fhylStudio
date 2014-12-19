@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理危桥改造项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
@@ -13,9 +15,24 @@
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript">
-$(function(){
- 
-});
+	$(function(){
+		$("#grid").datagrid({    
+			 url:"../js/lwxm1.json",
+			    striped:true,
+			    pagination:true,
+			    rownumbers:true,
+			    pageNumber:1,
+			    pageSize:10,
+			    height:325,
+		    columns:[[    
+				{field:'allSel',title:'全选',width:100},         
+				{field:'dingW',title:'定位',width:100},        
+		        {field:'bianJ',title:'编辑',width:100},    
+		        {field:'delete',title:'删除',width:100},    
+		        {field:'shzt',title:'审核状态',width:100}    
+		    ]]    
+		});  
+	});
 </script>
 <style type="text/css">
 TD {
@@ -27,9 +44,9 @@ text-decoration:none;
 </style>
 </head>
 <body>
-	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
+<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" background="../../images/dht_bg.jpg"  style="padding-left: 25px; background-repeat:no-repeat; height: 25px;"width="90%">
+			<td align="left" background="../../../images/dht_bg.jpg"  style="padding-left: 25px; background-repeat:no-repeat; height: 25px;"width="90%">
 			<font color="#1a5780" style="font-size: small">路网项目</font>&nbsp;&gt;&nbsp; 
 			<font color="#1a5780" style="font-size: small">项目基础库管理</font>&nbsp;&gt;&nbsp; 
 			<font color="#5C5C5C" style="font-size: small">危桥改造项目管理</font></td>
@@ -157,6 +174,12 @@ text-decoration:none;
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="wqgz" style="font-weight: bold; color: #FF0000">15</span>&nbsp;】个危桥改造项目。</td>
         </tr>
+        <tr>
+        	<td style="padding-left: 10px;padding-top:5px;"width="90%" >
+        		<table id="grid"  width="100%"  height="320px"></table>
+        	</td>
+        </tr>
 		</table>
+		  
 </body>
 </html>

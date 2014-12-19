@@ -14,7 +14,20 @@
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript">
 $(function(){
- 
+	$("#grid").datagrid({    
+		url:"../js/lwxm1.json",
+		    striped:true,
+		    pagination:true,
+		    rownumbers:true,
+		    pageNumber:1,
+		    pageSize:10,
+		    height:325,
+	    columns:[[    
+	        {field:'code',title:'代号',width:100},    
+	        {field:'name',title:'名字',width:100},    
+	        {field:'price',title:'价格',width:100,align:'right'}    
+	    ]]    
+	});  
 });
 </script>
 <style type="text/css">
@@ -29,7 +42,7 @@ text-decoration:none;
 <body>
 	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
-			<td align="left" background="../../images/dht_bg.jpg"  style="padding-left: 25px; background-repeat:no-repeat; height: 25px;"width="90%">
+			<td align="left" background="../../../images/dht_bg.jpg"  style="padding-left: 25px; background-repeat:no-repeat; height: 25px;"width="90%">
 			<font color="#1a5780" style="font-size: small">路网项目</font>&nbsp;&gt;&nbsp; 
 			<font color="#1a5780" style="font-size: small">项目基础库管理</font>&nbsp;&gt;&nbsp; 
 			<font color="#5C5C5C" style="font-size: small">安保工程项目管理</font></td>
@@ -155,6 +168,11 @@ text-decoration:none;
         					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个灾害防治项目，
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
+        </tr>
+         <tr>
+        	<td style="padding-left: 10px;padding-top:5px;"width="90%" >
+        		<table id="grid"  width="100%"  height="320px"></table>
+        	</td>
         </tr>
 		</table>
 </body>
