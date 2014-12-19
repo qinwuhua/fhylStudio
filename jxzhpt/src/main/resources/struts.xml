@@ -22,4 +22,5 @@
         <result name="error">/page/user/error.jsp</result>    
      </action>
 </package> -->
+<include file="struts_xtgl.xml"></include>
 </struts>
