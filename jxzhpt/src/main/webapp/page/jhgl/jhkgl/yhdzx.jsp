@@ -11,14 +11,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/grid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({
-				animate:true,
-				url:"../js/gydw.json",
-				lines:true
-			}); 
+			gydwComboxTree("gydw");
+			xzqhComboxTree("xzqh");
 			yhdzxxm();
 		});
 		
@@ -48,8 +46,8 @@
         						<span>管养单位：</span>
         						<select id="gydw" style="width:237px;"></select>
         						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:104px;"></select>
-        						<span>&nbsp;路&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
+        						<select id="xzqh" style="width:170px;"></select>
+        						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" id="txtRoad" style="width:80px;"  type="text"/>
         					</p>
         					<p style="margin-left: 20px;">
@@ -66,7 +64,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" id="ddlGldj" style="width:170px;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
