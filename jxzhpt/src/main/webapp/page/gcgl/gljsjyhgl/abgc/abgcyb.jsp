@@ -17,6 +17,7 @@
 			$('#gydw').combotree({   
 				url:"js/gydw.json"
 			}); 
+			showYBlist();
 		});
 	</script>
 	<style type="text/css">
@@ -256,153 +257,15 @@ a:active {
             <tr>
                 <td>
                     
-                            <table width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;">
-                                <tr>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        操作
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        上报月份
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        上报时间
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        本月完成（处）
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        本月完成（公里）
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        截至开工段落
-                                    </td>
-                                    <td colspan="3" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        本月完成投资（万元）
-                                    </td>
-                                    <td colspan="3" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        本月资金到位（万元）
-                                    </td>
-                                    <td rowspan="2" style="border-style: solid solid solid solid; border-width: 1px;
-                                        border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center;
-                                        background-color: #F1F8FF; padding-right: 5px;">
-                                        情况说明
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        部投资
-                                    </td>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        省投资
-                                    </td>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        其他投资
-                                    </td>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        部投资
-                                    </td>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        省投资
-                                    </td>
-                                    <td style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0;
-                                        color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF;
-                                        padding-right: 5px;">
-                                        其他资金
-                                    </td>
-                              </tr>
-                              <tr align="center">
-                                <td>
-                                    <a href="javascript:void(0)" onclick="Showybxx()"> 详细</a>
-                                     &nbsp;|&nbsp;
-                                    <a href='javascript:void(0)' onclick='Edityb()'>编辑</a>
-                                    &nbsp;|&nbsp;
-                                    <a href='javascript:void(0)' onclick='Delyb()'>删除</a>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_SBYF" style="font-size:10pt;">2014-12</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_SBSJ" style="font-size:10pt;">2014-12-17</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYWCMC" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYWCML" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_KGDL" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYWCTZ_B" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYWCTZ_S" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYWCTZ_QT" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYZJSY_B" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYZJSY_S" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_BYZJSY_QT" style="font-size:10pt;">1</span>
-                                </td>
-                                <td>
-                                    <span id="rpDate_ctl01_QKSM" style="font-size:10pt;">1</span>
-                                </td>
-                            </tr>
-                        		
+                            <table id="ybgrid" width="100%" height="90%" >
+
                         		
                             </table>
-                            <span id="rpDate_ctl01_lbmessage">没有数据显示</span>
+                            
                         
                 </td>
             </tr>
-            <tr align="center">
-                <td>
-                    共
-                    <span id="lblcount">0</span>条记录，当前
-                    <span id="lblcurrent">1/1</span>页&nbsp;&nbsp;
-                    <a id="hlfist" disabled="disabled">首页</a>&nbsp;
-                    <a id="hlprev" disabled="disabled">上一页</a>&nbsp;
-                    <a id="hlnext" disabled="disabled">下一页</a>&nbsp;
-                    <a id="hllast" disabled="disabled">末页</a>&nbsp;&nbsp;
-                    <select name="ddlPage" onchange="javascript:setTimeout('__doPostBack(\'ddlPage\',\'\')', 0)" id="ddlPage">
-	<option selected="selected" value="1">1</option>
- 
-</select>
-                </td>
-            </tr>
+
         </table>
         <table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
             margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px;

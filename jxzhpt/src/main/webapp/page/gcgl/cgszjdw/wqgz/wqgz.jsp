@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/abgc.js"></script>
+	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#gydw').combotree({   
@@ -19,6 +19,7 @@
 			}); 
 			showAll();
 		});
+		
 	</script>
 	<style type="text/css">
 <!--
@@ -44,7 +45,7 @@ a:active {
 	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
 	                <a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp;
 	                <a style="color: #1a5780" href="#">项目进度管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;安保工程施工过程管理</font>
+	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;危桥改造施工过程管理</font>
 	            </td>
         	</tr>
         	<tr>
@@ -65,7 +66,8 @@ a:active {
         						</select>
         						<span>路线：</span>
         							<input type="text" id="lx" >
-        							&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>桥梁：</span>
+        							<input type="text" id="ql" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
         						<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;height: 22px;vertical-align: -40%;" />
@@ -78,9 +80,8 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" cellspacing="0" rules="all" border="1" id="GrdAB" style="width:1220px;border-collapse:collapse;">
-	</table>
-
+		<table id="datagrid">
+		</table>
 			
 		</table>
 	</div>

@@ -57,12 +57,10 @@ a:active {
         					<p>
         						<span>管养单位：</span>
         						<select id="gydw" style="width:200px;"></select>
-        						<span>开工状态：</span>
-        						<select id="sbnf" style="width: 65px;">
-        							<option value="">全部</option>
-        							<option value="已开工">已开工</option>
-        							<option value="未开工">未开工</option>
-        						</select>
+        							&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;
         						<span>路线：</span>
         							<input type="text" id="lx" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
@@ -78,10 +76,9 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" cellspacing="0" rules="all" border="1" id="GrdAB" style="width:1220px;border-collapse:collapse;">
+	<table id="datagrid">
 	</table>
 
-			
 		</table>
 	</div>
 </body>
