@@ -112,28 +112,28 @@ $(function() {
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu7',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu8',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./cgszjdw/hsly/hsly.jsp'
 	});
 //	createMenu('LeftMenu',{
 //		id:'menu9',
