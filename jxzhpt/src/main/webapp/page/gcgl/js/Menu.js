@@ -329,21 +329,21 @@ $(function() {
 		title:'模板管理',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu5',
-		href:'./lxxx.jsp'
+		href:'./aqyjgl/mbgl/mbgl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'信息通知',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu5',
-		href:'./lxxx.jsp'
+		href:'./aqyjgl/xxtz/xxtz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'信息通知数据查询',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu5',
-		href:'./lxxx.jsp'
+		href:'./aqyjgl/xxcx/xxcx.jsp'
 	});
 	
 	

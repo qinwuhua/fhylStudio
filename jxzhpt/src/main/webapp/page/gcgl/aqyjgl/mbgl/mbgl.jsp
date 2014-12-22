@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/aqgl.js"></script>
+	<script type="text/javascript" src="js/mbgl.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -45,7 +45,7 @@ a:active {
 	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
 	                <a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp;
 	                <a style="color: #1a5780" href="#">安全应急管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;安全管理月报表</font>
+	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;模板管理</font>
 	            </td>
         	</tr>
         	<tr>
@@ -56,9 +56,6 @@ a:active {
         				</legend>
         				<div>
         					<p>
-        						<span>上传单位：</span>
-        						<select id="gydw" style="width:200px;"></select>
-        							&nbsp;&nbsp;
         						<span>文件名称：</span>
         							<input type="text" id="wjmc" >
         							&nbsp;&nbsp;
@@ -86,17 +83,13 @@ a:active {
 										<option value="11">11</option>
 										<option value="12">12</option> 
 									</select>
-									<span>状态：</span>
-									<select name="ddlType" id="ddlType">
-										<option selected="selected" value="0">全部</option>
-										<option value="1">上传</option>
-										<option value="2">接收</option>
-									</select>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;vertical-align: -40%;" />
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="upload()" style="vertical-align: -40%;" />
-                                    <img alt="下载模板" src="${pageContext.request.contextPath}/images/Button/XZMB1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/XZMB2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/XZMB1.gif' " onclick="toDialogRoad()" style="vertical-align: -40%;"/>
+                                    
         					</p>
         				</div>
         			</fieldset>

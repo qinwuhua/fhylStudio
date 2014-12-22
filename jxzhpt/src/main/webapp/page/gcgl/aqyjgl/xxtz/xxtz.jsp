@@ -11,10 +11,19 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/aqgl.js"></script>
+	<script type="text/javascript" src="js/xxtz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			$("#kssj").datebox({    
+			    
+			});  
+			$("#jssj").datebox({    
+		    
+			});  
+
+			
+			
 			$('#gydw').combotree({   
 				url:"js/gydw.json"
 			}); 
@@ -45,7 +54,7 @@ a:active {
 	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
 	                <a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp;
 	                <a style="color: #1a5780" href="#">安全应急管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;安全管理月报表</font>
+	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;信息通知</font>
 	            </td>
         	</tr>
         	<tr>
@@ -56,47 +65,17 @@ a:active {
         				</legend>
         				<div>
         					<p>
-        						<span>上传单位：</span>
-        						<select id="gydw" style="width:200px;"></select>
-        							&nbsp;&nbsp;
-        						<span>文件名称：</span>
-        							<input type="text" id="wjmc" >
-        							&nbsp;&nbsp;
-        							<span>年份：</span>
-        							<select name="ddlYear" id="ddlYear">
-										<option selected="selected" value="全部">全部</option>
-										<option value="2011">2011</option>
-										<option value="2012">2012</option>
-										<option value="2013">2013</option>
-										<option value="2014">2014</option>
-									</select>
-									<span>月份：</span>
-									<select name="ddlMonth" id="ddlMonth">
-										<option selected="selected" value="全部">全部</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09">09</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option> 
-									</select>
-									<span>状态：</span>
-									<select name="ddlType" id="ddlType">
-										<option selected="selected" value="0">全部</option>
-										<option value="1">上传</option>
-										<option value="2">接收</option>
-									</select>
+        						<span>发布时间：</span>
+        							<input type="text" id="kssj" >
+        							<span>至</span>
+        							<input type="text" id="jssj" >
+        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;vertical-align: -40%;" />
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="upload()" style="vertical-align: -40%;" />
-                                    <img alt="下载模板" src="${pageContext.request.contextPath}/images/Button/XZMB1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/XZMB2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/XZMB1.gif' " onclick="toDialogRoad()" style="vertical-align: -40%;"/>
+                                    
         					</p>
         				</div>
         			</fieldset>
