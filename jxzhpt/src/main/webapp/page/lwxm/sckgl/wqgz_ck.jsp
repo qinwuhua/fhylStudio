@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>基础库审核危桥改造项目</title>
+<title>审查库管理危桥改造项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -113,18 +113,58 @@ text-decoration:none;
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span>桥台、桥墩、上部承重结构开裂，桥面铺装破碎</span>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span></span>
 				</td>
 			</tr>
-			
+			<tr>
+				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+					危桥改造项目审查信息
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>未知</span></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>未知</span></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>2014-12-01</span>
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>2154658</span></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>0</span></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>中修</span>
+				</td>
+			</tr>
+				<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span>加固改造</span>
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span></span>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="6" style="background-color: #ffffff; height: 35px;"
 					align="center"> <a href="javascript:void(0)" id="qx_window"

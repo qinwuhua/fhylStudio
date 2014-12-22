@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>基础库审核危桥改造项目</title>
+<title>基础库管理危桥改造项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>

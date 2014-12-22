@@ -13,7 +13,7 @@ function jckglWqgz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'wqgz_ck.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
 				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">编辑</a>';
@@ -47,7 +47,7 @@ function jckglAbgc(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'abgc_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
 				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
@@ -82,7 +82,7 @@ function jckglZhfz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'zhfz_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
 				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
@@ -209,10 +209,10 @@ function sckglWqgz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">编辑</a>';
+				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
 			}},
 	        {field:'delete',title:'删除',width:60,align:'center'},    
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
@@ -242,10 +242,10 @@ function sckglAbgc(){
 		  			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 		  			{field:'dingW',title:'定位',width:60,align:'center'}, 
 		  			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+		  				return '<a href="javascript:xgJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 		  			}},
 		  	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
+		  				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
 		  			}},
 		  	        {field:'delete',title:'删除',width:60,align:'center'},    
 		  	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
@@ -276,10 +276,10 @@ function sckglZhfz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
+				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
 			}},
 	        {field:'delete',title:'删除',width:60,align:'center'},    
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
@@ -311,7 +311,7 @@ function sckshWqgz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},   
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -340,7 +340,7 @@ function sckshAbgc(){
 		  			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 		  			{field:'dingW',title:'定位',width:60,align:'center'}, 
 		  			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+		  				return '<a href="javascript:xgJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 		  			}},
 		  	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 		  	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -370,7 +370,7 @@ function sckshZhfz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
 			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+				return '<a href="javascript:xgJck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},

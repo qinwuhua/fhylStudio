@@ -117,7 +117,7 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2"  style="width:99%">无</textarea>
+					<textarea rows="2"  style="width:99%">桥台、桥墩、上部承重结构开裂，桥面铺装破碎</textarea>
 				</td>
 			</tr>
 			<tr>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>基础库审核安保工程项目</title>
+<title>基础库管理灾害防治项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -33,7 +33,7 @@ text-decoration:none;
 			border="0" cellpadding="3" cellspacing="1">
 			<tr>
 				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
-					安保工程项目基本信息
+					灾害防治项目基本信息
 				</td>
 			</tr>
 			<tr>
@@ -91,14 +91,14 @@ text-decoration:none;
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">病害内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 35px;" align="left">
 					<span>2010000000</span>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 35px;" align="left">
 					<span>无</span>
 				</td>
 			</tr>

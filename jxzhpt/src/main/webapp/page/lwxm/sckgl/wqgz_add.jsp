@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>基础库审核危桥改造项目</title>
+<title>基础库管理危桥改造项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -17,6 +17,9 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#save_button").click(function(){
+			$.messager.alert('提示','保存成功！','info');    
+		});
 	});
 </script>
 <style type="text/css">
@@ -39,96 +42,141 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>X024360121L0020</span></td>
+					<input type="text" name="name"id="name" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>泾口大桥</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>39.059</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>南昌市南昌县交通局</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span>3303</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>南昌市南昌县</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>五星-沙潭</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span>X396360726</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">跨径总长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>150</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>200</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span>20</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>5</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>四级</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span>四类</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>2008</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">按跨径分类：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>大桥</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span>双曲拱</span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="tsdq">罗霄山山脉</span>
+					<span id="tsdq"></span>
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span>2006</span></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<span></span></td>
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<span>桥台、桥墩、上部承重结构开裂，桥面铺装破碎</span>
+					<textarea rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<span></span>
+					<textarea rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
-			
+			<tr>
+				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+					危桥改造项目审查信息
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="spsj" class="easyui-datebox" />
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<select id="jsxz">
+						<option selected>中修</option>
+						<option>大修</option>
+					</select>
+				</td>
+			</tr>
+				<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea rows="2"  style="width:99%"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea rows="2" style="width:99%"></textarea>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="6" style="background-color: #ffffff; height: 35px;"
-					align="center"> <a href="javascript:void(0)" id="qx_window"
-					class="easyui-linkbutton" plain="true" iconCls="icon-ok">确定</a></td>
+					align="center"><a href="javascript:void(0)" id="save_button"
+					class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a> <a
+					href="javascript:void(0)" id="qx_window"
+					class="easyui-linkbutton" plain="true" iconCls="icon-cancel">取消</a></td>
 			</tr>
 			</table>
 </body>

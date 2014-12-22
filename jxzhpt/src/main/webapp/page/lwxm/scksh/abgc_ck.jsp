@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>基础库审核安保工程项目</title>
+<title>审查库审核安保工程项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -91,13 +91,72 @@ text-decoration:none;
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span>2010000000</span>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span>无</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+					安保工程项目审查信息
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>0</span></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>10.726</span></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>10.726</span>公里
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span>5</span>公里
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>南昌公路局</span></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>南昌公路局</span></td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>2013-5-6</span>
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>1231654</span></td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>0</span>万元</td>
+					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span>中修</span>
+				</td>
+			</tr>
+				<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span>修复工程</span>
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span>无</span>
 				</td>
