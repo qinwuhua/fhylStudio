@@ -72,42 +72,42 @@ $(function() {
 		title:'工程改造路面升级项目',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/gclmsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'工程改造路面改建项目',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/gclmgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'水毁项目',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/shxm.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'安保工程项目',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'灾害防治项目',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		href:'./jhksb/zhfz.jsp'
 	});
 	
 	
@@ -116,42 +116,42 @@ $(function() {
 		title:'工程改造路面升级项目',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/gclmsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'工程改造路面改建项目',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/gclmgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'水毁项目',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/shxm.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'安保工程项目',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'灾害防治项目',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./jhksh/zhfz.jsp'
 	});
 	
 	
