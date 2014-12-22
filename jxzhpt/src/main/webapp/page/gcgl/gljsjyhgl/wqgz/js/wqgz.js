@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("wqgzxx.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("wqgzyb.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造月报上报','wqgzyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	window.open("wqgzybtj.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',700,450);
+	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(){
-	window.open("wqgzybxx.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
 function Edityb(){
-	window.open("wqgzybxg.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',700,450);
+	//window.open("wqgzybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))

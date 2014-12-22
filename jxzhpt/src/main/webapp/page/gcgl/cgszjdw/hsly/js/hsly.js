@@ -2,30 +2,15 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("hslyxx.jsp");
-}
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("hslyyb.jsp");
-}
-function AddInfo(){
-	window.open("hslyybtj.jsp");
-}
-function Showybxx(){
-	window.open("hslyybxx.jsp");
-}
-function Edityb(){
-	window.open("hslyybxg.jsp");
-}
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+	YMLib.UI.createWindow('wqxx','红色旅游开工详情','hslyxx.jsp','wqxx',700,450);
+	//window.open("hslyxx.jsp");
 }
 function zjdw(){
-	window.open("shzjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','hslyzjdw.jsp','wqxx',800,450);
+	//window.open("shzjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
 	window.open("shzjdwtj.jsp");
@@ -57,29 +42,23 @@ function showAll(){
 	}); 
 }
 
-function showYBlist(){
-	$('#ybgrid').datagrid({    
-	    url:'js/shyb.json',
+function showAllZJ(){
+	$('#zjgrid').datagrid({    
+	    url:'js/wqgz1.json',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    columns:[
-	             [
-	              	{field:'c',title:'操作',width:200,align:'center',rowspan:2,formatter:function(value,row,index){
-			        	return '<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="Edityb()">编辑</a>   '+'删除   ';
-			        }},
-			        {field:'sbyf',title:'上报月份',width:130,align:'center',rowspan:2},
-			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
-			        {field:'bywcdc',title:'本月完成垫层（m³）',width:130,align:'center',rowspan:2},
-			        {field:'bywcjc',title:'本月完成基层（m³）',width:130,align:'center',rowspan:2},
-			        {field:'bywcmc',title:'本月完成面层（公里）',width:130,align:'center',rowspan:2},
-			        {field:'bfzj',title:'拨付资金（万元）',width:130,align:'center',rowspan:2},
-			        {field:'jzkgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {field:'qksm',title:'情况说明',width:130,align:'center',rowspan:2}
-	             ]
-	    ]
-	});
+	    columns:[[
+	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        	return '<a href="#" onclick="editCgs()">编辑</a>    '+'<a href="#" >删除</a>   ';
+	        }},
+	        {field:'tbyf',title:'填报月份 ',width:140,align:'center'},
+	        {field:'tbsj',title:'填报时间 ',width:140,align:'center'},
+	        {field:'tbr',title:'填报人 ',width:140,align:'center'},
+	        {field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
+	    ]]    
+	}); 
 }

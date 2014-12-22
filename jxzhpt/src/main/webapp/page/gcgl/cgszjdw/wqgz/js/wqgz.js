@@ -2,17 +2,21 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("wqgzxx.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',700,450);
+	//window.open("wqgzxx.jsp");
 }
-
 function zjdw(){
-	window.open("wqgzzjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','wqgzzjdw.jsp','wqxx',800,450);
+	//window.open("wqgzzjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	window.open("wqgzzjdwtj.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwtj.jsp','wqxx',700,240);
 }
 function editCgs(){
-	window.open("wqgzzjdwxg.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwxg.jsp','wqxx',700,240);
 }
 
 function showAll(){

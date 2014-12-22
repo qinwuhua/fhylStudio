@@ -2,30 +2,15 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("gcgzgjxx.jsp");
-}
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("gcgzgjyb.jsp");
-}
-function AddInfo(){
-	window.open("gcgzgjybtj.jsp");
-}
-function Showybxx(){
-	window.open("gcgzgjybxx.jsp");
-}
-function Edityb(){
-	window.open("gcgzgjybxg.jsp");
-}
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+	YMLib.UI.createWindow('wqxx','工程改造路面改建开工详情','gcgzgjxx.jsp','wqxx',700,450);
+	//window.open("gcgzgjxx.jsp");
 }
 function zjdw(){
-	window.open("gcgzgjzjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','gcgzgjzjdw.jsp','wqxx',800,450);
+	//window.open("gcgzgjzjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
 	window.open("gcgzgjzjdwtj.jsp");

@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("yhdzxxx.jsp");
+	YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',740,450);
+	//window.open("yhdzxxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("yhdzxyb.jsp");
+	YMLib.UI.createWindow('wqxx','养护大中修月报上报','yhdzxyb.jsp','wqxx',1059,540);
+	//window.open("yhdzxyb.jsp");
 }
 function AddInfo(){
-	window.open("yhdzxybtj.jsp");
+	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',700,450);
+	//window.open("yhdzxybtj.jsp");
 }
 function Showybxx(){
-	window.open("yhdzxybxx.jsp");
+	YMLib.UI.createWindow('wqxx','养护大中修月报详情','yhdzxybxx.jsp','wqxx',700,450);
+	//window.open("yhdzxybxx.jsp");
 }
 function Edityb(){
-	window.open("yhdzxybxg.jsp");
+	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',700,450);
+	//window.open("yhdzxybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))

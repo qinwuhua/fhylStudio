@@ -2,29 +2,20 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("hslyxx.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游开工详情','hslyxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("hslyyb.jsp");
-}
-function AddInfo(){
-	window.open("hslyybtj.jsp");
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	window.open("hslyybxx.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	window.open("hslyybxg.jsp");
+function ybsb(){
+	YMLib.UI.createWindow('wqxx','红色旅游月报列表','hslyyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
-}
-
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/sh.json',

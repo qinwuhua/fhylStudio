@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/gcgzgj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$('#gydw').combotree({   
@@ -39,7 +40,7 @@ a:active {
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="60%" border="0"
+		<table width="98%" border="0"
 			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
 			cellpadding="0">
 			<tr>
@@ -77,7 +78,7 @@ a:active {
 			</tr>
 
 		</table>
-		<table width="60%" border="0"
+		<table width="100%" border="0"
 			style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
 			cellspacing="0" cellpadding="0">
 			<tr style="height: 30px;">
@@ -90,7 +91,7 @@ a:active {
 								src="${pageContext.request.contextPath}/images/Button/tianj1.gif"
 								style="border-width: 0px; cursor: hand;" /></td>
 							<td><a href="javascript:void(0)" onclick="window.close();">
-									<img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
+									<img onclick="closes('wqxx')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
 									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
 									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
 									style="border: 0" />

@@ -2,30 +2,15 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("yhdzxxx.jsp");
-}
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("yhdzxyb.jsp");
-}
-function AddInfo(){
-	window.open("yhdzxybtj.jsp");
-}
-function Showybxx(){
-	window.open("yhdzxybxx.jsp");
-}
-function Edityb(){
-	window.open("yhdzxybxg.jsp");
-}
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+	YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',700,450);
+	//window.open("yhdzxxx.jsp");
 }
 function zjdw(){
-	window.open("yhdzxzjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','yhdzxzjdw.jsp','wqxx',800,450);
+	//window.open("abgczjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
 	window.open("yhdzxzjdwtj.jsp");

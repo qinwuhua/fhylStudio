@@ -2,29 +2,20 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("zhfzxx.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治开工详情','zhfzxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("zhfzyb.jsp");
-}
-function AddInfo(){
-	window.open("zhfzybtj.jsp");
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	window.open("zhfzybxx.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	window.open("zhfzybxg.jsp");
+function ybsb(){
+	YMLib.UI.createWindow('wqxx','灾害防治月报列表','zhfzyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
-}
-
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/zhfz.json',

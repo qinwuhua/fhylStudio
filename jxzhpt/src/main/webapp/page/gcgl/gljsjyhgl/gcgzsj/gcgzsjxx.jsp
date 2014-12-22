@@ -18,6 +18,7 @@
 	src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/gcgzsj.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript"> 
 
 </script>
@@ -811,7 +812,7 @@ a {
 				<td align="center"><img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif"
 					onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'"
 					onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' "
-					onclick="RetAck()" /></td>
+					onclick="closes('wqxx')" /></td>
 			</tr>
 		</table>
 		<br />

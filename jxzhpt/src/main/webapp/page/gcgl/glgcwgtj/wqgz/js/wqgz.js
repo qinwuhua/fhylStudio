@@ -2,31 +2,20 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("wqgzxx.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("wqgzyb.jsp");
-}
-function AddInfo(){
-	window.open("wqgzybtj.jsp");
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	window.open("wqgzybxx.jsp");
+	YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	window.open("wqgzybxg.jsp");
+function ybsb(){
+	YMLib.UI.createWindow('wqxx','危桥改造月报列表','wqgzyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
-}
-
-//显示所有
-var wqData;
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/wqgz.json',

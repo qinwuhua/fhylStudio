@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("hslyxx.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游开工详情','hslyxx.jsp','wqxx',740,450);
+	//window.open("hslyxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("hslyyb.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报上报','hslyyb.jsp','wqxx',1059,540);
+	//window.open("hslyyb.jsp");
 }
 function AddInfo(){
-	window.open("hslyybtj.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报添加','hslyybtj.jsp','wqxx',700,450);
+	//window.open("hslyybtj.jsp");
 }
 function Showybxx(){
-	window.open("hslyybxx.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,450);
+	//window.open("hslyybxx.jsp");
 }
 function Edityb(){
-	window.open("hslyybxg.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',700,450);
+	//window.open("hslyybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))

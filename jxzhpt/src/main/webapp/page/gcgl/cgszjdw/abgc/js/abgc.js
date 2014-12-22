@@ -2,10 +2,15 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("abgcxx.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程开工详情','abgcxx.jsp','wqxx',700,450);
+	//window.open("abgcxx.jsp");
 }
 function zjdw(){
-	window.open("abgczjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','abgczjdw.jsp','wqxx',800,450);
+	//window.open("abgczjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
 	window.open("abgczjdwtj.jsp");

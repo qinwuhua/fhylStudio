@@ -2,29 +2,20 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("abgcxx.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程开工详情','abgcxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("abgcyb.jsp");
-}
-function AddInfo(){
-	window.open("abgcybtj.jsp");
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	window.open("abgcybxx.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	window.open("abgcybxg.jsp");
+function ybsb(){
+	YMLib.UI.createWindow('wqxx','安保工程月报列表','abgcyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
-}
-
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/abgc.json',

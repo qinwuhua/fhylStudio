@@ -2,27 +2,19 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("gcgzgjxx.jsp");
+	YMLib.UI.createWindow('wqxx','工程改造路面改建开工详情','gcgzgjxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("gcgzgjyb.jsp");
-}
-function AddInfo(){
-	window.open("gcgzgjybtj.jsp");
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	window.open("gcgzgjybxx.jsp");
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报详情','gcgzgjybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	window.open("gcgzgjybxg.jsp");
-}
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+function ybsb(){
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报列表','gcgzgjyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
 
 function showAll(){

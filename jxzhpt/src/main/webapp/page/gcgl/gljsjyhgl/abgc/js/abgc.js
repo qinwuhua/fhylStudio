@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("abgcxx.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程开工详情','abgcxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("abgcyb.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程月报上报','abgcyb.jsp','wqxx',1059,540);
+	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	window.open("abgcybtj.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程月报添加','abgcybtj.jsp','wqxx',700,450);
+	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(){
-	window.open("abgcybxx.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,450);
+	//window.open("wqgzybxx.jsp");
 }
 function Edityb(){
-	window.open("abgcybxg.jsp");
+	YMLib.UI.createWindow('wqxx','安保工程月报编辑','abgcybxg.jsp','wqxx',700,450);
+	//window.open("wqgzybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))

@@ -2,30 +2,15 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("shxx.jsp");
-}
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
-}
-function ybsb(){
-	window.open("shyb.jsp");
-}
-function AddInfo(){
-	window.open("shybtj.jsp");
-}
-function Showybxx(){
-	window.open("shybxx.jsp");
-}
-function Edityb(){
-	window.open("shybxg.jsp");
-}
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+	YMLib.UI.createWindow('wqxx','水毁项目开工详情','shxx.jsp','wqxx',700,450);
+	//window.open("shxx.jsp");
 }
 function zjdw(){
-	window.open("shzjdw.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位情况','shzjdw.jsp','wqxx',800,450);
+	//window.open("abgczjdw.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
 	window.open("shzjdwtj.jsp");

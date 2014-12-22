@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("shxx.jsp");
+	YMLib.UI.createWindow('wqxx','水毁项目开工详情','shxx.jsp','wqxx',740,450);
+	//window.open("shxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("shyb.jsp");
+	YMLib.UI.createWindow('wqxx','水毁项目月报上报','shyb.jsp','wqxx',1059,540);
+	//window.open("shyb.jsp");
 }
 function AddInfo(){
-	window.open("shybtj.jsp");
+	YMLib.UI.createWindow('wqxx','水毁项目月报添加','shybtj.jsp','wqxx',700,450);
+	//window.open("shybtj.jsp");
 }
 function Showybxx(){
-	window.open("shybxx.jsp");
+	YMLib.UI.createWindow('wqxx','水毁项目月报详情','shybxx.jsp','wqxx',700,450);
+	//window.open("shybxx.jsp");
 }
 function Edityb(){
-	window.open("shybxg.jsp");
+	YMLib.UI.createWindow('wqxx','水毁项目月报编辑','shybxg.jsp','wqxx',700,450);
+	//window.open("shybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))

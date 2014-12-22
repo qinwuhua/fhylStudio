@@ -2,23 +2,31 @@ function dingwei(){
 	alert("在地图上定位");
 }
 function wqxiangxi(){
-	window.open("zhfzxx.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治开工详情','zhfzxx.jsp','wqxx',740,450);
+	//window.open("zhfzxx.jsp");
+}
+function closes(str){
+	 parent.$('#'+str).window('destroy');
 }
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	window.open("zhfzyb.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治月报上报','zhfzyb.jsp','wqxx',1059,540);
+	//window.open("zhfzyb.jsp");
 }
 function AddInfo(){
-	window.open("zhfzybtj.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治月报添加','zhfzybtj.jsp','wqxx',700,450);
+	//window.open("zhfzybtj.jsp");
 }
 function Showybxx(){
-	window.open("zhfzybxx.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,450);
+	//window.open("zhfzybxx.jsp");
 }
 function Edityb(){
-	window.open("zhfzybxg.jsp");
+	YMLib.UI.createWindow('wqxx','灾害防治月报编辑','zhfzybxg.jsp','wqxx',700,450);
+	//window.open("zhfzybxg.jsp");
 }
 function Delyb(){
 	if(confirm("确认删除吗？"))
