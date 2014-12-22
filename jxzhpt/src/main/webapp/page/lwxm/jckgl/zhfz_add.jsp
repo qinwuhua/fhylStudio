@@ -37,10 +37,10 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" id="clrq" name="clrq" class="easyui-datebox" style="width: 160px;" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input  id="cc" style="width: 160px" class="easyui-combotree" />
@@ -49,31 +49,29 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combotree" />
-					<input type="text" id="pid" style="display:none"/></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="name"id="name" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combotree" />
-					<input type="text" id="pid" style="display:none"/></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="name"id="name" style="width: 156px" /></td>
@@ -85,7 +83,7 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="name"id="name" style="width: 156px" /></td>

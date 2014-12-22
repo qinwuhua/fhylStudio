@@ -25,6 +25,18 @@
 			checkbox: false,
 		 	url: "../js/xzqh.json",
 		});
+		$("#shangBao").click(function(){
+			var checkedItems = $('#grid').datagrid('getChecked');
+			var names = [];
+			if(checkedItems.length>0){
+			$.each(checkedItems, function(index, item){
+			names.push(item.qlmc);
+			}); 
+			alert(names.join(",")+"上报成功");
+			}else {
+				alert("请选择要上报的项目!");
+			}
+		});
 	});
 </script>
 <style type="text/css">
@@ -147,7 +159,7 @@ text-decoration:none;
                              <tr>
                              	<td colspan="14" align="left" >
 								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
-								<input type="image" name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
+								<input type="image" name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "  style="border-width:0px;" />
 								<input type="image" name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
 								<input type="image" name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importExcel();" style="border-width:0px;" />
                                 <input type="image" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgz_add.jsp','900','450');" style="border-width:0px;" />
