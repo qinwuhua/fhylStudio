@@ -17,8 +17,15 @@
 <script type="text/javascript">
 	$(function(){
 		jckglWqgz();
+		$("#cc").combotree({
+			checkbox: false,
+		 	url: "../js/gydw.json",
+		});
+		$("#ss").combotree({
+			checkbox: false,
+		 	url: "../js/xzqh.json",
+		});
 	});
-	$('#grid').datagrid('reload');
 </script>
 <style type="text/css">
 TD {
@@ -48,17 +55,13 @@ text-decoration:none;
 							  <td align="right" width="6%" >管养单位：
                               </td>
                               <td align="left" colspan="3" >
-                              	<select id="cc" class="easyui-combobox" style="width:238px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="cc" style="width:238px">
                               	</select>
                               </td>
                               <td align="right" width="6%" >行政区划：
                               </td>
                               <td align="left" colspan="3" >
-                              	<select id="ss" class="easyui-combobox" style="width:238px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="ss" style="width:238px">
                               	</select>
                               </td>
                                <td align="right" width="6%" >路线名称：
@@ -160,6 +163,11 @@ text-decoration:none;
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="wqgz" style="font-weight: bold; color: #FF0000">15</span>&nbsp;】个危桥改造项目。</td>
         </tr>
+        <tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            			<table id="grid" width="100%" height="320px"></table>
+            	</td>
+       		 </tr>
 		</table>
 </body>
 </html>

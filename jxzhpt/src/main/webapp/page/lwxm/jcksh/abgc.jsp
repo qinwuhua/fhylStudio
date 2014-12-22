@@ -12,9 +12,19 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
+<script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
- 
+	jckshAbgc();
+	$("#cc").combotree({
+		checkbox: false,
+	 	url: "../js/gydw.json",
+	});
+	$("#ss").combotree({
+		checkbox: false,
+	 	url: "../js/xzqh.json",
+	});
 });
 </script>
 <style type="text/css">
@@ -46,17 +56,13 @@ text-decoration:none;
 							  <td align="right" width="6%" >管养单位：
                               </td>
                               <td align="left" colspan="3"  >
-                              	<select id="cc" class="easyui-combobox" style="width:241px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="cc" style="width:241px">
                               	</select>
                               </td>
                               <td align="right" width="6%" >行政区划：
                               </td>
                               <td align="left" colspan="3" >
-                              	<select id="ss" class="easyui-combobox" style="width:242px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="ss" style="width:242px">
                               	</select>
                               </td>
                                <td align="right" width="6%" >路线名称：
@@ -154,6 +160,11 @@ text-decoration:none;
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
         </tr>
+        <tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            			<table id="grid" width="100%" height="320px"></table>
+            	</td>
+       		 </tr>
 		</table>
 </body>
 </html>

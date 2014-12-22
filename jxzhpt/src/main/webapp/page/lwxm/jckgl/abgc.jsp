@@ -17,6 +17,14 @@
 <script type="text/javascript">
 $(function(){
 	jckglAbgc();
+	$("#cc").combotree({
+		checkbox: false,
+	 	url: "../js/gydw.json",
+	});
+	$("#ss").combotree({
+		checkbox: false,
+	 	url: "../js/xzqh.json",
+	});
 });
 </script>
 <style type="text/css">
@@ -48,17 +56,13 @@ text-decoration:none;
 							  <td align="right" width="6%" >管养单位：
                               </td>
                               <td align="left" colspan="3"  >
-                              	<select id="cc" class="easyui-combobox" style="width:241px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="cc" style="width:241px">
                               	</select>
                               </td>
                               <td align="right" width="6%" >行政区划：
                               </td>
                               <td align="left" colspan="3" >
-                              	<select id="ss" class="easyui-combobox" style="width:242px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              	<select id="ss" style="width:242px">
                               	</select>
                               </td>
                                <td align="right" width="6%" >路线名称：
@@ -144,7 +148,7 @@ text-decoration:none;
 								<input type="image" name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
 								<input type="image" name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
 								<input type="image" name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importExcel();" style="border-width:0px;" />
-                                <input type="image" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('abgc_add.jsp','900','450');" style="border-width:0px;" />
+                                <input type="image" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('abgc_add.jsp','900','400');" style="border-width:0px;" />
                                 <input type="image" name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:return CheckSelect();" style="border-width:0px;" />
                                 <input type="image" name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 							 </td>
@@ -154,12 +158,17 @@ text-decoration:none;
 					</fieldset>
 					</td>
 					</tr>
-		<tr>
+			<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个安保工程项目，
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
-        </tr>
+       	 	</tr>
+        	<tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            			<table id="grid" width="100%" height="320px"></table>
+            	</td>
+       		 </tr>
 		</table>
 </body>
 </html>
