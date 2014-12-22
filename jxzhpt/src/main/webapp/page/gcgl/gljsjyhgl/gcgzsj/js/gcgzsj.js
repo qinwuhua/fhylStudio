@@ -36,7 +36,7 @@ function showAll(){
 	    height:325,
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="Showybxx()">详细</a>    '+'开工    '+'删除    '+'<a href="#" onclick="ybsb()">月报上报</a>   '+'完工   '+'未完工   ';
+	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'开工    '+'删除    '+'<a href="#" onclick="ybsb()">月报上报</a>   '+'完工   '+'未完工   ';
 	        }},
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="#" onclick="Showybxx()">否</a>    ';
@@ -66,7 +66,7 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:200,align:'center',rowspan:2,formatter:function(value,row,index){
-			        	return '<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="Edityb()">编辑</a>   '+'删除   ';
+			        	return '<a href="#" onclick="Showybxx()">详细</a>    '+'<a href="#" onclick="Edityb()">编辑</a>   '+'删除   ';
 			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},

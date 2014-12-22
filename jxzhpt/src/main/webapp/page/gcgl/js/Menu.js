@@ -163,56 +163,56 @@ $(function() {
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu7',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu8',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu3',
-		href:'./lxxx.jsp'
+		href:'./ybjdsh/hsly/hsly.jsp'
 	});
 //	createMenu('LeftMenu',{
 //		id:'menu9',
@@ -242,56 +242,56 @@ $(function() {
 		title:'危桥改造工程完工统计',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程完工统计',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治工程完工统计',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'养护大中修工程完工统计',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'水毁工程完工统计',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'工程改造路面改建工程完工统计',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu7',
 		title:'工程改造路面升级工程完工统计',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu8',
 		title:'红色旅游工程完工统计',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./glgcwgtj/hsly/hsly.jsp'
 	});
 //	createMenu('LeftMenu',{
 //		id:'menu9',
@@ -322,7 +322,7 @@ $(function() {
 		title:'安全管理月报表',
 		imgSrc:'../../images/left_kj.png',
 		renderTo:'left_menu5',
-		href:'./lxxx.jsp'
+		href:'./aqyjgl/aqgl/aqgl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
@@ -348,69 +348,69 @@ $(function() {
 	
 	
 	
-	createMenu('LeftMenu',{
-		id:'menu1',
-		title:'危桥改造项目',
-		imgSrc:'../../images/wq.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu2',
-		title:'安保工程项目',
-		imgSrc:'../../images/ab.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu3',
-		title:'灾害防治项目',
-		imgSrc:'../../images/zh.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu4',
-		title:'养护大中修项目',
-		imgSrc:'../../images/yh.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu5',
-		title:'水毁项目',
-		imgSrc:'../../images/sh.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu6',
-		title:'工程改造路面升级项目',
-		imgSrc:'../../images/sj.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu7',
-		title:'工程改造路面改建项目',
-		imgSrc:'../../images/gj.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu8',
-		title:'红色旅游公路项目',
-		imgSrc:'../../images/hs.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
-	createMenu('LeftMenu',{
-		id:'menu9',
-		title:'战备公路项目',
-		imgSrc:'../../images/zb.png',
-		renderTo:'left_menu6',
-		href:'./lxxx.jsp'
-	});
+//	createMenu('LeftMenu',{
+//		id:'menu1',
+//		title:'危桥改造项目',
+//		imgSrc:'../../images/wq.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu2',
+//		title:'安保工程项目',
+//		imgSrc:'../../images/ab.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu3',
+//		title:'灾害防治项目',
+//		imgSrc:'../../images/zh.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu4',
+//		title:'养护大中修项目',
+//		imgSrc:'../../images/yh.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu5',
+//		title:'水毁项目',
+//		imgSrc:'../../images/sh.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu6',
+//		title:'工程改造路面升级项目',
+//		imgSrc:'../../images/sj.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu7',
+//		title:'工程改造路面改建项目',
+//		imgSrc:'../../images/gj.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu8',
+//		title:'红色旅游公路项目',
+//		imgSrc:'../../images/hs.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
+//	createMenu('LeftMenu',{
+//		id:'menu9',
+//		title:'战备公路项目',
+//		imgSrc:'../../images/zb.png',
+//		renderTo:'left_menu6',
+//		href:'./lxxx.jsp'
+//	});
 //	createMenu('LeftMenu',{
 //		id:'menu10',
 //		title:'农村改渡建桥项目',

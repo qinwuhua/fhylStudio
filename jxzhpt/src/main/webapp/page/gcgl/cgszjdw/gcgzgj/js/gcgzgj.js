@@ -44,7 +44,7 @@ function showAll(){
 	    height:325,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	            	return '定位    '+'<a href="#" onclick="Showybxx()">详细</a>    '+'<a href="#" onclick="zjdw()">资金到位</a>   ';
+	            	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="zjdw()">资金到位</a>   ';
 	         }},
 	        {field:'gydw',title:'管养单位',width:130,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},

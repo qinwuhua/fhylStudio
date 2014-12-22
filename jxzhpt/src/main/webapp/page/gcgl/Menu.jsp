@@ -35,12 +35,12 @@ $(function(){
 		     <div id="left_menu4" title="公路工程完工统计" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
 		     
 		    </div>
-		    <div id="left_menu5" title="安全管理月报管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		    <div id="left_menu5" title="安全应急管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
 		     
 		    </div>
-		    <div id="left_menu6" title="台账信息管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+<!-- 		    <div id="left_menu6" title="台账信息管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;"> -->
 		     
-		    </div>
+<!-- 		    </div> -->
 		</div>
     </div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden;">
