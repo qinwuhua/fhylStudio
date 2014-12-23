@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>战备公路项目</title>
+	<title>战备公路</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
@@ -13,16 +13,16 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			xzqhComboxTree("xzqh");
-			loadDialog("zbgl_xx");
-			loadDialog("zbgl_bj");
-			zbglxm();
-		});
-		
-		$(window).resize(function () { 
-			$('#grid').datagrid('resize'); 
-		});
+	$(function(){
+		xzqhComboxTree("xzqh");
+		loadDialog("zbgl_xx");
+		loadDialog("zbgl_bj");
+		zbglxm();
+	});
+	
+	$(window).resize(function () { 
+		$('#grid').datagrid('resize'); 
+	});
 	</script>
 </head>
 <body>
@@ -31,7 +31,7 @@
 			<tr>
 	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
 	                <a style="color: #1a5780" href="#">计划管理</a> &nbsp;>&nbsp;
-	                <a style="color: #1a5780" href="#">项目计划库管理</a>
+	                <a style="color: #1a5780" href="#">项目计划库资金下达</a>
 	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;战备公路建议计划</font>
 	            </td>
         	</tr>
@@ -43,12 +43,12 @@
         				</legend>
         				<div>
         					<p style="margin:8px 0px 8px 20px;">
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;计划年份：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;"></select>
-        						<span>&nbsp;特殊地区：</span>
-        						<select name="ddlTSDQ" id="ddlTSDQ" style="width:100px;">
+        						<span style="vertical-align:middle;">行政区划：</span>
+        						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>
+        						<span style="vertical-align:middle;">&nbsp;计划年份：</span>
+        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;vertical-align:middle;"></select>
+        						<span style="vertical-align:middle;">&nbsp;特殊地区：</span>
+        						<select name="ddlTSDQ" id="ddlTSDQ" style="width:100px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -57,18 +57,15 @@
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
+								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>路线名称：</span>
 								<input name="txtRoad" type="text" id="txtRoad" style="width:220px;" />
 								<span>&nbsp;项目名称：</span>
 								<input name="txtName" type="text" id="txtName" style="width:150px;" />
-        					</p>
-        					<p style="margin:0px;padding:0px; margin-left: 20px;">
-        						<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
-								<input type="image" name="btnDCMB" id="btnDCMB" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
-								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importExcel()" />
-                                <input type="image" name="delAll" id="delAll" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'   " src="" onclick="javascript:return CheckSelect();" style="border-width:0px;" />
+								<span>&nbsp;建设状态：</span>
+								<select id="selJszt"  style="width: 100px;"></select>
         					</p>
         				</div>
         			</fieldset>

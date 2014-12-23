@@ -160,62 +160,62 @@ $(function() {
 		title:'工程改造路面升级项目',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/gclmsj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'工程改造路面改建项目',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/gclmgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'养护大中修项目',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'水毁项目',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/shxm.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'安保工程项目',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu7',
 		title:'灾害防治项目',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu8',
 		title:'红色旅游公路项目',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/hslygl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu9',
 		title:'战备公路项目',
 		imgSrc:'../../images/zb.png',
 		renderTo:'left_menu4',
-		href:'./lxxx.jsp'
+		href:'./jhkzjxd/zbgl.jsp'
 	});
 });

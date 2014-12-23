@@ -18,7 +18,7 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			loadDialog("gclmsj_xx");
-			gclmsjxm();
+			gclmsjxm_sb();
 		});
 		
 		$(window).resize(function () { 
