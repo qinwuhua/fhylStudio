@@ -13,7 +13,7 @@ function Showybxx(){
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报列表','wqgzyb.jsp','wqxx',1059,540);
+	YMLib.UI.createWindow('wqxx','危桥改造月报列表','wqgzyb.jsp','wqxx',1059,450);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
@@ -52,6 +52,7 @@ function showYBlist(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
+	    width:1050,
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){

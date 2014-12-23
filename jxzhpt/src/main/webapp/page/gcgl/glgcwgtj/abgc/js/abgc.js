@@ -9,11 +9,11 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,450);
+	YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,400);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','安保工程月报列表','abgcyb.jsp','wqxx',1059,540);
+	YMLib.UI.createWindow('wqxx','安保工程月报列表','abgcyb.jsp','wqxx',1059,450);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
@@ -24,7 +24,8 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:360,
+	    width:1050,
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	  	        return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="ybsb()">月报信息</a>   ';
