@@ -16,6 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','红色旅游月报列表','hslyyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',700,450);
+	//window.open("hslyybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/sh.json',

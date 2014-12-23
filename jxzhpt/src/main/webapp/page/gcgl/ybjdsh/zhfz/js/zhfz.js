@@ -16,6 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','灾害防治月报列表','zhfzyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','灾害防治月报编辑','zhfzybxg.jsp','wqxx',700,450);
+	//window.open("zhfzybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/zhfz.json',

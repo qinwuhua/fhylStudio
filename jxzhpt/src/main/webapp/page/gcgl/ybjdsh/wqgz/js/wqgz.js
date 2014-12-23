@@ -16,6 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','危桥改造月报列表','wqgzyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',700,450);
+	//window.open("wqgzybxg.jsp");
+}
 //显示所有
 var wqData;
 function showAll(){

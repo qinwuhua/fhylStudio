@@ -16,7 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','养护大中修月报列表','yhdzxyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
-
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',700,450);
+	//window.open("yhdzxybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/yhdzx.json',
