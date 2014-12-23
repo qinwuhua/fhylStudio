@@ -26,12 +26,12 @@ var dwxx;
 var lxData = new Array();
 function openDwUpdate(_id){
 	YMLib.Var.ID=_id;
-	YMLib.UI.createWindow('dwgl_add_win','编辑部门信息','./bmgl_update.jsp','app_add',470,435);
+	YMLib.UI.createWindow('dwgl_add_win','编辑部门信息','./bmgl_update.jsp','app_add',470,250);
 }
 function openDwInsert(_id,dist,_index){
 	YMLib.Var.ID=_id;
 	YMLib.Var.dist=dist;
-	YMLib.UI.createWindow('dwgl_add_win','添加部门','./bmgl_add.jsp','app_add',470,435);
+	YMLib.UI.createWindow('dwgl_add_win','添加部门','./bmgl_add.jsp','app_add',470,250);
 }
 function deleteDw(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){

@@ -92,7 +92,7 @@ $(function(){
 <div id="jsgl_layout" class="easyui-layout" fit="true">
 	<div region="center" border="false" style="padding:0px;border-bottom-width:1px;">
 	<form id="jsgl_form" style="overflow-x:hidden">
-		<table id="jsgl_form_table" cellspacing="0"  class="table_grid3">
+		<table id="jsgl_form_table" cellspacing="0"  class="table_grid">
 			<tr height="30px">
 				<td width="80px" align="right">
 					角色名称：
@@ -107,45 +107,46 @@ $(function(){
 				</td>
 				<td>
 					<table border="0" cellspacing="0" style="height: 26px;border:1px solid #C1DAD7;border-right: 0px;border-bottom: 0px;" id="resource">
-						<tr><td><input name="checkbox" style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="01" checked="checked" disabled="disabled" id="a1a1"/><label for="a1a1">电子地图</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="02" id="a1a2"/><label for="a1a2">项目管理</label></td></tr>
+						<tr><td rowspan="28">计划管理子系统</td><td>电子地图</td><td>电子地图</td></tr>
 						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0201" id="a1a3"/><label for="a1a3">项目库管理</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0202" id="a1a4"/><label for="a1a4">数据校核</label></td></tr>
+						<tr><td rowspan="3">路网项目</td><td>危桥改造项目</td></tr>
+						<tr><td>安保工程项目</td></tr>
+						<tr><td>灾害防治项目</td></tr>
 						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0203" id="a1a5"/><label for="a1a5">导出报部</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0204" id="a1a6"/><label for="a1a5">年度归档</label></td>
-						</tr>
+						<tr><td rowspan="9">计划管理</td><td>工程改造路面升级项目</td></tr>
+						<tr><td>工程改造路面改建项目</td></tr>
+						<tr><td>养护大中修项目</td></tr>
+						<tr><td>水毁项目</td></tr>
+						<tr><td>危桥改造项目</td></tr>
+						<tr><td>安保工程项目</td></tr>
+						<tr><td>灾害防治项目</td></tr>
+						<tr><td>红色旅游公路项目</td></tr>
+						<tr><td>战备公路项目</td></tr>
 						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0205" id="a1a7"/><label for="a1a6">查看档案</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="03" id="a1a8"/><label for="a1a7">数据查询</label></td>
-						</tr>
+						<tr><td rowspan="12">工程管理</td><td>危桥改造施工</td></tr>
+						<tr><td>安保工程施工</td></tr>
+						<tr><td>灾害防治施工</td></tr>
+						<tr><td>养护大中修施工</td></tr>
+						<tr><td>水毁施工</td></tr>
+						<tr><td>工程改造路面改建施工</td></tr>
+						<tr><td>工程改造路面升级项目施工</td></tr>
+						<tr><td>红色旅游施工</td></tr>
+						<tr><td>安全管理月报表</td></tr>
+						<tr><td>模板管理</td></tr>
+						<tr><td>信息通知</td></tr>
+						<tr><td>信息通知数据查询</td></tr>
 						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="04" id="a1a9"/><label for="a1a8">统计报表</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="05" id="a1a10"/><label for="a1a9">系统管理</label></td>
-						</tr>
+						<tr><td>工程报表</td><td>工程报表</td></tr>
+						<tr><td>数据查询</td><td>数据查询</td></tr>
+						<tr><td>统计分析</td><td>统计分析</td></tr>
+						<tr><td>地理信息子系统</td><td>地理信息子系统</td><td>地理信息子系统</td></tr>
+						<tr><td>外接数据子系统</td><td>外接数据子系统</td><td>外接数据子系统</td></tr>
 						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0501" id="a1a11"/><label for="a1a10">用户管理</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0502" id="a1a12"/><label for="a1a11">单位管理</label></td>
-						</tr>
-						
-						<tr><td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0503" id="a1a13"/><label for="a1a12">角色管理</label></td>
-						<td><input name="checkbox"  style="text-align: right; 
-						vertical-align: text-top;width:50px;" type="checkbox" value="0504" id="a1a14"/><label for="a1a13">编目编码</label></td>
-						</tr>
+						<tr><td rowspan="5">系统管理子系统</td><td rowspan="5">系统管理</td><td>角色分配管理</td></tr>
+						<tr><td>行政区划管理</td></tr>
+						<tr><td>部门信息管理</td></tr>
+						<tr><td>特殊地区</td></tr>
+						<tr><td>用户信息管理</td></tr>
 					</table>
 				</td>
 			</tr>

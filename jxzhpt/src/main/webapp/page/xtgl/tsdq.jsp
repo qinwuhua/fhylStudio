@@ -24,7 +24,7 @@
 function openJsUpdate(_id){
 	$("#jsgl_table").datagrid('unselectAll');
 	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',422,400);
+	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',560,250);
 }
 function deleteJs(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -109,7 +109,7 @@ $(function(){
 		},{
 			text : '添加',
 			handler : function(){
-				YMLib.UI.createWindow('jsgl_add_win','添加特殊地区','./tsdq_add.jsp','app_add',422,400);
+				YMLib.UI.createWindow('jsgl_add_win','添加特殊地区','./tsdq_add.jsp','app_add',560,250);
 			}
 		}]
 	});

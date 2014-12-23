@@ -77,7 +77,7 @@ $(function(){
 		<table id="dwgl_form_table" cellspacing="0" class="table_grid">
 			<tr>
 				<td class="table_right" align="right">
-					部门编号：
+					行政区划代码：
 				</td>
 				<td>
 					<input id="id" name="unit.id" type="text" style="width:160px;"/>
@@ -85,7 +85,7 @@ $(function(){
 			</tr>
 			<tr>
 				<td class="table_right" align="right">
-					部门名称：
+					行政区划名称：
 				</td>
 				<td>
 					<input id="name" name="unit.name" type="text" style="width:160px;"/>

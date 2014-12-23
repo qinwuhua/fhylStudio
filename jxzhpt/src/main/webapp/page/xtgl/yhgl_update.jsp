@@ -7,10 +7,9 @@
 <title>角色添加</title>
 <link rel="stylesheet" type="text/css" href="../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/button.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
-<script type="text/javascript" src="../../easyui/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
@@ -105,30 +104,40 @@ $(function(){
 	});
 });
 </script>
-<div style="display: none">
-        <object classid="clsid:B6BE32E6-5B1B-4A44-BA6C-FB24016CF9A7" id="IAWebClient" name="IAWebClient"
-            style="left: 0px; top: 0px" width="50" height="50">
-        </object>
-    </div>
 <div id="yhgl_layout" class="easyui-layout" fit="true">
-	<div region="center" border="false" style="padding:0px;border-bottom-width:1px;">
+	<div region="center" border="false" style="padding:0px;">
 	<form id="yhgl_form" style="overflow-x:hidden">
 		<table id="yhgl_form_table" cellspacing="0"  class="table_grid">
 			<tr>
-				<td class="table_right" align="right">
+				<td class="table_right" align="right" align="right">
 					用户名：
 				</td>
 				<td>
-					<input  type="text" id="truename" name="master.truename" readonly="readonly"/>
-					<input  type="hidden" id="id" name="master.id" />
+					<input type="text" id="truename" name="master.truename"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="table_right" align="right" align="right">
+					 所属单位：
+				</td>
+				<td>
+					<input  type="text" id="unit" name="master.unit"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="table_right" align="right" align="right">
+					 用户角色：
+				</td>
+				<td>
+					<input  type="text" id="roleid" name="master.roleid"/>
 				</td>
 			</tr>
 			<tr>
 				<td class="table_right" align="right">
-					单位负责人：
+					真实姓名：
 				</td>
 				<td style="text-align: left">
-					<input id="name" name="master.name" type="text"/><span style="color:red;">(*)</span>
+					<input id="name" name="master.name"  type="text"/>
 				</td>
 			</tr>
 			<tr>
@@ -142,34 +151,31 @@ $(function(){
 			</tr>
 			<tr>
 				<td class="table_right" align="right">
-					电话：
+					身份证号：
 				</td>
-				<td>
+				<td style="text-align: left">
+					<input id="name" name="master.idcard" type="text"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="table_right" align="right">
+					联系电话：
+				</td>
+				<td style="text-align: left">
 					<input id="tel" name="master.tel" type="text"/>
 				</td>
 			</tr>
 			<tr>
 				<td class="table_right" align="right">
-					角色：
+					手机：
 				</td>
 				<td>
-					<select id="role"  name="master.role">
-					</select><span style="color:red;">(*)</span>
-				</td>
-			</tr>
-			<tr>
-				<td class="table_right" align="right">
-					所属单位：
-				</td>
-				<td>
-					<input id="unit" name="master.unit" class="easyui-combotree" style="width:180px;" disabled="true"><span style="color:red;">(*)</span>
+					<input id="phone" name="master.phone" type="text"/>
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: center;color: red;" colspan="2">
-					初始密码为：000000<!-- <input type ="hidden" name="master.password" value="000000"><input type ="hidden" name="master.zt" value="启用"> -->
-					<input type ="hidden" name="master.gmgid" id="gmgid">
-					<input type="hidden" name="master.czr" id="czr" />
+					初始密码为：000000<input type ="hidden" name="master.password" value="000000">
 					<input type="hidden" name="master.czsj" id="czsj" />
 				</td>
 			</tr>
@@ -178,7 +184,7 @@ $(function(){
 	</div>
 	<div region="south" border="false" style="text-align:right;height:30px;line-height:30px;">
 		<a id="yhgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true" >保　存</a>
-		　<a id="yhgl_btn_Cancel" iconCls="icon-cancel" href="javascript:void(0)" class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true">取　消</a>
+		<a id="yhgl_btn_Cancel" iconCls="icon-cancel" href="javascript:void(0)" class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true">取　消</a>
 	</div>
 </div>
 </body>

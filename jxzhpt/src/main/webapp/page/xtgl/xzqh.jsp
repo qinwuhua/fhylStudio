@@ -7,7 +7,6 @@
 <title>行政区划管理</title>
 <link rel="stylesheet" type="text/css" href="../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/button.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <style>
@@ -26,12 +25,12 @@ var dwxx;
 var lxData = new Array();
 function openDwUpdate(_id){
 	YMLib.Var.ID=_id;
-	YMLib.UI.createWindow('dwgl_add_win','编辑行政区划','./xzqh_update.jsp','app_add',470,435);
+	YMLib.UI.createWindow('dwgl_add_win','编辑行政区划','./xzqh_update.jsp','app_add',470,220);
 }
 function openDwInsert(_id,dist,_index){
 	YMLib.Var.ID=_id;
 	YMLib.Var.dist=dist;
-	YMLib.UI.createWindow('dwgl_add_win','添加行政区划','./xzqh_add.jsp','app_add',470,435);
+	YMLib.UI.createWindow('dwgl_add_win','添加行政区划','./xzqh_add.jsp','app_add',470,220);
 }
 function deleteDw(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){

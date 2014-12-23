@@ -22,7 +22,7 @@
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
 function openYhUpdate(_index){
-	yhxx = lxData[_index];
+	//yhxx = lxData[_index];
 	YMLib.UI.createWindow('yhgl_update_win','编辑用户','./yhgl_update.jsp','xmgl_03',470,370);
 }
 function deleteYh(_id){
@@ -51,10 +51,10 @@ function deleteYh(_id){
 
 $(function(){
 	$("#jsgl_table").datagrid({
-		border : false,
+		border:false,
 		//height:500,
 		//width:1000,
-		fit : true,
+		fit:true,
 		pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
