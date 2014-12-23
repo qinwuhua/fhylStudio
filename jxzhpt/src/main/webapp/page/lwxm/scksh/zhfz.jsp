@@ -12,9 +12,19 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
+<script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
- 
+	sckshZhfz();
+	$("#cc").combotree({
+		checkbox: false,
+	 	url: "../js/gydw.json",
+	});
+	$("#ss").combotree({
+		checkbox: false,
+	 	url: "../js/xzqh.json",
+	});
 });
 </script>
 <style type="text/css">
@@ -36,43 +46,35 @@ text-decoration:none;
 		</tr>
 		<tr>
 			<td align="left" style="padding-left:10px; padding-right:25px;">
-				<fieldset style="width:1700px;text-align:left;vertical-align:middle;">
+				<fieldset style="width:1000px;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				<font style="color: #0866A0; font-weight: bold">项目信息：</font>
 				</legend>
-					<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding-left: 20px">
+					<table width="100%" cellpadding="2" cellspacing="0" border="0" style="padding-left: 20px">
 						<tbody>
 							<tr>
-							  <td align="right" width="80px" >管养单位：
+							  <td align="right" width="7%" >管养单位：
                               </td>
-                              <td align="left" colspan="3"  style="width:270px">
-                              	<select id="cc" class="easyui-combobox" style="width:268px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              <td align="left" colspan="3" >
+                              	<select id="cc" style="width:241px">
                               	</select>
                               </td>
-                              <td align="right" width="80px" >行政区划：
+                              <td align="right" width="7%" >行政区划：
                               </td>
-                              <td align="left" colspan="3" style="width: 270px;">
-                              	<select id="ss" class="easyui-combobox" style="width:268px">
-                              		<option>===请选择===</option>
-                              		<option>嘿嘿</option>
+                              <td align="left" colspan="3" >
+                              	<select id="ss" style="width:241px">
                               	</select>
                               </td>
-                               <td align="right" width="80px" >路线名称：
+                               <td align="right" width="7%" >路线名称：
                               </td>
-                              <td align="left" colspan="3"  style="width: 270px;">
-                              	<input type="text" style="width:270px"/>
+                              <td align="left" colspan="3" >
+                              	<input type="text" style="width:240px"/>
                               </td>
-                              <td rowspan="2" align="left"  style="width:530px">
-								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
-								<input type="image" name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenPi();" style="border-width:0px;" />
-                                <input type="image" name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
-							 </td>
+                              
                              </tr>
                              <tr>
-							  <td align="right" width="80px" >项目年份：</td>
-                              <td align="left"  style="width:80px">
+							  <td align="right" width="7%" >项目年份：</td>
+                              <td align="left" >
                               	<select id="cc1" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="2014年">2014年</option>
@@ -81,8 +83,8 @@ text-decoration:none;
 									<option value="2011年">2011年</option>
                               	</select>
                               </td>
-                              <td align="right" width="80px" >项目状态： </td>
-                              <td align="left" style="width: 80px;">
+                              <td align="right" width="7%" >项目状态： </td>
+                              <td align="left" >
                               	<select id="ss1" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
@@ -91,8 +93,8 @@ text-decoration:none;
 									<option value="已审核">已下达</option>
                               	</select>
                               </td>
-                               <td align="right" width="80px" >审核状态：</td>
-                              <td align="left"  style="width: 80px;">
+                               <td align="right" width="7%" >审核状态：</td>
+                              <td align="left" >
                               	<select id="ss2" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
@@ -101,8 +103,8 @@ text-decoration:none;
 									<option value="已审核">已审核</option>
                               	</select>
                               </td>
-                              <td align="right" width="80px" >特殊地区：</td>
-                              <td align="left" style="width: 80px;">
+                              <td align="right" width="7%" >特殊地区：</td>
+                              <td align="left" >
                               	<select id="ss4" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
@@ -110,8 +112,8 @@ text-decoration:none;
 									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
-                              <td align="right" width="80px" >技术等级：</td>
-                              <td align="left" style="width: 80px;">
+                              <td align="right" width="7%" >技术等级：</td>
+                              <td align="left" >
                               	<select id="ss5" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="1">一级公路</option>
@@ -120,8 +122,8 @@ text-decoration:none;
 									<option value="4">四级公路</option>
 									<option value="5">等外公路</option>
                               	</select></td>
-                              	<td align="right" width="80px" >公路等级：</td>
-                              	<td align="left" style="width: 80px;">
+                              	<td align="right" width="7%" >公路等级：</td>
+                              	<td align="left" >
                               	<select id="ss6" class="easyui-combobox" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
@@ -132,7 +134,13 @@ text-decoration:none;
 									<option value="Z">专道</option>
                               	</select></td>
                              </tr>
-                             
+                             <tr>
+                             	<td colspan="12" align="left" >
+								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<input type="image" name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenPi();" style="border-width:0px;" />
+                                <input type="image" name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
+							 </td>
+                             </tr>
 						</tbody>
 					</table>
 				</fieldset>
@@ -144,6 +152,16 @@ text-decoration:none;
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
         </tr>
+         <tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            			<table id="grid" width="100%" height="320px"></table>
+            	</td>
+       		 </tr>
+       		 <tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            			<table id="grid" width="100%" height="320px"></table>
+            	</td>
+       		 </tr>
 		</table>
 </body>
 </html>

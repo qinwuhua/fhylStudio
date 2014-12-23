@@ -26,7 +26,7 @@ function xzqhComboxTree(id){
 function loadDialog(id){
 	$('#'+id).dialog({
 		iconCls : 'icon-edit',
-		width : 800,
+		width : 1000,
 		height : 500,
 		closed : true,
 		cache : false,

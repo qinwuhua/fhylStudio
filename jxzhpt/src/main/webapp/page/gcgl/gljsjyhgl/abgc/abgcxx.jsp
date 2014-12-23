@@ -19,6 +19,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="js/abgc.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript"> 
 
 </script>
@@ -628,7 +629,7 @@ a {
 					src="${pageContext.request.contextPath}/images/Button/qd1.gif"
 					onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'"
 					onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' "
-					onclick="RetAck()" /></td>
+					onclick="closes('wqxx')" /></td>
 			</tr>
 		</table>
 		<br />
