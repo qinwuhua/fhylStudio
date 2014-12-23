@@ -1,109 +1,185 @@
 $(function() {
 
-	
-	var qx=$.cookie("QX");
-	
-	if(qx.indexOf(",0601,") != -1){
 	createMenu('LeftMenu',{
-		id:'left_menu7',
-		title:'路线信息',
-		imgSrc:'../../images/lxxx.png',
-		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		id:'menu1',
+		title:'危桥改造项目基础库',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu1',
+		title:'危桥改造项目审查库',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'安保工程项目基础库',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'安保工程项目审查库',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'灾害防治项目基础库',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'灾害防治项目审查库',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/zhfz.jsp'
 	});
 	
-	createMenu('LeftMenu',{
-		id:'left_menu8',
-		title:'桥梁信息',
-		imgSrc:'../../images/qlxx.png',
-		renderTo:'left_menu2',
-		href:'./qlxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu12',
-		title:'隧道信息',
-		imgSrc:'../../images/sdxx.png',
-		renderTo:'left_menu2',
-		href:'./sdxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu13',
-		title:'服务区信息',
-		imgSrc:'../../images/fwq.png',
-		renderTo:'left_menu2',
-		href:'./fwqxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu6',
-		title:'共享附件管理',
-		imgSrc:'../../images/gxfj.png',
-		renderTo:'left_menu2',
-		href:'../attachement/gxfjlb.jsp'
-	});
-	}else{
-		$('#aa').accordion('remove','基础数据维护');
-	}
 	
-	if(qx.indexOf(",0602,") != -1){
-		createMenu('LeftMenu', {
-	        id: 'menu1',
-	        title: '用户信息',
-	        imgSrc: '../../images/yhxx.png',
-	        renderTo: 'left_menu1',
-	        href: './yhgl.jsp'
-	    });
-		
-		createMenu('LeftMenu', {
-	        id: 'menu2',
-	        title: '单位信息',
-	        imgSrc: '../../images/dwxx.png',
-	        renderTo: 'left_menu1',
-	        href: 'dwgl.jsp'
-	    });
-		}else{
-			$('#aa').accordion('remove','用户信息维护');
-		}
-		
-		
-	if(qx.indexOf(",0603,") != -1){
-		createMenu('LeftMenu', {
-	        id: 'menu3',
-	        title: '权限分配',
-	        imgSrc: '../../images/qxfp.png',
-	        renderTo: 'left_menu3',
-	        href: 'jsgl.jsp'
-	    });
 	createMenu('LeftMenu',{
-		id:'left_menu9',
-		title:'编目编码管理',
-		imgSrc:'../../images/bmbmgl.png',
+		id:'menu1',
+		title:'工程改造路面升级项目',
+		imgSrc:'../../images/sj.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/gclmsj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'工程改造路面改建项目',
+		imgSrc:'../../images/gj.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/gclmgj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/yhdzx.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu4',
+		title:'水毁项目',
+		imgSrc:'../../images/sh.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/shxm.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu5',
+		title:'危桥改造项目',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu6',
+		title:'安保工程项目',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu7',
+		title:'灾害防治项目',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu8',
+		title:'红色旅游公路项目',
+		imgSrc:'../../images/hs.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/hslygl.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu9',
+		title:'战备公路项目',
+		imgSrc:'../../images/zb.png',
+		renderTo:'left_menu2',
+		href:'./jhkzjxd/zbgl.jsp'
+	});
+	
+	
+	createMenu('LeftMenu',{
+		id:'menu1',
+		title:'工程改造路面升级项目',
+		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu3',
-		href:'./bmbmgl.jsp'
+		href:'./jhkzjxd/gclmsj.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'工程改造路面改建项目',
+		imgSrc:'../../images/gj.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/gclmgj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/yhdzx.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu4',
+		title:'水毁项目',
+		imgSrc:'../../images/sh.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/shxm.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu5',
+		title:'危桥改造项目',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu6',
+		title:'安保工程项目',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu7',
+		title:'灾害防治项目',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu8',
+		title:'红色旅游公路项目',
+		imgSrc:'../../images/hs.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/hslygl.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu9',
+		title:'战备公路项目',
+		imgSrc:'../../images/zb.png',
+		renderTo:'left_menu3',
+		href:'./jhkzjxd/zbgl.jsp'
+	});
+	
 	
 	createMenu('LeftMenu',{
-		id:'left_menu10',
-		title:'流程组维护',
-		imgSrc:'../../images/lczgl.png',
-		renderTo:'left_menu3',
-		href:'./lczgl.jsp'
+		id:'menu9',
+		title:'自定义查询',
+		imgSrc:'../../images/zb.png',
+		renderTo:'left_menu4',
+		href:'./jhkzjxd/zbgl.jsp'
 	});
-	createMenu('LeftMenu', {
-        id: 'menu4',
-        title: '项目性质',
-        imgSrc: '../../images/lbgl.png',
-        renderTo: 'left_menu3',
-        href: 'lbgl.jsp'
-    });
-	createMenu('LeftMenu', {
-        id: 'menu4',
-        title: '系统参数设置',
-        imgSrc: '../../images/lbgl.png',
-        renderTo: 'left_menu3',
-        href: 'setsysparam.jsp'
-    });
-	}else{
-		$('#aa').accordion('remove','系统信息维护');
-	}
-	
+
 });
