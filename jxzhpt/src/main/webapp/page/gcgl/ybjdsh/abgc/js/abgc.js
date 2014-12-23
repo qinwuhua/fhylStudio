@@ -16,6 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','安保工程月报列表','abgcyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','安保工程月报编辑','abgcybxg.jsp','wqxx',700,450);
+	//window.open("wqgzybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/abgc.json',

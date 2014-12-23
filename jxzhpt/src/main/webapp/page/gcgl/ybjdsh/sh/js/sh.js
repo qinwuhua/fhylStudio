@@ -16,6 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','水毁项目月报列表','shyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','水毁项目月报编辑','shybxg.jsp','wqxx',700,450);
+	//window.open("shybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/sh.json',

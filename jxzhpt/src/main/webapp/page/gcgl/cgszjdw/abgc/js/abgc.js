@@ -13,10 +13,10 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	window.open("abgczjdwtj.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','abgczjdwtj.jsp','wqxx',700,240);
 }
 function editCgs(){
-	window.open("abgczjdwxg.jsp");
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','abgczjdwxg.jsp','wqxx',700,240);
 }
 
 function showAll(){

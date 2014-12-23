@@ -16,7 +16,10 @@ function ybsb(){
 	YMLib.UI.createWindow('wqxx','工程改造路面升级月报列表','gcgzsjyb.jsp','wqxx',1059,540);
 	//window.open("wqgzyb.jsp");
 }
-
+function Edityb(){
+	YMLib.UI.createWindow('wqxx','工程改造路面升级月报编辑','gcgzsjybxg.jsp','wqxx',900,456);
+	//window.open("gcgzsjybxg.jsp");
+}
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/sh.json',
