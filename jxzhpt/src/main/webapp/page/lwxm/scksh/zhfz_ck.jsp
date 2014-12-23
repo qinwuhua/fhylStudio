@@ -17,6 +17,9 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#qx_window").click(function(){
+			parent.$('#sck_ck').window('destroy');
+		});	
 	});
 </script>
 <style type="text/css">

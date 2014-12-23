@@ -17,6 +17,9 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#qx_window").click(function(){
+			parent.$('#jck_ck').window('destroy');
+		});	
 	});
 </script>
 <style type="text/css">
@@ -31,102 +34,102 @@ text-decoration:none;
 <body>
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
-			<tr>
-				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					危桥改造项目基本信息
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编码：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span>X024360121L0020</span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁名称：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span>泾口大桥</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁中心桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁中心桩号：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span>39.059</span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span>南昌市南昌县交通局</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
+				<td style="background-color: #ffffff;width:15%" align="left">
 					<span>3303</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>南昌市南昌县</span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>五星-沙潭</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+				<td style="background-color: #ffffff; width:15%" align="left">
 					<span>X396360726</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">跨径总长(米)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径总长(米)：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>150</span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁全长(米)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span>200</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">桥梁全宽(米)：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
+				<td style="background-color: #ffffff; width:15%" align="left">
 					<span>20</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">单孔最大跨径(米)：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>5</span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">技术等级：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>四级</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">评定等级：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
+				<td style="background-color: #ffffff;width:15%" align="left">
 					<span>四类</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>2008</span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">按跨径分类：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>大桥</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">上部结构形式：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
+				<td style="background-color: #ffffff;width:15%" align="left">
 					<span>双曲拱</span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="tsdq">罗霄山山脉</span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span>2006</span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
+				<td style="background-color: #ffffff;width:15%" align="left">
 					<span></span></td>
-				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff;width:15%" align="left"></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">病害内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
 					<span>桥台、桥墩、上部承重结构开裂，桥面铺装破碎</span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 35px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
 					<span></span>
 				</td>
 			</tr>
-			
-			<tr>
-				<td colspan="6" style="background-color: #ffffff; height: 35px;"
+			<tr style="height: 30px;">
+				<td colspan="6" style="background-color: #ffffff;"
 					align="center"> <a href="javascript:void(0)" id="qx_window"
 					class="easyui-linkbutton" plain="true" iconCls="icon-ok">确定</a></td>
 			</tr>

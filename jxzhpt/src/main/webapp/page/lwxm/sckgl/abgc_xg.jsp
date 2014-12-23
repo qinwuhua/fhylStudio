@@ -20,6 +20,9 @@
 		$("#save_button").click(function(){
 			$.messager.alert('提示','修改成功！','info');    
 		});
+		$("#qx_window").click(function(){
+			parent.$('#sck_xg').window('destroy');
+		});	
 	});
 </script>
 <style type="text/css">

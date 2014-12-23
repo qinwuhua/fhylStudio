@@ -21,7 +21,7 @@
 			$.messager.alert('提示','修改成功！','info');    
 		});
 		$("#qx_window").click(function(){
-			$('#jck_xg').window('close');
+			parent.$('#jck_xg').window('destroy');
 		});	
 	});
 </script>
