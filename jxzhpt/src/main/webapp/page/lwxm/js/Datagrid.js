@@ -8,7 +8,7 @@ function jckglWqgz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1700,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
@@ -42,7 +42,7 @@ function jckglAbgc(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1900,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
@@ -77,7 +77,7 @@ function jckglZhfz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1800,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
@@ -112,7 +112,7 @@ function jckshWqgz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1700,
+		    width:1200,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
@@ -142,7 +142,7 @@ function jckshAbgc(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1900,
+		    width:1200,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
@@ -173,7 +173,7 @@ function jckshZhfz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1800,
+		    width:1200,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'dingW',title:'定位',width:60,align:'center'}, 
