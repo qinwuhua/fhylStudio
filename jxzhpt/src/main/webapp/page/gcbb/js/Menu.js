@@ -5,28 +5,28 @@ $(function() {
 		title:'交通部固定资产投资建设计划',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu1',
-		href:'./gljsjyhgl/wqgz/wqgz.jsp'
+		href:'./jhtjbb/jtbgdzc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'路网结构改造建议计划汇总表',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu1',
-		href:'./gljsjyhgl/abgc/abgc.jsp'
+		href:'./jhtjbb/lwgzjh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'路网结构改造工程进展情况',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu1',
-		href:'./gljsjyhgl/zhfz/zhfz.jsp'
+		href:'./jhtjbb/lwgzjz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'公路建设下达计划',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu1',
-		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
+		href:'./jhtjbb/gljsjh.jsp'
 	});
 	
 	
@@ -35,56 +35,56 @@ $(function() {
 		title:'危桥改造统计月报表',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/wqgz/wqgz.jsp'
+		href:'./gcxmybb/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'安保工程统计月报表',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/abgc/abgc.jsp'
+		href:'./gcxmybb/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'灾害防治统计月报表',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/zhfz/zhfz.jsp'
+		href:'./gcxmybb/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu4',
 		title:'水毁重建进度报表',
 		imgSrc:'../../images/yh.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/yhdzx/yhdzx.jsp'
+		href:'./gcxmybb/sh.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu5',
 		title:'工程改造路面改建进度报表',
 		imgSrc:'../../images/sh.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/sh/sh.jsp'
+		href:'./gcxmybb/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu6',
 		title:'养护路面大中修工程进度报表',
 		imgSrc:'../../images/gj.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
+		href:'./gcxmybb/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu7',
 		title:'公路工程改造进度完成情况汇总表',
 		imgSrc:'../../images/sj.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
+		href:'./gcxmybb/glgzjd.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu8',
 		title:'公路改造工程新上、续建工程项目完成情况表',
 		imgSrc:'../../images/hs.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/hsly/hsly.jsp'
+		href:'./gcxmybb/glgzxj.jsp'
 	});
 
 	
