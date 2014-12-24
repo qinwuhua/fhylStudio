@@ -1,109 +1,257 @@
 $(function() {
 
-	
-	var qx=$.cookie("QX");
-	
-	if(qx.indexOf(",0601,") != -1){
 	createMenu('LeftMenu',{
-		id:'left_menu7',
-		title:'路线信息',
-		imgSrc:'../../images/lxxx.png',
-		renderTo:'left_menu2',
-		href:'./lxxx.jsp'
+		id:'menu1',
+		title:'交通部固定资产投资建设计划',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/wqgz/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'路网结构改造建议计划汇总表',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/abgc/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'路网结构改造工程进展情况',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/zhfz/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu4',
+		title:'公路建设下达计划',
+		imgSrc:'../../images/yh.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
 	});
 	
-	createMenu('LeftMenu',{
-		id:'left_menu8',
-		title:'桥梁信息',
-		imgSrc:'../../images/qlxx.png',
-		renderTo:'left_menu2',
-		href:'./qlxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu12',
-		title:'隧道信息',
-		imgSrc:'../../images/sdxx.png',
-		renderTo:'left_menu2',
-		href:'./sdxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu13',
-		title:'服务区信息',
-		imgSrc:'../../images/fwq.png',
-		renderTo:'left_menu2',
-		href:'./fwqxx.jsp'
-	});	
-	createMenu('LeftMenu',{
-		id:'left_menu6',
-		title:'共享附件管理',
-		imgSrc:'../../images/gxfj.png',
-		renderTo:'left_menu2',
-		href:'../attachement/gxfjlb.jsp'
-	});
-	}else{
-		$('#aa').accordion('remove','基础数据维护');
-	}
 	
-	if(qx.indexOf(",0602,") != -1){
-		createMenu('LeftMenu', {
-	        id: 'menu1',
-	        title: '用户信息',
-	        imgSrc: '../../images/yhxx.png',
-	        renderTo: 'left_menu1',
-	        href: './yhgl.jsp'
-	    });
-		
-		createMenu('LeftMenu', {
-	        id: 'menu2',
-	        title: '单位信息',
-	        imgSrc: '../../images/dwxx.png',
-	        renderTo: 'left_menu1',
-	        href: 'dwgl.jsp'
-	    });
-		}else{
-			$('#aa').accordion('remove','用户信息维护');
-		}
-		
-		
-	if(qx.indexOf(",0603,") != -1){
-		createMenu('LeftMenu', {
-	        id: 'menu3',
-	        title: '权限分配',
-	        imgSrc: '../../images/qxfp.png',
-	        renderTo: 'left_menu3',
-	        href: 'jsgl.jsp'
-	    });
 	createMenu('LeftMenu',{
-		id:'left_menu9',
-		title:'编目编码管理',
-		imgSrc:'../../images/bmbmgl.png',
+		id:'menu1',
+		title:'危桥改造统计月报表',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/wqgz/wqgz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'安保工程统计月报表',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/abgc/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'灾害防治统计月报表',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/zhfz/zhfz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu4',
+		title:'水毁重建进度报表',
+		imgSrc:'../../images/yh.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/yhdzx/yhdzx.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu5',
+		title:'工程改造路面改建进度报表',
+		imgSrc:'../../images/sh.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/sh/sh.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu6',
+		title:'养护路面大中修工程进度报表',
+		imgSrc:'../../images/gj.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu7',
+		title:'公路工程改造进度完成情况汇总表',
+		imgSrc:'../../images/sj.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu8',
+		title:'公路改造工程新上、续建工程项目完成情况表',
+		imgSrc:'../../images/hs.png',
+		renderTo:'left_menu2',
+		href:'./cgszjdw/hsly/hsly.jsp'
+	});
+
+	
+	createMenu('LeftMenu',{
+		id:'menu1',
+		title:'普通干线公路建设项目进展情况表',
+		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu3',
-		href:'./bmbmgl.jsp'
+		href:'./ybjdsh/wqgz/wqgz.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'养护大中修工程项目进展情况表',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu3',
+		href:'./ybjdsh/abgc/abgc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'路网结构改造工程项目进展情况表',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu3',
+		href:'./ybjdsh/zhfz/zhfz.jsp'
+	});
+	
 	
 	createMenu('LeftMenu',{
-		id:'left_menu10',
-		title:'流程组维护',
-		imgSrc:'../../images/lczgl.png',
-		renderTo:'left_menu3',
-		href:'./lczgl.jsp'
+		id:'menu1',
+		title:'危桥基础库报表',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqbb/wqjc.jsp'
 	});
-	createMenu('LeftMenu', {
-        id: 'menu4',
-        title: '项目性质',
-        imgSrc: '../../images/lbgl.png',
-        renderTo: 'left_menu3',
-        href: 'lbgl.jsp'
-    });
-	createMenu('LeftMenu', {
-        id: 'menu4',
-        title: '系统参数设置',
-        imgSrc: '../../images/lbgl.png',
-        renderTo: 'left_menu3',
-        href: 'setsysparam.jsp'
-    });
-	}else{
-		$('#aa').accordion('remove','系统信息维护');
-	}
+	createMenu('LeftMenu',{
+		id:'menu2',
+		title:'危桥计划库报表',
+		imgSrc:'../../images/ab.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqbb/wqjh.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu3',
+		title:'危桥审查库报表',
+		imgSrc:'../../images/zh.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqbb/wqsc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu4',
+		title:'安保基础库报表',
+		imgSrc:'../../images/yh.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abbb/abjc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu6',
+		title:'安保计划库报表',
+		imgSrc:'../../images/gj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abbb/abjh.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu7',
+		title:'安保审查库报表',
+		imgSrc:'../../images/sj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abbb/absc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu8',
+		title:'灾害基础库报表',
+		imgSrc:'../../images/hs.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhbb/zhjc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu9',
+		title:'灾害计划库报表',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhbb/zhjh.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu10',
+		title:'灾害审查库报表',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhbb/zhsc.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu11',
+		title:'危桥进度库进展信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqmb/wqjz.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu12',
+		title:'危桥进度库开工信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqmb/wqkg.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu13',
+		title:'危桥进度库跨年信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqmb/wqkn.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu14',
+		title:'危桥进度库完成信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/wqmb/wqwc.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu15',
+		title:'安保进度库进展信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abmb/abjz.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu16',
+		title:'安保进度库开工信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abmb/abkg.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu17',
+		title:'安保进度库跨年信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abmb/abkn.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu18',
+		title:'安保进度库完成信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/abmb/abwc.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu19',
+		title:'灾害进度库进展信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhmb/zhjz.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu20',
+		title:'灾害进度库开工信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhmb/zhkg.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu21',
+		title:'灾害进度库跨年信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhmb/zhkn.jsp'
+	});createMenu('LeftMenu',{
+		id:'menu22',
+		title:'灾害进度库完成信息模板',
+		imgSrc:'../../images/left_kj.png',
+		renderTo:'left_menu4',
+		href:'./dbbb/zhmb/zhwc.jsp'
+	});
 	
+	
+	
+	
+	
+
 });
