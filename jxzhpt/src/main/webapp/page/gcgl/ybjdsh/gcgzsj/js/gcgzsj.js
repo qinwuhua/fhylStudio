@@ -9,15 +9,15 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function Showybxx(){
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',700,450);
+	YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',700,430);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报列表','gcgzsjyb.jsp','wqxx',1059,540);
+	YMLib.UI.createWindow('wqxx','工程改造路面升级月报列表','gcgzsjyb.jsp','wqxx',1059,450);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(){
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报编辑','gcgzsjybxg.jsp','wqxx',900,456);
+	YMLib.UI.createWindow('wqxx','工程改造路面升级月报编辑','gcgzsjybxg.jsp','wqxx',900,400);
 	//window.open("gcgzsjybxg.jsp");
 }
 function showAll(){
@@ -29,6 +29,7 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
+	    width:1050,
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="ybsb()">月报审核</a>   ';
