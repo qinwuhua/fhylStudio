@@ -10,7 +10,7 @@
 <body style="margin:0 0 0 0; min-width: 1000px;overflow-x:hidden; ">
 <div id="bg">
 	<div class="dlflash">
-<div style="width:1000px;  height:258px;position:relative;top:118px;left:0px; margin:0 auto;">
+<div style="width:1000px;  height:258px;position:relative;top:49px;left:0px; margin:0 auto;">
 <script type="text/javascript" src="js/wpFlashWrite.js"></script>
 <script type="text/javascript">
 <!--
