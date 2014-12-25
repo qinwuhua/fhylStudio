@@ -24,7 +24,8 @@
 	</select>
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
-		select m.*,rownum rn from (select * from xtgl_master 
+		select m.*,rownum rn from (
+			select truename,name,(select name from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
 		and truename like #{yhm}||'%'
