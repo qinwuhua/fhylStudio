@@ -179,7 +179,7 @@ $(function() {
 		title:'自定义查询',
 		imgSrc:'../../images/zb.png',
 		renderTo:'left_menu4',
-		href:'./jhkzjxd/zbgl.jsp'
+		href:'./zdycx/zdycx.jsp'
 	});
 
 });
