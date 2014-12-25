@@ -35,7 +35,7 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
+<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线编码：</td>
