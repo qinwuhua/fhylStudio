@@ -35,15 +35,6 @@ a {
 			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
 			cellpadding="0">
 			<tr>
-				<td height="25" align="left"
-					background="${pageContext.request.contextPath}/images/dht_bg.jpg"
-					style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-					<a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp; <a
-					style="color: #1a5780" href="#">项目进度管理</a> <font
-					style="color: #5C5C5C;">&nbsp;>&nbsp;水毀施工过程信息</font>
-				</td>
-			</tr>
-			<tr>
 				<td height="45" align="left" background="${pageContext.request.contextPath}/images/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
 					水毁项目计划详情</td>

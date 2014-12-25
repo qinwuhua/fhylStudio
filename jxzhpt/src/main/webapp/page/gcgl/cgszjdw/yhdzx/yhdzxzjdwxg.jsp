@@ -42,17 +42,7 @@ a:active {
 		<table width="99%" border="0"
 			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
 			cellpadding="0">
-			<tr>
-				<td height="25" align="left"
-					background="${pageContext.request.contextPath}/images/dht_bg.jpg"
-					style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-					<font color="#1a5780" style="font-size: small">工程管理</font>&nbsp;>&nbsp; <font color="#1a5780"
-                            style="font-size: small">车购税资金到位情况</font>&nbsp;>&nbsp; <font color="Gray" style="font-size: small">
-                                <span id="lblTitle">养护大中修施工过程管理</span></font>&nbsp;>&nbsp;
-                        <font color="Gray" style="font-size: small">车购税资金到位</font>
 
-				</td>
-			</tr>
 		<tr>
                     <td>
                         <br />

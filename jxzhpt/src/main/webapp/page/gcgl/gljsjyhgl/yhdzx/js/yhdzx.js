@@ -13,19 +13,19 @@ function sfkaigong(){
 		return;
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报上报','yhdzxyb.jsp','wqxx',1059,540);
+	YMLib.UI.createWindow('wqxx','养护大中修月报上报','yhdzxyb.jsp','wqxx',1059,450);
 	//window.open("yhdzxyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',700,450);
+	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',900,400);
 	//window.open("yhdzxybtj.jsp");
 }
 function Showybxx(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报详情','yhdzxybxx.jsp','wqxx',700,450);
+	YMLib.UI.createWindow('wqxx','养护大中修月报详情','yhdzxybxx.jsp','wqxx',700,430);
 	//window.open("yhdzxybxx.jsp");
 }
 function Edityb(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',700,450);
+	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',900,400);
 	//window.open("yhdzxybxg.jsp");
 }
 function Delyb(){
@@ -42,6 +42,7 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
+	    width:1050,
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'开工    '+'删除    '+'<a href="#" onclick="ybsb()">月报上报</a>   '+'完工   '+'未完工   ';

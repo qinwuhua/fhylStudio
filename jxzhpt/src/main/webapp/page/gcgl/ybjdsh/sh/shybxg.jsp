@@ -40,13 +40,7 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-  			<tr>
-                 <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-                    <font color="#1a5780" style="font-size: small">工程管理</font>&nbsp;>&nbsp; <font color="#1a5780"
-                        style="font-size: small">干线公路建设及养护管理</font>&nbsp;>&nbsp; <font color="Gray" style="font-size: small">
-                            水毁施工过程管理</font>&nbsp;>&nbsp; <font color="Gray" style="font-size: small">月报上报</font>
-                </td>
-            </tr>
+
           <tr>
                 <td>
                     <br />

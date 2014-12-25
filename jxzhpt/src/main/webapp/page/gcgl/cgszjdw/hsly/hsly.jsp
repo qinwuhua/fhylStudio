@@ -13,6 +13,12 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/hsly.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<style>
+		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
+		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
+	</style>
 	<script type="text/javascript">
 		$(function(){
 			$('#gydw').combotree({   
@@ -42,20 +48,19 @@ a:active {
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-	                <a style="color: #1a5780" href="#">工程管理</a> &nbsp;>&nbsp;
-	                <a style="color: #1a5780" href="#">项目进度管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;红色旅游施工过程管理</font>
-	            </td>
+			<div id="righttop">
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;红色旅游施工过程管理</div>
+					</div>
+
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1000px; text-align: left; vertical-align: middle;">
+        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
+        					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p>
+        					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<select id="gydw" style="width:200px;"></select>
         						<span>开工状态：</span>
@@ -69,8 +74,8 @@ a:active {
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
-        						<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;height: 22px;vertical-align: -40%;" />
-        					</p>
+        						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
         				</div>
         			</fieldset>
         		</td>

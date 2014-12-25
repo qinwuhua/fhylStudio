@@ -8,17 +8,14 @@ function jckglWqgz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1700,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJck('+"'wqgz_ck.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
-			}},
-	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','450'"+')" style="text-decoration:none;">编辑</a>';
-			}},
-	        {field:'delete',title:'删除',width:60,align:'center'},    
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckJck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+				'<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			}},  
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -42,17 +39,14 @@ function jckglAbgc(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1900,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJck('+"'abgc_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
-			}},
-	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'abgc_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
-			}},
-	        {field:'delete',title:'删除',width:60,align:'center'},    
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+				'<a href="javascript:xgJck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			}},    
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -77,17 +71,14 @@ function jckglZhfz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1800,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJck('+"'zhfz_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
-			}},
-	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','400'"+')" style="text-decoration:none;">编辑</a>';
-			}},
-	        {field:'delete',title:'删除',width:60,align:'center'},    
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckJck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+				'<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			}},  
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -112,12 +103,12 @@ function jckshWqgz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1700,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJcksh('+"'wqgz_ck.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:80,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+							'<a href="javascript:ckJcksh('+"'wqgz_ck.jsp','900','450'"+')" style="text-decoration:none;">详细</a>';
 			}}, 
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -142,12 +133,12 @@ function jckshAbgc(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1900,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJcksh('+"'abgc_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:60,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+							'<a href="javascript:ckJcksh('+"'abgc_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -173,12 +164,12 @@ function jckshZhfz(){
 		    pageNumber:1,
 		    pageSize:10,
 		    height:325,
-		    width:1800,
+		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckJcksh('+"'zhfz_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:60,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+							'<a href="javascript:ckJcksh('+"'zhfz_ck.jsp','900','400'"+')" style="text-decoration:none;">详细</a>';
 			}},   
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -207,14 +198,11 @@ function sckglWqgz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+				'<a href="javascript:xgSck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
 			}},
-	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgSck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
-			}},
-	        {field:'delete',title:'删除',width:60,align:'center'},    
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -240,14 +228,11 @@ function sckglAbgc(){
 		    width:1100,
 		    columns:[[    
 		  			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-		  			{field:'dingW',title:'定位',width:60,align:'center'}, 
-		  			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
-		  			}},
-		  	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:xgSck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
-		  			}},
-		  	        {field:'delete',title:'删除',width:60,align:'center'},    
+		  			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+						return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+						'<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+						'<a href="javascript:xgSck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+					}},    
 		  	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 		  	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 		  	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -274,14 +259,11 @@ function sckglZhfz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
-			}},
-	        {field:'bianJ',title:'编辑',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:xgSck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>';
-			}},
-	        {field:'delete',title:'删除',width:60,align:'center'},    
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
+				'<a href="javascript:xgSck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			}},    
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -309,9 +291,9 @@ function sckshWqgz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:60,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+							'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},   
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -338,9 +320,9 @@ function sckshAbgc(){
 		    width:1100,
 		    columns:[[    
 		  			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-		  			{field:'dingW',title:'定位',width:60,align:'center'}, 
-		  			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-		  				return '<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
+		  			{field:'cz',title:'操作',width:60,align:'center',formatter:function(value,row,index){
+		  				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+		  							'<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 		  			}},
 		  	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 		  	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -368,9 +350,9 @@ function sckshZhfz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'dingW',title:'定位',width:60,align:'center'}, 
-			{field:'xiangX',title:'详细',width:60,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
+			{field:'cz',title:'操作',width:60,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
+				'<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>';
 			}},
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},

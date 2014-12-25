@@ -13,11 +13,11 @@ function sfkaigong(){
 		return;
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报上报','gcgzgjyb.jsp','wqxx',1059,540);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报上报','gcgzgjyb.jsp','wqxx',1059,450);
 	//window.open("gcgzgjyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报添加','gcgzgjybtj.jsp','wqxx',920,370);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报添加','gcgzgjybtj.jsp','wqxx',900,400);
 	//window.open("gcgzgjybtj.jsp");
 }
 function Showybxx(){
@@ -25,7 +25,7 @@ function Showybxx(){
 	//window.open("gcgzgjybxx.jsp");
 }
 function Edityb(){
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报编辑','gcgzgjybxg.jsp','wqxx',920,370);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报编辑','gcgzgjybxg.jsp','wqxx',900,400);
 	//window.open("gcgzgjybxg.jsp");
 }
 function Delyb(){
@@ -42,6 +42,7 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
+	    width:1050,
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'开工    '+'删除    '+'<a href="#" onclick="ybsb()">月报上报</a>   '+'完工   '+'未完工   ';
