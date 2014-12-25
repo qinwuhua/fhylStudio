@@ -69,9 +69,9 @@ a:active {
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>起始年月：</span>
-        						<input type="text" id="kssj" >
+        						<input type="text" id="kssj" style="width:150px;">
         						<span>截止年月：</span>
-        						<input type="text" id="jssj" >
+        						<input type="text" id="jssj" style="width:150px;">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
@@ -92,7 +92,7 @@ a:active {
         							<option>村道</option>
         							<option>专道</option>
         						</select>
-        						<span>路&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
+        						<span>路&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
         						<input type="text"  style="width: 145px">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
