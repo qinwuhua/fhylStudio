@@ -85,11 +85,15 @@ $(function(){
 			title : '特殊地区',
 			width : 100,
 			align : 'center'
+			
 		},{
 			field : 'xzqh',
 			title : '包含行政区域',
-			width : 100,
-			align : 'center'
+			width : 300,
+			align : 'center',
+			formatter : function(value,rec,index){
+				return '南昌市,景德镇市乐平市 ,景德镇市浮梁县,景德镇市珠山区,景德镇市昌江区,景德镇市市辖区,景德镇市,南昌市进贤县 ,南昌市安义县,南昌市新建县,南昌市南昌县,南昌市青山湖区,南昌市湾里区 ,南昌市青云谱区,南昌市西湖区 ,南昌市东湖区,南昌市市辖区';
+			}
 		},{
 			field : 'bz',
 			title : '备注',

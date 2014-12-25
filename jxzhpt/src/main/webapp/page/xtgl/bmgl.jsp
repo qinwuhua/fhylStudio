@@ -73,8 +73,8 @@ function startSearch(){
 		showFooter:false,
 		columns:[[
             {field:'name',title:'部门名称',width:350},
-			{field:'jgdm',title:'部门编码',width:100,align : 'center'},
-			{field:'dist',title:'描述',width:100,align : 'center'},
+			{field:'id',title:'部门编码',width:100,align : 'center'},
+			{field:'desr',title:'描述',width:100,align : 'center'},
 			{field : 'sc',title : '操作',width : 200,align : 'center',
 				formatter : function(value,rec,index){
 					if(rec.id.length!=8)
