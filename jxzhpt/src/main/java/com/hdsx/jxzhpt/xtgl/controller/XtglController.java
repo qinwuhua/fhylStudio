@@ -551,6 +551,12 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void createAnyChartXml(){
+		System.out.println("-----------------");
+		String anyChartXml = xtglServer.createGsAnyChartXml(param);
+		System.out.println("++++++"+anyChartXml);
+		ResponseUtils.write(getresponse(), anyChartXml);
+	}
 	
 	public String getYhdw() {
 		return yhdw;

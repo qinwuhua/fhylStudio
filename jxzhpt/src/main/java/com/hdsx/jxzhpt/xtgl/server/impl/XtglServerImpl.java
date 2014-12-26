@@ -1,13 +1,16 @@
 package com.hdsx.jxzhpt.xtgl.server.impl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -230,5 +233,29 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<Unit> selectXzqhList(Unit unit) {
 		return queryList("selectXzqhList", unit);
+	}
+
+	@Override
+	public String createGsAnyChartXml(Param param) {
+		
+		Map<String,Object> parameter=new HashMap<String,Object>();
+		List<HashMap<String, String>> l=new ArrayList<HashMap<String,String>>();
+		String[] arr={"安保","水毁","工程改造"};
+		int[] arr2={10,23,45};
+		for(int i=0;i<3;i++){
+			HashMap<String, String> hm=new HashMap<String, String>();
+			hm.put("name", arr[i]);
+			hm.put("size", arr2[i]+"");
+			l.add(hm);
+		}
+		parameter.put("chart_title", "项目数量统计");//title
+		String yName="里程";//y单位
+		int precision=0;//小数的位数
+		parameter.put("yName", yName);
+		parameter.put("precision",precision);
+		parameter.put("list",l);
+		String chartType = "";
+		chartType="pie.ftl";
+		return AnyChartUtil.getAnyChartXml(chartType, parameter);
 	}
 }

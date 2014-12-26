@@ -78,4 +78,6 @@ public interface XtglServer {
 
 	List<Unit> selectXzqhList(Unit unit);
 
+	String createGsAnyChartXml(Param param);
+
 }

@@ -3,35 +3,35 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'公路养护小修保养月报表',
-		imgSrc:'../../images/jsgl.png',
+		imgSrc:'../../images/menubutton/glyhxxybb.png',
 		renderTo:'left_menu1',
 		href:'./ybb.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'公路养护小修保养机械材料消耗表',
-		imgSrc:'../../images/xzqhgl.png',
+		imgSrc:'../../images/menubutton/glyhxxjxxhb.png',
 		renderTo:'left_menu1',
 		href:'./clxhb.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'公路管理月报分析表',
-		imgSrc:'../../images/jsgl.png',
+		imgSrc:'../../images/menubutton/glglybfxb.png',
 		renderTo:'left_menu1',
 		href:'./ybfxb.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'公路路况评定表',
-		imgSrc:'../../images/xzqhgl.png',
+		imgSrc:'../../images/menubutton/gllkpdb.png',
 		renderTo:'left_menu1',
 		href:'./lkpdb.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'公路路线技术状况一览表',
-		imgSrc:'../../images/jsgl.png',
+		imgSrc:'../../images/menubutton/gllxjszkylb.png',
 		renderTo:'left_menu1',
 		href:'./ylb.jsp'
 	});
@@ -39,21 +39,21 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'灾毁损失情况',
-		imgSrc:'../../images/jsgl.png',
+		imgSrc:'../../images/menubutton/zhssqk.png',
 		renderTo:'left_menu2',
 		href:'./zhqk.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'公路水毁抢修人财物投入情况',
-		imgSrc:'../../images/xzqhgl.png',
+		imgSrc:'../../images/menubutton/glshqxcwqk.png',
 		renderTo:'left_menu2',
 		href:'./trqk.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu1',
 		title:'公路交通阻断信息表',
-		imgSrc:'../../images/jsgl.png',
+		imgSrc:'../../images/menubutton/gljtzdxxb.png',
 		renderTo:'left_menu2',
 		href:'./jtzdxxb.jsp'
 	});

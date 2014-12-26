@@ -36,5 +36,6 @@
 	<action name="selectTsdqList" class="xtglController" method="selectTsdqList"></action>
 	<action name="selectXzqhList" class="xtglController" method="selectXzqhList"></action>
 	
+	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
  </package>
 </struts>
