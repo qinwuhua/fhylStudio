@@ -711,25 +711,26 @@ a {
                 </td>
             </tr>
             <tr style="height: 30px;">
-                <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
-                    background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                    width: 15%; padding-right: 5px;">
                     交工通车文件
                 </td>
                 <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                     border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left;
                     padding-left: 10px;">
-                    <div id="div1">
+                    <div id="divSGXK_TJ">
                         <table width="100%" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td align="left" nowrap="nowrap" class="style7">
-                                    <span id="lblJGTCWJ">暂无附件</span>
-                                    <a onclick="return CheckFJ(this.innerText);" id="btnJGTCWJ" href="javascript:__doPostBack('btnJGTCWJ','')" style="color:#2C7ED1;"></a>
+                                <td align="left" nowrap="nowrap" style="width: 50%;">
+                                    <span id="lblSGXKWJ">暂无附件</span>
+                                    <a onclick="return CheckFJ(this.innerText);" id="btnSGXKWJ" href="javascript:__doPostBack('btnSGXKWJ','')" style="color:#2C7ED1;"></a>
                                 </td>
-                                <td align="left" class="style8">
+                                <td align="left">
                                     <table>
                                         <tr>
                                             <td>
-                                                <a onclick="return toDialogRoad('JGTC');" id="btnUpdate_JGTC" href="javascript:__doPostBack('btnUpdate_JGTC','')" style="color:#2C7ED1;">上传</a>
+                                                <a onclick="return toDialogRoad('SGXK');" id="btnUpdate_SGXK" href="javascript:__doPostBack('btnUpdate_SGXK','')" style="color:#2C7ED1;">上传</a>
                                             </td>
                                             <td>
                                                 &nbsp;|&nbsp;
