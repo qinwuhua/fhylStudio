@@ -14,24 +14,72 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
+</head>
+<body>
 <script type="text/javascript">
 	$(function(){
+		var nameValue;
+		var colValue;
+		var tableValue;
+		var tableCol;
 		$("#save_button").click(function(){
+			nameValue=new Array();
+			colValue= new Array();
+			tableValue=new Array();
+			tableCol=new Array();
+			var checkboxes = document.getElementsByName("checkbox");
+			for(var i=0;i<checkboxes.length;i++){
+			    if(checkboxes[i].checked){
+			    	colValue.push(checkboxes[i].value);
+			    	nameValue.push(checkboxes[i].nextSibling.nodeValue);
+			    }
+			}
+			parent.$("#grid").datagrid({    
+				 	url:"../js/zdy.json",
+				 	title : '',
+					border : true,
+					fit : false,
+					fitColumns : false,
+					height : 325,
+					iconCls : 'icon-save',
+				    width:1100,
+				    loadMsg : '正在加载请稍候...',
+					pageNumber : 1,
+					pageSize : 10,
+					pageList : [ 10, 15, 30 ],
+					striped : true,
+					showFooter : false,
+					singleSelect : false,
+					rownumbers : true,
+					pagination : true
+			}); 
+			var this_width;
+			if (nameValue.length > 7) {
+
+				this_width = 120;
+			} else {
+				this_width = 1080 / (nameValue.length) - 10;
+			}
+			for ( var i = 0; i < nameValue.length; i++) {
+				var obj;
+				obj = {
+					field : colValue[i],
+					title : nameValue[i],
+					align : 'center',
+					width : this_width
+				};
+				tableValue.push(obj);
+			}
+		 	var options =parent.$("#grid").datagrid("options");
+			tableCol.push(tableValue);
+			options.columns = tableCol;
+			parent.$('#grid').datagrid(options); 
 			parent.$.messager.alert('提示','查询成功！','info'); 
 			parent.$('#zd_xz').window('destroy');
 		});
 		
 		$("#qx_window").click(function(){
-			/* parent.$('#zd_xz').window('destroy'); */
-			var checkboxes = document.getElementsByName("checkbox");
-			var str="";
-			for(var i=0;i<checkboxes.length;i++){
-			    if(checkboxes[i].checked){
-			    	str+=checkboxes[i].value+","+checkboxes[i].nextSibling.nodeValue+",";
-			    }
-			}
-			checkValues=str;
-			alert(checkValues);
+			parent.$('#zd_xz').window('destroy');
 		});	
 	
 		// 全选
@@ -96,8 +144,7 @@ a{
 text-decoration:none;
 }
 </style>
-</head>
-<body>
+
 <center>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="2" cellspacing="1">
@@ -140,15 +187,15 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="gydw" name="checkbox" class="part1"/>管养单位</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="xzqhmc" name="checkbox" class="part1"/>行政区划</td>
+					<input  type="checkbox" value="xzqh" name="checkbox" class="part1"/>行政区划</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="faspsj" name="checkbox" class="part2"/>方案审批时间</td>
+					<input  type="checkbox" value="spsj" name="checkbox" class="part2"/>方案审批时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="spwh" name="checkbox" class="part2"/>审批文号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="zjbt" name="checkbox" class="part3"/>本月资金到位部投</td>
+					<input  type="checkbox" value="zjdwbt" name="checkbox" class="part3"/>本月资金到位部投</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="zjst" name="checkbox" class="part3"/>本月资金到位省投资</td>
+					<input  type="checkbox" value="zjdwst" name="checkbox" class="part3"/>本月资金到位省投资</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input  type="checkbox" value="zjqt" name="checkbox" class="part3"/>本月资金到位其他投资</td>	
 			</tr>
@@ -196,7 +243,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="zjje" name="checkbox" class="part3"/>追加金额</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="csyj" name="checkbox" class="part3"/>相关处室意见</td>
+					<input  type="checkbox" value="xgcsyj" name="checkbox" class="part3"/>相关处室意见</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input  type="checkbox" value="cscyj" name="checkbox" class="part3"/>财审处意见</td>	
 			</tr>
