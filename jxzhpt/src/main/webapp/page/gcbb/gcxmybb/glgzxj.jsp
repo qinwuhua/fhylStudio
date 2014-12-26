@@ -60,7 +60,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;">
+        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -110,7 +110,7 @@ a:active {
                 <td style="padding-top: 10px;padding-left:10px;">
                 	
                     <div>
-                    <img alt="" src="images/glgzxj.png">
+                    <img width="100%" alt="" src="images/glgzxj.png">
 				<table >
 				</table>
 					</div>

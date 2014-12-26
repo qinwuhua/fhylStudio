@@ -16,7 +16,6 @@ function showAll(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
 	    columns:[[
 	        {field:'c',title:'操作',width:120,align:'center',formatter:function(value,row,index){
 	        	return '<a href="#" onclick="download()">下载</a>    '+'<a href="#" onclick="download()">查看</a>    '+'<a href="#" onclick="aqglxg()">编辑</a>    '+'<a href="#" onclick="download()">删除</a>    ';

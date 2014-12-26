@@ -54,7 +54,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1000px; text-align: left; vertical-align: middle;">
+        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -84,11 +84,11 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" cellspacing="0" rules="all" border="1" id="GrdAB" style="width:1400px;border-collapse:collapse;">
-
-
+	<table id="datagrid" width="100%">
 			</table>
-
+			</div>
+			</td>
+			</tr>
 			
 		</table>
 	</div>

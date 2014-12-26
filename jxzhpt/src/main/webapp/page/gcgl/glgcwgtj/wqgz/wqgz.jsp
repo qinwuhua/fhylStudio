@@ -58,7 +58,7 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1000px; text-align: left; vertical-align: middle;">
+        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -89,36 +89,7 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" cellspacing="0" rules="all" border="1" id="GrdAB" style="width:1280px;border-collapse:collapse;">
-<!-- 		<tr align="center" valign="middle" style="color:#33AECC;background-color:#EFF8FE;border-width:1px;border-style:Solid;height:40px;"> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">定位</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">操作</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">管养单位</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">行政区划</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">桥梁编码</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">桥梁名称</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">桥梁中心桩号</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">桥梁全宽</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">桥梁全长</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">跨径总长</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">技术等级</th> -->
-<!-- 			<th scope="col" style="border-color:#CCEEFF;border-style:Solid;">改建/修建年度</th> -->
-<!-- 		</tr> -->
-
-<!-- 			<tbody id="tBodyId"> -->
-				
-				
-<!-- 			</tbody> -->
-<!-- 			</table> -->
-<!-- 			<div id="AspNetPager1" dir="ltr" style="width:98%;text-align:left;"> -->
-<!-- 			<div style="width:40%;float:left;"> -->
-<!-- 					共1条 每页10条 当前第1页/1页 -->
-<!-- 			</div> -->
-<!-- 			<div align="left" style="width:60%;float:left;"> -->
-<!-- 			<a disabled="disabled" style="margin-right:5px;">首页</a><a disabled="disabled" style="margin-right:5px;">上一页</a><a href="javascript:__doPostBack('AspNetPager1','2')" style="margin-right:5px;">下一页</a><a href="javascript:__doPostBack('AspNetPager1','28')" style="margin-right:5px;">末页</a>&nbsp;&nbsp;转到<input type="text" value="1" name="AspNetPager1_input" id="AspNetPager1_input" onkeydown="ANP_keydown(event,'AspNetPager1_btn');" style="width:30px;" />页<input type="submit" value="Go" name="AspNetPager1" id="AspNetPager1_btn" onclick="if(ANP_checkInput('AspNetPager1_input',28)){__doPostBack('AspNetPager1','')} else{return false}" /> -->
-<!-- 			</div> -->
-<!-- 			</div> -->
-			
+	<table id="datagrid"  width="100%">			
 		</table>
 	</div>
 	</td>
