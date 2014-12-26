@@ -20,14 +20,24 @@
 			parent.$.messager.alert('提示','查询成功！','info'); 
 			parent.$('#zd_xz').window('destroy');
 		});
+		
 		$("#qx_window").click(function(){
-			parent.$('#zd_xz').window('destroy');
+			/* parent.$('#zd_xz').window('destroy'); */
+			var checkboxes = document.getElementsByName("checkbox");
+			var str="";
+			for(var i=0;i<checkboxes.length;i++){
+			    if(checkboxes[i].checked){
+			    	str+=checkboxes[i].value+","+checkboxes[i].nextSibling.nodeValue+",";
+			    }
+			}
+			checkValues=str;
+			alert(checkValues);
 		});	
 	
 		// 全选
-/*         $("#qx").bind("click", function () {
+		$("#qx").bind("click", function () {
             $("[name = checkbox]:checkbox").attr("checked", true);
-        }); */
+        }); 
 
         // 全不选
         $("#bx").bind("click", function () {
