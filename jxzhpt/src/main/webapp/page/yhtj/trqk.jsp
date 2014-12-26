@@ -64,46 +64,28 @@ $(function(){
 		striped : true,
 		singleSelect : false,
 		columns:[[
-		    {title:'分局(道班)名称',width:200,rowspan:2,align:'center'},
-			{title:'备 料',width:800,colspan:8,align:'center'},
-			{title:'材料、燃料消耗',width:600,colspan:11,align:'center'},
-			{title:'养路机械',width:600,colspan:3,align:'center'},
-			{title:'使用小修经费(万元)',width:400,colspan:8,align:'center'}
+		    {title:'操作',width:200,rowspan:2,align:'center'},
+			{title:'单位',width:300,rowspan:2,align:'center'},
+			{title:'抢修人数(工日)',width:300,rowspan:2,align:'center'},
+			{title:'材料',width:600,colspan:6,align:'center'},
+			{title:'设备(台班)',width:400,colspan:5,align:'center'},
+			{title:'投入抢修经费(万元)',width:300,rowspan:2,align:'center'},
+			{title:'填报时间',width:300,rowspan:2,align:'center'},
+			{title:'填报单位',width:300,rowspan:2,align:'center'},
+			{title:'统计人',width:300,rowspan:2,align:'center'},
+			{title:'审核人',width:300,rowspan:2,align:'center'}
 		],[
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'黄土(立方米)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
 			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
 			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'黄土(包括天然料) (立方米)',width:100,align:'center'},
-			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
-			
-			{title:'石灰(吨)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
-			
-			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'汽油(升)',width:100,align:'center'},
-			{title:'柴油(升)',width:100,align:'center'},
-			{title:'本月MQI',width:100,align:'center'},
-			{title:'台数',width:100,align:'center'},
-			{title:'出车车日',width:100,align:'center'},
-			{title:'出车率(%)',width:100,align:'center'},
-			{title:'固定工工资',width:100,align:'center'},
-			{title:'上月优良路率%',width:100,align:'center'},
-			{title:'材料费',width:100,align:'center'},
-			{title:'机械费',width:100,align:'center'},
-			{title:'其他直接费',width:100,align:'center'},
-			{title:'间接费',width:100,align:'center'},
-			{title:'本月使用',width:100,align:'center'},
-			{title:'累计使用',width:100,align:'center'}
-			
+			{title:'沙石(立方)',width:100,align:'center'},
+			{title:'编织袋(个)',width:100,align:'center'},
+			{title:'工业盐(吨)',width:100,align:'center'},
+			{title:'沥青冷补料',width:100,align:'center'},
+			{title:'挖掘机 	',width:100,align:'center'},
+			{title:'装载机',width:100,align:'center'},
+			{title:'自卸汽车',width:100,align:'center'},
+			{title:'抽水台班',width:100,align:'center'},
+			{title:'设备台班小计',width:100,align:'center'}
 		]]
 	});
 });
@@ -111,7 +93,7 @@ $(function(){
 <div style="width:100%;">
     <div  style="height:104px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路养护小修保养机械材料消耗表</div>
+			<div id="p_top">当前位置>&nbsp;灾毁情况统计>&nbsp;公路水毁抢修人财物投入情况</div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
 			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
@@ -120,30 +102,24 @@ $(function(){
  				</legend>
  				<div>
  					<p style="margin: 5px;">
- 						<span>年份：</span>
+ 						<span>管养单位：</span>
  						<select id="unit" style="width:150px;">
- 							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
  						</select>
- 						<span>月份：</span>
+ 						<span>上报年月：</span>
  						<select id="unit" style="width:150px;">
-	 						<option>12</option>
-	 						<option>11</option>
-	 						<option>10</option>
-	 						<option>9</option>
-	 						<option>8</option>
+	 						<option>2014-12</option>
+	 						<option>2014-11</option>
+	 						<option>2014-10</option>
+	 						<option>2014-9</option>
+	 						<option>2014-8</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">添加</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-excel">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
-        <div><font style="font-size: 12px;">公路养护小修保养月报表(2014年 12 月份)</font></div>
     </div>
     <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>

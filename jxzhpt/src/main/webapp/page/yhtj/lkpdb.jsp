@@ -53,8 +53,7 @@ function deleteJs(_id){
 $(function(){
 	$("#jsgl_table").datagrid({
 		border : true,
-		//width:5000,
-		fit:true,
+		fit : true,
 		//fitColumns : true,
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectJsList.do',
@@ -65,72 +64,55 @@ $(function(){
 		striped : true,
 		singleSelect : false,
 		columns:[[
-				    {title:'分局(道班)名称',width:200,rowspan:2,align:'center'},
-					{title:'清理塌方',width:300,colspan:2,align:'center'},
-					{title:'回填路基缺口',width:300,align:'center'},
-					{title:'路基翻浆处理',width:300,colspan:2,align:'center'},
-					{title:'清理路边垃圾',width:300,align:'center'},
-					{title:'整修路肩边坡',width:300,colspan:2,align:'center'},
-					{title:'割草机割草',width:300,align:'center'},
-					{title:'清理边沟',width:300,align:'center'},
-					{title:'开挖标准水沟',width:300,align:'center'},
-					{title:'边沟修复',width:300,colspan:2,align:'center'},
-					{title:'路面清扫',width:300,colspan:2,align:'center'},
-					{title:'修补油路坑槽',width:300,colspan:2,align:'center'},
-					{title:'处理油路裂缝',width:300,colspan:2,align:'center'},
-					{title:'修复水泥砼路面',width:300,align:'center'},
-					{title:'水泥路面灌缝',width:300,colspan:2,align:'center'},
-					{title:'桥梁维修',width:300,align:'center'},
-					{title:'桥涵日常养护',width:300,colspan:2,align:'center'},
-					{title:'增、修挡土墙',width:300,colspan:2,align:'center'},
-					{title:'疏通泄水孔',width:300,align:'center'},
-					{title:'清理伸缩缝',width:300,align:'center'},
-					{title:'安装栏板',width:300,align:'center'},
-					{title:'埋置示警桩',width:300,align:'center'},
-					{title:'埋置公里桩/百米桩',width:300,align:'center'},
-					{title:'花木灭虫',width:300,align:'center'},
-					{title:'花木整枝',width:300,align:'center'},
-					{title:'草坪除草',width:300,align:'center'},
-					{title:'花木除草',width:300,align:'center'},
-					{title:'路树灭虫',width:300,colspan:2,align:'center'},
-					{title:'路树整枝',width:300,colspan:2,align:'center'}
-				],[
-					{title:'m³/m',width:300,colspan:2,align:'center'},
-					{title:'m³',width:300,align:'center'},
-					{title:'㎡/m',width:300,colspan:2,align:'center'},
-					{title:'m³',width:300,align:'center'},
-					{title:'㎡/m',width:300,colspan:2,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'m',width:300,align:'center'},
-					{title:'m',width:300,align:'center'},
-					{title:'m³/m',width:300,colspan:2,align:'center'},
-					{title:'㎡/km',width:300,colspan:2,align:'center'},
-					{title:'㎡/个',width:300,colspan:2,align:'center'},
-					{title:'㎡/km',width:300,colspan:2,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'m/km',width:300,colspan:2,align:'center'},
-					{title:'座',width:300,align:'center'},
-					{title:'座/道',width:300,colspan:2,align:'center'},
-					{title:'m³/m',width:300,colspan:2,align:'center'},
-					{title:'个',width:300,align:'center'},
-					{title:'m',width:300,align:'center'},
-					{title:'m',width:300,align:'center'},
-					{title:'m',width:300,align:'center'},
-					{title:'个',width:300,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'㎡',width:300,align:'center'},
-					{title:'棵/km',width:300,colspan:2,align:'center'},
-					{title:'棵/km',width:300,colspan:2,align:'center'}
-				]]
+		    {title:'分局',width:200,rowspan:3,align:'center'},
+			{title:'养护里程(公里)',width:300,rowspan:3,align:'center'},
+			{title:'路况等级(公里)',width:600,colspan:5,align:'center'},
+			{title:'MQI',width:200,rowspan:3,align:'center'},
+			{title:'优良路率(%)',width:300,rowspan:3,align:'center'},
+			{title:'其 中',width:400,colspan:16,align:'center'},
+			{title:'养路工人出勤情况',width:400,colspan:6,align:'center'}
+		],[
+			{title:'优',width:200,rowspan:2,align:'center'},
+			{title:'良',width:200,rowspan:2,align:'center'},
+			{title:'中',width:200,rowspan:2,align:'center'},
+			{title:'次',width:200,rowspan:2,align:'center'},
+			{title:'差',width:200,rowspan:2,align:'center'},
+			{title:'油　路 (公里)',colspan:6,width:300,align:'center'},
+			{title:'MQI',width:200,rowspan:2,align:'center'},
+			{title:'优良路率(%)',width:300,rowspan:2,align:'center'},
+			{title:'水　泥　路　(公里)',colspan:6,width:300,align:'center'},
+			{title:'MQI',width:200,rowspan:2,align:'center'},
+			{title:'优良路率(%)',width:300,rowspan:2,align:'center'},
+			{title:'工人数 (人)',colspan:2,width:200,align:'center'},
+			{title:'出 工 率',colspan:2,width:200,align:'center'},
+			{title:'出 勤 率',colspan:2,width:200,align:'center'}
+		],[
+			{title:'总里程',width:100,align:'center'},
+			{title:'优',width:200,align:'center'},
+			{title:'良',width:200,align:'center'},
+			{title:'中',width:200,align:'center'},
+			{title:'次',width:200,align:'center'},
+			{title:'差',width:200,align:'center'},
+			{title:'总里程',width:100,align:'center'},
+			{title:'优',width:200,align:'center'},
+			{title:'良',width:200,align:'center'},
+			{title:'中',width:200,align:'center'},
+			{title:'次',width:200,align:'center'},
+			{title:'差',width:200,align:'center'},
+			{title:'在册',width:100,align:'center'},
+			{title:'临时',width:100,align:'center'},
+			{title:'直接生产工日',width:100,align:'center'},
+			{title:'出工率(%)',width:100,align:'center'},
+			{title:'直接间接生产工日',width:100,align:'center'},
+			{title:'出勤率(%)',width:100,align:'center'}
+		]]
 	});
 });
 </script>
 <div style="width:100%;">
-    <div  style="height:84px;" border="false">
+    <div  style="height:104px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路养护小修保养月报表</div>
+			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路路况评定表</div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
 			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
@@ -150,7 +132,6 @@ $(function(){
  						</select>
  						<span>月份：</span>
  						<select id="unit" style="width:150px;">
- 							<option>全部</option>
 	 						<option>12</option>
 	 						<option>11</option>
 	 						<option>10</option>
@@ -163,6 +144,7 @@ $(function(){
  				</div>
  			</fieldset>
         </div>
+        <div><font style="font-size: 12px;">公路养护小修保养月报 （2014年 12月份）</font></div>
     </div>
     <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
