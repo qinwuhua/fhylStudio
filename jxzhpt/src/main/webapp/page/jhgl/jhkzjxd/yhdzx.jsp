@@ -38,7 +38,7 @@
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
+        					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<p style="margin-left: 20px;">
@@ -89,21 +89,14 @@
 								</select>
 								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
         					</p>
-        					<p style="margin: 0px;padding: 0px; margin-left: 20px;">
-        						共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">627</span>&nbsp;】个养护大中修项目，下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">148819.86</span>&nbsp;】万元。
-        					</p>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【 <span id="lblCount"></span> 】个路面升级项目，总里程共
-        			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">49.350</span>&nbsp;】
-        			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000"></span>&nbsp;】
-        			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">14</span>&nbsp;】
-        			万元，其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">6</span>&nbsp;】
-        			万元，地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">8</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">105</span>&nbsp;】个养护大中修项目，
+        			下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">141</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

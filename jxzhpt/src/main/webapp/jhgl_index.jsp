@@ -60,7 +60,7 @@
 			<iframe id="c7f" name="c7f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
     </div>
-    <div data-options="region:'south',border:false,split:false" style="height: 25px;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
+    <div data-options="region:'south',border:false,split:false" style="height: 25px;color:#FFF;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
         <p>版权所有：河北省交通运输厅公路管理局 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持：北京恒达时讯科技开发有限责任公司</p>
     </div>
 </body>

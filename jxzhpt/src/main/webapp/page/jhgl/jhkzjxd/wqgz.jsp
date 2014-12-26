@@ -39,7 +39,7 @@
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
+        					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<p style="margin:8px 0px 8px 20px;">
@@ -49,38 +49,8 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;建设状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;">
-									<option selected="selected" value="">全部</option>
-									<option value="已上报">未开工</option>
-									<option value="未审核">在建</option>
-									<option value="已审核">竣工</option>
-								</select>
-								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
-									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
-								</select>
-								<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:105px;">
+        						<span>&nbsp;跨径分类：</span>
+        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:60px;">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
@@ -90,19 +60,44 @@
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span style=" vertical-align:middle;">桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:225px; vertical-align:middle;" />
-        						<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand; vertical-align:middle;" />
-							</p>
+        						<input name="txtBridge" type="text" id="txtBridge" style="width:165px;vertical-align:middle;" />
+        						<span style="vertical-align:middle;">上报年份：</span>
+        						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
+        						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
+        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="已上报">未开工</option>
+									<option value="未审核">在建</option>
+									<option value="已审核">竣工</option>
+								</select>
+								<span style="vertical-align:middle;">&nbsp;特殊地区：</span>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
+									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
+									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
+									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
+									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
+									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
+								</select>
+								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="1">一级公路</option>
+									<option value="2">二级公路</option>
+									<option value="3">三级公路</option>
+									<option value="4">四级公路</option>
+									<option value="5">等外公路</option>
+								</select>
+								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand; vertical-align:middle;" />
+        					</p>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">9</span>&nbsp;】个危桥改造项目，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">338</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">199</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">139</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">9</span>&nbsp;】个危桥改造项目，下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">255</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

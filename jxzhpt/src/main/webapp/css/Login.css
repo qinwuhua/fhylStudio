@@ -21,7 +21,7 @@ select, textarea, input, button {vertical-align:middle;font-family:inherit;font-
 .clearFix{zoom:1;}
 
 
-#bg{ width:1038px; min-width:1000px; margin:0 auto; background:url(../images/dlbg.jpg) no-repeat; height:688px;}
+#bg{ width:1038px; min-width:1000px; margin:0 auto; background:url(../images/dlbg.jpg) no-repeat; height:619px;}
 .dlflash{ width:1000px;position:relative;top:0;left:50%;margin-left:-500px;}
 .perDword{padding-left:10px;position:absolute;left:500px;bottom:-110px; }
 .perDword table td{ color:#FFF;}

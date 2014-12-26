@@ -93,21 +93,21 @@ $(function() {
 		title:'普通干线公路建设项目进展情况表',
 		imgSrc:'../../images/wq.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/wqgz/wqgz.jsp'
+		href:'./xmjzbb/ptgx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'养护大中修工程项目进展情况表',
 		imgSrc:'../../images/ab.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/abgc/abgc.jsp'
+		href:'./xmjzbb/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu3',
 		title:'路网结构改造工程项目进展情况表',
 		imgSrc:'../../images/zh.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/zhfz/zhfz.jsp'
+		href:'./xmjzbb/lwgz.jsp'
 	});
 	
 	
