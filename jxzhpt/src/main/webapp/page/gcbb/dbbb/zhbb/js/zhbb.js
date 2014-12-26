@@ -11,7 +11,7 @@ function showAlljc(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
 	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
@@ -36,7 +36,7 @@ function showAlljh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 			{field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
 			{field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
@@ -70,7 +70,7 @@ function showAllsc(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 	         {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
 	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},

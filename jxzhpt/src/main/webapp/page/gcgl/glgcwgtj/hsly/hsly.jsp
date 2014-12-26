@@ -48,14 +48,14 @@ a:active {
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-					<div id="righttop">
+			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路工程完工统计>&nbsp;红色旅游完工统计</div>
 					</div>
 
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1000px; text-align: left; vertical-align: middle;">
+        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -86,10 +86,11 @@ a:active {
          <td style="padding-left: 10px; padding-top: 5px; font-size: 12px;">
             <div>
 
-		<table id="datagrid">
+		<table id="datagrid" width="100%">
 			</table>
-
-			
+				</div>
+			</td>
+			</tr>
 		</table>
 	</div>
 </body>

@@ -11,7 +11,7 @@ function showAlljc(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 	        {field:'gydw',title:'管养单位',width:100,align:'center'},
 	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
@@ -44,7 +44,7 @@ function showAlljh(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 	        {field:'gydw',title:'管养单位',width:100,align:'center'},
 	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
@@ -78,7 +78,7 @@ function showAllsc(){
 	    pageNumber:1,
 	    pageSize:10,
 	    height:325,
-	    width:1050,
+
 	    columns:[[
 	        {field:'qlbm',title:'桥梁编码',width:100,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
