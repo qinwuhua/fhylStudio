@@ -153,7 +153,8 @@ img {_azimuth:expression(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" &&
 .left_div img{
 	margin : 10px;
 }
-
+#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../images/jianjiao.png) 8px 0 no-repeat;}
+#righttop{height:33px;background:url(../images/righttopbg.gif) 0 0 repeat-x;}
 /*鏌ヨ鏉′欢table  class="searchTj"*/
 .searchTj td{ text-align:right; width: 250px;padding-right:10px}
 .searchTj input{width:180px;border:1px solid #95B8E7;}

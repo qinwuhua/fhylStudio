@@ -23,22 +23,22 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
-		    <div id="left_menu1" title="公路建设及养护管理" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu1" title="公路建设及养护管理" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
 		    
 		    </div>
-		    <div id="left_menu2" title="车购税资金到位情况" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		    <div id="left_menu2" title="车购税资金到位情况" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
-		     <div id="left_menu3" title="月报进度审核管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		     <div id="left_menu3" title="月报进度审核管理" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
-		     <div id="left_menu4" title="公路工程完工统计" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		     <div id="left_menu4" title="公路工程完工统计" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 		     
 		    </div>
-		    <div id="left_menu5" title="安全应急管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		    <div id="left_menu5" title="安全应急管理" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 		     
 		    </div>
-<!-- 		    <div id="left_menu6" title="台账信息管理" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;"> -->
+<!-- 		    <div id="left_menu6" title="台账信息管理" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;"> -->
 		     
 <!-- 		    </div> -->
 		</div>

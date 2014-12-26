@@ -23,16 +23,16 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:false, iconCls: 'icon-west'" style="width:253px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:251px;">  
-		    <div id="left_menu1" title="项目计划库管理" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu1" title="项目计划库管理" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
 		    
 		    </div>
-		    <div id="left_menu2" title="项目计划库上报" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		    <div id="left_menu2" title="项目计划库上报" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
-		     <div id="left_menu3" title="项目计划库审核" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		     <div id="left_menu3" title="项目计划库审核" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
-		     <div id="left_menu4" title="项目计划资金下达" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		     <div id="left_menu4" title="项目计划资金下达" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 		     
 		    </div>
 		</div>

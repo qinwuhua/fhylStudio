@@ -33,7 +33,7 @@
          </div>
 </div>
 <div id="foot">
-	<div class="foot"><p>监制单位：江西省公路管理局&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京恒达时讯科技开发有限公司</p></div>
+	<div class="foot"><p>监制单位：江西省公路管理局&nbsp;&nbsp;&nbsp;&nbsp;技术支持：北京恒达时讯科技开发有限责任公司</p></div>
 </div>
 </body>
 </html>

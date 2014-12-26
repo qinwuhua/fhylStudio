@@ -23,7 +23,7 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:false, iconCls: 'icon-west'" style="width:253px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:251px;">  
-		    <div id="left_menu1" title="项目统计分析" data-options="iconCls:'icon-save',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu1" title="项目统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
 		    
 		    </div>
 		</div>

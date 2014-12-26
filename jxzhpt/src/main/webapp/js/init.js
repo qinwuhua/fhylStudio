@@ -19,8 +19,8 @@ var objHomeOpen={};
 //Initialize Index Page.
 $(function(){
 	//默认加载的页面Index.html
-	$("#Menu_2").addClass('now');
-	$("#c2f").attr("src", "./page/lxwm/Menu.jsp");
+	$("#Menu_1").addClass('now');
+	$("#c1f").attr("src", "./page/dzdt/Menu.jsp");
 	
 	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
 		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
@@ -89,3 +89,7 @@ $(function(){
 
     
 });
+
+function edit(){
+	YMLib.UI.createWindow('updatePassword', '*  修改密码', 'page/xtgl/updatePassword.jsp','updatePassword', 460,320);
+}

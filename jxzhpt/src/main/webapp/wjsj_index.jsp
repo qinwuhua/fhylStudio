@@ -56,6 +56,10 @@ $(function(){
         }
     });
 });
+
+function edit(){
+	YMLib.UI.createWindow('updatePassword', '*  修改密码', 'page/xtgl/updatePassword.jsp','updatePassword', 460,320);
+}
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
@@ -63,9 +67,9 @@ $(function(){
 		<div class="header">
 			<div class="header_content3">
 			    <div style="position:absolute;top:15px;right:370px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user">admin</span></div>
-			    <div id="www_zzje_net2" style="position:absolute;top:15px;right:230px;color:#f2f8fe;font-family:arial;line-height:1.5em;"></div>
-			    <div id="www_zzje_net1" style="position:absolute;top:15px;right:170px;color:#f2f8fe;font-family:arial;line-height:1.5em;"></div>
-			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em><a id="" onclick="exit()" href="javascript:void(0)">退出系统</a></div>
+			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
+			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
+			    	<a href="./login.jsp" target="_self">退出系统</a></div>
 				<ul class="nav">
 					<li id="d1"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
 					<li id="d2"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 
@@ -85,8 +89,8 @@ $(function(){
 			<iframe id="c3f" name="c3f"src="" frameborder='0' height='100%' width='100%'></iframe>
 		</div>
     </div>
-    <div data-options="region:'south',border:false,split:false" style="height: 25px;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
-        <p>版权所有：河北省交通运输厅公路管理局 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持：北京恒达时讯科技开发有限责任公司</p>
+    <div data-options="region:'south',border:false,split:false" style="height: 25px;color:#FFF;line-height: 25px; background: url(image/footerbg.gif) 0 0 repeat-x; text-align: center;overflow: hidden;">
+        <p>版权所有：江西省公路管理局 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持：北京恒达时讯科技开发有限责任公司</p>
     </div>
 </body>
 </html>
