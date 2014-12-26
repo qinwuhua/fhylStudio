@@ -39,7 +39,7 @@
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
+        					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<p style="margin:8px 0px 8px 20px;">
@@ -73,14 +73,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 15px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">2</span>&nbsp;】红色旅游项目，
-        			建设规模合计【&nbsp;<span id="lblGMHJ" style="font-weight: bold; color: #FF0000">10.500</span>&nbsp;】公里，
-        			其中，一级公路【&nbsp;<span id="lblYJGL" style="font-weight: bold; color: #FF0000">1.000</span>&nbsp;】公里，二级公路【&nbsp;<span id="lblEJGL" style="font-weight: bold; color: #FF0000">0.000</span>&nbsp;】公里，
-        			三级公路【&nbsp;<span id="lblSJGL" style="font-weight: bold; color: #FF0000">8.500</span>&nbsp;】公里，
-        			四级公路【&nbsp;<span id="lblSIJGL" style="font-weight: bold; color: #FF0000">0.000</span>&nbsp;】公里，
-        			独立大桥【&nbsp;<span id="lblDLDQ" style="font-weight: bold; color: #FF0000">1.000</span>&nbsp;】公里；
-        			总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">2751</span>&nbsp;】万元，
-        			其中，中央投资车购税【&nbsp;<span id="lblZYTZ" style="font-weight: bold;color: #FF0000">1143</span>&nbsp;】万元； 上年底累计完成投资【&nbsp;<span id="lblSNZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元， 其中，中央投资车购税【&nbsp;<span id="lblSNZYTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">4</span>&nbsp;】个战备公路项目，下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">30</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

@@ -40,7 +40,7 @@
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
+        					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<p style="margin-left: 20px;">
