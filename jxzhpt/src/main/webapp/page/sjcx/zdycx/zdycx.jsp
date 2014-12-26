@@ -74,7 +74,6 @@ text-decoration:none;
 						<input type="image" name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 					</td>
 			</tr>
-			</table>
 			</center>
 </body>
 </html>
