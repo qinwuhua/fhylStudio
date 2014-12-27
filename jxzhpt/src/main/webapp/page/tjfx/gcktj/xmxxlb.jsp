@@ -5,6 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>项目信息列表</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
@@ -22,10 +24,10 @@
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 20px; background-repeat: no-repeat; font-size: 12px;" colspan="2">
-	                <a style="color: #1a5780;text-decoration: none;" href="#">统计分析</a> &nbsp;>&nbsp;
-	                <a style="color: #1a5780;text-decoration: none;" href="#">项目统计分析</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;项目类型统计</font>
+				<td colspan="2">
+	                <div id="righttop">
+						<div id="p_top">统计分析>&nbsp;项目统计分析>&nbsp;项目类型统计</div>
+					</div>
 	            </td>
         	</tr>
         	<tr>

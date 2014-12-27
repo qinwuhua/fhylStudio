@@ -4,6 +4,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>养护大中修项目</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -28,20 +30,20 @@
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-	                <a style="color: #1a5780" href="#">计划管理</a> &nbsp;>&nbsp;
-	                <a style="color: #1a5780" href="#">项目计划库资金下达</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;养护大中修项目</font>
+				<td>
+	                <div id="righttop">
+						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;养护大中修项目</div>
+					</div>
 	            </td>
         	</tr>
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin-left: 20px;">
+        					<p style="margin:8px 0px 4px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:237px;"></select>
         						<span>&nbsp;行政区划：</span>
@@ -49,7 +51,7 @@
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" id="txtRoad" style="width:80px;"  type="text"/>
         					</p>
-        					<p style="margin-left: 20px;">
+        					<p style="margin:8px 0px 4px 20px;">
         						<span style=" vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px; vertical-align:middle;"></select>
 								<span style=" vertical-align:middle;">&nbsp;特殊地区：</span>
@@ -87,7 +89,7 @@
 									<option value="4">四级公路</option>
 									<option value="5">等外公路</option>
 								</select>
-								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
