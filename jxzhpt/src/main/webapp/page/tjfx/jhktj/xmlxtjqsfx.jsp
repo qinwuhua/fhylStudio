@@ -72,7 +72,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: center;vertical-align:middle;padding-top: 10px;">
-        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xmlxtj.png" width="980" style="style="text-align: center;vertical-align:middle;"">
+        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/tjqs.jpg" width="980" style="style="text-align: center;vertical-align:middle;"">
         		</td>
         	</tr>
 		</table>

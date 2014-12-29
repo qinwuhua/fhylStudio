@@ -34,7 +34,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'项目类型统计趋势分析',
-		imgSrc:'../../images/qsfx.png',
+		imgSrc:'../../images/lxtjqs.png',
 		renderTo:'left_menu2',
 		href:'./jhktj/xmlxtjqsfx.jsp'
 	});

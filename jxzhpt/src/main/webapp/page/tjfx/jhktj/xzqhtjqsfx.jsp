@@ -73,7 +73,7 @@
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
 	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xzqhtj.jpg" width="900" height="300" align="">
+	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/tjqs.jpg" width="900" height="300" align="">
 	        			</div>
 	        		</div>
         		</td>

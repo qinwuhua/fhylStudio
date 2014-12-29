@@ -28,7 +28,7 @@ function jckxmlxtj(){
 	var colYears =[],colZj=[];
 	for (var i=$('#startYear').val();i<=$('#endYear').val();i++){
 		var year ={title:i+'年',width:160,align:'center',colspan:2};
-		var lczj={field:i+'lczj',title:'路程总计',width:80,align:'center'};
+		var lczj={field:i+'lczj',title:'规模(米/公里)',width:80,align:'center'};
 		colZj.push(lczj);
 		var xmzj={field:i+'xmzj',title:'项目总计',width:80,align:'center'};
 		colZj.push(xmzj);
@@ -113,32 +113,6 @@ function xmlxtj(){
 		    ],
 		    onSelect:function(){
 		    	window.location.href='../jhktj/xmxxlb.jsp';
-		    }
-		};
-	gridBind(grid);
-}
-function qstj(){
-	var colYears =[],colZj=[];
-	for (var i=2011;i<=2014;i++){
-		var year ={title:i+'年',width:160,align:'center',colspan:2};
-		var lczj={field:i+'lczj',title:'路程总计',width:80,align:'center'};
-		colZj.push(lczj);
-		var xmzj={field:i+'xmzj',title:'项目总计',width:80,align:'center'};
-		colZj.push(xmzj);
-		colYears.push(year);
-	}
-	var zjtitle={title:'各年份项目路程和数量统计',colspan:colYears.length*2,width:800};
-	var grid={id:'grid',url:'../js/qstj.json',fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,width:970,
-		    columns:[
-			    [
-			     	{field:'xmlx',title:'项目类型',width:80,align:'center',rowspan:3,fixed:true},
-			     	zjtitle
-			    ],
-			    colYears,colZj
-		    ],
-		    onSelect:function(){
-		    	window.location.href='../jcktj/xmxxlb.jsp';
 		    }
 		};
 	gridBind(grid);
