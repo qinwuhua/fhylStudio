@@ -17,7 +17,6 @@
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
-			loadDialog("zbgl_xx");
 			zbglxm();
 		});
 		
@@ -77,14 +76,15 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 15px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">2</span>&nbsp;】红色旅游项目，
-        			建设规模合计【&nbsp;<span id="lblGMHJ" style="font-weight: bold; color: #FF0000">10.500</span>&nbsp;】公里，
-        			其中，一级公路【&nbsp;<span id="lblYJGL" style="font-weight: bold; color: #FF0000">1.000</span>&nbsp;】公里，二级公路【&nbsp;<span id="lblEJGL" style="font-weight: bold; color: #FF0000">0.000</span>&nbsp;】公里，
-        			三级公路【&nbsp;<span id="lblSJGL" style="font-weight: bold; color: #FF0000">8.500</span>&nbsp;】公里，
-        			四级公路【&nbsp;<span id="lblSIJGL" style="font-weight: bold; color: #FF0000">0.000</span>&nbsp;】公里，
-        			独立大桥【&nbsp;<span id="lblDLDQ" style="font-weight: bold; color: #FF0000">1.000</span>&nbsp;】公里；
-        			总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">2751</span>&nbsp;】万元，
-        			其中，中央投资车购税【&nbsp;<span id="lblZYTZ" style="font-weight: bold;color: #FF0000">1143</span>&nbsp;】万元； 上年底累计完成投资【&nbsp;<span id="lblSNZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元， 其中，中央投资车购税【&nbsp;<span id="lblSNZYTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">4</span>&nbsp;】个项目，
+        			建设规模合计【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">6.000</span>&nbsp;】公里，其中，
+        			一级公路【&nbsp;<span id="lblYJLC" style="font-weight: bold; color: #FF0000">11.000</span>&nbsp;】公里，
+        			二级公路【&nbsp;<span id="lblEJLC" style="font-weight: bold; color: #FF0000">2.000</span>&nbsp;】公里，
+        			三级公路【&nbsp;<span id="lblSJLC" style="font-weight: bold; color: #FF0000">3.000</span>&nbsp;】公里，
+        			四级公路【&nbsp;<span id="lblFJLC" style="font-weight: bold; color: #FF0000">0.000</span>&nbsp;】公里；
+        			总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">78</span>&nbsp;】万元，
+        			其中中央投资【&nbsp;<span id="lblZYTZ" style="font-weight: bold; color: #FF0000">57</span>&nbsp;】万元，
+        			省级补助【&nbsp;<span id="lblSJBZ" style="font-weight: bold; color: #FF0000">32</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

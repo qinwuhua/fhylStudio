@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>项目类型统计</title>
 	<title>按项目类型统计</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -17,7 +18,7 @@
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
-			gckxmlxtj();
+			xmlxtj();
 		});
 	</script>
 </head>
@@ -27,12 +28,12 @@
 			<tr>
 				<td colspan="2">
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;工程库统计分析>&nbsp;项目类型统计</div>
+						<div id="p_top">统计分析>&nbsp;计划库统计分析>&nbsp;项目类型统计</div>
 					</div>
 	            </td>
         	</tr>  
         	<tr>
-        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;" colspan="2">
+        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
@@ -41,6 +42,14 @@
         					<p style="margin:8px 0px 8px 20px;">
         						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>
+        						&nbsp;<span style="vertical-align:middle;">年份：</span>
+        						<select style="width:80px;">
+        							<option selected="selected" value="2011">2011年</option>
+        							<option value="2012">2012年</option>
+        							<option value="2013">2013年</option>
+        							<option value="2014">2014年</option>
+        							<option value="2015">2015年</option>
+        						</select>
         						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
         					</p>
         				</div>
@@ -48,7 +57,7 @@
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;" colspan="2">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
             			<table id="grid"></table>
             		</div>

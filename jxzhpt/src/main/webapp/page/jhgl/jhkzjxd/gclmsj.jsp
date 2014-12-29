@@ -30,13 +30,6 @@
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;工程改造路面升级项目</div>
-					</div>
-	            </td>
-        	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">

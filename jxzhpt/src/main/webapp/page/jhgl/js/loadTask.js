@@ -19,6 +19,19 @@ function xzqhComboxTree(id){
 		url:"../js/xzqh.json",
 	});
 }
+
+function AddWqgz(){
+	openDialog("wqgz_xx", "添加危桥改造计划库信息", "../add/wqgzAdd.jsp");
+}
+
+function AddAbgc(){
+	openDialog("abgc_xx", "添加安保工程计划库信息", "../add/abgcAdd.jsp");
+}
+
+function Addzhfz(){
+	openDialog("zhfz_xx", "添加灾害防治计划库信息", "../add/zhfzAdd.jsp");
+}
+
 //步骤   xx sh
 var bz;
 /**

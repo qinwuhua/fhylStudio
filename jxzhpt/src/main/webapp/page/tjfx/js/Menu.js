@@ -8,14 +8,6 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu1',
-		title:'项目类型统计',
-		imgSrc:'../../images/xmlxtj.png',
-		renderTo:'left_menu1',
-		href:'./jcktj/xmlxtj.jsp'
-	});
-	
-	createMenu('LeftMenu',{
 		id:'menu2',
 		title:'年份项目统计',
 		imgSrc:'../../images/xzqhtj.png',
