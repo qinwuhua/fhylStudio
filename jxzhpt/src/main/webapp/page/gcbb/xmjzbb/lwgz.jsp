@@ -130,8 +130,9 @@ a:active {
                 <td style="padding-top: 10px;padding-left:10px;">
                 	
                     <div>
-                    <img width="100%" alt="" src="images/lwgz.png">
+                    <img width="100%" alt="" src="images/lwgz.png"> 
 				<table >
+				
 				</table>
 					</div>
 					</td>

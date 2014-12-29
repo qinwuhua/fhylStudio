@@ -10,7 +10,7 @@ function showAlljc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 	        {field:'gydw',title:'管养单位',width:100,align:'center'},
@@ -43,7 +43,7 @@ function showAlljh(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 	        {field:'gydw',title:'管养单位',width:100,align:'center'},
@@ -77,7 +77,7 @@ function showAllsc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 	        {field:'qlbm',title:'桥梁编码',width:100,align:'center'},

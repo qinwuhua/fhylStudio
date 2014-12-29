@@ -10,7 +10,7 @@ function showAlljc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 	        {field:'xzqhdm',title:'行政区划代码',width:110,align:'center'},
@@ -35,7 +35,7 @@ function showAlljh(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 			{field:'xzqhdm',title:'行政区划代码',width:110,align:'center'},
@@ -69,7 +69,7 @@ function showAllsc(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 
 	    columns:[[
 	         {field:'xzqhdm',title:'行政区划代码',width:110,align:'center'},
