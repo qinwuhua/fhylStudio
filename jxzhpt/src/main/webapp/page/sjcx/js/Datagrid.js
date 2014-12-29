@@ -11,10 +11,9 @@ function jckglWqgz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-				'<a href="javascript:ckJck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-				'<a href="javascript:xgJck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href="javascript:ckJck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},  
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -42,10 +41,9 @@ function jckglAbgc(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-				'<a href="javascript:ckJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-				'<a href="javascript:xgJck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href="javascript:ckJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},    
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -74,10 +72,9 @@ function jckglZhfz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-				'<a href="javascript:ckJck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-				'<a href="javascript:xgJck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href="javascript:ckJck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},  
 	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -107,10 +104,9 @@ function sckglWqgz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-				'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-				'<a href="javascript:xgSck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -137,10 +133,9 @@ function sckglAbgc(){
 		    width:1100,
 		    columns:[[    
 		  			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-		  			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-						return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-						'<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-						'<a href="javascript:xgSck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+		  			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						'<a href="javascript:ckSck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 					}},    
 		  	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 		  	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -168,10 +163,9 @@ function sckglZhfz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:() style="text-decoration:none;">定位</a>  '+
-				'<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;">详细</a>  '+
-				'<a href="javascript:xgSck('+"'zhfz_xg.jsp','900','500'"+')" style="text-decoration:none;">编辑</a>  '+'删除';
+			{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+				'<a href="javascript:ckSck('+"'zhfz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},    
 	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -194,8 +188,9 @@ function gclmsjxm(){
 		rownumbers:false,pageNumber:1,pageSize:10,height:325,
 		columns:[[
 		    {field:'ck',checkbox:true},
-			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+			{field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			}},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 				return '计划状态';
@@ -225,9 +220,10 @@ function gclmgjxm(){
 		pageNumber : 1,pageSize : 10,height : 325,
 		columns:[[
 		    {field:'ck',checkbox:true},
-		    {field : 'c',title : '操作',width : 150,align : 'center',
+		    {field : 'c',title : '操作',width : 100,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情'"+')" style="text-decoration:none;">详细</a>    ' + '编辑    ' + '删除';
+		    		return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+ 
+		    					'<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 		    	}
 		    },
 		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
@@ -262,8 +258,9 @@ function yhdzxxm(){
 		pageNumber:1,pageSize:10,height:325,
 		columns:[[
 		          {field:'ck',checkbox:true},
-		          {field:'c',title:'操作',width:75,align:'center',formatter:function(value,row,index){
-		        	  return '定位    '+'<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情'"+')" style="text-decoration:none;">详细</a>';
+		          {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+		        	  return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+		        	  			  '<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center'},
 			      {field:'lxmc',title:'路线名称',width:80,align:'center'},
@@ -290,8 +287,9 @@ function shxm(){
 	    pageNumber:1,pageSize:10,height:325,
 	    columns:[[
 	        {field:'ck',checkbox:true},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+	        				'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -321,8 +319,9 @@ function wqxm(){
 		    pageNumber:1,pageSize:10,height:325,
 		    columns:[[
 		        {field:'ck',checkbox:true},
-		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+		        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+		        	return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+		        				'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 		        }},
 		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '计划状态';
@@ -351,8 +350,9 @@ function abgcxm(){
 	    pageNumber:1,pageSize:10,height:325,
 	    columns:[[
 	        {field:'ck',checkbox:true},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+	        				'<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -381,8 +381,9 @@ function zhfzxm(){
 		pageNumber:1,pageSize:10,height:325,
 	    columns:[[
 	        {field:'ck',checkbox:true},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+	        				'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -412,8 +413,9 @@ function hslyglxm(){
 		pageNumber:1,pageSize:10,height:325,
 	    columns:[[
 	        {field:'ck',checkbox:true},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'<a href="javascript:openDialog('+"'hslygl_bj','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">编辑</a>    '+'删除';
+	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+	        				'<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
 	        	return '资金追加';
@@ -438,10 +440,9 @@ function zbglxm(){
 		pageNumber:1,pageSize:10,height:325,
 	    columns:[[
 	        {field:'ck',checkbox:true},
-	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	var result='<a href="javascript:openDialog('+"'zbgl_xx','战备公路项目计划详情'"+')" style="text-decoration:none;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zbgl_bj','战备公路项目计划详情'"+')" style="text-decoration:none;">编辑</a>    ';
-	        	result+='删除';
+	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
+	        	var result='<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+	        						'<a href="javascript:openDialog('+"'zbgl_xx','战备公路项目计划详情'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>    ';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){

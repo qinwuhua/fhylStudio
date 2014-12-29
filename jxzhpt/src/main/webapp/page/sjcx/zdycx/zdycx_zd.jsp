@@ -74,7 +74,6 @@
 			tableCol.push(tableValue);
 			options.columns = tableCol;
 			parent.$('#grid').datagrid(options); 
-			parent.$.messager.alert('提示','查询成功！','info'); 
 			parent.$('#zd_xz').window('destroy');
 		});
 		
