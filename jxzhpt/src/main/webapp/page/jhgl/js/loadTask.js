@@ -19,26 +19,24 @@ function xzqhComboxTree(id){
 		url:"../js/xzqh.json",
 	});
 }
+//步骤   xx sh
+var bz;
 /**
- * 初始化弹出层
- * @param id 弹出层ID
+ * 弹出详细信息层
+ * @param id ID
+ * @param title 标题
+ * @param href url路径
  */
-function loadDialog(id){
+function openDialog(id,title,href){
+	bz=id.substring(id.indexOf('_')+1);
 	$('#'+id).dialog({
 		iconCls : 'icon-edit',
+		href:href,
 		width : 1000,
 		height : 500,
 		closed : true,
 		cache : false,
 		maximizable:true,
 		modal : true
-	});
-}
-/**
- * 弹出层
- * @param id 弹出层ID
- */
-function openDialog(id,title){
-	$('#'+id).dialog("setTitle",title);
-	$('#'+id).dialog("open");
+	}).dialog("setTitle",title).dialog("open");
 }

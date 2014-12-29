@@ -5,7 +5,7 @@ function gclmsjxm(){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
 			}},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 				return '计划状态';
@@ -35,7 +35,7 @@ function gclmsjxm_sb(){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_sb','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 			}},
 			{field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 				return '已状态';
@@ -62,7 +62,7 @@ function gclmsjxm_sh(){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 			}},
 			{field:'c1',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 				return '已审批';
@@ -92,7 +92,7 @@ function gclmsjxm_zjxd(){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情'"+')" style="text-decoration:none;">详细</a>';
+				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_zjxd','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;">详细</a>';
 			}},
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 				return '<a href="javascript:void()" style="text-decoration:none;">资金下发</a>';
@@ -124,7 +124,10 @@ function gclmgjxm(){
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情'"+')" style="text-decoration:none;">详细</a>    ' + '编辑    ' + '删除';
+		    		var result='<a>定位<a>    ';
+		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>    ';
+		    		result+='编辑    ' + '删除';
+		    		return result;
 		    	}
 		    },
 		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
@@ -160,7 +163,7 @@ function gclmgjxm_sb(){
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情'"+')" style="text-decoration:none;">详细</a>        ' + '编辑';
+		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_sb','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>        ' + '编辑';
 		    	}
 		    },
 		    {field : 'sbzt',title : '上报状态',width : 80,align : 'center',
@@ -191,7 +194,7 @@ function gclmgjxm_sh(){
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情'"+')" style="text-decoration:none;">详细</a>    ' + '编辑';
+		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>    ' + '编辑';
 		    	}
 		    },
 		    {field : 'c4',title : '审批状态',width : 80,align : 'center',
@@ -227,7 +230,7 @@ function gclmgjxm_zjxd(){
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a>定位<a>    ' + '详细';
+		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_zjxd','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>';
 		    	}
 		    },
 		    {field:'zjxf',title:'资金下发',width:60,align:'center'},
@@ -263,7 +266,7 @@ function yhdzxxm(){
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:75,align:'center',formatter:function(value,row,index){
-		        	  return '定位    '+'<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情'"+')" style="text-decoration:none;">详细</a>';
+		        	  return '定位    '+'<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;">详细</a>';
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center'},
 			      {field:'lxmc',title:'路线名称',width:80,align:'center'},
@@ -322,7 +325,7 @@ function shxm(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -352,7 +355,7 @@ function shxm_sb(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '已上报';
@@ -379,7 +382,7 @@ function shxm_sh(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '已审批';
@@ -409,7 +412,7 @@ function shxm_zjxd(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'详细';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center'},
 	        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
@@ -440,7 +443,7 @@ function wqxm(){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
 		        }},
 		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '计划状态';
@@ -469,7 +472,7 @@ function wqxm_sb(){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_sb','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 		        }},
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '已完工';
@@ -495,7 +498,7 @@ function wqxm_sh(){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_sh','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 		        }},
 		        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '已审批';
@@ -514,14 +517,14 @@ function wqxm_sh(){
 	};
 	gridBind(grid);
 }
-//计划库审核——危桥改造
+//计划库资金下达——危桥改造
 function wqxm_zjxd(){
 	var grid={id:'grid',url:'',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:325,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'详细';
+		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>';
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 		        	return '<a href="javascript:void()">资金下发</a>';
@@ -550,7 +553,10 @@ function abgcxm(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        	var result='定位    ';
+	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;">详细</a>    ';
+	        	result+='编辑    '+'删除';
+	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -580,7 +586,7 @@ function abgcxm_sb(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_sb','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -607,7 +613,7 @@ function abgcxm_sh(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_sh','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'c4',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '已审批';
@@ -635,7 +641,7 @@ function abgcxm_zjxd(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a>详细</a>';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_zjxd','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:void()" style=" text-decoration:none;">资金下发</a>';
@@ -668,7 +674,7 @@ function zhfzxm(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划状态';
@@ -698,7 +704,7 @@ function zhfzxm_sb(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_sb','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '已上报';
@@ -725,7 +731,7 @@ function zhfzxm_sh(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_sh','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
 	        }},
 	        {field:'c4',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '已审批';
@@ -755,7 +761,7 @@ function zhfzxm_zjxd(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'详细';
+	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_zjxd','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:void()" style=" text-decoration:none;">资金下发</a>';
@@ -788,7 +794,7 @@ function hslyglxm(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">详细</a>    '+'<a href="javascript:openDialog('+"'hslygl_bj','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">编辑</a>    '+'删除';
+	        	return '<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;">详细</a>    '+'<a href="javascript:openDialog('+"'hslygl_bj','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">编辑</a>    '+'删除';
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
 	        	return '资金追加';
@@ -813,7 +819,7 @@ function hslyglxm_zjxd(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情'"+')" style="text-decoration:none;">详细</a>';
+	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'c5',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 	        	return '资金下发';
@@ -841,9 +847,35 @@ function zbglxm(){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	var result='<a href="javascript:openDialog('+"'zbgl_xx','战备公路项目计划详情'"+')" style="text-decoration:none;">详细</a>    ';
+	        	var result='<a href="javascript:openDialog('+"'zbgl_xx','战备公路项目计划详情','../jhkxx/zbgl.jsp'"+')" style="text-decoration:none;">详细</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zbgl_bj','战备公路项目计划详情'"+')" style="text-decoration:none;">编辑</a>    ';
 	        	result+='删除';
+	        	return result;
+	        }},
+	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+	        	return '资金追加';
+	        }},
+	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
+	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+	        {field:'xzdj',title:'行政等级',width:100,align:'center'},
+	        {field:'lxbm',title:'路线编码',width:80,align:'center'},
+	        {field:'jsxz',title:'建设性质',width:100,align:'center'},
+	        {field:'lmkd',title:'路面宽度',width:100,align:'center'},
+	        {field:'jsfa',title:'技术方案',width:82,align:'center'},
+	        {field:'jhnf',title:'计划年份',width:82,align:'center'},
+	        {field:'ztz',title:'总投资',width:82,align:'center'},
+	    ]]
+	};
+	gridBind(grid);
+}
+//战备公路项目
+function zbglxm_zjxd(){
+	var grid={id:'grid',url:'../js/zbgl.json',pagination:true,rownumbers:false,
+		pageNumber:1,pageSize:10,height:325,
+	    columns:[[
+	        {field:'ck',checkbox:true},
+	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+	        	var result='<a href="javascript:openDialog('+"'zbgl_zjxd','战备公路项目计划详情','../jhkxx/zbgl.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
