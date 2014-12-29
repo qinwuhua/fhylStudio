@@ -1,7 +1,7 @@
 //------------------------------基础库
 function jckxzqhtj(){
 	var grid={id:'grid',url:'../js/jckxzqh.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:355,width:980,
+			pageNumber:1,pageSize:20,height:355,width:970,
 		    columns:[
 			    [
 			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -26,7 +26,7 @@ function jckxzqhtj(){
 }
 function jckxmlxtj(){
 	var colYears =[],colZj=[];
-	for (var i=2011;i<2015;i++){
+	for (var i=$('#startYear').val();i<=$('#endYear').val();i++){
 		var year ={title:i+'年',width:160,align:'center',colspan:2};
 		var lczj={field:i+'lczj',title:'路程总计',width:80,align:'center'};
 		colZj.push(lczj);
@@ -36,7 +36,7 @@ function jckxmlxtj(){
 	}
 	var zjtitle={title:'各年份项目路程和数量统计',colspan:colYears.length*2,width:800};
 	var grid={id:'grid',url:'../js/jckxmlxtj.json',fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:180,width:980,
+			pageNumber:1,pageSize:20,height:155,width:970,
 		    columns:[
 			    [
 			     	{field:'xmlx',title:'项目类型',width:80,align:'center',rowspan:3,fixed:true},
@@ -53,7 +53,7 @@ function jckxmlxtj(){
 //-----------------------计划库
 function xzqhtj(){
 	var grid={id:'grid',url:'../js/xzqhtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:353,
+			pageNumber:1,pageSize:20,height:353,width:970,
 		    columns:[
 			    [
 			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -79,7 +79,7 @@ function xzqhtj(){
 
 function xmlxtj(){
 	var grid={id:'grid',url:'../js/xmlxtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,
+			pageNumber:1,pageSize:20,height:255,width:970,
 		    columns:[
 			    [
 			     	{field:'xmlx',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -105,10 +105,36 @@ function xmlxtj(){
 		};
 	gridBind(grid);
 }
+function qstj(){
+	var colYears =[],colZj=[];
+	for (var i=2011;i<=2014;i++){
+		var year ={title:i+'年',width:160,align:'center',colspan:2};
+		var lczj={field:i+'lczj',title:'路程总计',width:80,align:'center'};
+		colZj.push(lczj);
+		var xmzj={field:i+'xmzj',title:'项目总计',width:80,align:'center'};
+		colZj.push(xmzj);
+		colYears.push(year);
+	}
+	var zjtitle={title:'各年份项目路程和数量统计',colspan:colYears.length*2,width:800};
+	var grid={id:'grid',url:'../js/qstj.json',fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+			pageNumber:1,pageSize:20,height:255,width:970,
+		    columns:[
+			    [
+			     	{field:'xmlx',title:'项目类型',width:80,align:'center',rowspan:3,fixed:true},
+			     	zjtitle
+			    ],
+			    colYears,colZj
+		    ],
+		    onSelect:function(){
+		    	window.location.href='../jcktj/xmxxlb.jsp';
+		    }
+		};
+	gridBind(grid);
+}
 //------------------------历史项目统计
 function lsxzqhtj(){
 	var grid={id:'grid',url:'../js/xzqhtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:353,
+			pageNumber:1,pageSize:20,height:353,width:970,
 		    columns:[
 			    [
 			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -134,7 +160,7 @@ function lsxzqhtj(){
 
 function lsxmlxtj(){
 	var grid={id:'grid',url:'../js/xmlxtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,
+			pageNumber:1,pageSize:20,height:255,width:970,
 		    columns:[
 			    [
 			     	{field:'xmlx',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -163,7 +189,7 @@ function lsxmlxtj(){
 //--------------------------------工程库
 function gckxzqhtj(){
 	var grid={id:'grid',url:'../js/xzqhtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:355,width:980,
+			pageNumber:1,pageSize:20,height:355,width:970,
 		    columns:[
 			    [
 			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -191,7 +217,7 @@ function gckxzqhtj(){
 }
 function gckxmlxtj(){
 	var grid={id:'grid',url:'../js/xmlxtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,width:980,
+			pageNumber:1,pageSize:20,height:255,width:970,
 		    columns:[
 			    [
 			     	{field:'xmlx',title:'项目类型',width:100,align:'center',rowspan:2},
@@ -238,7 +264,7 @@ function xmxxlb(type){
 				    ]
 			    ],
 			    onSelect:function(){
-			    	openDialog("xmxx_xx","危桥改造项目计划详情","/jxzhpt/page/jhgl/jhkxx/wqgz.jsp");
+			    	alert("在地图上标注对应项目地点！");
 			    }
 			};
 	}
@@ -270,7 +296,10 @@ function xmlbxx(){
 	alert("弹出详细信息窗口！");
 }
 
-
+//-------------------------------------------------查询单击事件
+function jhkxmlxSearch(){
+	jckxmlxtj();
+}
 
 /**
  * dataGrid绑定数据方法

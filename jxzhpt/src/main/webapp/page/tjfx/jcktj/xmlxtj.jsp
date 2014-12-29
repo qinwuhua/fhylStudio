@@ -27,7 +27,7 @@
 			<tr>
 				<td colspan="2">
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;项目统计分析>&nbsp;项目类型统计</div>
+						<div id="p_top">统计分析>&nbsp;基础库统计分析>&nbsp;项目类型统计</div>
 					</div>
 	            </td>
         	</tr>  
@@ -38,10 +38,26 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
+        					<p style="margin:8px 0px 8px 20px;vertical-align:middle;">
         						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+        						从
+        						<select id="startYear" style="width:70px;">
+        							<option value="2011" selected="selected">2011年</option>
+        							<option value="2012">2012年</option>
+        							<option value="2013">2013年</option>
+        							<option value="2014">2014年</option>
+        							<option value="2015">2015年</option>
+        						</select>
+        						至
+        						<select id="endYear" style="width:70px">
+        							<option value="2011">2011年</option>
+        							<option value="2012">2012年</option>
+        							<option value="2013">2013年</option>
+        							<option value="2014">2014年</option>
+        							<option value="2015" selected="selected">2015年</option>
+        						</select>
+        						<img onclick="jhkxmlxSearch()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

@@ -52,7 +52,7 @@ $(function() {
 		title:'趋势分析',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu2',
-		href:'./xmlxtj/xmlxtj.jsp'
+		href:'./jhktj/qsfx.jsp'
 	});
 	
 	createMenu('LeftMenu',{

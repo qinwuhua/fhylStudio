@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>按行政区划统计</title>
+	<title>计划库趋势分析</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jhkglGrid.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gckxzqhtj();
+			qstj();
 		});
 	</script>
 </head>
@@ -23,29 +23,38 @@
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-				<td>
+				<td colspan="2">
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;工程库统计分析>&nbsp;行政区划统计</div>
+						<div id="p_top">统计分析>&nbsp;计划库统计分析>&nbsp;趋势分析</div>
 					</div>
 	            </td>
+        	</tr>  
+        	<tr>
+        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+        					<font style="color: #0866A0; font-weight: bold"></font>
+        				</legend>
+        				<div>
+        					<p style="margin:8px 0px 8px 20px;">
+        						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
+        						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>
+        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+        					</p>
+        				</div>
+        			</fieldset>
+        		</td>
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grid" width="100%"></table>
+            			<table id="grid"></table>
             		</div>
             	</td>
         	</tr>
         	<tr>
-        		<td>
-	        		<div style="margin-left: 10px;margin-top: 10px;">
-	        			<div style="">
-	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
-	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xzqhtj.jpg" width="900" height="300" align="">
-	        			</div>
-	        		</div>
+        		<td style="text-align: center;vertical-align:middle;padding-top: 10px;">
+        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xmlxtj.png" width="980" style="style="text-align: center;vertical-align:middle;"">
         		</td>
         	</tr>
 		</table>
