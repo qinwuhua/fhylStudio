@@ -5,13 +5,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>战备公路项目</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/sjcx/js/Datagrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/sjcx/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
@@ -28,21 +30,18 @@
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-	            <td height="25" align="left" background="${pageContext.request.contextPath}/images/dht_bg.jpg" style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-	                <a style="color: #1a5780" href="#">计划管理</a> &nbsp;>&nbsp;
-	                <a style="color: #1a5780" href="#">项目计划库管理</a>
-	            	<font style="color: #5C5C5C;">&nbsp;>&nbsp;战备公路建议计划</font>
-	            </td>
-        	</tr>
+			<tr><td>
+				<div id="righttop">
+				<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;战备公路项目</div>
+				</div>
+			</td></tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-        					<font style="color: #0866A0; font-weight: bold">项目信息：</font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
+        					<p style="margin:8px 0px 4px 20px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;计划年份：</span>
@@ -58,14 +57,12 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
         					</p>
-        					<p style="margin:8px 0px 8px 20px;">
+        					<p style="margin:8px 0px 4px 20px;">
         						<span>路线名称：</span>
 								<input name="txtRoad" type="text" id="txtRoad" style="width:220px;" />
 								<span>&nbsp;项目名称：</span>
-								<input name="txtName" type="text" id="txtName" style="width:150px;" />
-        					</p>
-        					<p style="margin:0px;padding:0px; margin-left: 20px;">
-        						<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<input name="txtName" type="text" id="txtName" style="width:150px;" />&nbsp;&nbsp;
+        						<img name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
         					</p>
         				</div>
         			</fieldset>

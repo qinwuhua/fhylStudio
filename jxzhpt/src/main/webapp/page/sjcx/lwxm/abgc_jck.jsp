@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理安保工程项目</title>
+<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
@@ -38,20 +40,18 @@ text-decoration:none;
 </head>
 <body>
 	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr>
-			<td align="left" background="../../images/dht_bg.jpg"  style="padding-left: 25px; background-repeat:no-repeat; height: 25px;"width="90%">
-			<font color="#1a5780" style="font-size: small">路网项目</font>&nbsp;&gt;&nbsp; 
-			<font color="#1a5780" style="font-size: small">项目基础库管理</font>&nbsp;&gt;&nbsp; 
-			<font color="#5C5C5C" style="font-size: small">安保工程项目管理</font></td>
-		</tr>
+		<tr><td>
+		<div id="righttop">
+		<div id="p_top">路网项目>&nbsp;项目基础库管理>&nbsp;安保工程项目</div>
+		</div>
+		</td></tr>
 		<tr>
 			<td align="left" style="padding-left:10px; padding-right:25px;">
 				<fieldset style="width:1080px;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
-				<font style="color: #0866A0; font-weight: bold">项目信息：</font>
 				</legend>
 				<div>
-					<p style="margin-left: 20px;">
+					<p style="margin:8px 0px 4px 20px;">
 								<span>管养单位：</span>
                               	<select id="cc" style="width:218px">
                               	</select>
@@ -61,7 +61,7 @@ text-decoration:none;
                                <span>&nbsp;路线名称：</span>
         						<input type="text" id="txtRoad" style="width:212px;" />
 						</p>
-                        <p style="margin-left: 20px;">
+                        <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
                               	<select id="cc1" class="easyui-combobox" style="width:70px">
                               		<option selected="selected" value="">全部</option>
@@ -114,8 +114,8 @@ text-decoration:none;
 									<option value="Z">专道</option>
                               	</select>
                              </p>
-                             <p style="margin-left: 20px;">
-								<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+                             <p style="margin:8px 0px 4px 20px;">
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
 						</p>
 						</div>
 					</fieldset>

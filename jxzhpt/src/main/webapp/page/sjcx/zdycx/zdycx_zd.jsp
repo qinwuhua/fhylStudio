@@ -149,6 +149,13 @@ text-decoration:none;
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="2" cellspacing="1">
 			<tr  style="height: 30px;">
+				<td colspan="7" style="background-color: #ffffff;"align="center" >
+					<input  type="radio" value="qx" name="radio" id="qx"/>全选
+					<input  type="radio" value="fx" name="radio" id="fx"/>反选
+					<input  type="radio" value="bx" name="radio" id="bx"/>不选
+				</td>
+			</tr>
+			<tr  style="height: 30px;">
 				<td colspan="2" style="background-color: #ffffff;width:25%" align="center">项目基本信息</td>
 				<td colspan="2" style="background-color: #ffffff;width:35%" align="center">年度计划</td>
 				<td colspan="3"  style="background-color: #ffffff;" align="center">施工进展</td>
