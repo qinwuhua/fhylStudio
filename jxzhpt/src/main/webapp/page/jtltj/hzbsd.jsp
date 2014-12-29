@@ -9,10 +9,6 @@
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
-<style>
-#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../images/jianjiao.png) 8px 0 no-repeat;}
-#righttop{height:33px;background:url(../../images/righttopbg.gif) 0 0 repeat-x;}
-</style>
 <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
@@ -22,9 +18,14 @@
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
 function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
+	$("#tt").tabs("add",{
+		 title:"公路交通情况调查汇总表",
+		 href :"hzb_add.jsp",
+		 fit:true,
+		 iconCls:'icon-file',
+		 closable:true,
+		 selected:true
+	});
 }
 function deleteJs(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -122,8 +123,10 @@ $(function(){
  			</fieldset>
         </div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
+    <div id="tt" border="false" class="easyui-tabs"  style="height:500px;">
+	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+	    	<table id="jsgl_table" style="height:100%;" ></table>
+	    </div>
     </div>
 </div>
 </body>

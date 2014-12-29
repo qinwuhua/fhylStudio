@@ -9,10 +9,6 @@
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
-<style>
-#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../images/jianjiao.png) 8px 0 no-repeat;}
-#righttop{height:33px;background:url(../../images/righttopbg.gif) 0 0 repeat-x;}
-</style>
 <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
@@ -22,9 +18,14 @@
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
 function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
+	$("#tt").tabs("add",{
+		 title:"公路灾毁损失情况统计表",
+		 href :"zhqk_view.jsp",
+		 fit:true,
+		 iconCls:'icon-file',
+		 closable:true,
+		 selected:true
+	});
 }
 function deleteJs(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -51,11 +52,10 @@ function deleteJs(_id){
 }
 
 $(function(){
-	/*
 	$("#jsgl_table").datagrid({
 		border : true,
 		fit : true,
-		//fitColumns : true,
+		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectJsList.do',
 		queryParams : {
@@ -64,49 +64,35 @@ $(function(){
 		},
 		striped : true,
 		singleSelect : false,
-		columns:[[
-		    {title:'分局(道班)名称',width:200,rowspan:2,align:'center'},
-			{title:'备 料',width:800,colspan:8,align:'center'},
-			{title:'材料、燃料消耗',width:600,colspan:11,align:'center'},
-			{title:'养路机械',width:600,colspan:3,align:'center'},
-			{title:'使用小修经费(万元)',width:400,colspan:8,align:'center'}
-		],[
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'黄土(立方米)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
-			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
-			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'黄土(包括天然料) (立方米)',width:100,align:'center'},
-			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
-			
-			{title:'石灰(吨)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
-			
-			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'汽油(升)',width:100,align:'center'},
-			{title:'柴油(升)',width:100,align:'center'},
-			{title:'本月MQI',width:100,align:'center'},
-			{title:'台数',width:100,align:'center'},
-			{title:'出车车日',width:100,align:'center'},
-			{title:'出车率(%)',width:100,align:'center'},
-			{title:'固定工工资',width:100,align:'center'},
-			{title:'上月优良路率%',width:100,align:'center'},
-			{title:'材料费',width:100,align:'center'},
-			{title:'机械费',width:100,align:'center'},
-			{title:'其他直接费',width:100,align:'center'},
-			{title:'间接费',width:100,align:'center'},
-			{title:'本月使用',width:100,align:'center'},
-			{title:'累计使用',width:100,align:'center'}
-			
+		columns : [[
+		{
+			field : 'bj',
+			title : '操作',
+			width : 80,
+			align : 'center',
+			formatter : function(value,rec,index){
+				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+
+				'<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
+			}
+		},{
+			field : 'rolename',
+			title : '年份',
+			width : 300,
+			align : 'center',
+			formatter : function(value,rec,index){
+				return '2013';
+			}
+		},{
+			field : 'description',
+			title : '填报单位',
+			width : 300,
+			align : 'center',
+			formatter : function(value,rec,index){
+				return '江西省公路管理局';
+			}
+		}
 		]]
-	});*/
+	});
 });
 </script>
 <div style="width:100%;">
@@ -143,14 +129,16 @@ $(function(){
 	 						<option>2014-8</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">添加</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
+    <div id="tt" border="false" class="easyui-tabs"  style="height:500px;">
+	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+	    	<table id="jsgl_table" style="height:100%;" ></table>
+	    </div>
     </div>
 </div>
 </body>
