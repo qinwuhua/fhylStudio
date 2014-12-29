@@ -17,7 +17,7 @@ $(function() {
 	
 	createMenu('LeftMenu',{
 		id:'menu2',
-		title:'行政区划统计',
+		title:'年份项目统计',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu2',
 		href:'./jhktj/xzqhtj.jsp'
@@ -25,34 +25,18 @@ $(function() {
 	
 	createMenu('LeftMenu',{
 		id:'menu2',
-		title:'项目类型统计',
-		imgSrc:'../../images/xmlxtj.png',
+		title:'行政区划统计趋势分析',
+		imgSrc:'../../images/qsfx.png',
 		renderTo:'left_menu2',
-		href:'./jhktj/xmlxtj.jsp'
+		href:'./jhktj/xzqhtjqsfx.jsp'
 	});
 	
 	createMenu('LeftMenu',{
 		id:'menu2',
-		title:'历史行政区划统计',
-		imgSrc:'../../images/xzqhtj.png',
+		title:'项目类型统计趋势分析',
+		imgSrc:'../../images/qsfx.png',
 		renderTo:'left_menu2',
-		href:'./jhktj/lsxzqhtj.jsp'
-	});
-	
-	createMenu('LeftMenu',{
-		id:'menu2',
-		title:'历史项目类型统计',
-		imgSrc:'../../images/xmlxtj.png',
-		renderTo:'left_menu2',
-		href:'./jhktj/lsxmlxtj.jsp'
-	});
-	
-	createMenu('LeftMenu',{
-		id:'menu2',
-		title:'趋势分析',
-		imgSrc:'../../images/xmlxtj.png',
-		renderTo:'left_menu2',
-		href:'./jhktj/qsfx.jsp'
+		href:'./jhktj/xmlxtjqsfx.jsp'
 	});
 	
 	createMenu('LeftMenu',{
