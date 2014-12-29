@@ -17,6 +17,14 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#gydw").combotree({
+			checkbox: false,
+		 	url: "../js/gydw.json",
+		});
+		$("#xzqhmc").combotree({
+			checkbox: false,
+		 	url: "../js/xzqh.json",
+		});
 		$("#save_button").click(function(){
 			$.messager.alert('提示','保存成功！','info');    
 		});
@@ -37,8 +45,8 @@ text-decoration:none;
 <body>
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
-			<tr>
-				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					安保工程项目基本信息
 				</td>
 			</tr>
@@ -51,7 +59,7 @@ text-decoration:none;
 					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combotree" />
+					<input  id="gydw" style="width: 160px" />
 					<input type="text" id="pid" style="display:none"/></td>
 			</tr>
 			<tr>
@@ -71,7 +79,7 @@ text-decoration:none;
 					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;"align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
@@ -109,8 +117,8 @@ text-decoration:none;
 					<textarea rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					安保工程项目审查信息
 				</td>
 			</tr>

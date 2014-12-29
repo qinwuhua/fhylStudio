@@ -34,8 +34,8 @@ text-decoration:none;
 <body>
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
-			<tr>
-				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					灾害防治项目基本信息
 				</td>
 			</tr>
@@ -105,8 +105,8 @@ text-decoration:none;
 					<span>无</span>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="6" style="background-color: #ffffff;color:blue;font-weight: bold; height: 20px;" align="left" >
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					灾害防治项目审查信息
 				</td>
 			</tr>

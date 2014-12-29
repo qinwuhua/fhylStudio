@@ -17,6 +17,14 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$("#gydw").combotree({
+			checkbox: false,
+		 	url: "../js/gydw.json",
+		});
+		$("#xzqhmc").combotree({
+			checkbox: false,
+		 	url: "../js/xzqh.json",
+		});
 		$("#save_button").click(function(){
 			$.messager.alert('提示','保存成功！','info');    
 		});
@@ -51,13 +59,13 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combotree" /></td>
+					<input  id="gydw" style="width: 160px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combotree" /></td>
+					<input  id="xzqhmc" style="width: 160px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
