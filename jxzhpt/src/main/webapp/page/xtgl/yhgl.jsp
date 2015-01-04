@@ -55,12 +55,12 @@ $(function(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    fitColumns : true,
-		loadMsg : '正在加载请稍候...',
+	    fitColumns:true,
+		loadMsg:'正在加载请稍候...',
 		url:'../../xtgl/selectYhList.do',
-		striped : true,
-		singleSelect : false,
-		columns : [[
+		striped:true,
+		singleSelect:false,
+		columns:[[
 		{
 			field : 'bj',
 			title : '编辑',
