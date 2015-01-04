@@ -234,7 +234,7 @@ function gclmgjxm_zjxd(){
 		    	}
 		    },
 		    {field:'zjxf',title:'资金下发',width:60,align:'center',formatter:function(value,row,index){
-		    	return '资金下发';
+		    	return '<a href="javascript:openDialog('+"'gclmgj_zjxd','工程改造路面改建项目资金下达','../zjxd/gclmgj.jsp'"+')" style="text-decoration:none;">资金下发</a>';
 		    }},
 		    {field : 'c4',title : '建设状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
@@ -416,7 +416,9 @@ function shxm_zjxd(){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
-	        {field:'zjxf',title:'资金下发',width:80,align:'center'},
+	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;">资金下发</a>';
+	        }},
 	        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
 	        }},
@@ -824,7 +826,7 @@ function hslyglxm_zjxd(){
 	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'c5',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '资金下发';
+	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;">资金下发</a>';
 	        }},
 	        {field:'zjzt',title:'在建状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
