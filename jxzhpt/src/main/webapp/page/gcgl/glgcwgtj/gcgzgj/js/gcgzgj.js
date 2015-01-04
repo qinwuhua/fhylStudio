@@ -51,7 +51,7 @@ function showYBlist(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){

@@ -12,7 +12,7 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:325,
+	    height:440,
 	    columns:[[
 	        {field:'c',title:'操作',width:120,align:'center',formatter:function(value,row,index){
 	        	return '<a href="#" onclick="download()">下载</a>    '+'<a href="#" onclick="download()">查看</a>    '+'<a href="#" onclick="download()">删除</a>    ';

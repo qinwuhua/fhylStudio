@@ -32,7 +32,7 @@
 	            </td>
         	</tr>  
         	<tr>
-        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;">
+        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;" colspan="2">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
@@ -41,22 +41,6 @@
         					<p style="margin:8px 0px 8px 20px;vertical-align:middle;">
         						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>
-        						从
-        						<select id="startYear" style="width:70px;">
-        							<option value="2011" selected="selected">2011年</option>
-        							<option value="2012">2012年</option>
-        							<option value="2013">2013年</option>
-        							<option value="2014">2014年</option>
-        							<option value="2015">2015年</option>
-        						</select>
-        						至
-        						<select id="endYear" style="width:70px">
-        							<option value="2011">2011年</option>
-        							<option value="2012">2012年</option>
-        							<option value="2013">2013年</option>
-        							<option value="2014">2014年</option>
-        							<option value="2015" selected="selected">2015年</option>
-        						</select>
         						<img onclick="jhkxmlxSearch()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
@@ -64,7 +48,7 @@
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;" colspan="2">
             		<div>
             			<table id="grid"></table>
             		</div>
@@ -72,7 +56,10 @@
         	</tr>
         	<tr>
         		<td style="text-align: center;vertical-align:middle;padding-top: 10px;">
-        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xmlxtj.png" width="980" style="style="text-align: center;vertical-align:middle;"">
+        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/jckxmlxtj.jpeg" width="450" style="text-align: center;vertical-align:middle;">
+        		</td>
+        		<td style="text-align: center;vertical-align:middle;padding-top: 10px;">
+        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/jckxmlxtj.jpeg" width="450" style="text-align: center;vertical-align:middle;">
         		</td>
         	</tr>
 		</table>

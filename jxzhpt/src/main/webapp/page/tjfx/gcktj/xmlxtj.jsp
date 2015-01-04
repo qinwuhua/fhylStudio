@@ -32,7 +32,7 @@
 	            </td>
         	</tr>  
         	<tr>
-        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;">
+        		<td style="padding-left: 8px;padding-right: 8px;padding-top: 8px;" colspan="2">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
@@ -48,7 +48,7 @@
         		</td>
         	</tr>
         	<tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;" colspan="2">
             		<div>
             			<table id="grid"></table>
             		</div>

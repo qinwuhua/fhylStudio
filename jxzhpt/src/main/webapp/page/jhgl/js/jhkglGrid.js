@@ -1,7 +1,7 @@
 //工程路面升级
 function gclmsjxm(){
 	var grid={id:'grdab',url:'../js/gclmsjxm.json',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:325,
+		rownumbers:false,pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -31,7 +31,7 @@ function gclmsjxm(){
 //工程路面升级——上报模块
 function gclmsjxm_sb(){
 	var grid={id:'grdab',url:'../js/gclmsjxm.json',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:325,
+		rownumbers:false,pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -58,7 +58,7 @@ function gclmsjxm_sb(){
 //工程路面升级——审核模块
 function gclmsjxm_sh(){
 	var grid={id:'grdab',url:'../js/gclmsjxm.json',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:325,
+		rownumbers:false,pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -88,14 +88,14 @@ function gclmsjxm_sh(){
 //工程路面升级——资金下达模块
 function gclmsjxm_zjxd(){
 	var grid={id:'grdab',url:'../js/gclmsjxm.json',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:325,
+		rownumbers:false,pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				return '定位    '+'<a href="javascript:openDialog('+"'gclmsj_zjxd','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;">详细</a>';
 			}},
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:void()" style="text-decoration:none;">资金下发</a>';
+				return '<a href="javascript:openDialog('+"'gclmsj_zjxd','工程改造路面升级项目资金下达','../zjxd/gclmsj.jsp'"+')" style="text-decoration:none;">资金下发</a>';
 			}},
 			{field:'jszt',title:'建设状态',width:80,align:'center'},
 			{field:'c4',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){
@@ -119,7 +119,7 @@ function gclmsjxm_zjxd(){
 //工程路面改建
 function gclmgjxm(){
 	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,
+		pageNumber : 1,pageSize : 10,height : 325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -158,7 +158,7 @@ function gclmgjxm(){
 //工程路面改建——计划上报
 function gclmgjxm_sb(){
 	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,
+		pageNumber : 1,pageSize : 10,height : 325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -189,7 +189,7 @@ function gclmgjxm_sb(){
 //工程路面改建——计划审核
 function gclmgjxm_sh(){
 	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,
+		pageNumber : 1,pageSize : 10,height : 325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -225,7 +225,7 @@ function gclmgjxm_sh(){
 //工程路面改建——计划库资金下达
 function gclmgjxm_zjxd(){
 	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,
+		pageNumber : 1,pageSize : 10,height : 325,width:990,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -233,7 +233,9 @@ function gclmgjxm_zjxd(){
 		    		return '<a>定位<a>    ' + '<a href="javascript:openDialog('+"'gclmgj_zjxd','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>';
 		    	}
 		    },
-		    {field:'zjxf',title:'资金下发',width:60,align:'center'},
+		    {field:'zjxf',title:'资金下发',width:60,align:'center',formatter:function(value,row,index){
+		    	return '<a href="javascript:openDialog('+"'gclmgj_zjxd','工程改造路面改建项目资金下达','../zjxd/gclmgj.jsp'"+')" style="text-decoration:none;">资金下发</a>';
+		    }},
 		    {field : 'c4',title : '建设状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
 					return '未开工';
@@ -262,7 +264,7 @@ function gclmgjxm_zjxd(){
 //养护大中修
 function yhdzxxm(){
 	var grid={id:'grid',url:'../js/yhdzx.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:75,align:'center',formatter:function(value,row,index){
@@ -289,7 +291,7 @@ function yhdzxxm(){
 //养护大中修——资金下达
 function yhdzxxm_zjxd(){
 	var grid={id:'grid',url:'',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:75,align:'center',formatter:function(value,row,index){
@@ -321,7 +323,7 @@ function yhdzxxm_zjxd(){
 //水毁项目
 function shxm(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -351,7 +353,7 @@ function shxm(){
 //水毁项目——计划库上报
 function shxm_sb(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -378,7 +380,7 @@ function shxm_sb(){
 //水毁项目——计划库审核
 function shxm_sh(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -408,13 +410,15 @@ function shxm_sh(){
 //水毁项目——计划库资金下达
 function shxm_zjxd(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
-	        {field:'zjxf',title:'资金下发',width:80,align:'center'},
+	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;">资金下发</a>';
+	        }},
 	        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
 	        }},
@@ -439,7 +443,7 @@ function shxm_zjxd(){
 //危桥项目
 function wqxm(){
 	var grid={id:'grid',url:'../js/wqxm.json',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:325,
+		    pageNumber:1,pageSize:10,height:325,width:990,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -468,7 +472,7 @@ function wqxm(){
 //计划库上报——危桥上报
 function wqxm_sb(){
 	var grid={id:'grid',url:'../js/wqxm.json',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:325,
+		    pageNumber:1,pageSize:10,height:325,width:990,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -494,7 +498,7 @@ function wqxm_sb(){
 //计划库审核——危桥改造
 function wqxm_sh(){
 	var grid={id:'grid',url:'../js/wqxm.json',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:325,
+		    pageNumber:1,pageSize:10,height:325,width:990,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -520,7 +524,7 @@ function wqxm_sh(){
 //计划库资金下达——危桥改造
 function wqxm_zjxd(){
 	var grid={id:'grid',url:'',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:325,
+		    pageNumber:1,pageSize:10,height:325,width:990,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -549,7 +553,7 @@ function wqxm_zjxd(){
 //安保工程项目
 function abgcxm(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -582,7 +586,7 @@ function abgcxm(){
 //计划库上报——安保工程
 function abgcxm_sb(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -609,7 +613,7 @@ function abgcxm_sb(){
 //计划库审核——安保工程
 function abgcxm_sh(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -637,14 +641,14 @@ function abgcxm_sh(){
 //计划库资金下达——安保工程
 function abgcxm_zjxd(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,
+	    pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="javascript:openDialog('+"'abgc_zjxd','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:void()" style=" text-decoration:none;">资金下发</a>';
+	        	return '<a href="javascript:openDialog('+"'abgc_zjxd','安保工程资金下达','../zjxd/abgc.jsp'"+')" style=" text-decoration:none;">资金下发</a>';
 	        }},
 	        {field:'c4',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
@@ -670,7 +674,7 @@ function abgcxm_zjxd(){
 //灾害防治项目
 function zhfzxm(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -700,7 +704,7 @@ function zhfzxm(){
 //计划库上报——灾害防治
 function zhfzxm_sb(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -727,7 +731,7 @@ function zhfzxm_sb(){
 //计划库审核——灾害防治
 function zhfzxm_sh(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -757,14 +761,14 @@ function zhfzxm_sh(){
 //计划库资金下达——灾害防治
 function zhfzxm_zjxd(){
 	var grid={id:'grid',url:'../js/gclmgjxm.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="javascript:openDialog('+"'zhfz_zjxd','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:void()" style=" text-decoration:none;">资金下发</a>';
+	        	return '<a href="javascript:openDialog('+"'zhfz_zjxd','灾害防治项目计划详情','../zjxd/zhfz.jsp'"+')" style=" text-decoration:none;">资金下发</a>';
 	        }},
 	        {field:'c4',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
@@ -790,7 +794,7 @@ function zhfzxm_zjxd(){
 //红色旅游公路项目
 function hslyglxm(){
 	var grid={id:'grid',url:'../js/hslygl.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -815,14 +819,14 @@ function hslyglxm(){
 //资金下达——红色旅游公路项目
 function hslyglxm_zjxd(){
 	var grid={id:'grid',url:'../js/hslygl.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;">详细</a>';
 	        }},
 	        {field:'c5',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '资金下发';
+	        	return '<a href="javascript:openDialog('+"'hslygl_zjxd','红色旅游公路项目计划详情','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;">资金下发</a>';
 	        }},
 	        {field:'zjzt',title:'在建状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
@@ -843,7 +847,7 @@ function hslyglxm_zjxd(){
 //战备公路项目
 function zbglxm(){
 	var grid={id:'grid',url:'../js/zbgl.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -871,7 +875,7 @@ function zbglxm(){
 //战备公路项目
 function zbglxm_zjxd(){
 	var grid={id:'grid',url:'../js/zbgl.json',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,
+		pageNumber:1,pageSize:10,height:325,width:990,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -916,6 +920,7 @@ function gridBind(grid){
 	    pageNumber:grid.pageNumber,
 	    pageSize:grid.pageSize,
 	    height:grid.height,
+	    width:grid.width,
 	    columns:grid.columns
 	});
 }
