@@ -43,5 +43,6 @@
 	<!-- qwh begin -->
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglwqgz.xml"/>
 	<!-- qwh end -->
+
   </mappers>
 </configuration>
