@@ -17,7 +17,7 @@ function ybsb(){
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',900,400);
+	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',650,350);
 	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(){
@@ -32,7 +32,36 @@ function Delyb(){
 	if(confirm("确认删除吗？"))
 		return;
 }
-
+var jhid=10;
+//添加月报
+function tjwqgzyb(){
+	var myDate = new Date();
+	var y = myDate.getYear();
+	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+	var d = myDate.getDate();
+	var sbsj = y+"-"+m+"-"+d;
+	var sbyf = y+"-"+m;
+	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
+	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+sbyf+"&gcglwqgz.jhid="+jhid;
+	alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertWqgzYb.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				closes('wqxx');
+				
+			}else{
+				alert('该月月报可能已存在，保存失败！');
+			}
+		}
+	});	
+}
 //显示所有
 var wqData;
 function showAll(){
@@ -64,7 +93,7 @@ function showAll(){
 
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'js/wqgzyb.json',
+	    url:'../../../../gcgl/selectWqgzYbByJhid.do?jhid='+jhid,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -74,23 +103,23 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-			        	return '<a href="#" onclick="Showybxx()">详细</a>    '+'<a href="#" onclick="Edityb()">编辑</a>   '+'删除   ';
+			        	return '<a href="#" onclick="Showybxx()">详细</a>    '+'<a href="#" onclick="Edityb(row)">编辑</a>   '+'删除   ';
 			        }},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
-			        {field:'jzkgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
 			        {title:'本月完成投资（万元）',colspan:3},
 			        {title:'本月资金到位（万元）',colspan:3},
 			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
 	             ],
 	             [
-			        {field:'tzbtz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'tzstz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'tzqttz',title:'其他投资',width:79,align:'center',rowspan:1},
-			        {field:'dwbtz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'dwstz',title:'省投资',width:79,align:'center',rowspan:1},
-			        {field:'dwqttz',title:'其他投资',width:79,align:'center',rowspan:1}
+			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});

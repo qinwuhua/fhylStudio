@@ -23,4 +23,5 @@
      </action>
 </package> -->
 <include file="struts_xtgl.xml"></include>
+<include file="struts_gcgl.xml"></include>
 </struts>

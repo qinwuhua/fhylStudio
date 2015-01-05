@@ -25,11 +25,11 @@ $(function(){
 		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
 		    <div id="left_menu1" title="公路建设及养护管理" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
 		    
-		    </div>
-		    <div id="left_menu2" title="车购税资金到位情况" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
+		    </div>		   
+		     <div id="left_menu3" title="月报进度审核管理" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
-		     <div id="left_menu3" title="月报进度审核管理" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
+		     <div id="left_menu2" title="车购税资金拨付情况" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
 	
 		    </div>
 		     <div id="left_menu4" title="公路工程完工统计" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">

@@ -585,7 +585,7 @@ a {
 							<table width="100%" cellpadding="0" cellspacing="0">
 								<tr>
 									<td align="left" nowrap="nowrap" style="width: 50%;"><span
-										id="lblJGYSWJ">暂无附件</span> <a
+										id="wgyswj">暂无附件</span> <a
 										onclick="return CheckFJ(this.innerText);" id="btnJGYSWJ"
 										href="javascript:__doPostBack('btnJGYSWJ','')"
 										style="color: #2C7ED1;"></a></td>
