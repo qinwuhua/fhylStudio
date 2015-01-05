@@ -2,11 +2,11 @@ package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
-import com.hdsx.jxzhpt.lwxm.xmjck.server.AbgcServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
 
-public class AbgcServerImpl extends BaseOperate implements AbgcServer {
+public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 
-	public AbgcServerImpl() {
+	public JckabgcServerImpl() {
 		super("jckabgc", "jdbc");
 	}
 
