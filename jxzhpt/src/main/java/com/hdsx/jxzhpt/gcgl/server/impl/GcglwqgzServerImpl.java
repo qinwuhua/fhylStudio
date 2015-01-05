@@ -1,14 +1,43 @@
 package com.hdsx.jxzhpt.gcgl.server.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 @Service
 public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
 	public GcglwqgzServerImpl() {
-		super("gcgl", "jdbc");
+		super("gcglwqgz", "jdbc");
+	}
+
+	@Override
+	public Boolean insertWqgzYb(Gcglwqgz gcglwqgz) {
+		Gcglwqgz gcglwqgz1=queryOne("queryYbByYf", gcglwqgz);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		gcglwqgz.setShzt(0);
+		if(insert("insertWqgzYb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectWqgzYbByJhidCount(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzYbByJhidCount", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglwqgz> selectWqgzYbByJhid(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzYbByJhid",gcglwqgz);
 	}
 
 }

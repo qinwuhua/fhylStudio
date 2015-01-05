@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcglwqgz">
-	
-	<select id="selectYhList" parameterType="hashmap" resultType="master">
+
+	<select id="selectWqgzYbByJhid" parameterType="gcglwqgz" resultType="gcglwqgz">
 		select * from (
 		select m.*,rownum rn from (
-			select truename,name,(select name from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
-		where 1=1
-		 <if test="yhm != null and  yhm != ''">
-		and truename like #{yhm}||'%'
-		</if>
-		<if test="unit != null and  unit != ''">
-		and unit like #{unit}||'%'
+			select * from GCGL_WQGZ 
+			where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
 		</if>
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
-		order by unit
+		order by sbyf desc
 	</select>
-	<select id="selectYhListCount" parameterType="hashmap" resultType="int">
-		select count(*) from xtgl_master 
+	<select id="selectWqgzYbByJhidCount" parameterType="gcglwqgz" resultType="int">
+		select count(*) from GCGL_WQGZ 
 		where 1=1
-		<if test="yhm != null and  yhm != ''">
-			and truename like #{yhm}||'%'
-		</if>
-		<if test="unit != null and  unit != ''">
-			and unit like #{unit}||'%'
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
 		</if>
 	</select>
-	
+	<!-- 添加月报 -->
+	<insert id="insertWqgzYb" parameterType="gcglwqgz">
+		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcmc},#{kgdl},#{qksm},#{wcqk},#{sbsj},#{sbyf},#{shzt})
+	</insert>
+	<select id="queryYbByYf" parameterType="gcglwqgz" resultType="gcglwqgz">
+		select * from GCGL_WQGZ where sbyf=#{sbyf} and jhid=#{jhid}
+	</select>
 </mapper>
