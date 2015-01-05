@@ -25,7 +25,7 @@ public class Jckzhfz implements Serializable{
 	private String yhlc;
 	private String gjxjnd;
 	private String yhnr;
-	private String bmbm;	//填报部门编码
+	private String tbbmbm;	//填报部门编码
 	private Date tbsj;
 	private String xmnf;
 	private String xmtype;  //项目状态
@@ -129,11 +129,11 @@ public class Jckzhfz implements Serializable{
 	public void setYhnr(String yhnr) {
 		this.yhnr = yhnr;
 	}
-	public String getBmbm() {
-		return bmbm;
+	public String getTbbmbm() {
+		return tbbmbm;
 	}
-	public void setBmbm(String bmbm) {
-		this.bmbm = bmbm;
+	public void setTbbmbm(String tbbmbm) {
+		this.tbbmbm = tbbmbm;
 	}
 	public Date getTbsj() {
 		return tbsj;
@@ -214,7 +214,7 @@ public class Jckzhfz implements Serializable{
 				+ xzqhmc + ", lxjsdj=" + lxjsdj + ", lxbm=" + lxbm + ", lxmc="
 				+ lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", qzlc=" + qzlc
 				+ ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd + ", yhnr=" + yhnr
-				+ ", bmbm=" + bmbm + ", tbsj=" + tbsj + ", xmnf=" + xmnf
+				+ ", tbbmbm=" + tbbmbm + ", tbsj=" + tbsj + ", xmnf=" + xmnf
 				+ ", xmtype=" + xmtype + ", sbzt=" + sbzt + ", sbsj=" + sbsj
 				+ ", sbbm=" + sbbm + ", shzt=" + shzt + ", shsj=" + shsj
 				+ ", shbm=" + shbm + ", bz=" + bz + ", page=" + page
