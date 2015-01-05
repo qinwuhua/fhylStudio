@@ -10,6 +10,9 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Master" alias="master"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Unit" alias="unit"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Param" alias="param"/>
+     <!-- qwh begin -->
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
+     <!-- qwh end -->
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -37,6 +40,8 @@
   </environments>
 	<mappers>
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
-
+	<!-- qwh begin -->
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglwqgz.xml"/>
+	<!-- qwh end -->
   </mappers>
 </configuration>

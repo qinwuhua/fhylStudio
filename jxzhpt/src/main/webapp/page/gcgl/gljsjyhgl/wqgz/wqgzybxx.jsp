@@ -49,14 +49,14 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                width: 23%;; padding-left: 10px;">
                                 车购税资金到位情况
                             </td>
                         </tr>
                         <tr style="height: 30px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 车购税资金到位
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
@@ -67,29 +67,29 @@ a:active {
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                                border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <label id="lblTBR">admin</label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                                border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <label id="lblTBSJ">2014-12-17</label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报月份</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                width: 19%; text-align: left; padding-left: 10px;">
+                                 text-align: left; padding-left: 10px;">
                                 <label id="lblTBYF">2014-12</label>
                                 &nbsp;
                             </td>
@@ -97,14 +97,14 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                 padding-left: 10px;">
                                 月报详细信息
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成投资</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
@@ -130,7 +130,7 @@ a:active {
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成面层（公里）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
@@ -142,7 +142,7 @@ a:active {
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">截至开工段落：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
@@ -153,7 +153,7 @@ a:active {
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">情况说明：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
@@ -164,33 +164,33 @@ a:active {
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成情况：</font></b>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                width: 19%; text-align: left; padding-left: 10px;">
+                                 text-align: left; padding-left: 10px;">
                                 <label id="BYWCQK">11</label>
                                 % &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">上报时间：</font></b>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                width: 19%; text-align: left; padding-left: 10px;">
+                                 text-align: left; padding-left: 10px;">
                                 <label id="SBSJ">2014-12-17</label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; width: 19%; text-align: left;
+                                border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left;
                                 padding-left: 10px;">
                                 <label id="SBYF">2014-12</label>
                                 &nbsp;
@@ -199,7 +199,7 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                 padding-left: 10px;">
                                 月报审核信息
                             </td>
                         </tr>

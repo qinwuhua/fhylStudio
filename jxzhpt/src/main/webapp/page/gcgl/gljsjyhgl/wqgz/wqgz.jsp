@@ -67,7 +67,7 @@ a:active {
         						<span>管养单位：</span>
         						<select id="gydw" style="width:200px;"></select>
         						<span>开工状态：</span>
-        						<select id="sbnf" style="width: 65px;">
+        						<select id="kgzt" style="width: 65px;">
         							<option value="">全部</option>
         							<option value="已开工">已开工</option>
         							<option value="未开工">未开工</option>
@@ -88,11 +88,11 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" width="100%">
-		</table>
-	</div>
-	</td>
-	</tr>
+						<table id="datagrid" width="100%">
+						</table>
+					</div>
+			</td>
+		</tr>
 	</table>
 	</div>
 	

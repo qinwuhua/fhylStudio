@@ -17,7 +17,7 @@ function ybsb(){
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',900,400);
+	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',650,350);
 	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(){
@@ -32,7 +32,36 @@ function Delyb(){
 	if(confirm("确认删除吗？"))
 		return;
 }
-
+var jhid=10;
+//添加月报
+function tjwqgzyb(){
+	var myDate = new Date();
+	var y = myDate.getYear();
+	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+	var d = myDate.getDate();
+	var sbsj = y+"-"+m+"-"+d;
+	var sbyf = y+"-"+m;
+	var data = "wc_btz="+$("#tj_wc_btz").val()+"&wc_stz="+$("#tj_wc_stz").val()+"&wc_qttz="+$("#tj_wc_qttz").val()
+	+"&zjdw_btz="+$("#tj_zjdw_btz").val()+"&zjdw_stz="+$("#tj_zjdw_stz").val()+"&zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&bywcmc="+$("#tj_bywcmc").val()+"&kgdl="+$("#tj_kgdl").val()+"&qksm="+$("#tj_qksm").val()+"&wcqk="+$("#tj_wcqk").val()
+	+"&sbsj="+sbsj+"&sbyf="+sbyf+"&jhid="+jhid;
+	alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertWqgzYb.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				closes('wqxx');
+				
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
 //显示所有
 var wqData;
 function showAll(){

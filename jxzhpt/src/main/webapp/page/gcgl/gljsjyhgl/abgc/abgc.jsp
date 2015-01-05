@@ -49,8 +49,8 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 				<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;安保工程施工过程管理</div>
-					</div>
+					<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;安保工程施工过程管理</div>
+				</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
@@ -69,25 +69,23 @@ a:active {
         							<option value="未开工">未开工</option>
         						</select>
         						<span>路线：</span>
-        							<input type="text" id="lx" >
+        							<input type="text" id="lx" />
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
-        						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
+        						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+        					</p>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
-
-            <tr>
-                <td width="100%" style="padding-top: 10px;padding-left:10px;">
-                    <div>
-				<table id="datagrid" width="100%">
-				</table>
-			</div>
-		</td>
-		</tr>	
+	        <tr>
+	            <td width="100%" style="padding-top: 10px;padding-left:10px;">
+	                 <div>
+						<table id="datagrid" width="100%"></table>
+					</div>
+				</td>
+			</tr>	
 		</table>
 	</div>
 </body>

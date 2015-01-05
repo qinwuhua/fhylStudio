@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.gcglwqgz">
+	
+	<select id="selectYhList" parameterType="hashmap" resultType="master">
+		select * from (
+		select m.*,rownum rn from (
+			select truename,name,(select name from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
+		where 1=1
+		 <if test="yhm != null and  yhm != ''">
+		and truename like #{yhm}||'%'
+		</if>
+		<if test="unit != null and  unit != ''">
+		and unit like #{unit}||'%'
+		</if>
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		order by unit
+	</select>
+	<select id="selectYhListCount" parameterType="hashmap" resultType="int">
+		select count(*) from xtgl_master 
+		where 1=1
+		<if test="yhm != null and  yhm != ''">
+			and truename like #{yhm}||'%'
+		</if>
+		<if test="unit != null and  unit != ''">
+			and unit like #{unit}||'%'
+		</if>
+	</select>
+	
+</mapper>
