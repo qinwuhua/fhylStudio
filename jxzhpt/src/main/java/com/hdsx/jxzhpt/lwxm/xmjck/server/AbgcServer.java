@@ -1,7 +1,7 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server;
 
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Abgc;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 
 public interface AbgcServer {
-	boolean insertAbgc(Abgc abgc);
+	boolean insertAbgc(Jckabgc abgc);
 }

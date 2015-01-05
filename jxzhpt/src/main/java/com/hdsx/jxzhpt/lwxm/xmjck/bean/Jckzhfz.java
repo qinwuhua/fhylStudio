@@ -7,7 +7,7 @@ import java.util.Date;
  * @author Administrator
  *
  */
-public class Zhfz implements Serializable{
+public class Jckzhfz implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String id;

@@ -7,7 +7,7 @@ import java.util.Date;
  * @author lhp
  *
  */
-public class Abgc implements Serializable{
+public class Jckabgc implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String id;

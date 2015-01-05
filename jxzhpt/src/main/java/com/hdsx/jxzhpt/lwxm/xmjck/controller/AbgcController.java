@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Abgc;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.AbgcServer;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -21,7 +21,7 @@ public class AbgcController extends BaseActionSupport{
 	private static final long serialVersionUID = 1L;
 	@Resource(name="abgcServerImpl")
 	private AbgcServer abgcServer;
-	private Abgc abgc;
+	private Jckabgc abgc;
 	
 	public void insertAbgc(){
 		boolean b = abgcServer.insertAbgc(abgc);
@@ -32,11 +32,11 @@ public class AbgcController extends BaseActionSupport{
 		}
 	}
 
-	public Abgc getAbgc() {
+	public Jckabgc getAbgc() {
 		return abgc;
 	}
 
-	public void setAbgc(Abgc abgc) {
+	public void setAbgc(Jckabgc abgc) {
 		this.abgc = abgc;
 	}
 	
