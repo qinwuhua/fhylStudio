@@ -3,6 +3,8 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="xmjck" extends="struts-default" namespace="/xmjck">
-	<action name="insertAbgc" class="abgcController" method="insertAbgc"/>
+	<action name="insertAbgc" class="jckabgcController" method="insertAbgc"/>
+	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
+	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
  </package>
 </struts>

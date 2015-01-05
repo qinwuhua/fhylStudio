@@ -5,26 +5,26 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
-import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 /**
- * 项目基础库——安保工程Action层
+ * 项目基础库——灾害防治Action层
  * @author lhp
  *
  */
 @Scope("prototype")
 @Controller
-public class JckabgcController extends BaseActionSupport{
+public class JckzhfzController extends BaseActionSupport{
 
 	private static final long serialVersionUID = 1L;
-	@Resource(name="jckabgcServerImpl")
-	private JckabgcServer abgcServer;
-	private Jckabgc abgc;
+	@Resource(name="jckzhfzServerImpl")
+	private JckzhfzServer zhfzServer;
+	private Jckzhfz zhfz;
 	
-	public void insertAbgc(){
-		boolean b = abgcServer.insertAbgc(abgc);
+	public void insertZhfz(){
+		boolean b = zhfzServer.insertZhfz(zhfz);
 		if(b){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -32,12 +32,13 @@ public class JckabgcController extends BaseActionSupport{
 		}
 	}
 
-	public Jckabgc getAbgc() {
-		return abgc;
-	}
+	
 
-	public void setAbgc(Jckabgc abgc) {
-		this.abgc = abgc;
+	public Jckzhfz getZhfz() {
+		return zhfz;
+	}
+	public void setZhfz(Jckzhfz zhfz) {
+		this.zhfz = zhfz;
 	}
 	
 	
