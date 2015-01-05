@@ -27,7 +27,7 @@ function jckglWqgz(){
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
 	        {field:'xjnd',title:'修建/改建年度',width:140,align:'center'},
-	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+	        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 	    ]]    
 	});  
 }
@@ -123,7 +123,7 @@ function jckshWqgz(){
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
 	        {field:'xjnd',title:'修建/改建年度',width:140,align:'center'},
-	        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+	        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 	    ]]    
 	});  
 }
@@ -216,7 +216,7 @@ function sckglWqgz(){
 	        {field:'lxbh',title:'路线编号',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
 }
@@ -248,7 +248,7 @@ function sckglAbgc(){
 		  	        {field:'qzlc',title:'起止里程',width:140,align:'center'},
 		  	        {field:'zlc',title:'总里程',width:140,align:'center'},
 		  	        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
-		  	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		  	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 		  	    ]]    
 		  	});  
 }
@@ -310,7 +310,7 @@ function sckshWqgz(){
 	        {field:'lxbh',title:'路线编号',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
 }
@@ -340,7 +340,7 @@ function sckshAbgc(){
 		  	        {field:'qzlc',title:'起止里程',width:140,align:'center'},
 		  	        {field:'zlc',title:'总里程',width:140,align:'center'},
 		  	        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
-		  	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
+		  	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 		  	    ]]    
 		  	});  
 }
