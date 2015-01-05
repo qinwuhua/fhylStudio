@@ -37,6 +37,5 @@
   </environments>
 	<mappers>
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
-
   </mappers>
 </configuration>
