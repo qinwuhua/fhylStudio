@@ -18,25 +18,35 @@
 <body>
 <script type="text/javascript">
 function save(){
-	if(!$("#yhgl_form #yhgl_form_table").form('validate')){
-		return;
-	}
-	if($("#truename").val().replace(/(^\s*)|(\s*$)/g,"")==""){
-		alert("请输入用户名！");
+	
+	if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
+		alert("特殊地区不能为空！");
 		return false;
 	}
-	if($("#name").val()==""){
-		alert("请输入单位负责人！");
-		return false;
-	}
-	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
-		alert("联系电话的格式不正确！");
-		return false;
-	}
-    checkNameVal($("#truename").val());
+	param = $("#yhgl_form").serialize()
+	+"&param.xzqhdm="+$("#xzqhdm").combotree("getValues")
+	+"&param.xzqh="+$("#xzqhdm").combotree("getText");
+	$.ajax({
+		type : "POST",
+		url : "../../xtgl/insertTsdq.do",
+		dataType : 'json',
+		data : param,
+		success : function(msg){
+			if(msg){
+				alert('保存成功！');
+				parent.$("#jsgl_table").datagrid("reload");
+				parent.$("#jsgl_add_win").window('destroy');
+			}else{
+				YMLib.Tools.Show('保存失败！',3000);
+			}
+		},
+		error : function(){
+			YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		}
+	});
 }
 $(function(){
-
+	loadDist2("xzqhdm","360000");
 	$("#yhgl_btn_Save").click(function(){
 		save();
 	});
@@ -50,27 +60,27 @@ $(function(){
 	<form id="yhgl_form" style="overflow-x:hidden">
 		<table id="yhgl_form_table" cellspacing="0"  class="table_grid">
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right">
 					特殊地区：
 				</td>
 				<td>
-					<input type="text" id="truename" name="master.truename"/>
+					<input type="text" id="name" name="param.name" style="width:298px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right">
 					 包含行政区划：
 				</td>
 				<td>
-					<input  type="text" id="unit" name="master.unit"/>
+					<input  type="text" id="xzqhdm" style="width:300px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td  align="right">
 					 备注：
 				</td>
 				<td>
-					<textarea  type="text" id="roleid" name="master.roleid" style="width:300px;height:50px;"></textarea>
+					<textarea  type="text" id="bz" name="param.bz" style="width:300px;height:50px;"></textarea>
 				</td>
 			</tr>
 		</table>

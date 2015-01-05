@@ -258,4 +258,64 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		chartType="pie.ftl";
 		return AnyChartUtil.getAnyChartXml(chartType, parameter);
 	}
+
+	@Override
+	public List<Unit> checkXzqhCfById(Unit unit) {
+		return queryList("checkXzqhCfById", unit);
+	}
+
+	@Override
+	public boolean insertXzqh(Unit unit) {
+		int b=insert("insertXzqh", unit);
+		return b>0?true:false;
+	}
+
+	@Override
+	public boolean updateXzqh(Unit unit) {
+		int b=update("updateXzqh", unit);
+		return b>0?true:false;
+	}
+
+	@Override
+	public boolean deleteXzqhById(Unit unit) {
+		int b=delete("deleteXzqhById", unit);
+		return b>0?true:false;
+	}
+
+	@Override
+	public boolean updateTsdqZt(Param param) {
+		int b=update("updateTsdqZt", param);
+		return b>0?true:false;
+	}
+
+	@Override
+	public List<TreeNode> selAllTsdq2(String yhdw) {
+		return queryList("selAllTsdq2", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllTsdq(String yhdw) {
+		return queryList("selAllTsdq", yhdw);
+	}
+
+	@Override
+	public boolean insertTsdq(Param param) {
+		String id=UUID.randomUUID().toString();
+		param.setId(id);
+		List<HashMap<String, String>> nl=new ArrayList<HashMap<String,String>>();
+		String[] arr=param.getXzqhdm().split(",");
+		String[] arr2=param.getXzqh().split(",");
+		for(int i=0;i<arr.length;i++){
+			HashMap<String, String> hm=new HashMap<String, String>();
+			hm.put("parent", id);
+			hm.put("xzqhdm", arr[i]);
+			hm.put("xzqh", arr2[i]);
+			nl.add(hm);
+		}
+		if(insert("insertTsdq", param)>0){
+			if(insertBatch("insertTsdqList", nl)>0){
+				return true;
+			}else return false;
+		}else return false;
+	}
 }

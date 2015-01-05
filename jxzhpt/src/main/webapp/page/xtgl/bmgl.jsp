@@ -18,15 +18,14 @@
 </head>
 <body>
 <script type="text/javascript">
-var dwxx;
-var lxData = new Array();
-function openDwUpdate(_id){
+function openDwUpdate(_id,_name,_desr){
 	YMLib.Var.ID=_id;
+	YMLib.Var.name=_name;
+	YMLib.Var.desr=_desr;
 	YMLib.UI.createWindow('dwgl_add_win','编辑部门信息','./bmgl_update.jsp','app_add',470,250);
 }
-function openDwInsert(_id,dist,_index){
+function openDwInsert(_id){
 	YMLib.Var.ID=_id;
-	YMLib.Var.dist=dist;
 	YMLib.UI.createWindow('dwgl_add_win','添加部门','./bmgl_add.jsp','app_add',470,250);
 }
 function deleteDw(_id){
@@ -73,10 +72,8 @@ function startSearch(){
 			{field:'desr',title:'描述',width:100,align : 'center'},
 			{field : 'sc',title : '操作',width : 200,align : 'center',
 				formatter : function(value,rec,index){
-					if(rec.id.length!=8)
-						var str1='<input onclick=openDwInsert("'+rec.id+'","'+rec.dist+'","'+index+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
-						else var str1='';
-					return '<input onclick=openDwUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />'+
+					var str1='<input onclick=openDwInsert("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
+					return '<input onclick=openDwUpdate("'+rec.id+'","'+rec.name+'","'+rec.desr+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />'+
 					'<input onclick=deleteDw("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除>'+str1;
 				}
 			}

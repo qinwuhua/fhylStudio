@@ -17,10 +17,10 @@
 	select * from MASTER M WHERE M.truename=#{username} AND M.PASSWORD=#{password} AND M.ZT!=#{zt}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
-	    select distinct x.id ,x.id text from xzqh x where  x.id = #{yhdw} order by id
+	    select distinct x.id ,x.name text from xtgl_xzqh x where  x.id = #{yhdw} order by id
 	</select>
 	<select id="selAllXzqh2" parameterType="String" resultType="treenode">
-	  select  distinct x.id , x.id text from xzqh x where  x.parent = #{yhdw} order by id
+	  select  distinct x.id , x.name text from xtgl_xzqh x where  x.parent = #{yhdw} order by id
 	</select>
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
@@ -110,26 +110,17 @@
 		order by id
 	</select>
 	<insert id="insertDw" parameterType="unit">
-		insert into unit (id,parent,name,jgdm,dist,jglx,zxkjbzlb,zxkjzzlb,djzclx,sfzy,dwfzr,lxdh,sfgl) values ((select max(decode(id,4498,null,4499,null,id))+1 id from unit t where  parent=#{id}),
-		#{id},#{name},#{jgdm},#{dist},#{jglx},#{zxkjbzlb},#{zxkjzzlb},#{djzclx},#{sfzy},#{dwfzr},#{lxdh},#{sfgl})
+		insert into xtgl_department (id,parent,name,unit,bmid,desr) values 
+		(#{id},#{parent},#{name},#{unit},SYS_GUID(),#{desr})
 	</insert>
 	<delete id="deleteDwById" parameterType="unit">
-		delete from unit where id=#{id}
+		delete from xtgl_department where id=#{id}
 	</delete>
 	<select id="selectDwById" parameterType="unit" resultType="unit">
-		select * from unit where id=#{id}
+		select * from xtgl_department where id=#{id}
 	</select>
 	<update id="updateDw" parameterType="unit">
-		update unit set name=#{name}
-		<if test="jglx !=null and jglx!=''">,jglx=#{jglx}</if>
-		<if test="zxkjbzlb !=null and zxkjbzlb!=''">,zxkjbzlb=#{zxkjbzlb}</if>
-		<if test="zxkjzzlb !=null and zxkjzzlb!=''">,zxkjzzlb=#{zxkjzzlb}</if>
-		<if test="djzclx !=null and djzclx!=''">,djzclx=#{djzclx}</if>
-		<if test="sfzy !=null and sfzy!=''">,sfzy=#{sfzy}</if>
-		<if test="dwfzr !=null and dwfzr!=''">,dwfzr=#{dwfzr}</if>
-		<if test="lxdh !=null and lxdh!=''">,lxdh=#{lxdh}</if>
-		<if test="sfgl !=null and sfgl!=''">,sfgl=#{sfgl}</if>
-		<if test="dist !=null and dist!=''">,dist=#{dist}</if>
+		update xtgl_department set name=#{name},desr=#{desr}
 		where id=#{id}
 	</update>
 	<select id="selectBmbmList" parameterType="unit" resultType="unit">
@@ -165,4 +156,31 @@
 	<select id="selectXzqhList" parameterType="unit" resultType="unit">
 		select * from xtgl_xzqh order by bmid
 	</select>
+	<select id="checkXzqhCfById" parameterType="unit" resultType="unit">
+		select * from xtgl_xzqh where id=#{id}
+	</select>
+	<insert id="insertXzqh" parameterType="unit">
+		insert into xtgl_xzqh (id,name,parent,bmid,desr) values (#{id},#{name},#{parent},#{bmid},#{desr})
+	</insert>
+	<update id="updateXzqh" parameterType="unit">
+		update xtgl_xzqh set name=#{name},desr=#{desr} where id=#{id}
+	</update>
+	<delete id="deleteXzqhById" parameterType="unit">
+		delete from  xtgl_xzqh where id=#{id}
+	</delete>
+	<update id="updateTsdqZt" parameterType="param">
+		update xtgl_tsdq set state=#{state} where id=#{id}
+	</update>
+	<select id="selAllTsdq" parameterType="String" resultType="treenode">
+	    select distinct x.id ,x.name text from xtgl_xzqhtsdq x where  x.id = #{yhdw} order by id
+	</select>
+	<select id="selAllTsdq2" parameterType="String" resultType="treenode">
+	  select  distinct x.id , x.name text from xtgl_xzqhtsdq x where  x.parent = #{yhdw} order by id
+	</select>
+	<insert id="insertTsdq" parameterType="param">
+		insert into xtgl_tsdq (id,name,bz,state) values (#{id},#{name},#{bz},'启用')
+	</insert>
+	<insert id="insertTsdqList" parameterType="hashmap">
+		insert into xtgl_xzqhtsdq (id,parent,xzqhdm,xzqh) values (SYS_GUID(),#{parent},#{xzqhdm},#{xzqh})
+	</insert>
 </mapper>

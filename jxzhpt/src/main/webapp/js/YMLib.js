@@ -1,12 +1,5 @@
 /**
-* 江西省高速公路综合养护管理前端JavaScript核心脚本库；
-* 基于JQuery 1.8.0 & EasyUI 1.3.2版本开发。
-* 功能：一些常用的公共方法封装简化操作。
-* 版本：v1.1
-* 日期：2013年05月14日
-* 更新：2013.5.29
-* 作者：岳明
-* QQ ： 574035
+* 江西省综合前端JavaScript核心脚本库
 */
 var YMLib = {
     version: '1.1',
@@ -39,22 +32,7 @@ var YMLib = {
     	}
     },
     Var:{
-    	Gcid:'',
-    	Lcid:'',
-    	Xmmc:'',
-    	Hfid:'',
-    	Lczid:'',
-    	Gclb:'',
-    	Cxtj_str:'',
-    	Cxtj_arr:'',
-    	Cxtj_tablename:'',
-    	ColumnCode:'',
-    	ColumnText:'',
-    	ColumName:new Array(),
-    	ColumName2:new Array(),
-    	Bean:new Object(),
-    	TitleString:'',
-    	Bzls_set:''
+    	
     },
     UI: {
         /*
@@ -809,4 +787,33 @@ function createMenu2(_xtype, _json) {//左侧菜单生成
         default:
             alert("错误的类型");
     }
+}
+/*
+ * 加载行政区划
+ */
+function loadDist(id,dwbm){
+	$('#'+id).combotree({
+		checkbox: false,
+	       url: '/jxzhpt/xtgl/selAllXzqh.do?yhdw='+dwbm,   
+	       onBeforeExpand:function(node,param){
+	      	 $('#'+id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="+node.id ;
+	       },
+	       onSelect:function(node){YMLib.Var.DistName=node.text}
+	   });
+	$('#'+id).combotree('setValue',dwbm);
+}
+/*
+ * 加载特殊地区
+ */
+function loadDist2(id,dwbm){
+	$('#'+id).combotree({
+		checkbox: false,
+        multiple:true,
+	       url: '/jxzhpt/xtgl/selAllXzqh.do?yhdw='+dwbm,   
+	       onBeforeExpand:function(node,param){
+	      	 $('#'+id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="+node.id ;
+	       },
+	       onSelect:function(node){YMLib.Var.DistName=node.text}
+	   });
+	//$('#'+id).combotree('setValue',dwbm);
 }

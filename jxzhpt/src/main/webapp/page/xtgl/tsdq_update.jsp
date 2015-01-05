@@ -50,27 +50,27 @@ $(function(){
 	<form id="yhgl_form" style="overflow-x:hidden">
 		<table id="yhgl_form_table" cellspacing="0"  class="table_grid">
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right">
 					特殊地区：
 				</td>
 				<td>
-					<input type="text" id="truename" name="master.truename"/>
+					<input type="text" id="name" name="param.name" style="width:298px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right">
 					 包含行政区划：
 				</td>
 				<td>
-					<input  type="text" id="unit" name="master.unit"/>
+					<input  type="text" id="xzqhdm" name="param.xzqhdm" style="width:300px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td  align="right">
 					 备注：
 				</td>
 				<td>
-					<textarea  type="text" id="roleid" name="master.roleid" style="width:300px;height:50px;"></textarea>
+					<textarea  type="text" id="bz" name="param.bz" style="width:300px;height:50px;"></textarea>
 				</td>
 			</tr>
 		</table>

@@ -80,4 +80,20 @@ public interface XtglServer {
 
 	String createGsAnyChartXml(Param param);
 
+	List<Unit> checkXzqhCfById(Unit unit);
+
+	boolean insertXzqh(Unit unit);
+
+	boolean updateXzqh(Unit unit);
+
+	boolean deleteXzqhById(Unit unit);
+
+	boolean updateTsdqZt(Param param);
+
+	List<TreeNode> selAllTsdq2(String yhdw);
+
+	List<TreeNode> selAllTsdq(String yhdw);
+
+	boolean insertTsdq(Param param);
+
 }

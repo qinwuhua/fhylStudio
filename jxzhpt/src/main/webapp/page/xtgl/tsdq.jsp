@@ -18,8 +18,7 @@
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
 function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
+	YMLib.Var.ID=_id;
 	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',560,250);
 }
 function deleteJs(_id){
@@ -45,12 +44,30 @@ function deleteJs(_id){
 		}
 	});
 }
+function updateZt(_id,_zt){
+	if(_zt=="启用") _zt="禁用";
+	else if(_zt=="禁用") _zt="启用";
+	$.ajax({
+		 type : "POST",
+		 url : "../../xtgl/updateTsdqZt.do",
+		 dataType : 'json',
+		 data : "param.id="+_id+"&param.state="+_zt,
+		 success : function(msg){
+			 if(msg){
+				 YMLib.Tools.Show('修改成功！',3000);
+				 $("#jsgl_table").datagrid('reload');
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+}
 
 $(function(){
+	
 	$("#jsgl_table").datagrid({
 		border : false,
-		//height:500,
-		//width:1000,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
@@ -73,8 +90,8 @@ $(function(){
 			width : 100,
 			align : 'center',
 			formatter : function(value,rec,index){
-				if(value=="启用") return '<a onclick=updateZt("'+value+'") href="#" style="color:blue;">启用</a>';
-				else return '<a onclick=updateZt("'+value+'") href="#" style="color:red;">禁用</a>';
+				if(value=="启用") return '<a onclick=updateZt("'+rec.id+'","'+value+'") href="#" style="color:blue;">启用</a>';
+				else return '<a onclick=updateZt("'+rec.id+'","'+value+'") href="#" style="color:red;">禁用</a>';
 			}
 		},{
 			field : 'name',

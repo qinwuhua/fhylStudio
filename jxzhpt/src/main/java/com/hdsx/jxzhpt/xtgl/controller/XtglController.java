@@ -551,11 +551,85 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void updateTsdqZt(){
+		boolean bl=xtglServer.updateTsdqZt(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void selAllTsdq2() {
+		try {
+		    List<TreeNode> l=xtglServer.selAllTsdq2(yhdw);
+            String s=JSONArray.fromObject(l).toString();
+			ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void selAllTsdq() {
+		try {
+            List<TreeNode> l=xtglServer.selAllTsdq(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void createAnyChartXml(){
 		System.out.println("-----------------");
 		String anyChartXml = xtglServer.createGsAnyChartXml(param);
 		System.out.println("++++++"+anyChartXml);
 		ResponseUtils.write(getresponse(), anyChartXml);
+	}
+	
+	public void checkXzqhCfById(){
+		List<Unit> list=xtglServer.checkXzqhCfById(unit);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void insertXzqh(){
+		boolean bl=xtglServer.insertXzqh(unit);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void updateXzqh(){
+		boolean bl=xtglServer.updateXzqh(unit);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void deleteXzqhById(){
+		boolean bl=xtglServer.deleteXzqhById(unit);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void insertTsdq(){
+		boolean bl=xtglServer.insertTsdq(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 	
 	public String getYhdw() {

@@ -35,6 +35,14 @@
 	<action name="checkname" class="xtglController" method="checkname"></action>
 	<action name="selectTsdqList" class="xtglController" method="selectTsdqList"></action>
 	<action name="selectXzqhList" class="xtglController" method="selectXzqhList"></action>
+	<action name="checkXzqhCfById" class="xtglController" method="checkXzqhCfById"></action>
+	<action name="insertXzqh" class="xtglController" method="insertXzqh"></action>
+	<action name="updateXzqh" class="xtglController" method="updateXzqh"></action>
+	<action name="deleteXzqhById" class="xtglController" method="deleteXzqhById"></action>
+	<action name="updateTsdqZt" class="xtglController" method="updateTsdqZt"></action>
+	<action name="selAllTsdq" class="xtglController" method="selAllTsdq"></action>
+	<action name="selAllTsdq2" class="xtglController" method="selAllTsdq2"></action>
+	<action name="insertTsdq" class="xtglController" method="insertTsdq"></action>
 	
 	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
  </package>

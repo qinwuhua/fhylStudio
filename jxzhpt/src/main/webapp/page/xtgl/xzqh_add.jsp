@@ -21,28 +21,39 @@ function saveDwgl(){
 	if(!$("#dwgl_form #dwgl_form_table").form('validate')){
 		return;
 	}
-	
-	if(parent.YMLib.Var.ID.length==6){
-		if($("#name").val()==""||$("#jgdm").val()==""||$("#jglx").val()==""||$("#zxkjbzlb").val()==""||$("#djzclx").val()==""||$("#sfzy").val()==""||$("#dwfzr").val()==""||$("#lxdh").val()==""||$("#sfgl").val()==""){
-			alert("请检查必填项！");
-			return;
-		}
-	}else{
-		if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
-			alert("单位名称不能为空！");
-			return;
-		}
+	if($("#id").val().length!=6){
+		alert("行政区划代码必须为6位数字！");
+		return;
 	}
-	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#lxdh").val())){
-		alert("联系电话的格式不正确！");
-		return false;
+	if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
+		alert("行政区划名称不能为空！");
+		return;
 	}
-	param = $("#dwgl_form").serialize();
+	param = $("#dwgl_form").serialize()+"&unit.bmid=360000"+$("#parent").val()+$("#id").val();
+	trueSave(param);
+	/*
 	$.ajax({
 		type : "POST",
-		url : "../../xtgl/insertDw.do",
+		url : "../../xtgl/checkXzqhCfById.do",
 		dataType : 'json',
 		data : param,
+		success : function(msg){
+			if(msg.length>0){
+				alert("已存在该行政区划代码！");
+			}else{
+				alert(param);
+				trueSave(param);
+			}
+		}
+	});*/
+	delete param;
+}
+function trueSave(_param){
+	$.ajax({
+		type : "POST",
+		url : "../../xtgl/insertXzqh.do",
+		dataType : 'json',
+		data : _param,
 		success : function(msg){
 			if(msg){
 				alert('保存成功！');
@@ -56,18 +67,24 @@ function saveDwgl(){
 			YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 		}
 	});
-	delete param;
 }
-
 $(function(){
-	$("#id").val(parent.YMLib.Var.ID);
-	$("#dist").val(parent.YMLib.Var.dist);
-	loadBmbm("djzclx","登记注册类型");
+	$("#parent").val(parent.YMLib.Var.ID);
 	$("#dwgl_btn_Save").click(function(){
 		saveDwgl();
 	});
 	$("#dwgl_btn_Cancel").click(function(){
 		parent.$("#dwgl_add_win").window('destroy');
+	});
+	$("#id").keypress(function(event){
+		var keyCode = event.which;
+		if(keyCode==46||(keyCode>=48&&keyCode<=57)||keyCode==8) return true;
+		else return false;
+	}).focus(function(){
+		this.style.imeMode='disabled';
+	});
+	$("#id").keyup(function(event){
+		if(this.value.length>6) $(this).val(this.value.substr(0,6));
 	});
 });
 </script>
@@ -81,6 +98,7 @@ $(function(){
 				</td>
 				<td>
 					<input id="id" name="unit.id" type="text" style="width:160px;"/>
+					<input id="parent" name="unit.parent" type="hidden"/>
 				</td>
 			</tr>
 			<tr>

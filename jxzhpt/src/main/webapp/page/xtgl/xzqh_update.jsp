@@ -18,31 +18,20 @@
 <body>
 <script type="text/javascript">
 function saveDwgl(){
-	if(!$("#dwgl_form #dwgl_form_table").form('validate')){
+	if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
+		alert("行政区划名称不能为空！");
 		return;
 	}
-	
-	if(parent.YMLib.Var.ID.length==6){
-		if($("#name").val()==""||$("#jgdm").val()==""||$("#jglx").val()==""||$("#zxkjbzlb").val()==""||$("#djzclx").val()==""||$("#sfzy").val()==""||$("#dwfzr").val()==""||$("#lxdh").val()==""||$("#sfgl").val()==""){
-			alert("请检查必填项！");
-			return;
-		}
-	}else{
-		if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
-			alert("单位名称不能为空！");
-			return;
-		}
-	}
-	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#lxdh").val())){
-		alert("联系电话的格式不正确！");
-		return false;
-	}
 	param = $("#dwgl_form").serialize();
+	trueSave(param);
+	delete param;
+}
+function trueSave(_param){
 	$.ajax({
 		type : "POST",
-		url : "../../xtgl/insertDw.do",
+		url : "../../xtgl/updateXzqh.do",
 		dataType : 'json',
-		data : param,
+		data : _param,
 		success : function(msg){
 			if(msg){
 				alert('保存成功！');
@@ -56,13 +45,11 @@ function saveDwgl(){
 			YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 		}
 	});
-	delete param;
 }
-
 $(function(){
 	$("#id").val(parent.YMLib.Var.ID);
-	$("#dist").val(parent.YMLib.Var.dist);
-	loadBmbm("djzclx","登记注册类型");
+	$("#name").val(parent.YMLib.Var.name);
+	$("#desr").val(parent.YMLib.Var.desr);
 	$("#dwgl_btn_Save").click(function(){
 		saveDwgl();
 	});
@@ -80,7 +67,8 @@ $(function(){
 					行政区划代码：
 				</td>
 				<td>
-					<input id="id" name="unit.id" type="text" style="width:160px;"/>
+					<input id="id" name="unit.id" type="text" style="width:160px;" readonly="readonly"/>
+					<input id="parent" name="unit.parent" type="hidden"/>
 				</td>
 			</tr>
 			<tr>
@@ -91,7 +79,6 @@ $(function(){
 					<input id="name" name="unit.name" type="text" style="width:160px;"/>
 				</td>
 			</tr>
-			
 			<tr>
 				<td class="table_right" align="right">
 					描述：
