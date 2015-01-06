@@ -26,7 +26,22 @@
 		 	url: "../js/xzqh.json",
 		});
 		$("#save_button").click(function(){
-			$.messager.alert('提示','保存成功！','info');    
+			var data ="lxbm="+$("#lxbm").val();
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmjck/insertAbgc.do',
+		        data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						$.messager.alert('提示','保存成功！','info'); 
+						parent.$('#jck_add').window('destroy');
+					}else{
+						alert('保存失败！');
+					}
+				}
+			});
+			
 		});
 		$("#qx_window").click(function(){
 			parent.$('#jck_add').window('destroy');
@@ -71,7 +86,7 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhbm" id="xzqhbm" style="width: 156px" /></td>
+					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
@@ -103,7 +118,7 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2" id="bdnr" style="width:99%"></textarea>
+					<textarea rows="2" id="bhnr" style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>

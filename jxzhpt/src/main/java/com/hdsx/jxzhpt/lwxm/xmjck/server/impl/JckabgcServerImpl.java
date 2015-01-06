@@ -13,8 +13,8 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean insertAbgc(Jckabgc abgc) {
-		if(insert("insertJckabgc",abgc)>0) return true;
+	public boolean insertAbgc(Jckabgc jckabgc) {
+		if(insert("insertJckabgc",jckabgc)>0) return true;
 		else return false;
 	}
 
