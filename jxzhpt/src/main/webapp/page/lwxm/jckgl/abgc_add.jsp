@@ -20,13 +20,22 @@
 		$("#gydw").combotree({
 			checkbox: false,
 		 	url: "../js/gydw.json",
+		 	onClick:function(node){
+		        $("#gydw").val(node.text);
+		    	 }
 		});
 		$("#xzqhmc").combotree({
 			checkbox: false,
 		 	url: "../js/xzqh.json",
+		 	onClick:function(node){
+		        $("#xzqhmc").val(node.text);
+		    	 }
 		});
 		$("#save_button").click(function(){
-			var data ="lxbm="+$("#lxbm").val();
+			var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+110+"&qdzh="+$("#qdzh").val()
+			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
+			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
+			+"&tbbmbm="+"南昌市公路局";
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmjck/insertAbgc.do',
@@ -116,9 +125,9 @@ text-decoration:none;
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2" id="bhnr" style="width:99%"></textarea>
+					<textarea rows="2" id="yhnr" style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>

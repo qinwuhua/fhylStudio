@@ -85,4 +85,33 @@ public class GcglwqgzController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+		//修改月报
+		public void updateWqgzYb(){
+			System.out.println(gcglwqgz);
+			Boolean bl=gcglwqgzServer.updateWqgzYb(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//删除月报
+		public void deleteWqgzYb(){
+			Boolean bl=gcglwqgzServer.deleteWqgzYb(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//审核月报
+		public void shWqgzYb(){
+			System.out.println(gcglwqgz);
+			Boolean bl=gcglwqgzServer.shwqgzyb(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
 }

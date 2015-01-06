@@ -3,7 +3,7 @@ package com.hdsx.jxzhpt.gcgl.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Gcglwqgz implements Serializable {
+public class Gcglabgc implements Serializable {
 
 	/**
 	 * 
@@ -24,7 +24,8 @@ public class Gcglwqgz implements Serializable {
 	private String shzt;
 	private String shuser;
 	private Date shtime;
-	private String bywcmc;
+	private String bywc_c;
+	private String bywc_gl;
 	private String kgdl;
 	private String qksm;
 	private String zjje;//追加金额
@@ -106,11 +107,18 @@ public class Gcglwqgz implements Serializable {
 	public void setShtime(Date shtime) {
 		this.shtime = shtime;
 	}
-	public String getBywcmc() {
-		return bywcmc;
+
+	public String getBywc_c() {
+		return bywc_c;
 	}
-	public void setBywcmc(String bywcmc) {
-		this.bywcmc = bywcmc;
+	public void setBywc_c(String bywc_c) {
+		this.bywc_c = bywc_c;
+	}
+	public String getBywc_gl() {
+		return bywc_gl;
+	}
+	public void setBywc_gl(String bywc_gl) {
+		this.bywc_gl = bywc_gl;
 	}
 	public String getKgdl() {
 		return kgdl;
@@ -173,16 +181,5 @@ public class Gcglwqgz implements Serializable {
 	public void setZjdw_qttz(String zjdw_qttz) {
 		this.zjdw_qttz = zjdw_qttz;
 	}
-	@Override
-	public String toString() {
-		return "Gcglwqgz [id=" + id + ", jhid=" + jhid + ", wc_btz=" + wc_btz
-				+ ", wc_stz=" + wc_stz + ", wc_qttz=" + wc_qttz + ", wcqk="
-				+ wcqk + ", sbyf=" + sbyf + ", sbsj=" + sbsj + ", sbbm=" + sbbm
-				+ ", shzt=" + shzt + ", shuser=" + shuser + ", shtime="
-				+ shtime + ", bywcmc=" + bywcmc + ", kgdl=" + kgdl + ", qksm="
-				+ qksm + ", zjje=" + zjje + ", xgcsyj=" + xgcsyj + ", cscyj="
-				+ cscyj + ", page=" + page + ", rows=" + rows + "]";
-	}
-	
-	
+
 }

@@ -14,9 +14,19 @@
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			var data=parent.obj;
+			$("#xg_wc_btz").val(data.wc_btz);
+			$("#xg_wc_stz").val(data.wc_stz);
+			$("#xg_wc_qttz").val(data.wc_qttz);
+			$("#xg_zjdw_btz").val(data.zjdw_btz);
+			$("#xg_zjdw_stz").val(data.zjdw_stz);
+			$("#xg_zjdw_qttz").val(data.zjdw_qttz);
+			$("#xg_bywcmc").val(data.bywcmc);
+			$("#xg_kgdl").val(data.kgdl);
+			$("#xg_qksm").val(data.qksm);
+			$("#xg_wcqk").val(data.wcqk);
+			$("#xg_sbsj").text(data.sbsj);
+			$("#xg_sbyf").text(data.sbyf);
 		});
 	</script>
 	<style type="text/css">
@@ -39,7 +49,6 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-  			
             <tr>
                 <td>
                     <br />
@@ -49,70 +58,68 @@ a:active {
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成投资<br />
-                                    （万元）</font></b>
+                                width: 23%; padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成投资（万元）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input name="WC_BTZ" type="text" id="WC_BTZ" value="1" />&nbsp;&nbsp;&nbsp;&nbsp; 省投资：<input name="WC_STZ" type="text" id="WC_STZ" value="1" />&nbsp;&nbsp;&nbsp;&nbsp; 其他投资：<input name="WC_QTTZ" type="text" id="WC_QTTZ" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" type="text" id="xg_wc_btz" />&nbsp;&nbsp;&nbsp;&nbsp; 省投资：<input style="width: 50px" name="WC_STZ" type="text" id="xg_wc_stz" />&nbsp;&nbsp;&nbsp;&nbsp; 其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="xg_wc_qttz" />&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月资金到位<br />
-                                    （万元）</font></b>
+                                padding-right: 5px;">
+                                <font color="#009ACD" style="cursor: hand; font-size: 12px">本月资金到位（万元）
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input name="ZJ_BTZ" type="text" id="ZJ_BTZ" onblur="CheckCGS(this.value)" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                省投资：<input name="ZJ_STZ" type="text" id="ZJ_STZ" value="1" />&nbsp;&nbsp;&nbsp;&nbsp; 其他投资：<input name="ZJ_QTTZ" type="text" id="ZJ_QTTZ" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" name="ZJ_BTZ" type="text" id="xg_zjdw_btz" onblur="CheckCGS(this.value)" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                省投资：<input style="width: 50px" name="ZJ_STZ" type="text" id="xg_zjdw_stz" />&nbsp;&nbsp;&nbsp;&nbsp; 其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="xg_zjdw_qttz" />&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成面层（公里）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="BYWCMC" type="text" id="BYWCMC" style="width: 327px;" value="1" />
+                                <input name="BYWCMC" type="text" id="xg_bywcmc" style="width: 50px;" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">截至开工段落：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="JZKGDL" type="text" id="JZKGDL" style="width: 327px;" value="1" />
+                                <input name="JZKGDL" type="text" id="xg_kgdl" style="width: 50px;" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                 padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">情况说明：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="QKSM" type="text" id="QKSM" style="width: 327px;" value="1" />
+                                <input name="QKSM" type="text" id="xg_qksm" style="width: 250px;" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                width: 23%; padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成情况（%）：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <input name="BYWCQK" type="text" id="BYWCQK" value="11" />
+                                border-bottom: 1px solid #C0C0C0; width: 15%; text-align: left; padding-left: 10px;">
+                                <input style="width: 50px" name="WCQK" type="text" id="xg_wcqk" />
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -120,8 +127,8 @@ a:active {
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">上报时间：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <span id="lblReportTime">2014-12-17</span>
+                                border-bottom: 1px solid #C0C0C0; width: 15%; text-align: left; padding-left: 10px;">
+                                <span id="xg_sbsj"></span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -129,8 +136,8 @@ a:active {
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <span id="lblSBYF">2014-12</span>
+                                border-bottom: 1px solid #C0C0C0; width: 15%; text-align: left; padding-left: 10px;">
+                                <span id="xg_sbyf"></span>
                             </td>
                         </tr>
                     </table>
@@ -139,7 +146,7 @@ a:active {
                         cellspacing="0" cellpadding="0">
                         <tr style="height: 30px;">
                             <td align="center">
-                                <img src="${pageContext.request.contextPath}/images/Button/baocun1.gif" id="Img1" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" style="cursor: hand" onclick="AddMonthInfo();" />
+                                <img src="${pageContext.request.contextPath}/images/Button/baocun1.gif" id="Img1" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" style="cursor: hand" onclick="xgwqgzyb();" />
                                 <img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" id="Img2" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" onclick="closes('wqxx')" style="cursor: hand" />
                             </td>
                         </tr>
