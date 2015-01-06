@@ -7,6 +7,7 @@
 	<action name="selectWqgzYbByJhid" class="gcglwqgzController" method="selectWqgzYbByJhid"/>
 	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
 	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
+	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
 	
  </package>
 </struts>

@@ -16,4 +16,6 @@ public interface GcglwqgzServer {
 
 	Boolean deleteWqgzYb(Gcglwqgz gcglwqgz);
 
+	Boolean shwqgzyb(Gcglwqgz gcglwqgz);
+
 }

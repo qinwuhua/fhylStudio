@@ -152,9 +152,9 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt==0)
+	              		if(row.shzt=='未审核')
 			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>';
-	              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
+	              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},

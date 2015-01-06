@@ -27,6 +27,13 @@
 			$("#wcqk").text(ybdata.wcqk);
 			$("#sbsj").text(ybdata.sbsj);
 			$("#sbyf").text(ybdata.sbyf);
+			
+			$("#shzt").text(ybdata.shzt);
+			$("#shuser").text(ybdata.shuser);
+			$("#shtime").text(ybdata.shtime);
+			$("#zjje").text(ybdata.zjje);
+			$("#xgcsyj").text(ybdata.xgcsyj);
+			$("#cscyj").text(ybdata.cscyj);
 		});
 	</script>
 	<style type="text/css">
@@ -221,7 +228,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                                <label id="SHZT">未审核</label>
+                                <label id="shzt"></label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -231,7 +238,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                                <label id="SHR"></label>
+                                <label id="shuser"></label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -241,7 +248,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                                 text-align: left; padding-left: 10px;" class="style3">
-                                <label id="SHSJ"></label>
+                                <label id="shtime"></label>
                                 &nbsp;
                             </td>
                         </tr>
@@ -253,7 +260,7 @@ a:active {
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left;
                                 padding-left: 10px;" class="style3">
-                                <label id="ZJJE">0</label>
+                                <label id="zjje"></label>
                                 万元 &nbsp;
                             </td>
                         </tr>
@@ -265,7 +272,7 @@ a:active {
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left;
                                 padding-left: 10px;" class="style3">
-                                <label id="XGCSYJ"></label>
+                                <label id="xgcsyj"></label>
                                 &nbsp;
                             </td>
                         </tr>
@@ -276,7 +283,7 @@ a:active {
                             </td>
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;" class="style3">
-                                <label id="CSCYJ"></label>
+                                <label id="cscyj"></label>
                                 &nbsp;
                             </td>
                         </tr>
