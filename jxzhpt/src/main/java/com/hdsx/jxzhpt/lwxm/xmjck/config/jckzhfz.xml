@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.lwxm.xmjck">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gtdwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,xjgjnd,lxjsdj,yhlc,xmnf,xmzt,yhnr,bz,bmbm,tbsj)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gtdwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,xjgjnd,lxjsdj,yhlc,xmnf,xmzt,yhnr,bz,tbbmbm,tbsj)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gtdwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{xjgjnd},#{lxjsdj},
-		#{yhlc},#{xmnf},#{xmzt},#{yhnr},#{bz},#{bmbm},#{tbsj})
+		#{yhlc},#{xmnf},#{xmzt},#{yhnr},#{bz},#{tbbmbm},#{tbsj})
 </insert>
  
 </mapper>
