@@ -40,4 +40,23 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		return queryList("selectWqgzYbByJhid",gcglwqgz);
 	}
 
+	@Override
+	public Boolean updateWqgzYb(Gcglwqgz gcglwqgz) {
+		if(insert("updateWqgzYb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteWqgzYb(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		if(delete("deleteWqgzYb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

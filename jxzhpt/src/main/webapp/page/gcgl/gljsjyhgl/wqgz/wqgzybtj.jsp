@@ -17,7 +17,7 @@
 	var sbyf;
 	$(function(){
 			var myDate = new Date();
-			var y = myDate.getYear();
+			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 			var d = myDate.getDate();
 			sbsj = y+"-"+m+"-"+d;
@@ -148,7 +148,7 @@ a:active {
                         <tr style="height: 30px;">
                             <td align="center">
                                 <img src="${pageContext.request.contextPath}/images/Button/baocun1.gif" id="Img1" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" style="cursor: hand" onclick="tjwqgzyb();" />
-                                <img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" id="Img2" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" onclick="closes('wqxx')" style="cursor: hand" />
+                                <img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" id="Img2" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" onclick="closes('wqxxtj')" style="cursor: hand" />
                             </td>
                         </tr>
                     </table>

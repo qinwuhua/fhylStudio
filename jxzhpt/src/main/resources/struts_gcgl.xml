@@ -5,6 +5,8 @@
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
 	<action name="insertWqgzYb" class="gcglwqgzController" method="insertWqgzYb"/>
 	<action name="selectWqgzYbByJhid" class="gcglwqgzController" method="selectWqgzYbByJhid"/>
+	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
+	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
 	
  </package>
 </struts>

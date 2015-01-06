@@ -31,4 +31,11 @@
 	<select id="queryYbByYf" parameterType="gcglwqgz" resultType="gcglwqgz">
 		select * from GCGL_WQGZ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
+	<update id="updateWqgzYb" parameterType="gcglwqgz">
+		update GCGL_WQGZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},wcqk=#{wcqk}
+		where id=#{id} and jhid=#{jhid}
+	</update>
+	<delete id="deleteWqgzYb" parameterType="gcglwqgz">
+		delete from GCGL_WQGZ where id=#{id}
+	</delete>
 </mapper>
