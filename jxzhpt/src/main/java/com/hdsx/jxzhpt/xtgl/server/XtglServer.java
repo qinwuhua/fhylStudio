@@ -100,4 +100,8 @@ public interface XtglServer {
 
 	Param selectTsdqById(Param param);
 
+	List<TreeNode> selAllBm(String yhdw);
+
+	List<TreeNode> selAllBm2(String yhdw);
+
 }

@@ -333,4 +333,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public Param selectTsdqById(Param param) {
 		return queryOne("selectTsdqById", param);
 	}
+
+	@Override
+	public List<TreeNode> selAllBm(String yhdw) {
+		return queryList("selAllBm", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllBm2(String yhdw) {
+		return queryList("selAllBm2", yhdw);
+	}
 }

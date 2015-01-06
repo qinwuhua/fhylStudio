@@ -45,7 +45,8 @@ function save(){
 	});
 }
 $(function(){
-	loadDist2("xzqhdm","360000");
+	//loadDist2("xzqhdm","360000");
+	loadUnit("xzqhdm","11101360000");
 	$("#id").val(parent.YMLib.Var.ID);
 	$("#name").val(parent.YMLib.Var.name);
 	$.ajax({

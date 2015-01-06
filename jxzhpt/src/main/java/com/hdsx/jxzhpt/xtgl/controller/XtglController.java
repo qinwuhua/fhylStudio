@@ -650,6 +650,26 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void selAllBm(){
+		try {
+            List<TreeNode> l=xtglServer.selAllBm(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllBm2(){
+		try {
+            List<TreeNode> l=xtglServer.selAllBm2(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}

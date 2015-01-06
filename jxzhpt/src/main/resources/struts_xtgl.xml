@@ -46,6 +46,8 @@
 	<action name="deleteTsdqById" class="xtglController" method="deleteTsdqById"></action>
 	<action name="selectTsdqById" class="xtglController" method="selectTsdqById"></action>
 	
+	<action name="selAllBm" class="xtglController" method="selAllBm"></action>
+	<action name="selAllBm2" class="xtglController" method="selAllBm2"></action>
 	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
  </package>
 </struts>
