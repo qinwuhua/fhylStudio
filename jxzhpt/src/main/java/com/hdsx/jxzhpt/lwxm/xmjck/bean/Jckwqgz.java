@@ -39,16 +39,15 @@ public class Jckwqgz implements Serializable{
 	private String pty;
 	private String xmnf;
 	private String xmtype;
-	private Integer sbzt;
+	private String sbzt;
 	private Date sbsj;
 	private String sbbm;
-	private Integer shzt;
+	private String shzt;
 	private Date shsj;
 	private String shbm;
 	
 	private int page;
 	private int rows;
-	
 	public String getId() {
 		return id;
 	}
@@ -217,10 +216,10 @@ public class Jckwqgz implements Serializable{
 	public void setXmtype(String xmtype) {
 		this.xmtype = xmtype;
 	}
-	public Integer getSbzt() {
+	public String getSbzt() {
 		return sbzt;
 	}
-	public void setSbzt(Integer sbzt) {
+	public void setSbzt(String sbzt) {
 		this.sbzt = sbzt;
 	}
 	public Date getSbsj() {
@@ -235,10 +234,10 @@ public class Jckwqgz implements Serializable{
 	public void setSbbm(String sbbm) {
 		this.sbbm = sbbm;
 	}
-	public Integer getShzt() {
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(Integer shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public Date getShsj() {
