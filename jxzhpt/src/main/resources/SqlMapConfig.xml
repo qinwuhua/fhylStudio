@@ -12,6 +12,8 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Param" alias="param"/>
      <!-- qwh begin -->
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglabgc" alias="gcglabgc"/>
+     <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz" alias="gcglzhfz"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
@@ -45,6 +47,8 @@
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
 	<!-- qwh begin -->
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglwqgz.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglabgc.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglzhfz.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckabgc.xml"/>

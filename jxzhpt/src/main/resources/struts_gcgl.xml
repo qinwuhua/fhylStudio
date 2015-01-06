@@ -9,5 +9,12 @@
 	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
 	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
 	
+	
+	<!-- abgc -->
+	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
+	<action name="selectAbgcYbByJhid" class="gcglabgcController" method="selectAbgcYbByJhid"/>
+	<action name="updateAbgcYb" class="gcglabgcController" method="updateAbgcYb"/>
+	<action name="deleteAbgcYb" class="gcglabgcController" method="deleteAbgcYb"/>
+	<action name="shAbgcYb" class="gcglabgcController" method="shAbgcYb"/>
  </package>
 </struts>
