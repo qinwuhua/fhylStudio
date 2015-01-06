@@ -17,24 +17,23 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
+function openJsUpdate(_id,_name){
 	YMLib.Var.ID=_id;
+	YMLib.Var.name=_name;
 	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',560,250);
 }
-function deleteJs(_id){
+function deleteTsdq(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
 		if (r){
 			$.ajax({
 				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
+				 url : "../../xtgl/deleteTsdqById.do",
 				 dataType : 'json',
 				 data : 'param.id=' +_id,
 				 success : function(msg){
 					 if(msg){
 						 YMLib.Tools.Show('删除成功！',3000);
 						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
 					 }
 				 },
 				 error : function(){
@@ -65,7 +64,7 @@ function updateZt(_id,_zt){
 }
 
 $(function(){
-	
+	loadDist2("xzqhdm","360000");
 	$("#jsgl_table").datagrid({
 		border : false,
 		fit : true,
@@ -82,7 +81,7 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
+				return '<input onclick=openJsUpdate("'+rec.id+'","'+rec.name+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
 			}
 		},{
 			field : 'state',
@@ -116,12 +115,13 @@ $(function(){
 		]],toolbar : [{
 			text : '删除',
 			handler : function(){
-				var rows = $('#xmgl_table').datagrid('getSelections');
-				var _id=rows[0].id;
+				var rows = $('#jsgl_table').datagrid('getSelections');
+				var _id="('"+rows[0].id;
 				for(var i=1;i<rows.length;i++){
 					_id+="','"+rows[i].id;
 				}
-				deleteJs(_id);
+				_id+="')";
+				deleteTsdq(_id);
 			}
 		},{
 			text : '添加',

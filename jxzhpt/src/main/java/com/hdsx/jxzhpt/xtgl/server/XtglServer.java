@@ -96,4 +96,8 @@ public interface XtglServer {
 
 	boolean insertTsdq(Param param);
 
+	boolean deleteTsdqById(Param param);
+
+	Param selectTsdqById(Param param);
+
 }

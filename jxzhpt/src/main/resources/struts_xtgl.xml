@@ -43,6 +43,8 @@
 	<action name="selAllTsdq" class="xtglController" method="selAllTsdq"></action>
 	<action name="selAllTsdq2" class="xtglController" method="selAllTsdq2"></action>
 	<action name="insertTsdq" class="xtglController" method="insertTsdq"></action>
+	<action name="deleteTsdqById" class="xtglController" method="deleteTsdqById"></action>
+	<action name="selectTsdqById" class="xtglController" method="selectTsdqById"></action>
 	
 	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
  </package>

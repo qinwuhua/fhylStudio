@@ -632,6 +632,24 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void deleteTsdqById(){
+		boolean bl=xtglServer.deleteTsdqById(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void selectTsdqById(){
+		Param p=xtglServer.selectTsdqById(param);
+		try {
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}
