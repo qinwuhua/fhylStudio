@@ -1,11 +1,14 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
+import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -23,7 +26,6 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private Jckabgc jckabgc=new Jckabgc();
 	
 	public void insertAbgc(){
-		System.out.println("@#@#@#@#@##@#@#@#@#@#"+jckabgc);
 		boolean b = abgcServer.insertAbgc(jckabgc);
 		if(b){
 			ResponseUtils.write(getresponse(), "true");
@@ -31,7 +33,30 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-
+	public void selectAbgc(){
+		List<Jckabgc> abgcList = abgcServer.selectAbgcList();
+		try {
+			JsonUtils.write(abgcList, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void selectAbgcById(){
+		try {
+			JsonUtils.write(abgcServer.selectAbgcById(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//自动填充LXMC
+	public void selectGpsroad(){
+		System.out.println("@#@#@#@#@#@##@#@#@##@#@"+jckabgc.getLxbm());
+		try {
+			JsonUtils.write(abgcServer.selectGpsroad(jckabgc), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Jckabgc getJckabgc() {
 		return jckabgc;
@@ -44,7 +69,6 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 
 	@Override
 	public Jckabgc getModel() {
-		// TODO Auto-generated method stub
 		return jckabgc;
 	}
 	

@@ -15,16 +15,7 @@
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#save_button").click(function(){
-			$.messager.alert('提示','修改成功！','info');    
-		});
-		$("#qx_window").click(function(){
-			parent.$('#jck_xg').window('destroy');
-		});	
-	});
-</script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <style type="text/css">
 TD {
 font-size: 12px;
@@ -35,73 +26,144 @@ text-decoration:none;
 </style>
 </head>
 <body>
+<script type="text/javascript">
+	$(function(){
+		$("#gydw").combotree({
+			checkbox: false,
+		 	url: "../js/gydw.json",
+		 	onClick:function(node){
+		        $("#gydw").val(node.text);
+		    	 }
+		});
+		$("#xzqhmc").combotree({
+			checkbox: false,
+		 	url: "../js/xzqh.json",
+		 	onClick:function(node){
+		        $("#xzqhmc").val(node.text);
+		    	 }
+		});
+		selAbgcById();
+		$("#save_button").click(function(){
+			var data ="id="+parent.rowid+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+1101+"&qdzh="+$("#qdzh").val()
+			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#qzlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
+			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
+			alert(data);
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmjck/updateAbgc.do',
+		        data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						alert("保存成功！");
+						parent.$('#jck_add').window('destroy');	
+					}else{
+						alert('保存失败！');
+					}
+				}
+			});
+			
+		});
+		$("#qx_window").click(function(){
+			parent.$('#jck_xg').window('destroy');
+		});	
+	});
+	function selAbgcById(){
+		$.ajax({
+			type : 'post',
+			url : '/jxzhpt/xmjck/selectAbgcById.do',
+			data :"id="+parent.rowid,
+			dataType:'json',
+			success : function(msg) {
+			$("#lxbm").val(msg.lxbm);
+			$("#lxmc").val(msg.lxmc);
+			$("#gydw").combotree('setValue',msg.gydw);
+			$("#gydw").val(msg.gydw);
+			$("#qdzh").val(msg.qdzh);
+			$("#zdzh").val(msg.zdzh);
+			$("#qzlc").val(msg.qzlc);
+			$("#xzqhdm").val(msg.xzqhdm);
+			$("#xzqhmc").combotree('setValue',msg.xzqhmc);
+			$("#xzqhmc").val(msg.xzqhmc);
+			$("#xjnd").val(msg.gjxjnd);
+			$("#lxjsdj").val(msg.lxjsdj);
+			$("#yhlc").val(msg.yhlc);
+			$("#xmnf").val(msg.xmnf);
+			$("#xmtype").val(msg.xmtype);
+			$("#yhnr").val(msg.yhnr);
+			$("#bz").val(msg.bz);
+			}
+		});
+	}		
+</script>
+
+
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px"value="X396360726" /></td>
+					<input type="text" name="lxbm" id="lxbm" style="width: 156px"/></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" id="clrq" name="clrq"  style="width: 156px"value="五星-沙潭" /></td>
+					<input type="text" id="lxmc" name="lxmc"  style="width: 156px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 156px" value="南昌市南昌县交通局"/></td>
+					<input  id="gydw" style="width: 156px"/></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px"value="1.545" /></td>
+					<input type="text" name="qdzh" id="qdzh" style="width: 156px"/></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" value="44"/></td>
+					<input type="text" name="zdzh"id="zdzh" style="width: 156px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 156px"value="42.455公里" />
-					<input type="text" id="pid" style="display:none"/></td>
+					<input  type="text" id="qzlc" style="width: 156px"/></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" value="0326" /></td>
+					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px"/></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" value="南昌市南昌县"/></td>
+					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 156px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="cc" style="width: 156px" value="南昌市南昌县"/></td>
+					<input  id="xjnd" style="width: 156px"/></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" value="四级"/></td>
+					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="name"id="name" style="width: 156px"value="10公里" /></td>
+					<input type="text" name="yhlc"id="yhlc" style="width: 156px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="tsdq">罗霄山山脉</span>
+					<span id="tsdq"></span>
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px"value="2013" /></td>
+					<input type="text" name="xmnf" id="xmnf" style="width: 156px"/></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" value="完工"/></td>
+					<input type="text" name="xmtype"id="xmtype" style="width: 156px" /></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2"  style="width:99%">无</textarea>
+					<textarea id="yhnr" rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2" style="width:99%">无</textarea>
+					<textarea id="bz" rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>

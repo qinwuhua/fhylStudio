@@ -4,6 +4,9 @@
 <struts>
 <package name="xmjck" extends="struts-default" namespace="/xmjck">
 	<action name="insertAbgc" class="jckabgcController" method="insertAbgc"/>
+	<action name="selectAbgc" class="jckabgcController" method="selectAbgc"/>
+	<action name="selectAbgcById" class="jckabgcController" method="selectAbgcById"/>
+	<action name="selectGpsroad" class="jckabgcController" method="selectGpsroad"/>
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
  </package>

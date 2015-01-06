@@ -9,54 +9,15 @@
 <title>基础库管理安保工程项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
+<script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#gydw").combotree({
-			checkbox: false,
-		 	url: "../js/gydw.json",
-		 	onClick:function(node){
-		        $("#gydw").val(node.text);
-		    	 }
-		});
-		$("#xzqhmc").combotree({
-			checkbox: false,
-		 	url: "../js/xzqh.json",
-		 	onClick:function(node){
-		        $("#xzqhmc").val(node.text);
-		    	 }
-		});
-		$("#save_button").click(function(){
-			var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+110+"&qdzh="+$("#qdzh").val()
-			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
-			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-			+"&tbbmbm="+"南昌市公路局";
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/xmjck/insertAbgc.do',
-		        data:data,
-				dataType:'json',
-				success:function(msg){
-					if(Boolean(msg)){
-						$.messager.alert('提示','保存成功！','info'); 
-						parent.$('#jck_add').window('destroy');
-					}else{
-						alert('保存失败！');
-					}
-				}
-			});
-			
-		});
-		$("#qx_window").click(function(){
-			parent.$('#jck_add').window('destroy');
-		});	
-	});
-</script>
+
 <style type="text/css">
 TD {
 font-size: 12px;
@@ -67,6 +28,89 @@ text-decoration:none;
 </style>
 </head>
 <body>
+<script type="text/javascript">
+	$(function(){
+		$("#xzqhmc").combotree({
+			checkbox: false,
+		 	url: "../js/xzqh.json",
+		 	onClick:function(node){
+		        $("#xzqhmc").val(node.text);
+		    	 }
+		});
+		$("#save_button").click(function(){
+			var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
+			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
+			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
+			+"&tbbmbm="+"南昌市公路局";
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmjck/insertAbgc.do',
+		        data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						alert("保存成功！");
+						parent.$('#jck_add').window('destroy');	
+					}else{
+						alert('保存失败！');
+					}
+				}
+			});
+		});
+		$("#qx_window").click(function(){
+			parent.$('#jck_add').window('destroy');
+		});	
+		autoCompleteLXBM();
+	});
+	function autoCompleteLXBM(){
+		var url = "/jxzhpt/xmjck/selectGpsroad.do";
+		$("#lxbm").autocomplete(url, {
+			multiple : false,
+			minChars :2,
+			multipleSeparator : ' ',
+			mustMatch: true,
+	  		cacheLength : 0,
+	  		delay : 200,
+	  		max : 50,
+	  		extraParams : {
+	  			/*dist:$.cookie("dist"),*/
+	  			lxbm:function() {
+	  				var d = $("#lxbm").val();
+	  				return d;
+	  			}
+	  		},
+	  		dataType : 'json',// 返回类型
+	  		// 对返回的json对象进行解析函数，函数返回一个数组
+	  		parse : function(data) {
+	  			var aa = [];
+	  			aa = $.map(eval(data), function(row) {
+	  					return {
+	  						data : row,
+	  						value : row.lxbm.replace(/(\s*$)/g,""),
+	  						result : row.lxbm.replace(/(\s*$)/g,"")
+	  					};
+	  				});
+	  			return aa;
+	  		},
+	  		formatItem : function(row, i, max) {
+	  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  		}
+	  	}).result(
+				function(e, item) {
+
+					if(item==undefined) return ;
+					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm").attr("value",'');
+					$("#lxmc").val(item.lxmc);
+					$("#qdzh").val(item.qdzh);
+					$("#zdzh").val(item.zdzh);
+					$("#xjnd").val(item.gjxjnd);
+					$("#lxjsdj").val(item.lxjsdj);
+					$("#zlc").val(item.qzlc);
+					$("#gydw").val(item.gydw);
+					$("#gydwbm").val(item.gydwbm);
+				});
+	}
+</script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr>
@@ -76,10 +120,10 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input  id="gydw" style="width: 160px" />
-					<input type="text" id="pid" style="display:none"/></td>
+					<input type="text" id="gydwbm" style="display:none"/></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>

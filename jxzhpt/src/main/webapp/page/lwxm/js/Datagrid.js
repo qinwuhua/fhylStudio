@@ -31,39 +31,9 @@ function jckglWqgz(){
 	    ]]    
 	});  
 }
-function jckglAbgc(){
-	$("#grid").datagrid({    
-		 url:"../js/lwxm2.json",
-		    striped:true,
-		    pagination:true,
-		    rownumbers:true,
-		    pageNumber:1,
-		    pageSize:10,
-		    height:325,
-		    width:1100,
-	    columns:[[    
-			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-				'<a href="javascript:ckJck('+"'abgc_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-				'<a href="javascript:xgJck('+"'abgc_xg.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-				'<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">删除</a>';
-			}},    
-	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
-	        {field:'gydw',title:'管养单位',width:160,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbh',title:'路线编号',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:140,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:140,align:'center'},
-	        {field:'qzlc',title:'起止里程',width:140,align:'center'},
-	        {field:'zlc',title:'总里程',width:140,align:'center'},
-	        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
-	        {field:'xjnd',title:'改建/修建年度',width:140,align:'center'},
-	        {field:'xmnf',title:'项目年份',width:140,align:'center'}
-	    ]]    
-	});  
-}
+
+
+
 function jckglZhfz(){
 	$("#grid").datagrid({    
 		 url:"../js/lwxm3.json",

@@ -7,4 +7,24 @@
 		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate)
 </insert>
  
+ <select id="selectJckabgc" resultType="jckabgc">
+ 	select * from xmk_abgc
+ </select>
+ <select id="selectJckabgcById" parameterType="jckabgc" resultType="jckabgc">
+ 	select * from xmk_abgc where id=#{id}
+ </select>
+ <update id="updateJckabgc" parameterType="jckabgc" >
+ 	update xmk_abgc set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},gydwbm=#{gydwbm},qdzh=#{qdzh},zdzh=#{zdzh},
+ 	qzlc=#{qzlc},xzqhdm=#{xzqhdm}gjxjnd,=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
+ 	yhnr=#{yhnr},bz=#{bz} where id=#{id}
+ </update>
+ 
+  <select id="selectGpsroad"  parameterType="hashmap" resultType="jckabgc">
+ 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
+ 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,5)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
+ 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	group by roadname,roadcode,F114,F044,F045
+  	order by roadcode,min(roadstart)
+ </select>
+ 
 </mapper>
