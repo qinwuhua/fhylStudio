@@ -13,7 +13,12 @@
 	<action name="selectGpsroad" class="jckabgcController" method="selectGpsroad"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
-	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
+	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
+	<action name="selectWqgzById" class="jckwqgzController" method="selectWqgzById"/>
+	<action name="updateWqgzById" class="jckwqgzController" method="updateWqgzById"/>
+	<action name="deleteWqgzById" class="jckwqgzController" method="deleteWqgzById"/>
+	<action name="xgJckWqgzShzt" class="jckwqgzController" method="xgJckWqgzShzt"/>
+	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>

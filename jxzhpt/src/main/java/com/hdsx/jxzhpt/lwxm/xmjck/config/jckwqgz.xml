@@ -2,9 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckwqgz">
 <insert id="insertJckwqgz"  parameterType="jckwqgz">
-	insert into xmk_zhfz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,gydwdm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype)
-		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},#{gydwbm},#{gydwdm},#{xjgjnd},#{jsdj},#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},
-		#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype})
+	insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt) 
+		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},#{gydwbm},#{xjgjnd},#{jsdj},
+		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
+		sysdate,'未上报','未审核')
 </insert>
+
+ <select id="selectJckwqgz" resultType="jckwqgz">
+ 	select * from xmk_wqgz
+ </select>
+ <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
+ 	select * from xmk_wqgz where id=#{id}
+ </select>
+ <update id="updateJckwqgz" parameterType="jckwqgz">
+ 	update xmk_wqgz set qlmc=#{qlmc},qlbh=#{qlbh},xzqhmc=#{xzqhmc},xzqhdm=#{xzqhdm},lxmc=#{lxmc},lxbm=#{lxbm},
+ 		gydw=#{gydw},gydwbm=#{gydwbm},xjgjnd=#{xjgjnd},jsdj=#{jsdj},pddj=#{pddj},qlzxzh=#{qlzxzh},qlkd=#{qlkd},qlqc=#{qlqc},
+ 		kjzc=#{kjzc},dkzdkj=#{dkzdkj},akjfl=#{akjfl},sbjgxs=#{sbjgxs},bhnr=#{bhnr},bz=#{bz},xmnf=#{xmnf},xmtype=#{xmtype}
+ 		where id=#{id}
+ </update>
+ <update id="xgJckWqgzShzt" parameterType="jckwqgz" >
+ 	update xmk_wqgz set shzt='已审核' where id=#{id}
+ </update>
  
+  <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
+ 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
+ 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
+ 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	group by roadname,roadcode,F114,F044,F045
+  	order by roadcode,min(roadstart)
+ </select>
+ 
+ <delete id="deleteJckWqgz" parameterType="String" >
+ 	delete from xmk_wqgz where id in #{delstr}
+ </delete>
 </mapper>
