@@ -1,0 +1,9 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+	<package name="jhgl" extends="struts-default" namespace="/jhgl">
+		<action name="queryGcgjList" class="plan_gcgjController" method="queryGcgjList"/>
+		<action name="queryGcgjById" class="plan_gcgjController" method="queryGcgjById"/>
+	 </package>
+</struts>

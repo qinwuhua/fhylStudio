@@ -1,3 +1,4 @@
+var gridObj;
 //工程路面升级
 function gclmsjxm(){
 	var grid={id:'grdab',url:'../js/gclmsjxm.json',striped:true,pagination:true,
@@ -116,45 +117,7 @@ function gclmsjxm_zjxd(){
 	};
 	gridBind(grid);
 }
-//工程路面改建
-function gclmgjxm(){
-	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,width:990,
-		columns:[[
-		    {field:'ck',checkbox:true},
-		    {field : 'c',title : '操作',width : 150,align : 'center',
-		    	formatter : function(value, row, index) {
-		    		var result='<a>定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;">详细</a>    ';
-		    		result+='编辑    ' + '删除';
-		    		return result;
-		    	}
-		    },
-		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
-				formatter : function(value, row, index) {
-					return '计划状态';
-				}
-		    },
-		    {field : 'c5',title : '资金追加',width : 80,align : 'center',
-				formatter : function(value, row, index) {
-					return '资金追加';
-				}
-		    },
-		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
-		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
-		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
-		    {field : 'gydw',title : '管养单位',width : 150,align : 'center'},
-		    {field : 'xzqhmc',title : '行政区划名称',width : 100,align : 'center'},
-		    {field : 'lxbm',title : '路线编码',width : 80,align : 'center'},
-		    {field : 'lxmc',title : '路线名称',width : 80,align : 'center'},
-		    {field : 'qdzh',title : '起点桩号',width : 60,align : 'center'},
-		    {field : 'zdzh',title : '止点桩号',width : 60,align : 'center'},
-		    {field : 'yhlc',title : '隐患里程',width : 60,align : 'center'},
-		    {field:'pfztz',title:'批复总投资',width:80,align:'center'}
-		]]
-	};
-	gridBind(grid);
-}
+
 //工程路面改建——计划上报
 function gclmgjxm_sb(){
 	var grid = {id : 'grid',url : '../js/gclmgjxm.json',pagination : true,rownumbers:false,
@@ -910,10 +873,12 @@ function zbglxm_zjxd(){
  * pageSize：初始化页面大小
  * height:初始化高度
  * columns：数据
+ * queryParams:参数
  */
 function gridBind(grid){
-	$('#'+grid.id).datagrid({
+	gridObj = $('#'+grid.id).datagrid({
 	    url:grid.url,
+	    queryParams:grid.queryParams,
 	    striped:grid.striped,
 	    pagination:grid.pagination,
 	    rownumbers:grid.rownumbers,

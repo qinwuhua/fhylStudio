@@ -33,8 +33,9 @@ $(function(){
 	
 		    </div>
 		     <div id="left_menu4" title="项目计划资金下达" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
-		     
-		    </div>
+		     </div>
+		     <div id="left_menu5" title="计划查询" data-options="iconCls:'icon-note'" style="overflow:auto;text-align: center;">
+		     </div>
 		</div>
     </div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden;">
