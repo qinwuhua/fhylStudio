@@ -18,6 +18,8 @@
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz" alias="jckwqgz"/>
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz" alias="jckzhfz"/>
      <!-- lhp -->
   </typeAliases>
   <environments default="jdbc">
@@ -54,6 +56,8 @@
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckabgc.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckwqgz.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckzhfz.xml"/>
 	<!-- lhp -->
   </mappers>
 </configuration>

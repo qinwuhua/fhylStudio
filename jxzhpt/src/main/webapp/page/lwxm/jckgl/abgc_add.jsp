@@ -49,8 +49,10 @@ text-decoration:none;
 				dataType:'json',
 				success:function(msg){
 					if(Boolean(msg)){
+						parent.$("#grid").datagrid('reload');
 						alert("保存成功！");
-						parent.$('#jck_add').window('destroy');	
+						parent.$('#jck_add').window('destroy');
+						
 					}else{
 						alert('保存失败！');
 					}
@@ -162,10 +164,25 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmnf" id="xmnf" style="width: 156px" /></td>
+					<select id="xmnf">
+						<option value="">---请选择---</option>
+						<option value="2015年">2015年</option>
+						<option value="2014年">2014年</option>
+						<option value="2013年">2013年</option>
+						<option value="2012年">2012年</option>
+						<option value="2011年">2011年</option>
+						<option value="2010年">2010年</option>
+					</select>
+					</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmzt"id="xmzt" style="width: 156px" /></td>
+					<select id="xmzt">
+						<option value="未上报">未上报</option>
+						<option value="已上报">已上报</option>
+						<option value="已入库">已入库</option>
+						<option value="已下达">已下达</option>
+					</select>	
+				</td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>

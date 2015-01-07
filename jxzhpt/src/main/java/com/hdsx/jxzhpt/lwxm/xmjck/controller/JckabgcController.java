@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	@Resource(name="jckabgcServerImpl")
 	private JckabgcServer abgcServer;
 	private Jckabgc jckabgc=new Jckabgc();
-	
+	private String delstr;
 	public void insertAbgc(){
 		boolean b = abgcServer.insertAbgc(jckabgc);
 		if(b){
@@ -48,9 +49,29 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void updateAbgcById(){
+		try {
+			JsonUtils.write(abgcServer.updateAbgcById(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteAbgcById(){
+		try {
+			JsonUtils.write(abgcServer.deleteAbgcById(delstr),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void xgJckAbgcShzt(){
+		try {
+			JsonUtils.write(abgcServer.xgJckAbgcShzt(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//自动填充LXMC
 	public void selectGpsroad(){
-		System.out.println("@#@#@#@#@#@##@#@#@##@#@"+jckabgc.getLxbm());
 		try {
 			JsonUtils.write(abgcServer.selectGpsroad(jckabgc), getresponse().getWriter());
 		} catch (Exception e) {
@@ -61,12 +82,16 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	public Jckabgc getJckabgc() {
 		return jckabgc;
 	}
-
 	public void setJckabgc(Jckabgc jckabgc) {
 		this.jckabgc = jckabgc;
 	}
-
-
+	
+	public String getDelstr() {
+		return delstr;
+	}
+	public void setDelstr(String delstr) {
+		this.delstr = delstr;
+	}
 	@Override
 	public Jckabgc getModel() {
 		return jckabgc;
