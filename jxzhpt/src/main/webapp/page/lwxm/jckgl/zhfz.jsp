@@ -28,6 +28,100 @@ $(function(){
 	 	url: "../js/xzqh.json",
 	});
 });
+	function jckglZhfz(){
+		$("#grid").datagrid({    
+			 url:'/jxzhpt/xmjck/selectZhfz.do',
+			    striped:true,
+			    pagination:true,
+			    rownumbers:true,
+			    pageNumber:1,
+			    pageSize:10,
+			    height:325,
+			    width:1100,
+		    columns:[[    
+				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
+				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+					if(row.shzt=="未审核"){
+						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+						'<a href=javascript:delJckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
+					}else{
+						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<span style="color:grey;">编辑</span>  '+
+						'<span style="color:grey;">删除</span>';
+					}
+				}},    
+				{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
+					if(row.shzt=="未审核"){
+					return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					}else{
+						return '<span style="color:grey;">已审核</span>';
+					}
+				}},
+		        {field:'gydw',title:'管养单位',width:160,align:'center'},
+		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+		        {field:'lxbm',title:'路线编号',width:120,align:'center'},
+		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+		        {field:'qdzh',title:'起点桩号',width:140,align:'center'},
+		        {field:'zdzh',title:'止点桩号',width:140,align:'center'},
+		        {field:'qzlc',title:'起止里程',width:140,align:'center'},
+		        {field:'qzlc',title:'总里程',width:140,align:'center'},
+		        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
+		        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
+		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+		    ]]    
+		});  
+	}
+
+function delJckzhfz(){
+	var rows=$('#grid').datagrid('getSelections');
+	var id=rows[0].id;
+	for(var i=1;i<rows.length;i++){
+		id+="','"+rows[i].id ;
+	}
+	if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/deleteZhfzById.do",
+				 dataType : 'json',
+				 data : 'delstr=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+}
+function xgShzt(id){
+	if(confirm('您是否上报该项目！')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgJckZhfzShzt.do",
+				 dataType : 'json',
+				 data : 'id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('上报成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('上报失败,请选择要上报项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
 </script>
 <style type="text/css">
 TD {
@@ -39,6 +133,8 @@ text-decoration:none;
 </style>
 </head>
 <body>
+		
+
 	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
 		<tr><td>
 		<div id="righttop">
@@ -50,7 +146,7 @@ text-decoration:none;
 				<fieldset style="width:1080px;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
-					<div>
+				<div>
 					<p style="margin:8px 0px 4px 20px;">
 								<span>管养单位：</span>
                               	<select id="cc" style="width:218px">
@@ -117,23 +213,23 @@ text-decoration:none;
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
-								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
+								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importExcel();" style="border-width:0px;" />
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('abgc_add.jsp','900','400');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:return CheckSelect();" style="border-width:0px;" />
+                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('zhfz_add.jsp','900','400');" style="border-width:0px;" />
+                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:delJckzhfz();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 						</p>
 						</div>
-				</fieldset>
-			</td>
-		</tr>
-		<tr>
+					</fieldset>
+					</td>
+					</tr>
+			<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个灾害防治项目，
+        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个安保工程项目，
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
-        </tr>
-        <tr>
+       	 	</tr>
+        	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             			<table id="grid" width="100%" height="320px"></table>
             	</td>

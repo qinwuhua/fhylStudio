@@ -264,9 +264,6 @@ a:active {
                 <td align="center">
                     
                             <table  id="ybgrid">
-
-
-
         </table>
         <table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
             margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px;
@@ -279,8 +276,8 @@ a:active {
                                 <img id="imgAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'" onClick="AddInfo()" src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width:0px;cursor: hand;" />
                             </td>
                             <td>
-                                <a href="javascript:void(0)" onclick="window.close();">
-                                    <img onclick="closes('wqxx')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
+                                <a href="javascript:void(0)" >
+                                    <img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" style="border: 0" /></a>
                             </td>
                         </tr>

@@ -29,17 +29,16 @@ public class Jckabgc implements Serializable{
 	private Date tbsj;
 	private String xmnf;
 	private String xmtype;  //项目状态
-	private Integer sbzt;
+	private String sbzt;
 	private Date sbsj;
 	private String sbbm;
-	private Integer shzt;
+	private String shzt;
 	private Date shsj;
 	private String shbm;
 	private String bz;
 	
 	private int page;
 	private int rows;
-	
 	public String getId() {
 		return id;
 	}
@@ -154,10 +153,10 @@ public class Jckabgc implements Serializable{
 	public void setXmtype(String xmtype) {
 		this.xmtype = xmtype;
 	}
-	public Integer getSbzt() {
+	public String getSbzt() {
 		return sbzt;
 	}
-	public void setSbzt(Integer sbzt) {
+	public void setSbzt(String sbzt) {
 		this.sbzt = sbzt;
 	}
 	public Date getSbsj() {
@@ -172,10 +171,10 @@ public class Jckabgc implements Serializable{
 	public void setSbbm(String sbbm) {
 		this.sbbm = sbbm;
 	}
-	public Integer getShzt() {
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(Integer shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public Date getShsj() {
@@ -210,16 +209,16 @@ public class Jckabgc implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Abgc [id=" + id + ", gydwdm=" + gydwdm + ", gydwbm=" + gydwbm
-				+ ", gydw=" + gydw + ", xzqhdm=" + xzqhdm + ", xzqhmc="
-				+ xzqhmc + ", lxjsdj=" + lxjsdj + ", lxbm=" + lxbm + ", lxmc="
-				+ lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", qzlc=" + qzlc
-				+ ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd + ", yhnr=" + yhnr
-				+ ", tbbmbm=" + tbbmbm + ", tbsj=" + tbsj + ", xmnf=" + xmnf
-				+ ", xmtype=" + xmtype + ", sbzt=" + sbzt + ", sbsj=" + sbsj
-				+ ", sbbm=" + sbbm + ", shzt=" + shzt + ", shsj=" + shsj
-				+ ", shbm=" + shbm + ", bz=" + bz + ", page=" + page
-				+ ", rows=" + rows + "]";
+		return "Jckabgc [id=" + id + ", gydwdm=" + gydwdm + ", gydwbm="
+				+ gydwbm + ", gydw=" + gydw + ", xzqhdm=" + xzqhdm
+				+ ", xzqhmc=" + xzqhmc + ", lxjsdj=" + lxjsdj + ", lxbm="
+				+ lxbm + ", lxmc=" + lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh
+				+ ", qzlc=" + qzlc + ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd
+				+ ", yhnr=" + yhnr + ", tbbmbm=" + tbbmbm + ", tbsj=" + tbsj
+				+ ", xmnf=" + xmnf + ", xmtype=" + xmtype + ", sbzt=" + sbzt
+				+ ", sbsj=" + sbsj + ", sbbm=" + sbbm + ", shzt=" + shzt
+				+ ", shsj=" + shsj + ", shbm=" + shbm + ", bz=" + bz
+				+ ", page=" + page + ", rows=" + rows + "]";
 	}
 	
 }

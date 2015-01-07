@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.gcglyhdzx">
+
+	<select id="selectYhdzxYbByJhid" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+		select * from (
+		select m.*,rownum rn from (
+			select * from GCGL_YHDZX 
+			where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		order by sbyf desc
+	</select>
+	<select id="selectYhdzxYbByJhidCount" parameterType="gcglyhdzx" resultType="int">
+		select count(*) from GCGL_YHDZX 
+		where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+	</select>
+	<!-- 添加月报 -->
+	<insert id="insertYhdzxYb" parameterType="gcglyhdzx">
+		insert into GCGL_YHDZX(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk})
+	</insert>
+	<select id="queryYbByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+		select * from GCGL_YHDZX where sbyf=#{sbyf} and jhid=#{jhid}
+	</select>
+	<!-- 修改月报 -->
+	<update id="updateYhdzxYb" parameterType="gcglyhdzx">
+		update GCGL_YHDZX set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm}
+		where id=#{id} and jhid=#{jhid}
+	</update>
+	<!-- 删除月报 -->
+	<delete id="deleteYhdzxYb" parameterType="gcglyhdzx">
+		delete from GCGL_YHDZX where id=#{id}
+	</delete>
+	<!-- 审核月报 -->
+	<update id="shYhdzxYb" parameterType="gcglyhdzx">
+		update GCGL_YHDZX set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
+		where id=#{id} and jhid=#{jhid}
+	</update>
+</mapper>

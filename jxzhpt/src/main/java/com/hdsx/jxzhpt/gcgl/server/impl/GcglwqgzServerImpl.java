@@ -20,7 +20,7 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		if(gcglwqgz1!=null){
 			return false;
 		}
-		gcglwqgz.setShzt(0);
+		gcglwqgz.setShzt("未审核");
 		if(insert("insertWqgzYb", gcglwqgz)>0){
 			return true;
 		}else{
@@ -38,6 +38,35 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 	public List<Gcglwqgz> selectWqgzYbByJhid(Gcglwqgz gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzYbByJhid",gcglwqgz);
+	}
+
+	@Override
+	public Boolean updateWqgzYb(Gcglwqgz gcglwqgz) {
+		if(insert("updateWqgzYb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteWqgzYb(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		if(delete("deleteWqgzYb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean shwqgzyb(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		if(update("shwqgzyb", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

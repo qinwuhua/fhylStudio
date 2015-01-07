@@ -96,4 +96,12 @@ public interface XtglServer {
 
 	boolean insertTsdq(Param param);
 
+	boolean deleteTsdqById(Param param);
+
+	Param selectTsdqById(Param param);
+
+	List<TreeNode> selAllBm(String yhdw);
+
+	List<TreeNode> selAllBm2(String yhdw);
+
 }

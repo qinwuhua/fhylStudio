@@ -1,5 +1,8 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -15,6 +18,41 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public boolean insertAbgc(Jckabgc jckabgc) {
 		if(insert("insertJckabgc",jckabgc)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public List<Jckabgc> selectAbgcList() {
+		return queryList("selectJckabgc");
+	}
+
+	@Override
+	public Jckabgc selectAbgcById(Jckabgc abgc) {
+		return queryOne("selectJckabgcById", abgc);
+	}
+
+	@Override
+	public boolean updateAbgcById(Jckabgc abgc) {
+		if(update("updateJckabgc", abgc)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public List<Jckabgc> selectGpsroad(Jckabgc abgc) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("lxbm", abgc.getLxbm());
+		return queryList("selectGpsroad", hm);
+	}
+
+	@Override
+	public boolean deleteAbgcById(String delstr) {
+		if(delete("deleteJckAbgc", delstr)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean xgJckAbgcShzt(Jckabgc abgc) {
+		if(update("xgJckAbgcShzt", abgc)>0) return true;
 		else return false;
 	}
 

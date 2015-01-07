@@ -5,6 +5,32 @@
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
 	<action name="insertWqgzYb" class="gcglwqgzController" method="insertWqgzYb"/>
 	<action name="selectWqgzYbByJhid" class="gcglwqgzController" method="selectWqgzYbByJhid"/>
+	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
+	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
+	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
+	
+	
+	<!-- abgc -->
+	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
+	<action name="selectAbgcYbByJhid" class="gcglabgcController" method="selectAbgcYbByJhid"/>
+	<action name="updateAbgcYb" class="gcglabgcController" method="updateAbgcYb"/>
+	<action name="deleteAbgcYb" class="gcglabgcController" method="deleteAbgcYb"/>
+	<action name="shAbgcYb" class="gcglabgcController" method="shAbgcYb"/>
+	
+	<!-- zhfz -->
+	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>
+	<action name="selectZhfzYbByJhid" class="gcglzhfzController" method="selectZhfzYbByJhid"/>
+	<action name="deleteZhfzYb" class="gcglzhfzController" method="deleteZhfzYb"/>
+	<action name="updateZhfzYb" class="gcglzhfzController" method="updateZhfzYb"/>
+	<action name="shZhfzYb" class="gcglzhfzController" method="shZhfzYb"/>
+	
+	<!-- yhdzx -->
+	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
+	<action name="updateYhdzxYb" class="gcglyhdzxController" method="updateYhdzxYb"/>
+	<action name="selectYhdzxYbByJhid" class="gcglyhdzxController" method="selectYhdzxYbByJhid"/>
+	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
+	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
+
 	
  </package>
 </struts>

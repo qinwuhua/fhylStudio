@@ -817,3 +817,18 @@ function loadDist2(id,dwbm){
 	   });
 	//$('#'+id).combotree('setValue',dwbm);
 }
+
+/*
+ * 加载部门树
+ */
+function loadUnit(id,dwbm){
+	$('#'+id).combotree({
+		checkbox: false,
+	       url: '/jxzhpt/xtgl/selAllBm.do?yhdw='+dwbm,   
+	       onBeforeExpand:function(node,param){
+	      	 $('#'+id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="+node.id ;
+	       },
+	       onSelect:function(node){YMLib.Var.DistName=node.text}
+	   });
+	$('#'+id).combotree('setValue',dwbm);
+}

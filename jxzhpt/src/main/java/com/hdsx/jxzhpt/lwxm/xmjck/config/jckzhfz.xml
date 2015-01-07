@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdsx.jxzhpt.lwxm.xmjck">
+<mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gtdwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,xjgjnd,lxjsdj,yhlc,xmnf,xmzt,yhnr,bz,tbbmbm,tbsj)
-		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gtdwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{xjgjnd},#{lxjsdj},
-		#{yhlc},#{xmnf},#{xmzt},#{yhnr},#{bz},#{tbbmbm},#{tbsj})
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
+		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
 </insert>
  
+ <select id="selectJckzhfz" resultType="jckzhfz">
+ 	select * from xmk_zhfz
+ </select>
+ <select id="selectJckzhfzById" parameterType="jckzhfz" resultType="jckzhfz">
+ 	select * from xmk_zhfz where id=#{id}
+ </select>
+ <update id="updateJckzhfz" parameterType="jckzhfz" >
+ 	update xmk_zhfz set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},gydwbm=#{gydwbm},qdzh=#{qdzh},zdzh=#{zdzh},
+ 	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
+ 	yhnr=#{yhnr},bz=#{bz} where id=#{id}
+ </update>
+ <update id="xgJckzhfzShzt" parameterType="jckzhfz" >
+ 	update xmk_zhfz set shzt='已审核' where id=#{id}
+ </update>
+ 
+  <select id="selectGpsroad"  parameterType="hashmap" resultType="jckzhfz">
+ 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
+ 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
+ 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	group by roadname,roadcode,F114,F044,F045
+  	order by roadcode,min(roadstart)
+ </select>
+ 
+ <delete id="deleteJckzhfz" parameterType="String" >
+ 	delete from xmk_zhfz where id in #{delstr}
+ </delete>
 </mapper>

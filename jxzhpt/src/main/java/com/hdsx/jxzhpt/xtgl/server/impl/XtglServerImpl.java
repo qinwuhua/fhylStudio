@@ -318,4 +318,29 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			}else return false;
 		}else return false;
 	}
+
+	@Override
+	public boolean deleteTsdqById(Param param) {
+		if(delete("deleteTsdqById", param)>0){
+			if(delete("deleteTsdqList", param)>0){
+				return true;
+			}else return false;
+		}else return false;
+		
+	}
+
+	@Override
+	public Param selectTsdqById(Param param) {
+		return queryOne("selectTsdqById", param);
+	}
+
+	@Override
+	public List<TreeNode> selAllBm(String yhdw) {
+		return queryList("selAllBm", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllBm2(String yhdw) {
+		return queryList("selAllBm2", yhdw);
+	}
 }

@@ -21,7 +21,7 @@ public class Gcglwqgz implements Serializable {
 	private String sbyf;
 	private String sbsj;
 	private String sbbm;
-	private Integer shzt;
+	private String shzt;
 	private String shuser;
 	private Date shtime;
 	private String bywcmc;
@@ -87,10 +87,11 @@ public class Gcglwqgz implements Serializable {
 	public void setSbbm(String sbbm) {
 		this.sbbm = sbbm;
 	}
-	public Integer getShzt() {
+	
+	public String getShzt() {
 		return shzt;
 	}
-	public void setShzt(Integer shzt) {
+	public void setShzt(String shzt) {
 		this.shzt = shzt;
 	}
 	public String getShuser() {

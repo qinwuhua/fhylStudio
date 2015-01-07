@@ -183,4 +183,19 @@
 	<insert id="insertTsdqList" parameterType="hashmap">
 		insert into xtgl_xzqhtsdq (id,parent,xzqhdm,xzqh) values (SYS_GUID(),#{parent},#{xzqhdm},#{xzqh})
 	</insert>
+	<delete id="deleteTsdqById" parameterType="param">
+		delete from xtgl_tsdq where id in ${id}
+	</delete>
+	<delete id="deleteTsdqList" parameterType="param">
+		delete from xtgl_xzqhtsdq where parent in ${id}
+	</delete>
+	<select id="selectTsdqById" parameterType="param" resultType="param">
+		select * from xtgl_tsdq where id=#{id}
+	</select>
+	<select id="selAllBm" parameterType="String" resultType="treenode">
+	    select distinct x.id ,x.name text from xtgl_department x where  x.id = #{yhdw} order by id
+	</select>
+	<select id="selAllBm2" parameterType="String" resultType="treenode">
+	  select  distinct x.id , x.name text from xtgl_department x where  x.parent = #{yhdw} order by id
+	</select>
 </mapper>

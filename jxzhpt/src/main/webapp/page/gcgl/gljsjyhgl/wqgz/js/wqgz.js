@@ -1,3 +1,5 @@
+var obj=new Object();
+
 function dingwei(){
 	alert("在地图上定位");
 }
@@ -8,35 +10,59 @@ function wqxiangxi(){
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
+function reload(str){
+	 parent.$('#'+str).window('reload');
+}
 function sfkaigong(){
 	if(confirm("确认开工吗？"))
 		return;
 }
 function ybsb(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报上报','wqgzyb.jsp','wqxx',1059,450);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报上报','wqgzyb.jsp','wqxx1',1059,450);
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报添加','wqgzybtj.jsp','wqxx',650,350);
+	YMLib.UI.createWindow('wqxxtj','危桥改造月报添加','wqgzybtj.jsp','wqxxtj',650,350);
 	//window.open("wqgzybtj.jsp");
 }
-function Showybxx(){
+function Showybxx(index){
+	var data=$("#ybgrid").datagrid('getRows')[index];
+	obj=data;
 	YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,430);
 	//window.open("wqgzybxx.jsp");
 }
-function Edityb(){
-	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',900,400);
-	//window.open("wqgzybxg.jsp");
+var ybxiangxi;
+function Edityb(index){
+	var data=$("#ybgrid").datagrid('getRows')[index];
+	obj=data;
+	ybxiangxi=data;
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',650,350);
 }
-function Delyb(){
-	if(confirm("确认删除吗？"))
-		return;
+function Delyb(index){
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data="gcglwqgz.id="+data1.id;
+	if(confirm("确认删除吗？")){
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/deleteWqgzYb.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					alert('删除成功！');
+					$("#ybgrid").datagrid('reload');
+				}else{
+					alert('删除失败！');
+				}
+			}
+		});	
+	}	
 }
 var jhid=10;
 //添加月报
 function tjwqgzyb(){
 	var myDate = new Date();
-	var y = myDate.getYear();
+	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
@@ -45,7 +71,7 @@ function tjwqgzyb(){
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()
 	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+sbyf+"&gcglwqgz.jhid="+jhid;
-	alert(data);
+	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertWqgzYb.do',
@@ -54,14 +80,37 @@ function tjwqgzyb(){
 		success:function(msg){
 			if(Boolean(msg)){
 				alert('保存成功！');
-				closes('wqxx');
-				
+				parent.$("#ybgrid").datagrid('reload');
+				closes('wqxxtj');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
 			}
 		}
 	});	
 }
+function xgwqgzyb(){
+	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
+	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
+	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").val()
+	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id;
+//	alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/updateWqgzYb.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#ybgrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+
 //显示所有
 var wqData;
 function showAll(){
@@ -90,7 +139,7 @@ function showAll(){
 	    ]]    
 	}); 
 }
-
+var ybxx;
 function showYBlist(){
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid.do?jhid='+jhid,
@@ -103,8 +152,10 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-			        	return '<a href="#" onclick="Showybxx()">详细</a>    '+'<a href="#" onclick="Edityb(row)">编辑</a>   '+'删除   ';
-			        }},
+	              		if(row.shzt=='未审核')
+			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>';
+	              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核';
+	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},

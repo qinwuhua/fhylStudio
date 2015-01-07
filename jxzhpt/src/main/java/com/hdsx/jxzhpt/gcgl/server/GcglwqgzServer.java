@@ -12,4 +12,10 @@ public interface GcglwqgzServer {
 
 	List<Gcglwqgz> selectWqgzYbByJhid(Gcglwqgz gcglwqgz);
 
+	Boolean updateWqgzYb(Gcglwqgz gcglwqgz);
+
+	Boolean deleteWqgzYb(Gcglwqgz gcglwqgz);
+
+	Boolean shwqgzyb(Gcglwqgz gcglwqgz);
+
 }

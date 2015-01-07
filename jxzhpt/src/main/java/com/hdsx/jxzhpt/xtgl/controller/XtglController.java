@@ -632,6 +632,44 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void deleteTsdqById(){
+		boolean bl=xtglServer.deleteTsdqById(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void selectTsdqById(){
+		Param p=xtglServer.selectTsdqById(param);
+		try {
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selAllBm(){
+		try {
+            List<TreeNode> l=xtglServer.selAllBm(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllBm2(){
+		try {
+            List<TreeNode> l=xtglServer.selAllBm2(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}
