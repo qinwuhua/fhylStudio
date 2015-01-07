@@ -15,5 +15,12 @@
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<!-- 灾害防治 -->
+	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
+	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
+	<action name="selectZhfzById" class="jckzhfzController" method="selectZhfzById"/>
+	<action name="updateZhfzById" class="jckzhfzController" method="updateZhfzById"/>
+	<action name="deleteZhfzById" class="jckzhfzController" method="deleteZhfzById"/>
+	<action name="xgJckZhfzShzt" class="jckzhfzController" method="xgJckZhfzShzt"/>
+	<action name="zhfzGpsroad" class="jckzhfzController" method="zhfzGpsroad"/>
  </package>
 </struts>

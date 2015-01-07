@@ -81,8 +81,7 @@ function delJckabgc(){
 	for(var i=1;i<rows.length;i++){
 		id+="','"+rows[i].id ;
 	}
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
+	if(confirm('确定删除所选数据？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/deleteAbgcById.do",
@@ -90,7 +89,7 @@ function delJckabgc(){
 				 data : 'delstr=' +id,
 				 success : function(msg){
 					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
+						 alert('删除成功！');
 						 $("#grid").datagrid('reload');
 					 }else{
 						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
@@ -101,7 +100,6 @@ function delJckabgc(){
 				 }
 			});
 		}
-	});
 }
 function xgShzt(id){
 	if(confirm('您是否上报该项目！')){
