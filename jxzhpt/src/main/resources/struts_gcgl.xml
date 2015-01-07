@@ -31,6 +31,11 @@
 	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
 	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
 
+	<!-- sh -->
+	<action name="deleteshYb" class="gcglshController" method="deleteshYb"/>
+	<action name="insertshYb" class="gcglshController" method="insertshYb"/>
+	<action name="updateshYb" class="gcglshController" method="updateshYb"/>
+	<action name="selectshYbByJhid" class="gcglshController" method="selectshYbByJhid"/>
 	
  </package>
 </struts>
