@@ -23,5 +23,14 @@
 	<action name="deleteZhfzYb" class="gcglzhfzController" method="deleteZhfzYb"/>
 	<action name="updateZhfzYb" class="gcglzhfzController" method="updateZhfzYb"/>
 	<action name="shZhfzYb" class="gcglzhfzController" method="shZhfzYb"/>
+	
+	<!-- yhdzx -->
+	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
+	<action name="updateYhdzxYb" class="gcglyhdzxController" method="updateYhdzxYb"/>
+	<action name="selectYhdzxYbByJhid" class="gcglyhdzxController" method="selectYhdzxYbByJhid"/>
+	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
+	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
+
+	
  </package>
 </struts>
