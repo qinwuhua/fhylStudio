@@ -62,59 +62,57 @@ public class GcglzhfzController extends BaseActionSupport{
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-//	//添加月报
-//	public void insertAbgcYb(){
-//		System.out.println(gcglabgc);
-//		Boolean bl=gcglabgcServer.insertAbgcYb(gcglabgc);
-//		if(bl){
-//			ResponseUtils.write(getresponse(), "true");
-//		}else{
-//			ResponseUtils.write(getresponse(), "false");
-//		}
-//	}
-//	//查询月报
-//	public void selectAbgcYbByJhid(){
-//		Gcglabgc gcglabgc=new Gcglabgc();
-//		gcglabgc.setPage(page);
-//		gcglabgc.setRows(rows);
-//		gcglabgc.setJhid(jhid);
-//		int count=gcglabgcServer.selectAbgcYbByJhidCount(gcglabgc);
-//		List<Gcglabgc> list=gcglabgcServer.selectAbgcYbByJhid(gcglabgc);
-//		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
-//		e.setRows(list);
-//		e.setTotal(count);
-//		try {
-//			JsonUtils.write(e, getresponse().getWriter());
-//		} catch (Exception e1) {
-//			e1.printStackTrace();
-//		}
-//	}
-//		//修改月报
-//		public void updateAbgcYb(){
-//			System.out.println(gcglabgc);
-//			Boolean bl=gcglabgcServer.updateAbgcYb(gcglabgc);
-//			if(bl){
-//				ResponseUtils.write(getresponse(), "true");
-//			}else{
-//				ResponseUtils.write(getresponse(), "false");
-//			}
-//		}
-//		//删除月报
-//		public void deleteAbgcYb(){
-//			Boolean bl=gcglabgcServer.deleteAbgcYb(gcglabgc);
-//			if(bl){
-//				ResponseUtils.write(getresponse(), "true");
-//			}else{
-//				ResponseUtils.write(getresponse(), "false");
-//			}
-//		}
-//		//审核月报
-//		public void shAbgcYb(){
-//			Boolean bl=gcglabgcServer.shAbgcYb(gcglabgc);
-//			if(bl){
-//				ResponseUtils.write(getresponse(), "true");
-//			}else{
-//				ResponseUtils.write(getresponse(), "false");
-//			}
-//		}
+	//添加月报
+	public void insertZhfzYb(){
+		Boolean bl=gcglzhfzServer.insertZhfzYb(gcglzhfz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	//查询月报
+	public void selectZhfzYbByJhid(){
+		Gcglzhfz gcglzhfz=new Gcglzhfz();
+		gcglzhfz.setPage(page);
+		gcglzhfz.setRows(rows);
+		gcglzhfz.setJhid(jhid);
+		int count=gcglzhfzServer.selectZhfzYbByJhidCount(gcglzhfz);
+		List<Gcglzhfz> list=gcglzhfzServer.selectZhfzYbByJhid(gcglzhfz);
+		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+		//修改月报
+		public void updateZhfzYb(){
+			Boolean bl=gcglzhfzServer.updateZhfzYb(gcglzhfz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//删除月报
+		public void deleteZhfzYb(){
+			Boolean bl=gcglzhfzServer.deleteZhfzYb(gcglzhfz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//审核月报
+		public void shZhfzYb(){
+			Boolean bl=gcglzhfzServer.shZhfzYb(gcglzhfz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
 }

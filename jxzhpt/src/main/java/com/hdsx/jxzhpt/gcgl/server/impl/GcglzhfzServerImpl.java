@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 
 @Service
@@ -15,58 +16,57 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 		super("gcglzhfz", "jdbc");
 	}
 
-//	@Override
-//	public Boolean insertAbgcYb(Gcglabgc gcglabgc) {
-//		Gcglabgc gcglabgc1=queryOne("queryYbByYf", gcglabgc);
-//		if(gcglabgc1!=null){
-//			return false;
-//		}
-//		gcglabgc.setShzt("未审核");
-//		if(insert("insertAbgcYb", gcglabgc)>0){
-//			return true;
-//		}else{
-//			return false;
-//		}
-//	}
-//
-//	@Override
-//	public int selectAbgcYbByJhidCount(Gcglabgc gcglabgc) {
-//		// TODO Auto-generated method stub
-//		return queryOne("selectAbgcYbByJhidCount", gcglabgc);
-//	}
-//
-//	@Override
-//	public List<Gcglabgc> selectAbgcYbByJhid(Gcglabgc gcglabgc) {
-//		// TODO Auto-generated method stub
-//		return queryList("selectAbgcYbByJhid",gcglabgc);
-//	}
-//
-//	@Override
-//	public Boolean updateAbgcYb(Gcglabgc gcglabgc) {
-//		if(update("updateAbgcYb", gcglabgc)>0){
-//			return true;
-//		}else{
-//			return false;
-//		}
-//	}
-//
-//	@Override
-//	public Boolean deleteAbgcYb(Gcglabgc gcglabgc) {
-//		if(delete("deleteAbgcYb", gcglabgc)>0){
-//		return true;
-//		}else{
-//			return false;
-//		}
-//	}
-//
-//	@Override
-//	public Boolean shAbgcYb(Gcglabgc gcglabgc) {
-//		if(update("shAbgcYb", gcglabgc)>0){
-//		return true;
-//		}else{
-//			return false;
-//		}
-//	}
+	@Override
+	public Boolean insertZhfzYb(Gcglzhfz gcglzhfz) {
+		Gcglzhfz gcglzhfz1=queryOne("queryYbByYf", gcglzhfz);
+		if(gcglzhfz1!=null){
+			return false;
+		}
+		gcglzhfz.setShzt("未审核");
+		if(insert("insertZhfzYb", gcglzhfz)>0){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
 
+	@Override
+	public int selectZhfzYbByJhidCount(Gcglzhfz gcglzhfz) {
+		return queryOne("selectZhfzYbByJhidCount", gcglzhfz);
+	}
+
+	@Override
+	public List<Gcglzhfz> selectZhfzYbByJhid(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("selectZhfzYbByJhid",gcglzhfz);
+	}
+
+	@Override
+	public Boolean updateZhfzYb(Gcglzhfz gcglzhfz) {
+		if(update("updateZhfzYb", gcglzhfz)>0){
+		return true;
+	}else{
+		return false;
+	}
+	}
+
+	@Override
+	public Boolean deleteZhfzYb(Gcglzhfz gcglzhfz) {
+		if(delete("deleteZhfzYb", gcglzhfz)>0){
+		return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean shZhfzYb(Gcglzhfz gcglzhfz) {
+		if(update("shZhfzYb", gcglzhfz)>0){
+		return true;
+		}else{
+			return false;
+		}
+	}
 
 }

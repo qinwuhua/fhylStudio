@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcglzhfz">
 
-	<select id="selectAbgcYbByJhid" parameterType="gcglabgc" resultType="gcglabgc">
+	<select id="selectZhfzYbByJhid" parameterType="gcglzhfz" resultType="gcglzhfz">
 		select * from (
 		select m.*,rownum rn from (
-			select * from GCGL_ABGC 
+			select * from GCGL_ZHFZ 
 			where 1=1
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
@@ -16,33 +16,33 @@
 			where RN>((#{page} - 1) * #{rows})
 		order by sbyf desc
 	</select>
-	<select id="selectAbgcYbByJhidCount" parameterType="gcglabgc" resultType="int">
-		select count(*) from GCGL_ABGC 
+	<select id="selectZhfzYbByJhidCount" parameterType="gcglzhfz" resultType="int">
+		select count(*) from GCGL_ZHFZ 
 		where 1=1
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
 	</select>
 	<!-- 添加月报 -->
-	<insert id="insertAbgcYb" parameterType="gcglabgc">
-		insert into GCGL_ABGC(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywc_c,bywc_gl,kgdl,qksm,sbsj,sbyf,shzt)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywc_c},#{bywc_gl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt})
+	<insert id="insertZhfzYb" parameterType="gcglzhfz">
+		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcgl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt})
 	</insert>
-	<select id="queryYbByYf" parameterType="gcglabgc" resultType="gcglabgc">
-		select * from GCGL_ABGC where sbyf=#{sbyf} and jhid=#{jhid}
+	<select id="queryYbByYf" parameterType="gcglzhfz" resultType="gcglzhfz">
+		select * from GCGL_ZHFZ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
-	<update id="updateAbgcYb" parameterType="gcglabgc">
-		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm}
+	<update id="updateZhfzYb" parameterType="gcglzhfz">
+		update GCGL_ZHFZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcgl=#{bywcgl},kgdl=#{kgdl},qksm=#{qksm}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 删除月报 -->
-	<delete id="deleteAbgcYb" parameterType="gcglabgc">
-		delete from GCGL_ABGC where id=#{id}
+	<delete id="deleteZhfzYb" parameterType="gcglzhfz">
+		delete from GCGL_ZHFZ where id=#{id}
 	</delete>
 	<!-- 审核月报 -->
-	<update id="shAbgcYb" parameterType="gcglabgc">
-		update GCGL_ABGC set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
+	<update id="shZhfzYb" parameterType="gcglzhfz">
+		update GCGL_ZHFZ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
 </mapper>
