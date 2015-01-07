@@ -99,7 +99,6 @@ text-decoration:none;
 	  		}
 	  	}).result(
 				function(e, item) {
-
 					if(item==undefined) return ;
 					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm").attr("value",'');
 					$("#lxmc").val(item.lxmc);

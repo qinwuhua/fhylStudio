@@ -22,6 +22,10 @@
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz" alias="jckwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz" alias="jckzhfz"/>
      <!-- lhp -->
+     <!-- rh -->
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
+     <!-- rh -->
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -61,5 +65,8 @@
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckwqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckzhfz.xml"/>
 	<!-- lhp -->
+	<!-- rh -->
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
+	<!-- rh -->
   </mappers>
 </configuration>

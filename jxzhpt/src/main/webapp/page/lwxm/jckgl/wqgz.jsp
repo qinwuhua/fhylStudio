@@ -17,29 +17,110 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
-	$(function(){
-		jckglWqgz();
-		$("#cc").combotree({
-			checkbox: false,
-		 	url: "../js/gydw.json",
-		});
-		$("#ss").combotree({
-			checkbox: false,
-		 	url: "../js/xzqh.json",
-		});
-		$("#shangBao").click(function(){
-			var checkedItems = $('#grid').datagrid('getChecked');
-			var names = [];
-			if(checkedItems.length>0){
-			$.each(checkedItems, function(index, item){
-			names.push(item.qlmc);
-			}); 
-			alert(names.join(",")+"上报成功");
-			}else {
-				alert("请选择要上报的项目!");
-			}
-		});
+$(function(){
+	jckglWqgz();
+	$("#cc").combotree({
+		checkbox: false,
+	 	url: "../js/gydw.json",
 	});
+	$("#ss").combotree({
+		checkbox: false,
+	 	url: "../js/xzqh.json",
+	});
+});
+	function jckglWqgz(){
+		$("#grid").datagrid({    
+			 url:'/jxzhpt/xmjck/selectWqgz.do',
+			    striped:true,
+			    pagination:true,
+			    rownumbers:true,
+			    pageNumber:1,
+			    pageSize:10,
+			    height:325,
+			    width:1100,
+		    columns:[[    
+				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
+				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+					if(row.shzt=="未审核"){
+						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+						'<a href=javascript:delJckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
+					}else{
+						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<span style="color:grey;">编辑</span>  '+
+						'<span style="color:grey;">删除</span>';
+					}
+				}},    
+				{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
+					if(row.shzt=="未审核"){
+					return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					}else{
+						return '<span style="color:grey;">已审核</span>';
+					}
+				}},
+				 	{field:'gydw',title:'管养单位',width:160,align:'center'},
+			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+			        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
+			        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
+			        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
+			        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+			        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+			        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
+			        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
+			        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+		    ]]    
+		});  
+	}
+
+function delJckwqgz(){
+	var rows=$('#grid').datagrid('getSelections');
+	var id=rows[0].id;
+	for(var i=1;i<rows.length;i++){
+		id+="','"+rows[i].id ;
+	}
+	if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/deleteWqgzById.do",
+				 dataType : 'json',
+				 data : 'delstr=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+}
+function xgShzt(id){
+	if(confirm('您是否上报该项目！')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgJckWqgzShzt.do",
+				 dataType : 'json',
+				 data : 'id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('上报成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('上报失败,请选择要上报项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
 </script>
 <style type="text/css">
 TD {
