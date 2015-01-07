@@ -50,17 +50,21 @@ text-decoration:none;
 			alert(data);
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/xmjck/updateAbgc.do',
+				url:'/jxzhpt/xmjck/updateAbgcById.do',
 		        data:data,
 				dataType:'json',
 				success:function(msg){
 					if(Boolean(msg)){
-						alert("保存成功！");
-						parent.$('#jck_add').window('destroy');	
+						parent.$("#grid").datagrid('reload');
+						alert("修改成功！");
+						parent.$('#jck_xg').window('destroy');	
 					}else{
 						alert('保存失败！');
 					}
-				}
+				},
+				error : function(){
+				 alert('服务器请求无响应！error code = 404');
+			 }
 			});
 			
 		});
@@ -109,7 +113,7 @@ text-decoration:none;
 					<input type="text" id="lxmc" name="lxmc"  style="width: 156px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 156px"/></td>
+					<input  id="gydw" style="width: 160px"/></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
@@ -128,7 +132,7 @@ text-decoration:none;
 					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px"/></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 156px"/></td>
+					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input  id="xjnd" style="width: 156px"/></td>

@@ -32,7 +32,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean updateAbgc(Jckabgc abgc) {
+	public boolean updateAbgcById(Jckabgc abgc) {
 		if(update("updateJckabgc", abgc)>0) return true;
 		else return false;
 	}
@@ -42,6 +42,18 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("lxbm", abgc.getLxbm());
 		return queryList("selectGpsroad", hm);
+	}
+
+	@Override
+	public boolean deleteAbgcById(String delstr) {
+		if(delete("deleteJckAbgc", delstr)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean xgJckAbgcShzt(Jckabgc abgc) {
+		if(update("xgJckAbgcShzt", abgc)>0) return true;
+		else return false;
 	}
 
 }
