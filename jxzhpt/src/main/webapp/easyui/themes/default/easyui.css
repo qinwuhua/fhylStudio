@@ -1,6 +1,7 @@
 body{
 	font-family: "宋体"
 }
+input{ line-height:20px;}
 .panel {
   overflow: hidden;
   font-size: 12px;

@@ -11,11 +11,16 @@
 <link rel="stylesheet" type="text/css" href="./easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="./easyui/themes/icon.css" />
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="./easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="./page/jhgl/js/grid.js"></script>
+<script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript">
+$(function(){
+	selSes();
+});
+</script>
 </head>
 <body style="margin:0 0 0 0;min-width: 1000px;height:100%; overflow:hidden;">
+
 <div id="topbg">
 	<div class="topnv"><img src="images/toplogo.jpg" width="1000" height="86" /></div>
 </div>

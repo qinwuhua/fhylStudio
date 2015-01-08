@@ -11,10 +11,10 @@
 		select id ,name text  from unit x where x.id like #{yhdw} order by id
 	</select>
 	<update id="updatePassword" parameterType="HashMap" >
-		UPDATE MASTER SET PASSWORD=#{mm} WHERE truename=#{id}
+		UPDATE xtgl_MASTER SET PASSWORD=#{mm} WHERE truename=#{id}
 	</update>
 	<select id="loginnum" parameterType="hashmap" resultType="hashmap">
-	select * from MASTER M WHERE M.truename=#{username} AND M.PASSWORD=#{password} AND M.ZT!=#{zt}
+	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
 	    select distinct x.id ,x.name text from xtgl_xzqh x where  x.id = #{yhdw} order by id
@@ -25,13 +25,13 @@
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
 		select m.*,rownum rn from (
-			select truename,name,(select name from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
+			select id,truename,name,(select name from xtgl_department where id=t.unit) unit,sex,idcard,tel,phone,(select rolename from xtgl_role where roleid=t.roleid) roleid from xtgl_master t
 		where 1=1
 		 <if test="yhm != null and  yhm != ''">
 		and truename like #{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
-		and unit like #{unit}||'%'
+		and unit like rtrim(#{unit},'0')||'%'
 		</if>
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -43,30 +43,34 @@
 		select count(*) from xtgl_master 
 		where 1=1
 		<if test="yhm != null and  yhm != ''">
-			and truename like #{yhm}||'%'
+		and truename like #{yhm}||'%'
 		</if>
 		<if test="unit != null and  unit != ''">
-			and unit like #{unit}||'%'
+		and unit like rtrim(#{unit},'0')||'%'
 		</if>
 	</select>
 	<select id="selQxList" parameterType="hashmap" resultType="hashmap">
-		select id,name from role order by id
+		select roleid,rolename from xtgl_role order by roleid
 	</select>
 	<insert id="insertYh" parameterType="master">
-		insert into master (id,truename,password,tel,unit,name,sex,role,zt,gmgid) values (SYS_GUID(),#{truename},#{password}
-		,#{tel},#{unit},#{name},#{sex},#{role},#{zt},#{gmgid})
+		insert into xtgl_master (id,truename,password,tel,phone,unit,name,sex,roleid,czsj,idcard) 
+		values (SYS_GUID(),#{truename},#{password}
+		,#{tel},#{phone},#{unit},#{name},#{sex},#{roleid},SYSDATE,#{idcard})
 	</insert>
 	<update id="updatezt" parameterType="hashmap">
 		update master set zt=#{zt} where id=#{id}
 	</update>
 	<update id="mimareset" parameterType="hashmap">
-		update master set password=#{password} where id=#{id}
+		update xtgl_master set password=#{password} where id=#{id}
 	</update>
 	<delete id="deleteYh" parameterType="String">
-		delete from master where id=#{id}
+		delete from xtgl_master where id=#{id}
 	</delete>
 	<update id="updateYh" parameterType="master">
-		update master set truename=#{truename},name =#{name}
+		update xtgl_master set truename=#{truename}
+		<if test="name != null and  name != ''">
+			 ,name =#{name}
+		</if>
 		<if test="password != null and  password != ''">
 			 ,password=#{password} 
 		</if>
@@ -75,6 +79,12 @@
 		</if>
 		<if test="tel != null and  tel != ''">
 			 ,tel=#{tel} 
+		</if>
+		<if test="phone != null and  phone != ''">
+			 ,phone=#{phone} 
+		</if>
+		<if test="idcard != null and  idcard != ''">
+			 ,idcard=#{idcard} 
 		</if>
 		<if test="role != null and  role != ''">
 			 ,role=#{role} 
@@ -100,13 +110,13 @@
 		DELETE FROM ROLE_SOURCE WHERE ROLEID = #{id}
 	</delete>
 	<select id="selectDwList" parameterType="unit" resultType="unit">
-		select * from xtgl_department where id like #{id}||'%' order by id 
+		select * from xtgl_department where id like rtrim(#{id})||'%' order by id 
 	</select>
 	<select id="selectDwListCount" parameterType="unit" resultType="int">
-		select count(*) from xtgl_department where id like #{id}||'%'
+		select count(*) from xtgl_department where id like rtrim(#{id})||'%'
 	</select>
 	<select id="getBmbmTreeByName" parameterType="hashmap" resultType="treenode">
-		select * from bmbm where parent in (select id from bmbm where name=#{name} )
+		select * from xtgl_bmbm where parent in (select id from xtgl_bmbm where name=#{name} )
 		order by id
 	</select>
 	<insert id="insertDw" parameterType="unit">
@@ -124,31 +134,29 @@
 		where id=#{id}
 	</update>
 	<select id="selectBmbmList" parameterType="unit" resultType="unit">
-		select * from bmbm order by id
+		select * from xtgl_bmbm order by id
 	</select>
 	<select id="selectBmbmListCount" parameterType="unit" resultType="int">
-		select count(*) from bmbm 
+		select count(*) from xtgl_bmbm 
 	</select>
 	<insert id="insertBmbm" parameterType="unit">
-		insert into bmbm(id,name,parent) values (#{id},#{name},#{parent})
+		insert into xtgl_bmbm(id,name,parent,bmid) values (#{id},#{name},#{parent},#{bmid})
 	</insert>
 	<update id="updateBmbm" parameterType="unit">
-		update bmbm set name=#{name} where id=#{id}
+		update xtgl_bmbm set name=#{name} where id=#{id}
 	</update>
 	<delete id="deleteBmbmById" parameterType="unit">
-		delete from bmbm where id=#{id} or parent=#{id}
+		delete from xtgl_bmbm where id=#{id} or parent=#{id}
 	</delete>
-	<insert id="insertQY" parameterType="unit">
-		insert into sfcwzkqy (id,dwmc,jgdm,dist,zxkjzzlb,unit) values (SYS_GUID(),#{name},#{jgdm},#{dist},#{zxkjzzlb},(select id from unit where jgdm=#{jgdm} and rownum=1))
-	</insert>
-	<insert id="insertXzsy" parameterType="unit">
-		insert into sfcwzkqy (id,dwmc,jgdm,dist,unit) values (SYS_GUID(),#{name},#{jgdm},#{dist},(select id from unit where jgdm=#{jgdm} and rownum=1))
-	</insert>
 	<select id="checkname" parameterType="hashmap" resultType="master">
-		select * from master where truename=#{username}
+		select * from xtgl_master where truename=#{truename}
 	</select>
 	<select id="selectTsdqList" parameterType="param" resultType="param">
-		select * from xtgl_tsdq
+		select id,name,state,b.xzqhdm,b.xzqh from xtgl_tsdq t,(
+
+		select WMSYS.WM_CONCAT(to_char(xzqhdm)) xzqhdm,WMSYS.WM_CONCAT(to_char(xzqh)) xzqh,parent from xtgl_xzqhtsdq t group by parent
+		) b
+		where t.id=b.parent(+)
 	</select>
 	<select id="selectXzqhListCount" parameterType="unit" resultType="int">
 		select count(*) from xtgl_xzqh
@@ -197,5 +205,14 @@
 	</select>
 	<select id="selAllBm2" parameterType="String" resultType="treenode">
 	  select  distinct x.id , x.name text from xtgl_department x where  x.parent = #{yhdw} order by id
+	</select>
+	<update id="updateTsdq" parameterType="param">
+		update xtgl_tsdq set name=#{name},bz=#{bz} where id=#{id}
+	</update>
+	<delete id="deleteTsdqListById" parameterType="param">
+		delete from xtgl_xzqhtsdq where parent=#{id}
+	</delete>
+	<select id="selectYhById" parameterType="master" resultType="master">
+		select * from xtgl_master where id=#{id}
 	</select>
 </mapper>

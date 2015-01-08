@@ -107,7 +107,7 @@ $(function(){
 			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;角色分配管理</div>
 		</div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>

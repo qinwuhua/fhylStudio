@@ -832,3 +832,15 @@ function loadUnit(id,dwbm){
 	   });
 	$('#'+id).combotree('setValue',dwbm);
 }
+
+/*
+ * 加载行政区划 
+ */
+function loadBmbm(id,name){
+	$('#'+id).combobox({
+	    url:'/jxzhpt/xtgl/getBmbmTreeByName.do?yhm='+encodeURI(encodeURI(name)),
+	    valueField:'bmid',
+	    textField:'name'
+	    
+	});
+}

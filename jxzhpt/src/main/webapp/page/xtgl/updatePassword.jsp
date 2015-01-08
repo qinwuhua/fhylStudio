@@ -18,7 +18,7 @@
 <body style="margin: 10px; overflow-x: hidden; overflow-y: hidden">
 <script type="text/javascript">
 $(function(){
-    $("#username").val($.cookie("username"));
+	$("#username").val($.cookie("truename"));
     $("#register_btn_Save").click(function(){
     	register();
     });
@@ -43,28 +43,13 @@ function register(){
 function checkuser(){
 	var username=$("#username").val();
 	var password=$("#password1").val();//原密码
-	var rtn;
-	/*
-    //查找IAWeb锁
-    try{
-        rtn = IAWebClient.IAWebFind();
-    }catch(e){
-    	rtn=1;
-    }
-     //alert(rtn);
-    if (rtn != 0) {
-        alert("请插入加密设备,如有需要请联系管理员！");
-        return false;
-    }
-    var departmentGuid = IAWebClient.IAWebGETGUID().toString();
-    */
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/login.do",
 		 dataType : 'json',
 		 data : {
-				'username' : username,
-				'password' : password
+				'master.truename' : username,
+				'master.password' : password
 			},
 		 success : function(msg){
 			 suc_user();
@@ -76,7 +61,7 @@ function checkuser(){
 }
 function suc_user(){
 	var username=$("#username").val();
-	var password=$("#password2").val();//原密码
+	var password=$("#password2").val();
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/updatePassword.do",
@@ -102,7 +87,7 @@ function suc_user(){
 			<tr>
 				<td align="right" >用户名：</td>
 				<td align="left"  >
-					<input widtd="200px" type="text" id="username" name="username" value="admin" readonly="readonly">
+					<input widtd="200px" type="text" id="username" name="username" readonly="readonly">
 					<div><span id="test0" style="color: Red;"></span> </div>
 				</td>
 			</tr>

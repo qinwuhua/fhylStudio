@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门信息管理</title>
+<title>编目编码管理</title>
 <link rel="stylesheet" type="text/css" href="../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/button.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
@@ -18,22 +17,25 @@
 </head>
 <body>
 <script type="text/javascript">
-function openDwUpdate(_id,_name,_desr){
-	YMLib.Var.ID=_id;
-	YMLib.Var.name=_name;
-	YMLib.Var.desr=_desr;
-	YMLib.UI.createWindow('dwgl_add_win','编辑部门信息','./bmgl_update.jsp','app_add',470,250);
-}
+var dwxx;
+var lxData = new Array();
 function openDwInsert(_id){
 	YMLib.Var.ID=_id;
-	YMLib.UI.createWindow('dwgl_add_win','添加部门','./bmgl_add.jsp','app_add',470,250);
+	YMLib.UI.createWindow('dwgl_add_win','添加编目编码','./bmbm_add.jsp','app_add',450,180);
+}
+function openDwUpdate(_id,_name,_parent,_bmid){
+	YMLib.Var.ID=_id;
+	YMLib.Var.name=_name;
+	YMLib.Var.parent=_parent;
+	YMLib.Var.bmid=_bmid;
+	YMLib.UI.createWindow('dwgl_add_win','编辑编目编码','./bmbm_update.jsp','app_add',450,180);
 }
 function deleteDw(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
 		if (r){
 			$.ajax({
 				 type : "POST",
-				 url : "../../xtgl/deleteDwById.do",
+				 url : "../../xtgl/deleteBmbmById.do",
 				 dataType : 'json',
 				 data : 'unit.id=' +_id,
 				 success : function(msg){
@@ -59,22 +61,31 @@ function startSearch(){
 		fitColumns : true,
 		pagination : false,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectDwList.do',
+		url:'../../xtgl/selectBmbmList.do',
 		queryParams : {
-			'unit.id' : $.cookie("unit")=="36"?"":$.cookie("unit")
+			'unit.id' : $.cookie("unit")
 		},
 		idField:'id',
 		treeField:'name',
 		showFooter:false,
+		rowStyler:function(row){
+			if (row.persons > 1){
+				return 'background:#AAD684;color:#fff';
+			}
+		},
 		columns:[[
-            {field:'name',title:'部门名称',width:350},
-			{field:'id',title:'部门编码',width:100,align : 'center'},
-			{field:'desr',title:'描述',width:100,align : 'center'},
+            {field:'name',title:'编目编码名称',width:300},
+			{field:'id',title:'编目编码id',width:100,align : 'center'},
+			{field:'bmid',title:'编码值',width:100,align : 'center'},
 			{field : 'sc',title : '操作',width : 200,align : 'center',
 				formatter : function(value,rec,index){
-					var str1='<input onclick=openDwInsert("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
-					return '<input onclick=openDwUpdate("'+rec.id+'","'+rec.name+'","'+rec.desr+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />'+
-					'<input onclick=deleteDw("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除>'+str1;
+					if(rec.id.length<6){
+						var str='<input onclick=openDwInsert("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
+					}else var str="";
+					if(rec.id.length>2){
+						var str2='<input onclick=deleteDw("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除>';
+					}else var str2="";
+					return str2+str;
 				}
 			}
 		]]
@@ -88,7 +99,7 @@ $(function(){
 <div border="false">
 <div data-options="region:'north',border:true,split:true" style="height:40px;border-left:0px;border-right:0px;border-top:0px;">
 	<div id="righttop">
-		<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;部门信息管理</div>
+		<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;编目编码管理</div>
 	</div>
 </div>
 <div region="center" border="false" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;height:700px;" onselectstart="return false">
