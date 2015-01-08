@@ -12,6 +12,7 @@
 	<action name="xgJckAbgcShzt" class="jckabgcController" method="xgJckAbgcShzt"/>
 	<action name="xgJckAbgcSbzt" class="jckabgcController" method="xgJckAbgcSbzt"/>
 	<action name="abgcGpsroad" class="jckabgcController" method="abgcGpsroad"/>
+	<action name="selectJckRoad" class="jckabgcController" method="selectJckRoad"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
