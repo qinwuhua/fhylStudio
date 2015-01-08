@@ -41,7 +41,7 @@
 		delete from GCGL_SH where id=#{id}
 	</delete>
 	<!-- 审核月报 -->
-	<update id="shYhdzxYb" parameterType="gcglsh">
+	<update id="shShYb" parameterType="gcglsh">
 		update GCGL_SH set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>

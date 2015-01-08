@@ -17,7 +17,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 
 	public GcglshServerImpl() {
-		super("gcglyhdzx", "jdbc");
+		super("gcglsh", "jdbc");
 	}
 
 	@Override
@@ -64,13 +64,13 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		}
 	}
 
-//	@Override
-//	public Boolean shYhdzxYb(Gcglyhdzx gcglyhdzx) {
-//		if(update("shYhdzxYb", gcglyhdzx)>0){
-//		return true;
-//		}else{
-//			return false;
-//		}
-//	}
+	@Override
+	public Boolean shShYb(Gcglsh gcglsh) {
+		if(update("shShYb", gcglsh)>0){
+		return true;
+		}else{
+			return false;
+		}
+	}
 
 }

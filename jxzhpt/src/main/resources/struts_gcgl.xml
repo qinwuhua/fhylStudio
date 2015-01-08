@@ -36,6 +36,7 @@
 	<action name="insertshYb" class="gcglshController" method="insertshYb"/>
 	<action name="updateshYb" class="gcglshController" method="updateshYb"/>
 	<action name="selectshYbByJhid" class="gcglshController" method="selectshYbByJhid"/>
+	<action name="shShYb" class="gcglshController" method="shShYb"/>
 	
  </package>
 </struts>

@@ -56,6 +56,7 @@ function Delyb(index){
 //月报添加
 var jhid=10;
 function tjshyb(){
+	//alert("xx");
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -86,12 +87,13 @@ function tjshyb(){
 }
 //修改
 function xgshyb(){
+	//alert("xx");
 	var data = "gcglsh.wc_btz="+$("#xg_wc_btz").val()+"&gcglsh.wc_stz="+$("#xg_wc_stz").val()+"&gcglsh.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglsh.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#xg_bywcdc").val()+"&gcglsh.bywcjc="+$("#xg_bywcjc").val()+"&gcglsh.bywcmc="+$("#xg_bywcmc").val()+"&gcglsh.kgdl="+$("#xg_kgdl").val()
 	+"&gcglsh.qksm="+$("#xg_qksm").val()+"&gcglsh.wcqk="+$("#xg_wcqk").val()
 	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id;
-//	alert(data);
+	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/updateshYb.do',

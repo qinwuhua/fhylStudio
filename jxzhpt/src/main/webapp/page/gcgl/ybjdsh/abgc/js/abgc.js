@@ -10,7 +10,7 @@ function wqxiangxi(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','危桥改造月报审核','abgcybsh.jsp','wqxx',450,280);
+	YMLib.UI.createWindow('wqxx','安保工程月报审核','abgcybsh.jsp','wqxx',450,280);
 }
 
 function closes(str){

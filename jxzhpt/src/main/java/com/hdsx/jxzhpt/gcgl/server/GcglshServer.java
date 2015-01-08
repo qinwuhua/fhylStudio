@@ -20,6 +20,8 @@ public interface GcglshServer {
 
 	Boolean deleteshYb(Gcglsh gcglsh);
 
+	Boolean shShYb(Gcglsh gcglsh);
+
 
 	
 }

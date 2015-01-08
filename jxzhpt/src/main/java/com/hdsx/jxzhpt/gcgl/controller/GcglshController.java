@@ -69,6 +69,7 @@ public class GcglshController extends BaseActionSupport{
 	}
 	//添加月报
 	public void insertshYb(){
+		System.out.println(gcglsh+"---------------------------");
 		Boolean bl=gcglshServer.insertshYb(gcglsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -110,13 +111,13 @@ public class GcglshController extends BaseActionSupport{
 				ResponseUtils.write(getresponse(), "false");
 			}
 		}
-//		//审核月报
-//		public void shYhdzxYb(){
-//			Boolean bl=gcglshServer.shYhdzxYb(gcglyhdzx);
-//			if(bl){
-//				ResponseUtils.write(getresponse(), "true");
-//			}else{
-//				ResponseUtils.write(getresponse(), "false");
-//			}
-//		}
+		//审核月报
+		public void shShYb(){
+			Boolean bl=gcglshServer.shShYb(gcglsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
 }
