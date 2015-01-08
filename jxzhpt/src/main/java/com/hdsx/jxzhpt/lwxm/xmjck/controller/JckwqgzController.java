@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
+import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -25,6 +26,8 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	private JckwqgzServer wqgzServer;
 	private Jckwqgz jckwqgz=new Jckwqgz();
 	private String delstr;
+	private int page=1;
+	private int rows=10;
 	
 	public void insertWqgz(){
 		boolean b = wqgzServer.insertWqgz(jckwqgz);
@@ -36,9 +39,13 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	
 	public void selectWqgz(){
-		List<Jckwqgz> abgcList = wqgzServer.selectWqgzList();
+		List<Jckwqgz> wqgzList = wqgzServer.selectWqgzList(jckwqgz,page,rows);
+		int count = wqgzServer.selectWqgzCount(jckwqgz);
+		EasyUIPage<Jckwqgz> eui = new EasyUIPage<Jckwqgz>();
+		eui.setRows(wqgzList);
+		eui.setTotal(count);
 		try {
-			JsonUtils.write(abgcList, getresponse().getWriter());
+			JsonUtils.write(eui, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,6 +78,13 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void xgJckWqgzSbzt(){
+		try {
+			JsonUtils.write(wqgzServer.xgJckWqgzSbzt(delstr),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//自动填充LXMC
 	public void wqgzGpsroad(){
 		try {
@@ -93,6 +107,20 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setDelstr(String delstr) {
 		this.delstr = delstr;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 
 	@Override

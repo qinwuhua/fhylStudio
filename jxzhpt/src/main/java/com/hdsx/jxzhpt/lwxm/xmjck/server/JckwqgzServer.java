@@ -6,10 +6,13 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 
 public interface JckwqgzServer {
 	boolean insertWqgz(Jckwqgz wqgz);
-	List<Jckwqgz> selectWqgzList();
+	List<Jckwqgz> selectWqgzList(Jckwqgz wqgz,int page,int rows);
+	int selectWqgzCount(Jckwqgz wqgz);
 	Jckwqgz selectWqgzById(Jckwqgz wqgz);
 	boolean updateWqgzById(Jckwqgz wqgz);
 	List<Jckwqgz> selectGpsroad(Jckwqgz wqgz);
 	boolean deleteWqgzById(String delstr);
 	boolean xgJckWqgzShzt(Jckwqgz wqgz);
+	boolean xgJckWqgzSbzt(String delstr);
+	
 }

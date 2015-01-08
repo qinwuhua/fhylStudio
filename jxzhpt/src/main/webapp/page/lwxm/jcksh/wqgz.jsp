@@ -19,15 +19,36 @@
 <script type="text/javascript">
 $(function(){
 	jckshWqgz();
-	$("#cc").combotree({
+	$("#gydw").combotree({
 		checkbox: false,
 	 	url: "../js/gydw.json",
 	});
-	$("#ss").combotree({
+	$("#xzqhmc").combotree({
 		checkbox: false,
 	 	url: "../js/xzqh.json",
 	});
 });
+function xgShzt(id){
+	if(confirm('您是否上报该项目！')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgJckWqgzShzt.do",
+				 dataType : 'json',
+				 data : 'id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('上报成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('上报失败,请选择要上报项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
 </script>
 <style type="text/css">
 TD {
@@ -53,19 +74,19 @@ text-decoration:none;
 					<div>
 					<p style="margin:8px 0px 4px 20px;">
 								<span>管养单位：</span>
-                              	<select id="cc" style="width:218px">
+                              	<select id="gydw" style="width:218px">
                               	</select>
                              	<span>&nbsp;行政区划：</span>
-                              	<select id="ss" style="width:218px">
+                              	<select id="xzqhmc" style="width:218px">
                               	</select>
                                <span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:95px;" />
+        						<input type="text" id="lxmc" style="width:95px;" />
                               <span>&nbsp;&nbsp;&nbsp;桥梁名称：</span>
-                              	<input type="text" style="width:95px"/>
+                              	<input type="text"  id="qlmc"style="width:95px"/>
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
-                              	<select id="cc1" class="easyui-combobox" style="width:70px">
+                              	<select id="xmnf" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>
@@ -73,7 +94,7 @@ text-decoration:none;
 									<option value="2011年">2011年</option>
                               	</select>
                               <span>&nbsp;项目状态： </span>
-                              	<select id="ss1" class="easyui-combobox" style="width:70px">
+                              	<select id="xmtype" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>
@@ -81,7 +102,7 @@ text-decoration:none;
 									<option value="已审核">已下达</option>
                               	</select>
                                <span>&nbsp;审核状态：</span>
-                              	<select id="ss2" class="easyui-combobox" style="width:70px">
+                              	<select id="shzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
@@ -97,25 +118,25 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="ss5" class="easyui-combobox" style="width:100px">
+                              	<select id="jsdj" style="width:100px">
                               		<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
-                              	<select id="ss6" class="easyui-combobox" style="width:100px">
+                              	<select id="akjfl" style="width:100px">
                               		<option selected="selected" value="">全部</option>
-									<option value="1">特大桥</option>
-									<option value="2">大桥</option>
-									<option value="3">中桥</option>
-									<option value="4">小桥</option>
+									<option value="特大桥">特大桥</option>
+									<option value="大桥">大桥</option>
+									<option value="中桥">中桥</option>
+									<option value="小桥">小桥</option>
                               	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshWqgz();"style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenPi();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 							 </p>

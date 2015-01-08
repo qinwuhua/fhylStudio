@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 @Service
 public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
-
+	private Map<String, Object> hm;
 	public JckwqgzServerImpl() {
 		super("jckwqgz", "jdbc");
 	}
@@ -22,8 +23,20 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public List<Jckwqgz> selectWqgzList() {
-		return queryList("selectJckwqgz");
+	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz,int page,int rows) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", wqgz.getGydw());
+		hm.put("xzqhmc", wqgz.getXzqhmc());
+		hm.put("lxmc", wqgz.getLxmc());
+		hm.put("qlmc", wqgz.getQlmc());
+		hm.put("xmnf", wqgz.getXmnf());
+		hm.put("xmtype", wqgz.getXmtype());
+		hm.put("shzt", wqgz.getShzt());
+		hm.put("jsdj", wqgz.getJsdj());
+		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("page", page);
+		hm.put("rows", rows);
+		return queryList("selectJckwqgz",hm);
 	}
 
 	@Override
@@ -52,8 +65,29 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 
 	@Override
 	public boolean xgJckWqgzShzt(Jckwqgz wqgz) {
-		if(update("xgJckWqgzShzt", wqgz)>0) return true;
+		if(update("xgJckwqgzShzt", wqgz)>0) return true;
 		else return false;
+	}
+
+	@Override
+	public boolean xgJckWqgzSbzt(String delstr) {
+		if(update("xgJckwqgzSbzt", delstr)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public int selectWqgzCount(Jckwqgz wqgz) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", wqgz.getGydw());
+		hm.put("xzqhmc", wqgz.getXzqhmc());
+		hm.put("lxmc", wqgz.getLxmc());
+		hm.put("qlmc", wqgz.getQlmc());
+		hm.put("xmnf", wqgz.getXmnf());
+		hm.put("xmtype", wqgz.getXmtype());
+		hm.put("shzt", wqgz.getShzt());
+		hm.put("jsdj", wqgz.getJsdj());
+		hm.put("akjfl", wqgz.getAkjfl());
+		return queryOne("selectWqgzCount", hm);
 	}
 
 }

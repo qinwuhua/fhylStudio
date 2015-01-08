@@ -7,8 +7,62 @@
 		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
 </insert>
  
- <select id="selectJckabgc" resultType="jckabgc">
- 	select * from xmk_abgc
+ <select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
+ 	select * from (
+ 		select rownum num ,t.* from xmk_abgc t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by shzt
+ </select>
+  <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from xmk_abgc where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
  </select>
  <select id="selectJckabgcById" parameterType="jckabgc" resultType="jckabgc">
  	select * from xmk_abgc where id=#{id}
@@ -17,9 +71,6 @@
  	update xmk_abgc set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},gydwbm=#{gydwbm},qdzh=#{qdzh},zdzh=#{zdzh},
  	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
  	yhnr=#{yhnr},bz=#{bz} where id=#{id}
- </update>
- <update id="xgJckAbgcShzt" parameterType="jckabgc" >
- 	update xmk_abgc set shzt='已审核' where id=#{id}
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckabgc">
@@ -31,6 +82,13 @@
  </select>
  
  <delete id="deleteJckAbgc" parameterType="String" >
- 	delete from xmk_abgc where id in #{delstr}
+ 	delete from xmk_abgc where id in(#{delstr})
  </delete>
+ 
+  <update id="xgJckAbgcShzt" parameterType="jckabgc" >
+ 	update xmk_abgc set shzt='已审核' where id=#{id}
+ </update>
+  <update id="xgJckAbgcSbzt" parameterType="String" >
+ 	update xmk_abgc set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+ </update>
 </mapper>

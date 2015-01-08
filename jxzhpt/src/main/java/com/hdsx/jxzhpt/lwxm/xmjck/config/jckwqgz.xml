@@ -9,8 +9,68 @@
 		sysdate,'未上报','未审核')
 </insert>
 
- <select id="selectJckwqgz" resultType="jckwqgz">
- 	select * from xmk_wqgz
+ <select id="selectJckwqgz" parameterType="hashmap" resultType="jckwqgz">
+ 	select * from (
+ 		select rownum num ,t.* from xmk_wqgz t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by shzt
+ </select>
+  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from xmk_wqgz t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
  </select>
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from xmk_wqgz where id=#{id}
@@ -21,8 +81,11 @@
  		kjzc=#{kjzc},dkzdkj=#{dkzdkj},akjfl=#{akjfl},sbjgxs=#{sbjgxs},bhnr=#{bhnr},bz=#{bz},xmnf=#{xmnf},xmtype=#{xmtype}
  		where id=#{id}
  </update>
- <update id="xgJckWqgzShzt" parameterType="jckwqgz" >
+ <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
  	update xmk_wqgz set shzt='已审核' where id=#{id}
+ </update>
+   <update id="xgJckwqgzSbzt" parameterType="String" >
+ 	update xmk_wqgz set shzt='未审核',sbzt='已上报' where id in(#{delstr})
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">

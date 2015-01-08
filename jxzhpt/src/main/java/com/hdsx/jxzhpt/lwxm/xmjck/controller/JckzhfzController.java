@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
+import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -25,6 +26,8 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	private JckzhfzServer zhfzServer;
 	private Jckzhfz jckzhfz=new Jckzhfz();
 	private String delstr;
+	private int page=1;
+	private int rows=10;
 	
 	public void insertZhfz(){
 		boolean b = zhfzServer.insertZhfz(jckzhfz);
@@ -35,9 +38,13 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void selectZhfz(){
-		List<Jckzhfz> abgcList = zhfzServer.selectZhfzList();
+		List<Jckzhfz> zhfzList = zhfzServer.selectZhfzList(jckzhfz, page, rows);
+		int count = zhfzServer.selectZhfzCount(jckzhfz);
+		EasyUIPage<Jckzhfz> eui = new EasyUIPage<Jckzhfz>();
+		eui.setRows(zhfzList);
+		eui.setTotal(count);
 		try {
-			JsonUtils.write(abgcList, getresponse().getWriter());
+			JsonUtils.write(eui, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,6 +77,13 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void xgJckZhfzSbzt(){
+		try {
+			JsonUtils.write(zhfzServer.xgJckZhfzSbzt(delstr),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//自动填充LXMC
 	public void zhfzGpsroad(){
 		try {
@@ -91,6 +105,18 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setDelstr(String delstr) {
 		this.delstr = delstr;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 	@Override
 	public Jckzhfz getModel() {
