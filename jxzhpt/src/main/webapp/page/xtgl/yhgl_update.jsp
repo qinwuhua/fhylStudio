@@ -24,44 +24,18 @@ function selQxList(){
 		dataType : 'json',
 		success : function(msg){
 			for (var i=0;i<msg.length;i++){
-				$("#role").append("<option value='"+msg[i].ID+"'>"+msg[i].NAME+"</option>");
+				$("#roleid").append("<option value='"+msg[i].ROLEID+"'>"+msg[i].ROLENAME+"</option>");
 			}
-			formTable(parent.yhxx);
 		}
 	});
 }
 function save(){
-	
 	if($("#truename").val().replace(/(^\s*)|(\s*$)/g,"")==""){
 		alert("请输入用户名！");
 		return false;
 	}
-	if($("#name").val().replace(/(^\s*)|(\s*$)/g,"")==""){
-		alert("请输入单位负责人！");
-		return false;
-	}
-	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
-		alert("联系电话的格式不正确！");
-		return false;
-	}
-	/* var rtn;
-    //查找IAWeb锁
-    try{
-        rtn = IAWebClient.IAWebFind();
-    }catch(e){
-    	rtn=1;
-    }
-    if (rtn != 0) {
-        alert("请插入加密设备,如有需要请联系管理员！");
-        return false;
-    } else {
-        var flag = IAWebClient.IAWebOPEN("12345678");
-        if (flag == 0) {
-            var departmentGuid = IAWebClient.IAWebGETGUID();
-            $("#gmgid").val(departmentGuid.toString());
-        }
-    } */
 	param = $("#yhgl_form").serialize();
+	alert(param);
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/updateYh.do",
@@ -70,9 +44,8 @@ function save(){
 		 success : function(msg){
 			 if(msg){
 				 alert('保存成功！');
-				 parent.$("#yhgl_table").datagrid('reload');
-				 parent.$("#yhgl_update_win").window('destroy');
-				 
+				 parent.$("#jsgl_table").datagrid('reload');
+				 parent.$("#yhgl_add_win").window('destroy');
 			 }else{
 				 YMLib.Tools.Show('保存失败！',3000);
 			 }
@@ -83,24 +56,41 @@ function save(){
 	});
 	delete param;
 }
-function formTable(msg){
-	$("#truename").val(msg.truename);
-	$("#name").val(msg.name);
-	if(msg.sex=="男") $("#_xb1").val(msg.sex);
-	else $("#_xb2").attr('checked', 'true');
-	$("#tel").val(msg.tel);
-	$("#role").val(msg.role);
-	loadUnit("unit",msg.unit);
-	$("#id").val(msg.id);
+function formTable(){
+	$.ajax({
+		type : "POST",
+		url : "../../xtgl/selectYhById.do",
+		dataType : 'json',
+		data : "master.id="+parent.YMLib.Var.ID,
+		success : function(msg){
+			if(msg){
+				$("#id").val(msg.id);
+				$("#truename").val(msg.truename);
+				$("#name").val(msg.name);
+				$("#phone").val(msg.phone);
+				$("#tel").val(msg.tel);
+				$("#idcard").val(msg.idcard);
+				$("#roleid").val(msg.roleid);
+				if(msg.sex=="男") $("#_xb1").val(msg.sex);
+				else $("#_xb2").attr('checked', 'true');
+				loadUnit("unit",msg.unit);
+			 }
+		 },
+		 error : function(){
+			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+		 }
+	});
+	
 }
 
 $(function(){
 	selQxList();
+	formTable();
 	$("#yhgl_btn_Save").click(function(){
 		save();
 	});
 	$("#yhgl_btn_Cancel").click(function(){
-		parent.$("#yhgl_update_win").window('destroy');
+		parent.$("#yhgl_add_win").window('destroy');
 	});
 });
 </script>
@@ -109,31 +99,32 @@ $(function(){
 	<form id="yhgl_form" style="overflow-x:hidden">
 		<table id="yhgl_form_table" cellspacing="0"  class="table_grid">
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					用户名：
 				</td>
 				<td>
 					<input type="text" id="truename" name="master.truename"/>
+					<input type="hidden" id="id" name="master.id"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					 所属单位：
 				</td>
 				<td>
-					<input  type="text" id="unit" name="master.unit"/>
+					<input  type="text" id="unit" name="master.unit" style="width:156px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					 用户角色：
 				</td>
 				<td>
-					<input  type="text" id="roleid" name="master.roleid"/>
+					<select id="roleid" name="master.roleid" style="width:156px;"></select>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					真实姓名：
 				</td>
 				<td style="text-align: left">
@@ -141,7 +132,7 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					性别：
 				</td>
 				<td align="left">
@@ -150,15 +141,15 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					身份证号：
 				</td>
 				<td style="text-align: left">
-					<input id="name" name="master.idcard" type="text"/>
+					<input id="idcard" name="master.idcard" type="text"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					联系电话：
 				</td>
 				<td style="text-align: left">
@@ -166,7 +157,7 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					手机：
 				</td>
 				<td>
@@ -175,8 +166,7 @@ $(function(){
 			</tr>
 			<tr>
 				<td style="text-align: center;color: red;" colspan="2">
-					初始密码为：000000<input type ="hidden" name="master.password" value="000000">
-					<input type="hidden" name="master.czsj" id="czsj" />
+					初始密码为：000000
 				</td>
 			</tr>
 		</table>

@@ -35,5 +35,11 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./yhgl.jsp'
 	});
-
+	createMenu('LeftMenu',{
+		id:'menu6',
+		title:'编目编码管理',
+		imgSrc:'../../images/bmbm.jpg',
+		renderTo:'left_menu1',
+		href:'./bmbm.jsp'
+	});
 });

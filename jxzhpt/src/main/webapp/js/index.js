@@ -19,25 +19,21 @@ function checkText(){
 
 //点击登录按钮时
 function login(){
-	document.location.href="./index.jsp";
-	/*
 	checkText();//检查文本框是否输入
 	if(bl){
 		$.ajax({
-			 type : "POST",
-			 url : "xtgl/login.do",
-			 dataType : 'json',
-			 data :"master.name="+name+"&master.password="+password,
-		     success : function(msg){
-		     	 if(msg){
-		     		$.cookie("username",name, {expires: 1});//将用户名放入cookie中
-		     		$.cookie("tel",msg.tel, {expires: 1});//将电话放入cookie中
-		     		$.cookie("truename",msg.truename, {expires: 1});//将用户名放入cookie中
-		     		$.cookie("password",password, {expires: 1});
-		     		$.cookie("dept",msg.dept, {expires: 1});
-		     		$.cookie("deptname",msg.deptname, {expires: 1});
-		     		$.cookie("dist",msg.dist, {expires: 1});
-		     		document.location.href="/hbdtxt/index.jsp";
+			type : "POST",
+			url : "xtgl/login.do",
+			dataType : 'json',
+			data :"master.truename="+name+"&master.password="+password,
+			success : function(msg){
+				if(msg){
+		     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
+		     		$.cookie("unit",msg.UNIT, {expires: 1});
+		     		$.cookie("roleid",msg.ROLEID, {expires: 1});
+		     		
+		     		
+		     		document.location.href="./index.jsp";
 		     		//$('#index_layout').css('visibility', 'visible');
 		     	 }
 		     	 else{
@@ -48,23 +44,20 @@ function login(){
 				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 			 }
 		});
-	}*/
+	}
 	
 }
-/**
- * 查询登录者的权限放cookie中
- */
-function selQx(){
+
+function selSes(){
 	$.ajax({
 		 type : "POST",
 		 url : "xtgl/selQx.do",
 		 dataType : 'json',
 	     success : function(msg){
 	    	 if(msg){
-	    		 $('#index_layout').css('visibility', 'visible');
-	    		 var qx = ","+msg.resourceid+",";
-	    		 $.cookie("QX",qx, {expires: 1});//设置权限
-	    		 loadMenu(qx);
+	    		 //var qx = ","+msg.resourceid+",";
+	    		//$.cookie("QX",qx, {expires: 1});//设置权限
+	    		// loadMenu(qx);
 	    	 }else{
 	    		 document.location.href="login.jsp";
 		     	 alert("session失效，请重新登录！！");
@@ -84,10 +77,25 @@ function clearSession(){
 		 url : "xtgl/clearSession.do",
 		 dataType : 'json',
 	     success : function(msg){
+	    	 document.location.href="login.jsp";
 		  },
 		 error : function(){
 			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 		 }
+	});
+}
+/**
+ * 查询登录者的权限放cookie中
+ */
+function selQxByUser(){
+	$.ajax({
+		type : "POST",
+		url : "xtgl/selQxByUser.do",
+		dataType : 'json',
+		data:"",
+		success : function(msg){
+			
+		}
 	});
 }
 

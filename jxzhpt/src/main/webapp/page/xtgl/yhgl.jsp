@@ -17,9 +17,9 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openYhUpdate(_index){
-	//yhxx = lxData[_index];
-	YMLib.UI.createWindow('yhgl_update_win','编辑用户','./yhgl_update.jsp','xmgl_03',470,370);
+function openYhUpdate(_id){
+	YMLib.Var.ID=_id;
+	YMLib.UI.createWindow('yhgl_add_win','编辑用户','./yhgl_update.jsp','xmgl_03',470,375);
 }
 function deleteYh(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -32,7 +32,7 @@ function deleteYh(_id){
 				 success : function(msg){
 					 if(msg){
 						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#yhgl_table").datagrid('reload');
+						 $("#jsgl_table").datagrid('reload');
 					 }else{
 						 YMLib.Tools.Show('删除失败',3000);
 					 }
@@ -44,12 +44,11 @@ function deleteYh(_id){
 		}
 	});
 }
-
-$(function(){
+function startSearch(){
+	//alert($('#test').combobox("getValue")+"|"+$('#test').combobox("getText"));
+	
 	$("#jsgl_table").datagrid({
 		border:false,
-		//height:500,
-		//width:1000,
 		fit:true,
 		pagination:true,
 	    rownumbers:true,
@@ -58,6 +57,10 @@ $(function(){
 	    fitColumns:true,
 		loadMsg:'正在加载请稍候...',
 		url:'../../xtgl/selectYhList.do',
+		queryParams : {
+			"master.truename":$("#yhm").val(),
+			"master.unit":$("#unit").combotree("getValue")
+		},
 		striped:true,
 		singleSelect:false,
 		columns:[[
@@ -113,9 +116,13 @@ $(function(){
 		}
 		]]
 	});
-	
+}
+$(function(){
+	loadUnit("unit","36");
+	startSearch();
+	//loadBmbm("test","行政等级");
 	$("#yhgl_btn_add").click(function(){
-		YMLib.UI.createWindow('yhgl_add_win','添加用户','./yhgl_add.jsp','app_add',470,370);
+		YMLib.UI.createWindow('yhgl_add_win','添加用户','./yhgl_add.jsp','app_add',470,375);
 	});
 	$("#yhgl_btn_search").click(function(){
 		startSearch();
@@ -135,9 +142,10 @@ $(function(){
  				<div>
  					<p style="margin: 5px;">
  						<span>所属单位：</span>
- 						<select id="unit" style="width:227px;"></select>
+ 						<input id="unit" style="width:227px;"/>
+ 						<select id="test" style="width:227px;"></select>
  						<span>&nbsp;用户名：</span>
- 						<input id="yhgl_name" type="text"/>
+ 						<input id="yhm" type="text"/>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">添　加</a>
  					</p>

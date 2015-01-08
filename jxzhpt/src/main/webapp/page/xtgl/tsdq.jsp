@@ -17,10 +17,11 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id,_name){
+function openJsUpdate(_id,_name,_xzqhdm){
 	YMLib.Var.ID=_id;
 	YMLib.Var.name=_name;
-	YMLib.UI.createWindow('jsgl_update_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',560,250);
+	YMLib.Var.xzqhdm=_xzqhdm;
+	YMLib.UI.createWindow('jsgl_add_win','编辑特殊地区','./tsdq_update.jsp','xmgl_03',560,250);
 }
 function deleteTsdq(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -81,7 +82,7 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'","'+rec.name+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
+				return '<input onclick=openJsUpdate("'+rec.id+'","'+rec.name+'","'+rec.xzqhdm+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
 			}
 		},{
 			field : 'state',

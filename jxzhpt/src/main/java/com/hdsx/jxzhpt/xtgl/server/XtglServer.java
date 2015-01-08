@@ -104,4 +104,8 @@ public interface XtglServer {
 
 	List<TreeNode> selAllBm2(String yhdw);
 
+	boolean updateTsdq(Param param);
+
+	Master selectYhById(Master master);
+
 }

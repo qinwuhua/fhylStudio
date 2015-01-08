@@ -45,24 +45,12 @@ function save(){
 	});
 }
 $(function(){
-	//loadDist2("xzqhdm","360000");
-	loadUnit("xzqhdm","11101360000");
+	loadDist2("xzqhdm","360000");
+	//loadUnit("xzqhdm","11101360000");
 	$("#id").val(parent.YMLib.Var.ID);
 	$("#name").val(parent.YMLib.Var.name);
-	$.ajax({
-		type : "POST",
-		url : "../../xtgl/selectTsdqById.do",
-		dataType : 'json',
-		data : "param.id="+parent.YMLib.Var.ID,
-		success : function(msg){
-			if(msg){
-				alert();
-			}
-		}
-	});
+	//$("#xzqhdm").combotree('setValues',arr);
 	$("#yhgl_btn_Save").click(function(){
-		//var arr=["360000","360100"];
-		//$("#xzqhdm").combotree('setValues',arr);
 		save();
 	});
 	$("#yhgl_btn_Cancel").click(function(){
@@ -88,7 +76,7 @@ $(function(){
 					 包含行政区划：
 				</td>
 				<td>
-					<input  type="text" id="xzqhdm" name="param.xzqhdm" style="width:300px;"/>
+					<input  type="text" id="xzqhdm" style="width:300px;"/>
 				</td>
 			</tr>
 			<tr>
