@@ -15,9 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+
 			showYBlist();
 		});
 	</script>
@@ -249,14 +247,9 @@ a:active {
                 </td>
             </tr>
             <tr>
-                <td>
-                    
-                            <table id="ybgrid" width="100%" height="90%" >
-
-                        		
+                <td>                
+                            <table id="ybgrid" width="100%" height="90%" >		
                             </table>
-                            
-                        
                 </td>
             </tr>
 
@@ -270,7 +263,7 @@ a:active {
                         <tr> 
                             <td>
                                 <a href="javascript:void(0)" onclick="window.close();">
-                                    <img onclick="closes('wqxx')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
+                                    <img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" style="border: 0" /></a>
                             </td>
                         </tr>

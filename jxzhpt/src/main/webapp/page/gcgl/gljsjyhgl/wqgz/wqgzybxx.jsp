@@ -30,7 +30,9 @@
 			
 			$("#shzt").text(ybdata.shzt);
 			$("#shuser").text(ybdata.shuser);
+			if(ybdata.shtime!=null)
 			$("#shtime").text(ybdata.shtime);
+			else $("#shtime").text('');
 			$("#zjje").text(ybdata.zjje);
 			$("#xgcsyj").text(ybdata.xgcsyj);
 			$("#cscyj").text(ybdata.cscyj);

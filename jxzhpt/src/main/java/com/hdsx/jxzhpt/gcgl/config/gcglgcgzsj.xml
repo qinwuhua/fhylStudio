@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.gcglgcglsj">
+
+	<select id="selectgcgzsjYbByJhid" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
+		select * from (
+		select m.*,rownum rn from (
+			select * from GCGL_GCGZSJ 
+			where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		order by sbyf desc
+	</select>
+	<select id="selectgcgzsjYbByJhidCount" parameterType="gcglgcgzsj" resultType="int">
+		select count(*) from GCGL_GCGZSJ 
+		where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+	</select>
+	<!-- 添加月报 -->
+	<insert id="insertgcgzsjYb" parameterType="gcglgcgzsj">
+		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt)
+		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt})
+	</insert>
+	<select id="queryYbByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
+		select * from GCGL_GCGZSJ where sbyf=#{sbyf} and jhid=#{jhid}
+	</select>
+	<!-- 修改月报 -->
+	<update id="updategcgzsjYb" parameterType="gcglgcgzsj">
+		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm}
+		where id=#{id} and jhid=#{jhid}
+	</update>
+	<!-- 删除月报 -->
+	<delete id="deletegcgzsjYb" parameterType="gcglgcgzsj">
+		delete from GCGL_GCGZSJ where id=#{id}
+	</delete>
+	<!-- 审核月报 -->
+	<update id="shgcgzsjyb" parameterType="gcglgcgzsj">
+		update GCGL_GCGZSJ set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
+		where id=#{id} and jhid=#{jhid}
+	</update>
+</mapper>

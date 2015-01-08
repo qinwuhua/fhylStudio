@@ -3,8 +3,32 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="xmjck" extends="struts-default" namespace="/xmjck">
+	<!-- 安保工程 -->
 	<action name="insertAbgc" class="jckabgcController" method="insertAbgc"/>
+	<action name="selectAbgc" class="jckabgcController" method="selectAbgc"/>
+	<action name="selectAbgcById" class="jckabgcController" method="selectAbgcById"/>
+	<action name="updateAbgcById" class="jckabgcController" method="updateAbgcById"/>
+	<action name="deleteAbgcById" class="jckabgcController" method="deleteAbgcById	"/>
+	<action name="xgJckAbgcShzt" class="jckabgcController" method="xgJckAbgcShzt"/>
+	<action name="xgJckAbgcSbzt" class="jckabgcController" method="xgJckAbgcSbzt"/>
+	<action name="abgcGpsroad" class="jckabgcController" method="abgcGpsroad"/>
+	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
+	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
+	<action name="selectWqgzById" class="jckwqgzController" method="selectWqgzById"/>
+	<action name="updateWqgzById" class="jckwqgzController" method="updateWqgzById"/>
+	<action name="deleteWqgzById" class="jckwqgzController" method="deleteWqgzById"/>
+	<action name="xgJckWqgzShzt" class="jckwqgzController" method="xgJckWqgzShzt"/>
+	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
+	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
+	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
+	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
+	<action name="selectZhfzById" class="jckzhfzController" method="selectZhfzById"/>
+	<action name="updateZhfzById" class="jckzhfzController" method="updateZhfzById"/>
+	<action name="deleteZhfzById" class="jckzhfzController" method="deleteZhfzById"/>
+	<action name="xgJckZhfzShzt" class="jckzhfzController" method="xgJckZhfzShzt"/>
+	<action name="xgJckZhfzSbzt" class="jckzhfzController" method="xgJckZhfzSbzt"/>
+	<action name="zhfzGpsroad" class="jckzhfzController" method="zhfzGpsroad"/>
  </package>
 </struts>

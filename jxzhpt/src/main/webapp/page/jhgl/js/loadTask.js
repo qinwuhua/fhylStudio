@@ -32,8 +32,8 @@ function Addzhfz(){
 	openDialog("zhfz_xx", "添加灾害防治计划库信息", "../add/zhfzAdd.jsp");
 }
 
-//步骤   xx sh
-var bz;
+//步骤   xx sh   点击详细时对应的ID
+var bz,xxId;
 /**
  * 弹出详细信息层
  * @param id ID
@@ -42,6 +42,8 @@ var bz;
  */
 function openDialog(id,title,href){
 	bz=id.substring(id.indexOf('_')+1);
+	rowDate = gridObj.datagrid("getSelected");
+	xxId=rowDate.id;
 	$('#'+id).dialog({
 		iconCls : 'icon-edit',
 		href:href,

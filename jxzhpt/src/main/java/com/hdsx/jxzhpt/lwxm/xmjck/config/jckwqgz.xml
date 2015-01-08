@@ -1,10 +1,102 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdsx.jxzhpt.lwxm.xmjck">
+<mapper namespace="com.hdsx.jxzhpt.jckwqgz">
 <insert id="insertJckwqgz"  parameterType="jckwqgz">
-	insert into xmk_zhfz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,gydwdm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm)
-		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},#{gydwbm},#{gydwdm},#{xjgjnd},#{jsdj},#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},
-		#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm})
+	insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt) 
+		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},#{gydwbm},#{xjgjnd},#{jsdj},
+		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
+		sysdate,'未上报','未审核')
 </insert>
+
+ <select id="selectJckwqgz" parameterType="hashmap" resultType="jckwqgz">
+ 	select * from (
+ 		select rownum num ,t.* from xmk_wqgz t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by shzt
+ </select>
+  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from xmk_wqgz t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ </select>
+ <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
+ 	select * from xmk_wqgz where id=#{id}
+ </select>
+ <update id="updateJckwqgz" parameterType="jckwqgz">
+ 	update xmk_wqgz set qlmc=#{qlmc},qlbh=#{qlbh},xzqhmc=#{xzqhmc},xzqhdm=#{xzqhdm},lxmc=#{lxmc},lxbm=#{lxbm},
+ 		gydw=#{gydw},gydwbm=#{gydwbm},xjgjnd=#{xjgjnd},jsdj=#{jsdj},pddj=#{pddj},qlzxzh=#{qlzxzh},qlkd=#{qlkd},qlqc=#{qlqc},
+ 		kjzc=#{kjzc},dkzdkj=#{dkzdkj},akjfl=#{akjfl},sbjgxs=#{sbjgxs},bhnr=#{bhnr},bz=#{bz},xmnf=#{xmnf},xmtype=#{xmtype}
+ 		where id=#{id}
+ </update>
+ <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
+ 	update xmk_wqgz set shzt='已审核' where id=#{id}
+ </update>
+   <update id="xgJckwqgzSbzt" parameterType="String" >
+ 	update xmk_wqgz set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+ </update>
  
+  <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
+ 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
+ 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
+ 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	group by roadname,roadcode,F114,F044,F045
+  	order by roadcode,min(roadstart)
+ </select>
+ 
+ <delete id="deleteJckWqgz" parameterType="String" >
+ 	delete from xmk_wqgz where id in #{delstr}
+ </delete>
 </mapper>
