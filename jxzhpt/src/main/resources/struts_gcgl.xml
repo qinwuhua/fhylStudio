@@ -45,5 +45,12 @@
 	<action name="selectgcgzgjYbByJhid" class="gcglgcgzgjController" method="selectgcgzgjYbByJhid"/>
 	<action name="shgcgzgjYb" class="gcglgcgzgjController" method="shgcgzgjYb"/>
 	
+	<!-- gcgzsj -->
+	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>
+	<action name="deletegcgzsjYb" class="gcglgcgzsjController" method="deletegcgzsjYb"/>
+	<action name="updategcgzsjYb" class="gcglgcgzsjController" method="updategcgzsjYb"/>
+	<action name="selectgcgzsjYbByJhid" class="gcglgcgzsjController" method="selectgcgzsjYbByJhid"/>
+	<action name="shgcgzsjyb" class="gcglgcgzsjController" method="shgcgzsjyb"/>
+	
  </package>
 </struts>
