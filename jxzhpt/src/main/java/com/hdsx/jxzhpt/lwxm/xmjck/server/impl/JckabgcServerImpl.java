@@ -55,6 +55,12 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("lxbm", abgc.getLxbm());
 		return queryList("selectGpsroad", hm);
 	}
+	@Override
+	public List<Jckabgc> selectJckRoad(Jckabgc abgc) {
+		hm = new HashMap<String, Object>();
+		hm.put("lxbm", abgc.getLxbm());
+		return queryList("selectJckRoad", hm);
+	}
 
 	@Override
 	public boolean deleteAbgcById(String delstr) {
@@ -87,5 +93,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("lxbm", abgc.getLxbm());
 		return queryOne("selectAbgcCount", hm);
 	}
+
+
 
 }

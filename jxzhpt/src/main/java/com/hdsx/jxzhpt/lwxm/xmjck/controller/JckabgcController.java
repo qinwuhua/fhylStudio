@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -89,6 +90,14 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 		try {
 			JsonUtils.write(abgcServer.selectGpsroad(jckabgc), getresponse().getWriter());
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//自动填充SCK-LXMC
+	public void selectJckRoad(){
+		try {
+			JsonUtils.write(abgcServer.selectJckRoad(jckabgc),getresponse().getWriter());
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -10,6 +10,7 @@ public interface JckabgcServer {
 	Jckabgc selectAbgcById(Jckabgc abgc);
 	boolean updateAbgcById(Jckabgc abgc);
 	List<Jckabgc> selectGpsroad(Jckabgc abgc);
+	List<Jckabgc> selectJckRoad(Jckabgc abgc);
 	boolean deleteAbgcById(String delstr);
 	boolean xgJckAbgcShzt(Jckabgc abgc);
 	boolean xgJckAbgcSbzt(String delstr);

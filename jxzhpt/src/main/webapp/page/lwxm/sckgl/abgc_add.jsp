@@ -9,22 +9,18 @@
 <title>基础库管理安保工程项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#gydw").combotree({
-			checkbox: false,
-		 	url: "../js/gydw.json",
-		});
-		$("#xzqhmc").combotree({
-			checkbox: false,
-		 	url: "../js/xzqh.json",
-		});
+		autoCompleteLXBM();
+
 		$("#save_button").click(function(){
 			$.messager.alert('提示','保存成功！','info');    
 		});
@@ -32,6 +28,60 @@
 			parent.$('#sck_add').window('destroy');
 		});	
 	});
+	function autoCompleteLXBM(){
+		var url = "/jxzhpt/xmjck/selectJckRoad.do";
+		$("#lxbm").autocomplete(url, {
+			multiple : false,
+			minChars :2,
+			multipleSeparator : ' ',
+			mustMatch: true,
+	  		cacheLength : 0,
+	  		delay : 200,
+	  		max : 50,
+	  		extraParams : {
+	  			/*dist:$.cookie("dist"),*/
+	  			lxbm:function() {
+	  				var d = $("#lxbm").val();
+	  				return d;
+	  			}
+	  		},
+	  		dataType : 'json',// 返回类型
+	  		// 对返回的json对象进行解析函数，函数返回一个数组
+	  		parse : function(data) {
+	  			var aa = [];
+	  			aa = $.map(eval(data), function(row) {
+	  					return {
+	  						data : row,
+	  						value : row.lxbm.replace(/(\s*$)/g,""),
+	  						result : row.lxbm.replace(/(\s*$)/g,"")
+	  					};
+	  				});
+	  			return aa;
+	  		},
+	  		formatItem : function(row, i, max) {
+	  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  		}
+	  	}).result(
+				function(e, item) {
+
+					if(item==undefined) return ;
+					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw").attr("value",'');
+					$("#lxmc").val(item.lxmc);
+					$("#gydw").val(item.gydw);
+					$("#xzqhmc").val(item.xzqhmc);
+					$("#xzqhdm").val(item.xzqhdm);
+ 					$("#qdzh").val(item.qdzh);
+					$("#zdzh").val(item.zdzh);
+					$("#gjxjnd").val(item.gjxjnd);
+					$("#lxjsdj").val(item.lxjsdj);
+					$("#qzlc").val(item.qzlc);
+					$("#yhlc").val(item.yhlc);
+					$("#xmnf").val(item.xmnf);
+					$("#xmtype").val(item.xmtype);
+					$("#yhnr").val(item.yhnr);
+					$("#bz").val(item.bz);
+				});
+	}
 </script>
 <style type="text/css">
 TD {
@@ -53,44 +103,43 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="lxbm" id="lxbm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
+					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 160px" />
-					<input type="text" id="pid" style="display:none"/></td>
+					<input  id="gydw" style="width: 160px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="qdzh" id="qdzh" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="zdzh"id="zdzh" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
+					<input type="text" name="qzlc" id="qzlc" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;"align="left">
 					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 156px" /></td>
+					<input type="text" name="gjxjnd" id="gjxjnd" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
@@ -99,22 +148,22 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="xmnf" id="xmnf" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="xmtype"id="xmtype" style="width: 156px" /></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2"  style="width:99%"></textarea>
+					<textarea id="yhnr"rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2" style="width:99%"></textarea>
+					<textarea id="bz"rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
