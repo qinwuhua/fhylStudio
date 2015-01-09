@@ -10,11 +10,12 @@
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
+		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
-		order by sbyf desc
+		
 	</select>
 	<select id="selectWqgzYbByJhidCount" parameterType="gcglwqgz" resultType="int">
 		select count(*) from GCGL_WQGZ 
@@ -63,11 +64,12 @@
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
+		order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
-		order by tbyf desc
+		
 	</select>
 	<select id="selectWqgzCgsListCount" parameterType="gcglwqgz" resultType="int">
 		select count(*) from GCGL_CGS 

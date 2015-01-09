@@ -45,7 +45,7 @@ a:active {
 			cellpadding="0">
 
 			<tr>
-				<td height="45" align="left"
+				<td height="35" align="left"
 					background="${pageContext.request.contextPath}/images/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
 					危桥改造项目资金到位情况</td>

@@ -10,11 +10,12 @@
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
+		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
-		order by sbyf desc
+		
 	</select>
 	<select id="selecthslyYbByJhidCount" parameterType="gcglhsly" resultType="int">
 		select count(*) from GCGL_HSLY 

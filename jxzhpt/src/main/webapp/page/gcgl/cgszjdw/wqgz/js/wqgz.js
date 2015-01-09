@@ -1,3 +1,4 @@
+var obj=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
@@ -6,17 +7,19 @@ function wqxiangxi(){
 	//window.open("wqgzxx.jsp");
 }
 function zjdw(){
-	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw.jsp','wqxx1',800,470);
+	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw.jsp','wqxx1',800,500);
 	//window.open("wqgzzjdw.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwtj.jsp','wqxx',500,240);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','wqgzzjdwtj.jsp','wqxx',500,220);
 }
-function editCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','wqgzzjdwxg.jsp','wqxx',500,240);
+function editCgs(index){
+	var data=$("#zjgrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','wqgzzjdwxg.jsp','wqxx',500,220);
 }
 //添加车购税
 function tjwqgzcgs(){
@@ -28,7 +31,7 @@ function tjwqgzcgs(){
 	tbyf = y+"-"+m;
 	var data="gcglwqgz.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglwqgz.tbr="+"admin"+"&gcglwqgz.tbsj="+tbsj+"&gcglwqgz.tbyf="+tbyf
 	+"&gcglwqgz.jhid="+"11";
-	alert(data);
+	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertWqgzCgs.do',
@@ -46,7 +49,28 @@ function tjwqgzcgs(){
 	});	
 	
 }
-
+//修改车购税
+function xgwqgzcgs(){
+	var data="gcglwqgz.cgsdwzj="+$("#xg_cgsdwzj").val()
+	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id;
+	alert(data);
+//	$.ajax({
+//		type:'post',
+//		url:'../../../../gcgl/updateWqgzCgs.do',
+//		data:data,
+//		dataType:'json',
+//		success:function(msg){
+//			if(Boolean(msg)){
+//				alert('保存成功！');
+//				parent.$("#zjgrid").datagrid('reload');
+//				closes('wqxx');
+//			}else{
+//				alert('该月车购税可能已存在，保存失败！');
+//			}
+//		}
+//	});	
+	
+}
 
 function showAll(){
 	$('#datagrid').datagrid({    
@@ -83,13 +107,13 @@ function showAllZJ(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:300,
+	    height:315,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	if(row.sbsj==""||row.sbyf>row.tbyf){
-	        		return '<a href="#" onclick="editCgs()">编辑</a>    '+'<a href="#" >删除</a>   ';
+	        		return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
 	        	}
-	        	else return "月报已上报，不可操作"
+	        	else return "月报已上报，不可操作";
 	        }},
 	        {field:'tbyf',title:'填报月份 ',width:140,align:'center'},
 	        {field:'tbsj',title:'填报时间 ',width:140,align:'center'},
