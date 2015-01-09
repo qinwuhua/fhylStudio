@@ -18,4 +18,10 @@ public interface GcglwqgzServer {
 
 	Boolean shwqgzyb(Gcglwqgz gcglwqgz);
 
+	Boolean insertWqgzCgs(Gcglwqgz gcglwqgz);
+
+	int selectWqgzCgsListCount(Gcglwqgz gcglwqgz);
+
+	List<Gcglwqgz> selectWqgzCgsList(Gcglwqgz gcglwqgz);
+
 }

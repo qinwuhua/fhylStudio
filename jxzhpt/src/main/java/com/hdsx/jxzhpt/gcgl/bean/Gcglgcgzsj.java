@@ -40,6 +40,12 @@ public class Gcglgcgzsj implements Serializable {
 	private String xgcsyj;
 	private String cscyj;
 	
+	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
+	private String cgsdwzj;
+	private String tbyf;
+	private String tbsj;
+	private String tbr;
+	
 	
 	private int page;
 	private int rows;
@@ -234,6 +240,31 @@ public class Gcglgcgzsj implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	
+	public String getCgsdwzj() {
+		return cgsdwzj;
+	}
+	public void setCgsdwzj(String cgsdwzj) {
+		this.cgsdwzj = cgsdwzj;
+	}
+	public String getTbyf() {
+		return tbyf;
+	}
+	public void setTbyf(String tbyf) {
+		this.tbyf = tbyf;
+	}
+	public String getTbsj() {
+		return tbsj;
+	}
+	public void setTbsj(String tbsj) {
+		this.tbsj = tbsj;
+	}
+	public String getTbr() {
+		return tbr;
+	}
+	public void setTbr(String tbr) {
+		this.tbr = tbr;
 	}
 	@Override
 	public String toString() {

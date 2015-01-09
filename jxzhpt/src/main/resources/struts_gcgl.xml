@@ -8,6 +8,8 @@
 	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
 	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
 	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
+	<action name="insertWqgzCgs" class="gcglwqgzController" method="insertWqgzCgs"/>
+	<action name="selectWqgzCgsList" class="gcglwqgzController" method="selectWqgzCgsList"/>
 	
 	
 	<!-- abgc -->

@@ -27,6 +27,12 @@ public class Gcglhsly implements Serializable {
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
 	
+	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
+	private String cgsdwzj;
+	private String tbyf;
+	private String tbsj;
+	private String tbr;
+	
 	private int page;
 	private int rows;
 	public String getId() {
@@ -142,6 +148,31 @@ public class Gcglhsly implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	
+	public String getCgsdwzj() {
+		return cgsdwzj;
+	}
+	public void setCgsdwzj(String cgsdwzj) {
+		this.cgsdwzj = cgsdwzj;
+	}
+	public String getTbyf() {
+		return tbyf;
+	}
+	public void setTbyf(String tbyf) {
+		this.tbyf = tbyf;
+	}
+	public String getTbsj() {
+		return tbsj;
+	}
+	public void setTbsj(String tbsj) {
+		this.tbsj = tbsj;
+	}
+	public String getTbr() {
+		return tbr;
+	}
+	public void setTbr(String tbr) {
+		this.tbr = tbr;
 	}
 	@Override
 	public String toString() {

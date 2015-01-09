@@ -16,6 +16,11 @@
 	<script type="text/javascript">
 		$(function(){
 			var ybdata=parent.obj;
+			$("#cgsdwzj").text(ybdata.cgsdwzj);
+			$("#tbr").text(ybdata.tbr);
+			$("#tbsj").text(ybdata.tbsj);
+			$("#tbyf").text(ybdata.tbyf);
+			
 			$("#bywcdc").text(ybdata.bywcdc);
 			$("#bywcjc").text(ybdata.bywcjc);
 			$("#bywcmc").text(ybdata.bywcmc);
@@ -55,7 +60,8 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
+
+           <tr>
                 <td>
                     <br />
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
@@ -64,7 +70,7 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                 padding-left: 10px;">
+                                width: 25%;; padding-left: 10px;">
                                 车购税资金到位情况
                             </td>
                         </tr>
@@ -77,7 +83,7 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
                                 colspan="5">
-                                <span id="lblCGS">9</span>
+                                <span id="cgsdwzj"></span>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -87,7 +93,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBR">admin</label>
+                                <label id="tbr"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -96,7 +102,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBSJ">2014-09-22</label>
+                                <label id="tbsj"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -105,7 +111,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                  text-align: left; padding-left: 10px;">
-                                <label id="lblTBYF">2014-09</label>
+                                <label id="tbyf"></label>
                                 &nbsp;
                             </td>
                         </tr>

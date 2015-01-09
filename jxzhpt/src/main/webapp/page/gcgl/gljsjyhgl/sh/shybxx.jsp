@@ -16,6 +16,11 @@
 	<script type="text/javascript">
 	$(function(){
 		var ybdata=parent.obj;
+		$("#cgsdwzj").text(ybdata.cgsdwzj);
+		$("#tbr").text(ybdata.tbr);
+		$("#tbsj").text(ybdata.tbsj);
+		$("#tbyf").text(ybdata.tbyf);
+		
 		$("#wc_btz").text(ybdata.wc_btz);
 		$("#wc_stz").text(ybdata.wc_stz);
 		$("#wc_qttz").text(ybdata.wc_qttz);
@@ -59,63 +64,63 @@ text-decoration: none;
 </style>
 </head>
 <body>
-<div style="text-align: left; font-size: 12px; margin: 0px;">
-	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<div style="text-align: left; font-size: 12px; margin: 0px;">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 
-		<tr>
-            <td>
-                <br />
-                <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
-                    border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
-                    cellpadding="0">
-                    <tr style="height: 25px;">
-                        <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                            color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                            width: 15%; padding-left: 10px;">
-                            车购税资金到位情况
-                        </td>
-                    </tr>
-                    <tr style="height: 30px;">
-                        <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                            color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                            width: 15%; padding-right: 5px;">
-                            车购税资金到位
-                        </td>
-                        <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                            border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"
-                            colspan="5">
-                            <span id="lblCGS">1</span>
-                        </td>
-                    </tr>
-                    <tr style="height: 35px;">
-                        <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                            text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人</font></b>
-                        </td>
-                        <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                            border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                            <label id="lblTBR">admin</label>
-                            &nbsp;
-                        </td>
-                        <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                            text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间</font></b>
-                        </td>
-                        <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                            border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                            <label id="lblTBSJ">2014-09-12</label>
-                            &nbsp;
-                        </td>
-                        <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                            text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报月份</font></b>
-                        </td>
-                        <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                            width: 19%; text-align: left; padding-left: 10px;">
-                            <label id="lblTBYF">2014-09</label>
-                            &nbsp;
-                        </td>
-                    </tr>
+           <tr>
+                <td>
+                    <br />
+                    <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
+                        border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
+                        cellpadding="0">
+                        <tr style="height: 25px;">
+                            <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
+                                width: 25%;; padding-left: 10px;">
+                                车购税资金到位情况
+                            </td>
+                        </tr>
+                        <tr style="height: 30px;">
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                 padding-right: 5px;">
+                                车购税资金到位
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
+                                colspan="5">
+                                <span id="cgsdwzj"></span>
+                            </td>
+                        </tr>
+                        <tr style="height: 35px;">
+                            <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人</font></b>
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <label id="tbr"></label>
+                                &nbsp;
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间</font></b>
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <label id="tbsj"></label>
+                                &nbsp;
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报月份</font></b>
+                            </td>
+                            <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                 text-align: left; padding-left: 10px;">
+                                <label id="tbyf"></label>
+                                &nbsp;
+                            </td>
+                        </tr>
                     <tr style="height: 25px;">
                         <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                             color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
