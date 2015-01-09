@@ -14,6 +14,7 @@
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
 <script type="text/javascript">
 var c1 = true;
@@ -23,7 +24,10 @@ var c4 = true;
 var c5 = true;
 var c6 = true;
 var c7 = true;
+
 $(function(){
+	selSes();
+	$("#index_user").html($.cookie("truename"));
 	$("#Menu_1").addClass('now');
 	$("#c1f").attr("src", "./page/lkpd/Menu.jsp");
 	
@@ -66,10 +70,10 @@ function edit(){
     <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
 			<div class="header_content3">
-			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user">admin</span></div>
+			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
 			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
-			    	<a href="./login.jsp" target="_self">退出系统</a></div>
+			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
 				<ul class="nav">
 					<li id="d1"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
 					<li id="d2"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 

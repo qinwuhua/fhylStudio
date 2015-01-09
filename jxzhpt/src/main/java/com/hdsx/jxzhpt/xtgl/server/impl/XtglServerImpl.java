@@ -343,4 +343,40 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<TreeNode> selAllBm2(String yhdw) {
 		return queryList("selAllBm2", yhdw);
 	}
+
+	@Override
+	public boolean updateTsdq(Param param) {
+		List<HashMap<String, String>> nl=new ArrayList<HashMap<String,String>>();
+		String[] arr=param.getXzqhdm().split(",");
+		String[] arr2=param.getXzqh().split(",");
+		for(int i=0;i<arr.length;i++){
+			HashMap<String, String> hm=new HashMap<String, String>();
+			hm.put("parent", param.getId());
+			hm.put("xzqhdm", arr[i]);
+			hm.put("xzqh", arr2[i]);
+			nl.add(hm);
+		}
+		if(update("updateTsdq", param)>0){
+			if(delete("deleteTsdqListById", param)>0){
+				if(insertBatch("insertTsdqList", nl)>0){
+					return true;
+				}else return false;
+			}else return false;
+		}else return false;
+	}
+
+	@Override
+	public Master selectYhById(Master master) {
+		return queryOne("selectYhById", master);
+	}
+
+	@Override
+	public List<TreeNode> selAllQx(String yhdw) {
+		return queryList("selAllQx", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllQx2(String yhdw) {
+		return queryList("selAllQx2", yhdw);
+	}
 }

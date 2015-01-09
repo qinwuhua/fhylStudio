@@ -19,61 +19,15 @@
 <script type="text/javascript">
 $(function(){
 	jckglZhfz();
-	$("#cc").combotree({
+	$("#gydw").combotree({
 		checkbox: false,
 	 	url: "../js/gydw.json",
 	});
-	$("#ss").combotree({
+	$("#xzqhmc").combotree({
 		checkbox: false,
 	 	url: "../js/xzqh.json",
 	});
 });
-	function jckglZhfz(){
-		$("#grid").datagrid({    
-			 url:'/jxzhpt/xmjck/selectZhfz.do',
-			    striped:true,
-			    pagination:true,
-			    rownumbers:true,
-			    pageNumber:1,
-			    pageSize:10,
-			    height:325,
-			    width:1100,
-		    columns:[[    
-				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.shzt=="未审核"){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<a href=javascript:delJckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
-					}else{
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<span style="color:grey;">编辑</span>  '+
-						'<span style="color:grey;">删除</span>';
-					}
-				}},    
-				{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-					if(row.shzt=="未审核"){
-					return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-					}else{
-						return '<span style="color:grey;">已审核</span>';
-					}
-				}},
-		        {field:'gydw',title:'管养单位',width:160,align:'center'},
-		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-		        {field:'lxbm',title:'路线编号',width:120,align:'center'},
-		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-		        {field:'qdzh',title:'起点桩号',width:140,align:'center'},
-		        {field:'zdzh',title:'止点桩号',width:140,align:'center'},
-		        {field:'qzlc',title:'起止里程',width:140,align:'center'},
-		        {field:'qzlc',title:'总里程',width:140,align:'center'},
-		        {field:'yhlc',title:'隐患里程',width:140,align:'center'},
-		        {field:'gjxjnd',title:'改建/修建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
-		    ]]    
-		});  
-	}
 
 function delJckzhfz(){
 	var rows=$('#grid').datagrid('getSelections');
@@ -102,7 +56,13 @@ function delJckzhfz(){
 		}
 }
 function xgShzt(id){
-	if(confirm('您是否上报该项目！')){
+	var rows=$('#grid').datagrid('getSelections');
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量审核！");
+		return;
+	}
+	if(confirm('您确定审核通过该项目！')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/xgJckZhfzShzt.do",
@@ -110,10 +70,10 @@ function xgShzt(id){
 				 data : 'id=' +id,
 				 success : function(msg){
 					 if(msg){
-						 alert('上报成功！');
+						 alert('审核成功！');
 						 $("#grid").datagrid('reload');
 					 }else{
-						 alert('上报失败,请选择要上报项目！');
+						 alert('审核失败,请选择要审核项目！');
 					 }
 				 },
 				 error : function(){
@@ -121,6 +81,32 @@ function xgShzt(id){
 				 }
 			});
 	}
+}
+function shangB(){
+	var rows=$('#grid').datagrid('getSelections');
+	var id=rows[0].id;
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+	}
+	if(confirm('您确定上报该项目？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/xmjck/xgJckZhfzSbzt.do",
+			 dataType : 'json',
+			 data : 'delstr=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#grid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+}
 }
 </script>
 <style type="text/css">
@@ -149,17 +135,17 @@ text-decoration:none;
 				<div>
 					<p style="margin:8px 0px 4px 20px;">
 								<span>管养单位：</span>
-                              	<select id="cc" style="width:218px">
+                              	<select id="gydw" style="width:218px">
                               	</select>
                              	<span>&nbsp;行政区划：</span>
-                              	<select id="ss" style="width:218px">
+                              	<select id="xzqhmc" style="width:218px">
                               	</select>
                                <span>&nbsp;路线名称：</span>
-        						<input type="text" id="txtRoad" style="width:212px;" />
+        						<input type="text" id="lxmc" style="width:212px;" />
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
-                              	<select id="cc1" class="easyui-combobox" style="width:70px">
+                              	<select id="xmnf" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>
@@ -167,15 +153,15 @@ text-decoration:none;
 									<option value="2011年">2011年</option>
                               	</select>
                               <span>&nbsp;项目状态： </span>
-                              	<select id="ss1" class="easyui-combobox" style="width:70px">
+                              	<select id="xmtype" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>
-									<option value="未审核">已入库</option>
-									<option value="已审核">已下达</option>
+									<option value="已入库">已入库</option>
+									<option value="已下达">已下达</option>
                               	</select>
                                <span>&nbsp;审核状态：</span>
-                              	<select id="ss2" class="easyui-combobox" style="width:70px">
+                              	<select id="shzt"  style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
@@ -183,7 +169,7 @@ text-decoration:none;
 									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
-                              	<select id="ss4" class="easyui-combobox" style="width:70px">
+                              	<select id="ss4" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -191,16 +177,16 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="ss5" class="easyui-combobox" style="width:70px">
+                              	<select id="lxjsdj" style="width:70px">
                               		<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;公路等级：</span>
-                              	<select id="ss6" class="easyui-combobox" style="width:70px">
+                              	<select id="lxbm" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -211,7 +197,7 @@ text-decoration:none;
                               	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglZhfz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
 								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importExcel();" style="border-width:0px;" />

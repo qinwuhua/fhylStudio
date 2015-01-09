@@ -17,10 +17,36 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
+		selZhfzById();
 		$("#qx_window").click(function(){
 			parent.$('#jck_ck').window('destroy');
 		});	
 	});
+	function selZhfzById(){
+		$.ajax({
+			type : 'post',
+			url : '/jxzhpt/xmjck/selectZhfzById.do',
+			data :"id="+parent.rowid,
+			dataType:'json',
+			success : function(msg) {
+			$("#lxbm").html(msg.lxbm);
+			$("#lxmc").html(msg.lxmc);
+			$("#gydw").html(msg.gydw);
+			$("#qdzh").html(msg.qdzh);
+			$("#zdzh").html(msg.zdzh);
+			$("#qzlc").html(msg.qzlc);
+			$("#xzqhdm").html(msg.xzqhdm);
+			$("#xzqhmc").html(msg.xzqhmc);
+			$("#xjnd").html(msg.gjxjnd);
+			$("#lxjsdj").html(msg.lxjsdj);
+			$("#yhlc").html(msg.yhlc);
+			$("#xmnf").html(msg.xmnf);
+			$("#xmzt").html(msg.xmtype);
+			$("#yhnr").html(msg.yhnr);
+			$("#bz").html(msg.bz);
+			}
+		});
+	}		
 </script>
 <style type="text/css">
 TD {
@@ -36,74 +62,74 @@ text-decoration:none;
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					灾害防治项目基本信息
+					安保工程项目基本信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>X396360726</span></td>
+					<span id="lxbm" ></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>五星-沙潭</span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+					<span id="lxmc"></span></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>南昌市南昌县交通局</span></td>
+					<span id="gydw"></span></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
-				<td style="background-color: #ffffff;" align="left">
-					<span>1.545</span></td>
+				<td style="background-color: #ffffff;"align="left">
+					<span id="qdzh"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>44</span></td>
+					<span id="zdzh"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>42.455公里</span></td>
+					<span id="qzlc"></span></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff;" align="left">
-					<span>3303</span></td>
+				<td style="background-color: #ffffff; " align="left">
+					<span id="xzqhdm"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
-				<td style="background-color: #ffffff; "align="left">
-					<span>南昌市南昌县</span></td>
+				<td style="background-color: #ffffff;"align="left">
+					<span id="xzqhmc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>2014</span></td>
+					<span id="xjnd"></span></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>四级公路</span></td>
+					<span id="lxjsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>5公里</span></td>
+					<span id="yhlc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span id="tsdq">罗霄山山脉</span>
+					<span id="tsdq"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>2011</span></td>
+					<span id="xmnf"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<span>待上报</span></td>
+					<span id="xmzt"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff;" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患内容：</td>
 				<td colspan="5" style="background-color: #ffffff;" align="left">
-					<span>2010000000</span>
+					<span id="yhnr"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff;" align="left">
-					<span>无</span>
+					<span id="bz"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

@@ -45,6 +45,10 @@
 	<action name="insertTsdq" class="xtglController" method="insertTsdq"></action>
 	<action name="deleteTsdqById" class="xtglController" method="deleteTsdqById"></action>
 	<action name="selectTsdqById" class="xtglController" method="selectTsdqById"></action>
+	<action name="updateTsdq" class="xtglController" method="updateTsdq"></action>
+	<action name="selectYhById" class="xtglController" method="selectYhById"></action>
+	<action name="selAllQx" class="xtglController" method="selAllQx"></action>
+	<action name="selAllQx2" class="xtglController" method="selAllQx2"></action>
 	
 	<action name="selAllBm" class="xtglController" method="selAllBm"></action>
 	<action name="selAllBm2" class="xtglController" method="selAllBm2"></action>

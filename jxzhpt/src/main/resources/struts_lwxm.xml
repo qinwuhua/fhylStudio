@@ -10,10 +10,18 @@
 	<action name="updateAbgcById" class="jckabgcController" method="updateAbgcById"/>
 	<action name="deleteAbgcById" class="jckabgcController" method="deleteAbgcById	"/>
 	<action name="xgJckAbgcShzt" class="jckabgcController" method="xgJckAbgcShzt"/>
-	<action name="selectGpsroad" class="jckabgcController" method="selectGpsroad"/>
+	<action name="xgJckAbgcSbzt" class="jckabgcController" method="xgJckAbgcSbzt"/>
+	<action name="abgcGpsroad" class="jckabgcController" method="abgcGpsroad"/>
+	<action name="selectJckRoad" class="jckabgcController" method="selectJckRoad"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
-	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
+	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
+	<action name="selectWqgzById" class="jckwqgzController" method="selectWqgzById"/>
+	<action name="updateWqgzById" class="jckwqgzController" method="updateWqgzById"/>
+	<action name="deleteWqgzById" class="jckwqgzController" method="deleteWqgzById"/>
+	<action name="xgJckWqgzShzt" class="jckwqgzController" method="xgJckWqgzShzt"/>
+	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
+	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
@@ -21,6 +29,7 @@
 	<action name="updateZhfzById" class="jckzhfzController" method="updateZhfzById"/>
 	<action name="deleteZhfzById" class="jckzhfzController" method="deleteZhfzById"/>
 	<action name="xgJckZhfzShzt" class="jckzhfzController" method="xgJckZhfzShzt"/>
+	<action name="xgJckZhfzSbzt" class="jckzhfzController" method="xgJckZhfzSbzt"/>
 	<action name="zhfzGpsroad" class="jckzhfzController" method="zhfzGpsroad"/>
  </package>
 </struts>

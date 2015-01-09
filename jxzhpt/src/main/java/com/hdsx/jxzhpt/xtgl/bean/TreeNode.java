@@ -22,7 +22,7 @@ public class TreeNode implements Serializable {
 	private String iconCls="icon-none";
 	private String state="closed";
 	private String parent;
-	
+	private String bmid;
 	public String getParent() {
 		return parent;
 	}
@@ -94,5 +94,11 @@ public class TreeNode implements Serializable {
 		this.children = children;
 		this.state = state;
 	}
-
+	public String getBmid() {
+		return bmid;
+	}
+	public void setBmid(String bmid) {
+		this.bmid = bmid;
+	}
+	
 }

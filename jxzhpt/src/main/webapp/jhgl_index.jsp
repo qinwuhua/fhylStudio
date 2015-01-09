@@ -15,16 +15,23 @@
 <script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript" src="./js/init.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
+<script type="text/javascript">
+$(function(){
+	selSes();
+	$("#index_user").html($.cookie("truename"));
+});
+</script>
 </head>
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 98px;" >
 		<div class="header">
 			<div class="header_content">
-			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user">admin</span></div>
+			    <div style="position:absolute;top:15px;right:250px;color:#f2f8fe;font-family:arial;line-height:1.5em;">欢迎您：<span id="index_user"></span></div>
 			    <div class="system"><a onclick="edit()" href="javascript:void(0)">修改密码</a><em>|</em>
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
-			    	<a href="./login.jsp" target="_self">退出系统</a></div>
+			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
 				<ul class="nav">
 					<li id="d1"><a id="Menu_1" href="javascript:void(0)">电子地图</a></li>
 					<li id="d2"><a id="Menu_2" href="javascript:void(0)">路网项目</a></li> 

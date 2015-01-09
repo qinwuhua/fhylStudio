@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.xtgl.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -135,23 +136,24 @@ public class XtglController extends BaseActionSupport{
 		try {
 			md5 = MessageDigest.getInstance("MD5");
 			BASE64Encoder base = new BASE64Encoder();
-			temp = base.encode(md5.digest(password.getBytes()));
+			temp = base.encode(md5.digest(master.getPassword().getBytes()));
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 		
 		HashMap hm=new HashMap();
-		hm.put("username", username);
+		hm.put("truename", master.getTruename());
 		hm.put("password", temp);
-		hm.put("gmgid", gmgid);
-		hm.put("zt", "禁用");
 		HashMap<String,String> bl = xtglServer.login(hm);
-		if(bl.size() >0){
-			String s=JSONArray.fromObject(bl).toString();
+		if(bl!=null){
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpSession session = request.getSession();
-			session.setAttribute("username", username);
-			ResponseUtils.write(getresponse(), s);
+			session.setAttribute("truename", bl.get("TRUENAME"));
+			try {
+				JsonUtils.write(bl, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
@@ -185,8 +187,8 @@ public class XtglController extends BaseActionSupport{
 	public void clearSession(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		if(session.getAttribute("username") != null){
-			session.setAttribute("username",null);
+		if(session.getAttribute("truename") != null){
+			session.setAttribute("truename",null);
 		}
 		ResponseUtils.write(getresponse(), "true");
 	}
@@ -198,7 +200,7 @@ public class XtglController extends BaseActionSupport{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		String username = (String)session.getAttribute("username");
+		String username = (String)session.getAttribute("truename");
 		if(username == null || username == ""){
 			ResponseUtils.write(getresponse(), "false");
 		}else{
@@ -212,8 +214,8 @@ public class XtglController extends BaseActionSupport{
 		HashMap hm=new HashMap();
 		hm.put("page", page);
 		hm.put("rows", rows);
-		hm.put("yhm", yhm);
-		//hm.put("unit", master.getUnit());
+		hm.put("yhm", master.getTruename());
+		if(!"36".equals(master.getUnit())) hm.put("unit", master.getUnit());
 		int count=xtglServer.selectYhListCount(hm);
 		List<Master> list=xtglServer.selectYhList(hm);
 		EasyUIPage<Master> e=new EasyUIPage<Master>();
@@ -311,6 +313,7 @@ public class XtglController extends BaseActionSupport{
 	 * 删除用户
 	 */
 	public void updateYh(){
+		/*
 		MessageDigest md5;
 		String temp="";
 		try {
@@ -320,7 +323,7 @@ public class XtglController extends BaseActionSupport{
 			master.setPassword(temp);
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
-		}
+		}*/
 		boolean bl = xtglServer.updateYh(master);
 		if(bl == true){
 			ResponseUtils.write(getresponse(), "true");
@@ -416,6 +419,11 @@ public class XtglController extends BaseActionSupport{
 	 * 编码编码树列表
 	 */
 	public void getBmbmTreeByName(){
+		try {
+			yhm=java.net.URLDecoder.decode(yhm,"UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
 		HashMap<String, String> hm=new HashMap<String, String>();
 		hm.put("name", yhm);
 		List<TreeNode> list =  xtglServer.getBmbmTreeByName(hm);
@@ -530,7 +538,7 @@ public class XtglController extends BaseActionSupport{
 	
 	public void checkname(){
 		HashMap hm=new HashMap();
-		hm.put("username", master.getName());
+		hm.put("truename", master.getTruename());
 		List<Master> list=xtglServer.checkname(hm);
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
@@ -650,6 +658,24 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void selectYhById(){
+		Master m=xtglServer.selectYhById(master);
+		try {
+			JsonUtils.write(m, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void updateTsdq(){
+		boolean bl=xtglServer.updateTsdq(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 	public void selAllBm(){
 		try {
             List<TreeNode> l=xtglServer.selAllBm(yhdw);
@@ -663,6 +689,26 @@ public class XtglController extends BaseActionSupport{
 	public void selAllBm2(){
 		try {
             List<TreeNode> l=xtglServer.selAllBm2(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllQx(){
+		List<TreeNode> l=xtglServer.selAllQx(yhdw);
+		try {   
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllQx2(){
+		List<TreeNode> l=xtglServer.selAllQx2(yhdw);
+		try {   
 		    String s=JSONArray.fromObject(l).toString();
             ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {

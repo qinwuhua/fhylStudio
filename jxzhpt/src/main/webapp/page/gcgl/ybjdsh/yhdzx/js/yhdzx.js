@@ -52,7 +52,7 @@ function xgyhdzxyb(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','危桥改造月报审核','yhdzxybsh.jsp','wqxx',450,280);
+	YMLib.UI.createWindow('wqxx','养护大中修月报审核','yhdzxybsh.jsp','wqxx',450,280);
 }
 function shyhdzxyb(){
 	var myDate = new Date();

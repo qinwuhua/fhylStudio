@@ -47,7 +47,6 @@ text-decoration:none;
 			var data ="id="+parent.rowid+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+1101+"&qdzh="+$("#qdzh").val()
 			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#qzlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
 			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
-			alert(data);
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmjck/updateAbgcById.do',

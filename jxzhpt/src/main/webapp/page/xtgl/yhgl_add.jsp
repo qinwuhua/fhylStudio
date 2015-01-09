@@ -17,19 +17,20 @@
 </head>
 <body>
 <script type="text/javascript">
-flag = false;
+var flag;
 function checkNameVal(procode){
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/checkname.do",
 		 dataType : 'json',
-		 data : "master.name=" + procode,
+		 data : "master.truename=" + procode,
 		 success : function(msg){
 			 if(msg.length>0){
 				 YMLib.Tools.Show('用户名称重复请重新填写！',3000);
 				 flag = false;
 			 }else{
 				 var param = $("#yhgl_form").serialize();
+				 alert(param);
 					$.ajax({
 						 type : "POST",
 						 url : "../../xtgl/insertYh.do",
@@ -38,7 +39,7 @@ function checkNameVal(procode){
 						 success : function(msg){
 							 if(msg){
 								 alert('保存成功！');
-								 parent.$("#yhgl_table").datagrid('reload');
+								 parent.$("#jsgl_table").datagrid('reload');
 								 parent.$("#yhgl_add_win").window('destroy');
 								 
 							 }else{
@@ -65,7 +66,7 @@ function selQxList(){
 		dataType : 'json',
 		success : function(msg){
 			for (var i=0;i<msg.length;i++){
-				$("#role").append("<option value='"+msg[i].ID+"'>"+msg[i].NAME+"</option>");
+				$("#roleid").append("<option value='"+msg[i].ROLEID+"'>"+msg[i].ROLENAME+"</option>");
 			}
 		}
 	});
@@ -78,19 +79,15 @@ function save(){
 		alert("请输入用户名！");
 		return false;
 	}
-	if($("#name").val()==""){
-		alert("请输入单位负责人！");
-		return false;
-	}
-	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
+	/* if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
 		alert("联系电话的格式不正确！");
 		return false;
-	}
+	} */
     checkNameVal($("#truename").val());
 }
 $(function(){
-	//loadUnit("unit",$.cookie("unit"));
-	//selQxList();
+	loadUnit("unit","36");
+	selQxList();
 	$("#yhgl_btn_Save").click(function(){
 		save();
 	});
@@ -104,7 +101,7 @@ $(function(){
 	<form id="yhgl_form" style="overflow-x:hidden">
 		<table id="yhgl_form_table" cellspacing="0"  class="table_grid">
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					用户名：
 				</td>
 				<td>
@@ -112,23 +109,23 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					 所属单位：
 				</td>
 				<td>
-					<input  type="text" id="unit" name="master.unit"/>
+					<input  type="text" id="unit" name="master.unit" style="width:156px;"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right" align="right">
+				<td align="right" align="right">
 					 用户角色：
 				</td>
 				<td>
-					<input  type="text" id="roleid" name="master.roleid"/>
+					<select id="roleid" name="master.roleid" style="width:156px;"></select>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					真实姓名：
 				</td>
 				<td style="text-align: left">
@@ -136,7 +133,7 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					性别：
 				</td>
 				<td align="left">
@@ -145,15 +142,15 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					身份证号：
 				</td>
 				<td style="text-align: left">
-					<input id="name" name="master.idcard" type="text"/>
+					<input id="idcard" name="master.idcard" type="text"/>
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					联系电话：
 				</td>
 				<td style="text-align: left">
@@ -161,7 +158,7 @@ $(function(){
 				</td>
 			</tr>
 			<tr>
-				<td class="table_right" align="right">
+				<td align="right">
 					手机：
 				</td>
 				<td>

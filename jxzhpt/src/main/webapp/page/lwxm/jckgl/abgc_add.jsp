@@ -65,7 +65,7 @@ text-decoration:none;
 		autoCompleteLXBM();
 	});
 	function autoCompleteLXBM(){
-		var url = "/jxzhpt/xmjck/selectGpsroad.do";
+		var url = "/jxzhpt/xmjck/abgcGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
 			minChars :2,

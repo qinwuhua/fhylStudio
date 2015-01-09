@@ -5,8 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>江西省公路业务综合管理平台</title>
 <link rel="stylesheet" type="text/css" href="css/Login.css" />
+<script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/YMLib.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
 </head>
-
 <body style="margin:0 0 0 0; min-width: 1000px;overflow-x:hidden; ">
 <div id="bg">
 	<div class="dlflash">
@@ -16,11 +19,13 @@
 <!--
  wpFlashWrite('images/login.swf',1000,570,'wpFlash70814','','');
 //-->
-function login(){
-	document.location.href="index.jsp";
-}
+$(function(){
+	$("#name").focus();
+});
 function rewrite(){
-	alert("2");
+	$("#name").val("");
+	$("#password").val("");
+	$("#name").focus();
 }
 </script>
 
@@ -28,10 +33,10 @@ function rewrite(){
                <div id="perDword" class="perDword" >
             	<table width="100%" border="0" cellspacing="0" cellpadding="0" height="118px">
            <tr>
-           <td colspan="3">用户名：<input name="tbUser" type="text" id="tbUser" style="height:23px;width:180px; line-height:23px;" /></td>
+           <td colspan="3">用户名：<input name="tbUser" type="text" id="name" style="height:23px;width:180px; line-height:23px;" /></td>
            </tr>
            <tr>
-           <td colspan="3">密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="tbPwd" type="password" id="tbPwd" style="height:23px;width:180px; line-height:23px;" /></td>
+           <td colspan="3">密&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="tbPwd" type="password" id="password" style="height:23px;width:180px; line-height:23px;" /></td>
            </tr>
            <tr>
            <td width="15%"></td>

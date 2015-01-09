@@ -104,4 +104,12 @@ public interface XtglServer {
 
 	List<TreeNode> selAllBm2(String yhdw);
 
+	boolean updateTsdq(Param param);
+
+	Master selectYhById(Master master);
+
+	List<TreeNode> selAllQx(String yhdw);
+
+	List<TreeNode> selAllQx2(String yhdw);
+
 }
