@@ -28,6 +28,8 @@
      <!-- rh -->
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj" alias="plan_gcsj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj" alias="plan_lx_gcsj"/>
      <!-- rh -->
   </typeAliases>
   <environments default="jdbc">
@@ -73,6 +75,8 @@
 	<!-- lhp -->
 	<!-- rh -->
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcsj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
   </mappers>
 </configuration>

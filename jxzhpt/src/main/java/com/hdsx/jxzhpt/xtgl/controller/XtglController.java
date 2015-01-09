@@ -668,7 +668,6 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	public void updateTsdq(){
-		System.out.println("++++++++++++");
 		boolean bl=xtglServer.updateTsdq(param);
 		if(bl == true){
 			ResponseUtils.write(getresponse(), "true");
@@ -690,6 +689,26 @@ public class XtglController extends BaseActionSupport{
 	public void selAllBm2(){
 		try {
             List<TreeNode> l=xtglServer.selAllBm2(yhdw);
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllQx(){
+		List<TreeNode> l=xtglServer.selAllQx(yhdw);
+		try {   
+		    String s=JSONArray.fromObject(l).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllQx2(){
+		List<TreeNode> l=xtglServer.selAllQx2(yhdw);
+		try {   
 		    String s=JSONArray.fromObject(l).toString();
             ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
