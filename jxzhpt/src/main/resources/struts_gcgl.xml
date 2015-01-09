@@ -52,5 +52,12 @@
 	<action name="selectgcgzsjYbByJhid" class="gcglgcgzsjController" method="selectgcgzsjYbByJhid"/>
 	<action name="shgcgzsjyb" class="gcglgcgzsjController" method="shgcgzsjyb"/>
 	
+	<!-- hsly -->
+	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>
+	<action name="deletehslyYb" class="gcglhslyController" method="deletehslyYb"/>
+	<action name="updatehslyYb" class="gcglhslyController" method="updatehslyYb"/>
+	<action name="selecthslyYbByJhid" class="gcglhslyController" method="selecthslyYbByJhid"/>
+	<action name="shhslyYb" class="gcglhslyController" method="shhslyYb"/>
+	
  </package>
 </struts>
