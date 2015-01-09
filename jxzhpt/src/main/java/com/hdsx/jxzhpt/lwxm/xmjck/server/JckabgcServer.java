@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 
 public interface JckabgcServer {
 	boolean insertAbgc(Jckabgc abgc);
-	List<Jckabgc> selectAbgcList(Jckabgc abgc,int page,int rows);
+	List<Jckabgc> selectAbgcList(Jckabgc abgc);
 	Jckabgc selectAbgcById(Jckabgc abgc);
 	boolean updateAbgcById(Jckabgc abgc);
 	List<Jckabgc> selectGpsroad(Jckabgc abgc);

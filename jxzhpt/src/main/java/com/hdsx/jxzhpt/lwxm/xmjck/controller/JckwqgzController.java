@@ -39,7 +39,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	
 	public void selectWqgz(){
-		List<Jckwqgz> wqgzList = wqgzServer.selectWqgzList(jckwqgz,page,rows);
+		List<Jckwqgz> wqgzList = wqgzServer.selectWqgzList(jckwqgz);
 		int count = wqgzServer.selectWqgzCount(jckwqgz);
 		EasyUIPage<Jckwqgz> eui = new EasyUIPage<Jckwqgz>();
 		eui.setRows(wqgzList);

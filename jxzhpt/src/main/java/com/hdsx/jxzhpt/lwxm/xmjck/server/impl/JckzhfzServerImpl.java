@@ -23,7 +23,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public List<Jckzhfz> selectZhfzList(Jckzhfz zhfz,int page,int rows) {
+	public List<Jckzhfz> selectZhfzList(Jckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
@@ -33,8 +33,8 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		hm.put("shzt", zhfz.getShzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("page", page);
-		hm.put("rows", rows);
+		hm.put("page", zhfz.getPage());
+		hm.put("rows", zhfz.getRows());
 		return queryList("selectJckzhfz",hm);
 	}
 

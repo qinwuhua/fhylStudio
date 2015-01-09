@@ -5,7 +5,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 
 public interface JckzhfzServer {
 	boolean insertZhfz(Jckzhfz zhfz);
-	List<Jckzhfz> selectZhfzList(Jckzhfz zhfz,int page,int rows);
+	List<Jckzhfz> selectZhfzList(Jckzhfz zhfz);
 	int selectZhfzCount(Jckzhfz zhfz);
 	Jckzhfz selectZhfzById(Jckzhfz zhfz);
 	boolean updateZhfzById(Jckzhfz zhfz);

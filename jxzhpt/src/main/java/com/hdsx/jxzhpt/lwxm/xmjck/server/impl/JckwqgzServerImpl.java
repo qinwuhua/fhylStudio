@@ -23,7 +23,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz,int page,int rows) {
+	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
@@ -34,8 +34,8 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("shzt", wqgz.getShzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
-		hm.put("page", page);
-		hm.put("rows", rows);
+		hm.put("page", wqgz.getPage());
+		hm.put("rows", wqgz.getRows());
 		return queryList("selectJckwqgz",hm);
 	}
 

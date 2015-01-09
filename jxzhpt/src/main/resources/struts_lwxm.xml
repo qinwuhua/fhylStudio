@@ -35,5 +35,10 @@
  <package name="xmsck" extends="struts-default" namespace="/xmsck">
 	<!-- 安保工程 -->
 	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
+	<action name="selectSckabgc" class="sckabgcController" method="selectSckabgc"/>
+	<action name="deleteSckAbgc" class="sckabgcController" method="deleteSckAbgc"/>
+	<action name="updateSckabgc" class="sckabgcController" method="updateSckabgc"/>
+	<action name="selectSckabgcById" class="sckabgcController" method="selectSckabgcById"/>
+	<action name="xgSckAbgcSbzt" class="sckabgcController" method="xgSckAbgcSbzt"/>
  </package>
 </struts>

@@ -201,13 +201,13 @@ text-decoration:none;
 					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="sczlc"id="sczlc" style="width: 110px" />公里
+					<input type="text" name="sczlc"id="sczlc" style="width: 110px" />&nbsp;公里
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scyhlc" style="width: 150px"/>公里
+					<input type="text" id="scyhlc" style="width: 150px"/>&nbsp;公里
 				</td>
 			</tr>
 			<tr>
@@ -228,13 +228,13 @@ text-decoration:none;
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="tzgs"id="tzgs" style="width: 156px" /></td>
+					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jsxz">
-						<option selected>中修</option>
-						<option>大修</option>
-						<option>改建</option>
+						<option value="中修"selected>中修</option>
+						<option value="大修">大修</option>
+						<option value="改建">改建</option>
 					</select>
 				</td>
 			</tr>

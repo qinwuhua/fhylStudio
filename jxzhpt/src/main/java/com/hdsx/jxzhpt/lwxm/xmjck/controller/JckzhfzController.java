@@ -38,7 +38,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void selectZhfz(){
-		List<Jckzhfz> zhfzList = zhfzServer.selectZhfzList(jckzhfz, page, rows);
+		List<Jckzhfz> zhfzList = zhfzServer.selectZhfzList(jckzhfz);
 		int count = zhfzServer.selectZhfzCount(jckzhfz);
 		EasyUIPage<Jckzhfz> eui = new EasyUIPage<Jckzhfz>();
 		eui.setRows(zhfzList);

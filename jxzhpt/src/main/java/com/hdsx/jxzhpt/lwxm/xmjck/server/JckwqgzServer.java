@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 
 public interface JckwqgzServer {
 	boolean insertWqgz(Jckwqgz wqgz);
-	List<Jckwqgz> selectWqgzList(Jckwqgz wqgz,int page,int rows);
+	List<Jckwqgz> selectWqgzList(Jckwqgz wqgz);
 	int selectWqgzCount(Jckwqgz wqgz);
 	Jckwqgz selectWqgzById(Jckwqgz wqgz);
 	boolean updateWqgzById(Jckwqgz wqgz);

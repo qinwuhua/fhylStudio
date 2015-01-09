@@ -95,6 +95,6 @@
  	update xmk_abgc set shzt='已审核' where id=#{id}
  </update>
   <update id="xgJckAbgcSbzt" parameterType="String" >
- 	update xmk_abgc set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+ 	update xmk_abgc set shzt='未审核',sbzt='已上报',sbsj=sysdate where id in(#{delstr})
  </update>
 </mapper>
