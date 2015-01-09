@@ -17,77 +17,58 @@
 </head>
 <body>
 <script type="text/javascript">
-flag = false;
-/* function checkProCode(procode){
+function save(){
+	if(!$("#jsgl_form #jsgl_form_table").form('validate')){
+		return;
+	}
+	if($("#name").val()==""){
+		alert("请输入角色名称！");
+		return false;
+	}
+	if($("#qx").combotree("getValues")==""){
+		alert("请选择角色权限！");
+		return false;
+	}
+	
+	param=$("#jsgl_form").serialize();
 	$.ajax({
 		 type : "POST",
-		 url : "jsgl/checkname.do",
+		 url : "../../xtgl/insertJs.do",
 		 dataType : 'json',
-		 data : "name=" + procode,
+		 data : param,
 		 success : function(msg){
 			 if(msg){
-				 YMLib.Tools.Show('角色名称重复请重新填写！',3000);
-				 flag = false;
-				 $("#name").val('');
+				 alert('保存成功！');
+				 parent.$("#jsgl_table").datagrid('reload');
+				 parent.$("#jsgl_add_win").window('destroy');
 			 }else{
-				 flag = true;
+				 YMLib.Tools.Show('保存失败！',3000);
 			 }
-		 },
-		 error : function(){
-			 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 		 }
-		});
-} */
+	});
+	delete param;
+}
 $(function(){
+	loadQx("qx");
 	$("#jsgl_btn_Save").click(function(){
-		if(!$("#jsgl_form #jsgl_form_table").form('validate')){
-			return;
-		}
-		if($("#name").val()==""){
-			alert("请输入角色名称！");
-			return false;
-		}
-		if($("#descr").val()==""){
-			alert("请输入角色描述！");
-			return false;
-		}
-		var checkboxs = document.getElementsByName("checkbox"); 
-		var s="";
-		for (var i=0; i<checkboxs.length; i++){
-			if (checkboxs[i].checked==true){
-				s=s+checkboxs[i].value+";";
-			}
-		}
-		if(s==""){
-			alert("请选择资源！");
-			return false;
-		}
-		$("#resourceid").val(s);
-		param=$("#jsgl_form").serialize();
-		$.ajax({
-			 type : "POST",
-			 url : "../../xtgl/insertJs.do",
-			 dataType : 'json',
-			 data : param,
-			 success : function(msg){
-				 if(msg){
-					 alert('保存成功！');
-					 parent.$("#jsgl_table").datagrid('reload');
-					 parent.$("#jsgl_add_win").window('destroy');
-				 }else{
-					 YMLib.Tools.Show('保存失败！',3000);
-				 }
-			 },
-			 error : function(){
-				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-			 }
-			});
-		delete param;
+		save();
 	});
 	$("#jsgl_btn_Cancel").click(function(){
 		$("#jsgl_add_win").window('destroy');
 	});
 });
+
+function loadQx(_id){
+	$('#'+id).combotree({
+		checkbox: false,
+		multiple:true,
+		url: '../../xtgl/selAllQx.do?yhdw=01',
+		onBeforeExpand:function(node,param){
+			$('#'+id).combotree("tree").tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
+		},
+		onSelect:function(node){}
+	});
+}
 </script>
 <div id="jsgl_layout" class="easyui-layout" fit="true">
 	<div region="center" border="false" style="padding:0px;border-bottom-width:1px;">
@@ -106,6 +87,8 @@ $(function(){
 					权限分配：
 				</td>
 				<td>
+				<input id="qx"  type="text" name="param.qx"/>
+				<!-- 
 					<table border="0" cellspacing="0" style="height: 26px;border:1px solid #C1DAD7;border-right: 0px;border-bottom: 0px;" id="resource">
 						<tr><td rowspan="28">计划管理子系统</td><td>电子地图</td><td>电子地图</td></tr>
 						
@@ -148,6 +131,7 @@ $(function(){
 						<tr><td>特殊地区</td></tr>
 						<tr><td>用户信息管理</td></tr>
 					</table>
+					 -->
 				</td>
 			</tr>
 			<tr>

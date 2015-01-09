@@ -215,4 +215,10 @@
 	<select id="selectYhById" parameterType="master" resultType="master">
 		select * from xtgl_master where id=#{id}
 	</select>
+	<select id="selAllQx" parameterType="String" resultType="treenode">
+	    select distinct x.id ,x.name text from xtgl_xzqh x where  x.id = #{yhdw} order by id
+	</select>
+	<select id="selAllQx2" parameterType="String" resultType="treenode">
+	  select  distinct x.id , x.name text from xtgl_xzqh x where  x.parent = #{yhdw} order by id
+	</select>
 </mapper>

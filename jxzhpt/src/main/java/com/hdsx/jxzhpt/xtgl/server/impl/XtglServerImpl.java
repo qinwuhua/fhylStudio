@@ -369,4 +369,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public Master selectYhById(Master master) {
 		return queryOne("selectYhById", master);
 	}
+
+	@Override
+	public List<TreeNode> selAllQx(String yhdw) {
+		return queryList("selAllQx", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllQx2(String yhdw) {
+		return queryList("selAllQx2", yhdw);
+	}
 }

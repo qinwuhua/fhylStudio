@@ -91,7 +91,7 @@ $(function(){
 					编码值：
 				</td>
 				<td>
-					<input id="bmid" class="easyui-validatebox" required="true" validType="Chinese" name="unit.bmid" type="text" style="width:160px;"  />
+					<input id="bmid" name="unit.bmid" type="text" style="width:160px;"  />
 				</td>
 			</tr>
 		</table>
