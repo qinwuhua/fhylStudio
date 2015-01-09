@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_gcsj">
+	<resultMap id="gcsj_jh" type="plan_gcsj">
+		<id property="id" column="id" />
+		<result property="jhnf" column="jhnf"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="sjdw" column="sjdw"/>
+		<result property="sjpfdw" column="sjpfdw"/>
+		<result property="pfwh" column="pfwh"/>
+		<result property="pfsj" column="pfsj"/>
+		<result property="ql" column="ql"/>
+		<result property="ql_m" column="ql_m"/>
+		<result property="sd" column="sd"/>
+		<result property="sd_m" column="sd_m"/>
+		<result property="hd" column="hd"/>
+		<result property="ljtsf" column="ljtsf"/>
+		<result property="dc" column="dc"/>
+		<result property="jc" column="jc"/>
+		<result property="lqlm" column="lqlm"/>
+		<result property="snlm" column="snlm"/>
+		<result property="gjhjsdj" column="gjhjsdj"/>
+		<result property="pftz" column="pftz"/>
+		<result property="jhsybbzje" column="jhsybbzje"/>
+		<result property="jhsydfzczj" column="jhsydfzczj"/>
+		<result property="sfsqablbz" column="sfsqablbz"/>
+		<result property="ablbzsqwh" column="ablbzsqwh"/>
+		<result property="remarks" column="remarks"/>
+		<result property="tbsj" column="tbsj"/>
+		<result property="tbbm" column="tbbm"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="sbbm" column="sbbm"/>
+		<result property="sbsj" column="sbsj"/>
+		<result property="spzt" column="spzt"/>
+		<result property="spbm" column="spbm"/>
+		<result property="spsj" column="spsj"/>
+		<result property="xmwybh" column="xmwybh"/>
+		<result property="xdsj" column="xdsj"/>
+		<result property="gkbgmc" column="gkbgmc"/>
+		<result property="gkbglj" column="gkbglj"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
+		<result property="sjsgtlj" column="sjsgtlj"/>
+		<result property="sjkgsj" column="sjkgsj"/>
+		<result property="sjwgsj" column="sjwgsj"/>
+		<result property="sgdw" column="sgdw"/>
+		<result property="jldw" column="jldw"/>
+		<result property="htje" column="htje"/>
+		<result property="sgxkwj" column="sgxkwj"/>
+		<result property="jgtcwj" column="jgtcwj"/>
+		<result property="jgyswj" column="jgyswj"/>
+		<result property="wjsczt" column="wjsczt"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="wjgyy" column="wjgyy"/>
+		<result property="yjwgsj" column="yjwgsj"/>
+		<result property="xmmc" column="xmmc"/>
+		<result property="jsjsbz" column="jsjsbz"/>
+		<result property="sftqss" column="sftqss"/>
+		<result property="jsdw" column="jsdw"/>
+		<result property="jhxdwh" column="jhxdwh"/>
+		<result property="gksjwh" column="gksjwh"/>
+		<result property="sjpfwh" column="sjpfwh"/>
+		<result property="wjzt" column="wjzt"/>
+		<result property="wjsj" column="wjsj"/>
+		<result property="gsztz" column="gsztz"/>
+		<result property="sfqxkg" column="sfqxkg"/>
+		<result property="fapgdw" column="fapgdw"/>
+		<result property="fascdw" column="fascdw"/>
+		<result property="faspsj" column="faspsj"/>
+		<result property="spwh" column="spwh"/>
+		<result property="tzgs" column="tzgs"/>
+		<result property="jsxz" column="jsxz"/>
+		<result property="jsnr" column="jsnr"/>
+		<collection property="plan_lx_gcsjs" ofType="plan_lx_gcsj" resultMap="gcsjlx"/>
+	</resultMap>
+	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
+		<id property="id" column="id" />
+		<result property="lxmc" column="lxmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="xzqhdm" column="xzqhdm"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="qzlc" column="qzlc"/>
+		<result property="xmlc" column="xmlc"/>
+		<result property="gydw" column="gydw"/>
+		<result property="gydwbm" column="gydwbm"/>
+		<result property="yjsdj" column="yjsdj"/>
+		<result property="bhnr" column="bhnr"/>
+		<result property="sczt" column="sczt"/>
+		<result property="tbsj" column="tbsj"/>
+		<result property="tbbmbh" column="tbbmbh"/>
+		<result property="gydwdm" column="gydwdm"/>
+		<result property="scbz" column="scbz"/>
+		<result property="scbmbm" column="scbmbm"/>
+		<result property="bz" column="bz"/>
+		<result property="jhid" column="jhid"/>
+	</resultMap>
+	
+	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
+		select * from (
+			select rownum as num,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
+			lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
+		 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+		 	where 1=1
+		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+				and jh.jhnf =#{jh.jhnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			and jh.id in (
+					select lx.jhid from PLAN_lx_GCGJ l 
+					where 1=1 
+						<if test="lx.gydw!=null and lx.gydw!=''">
+							and lx.gydw =#{lx.gydw}
+						</if>
+						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
+							and lx.xzqhmc =#{lx.xzqhmc}
+						</if>
+						<if test="lx.lxmc!=null and lx.lxmc!=''">
+							and lx.lxmc like '%'||#{lx.lxmc}||'%'
+						</if>
+						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+							and lx.yjsdj=#{lx.yjsdj}
+						</if>
+						<if test="lx.lxbm!=null and lx.lxbm!=''">
+							and lx.lxbm like 'S'||#{lx.lxbm}
+						</if>
+					    and lx.xzqhdm in (
+					    	select B.XZQHDM from BT_XZQHTSDQ b 
+					    	WHERE 1=1 
+					    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+								B.AREACODE=#{lx.tsdqbm}
+							</if>
+					    	)
+					    )
+			
+		 )
+		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="querygcsjCount" resultType="int" parameterType="java.util.Map">
+	</select>
+	<select id="querygcsjById" resultMap="gcsj_jh" parameterType="string">
+	</select>
+</mapper>

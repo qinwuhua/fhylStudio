@@ -5,5 +5,9 @@
 	<package name="jhgl" extends="struts-default" namespace="/jhgl">
 		<action name="queryGcgjList" class="plan_gcgjController" method="queryGcgjList"/>
 		<action name="queryGcgjById" class="plan_gcgjController" method="queryGcgjById"/>
+		
+		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
+		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
+		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>
 	 </package>
 </struts>
