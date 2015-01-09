@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author LHP
  *
  */
-public class Sckabgc implements Serializable{
+public class Sckwqgz implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 		private String id;

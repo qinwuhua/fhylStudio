@@ -32,4 +32,8 @@
 	<action name="xgJckZhfzSbzt" class="jckzhfzController" method="xgJckZhfzSbzt"/>
 	<action name="zhfzGpsroad" class="jckzhfzController" method="zhfzGpsroad"/>
  </package>
+ <package name="xmsck" extends="struts-default" namespace="/xmsck">
+	<!-- 安保工程 -->
+	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
+ </package>
 </struts>

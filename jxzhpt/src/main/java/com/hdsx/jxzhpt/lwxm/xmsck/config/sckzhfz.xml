@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hdsx.jxzhpt.sckabgc">
+<mapper namespace="com.hdsx.jxzhpt.sckzhfz">
 <insert id="insertSckabgc"  parameterType="sckabgc">
 	insert into sck_abgc(id,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
