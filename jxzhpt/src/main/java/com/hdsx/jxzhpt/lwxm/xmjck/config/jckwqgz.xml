@@ -96,6 +96,11 @@
   	order by roadcode,min(roadstart)
  </select>
  
+  <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
+ 	select * from xmk_wqgz where qlbh like #{qlbh}||'%' 
+ 	order by qlbh
+ </select>
+ 
  <delete id="deleteJckWqgz" parameterType="String" >
  	delete from xmk_wqgz where id in #{delstr}
  </delete>

@@ -55,6 +55,12 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		hm.put("lxbm", zhfz.getLxbm());
 		return queryList("selectGpsroad", hm);
 	}
+	@Override
+	public List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz) {
+		hm = new HashMap<String, Object>();
+		hm.put("lxbm", zhfz.getLxbm());
+		return queryList("JckzhfzRoad", hm);
+	}
 
 	@Override
 	public boolean deleteZhfzById(String delstr) {
@@ -87,5 +93,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		hm.put("lxbm", zhfz.getLxbm());
 		return queryOne("selectZhfzCount", hm);
 	}
+
+
 	
 }

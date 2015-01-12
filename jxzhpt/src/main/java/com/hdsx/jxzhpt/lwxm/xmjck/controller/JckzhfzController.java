@@ -26,8 +26,6 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	private JckzhfzServer zhfzServer;
 	private Jckzhfz jckzhfz=new Jckzhfz();
 	private String delstr;
-	private int page=1;
-	private int rows=10;
 	
 	public void insertZhfz(){
 		boolean b = zhfzServer.insertZhfz(jckzhfz);
@@ -92,7 +90,13 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
-	
+	public void JckzhfzRoad(){
+		try {
+			JsonUtils.write(zhfzServer.JckzhfzRoad(jckzhfz), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;
@@ -106,18 +110,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	public void setDelstr(String delstr) {
 		this.delstr = delstr;
 	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getRows() {
-		return rows;
-	}
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+
 	@Override
 	public Jckzhfz getModel() {
 		return jckzhfz;

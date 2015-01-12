@@ -53,8 +53,14 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public List<Jckwqgz> selectGpsroad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
-		hm.put("lxbm", wqgz.getLxbm());
+		hm.put("qlbh", wqgz.getQlbh());
 		return queryList("selectGpsroad", hm);
+	}
+	@Override
+	public List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("qlbh", wqgz.getQlbh());
+		return queryList("JckWqgzRoad", hm);
 	}
 
 	@Override
@@ -89,5 +95,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("akjfl", wqgz.getAkjfl());
 		return queryOne("selectWqgzCount", hm);
 	}
+
+
 
 }

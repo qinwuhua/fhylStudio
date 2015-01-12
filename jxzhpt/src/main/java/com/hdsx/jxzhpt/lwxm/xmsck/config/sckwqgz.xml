@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
-<insert id="insertSckabgc"  parameterType="sckabgc">
-	insert into sck_abgc(id,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
-		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
+<insert id="insertSckwqgz"  parameterType="sckwqgz">
+	insert into sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
+		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核')
 </insert>
  
- <select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
+ <select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_abgc t where 1=1
- 		<if test="gydw!='' and gydw!= null "  >
+ 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t where 1=1
+  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
@@ -18,6 +18,9 @@
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -28,17 +31,18 @@
  		<if test="shzt!='' and shzt!= null ">
  			and shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
  		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like #{akjfl}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt
  </select>
-  <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
- 		select count(*) from xmk_abgc where 1=1
+  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
+ 		 where 1=1
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -47,6 +51,9 @@
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -57,38 +64,30 @@
  		<if test="shzt!='' and shzt!= null ">
  			and shzt like '%'||(#{shzt})||'%'
  		</if>
- 		<if test="lxjsdj!='' and lxjsdj!= null ">
- 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
  		</if>
- 		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like #{akjfl}||'%'
  		</if>
  </select>
- <select id="selectJckabgcById" parameterType="jckabgc" resultType="jckabgc">
- 	select * from xmk_abgc where id=#{id}
- </select>
- <update id="updateJckabgc" parameterType="jckabgc" >
- 	update xmk_abgc set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},gydwbm=#{gydwbm},qdzh=#{qdzh},zdzh=#{zdzh},
- 	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
- 	yhnr=#{yhnr},bz=#{bz} where id=#{id}
+
+ <update id="updateSckwqgz" parameterType="sckwqgz" >
+ 	update sck_wqgz set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
+ 	jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
+ 	where sckid=#{sckid}
  </update>
- 
-  <select id="selectGpsroad"  parameterType="hashmap" resultType="jckabgc">
- 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
- 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
- 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
- 	group by roadname,roadcode,F114,F044,F045
-  	order by roadcode,min(roadstart)
+  <select id="selectSckwqgzById" parameterType="sckwqgz" resultType="sckwqgz">
+ 	select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where sckid=#{sckid}
  </select>
- 
- <delete id="deleteJckAbgc" parameterType="String" >
- 	delete from xmk_abgc where id in(#{delstr})
+ <delete id="deleteSckWqgz" parameterType="String" >
+ 	delete from sck_wqgz where sckid in(#{delstr})
  </delete>
  
-  <update id="xgJckAbgcShzt" parameterType="jckabgc" >
- 	update xmk_abgc set shzt='已审核' where id=#{id}
+  <update id="xgSckWqgzShzt" parameterType="sckwqgz" >
+ 	update sck_wqgz set sck_shzt='已审核' where id=#{id}
  </update>
-  <update id="xgJckAbgcSbzt" parameterType="String" >
- 	update xmk_abgc set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+  <update id="xgSckWqgzSbzt" parameterType="String" >
+ 	update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
  </update>
 </mapper>

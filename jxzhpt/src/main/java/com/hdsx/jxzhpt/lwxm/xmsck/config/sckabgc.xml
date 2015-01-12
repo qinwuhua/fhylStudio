@@ -82,6 +82,6 @@
  	update sck_abgc set sck_shzt='已审核' where id=#{id}
  </update>
   <update id="xgSckAbgcSbzt" parameterType="String" >
- 	update sck_abgc set sck_sbzt='已上报',set sck_sbsj=sysdate where sckid in(#{delstr})
+ 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
  </update>
 </mapper>

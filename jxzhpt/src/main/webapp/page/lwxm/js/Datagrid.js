@@ -362,7 +362,7 @@ function sckglWqgz(){
 //审查库管理
 function sckglWqgz(){
 	$("#grid").datagrid({    
-		 url:'/jxzhpt/xmsck/selectWqgz.do',
+		 url:'/jxzhpt/xmsck/selectSckwqgz.do',
 		 queryParams : {
 			 	'gydw':$("#gydw").val(),
 			 	'xzqhmc':$("#xzqhmc").val(),
@@ -386,12 +386,12 @@ function sckglWqgz(){
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt=="未上报"){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckSckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:xgSckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:xgSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}else{
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckSckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
 				}
@@ -412,7 +412,8 @@ function sckglWqgz(){
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
+		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
 }
@@ -499,19 +500,19 @@ function sckglZhfz(){
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt=="未上报"){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckSckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:xgSckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}else{
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckSckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt=="未上报"){
-				return '<a href=javascript:xgSbzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+				return '<a href=javascript:shangB("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 				}else{
 					return '<span style="color:grey;">已上报</span>';
 				}

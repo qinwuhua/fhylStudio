@@ -88,19 +88,19 @@ var xmkid;
 					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw").attr("value",'');
 					xmkid=item.id;
 					$("#lxmc").val(item.lxmc);
-					$("#gydw").val(item.gydw);
-					$("#xzqhmc").val(item.xzqhmc);
-					$("#xzqhdm").val(item.xzqhdm);
- 					$("#qdzh").val(item.qdzh);
-					$("#zdzh").val(item.zdzh);
-					$("#gjxjnd").val(item.gjxjnd);
-					$("#lxjsdj").val(item.lxjsdj);
-					$("#qzlc").val(item.qzlc);
-					$("#yhlc").val(item.yhlc);
-					$("#xmnf").val(item.xmnf);
-					$("#xmtype").val(item.xmtype);
-					$("#yhnr").val(item.yhnr);
-					$("#bz").val(item.bz);
+					$("#gydw").html(item.gydw);
+					$("#xzqhmc").html(item.xzqhmc);
+					$("#xzqhdm").html(item.xzqhdm);
+ 					$("#qdzh").html(item.qdzh);
+					$("#zdzh").html(item.zdzh);
+					$("#gjxjnd").html(item.gjxjnd);
+					$("#lxjsdj").html(item.lxjsdj);
+					$("#qzlc").html(item.qzlc);
+					$("#yhlc").html(item.yhlc);
+					$("#xmnf").html(item.xmnf);
+					$("#xmtype").html(item.xmtype);
+					$("#yhnr").html(item.yhnr);
+					$("#bz").html(item.bz);
 				});
 	}
 </script>
@@ -130,37 +130,37 @@ text-decoration:none;
 					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 160px" /></td>
+					<span id="gydw"></span>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 150px" /></td>
+					<span id="qdzh"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 156px" /></td>
+					<span id="zdzh"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qzlc" id="qzlc" style="width: 156px" /></td>
+					<span id="qzlc"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 150px" /></td>
+					<span id="xzqhdm"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;"align="left">
-					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
+					<span id="xzqhmc"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="gjxjnd" id="gjxjnd" style="width: 156px" /></td>
+					<span id="gjxjnd"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 150px" /></td>
+					<span id="lxjsdj"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
+					<span id="yhlc"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
@@ -169,22 +169,22 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmnf" id="xmnf" style="width: 150px" /></td>
+					<span id="xmnf"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmtype"id="xmtype" style="width: 156px" /></td>
+					<span id="xmtype"></span></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="yhnr"rows="2"  style="width:99%"></textarea>
+				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">隐患内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+					<span id="yhnr"></span>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="bz"rows="2" style="width:99%"></textarea>
+				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+					<span id="bz"></span>
 				</td>
 			</tr>
 			<tr style="height: 25px;">

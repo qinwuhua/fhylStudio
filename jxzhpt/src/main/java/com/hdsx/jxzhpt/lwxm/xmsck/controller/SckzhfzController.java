@@ -6,36 +6,36 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
-import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
- * 项目审查库——安保工程Action层
+ * 项目审查库——灾害防治Action层
  * @author lhp
  *
  */
 @Controller
-public class SckabgcController extends BaseActionSupport implements ModelDriven<Sckabgc>{
+public class SckzhfzController extends BaseActionSupport implements ModelDriven<Sckzhfz>{
 
 	private static final long serialVersionUID = 1L;
-	@Resource(name="sckabgcServerImpl")
-	private SckabgcServer abgcServer;
-	private Sckabgc sckabgc=new Sckabgc();
+	@Resource(name="sckzhfzServerImpl")
+	private SckzhfzServer zhfzServer;
+	private Sckzhfz sckzhfz=new Sckzhfz();
 	private String delstr;
 	
-	public void insertSckabgc(){
-		boolean b = abgcServer.insertSckabgc(sckabgc);
+	public void insertSckzhfz(){
+		boolean b =zhfzServer.insertSckzhfz(sckzhfz);
 		if(b)  ResponseUtils.write(getresponse(), "true");
 		else ResponseUtils.write(getresponse(), "false");
 	}
-	public void selectSckabgc(){
-		List<Sckabgc> list = abgcServer.selectSckabgc(sckabgc);
-		int count = abgcServer.selectAbgcCount(sckabgc);
-		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
+	public void selectSckzhfz(){
+		List<Sckzhfz> list = zhfzServer.selectSckzhfz(sckzhfz);
+		int count = zhfzServer.selectZhfzCount(sckzhfz);
+		EasyUIPage<Sckzhfz> eui = new EasyUIPage<Sckzhfz>();
 		eui.setRows(list);
 		eui.setTotal(count);
 		try {
@@ -44,29 +44,29 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
-	public void deleteSckAbgc(){
-		if(abgcServer.deleteSckAbgc(delstr)){
+	public void deleteSckZhfz(){
+		if(zhfzServer.deleteSckZhfz(delstr)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void updateSckabgc(){
-		if(abgcServer.updateSckabgc(sckabgc)){
+	public void updateSckZhfz(){
+		if(zhfzServer.updateSckZhfz(sckzhfz)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void selectSckabgcById(){
+	public void selectSckzhfzById(){
 		try {
-			JsonUtils.write(abgcServer.selectSckabgcById(sckabgc), getresponse().getWriter());
+			JsonUtils.write(zhfzServer.selectSckzhfzById(sckzhfz), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public void xgSckAbgcSbzt(){
-		if(abgcServer.xgSckAbgcSbzt(delstr)){
+	public void xgSckZhfzSbzt(){
+		if(zhfzServer.xgSckZhfzSbzt(delstr)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -76,11 +76,12 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	
 	
 	
-	public Sckabgc getSckabgc() {
-		return sckabgc;
+
+	public Sckzhfz getSckzhfz() {
+		return sckzhfz;
 	}
-	public void setSckabgc(Sckabgc sckabgc) {
-		this.sckabgc = sckabgc;
+	public void setSckzhfz(Sckzhfz sckzhfz) {
+		this.sckzhfz = sckzhfz;
 	}
 	public String getDelstr() {
 		return delstr;
@@ -90,8 +91,8 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 
 	@Override
-	public Sckabgc getModel() {
-		return sckabgc;
+	public Sckzhfz getModel() {
+		return sckzhfz;
 	}
 	
 }

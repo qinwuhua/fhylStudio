@@ -86,6 +86,12 @@
  	group by roadname,roadcode,F114,F044,F045
   	order by roadcode,min(roadstart)
  </select>
+  <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
+ 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
+ 	from xmk_zhfz where lxbm like #{lxbm}||'%' 
+<!--  	group by lxmc,lxbm -->
+ 	order by lxbm
+ </select>
  
  <delete id="deleteJckzhfz" parameterType="String" >
  	delete from xmk_zhfz where id in #{delstr}
