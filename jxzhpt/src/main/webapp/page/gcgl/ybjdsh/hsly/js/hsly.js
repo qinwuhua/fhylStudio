@@ -86,7 +86,7 @@ function shhslyyb(){
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
 	var data = "gcglhsly.zjje="+$("#tj_zjje").val()+"&gcglhsly.xgcsyj="+$("#tj_xgcsyj").val()+"&gcglhsly.cscyj="+$("#tj_cscyj").val()
-	+"&gcglhsly.shtime="+sbsj+"&gcglhsly.shuser="+"admin"+"&gcglhsly.jhid="+jhid+"&gcglhsly.id="+parent.obj.id;
+	+"&gcglhsly.shtime="+sbsj+"&gcglhsly.shuser="+$.cookie("truename")+"&gcglhsly.jhid="+jhid+"&gcglhsly.id="+parent.obj.id;
 	//alert(data);
 	$.ajax({
 		type:'post',

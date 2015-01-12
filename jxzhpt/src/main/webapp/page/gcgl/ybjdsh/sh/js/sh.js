@@ -89,7 +89,7 @@ function shShyb(){
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
 	var data = "gcglsh.zjje="+$("#tj_zjje").val()+"&gcglsh.xgcsyj="+$("#tj_xgcsyj").val()+"&gcglsh.cscyj="+$("#tj_cscyj").val()
-	+"&gcglsh.shtime="+sbsj+"&gcglsh.shuser="+"admin"+"&gcglsh.jhid="+jhid+"&gcglsh.id="+parent.obj.id;
+	+"&gcglsh.shtime="+sbsj+"&gcglsh.shuser="+$.cookie("truename")+"&gcglsh.jhid="+jhid+"&gcglsh.id="+parent.obj.id;
 	//alert(data);
 	$.ajax({
 		type:'post',

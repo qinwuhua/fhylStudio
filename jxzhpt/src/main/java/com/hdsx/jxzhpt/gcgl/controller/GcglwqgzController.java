@@ -17,8 +17,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 
 /**
- * 系统管理Controller层
- * @author xunq
+ * 
  *
  */
 @Scope("prototype")
@@ -138,6 +137,23 @@ public class GcglwqgzController extends BaseActionSupport{
 				JsonUtils.write(e, getresponse().getWriter());
 			} catch (Exception e1) {
 				e1.printStackTrace();
+			}
+		}
+		//修改cgs
+		public void updateWqgzCgs(){
+			Boolean bl=gcglwqgzServer.updateWqgzCgs(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void deletewqgzCgs(){
+			Boolean bl=gcglwqgzServer.deletewqgzCgs(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
 			}
 		}
 }

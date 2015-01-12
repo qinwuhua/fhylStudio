@@ -22,6 +22,16 @@ public interface GcglshServer {
 
 	Boolean shShYb(Gcglsh gcglsh);
 
+	Boolean insertShCgs(Gcglsh gcglsh);
+
+	int selectShCgsListCount(Gcglsh gcglsh);
+
+	List<Gcglsh> selectShCgsList(Gcglsh gcglsh);
+
+	Boolean updateShCgs(Gcglsh gcglsh);
+
+	Boolean deleteShCgs(Gcglsh gcglsh);
+
 
 	
 }

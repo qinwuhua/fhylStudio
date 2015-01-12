@@ -19,6 +19,16 @@ public interface GcglabgcServer {
 
 	Boolean shAbgcYb(Gcglabgc gcglabgc);
 
+	Boolean updateAbgcCgs(Gcglabgc gcglabgc);
+
+	Boolean deleteabgcCgs(Gcglabgc gcglabgc);
+
+	int selectAbgcCgsListCount(Gcglabgc gcglabgc);
+
+	List<Gcglabgc> selectAbgcCgsList(Gcglabgc gcglabgc);
+
+	Boolean insertAbgcCgs(Gcglabgc gcglabgc);
+
 	
 
 }

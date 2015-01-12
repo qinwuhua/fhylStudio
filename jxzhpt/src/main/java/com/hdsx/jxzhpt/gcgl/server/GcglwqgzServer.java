@@ -24,4 +24,8 @@ public interface GcglwqgzServer {
 
 	List<Gcglwqgz> selectWqgzCgsList(Gcglwqgz gcglwqgz);
 
+	Boolean updateWqgzCgs(Gcglwqgz gcglwqgz);
+
+	Boolean deletewqgzCgs(Gcglwqgz gcglwqgz);
+
 }

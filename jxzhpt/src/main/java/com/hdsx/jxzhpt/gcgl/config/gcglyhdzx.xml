@@ -46,4 +46,44 @@
 		update GCGL_YHDZX set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
 		where id=#{id} and jhid=#{jhid}
 	</update>
+		<!-- 添加车购税 -->
+	<insert id="insertYhdzxCgs" parameterType="gcglyhdzx">
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+	</insert>
+	<select id="queryCGSByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
+	</select>
+	<!-- 查询cgs -->
+	<select id="selectYhdzxCgsList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+		select * from (
+		select m.*,rownum rn from (
+			select t1.*,t2.sbsj,t2.sbyf from GCGL_CGS t1 left join GCGL_YHDZX t2 on t1.jhid=t2.jhid and t1.tbyf=t2.sbyf
+			where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and t1.jhid =#{jhid}
+		</if>
+		order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectYhdzxCgsListCount" parameterType="gcglyhdzx" resultType="int">
+		select count(*) from GCGL_CGS 
+		where 1=1
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+	</select>
+	<!-- 删除cgs -->
+	<delete id="deleteYhdzxCgs" parameterType="gcglyhdzx">
+		delete from GCGL_CGS where id=#{id}
+	</delete>
+	<!-- 修改cgs -->
+	<update id="updateYhdzxCgs" parameterType="gcglyhdzx">
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		where id=#{id} and jhid=#{jhid}
+	</update>
 </mapper>

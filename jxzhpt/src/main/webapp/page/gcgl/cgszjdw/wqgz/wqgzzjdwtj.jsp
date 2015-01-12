@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -21,7 +22,7 @@
 			var d = myDate.getDate();
 			tbsj = y+"-"+m+"-"+d;
 			tbyf = y+"-"+m;
-			$("#tj_tbr").text("admin");
+			$("#tj_tbr").text($.cookie("truename"));
 			$("#tj_tbsj").text(tbsj);
 			$("#tj_tbyf").text(tbyf);
 		});
@@ -72,7 +73,7 @@ a:active {
                                     <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人：</font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                    <span id="tj_tbr">系统管理员</span>&nbsp;
+                                    <span id="tj_tbr"></span>&nbsp;
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                     text-align: right; background-color: #F1F8FF;  padding-right: 5px;">

@@ -78,4 +78,13 @@
 			and jhid =#{jhid}
 		</if>
 	</select>
+	<!-- 删除cgs -->
+	<delete id="deletewqgzCgs" parameterType="gcglwqgz">
+		delete from GCGL_CGS where id=#{id}
+	</delete>
+	<!-- 修改cgs -->
+	<update id="updateWqgzCgs" parameterType="gcglwqgz">
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		where id=#{id} and jhid=#{jhid}
+	</update>
 </mapper>

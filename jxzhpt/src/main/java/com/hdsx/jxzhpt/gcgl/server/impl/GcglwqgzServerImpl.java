@@ -94,4 +94,22 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		return queryList("selectWqgzCgsList",gcglwqgz);
 	}
 
+	@Override
+	public Boolean updateWqgzCgs(Gcglwqgz gcglwqgz) {
+		if(update("updateWqgzCgs", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deletewqgzCgs(Gcglwqgz gcglwqgz) {
+		if(delete("deletewqgzCgs", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }
