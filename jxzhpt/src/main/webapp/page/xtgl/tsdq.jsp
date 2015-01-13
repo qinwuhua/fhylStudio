@@ -27,19 +27,18 @@ function deleteTsdq(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
 		if (r){
 			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteTsdqById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
+				type : "POST",
+				url : "../../xtgl/deleteTsdqById.do",
+				dataType : 'json',
+				data : 'param.id=' +_id,
+				success : function(msg){
+					if(msg){
+						YMLib.Tools.Show('删除成功！',3000);
+						$("#jsgl_table").datagrid('reload');
+					}
+				},error : function(){
+					YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				}
 			});
 		}
 	});

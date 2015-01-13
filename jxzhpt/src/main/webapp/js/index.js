@@ -30,9 +30,9 @@ function login(){
 				if(msg){
 		     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
 		     		$.cookie("unit",msg.UNIT, {expires: 1});
+		     		if(msg.UNIT=="36") $.cookie("dist","360000", {expires: 1});
+		     		else $.cookie("dist",msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length), {expires: 1});
 		     		$.cookie("roleid",msg.ROLEID, {expires: 1});
-		     		
-		     		
 		     		document.location.href="./index.jsp";
 		     		//$('#index_layout').css('visibility', 'visible');
 		     	 }

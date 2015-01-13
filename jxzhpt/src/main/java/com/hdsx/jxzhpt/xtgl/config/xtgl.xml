@@ -98,16 +98,16 @@
 		select * from xtgl_role
 	</select>
 	<insert id="insertJs" parameterType="param">
-		insert into role(id,name,descr) values (#{id},#{name},#{descr})
+		insert into xtgl_role(roleid,rolename,desr) values (#{roleid},#{rolename},#{desr})
 	</insert>
 	<insert id="insertRoleSourceBatch" parameterType="param">
-		insert into role_source(id,roleid,sourceid) values (SYS_GUID(),#{roleid},#{sourceid})
+		insert into xtgl_role_resource(id,roleid,sourceid) values (SYS_GUID(),trim(#{roleid}),trim(#{sourceid}))
 	</insert>
 	<delete id="deleteJsById" parameterType="param">
-		DELETE FROM ROLE WHERE id = #{id}
+		DELETE FROM xtgl_role WHERE roleid in  ${roleid}
 	</delete>
 	<delete id="deleteRoleSourceById" parameterType="param">
-		DELETE FROM ROLE_SOURCE WHERE ROLEID = #{id}
+		DELETE FROM xtgl_role_resource WHERE ROLEID in  ${roleid}
 	</delete>
 	<select id="selectDwList" parameterType="unit" resultType="unit">
 		select * from xtgl_department where id like rtrim(#{id})||'%' order by id 
@@ -216,9 +216,22 @@
 		select * from xtgl_master where id=#{id}
 	</select>
 	<select id="selAllQx" parameterType="String" resultType="treenode">
-	    select distinct x.id ,x.name text from xtgl_xzqh x where  x.id = #{yhdw} order by id
+	    select distinct x.id ,x.name text from xtgl_resource x where  x.parent = #{yhdw}  and id is not null and parent is not null order by id
 	</select>
 	<select id="selAllQx2" parameterType="String" resultType="treenode">
-	  select  distinct x.id , x.name text from xtgl_xzqh x where  x.parent = #{yhdw} order by id
+	  select  distinct x.id , x.name text from xtgl_resource x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
+	</select>
+	<select id="selectJsById" parameterType="param" resultType="param">
+		select roleid,rolename,desr,(select WMSYS.WM_CONCAT(to_char(sourceid)) from xtgl_role_resource where roleid=t.roleid) sourceid
+		from xtgl_role t
+		where roleid=#{roleid}
+	</select>
+	<update id="updateJs" parameterType="param">
+		update xtgl_role set rolename=#{rolename},desr=#{desr} where roleid=#{id}
+	</update>
+	<select id="selQxByUser" parameterType="param" resultType="param">
+		select sourceid id,name,parent from xtgl_role_resource a,xtgl_resource b  where a.roleid=#{roleid}
+		and a.sourceid=b.id
+		order by b.id,parent
 	</select>
 </mapper>

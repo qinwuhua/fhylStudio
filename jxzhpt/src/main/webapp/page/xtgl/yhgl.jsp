@@ -142,7 +142,6 @@ $(function(){
  					<p style="margin: 5px;">
  						<span>所属单位：</span>
  						<input id="unit" style="width:227px;"/>
- 						<input id="test" style="width:227px;"/>
  						<span>&nbsp;用户名：</span>
  						<input id="yhm" type="text"/>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>

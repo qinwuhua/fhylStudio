@@ -353,6 +353,25 @@ public class XtglController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	
+	public void updateJs(){
+		boolean bl  = xtglServer.updateJs(param);
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void selectJsById(){
+		Param p=xtglServer.selectJsById(param);
+		try {
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 删除角色
 	 */
@@ -693,6 +712,15 @@ public class XtglController extends BaseActionSupport{
             ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void selQxByUser(){
+		List<Param> l=xtglServer.selQxByUser(param);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 	

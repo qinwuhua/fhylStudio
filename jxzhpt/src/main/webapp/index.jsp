@@ -16,7 +16,35 @@
 <script type="text/javascript">
 $(function(){
 	selSes();
+	if($.cookie("qx")==null) selQxByUser();
 });
+function selQxByUser(){
+	$.ajax({
+		type : "POST",
+		url : "xtgl/selQxByUser.do",
+		dataType : 'json',
+		data :"param.roleid="+$.cookie("roleid"),
+		success : function(msg){
+			if(msg){
+				for(var i=0;i<msg.length;i++){
+					
+				}
+				//alert(msg.length)
+	     		$.cookie("qx",msg, {expires: 1});
+	     	 }
+		 }
+	});
+}
+
+function menuQx(_location){
+	document.location.href=_location;
+	/*var qx=$.cookie("qx");
+	alert(qx);
+	for(var i=0;i<qx.length;i++){
+		if(i==0) alert(qx[i]);
+	}
+	alert(_location);*/
+}
 </script>
 </head>
 <body style="margin:0 0 0 0;min-width: 1000px;height:100%; overflow:hidden;">
@@ -29,10 +57,10 @@ $(function(){
         <img src="images/xtbg.jpg" width="1440"/>
             <table  border="0" align="center" cellpadding="0" cellspacing="1"  class="xztable"  >
             <tr align="center">
-            <td><a href="./jhgl_index.jsp" target="_self"><img src="images/xz_1.png" width="182" height="250"/></a></td>
-            <td><a href="./jhgl_index.jsp" target="_self"><img src="images/xz_2.png" width="182" height="250" /></a></td>
-            <td><a href="./wjsj_index.jsp" target="_self"><img src="images/xz_3.png" width="182" height="250" /></a></td>
-            <td><a href="./xtgl_index.jsp" target="_self"><img src="images/xz_4.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./jhgl_index.jsp')"><img src="images/xz_1.png" width="182" height="250"/></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./wjxt_index.jsp')"><img src="images/xz_2.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./wjxt_index.jsp')"><img src="images/xz_3.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./xtgl_index.jsp')"><img src="images/xz_4.png" width="182" height="250" /></a></td>
             </tr>
             </table>
          </div>
