@@ -28,8 +28,7 @@ var c7 = true;
 $(function(){
 	selSes();
 	$("#index_user").html($.cookie("truename"));
-	$("#Menu_1").addClass('now');
-	$("#c1f").attr("src", "./page/lkpd/Menu.jsp");
+	
 	
 	$("#Menu_1,#Menu_2,#Menu_3").click(function(e){
 		$("#Menu_1,#Menu_2,#Menu_3").removeClass('now');
@@ -59,7 +58,26 @@ $(function(){
             $("#c3f").attr("src", "page/yhtj/Menu.jsp");
         }
     });
+    menuQx();
 });
+
+function menuQx(){
+	var qx=$.cookie("qx2").split(",");
+	//alert(qx.length);
+	var flag=false;
+	for(var i=0;i<qx.length;i++){
+		if($("#menu_"+qx[i]).html()!=undefined){
+			$("#menu_"+qx[i]).show();
+			if(flag==false){
+				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
+				if(qx[i].substr(qx[i].length-1)=="1") $("#c1f").attr("src", "./page/lkpd/Menu.jsp");
+				else if(qx[i].substr(qx[i].length-1)=="2") $("#c1f").attr("src", "./page/jtltj/Menu.jsp");
+				else if(qx[i].substr(qx[i].length-1)=="3") $("#c1f").attr("src", "./page/yhtj/Menu.jsp");
+				flag=true;
+			}
+		}
+	}
+}
 
 function edit(){
 	YMLib.UI.createWindow('updatePassword', '*  修改密码', 'page/xtgl/updatePassword.jsp','updatePassword', 460,320);
@@ -75,9 +93,9 @@ function edit(){
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
 			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
 				<ul class="nav">
-					<li id="d1"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
-					<li id="d2"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 
-					<li id="d3"><a id="Menu_3" href="javascript:void(0)">养护统计</a></li>
+					<li id="menu_010301" style="display:none;"><a id="Menu_1" href="javascript:void(0)">路况评定</a></li>
+					<li id="menu_010302" style="display:none;"><a id="Menu_2" href="javascript:void(0)">交通量统计</a></li> 
+					<li id="menu_010303" style="display:none;"><a id="Menu_3" href="javascript:void(0)">养护统计</a></li>
 				</ul>
 			</div>
 		</div>

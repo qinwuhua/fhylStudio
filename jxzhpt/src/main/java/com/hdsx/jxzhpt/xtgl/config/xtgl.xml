@@ -230,7 +230,7 @@
 		update xtgl_role set rolename=#{rolename},desr=#{desr} where roleid=#{id}
 	</update>
 	<select id="selQxByUser" parameterType="param" resultType="param">
-		select sourceid id,name,parent from xtgl_role_resource a,xtgl_resource b  where a.roleid=#{roleid}
+		select sourceid id,name,parent roleid from xtgl_role_resource a,xtgl_resource b  where a.roleid=#{roleid}
 		and a.sourceid=b.id
 		order by b.id,parent
 	</select>

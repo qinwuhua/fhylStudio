@@ -1,56 +1,56 @@
 $(function() {
 
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101040101',
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101040102',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101040103',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu4',
+		id:'menu_0101040104',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu5',
+		id:'menu_0101040105',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu6',
+		id:'menu_0101040106',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu7',
+		id:'menu_0101040107',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu8',
+		id:'menu_0101040108',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu1',
@@ -80,56 +80,56 @@ $(function() {
 	
 	
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101040201',
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101040202',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101040203',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu4',
+		id:'menu_0101040204',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu5',
+		id:'menu_0101040205',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu6',
+		id:'menu_0101040206',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu7',
+		id:'menu_0101040207',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu2',
 		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu8',
+		id:'menu_0101040208',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu2',
@@ -159,56 +159,56 @@ $(function() {
 	
 	
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101040301',
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101040302',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101040303',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu4',
+		id:'menu_0101040304',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu5',
+		id:'menu_0101040305',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu6',
+		id:'menu_0101040306',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu7',
+		id:'menu_0101040307',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu3',
 		href:'./ybjdsh/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu8',
+		id:'menu_0101040308',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu3',
@@ -238,56 +238,56 @@ $(function() {
 //	
 	
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101040401',
 		title:'危桥改造工程完工统计',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/wqgz/wqgz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101040402',
 		title:'安保工程完工统计',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/abgc/abgc.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101040403',
 		title:'灾害防治工程完工统计',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/zhfz/zhfz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu4',
+		id:'menu_0101040404',
 		title:'养护大中修工程完工统计',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/yhdzx/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu5',
+		id:'menu_0101040405',
 		title:'水毁工程完工统计',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/sh/sh.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu6',
+		id:'menu_0101040406',
 		title:'工程改造路面改建工程完工统计',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/gcgzgj/gcgzgj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu7',
+		id:'menu_0101040407',
 		title:'工程改造路面升级工程完工统计',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/gcgzsj/gcgzsj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu8',
+		id:'menu_0101040408',
 		title:'红色旅游工程完工统计',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu4',
@@ -318,28 +318,28 @@ $(function() {
 	
 	
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101040501',
 		title:'安全管理月报表',
 		imgSrc:'../../images/aqglyb_s.png',
 		renderTo:'left_menu5',
 		href:'./aqyjgl/aqgl/aqgl.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101040502',
 		title:'模板管理',
 		imgSrc:'../../images/mbgl_s.png',
 		renderTo:'left_menu5',
 		href:'./aqyjgl/mbgl/mbgl.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101040503',
 		title:'信息通知',
 		imgSrc:'../../images/xxtz_s.png',
 		renderTo:'left_menu5',
 		href:'./aqyjgl/xxtz/xxtz.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu4',
+		id:'menu_0101040504',
 		title:'信息通知数据查询',
 		imgSrc:'../../images/xxtzsjcx_s.png',
 		renderTo:'left_menu5',
@@ -432,5 +432,11 @@ $(function() {
 //		renderTo:'left_menu6',
 //		href:'./lxxx.jsp'
 //	});
-
+	menuQx();
 });
+function menuQx(){
+	var qx=parent.$.cookie("qx4").split(",");
+	for(var i=0;i<qx.length;i++){
+		if($("#menu_"+qx[i])!=null) $("#menu_"+qx[i]).show();
+	}
+}

@@ -107,3 +107,9 @@ $(function() {
 	}
 	
 });
+function menuQx(){
+	var qx=parent.$.cookie("qx4").split(",");
+	for(var i=0;i<qx.length;i++){
+		if($("#menu_"+qx[i])!=null) $("#menu_"+qx[i]).show();
+	}
+}
