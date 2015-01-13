@@ -26,7 +26,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
@@ -35,7 +35,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sck_sbzt desc
  </select>
   <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
@@ -56,7 +56,7 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
@@ -79,9 +79,69 @@
  </delete>
  
   <update id="xgSckAbgcShzt" parameterType="sckabgc" >
- 	update sck_abgc set sck_shzt='已审核' where id=#{id}
+ 	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
  </update>
   <update id="xgSckAbgcSbzt" parameterType="String" >
  	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
  </update>
+ 
+  <select id="selectSckShabgc" parameterType="hashmap" resultType="sckabgc">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
+ 		where sck_sbzt='已上报'
+  		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_shzt desc
+ </select>
+  <select id="selectAbgcShCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+ 		 where sck_sbzt='已上报'
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+  		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ </select>
 </mapper>

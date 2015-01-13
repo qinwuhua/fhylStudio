@@ -38,7 +38,7 @@
  			and akjfl like #{akjfl}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by shzt desc
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)

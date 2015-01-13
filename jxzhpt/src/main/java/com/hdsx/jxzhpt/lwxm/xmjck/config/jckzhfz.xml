@@ -35,7 +35,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sbzt desc
  </select>
  <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
 	select count(*) from xmk_zhfz where 1=1

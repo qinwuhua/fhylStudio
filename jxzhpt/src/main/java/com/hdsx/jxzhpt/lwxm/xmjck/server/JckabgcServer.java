@@ -7,6 +7,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 public interface JckabgcServer {
 	boolean insertAbgc(Jckabgc abgc);
 	List<Jckabgc> selectAbgcList(Jckabgc abgc);
+	int selectAbgcCount(Jckabgc abgc);
 	Jckabgc selectAbgcById(Jckabgc abgc);
 	boolean updateAbgcById(Jckabgc abgc);
 	List<Jckabgc> selectGpsroad(Jckabgc abgc);
@@ -14,5 +15,6 @@ public interface JckabgcServer {
 	boolean deleteAbgcById(String delstr);
 	boolean xgJckAbgcShzt(Jckabgc abgc);
 	boolean xgJckAbgcSbzt(String delstr);
-	int selectAbgcCount(Jckabgc abgc);
+	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
+	int selectAbgcShCount(Jckabgc abgc);
 }

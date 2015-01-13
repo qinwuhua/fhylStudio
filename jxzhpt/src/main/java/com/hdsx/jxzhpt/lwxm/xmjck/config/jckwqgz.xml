@@ -40,7 +40,7 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sbzt desc
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
