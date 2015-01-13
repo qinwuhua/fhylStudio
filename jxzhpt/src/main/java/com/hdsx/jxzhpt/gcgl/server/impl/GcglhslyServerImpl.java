@@ -75,4 +75,47 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 		}
 	}
 
+	@Override
+	public Boolean insertHslyCgs(Gcglhsly gcglhsly) {
+		Gcglhsly gcglwqgz1=queryOne("queryCGSByYf", gcglhsly);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		if(insert("insertHslyCgs", gcglhsly)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectHslyCgsListCount(Gcglhsly gcglhsly) {
+		// TODO Auto-generated method stub
+		return queryOne("selectHslyCgsListCount", gcglhsly);
+	}
+
+	@Override
+	public List<Gcglhsly> selectHslyCgsList(Gcglhsly gcglhsly) {
+		// TODO Auto-generated method stub
+		return queryList("selectHslyCgsList",gcglhsly);
+	}
+
+	@Override
+	public Boolean updateHslyCgs(Gcglhsly gcglhsly) {
+		if(update("updateHslyCgs", gcglhsly)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteHslyCgs(Gcglhsly gcglhsly) {
+		if(delete("deleteHslyCgs", gcglhsly)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

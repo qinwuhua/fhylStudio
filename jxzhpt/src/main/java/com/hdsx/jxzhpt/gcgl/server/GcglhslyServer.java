@@ -22,5 +22,15 @@ public interface GcglhslyServer {
 	Boolean deletehslyYb(Gcglhsly gcglhsly);
 
 	Boolean shhslyYb(Gcglhsly gcglhsly);
+
+	Boolean insertHslyCgs(Gcglhsly gcglhsly);
+
+	int selectHslyCgsListCount(Gcglhsly gcglhsly);
+
+	List<Gcglhsly> selectHslyCgsList(Gcglhsly gcglhsly);
+
+	Boolean updateHslyCgs(Gcglhsly gcglhsly);
+
+	Boolean deleteHslyCgs(Gcglhsly gcglhsly);
 	
 }

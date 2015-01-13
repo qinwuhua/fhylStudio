@@ -22,5 +22,15 @@ public interface GcglgcgzsjServer {
 	Boolean deletegcgzsjYb(Gcglgcgzsj gcglgcgzsj);
 
 	Boolean shgcgzsjyb(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean insertGcgzsjCgs(Gcglgcgzsj gcglgcgzsj);
+
+	int selectGcgzsjCgsListCount(Gcglgcgzsj gcglgcgzsj);
+
+	List<Gcglgcgzsj> selectGcgzsjCgsList(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean updateGcgzsjCgs(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean deleteGcgzsjCgs(Gcglgcgzsj gcglgcgzsj);
 	
 }

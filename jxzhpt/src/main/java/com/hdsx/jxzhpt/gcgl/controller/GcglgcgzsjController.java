@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
@@ -27,8 +28,6 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 
 /**
- * 系统管理Controller层
- * @author xunq
  *
  */
 @Scope("prototype")
@@ -115,6 +114,48 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		//审核月报
 		public void shgcgzsjyb(){
 			Boolean bl=gcglgcgzsjServer.shgcgzsjyb(gcglgcgzsj);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//添加车购税
+		public void insertGcgzsjCgs(){
+			Boolean bl=gcglgcgzsjServer.insertGcgzsjCgs(gcglgcgzsj);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//查询cgs
+		public void selectGcgzsjCgsList(){
+			gcglgcgzsj.setPage(page);
+			gcglgcgzsj.setRows(rows);
+			gcglgcgzsj.setJhid(jhid);
+			int count=gcglgcgzsjServer.selectGcgzsjCgsListCount(gcglgcgzsj);
+			List<Gcglgcgzsj> list=gcglgcgzsjServer.selectGcgzsjCgsList(gcglgcgzsj);
+			EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		//修改cgs
+		public void updateGcgzsjCgs(){
+			Boolean bl=gcglgcgzsjServer.updateGcgzsjCgs(gcglgcgzsj);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void deleteGcgzsjCgs(){
+			Boolean bl=gcglgcgzsjServer.deleteGcgzsjCgs(gcglgcgzsj);
 			if(bl){
 				ResponseUtils.write(getresponse(), "true");
 			}else{
