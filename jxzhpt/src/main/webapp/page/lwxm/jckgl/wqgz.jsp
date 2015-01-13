@@ -151,6 +151,7 @@ text-decoration:none;
 									<option value="2013年">2013年</option>
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
+									<option value="2010年">2010年</option>
                               	</select>
                               <span>&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px">

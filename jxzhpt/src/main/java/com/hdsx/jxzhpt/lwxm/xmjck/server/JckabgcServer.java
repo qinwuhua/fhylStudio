@@ -17,4 +17,5 @@ public interface JckabgcServer {
 	boolean xgJckAbgcSbzt(String delstr);
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);
+	boolean xgJckAbgcTH(Jckabgc abgc);
 }

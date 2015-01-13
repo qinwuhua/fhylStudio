@@ -12,4 +12,7 @@ public interface SckwqgzServer {
 		boolean updateSckWqgz(Sckwqgz wqgz);
 		Sckwqgz selectSckwqgzById(Sckwqgz wqgz);
 		boolean xgSckWqgzSbzt(String delstr);
+		List<Sckwqgz> selectSckShwqgz(Sckwqgz wqgz);
+		int selectWqgzShCount(Sckwqgz wqgz);
+		boolean xgSckWqgzShzt(Sckwqgz wqgz);
 }
