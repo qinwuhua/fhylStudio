@@ -17,12 +17,32 @@
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
+var xmkid;
 	$(function(){
 		autoCompleteLXBM();
 
 		$("#save_button").click(function(){
-			$.messager.alert('提示','保存成功！','info');    
+			var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").val()+"&scyhlc="+$("#scyhlc").val()
+			+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
+			"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+"360000";
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmsck/insertSckabgc.do',
+		        data:data,
+				dataType:'json',
+				success:function(msg){
+					if(Boolean(msg)){
+						parent.$("#grid").datagrid('reload');
+						alert("保存成功！");
+						parent.$('#sck_add').window('destroy');
+						
+					}else{
+						alert('保存失败！');
+					}
+				}
+			});  
 		});
 		$("#qx_window").click(function(){
 			parent.$('#sck_add').window('destroy');
@@ -66,20 +86,21 @@
 
 					if(item==undefined) return ;
 					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw").attr("value",'');
+					xmkid=item.id;
 					$("#lxmc").val(item.lxmc);
-					$("#gydw").val(item.gydw);
-					$("#xzqhmc").val(item.xzqhmc);
-					$("#xzqhdm").val(item.xzqhdm);
- 					$("#qdzh").val(item.qdzh);
-					$("#zdzh").val(item.zdzh);
-					$("#gjxjnd").val(item.gjxjnd);
-					$("#lxjsdj").val(item.lxjsdj);
-					$("#qzlc").val(item.qzlc);
-					$("#yhlc").val(item.yhlc);
-					$("#xmnf").val(item.xmnf);
-					$("#xmtype").val(item.xmtype);
-					$("#yhnr").val(item.yhnr);
-					$("#bz").val(item.bz);
+					$("#gydw").html(item.gydw);
+					$("#xzqhmc").html(item.xzqhmc);
+					$("#xzqhdm").html(item.xzqhdm);
+ 					$("#qdzh").html(item.qdzh);
+					$("#zdzh").html(item.zdzh);
+					$("#gjxjnd").html(item.gjxjnd);
+					$("#lxjsdj").html(item.lxjsdj);
+					$("#qzlc").html(item.qzlc);
+					$("#yhlc").html(item.yhlc);
+					$("#xmnf").html(item.xmnf);
+					$("#xmtype").html(item.xmtype);
+					$("#yhnr").html(item.yhnr);
+					$("#bz").html(item.bz);
 				});
 	}
 </script>
@@ -109,37 +130,37 @@ text-decoration:none;
 					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 160px" /></td>
+					<span id="gydw"></span>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 150px" /></td>
+					<span id="qdzh"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 156px" /></td>
+					<span id="zdzh"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qzlc" id="qzlc" style="width: 156px" /></td>
+					<span id="qzlc"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 150px" /></td>
+					<span id="xzqhdm"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;"align="left">
-					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
+					<span id="xzqhmc"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="gjxjnd" id="gjxjnd" style="width: 156px" /></td>
+					<span id="gjxjnd"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 150px" /></td>
+					<span id="lxjsdj"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
+					<span id="yhlc"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
@@ -148,22 +169,22 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmnf" id="xmnf" style="width: 150px" /></td>
+					<span id="xmnf"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmtype"id="xmtype" style="width: 156px" /></td>
+					<span id="xmtype"></span></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="yhnr"rows="2"  style="width:99%"></textarea>
+				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">隐患内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+					<span id="yhnr"></span>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="bz"rows="2" style="width:99%"></textarea>
+				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+					<span id="bz"></span>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -174,58 +195,59 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 110px" />公里
+					<input type="text" name="sczlc"id="sczlc" style="width: 110px" />&nbsp;公里
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" style="width: 150px"/>公里
+					<input type="text" id="scyhlc" style="width: 150px"/>&nbsp;公里
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="fascdw"id="fascdw" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="spsj" class="easyui-datebox" />
+					<input type=text id="faspsj" class="easyui-datebox" />
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="szjgdm" id="szjgdm" style="width: 150px" /></td>
+					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="name"id="name" style="width: 156px" /></td>
+					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jsxz">
-						<option selected>中修</option>
-						<option>大修</option>
+						<option value="中修"selected>中修</option>
+						<option value="大修">大修</option>
+						<option value="改建">改建</option>
 					</select>
 				</td>
 			</tr>
 				<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2"  style="width:99%"></textarea>
+					<textarea id="jsnr"rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea rows="2" style="width:99%"></textarea>
+					<textarea id="scbz" rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>

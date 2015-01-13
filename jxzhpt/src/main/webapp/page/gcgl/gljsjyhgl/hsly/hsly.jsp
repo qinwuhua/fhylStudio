@@ -21,9 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			loadDist("xzqh","360000");
+			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
 	</script>
@@ -62,13 +61,10 @@ a:active {
         				<div>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
-        						<select id="gydw" style="width:200px;"></select>
+        						<input id="xzqh" style="width: 200px;">
+        						
         						<span>开工状态：</span>
-        						<select id="sbnf" style="width: 65px;">
-        							<option value="">全部</option>
-        							<option value="已开工">已开工</option>
-        							<option value="未开工">未开工</option>
-        						</select>
+        						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>
         							<input type="text" id="lx" >
         							&nbsp;&nbsp;&nbsp;&nbsp;

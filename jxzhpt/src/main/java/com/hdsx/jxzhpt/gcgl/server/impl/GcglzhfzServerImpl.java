@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 
@@ -64,6 +65,49 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 	public Boolean shZhfzYb(Gcglzhfz gcglzhfz) {
 		if(update("shZhfzYb", gcglzhfz)>0){
 		return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteZhfzCgs(Gcglzhfz gcglzhfz) {
+		if(delete("deleteZhfzCgs", gcglzhfz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean updateZhfzCgs(Gcglzhfz gcglzhfz) {
+		if(update("updateZhfzCgs", gcglzhfz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectZhfzCgsListCount(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectZhfzCgsListCount", gcglzhfz);
+	}
+
+	@Override
+	public List<Gcglabgc> selectZhfzCgsList(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("selectZhfzCgsList",gcglzhfz);
+	}
+
+	@Override
+	public Boolean insertZhfzCgs(Gcglzhfz gcglzhfz) {
+		Gcglzhfz gcglwqgz1=queryOne("queryCGSByYf", gcglzhfz);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		if(insert("insertZhfzCgs", gcglzhfz)>0){
+			return true;
 		}else{
 			return false;
 		}

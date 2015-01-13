@@ -14,18 +14,20 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
 	jckglAbgc();
-	$("#gydw").combotree({
+	loadUnit("gydw",$.cookie("unit"));
+/* 	$("#gydw").combotree({
 		checkbox: false,
 	 	url: "../js/gydw.json",
 	 	onBeforeSelect:function(node){
 	        $("#gydw").val(node.text);
 	    }
-	});
+	}); */
 	$("#xzqhmc").combotree({
 		checkbox: false,
 	 	url: "../js/xzqh.json",
@@ -141,7 +143,7 @@ text-decoration:none;
 				<div>
 					<p style="margin:8px 0px 4px 20px;">
 								<span>管养单位：</span>
-                              	<select id="gydw" style="width:218px">
+                              	<select  id="gydw" style="width:218px">
                               	</select>
                              	<span>&nbsp;行政区划：</span>
                               	<select id="xzqhmc" style="width:218px">

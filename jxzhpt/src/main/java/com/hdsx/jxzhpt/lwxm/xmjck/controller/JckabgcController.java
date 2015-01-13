@@ -1,6 +1,5 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,8 +26,6 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private JckabgcServer abgcServer;
 	private Jckabgc jckabgc=new Jckabgc();
 	private String delstr;
-	private int page=1;
-	private int rows=10;
 	
 	public void insertAbgc(){
 		boolean b = abgcServer.insertAbgc(jckabgc);
@@ -39,7 +36,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void selectAbgc(){
-		List<Jckabgc> abgcList = abgcServer.selectAbgcList(jckabgc,page,rows);
+		List<Jckabgc> abgcList = abgcServer.selectAbgcList(jckabgc);
 		int count = abgcServer.selectAbgcCount(jckabgc);
 		EasyUIPage<Jckabgc> eui=new EasyUIPage<Jckabgc>();
 		eui.setRows(abgcList);
@@ -101,6 +98,19 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectAbgcSh(){
+		List<Jckabgc> abgcList = abgcServer.selectJckShabgc(jckabgc);
+		int count = abgcServer.selectAbgcShCount(jckabgc);
+		EasyUIPage<Jckabgc> eui=new EasyUIPage<Jckabgc>();
+		eui.setRows(abgcList);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public Jckabgc getJckabgc() {
 		return jckabgc;
@@ -114,18 +124,6 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setDelstr(String delstr) {
 		this.delstr = delstr;
-	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getRows() {
-		return rows;
-	}
-	public void setRows(int rows) {
-		this.rows = rows;
 	}
 	@Override
 	public Jckabgc getModel() {

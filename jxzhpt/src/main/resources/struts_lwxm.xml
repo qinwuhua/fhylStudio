@@ -13,6 +13,7 @@
 	<action name="xgJckAbgcSbzt" class="jckabgcController" method="xgJckAbgcSbzt"/>
 	<action name="abgcGpsroad" class="jckabgcController" method="abgcGpsroad"/>
 	<action name="selectJckRoad" class="jckabgcController" method="selectJckRoad"/>
+	<action name="selectAbgcSh" class="jckabgcController" method="selectAbgcSh"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
@@ -22,6 +23,7 @@
 	<action name="xgJckWqgzShzt" class="jckwqgzController" method="xgJckWqgzShzt"/>
 	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
 	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
+	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
@@ -31,5 +33,33 @@
 	<action name="xgJckZhfzShzt" class="jckzhfzController" method="xgJckZhfzShzt"/>
 	<action name="xgJckZhfzSbzt" class="jckzhfzController" method="xgJckZhfzSbzt"/>
 	<action name="zhfzGpsroad" class="jckzhfzController" method="zhfzGpsroad"/>
+	<action name="JckzhfzRoad" class="jckzhfzController" method="JckzhfzRoad"/>
+ </package>
+ <package name="xmsck" extends="struts-default" namespace="/xmsck">
+ <!-- 危桥改造 -->
+	<action name="insertSckwqgz" class="sckwqgzController" method="insertSckwqgz"/>
+	<action name="selectSckwqgz" class="sckwqgzController" method="selectSckwqgz"/>
+	<action name="deleteSckWqgz" class="sckwqgzController" method="deleteSckWqgz"/>
+	<action name="updateSckwqgz" class="sckwqgzController" method="updateSckwqgz"/>
+	<action name="selectSckwqgzById" class="sckwqgzController" method="selectSckwqgzById"/>
+	<action name="xgSckWqgzSbzt" class="sckwqgzController" method="xgSckWqgzSbzt"/>
+	<!-- 安保工程 -->
+	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
+	<action name="selectSckabgc" class="sckabgcController" method="selectSckabgc"/>
+	<action name="deleteSckAbgc" class="sckabgcController" method="deleteSckAbgc"/>
+	<action name="updateSckabgc" class="sckabgcController" method="updateSckabgc"/>
+	<action name="selectSckabgcById" class="sckabgcController" method="selectSckabgcById"/>
+	<action name="xgSckAbgcSbzt" class="sckabgcController" method="xgSckAbgcSbzt"/>
+	<action name="selectSckShabgc" class="sckabgcController" method="selectSckShabgc"/>
+	<action name="xgSckAbgcShzt" class="sckabgcController" method="xgSckAbgcShzt"/>
+	<!-- 灾害防治 -->
+	<action name="insertSckzhfz" class="sckzhfzController" method="insertSckzhfz"/>
+	<action name="selectSckzhfz" class="sckzhfzController" method="selectSckzhfz"/>
+	<action name="deleteSckZhfz" class="sckzhfzController" method="deleteSckZhfz"/>
+	<action name="updateSckZhfz" class="sckzhfzController" method="updateSckZhfz"/>
+	<action name="selectSckzhfzById" class="sckzhfzController" method="selectSckzhfzById"/>
+	<action name="xgSckZhfzSbzt" class="sckzhfzController" method="xgSckZhfzSbzt"/>
+	<action name="selectSckShzhfz" class="sckzhfzController" method="selectSckShzhfz"/>
+	<action name="xgSckZhfzShzt" class="sckzhfzController" method="xgSckZhfzShzt"/>
  </package>
 </struts>

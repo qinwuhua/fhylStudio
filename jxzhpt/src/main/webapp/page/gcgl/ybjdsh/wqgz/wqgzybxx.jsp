@@ -12,10 +12,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			var ybdata=parent.obj;
+			$("#cgsdwzj").text(ybdata.cgsdwzj);
+			$("#tbr").text(ybdata.tbr);
+			$("#tbsj").text(ybdata.tbsj);
+			$("#tbyf").text(ybdata.tbyf);
+			
 			$("#wc_btz").text(ybdata.wc_btz);
 			$("#wc_stz").text(ybdata.wc_stz);
 			$("#wc_qttz").text(ybdata.wc_qttz);
@@ -82,7 +86,7 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
                                 colspan="5">
-                                <span id="lblCGS"></span>
+                                <span id="cgsdwzj"></span>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -92,7 +96,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBR"></label>
+                                <label id="tbr"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -101,7 +105,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBSJ"></label>
+                                <label id="tbsj"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -110,7 +114,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                  text-align: left; padding-left: 10px;">
-                                <label id="lblTBYF"></label>
+                                <label id="tbyf"></label>
                                 &nbsp;
                             </td>
                         </tr>

@@ -23,7 +23,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz,int page,int rows) {
+	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
@@ -34,8 +34,8 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("shzt", wqgz.getShzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
-		hm.put("page", page);
-		hm.put("rows", rows);
+		hm.put("page", wqgz.getPage());
+		hm.put("rows", wqgz.getRows());
 		return queryList("selectJckwqgz",hm);
 	}
 
@@ -53,8 +53,14 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public List<Jckwqgz> selectGpsroad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
-		hm.put("lxbm", wqgz.getLxbm());
+		hm.put("qlbh", wqgz.getQlbh());
 		return queryList("selectGpsroad", hm);
+	}
+	@Override
+	public List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("qlbh", wqgz.getQlbh());
+		return queryList("JckWqgzRoad", hm);
 	}
 
 	@Override
@@ -89,5 +95,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("akjfl", wqgz.getAkjfl());
 		return queryOne("selectWqgzCount", hm);
 	}
+
+
 
 }

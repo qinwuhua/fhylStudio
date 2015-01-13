@@ -21,5 +21,15 @@ public interface GcglyhdzxServer {
 
 	Boolean shYhdzxYb(Gcglyhdzx gcglyhdzx);
 
+	Boolean insertYhdzxCgs(Gcglyhdzx gcglyhdzx);
+
+	int selectYhdzxCgsListCount(Gcglyhdzx gcglyhdzx);
+
+	List<Gcglabgc> selectYhdzxCgsList(Gcglyhdzx gcglyhdzx);
+
+	Boolean updateYhdzxCgs(Gcglyhdzx gcglyhdzx);
+
+	Boolean deleteYhdzxCgs(Gcglyhdzx gcglyhdzx);
+
 	
 }

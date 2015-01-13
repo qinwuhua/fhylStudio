@@ -45,7 +45,7 @@ a:active {
 			cellpadding="0">
 
 			<tr>
-				<td height="45" align="left"
+				<td height="35" align="left"
 					background="${pageContext.request.contextPath}/images/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
 					危桥改造项目资金到位情况</td>
@@ -82,8 +82,8 @@ a:active {
 								onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
 								src="${pageContext.request.contextPath}/images/Button/tianj1.gif"
 								style="border-width: 0px; cursor: hand;" /></td>
-							<td><a href="javascript:void(0)" onclick="window.close();">
-									<img onclick="closes('wqxx')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
+							<td><a href="javascript:void(0)" >
+									<img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
 									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
 									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
 									style="border: 0" />

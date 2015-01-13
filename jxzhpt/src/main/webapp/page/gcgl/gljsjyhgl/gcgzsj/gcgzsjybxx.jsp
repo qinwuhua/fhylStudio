@@ -16,6 +16,11 @@
 	<script type="text/javascript">
 		$(function(){
 			var datayb=parent.obj;
+			$("#cgsdwzj").text(datayb.cgsdwzj);
+			$("#tbr").text(datayb.tbr);
+			$("#tbsj").text(datayb.tbsj);
+			$("#tbyf").text(datayb.tbyf);
+			
 			$("#qlwcqk_z").text(datayb.qlwcqk_z);$("#qlwcqk_ym").text(datayb.qlwcqk_ym);$("#sdwcqk_z").text(datayb.sdwcqk_z);$("#sdwcqk_ym").text(datayb.sdwcqk_ym);$("#hdwcqk_m").text(datayb.hdwcqk_m);
 			$("#ljtsfwcqk").text(datayb.ljtsfwcqk);$("#dcwcqk").text(datayb.dcwcqk);$("#jcwcqk").text(datayb.jcwcqk);$("#bywcmc").text(datayb.bywcmc);$("#lqlmwcqk").text(datayb.lqlmwcqk);$("#snlmwcqk").text(datayb.snlmwcqk);
 			$("#zycgs").text(datayb.zycgs);$("#dfbz").text(datayb.dfbz);$("#yhdk").text(datayb.yhdk);$("#sttxdk").text(datayb.sttxdk);$("#qtzj").text(datayb.qtzj);
@@ -53,7 +58,7 @@ a:active {
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 
-         <tr>
+           <tr>
                 <td>
                     <br />
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
@@ -62,7 +67,7 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                width: 25%;; padding-left: 10px;">
                                 车购税资金到位情况
                             </td>
                         </tr>
@@ -73,9 +78,9 @@ a:active {
                                 车购税资金到位
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; ; text-align: left; padding-left: 10px;"
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
                                 colspan="5">
-                                <span id="lblCGS">1</span>
+                                <span id="cgsdwzj"></span>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -85,7 +90,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBR">admin</label>
+                                <label id="tbr"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -94,7 +99,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
                                 border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <label id="lblTBSJ">2014-12-18</label>
+                                <label id="tbsj"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
@@ -103,7 +108,7 @@ a:active {
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                  text-align: left; padding-left: 10px;">
-                                <label id="lblTBYF">2014-12</label>
+                                <label id="tbyf"></label>
                                 &nbsp;
                             </td>
                         </tr>

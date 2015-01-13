@@ -69,4 +69,47 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		}
 	}
 
+	@Override
+	public Boolean insertWqgzCgs(Gcglwqgz gcglwqgz) {
+		Gcglwqgz gcglwqgz1=queryOne("queryCGSByYf", gcglwqgz);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		if(insert("insertWqgzCgs", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectWqgzCgsListCount(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzCgsListCount", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglwqgz> selectWqgzCgsList(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzCgsList",gcglwqgz);
+	}
+
+	@Override
+	public Boolean updateWqgzCgs(Gcglwqgz gcglwqgz) {
+		if(update("updateWqgzCgs", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deletewqgzCgs(Gcglwqgz gcglwqgz) {
+		if(delete("deletewqgzCgs", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

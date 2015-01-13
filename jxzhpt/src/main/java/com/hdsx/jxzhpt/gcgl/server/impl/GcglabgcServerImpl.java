@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 
 @Service
@@ -69,5 +70,47 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		}
 	}
 
+	@Override
+	public int selectAbgcCgsListCount(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectAbgcCgsListCount", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglabgc> selectAbgcCgsList(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectAbgcCgsList",gcglabgc);
+	}
+
+	@Override
+	public Boolean updateAbgcCgs(Gcglabgc gcglabgc) {
+		if(update("updateAbgcCgs", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteabgcCgs(Gcglabgc gcglabgc) {
+		if(delete("deleteabgcCgs", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertAbgcCgs(Gcglabgc gcglabgc) {
+		Gcglabgc gcglwqgz1=queryOne("queryCGSByYf", gcglabgc);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		if(insert("insertAbgcCgs", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }

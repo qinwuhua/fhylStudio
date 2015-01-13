@@ -20,4 +20,14 @@ public interface GcglzhfzServer {
 
 	Boolean shZhfzYb(Gcglzhfz gcglzhfz);
 
+	Boolean deleteZhfzCgs(Gcglzhfz gcglzhfz);
+
+	Boolean updateZhfzCgs(Gcglzhfz gcglzhfz);
+
+	int selectZhfzCgsListCount(Gcglzhfz gcglzhfz);
+
+	List<Gcglabgc> selectZhfzCgsList(Gcglzhfz gcglzhfz);
+
+	Boolean insertZhfzCgs(Gcglzhfz gcglzhfz);
+
 }

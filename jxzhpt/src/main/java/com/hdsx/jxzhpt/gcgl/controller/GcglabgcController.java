@@ -116,4 +116,46 @@ public class GcglabgcController extends BaseActionSupport{
 				ResponseUtils.write(getresponse(), "false");
 			}
 		}
+		//添加车购税
+		public void insertAbgcCgs(){
+			Boolean bl=gcglabgcServer.insertAbgcCgs(gcglabgc);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//查询cgs
+		public void selectAbgcCgsList(){
+			gcglabgc.setPage(page);
+			gcglabgc.setRows(rows);
+			gcglabgc.setJhid(jhid);
+			int count=gcglabgcServer.selectAbgcCgsListCount(gcglabgc);
+			List<Gcglabgc> list=gcglabgcServer.selectAbgcCgsList(gcglabgc);
+			EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		//修改cgs
+		public void updateAbgcCgs(){
+			Boolean bl=gcglabgcServer.updateAbgcCgs(gcglabgc);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void deleteabgcCgs(){
+			Boolean bl=gcglabgcServer.deleteabgcCgs(gcglabgc);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
 }

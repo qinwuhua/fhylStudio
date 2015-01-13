@@ -40,7 +40,7 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sbzt desc
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
@@ -94,6 +94,11 @@
  	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
  	group by roadname,roadcode,F114,F044,F045
   	order by roadcode,min(roadstart)
+ </select>
+ 
+  <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
+ 	select * from xmk_wqgz where qlbh like #{qlbh}||'%' 
+ 	order by qlbh
  </select>
  
  <delete id="deleteJckWqgz" parameterType="String" >

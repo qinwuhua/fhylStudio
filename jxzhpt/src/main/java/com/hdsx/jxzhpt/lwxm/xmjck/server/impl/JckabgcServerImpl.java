@@ -23,7 +23,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public List<Jckabgc> selectAbgcList(Jckabgc abgc,int page,int rows) {
+	public List<Jckabgc> selectAbgcList(Jckabgc abgc) {
 		hm=new HashMap<String, Object>();
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
@@ -33,8 +33,8 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("shzt", abgc.getShzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
-		hm.put("page", page);
-		hm.put("rows", rows);
+		hm.put("page", abgc.getPage());
+		hm.put("rows", abgc.getRows());
 		return queryList("selectJckabgc",hm);
 	}
 
@@ -92,6 +92,36 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
 		return queryOne("selectAbgcCount", hm);
+	}
+
+	@Override
+	public List<Jckabgc> selectJckShabgc(Jckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", abgc.getGydw());
+		hm.put("xzqhmc", abgc.getXzqhmc());
+		hm.put("lxmc", abgc.getLxmc());
+		hm.put("xmnf", abgc.getXmnf());
+		hm.put("xmtype", abgc.getXmtype());
+		hm.put("shzt", abgc.getShzt());
+		hm.put("lxjsdj", abgc.getLxjsdj());
+		hm.put("lxbm", abgc.getLxbm());
+		hm.put("page", abgc.getPage());
+		hm.put("rows", abgc.getRows());
+		return queryList("selectJckShabgc",hm);
+	}
+
+	@Override
+	public int selectAbgcShCount(Jckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", abgc.getGydw());
+		hm.put("xzqhmc", abgc.getXzqhmc());
+		hm.put("lxmc", abgc.getLxmc());
+		hm.put("xmnf", abgc.getXmnf());
+		hm.put("xmtype", abgc.getXmtype());
+		hm.put("shzt", abgc.getShzt());
+		hm.put("lxjsdj", abgc.getLxjsdj());
+		hm.put("lxbm", abgc.getLxbm());
+		return queryOne("selectAbgcShCount",hm);
 	}
 
 

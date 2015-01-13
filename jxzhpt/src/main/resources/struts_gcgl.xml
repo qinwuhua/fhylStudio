@@ -8,6 +8,10 @@
 	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
 	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
 	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
+	<action name="insertWqgzCgs" class="gcglwqgzController" method="insertWqgzCgs"/>
+	<action name="selectWqgzCgsList" class="gcglwqgzController" method="selectWqgzCgsList"/>
+	<action name="updateWqgzCgs" class="gcglwqgzController" method="updateWqgzCgs"/>
+	<action name="deletewqgzCgs" class="gcglwqgzController" method="deletewqgzCgs"/>
 	
 	
 	<!-- abgc -->
@@ -16,6 +20,10 @@
 	<action name="updateAbgcYb" class="gcglabgcController" method="updateAbgcYb"/>
 	<action name="deleteAbgcYb" class="gcglabgcController" method="deleteAbgcYb"/>
 	<action name="shAbgcYb" class="gcglabgcController" method="shAbgcYb"/>
+	<action name="selectAbgcCgsList" class="gcglabgcController" method="selectAbgcCgsList"/>
+	<action name="deleteabgcCgs" class="gcglabgcController" method="deleteabgcCgs"/>
+	<action name="updateAbgcCgs" class="gcglabgcController" method="updateAbgcCgs"/>
+	<action name="insertAbgcCgs" class="gcglabgcController" method="insertAbgcCgs"/>
 	
 	<!-- zhfz -->
 	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>
@@ -23,6 +31,10 @@
 	<action name="deleteZhfzYb" class="gcglzhfzController" method="deleteZhfzYb"/>
 	<action name="updateZhfzYb" class="gcglzhfzController" method="updateZhfzYb"/>
 	<action name="shZhfzYb" class="gcglzhfzController" method="shZhfzYb"/>
+	<action name="insertZhfzCgs" class="gcglzhfzController" method="insertZhfzCgs"/>
+	<action name="updateZhfzCgs" class="gcglzhfzController" method="updateZhfzCgs"/>
+	<action name="deleteZhfzCgs" class="gcglzhfzController" method="deleteZhfzCgs"/>
+	<action name="selectZhfzCgsList" class="gcglzhfzController" method="selectZhfzCgsList"/>
 	
 	<!-- yhdzx -->
 	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
@@ -30,6 +42,10 @@
 	<action name="selectYhdzxYbByJhid" class="gcglyhdzxController" method="selectYhdzxYbByJhid"/>
 	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
 	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
+	<action name="insertYhdzxCgs" class="gcglyhdzxController" method="insertYhdzxCgs"/>
+	<action name="updateYhdzxCgs" class="gcglyhdzxController" method="updateYhdzxCgs"/>
+	<action name="deleteYhdzxCgs" class="gcglyhdzxController" method="deleteYhdzxCgs"/>
+	<action name="selectYhdzxCgsList" class="gcglyhdzxController" method="selectYhdzxCgsList"/>
 
 	<!-- sh -->
 	<action name="deleteshYb" class="gcglshController" method="deleteshYb"/>
@@ -37,6 +53,10 @@
 	<action name="updateshYb" class="gcglshController" method="updateshYb"/>
 	<action name="selectshYbByJhid" class="gcglshController" method="selectshYbByJhid"/>
 	<action name="shShYb" class="gcglshController" method="shShYb"/>
+	<action name="selectShCgsList" class="gcglshController" method="selectShCgsList"/>
+	<action name="deleteShCgs" class="gcglshController" method="deleteShCgs"/>
+	<action name="updateShCgs" class="gcglshController" method="updateShCgs"/>
+	<action name="insertShCgs" class="gcglshController" method="insertShCgs"/>
 	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
@@ -44,6 +64,11 @@
 	<action name="deletegcgzgjYb" class="gcglgcgzgjController" method="deletegcgzgjYb"/>
 	<action name="selectgcgzgjYbByJhid" class="gcglgcgzgjController" method="selectgcgzgjYbByJhid"/>
 	<action name="shgcgzgjYb" class="gcglgcgzgjController" method="shgcgzgjYb"/>
+	<action name="insertGcgzgjCgs" class="gcglgcgzgjController" method="insertGcgzgjCgs"/>
+	<action name="updateGcgzgjCgs" class="gcglgcgzgjController" method="updateGcgzgjCgs"/>
+	<action name="deleteGcgzgjCgs" class="gcglgcgzgjController" method="deleteGcgzgjCgs"/>
+	<action name="selectGcgzgjCgsList" class="gcglgcgzgjController" method="selectGcgzgjCgsList"/>
+	
 	
 	<!-- gcgzsj -->
 	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>
@@ -51,6 +76,21 @@
 	<action name="updategcgzsjYb" class="gcglgcgzsjController" method="updategcgzsjYb"/>
 	<action name="selectgcgzsjYbByJhid" class="gcglgcgzsjController" method="selectgcgzsjYbByJhid"/>
 	<action name="shgcgzsjyb" class="gcglgcgzsjController" method="shgcgzsjyb"/>
+	<action name="insertGcgzsjCgs" class="gcglgcgzsjController" method="insertGcgzsjCgs"/>
+	<action name="updateGcgzsjCgs" class="gcglgcgzsjController" method="updateGcgzsjCgs"/>
+	<action name="deleteGcgzsjCgs" class="gcglgcgzsjController" method="deleteGcgzsjCgs"/>
+	<action name="selectGcgzsjCgsList" class="gcglgcgzsjController" method="selectGcgzsjCgsList"/>
+	
+	<!-- hsly -->
+	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>
+	<action name="deletehslyYb" class="gcglhslyController" method="deletehslyYb"/>
+	<action name="updatehslyYb" class="gcglhslyController" method="updatehslyYb"/>
+	<action name="selecthslyYbByJhid" class="gcglhslyController" method="selecthslyYbByJhid"/>
+	<action name="shhslyYb" class="gcglhslyController" method="shhslyYb"/>
+	<action name="insertHslyCgs" class="gcglhslyController" method="insertHslyCgs"/>
+	<action name="updateHslyCgs" class="gcglhslyController" method="updateHslyCgs"/>
+	<action name="deleteHslyCgs" class="gcglhslyController" method="deleteHslyCgs"/>
+	<action name="selectHslyCgsList" class="gcglhslyController" method="selectHslyCgsList"/>
 	
  </package>
 </struts>

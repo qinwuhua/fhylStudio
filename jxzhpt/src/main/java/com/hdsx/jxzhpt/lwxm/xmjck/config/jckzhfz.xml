@@ -35,7 +35,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sbzt desc
  </select>
  <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
 	select count(*) from xmk_zhfz where 1=1
@@ -85,6 +85,12 @@
  	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
  	group by roadname,roadcode,F114,F044,F045
   	order by roadcode,min(roadstart)
+ </select>
+  <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
+ 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
+ 	from xmk_zhfz where lxbm like #{lxbm}||'%' 
+<!--  	group by lxmc,lxbm -->
+ 	order by lxbm
  </select>
  
  <delete id="deleteJckzhfz" parameterType="String" >

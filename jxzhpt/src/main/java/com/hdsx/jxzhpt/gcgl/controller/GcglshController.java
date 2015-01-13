@@ -120,4 +120,46 @@ public class GcglshController extends BaseActionSupport{
 				ResponseUtils.write(getresponse(), "false");
 			}
 		}
+		//添加车购税
+		public void insertShCgs(){
+			Boolean bl=gcglshServer.insertShCgs(gcglsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//查询cgs
+		public void selectShCgsList(){
+			gcglsh.setPage(page);
+			gcglsh.setRows(rows);
+			gcglsh.setJhid(jhid);
+			int count=gcglshServer.selectShCgsListCount(gcglsh);
+			List<Gcglsh> list=gcglshServer.selectShCgsList(gcglsh);
+			EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		//修改cgs
+		public void updateShCgs(){
+			Boolean bl=gcglshServer.updateShCgs(gcglsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void deleteShCgs(){
+			Boolean bl=gcglshServer.deleteShCgs(gcglsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}		
 }
