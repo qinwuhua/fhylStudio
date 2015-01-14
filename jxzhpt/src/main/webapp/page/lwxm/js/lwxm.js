@@ -63,4 +63,18 @@ function ckSckzhfz(ck_id){
 	rowid=ck_id;
 	YMLib.UI.createWindow('sck_ck','查看项目详情','zhfz_ck.jsp','sck_ck',900,500);
 }
+//危桥改造导出excel 
+function exportExcel_wqgz(){
+	var param='gydw='+$("#gydw").val()+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+ 	'&lxmc='+$('#lxmc').val()+
+ 	'&qlmc='+$("#qlmc").val()+
+ 	'&xmnf='+$("#xmnf").val()+
+ 	'&xmtype='+$("#xmtype").val()+
+ 	'&shzt='+$("#shzt").val()+
+ 	'&jsdj='+$("#jsdj").val()+
+ 	'&akjfl='+$("#akjfl").val();
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/xmjck/exportExcel_wqgz.do?"+param;
+}
 

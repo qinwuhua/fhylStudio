@@ -23,6 +23,8 @@
 	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
 	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
 	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
+	<action name="exportExcel_wqgz" class="jckwqgzController" method="exportExcel_wqgz"/>
+	<action name="importWqgz" class="jckwqgzController" method="importWqgz"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>

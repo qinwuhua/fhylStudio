@@ -34,6 +34,8 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj" alias="plan_gcsj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj" alias="plan_lx_gcsj"/>
      <!-- rh -->
+     <!-- chc -->
+     <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
