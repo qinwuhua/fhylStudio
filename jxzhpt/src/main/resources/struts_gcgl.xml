@@ -92,5 +92,8 @@
 	<action name="deleteHslyCgs" class="gcglhslyController" method="deleteHslyCgs"/>
 	<action name="selectHslyCgsList" class="gcglhslyController" method="selectHslyCgsList"/>
 	
+	
+	<!-- aqyb -->
+	<action name="addAqyb" class="gcglaqybController" method="addAqyb"/>
  </package>
 </struts>
