@@ -172,4 +172,43 @@
  <delete id="deleteJckWqgz" parameterType="String" >
  	delete from xmk_wqgz where id in #{delstr}
  </delete>
+ <sql id="wqgz_commonsql">
+ 	<if test="gydw!= null and gydw!='' "  >
+		and gydw like '%'||(#{gydw})||'%'
+	</if>
+	<if test="xzqhmc!='' and xzqhmc!= null "  >
+		and xzqhmc like '%'||(#{xzqhmc})||'%'
+	</if>
+	<if test="lxmc!='' and lxmc!= null ">
+		and lxmc like '%'||(#{lxmc})||'%'
+	</if>
+	<if test="qlmc!='' and qlmc!= null ">
+		and qlmc like '%'||(#{qlmc})||'%'
+	</if>
+	<if test="xmnf!='' and xmnf!= null ">
+		and xmnf like '%'||(#{xmnf})||'%'
+	</if>
+	<if test="xmtype!='' and xmtype!= null ">
+		and xmtype like '%'||(#{xmtype})||'%'
+	</if>
+	<if test="shzt!='' and shzt!= null ">
+		and shzt like '%'||(#{shzt})||'%'
+	</if>
+	<if test="jsdj!='' and jsdj!= null ">
+		and jsdj like '%'||(#{jsdj})||'%'
+	</if>
+	<if test="akjfl!='' and akjfl!= null ">
+		and akjfl like '%'||(#{akjfl})||'%'
+	</if>
+ </sql>
+ <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="sjbb">
+ 	select
+	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+ 	from xmk_wqgz where 1=1
+ 	<include refid="wqgz_commonsql"/>
+ </select>
+ <insert id="importWqgz"  parameterType="hashMap">
+	insert into xmk_wqgz(id,qlbh,qlmc,qlzxzh,gydw,xzqhmc,lxbm,lxmc,kjzc,qlkd,qlqc,akjfl,sbjgxs,jsdj,pddj,xjgjnd,xmnf,tbsj) 
+		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},(select sysdate from dual))
+ </insert>
 </mapper>

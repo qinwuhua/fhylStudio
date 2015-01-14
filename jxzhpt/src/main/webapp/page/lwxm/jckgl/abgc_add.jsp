@@ -15,7 +15,6 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
-<script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 
 <style type="text/css">
