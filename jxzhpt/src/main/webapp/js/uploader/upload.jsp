@@ -25,7 +25,7 @@
         var dg = frameElement.lhgDG;
         $(document).ready(function() {
         var flag=request('flag');
-        var url=request('url');alert(url);
+        var url=request('url');
 		$("#fileupload").uploadify({
 			/*注意前面需要书写path的代码*/
 			'uploader' : '../../js/uploader/uploadify.swf',

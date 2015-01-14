@@ -65,7 +65,7 @@ function ckSckzhfz(ck_id){
 }
 //危桥改造导出excel 
 function exportExcel_wqgz(){
-	var param='gydw='+$("#gydw").val()+
+	var param='gydw='+$("#gydw").combotree('getText')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+

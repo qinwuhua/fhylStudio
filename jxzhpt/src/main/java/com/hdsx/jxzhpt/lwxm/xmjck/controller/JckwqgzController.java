@@ -68,8 +68,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void exportExcel_wqgz(){
 		try {
 			//先得到导出的数据集
-			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz(null);
-			System.out.println(jckwqgz);
+			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz(jckwqgz);
 			//导出设置
 			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>桥梁评定等级</td><td>修建/改建年度</td><td>项目年份</td></tr>";
 			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 

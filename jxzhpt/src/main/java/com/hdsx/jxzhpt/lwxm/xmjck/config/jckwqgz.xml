@@ -173,7 +173,7 @@
  	delete from xmk_wqgz where id in #{delstr}
  </delete>
  <sql id="wqgz_commonsql">
- 	<if test="gydw!='' and gydw!= null "  >
+ 	<if test="gydw!= null and gydw!='' "  >
 		and gydw like '%'||(#{gydw})||'%'
 	</if>
 	<if test="xzqhmc!='' and xzqhmc!= null "  >
