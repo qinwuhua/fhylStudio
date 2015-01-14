@@ -23,4 +23,14 @@ public interface GcglgcgzgjServer {
 
 	Boolean shgcgzgjYb(Gcglgcgzgj gcglgcgzgj);
 
+	Boolean insertGcgzgjCgs(Gcglgcgzgj gcglgcgzgj);
+
+	int selectGcgzgjCgsListCount(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selectGcgzgjCgsList(Gcglgcgzgj gcglgcgzgj);
+
+	Boolean updateGcgzgjCgs(Gcglgcgzgj gcglgcgzgj);
+
+	Boolean deleteGcgzgjCgs(Gcglgcgzgj gcglgcgzgj);
+
 }

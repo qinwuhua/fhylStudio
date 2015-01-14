@@ -30,13 +30,7 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 	$(function(){
-		$("#xzqhmc").combotree({
-			checkbox: false,
-		 	url: "../js/xzqh.json",
-		 	onClick:function(node){
-		        $("#xzqhmc").val(node.text);
-		    	 }
-		});
+		
 		$("#save_button").click(function(){
 			var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
@@ -102,6 +96,8 @@ text-decoration:none;
 					if(item==undefined) return ;
 					$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm").attr("value",'');
 					$("#lxmc").val(item.lxmc);
+					$("#xzqhdm").val(item.xzqhdm);
+					$("#xzqhmc").val(item.xzqhmc);
 					$("#qdzh").val(item.qdzh);
 					$("#zdzh").val(item.zdzh);
 					$("#xjnd").val(item.gjxjnd);
@@ -143,7 +139,7 @@ text-decoration:none;
 					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 160px" /></td>
+					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 156px" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="xjnd" id="xjnd" style="width: 156px" /></td>

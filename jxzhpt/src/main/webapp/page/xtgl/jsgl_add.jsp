@@ -18,18 +18,14 @@
 <body>
 <script type="text/javascript">
 function save(){
-	if(!$("#jsgl_form #jsgl_form_table").form('validate')){
-		return;
-	}
-	if($("#name").val()==""){
+	if($("#rolename").val()==""){
 		alert("请输入角色名称！");
 		return false;
 	}
-	if($("#qx").combotree("getValues")==""){
+	if($("#source").combotree("getValues")==""){
 		alert("请选择角色权限！");
 		return false;
 	}
-	
 	param=$("#jsgl_form").serialize();
 	$.ajax({
 		 type : "POST",
@@ -49,22 +45,22 @@ function save(){
 	delete param;
 }
 $(function(){
-	loadQx("qx");
+	loadQx("source");
 	$("#jsgl_btn_Save").click(function(){
 		save();
 	});
 	$("#jsgl_btn_Cancel").click(function(){
-		$("#jsgl_add_win").window('destroy');
+		parent.$("#jsgl_add_win").window('destroy');
 	});
 });
 
 function loadQx(_id){
-	$('#'+id).combotree({
-		checkbox: false,
+	$('#'+_id).combotree({
+		checkbox: true,
 		multiple:true,
 		url: '../../xtgl/selAllQx.do?yhdw=01',
 		onBeforeExpand:function(node,param){
-			$('#'+id).combotree("tree").tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
+			$('#'+_id).combotree("tree").tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
 		},
 		onSelect:function(node){}
 	});
@@ -79,7 +75,7 @@ function loadQx(_id){
 					角色名称：
 				</td>
 				<td>
-					<input style="width:248px;" type="text" id="name" name="param.name"/>
+					<input style="width:248px;" type="text" id="rolename" name="param.rolename"/>
 				</td>
 			</tr>
 			<tr>
@@ -87,51 +83,7 @@ function loadQx(_id){
 					权限分配：
 				</td>
 				<td>
-				<input id="qx"  type="text" name="param.qx"/>
-				<!-- 
-					<table border="0" cellspacing="0" style="height: 26px;border:1px solid #C1DAD7;border-right: 0px;border-bottom: 0px;" id="resource">
-						<tr><td rowspan="28">计划管理子系统</td><td>电子地图</td><td>电子地图</td></tr>
-						
-						<tr><td rowspan="3">路网项目</td><td>危桥改造项目</td></tr>
-						<tr><td>安保工程项目</td></tr>
-						<tr><td>灾害防治项目</td></tr>
-						
-						<tr><td rowspan="9">计划管理</td><td>工程改造路面升级项目</td></tr>
-						<tr><td>工程改造路面改建项目</td></tr>
-						<tr><td>养护大中修项目</td></tr>
-						<tr><td>水毁项目</td></tr>
-						<tr><td>危桥改造项目</td></tr>
-						<tr><td>安保工程项目</td></tr>
-						<tr><td>灾害防治项目</td></tr>
-						<tr><td>红色旅游公路项目</td></tr>
-						<tr><td>战备公路项目</td></tr>
-						
-						<tr><td rowspan="12">工程管理</td><td>危桥改造施工</td></tr>
-						<tr><td>安保工程施工</td></tr>
-						<tr><td>灾害防治施工</td></tr>
-						<tr><td>养护大中修施工</td></tr>
-						<tr><td>水毁施工</td></tr>
-						<tr><td>工程改造路面改建施工</td></tr>
-						<tr><td>工程改造路面升级项目施工</td></tr>
-						<tr><td>红色旅游施工</td></tr>
-						<tr><td>安全管理月报表</td></tr>
-						<tr><td>模板管理</td></tr>
-						<tr><td>信息通知</td></tr>
-						<tr><td>信息通知数据查询</td></tr>
-						
-						<tr><td>工程报表</td><td>工程报表</td></tr>
-						<tr><td>数据查询</td><td>数据查询</td></tr>
-						<tr><td>统计分析</td><td>统计分析</td></tr>
-						<tr><td>地理信息子系统</td><td>地理信息子系统</td><td>地理信息子系统</td></tr>
-						<tr><td>外接数据子系统</td><td>外接数据子系统</td><td>外接数据子系统</td></tr>
-						
-						<tr><td rowspan="5">系统管理子系统</td><td rowspan="5">系统管理</td><td>角色分配管理</td></tr>
-						<tr><td>行政区划管理</td></tr>
-						<tr><td>部门信息管理</td></tr>
-						<tr><td>特殊地区</td></tr>
-						<tr><td>用户信息管理</td></tr>
-					</table>
-					 -->
+					<input id="source"  type="text" name="param.source" style="width:250px;"/>
 				</td>
 			</tr>
 			<tr>
@@ -139,8 +91,7 @@ function loadQx(_id){
 					角色描述：
 				</td>
 				<td>
-					<input id="descr" class="easyui-validatebox" required="true" validType="notNULL" name="param.descr" type="text" style="width:248px;" maxlength="60"/>
-					<input type="hidden" name="param.czsj" id="czsj" />
+					<input id="desr" name="param.desr" type="text" style="width:248px;"/>
 				</td>
 			</tr>
 		</table>

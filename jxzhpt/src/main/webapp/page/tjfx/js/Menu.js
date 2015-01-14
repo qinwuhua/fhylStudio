@@ -1,6 +1,6 @@
 $(function() {
 	createMenu('LeftMenu',{
-		id:'menu1',
+		id:'menu_0101070101',
 		title:'行政区划统计',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu1',
@@ -8,7 +8,7 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101070201',
 		title:'年份项目统计',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu2',
@@ -16,7 +16,7 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101070202',
 		title:'行政区划统计趋势分析',
 		imgSrc:'../../images/qsfx.png',
 		renderTo:'left_menu2',
@@ -24,7 +24,7 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu2',
+		id:'menu_0101070203',
 		title:'项目类型统计趋势分析',
 		imgSrc:'../../images/lxtjqs.png',
 		renderTo:'left_menu2',
@@ -32,7 +32,7 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101070301',
 		title:'行政区划统计',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu3',
@@ -40,10 +40,17 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
-		id:'menu3',
+		id:'menu_0101070302',
 		title:'项目类型统计',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu3',
 		href:'./gcktj/xmlxtj.jsp'
 	});
+	menuQx();
 });
+function menuQx(){
+	var qx=parent.$.cookie("qx4").split(",");
+	for(var i=0;i<qx.length;i++){
+		if($("#menu_"+qx[i])!=null) $("#menu_"+qx[i]).show();
+	}
+}

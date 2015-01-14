@@ -164,6 +164,25 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectJckShwqgz(){
+		List<Jckwqgz> wqgzList = wqgzServer.selectJckShwqgz(jckwqgz);
+		int count = wqgzServer.selectWqgzShCount(jckwqgz);
+		EasyUIPage<Jckwqgz> eui = new EasyUIPage<Jckwqgz>();
+		eui.setRows(wqgzList);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void xgJckWqgzTH(){
+		try {
+			JsonUtils.write(wqgzServer.xgJckWqgzTH(jckwqgz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public Jckwqgz getJckwqgz() {

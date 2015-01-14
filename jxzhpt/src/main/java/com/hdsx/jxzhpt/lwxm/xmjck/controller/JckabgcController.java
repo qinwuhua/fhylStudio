@@ -134,6 +134,26 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectAbgcSh(){
+		List<Jckabgc> abgcList = abgcServer.selectJckShabgc(jckabgc);
+		int count = abgcServer.selectAbgcShCount(jckabgc);
+		EasyUIPage<Jckabgc> eui=new EasyUIPage<Jckabgc>();
+		eui.setRows(abgcList);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void xgJckAbgcTH(){
+		try {
+			JsonUtils.write(abgcServer.xgJckAbgcTH(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public Jckabgc getJckabgc() {
 		return jckabgc;

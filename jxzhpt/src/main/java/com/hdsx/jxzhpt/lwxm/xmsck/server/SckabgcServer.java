@@ -12,4 +12,7 @@ public interface SckabgcServer {
 		boolean updateSckabgc(Sckabgc abgc);
 		Sckabgc selectSckabgcById(Sckabgc abgc);
 		boolean xgSckAbgcSbzt(String delstr);
+		List<Sckabgc> selectSckShabgc(Sckabgc abgc);
+		int selectAbgcShCount(Sckabgc abgc);
+		boolean xgSckAbgcShzt(Sckabgc abgc);
 }

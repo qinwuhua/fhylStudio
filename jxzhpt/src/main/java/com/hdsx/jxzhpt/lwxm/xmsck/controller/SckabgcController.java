@@ -73,8 +73,25 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	
-	
-	
+	public void selectSckShabgc(){
+		List<Sckabgc> list = abgcServer.selectSckShabgc(sckabgc);
+		int count = abgcServer.selectAbgcShCount(sckabgc);
+		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
+		eui.setRows(list);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void xgSckAbgcShzt(){
+		if(abgcServer.xgSckAbgcShzt(sckabgc)){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	
 	public Sckabgc getSckabgc() {
 		return sckabgc;

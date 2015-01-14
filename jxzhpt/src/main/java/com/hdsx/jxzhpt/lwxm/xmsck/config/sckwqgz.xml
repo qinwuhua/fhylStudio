@@ -29,6 +29,91 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like #{akjfl}||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_sbzt desc
+ </select>
+  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+ 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
+ 		 where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like #{akjfl}||'%'
+ 		</if>
+ </select>
+
+ <update id="updateSckwqgz" parameterType="sckwqgz" >
+ 	update sck_wqgz set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
+ 	jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
+ 	where sckid=#{sckid}
+ </update>
+  <select id="selectSckwqgzById" parameterType="sckwqgz" resultType="sckwqgz">
+ 	select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where sckid=#{sckid}
+ </select>
+ <delete id="deleteSckWqgz" parameterType="String" >
+ 	delete from sck_wqgz where sckid in(#{delstr})
+ </delete>
+ 
+  <update id="xgSckWqgzShzt" parameterType="sckwqgz" >
+ 	update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
+ </update>
+  <update id="xgSckWqgzSbzt" parameterType="String" >
+ 	update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
+ </update>
+ 
+  <select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t 
+ 		where sck_sbzt='已上报'
+  		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
  			and shzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
@@ -38,11 +123,11 @@
  			and akjfl like #{akjfl}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sck_shzt desc
  </select>
-  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+  <select id="selectWqgzShCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
- 		 where 1=1
+ 		 where sck_sbzt='已上报'
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -71,23 +156,4 @@
  			and akjfl like #{akjfl}||'%'
  		</if>
  </select>
-
- <update id="updateSckwqgz" parameterType="sckwqgz" >
- 	update sck_wqgz set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
- 	jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
- 	where sckid=#{sckid}
- </update>
-  <select id="selectSckwqgzById" parameterType="sckwqgz" resultType="sckwqgz">
- 	select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where sckid=#{sckid}
- </select>
- <delete id="deleteSckWqgz" parameterType="String" >
- 	delete from sck_wqgz where sckid in(#{delstr})
- </delete>
- 
-  <update id="xgSckWqgzShzt" parameterType="sckwqgz" >
- 	update sck_wqgz set sck_shzt='已审核' where id=#{id}
- </update>
-  <update id="xgSckWqgzSbzt" parameterType="String" >
- 	update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
- </update>
 </mapper>

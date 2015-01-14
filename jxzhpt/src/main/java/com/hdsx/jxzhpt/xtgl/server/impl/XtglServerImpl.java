@@ -119,9 +119,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public boolean insertJs(Param param) {
 		UUID uuid = UUID.randomUUID();
-		param.setId(uuid.toString());
+		param.setRoleid(uuid.toString());
 		List<Param> l=new ArrayList<Param>();
-		String[] s=param.getSource().split(";");
+		String[] s=param.getSource().split(",");
 		for (int i=0;i<s.length;i++){
 			Param p=new Param();
 			p.setRoleid(uuid.toString());
@@ -378,5 +378,38 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<TreeNode> selAllQx2(String yhdw) {
 		return queryList("selAllQx2", yhdw);
+	}
+
+	@Override
+	public Param selectJsById(Param param) {
+		return queryOne("selectJsById", param);
+	}
+
+	@Override
+	public boolean updateJs(Param param) {
+		String id=param.getRoleid();
+		param.setId(id);
+		param.setRoleid("('"+param.getRoleid()+"')");
+		List<Param> l=new ArrayList<Param>();
+		String[] s=param.getSource().split(",");
+		for (int i=0;i<s.length;i++){
+			Param p=new Param();
+			p.setRoleid(id);
+			p.setSourceid(s[i]);
+			l.add(p);
+		}
+		if (update("updateJs", param)>0){
+			if(delete("deleteRoleSourceById",param)>0){
+				if(insertBatch("insertRoleSourceBatch", l)>0){
+					return true;
+				}else return false;
+			}else return false;
+		}else return false;
+		
+	}
+
+	@Override
+	public List<Param> selQxByUser(Param param) {
+		return queryList("selQxByUser", param);
 	}
 }

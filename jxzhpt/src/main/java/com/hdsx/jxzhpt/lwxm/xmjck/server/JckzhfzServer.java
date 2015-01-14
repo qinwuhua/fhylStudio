@@ -14,4 +14,7 @@ public interface JckzhfzServer {
 	boolean deleteZhfzById(String delstr);
 	boolean xgJckZhfzShzt(Jckzhfz zhfz);
 	boolean xgJckZhfzSbzt(String delstr);
+	List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz);
+	int selectZhfzShCount(Jckzhfz zhfz);
+	boolean xgJckZhfzTH(Jckzhfz zhfz);
 }

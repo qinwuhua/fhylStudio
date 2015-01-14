@@ -19,4 +19,7 @@ public interface JckwqgzServer {
 	boolean xgJckWqgzSbzt(String delstr);
 	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
 	boolean importWqgz(List<Map> data);
+	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
+	int selectWqgzShCount(Jckwqgz wqgz);
+	boolean xgJckWqgzTH(Jckwqgz wqgz);
 }

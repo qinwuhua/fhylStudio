@@ -51,7 +51,7 @@
 		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
 		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
 	</insert>
-	<select id="queryCGSByYf" parameterType="gcglwqgz" resultType="gcglsh">
+	<select id="queryCGSByYf" parameterType="gcglsh" resultType="gcglsh">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
 	</select>
 	<!-- 查询cgs -->

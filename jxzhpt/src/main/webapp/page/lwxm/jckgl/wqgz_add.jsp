@@ -9,9 +9,11 @@
 <title>基础库管理危桥改造项目</title>
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
@@ -27,13 +29,7 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 $(function(){
-	$("#xzqhmc").combotree({
-		checkbox: false,
-	 	url: "../js/xzqh.json",
-	 	onClick:function(node){
-	        $("#xzqhmc").val(node.text);
-	    	 }
-	});
+	
 	$("#save_button").click(function(){
 		var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").val()
 		+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
@@ -59,11 +55,11 @@ $(function(){
 	$("#qx_window").click(function(){
 		parent.$('#jck_add').window('destroy');
 	});	
-/* 	autoCompleteLXBM(); */
+ 	autoCompleteLXBM();
 });
 function autoCompleteLXBM(){
-	var url = "/jxzhpt/xmjck/zhfzGpsroad.do";
-	$("#lxbm").autocomplete(url, {
+	var url = "/jxzhpt/xmjck/wqgzGpsroad.do";
+	$("#qlbh").autocomplete(url, {
 		multiple : false,
 		minChars :2,
 		multipleSeparator : ' ',
@@ -73,8 +69,8 @@ function autoCompleteLXBM(){
   		max : 50,
   		extraParams : {
   			/*dist:$.cookie("dist"),*/
-  			lxbm:function() {
-  				var d = $("#lxbm").val();
+  			qlbh:function() {
+  				var d = $("#qlbh").val();
   				return d;
   			}
   		},
@@ -85,24 +81,37 @@ function autoCompleteLXBM(){
   			aa = $.map(eval(data), function(row) {
   					return {
   						data : row,
-  						value : row.lxbm.replace(/(\s*$)/g,""),
-  						result : row.lxbm.replace(/(\s*$)/g,"")
+  						value : row.qlbh.replace(/(\s*$)/g,""),
+  						result : row.qlbh.replace(/(\s*$)/g,"")
   					};
   				});
   			return aa;
   		},
   		formatItem : function(row, i, max) {
-  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+  			return row.qlbh.replace(/(\s*$)/g,"")+"("+row.qlzxzh+")"+"<br/>"+row.qlmc.replace(/(\s*$)/g,"");
   		}
   	}).result(
 			function(e, item) {
 				if(item==undefined) return ;
-				$("#lxmc,#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm").attr("value",'');
-				$("#lxmc").val(item.lxmc);
-				$("#xjgjnd").val(item.xjgjnd);
-				$("#jsdj").val(item.jsdj);
+				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
+				$("#qlmc").val(item.qlmc);
+				$("#qlzxzh").val(item.qlzxzh);
 				$("#gydw").val(item.gydw);
-				$("#gydwbm").val(item.gydwbm);
+				$("#xzqhdm").val(item.xzqhdm);
+				$("#xzqhmc").val(item.xzqhmc);
+				$("#lxmc").val(item.lxmc);
+				$("#lxbm").val(item.lxbm);
+				$("#kjzc").val(item.kjzc);
+				$("#qlqc").val(item.qlqc);
+				$("#qlkd").val(item.qlkd);
+				$("#dkzdkj").val(item.dkzdkj);
+/* 				$("#jsdj").val(item.jsdj); */
+				$("#pddj").val(item.pddj);
+				$("#xjgjnd").val(item.xjgjnd);
+				$("#akjfl").val(item.akjfl);
+				$("#sbjgxs").val(item.sbjgxs);
+				$("#bhnr").val(item.bhnr);
+				$("#bz").val(item.bz);
 			});
 }
 </script>
@@ -150,14 +159,20 @@ function autoCompleteLXBM(){
 				<td style="background-color: #ffffff; height: 20px;" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="qlkd" id="qlkd" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="dkzdkj"id="dkzdkj" style="width: 156px" /></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="jsdj" id="jsdj" style="width: 156px" /></td>
+					<select id="jsdj" style="width:160px">
+							<option selected="selected"  value="一级公路">一级公路</option>
+							<option value="二级公路">二级公路</option>
+							<option value="三级公路">三级公路</option>
+							<option value="四级公路">四级公路</option>
+							<option value="等外公路">等外公路</option>
+                    </select></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<input type="text" name="pddj"id="pddj" style="width: 156px" /></td>
@@ -180,10 +195,21 @@ function autoCompleteLXBM(){
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xmnf" id="xmnf" style="width: 156px" /></td>
+					<select id="xmnf"  style="width:160px">
+									<option selected="selected"  value="2014年">2014年</option>
+									<option value="2013年">2013年</option>
+									<option value="2012年">2012年</option>
+									<option value="2011年">2011年</option>
+									<option value="2010年">2010年</option>
+                              	</select></td>
 				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="xmtype"id="xmtype" style="width: 156px" /></td>
+					<select id="xmtype" style="width:160px">
+									<option selected="selected"  value="未上报">未上报</option>
+									<option value="已上报">已上报</option>
+									<option value="未审核">已入库</option>
+									<option value="已审核">已下达</option>
+                              	</select></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr>

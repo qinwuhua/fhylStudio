@@ -112,4 +112,10 @@ public interface XtglServer {
 
 	List<TreeNode> selAllQx2(String yhdw);
 
+	Param selectJsById(Param param);
+
+	boolean updateJs(Param param);
+
+	List<Param> selQxByUser(Param param);
+
 }

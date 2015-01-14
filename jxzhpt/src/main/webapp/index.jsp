@@ -13,10 +13,60 @@
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript">
 $(function(){
 	selSes();
+	selQxByUser();
 });
+function selQxByUser(){
+	$.ajax({
+		type : "POST",
+		url : "xtgl/selQxByUser.do",
+		dataType : 'json',
+		data :"param.roleid="+$.cookie("roleid"),
+		success : function(msg){
+			if(msg){
+				var qx1= new Array();
+				var qx2= new Array();
+				var qx3= new Array();
+				var qx4= new Array();
+				for(var i=0;i<msg.length;i++){
+					//第一层
+					if(msg[i].roleid=="01") qx1.push(msg[i].id);
+					//第2层
+					if(msg[i].id.length==6) qx2. push(msg[i].id);
+					//第3层
+					if(msg[i].id.length==8) qx3. push(msg[i].id);
+					//第4层
+					if(msg[i].id.length==10) qx4. push(msg[i].id);
+				}
+				YMLib.Var.qx1=qx1;
+				YMLib.Var.qx2=qx2;
+				YMLib.Var.qx3=qx3;
+				YMLib.Var.qx4=qx4;
+				//$.cookie("qx1",qx1, {expires: 1});
+	     		$.cookie("qx2",qx2, {expires: 1});
+	     		$.cookie("qx3",qx3, {expires: 1});
+	     		$.cookie("qx4",qx4, {expires: 1});
+	     	 }
+		 }
+	});
+}
+
+function menuQx(_location,_flag){
+	
+	var qx=YMLib.Var.qx1;
+	var flag=false;
+	for(var i=0;i<qx.length;i++){
+		if(qx[i]==_flag){
+			flag=true;
+			document.location.href=_location;
+			break;
+		}
+	}
+	if(flag==false) alert("您暂无此权限！");
+}
 </script>
 </head>
 <body style="margin:0 0 0 0;min-width: 1000px;height:100%; overflow:hidden;">
@@ -29,10 +79,10 @@ $(function(){
         <img src="images/xtbg.jpg" width="1440"/>
             <table  border="0" align="center" cellpadding="0" cellspacing="1"  class="xztable"  >
             <tr align="center">
-            <td><a href="./jhgl_index.jsp" target="_self"><img src="images/xz_1.png" width="182" height="250"/></a></td>
-            <td><a href="./jhgl_index.jsp" target="_self"><img src="images/xz_2.png" width="182" height="250" /></a></td>
-            <td><a href="./wjsj_index.jsp" target="_self"><img src="images/xz_3.png" width="182" height="250" /></a></td>
-            <td><a href="./xtgl_index.jsp" target="_self"><img src="images/xz_4.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./jhgl_index.jsp','0101')"><img src="images/xz_1.png" width="182" height="250"/></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./dlxx_index.jsp','0102')"><img src="images/xz_2.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./wjsj_index.jsp','0103')"><img src="images/xz_3.png" width="182" height="250" /></a></td>
+            <td><a href="javascript:void(0)" onclick="menuQx('./xtgl_index.jsp','0104')"><img src="images/xz_4.png" width="182" height="250" /></a></td>
             </tr>
             </table>
          </div>

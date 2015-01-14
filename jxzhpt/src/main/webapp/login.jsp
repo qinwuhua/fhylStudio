@@ -40,10 +40,10 @@ function rewrite(){
            </tr>
            <tr>
            <td width="15%"></td>
-           <td align="center" > <input type="image" name="imgLogin" id="imgLogin" onmouseleave="onmousebutton(this);" onmouseover="onmousebutton(this);" src="images/dlClick.gif" onclick="login();" style="border-width:0px;" /></td>
+           <td align="center" > <input type="image" name="imgLogin" id="imgLogin"  src="images/dlClick.gif" onclick="login();" style="border-width:0px;" /></td>
            
            <td align="left">
-           <input type="image" name="imgLogin" id="imgLogin" onmouseleave="onmousebutton(this);" onmouseover="onmousebutton(this);" src="images/DR2.gif" onclick="rewrite()" style="border-width:0px;" />
+           <input type="image" name="imgLogin" id="imgLogin"  src="images/DR2.gif" onclick="rewrite()" style="border-width:0px;" />
            </td>
            </tr>
            </table>

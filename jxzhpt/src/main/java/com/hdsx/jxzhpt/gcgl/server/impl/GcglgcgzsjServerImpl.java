@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
@@ -70,6 +71,49 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	public Boolean shgcgzsjyb(Gcglgcgzsj gcglgcgzsj) {
 		if(update("shgcgzsjyb", gcglgcgzsj)>0){
 		return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@Override
+	public Boolean insertGcgzsjCgs(Gcglgcgzsj gcglgcgzsj) {
+		Gcglgcgzsj gcglwqgz1=queryOne("queryCGSByYf", gcglgcgzsj);
+		if(gcglwqgz1!=null){
+			return false;
+		}
+		if(insert("insertGcgzsjCgs", gcglgcgzsj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectGcgzsjCgsListCount(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectGcgzsjCgsListCount", gcglgcgzsj);
+	}
+
+	@Override
+	public List<Gcglgcgzsj> selectGcgzsjCgsList(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectGcgzsjCgsList",gcglgcgzsj);
+	}
+
+	@Override
+	public Boolean updateGcgzsjCgs(Gcglgcgzsj gcglgcgzsj) {
+		if(update("updateGcgzsjCgs", gcglgcgzsj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteGcgzsjCgs(Gcglgcgzsj gcglgcgzsj) {
+		if(delete("deleteGcgzsjCgs", gcglgcgzsj)>0){
+			return true;
 		}else{
 			return false;
 		}

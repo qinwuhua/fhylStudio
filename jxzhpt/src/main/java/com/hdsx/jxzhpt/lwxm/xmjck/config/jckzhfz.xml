@@ -35,7 +35,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt
+ 			order by sbzt desc
  </select>
  <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
 	select count(*) from xmk_zhfz where 1=1
@@ -78,17 +78,20 @@
  <update id="xgJckzhfzSbzt" parameterType="String" >
  	update xmk_zhfz set shzt='未审核',sbzt='已上报' where id in(#{delstr})
  </update>
- 
+ <update id="xgJckZhfzTH" parameterType="jckzhfz" >
+ 	update xmk_zhfz set sbzt='未上报' where id =#{id}
+ </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckzhfz">
- 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,sum(roadlen) qzlc,F044 gydwbm,F045 gydw,
+ 	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,(max(roadends)-min(roadstart)) qzlc,
+ 	substr(roadcode,5,7) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,5,7)) xzqhmc,F044 gydwbm,F045 gydw,
  	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
- 	substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	substr(roadcode,1,1) in('G','S') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
  	group by roadname,roadcode,F114,F044,F045
   	order by roadcode,min(roadstart)
  </select>
   <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
  	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
- 	from xmk_zhfz where lxbm like #{lxbm}||'%' 
+ 	from xmk_zhfz where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%' 
 <!--  	group by lxmc,lxbm -->
  	order by lxbm
  </select>
@@ -96,4 +99,62 @@
  <delete id="deleteJckzhfz" parameterType="String" >
  	delete from xmk_zhfz where id in #{delstr}
  </delete>
+ 
+  <select id="selectJckShzhfz" parameterType="hashmap" resultType="jckzhfz">
+ 	select * from (
+ 		select rownum num ,t.* from xmk_zhfz t where sbzt='已上报'
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by shzt desc
+ </select>
+ <select id="selectZhfzShCount" parameterType="hashmap" resultType="int">
+	select count(*) from xmk_zhfz where sbzt='已上报'
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and gydw like '%'||(#{gydw})||'%'
+ 		</if>
+ 		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like #{lxbm}||'%'
+ 		</if>
+ </select>
 </mapper>

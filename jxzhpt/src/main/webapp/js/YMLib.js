@@ -734,7 +734,7 @@ function createMenu(_xtype, _json) {//左侧菜单生成
 			var renderTo = typeof _json.renderTo != 'undefined' ? _json.renderTo : null;
 			var href = typeof _json.href != 'undefined' ? _json.href : null;
 			//var fun = typeof _json.click != 'undefined' ? _json.click : null;
-			var html = "<div><a id='"+id+"' href='"+href+"' target='rightContent' style='text-decoration:none;'><img style='border:none;' src='"+imgSrc+"' alt='"+title+"' title='"+title+"'/><br/><span>"+title+"</span></a></div>";
+			var html = "<div id='"+id+"' style='display:none;'><a  href='"+href+"' target='rightContent' style='text-decoration:none;'><img style='border:none;' src='"+imgSrc+"' alt='"+title+"' title='"+title+"'/><br/><span>"+title+"</span></a></div>";
 			$("#" + renderTo).append(html);
 			//$("#"+id).click(fun);
 			id = null;

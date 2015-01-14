@@ -29,7 +29,7 @@ function deleteJs(_id){
 				 type : "POST",
 				 url : "../../xtgl/deleteJsById.do",
 				 dataType : 'json',
-				 data : 'param.id=' +_id,
+				 data : 'param.roleid=' +_id,
 				 success : function(msg){
 					 if(msg){
 						 YMLib.Tools.Show('删除成功！',3000);
@@ -49,8 +49,6 @@ function deleteJs(_id){
 $(function(){
 	$("#jsgl_table").datagrid({
 		border : true,
-		//height:500,
-		//width:1000,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
@@ -69,7 +67,7 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
+				return '<input onclick=openJsUpdate("'+rec.roleid+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
 			}
 		},{
 			field : 'rolename',
@@ -77,7 +75,7 @@ $(function(){
 			width : 300,
 			align : 'center'
 		},{
-			field : 'description',
+			field : 'desr',
 			title : '角色描述',
 			width : 300,
 			align : 'center'
@@ -85,11 +83,12 @@ $(function(){
 		]],toolbar : [{
 			text : '删除',
 			handler : function(){
-				var rows = $('#xmgl_table').datagrid('getSelections');
-				var _id=rows[0].id;
+				var rows = $('#jsgl_table').datagrid('getSelections');
+				var _id="('"+rows[0].roleid;
 				for(var i=1;i<rows.length;i++){
-					_id+="','"+rows[i].id;
+					_id+="','"+rows[i].roleid;
 				}
+				_id+="')";
 				deleteJs(_id);
 			}
 		},{

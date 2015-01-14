@@ -22,7 +22,14 @@ public class Param implements Serializable{
 	private String xzqhdm;
 	private String state;
 	private String bz;
+	private String desr;
 	
+	public String getDesr() {
+		return desr;
+	}
+	public void setDesr(String desr) {
+		this.desr = desr;
+	}
 	public String getName() {
 		return name;
 	}
