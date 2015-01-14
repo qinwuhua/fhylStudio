@@ -1,5 +1,5 @@
 $(function() {
-
+	
 	createMenu('LeftMenu',{
 		id:'menu_01030101',
 		title:'公路技术状况评定明细表',
