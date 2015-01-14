@@ -110,6 +110,13 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void xgJckAbgcTH(){
+		try {
+			JsonUtils.write(abgcServer.xgJckAbgcTH(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	public Jckabgc getJckabgc() {

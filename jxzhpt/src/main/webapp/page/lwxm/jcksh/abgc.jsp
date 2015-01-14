@@ -29,8 +29,9 @@ $(function(){
 	});
 });
 
-function xgShzt(id){
+function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
+	var id=rows[0].id;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量审核！");
@@ -48,6 +49,39 @@ function xgShzt(id){
 						 $("#grid").datagrid('reload');
 					 }else{
 						 alert('审核失败,请选择要审核项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
+function tuiHui(){
+	var rows=$('#grid').datagrid('getSelections');
+	var id= rows[0].id;
+	var shzt=rows[0].shzt;
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量退回！");
+		return;
+	}
+	if(shzt=='已审核'){
+		alert("对不起，该项目已审核，不能执行退回操作！");
+		return;
+	}
+	if(confirm('您确定退回该项目？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgJckAbgcTH.do",
+				 dataType : 'json',
+				 data : 'id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('退回成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('退回失败,请选择要退回项目！');
 					 }
 				 },
 				 error : function(){
@@ -144,7 +178,8 @@ text-decoration:none;
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshAbgc();"style="border-width:0px;cursor: hand;" />
-								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenPi();" style="border-width:0px;" />
+								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 							 </p>
 						</div>

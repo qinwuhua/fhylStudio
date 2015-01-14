@@ -173,7 +173,7 @@
 //基础库审核
 function jckshWqgz(){
 	$("#grid").datagrid({    
-		 url:'/jxzhpt/xmjck/selectWqgz.do',
+		 url:'/jxzhpt/xmjck/selectJckShwqgz.do',
 		 queryParams : {
 			 	'gydw':$("#gydw").val(),
 			 	'xzqhmc':$("#xzqhmc").val(),
@@ -195,17 +195,12 @@ function jckshWqgz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.shzt=="未审核"){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
-				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
-				}
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
 				if(row.shzt=="未审核"){
-				return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
 					return '<span style="color:grey;">已审核</span>';
 				}
@@ -256,7 +251,7 @@ function jckshAbgc(){
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
 				if(row.shzt=="未审核"){
-				return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
 					return '<span style="color:grey;">已审核</span>';
 				}
@@ -277,7 +272,7 @@ function jckshAbgc(){
 }
 function jckshZhfz(){
 	$("#grid").datagrid({    
-		 url:'/jxzhpt/xmjck/selectZhfz.do',
+		 url:'/jxzhpt/xmjck/selectZhfzSh.do',
 		 queryParams : {
 			 	'gydw':$("#gydw").val(),
 			 	'xzqhmc':$("#xzqhmc").val(),
@@ -308,7 +303,7 @@ function jckshZhfz(){
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
 				if(row.shzt=="未审核"){
-				return '<a href=javascript:xgShzt("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
 					return '<span style="color:grey;">已审核</span>';
 				}
@@ -535,7 +530,18 @@ function sckglZhfz(){
 //审查库审核
 function sckshWqgz(){
 	$("#grid").datagrid({    
-		 url:"../js/scksh1.json",
+		 url:'/jxzhpt/xmsck/selectSckShwqgz.do',
+		 queryParams : {
+			 	'gydw':$("#gydw").val(),
+			 	'xzqhmc':$("#xzqhmc").val(),
+			 	'lxmc' : $('#lxmc').val(),
+			 	'qlmc':$("#qlmc").val(),
+			 	'xmnf':$("#xmnf").val(),
+			 	'xmtype':$("#xmtype").val(),
+			 	'shzt':$("#shzt").val(),
+			 	'jsdj':$("#jsdj").val(),
+			 	'akjfl':$("#akjfl").val()
+			},
 		    striped:true,
 		    pagination:true,
 		    rownumbers:true,
@@ -545,20 +551,33 @@ function sckshWqgz(){
 		    width:1100,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:80,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-							'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>';
-			}},   
-	        {field:'shzt',title:'审核状态',width:80,align:'center'}, 
-	        {field:'gydw',title:'管养单位',width:160,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
-	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
-	        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
-	        {field:'lxbh',title:'路线编号',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
+			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
+				if(row.sck_shzt=="未审核"){
+					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+				}else{
+					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
+				}
+			}},    
+			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
+				if(row.sck_shzt=="未审核"){
+				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+				}else{
+					return '<span style="color:grey;">已审核</span>';
+				}
+			}},
+			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
+		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
+		        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
+		        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
+		        {field:'lxbm',title:'路线编码',width:120,align:'center'},
+		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
+		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
+		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
+		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
 }

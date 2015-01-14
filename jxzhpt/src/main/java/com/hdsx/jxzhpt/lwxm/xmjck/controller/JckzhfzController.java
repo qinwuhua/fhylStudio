@@ -97,6 +97,25 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectZhfzSh(){
+		List<Jckzhfz> zhfzList = zhfzServer.selectJckShzhfz(jckzhfz);
+		int count = zhfzServer.selectZhfzShCount(jckzhfz);
+		EasyUIPage<Jckzhfz> eui = new EasyUIPage<Jckzhfz>();
+		eui.setRows(zhfzList);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void xgJckZhfzTH(){
+		try {
+			JsonUtils.write(zhfzServer.xgJckZhfzTH(jckzhfz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;

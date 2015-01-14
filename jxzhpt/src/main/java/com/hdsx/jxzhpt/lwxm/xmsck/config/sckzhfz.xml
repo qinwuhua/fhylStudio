@@ -114,7 +114,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by shzt desc
+ 			order by sck_shzt desc
  </select>
   <select id="selectZhfzShCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)

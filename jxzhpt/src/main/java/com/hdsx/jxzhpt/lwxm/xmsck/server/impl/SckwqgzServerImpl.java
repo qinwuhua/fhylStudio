@@ -77,4 +77,42 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public List<Sckwqgz> selectSckShwqgz(Sckwqgz wqgz) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", wqgz.getGydw());
+		hm.put("xzqhmc", wqgz.getXzqhmc());
+		hm.put("lxmc", wqgz.getLxmc());
+		hm.put("qlmc", wqgz.getQlmc());
+		hm.put("xmnf", wqgz.getXmnf());
+		hm.put("xmtype", wqgz.getXmtype());
+		hm.put("shzt", wqgz.getShzt());
+		hm.put("jsdj", wqgz.getJsdj());
+		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("page", wqgz.getPage());
+		hm.put("rows", wqgz.getRows());
+		return queryList("selectSckShwqgz",hm);
+	}
+
+	@Override
+	public int selectWqgzShCount(Sckwqgz wqgz) {
+		hm=new HashMap<String, Object>();
+		hm.put("gydw", wqgz.getGydw());
+		hm.put("xzqhmc", wqgz.getXzqhmc());
+		hm.put("lxmc", wqgz.getLxmc());
+		hm.put("qlmc", wqgz.getQlmc());
+		hm.put("xmnf", wqgz.getXmnf());
+		hm.put("xmtype", wqgz.getXmtype());
+		hm.put("shzt", wqgz.getShzt());
+		hm.put("jsdj", wqgz.getJsdj());
+		hm.put("akjfl", wqgz.getAkjfl());
+		return queryOne("selectWqgzShCount",hm);
+	}
+
+	@Override
+	public boolean xgSckWqgzShzt(Sckwqgz wqgz) {
+		if(update("xgSckWqgzShzt", wqgz)>0) return true;
+		else return false;
+	}
+
 }

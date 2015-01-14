@@ -124,6 +124,12 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		return queryOne("selectAbgcShCount",hm);
 	}
 
+	@Override
+	public boolean xgJckAbgcTH(Jckabgc abgc) {
+		if(update("xgJckAbgcTH", abgc)>0) return true;
+		else return false;
+	}
+
 
 
 }
