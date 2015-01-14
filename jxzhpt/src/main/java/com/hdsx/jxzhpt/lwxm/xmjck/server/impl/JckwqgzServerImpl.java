@@ -134,6 +134,13 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public boolean onceWqgz(Jckwqgz wqgz) {
+		int count = (Integer)queryOne("onceWqgz", wqgz);
+		if(count<1) return true;
+		else return false;
+	}
+
 
 
 }

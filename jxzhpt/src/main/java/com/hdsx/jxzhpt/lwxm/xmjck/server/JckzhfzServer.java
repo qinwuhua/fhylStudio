@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server;
 
 import java.util.List;
+
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 
 public interface JckzhfzServer {
@@ -17,4 +18,5 @@ public interface JckzhfzServer {
 	List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz);
 	int selectZhfzShCount(Jckzhfz zhfz);
 	boolean xgJckZhfzTH(Jckzhfz zhfz);
+	boolean onceZhfz(Jckzhfz zhfz);
 }

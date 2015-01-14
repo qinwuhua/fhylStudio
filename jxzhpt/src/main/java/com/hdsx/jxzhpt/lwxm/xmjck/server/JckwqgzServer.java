@@ -18,4 +18,5 @@ public interface JckwqgzServer {
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
 	boolean xgJckWqgzTH(Jckwqgz wqgz);
+	boolean onceWqgz(Jckwqgz wqgz);
 }

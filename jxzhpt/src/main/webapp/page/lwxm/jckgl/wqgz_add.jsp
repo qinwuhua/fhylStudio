@@ -14,6 +14,7 @@
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <style type="text/css">
@@ -30,23 +31,17 @@ text-decoration:none;
 $(function(){
 	
 	$("#save_button").click(function(){
-		var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").val()
-		+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
-		"&qlqc="+$("#qlqc").val()+"&qlkd="+$("#qlkd").val()+"&dkzdkj="+$("#dkzdkj").val()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").val()+"&xjgjnd="+$("#xjgjnd").val()
-		+"&akjfl="+$("#akjfl").val()+"&sbjgxs="+$("#sbjgxs").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
-		"&tbbmbm="+"南昌市公路局";
+		var datas="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmjck/insertWqgz.do',
-	        data:data,
+			url:'/jxzhpt/xmjck/onceWqgz.do',
 			dataType:'json',
+	        data:datas,
 			success:function(msg){
 				if(Boolean(msg)){
-					parent.$("#grid").datagrid('reload');
-					alert("保存成功！");
-					parent.$('#jck_add').window('destroy');
+					saveWqgz();
 				}else{
-					alert('保存失败！');
+					alert('该项目已添加过，请勿重复添加！');
 				}
 			}
 		});
@@ -112,6 +107,29 @@ function autoCompleteLXBM(){
 				$("#bhnr").val(item.bhnr);
 				$("#bz").val(item.bz);
 			});
+}
+function saveWqgz(){
+	var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").val()
+	+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
+	"&qlqc="+$("#qlqc").val()+"&qlkd="+$("#qlkd").val()+"&dkzdkj="+$("#dkzdkj").val()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").val()+"&xjgjnd="+$("#xjgjnd").val()
+	+"&akjfl="+$("#akjfl").val()+"&sbjgxs="+$("#sbjgxs").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
+	"&tbbmbm="+$.cookie("unit");
+	alert(data);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/xmjck/insertWqgz.do',
+        data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				parent.$("#grid").datagrid('reload');
+				alert("保存成功！");
+				parent.$('#jck_add').window('destroy');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});
 }
 </script>
 

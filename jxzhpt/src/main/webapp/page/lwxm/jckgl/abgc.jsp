@@ -12,28 +12,15 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
-	jckglAbgc();
 	loadUnit("gydw",$.cookie("unit"));
-/* 	$("#gydw").combotree({
-		checkbox: false,
-	 	url: "../js/gydw.json",
-	 	onBeforeSelect:function(node){
-	        $("#gydw").val(node.text);
-	    }
-	}); */
-	$("#xzqhmc").combotree({
-		checkbox: false,
-	 	url: "../js/xzqh.json",
-	 	onBeforeSelect:function(node){
-	        $("#xzqhmc").val(node.text);
-	    }
-	});
+	loadDist("xzqhmc","360000");
+	jckglAbgc();
 });
 
 function delJckabgc(){

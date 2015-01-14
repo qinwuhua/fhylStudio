@@ -130,6 +130,13 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		else return false;
 	}
 
+	@Override
+	public boolean onceAbgc(Jckabgc abgc) {
+		int count = (Integer)queryOne("onceAbgc", abgc);
+		if(count<1) return true;
+		else return false;
+	}
+
 
 
 }

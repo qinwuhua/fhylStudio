@@ -130,6 +130,13 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		else return false;
 	}
 
+	@Override
+	public boolean onceZhfz(Jckzhfz zhfz) {
+		int count = (Integer)queryOne("onceZhfz", zhfz);
+		if(count<1) return true;
+		else return false;
+	}
+
 
 	
 }

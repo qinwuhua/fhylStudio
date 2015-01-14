@@ -9,7 +9,7 @@
  
  <select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
  	select * from (
- 		select rownum num ,t.* from xmk_abgc t where 1=1
+ 		select rownum num ,t.* from xmk_abgc t where 1=1 
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -34,6 +34,7 @@
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
  		</if>
+ 			order by sbzt desc
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sbzt desc
  </select>
@@ -156,6 +157,18 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
+ 		</if>
+ </select>
+   <select id="onceAbgc" parameterType="jckabgc" resultType="int">
+ 		select count(*) from xmk_abgc where 1=1
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			and lxbm=#{lxbm}
+ 		</if>
+ 		<if test="qdzh!='' and qdzh!= null "  >
+ 			and zdzh>=#{qdzh}
+ 		</if>
+ 		<if test="zdzh!='' and zdzh!= null ">
+ 			and qdzh &lt;=#{zdzh}
  		</if>
  </select>
 </mapper>

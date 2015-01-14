@@ -156,4 +156,13 @@
  			and akjfl like #{akjfl}||'%'
  		</if>
  </select>
+<!--  <select id="onceWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from ???_wqgz where 1=1
+ 		<if test="qlbh!='' and qlbh!= null "  >
+ 			and qlbh=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
+ 		</if>
+ </select> -->
 </mapper>

@@ -172,4 +172,13 @@
  <delete id="deleteJckWqgz" parameterType="String" >
  	delete from xmk_wqgz where id in #{delstr}
  </delete>
+ <select id="onceWqgz" parameterType="jckwqgz" resultType="int">
+ 		select count(*) from xmk_wqgz where 1=1
+ 		<if test="qlbh!='' and qlbh!= null "  >
+ 			and qlbh=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
+ 		</if>
+ </select>
 </mapper>

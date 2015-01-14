@@ -116,6 +116,14 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void onceZhfz(){
+		boolean b = zhfzServer.onceZhfz(jckzhfz);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;

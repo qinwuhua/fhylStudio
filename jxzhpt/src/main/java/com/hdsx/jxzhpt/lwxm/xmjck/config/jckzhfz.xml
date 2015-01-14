@@ -157,4 +157,16 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  </select>
+    <select id="onceZhfz" parameterType="jckzhfz" resultType="int">
+ 		select count(*) from xmk_zhfz where 1=1
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			and lxbm=#{lxbm}
+ 		</if>
+ 		<if test="qdzh!='' and qdzh!= null "  >
+ 			and zdzh>=#{qdzh}
+ 		</if>
+ 		<if test="zdzh!='' and zdzh!= null ">
+ 			and qdzh &lt;=#{zdzh}
+ 		</if>
+ </select>
 </mapper>

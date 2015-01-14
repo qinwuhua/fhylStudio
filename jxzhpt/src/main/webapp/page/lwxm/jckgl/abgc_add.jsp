@@ -14,6 +14,7 @@
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 
@@ -28,26 +29,21 @@ text-decoration:none;
 </head>
 <body>
 <script type="text/javascript">
+	var qdStr;
+	var zdStr;
 	$(function(){
-
 		$("#save_button").click(function(){
-			var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
-			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").val()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
-			"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-			+"&tbbmbm="+"南昌市公路局";
+			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/xmjck/insertAbgc.do',
-		        data:data,
+				url:'/jxzhpt/xmjck/onceAbgc.do',
 				dataType:'json',
+		        data:datas,
 				success:function(msg){
 					if(Boolean(msg)){
-						parent.$("#grid").datagrid('reload');
-						alert("保存成功！");
-						parent.$('#jck_add').window('destroy');
-						
+						saveAbgc();
 					}else{
-						alert('保存失败！');
+						alert('该项目已添加过，请勿重复添加！');
 					}
 				}
 			});
@@ -94,18 +90,60 @@ text-decoration:none;
 				function(e, item) {
 
 					if(item==undefined) return ;
-					$("#lxmc,#xzqhdm,#xzqhmc#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm").attr("value",'');
+					$("#lxmc,#xzqhdm,#xzqhmc#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm,#qd,#zd").attr("value",'');
 					$("#lxmc").val(item.lxmc);
 					$("#xzqhdm").val(item.xzqhdm);
 					$("#xzqhmc").val(item.xzqhmc);
 					$("#qdzh").val(item.qdzh);
 					$("#zdzh").val(item.zdzh);
+					$("#zlc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
 					$("#xjnd").val(item.gjxjnd);
 					$("#lxjsdj").val(item.lxjsdj);
-					$("#zlc").val(item.qzlc);
 					$("#gydw").val(item.gydw);
 					$("#gydwbm").val(item.gydwbm);
+					qdStr=parseFloat(item.qdzh);
+					zdStr=parseFloat(item.zdzh);
+					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
+					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
 				});
+	}
+	function saveAbgc(){
+		if($("#qdzh").val()<qdStr){
+			alert("对不起，起点桩号不能小于"+qdStr+"！");
+			return false;
+		}
+		if($("#zdzh").val()>zdStr){
+			alert("对不起，止点桩号不能大于"+zdStr+"！");
+			return false;
+		}
+		if(parseFloat($("#yhlc").val())*1000>parseFloat($("#zlc").html())*1000){
+			alert("对不起，隐患里程不能大于总里程！");
+			return false;
+		}
+		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
+		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
+		"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
+		+"&tbbmbm="+$.cookie("unit");
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xmjck/insertAbgc.do',
+	        data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					parent.$("#grid").datagrid('reload');
+					alert("保存成功！");
+					parent.$('#jck_add').window('destroy');
+					
+				}else{
+					alert('保存失败！');
+				}
+			}
+		});
+	}
+	function changeZlc(){
+		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
+		$("#zlc").html(zlc);
 	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
@@ -125,13 +163,15 @@ text-decoration:none;
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 156px" /></td>
+					<input type="text" name="qdzh" id="qdzh" style="width: 156px" onblur="changeZlc()"/><br/>
+					<span id="qd"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 156px" /></td>
+					<input type="text" name="zdzh"id="zdzh" style="width: 156px" onblur="changeZlc()"/><br/>
+					<span id="zd"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zlc" id="zlc" style="width: 156px" /></td>
+					<span id="zlc" style="font-size: 14px"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
@@ -150,7 +190,7 @@ text-decoration:none;
 					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
+					<input type="text" name="yhlc"id="yhlc" style="width: 156px" value="0"/></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
@@ -160,8 +200,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="xmnf">
-						<option value="">---请选择---</option>
-						<option value="2015年">2015年</option>
+						<option selected value="2015年">2015年</option>
 						<option value="2014年">2014年</option>
 						<option value="2013年">2013年</option>
 						<option value="2012年">2012年</option>
@@ -172,7 +211,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="xmzt">
-						<option value="未上报">未上报</option>
+						<option selected value="未上报">未上报</option>
 						<option value="已上报">已上报</option>
 						<option value="已入库">已入库</option>
 						<option value="已下达">已下达</option>

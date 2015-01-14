@@ -12,20 +12,15 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
+	loadUnit("gydw",$.cookie("unit"));
+	loadDist("xzqhmc","360000");
 	jckshWqgz();
-	$("#gydw").combotree({
-		checkbox: false,
-	 	url: "../js/gydw.json",
-	});
-	$("#xzqhmc").combotree({
-		checkbox: false,
-	 	url: "../js/xzqh.json",
-	});
 });
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');

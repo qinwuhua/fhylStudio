@@ -15,6 +15,7 @@
 	<action name="selectJckRoad" class="jckabgcController" method="selectJckRoad"/>
 	<action name="selectAbgcSh" class="jckabgcController" method="selectAbgcSh"/>
 	<action name="xgJckAbgcTH" class="jckabgcController" method="xgJckAbgcTH"/>
+	<action name="onceAbgc" class="jckabgcController" method="onceAbgc"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
@@ -27,6 +28,7 @@
 	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
 	<action name="selectJckShwqgz" class="jckwqgzController" method="selectJckShwqgz"/>
 	<action name="xgJckWqgzTH" class="jckwqgzController" method="xgJckWqgzTH"/>
+	<action name="onceWqgz" class="jckwqgzController" method="onceWqgz"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
@@ -39,6 +41,7 @@
 	<action name="JckzhfzRoad" class="jckzhfzController" method="JckzhfzRoad"/>
 	<action name="selectZhfzSh" class="jckzhfzController" method="selectZhfzSh"/>
 	<action name="xgJckZhfzTH" class="jckzhfzController" method="xgJckZhfzTH"/>
+	<action name="onceZhfz" class="jckzhfzController" method="onceZhfz"/>
  </package>
  <package name="xmsck" extends="struts-default" namespace="/xmsck">
  <!-- 危桥改造 -->

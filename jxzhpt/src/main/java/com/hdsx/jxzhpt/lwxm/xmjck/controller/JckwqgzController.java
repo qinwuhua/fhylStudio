@@ -117,6 +117,15 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void onceWqgz(){
+		boolean b = wqgzServer.onceWqgz(jckwqgz);
+		System.out.println("**************************************"+b);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	} 
 	
 	
 	public Jckwqgz getJckwqgz() {
