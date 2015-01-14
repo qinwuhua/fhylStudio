@@ -13,7 +13,6 @@
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
-<script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <style type="text/css">
@@ -42,7 +41,7 @@ $(function(){
 	        $("#xzqhmc").val(node.text);
 	    	 }
 	});
-	selWqgzById();
+	wqgzById();
 	$("#save_button").click(function(){
 		var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").val()
 		+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
@@ -72,7 +71,7 @@ $(function(){
 		parent.$('#jck_xg').window('destroy');
 	});	
 });
-function selWqgzById(){
+function wqgzById(){
 	$.ajax({
 		type : 'post',
 		url : '/jxzhpt/xmjck/selectWqgzById.do',

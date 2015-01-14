@@ -13,16 +13,15 @@
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
-<script type="text/javascript" src="../js/Menu.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
-		selWqgzById();
+		selwqgzById();
 		$("#qx_window").click(function(){
 			parent.$('#jck_ck').window('destroy');
 		});	
 	});
-	function selWqgzById(){
+	function selwqgzById(){
 		$.ajax({
 			type : 'post',
 			url : '/jxzhpt/xmjck/selectWqgzById.do',
