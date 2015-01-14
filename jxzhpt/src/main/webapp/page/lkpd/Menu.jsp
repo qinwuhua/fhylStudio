@@ -17,13 +17,21 @@
 <script type="text/javascript">
 $(function(){
     $("#rightContent").attr("src", "../../welcome.jsp");
+//     $('#aa').accordion('add', {
+//     	title: '路况评定',
+//     	iconCls:'icon-note',
+//     	selected:true,
+//     	border:false,
+//     	id:"left_menu1"
+//     });
 });
+
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'west',split:false, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
+    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
-		    <div title="路况评定" fit="true" data-options="iconCls:'icon-note',selected:true" border="false" id="left_menu1" style="overflow:auto;text-align: center;"></div>
+ 		    <div title="路况评定" fit="true" data-options="iconCls:'icon-note',selected:true" border="false" id="left_menu1" style="overflow:auto;text-align: center;display:none;"></div>
 		</div>
     </div>
     <div data-options="region:'center',border:'false'" style="margin: 0px; padding: 0px;overflow: hidden;">
