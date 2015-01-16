@@ -12,7 +12,14 @@
 	<action name="selectWqgzCgsList" class="gcglwqgzController" method="selectWqgzCgsList"/>
 	<action name="updateWqgzCgs" class="gcglwqgzController" method="updateWqgzCgs"/>
 	<action name="deletewqgzCgs" class="gcglwqgzController" method="deletewqgzCgs"/>
-	
+	<action name="uploadWqgzFile" class="gcglwqgzController" method="uploadWqgzFile"/>
+	<action name="downWqgzFile" class="gcglwqgzController" method="downWqgzFile"/>
+	<action name="insertWqgzkg" class="gcglwqgzController" method="insertWqgzkg"/>
+	<action name="insertWqgzwg" class="gcglwqgzController" method="insertWqgzwg"/>
+	<action name="insertWqgzwwg" class="gcglwqgzController" method="insertWqgzwwg"/>
+	<action name="selectWqgzjhList" class="gcglwqgzController" method="selectWqgzjhList"/>
+	<action name="selectWqgzjhFile" class="gcglwqgzController" method="selectWqgzjhFile"/>
+	<action name="deleteWqgzFile" class="gcglwqgzController" method="deleteWqgzFile"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
