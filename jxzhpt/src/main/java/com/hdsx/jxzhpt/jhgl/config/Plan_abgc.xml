@@ -9,16 +9,18 @@
 		<result property="pfztz" column="pfztz"/>
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="jckabgc"  id="abgc_lx">
 		<id property="id" column="id" />
-		<result property="gydw" column="gydw"/>
-		<result property="xzqhmc" column="xzqhmc"/>
-		<result property="lxbm" column="lxbm"/>
 		<result property="lxmc" column="lxmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="gydw" column="gydw"/>
 		<result property="qdzh" column="qdzh"/>
 		<result property="zdzh" column="zdzh"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
 	
@@ -59,7 +61,7 @@
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from PLAN_abgc jh where 1=1
+		select count(*) from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1
 		<if test="jh.jhnf!=null and jh.jhnf!=''">
 	 		and jh.jhnf=#{jh.jhnf}
 	 	</if>
@@ -85,7 +87,9 @@
 	 					and lx.lxjsdj = #{lx.lxjsjd}
 	 				</if>
 	</select>
-	
+	<select id="queryAbgcById"  parameterType="string"  resultMap="abgc_jh">
+		select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id}
+	</select>
 	<select id="queryAbgcNfs" resultType="treenode">
 		 select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
 	</select>

@@ -29,4 +29,10 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	List<TreeNode> queryAbgcNfs();
+	/**
+	 * 根据ID查询对应详细信息
+	 * @param id
+	 * @return
+	 */
+	Plan_abgc queryAbgcById(String id);
 }

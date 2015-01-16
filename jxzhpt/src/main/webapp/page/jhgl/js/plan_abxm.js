@@ -305,6 +305,17 @@ function sbnf(id){
 	    textField:'text'   
 	}); 
 }
+function queryAbgc(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryAbgcById.do',
+		data:"jh.id="+id,
+		dataType:'text',
+		success:function(data){
+			alert(data);
+		}
+	}); 
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

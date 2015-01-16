@@ -10,13 +10,16 @@
 		<action name="queryGcsjList" class="plan_gcsjController" method="queryGcsjList"/>
 		<action name="queryGcsjById" class="plan_gcsjController" method="queryGcsjById"/>
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
+		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
 		<action name="queryAbgcNfs" class="plan_abgcController" method="queryAbgcNfs"/>
 		<action name="queryZhfaNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
-		<action name="queryZhfzList" class="plan_zhfzController" method="queryZhfzList"/>
 		<action name="queryZhfaById" class="plan_zhfzController" method="queryZhfaById"/>
+		<action name="queryZhfzList" class="plan_zhfzController" method="queryZhfzList"/>
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
+		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
 		<action name="queryWqgzList" class="plan_wqgzController" method="queryWqgzList"/>
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
+		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
 		<action name="queryShuihList" class="plan_shuihController" method="queryShuihList"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>

@@ -38,4 +38,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public List<TreeNode> queryAbgcNfs(){
 		return queryList("queryAbgcNfs");
 	}
+	@Override
+	public Plan_abgc queryAbgcById(String id) {
+		return queryOne("queryAbgcById", id);
+	}
 }

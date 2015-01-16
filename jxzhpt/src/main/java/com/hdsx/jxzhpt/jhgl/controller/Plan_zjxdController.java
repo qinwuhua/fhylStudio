@@ -9,53 +9,48 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
-import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
 @Controller
-public class Plan_abgcController extends BaseActionSupport{
+public class Plan_zjxdController extends BaseActionSupport {
 	private int page=1;
-	private int rows=10;
+	private int rows=5;
+	private Plan_zjxd zjxd;
 	@Resource(name = "plan_abgcServerImpl")
-	private Plan_abgcServer abgcServer;
-	private Plan_abgc jh;
-	private Jckabgc lx;
-	
-	public void queryAbgcList(){
+	private Plan_zjxdServer zjxdServer;
+	public void queryZjxdByXmId(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
-		jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
-		jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
 		try {
+			jsonMap.put("total", zjxdServer.queryZjxdCount(zjxd.getXmid()));
+			jsonMap.put("rows", zjxdServer.queryZjxdByXmId(zjxd.getXmid()));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void queryAbgcNfs(){
+	public void queryZjxdById(){
 		try {
-			JsonUtils.write(abgcServer.queryAbgcNfs(), getresponse().getWriter()) ;
+			JsonUtils.write(zjxdServer.queryZjxdById(zjxd.getId()), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void queryAbgcById(){
+	public void addZjxd(){
 		try {
-			JsonUtils.write(abgcServer.queryAbgcById(jh.getId()), getresponse().getWriter());
+			JsonUtils.write(zjxdServer.addZjxd(zjxd),getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	// get set
+	//set get
 	public int getPage() {
 		return page;
 	}
@@ -68,22 +63,16 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-	public Plan_abgcServer getAbgcServer() {
-		return abgcServer;
+	public Plan_zjxd getZjxd() {
+		return zjxd;
 	}
-	public void setAbgcServer(Plan_abgcServer abgcServer) {
-		this.abgcServer = abgcServer;
+	public void setZjxd(Plan_zjxd zjxd) {
+		this.zjxd = zjxd;
 	}
-	public Plan_abgc getJh() {
-		return jh;
+	public Plan_zjxdServer getZjxdServer() {
+		return zjxdServer;
 	}
-	public void setJh(Plan_abgc jh) {
-		this.jh = jh;
-	}
-	public Jckabgc getLx() {
-		return lx;
-	}
-	public void setLx(Jckabgc lx) {
-		this.lx = lx;
+	public void setZjxdServer(Plan_zjxdServer zjxdServer) {
+		this.zjxdServer = zjxdServer;
 	}
 }
