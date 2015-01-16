@@ -2,10 +2,8 @@ package com.hdsx.jxzhpt.jhgl.bean;
 
 import java.util.Date;
 
-
-public class Plan_lx_gcgj {
-	private String id;//路线唯一编码
-	private String jhid;//计划库ID
+public class Plan_lx_shuih {
+	private String id;//唯一编号
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
 	private String xzqhdm;//行政区划代码
@@ -27,37 +25,19 @@ public class Plan_lx_gcgj {
 	private String scbmbm;//审查部门编码
 	private String bz;//备注
 	private String yjsdj;//原技术等级
-	private String tsdqbm;//特殊地区编码
+	private String jhid;//所属计划的ID
+	private String tsdqbm;//特殊区域编码
 	public String getTsdqbm() {
 		return tsdqbm;
 	}
-	public String getGydwbm() {
-		return gydwbm;
-	}
-	public void setGydwbm(String gydwbm) {
-		this.gydwbm = gydwbm;
-	}
 	public void setTsdqbm(String tsdqbm) {
 		this.tsdqbm = tsdqbm;
-	}
-	private Plan_gcgj plan_gcgj;//对应工程改建对象
-	public Plan_gcgj getPlan_gcgj() {
-		return plan_gcgj;
-	}
-	public void setPlan_gcgj(Plan_gcgj plan_gcgj) {
-		this.plan_gcgj = plan_gcgj;
 	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getJhid() {
-		return jhid;
-	}
-	public void setJhid(String jhid) {
-		this.jhid = jhid;
 	}
 	public String getLxmc() {
 		return lxmc;
@@ -94,6 +74,12 @@ public class Plan_lx_gcgj {
 	}
 	public void setGydw(String gydw) {
 		this.gydw = gydw;
+	}
+	public String getGydwbm() {
+		return gydwbm;
+	}
+	public void setGydwbm(String gydwbm) {
+		this.gydwbm = gydwbm;
 	}
 	public String getBhnr() {
 		return bhnr;
@@ -178,5 +164,11 @@ public class Plan_lx_gcgj {
 	}
 	public void setYjsdj(String yjsdj) {
 		this.yjsdj = yjsdj;
+	}
+	public String getJhid() {
+		return jhid;
+	}
+	public void setJhid(String jhid) {
+		this.jhid = jhid;
 	}
 }

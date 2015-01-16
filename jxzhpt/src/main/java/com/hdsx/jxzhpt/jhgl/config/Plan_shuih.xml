@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_shuih">
+	<resultMap type="plan_shuih" id="shuih_jh">
+		<id property="id" column="id" />
+		<result property="sbnf" column="sbnf"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="pfztz" column="pfztz"/>
+		<collection property="shuihs" ofType="plan_lx_shuih" resultMap="shuih_lx"/>
+	</resultMap>
+	<resultMap type="plan_lx_shuih" id="shuih_lx">
+		<id property="id" column="id" />
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+	</resultMap>
+	<select id="queryShuihList"  parameterType="java.util.Map" resultMap="shuih_jh">
+		select * from (
+			select rownum as num,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
+			where 1=1
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_shuih l 
+					where 1=1 
+						<if test="l.gydwdm!=null and l.gydwdm!=''">
+							and l.gydwdm like '%'||#{l.gydwdm}||'%'
+						</if>
+						<if test="l.xzqhmc!=null and l.xzqhmc!=''">
+							and l.xzqhmc =#{l.xzqhmc}
+						</if>
+						<if test="l.lxmc!=null and l.lxmc!=''">
+							and l.lxmc like '%'||#{l.lxmc}||'%'
+						</if>
+						<if test="l.yjsdj!=null and l.yjsdj!=''">
+							and l.yjsdj=#{l.yjsdj}
+						</if>
+						<if test="l.lxbm!=null and l.lxbm!=''">
+							and l.lxbm like #{l.lxbm}
+						</if>
+					     and l.xzqhdm in (
+					     	select B.XZQHDM from BT_XZQHTSDQ b 
+					     	WHERE 1=1 
+					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+								B.AREACODE=#{l.tsdqbm}
+							</if>
+					     	 )
+					     )
+			)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryShuihCount"  parameterType="java.util.Map"  resultType="int">
+		select count(*) from PLAN_shuih jh where 1=1
+		<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_shuih l
+					where 1=1 
+						<if test="l.gydwdm!=null and l.gydwdm!=''">
+							and l.gydwdm like '%'||#{l.gydwdm}||'%'
+						</if>
+						<if test="l.xzqhmc!=null and l.xzqhmc!=''">
+							and l.xzqhmc =#{l.xzqhmc}
+						</if>
+						<if test="l.lxmc!=null and l.lxmc!=''">
+							and l.lxmc like '%'||#{l.lxmc}||'%'
+						</if>
+						<if test="l.yjsdj!=null and l.yjsdj!=''">
+							and l.yjsdj=#{l.yjsdj}
+						</if>
+						<if test="l.lxbm!=null and l.lxbm!=''">
+							and l.lxbm like #{l.lxbm}
+						</if>
+					     and l.xzqhdm in (
+					     	select B.XZQHDM from BT_XZQHTSDQ b 
+					     	WHERE 1=1 
+					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+								B.AREACODE=#{l.tsdqbm}
+							</if>
+					     	 )
+					     )
+	</select>
+	<select id="queryShuihNfs"  resultType="treenode">
+		select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
+	</select>
+</mapper>

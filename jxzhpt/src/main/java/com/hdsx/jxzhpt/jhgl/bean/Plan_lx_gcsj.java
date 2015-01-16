@@ -22,7 +22,14 @@ public class Plan_lx_gcsj {
 	private String scbmbm;//审查部门编码
 	private String bz;//备注
 	private String jhid;//计划库ID
+	private String tsdqbm;//特殊地区编码
 	private Plan_gcsj plan_gcsj;//
+	public String getTsdqbm() {
+		return tsdqbm;
+	}
+	public void setTsdqbm(String tsdqbm) {
+		this.tsdqbm = tsdqbm;
+	}
 	public String getId() {
 		return id;
 	}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_zhfz">
+	<resultMap type="plan_zhfz"  id="zhfz_jh">
+		<id property="id" column="id" />
+		<result property="sbnf" column="sbnf"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="spzt" column="spzt"/>
+		<result property="pfztz" column="pfztz"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
+		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
+	</resultMap>
+	<resultMap type="jckzhfz"  id="zhfz_lx">
+		<id property="id" column="id" />
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+	</resultMap>
+	<select id="queryZhfzList"  parameterType="java.util.Map"  resultMap="zhfz_jh">
+		select * from 
+			(
+				select rownum as num,jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+				lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc
+			 	from plan_zhfz jh left join xmk_zhfz lx on jh.sck_zhfz_id=lx.id where 1=1
+			 	<!-- <if test="lx.gydw!=null and lx.gydw!=''">
+			 		and lx.gydw=#{gydw}
+			 	</if> -->
+			)
+ 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryZhfzCount"  parameterType="java.util.Map"  resultType="int">
+		select count(*) from PLAN_zhfz jh where 1=1
+	</select>
+	<select id="queryZhfaNfs"  resultType="treenode">
+		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
+	</select>
+</mapper>

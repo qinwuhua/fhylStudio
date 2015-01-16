@@ -72,7 +72,7 @@
 		<result property="tzgs" column="tzgs"/>
 		<result property="jsxz" column="jsxz"/>
 		<result property="jsnr" column="jsnr"/>
-		<collection property="plan_lx_gcsjs" ofType="plan_lx_gcsj" resultMap="gcsjlx"/>
+		<collection property="plan_lx_gcsjs" ofType="plan_lx_gcsj" resultMap="gcsj_lx"/>
 	</resultMap>
 	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
 		<id property="id" column="id" />
@@ -114,10 +114,53 @@
 				and jh.spzt=#{jh.spzt}
 			</if>
 			and jh.id in (
-					select lx.jhid from PLAN_lx_GCGJ l 
+					select lx.jhid from PLAN_lx_GCSJ lx 
 					where 1=1 
-						<if test="lx.gydw!=null and lx.gydw!=''">
-							and lx.gydw =#{lx.gydw}
+						<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+							and lx.gydwbm like #{lx.gydwbm}||'%'
+						</if>
+						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
+							and lx.xzqhmc =#{lx.xzqhmc}
+						</if>
+						<if test="lx.lxmc!=null and lx.lxmc!=''">
+							and lx.lxmc like '%'||#{lx.lxmc}||'%'
+						</if>
+						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+							and lx.yjsdj=#{lx.yjsdj}
+						</if>
+						<if test="lx.lxbm!=null and lx.lxbm!=''">
+							and lx.lxbm like 'S'||#{lx.lxbm}
+						</if>
+					    and lx.xzqhdm in (
+					    	select b.XZQHDM from BT_XZQHTSDQ b 
+					    	WHERE 1=1 
+					    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+								b.AREACODE=#{lx.tsdqbm}
+							</if>
+					    	)
+					    )
+			
+		 )
+		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	
+	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
+		select count(jh.id) from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+		 	where 1=1
+		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+				and jh.jhnf =#{jh.jhnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			and jh.id in (
+					select lx.jhid from PLAN_lx_GCSJ l 
+					where 1=1 
+						<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+							and lx.gydwbm like #{lx.gydwbm}||'%'
 						</if>
 						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
 							and lx.xzqhmc =#{lx.xzqhmc}
@@ -139,12 +182,18 @@
 							</if>
 					    	)
 					    )
-			
-		 )
-		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
-	<select id="querygcsjCount" resultType="int" parameterType="java.util.Map">
+	
+	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
+		select lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
+		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
+		jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.jhxdwh,jh.xmwybh,jh.xmmc,jh.sjdw,jh.sjpfdw,jh.jsjsbz,jh.ql,jh.ql_m,
+		jh.sd,jh.sd_m,jh.hd,jh.ljtsf,jh.dc,jh.jc,jh.lqlm,jh.snlm,jh.gjhjsdj,jh.sftqss,jh.pfwh,jh.pfsj,jh.pftz,
+		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.gkbglj,jh.sjsgtmc,jh.sjsgtlj,jh.remarks
+		from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id where jh.id=#{id}
 	</select>
-	<select id="querygcsjById" resultMap="gcsj_jh" parameterType="string">
+	
+	<select id="queryGcsjNfs" resultType="treenode">
+		 select distinct jh.jhnf as text from PLAN_GCSJ jh order by jh.jhnf
 	</select>
 </mapper>

@@ -3,25 +3,7 @@
  * @param id
  */
 function gydwComboxTree(id){
-	$('#'+id).combotree({
-		animate:true,
-		url:"../../../jhgl/queryGydwByparent.do",
-		onBeforeExpand:function(node){
-			var children = $('#'+id).combotree("tree").tree("getChildren",node.target);
-			if(children.length<=0){
-				$.ajax({
-					type:'post',
-					url:'../../../jhgl/queryGydwByparent.do',
-					data:'parentId='+node.id,
-					dataType:'json',
-					async:false,
-					success:function(data){
-						$('#'+id).combotree("tree").tree("append",{parent:node.target,data:data});
-					}
-				});
-			}
-		}
-	});
+	loadUnit(id,$.cookie("unit"));
 }
 
 /**
@@ -29,26 +11,8 @@ function gydwComboxTree(id){
  * @param id
  */
 function xzqhComboxTree(id){
-	loadUnit(id,$.cookie("unit"));
-//	$('#'+id).combotree({
-//		animate:true,
-//		url:"../../../jhgl/queryXzqhByParent.do",
-//		onBeforeExpand:function(node){
-//			var children = $('#'+id).combotree("tree").tree("getChildren",node.target);
-//			if(children.length<=0){
-//				$.ajax({
-//					type:'post',
-//					url:'../../../jhgl/queryXzqhByParent.do',
-//					data:'parentId='+node.id,
-//					dataType:'json',
-//					async:false,
-//					success:function(data){
-//						$('#'+id).combotree("tree").tree("append",{parent:node.target,data:data});
-//					}
-//				});
-//			}
-//		}
-//	});
+	
+	loadDist(id,"360000");
 }
 
 function AddWqgz(){

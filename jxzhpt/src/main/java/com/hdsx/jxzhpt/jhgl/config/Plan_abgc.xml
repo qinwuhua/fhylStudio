@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_abgc">
+	<resultMap type="plan_abgc"  id="abgc_jh">
+		<id property="id" column="id" />
+		<result property="jhnf" column="jhnf"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="spzt" column="spzt"/>
+		<result property="pfztz" column="pfztz"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
+		<association property="jckabgc"  resultMap="abgc_lx"></association>
+	</resultMap>
+	<resultMap type="jckabgc"  id="abgc_lx">
+		<id property="id" column="id" />
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+	</resultMap>
+	
+	<select id="queryAbgcList"  parameterType="java.util.Map"  resultMap="abgc_jh">
+		select * from 
+			(
+				select rownum as num, jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
+    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1
+    		)
+    	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
+		select count(*) from PLAN_abgc jh where 1=1
+		<!-- 条件暂无 -->
+	</select>
+	
+	<select id="queryAbgcNfs" resultType="treenode">
+		 select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
+	</select>
+	
+</mapper>

@@ -59,11 +59,11 @@
 		<result property="bhnr" column="bhnr"/>
 	</resultMap>
 	
-	<select id="queryGcgjList" parameterType="java.util.Map" resultMap="gcgj_lx">
+	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
 			select rownum as num,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
-			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
-			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
@@ -75,28 +75,28 @@
 				and jh.spzt=#{jh.spzt}
 			</if>
 				and jh.id in (
-					select lx.jhid from PLAN_lx_GCGJ l 
+					select l.jhid from PLAN_lx_GCGJ l 
 					where 1=1 
-						<if test="lx.gydw!=null and lx.gydw!=''">
-							and lx.gydw =#{lx.gydw}
+						<if test="l.gydwdm!=null and l.gydwdm!=''">
+							and l.gydwdm like '%'||#{l.gydwdm}||'%'
 						</if>
-						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
-							and lx.xzqhmc =#{lx.xzqhmc}
+						<if test="l.xzqhmc!=null and l.xzqhmc!=''">
+							and l.xzqhmc =#{l.xzqhmc}
 						</if>
-						<if test="lx.lxmc!=null and lx.lxmc!=''">
-							and lx.lxmc=#{lx.lxmc}
+						<if test="l.lxmc!=null and l.lxmc!=''">
+							and l.lxmc like '%'||#{l.lxmc}||'%'
 						</if>
-						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-							and lx.yjsdj=#{lx.yjsdj}
+						<if test="l.yjsdj!=null and l.yjsdj!=''">
+							and l.yjsdj=#{l.yjsdj}
 						</if>
-						<if test="lx.lxbm!=null and lx.lxbm!=''">
-							and lx.lxbm like 'S'||#{lx.lxbm}
+						<if test="l.lxbm!=null and l.lxbm!=''">
+							and l.lxbm like #{l.lxbm}
 						</if>
-					     and lx.xzqhdm in (
+					     and l.xzqhdm in (
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
-					     	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-								B.AREACODE=#{lx.tsdqbm}
+					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+								B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
 					     )
@@ -115,28 +115,28 @@
 				and jh.spzt=#{jh.spzt}
 			</if>
 				and jh.id in (
-					select lx.jhid from PLAN_lx_GCGJ lx 
+					select l.jhid from PLAN_lx_GCGJ l
 					where 1=1 
-						<if test="lx.gydw!=null and lx.gydw!=''">
-							and lx.gydw =#{lx.gydw}
+						<if test="l.gydwdm!=null and l.gydwdm!=''">
+							and l.gydwdm like '%'||#{l.gydwdm}||'%'
 						</if>
-						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
-							and lx.xzqhmc =#{lx.xzqhmc}
+						<if test="l.xzqhmc!=null and l.xzqhmc!=''">
+							and l.xzqhmc =#{l.xzqhmc}
 						</if>
-						<if test="lx.lxmc!=null and lx.lxmc!=''">
-							and lx.lxmc=#{lx.lxmc}
+						<if test="l.lxmc!=null and l.lxmc!=''">
+							and l.lxmc like '%'||#{l.lxmc}||'%'
 						</if>
-						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-							and lx.yjsdj=#{lx.yjsdj}
+						<if test="l.yjsdj!=null and l.yjsdj!=''">
+							and l.yjsdj=#{l.yjsdj}
 						</if>
-						<if test="lx.lxbm!=null and lx.lxbm!=''">
-							and lx.lxbm like 'S'||#{lx.lxbm}
+						<if test="l.lxbm!=null and l.lxbm!=''">
+							and l.lxbm like #{l.lxbm}
 						</if>
-					     and lx.xzqhdm in (
+					     and l.xzqhdm in (
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
-					     	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-								B.AREACODE=#{lx.tsdqbm}
+					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+								B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
 					     )
@@ -147,9 +147,12 @@
        		jh.sjlmlx,jh.dc,jh.jc,jh.mc,jh.lmkd,jh.pfwh,jh.pfsj,jh.pfztz,jh.jhsybzje,
        		jh.jhsydfzcje,jh.sfsqablbz,jh.ablbzsqwh,jh.sftqss,jh.jhxdwh,jh.gksjwh,
        		jh.sjpfwh,jh.sfgyhbm,jh.gkbgmc,jh.sjsgtlj,jh.bz,
-       		lx.lxmc,lx.lxbm,lx.jsdd,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,
-       		lx.yjsdj,lx.ylmlx,lx.yhlc,lx.bhnr
-		from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on lx.jhid=jh.id 
+       		l.lxmc,l.lxbm,l.jsdd,l.qdzh,l.zdzh,l.qzlc,l.gydw,l.xzqhdm,l.xzqhmc,
+       		l.yjsdj,l.ylmlx,l.yhlc,l.bhnr
+		from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on l.jhid=jh.id 
 		where jh.id=#{id}
+	</select>
+	<select id="queryGcgjNfs" resultType="treenode">
+		 select distinct t.sbnf as text from PLAN_GCgJ t order by t.sbnf
 	</select>
 </mapper>

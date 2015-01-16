@@ -1,37 +1,33 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.swing.tree.TreeNode;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
-import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
 @Controller
-public class Plan_gcsjController extends BaseActionSupport{
-	private int page = 1;
-	private int rows = 10;
-	@Resource(name = "plan_GcsjServerImpl")
-	private Plan_gcsjServer gcsjServer;
-	private Plan_gcsj jh;
-	private Plan_lx_gcsj lx;
-	
-	public void queryGcsjList(){
+public class Plan_zhfzController  extends BaseActionSupport{
+	private int page;
+	private int rows;
+	@Resource(name = "plan_zhfzServerImpl")
+	private Plan_zhfzServer zhfzServer;
+	private Plan_zhfz jh;
+	private Jckzhfz lx;
+	public void queryZhfzList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
-		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
-		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
+		jsonMap.put("rows", zhfzServer.queryZhfzList(page, rows, jh, lx));
+		jsonMap.put("total", zhfzServer.queryZhfzCount(jh, lx));
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
@@ -40,10 +36,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
-	public void queryGcsjById(){
+	public void queryZhfaById(){
 		try {
-			JsonUtils.write(gcsjServer.queryGcsjById(jh.getId()), getresponse().getWriter());
+			JsonUtils.write(zhfzServer.queryZhfaById(jh.getId()), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -51,16 +46,15 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
-	public void queryGcsjNfs(){
+	public void queryZhfaNfs(){
 		try {
-			JsonUtils.write(gcsjServer.queryGcsjNfs(), getresponse().getWriter());
+			JsonUtils.write(zhfzServer.queryZhfaNfs(),getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	//set get
 	public int getPage() {
 		return page;
 	}
@@ -73,22 +67,22 @@ public class Plan_gcsjController extends BaseActionSupport{
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-	public Plan_gcsjServer getGcsjServer() {
-		return gcsjServer;
+	public Plan_zhfzServer getZhfzServer() {
+		return zhfzServer;
 	}
-	public void setGcsjServer(Plan_gcsjServer gcsjServer) {
-		this.gcsjServer = gcsjServer;
+	public void setZhfzServer(Plan_zhfzServer zhfzServer) {
+		this.zhfzServer = zhfzServer;
 	}
-	public Plan_gcsj getJh() {
+	public Plan_zhfz getJh() {
 		return jh;
 	}
-	public void setJh(Plan_gcsj jh) {
+	public void setJh(Plan_zhfz jh) {
 		this.jh = jh;
 	}
-	public Plan_lx_gcsj getLx() {
+	public Jckzhfz getLx() {
 		return lx;
 	}
-	public void setLx(Plan_lx_gcsj lx) {
+	public void setLx(Jckzhfz lx) {
 		this.lx = lx;
 	}
 }
