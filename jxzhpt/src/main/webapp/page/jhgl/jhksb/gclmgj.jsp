@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>工程改造路面改建项目</title>
-	link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -20,7 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh"); 
-			var jh={sbnf:null,sbzt:null,spzt:null};
+			var jh={sbnf:null,sbzt:null,spzt:'0'};
 			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			sbnf("sbnf");
 			gclmgjxm_sb(jh,lx);

@@ -47,4 +47,44 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	//set get
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public Plan_wqgzServer getWqgzServer() {
+		return wqgzServer;
+	}
+
+	public void setWqgzServer(Plan_wqgzServer wqgzServer) {
+		this.wqgzServer = wqgzServer;
+	}
+
+	public Plan_wqgz getJh() {
+		return jh;
+	}
+
+	public void setJh(Plan_wqgz jh) {
+		this.jh = jh;
+	}
+
+	public Jckwqgz getLx() {
+		return lx;
+	}
+
+	public void setLx(Jckwqgz lx) {
+		this.lx = lx;
+	}
 }

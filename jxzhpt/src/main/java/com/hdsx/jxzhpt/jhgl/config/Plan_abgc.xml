@@ -25,14 +25,65 @@
 	<select id="queryAbgcList"  parameterType="java.util.Map"  resultMap="abgc_jh">
 		select * from 
 			(
-				select rownum as num, jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
-    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1
+				select rownum as num,t.* from 
+				(
+					select  jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
+	    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
+	    			<if test="jh.jhnf!=null and jh.jhnf!=''">
+	 					and jh.jhnf=#{jh.jhnf}
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="lx.gydw!=null and lx.gydw!=''">
+	 					and lx.gydw=#{lx.gydw}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 					and lx.lxjsdj = #{lx.lxjsjd}
+	 				</if>
+	    			order by jh.jhnf desc
+	    		) t
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from PLAN_abgc jh where 1=1
-		<!-- 条件暂无 -->
+		<if test="jh.jhnf!=null and jh.jhnf!=''">
+	 		and jh.jhnf=#{jh.jhnf}
+	 	</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydw!=null and lx.gydw!=''">
+	 					and lx.gydw=#{lx.gydw}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 					and lx.lxjsdj = #{lx.lxjsjd}
+	 				</if>
 	</select>
 	
 	<select id="queryAbgcNfs" resultType="treenode">

@@ -50,3 +50,15 @@ function openDialog(id,title,href){
 		modal : true
 	}).dialog("setTitle",title).dialog("open");
 }
+function openZjxd(id,title,href,width,height){
+	$('#'+id).dialog({
+		iconCls : 'icon-edit',
+		href:href,
+		width : width,
+		height : height,
+		closed : true,
+		cache : false,
+		maximizable:true,
+		modal : true
+	}).dialog("setTitle",title).dialog("open");
+}

@@ -23,15 +23,80 @@
 	<select id="queryWqgzList" parameterType="java.util.Map" resultMap="wqgz_jh">
 		select * from 
 			(
-				select rownum as num,jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
-				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qlmc,lx.qlbh
- 				from plan_wqgz jh left join xmk_wqgz lx on jh.xmk_wqgz_id=lx.id
+				select rownum as num,t.* from
+				(
+					select jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
+					lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qlmc,lx.qlbh
+	 				from plan_wqgz jh left join xmk_wqgz lx on jh.xmk_wqgz_id=lx.id 
+	 				where 1=1
+	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
+	 					and jh.sbnf=#{jh.sbnf}
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="lx.gydw!=null and lx.gydw!=''">
+	 					and lx.gydw=#{lx.gydw}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 					and lx.jsdj = #{lx.jsjd}
+	 				</if>
+	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
+	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 				</if>
+	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 					and lx.akjfl like #{lx.akjfl}||'%'
+	 				</if>
+	 				order by jh.sbnf desc
+	 			) t
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from PLAN_wqgz jh where 1=1
-		<!-- 条件暂无 -->
+		select count(*) from PLAN_wqgz jh 
+		where 1=1
+	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
+	 					and jh.sbnf=#{jh.sbnf}
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="lx.gydw!=null and lx.gydw!=''">
+	 					and lx.gydw=#{lx.gydw}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 					and lx.jsdj = #{lx.jsjd}
+	 				</if>
+	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
+	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 				</if>
+	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 					and lx.akjfl like #{lx.akjfl}||'%'
+	 				</if>
 	</select>
 	<select id="queryWqgzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_wqgz t order by t.sbnf

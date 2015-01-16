@@ -61,7 +61,8 @@
 	
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
-			select rownum as num,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			select rownum as num,t.* from(
+			select jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
@@ -99,7 +100,8 @@
 								B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
-					     )
+					     ) order by jh.sbnf desc
+					) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

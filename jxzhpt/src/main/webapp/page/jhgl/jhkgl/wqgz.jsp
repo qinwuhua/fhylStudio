@@ -21,7 +21,7 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null,akjfl:null,qlmc:null};
 			sbnf("sbnf");
 			wqxm(jh,lx);
 		});

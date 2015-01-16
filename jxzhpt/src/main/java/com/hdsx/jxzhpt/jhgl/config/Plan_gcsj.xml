@@ -100,46 +100,47 @@
 	
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
-			select rownum as num,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
-			lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
-		 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
-		 	where 1=1
-		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
-				and jh.jhnf =#{jh.jhnf}
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			and jh.id in (
-					select lx.jhid from PLAN_lx_GCSJ lx 
-					where 1=1 
-						<if test="lx.gydwbm!=null and lx.gydwbm!=''">
-							and lx.gydwbm like #{lx.gydwbm}||'%'
-						</if>
-						<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
-							and lx.xzqhmc =#{lx.xzqhmc}
-						</if>
-						<if test="lx.lxmc!=null and lx.lxmc!=''">
-							and lx.lxmc like '%'||#{lx.lxmc}||'%'
-						</if>
-						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-							and lx.yjsdj=#{lx.yjsdj}
-						</if>
-						<if test="lx.lxbm!=null and lx.lxbm!=''">
-							and lx.lxbm like 'S'||#{lx.lxbm}
-						</if>
-					    and lx.xzqhdm in (
-					    	select b.XZQHDM from BT_XZQHTSDQ b 
-					    	WHERE 1=1 
-					    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-								b.AREACODE=#{lx.tsdqbm}
+			select rownum as num,t.* from (
+				select jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
+				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
+			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+			 	where 1=1
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				and jh.id in (
+						select lx.jhid from PLAN_lx_GCSJ lx 
+						where 1=1 
+							<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+								and lx.gydwbm like #{lx.gydwbm}||'%'
 							</if>
-					    	)
-					    )
-			
+							<if test="lx.xzqhmc!=null and lx.xzqhmc!=''">
+								and lx.xzqhmc =#{lx.xzqhmc}
+							</if>
+							<if test="lx.lxmc!=null and lx.lxmc!=''">
+								and lx.lxmc like '%'||#{lx.lxmc}||'%'
+							</if>
+							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+								and lx.yjsdj=#{lx.yjsdj}
+							</if>
+							<if test="lx.lxbm!=null and lx.lxbm!=''">
+								and lx.lxbm like 'S'||#{lx.lxbm}
+							</if>
+						    and lx.xzqhdm in (
+						    	select b.XZQHDM from BT_XZQHTSDQ b 
+						    	WHERE 1=1 
+						    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+									b.AREACODE=#{lx.tsdqbm}
+								</if>
+						    	)
+						    ) order by jh.jhnf desc
+				) t
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

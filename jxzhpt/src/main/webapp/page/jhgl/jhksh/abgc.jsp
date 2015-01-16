@@ -20,7 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:null,spzt:null};
+			var jh={sbnf:null,sbzt:'1',spzt:null};
 			var lx={gydw:null,gydwbm:null};
 			sbnf("sbnf");
 			abgcxm_sh(jh,lx);
