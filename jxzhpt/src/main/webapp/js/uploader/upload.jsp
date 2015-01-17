@@ -73,7 +73,6 @@
 
 			}
 		});
-
 	});
    function request(strParame) {
    	var args = new Object( );
@@ -98,10 +97,26 @@
 	}
 	function fanhui() {
 		var flag=request('flag');
+		//基础库数据导入返回
 		if(flag=='wqgz'){
 			parent.window.location = '/jxzhpt/page/lwxm/jckgl/wqgz.jsp';
-		}else 
-			parent.window.location = '/jxzhpt/page/lwxm/jckgl/wqgz.jsp';
+		}
+		if(flag=='abgc'){
+			parent.window.location = '/jxzhpt/page/lwxm/jckgl/abgc.jsp';
+		}
+		if(flag=='zhfz'){
+			parent.window.location = '/jxzhpt/page/lwxm/jckgl/zhfz.jsp';
+		}
+		//审查库数据导入返回
+		if(flag=='wqgz_sc'){
+			parent.window.location = '/jxzhpt/page/lwxm/sckgl/wqgz.jsp';
+		}
+		if(flag=='abgc_sc'){
+			parent.window.location = '/jxzhpt/page/lwxm/sckgl/abgc.jsp';
+		}
+		if(flag=='zhfz_sc'){
+			parent.window.location = '/jxzhpt/page/lwxm/sckgl/zhfz.jsp';
+		}
  		dg.cancel();
 	}
 </script>
@@ -109,7 +124,7 @@
 <title>无标题文档</title>
 </head>
 
-<body >
+<body onunload="fanhui()">
 	<form method="post" enctype="multipart/form-data" id="formfile">
 		<center>
 		<input type="file" name="fileupload" id="fileupload" />

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckwqgzServer;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	private Map<String, Object> hm;
@@ -115,4 +116,22 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz) {
+		return this.queryList("exportExcel_wqgz_scgl",wqgz);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz) {
+		return this.queryList("exportExcel_wqgz_scsh",wqgz);
+	}
+
+	@Override
+	public List<SjbbMessage> insertToSheet() {
+		return this.queryList("insertToSheet");
+	}
+
+	@Override
+	public boolean importWqgz_sc(List<Map> list) {
+		return this.insertBatch("importWqgz_sc", list)==list.size()?true:false;
+	}
 }

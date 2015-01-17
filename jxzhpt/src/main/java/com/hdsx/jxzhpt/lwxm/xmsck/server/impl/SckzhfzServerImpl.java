@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	private Map<String, Object> hm;
@@ -111,4 +112,22 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		else return false;
 	}
 
+	@Override
+	public List<SjbbMessage> exportExcel_zhfz_scgl(Sckzhfz zhfz) {
+		return this.queryList("exportExcel_zhfz_scgl",zhfz);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_zhfz_scsh(Sckzhfz zhfz) {
+		return this.queryList("exportExcel_zhfz_scsh",zhfz);
+	}
+
+	@Override
+	public List<SjbbMessage> insertToSheet() {
+		return this.queryList("insertToSheet");
+	}
+
+	@Override
+	public boolean importZhfz_sc(List<Map> list) {
+		return this.insertBatch("importZhfz_sc", list)==list.size()?true:false;
+	}
 }

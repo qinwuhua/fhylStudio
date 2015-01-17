@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	private Map<String, Object> hm;
@@ -131,12 +133,23 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
+	public boolean importAbgc(List<Map> list) {
+		return this.insertBatch("importAbgc",list)==list.size()?true:false;
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_abgc(Jckabgc jckabgc) {
+		return this.queryList("exportExcel_abgc",jckabgc);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_abgc_sh(Jckabgc jckabgc) {
+		return this.queryList("exportExcel_abgc_sh",jckabgc);
+	}
 	public boolean onceAbgc(Jckabgc abgc) {
 		int count = (Integer)queryOne("onceAbgc", abgc);
 		if(count<1) return true;
 		else return false;
 	}
-
-
 
 }
