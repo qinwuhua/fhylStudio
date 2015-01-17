@@ -1,16 +1,28 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
+import com.hdsx.jxzhpt.utile.ExcelReader;
+import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.utile.SheetBean;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
@@ -18,6 +30,7 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author lhp
  *
  */
+@Scope("prototype")
 @Controller
 public class SckzhfzController extends BaseActionSupport implements ModelDriven<Sckzhfz>{
 
@@ -26,7 +39,91 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	private SckzhfzServer zhfzServer;
 	private Sckzhfz sckzhfz=new Sckzhfz();
 	private String delstr;
+	private String fileuploadFileName;
+	private File fileupload;
 	
+	
+	//审查库安保工程模板数据导入
+	public void importZhfz_sc(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader.readExcelContent(fs,Jckwqgz.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			//将数据插入到数据库
+			boolean b=zhfzServer.importZhfz_sc(data);
+			if(b)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败");
+		}catch(Exception e){}
+	}
+	public void exportExcel_zhfz_scgl(){
+		try {
+			//先得到导出的数据集
+			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz_scgl(sckzhfz);
+			//导出设置
+			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td><td>建设性质</td></tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("灾害防治项目");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("灾害");
+			sheetb.setList(list);
+			sheetb.setColnum((short)13);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName="灾害防治项目";//excel 文件的名字
+			//导出excel
+			ExportExcel_new ee = new ExportExcel_new();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			throw new RuntimeException();
+		}
+	}
+	public void exportExcel_zhfz_scsh(){
+		try {
+			//先得到导出的数据集
+			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz_scsh(sckzhfz);
+			//导出设置
+			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td><td>建设性质</td></tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("灾害防治项目");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("灾害");
+			sheetb.setList(list);
+			sheetb.setColnum((short)13);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName="灾害防治项目";//excel 文件的名字
+			//导出excel
+			ExportExcel_new ee = new ExportExcel_new();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			throw new RuntimeException();
+		}
+	}
 	public void insertSckzhfz(){
 		boolean b =zhfzServer.insertSckzhfz(sckzhfz);
 		if(b)  ResponseUtils.write(getresponse(), "true");
@@ -110,6 +207,24 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	@Override
 	public Sckzhfz getModel() {
 		return sckzhfz;
+	}
+	public SckzhfzServer getZhfzServer() {
+		return zhfzServer;
+	}
+	public void setZhfzServer(SckzhfzServer zhfzServer) {
+		this.zhfzServer = zhfzServer;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
 	
 }

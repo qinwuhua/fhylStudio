@@ -61,5 +61,6 @@
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>
+	<action name="getModule_sc" class="excelModule" method="getModule_sc"/>
  </package>
 </struts>

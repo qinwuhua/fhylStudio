@@ -677,22 +677,3 @@ function sckshZhfz(){
 	    ]]    
 	});  
 }
-//危桥模板导出
-function exportWqgzModule(filename){
-	window.location.href="/jxzhpt/xtgl/getModule.do?moduleName="+filename;
-}
-function importWqgz(){
-	var weatherDlg = new J.dialog( {
-		id : 'id1',
-		title : '请选择EXCEL文档！',
-		page : '/jxzhpt/js/uploader/upload.jsp?url='+"/jxzhpt/xmjck/importWqgz.do"+'&flag='+'wqgz',
-		width : 450,
-		height : 400,
-		top : 0,
-		rang : true,
-		resize : false,
-		cover : true
-	});
-	weatherDlg.ShowDialog();
-	return false;
-}

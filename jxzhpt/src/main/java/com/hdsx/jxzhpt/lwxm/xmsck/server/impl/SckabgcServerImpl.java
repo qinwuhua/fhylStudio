@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	private Map<String, Object> hm;
@@ -108,6 +109,24 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		else return false;
 	}
 
+	@Override
+	public List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc) {
+		return this.queryList("exportExcel_abgc_scgl",abgc);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc) {
+		return this.queryList("exportExcel_abgc_scsh",abgc);
+	}
+
+	@Override
+	public List<SjbbMessage> insertToSheet() {
+		return this.queryList("insertToSheet");
+	}
+
+	@Override
+	public boolean importAbgc_sc(List<Map> list) {
+		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
+	}
 
 
 

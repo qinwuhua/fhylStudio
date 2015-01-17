@@ -1,168 +1,255 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
-<insert id="insertSckwqgz"  parameterType="sckwqgz">
-	insert into sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
+	<insert id="insertSckwqgz" parameterType="sckwqgz">
+		insert into
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核')
-</insert>
- 
- <select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
- 	select * from (
- 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t where 1=1
-  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
- 		</if>
- 		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
- 		</if>
- 		<if test="qlmc!='' and qlmc!= null ">
- 			and qlmc like '%'||(#{qlmc})||'%'
- 		</if>
- 		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
- 		</if>
- 		<if test="xmtype!='' and xmtype!= null ">
- 			and xmtype like '%'||(#{xmtype})||'%'
- 		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and sck_shzt like '%'||(#{shzt})||'%'
- 		</if>
- 		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
- 		</if>
- 		<if test="akjfl!='' and akjfl!= null ">
- 			and akjfl like #{akjfl}||'%'
- 		</if>
- 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sck_sbzt desc
- </select>
-  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
- 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
- 		 where 1=1
- 		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
- 		</if>
- 		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
- 		</if>
- 		<if test="qlmc!='' and qlmc!= null ">
- 			and qlmc like '%'||(#{qlmc})||'%'
- 		</if>
- 		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
- 		</if>
- 		<if test="xmtype!='' and xmtype!= null ">
- 			and xmtype like '%'||(#{xmtype})||'%'
- 		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and sck_shzt like '%'||(#{shzt})||'%'
- 		</if>
- 		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
- 		</if>
- 		<if test="akjfl!='' and akjfl!= null ">
- 			and akjfl like #{akjfl}||'%'
- 		</if>
- </select>
+	</insert>
 
- <update id="updateSckwqgz" parameterType="sckwqgz" >
- 	update sck_wqgz set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
- 	jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
- 	where sckid=#{sckid}
- </update>
-  <select id="selectSckwqgzById" parameterType="sckwqgz" resultType="sckwqgz">
- 	select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where sckid=#{sckid}
- </select>
- <delete id="deleteSckWqgz" parameterType="String" >
- 	delete from sck_wqgz where sckid in(#{delstr})
- </delete>
- 
-  <update id="xgSckWqgzShzt" parameterType="sckwqgz" >
- 	update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
- </update>
-  <update id="xgSckWqgzSbzt" parameterType="String" >
- 	update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
- </update>
- 
-  <select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
- 	select * from (
- 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t 
- 		where sck_sbzt='已上报'
-  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
- 		</if>
- 		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
- 		</if>
- 		<if test="qlmc!='' and qlmc!= null ">
- 			and qlmc like '%'||(#{qlmc})||'%'
- 		</if>
- 		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
- 		</if>
- 		<if test="xmtype!='' and xmtype!= null ">
- 			and xmtype like '%'||(#{xmtype})||'%'
- 		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
- 		</if>
- 		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
- 		</if>
- 		<if test="akjfl!='' and akjfl!= null ">
- 			and akjfl like #{akjfl}||'%'
- 		</if>
- 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sck_shzt desc
- </select>
-  <select id="selectWqgzShCount" parameterType="hashmap" resultType="int">
- 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
- 		 where sck_sbzt='已上报'
- 		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
- 		</if>
- 		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
- 		</if>
- 		<if test="qlmc!='' and qlmc!= null ">
- 			and qlmc like '%'||(#{qlmc})||'%'
- 		</if>
- 		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
- 		</if>
- 		<if test="xmtype!='' and xmtype!= null ">
- 			and xmtype like '%'||(#{xmtype})||'%'
- 		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
- 		</if>
- 		<if test="jsdj!='' and jsdj!= null ">
- 			and jsdj like '%'||(#{jsdj})||'%'
- 		</if>
- 		<if test="akjfl!='' and akjfl!= null ">
- 			and akjfl like #{akjfl}||'%'
- 		</if>
- </select>
-<!--  <select id="onceWqgz" parameterType="sckwqgz" resultType="int">
- 		select count(*) from ???_wqgz where 1=1
- 		<if test="qlbh!='' and qlbh!= null "  >
- 			and qlbh=#{qlbh}
- 		</if>
- 		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
- 		</if>
- </select> -->
+	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
+		select * from (
+		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
+		xmkid=xmk_wqgz.id) t where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and sck_shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by sck_sbzt desc
+	</select>
+	<select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
+		xmkid=xmk_wqgz.id)
+		where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and sck_shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+	</select>
+
+	<update id="updateSckwqgz" parameterType="sckwqgz">
+		update sck_wqgz set
+		tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
+		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
+		where sckid=#{sckid}
+	</update>
+	<select id="selectSckwqgzById" parameterType="sckwqgz"
+		resultType="sckwqgz">
+		select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where
+		sckid=#{sckid}
+	</select>
+	<delete id="deleteSckWqgz" parameterType="String">
+		delete from sck_wqgz where sckid in(#{delstr})
+	</delete>
+
+	<update id="xgSckWqgzShzt" parameterType="sckwqgz">
+		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
+	</update>
+	<update id="xgSckWqgzSbzt" parameterType="String">
+		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid
+		in(#{delstr})
+	</update>
+
+	<select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
+		select * from (
+		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
+		xmkid=xmk_wqgz.id) t
+		where sck_sbzt='已上报'
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by sck_shzt desc
+	</select>
+	<select id="selectWqgzShCount" parameterType="hashmap"
+		resultType="int">
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
+		xmkid=xmk_wqgz.id)
+		where sck_sbzt='已上报'
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+	</select>
+	<select id="exportExcel_wqgz_scgl" parameterType="sckwqgz"
+		resultType="sjbb">
+		select
+		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
+		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
+		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and sck_shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+	</select>
+	<select id="exportExcel_wqgz_scsh" parameterType="sckwqgz"
+		resultType="sjbb">
+		select
+		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
+		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
+		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and
+		sck_sbzt='已上报'
+		<if test="gydw!='' and gydw!= null ">
+			and gydw like '%'||(#{gydw})||'%'
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhmc like '%'||(#{xzqhmc})||'%'
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and sck_shzt like '%'||(#{shzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+	</select>
+	<select id="insertToSheet" resultType="sjbb">
+		select
+		qlbh v_0,qlmc v_1,qlzxzh v_2,qlqc v_3,qlkd v_4
+		from xmk_wqgz where sbzt='已上报'
+	</select>
+	<insert id="importWqgz_sc" parameterType="hashMap">
+		insert into
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
+		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
+		qlmc=trim(#{1})),#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},'未上报','未审核')
+	</insert>
+<!-- <select id="onceWqgz" parameterType="sckwqgz" resultType="int"> 
+		select count(*) from ???_wqgz where 1=1 <if test="qlbh!='' and qlbh!= null 
+		" > and qlbh=#{qlbh} </if> <if test="lxbm!='' and lxbm!= null " > or (lxbm=#{lxbm} 
+		and qlzxzh=#{qlzxzh}) </if> </select> -->
 </mapper>

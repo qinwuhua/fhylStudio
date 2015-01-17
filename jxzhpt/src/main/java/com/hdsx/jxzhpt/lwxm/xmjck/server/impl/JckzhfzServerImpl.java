@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	private Map<String, Object> hm;
@@ -131,12 +133,22 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
+	public boolean importZhfz(List<Map> list) {
+		return this.insertBatch("importZhfz",list)==list.size()?true:false;
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_zhfz(Jckzhfz jckzhfz) {
+		return this.queryList("exportExcel_zhfz",jckzhfz);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz) {
+		return this.queryList("exportExcel_zhfz_sh",jckzhfz);
+	}
 	public boolean onceZhfz(Jckzhfz zhfz) {
 		int count = (Integer)queryOne("onceZhfz", zhfz);
 		if(count<1) return true;
 		else return false;
 	}
 
-
-	
 }
