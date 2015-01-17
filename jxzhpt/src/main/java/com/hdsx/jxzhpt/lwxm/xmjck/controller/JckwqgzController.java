@@ -3,13 +3,16 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -28,6 +31,7 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author lhp
  *
  */
+@Scope("prototype")
 @Controller
 public class JckwqgzController extends BaseActionSupport implements ModelDriven<Jckwqgz>{
 
@@ -44,7 +48,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try{
 			if(!"xls".equals(fileType)){
-				response.getWriter().print(fileuploadFileName+"/t不是excel文件");
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
 				return ;
 			}
 			response.setCharacterEncoding("utf-8"); 
@@ -53,22 +57,52 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			try{
 				dataMapArray = ExcelReader.readExcelContent(fs,Jckwqgz.class);
 			}catch(Exception e){
-				response.getWriter().print(fileuploadFileName+"/t数据有误");
+				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
+			//去除excel中的空白行数据
+			List<Map> data=ExcelReader.removeBlankRow(dataMapArray[0]);
 			//将数据插入到数据库
-			System.out.println(dataMapArray[0]);
-			boolean b=wqgzServer.importWqgz(dataMapArray[0]);
+			boolean b=wqgzServer.importWqgz(data);
 			if(b)
-				response.getWriter().print(fileuploadFileName+"/t导入成功");
+				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
-				response.getWriter().print(fileuploadFileName+"/t导入失败");
+				response.getWriter().print(fileuploadFileName+"导入失败");
 		}catch(Exception e){}
 	}
 	public void exportExcel_wqgz(){
 		try {
 			//先得到导出的数据集
 			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz(jckwqgz);
+			System.out.println("------------"+list.size()+"--------------");
+			//导出设置
+			String excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>桥梁评定等级</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("危桥改造项目");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("危桥");
+			sheetb.setList(list);
+			sheetb.setColnum((short)11);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName="危桥改造项目";//excel 文件的名字
+			//导出excel
+			ExportExcel_new <Jckwqgz> ee = new ExportExcel_new<Jckwqgz>();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			throw new RuntimeException();
+		}
+	}
+	public void exportExcel_wqgz_sh(){
+		try {
+			//先得到导出的数据集
+			List <SjbbMessage> list=wqgzServer.exportExcel_wqgz_sh(jckwqgz);
+			System.out.println("------------"+list.size()+"--------------");
 			//导出设置
 			String excelHtml="<tr><td>审核状态</td><td>管养单位</td><td>行政区划</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td><td>路线编码</td><td>路线名称</td><td>桥梁评定等级</td><td>修建/改建年度</td><td>项目年份</td></tr>";
 			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
@@ -83,7 +117,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			String stylefileName="module.xls";
 			String tableName="危桥改造项目";//excel 文件的名字
 			//导出excel
-			ExportExcel_new <Jckwqgz> ee = new ExportExcel_new<Jckwqgz>();
+			ExportExcel_new ee = new ExportExcel_new();
 			ee.initStyle(ee.workbook, stylefileName);
 			HttpServletResponse response= getresponse();
 			ee.makeExcel(tableName, sheetBeans, response);

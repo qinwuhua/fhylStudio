@@ -1,8 +1,10 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 
 public interface SckwqgzServer {
 		boolean insertSckwqgz(Sckwqgz wqgz);
@@ -15,4 +17,8 @@ public interface SckwqgzServer {
 		List<Sckwqgz> selectSckShwqgz(Sckwqgz wqgz);
 		int selectWqgzShCount(Sckwqgz wqgz);
 		boolean xgSckWqgzShzt(Sckwqgz wqgz);
+		List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz);
+		List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz);
+		List<SjbbMessage> insertToSheet();
+		boolean importWqgz_sc(List<Map> list);
 }

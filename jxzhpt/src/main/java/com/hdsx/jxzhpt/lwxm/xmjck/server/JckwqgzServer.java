@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 
 public interface JckwqgzServer {
@@ -22,4 +23,5 @@ public interface JckwqgzServer {
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
 	boolean xgJckWqgzTH(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
@@ -143,6 +144,10 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz) {
+		return this.queryList("exportExcel_wqgz_sh",wqgz);
+	}
 
 
 }

@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -88,7 +90,7 @@ public class ExcelReader {
 		boolean IsNotNumber=false;
 		
         // 得到总行数
-        int rowNum = sheet.getLastRowNum();
+        int rowNum = sheet.getLastRowNum()-1;
         row = sheet.getRow(2);
         int colNum;
         try{
@@ -103,7 +105,7 @@ public class ExcelReader {
         	return null;
         }
         // 正文内容应该从第二行开始,第一行为表头的标题
-        for (int i = 2; i <= rowNum; i++) {
+        for (int i = 3; i <= rowNum; i++) {
             row = sheet.getRow(i);
             int j = 0;
             Map<String,Object> m = new HashMap<String,Object>();
@@ -273,4 +275,35 @@ public class ExcelReader {
             e.printStackTrace();
         }
     }*/
+    /**
+     * 如果excel中有空白行而且被读取后，再从集合中将空白行数据去除
+     * 条件是：一行中每个单元格都为空值时才会移除该行数据，否则就当做是正确数据对待
+     */
+    public static List<Map> removeBlankRow(List<Map> data){
+    	List<Map> lastData = new ArrayList<Map>();
+    	boolean [] position = new boolean[data.size()];
+		for(int j=0;j<data.size();j++){
+			Map map = data.get(j);
+			int len = map.keySet().size();
+			Set set = map.keySet();
+			Iterator iter = set.iterator();
+			int i=0;
+			while(iter.hasNext()){
+				String key = iter.next().toString();
+				String value=map.get(""+key+"").toString();
+				if(value!=null && (!"".equals(value)))
+					break;
+				if(i==len-1){
+					position[j]=true;
+				}
+				i++;
+			}
+		}
+		for(int i=0;i<position.length;i++){
+			if(!position[i]){
+				lastData.add(data.get(i));
+			}
+		}
+    	return lastData;
+    }
 }

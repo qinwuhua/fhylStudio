@@ -203,12 +203,18 @@
  </sql>
  <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="sjbb">
  	select
-	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
  	from xmk_wqgz where 1=1
  	<include refid="wqgz_commonsql"/>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
-	insert into xmk_wqgz(id,qlbh,qlmc,qlzxzh,gydw,xzqhmc,lxbm,lxmc,kjzc,qlkd,qlqc,akjfl,sbjgxs,jsdj,pddj,xjgjnd,xmnf,tbsj) 
-		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},(select sysdate from dual))
+	insert into xmk_wqgz(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj) 
+		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},sysdate)
  </insert>
+  <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
+ 	select
+	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
+ 	from xmk_wqgz where sbzt='已上报'
+ 	<include refid="wqgz_commonsql"/>
+ </select>
 </mapper>

@@ -92,6 +92,13 @@ public class ExportExcel_new<T> {
 	//字段名称
 	@SuppressWarnings("unchecked")
 	public void exportExcel(List<SheetBean> sheetBeans,OutputStream out) {
+		int sheetnum=workbook.getNumberOfSheets();
+		System.out.println(sheetnum);
+		if(sheetnum>0){
+			for(int i=0;i<sheetnum;i++){
+				workbook.removeSheetAt(i);
+			}
+		}
 		for(int i=0;i<sheetBeans.size();i++){
 			String sheetName=sheetBeans.get(i).getSheetName();
 			sheet=(workbook.getSheet(sheetName)==null?workbook.createSheet(sheetName):sheet);
