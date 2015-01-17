@@ -117,4 +117,84 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		}
 	}
 
+	
+	@Override
+	public boolean uploadWqgzFilesgxk(Gcglsh gcglwqgz) {
+		if(update("uploadWqgzFilesgxk", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgtc(Gcglsh gcglwqgz) {
+		if(update("uploadWqgzFilejgtc", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgys(Gcglsh gcglwqgz) {
+		if(update("uploadWqgzFilejgys", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Gcglsh downWqgzFile(Gcglsh gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("downWqgzFile", gcglwqgz);
+	}
+
+	@Override
+	public Boolean insertWqgzwwg(Gcglsh gcglwqgz) {
+		if(update("insertWqgzwwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzwg(Gcglsh gcglwqgz) {
+		gcglwqgz.setJgzt("1");
+		if(update("insertWqgzwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzkg(Gcglsh gcglwqgz) {
+		gcglwqgz.setKgzt("1");
+		if(update("insertWqgzkg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectWqgzjhListCount(Gcglsh gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListCount", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglsh> selectWqgzjhList(Gcglsh gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList", gcglwqgz);
+	}
+
+	@Override
+	public Gcglsh selectWqgzjhFile(Gcglsh gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
 }

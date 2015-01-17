@@ -113,4 +113,84 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 		}
 	}
 
+	
+	@Override
+	public boolean uploadWqgzFilesgxk(Gcglzhfz gcglwqgz) {
+		if(update("uploadWqgzFilesgxk", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgtc(Gcglzhfz gcglwqgz) {
+		if(update("uploadWqgzFilejgtc", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgys(Gcglzhfz gcglwqgz) {
+		if(update("uploadWqgzFilejgys", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Gcglzhfz downWqgzFile(Gcglzhfz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("downWqgzFile", gcglwqgz);
+	}
+
+	@Override
+	public Boolean insertWqgzwwg(Gcglzhfz gcglwqgz) {
+		if(update("insertWqgzwwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzwg(Gcglzhfz gcglwqgz) {
+		gcglwqgz.setJgzt("1");
+		if(update("insertWqgzwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzkg(Gcglzhfz gcglwqgz) {
+		gcglwqgz.setKgzt("1");
+		if(update("insertWqgzkg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectWqgzjhListCount(Gcglzhfz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListCount", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglzhfz> selectWqgzjhList(Gcglzhfz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList", gcglwqgz);
+	}
+
+	@Override
+	public Gcglzhfz selectWqgzjhFile(Gcglzhfz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
 }

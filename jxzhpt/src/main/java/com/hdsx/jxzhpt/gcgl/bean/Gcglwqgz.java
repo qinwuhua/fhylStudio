@@ -99,8 +99,8 @@ public class Gcglwqgz implements Serializable {
 	private String gys;
 	private String htje;
 	private Date sjwgsj;
-	private Integer kgzt;
-	private Integer jgzt;
+	private String kgzt;
+	private String jgzt;
 	private String wjgyy;
 	
 	private String sgxkwj;
@@ -445,16 +445,17 @@ public class Gcglwqgz implements Serializable {
 	public void setSjwgsj(Date sjwgsj) {
 		this.sjwgsj = sjwgsj;
 	}
-	public Integer getKgzt() {
+
+	public String getKgzt() {
 		return kgzt;
 	}
-	public void setKgzt(Integer kgzt) {
+	public void setKgzt(String kgzt) {
 		this.kgzt = kgzt;
 	}
-	public Integer getJgzt() {
+	public String getJgzt() {
 		return jgzt;
 	}
-	public void setJgzt(Integer jgzt) {
+	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
 	public String getWjgyy() {

@@ -42,7 +42,35 @@ public class GcglwqgzController extends BaseActionSupport{
 	@Resource(name = "gcglwqgzServerImpl")
 	private GcglwqgzServer gcglwqgzServer;
 	
+	private String gydw;
+	private String kgzt;
+	private String lxmc;
+	private String qlmc;
 	
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getQlmc() {
+		return qlmc;
+	}
+	public void setQlmc(String qlmc) {
+		this.qlmc = qlmc;
+	}
 	public String getType() {
 		return type;
 	}
@@ -293,6 +321,10 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setPage(page);
 			gcglwqgz.setRows(rows);
 			gcglwqgz.setJhid(jhid);
+			gcglwqgz.setGydw(gydw);
+			gcglwqgz.setKgzt(kgzt);
+			gcglwqgz.setQlmc(qlmc);
+			gcglwqgz.setLxmc(lxmc);
 			int count=gcglwqgzServer.selectWqgzjhListCount(gcglwqgz);
 			List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
 			EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();

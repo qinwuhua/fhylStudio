@@ -157,7 +157,7 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
 	@Override
 	public Boolean insertWqgzwg(Gcglwqgz gcglwqgz) {
-		gcglwqgz.setJgzt(1);
+		gcglwqgz.setJgzt("1");
 		if(update("insertWqgzwg", gcglwqgz)>0){
 			return true;
 		}else{
@@ -167,7 +167,7 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
 	@Override
 	public Boolean insertWqgzkg(Gcglwqgz gcglwqgz) {
-		gcglwqgz.setKgzt(1);
+		gcglwqgz.setKgzt("1");
 		if(update("insertWqgzkg", gcglwqgz)>0){
 			return true;
 		}else{

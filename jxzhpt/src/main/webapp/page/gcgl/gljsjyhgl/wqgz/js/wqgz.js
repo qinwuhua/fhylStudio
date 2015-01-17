@@ -133,7 +133,7 @@ function xgwqgzyb(){
 function tjwqgzkg(){
 	var data="gcglwqgz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglwqgz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglwqgz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglwqgz.sgdw="+$("#tj_sgdw").val()+"&gcglwqgz.jldw="+$("#tj_jldw").val()+"&gcglwqgz.jsdw="+$("#tj_jsdw").val()
-	+"&gcglwqgz.htje="+$("#tj_htje").val()+"&gcglwqgz.gys="+$("#tj_gys").val()+"&gcglwqgz.jhid=F27E13D073EBEFB5E040007F01000213";
+	+"&gcglwqgz.htje="+$("#tj_htje").val()+"&gcglwqgz.gys="+$("#tj_gys").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -153,7 +153,7 @@ function tjwqgzkg(){
 }
 //完工
 function tjwqgzwg(){
-	var data="gcglwqgz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglwqgz.jhid=F27E13D073EBEFB5E040007F01000213";
+	var data="gcglwqgz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglwqgz.jhid="+parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -173,8 +173,8 @@ function tjwqgzwg(){
 }
 //未完工
 function tjwqgzwwg(){
-	var data="gcglwqgz.wjgyy="+$("#tj_wjgyy").val()+"&gcglwqgz.jhid=F27E13D073EBEFB5E040007F01000213";
-	alert(data);
+	var data="gcglwqgz.wjgyy="+$("#tj_wjgyy").val()+"&gcglwqgz.jhid="+parent.obj1.jhid;
+	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertWqgzwwg.do',
@@ -196,18 +196,26 @@ function showAll(){
 	var gydw=$("#gydw").combobox("getText");
 	if(gydw=='36'||gydw=='江西省')
 		gydw='';
-	var data="gcglwqgz.gydw="+gydw+"&gcglwqgz.kgzt="+$("#kgzt").combobox("getValue")+"&gcglwqgz.lxmc="+$("#lxmc").val()+"&gcglwqgz.qlmc="+$("#qlmc").val();
+	var kgzt=$("#kgzt").combobox("getValue");
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectWqgzjhList.do?'+data,
+	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	if(row.kgzt==1){
+	        	if(row.kgzt=='1'){
 	        		return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a href="#" onclick="ybsb('+index+')">月报</a>   '+'<a href="#" onclick="wangong('+index+')">完工</a>  '+'<a href="#" onclick="wwangong('+index+')">未完工</a>  ';
 	        	}else
 	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="kaigong('+index+')">开工</a>  ';

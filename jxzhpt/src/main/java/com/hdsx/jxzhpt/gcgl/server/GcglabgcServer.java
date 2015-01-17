@@ -29,6 +29,26 @@ public interface GcglabgcServer {
 
 	Boolean insertAbgcCgs(Gcglabgc gcglabgc);
 
+	Gcglabgc downWqgzFile(Gcglabgc gcglabgc);
+
+	boolean uploadWqgzFilesgxk(Gcglabgc gcglabgc);
+
+	boolean uploadWqgzFilejgtc(Gcglabgc gcglabgc);
+
+	boolean uploadWqgzFilejgys(Gcglabgc gcglabgc);
+
+	Boolean insertWqgzkg(Gcglabgc gcglabgc);
+
+	Boolean insertWqgzwg(Gcglabgc gcglabgc);
+
+	Boolean insertWqgzwwg(Gcglabgc gcglabgc);
+
+	List<Gcglabgc> selectWqgzjhList(Gcglabgc gcglabgc);
+
+	Gcglabgc selectWqgzjhFile(Gcglabgc gcglabgc);
+
+	int selectWqgzjhListCount(Gcglabgc gcglabgc);
+
 	
 
 }

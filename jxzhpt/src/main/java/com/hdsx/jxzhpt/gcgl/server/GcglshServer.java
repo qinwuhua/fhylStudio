@@ -32,6 +32,26 @@ public interface GcglshServer {
 
 	Boolean deleteShCgs(Gcglsh gcglsh);
 
+	Gcglsh downWqgzFile(Gcglsh gcglsh);
+
+	boolean uploadWqgzFilesgxk(Gcglsh gcglsh);
+
+	boolean uploadWqgzFilejgtc(Gcglsh gcglsh);
+
+	boolean uploadWqgzFilejgys(Gcglsh gcglsh);
+
+	Boolean insertWqgzwg(Gcglsh gcglsh);
+
+	Boolean insertWqgzwwg(Gcglsh gcglsh);
+
+	int selectWqgzjhListCount(Gcglsh gcglsh);
+
+	List<Gcglsh> selectWqgzjhList(Gcglsh gcglsh);
+
+	Gcglsh selectWqgzjhFile(Gcglsh gcglsh);
+
+	Boolean insertWqgzkg(Gcglsh gcglsh);
+
 
 	
 }

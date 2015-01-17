@@ -26,9 +26,6 @@
 			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
-		$(window).resize(function () { 
-			$('#datagrid').datagrid('resize'); 
-		});
 	</script>
 	<style type="text/css">
 <!--
