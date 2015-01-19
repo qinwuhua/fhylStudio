@@ -14,6 +14,7 @@
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
@@ -22,26 +23,22 @@ $(function(){
 	autoCompleteQLBH();
 
 	$("#save_button").click(function(){
-		var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
-		"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-		"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+"360000";
-		alert(data);
+		var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmsck/insertSckwqgz.do',
-	        data:data,
+			url:'/jxzhpt/xmsck/bzWqgz.do',
 			dataType:'json',
+	        data:datas,
 			success:function(msg){
 				if(Boolean(msg)){
-					parent.$("#grid").datagrid('reload');
-					alert("保存成功！");
-					parent.$('#sck_add').window('destroy');
-					
+					saveWqgz();
 				}else{
-					alert('保存失败！');
+					if(confirm('该项目有补助历史，你确定继续提交吗？')){
+						saveWqgz();
+					}
 				}
 			}
-		});  
+		});
 	});
 	$("#qx_window").click(function(){
 		parent.$('#sck_add').window('destroy');
@@ -86,7 +83,7 @@ function autoCompleteQLBH(){
 				if(item==undefined) return ;
 				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm").attr("value",'');
 				xmkid=item.id;
-				$("#qlmc").val(item.qlmc);
+				$("#qlmc").html(item.qlmc);
 				$("#qlzxzh").html(item.qlzxzh);
 				$("#gydw").html(item.gydw);
 				$("#xzqhmc").html(item.xzqhmc);
@@ -107,6 +104,28 @@ function autoCompleteQLBH(){
 				$("#bhnr").html(item.bhnr);
 				$("#bz").html(item.bz);
 			});
+}
+function saveWqgz(){
+	var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
+	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
+	"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+
+	"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html();
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/xmsck/insertSckwqgz.do',
+        data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				parent.$("#grid").datagrid('reload');
+				alert("保存成功！");
+				parent.$('#sck_add').window('destroy');
+				
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});  
 }
 </script>
 <style type="text/css">
@@ -132,7 +151,7 @@ text-decoration:none;
 					<input type="text" name="qlbh"id="qlbh" style="width: 150px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qlmc"id="qlmc" style="width: 156px" /></td>
+					<span id="qlmc"></span></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qlzxzh"></span></td>

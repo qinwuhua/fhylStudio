@@ -35,9 +35,7 @@
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		order by sbzt desc
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and
-		t1.num>(#{page}-1)*#{rows}
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt desc
 	</select>
 	<select id="selectAbgcCount" parameterType="hashmap" resultType="int">
@@ -81,7 +79,8 @@
 	<select id="selectGpsroad" parameterType="hashmap" resultType="jckabgc">
 		select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends)
 		zdzh,(max(roadends)-min(roadstart)) qzlc,
-		substr(roadcode,5,7) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,5,7))
+		substr(roadcode,length(roadcode)-5,6) xzqhdm, 
+		(select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6))
 		xzqhmc,F044 gydwbm,F045 gydw,
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
 		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD

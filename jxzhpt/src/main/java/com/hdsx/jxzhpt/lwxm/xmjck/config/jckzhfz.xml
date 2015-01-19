@@ -76,16 +76,17 @@
  	update xmk_zhfz set shzt='已审核' where id=#{id}
  </update>
  <update id="xgJckzhfzSbzt" parameterType="String" >
- 	update xmk_zhfz set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+ 	update xmk_zhfz set sbzt='已上报' where id in(#{delstr})
  </update>
  <update id="xgJckZhfzTH" parameterType="jckzhfz" >
  	update xmk_zhfz set sbzt='未上报' where id =#{id}
  </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckzhfz">
  	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,(max(roadends)-min(roadstart)) qzlc,
- 	substr(roadcode,5,7) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,5,7)) xzqhmc,F044 gydwbm,F045 gydw,
- 	decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD where
- 	substr(roadcode,1,1) in('G','S') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
+ 	substr(roadcode,length(roadcode)-5,6) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6)) 
+ 	xzqhmc,F044 gydwbm,F045 gydw,decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,F114 lxjsdj 
+ 	from JXJCK_2013.GPSROAD 
+ 	where substr(roadcode,1,1) in('G','S') and F048='1' and roadcode like #{lxbm} ||'%' and <![CDATA[ROWNUM <=50]]>
  	group by roadname,roadcode,F114,F044,F045
   	order by roadcode,min(roadstart)
  </select>

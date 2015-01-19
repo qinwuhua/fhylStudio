@@ -13,42 +13,10 @@
 <link rel="stylesheet" type="text/css" href="./css/index2.css" />
 <script type="text/javascript" src="./easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="./easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript" src="./js/init.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
-<script type="text/javascript" src="./js/util/jquery.cookie.js"></script>
-<script type="text/javascript">
-$(function(){
-	selSes();
-	$("#index_user").html($.cookie("truename"));
-	menuQx();
-});
-function menuQx(){
-	var qx=$.cookie("qx2").split(",");
-	//alert(qx.length);
-	var flag=false;
-	for(var i=0;i<qx.length;i++){
-		if($("#menu_"+qx[i]).html()!=undefined){
-			$("#menu_"+qx[i]).show();
-			if(flag==false){
-				var url="";
-				switch(qx[i].substr(qx[i].length-1)){
-				case "1": url="page/dzdt/Menu.jsp";break;
-				case "2": url="page/lwxm/Menu.jsp";break;
-				case "3": url="page/jhgl/Menu.jsp";break;
-				case "4": url="page/gcgl/Menu.jsp";break;
-				case "5": url="page/gcbb/Menu.jsp";break;
-				case "6": url="page/sjcx/Menu.jsp";break;
-				case "7": url="page/tjfx/Menu.jsp";break;
-				}
-				$("#Menu_"+qx[i].substr(qx[i].length-1)).addClass('now');
-				$("#c1f").attr("src", url);
-				flag=true;
-			}
-		}
-	}
-}
-</script>
 </head>
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 98px;" >
@@ -59,13 +27,13 @@ function menuQx(){
 			    	<a href="./index.jsp" target="_self">返回首页</a><em>|</em>
 			    	<a onclick="clearSession()" href="javascript:void(0)">退出系统</a></div>
 				<ul class="nav">
-					<li id="menu_010101"><a id="Menu_1" href="javascript:void(0)">电子地图</a></li>
-					<li id="menu_010102"><a id="Menu_2" href="javascript:void(0)">路网项目</a></li> 
-					<li id="menu_010103"><a id="Menu_3" href="javascript:void(0)">计划管理</a></li>
-					<li id="menu_010104"><a id="Menu_4" href="javascript:void(0)">工程管理</a></li>
-					<li id="menu_010105"><a id="Menu_5" href="javascript:void(0)">工程报表</a></li>
-					<li id="menu_010106"><a id="Menu_6" href="javascript:void(0)">数据查询</a></li>
-					<li id="menu_010107"><a id="Menu_7" href="javascript:void(0)">统计分析</a></li>
+					<li id="menu_010101" style="display:none;"><a id="Menu_1" href="javascript:void(0)">电子地图</a></li>
+					<li id="menu_010102" style="display:none;"><a id="Menu_2" href="javascript:void(0)">路网项目</a></li> 
+					<li id="menu_010103" style="display:none;"><a id="Menu_3" href="javascript:void(0)">计划管理</a></li>
+					<li id="menu_010104" style="display:none;"><a id="Menu_4" href="javascript:void(0)">工程管理</a></li>
+					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">工程报表</a></li>
+					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">数据查询</a></li>
+					<li id="menu_010107" style="display:none;"><a id="Menu_7" href="javascript:void(0)" >统计分析</a></li>
 				</ul>
 			</div>
 		</div>

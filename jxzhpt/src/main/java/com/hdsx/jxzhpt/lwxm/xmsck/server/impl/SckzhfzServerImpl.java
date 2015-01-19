@@ -130,4 +130,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	public boolean importZhfz_sc(List<Map> list) {
 		return this.insertBatch("importZhfz_sc", list)==list.size()?true:false;
 	}
+
+	@Override
+	public boolean bzZhfz(Sckzhfz zhfz) {
+		int count = (Integer)queryOne("bzZhfz", zhfz);
+		if(count<1) return true;
+		else return false;
+	}
 }

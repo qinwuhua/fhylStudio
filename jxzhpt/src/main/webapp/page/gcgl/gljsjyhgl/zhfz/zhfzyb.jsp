@@ -41,7 +41,6 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
                     项目计划下达资金共【<span id="lblXDZJ" style="color: Red; font-weight: bold;">1300</span>】万元，

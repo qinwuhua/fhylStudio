@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.xtgl.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,11 +19,20 @@ public class TreeNode implements Serializable {
 	private String name;
 	private String text;//单位名称
 	private String dwbm;//单位编码
-	private List<TreeNode> children;
+	private List<TreeNode> children=new ArrayList<TreeNode>();
 	private String iconCls="icon-none";
-	private String state="closed";
+	private String state="open";
 	private String parent;
 	private String bmid;
+	private String checked;
+	
+	
+	public String getChecked() {
+		return checked;
+	}
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
 	public String getParent() {
 		return parent;
 	}

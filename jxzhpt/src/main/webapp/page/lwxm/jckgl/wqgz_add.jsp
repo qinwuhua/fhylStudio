@@ -89,7 +89,7 @@ function autoCompleteLXBM(){
 				if(item==undefined) return ;
 				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
 				$("#qlmc").val(item.qlmc);
-				$("#qlzxzh").val(item.qlzxzh);
+				$("#qlzxzh").val(parseFloat(item.qlzxzh));
 				$("#gydw").val(item.gydw);
 				$("#xzqhdm").val(item.xzqhdm);
 				$("#xzqhmc").val(item.xzqhmc);

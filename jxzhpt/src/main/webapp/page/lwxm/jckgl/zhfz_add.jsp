@@ -94,8 +94,8 @@ var zdStr;
 					$("#lxmc").val(item.lxmc);
 					$("#xzqhdm").val(item.xzqhdm);
 					$("#xzqhmc").val(item.xzqhmc);
-					$("#qdzh").val(item.qdzh);
-					$("#zdzh").val(item.zdzh);
+					$("#qdzh").val(parseFloat(item.qdzh));
+					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#zlc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
 					$("#xjnd").val(item.gjxjnd);
 					$("#lxjsdj").val(item.lxjsdj);
@@ -190,7 +190,7 @@ var zdStr;
 					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
+					<input type="text" name="yhlc"id="yhlc" style="width: 156px"value="0" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>

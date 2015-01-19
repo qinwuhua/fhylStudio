@@ -37,13 +37,7 @@ public class Jckabgc implements Serializable{
 	private String shbm;
 	private String bz;
 	private String tsqhbm;
-	
-	public String getTsqhbm() {
-		return tsqhbm;
-	}
-	public void setTsqhbm(String tsqhbm) {
-		this.tsqhbm = tsqhbm;
-	}
+	private String sbthcd;
 	private int page;
 	private int rows;
 	public String getId() {
@@ -213,6 +207,18 @@ public class Jckabgc implements Serializable{
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getTsqhbm() {
+		return tsqhbm;
+	}
+	public void setTsqhbm(String tsqhbm) {
+		this.tsqhbm = tsqhbm;
+	}
+	public String getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(String sbthcd) {
+		this.sbthcd = sbthcd;
 	}
 	@Override
 	public String toString() {
