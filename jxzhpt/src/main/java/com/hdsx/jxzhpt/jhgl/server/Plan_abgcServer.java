@@ -35,4 +35,9 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	Plan_abgc queryAbgcById(String id);
+	/**
+	 * 根据ID删除安保工程
+	 * @param id
+	 */
+	boolean dropAbgcById(String id);
 }

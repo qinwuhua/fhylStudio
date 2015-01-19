@@ -61,3 +61,8 @@ function openZjxd(id,title,href,width,height){
 		modal : true
 	}).dialog("setTitle",title).dialog("open");
 }
+function addZjxd(){
+	var zjxd={xmid:xxId,xdnf:'',xdzj:'',sfzj:'',tbdw:'',tbdate:''};
+	
+	
+}

@@ -143,7 +143,6 @@
         	</tr>
 		</table>
 	</div>
-	
 	<div id="wqgz_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

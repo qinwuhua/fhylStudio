@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 
 public class Plan_wqgz {
 	private String id;//唯一ID
-	private String xmkwqgzid;//危桥改造项目库ID
+	private String xmk_wqgz_id;//危桥改造项目库ID
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
@@ -62,11 +62,11 @@ public class Plan_wqgz {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getXmkwqgzid() {
-		return xmkwqgzid;
+	public String getXmk_wqgz_id() {
+		return xmk_wqgz_id;
 	}
-	public void setXmkwqgzid(String xmkwqgzid) {
-		this.xmkwqgzid = xmkwqgzid;
+	public void setXmk_wqgz_id(String xmk_wqgz_id) {
+		this.xmk_wqgz_id = xmk_wqgz_id;
 	}
 	public String getSbnf() {
 		return sbnf;

@@ -277,6 +277,74 @@ function wqxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
+
+function queryWqgzById(id){
+	$.ajax({
+		url:'../../../jhgl/queryWqgzById.do',
+		data:"jh.id="+id,
+		dataType:'text',
+		success:function(data){
+			//基础和审查
+			$.ajax({
+				url:'../../../xmsck/selectSckwqgzById.do',
+				data:"sckid="+data.xmk_wqgz_id,
+				dataType:'text',
+				success:function(data){
+					alert(data);
+				}
+			});
+			//计划
+			$('#jhnf').html(data.jhnf);
+			$('#jhkgsj').html(data.jhkgsj);
+			$('#jhwgsj').html(data.jhwgsj);
+			$('#jhxdsj').html(data.xdsj);
+			$('#jhxdwh').html(data.jhxdwh);
+			$('#sjdw').html(data.sjdw);
+			$('#sjpfdw').html(data.sjpfdw);
+			$('#pfwh').html(data.pfwh);
+			$('#pfsj').html(data.pfsj);
+			$('#jhztz').html(data.pfztz);
+			$('#bbz').html(data.jhsybzje);
+			$('#zfzc').html(data.jhsydfzcje);
+			alert("是否申请按比例："+data.sfsqablbz);
+			$('#sfsqablbz').html(data.sfsqablbz);
+			$('#ablbzwh').html(data.ablbzsqwh);
+		}
+	});
+	
+	/*$('#qlmc').html();
+	$('#qlbm').html();
+	$('#qlzxzh').html();
+	$('#gydw').html();
+	$('#xzqhdm').html();
+	$('#xzqhmc').html();
+	$('#lxmc').html();
+	$('#lxbm').html();
+	$('#kjzc').html();
+	$('#qlqc').html();
+	$('#qlqk').html();
+	$('#dkzdkj').html();
+	$('#jsdj').html();
+	$('#pddj').html();
+	$('#xjnd').html();
+	$('#akjfl').html();
+	$('#sbjgxs').html();
+	$('#tsdq').html();
+	$('#xmnf').html();
+	$('#xmtype').html();
+	$('#bhnr').html();
+	$('#bz').html();
+	//审查
+	$('#fapgdw').html();
+	$('#fascdw').html();
+	$('#faspsj').html();
+	$('#spwh').html();
+	$('#tzgs').html();
+	$('#jsxz').html();
+	$('#jsnr').html();
+	$('#scbz').html();
+	*/
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

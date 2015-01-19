@@ -101,4 +101,7 @@
 	<select id="queryWqgzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_wqgz t order by t.sbnf
 	</select>
+	<select id="queryWqgzById" parameterType="string" resultType="plan_wqgz">
+		select * from plan_wqgz jh where jh.id=#{id}
+	</select>
 </mapper>

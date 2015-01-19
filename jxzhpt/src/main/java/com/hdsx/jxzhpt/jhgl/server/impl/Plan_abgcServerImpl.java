@@ -42,4 +42,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public Plan_abgc queryAbgcById(String id) {
 		return queryOne("queryAbgcById", id);
 	}
+	
+	public boolean dropAbgcById(String id){
+		return delete("dropAbgcById",id)>0;
+	}
 }

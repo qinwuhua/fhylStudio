@@ -310,11 +310,81 @@ function queryAbgc(id){
 		type:'post',
 		url:'../../../jhgl/queryAbgcById.do',
 		data:"jh.id="+id,
-		dataType:'text',
+		dataType:'json',
 		success:function(data){
-			alert(data);
+			$('#lxmc').html(data.jckabgc.lxmc);
+			$('#lxbm').html(data.jckabgc.lxbm);
+			$('#gydw').html(data.jckabgc.gydw);
+			$('#qdzh').html(data.jckabgc.qdzh);
+			$('#zdzh').html(data.jckabgc.zdzh);
+			$('#qzlc').html(data.jckabgc.qzlc);
+			$('#xzqhdm').html(data.jckabgc.xzqhdm);
+			$('#xzqhmc').html(data.jckabgc.xzqhmc);
+			$('#xjgjnd').html(data.jckabgc.xjgjnd);
+			$('#jsdj').html(data.jckabgc.jsdj);
+			$('#yhlc').html(data.jckabgc.yhlc);
+			$('#tsdq').html(data.jckabgc.tsdq);
+			$('#xmnf').html(data.jckabgc.xmnf);
+			$('#xmzt').html(data.jckabgc.xmzt);
+			$('#yhnr').html(data.jckabgc.yhnr);
+			$('#bz').html(data.jckabgc.bz);
+			//审查库
+			$.ajax({
+				type:'post',
+				url:'../../../xmsck/selectSckabgcById.do',
+				dataType:'json',
+				data:'sckid='+data.jckabgc.id,
+				success:function(data){
+					if(data!=null){
+						$('#scqdzh').html(data.scqdzh);
+						$('#sczdzh').html(data.sczdzh);
+						$('#sczlc').html(data.sczdzh);
+						$('#scyhlc').html(data.sczdzh);
+						$('#fapgdw').html(data.fapgdw);
+						$('#fascdw').html(data.fascdw);
+						$('#faspsj').html(data.faspsj);
+						$('#spwh').html(data.spwh);
+						$('#tzgs').html(data.tzgs);
+						$('#jsxz').html(data.jsxz);
+						$('#jsnr').html(data.jsnr);
+						$('#remarks').html(data.remarks);
+					}
+				}
+			});
+			//计划
+			$('#jhnf').html(data.jhnf);
+			$('#JHKGSJ').html(data.jhkgsj);
+			$('#JHWGSJ').html(data.jhwgsj);
+			$('#JHXDSJ').html(data.xdsj);
+			$('#JHWC_C').html(data.jhwc_c);
+			$('#SJDW').html(data.sjdw);
+			$('#SJPFDW').html(data.sjpfdw);
+			$('#PFWH').html(data.pfwh);
+			$('#PFSJ').html(data.pfsj);
+			$('#JHZTZ').html(data.jhztz);
+			$('#bbz').html(data.jhsybbzje);
+			$('#DFZC').html(data.jhsydfzczj);
+			$('#JHXDWH').html(data.jhxdwh);
+			$('#SFSQABLBZ').html(data.sfsqablbz);
+			$('#ABLBZWH').html(data.ablbzsqwh);
+			$('#JHRemarks').html(data.remarks);
 		}
 	}); 
+}
+function dropAbgc(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/dropAbgcById.do',
+		dataType:'text',
+		data:'jh.id='+id,
+		success:function(data){
+			if(data=="true"){
+				alert("删除成功！");
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
 }
 /**
  * dataGrid绑定数据方法

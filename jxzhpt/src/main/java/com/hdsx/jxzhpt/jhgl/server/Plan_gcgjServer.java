@@ -35,4 +35,10 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	List<TreeNode> queryGcgjNfs();
+	/**
+	 * 根据ID删除信息
+	 * @param id
+	 * @return
+	 */
+	boolean dropGcgjById(String id);
 }
