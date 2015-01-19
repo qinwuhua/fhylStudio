@@ -118,4 +118,8 @@ public interface XtglServer {
 
 	List<Param> selQxByUser(Param param);
 
+	List<TreeNode> selQxByRoleid(Param param);
+
+	List<Param> selQxListByRoleid(Param param);
+
 }

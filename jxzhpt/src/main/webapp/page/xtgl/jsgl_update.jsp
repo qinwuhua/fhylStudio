@@ -56,11 +56,6 @@ function init(){
 				$("#roleid").val(msg.roleid);
 				$("#rolename").val(msg.rolename);
 				$("#desr").val(msg.desr);
-				var arr=msg.sourceid.split(",");
-				//$("#source").tree("setValue","010101");
-				var node = $("#source").tree("find", "010101");
-				
-				$("#source").tree("expandAll");
 			 }
 		 }
 	});
@@ -71,8 +66,7 @@ $(function(){
 	loadQx("source");
 	init();
 	$("#jsgl_btn_Save").click(function(){
-		$("#source").tree("expandAll");
-		//save();
+		save();
 	});
 	$("#jsgl_btn_Cancel").click(function(){
 		parent.$("#jsgl_add_win").window('destroy');
@@ -82,10 +76,9 @@ function loadQx(_id){
 	$('#'+_id).tree({
 		checkbox: true,
 		check: true,
-		url: '../../xtgl/selAllQx.do?yhdw=01',
-		onBeforeExpand:function(node,param){
-			$('#'+_id).tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
-			$('#'+_id).tree("check",node.target);
+		url: "../../xtgl/selQxByRoleid.do?param.roleid="+parent.YMLib.Var.ID+"&param.id=01",
+		onLoadSuccess:function (node){
+			
 		},
 		onCheck : function (node){
 			var nodes=$('#'+_id).tree('getChecked');

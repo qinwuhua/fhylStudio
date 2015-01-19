@@ -744,6 +744,39 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void selQxByRoleid(){
+		List<TreeNode> l=xtglServer.selQxByRoleid(param);
+		List<Param> l2=xtglServer.selQxListByRoleid(param);
+		
+		
+		TreeNode root = returnRoot(l,l.get(0),l2);
+		List<TreeNode> children = root.getChildren();
+		try{
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private TreeNode returnRoot(List<TreeNode> list, TreeNode zzjgTree,List<Param> l2){
+		for (Param p : l2) {
+				if(p.getSourceid().equals(zzjgTree.getId())) zzjgTree.setChecked("true");
+		}
+		
+		for(TreeNode temp : list){
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					zzjgTree.setState("closed");
+					zzjgTree.getChildren().add(temp);
+					returnRoot(list,temp,l2);
+				}
+			}
+		}
+		return zzjgTree;
+	}
+	
+	
 	public String getYhdw() {
 		return yhdw;
 	}

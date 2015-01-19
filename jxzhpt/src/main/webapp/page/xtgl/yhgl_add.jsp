@@ -30,7 +30,6 @@ function checkNameVal(procode){
 				 flag = false;
 			 }else{
 				 var param = $("#yhgl_form").serialize();
-				 alert(param);
 					$.ajax({
 						 type : "POST",
 						 url : "../../xtgl/insertYh.do",

@@ -222,8 +222,7 @@
 	  select  distinct x.id , x.name text from xtgl_resource x where  x.parent = #{yhdw} and id is not null and parent is not null order by id
 	</select>
 	<select id="selectJsById" parameterType="param" resultType="param">
-		select roleid,rolename,desr,(select WMSYS.WM_CONCAT(to_char(sourceid)) from xtgl_role_resource where roleid=t.roleid) sourceid
-		from xtgl_role t
+		select roleid,rolename,desr,(select WMSYS.WM_CONCAT(to_char(sourceid)) from xtgl_role_resource where  roleid=t.roleid) sourceid from xtgl_role t
 		where roleid=#{roleid}
 	</select>
 	<update id="updateJs" parameterType="param">
@@ -237,5 +236,11 @@
 		select substr(sourceid,1,6) id from xtgl_role_resource t where roleid=#{roleid}
 		union
 		select substr(sourceid,1,8) id from xtgl_role_resource t where roleid=#{roleid}
+	</select>
+	<select id="selQxByRoleid" parameterType="param" resultType="treenode">
+		select distinct x.id ,x.name text,parent from xtgl_resource x where  id is not null order by id
+	</select>
+	<select id="selQxListByRoleid" parameterType="param" resultType="param">
+		select sourceid from xtgl_role_resource where roleid=#{roleid}
 	</select>
 </mapper>
