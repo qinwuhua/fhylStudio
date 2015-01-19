@@ -123,7 +123,7 @@ var zdStr;
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
 		"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit2")+"&sbthcd="+($.cookie("unit2").length+2);
+		+"&tbbmbm="+$.cookie("unit");
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertZhfz.do',
@@ -190,7 +190,7 @@ var zdStr;
 					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="yhlc"id="yhlc" style="width: 156px" /></td>
+					<input type="text" name="yhlc"id="yhlc" style="width: 156px"value="0" /></td>
 					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>

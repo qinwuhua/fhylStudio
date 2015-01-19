@@ -20,9 +20,11 @@
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc","360000");
+	jckshZhfz();
 });
-function xgShzt(id){
+function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
+	var id = rows[0].id;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量审核！");

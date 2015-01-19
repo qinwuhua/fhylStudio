@@ -134,4 +134,11 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	public boolean importWqgz_sc(List<Map> list) {
 		return this.insertBatch("importWqgz_sc", list)==list.size()?true:false;
 	}
+
+	@Override
+	public boolean bzWqgz(Sckwqgz wqgz) {
+		int count = (Integer)queryOne("bzWqgz", wqgz);
+		if(count<1) return true;
+		else return false;
+	}
 }

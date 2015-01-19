@@ -128,6 +128,13 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
 	}
 
+	@Override
+	public boolean bzAbgc(Sckabgc abgc) {
+		int count = (Integer)queryOne("bzAbgc", abgc);
+		if(count<1) return true;
+		else return false;
+	}
+
 
 
 }

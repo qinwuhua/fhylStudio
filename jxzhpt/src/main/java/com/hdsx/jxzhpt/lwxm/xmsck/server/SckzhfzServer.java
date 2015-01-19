@@ -17,6 +17,7 @@ public interface SckzhfzServer {
 		List<Sckzhfz> selectSckShzhfz(Sckzhfz zhfz);
 		int selectZhfzShCount(Sckzhfz zhfz);
 		boolean xgSckZhfzShzt(Sckzhfz zhfz);
+		boolean bzZhfz(Sckzhfz zhfz);
 		List<SjbbMessage> exportExcel_zhfz_scsh(Sckzhfz zhfz);
 		List<SjbbMessage> exportExcel_zhfz_scgl(Sckzhfz zhfz);
 		List<SjbbMessage> insertToSheet();
