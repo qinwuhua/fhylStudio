@@ -71,7 +71,8 @@ $(function(){
 	loadQx("source");
 	init();
 	$("#jsgl_btn_Save").click(function(){
-		save();
+		$("#source").tree("expandAll");
+		//save();
 	});
 	$("#jsgl_btn_Cancel").click(function(){
 		parent.$("#jsgl_add_win").window('destroy');

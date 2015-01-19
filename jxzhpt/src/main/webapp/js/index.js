@@ -30,8 +30,19 @@ function login(){
 				if(msg){
 		     		$.cookie("truename",msg.TRUENAME, {expires: 1});//将用户名放入cookie中
 		     		$.cookie("unit",msg.UNIT, {expires: 1});
+		     		var unit2=msg.UNIT;
+		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
+		     		$.cookie("dist2",dist2, {expires: 1});
+		     		
 		     		if(msg.UNIT=="36") $.cookie("dist","360000", {expires: 1});
 		     		else $.cookie("dist",msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length), {expires: 1});
+		     		
+		     		var dist2=msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length);
+		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);
+		     		if(dist2.substr(dist2.length-2,dist2.length)=="00") dist2=dist2.substr(0,dist2.length-2);		     		
+		     		$.cookie("dist2",dist2, {expires: 1});
+		     		
 		     		$.cookie("roleid",msg.ROLEID, {expires: 1});
 		     		document.location.href="./index.jsp";
 		     		//$('#index_layout').css('visibility', 'visible');
