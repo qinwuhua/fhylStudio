@@ -17,8 +17,6 @@
 <script type="text/javascript" src="./js/YMLib.js"></script>
 <script type="text/javascript" src="./js/init.js"></script>
 <script type="text/javascript" src="./js/index.js"></script>
-
-
 </head>
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 98px;" >
@@ -35,7 +33,7 @@
 					<li id="menu_010104" style="display:none;"><a id="Menu_4" href="javascript:void(0)">工程管理</a></li>
 					<li id="menu_010105" style="display:none;"><a id="Menu_5" href="javascript:void(0)">工程报表</a></li>
 					<li id="menu_010106" style="display:none;"><a id="Menu_6" href="javascript:void(0)">数据查询</a></li>
-					<li id="menu_010107" style="display:none;"><a id="Menu_6" href="javascript:void(0)" >统计分析</a></li>
+					<li id="menu_010107" style="display:none;"><a id="Menu_7" href="javascript:void(0)" >统计分析</a></li>
 				</ul>
 			</div>
 		</div>

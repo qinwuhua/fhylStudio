@@ -17,10 +17,10 @@
 	select * from xtgl_master M WHERE M.truename=#{truename} AND M.PASSWORD=#{password}
 	</select>
 	<select id="selAllXzqh" parameterType="String" resultType="treenode">
-	    select distinct x.id ,x.name text from xtgl_xzqh x where  x.id = #{yhdw} order by id
+	    select distinct x.id ,x.name text,'closed' state from xtgl_xzqh x where  x.id = #{yhdw} order by id
 	</select>
 	<select id="selAllXzqh2" parameterType="String" resultType="treenode">
-	  select  distinct x.id , x.name text from xtgl_xzqh x where  x.parent = #{yhdw} order by id
+	  select  distinct x.id , x.name text,'closed' state from xtgl_xzqh x where  x.parent = #{yhdw} order by id
 	</select>
 	<select id="selectYhList" parameterType="hashmap" resultType="master">
 		select * from (
@@ -201,10 +201,10 @@
 		select * from xtgl_tsdq where id=#{id}
 	</select>
 	<select id="selAllBm" parameterType="String" resultType="treenode">
-	    select distinct x.id ,x.name text from xtgl_department x where  x.id = #{yhdw} order by id
+	    select distinct x.id ,x.name text,'closed' state from xtgl_department x where  x.id = #{yhdw} order by id
 	</select>
 	<select id="selAllBm2" parameterType="String" resultType="treenode">
-	  select  distinct x.id , x.name text from xtgl_department x where  x.parent = #{yhdw} order by id
+	  select  distinct x.id , x.name text,'closed' state from xtgl_department x where  x.parent = #{yhdw} order by id
 	</select>
 	<update id="updateTsdq" parameterType="param">
 		update xtgl_tsdq set name=#{name},bz=#{bz} where id=#{id}
