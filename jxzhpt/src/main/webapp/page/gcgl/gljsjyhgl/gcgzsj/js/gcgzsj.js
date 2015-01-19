@@ -3,7 +3,7 @@ var jhid=10;
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
 	YMLib.UI.createWindow('wqxx','工程改造路面升级开工详情','gcgzsjxx.jsp','wqxx',740,450);
 	//window.open("gcgzsjxx.jsp");
 }
