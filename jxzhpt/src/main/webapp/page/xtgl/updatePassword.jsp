@@ -52,7 +52,8 @@ function checkuser(){
 				'master.password' : password
 			},
 		 success : function(msg){
-			 suc_user();
+			 if(msg) suc_user();
+			 else alert("用户名或原始密码错误！");
 		 },
 		 error : function(){
 			 YMLib.Tools.Show('用户名或原始密码错误！',3000);

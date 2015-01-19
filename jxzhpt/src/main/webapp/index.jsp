@@ -33,7 +33,7 @@ function selQxByUser(){
 				var qx4= new Array();
 				for(var i=0;i<msg.length;i++){
 					//第一层
-					if(msg[i].roleid=="01") qx1.push(msg[i].id);
+					if(msg[i].id.length==4) qx1.push(msg[i].id);
 					//第2层
 					if(msg[i].id.length==6) qx2. push(msg[i].id);
 					//第3层
