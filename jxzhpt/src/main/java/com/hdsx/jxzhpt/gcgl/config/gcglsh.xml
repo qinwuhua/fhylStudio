@@ -86,4 +86,71 @@
 		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
+<!-- 上传 -->
+	<update id="uploadWqgzFilesgxk" parameterType="gcglsh">
+		update PLAN_SHUIH set SGXKWJ=#{tiaojian}
+		where XMK_YHDZX_ID=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgtc" parameterType="gcglsh">
+		update PLAN_SHUIH set JGTCWJ=#{tiaojian}
+		where XMK_YHDZX_ID=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgys" parameterType="gcglsh">
+		update PLAN_SHUIH set JGYSWJ=#{tiaojian}
+		where XMK_YHDZX_ID=#{jhid}
+	</update>
+	<!-- 下载 -->
+	<select id="downWqgzFile" parameterType="gcglsh" resultType="gcglsh">
+		select ${tiaojian} tiaojian from PLAN_SHUIH where XMK_YHDZX_ID=#{jhid}
+	</select>
+	<update id="insertWqgzwwg" parameterType="gcglsh">
+		update PLAN_SHUIH set WJGYY=#{wjgyy} where XMK_YHDZX_ID=#{jhid}
+	</update>
+	<update id="insertWqgzwg" parameterType="gcglsh">
+		update PLAN_SHUIH set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where XMK_YHDZX_ID=#{jhid}
+	</update>
+	<update id="insertWqgzkg" parameterType="gcglsh">
+		update PLAN_SHUIH set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gys} where XMK_YHDZX_ID=#{jhid}
+	</update>
+	
+	<select id="selectWqgzjhList" parameterType="gcglsh" resultType="gcglsh">
+select * from (
+select m.*,rownum rn from (
+select 
+t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,
+t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.bz,t2.XMK_YHDZX_ID jhid,
+t2.sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmmc,t2.lmkd,t2.sftqss,t2.sjdw,t2.yhlb,t2.dc,t2.jc,t2.mc,t2.sjpfdw,t2.pfwh,t2.pfsj,t2.pfztz,t2.jhsybzje,t2.jhsydfzcje,t2.sjlmlx,t2.sfsqablbz,t2.ablbzsqwh,t2.sfgyhbm,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.wjsczt,t2.gsztz
+from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
+where t2.jgzt='0' and t2.spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydw like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	order by t2.sbnf
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	 <select id="selectWqgzjhListCount" parameterType="gcglsh" resultType="int">
+	 	select count(*) from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
+		where t2.jgzt='0' and t2.spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydw like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	 </select>
+	 <select id="selectWqgzjhFile" parameterType="gcglsh" resultType="gcglsh">
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_SHUIH where XMK_YHDZX_ID=#{jhid}
+	 </select>
 </mapper>
