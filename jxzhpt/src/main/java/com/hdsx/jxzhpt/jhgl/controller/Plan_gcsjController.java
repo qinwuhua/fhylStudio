@@ -1,10 +1,13 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.swing.tree.TreeNode;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 public class Plan_gcsjController extends BaseActionSupport{
 	private int page = 1;
 	private int rows = 10;
-	@Resource(name = "plan_gcsjServerImpl")
+	@Resource(name = "plan_GcsjServerImpl")
 	private Plan_gcsjServer gcsjServer;
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
@@ -48,6 +51,15 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
+	public void queryGcsjNfs(){
+		try {
+			JsonUtils.write(gcsjServer.queryGcsjNfs(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

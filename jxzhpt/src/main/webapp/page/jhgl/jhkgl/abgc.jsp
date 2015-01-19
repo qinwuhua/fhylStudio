@@ -12,13 +12,18 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_abxm.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			abgcxm();
+			var jh={jhnf:null,sbzt:null,spzt:null};
+			var lx={gydw:null,gydwbm:null};
+			sbnf("sbnf");
+			abgcxm(jh,lx);
 		});
 		
 		$(window).resize(function () { 
@@ -55,7 +60,7 @@
         						<span>上报年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;">
+        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
@@ -63,7 +68,7 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -73,7 +78,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="1">一级公路</option>
 									<option value="2">二级公路</option>
@@ -82,7 +87,7 @@
 									<option value="5">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -93,8 +98,8 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span style="vertical-align:middle;">行政区划：</span>
-        						<select name="ddlXMtype" id="ddlXMtype" style="width:80px;vertical-align:middle;">
+        						<span style="vertical-align:middle;">项目状态：</span>
+        						<select name="ddlXMtype" id="ddlXMtype" style="width:80px;vertical-align:middle;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="待上报">待上报</option>
 									<option value="已上报">已上报</option>

@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
-import com.hdsx.jxzhpt.jhgl.server.TreeSelectServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -47,6 +48,18 @@ public class Plan_gcgjController extends BaseActionSupport{
 	public void queryGcgjById(){
 		try {
 			JsonUtils.write(gcgjServer.queryGcgjById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryGcgjNfs(){
+		try {
+			List<TreeNode> queryGcgjNfs = gcgjServer.queryGcgjNfs();
+			System.out.println("年份："+queryGcgjNfs.size());
+			JsonUtils.write(gcgjServer.queryGcgjNfs(),getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

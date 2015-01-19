@@ -10,6 +10,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	public Plan_GcsjServerImpl() {
@@ -36,7 +37,12 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 
 	@Override
 	public Plan_gcsj queryGcsjById(String id) {
-		return null;
+		return queryOne("queryGcsjById", id);
+	}
+
+	@Override
+	public List<TreeNode> queryGcsjNfs() {
+		return queryList("queryGcsjNfs");
 	}
 
 }

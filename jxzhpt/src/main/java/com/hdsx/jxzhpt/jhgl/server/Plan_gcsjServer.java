@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcsjServer {
 	/**
@@ -28,4 +29,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	Plan_gcsj queryGcsjById(String id);
+	
+	/**
+	 * 获取工程升级的年份信息
+	 * @return
+	 */
+	List<TreeNode> queryGcsjNfs();
 }

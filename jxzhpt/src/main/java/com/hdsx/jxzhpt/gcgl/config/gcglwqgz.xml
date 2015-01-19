@@ -87,4 +87,80 @@
 		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
+	<!-- 上传 -->
+	<update id="uploadWqgzFilesgxk" parameterType="gcglwqgz">
+		update PLAN_WQGZ set SGXKWJ=#{tiaojian}
+		where XMK_WQGZ_ID=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgtc" parameterType="gcglwqgz">
+		update PLAN_WQGZ set JGTCWJ=#{tiaojian}
+		where XMK_WQGZ_ID=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgys" parameterType="gcglwqgz">
+		update PLAN_WQGZ set JGYSWJ=#{tiaojian}
+		where XMK_WQGZ_ID=#{jhid}
+	</update>
+	<!-- 下载 -->
+	<select id="downWqgzFile" parameterType="gcglwqgz" resultType="gcglwqgz">
+		select ${tiaojian} tiaojian from PLAN_WQGZ where XMK_WQGZ_ID=#{jhid}
+	</select>
+	<update id="insertWqgzwwg" parameterType="gcglwqgz">
+		update PLAN_WQGZ set WJGYY=#{wjgyy} where XMK_WQGZ_ID=#{jhid}
+	</update>
+	<update id="insertWqgzwg" parameterType="gcglwqgz">
+		update PLAN_WQGZ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where XMK_WQGZ_ID=#{jhid}
+	</update>
+	<update id="insertWqgzkg" parameterType="gcglwqgz">
+		update PLAN_WQGZ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjjgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where XMK_WQGZ_ID=#{jhid}
+	</update>
+	
+	<select id="selectWqgzjhList" parameterType="gcglwqgz" resultType="gcglwqgz">
+select * from (
+select m.*,rownum rn from (
+select 
+t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.XMK_WQGZ_ID jhid,
+t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+t2.qlmc,t2.qlbh,t2.qlzxzh,t2.xzqhmc,t2.xzqhdm,t2.gydw,t2.lxmc,t2.lxbm,t2.qlkd,t2.qlqc,t2.kjzc,t2.dkzdkj,t2.jsdj,t2.pddj,t2.xjgjnd,t2.akjfl,t2.sbjgxs,t2.xmnf,t2.xmtype,t2.ptx,t2.pty,t2.bhnr,t2.bz,
+t3.tzgs,t3.spwh,t3.fapgdw,t3.fascdw,t3.faspsj,t3.jsxz,t3.jsnr,t3.scbz
+from PLAN_WQGZ t1 left join XMK_WQGZ t2 on t1.XMK_WQGZ_ID=t2.id left join SCK_WQGZ t3 on t3.xmkid=t2.id 
+where t1.jgzt='0' and t1.spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			and t2.gydw like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t2.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="qlmc != null and  qlmc != ''">
+			and t2.qlmc like '%'||trim(#{qlmc})||'%'
+	</if>
+	order by t1.sbnf
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	 <select id="selectWqgzjhListCount" parameterType="gcglwqgz" resultType="int">
+	 	select count(*) from PLAN_WQGZ t1  left join XMK_WQGZ t2 on t1.XMK_WQGZ_ID=t2.id left join SCK_WQGZ t3 on t3.xmkid=t2.id 
+	 	where 1=1 and jgzt='0' and spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			and t2.gydw like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t2.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="qlmc != null and  qlmc != ''">
+			and t2.qlmc like '%'||trim(#{qlmc})||'%'
+	</if>
+	 	
+	 </select>
+	 <select id="selectWqgzjhFile" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_WQGZ where XMK_WQGZ_ID=#{jhid}
+	 </select>
+	 
 </mapper>

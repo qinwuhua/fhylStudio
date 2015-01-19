@@ -1,20 +1,39 @@
 var obj=new Object();
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx','灾害防治开工详情','zhfzxx.jsp','wqxx',740,450);
 	//window.open("zhfzxx.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
+
+function kaigong(index){
+	if(confirm("确认开工吗？")){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','灾害防治开工','wqgzkg.jsp','wqxx',650,330);
+	}
 }
+	function wangong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+			YMLib.UI.createWindow('wqxx','灾害防治完工','wqgzwg.jsp','wqxx',500,300);
+		}	
+	function wwangong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','灾害防治未完工','wqgzwwg.jsp','wqxx',400,220);
+	}	
+
+
 function ybsb(){
-	YMLib.UI.createWindow('wqxx1','灾害防治月报上报','zhfzyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb.jsp','wqxx1',1059,450);
 	//window.open("zhfzyb.jsp");
 }
 function AddInfo(){
@@ -63,7 +82,7 @@ function tjzhfzyb(){
 	var data = "gcglzhfz.wc_btz="+$("#tj_wc_btz").val()+"&gcglzhfz.wc_stz="+$("#tj_wc_stz").val()+"&gcglzhfz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglzhfz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglzhfz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglzhfz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglzhfz.bywcgl="+$("#tj_bywcgl").val()+"&gcglzhfz.kgdl="+$("#tj_kgdl").val()+"&gcglzhfz.qksm="+$("#tj_qksm").val()
-	+"&gcglzhfz.sbsj="+sbsj+"&gcglzhfz.sbyf="+sbyf+"&gcglzhfz.jhid="+jhid;
+	+"&gcglzhfz.sbsj="+sbsj+"&gcglzhfz.sbyf="+sbyf+"&gcglzhfz.jhid="+parent.parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -104,19 +123,95 @@ function xgzhfzyb(){
 		}
 	});	
 }
+//
+//开工
+function tjwqgzkg(){
+	var data="gcglzhfz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglzhfz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglzhfz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
+	+"&gcglzhfz.sgdw="+$("#tj_sgdw").val()+"&gcglzhfz.jldw="+$("#tj_jldw").val()+"&gcglzhfz.jsdw="+$("#tj_jsdw").val()
+	+"&gcglzhfz.htje="+$("#tj_htje").val()+"&gcglzhfz.gys="+$("#tj_gys").val()+"&gcglzhfz.jhid="+parent.obj1.jhid;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertZhfzkg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+//完工
+function tjwqgzwg(){
+	var data="gcglzhfz.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglzhfz.jhid="+parent.obj1.jhid;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertZhfzwg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+//未完工
+function tjwqgzwwg(){
+	var data="gcglzhfz.wjgyy="+$("#tj_wjgyy").val()+"&gcglzhfz.jhid="+parent.obj1.jhid;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertZhfzwwg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
 
 function showAll(){
+	var gydw=$("#gydw").combobox("getText");
+	if(gydw=='36'||gydw=='江西省')
+		gydw='';
+	var kgzt=$("#kgzt").combobox("getValue");
+	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'js/zhfz.json',
+	    url:'../../../../gcgl/selectZhfzjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	lxmc:lxmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'开工    '+'删除    '+'<a href="#" onclick="ybsb()">月报上报</a>   '+'完工   '+'未完工   ';
+	        	if(row.kgzt=='1'){
+	        		return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a href="#" onclick="ybsb('+index+')">月报</a>   '+'<a href="#" onclick="wangong('+index+')">完工</a>  '+'<a href="#" onclick="wwangong('+index+')">未完工</a>  ';
+	        	}else
+	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="kaigong('+index+')">开工</a>  ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -124,16 +219,16 @@ function showAll(){
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},
 	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
-	        {field:'zlc',title:'总里程',width:80,align:'center'},
+	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
-	        {field:'jsdj',title:'路线技术等级',width:100,align:'center'},
+	        {field:'lxjsdj',title:'路线技术等级',width:100,align:'center'},
 	    ]]    
 	}); 
 }
 
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectZhfzYbByJhid.do?jhid='+jhid,
+	    url:'../../../../gcgl/selectZhfzYbByJhid.do?jhid='+parent.obj1.jhid,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -166,3 +261,78 @@ function showYBlist(){
 	    ]
 	});
 }
+
+//
+function uploadFile(str){
+	//alert(str);
+	var title='';
+	if(str=='sgxkwj')
+		title='请选择施工许可文件';
+	if(str=='jgtcwj')
+		title='请选择交工通车文件';
+	if(str=='jgyswj')
+		title='请选择完工验收文件';
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : title,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadZhfzFile.do"+'&flag='+'gljsjyhgl%2fzhfz%2fzhfzxx'+'&type='+str+'&jhid='+parent.obj1.jhid,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="../../../../gcgl/downZhfzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+	}
+	else return;
+}
+function deleteFile(str){
+	if(confirm("确认删除吗？")){
+	var data="jhid="+parent.obj1.jhid+"&type="+str;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/deleteZhfzFile.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				location.reload();
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});	
+	}
+}
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectZhfzjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+				if(msg.sgxkwj!=''){
+					$("#xz_sgxkwj").text("下载附件");
+				}
+				if(msg.jgtcwj!=''){
+					$("#xz_jgtcwj").text("下载附件");
+				}
+				if(msg.jgyswj!=''){
+					$("#xz_jgyswj").text("下载附件");
+				}
+			}
+	});	
+}
+

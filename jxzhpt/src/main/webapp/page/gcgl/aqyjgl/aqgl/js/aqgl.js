@@ -7,6 +7,30 @@ function aqglxg(){
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
+
+//
+function tjaqyb(){
+
+//	var data=$("#aqybform").serialize();
+//	alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/addAqyb.do',
+//		data:data,
+		target:'#ifm',
+		dataType:'xml',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#ybgrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+
 function showAll(){
 	$('#datagrid').datagrid({    
 	    url:'js/aqgl.json',

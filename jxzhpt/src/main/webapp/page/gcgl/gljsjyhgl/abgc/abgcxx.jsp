@@ -5,23 +5,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>安保工程开工详情</title>
-<link
-	href="${pageContext.request.contextPath}/css/searchAndNavigation.css"
-	type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="js/abgc.js"></script>
+<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+<script type="text/javascript" src="js/abgc.js"></script>
 <script type="text/javascript"> 
-
+$(function(){
+	var data=parent.obj1;
+	$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#gydw").text(data.gydw);$("#qdzh").text(data.qdzh);$("#zdzh").text(data.zdzh);$("#qzlc").text(data.qzlc);
+	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#lxjsdj").text(data.lxjsdj);$("#xjgjnd").text(data.xjgjnd);
+	$("#yhlc").text(data.yhlc);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
+	$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);
+	$("#tzgs").text(data.tzgs);$("#spwh").text(data.spwh);$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);
+	$("#faspsj").text(data.faspsj);$("#jsxz").text(data.jsxz);$("#jsnr").text(data.jsnr);$("#scbz").text(data.scbz);
+	$("#sbnf").text(data.sbnf);$("#jhkgsj").text(data.jhkgsj);$("#jhwgsj").text(data.jhwgsj);$("#sjdw").text(data.sjdw);$("#sjpfdw").text(data.sjpfdw);$("#pfwh").text(data.pfwh);$("#pfsj").text(data.pfsj);$("#pfztz").text(data.pfztz);
+	$("#jhsybzje").text(data.jhsybzje);$("#jhsydfzcje").text(data.jhsydfzcje);$("#sfsqablbz").text(data.sfsqablbz);$("#ablbzsqwh").text(data.ablbzsqwh);
+	$("#jhbz").text(data.jhbz);$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);
+	$("#yjjgsj").text(data.yjjgsj);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#jsdw").text(data.jsdw);
+	$("#gys").text(data.gys);$("#htje").text(data.htje);$("#sjwgsj").text(data.sjwgsj);$("#jhbz").text(data.jhbz);	
+	if(data.gkbgmc!=''){
+		$("#xz_gkbg").text("下载附件");
+	}
+	if(data.sjsgtmc!=''){
+		$("#xz_sjsgt").text("下载附件");
+	}
+	var data1="jhid="+data.jhid;
+	jiazai(data1);
+});
 </script>
 <style type="text/css">
 a {
@@ -30,18 +46,7 @@ a {
 </style>
 </head>
 <body style="margin: 0 0 0 0">
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0"
-			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
-			cellpadding="0">
-
-			<tr>
-				<td height="45" align="left"
-					background="${pageContext.request.contextPath}/images/jt.jpg"
-					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-					安保工程施工过程信息</td>
-			</tr>
-		</table>
+	<div style="text-align: left; font-size: 12px; margin: 5px;">
 		<table width="97%" border="0"
 			style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;"
 			cellspacing="0" cellpadding="0">
@@ -56,21 +61,21 @@ a {
 					路线名称</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="LXMC">庆新-黄沙</span>
+					<span id="lxmc"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					路线编码</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="LXBH">X048</span>
+					<span id="lxbh"></span>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					管养单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="GYDW">南昌市新建县交通局</span>
+					<span id="gydw"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -79,21 +84,21 @@ a {
 					起点桩号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="QDZH">38.123</span>
+					<span id="qdzh"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					止点桩号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="ZDZH">51.475</span>
+					<span id="zdzh"></span>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					总里程</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="QZLC">13.352</span> 公里
+					<span id="qzlc"></span> 公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -102,21 +107,21 @@ a {
 					行政区划代码</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="XZQHDM">360122</span>
+					<span id="xzqhdm"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					行政区划名称</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="XZQHMC">南昌市新建县</span>
+					<span id="xzqhmc"></span>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					修建/改建年度</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="GJXJND">2000</span>
+					<span id="gjxjnd"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -125,21 +130,21 @@ a {
 					路线技术等级</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSDJ">四级公路</span> &nbsp;
+					<span id="lxjsdj"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					隐患里程</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="YHLC">13.352</span> 公里
+					<span id="yhlc"></span> 公里
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					特殊地区</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblTSDQ">ceshi</span>&nbsp;
+					<span id="tsdq"></span>&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -148,14 +153,14 @@ a {
 					项目年份</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="XMNF">2013</span>&nbsp;
+					<span id="xmnf"></span>&nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					项目状态</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="XMTYPE">大修</span> &nbsp;
+					<span id="xmtype"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
@@ -170,7 +175,7 @@ a {
 					隐患内容</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="YHNR">标志标线、波形护栏等</span>
+					<span id="yhnr"></span>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -179,67 +184,35 @@ a {
 					备&nbsp;&nbsp;&nbsp; 注</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="REMARKS"></span>&nbsp;
+					<span id="bz"></span>&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					安保工程项目审查信息</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					起点桩号</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="SCQDZH">38.123</span>
-				</td>
-				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					止点桩号</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SCZDZH">51.475</span>
-				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					总里程</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="SCZLC">13.352</span> 公里
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					隐患里程</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="SCYHLC">13.352</span>公里
-				</td>
-			</tr>
+			</tr>			
 			<tr style="height: 30px;">
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案评估单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="FAPGDW">无</span>
+					<span id="fapgdw"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					方案审查单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="FASCDW">无</span>
+					<span id="fascdw"></span>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案审批时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="FASPSJ">2013/3/3</span>
+					<span id="faspsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -248,21 +221,21 @@ a {
 					审批文号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SPWH">无</span>
+					<span id="spwh"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					投资估算</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="TZGS">75.00</span> 万元
+					<span id="tzgs"></span> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设性质</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="JSXZ">大修</span>
+					<span id="jsxz"></span>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -271,7 +244,7 @@ a {
 					建设内容</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="JSNR">防护栏、减速带、警示标志等</span>
+					<span id="jsnr"></span>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -280,125 +253,124 @@ a {
 					备&nbsp;&nbsp;&nbsp; 注</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="SCREMARKS"></span> &nbsp;
+					<span id="scbz"></span> &nbsp;
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+				<tr style="height: 25px;">
 				<td colspan="6"
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安保工程建议计划信息</td>
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 16%; padding-left: 10px;">
+					安保工程项目计划信息</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					上报年份</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="JHNF">2013</span>
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sbnf"></span>&nbsp;
 				</td>
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					计划开工时间</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="JHKGSJ">2013-03-08</span>
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="jhkgsj"></span>&nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					计划完工时间</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="JHWGSJ">2013-10-21</span>
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="jhwgsj"></span>&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					计划完成</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="lblJHWC_C">20</span> 处&nbsp; &nbsp;
-				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					设计单位</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="SJDW">无</span> &nbsp;
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sjdw"></span>
 				</td>
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					设计批复单位</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sjpfdw"></span>
+				</td>
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					&nbsp;</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
 					&nbsp;</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					设计批复单位</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SJPFDW">无</span>
-				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					批复文号</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="PFWH">无</span> &nbsp;
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="pfwh"></span> &nbsp;
 				</td>
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					批复时间</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="PFSJ">2013-02-24</span>
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="pfsj"></span>&nbsp;
 				</td>
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					&nbsp;</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					&nbsp;</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					批复总投资</td>
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					批复投资</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="PFZTZ">75.00</span> 万元
-				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					计划使用部补助金额</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="JHSYBBZJE">45.00</span> 万元
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="pfztz"></span>万元
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					计划使用地方自筹资金</td>
+					计划使用部补助金额</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="JHSYDFZCZJ">30.00</span> 万元
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					&nbsp;<span id="jhsybzje"></span>万元
+				</td>
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					计划使用地方补助金额</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					&nbsp;<span id="jhsydfzcje"></span>万元
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					是否申请按比例补助</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SFSQABLBZ">否</span>
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sfsqablbz"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					按比例补助申请文号</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="ABLBZSQWH">无</span> &nbsp;
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="ablbzsqwh"></span> &nbsp;
 				</td>
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					&nbsp;</td>
 				<td
-					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
 					&nbsp;</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -407,209 +379,212 @@ a {
 					工可报告</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblGKBG_XZ">暂无附件！</span> <a
-					onclick="return CheckFJ(this.innerText);" id="btnGKBG_GK"
-					href="javascript:__doPostBack('btnGKBG_GK','')"
-					style="color: #2C7ED1;"></a>
+					<a
+					onclick="uploadFile1('gkbg')" id="xz_gkbg"
+					href="#" 
+					style="color: #2C7ED1;">暂无附件</a>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
 					设计施工图</td>
 				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="lblSJSGT_XZ">暂无附件！</span> <a
-					onclick="return CheckFJ(this.innerText);" id="btnSJSGT_SG"
-					href="javascript:__doPostBack('btnSJSGT_SG','')"
-					style="color: #2C7ED1;"></a>
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					 <a
+					onclick="uploadFile1('sjsgt');" id="xz_sjsgt"
+					href="#"
+					style="color: #2C7ED1;">暂无附件</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
 				<td
-					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px; border-bottom: 1px solid #C0C0C0;">
-					备&nbsp;&nbsp;&nbsp; 注</td>
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
+					class="style1">备&nbsp;&nbsp;&nbsp; 注</td>
 				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px; border-bottom: 1px solid #C0C0C0;">
-					<span id="JHREMARKS"></span> &nbsp;
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
+					<span id="jhbz"></span>
 				</td>
 			</tr>
-			<tbody id="YKG">
-				<tr style="height: 25px;">
-					<td colspan="6"
-						style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						安保工程项目开工信息</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						计划下达时间</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="YKGXDSJ">2013-04-07</span>
-					</td>
-					<td
-						style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						实际开工时间</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="YKGSJKGSJ">2013-05-07</span> &nbsp;
-					</td>
-					<td
-						style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						预计完工时间</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						<span id="YKGYJWGSJ">2013-11-07</span> &nbsp;
-					</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						施工单位</td>
-					<td
-						style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="YKGSGDW">不详</span>&nbsp;
-					</td>
-					<td
-						style="border-bottom: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						监理单位</td>
-					<td
-						style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="YKGJLDW">不详</span> &nbsp;
-					</td>
-					<td
-						style="border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						建设单位</td>
-					<td
-						style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						<span id="lblJSDW">不详</span>
-					</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						合同金额（万元）</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="YKGHTJE">75.00</span>
-					</td>
-					<td
-						style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						概预算（万元）</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<span id="GYS">75.00</span>
-					</td>
-					<td
-						style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						&nbsp;</td>
-					<td
-						style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						&nbsp;</td>
-				</tr>
-				<tr style="height: 25px;">
-					<td colspan="6"
-						style="border-style: solid none solid solid; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						安保工程项目进展信息</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						施工许可文件</td>
-					<td colspan="5"
-						style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						<div id="divSGXK_TJ">
-							<table width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td align="left" nowrap="nowrap" style="width: 50%;"><span
-										id="lblSGXKWJ">暂无附件</span> <a
-										onclick="return CheckFJ(this.innerText);" id="btnSGXKWJ"
-										href="javascript:__doPostBack('btnSGXKWJ','')"
-										style="color: #2C7ED1;"></a></td>
-									<td align="left">
-										<table>
-											<tr>
-												<td><a onclick="return toDialogRoad('SGXK');"
-													id="btnUpdate_SGXK"
-													href="javascript:__doPostBack('btnUpdate_SGXK','')"
-													style="color: #2C7ED1;">上传</a></td>
-												<td>&nbsp;|&nbsp;</td>
-												<td></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						交工通车文件</td>
-					<td colspan="5"
-						style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						<div id="div1">
-							<table width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td align="left" nowrap="nowrap" style="width: 50%;"><span
-										id="lblJGTCWJ">暂无附件</span> <a
-										onclick="return CheckFJ(this.innerText);" id="btnJGTCWJ"
-										href="javascript:__doPostBack('btnJGTCWJ','')"
-										style="color: #2C7ED1;"></a></td>
-									<td align="left">
-										<table>
-											<tr>
-												<td><a onclick="return toDialogRoad('JGTC');"
-													id="btnUpdate_JGTC"
-													href="javascript:__doPostBack('btnUpdate_JGTC','')"
-													style="color: #2C7ED1;">上传</a></td>
-												<td>&nbsp;|&nbsp;</td>
-												<td></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</td>
-				</tr>
-				<tr style="height: 30px;">
-					<td
-						style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-						完工验收文件</td>
-					<td colspan="5"
-						style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-						<div id="div3">
-							<table width="100%" cellpadding="0" cellspacing="0">
-								<tr>
-									<td align="left" nowrap="nowrap" style="width: 50%;"><span
-										id="wgyswj">暂无附件</span> <a
-										onclick="return CheckFJ(this.innerText);" id="btnJGYSWJ"
-										href="javascript:__doPostBack('btnJGYSWJ','')"
-										style="color: #2C7ED1;"></a></td>
-									<td align="left">
-										<table>
-											<tr>
-												<td><a onclick="return toDialogRoad('JGYS');"
-													id="btnUpdate_JGYS"
-													href="javascript:__doPostBack('btnUpdate_JGYS','')"
-													style="color: #2C7ED1;">上传</a></td>
-												<td>&nbsp;|&nbsp;</td>
-												<td></td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-			<tbody id="KG" style="display: none">
-			</tbody>
-			<tbody id="YBSB" style="display: none">
+			<tr style="height: 25px;">
+				<td colspan="6"
+					style="border-style: solid none solid solid; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 16%; padding-left: 10px;">
+					安保工程项目开工信息</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					计划下达时间</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="xdsj"></span>
+				</td>
+				<td
+					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					实际开工时间</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sjkgsj"></span>
+				</td>
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					预计完工时间</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="yjjgsj"></span>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					施工单位</td>
+				<td
+					style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sgdw"></span>
+				</td>
+				<td
+					style="border-bottom: 1px solid #C0C0C0; border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					监理单位</td>
+				<td
+					style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="jldw"></span>
+				</td>
+				<td
+					style="border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					建设单位</td>
+				<td
+					style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="jsdw"></span>&nbsp;
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					合同金额（万元）</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="htje"></span>&nbsp;
+				</td>
+				<td
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					概预算（万元）</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="gys"></span>&nbsp;
+				</td>
+				<td
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					&nbsp;</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					&nbsp;</td>
+			</tr>
+			<tr style="height: 25px;">
+				<td colspan="6"
+					style="border-style: solid none solid solid; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 16%; padding-left: 10px;">
+					安保工程项目进展信息</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
+					class="style5">施工许可文件</td>
+				<td colspan="5"
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"
+					class="style6">
+					<div id="sgxkwj">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center" nowrap="nowrap" style="width: 50%;"> <a
+									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
+									href="#"
+									style="color: #2C7ED1;">暂无附件</a></td>
+								<td align="left">
+									<table>
+										<tr>
+											<td><a onclick="uploadFile('sgxkwj')"
+												id="sc_sgxkwj"
+												href="#"
+												style="color: #2C7ED1;">上传</a></td>
+											<td>&nbsp;|&nbsp;</td>
+											<td><a onclick="deleteFile('sgxkwj')"
+												href="#"
+												style="color: #2C7ED1;">删除</a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
+					class="style2">交工通车文件</td>
+				<td colspan="5"
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"
+					class="style3">
+					<div id="div1">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center" nowrap="nowrap" style="width: 50%;"><a
+									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
+									href="#"
+									style="color: #2C7ED1;">暂无附件</a></td>
+								<td align="left">
+									<table>
+										<tr>
+											<td><a onclick="uploadFile('jgtcwj')"
+												id="sc_jgtcwj"
+												href="#"
+												style="color: #2C7ED1;">上传</a></td>
+											<td>&nbsp;|&nbsp;</td>
+											<td><a onclick="deleteFile('jgtcwj')"
+												
+												href="#"
+												style="color: #2C7ED1;">删除</a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
+					class="style2">完工验收文件</td>
+				<td colspan="5"
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;"
+					class="style3">
+					<div id="div3">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="center" nowrap="nowrap" style="width: 50%;"><a
+									onclick="downFile('jgyswj')" id="xz_jgyswj"
+									href="#"
+									style="color: #2C7ED1;">暂无附件</a></td>
+								<td align="left">
+									<table>
+										<tr>
+											<td><a onclick="uploadFile('jgyswj')"
+												id="sc_jgyswj"
+												href="#"
+												style="color: #2C7ED1;">上传</a></td>
+											<td>&nbsp;|&nbsp;</td>
+											<td><a onclick="deleteFile('jgyswj')"
+											
+												href="#"
+												style="color: #2C7ED1;">删除</a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			</tr>
 			</tbody>
 		</table>
 

@@ -273,12 +273,13 @@
 				<td align="center">
 					<table>
 						<tr>
-							<td><img id="imgAdd" onClick="AddInfo()"
-								onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'"
-								alt="添加"
-								onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
-								src="${pageContext.request.contextPath}/images/Button/tianj1.gif"
-								style="border-width: 0px; cursor: hand;" /></td>
+							<td>
+								<a href="javascript:openZjxd('zjxd','资金下达','../zjxd/zjxd.jsp','800','250')"">
+									<img id="imgAdd"   onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加"
+										onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
+										src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width: 0px; cursor: hand;" />
+								</a>
+							</td>
 							<td><a href="javascript:void(0)" onclick="Return()"> <img
 									src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF"
 									alt="返回"
@@ -292,5 +293,6 @@
 			</tr>
 		</table>
 	</div>
+	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
 </body>
 </html>

@@ -36,7 +36,14 @@ public class Jckabgc implements Serializable{
 	private Date shsj;
 	private String shbm;
 	private String bz;
+	private String tsqhbm;
 	
+	public String getTsqhbm() {
+		return tsqhbm;
+	}
+	public void setTsqhbm(String tsqhbm) {
+		this.tsqhbm = tsqhbm;
+	}
 	private int page;
 	private int rows;
 	public String getId() {

@@ -1,8 +1,11 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 
 public interface JckwqgzServer {
 	boolean insertWqgz(Jckwqgz wqgz);
@@ -15,7 +18,11 @@ public interface JckwqgzServer {
 	boolean deleteWqgzById(String delstr);
 	boolean xgJckWqgzShzt(Jckwqgz wqgz);
 	boolean xgJckWqgzSbzt(String delstr);
+	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
+	boolean importWqgz(List<Map> data);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
 	boolean xgJckWqgzTH(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
+	boolean onceWqgz(Jckwqgz wqgz);
 }

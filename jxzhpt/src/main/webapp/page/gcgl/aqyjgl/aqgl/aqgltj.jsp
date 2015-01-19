@@ -46,6 +46,7 @@ a:active {
                 <tr>
                     <td>
                         <br />
+                        <form id="aqybform" action="" enctype="multipart/form-data" method="post"  target="ifm">
                         <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
@@ -57,8 +58,8 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                                    <select>
-                                    	<option>江西省</option>
+                                    <select id="tj_sendingunits" name="gcglaqyb.sendingunits">
+                                    	<option value="江西省">江西省</option>
                                     </select>
                                 </td>
                             </tr>
@@ -70,7 +71,7 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input type="text"/>
+                                <input type="text" id="tj_filename" name="gcglaqyb.filename"/>
                                 </td>
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -79,7 +80,7 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                   <input type="text" id="whtj">
+                                   <input type="text" id="tj_wenhao" name="gcglaqyb.wenhao">
                                 </td>
                                 
                             </tr>
@@ -91,7 +92,7 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                   <input type="text"/>
+                                   <input type="text" id="tj_reportmonth" name="gcglaqyb.reportmonth"/>
                                 </td>
                                  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -100,7 +101,7 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                   <input type="file" >
+                                   <input type="file"  name="upload" id="upload">
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
@@ -111,7 +112,7 @@ a:active {
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                                  <textarea rows="" cols="60"></textarea>
+                                  <textarea rows="" cols="60" id="tj_remark" name="gcglaqyb.remark"></textarea>
                                 </td>
                             </tr>
                        
@@ -121,12 +122,14 @@ a:active {
                             cellspacing="0" cellpadding="0">
                             <tr style="height: 30px;">
                                 <td align="center">
-                                    <input type="image" name="btnAdd" id="btnAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" src="${pageContext.request.contextPath}/images/Button/baocun1.gif" style="border-width:0px;" />
+                                    <input type="image" name="btnAdd" id="btnAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" src="${pageContext.request.contextPath}/images/Button/baocun1.gif" style="border-width:0px;" onclick="tjaqyb()"/>
                                     &nbsp;
                                     <input onclick="closes('wqxx')" type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" style="border-width:0px;" />
                                 </td>
                             </tr>
                         </table>
+                      </form>
+                      <iframe id='ifm' name='ifm' style="display:none"/>
                     </td>
                 </tr>
             </table>

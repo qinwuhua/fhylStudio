@@ -1,8 +1,11 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 
 public interface JckabgcServer {
 	boolean insertAbgc(Jckabgc abgc);
@@ -18,4 +21,8 @@ public interface JckabgcServer {
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);
 	boolean xgJckAbgcTH(Jckabgc abgc);
+	boolean importAbgc(List<Map> list);
+	List<SjbbMessage> exportExcel_abgc(Jckabgc jckabgc);
+	List<SjbbMessage> exportExcel_abgc_sh(Jckabgc jckabgc);
+	boolean onceAbgc(Jckabgc abgc);
 }

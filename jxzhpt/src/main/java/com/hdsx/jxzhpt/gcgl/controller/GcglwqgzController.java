@@ -1,9 +1,19 @@
 package com.hdsx.jxzhpt.gcgl.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -12,7 +22,6 @@ import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -27,10 +36,60 @@ public class GcglwqgzController extends BaseActionSupport{
 	private static final long serialVersionUID = 1L;
 	private int page = 1;
 	private int rows = 10;
+	private String fileuploadFileName;
+	private File fileupload;
+	private String type;
 	@Resource(name = "gcglwqgzServerImpl")
 	private GcglwqgzServer gcglwqgzServer;
 	
-	private Gcglwqgz gcglwqgz;
+	private String gydw;
+	private String kgzt;
+	private String lxmc;
+	private String qlmc;
+	
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getQlmc() {
+		return qlmc;
+	}
+	public void setQlmc(String qlmc) {
+		this.qlmc = qlmc;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
+	}
+	private Gcglwqgz gcglwqgz=new Gcglwqgz();
 	private String jhid;
 	
 	public String getJhid() {
@@ -156,4 +215,162 @@ public class GcglwqgzController extends BaseActionSupport{
 				ResponseUtils.write(getresponse(), "false");
 			}
 		}
+		
+		public void uploadWqgzFile(){
+			HttpServletResponse response = ServletActionContext.getResponse();
+			String jhid1=jhid;
+			String type1=type;
+			gcglwqgz.setJhid(jhid);
+			gcglwqgz.setTiaojian(type);
+			Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
+			System.out.println(gcglwqgz1);
+			if(gcglwqgz1!=null)
+			if(gcglwqgz1.getTiaojian()!=""||gcglwqgz1.getTiaojian()!=null){
+				try {
+					response.getWriter().print("附件已存在，导入失败");
+					return;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			File dir = new File(realPath+"upload\\");
+			fileuploadFileName=new Date().getTime()+"-"+fileuploadFileName;
+			if (!dir.exists())
+				dir.mkdir();//创建文件夹
+
+			try {
+				FileUtils.copyFile(fileupload, new File(realPath+"upload\\"+fileuploadFileName));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String tiaojian=fileuploadFileName;
+			
+			gcglwqgz.setTiaojian(tiaojian);
+			gcglwqgz.setJhid(jhid1);
+			
+			boolean bl = false;
+			if("sgxkwj".equals(type1))
+				bl=gcglwqgzServer.uploadWqgzFilesgxk(gcglwqgz);
+			if("jgtcwj".equals(type1))
+				bl=gcglwqgzServer.uploadWqgzFilejgtc(gcglwqgz);
+			if("jgyswj".equals(type1))
+				bl=gcglwqgzServer.uploadWqgzFilejgys(gcglwqgz);
+			try {
+				if(bl)
+				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入成功");
+				else
+				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入失败");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		public void downWqgzFile() throws IOException{
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("octets/stream");
+			gcglwqgz.setJhid(jhid);
+			gcglwqgz.setTiaojian(type);
+			Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename=gcglwqgz1.getTiaojian();
+			
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.substring(14, filename.length()).getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+"upload\\"+gcglwqgz1.getTiaojian());
+			FileInputStream fis= new FileInputStream(file);
+			//byte [] arr = new byte[1024*10];
+			int i=0;
+			while((i=fis.read())!=-1){
+				out.write(i);
+			}
+			fis.close();
+			out.flush();
+			out.close();
+		}
+		public void insertWqgzkg(){
+			Boolean bl=gcglwqgzServer.insertWqgzkg(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void insertWqgzwg(){
+			Boolean bl=gcglwqgzServer.insertWqgzwg(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		public void insertWqgzwwg(){
+			Boolean bl=gcglwqgzServer.insertWqgzwwg(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
+		//查询jihua
+		public void selectWqgzjhList(){
+			Gcglwqgz gcglwqgz=new Gcglwqgz();
+			gcglwqgz.setPage(page);
+			gcglwqgz.setRows(rows);
+			gcglwqgz.setJhid(jhid);
+			gcglwqgz.setGydw(gydw);
+			gcglwqgz.setKgzt(kgzt);
+			gcglwqgz.setQlmc(qlmc);
+			gcglwqgz.setLxmc(lxmc);
+			int count=gcglwqgzServer.selectWqgzjhListCount(gcglwqgz);
+			List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
+			EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}		
+	public void selectWqgzjhFile(){
+		gcglwqgz.setJhid(jhid);
+		Gcglwqgz g= gcglwqgzServer.selectWqgzjhFile(gcglwqgz);
+		try {
+			JsonUtils.write(g, getresponse().getWriter());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteWqgzFile(){
+		
+		gcglwqgz.setJhid(jhid);
+		gcglwqgz.setTiaojian(type);
+		Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
+		String realPath = ServletActionContext.getServletContext().getRealPath("/");
+		String filename=gcglwqgz1.getTiaojian();
+		gcglwqgz.setTiaojian("");		
+		boolean bl = false;
+		if("sgxkwj".equals(type))
+			bl=gcglwqgzServer.uploadWqgzFilesgxk(gcglwqgz);
+		if("jgtcwj".equals(type))
+			bl=gcglwqgzServer.uploadWqgzFilejgtc(gcglwqgz);
+		if("jgyswj".equals(type))
+			bl=gcglwqgzServer.uploadWqgzFilejgys(gcglwqgz);
+		if(bl){
+			File file=new File(realPath+"upload\\"+filename);
+			file.delete();
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+		
+	}
 }

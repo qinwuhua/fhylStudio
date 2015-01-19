@@ -26,9 +26,6 @@
 			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
-		$(window).resize(function () { 
-			$('#datagrid').datagrid('resize'); 
-		});
 	</script>
 	<style type="text/css">
 <!--
@@ -70,13 +67,13 @@ a:active {
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
         						<span>路线：</span>
-        							<input type="text" id="lx" >
+        							<input type="text" id="lxmc" >
         						<span>桥梁：</span>
-        							<input type="text" id="ql" >
+        							<input type="text" id="qlmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>

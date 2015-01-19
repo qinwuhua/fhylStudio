@@ -31,6 +31,12 @@ public class Plan_lx_gcgj {
 	public String getTsdqbm() {
 		return tsdqbm;
 	}
+	public String getGydwbm() {
+		return gydwbm;
+	}
+	public void setGydwbm(String gydwbm) {
+		this.gydwbm = gydwbm;
+	}
 	public void setTsdqbm(String tsdqbm) {
 		this.tsdqbm = tsdqbm;
 	}
@@ -88,12 +94,6 @@ public class Plan_lx_gcgj {
 	}
 	public void setGydw(String gydw) {
 		this.gydw = gydw;
-	}
-	public String getGydwbm() {
-		return gydwbm;
-	}
-	public void setGydwbm(String gydwbm) {
-		this.gydwbm = gydwbm;
 	}
 	public String getBhnr() {
 		return bhnr;

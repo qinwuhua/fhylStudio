@@ -3,52 +3,15 @@
  * @param id
  */
 function gydwComboxTree(id){
-	$('#'+id).combotree({
-		animate:true,
-		url:"../../../jhgl/queryGydwByparent.do",
-		onBeforeExpand:function(node){
-			var children = $('#'+id).combotree("tree").tree("getChildren",node.target);
-			if(children.length<=0){
-				$.ajax({
-					type:'post',
-					url:'../../../jhgl/queryGydwByparent.do',
-					data:'parentId='+node.id,
-					dataType:'json',
-					async:false,
-					success:function(data){
-						$('#'+id).combotree("tree").tree("append",{parent:node.target,data:data});
-					}
-				});
-			}
-		}
-	});
+	loadUnit(id,$.cookie("unit"));
 }
-
 /**
  * 行政区划下拉框
  * @param id
  */
 function xzqhComboxTree(id){
-	loadUnit(id,$.cookie("unit"));
-//	$('#'+id).combotree({
-//		animate:true,
-//		url:"../../../jhgl/queryXzqhByParent.do",
-//		onBeforeExpand:function(node){
-//			var children = $('#'+id).combotree("tree").tree("getChildren",node.target);
-//			if(children.length<=0){
-//				$.ajax({
-//					type:'post',
-//					url:'../../../jhgl/queryXzqhByParent.do',
-//					data:'parentId='+node.id,
-//					dataType:'json',
-//					async:false,
-//					success:function(data){
-//						$('#'+id).combotree("tree").tree("append",{parent:node.target,data:data});
-//					}
-//				});
-//			}
-//		}
-//	});
+	
+	loadDist(id,"360000");
 }
 
 function AddWqgz(){
@@ -80,6 +43,18 @@ function openDialog(id,title,href){
 		href:href,
 		width : 1000,
 		height : 500,
+		closed : true,
+		cache : false,
+		maximizable:true,
+		modal : true
+	}).dialog("setTitle",title).dialog("open");
+}
+function openZjxd(id,title,href,width,height){
+	$('#'+id).dialog({
+		iconCls : 'icon-edit',
+		href:href,
+		width : width,
+		height : height,
 		closed : true,
 		cache : false,
 		maximizable:true,

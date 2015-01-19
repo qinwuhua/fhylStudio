@@ -467,5 +467,8 @@
             </tr>
 		</table>
 	</div>
+	<script type="text/javascript">
+		queryAbgc(xxId);
+	</script>
 </body>
 </html>

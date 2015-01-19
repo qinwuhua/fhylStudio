@@ -19,6 +19,7 @@
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj" alias="gcglgcgzgj"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj" alias="gcglgcgzsj"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglhsly" alias="gcglhsly"/>
+      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb" alias="gcglaqyb"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
@@ -33,7 +34,15 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj" alias="plan_gcsj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj" alias="plan_lx_gcsj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_abgc" alias="plan_abgc"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz" alias="plan_zhfz"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz" alias="plan_wqgz"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_shuih" alias="plan_shuih"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih" alias="plan_lx_shuih"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd" alias="plan_lzjxd"/>
      <!-- rh -->
+     <!-- chc -->
+     <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
   </typeAliases>
   <environments default="jdbc">
      <environment id="jdbc">
@@ -70,6 +79,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzgj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglhsly.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglaqyb.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckabgc.xml"/>
@@ -82,6 +92,11 @@
 	<!-- rh -->
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcsj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_abgc.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zhfz.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_wqgz.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_shuih.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjxd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
   </mappers>
