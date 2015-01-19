@@ -54,7 +54,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(3,14,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;

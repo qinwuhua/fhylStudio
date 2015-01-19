@@ -237,10 +237,13 @@
 			and akjfl like #{akjfl}||'%'
 		</if>
 	</select>
-	<select id="insertToSheet" resultType="sjbb">
+	<select id="insertToSheet" resultType="sjbb" parameterType="String">
 		select
 		qlbh v_0,qlmc v_1,qlzxzh v_2,qlqc v_3,qlkd v_4
 		from xmk_wqgz where sbzt='已上报'
+		<!-- <if test="xzqhdm!='' and xzqhdm!= null ">
+			and xzqhdm like '%'||(#{xzqhdm})||'%'
+		</if> -->
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into

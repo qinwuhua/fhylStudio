@@ -122,7 +122,8 @@ function exportModule(filename){
 }
 //审查库模板导出
 function exportModule_sc(filename){
-	window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
+	YMLib.UI.createWindow('exportChooseDw','按单位导出模板','../chooseDw.jsp?filename='+filename,'exportChooseDw',400,300);
+	//window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
 }
 //危桥改造导出excel 
 function exportExcel_wqgz(){

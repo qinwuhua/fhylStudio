@@ -19,6 +19,6 @@ public interface SckzhfzServer {
 		boolean xgSckZhfzShzt(Sckzhfz zhfz);
 		List<SjbbMessage> exportExcel_zhfz_scsh(Sckzhfz zhfz);
 		List<SjbbMessage> exportExcel_zhfz_scgl(Sckzhfz zhfz);
-		List<SjbbMessage> insertToSheet();
+		List<SjbbMessage> insertToSheet(String xzqhdm);
 		boolean importZhfz_sc(List<Map> list);
 }

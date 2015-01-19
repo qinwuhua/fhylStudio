@@ -202,10 +202,13 @@
 		and lxbm like #{lxbm}||'%'
 	</if>
  </select>
-  <select id="insertToSheet" resultType="sjbb">
+  <select id="insertToSheet" resultType="sjbb" parameterType="String">
  	select 
  	xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,zlc v_6,yhlc v_7,gjxjnd v_8
  	from xmk_abgc where sbzt='已上报'
+ 	<!-- <if test="xzqhdm!='' and xzqhdm!= null ">
+		and xzqhdm like '%'||(#{xzqhdm})||'%'
+	</if> -->
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap">
  	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)

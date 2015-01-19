@@ -27,7 +27,8 @@ public class ExcelReader {
     private static HSSFWorkbook wb;
     private static HSSFSheet sheet;
     private static HSSFRow row;
-
+    private static int startCol;
+    public static int colnum;
     /**
      * 读取Excel表格表头的内容
      * @param InputStream
@@ -64,8 +65,9 @@ public class ExcelReader {
      * @throws IllegalAccessException 
      * @throws InstantiationException 
      */
-    public  static List<Map>[] readExcelContent(InputStream is,Class clazz) {
-        
+    public  static List<Map>[] readExcelContent(int start,int cols,InputStream is,Class clazz) {
+    	startCol=start;
+    	colnum=cols;
         List<Map>[] excelContent = new ArrayList[5];
         String str = "";
         try {
@@ -92,24 +94,24 @@ public class ExcelReader {
         // 得到总行数
         int rowNum = sheet.getLastRowNum()-1;
         row = sheet.getRow(2);
-        int colNum;
+        /*int colNum=colnum;
         try{
         	 colNum = row.getPhysicalNumberOfCells();
         	 System.out.println("colNum========="+colNum);
-        	 /*if(colNum!=31 && colNum!=20){
+        	 if(colNum!=31 && colNum!=20){
         		 Exception1 e=new Exception1();
         		 throw e;
-        	 }*/
+        	 }
         }catch(NullPointerException e){
         	System.out.println("表格到此没有数据");
         	return null;
-        }
+        }*/
         // 正文内容应该从第二行开始,第一行为表头的标题
-        for (int i = 3; i <= rowNum; i++) {
+        for (int i = startCol; i <= rowNum; i++) {
             row = sheet.getRow(i);
             int j = 0;
             Map<String,Object> m = new HashMap<String,Object>();
-            while (j < colNum) {
+            while (j < colnum) {
             	try {
 					Object object = clazz.newInstance();
 				} catch (Exception e) {

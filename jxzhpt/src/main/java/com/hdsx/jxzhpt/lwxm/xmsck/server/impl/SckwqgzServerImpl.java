@@ -126,8 +126,8 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public List<SjbbMessage> insertToSheet() {
-		return this.queryList("insertToSheet");
+	public List<SjbbMessage> insertToSheet(String xzqhdm) {
+		return this.queryList("insertToSheet",xzqhdm);
 	}
 
 	@Override

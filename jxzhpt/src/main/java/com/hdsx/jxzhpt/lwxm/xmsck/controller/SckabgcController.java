@@ -55,7 +55,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
