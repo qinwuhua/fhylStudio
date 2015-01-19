@@ -103,6 +103,14 @@
 	<action name="deleteGcgzgjCgs" class="gcglgcgzgjController" method="deleteGcgzgjCgs"/>
 	<action name="selectGcgzgjCgsList" class="gcglgcgzgjController" method="selectGcgzgjCgsList"/>
 	
+	<action name="uploadGcgzgjFile" class="gcglgcgzgjController" method="uploadGcgzgjFile"/>
+	<action name="downGcgzgjFile" class="gcglgcgzgjController" method="downGcgzgjFile"/>
+	<action name="insertGcgzgjkg" class="gcglgcgzgjController" method="insertGcgzgjkg"/>
+	<action name="insertGcgzgjwg" class="gcglgcgzgjController" method="insertGcgzgjwg"/>
+	<action name="insertGcgzgjwwg" class="gcglgcgzgjController" method="insertGcgzgjwwg"/>
+	<action name="selectGcgzgjjhList" class="gcglgcgzgjController" method="selectGcgzgjjhList"/>
+	<action name="selectGcgzgjjhFile" class="gcglgcgzgjController" method="selectGcgzgjjhFile"/>
+	<action name="deleteGcgzgjFile" class="gcglgcgzgjController" method="deleteGcgzgjFile"/>
 	
 	<!-- gcgzsj -->
 	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>
