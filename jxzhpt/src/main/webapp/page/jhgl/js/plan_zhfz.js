@@ -300,6 +300,54 @@ function zhfzxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
+function queryZhfzById(xxId){
+	$('#lxmc').html();
+	$('#lxbm').html();
+	$('#gydw').html();
+	$('#qdzh').html();
+	$('#zdzh').html();
+	$('#zlc').html();
+	$('#xzqhdm').html();
+	$('#xzqhmc').html();
+	$('#xjnd').html();
+	$('#lxjsdj').html();
+	$('#yhlc').html();
+	$('#tsdq').html();
+	$('#xmnf').html();
+	$('#xmzt').html();
+	$('#zhnr').html();
+	$('#bz').html();
+	//审查
+	$('#SCQDZH').html();
+	$('#SCZDZH').html();
+	$('#SCZLC').html();
+	$('#SCYHLC').html();
+	$('#FAPGDW').html();
+	$('#FASCDW').html();
+	$('#FASPSJ').html();
+	$('#SPWH').html();
+	$('#TZGS').html();
+	$('#JSXZ').html();
+	$('#JSNR').html();
+	$('#scbz').html();
+	//计划信息
+	$('#jhnf').html();
+	$('#jhkgsj').html();
+	$('#jhwgsj').html();
+	$('#jhxdsj').html();
+	$('#jhxdwh').html();
+	$('#sjdw').html();
+	$('#sjpfdw').html();
+	$('#pfwh').html();
+	$('#pfsj').html();
+	$('#jhztz').html();
+	$('#bbz').html();
+	$('#dfzc').html();
+	$('#sfsqablbz').html();
+	$('#ablbzwh').html();
+	$('#jhbz').html();
+}
+
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

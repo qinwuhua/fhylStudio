@@ -45,4 +45,8 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public List<TreeNode> queryGcgjNfs() {
 		return queryList("queryGcgjNfs");
 	}
+	
+	public boolean dropGcgjById(String id){
+		return delete("dropGcgjById",id)>0;
+	}
 }

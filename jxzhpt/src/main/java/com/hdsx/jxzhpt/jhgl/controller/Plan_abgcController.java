@@ -55,6 +55,15 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void dropAbgcById(){
+		try {
+			JsonUtils.write(abgcServer.dropAbgcById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// get set
 	public int getPage() {
 		return page;

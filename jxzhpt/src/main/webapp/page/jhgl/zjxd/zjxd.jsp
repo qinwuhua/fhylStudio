@@ -6,6 +6,9 @@
 	<title>资金下达页面</title>
 </head>
 <body>
+	<script type="text/javascript">
+		
+	</script>
 	<center>
 		<table width="100%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>

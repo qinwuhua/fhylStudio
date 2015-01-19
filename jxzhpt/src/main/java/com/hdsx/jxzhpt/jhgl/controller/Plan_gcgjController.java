@@ -67,6 +67,15 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 
+	public void dropGcgjById(){
+		try {
+			JsonUtils.write(gcgjServer.dropGcgjById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//get set
 	public int getPage() {
 		return page;

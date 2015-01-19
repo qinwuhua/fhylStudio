@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
 	</insert>
 
 	<select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
@@ -35,7 +35,6 @@
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		order by sbzt desc
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by sbzt desc
@@ -81,7 +80,8 @@
 	<select id="selectGpsroad" parameterType="hashmap" resultType="jckabgc">
 		select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends)
 		zdzh,(max(roadends)-min(roadstart)) qzlc,
-		substr(roadcode,5,7) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,5,7))
+		substr(roadcode,length(roadcode)-5,6) xzqhdm, 
+		(select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6))
 		xzqhmc,F044 gydwbm,F045 gydw,
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
 		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD

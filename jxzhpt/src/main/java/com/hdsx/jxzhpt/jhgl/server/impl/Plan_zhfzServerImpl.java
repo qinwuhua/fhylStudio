@@ -40,12 +40,12 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 
 	@Override
 	public Plan_zhfz queryZhfaById(String id) {
-		return queryOne("queryZhfaById", id);
+		return queryOne("queryZhfzById", id);
 	}
 
 	@Override
 	public List<TreeNode> queryZhfaNfs() {
-		return queryList("queryZhfaNfs");
+		return queryList("queryZhfzNfs");
 	}
 
 }

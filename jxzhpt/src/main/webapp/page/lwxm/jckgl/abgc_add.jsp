@@ -94,8 +94,8 @@ text-decoration:none;
 					$("#lxmc").val(item.lxmc);
 					$("#xzqhdm").val(item.xzqhdm);
 					$("#xzqhmc").val(item.xzqhmc);
-					$("#qdzh").val(item.qdzh);
-					$("#zdzh").val(item.zdzh);
+					$("#qdzh").val(parseFloat(item.qdzh));
+					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#zlc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
 					$("#xjnd").val(item.gjxjnd);
 					$("#lxjsdj").val(item.lxjsdj);
@@ -123,7 +123,7 @@ text-decoration:none;
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
 		"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit");
+		+"&tbbmbm="+$.cookie("unit2")+"&sbthcd="+($.cookie("unit2").length+2);
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertAbgc.do',

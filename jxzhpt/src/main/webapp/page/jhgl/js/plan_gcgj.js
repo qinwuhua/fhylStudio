@@ -423,6 +423,22 @@ function queryGcgjXx(id){
 		}
 	}); 
 }
+
+function dropGcgj(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/dropGcgjById.do',
+		dataType:'text',
+		data:'jh.id='+id,
+		success:function(data){
+			if(data=="true"){
+				alert("删除成功！");
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

@@ -12,7 +12,7 @@ public class Plan_abgc {
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
 	private String sjdw;//设计单位
-	private String sjpfwh;//设计批复文号
+	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
 	private Date pfsj;//批复时间
 	private String pfztz;//批复总投资
@@ -100,11 +100,11 @@ public class Plan_abgc {
 	public void setSjdw(String sjdw) {
 		this.sjdw = sjdw;
 	}
-	public String getSjpfwh() {
-		return sjpfwh;
+	public String getSjpfdw() {
+		return sjpfdw;
 	}
-	public void setSjpfwh(String sjpfwh) {
-		this.sjpfwh = sjpfwh;
+	public void setSjpfdw(String sjpfdw) {
+		this.sjpfdw = sjpfdw;
 	}
 	public String getPfwh() {
 		return pfwh;
