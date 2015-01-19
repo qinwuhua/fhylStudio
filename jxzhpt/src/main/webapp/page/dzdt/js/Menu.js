@@ -19,20 +19,35 @@ function loadDataunit(){
             {field:'name',width:200}
 		]],
 		onBeforeExpand:function(row){
-			if(row.sjlx=="0"){
+			if(row.id.length==6){
 				var child=$("#dataunit_tree").treegrid("getChildren",row.id);
 				if(child == ""){
 					$('#dataunit_tree').treegrid('append',{
 						parent: row.id,
 						data: [{
-							id: row.id+'lx',name: '路线',state:'closed',iconCls:'icon-none'
+							id: 'G',name: '国道',state:'closed',iconCls:'icon-none'
 						  	},{
-							id: row.id+'sfz',name: '收费站',state:'closed',iconCls:'icon-none'
+							id: 'S',name: '省道',state:'closed',iconCls:'icon-none'
+							},{
+							id: 'X',name: '县道',state:'closed',iconCls:'icon-none'
+							},{
+							id: 'Y',name: '乡道',state:'closed',iconCls:'icon-none'
+							},{
+							id: 'Z',name: '专道',state:'closed',iconCls:'icon-none'
+							},{
+							id: 'C',name: '村道',state:'closed',iconCls:'icon-none'
 							}
 						]
 					});
 				}
-			}else{
+			}else if(row.id.length==7){
+				$('#dataunit_tree').treegrid('append',{
+					parent: row.id,
+					url:'../../xtgl/selecLx'
+				});
+			}
+			
+			else{
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){

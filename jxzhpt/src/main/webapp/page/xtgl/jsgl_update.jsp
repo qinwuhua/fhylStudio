@@ -22,11 +22,11 @@ function save(){
 		alert("请输入角色名称！");
 		return false;
 	}
-	if($("#source").combotree("getValues")==""){
+	if(YMLib.Var.note==undefined){
 		alert("请选择角色权限！");
 		return false;
 	}
-	param=$("#jsgl_form").serialize();
+	param=$("#jsgl_form").serialize()+"&param.source="+YMLib.Var.note;
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/updateJs.do",
@@ -57,7 +57,10 @@ function init(){
 				$("#rolename").val(msg.rolename);
 				$("#desr").val(msg.desr);
 				var arr=msg.sourceid.split(",");
-				$("#source").combotree("setValues",arr);
+				//$("#source").tree("setValue","010101");
+				var node = $("#source").tree("find", "010101");
+				
+				$("#source").tree("expandAll");
 			 }
 		 }
 	});
@@ -68,21 +71,30 @@ $(function(){
 	loadQx("source");
 	init();
 	$("#jsgl_btn_Save").click(function(){
-		save();
+		$("#source").tree("expandAll");
+		//save();
 	});
 	$("#jsgl_btn_Cancel").click(function(){
 		parent.$("#jsgl_add_win").window('destroy');
 	});
 });
 function loadQx(_id){
-	$('#'+_id).combotree({
+	$('#'+_id).tree({
 		checkbox: true,
-		multiple:true,
+		check: true,
 		url: '../../xtgl/selAllQx.do?yhdw=01',
 		onBeforeExpand:function(node,param){
-			$('#'+_id).combotree("tree").tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
+			$('#'+_id).tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
+			$('#'+_id).tree("check",node.target);
 		},
-		onSelect:function(node){}
+		onCheck : function (node){
+			var nodes=$('#'+_id).tree('getChecked');
+			var codes=nodes[0].id;
+			for(var i=1;i<nodes.length;i++){
+				codes+=','+nodes[i].id;
+			}
+			YMLib.Var.note=codes;
+		}
 	});
 }
 </script>
@@ -104,7 +116,8 @@ function loadQx(_id){
 					权限分配：
 				</td>
 				<td>
-					<input id="source"  type="text" name="param.source" style="width:250px;"/>
+					<ul id="source"></ul> 
+					
 				</td>
 			</tr>
 			<tr>

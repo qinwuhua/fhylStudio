@@ -37,7 +37,6 @@ function createAnyChartXml(){
     barChart_1.padding =0;
     barChart_1.wMode="transparent";
     barChart_1.write("anychart_div");
-  
     $.ajax({
 		type:"post",
 		url:"../../xtgl/createAnyChartXml.do",
@@ -48,10 +47,7 @@ function createAnyChartXml(){
 		}
 	});
 }
-function createAnyChart(){
-    
-   // barChart_1.addEventListener('pointClick', onPointClick);//为anyChart对象添加click事件
-}
+
 </script>
 </head>
 <body class="easyui-layout" style="background:#fafafa;" scroll="no">

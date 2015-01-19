@@ -55,14 +55,20 @@ $(function(){
 });
 
 function loadQx(_id){
-	$('#'+_id).combotree({
+	$('#'+_id).tree({
 		checkbox: true,
-		multiple:true,
 		url: '../../xtgl/selAllQx.do?yhdw=01',
 		onBeforeExpand:function(node,param){
-			$('#'+_id).combotree("tree").tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
+			$('#'+_id).tree('options').url = "../../xtgl/selAllQx2.do?yhdw="+node.id;
 		},
-		onSelect:function(node){}
+		onCheck : function (node){
+			var nodes=$('#'+_id).tree('getChecked');
+			var codes=nodes[0].id;
+			for(var i=1;i<nodes.length;i++){
+				codes+=','+nodes[i].id;
+			}
+			YMLib.Var.note=codes;
+		}
 	});
 }
 </script>
@@ -83,7 +89,7 @@ function loadQx(_id){
 					权限分配：
 				</td>
 				<td>
-					<input id="source"  type="text" name="param.source" style="width:250px;"/>
+					<ul id="source"></ul>
 				</td>
 			</tr>
 			<tr>

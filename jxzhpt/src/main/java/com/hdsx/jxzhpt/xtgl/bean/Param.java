@@ -15,6 +15,7 @@ public class Param implements Serializable{
 	private String source;
 	private String roleid;
 	private String sourceid;
+	private String parent;
 	private String czr;
 	private String czsj;
 	private String name;
@@ -24,6 +25,12 @@ public class Param implements Serializable{
 	private String bz;
 	private String desr;
 	
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
 	public String getDesr() {
 		return desr;
 	}

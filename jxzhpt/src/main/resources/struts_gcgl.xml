@@ -83,6 +83,15 @@
 	<action name="updateShCgs" class="gcglshController" method="updateShCgs"/>
 	<action name="insertShCgs" class="gcglshController" method="insertShCgs"/>
 	
+	<action name="uploadShFile" class="gcglshController" method="uploadShFile"/>
+	<action name="downShFile" class="gcglshController" method="downShFile"/>
+	<action name="insertShkg" class="gcglshController" method="insertShkg"/>
+	<action name="insertShwg" class="gcglshController" method="insertShwg"/>
+	<action name="insertShwwg" class="gcglshController" method="insertShwwg"/>
+	<action name="selectShjhList" class="gcglshController" method="selectShjhList"/>
+	<action name="selectShjhFile" class="gcglshController" method="selectShjhFile"/>
+	<action name="deleteShFile" class="gcglshController" method="deleteShFile"/>
+	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
 	<action name="updategcgzgjYb" class="gcglgcgzgjController" method="updategcgzgjYb"/>
