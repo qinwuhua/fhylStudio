@@ -1,9 +1,11 @@
 var obj=new Object();
-
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
 	//window.open("wqgzxx.jsp");
 }
@@ -82,17 +84,29 @@ function xgwqgzyb(){
 //显示所有
 var wqData;
 function showAll(){
+	var gydw=$("#gydw").combobox("getText");
+	if(gydw=='36'||gydw=='江西省')
+		gydw='';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
 	$('#datagrid').datagrid({    
-	    url:'js/wqgz.json',
+	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="ybsb()">月报审核</a>   ';
+	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="ybsb('+index+')">月报审核</a>   ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},

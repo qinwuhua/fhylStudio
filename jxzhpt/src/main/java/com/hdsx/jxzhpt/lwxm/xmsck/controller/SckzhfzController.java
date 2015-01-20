@@ -56,7 +56,7 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -183,6 +183,14 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgSckZhfzShzt(){
 		if(zhfzServer.xgSckZhfzShzt(sckzhfz)){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void bzZhfz(){
+		boolean b = zhfzServer.bzZhfz(sckzhfz);
+		if(b){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

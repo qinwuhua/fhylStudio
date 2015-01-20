@@ -1,18 +1,34 @@
 var obj=new Object();
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx','水毁项目开工详情','shxx.jsp','wqxx',740,450);
 	//window.open("shxx.jsp");
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
-function sfkaigong(){
-	if(confirm("确认开工吗？"))
-		return;
+function kaigong(index){
+	if(confirm("确认开工吗？")){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','水毁项目开工','wqgzkg.jsp','wqxx',650,330);
+	}
 }
+	function wangong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+			YMLib.UI.createWindow('wqxx','水毁项目完工','wqgzwg.jsp','wqxx',500,300);
+		}	
+	function wwangong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','水毁项目未完工','wqgzwwg.jsp','wqxx',400,220);
+	}	
 function ybsb(){
 	YMLib.UI.createWindow('wqxx1','水毁项目月报上报','shyb.jsp','wqxx1',1059,450);
 	//window.open("shyb.jsp");
@@ -110,6 +126,68 @@ function xgshyb(){
 		}
 	});	
 }
+//开工
+function tjwqgzkg(){
+	var data="gcglsh.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglsh.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglsh.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
+	+"&gcglsh.sgdw="+$("#tj_sgdw").val()+"&gcglsh.jldw="+$("#tj_jldw").val()+"&gcglsh.jsdw="+$("#tj_jsdw").val()
+	+"&gcglsh.htje="+$("#tj_htje").val()+"&gcglsh.gsztz="+$("#tj_gys").val()+"&gcglsh.jhid="+parent.obj1.jhid;
+	alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertShkg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+//完工
+function tjwqgzwg(){
+	var data="gcglsh.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglsh.jhid="+parent.obj1.jhid;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertShwg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
+//未完工
+function tjwqgzwwg(){
+	var data="gcglsh.wjgyy="+$("#tj_wjgyy").val()+"&gcglsh.jhid="+parent.obj1.jhid;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/insertShwwg.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('保存成功！');
+				parent.$("#datagrid").datagrid('reload');
+				closes('wqxx');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});	
+}
 
 
 function showAll(){
@@ -190,4 +268,77 @@ function showYBlist(){
 			    ]
 	    ]
 	});
+}
+//
+function uploadFile(str){
+	//alert(str);
+	var title='';
+	if(str=='sgxkwj')
+		title='请选择施工许可文件';
+	if(str=='jgtcwj')
+		title='请选择交工通车文件';
+	if(str=='jgyswj')
+		title='请选择完工验收文件';
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : title,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadShFile.do"+'&flag='+'gljsjyhgl%2fsh%2fshxx'+'&type='+str+'&jhid='+parent.obj1.jhid,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="../../../../gcgl/downShFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+	}
+	else return;
+}
+function deleteFile(str){
+	if(confirm("确认删除吗？")){
+	var data="jhid="+parent.obj1.jhid+"&type="+str;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/deleteShFile.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				location.reload();
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});	
+	}
+}
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectShjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+				if(msg.sgxkwj!=''){
+					$("#xz_sgxkwj").text("下载附件");
+				}
+				if(msg.jgtcwj!=''){
+					$("#xz_jgtcwj").text("下载附件");
+				}
+				if(msg.jgyswj!=''){
+					$("#xz_jgyswj").text("下载附件");
+				}
+			}
+	});	
 }

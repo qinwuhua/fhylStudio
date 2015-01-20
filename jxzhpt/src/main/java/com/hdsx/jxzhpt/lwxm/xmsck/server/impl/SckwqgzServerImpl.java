@@ -126,12 +126,19 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public List<SjbbMessage> insertToSheet() {
-		return this.queryList("insertToSheet");
+	public List<SjbbMessage> insertToSheet(String xzqhdm) {
+		return this.queryList("insertToSheet",xzqhdm);
 	}
 
 	@Override
 	public boolean importWqgz_sc(List<Map> list) {
 		return this.insertBatch("importWqgz_sc", list)==list.size()?true:false;
+	}
+
+	@Override
+	public boolean bzWqgz(Sckwqgz wqgz) {
+		int count = (Integer)queryOne("bzWqgz", wqgz);
+		if(count<1) return true;
+		else return false;
 	}
 }

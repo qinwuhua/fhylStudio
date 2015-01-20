@@ -40,7 +40,7 @@ public class ExcelModule extends BaseActionSupport {
 	@Resource(name = "sckzhfzServerImpl")
 	private SckzhfzServer zhfzServer;
 	private String moduleName;
-
+	private String xzqhdm;
 	public void getModule() {
 		String filename = moduleName;
 		if (filename == null || "".equals(filename)) {
@@ -89,15 +89,15 @@ public class ExcelModule extends BaseActionSupport {
 			POIFSFileSystem ps = new POIFSFileSystem(fi);
 			HSSFWorkbook wb = new HSSFWorkbook(ps);
 			HSSFSheet sheet = wb.getSheetAt(0);
-			CellStyle style = sheet.getRow(2).getCell(1).getCellStyle();
-			for (int i = 3; i <=sheet.getLastRowNum(); i++) {
+			CellStyle style = sheet.getRow(3).getCell(1).getCellStyle();
+			for (int i = 4; i <=sheet.getLastRowNum(); i++) {
 				sheet.removeRow(sheet.getRow(i));
 			}
 			// 去数据库将数据拿到放到模板中
 			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 			String descr="";
 			if ("SCK_Security".equals(moduleName)) { // 安保的数据
-				list = abgcServer.insertToSheet();
+				list = abgcServer.insertToSheet(xzqhdm);
 				descr="填表说明：\n"+
 					"1.列1桥梁代码：按照路线编码+县级政区编码+L+4位数字。桥梁代码必须与养护统计报表保持一致。\n"+   
 					"2.列2桥梁名称，填写桥梁的具体名称，如：高升大桥等。\n"+
@@ -111,7 +111,7 @@ public class ExcelModule extends BaseActionSupport {
 					"10.列12建设内容：填写改造桥梁详细项目实施内容。\n"+
 					"11.列13备注。";
 			} else if ("SCK_Bridge".equals(moduleName)) { // 危桥的数据
-				list = wqgzServer.insertToSheet();
+				list = wqgzServer.insertToSheet(xzqhdm);
 				descr="填报说明：\n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》 （网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -128,7 +128,7 @@ public class ExcelModule extends BaseActionSupport {
 					"12.列16建设内容：填写改造路段详细项目实施内容。\n"+
 					"13.列17备注。";
 			} else { // 灾害防治的数据
-				list = zhfzServer.insertToSheet();
+				list = zhfzServer.insertToSheet(xzqhdm);
 				descr="填报说明：\n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -161,10 +161,9 @@ public class ExcelModule extends BaseActionSupport {
 	public void insertDataToSheet(HSSFWorkbook wb, List<SjbbMessage> list,
 			CellStyle style,String descr) throws Exception {
 		HSSFSheet sheet = wb.getSheetAt(0);
-		int colnum = sheet.getRow(2).getLastCellNum();
-		System.out.println("------------------------" + colnum);
+		int colnum = sheet.getRow(3).getLastCellNum();
 		for (int i = 0; i < list.size(); i++) {
-			HSSFRow row = sheet.createRow(3 + i);
+			HSSFRow row = sheet.createRow(4 + i);
 			SjbbMessage sjbb = list.get(i);
 			for (int j = 0; j < colnum; j++) {
 				HSSFCell cell = row.createCell(j);
@@ -174,10 +173,10 @@ public class ExcelModule extends BaseActionSupport {
 				cell.setCellValue(value);
 			}
 		}
-		HSSFRow row = sheet.createRow(3 + list.size());
+		HSSFRow row = sheet.createRow(4 + list.size());
 		row.isFormatted();
 		row.setHeightInPoints(250);
-		sheet.addMergedRegion(new Region((3+list.size()),(short)0,(3+list.size()),(short)(colnum-1)));
+		sheet.addMergedRegion(new Region((4+list.size()),(short)0,(4+list.size()),(short)(colnum-1)));
 		HSSFCell cell = row.createCell(0);
 		HSSFCellStyle cellStyle = wb.createCellStyle();
 		cellStyle.setVerticalAlignment(CellStyle.VERTICAL_TOP);
@@ -194,4 +193,13 @@ public class ExcelModule extends BaseActionSupport {
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
 	}
+
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	
 }

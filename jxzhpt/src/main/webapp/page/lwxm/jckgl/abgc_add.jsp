@@ -21,7 +21,7 @@
 <style type="text/css">
 TD {
 font-size: 12px;
-}
+} 
 a{
 text-decoration:none;
 }
@@ -91,15 +91,15 @@ text-decoration:none;
 
 					if(item==undefined) return ;
 					$("#lxmc,#xzqhdm,#xzqhmc#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm,#qd,#zd").attr("value",'');
-					$("#lxmc").val(item.lxmc);
-					$("#xzqhdm").val(item.xzqhdm);
-					$("#xzqhmc").val(item.xzqhmc);
+					$("#lxmc").html(item.lxmc);
+					$("#xzqhdm").html(item.xzqhdm);
+					$("#xzqhmc").html(item.xzqhmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					$("#zlc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
-					$("#xjnd").val(item.gjxjnd);
-					$("#lxjsdj").val(item.lxjsdj);
-					$("#gydw").val(item.gydw);
+					$("#xjnd").html(item.gjxjnd);
+					$("#lxjsdj").html(item.lxjsdj);
+					$("#gydw").html(item.gydw);
 					$("#gydwbm").val(item.gydwbm);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
@@ -108,22 +108,27 @@ text-decoration:none;
 				});
 	}
 	function saveAbgc(){
-		if($("#qdzh").val()<qdStr){
+		if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
 			alert("对不起，起点桩号不能小于"+qdStr+"！");
 			return false;
 		}
-		if($("#zdzh").val()>zdStr){
+		if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
 			alert("对不起，止点桩号不能大于"+zdStr+"！");
+			return false;
+		}
+		if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
+			alert("对不起，起点桩号不能大于止点桩号！");
 			return false;
 		}
 		if(parseFloat($("#yhlc").val())*1000>parseFloat($("#zlc").html())*1000){
 			alert("对不起，隐患里程不能大于总里程！");
 			return false;
 		}
-		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
-		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
-		"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit2")+"&sbthcd="+($.cookie("unit2").length+2);
+		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
+		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
+		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
+		+"&tbbmbm="+$.cookie("unit");
+		alert(data);
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertAbgc.do',
@@ -154,10 +159,10 @@ text-decoration:none;
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
+					<span id="lxmc"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 160px" />
+				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
+					<span id="gydw"></span>
 					<input type="text" id="gydwbm" style="display:none"/></td>
 			</tr>
 			<tr>
@@ -169,25 +174,25 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh"id="zdzh" style="width: 156px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
+				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zlc" style="font-size: 14px"></span></td>
+					<span id="zlc" style="font-size: 14px">0</span>&nbsp;公里</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xzqhmc"id="xzqhmc" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xjnd" id="xjnd" style="width: 156px" /></td>
+				<td style="background-color: #ffffff; height: 25px;width:15%" align="right">行政区划代码：</td>
+				<td style="background-color: #ffffff; height: 25px;" align="left">
+					<span id="xzqhdm" style="font-size: 14px"></span></td>
+				<td style="background-color: #ffffff; height: 25px;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color: #ffffff; height: 25px;" align="left">
+					<span id="xzqhmc"></span></td>
+					<td style="background-color: #ffffff; height: 25px;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color: #ffffff; height: 25px;" align="left">
+					<span id="xjnd" style="font-size: 14px"></span></td>
 			</tr>
 			<tr>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="lxjsdj" id="lxjsdj" style="width: 156px" /></td>
+					<span id="lxjsdj"></span></td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="yhlc"id="yhlc" style="width: 156px" value="0"/></td>

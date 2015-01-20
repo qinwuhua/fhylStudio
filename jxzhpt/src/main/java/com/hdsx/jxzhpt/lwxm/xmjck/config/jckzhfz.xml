@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
 </insert>
  
  <select id="selectJckzhfz" parameterType="hashmap" resultType="jckzhfz">
@@ -76,7 +76,7 @@
  	update xmk_zhfz set shzt='已审核' where id=#{id}
  </update>
  <update id="xgJckzhfzSbzt" parameterType="String" >
- 	update xmk_zhfz set shzt='未审核',sbzt='已上报' where id in(#{delstr})
+ 	update xmk_zhfz set sbzt='已上报' where id in(#{delstr})
  </update>
  <update id="xgJckZhfzTH" parameterType="jckzhfz" >
  	update xmk_zhfz set sbzt='未上报' where id =#{id}

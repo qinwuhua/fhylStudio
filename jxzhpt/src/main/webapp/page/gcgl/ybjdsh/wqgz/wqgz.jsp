@@ -11,8 +11,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="js/wqgz.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
@@ -23,10 +23,8 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			loadBmbm("kgzt","开工状态");
 			showAll();
-		});
-		$(window).resize(function () { 
-			$('#datagrid').datagrid('resize'); 
 		});
 	</script>
 	<style type="text/css">
@@ -39,6 +37,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+  cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -51,8 +50,8 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;月报进度审核管理>&nbsp;危桥改造施工过程管理</div>
-			</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;危桥改造施工过程管理</div>
+					</div>
 	           
         	</tr>
         	<tr>
@@ -65,14 +64,17 @@ a:active {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 200px;">
+        						
+        						<span>开工状态：</span>
+        						<input id="kgzt" style="width: 100px;">
         						<span>路线：</span>
-        							<input type="text" id="lx" >
+        							<input type="text" id="lxmc" >
         						<span>桥梁：</span>
-        							<input type="text" id="ql" >
+        							<input type="text" id="qlmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>
@@ -81,11 +83,11 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 10px;padding-left:10px;">
                     <div>
-	<table id="datagrid" width="100%">			
-		</table>
-	</div>
-	</td>
-	</tr>
+						<table id="datagrid" width="100%">
+						</table>
+					</div>
+			</td>
+		</tr>
 	</table>
 	</div>
 	

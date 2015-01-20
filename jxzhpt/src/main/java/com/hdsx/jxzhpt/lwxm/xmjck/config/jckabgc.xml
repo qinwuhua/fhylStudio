@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
 	</insert>
 
 	<select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
@@ -35,8 +35,7 @@
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
-		) t1 where t1.num &lt;=(#{page} * #{rows}) and
-		t1.num>(#{page}-1)*#{rows}
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt desc
 	</select>
 	<select id="selectAbgcCount" parameterType="hashmap" resultType="int">

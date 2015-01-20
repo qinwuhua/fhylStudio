@@ -53,6 +53,7 @@ public class Gcglsh implements Serializable {
 	private String qzlc;//起止里程
 	private String yhlc;//隐患里程
 	private String ylmlx;//原路面类型
+	private String yjsdj;
 	private String lxbz;
 	//审查
 	private String fapgdw;//方案评估
@@ -107,7 +108,9 @@ public class Gcglsh implements Serializable {
 	private String gsztz;//
 	private String tiaojian;
 	private String lxid;
-	
+	private String wjgyy;
+	private String scbz;
+	private String jhbz;
 	private int page;
 	private int rows;
 	public String getId() {
@@ -676,6 +679,30 @@ public class Gcglsh implements Serializable {
 	}
 	public void setLxid(String lxid) {
 		this.lxid = lxid;
+	}
+	public String getWjgyy() {
+		return wjgyy;
+	}
+	public void setWjgyy(String wjgyy) {
+		this.wjgyy = wjgyy;
+	}
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
+	public String getScbz() {
+		return scbz;
+	}
+	public void setScbz(String scbz) {
+		this.scbz = scbz;
+	}
+	public String getJhbz() {
+		return jhbz;
+	}
+	public void setJhbz(String jhbz) {
+		this.jhbz = jhbz;
 	}
 
 	

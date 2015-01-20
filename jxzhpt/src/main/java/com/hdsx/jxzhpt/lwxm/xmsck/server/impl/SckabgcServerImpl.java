@@ -119,13 +119,20 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public List<SjbbMessage> insertToSheet() {
-		return this.queryList("insertToSheet");
+	public List<SjbbMessage> insertToSheet(String xzqhdm) {
+		return this.queryList("insertToSheet",xzqhdm);
 	}
 
 	@Override
 	public boolean importAbgc_sc(List<Map> list) {
 		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
+	}
+
+	@Override
+	public boolean bzAbgc(Sckabgc abgc) {
+		int count = (Integer)queryOne("bzAbgc", abgc);
+		if(count<1) return true;
+		else return false;
 	}
 
 

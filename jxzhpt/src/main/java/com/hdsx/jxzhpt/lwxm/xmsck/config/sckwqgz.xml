@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核')
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm})
 	</insert>
 
 	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
@@ -168,6 +168,16 @@
 			and akjfl like #{akjfl}||'%'
 		</if>
 	</select>
+	 <select id="bzWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from sck_wqgz where 1=1
+ 		<if test="qlbh!='' and qlbh!= null "  >
+ 			and qlbh=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
+ 		</if>
+ </select>
+	
 	<select id="exportExcel_wqgz_scgl" parameterType="sckwqgz"
 		resultType="sjbb">
 		select
@@ -237,10 +247,13 @@
 			and akjfl like #{akjfl}||'%'
 		</if>
 	</select>
-	<select id="insertToSheet" resultType="sjbb">
+	<select id="insertToSheet" resultType="sjbb" parameterType="String">
 		select
 		qlbh v_0,qlmc v_1,qlzxzh v_2,qlqc v_3,qlkd v_4
 		from xmk_wqgz where sbzt='已上报'
+		<!-- <if test="xzqhdm!='' and xzqhdm!= null ">
+			and xzqhdm like '%'||(#{xzqhdm})||'%'
+		</if> -->
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
