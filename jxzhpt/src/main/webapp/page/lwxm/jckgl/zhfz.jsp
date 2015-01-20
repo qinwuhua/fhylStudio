@@ -51,45 +51,27 @@ function delJckzhfz(){
 			});
 		}
 }
-function xgShzt(id){
-	var rows=$('#grid').datagrid('getSelections');
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量审核！");
-		return;
-	}
-	if(confirm('您确定审核通过该项目！')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/xmjck/xgJckZhfzShzt.do",
-				 dataType : 'json',
-				 data : 'id=' +id,
-				 success : function(msg){
-					 if(msg){
-						 alert('审核成功！');
-						 $("#grid").datagrid('reload');
-					 }else{
-						 alert('审核失败,请选择要审核项目！');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-	}
-}
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
 	}
+	if($.cookie("unit2").length==7){
+		alert("该项目已上报到省级单位，请勿重复操作！");
+		return ;
+	}
+	if(rows[0].sbzt2=='已上报'){
+		alert("该项目已上报，请勿重复操作！");
+		return ;
+	}
 	if(confirm('您确定上报该项目？')){
+		var data = "delstr="+id+"&sbbm="+$.cookie("unit")+"&sbthcd="+($.cookie("unit2").length-2);
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/xmjck/xgJckZhfzSbzt.do",
 			 dataType : 'json',
-			 data : 'delstr=' +id,
+			 data : data,
 			 success : function(msg){
 				 if(msg){
 					 alert('上报成功！');
@@ -103,6 +85,44 @@ function shangB(){
 			 }
 		});
 }
+} 
+function tuiHui(){
+	var rows=$('#grid').datagrid('getSelections');
+	var id= rows[0].id;
+	var sbzt=rows[0].sbzt;
+	var sbthcd=rows[0].sbthcd;
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量退回！");
+		return;
+	}
+	if(sbzt=='未上报' && sbthcd==11){
+		alert("对不起，无法退回！");
+		return;
+	}
+	if(sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	if(confirm('您确定退回该项目？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgJckZhfzTH.do",
+				 dataType : 'json',
+				 data : 'id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('退回成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('退回失败,请选择要退回项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
 }
 </script>
 <style type="text/css">
@@ -195,6 +215,7 @@ text-decoration:none;
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglZhfz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
 								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Disaster');" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('zhfz');" style="border-width:0px;" />
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('zhfz_add.jsp','900','400');" style="border-width:0px;" />

@@ -97,14 +97,15 @@ function shangB(){
 		sckid+=","+rows[i].sckid ;
 	}
 	if(confirm('您确定上报该项目？')){
+		var data = "delstr="+sckid+"&sbbm="+$.cookie("unit2")+"&sbthcd="+$.cookie("unit2").length;
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/xmsck/xgSckAbgcSbzt.do",
 			 dataType : 'json',
-			 data : 'delstr=' +sckid,
+			 data : data,
 			 success : function(msg){
 				 if(msg){
-					 alert('上报成功！');
+					 alert('上报成功！'); 
 					 $("#grid").datagrid('reload');
 				 }else{
 					 alert('上报失败,请选择要上报项目！');

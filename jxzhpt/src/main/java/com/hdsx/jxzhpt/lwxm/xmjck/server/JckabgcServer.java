@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 
 public interface JckabgcServer {
@@ -17,7 +16,7 @@ public interface JckabgcServer {
 	List<Jckabgc> selectJckRoad(Jckabgc abgc);
 	boolean deleteAbgcById(String delstr);
 	boolean xgJckAbgcShzt(Jckabgc abgc);
-	boolean xgJckAbgcSbzt(String delstr);
+	boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc);
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);
 	boolean xgJckAbgcTH(Jckabgc abgc);

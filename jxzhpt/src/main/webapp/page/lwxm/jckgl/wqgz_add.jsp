@@ -113,7 +113,7 @@ function saveWqgz(){
 	+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
 	"&qlqc="+$("#qlqc").val()+"&qlkd="+$("#qlkd").val()+"&dkzdkj="+$("#dkzdkj").val()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").val()+"&xjgjnd="+$("#xjgjnd").val()
 	+"&akjfl="+$("#akjfl").val()+"&sbjgxs="+$("#sbjgxs").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
-	"&tbbmbm="+$.cookie("unit");
+	"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit").length;
 	alert(data);
 	$.ajax({
 		type:'post',

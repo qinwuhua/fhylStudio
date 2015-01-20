@@ -27,6 +27,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
 		hm.put("lxmc", wqgz.getLxmc());
@@ -78,14 +79,19 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public boolean xgJckWqgzSbzt(String delstr) {
-		if(update("xgJckwqgzSbzt", delstr)>0) return true;
+	public boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz) {
+		hm=new HashMap<String, Object>();
+		hm.put("delstr", delstr);
+		hm.put("sbbm", wqgz.getSbbm());
+		hm.put("sbthcd", wqgz.getSbthcd());
+		if(update("xgJckwqgzSbzt", hm)>0) return true;
 		else return false;
 	}
 
 	@Override
 	public int selectWqgzCount(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
 		hm.put("lxmc", wqgz.getLxmc());
@@ -109,6 +115,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 	public List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
 		hm.put("lxmc", wqgz.getLxmc());
@@ -126,6 +133,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public int selectWqgzShCount(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
 		hm.put("lxmc", wqgz.getLxmc());

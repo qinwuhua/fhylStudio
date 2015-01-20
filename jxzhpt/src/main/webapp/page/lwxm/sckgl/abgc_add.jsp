@@ -107,8 +107,16 @@ var zdStr;
 				});
 	}
 	function saveAbgc(){
+		if($("#scqdzh").val()==null || $("#scqdzh").val()==''){
+			alert("对不起，起点桩号不能为空！");
+			return false;
+		}
 		if(parseFloat($("#scqdzh").val())*1000<qdStr*1000){
 			alert("对不起，起点桩号不能小于"+qdStr+"！");
+			return false;
+		}
+		if($("#sczdzh").val()==null || $("#sczdzh").val()==''){
+			alert("对不起，止点桩号不能为空！");
 			return false;
 		}
 		if(parseFloat($("#sczdzh").val())*1000>zdStr*1000){

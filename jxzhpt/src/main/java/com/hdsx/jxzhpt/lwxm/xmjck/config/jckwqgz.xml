@@ -3,15 +3,17 @@
 <mapper namespace="com.hdsx.jxzhpt.jckwqgz">
 <insert id="insertJckwqgz"  parameterType="jckwqgz">
 	insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
-		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt) 
-		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},#{gydwbm},#{xjgjnd},#{jsdj},
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt,sbthcd) 
+		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
+		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
-		sysdate,'未上报','未审核')
+		sysdate,'未上报','未审核',#{sbthcd})
 </insert>
 
  <select id="selectJckwqgz" parameterType="hashmap" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t where 1=1
+ 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1
+ 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -44,6 +46,7 @@
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
+ 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -82,13 +85,13 @@
  		where id=#{id}
  </update>
  <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
- 	update xmk_wqgz set shzt='已审核',shsj=sysdate where id=#{id}
+ 	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
-   <update id="xgJckwqgzSbzt" parameterType="String" >
- 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate where id in(#{delstr})
+   <update id="xgJckwqgzSbzt" parameterType="hashmap" >
+ 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
  </update>
   <update id="xgJckWqgzTH" parameterType="jckwqgz" >
- 	update xmk_wqgz set sbzt='未上报' where id =#{id}
+ 	update xmk_wqgz set sbzt='未上报',sbthcd=(sbthcd+2) where id =#{id}
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
@@ -107,8 +110,8 @@
  
   <select id="selectJckShwqgz" parameterType="hashmap" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t 
- 		where sbzt='已上报'
+ 		select rownum num ,t.* from xmk_wqgz t where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -140,7 +143,8 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="hashmap" resultType="int">
- 		select count(*) from xmk_wqgz t where sbzt='已上报'
+ 		select count(*) from xmk_wqgz t where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>

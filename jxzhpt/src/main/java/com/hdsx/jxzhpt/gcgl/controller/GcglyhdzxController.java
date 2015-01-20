@@ -1,13 +1,23 @@
 package com.hdsx.jxzhpt.gcgl.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
@@ -39,7 +49,49 @@ public class GcglyhdzxController extends BaseActionSupport{
 	
 	private Gcglyhdzx gcglyhdzx = new Gcglyhdzx();
 	private String jhid;
+	private String fileuploadFileName;
+	private File fileupload;
+	private String type;
+	private String gydw;
+	private String kgzt;
+	private String lxmc;
 	
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
 	public String getJhid() {
 		return jhid;
 	}
@@ -91,77 +143,234 @@ public class GcglyhdzxController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-		//修改月报
-		public void updateYhdzxYb(){
-			Boolean bl=gcglyhdzxServer.updateYhdzxYb(gcglyhdzx);
-			if(bl){
-				ResponseUtils.write(getresponse(), "true");
-			}else{
-				ResponseUtils.write(getresponse(), "false");
-			}
+	//修改月报
+	public void updateYhdzxYb(){
+		Boolean bl=gcglyhdzxServer.updateYhdzxYb(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
 		}
-		//删除月报
-		public void deleteYhdzxYb(){
-			Boolean bl=gcglyhdzxServer.deleteYhdzxYb(gcglyhdzx);
-			if(bl){
-				ResponseUtils.write(getresponse(), "true");
-			}else{
-				ResponseUtils.write(getresponse(), "false");
-			}
+	}
+	//删除月报
+	public void deleteYhdzxYb(){
+		Boolean bl=gcglyhdzxServer.deleteYhdzxYb(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
 		}
-		//审核月报
-		public void shYhdzxYb(){
-			Boolean bl=gcglyhdzxServer.shYhdzxYb(gcglyhdzx);
-			if(bl){
-				ResponseUtils.write(getresponse(), "true");
-			}else{
-				ResponseUtils.write(getresponse(), "false");
-			}
+	}
+	//审核月报
+	public void shYhdzxYb(){
+		Boolean bl=gcglyhdzxServer.shYhdzxYb(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
 		}
-		// 添加车购税
-		public void insertYhdzxCgs() {
-			Boolean bl = gcglyhdzxServer.insertYhdzxCgs(gcglyhdzx);
-			if (bl) {
-				ResponseUtils.write(getresponse(), "true");
-			} else {
-				ResponseUtils.write(getresponse(), "false");
-			}
+	}
+	// 添加车购税
+	public void insertYhdzxCgs() {
+		Boolean bl = gcglyhdzxServer.insertYhdzxCgs(gcglyhdzx);
+		if (bl) {
+			ResponseUtils.write(getresponse(), "true");
+		} else {
+			ResponseUtils.write(getresponse(), "false");
 		}
+	}
 
-		// 查询cgs
-		public void selectYhdzxCgsList() {
-			gcglyhdzx.setPage(page);
-			gcglyhdzx.setRows(rows);
-			gcglyhdzx.setJhid(jhid);
-			int count = gcglyhdzxServer.selectYhdzxCgsListCount(gcglyhdzx);
-			List<Gcglabgc> list = gcglyhdzxServer.selectYhdzxCgsList(gcglyhdzx);
-			EasyUIPage<Gcglabgc> e = new EasyUIPage<Gcglabgc>();
-			e.setRows(list);
-			e.setTotal(count);
+	// 查询cgs
+	public void selectYhdzxCgsList() {
+		gcglyhdzx.setPage(page);
+		gcglyhdzx.setRows(rows);
+		gcglyhdzx.setJhid(jhid);
+		int count = gcglyhdzxServer.selectYhdzxCgsListCount(gcglyhdzx);
+		List<Gcglabgc> list = gcglyhdzxServer.selectYhdzxCgsList(gcglyhdzx);
+		EasyUIPage<Gcglabgc> e = new EasyUIPage<Gcglabgc>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	// 修改cgs
+	public void updateYhdzxCgs() {
+		Boolean bl = gcglyhdzxServer.updateYhdzxCgs(gcglyhdzx);
+		if (bl) {
+			ResponseUtils.write(getresponse(), "true");
+		} else {
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+
+	public void deleteYhdzxCgs() {
+		Boolean bl = gcglyhdzxServer.deleteYhdzxCgs(gcglyhdzx);
+		if (bl) {
+			ResponseUtils.write(getresponse(), "true");
+		} else {
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}		
+	//
+	
+	public void uploadYhdzxFile(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		String jhid1=jhid;
+		String type1=type;
+		gcglyhdzx.setJhid(jhid);
+		gcglyhdzx.setTiaojian(type);
+		Gcglyhdzx gcglyhdzx1=gcglyhdzxServer.downWqgzFile(gcglyhdzx);
+		System.out.println(gcglyhdzx1);
+		if(gcglyhdzx1!=null)
+		if(gcglyhdzx1.getTiaojian()!=""||gcglyhdzx1.getTiaojian()!=null){
 			try {
-				JsonUtils.write(e, getresponse().getWriter());
-			} catch (Exception e1) {
-				e1.printStackTrace();
+				response.getWriter().print("附件已存在，导入失败");
+				return;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-
-		// 修改cgs
-		public void updateYhdzxCgs() {
-			Boolean bl = gcglyhdzxServer.updateYhdzxCgs(gcglyhdzx);
-			if (bl) {
-				ResponseUtils.write(getresponse(), "true");
-			} else {
-				ResponseUtils.write(getresponse(), "false");
-			}
-		}
-
-		public void deleteYhdzxCgs() {
-			Boolean bl = gcglyhdzxServer.deleteYhdzxCgs(gcglyhdzx);
-			if (bl) {
-				ResponseUtils.write(getresponse(), "true");
-			} else {
-				ResponseUtils.write(getresponse(), "false");
-			}
-		}		
 		
+		String realPath = ServletActionContext.getServletContext().getRealPath("/");
+		File dir = new File(realPath+"upload\\");
+		fileuploadFileName=new Date().getTime()+"-"+fileuploadFileName;
+		if (!dir.exists())
+			dir.mkdir();//创建文件夹
+
+		try {
+			FileUtils.copyFile(fileupload, new File(realPath+"upload\\"+fileuploadFileName));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String tiaojian=fileuploadFileName;
+		
+		gcglyhdzx.setTiaojian(tiaojian);
+		gcglyhdzx.setJhid(jhid1);
+		
+		boolean bl = false;
+		if("sgxkwj".equals(type1))
+			bl=gcglyhdzxServer.uploadWqgzFilesgxk(gcglyhdzx);
+		if("jgtcwj".equals(type1))
+			bl=gcglyhdzxServer.uploadWqgzFilejgtc(gcglyhdzx);
+		if("jgyswj".equals(type1))
+			bl=gcglyhdzxServer.uploadWqgzFilejgys(gcglyhdzx);
+		try {
+			if(bl)
+			response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入成功");
+			else
+			response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入失败");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void downYhdzxFile() throws IOException{
+		HttpServletResponse response = getresponse();
+		OutputStream out = new BufferedOutputStream(response.getOutputStream());
+		response.setContentType("octets/stream");
+		gcglyhdzx.setJhid(jhid);
+		gcglyhdzx.setTiaojian(type);
+		Gcglyhdzx gcglyhdzx1=gcglyhdzxServer.downWqgzFile(gcglyhdzx);
+		String realPath = ServletActionContext.getServletContext().getRealPath("/");
+		String filename=gcglyhdzx1.getTiaojian();
+		
+		response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.substring(14, filename.length()).getBytes("gb2312"), "ISO-8859-1"));
+		File file=new File(realPath+"upload\\"+gcglyhdzx1.getTiaojian());
+		FileInputStream fis= new FileInputStream(file);
+		//byte [] arr = new byte[1024*10];
+		int i=0;
+		while((i=fis.read())!=-1){
+			out.write(i);
+		}
+		fis.close();
+		out.flush();
+		out.close();
+	}
+	public void insertYhdzxkg(){
+		Boolean bl=gcglyhdzxServer.insertWqgzkg(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void insertYhdzxwg(){
+		Boolean bl=gcglyhdzxServer.insertWqgzwg(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void insertYhdzxwwg(){
+		Boolean bl=gcglyhdzxServer.insertWqgzwwg(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	//查询jihua
+	public void selectYhdzxjhList(){
+		Gcglyhdzx gcglyhdzx=new Gcglyhdzx();
+		gcglyhdzx.setPage(page);
+		gcglyhdzx.setRows(rows);
+		gcglyhdzx.setJhid(jhid);
+		gcglyhdzx.setGydw(gydw);
+		gcglyhdzx.setKgzt(kgzt);
+		gcglyhdzx.setLxmc(lxmc);
+		int count=gcglyhdzxServer.selectWqgzjhListCount(gcglyhdzx);
+		List<Gcglyhdzx> list=gcglyhdzxServer.selectWqgzjhList(gcglyhdzx);
+		EasyUIPage<Gcglyhdzx> e=new EasyUIPage<Gcglyhdzx>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}		
+	public void selectYhdzxjhFile(){
+		gcglyhdzx.setJhid(jhid);
+		Gcglyhdzx g= gcglyhdzxServer.selectWqgzjhFile(gcglyhdzx);
+		try {
+			JsonUtils.write(g, getresponse().getWriter());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteYhdzxFile(){
+		
+		gcglyhdzx.setJhid(jhid);
+		gcglyhdzx.setTiaojian(type);
+		Gcglyhdzx gcglyhdzx1=gcglyhdzxServer.downWqgzFile(gcglyhdzx);
+		String realPath = ServletActionContext.getServletContext().getRealPath("/");
+		String filename=gcglyhdzx1.getTiaojian();
+		gcglyhdzx.setTiaojian("");		
+		boolean bl = false;
+		if("sgxkwj".equals(type))
+			bl=gcglyhdzxServer.uploadWqgzFilesgxk(gcglyhdzx);
+		if("jgtcwj".equals(type))
+			bl=gcglyhdzxServer.uploadWqgzFilejgtc(gcglyhdzx);
+		if("jgyswj".equals(type))
+			bl=gcglyhdzxServer.uploadWqgzFilejgys(gcglyhdzx);
+		if(bl){
+			File file=new File(realPath+"upload\\"+filename);
+			file.delete();
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+		
+	}
 }

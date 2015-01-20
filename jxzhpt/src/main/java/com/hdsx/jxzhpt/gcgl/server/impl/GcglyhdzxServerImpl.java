@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
@@ -117,4 +118,83 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 		}
 	}
 
+	@Override
+	public boolean uploadWqgzFilesgxk(Gcglyhdzx gcglwqgz) {
+		if(update("uploadWqgzFilesgxk", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgtc(Gcglyhdzx gcglwqgz) {
+		if(update("uploadWqgzFilejgtc", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean uploadWqgzFilejgys(Gcglyhdzx gcglwqgz) {
+		if(update("uploadWqgzFilejgys", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Gcglyhdzx downWqgzFile(Gcglyhdzx gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("downWqgzFile", gcglwqgz);
+	}
+
+	@Override
+	public Boolean insertWqgzwwg(Gcglyhdzx gcglwqgz) {
+		if(update("insertWqgzwwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzwg(Gcglyhdzx gcglwqgz) {
+		gcglwqgz.setJgzt("1");
+		if(update("insertWqgzwg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertWqgzkg(Gcglyhdzx gcglwqgz) {
+		gcglwqgz.setKgzt("1");
+		if(update("insertWqgzkg", gcglwqgz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectWqgzjhListCount(Gcglyhdzx gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListCount", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglyhdzx> selectWqgzjhList(Gcglyhdzx gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList", gcglwqgz);
+	}
+
+	@Override
+	public Gcglyhdzx selectWqgzjhFile(Gcglyhdzx gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
 }

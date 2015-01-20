@@ -2,14 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
 </insert>
  
  <select id="selectJckzhfz" parameterType="hashmap" resultType="jckzhfz">
  	select * from (
- 		select rownum num ,t.* from xmk_zhfz t where 1=1
+ 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_zhfz t where 1=1
+ 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -39,6 +40,7 @@
  </select>
  <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
 	select count(*) from xmk_zhfz where 1=1
+			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -75,11 +77,11 @@
  <update id="xgJckzhfzShzt" parameterType="jckzhfz" >
  	update xmk_zhfz set shzt='已审核' where id=#{id}
  </update>
- <update id="xgJckzhfzSbzt" parameterType="String" >
- 	update xmk_zhfz set sbzt='已上报' where id in(#{delstr})
+ <update id="xgJckzhfzSbzt" parameterType="hashmap" >
+ 	update xmk_zhfz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
  </update>
  <update id="xgJckZhfzTH" parameterType="jckzhfz" >
- 	update xmk_zhfz set sbzt='未上报' where id =#{id}
+ 	update xmk_zhfz set sbzt='未上报',sbthcd=(sbthcd+2) where id =#{id}
  </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckzhfz">
  	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,(max(roadends)-min(roadstart)) qzlc,
@@ -103,7 +105,8 @@
  
   <select id="selectJckShzhfz" parameterType="hashmap" resultType="jckzhfz">
  	select * from (
- 		select rownum num ,t.* from xmk_zhfz t where sbzt='已上报'
+ 		select rownum num ,t.* from xmk_zhfz t where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
@@ -132,7 +135,8 @@
  			order by shzt desc
  </select>
  <select id="selectZhfzShCount" parameterType="hashmap" resultType="int">
-	select count(*) from xmk_zhfz where sbzt='已上报'
+	select count(*) from xmk_zhfz where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and gydw like '%'||(#{gydw})||'%'
  		</if>

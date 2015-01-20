@@ -32,5 +32,25 @@ public interface GcglgcgzsjServer {
 	Boolean updateGcgzsjCgs(Gcglgcgzsj gcglgcgzsj);
 
 	Boolean deleteGcgzsjCgs(Gcglgcgzsj gcglgcgzsj);
+
+	Gcglgcgzsj downWqgzFile(Gcglgcgzsj gcglgcgzsj);
+
+	boolean uploadWqgzFilesgxk(Gcglgcgzsj gcglgcgzsj);
+
+	boolean uploadWqgzFilejgtc(Gcglgcgzsj gcglgcgzsj);
+
+	boolean uploadWqgzFilejgys(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean insertWqgzkg(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean insertWqgzwg(Gcglgcgzsj gcglgcgzsj);
+
+	Boolean insertWqgzwwg(Gcglgcgzsj gcglgcgzsj);
+
+	int selectWqgzjhListCount(Gcglgcgzsj gcglgcgzsj);
+
+	List<Gcglgcgzsj> selectWqgzjhList(Gcglgcgzsj gcglgcgzsj);
+
+	Gcglgcgzsj selectWqgzjhFile(Gcglgcgzsj gcglgcgzsj);
 	
 }
