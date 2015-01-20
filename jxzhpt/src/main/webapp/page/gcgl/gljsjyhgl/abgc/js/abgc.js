@@ -210,9 +210,9 @@ function showAll(){
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	if(row.kgzt=='1'){
-	        		return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a href="#" onclick="ybsb('+index+')">月报</a>   '+'<a href="#" onclick="wangong('+index+')">完工</a>  '+'<a href="#" onclick="wwangong('+index+')">未完工</a>  ';
+	        		return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
 	        	}else
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="kaigong('+index+')">开工</a>  ';
+	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -238,11 +238,12 @@ function showYBlist(){
 	    height:325,
 	    columns:[
 	             [
-	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核')
-				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>';
-		              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核';
-	              	}},
+	              	{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+			        	if(row.kgzt=='1'){
+			        		return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
+			        	}else
+			        	return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
+			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
 			        {field:'bywc_c',title:'本月完成（处）',width:100,align:'center',rowspan:2},

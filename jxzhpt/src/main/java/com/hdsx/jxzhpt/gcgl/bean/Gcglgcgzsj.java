@@ -118,7 +118,7 @@ public class Gcglgcgzsj implements Serializable {
 	private String jgyswj;
 	private String gsztz;
 	private String wjgyy;
-	
+	private String tiaojian;
 	private int page;
 	private int rows;
 	public String getId() {
@@ -751,6 +751,12 @@ public class Gcglgcgzsj implements Serializable {
 	}
 	public void setWjgyy(String wjgyy) {
 		this.wjgyy = wjgyy;
+	}
+	public String getTiaojian() {
+		return tiaojian;
+	}
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
 	}
 
 }

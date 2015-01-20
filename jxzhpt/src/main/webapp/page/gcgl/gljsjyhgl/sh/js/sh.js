@@ -211,11 +211,11 @@ function showAll(){
 		},
 	    columns:[[
 			{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-				if(row.kgzt=='1'){
-					return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a href="#" onclick="ybsb('+index+')">月报</a>   '+'<a href="#" onclick="wangong('+index+')">完工</a>  '+'<a href="#" onclick="wwangong('+index+')">未完工</a>  ';
-				}else
-				return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="kaigong('+index+')">开工</a>  ';
-			}},
+	        	if(row.kgzt=='1'){
+	        		return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
+	        	}else
+	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
+	        }},
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="#" onclick="sfqxkg('+index+')">否</a>    ';
 	        }},
