@@ -15,7 +15,8 @@
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and tbbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhmc like '%'||(#{xzqhmc})||'%'
@@ -48,7 +49,8 @@
  		select count(*) from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and tbbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhmc like '%'||(#{xzqhmc})||'%'

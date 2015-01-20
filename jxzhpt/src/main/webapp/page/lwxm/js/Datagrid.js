@@ -4,7 +4,7 @@
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
 				 	'sbthcd':$.cookie("unit2").length,
-				 	'gydw':$("#gydw").val(),
+				 	'gydw':$('#gydw').combobox("getValue"),
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
 				 	'qlmc':$("#qlmc").val(),

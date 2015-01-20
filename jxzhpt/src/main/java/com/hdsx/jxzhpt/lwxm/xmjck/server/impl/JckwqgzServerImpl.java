@@ -27,6 +27,9 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		if("11101360000".equals(wqgz.getGydw())){
+			wqgz.setGydw("");
+		}
 		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
@@ -91,6 +94,9 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public int selectWqgzCount(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
+		if("11101360000".equals(wqgz.getGydw())){
+			wqgz.setGydw("");
+		}
 		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
