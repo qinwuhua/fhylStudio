@@ -35,7 +35,7 @@ function xgShzt(){
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/xgJckWqgzShzt.do",
 				 dataType : 'json',
-				 data : 'id=' +id,
+				 data : 'id=' +id+"&shbm="+$.cookie("unit"),
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');

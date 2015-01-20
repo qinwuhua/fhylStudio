@@ -27,6 +27,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	@Override
 	public List<Jckzhfz> selectZhfzList(Jckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
@@ -77,14 +78,19 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public boolean xgJckZhfzSbzt(String delstr) {
-		if(update("xgJckzhfzSbzt", delstr)>0) return true;
+	public boolean xgJckZhfzSbzt(String delstr,Jckzhfz zhfz) {
+		hm=new HashMap<String, Object>();
+		hm.put("delstr", delstr);
+		hm.put("sbbm", zhfz.getSbbm());
+		hm.put("sbthcd", zhfz.getSbthcd());
+		if(update("xgJckzhfzSbzt", hm)>0) return true;
 		else return false;
 	}
 
 	@Override
 	public int selectZhfzCount(Jckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
@@ -99,6 +105,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	@Override
 	public List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
@@ -115,6 +122,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	@Override
 	public int selectZhfzShCount(Jckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());

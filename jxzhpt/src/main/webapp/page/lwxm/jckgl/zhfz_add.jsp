@@ -123,7 +123,7 @@ var zdStr;
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").val()+"&gydw="+$("#gydw").val()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&gjxjnd="+$("#xjnd").val()+
 		"&lxjsdj="+$("#lxjsdj").val()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit");
+		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit2").length;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertZhfz.do',

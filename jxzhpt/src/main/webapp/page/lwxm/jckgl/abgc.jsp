@@ -52,33 +52,7 @@ function delJckabgc(){
 			});
 		}
 }
-function xgShzt(id){
-	var rows=$('#grid').datagrid('getSelections');
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量审核！");
-		return;
-	}
-	if(confirm('您确定审核通过该项目？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/xmjck/xgJckAbgcShzt.do",
-				 dataType : 'json',
-				 data : 'id=' +id,
-				 success : function(msg){
-					 if(msg){
-						 alert('审核成功！');
-						 $("#grid").datagrid('reload');
-					 }else{
-						 alert('审核失败,请选择要审核项目！');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-	}
-}
+
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;

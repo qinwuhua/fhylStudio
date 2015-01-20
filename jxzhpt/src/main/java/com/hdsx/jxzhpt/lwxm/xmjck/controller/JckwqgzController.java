@@ -177,7 +177,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckWqgzSbzt(){
 		try {
-			JsonUtils.write(wqgzServer.xgJckWqgzSbzt(delstr),getresponse().getWriter());
+			JsonUtils.write(wqgzServer.xgJckWqgzSbzt(delstr,jckwqgz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -41,7 +41,7 @@
 	</select>
 	<select id="selectAbgcCount" parameterType="hashmap" resultType="int">
 		select count(*) from xmk_abgc where 1=1
-			and  sbthcd >=#{sbthcd}
+			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and gydw like '%'||(#{gydw})||'%'
 		</if>

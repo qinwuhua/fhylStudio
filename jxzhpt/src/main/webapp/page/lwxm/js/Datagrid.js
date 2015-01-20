@@ -3,6 +3,7 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
+				 	'sbthcd':$.cookie("unit2").length,
 				 	'gydw':$("#gydw").val(),
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
@@ -23,7 +24,7 @@
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.sbzt=="未上报"){
+					if(row.sbzt2=="未上报"){
 						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -36,9 +37,11 @@
 					}
 				}},    
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-					if(row.sbzt=="未上报"){
-					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-					}else{
+					if(row.sbzt2=="未上报" && row.sbthcd!=7){
+						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+							return  '<span style="color:grey;">未上报</span>';
+						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
@@ -120,6 +123,7 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectZhfz.do',
 			 queryParams : {
+				 'sbthcd':$.cookie("unit2").length,
 				 	'gydw':$("#gydw").val(),
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
@@ -139,7 +143,7 @@
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.sbzt=="未上报"){
+					if(row.sbzt2=="未上报"){
 						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -152,9 +156,11 @@
 					}
 				}},    
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-					if(row.sbzt=="未上报"){
-					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-					}else{
+					if(row.sbzt2=="未上报" && row.sbthcd!=7){
+						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+							return  '<span style="color:grey;">未上报</span>';
+						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
@@ -178,6 +184,7 @@ function jckshWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectJckShwqgz.do',
 		 queryParams : {
+			 	'sbthcd':$.cookie("unit2").length,
 			 	'gydw':$("#gydw").val(),
 			 	'xzqhmc':$("#xzqhmc").val(),
 			 	'lxmc' : $('#lxmc').val(),
@@ -278,6 +285,7 @@ function jckshZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectZhfzSh.do',
 		 queryParams : {
+			 	'sbthcd':$.cookie("unit2").length,
 			 	'gydw':$("#gydw").val(),
 			 	'xzqhmc':$("#xzqhmc").val(),
 			 	'lxmc' : $('#lxmc').val(),

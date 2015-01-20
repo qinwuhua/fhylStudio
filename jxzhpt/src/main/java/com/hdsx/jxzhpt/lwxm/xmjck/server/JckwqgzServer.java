@@ -17,7 +17,7 @@ public interface JckwqgzServer {
 	List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz);
 	boolean deleteWqgzById(String delstr);
 	boolean xgJckWqgzShzt(Jckwqgz wqgz);
-	boolean xgJckWqgzSbzt(String delstr);
+	boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
 	boolean importWqgz(List<Map> data);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
