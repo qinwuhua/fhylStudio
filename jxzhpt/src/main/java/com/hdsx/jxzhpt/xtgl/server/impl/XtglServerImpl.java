@@ -232,6 +232,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 
 	@Override
 	public List<Unit> selectXzqhList(Unit unit) {
+		System.out.println(unit.getId()+"++++++++");
 		return queryList("selectXzqhList", unit);
 	}
 
