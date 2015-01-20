@@ -3,14 +3,15 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核')
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
 	</insert>
 
 	<select id="selectJckabgc" parameterType="hashmap" resultType="jckabgc">
 		select * from (
-		select rownum num ,t.* from xmk_abgc t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2  from xmk_abgc t where 1=1
+			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and gydw like '%'||(#{gydw})||'%'
 		</if>
@@ -40,6 +41,7 @@
 	</select>
 	<select id="selectAbgcCount" parameterType="hashmap" resultType="int">
 		select count(*) from xmk_abgc where 1=1
+			and  sbthcd >=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and gydw like '%'||(#{gydw})||'%'
 		</if>
@@ -102,18 +104,19 @@
 	</delete>
 
 	<update id="xgJckAbgcShzt" parameterType="jckabgc">
-		update xmk_abgc set shzt='已审核', shsj=sysdate where id=#{id}
+		update xmk_abgc set shzt='已审核', shsj=sysdate,shbm=#{shbm} where id=#{id}
 	</update>
-	<update id="xgJckAbgcSbzt" parameterType="String">
-		update xmk_abgc set sbzt='已上报',sbsj=sysdate where id in(#{delstr})
+	<update id="xgJckAbgcSbzt" parameterType="hashmap">
+		update xmk_abgc set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
 	</update>
 	<update id="xgJckAbgcTH" parameterType="String">
-		update xmk_abgc set sbzt='未上报' where id =#{id}
+		update xmk_abgc set sbzt='未上报',sbthcd=(sbthcd+2) where id =#{id}
 	</update>
 
 	<select id="selectJckShabgc" parameterType="hashmap" resultType="jckabgc">
 		select * from (
-		select rownum num ,t.* from xmk_abgc t where sbzt='已上报'
+		select rownum num ,t.* from xmk_abgc t where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and gydw like '%'||(#{gydw})||'%'
 		</if>
@@ -144,7 +147,8 @@
 	</select>
 	<select id="selectAbgcShCount" parameterType="hashmap"
 		resultType="int">
-		select count(*) from xmk_abgc where sbzt='已上报'
+		select count(*) from xmk_abgc where sbzt='已上报' and sbthcd=7
+			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and gydw like '%'||(#{gydw})||'%'
 		</if>

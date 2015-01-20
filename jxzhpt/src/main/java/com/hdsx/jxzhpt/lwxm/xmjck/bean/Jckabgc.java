@@ -40,6 +40,7 @@ public class Jckabgc implements Serializable{
 	private String sbthcd;
 	private int page;
 	private int rows;
+	private String sbzt2;
 	public String getId() {
 		return id;
 	}
@@ -219,6 +220,13 @@ public class Jckabgc implements Serializable{
 	}
 	public void setSbthcd(String sbthcd) {
 		this.sbthcd = sbthcd;
+	}
+
+	public String getSbzt2() {
+		return sbzt2;
+	}
+	public void setSbzt2(String sbzt2) {
+		this.sbzt2 = sbzt2;
 	}
 	@Override
 	public String toString() {

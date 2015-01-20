@@ -27,6 +27,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public List<Jckabgc> selectAbgcList(Jckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", abgc.getSbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
@@ -77,14 +78,19 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean xgJckAbgcSbzt(String delstr) {
-		if(update("xgJckAbgcSbzt", delstr)>0) return true;
+	public boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("delstr", delstr);
+		hm.put("sbbm", abgc.getSbbm());
+		hm.put("sbthcd", abgc.getSbthcd());
+		if(update("xgJckAbgcSbzt", hm)>0) return true;
 		else return false;
 	}
 
 	@Override
 	public int selectAbgcCount(Jckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", abgc.getSbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
@@ -99,6 +105,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public List<Jckabgc> selectJckShabgc(Jckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", abgc.getSbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
@@ -115,6 +122,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public int selectAbgcShCount(Jckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", abgc.getSbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
