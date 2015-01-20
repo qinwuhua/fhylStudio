@@ -68,7 +68,9 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败");
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void exportExcel_zhfz_scgl(){
 		try {

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer {
@@ -44,5 +46,15 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	@Override
 	public List<TreeNode> queryWqgzNfs() {
 		return queryList("queryWqgzNfs");
+	}
+
+	@Override
+	public List<SjbbMessage> insertToSheet(String xzqhdm) {
+		return this.queryList("insertToSheet",xzqhdm);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
+		return this.queryList("exportExcel_jh",jck);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
@@ -40,4 +41,14 @@ public interface Plan_abgcServer {
 	 * @param id
 	 */
 	boolean dropAbgcById(String id);
+	/**
+	 * @param xzqhdm
+	 * @return
+	 */
+	List<SjbbMessage> insertToSheet(String xzqhdm);
+	/**
+	 * @param jck
+	 * @return
+	 */
+	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
 }

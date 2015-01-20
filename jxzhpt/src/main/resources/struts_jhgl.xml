@@ -26,5 +26,6 @@
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
 		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>
 		
+		<action name="exportExcel_jh" class="plan_abgcController" method="exportExcel_jh"/>
 	 </package>
 </struts>
