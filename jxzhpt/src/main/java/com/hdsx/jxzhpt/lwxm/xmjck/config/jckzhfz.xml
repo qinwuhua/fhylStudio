@@ -101,7 +101,7 @@
   <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
  	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
  	from xmk_zhfz where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%' 
-<!--  	group by lxmc,lxbm -->
+ 	and xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
  	order by lxbm
  </select>
  

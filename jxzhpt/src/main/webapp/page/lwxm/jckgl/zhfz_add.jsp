@@ -68,7 +68,6 @@ var zdStr;
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
-	  			}
 	  		},
 	  			xzqhdm:function() {
   				var d = $.cookie("dist");

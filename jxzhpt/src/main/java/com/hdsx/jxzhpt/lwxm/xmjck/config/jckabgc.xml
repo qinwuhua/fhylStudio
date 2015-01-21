@@ -99,8 +99,8 @@
 	<select id="selectJckRoad" parameterType="hashmap" resultType="jckabgc">
 		select
 		id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
-		from xmk_abgc where shzt='已审核' and sbzt='已上报' and lxbm like
-		#{lxbm}||'%'
+		from xmk_abgc where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%'
+		and xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
 		order by lxbm
 	</select>
 

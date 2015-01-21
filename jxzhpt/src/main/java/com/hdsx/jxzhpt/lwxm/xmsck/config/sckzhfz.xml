@@ -163,7 +163,7 @@
  <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
 		select count(*) from sck_zhfz where 1=1
 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm=#{lxbm}
+			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
 			and sczdzh>=#{qdzh}

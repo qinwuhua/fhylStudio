@@ -184,10 +184,10 @@
 	 <select id="bzWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where 1=1
  		<if test="qlbh!='' and qlbh!= null "  >
- 			and qlbh=#{qlbh}
+ 			and sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
+ 			or (sck_lxbm=#{lxbm} and sck_qlzxzh=#{qlzxzh})
  		</if>
  </select>
 	

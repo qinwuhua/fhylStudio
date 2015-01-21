@@ -21,7 +21,7 @@
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqhmc","360000");
+	loadDist("xzqhmc",$.cookie("dist"));
 	sckglAbgc();
 });
 

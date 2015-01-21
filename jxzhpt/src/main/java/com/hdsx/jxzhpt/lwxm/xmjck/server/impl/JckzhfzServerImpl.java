@@ -55,12 +55,14 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	public List<Jckzhfz> selectGpsroad(Jckzhfz zhfz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("xzqhdm", zhfz.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
 	@Override
 	public List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz) {
 		hm = new HashMap<String, Object>();
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("xzqhdm", zhfz.getXzqhdm());
 		return queryList("JckzhfzRoad", hm);
 	}
 

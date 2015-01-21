@@ -110,6 +110,7 @@
  
   <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
  	select * from xmk_wqgz where shzt='已审核' and sbzt='已上报' and qlbh like #{qlbh}||'%' 
+ 	and xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
  	order by qlbh
  </select>
  
@@ -118,7 +119,8 @@
  		select rownum num ,t.* from xmk_wqgz t where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and tbbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -152,7 +154,8 @@
  		select count(*) from xmk_wqgz t where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and tbbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh

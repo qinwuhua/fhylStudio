@@ -62,6 +62,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	public List<Jckabgc> selectJckRoad(Jckabgc abgc) {
 		hm = new HashMap<String, Object>();
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("xzqhdm", abgc.getXzqhdm());
 		return queryList("selectJckRoad", hm);
 	}
 
