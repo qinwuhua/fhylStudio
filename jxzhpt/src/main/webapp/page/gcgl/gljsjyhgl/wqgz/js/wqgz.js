@@ -252,7 +252,6 @@ var ybxx;
 function showYBlist(){
 	var jhid=parent.obj1.jhid;
 	var yhjb=$.cookie("unit2");
-	
 	var yhtype='';
 	if(yhjb.length==11){
 		yhtype='县级';
@@ -263,7 +262,7 @@ function showYBlist(){
 	if(yhjb.length<8&&yhjb.length>2){
 		yhtype='省级';
 	}
-	alert(yhjb.length+"----"+yhtype);
+	//alert(yhjb.length+"----"+yhtype);
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid.do',
 	    striped:true,

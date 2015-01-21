@@ -42,7 +42,18 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 		// TODO Auto-generated method stub
 		return queryList("selectZhfzYbByJhid",gcglzhfz);
 	}
+	@Override
+	public int selectZhfzYbByJhidCount1(Gcglzhfz gcglzhfz) {
+		return queryOne("selectZhfzYbByJhidCount1", gcglzhfz);
+	}
 
+	@Override
+	public List<Gcglzhfz> selectZhfzYbByJhid1(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("selectZhfzYbByJhid1",gcglzhfz);
+	}
+
+	
 	@Override
 	public Boolean updateZhfzYb(Gcglzhfz gcglzhfz) {
 		if(update("updateZhfzYb", gcglzhfz)>0){
@@ -192,5 +203,14 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 	public Gcglzhfz selectWqgzjhFile(Gcglzhfz gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
+
+	@Override
+	public Boolean sbWqgzYb(Gcglzhfz gcglabgc) {
+		if(update("sbWqgzYb", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

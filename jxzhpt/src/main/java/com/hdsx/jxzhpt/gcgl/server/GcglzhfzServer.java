@@ -50,4 +50,10 @@ public interface GcglzhfzServer {
 
 	int selectWqgzjhListCount(Gcglzhfz gcglzhfz);
 
+	int selectZhfzYbByJhidCount1(Gcglzhfz gcglzhfz);
+
+	List<Gcglzhfz> selectZhfzYbByJhid1(Gcglzhfz gcglzhfz);
+
+	Boolean sbWqgzYb(Gcglzhfz gcglzhfz);
+
 }

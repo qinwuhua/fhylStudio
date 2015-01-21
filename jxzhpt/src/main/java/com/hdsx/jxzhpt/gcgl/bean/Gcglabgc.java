@@ -98,6 +98,8 @@ public class Gcglabgc implements Serializable {
 	private String sgxkwj;
 	private String jgtcwj;
 	private String jgyswj;
+	private String sfsj;
+	private String sfth;
 	
 	private String tiaojian;
 	private int page;
@@ -614,6 +616,18 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setTsdq(String tsdq) {
 		this.tsdq = tsdq;
+	}
+	public String getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(String sfsj) {
+		this.sfsj = sfsj;
+	}
+	public String getSfth() {
+		return sfth;
+	}
+	public void setSfth(String sfth) {
+		this.sfth = sfth;
 	}
 	
 }
