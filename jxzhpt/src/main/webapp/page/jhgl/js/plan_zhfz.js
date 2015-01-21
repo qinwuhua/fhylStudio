@@ -258,7 +258,7 @@ function zhfzxm_zjxd(jh,lx){
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'zhfz_zjxd','灾害防治项目计划详情','../zjxd/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+	        	return '<a href="javascript:openDialog('+"'zjxd_zhfz','灾害防治项目计划详情','../zjxd/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 	        }},
 	        {field:'c4',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';

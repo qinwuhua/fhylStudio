@@ -239,7 +239,7 @@ function wqxm_zjxd(jh,lx){
 		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-		        	return '<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
+		        	return '<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
 		        }},
 		        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '未开工';

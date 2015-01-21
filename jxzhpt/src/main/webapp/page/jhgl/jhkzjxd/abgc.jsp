@@ -117,6 +117,6 @@
 		</table>
 	</div>
 	
-	<div id="abgc_zjxd" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="zjxd_abgc" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

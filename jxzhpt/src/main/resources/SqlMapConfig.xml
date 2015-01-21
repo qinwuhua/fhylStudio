@@ -39,7 +39,7 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz" alias="plan_wqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_shuih" alias="plan_shuih"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih" alias="plan_lx_shuih"/>
-     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd" alias="plan_lzjxd"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd" alias="plan_zjxd"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>

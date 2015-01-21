@@ -112,6 +112,6 @@
 		</table>
 	</div>
 	
-	<div id="gclmsj_zjxd" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="zjxd_gclmsj" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>
