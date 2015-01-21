@@ -1,4 +1,5 @@
 var obj=new Object();
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
@@ -6,7 +7,9 @@ function wqxiangxi(){
 	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',700,450);
 	//window.open("wqgzxx.jsp");
 }
-function zjdw(){
+function zjdw(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','wqgzzjdw.jsp','wqxx1',800,500);
 	//window.open("wqgzzjdw.jsp");
 }
@@ -30,7 +33,7 @@ function tjwqgzcgs(){
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
 	var data="gcglwqgz.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglwqgz.tbr="+$.cookie("truename")+"&gcglwqgz.tbsj="+tbsj+"&gcglwqgz.tbyf="+tbyf
-	+"&gcglwqgz.jhid="+"11";
+	+"&gcglwqgz.jhid="+parent.parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -92,47 +95,65 @@ function delCgs(index){
 	}	
 }
 function showAll(){
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
+		gydw='';
+	var jgzt='0';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
 	$('#datagrid').datagrid({    
-	    url:'js/wqgz.json',
+	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	jgzt:jgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="zjdw()">资金拨付</a>   ';
+	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:100,align:'center'},
-	        {field:'qlbm',title:'桥梁编码',width:100,align:'center'},
-	        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
+	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbm',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
-	        {field:'qlqk',title:'桥梁全宽',width:60,align:'center'},
-	        {field:'qlqc',title:'桥梁全长',width:60,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
 	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
 	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
-	        {field:'gjnf',title:'改建/修建年度',width:100,align:'center'}
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
 }
 
 function showAllZJ(){
+	var jhid=parent.obj1.jhid;
 	$('#zjgrid').datagrid({    
-	    url:'../../../../gcgl/selectWqgzCgsList.do?jhid=10',
+	    url:'../../../../gcgl/selectWqgzCgsList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:315,
+	    queryParams: {
+	    	jhid: jhid,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	if(row.sbsj==""||row.sbyf>row.tbyf){
 	        		return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
 	        	}
-	        	else return "月报已上报，不可操作";
+	        	else return '编辑   '+'删除';
 	        }},
 	        {field:'tbyf',title:'填报月份 ',width:140,align:'center'},
 	        {field:'tbsj',title:'填报时间 ',width:140,align:'center'},

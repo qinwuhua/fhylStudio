@@ -46,7 +46,16 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String kgzt;
 	private String lxmc;
 	private String qlmc;
+	private String jgzt;
+	private String yhtype;
 	
+	
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
 	public String getGydw() {
 		return gydw;
 	}
@@ -116,9 +125,22 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
+	
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
 	//添加月报
 	public void insertWqgzYb(){
 		System.out.println(gcglwqgz);
+		if("县级".equals(yhtype)){
+			gcglwqgz.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglwqgz.setSfsj("是");
+		}
 		Boolean bl=gcglwqgzServer.insertWqgzYb(gcglwqgz);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -143,6 +165,24 @@ public class GcglwqgzController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//查询月报1
+	public void selectWqgzYbByJhid1(){
+		Gcglwqgz gcglwqgz=new Gcglwqgz();
+		gcglwqgz.setPage(page);
+		gcglwqgz.setRows(rows);
+		gcglwqgz.setJhid(jhid);
+		int count=gcglwqgzServer.selectWqgzYbByJhidCount1(gcglwqgz);
+		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzYbByJhid1(gcglwqgz);
+		EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 		//修改月报
 		public void updateWqgzYb(){
 			System.out.println(gcglwqgz);
@@ -321,10 +361,11 @@ public class GcglwqgzController extends BaseActionSupport{
 			gcglwqgz.setPage(page);
 			gcglwqgz.setRows(rows);
 			gcglwqgz.setJhid(jhid);
-			gcglwqgz.setGydw(gydw);
+			gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
 			gcglwqgz.setKgzt(kgzt);
 			gcglwqgz.setQlmc(qlmc);
 			gcglwqgz.setLxmc(lxmc);
+			gcglwqgz.setJgzt(jgzt);
 			int count=gcglwqgzServer.selectWqgzjhListCount(gcglwqgz);
 			List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
 			EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
@@ -372,5 +413,15 @@ public class GcglwqgzController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 		
+	}
+	//修改月报状态
+	public void sbWqgzYb(){
+		System.out.println(gcglwqgz);
+		Boolean bl=gcglwqgzServer.sbWqgzYb(gcglwqgz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 }

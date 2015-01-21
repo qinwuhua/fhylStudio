@@ -327,7 +327,7 @@ public class GcglabgcController extends BaseActionSupport{
 			gcglabgc.setPage(page);
 			gcglabgc.setRows(rows);
 			gcglabgc.setJhid(jhid);
-			gcglabgc.setGydw(gydw);
+			gcglabgc.setGydw(gydw.replaceAll("0*$",""));
 			gcglabgc.setKgzt(kgzt);
 			gcglabgc.setLxmc(lxmc);
 			int count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);

@@ -5,6 +5,7 @@
 <package name="gcgl" extends="struts-default" namespace="/gcgl">
 	<action name="insertWqgzYb" class="gcglwqgzController" method="insertWqgzYb"/>
 	<action name="selectWqgzYbByJhid" class="gcglwqgzController" method="selectWqgzYbByJhid"/>
+	<action name="selectWqgzYbByJhid1" class="gcglwqgzController" method="selectWqgzYbByJhid1"/>
 	<action name="updateWqgzYb" class="gcglwqgzController" method="updateWqgzYb"/>
 	<action name="deleteWqgzYb" class="gcglwqgzController" method="deleteWqgzYb"/>
 	<action name="shWqgzYb" class="gcglwqgzController" method="shWqgzYb"/>
@@ -20,6 +21,7 @@
 	<action name="selectWqgzjhList" class="gcglwqgzController" method="selectWqgzjhList"/>
 	<action name="selectWqgzjhFile" class="gcglwqgzController" method="selectWqgzjhFile"/>
 	<action name="deleteWqgzFile" class="gcglwqgzController" method="deleteWqgzFile"/>
+	<action name="sbWqgzYb" class="gcglwqgzController" method="sbWqgzYb"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>

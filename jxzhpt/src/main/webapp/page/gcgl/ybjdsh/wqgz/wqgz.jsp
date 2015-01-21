@@ -23,7 +23,6 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
-			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
 	</script>
@@ -64,9 +63,6 @@ a:active {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 200px;">
-        						
-        						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 100px;">
         						<span>路线：</span>
         							<input type="text" id="lxmc" >
         						<span>桥梁：</span>

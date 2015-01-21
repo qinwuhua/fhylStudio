@@ -85,10 +85,23 @@ function tjwqgzyb(){
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
 	var sbyf = y+"-"+m;
+	var yhjb=$.cookie("unit2");
+	var yhtype='';
+	if(yhjb.length==11){
+		yhtype='县级';
+	}
+	if(yhjb.length==9||yhjb.length==8||yhjb.length==2){
+		yhtype='市级';
+	}
+	if(yhjb.length<8&&yhjb.length>2){
+		yhtype='省级';
+		alert("省级用户不具备添加权限");
+		return;
+	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()
-	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+sbyf+"&gcglwqgz.jhid="+parent.parent.obj1.jhid;
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+sbyf+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -193,9 +206,10 @@ function tjwqgzwwg(){
 }
 //显示所有
 function showAll(){
-	var gydw=$("#gydw").combobox("getText");
-	if(gydw=='36'||gydw=='江西省')
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
 		gydw='';
+	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
@@ -210,6 +224,7 @@ function showAll(){
 	    queryParams: {
 	    	gydw: gydw,
 	    	kgzt: kgzt,
+	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
 		},
@@ -236,8 +251,19 @@ function showAll(){
 var ybxx;
 function showYBlist(){
 	var jhid=parent.obj1.jhid;
-	var yhjb=$.cookie("roddist");
-	alert(yhjb);
+	var yhjb=$.cookie("unit2");
+	
+	var yhtype='';
+	if(yhjb.length==11){
+		yhtype='县级';
+	}
+	if(yhjb.length==9||yhjb.length==8||yhjb.length==2){
+		yhtype='市级';
+	}
+	if(yhjb.length<8&&yhjb.length>2){
+		yhtype='省级';
+	}
+	alert(yhjb.length+"----"+yhtype);
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid.do',
 	    striped:true,
@@ -248,14 +274,34 @@ function showYBlist(){
 	    height:325,
 	    queryParams: {
 	    	jhid: jhid,
-	    	
+	    	yhtype:yhtype,
 		},
 	    columns:[
 	             [
-	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核')
-			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>';
-	              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核';
+	              	{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
+	              		if(yhtype=='县级'){
+	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='否')
+	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'已上报    '+'未审核    ';
+	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='是')	
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'审核不通过    ';
+	              			if(row.shzt=='已审核')
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'已审核    ';
+	              		}
+	              		if(yhtype=='市级'){
+	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='是')
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除    '+'未上报    '+'退回    '+'未审核    ';
+	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='否')
+	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'未审核    ';
+	              			if(row.shzt=='未审核'&&row.sfsj=='是'&&row.sfth=='否')
+	    	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'已上报    '+'退回    '+'未审核    ';
+	              			if(row.shzt=='未审核'&&row.sfsj=='是'&&row.sfth=='是')
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'审核不通过    ';
+	              			if(row.shzt=='已审核')
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'退回    '+'已审核    ';
+	              		}
+	              		if(yhtype=='省级'){
+	              			
+	              		}
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
@@ -276,6 +322,8 @@ function showYBlist(){
 	    ]
 	});
 }
+
+
 
 function uploadFile(str){
 	alert(str);
@@ -348,5 +396,51 @@ function jiazaifujian(data1){
 				}
 			}
 	});	
-	
+}
+function sbsjyb(index){
+	var yhjb=$.cookie("unit2");
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data='';
+	if(yhjb.length==11){
+		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=否"+"&gcglwqgz.sfth=否";
+	}
+	if(yhjb.length==9||yhjb.length==8||yhjb.length==2){
+		data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=是"+"&gcglwqgz.sfth=否";
+	}
+	if(confirm("确认上报吗？")){
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/sbWqgzYb.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					alert('上报成功！');
+					$("#ybgrid").datagrid('reload');
+				}else{
+					alert('上报失败！');
+				}
+			}
+		});	
+	}	
+}
+function thsjyb(index){
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=否"+"&gcglwqgz.sfth=是";
+	if(confirm("确认退回吗？")){
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/sbWqgzYb.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					alert('退回成功！');
+					$("#ybgrid").datagrid('reload');
+				}else{
+					alert('退回失败！');
+				}
+			}
+		});	
+	}	
 }
