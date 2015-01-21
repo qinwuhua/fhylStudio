@@ -34,7 +34,7 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 
 	@Override
 	public boolean dropZjxd(String id) {
-		return delete("dropZjxd",id)>0;
+		return delete("dropZjxdById",id)>0;
 	}
 
 	@Override

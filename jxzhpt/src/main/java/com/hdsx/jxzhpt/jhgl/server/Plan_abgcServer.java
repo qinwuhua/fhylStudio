@@ -42,6 +42,7 @@ public interface Plan_abgcServer {
 	 */
 	boolean dropAbgcById(String id);
 	/**
+<<<<<<< HEAD
 	 * @param xzqhdm
 	 * @return
 	 */
@@ -51,4 +52,10 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
+=======
+	 * 修改安保工程计划信息
+	 * @return
+	 */
+	int editAbgcById(Plan_abgc jh);
+>>>>>>> refs/remotes/origin/master
 }

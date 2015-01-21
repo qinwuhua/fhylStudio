@@ -60,6 +60,24 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void dropGcsjById(){
+		try {
+			JsonUtils.write(gcsjServer.dropGcsjById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editGcsjById(){
+		try {
+			JsonUtils.write(gcsjServer.editGcsjById(jh), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

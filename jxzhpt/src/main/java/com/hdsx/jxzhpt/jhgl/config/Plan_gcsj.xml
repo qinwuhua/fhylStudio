@@ -186,7 +186,7 @@
 	</select>
 	
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
-		select lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
+		select jh.id,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
 		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
 		jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.jhxdwh,jh.xmwybh,jh.xmmc,jh.sjdw,jh.sjpfdw,jh.jsjsbz,jh.ql,jh.ql_m,
 		jh.sd,jh.sd_m,jh.hd,jh.ljtsf,jh.dc,jh.jc,jh.lqlm,jh.snlm,jh.gjhjsdj,jh.sftqss,jh.pfwh,jh.pfsj,jh.pftz,
@@ -197,4 +197,16 @@
 	<select id="queryGcsjNfs" resultType="treenode">
 		 select distinct jh.jhnf as text from PLAN_GCSJ jh order by jh.jhnf
 	</select>
+	<delete id="dropGcsjById" parameterType="string">
+		delete from plan_gcsj jh where jh.id=#{id}
+	</delete>
+	<update id="editGcsjById" parameterType="plan_gcsj">
+		update plan_gcsj set jhnf=#{jhnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
+		xmwybh=#{xmwybh},xmmc=#{xmmc},sjdw=#{sjdw},sjpfdw=#{sjpfdw},jsjsbz=#{jsjsbz},ql=#{ql},ql_m=#{ql_m},
+		sd=#{sd},sd_m=#{sd_m},hd=#{hd},ljtsf=#{ljtsf},dc=#{dc},jc=#{jc},lqlm=#{lqlm},snlm=#{snlm},
+		gjhjsdj=#{gjhjsdj},sftqss=#{sftqss},pfwh=#{pfwh},pfsj=#{pfsj},pftz=#{pftz},jhsybbzje=#{jhsybbzje},
+		jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
+		gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},remarks=#{remarks}
+		where id=#{id}
+	</update>
 </mapper>

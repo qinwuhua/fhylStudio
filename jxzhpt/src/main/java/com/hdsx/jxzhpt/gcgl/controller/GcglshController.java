@@ -321,7 +321,7 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		gcglsh.setJhid(jhid);
-		gcglsh.setGydw(gydw);
+		gcglsh.setGydw(gydw.replaceAll("0*$",""));
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		int count=gcglshServer.selectWqgzjhListCount(gcglsh);

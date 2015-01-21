@@ -16,9 +16,7 @@
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			
 			showYBlist();
 		});
 	</script>
@@ -32,6 +30,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;

@@ -34,4 +34,16 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	List<TreeNode> queryShuihNfs();
+	/**
+	 * 根据ID删除水毁计划
+	 * @param id
+	 * @return
+	 */
+	boolean dropShuihById(String id);
+	/**
+	 * 根据ID修改水毁计划信息
+	 * @param jh
+	 * @return
+	 */
+	int editShuihById(Plan_shuih jh);
 }

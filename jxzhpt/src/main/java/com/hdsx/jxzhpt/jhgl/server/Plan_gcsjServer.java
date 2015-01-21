@@ -35,4 +35,16 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	List<TreeNode> queryGcsjNfs();
+	/**
+	 * 根据ID删除工程升级计划
+	 * @param id
+	 * @return
+	 */
+	boolean dropGcsjById(String id);
+	/**
+	 * 根据ID修改信息
+	 * @param jh
+	 * @return
+	 */
+	int editGcsjById(Plan_gcsj jh);
 }

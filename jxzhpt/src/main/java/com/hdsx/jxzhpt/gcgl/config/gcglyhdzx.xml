@@ -127,7 +127,7 @@
 		from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
 		where t2.jgzt='0' and t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t1.gydw like '%'||trim(#{gydw})||'%'
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -145,7 +145,7 @@
 	 	select count(*) from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
 		where t2.jgzt='0' and t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t1.gydw like '%'||trim(#{gydw})||'%'
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'

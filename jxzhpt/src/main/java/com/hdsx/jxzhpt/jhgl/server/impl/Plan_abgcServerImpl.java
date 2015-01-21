@@ -48,11 +48,16 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return delete("dropAbgcById",id)>0;
 	}
 	@Override
+<<<<<<< HEAD
 	public List<SjbbMessage> insertToSheet(String xzqhdm) {
 		return this.queryList("insertToSheet",xzqhdm);
 	}
 	@Override
 	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
 		return this.queryList("exportExcel_jh",jck);
+=======
+	public int editAbgcById(Plan_abgc jh) {
+		return update("editAbgcById", jh);
+>>>>>>> refs/remotes/origin/master
 	}
 }

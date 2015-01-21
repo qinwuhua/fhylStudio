@@ -37,6 +37,7 @@ public interface Plan_zhfzServer {
 	 */
 	List<TreeNode> queryZhfaNfs();
 	/**
+<<<<<<< HEAD
 	 * @param xzqhdm
 	 * @return
 	 */
@@ -48,4 +49,17 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
+=======
+	 * 根据ID删除信息
+	 * @param id
+	 * @return
+	 */
+	boolean dropZhfzById(String id);
+	/**
+	 * 根据ID修改灾害防治信息
+	 * @param jh
+	 * @return
+	 */
+	int editZhfzById(Plan_zhfz jh);
+>>>>>>> refs/remotes/origin/master
 }

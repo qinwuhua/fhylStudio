@@ -46,4 +46,13 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		return queryList("queryShuihNfs");
 	}
 
+	@Override
+	public boolean dropShuihById(String id) {
+		return delete("dropShuihById",id)>0;
+	}
+
+	@Override
+	public int editShuihById(Plan_shuih jh) {
+		return update("editShuihById", jh);
+	}
 }

@@ -84,9 +84,10 @@
 	 					and lx.lxjsdj = #{lx.lxjsjd}
 	 				</if>
 	</select>
-	<select id="queryZhfaNfs"  resultType="treenode">
+	<select id="queryZhfzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
 	</select>
+<<<<<<< HEAD
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,xzqhmc v_1,sc.lxbm v_2,sc.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,sc.scyhlc v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_zhfz sc,xmk_zhfz xm where sc.xmkid=xm.id and sck_sbzt='已上报'
 	</select>
@@ -95,4 +96,19 @@
 		from plan_zhfz jh left join xmk_zhfz lx on jh.sck_zhfz_id=lx.id where 1=1
 		order by jh.sbnf desc
 	</select>
+=======
+	<select id="queryZhfzById" parameterType="string" resultType="plan_zhfz">
+		select * from plan_zhfz jh where jh.id=#{id}
+	</select>
+	<delete id="dropZhfzById" parameterType="string">
+		delete from plan_zhfz jh where jh.id=#{id}
+	</delete>
+	<update id="editZhfzById" parameterType="plan_zhfz">
+		update plan_zhfz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
+			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
+			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
+			bz=#{bz},pfsj=#{pfsj}
+		where id=#{id}
+	</update>
+>>>>>>> refs/remotes/origin/master
 </mapper>

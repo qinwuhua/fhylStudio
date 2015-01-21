@@ -9,8 +9,8 @@ public class Plan_shuih {
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
-	private String sjdw;//施工单位
-	private String sjpfdw;//施工批复单位
+	private String sjdw;//设计单位
+	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
 	private Date pfsj;//批复时间
 	private String yhlb;//养护类别
@@ -67,9 +67,16 @@ public class Plan_shuih {
 	private String tzgs;//投资估算
 	private String jsxz;//建设性质
 	private String jsnr;//建设内容
-	private String bz;//备注
+	private String jhbz;//备注
+	private String scBz;//审查备注
 	private String wjgyy;//未竣工原因
 	private List<Plan_lx_shuih> shuihs;//水毁路段集合
+	public String getScBz() {
+		return scBz;
+	}
+	public void setScBz(String scBz) {
+		this.scBz = scBz;
+	}
 	public String getId() {
 		return id;
 	}
@@ -448,11 +455,11 @@ public class Plan_shuih {
 	public void setJsnr(String jsnr) {
 		this.jsnr = jsnr;
 	}
-	public String getBz() {
-		return bz;
+	public String getJhbz() {
+		return jhbz;
 	}
-	public void setBz(String bz) {
-		this.bz = bz;
+	public void setJhbz(String jhbz) {
+		this.jhbz = jhbz;
 	}
 	public String getWjgyy() {
 		return wjgyy;

@@ -329,7 +329,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
-		gcglgcgzgj.setGydw(gydw);
+		gcglgcgzgj.setGydw(gydw.replaceAll("0*$",""));
 		gcglgcgzgj.setKgzt(kgzt);
 		gcglgcgzgj.setLxmc(lxmc);
 		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);

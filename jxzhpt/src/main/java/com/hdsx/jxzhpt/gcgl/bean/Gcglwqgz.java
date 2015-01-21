@@ -107,6 +107,8 @@ public class Gcglwqgz implements Serializable {
 	private String jgtcwj;
 	private String jgyswj;
 
+	private String sfsj;
+	private String sfth;
 	
 	
 	public String getQlmc() {
@@ -667,6 +669,18 @@ public class Gcglwqgz implements Serializable {
 	}
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
+	}
+	public String getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(String sfsj) {
+		this.sfsj = sfsj;
+	}
+	public String getSfth() {
+		return sfth;
+	}
+	public void setSfth(String sfth) {
+		this.sfth = sfth;
 	}
 	
 	

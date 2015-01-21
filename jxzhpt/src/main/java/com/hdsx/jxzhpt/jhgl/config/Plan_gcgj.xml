@@ -39,6 +39,7 @@
 		<result property="sjsgtlj" column="sjsgtlj"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
+		<result property="bz" column="bz"/>
 		<collection property="plan_lx_gcgjs" ofType="plan_lx_gcgj" resultMap="lx"/>
 	</resultMap>
 	<resultMap id="lx" type="plan_lx_gcgj">
@@ -157,4 +158,27 @@
 	<select id="queryGcgjNfs" resultType="treenode">
 		 select distinct t.sbnf as text from PLAN_GCgJ t order by t.sbnf
 	</select>
+	<delete id="dropGcgjById" parameterType="string">
+		delete from plan_gcgj jh where jh.id=#{id}
+	</delete>
+	<update id="editGcgjById" parameterType="plan_gcgj">
+		update plan_gcgj set sbnf=#{sbnf},
+			<if test="jhkgsj!=null and jhkgsj!=''">
+				jhkgsj=#{jhkgsj},
+			</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">
+				jhwgsj=#{jhwgsj},
+			</if>
+			<if test="xdsj!=null and xdsj=!=''">
+				xdsj=#{xdsj},
+			</if>
+			<if test="pfsj!=null and pfsj!=''">
+				pfsj=#{pfsj},
+			</if>
+			xmmc=#{xmmc},yhlb=#{yhlb},sjdw=#{sjdw},sjpfdw=#{sjpfdw},sjlmlx=#{sjlmlx},
+			dc=#{dc},jc=#{jc},mc=#{mc},lmkd=#{lmkd},pfwh=#{pfwh},pfztz=#{pfztz},jhsybzje=#{jhsybzje},
+			jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},sftqss=#{sftqss},
+			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},bz=#{bz}
+		where id=#{id}
+	</update>
 </mapper>

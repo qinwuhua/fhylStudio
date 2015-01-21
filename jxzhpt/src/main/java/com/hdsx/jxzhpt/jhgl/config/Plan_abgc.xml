@@ -104,6 +104,7 @@
 	<select id="queryAbgcNfs" resultType="treenode">
 		 select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
 	</select>
+<<<<<<< HEAD
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,xzqhmc v_1,sc.lxbm v_2,sc.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,sc.scyhlc v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_abgc sc,xmk_abgc xm where sc.xmkid=xm.id and sck_sbzt='已上报'
 	</select>
@@ -112,4 +113,16 @@
 		from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
 		order by jh.jhnf desc
 	</select>
+=======
+	<delete id="dropAbgcById" parameterType="string">
+		delete from plan_abgc jh where jh.id=#{id}
+	</delete>
+	<update id="editAbgcById" parameterType="plan_abgc">
+		update plan_abgc set jhnf=#{jhnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},
+			xdsj=#{xdsj},jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},
+			pfwh=#{pfwh},pfsj=#{pfsj},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
+			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
+		where id=#{id}
+	</update>
+>>>>>>> refs/remotes/origin/master
 </mapper>

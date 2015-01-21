@@ -45,4 +45,14 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return queryList("queryGcsjNfs");
 	}
 
+	@Override
+	public boolean dropGcsjById(String id) {
+		return delete("dropGcsjById", id) > 0;
+	}
+
+	@Override
+	public int editGcsjById(Plan_gcsj jh) {
+		return update("editGcsjById", jh);
+	}
+
 }

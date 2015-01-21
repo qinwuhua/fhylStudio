@@ -185,8 +185,8 @@ function tjwqgzwwg(){
 }
 
 function showAll(){
-	var gydw=$("#gydw").combobox("getText");
-	if(gydw=='36'||gydw=='江西省')
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
 		gydw='';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();

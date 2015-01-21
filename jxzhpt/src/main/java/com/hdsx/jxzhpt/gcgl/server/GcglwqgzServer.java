@@ -50,5 +50,11 @@ public interface GcglwqgzServer {
 
 	Boolean deleteWqgzFile(Gcglwqgz gcglwqgz);
 
+	Boolean sbWqgzYb(Gcglwqgz gcglwqgz);
+
+	int selectWqgzYbByJhidCount1(Gcglwqgz gcglwqgz);
+
+	List<Gcglwqgz> selectWqgzYbByJhid1(Gcglwqgz gcglwqgz);
+
 
 }

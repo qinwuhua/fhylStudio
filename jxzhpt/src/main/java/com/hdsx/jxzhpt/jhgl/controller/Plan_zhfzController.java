@@ -55,6 +55,27 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void dropZhfzById(){
+		try {
+			JsonUtils.write(zhfzServer.dropZhfzById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editZhfzById(){
+		try {
+			JsonUtils.write(zhfzServer.editZhfzById(jh), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//set get
 	public int getPage() {
 		return page;
 	}

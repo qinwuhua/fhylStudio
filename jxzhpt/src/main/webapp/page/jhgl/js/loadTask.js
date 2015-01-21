@@ -49,6 +49,18 @@ function openDialog(id,title,href){
 		modal : true
 	}).dialog("setTitle",title).dialog("open");
 }
+function openAdd(id,title,href){
+	$('#'+id).dialog({
+		iconCls : 'icon-edit',
+		href:href,
+		width : 1000,
+		height : 500,
+		closed : true,
+		cache : false,
+		maximizable:true,
+		modal : true
+	}).dialog("setTitle",title).dialog("open");
+}
 function openZjxd(id,title,href,width,height){
 	$('#'+id).dialog({
 		iconCls : 'icon-edit',
