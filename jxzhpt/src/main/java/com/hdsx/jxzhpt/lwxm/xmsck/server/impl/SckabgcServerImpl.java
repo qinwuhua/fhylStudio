@@ -26,12 +26,13 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	@Override
 	public List<Sckabgc> selectSckabgc(Sckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
 		hm.put("xmnf", abgc.getXmnf());
 		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
+		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
 		hm.put("page", abgc.getPage());
@@ -42,12 +43,13 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	@Override
 	public int selectAbgcCount(Sckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
 		hm.put("xmnf", abgc.getXmnf());
 		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
+		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
 		return queryOne("selectAbgcCount", hm);
@@ -68,14 +70,19 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		return queryOne("selectSckabgcById", abgc);
 	}
 	@Override
-	public boolean xgSckAbgcSbzt(String delstr) {
-		if(update("xgSckAbgcSbzt", delstr)>0) return true;
+	public boolean xgSckAbgcSbzt(String delstr,Sckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("delstr", delstr);
+		hm.put("sck_sbbm", abgc.getSck_sbbm());
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
+		if(update("xgSckAbgcSbzt", hm)>0) return true;
 		else return false;
 	}
 
 	@Override
 	public List<Sckabgc> selectSckShabgc(Sckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
@@ -92,6 +99,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	@Override
 	public int selectAbgcShCount(Sckabgc abgc) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
 		hm.put("gydw", abgc.getGydw());
 		hm.put("xzqhmc", abgc.getXzqhmc());
 		hm.put("lxmc", abgc.getLxmc());
@@ -106,6 +114,11 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	@Override
 	public boolean xgSckAbgcShzt(Sckabgc abgc) {
 		if(update("xgSckAbgcShzt", abgc)>0)return true;
+		else return false;
+	}
+	@Override
+	public boolean xgSckAbgcTH(Sckabgc abgc) {
+		if(update("xgSckAbgcTH", abgc)>0)return true;
 		else return false;
 	}
 

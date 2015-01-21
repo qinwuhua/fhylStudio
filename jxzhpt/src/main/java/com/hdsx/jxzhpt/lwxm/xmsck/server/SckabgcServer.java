@@ -13,10 +13,11 @@ public interface SckabgcServer {
 		boolean deleteSckAbgc(String delstr);
 		boolean updateSckabgc(Sckabgc abgc);
 		Sckabgc selectSckabgcById(Sckabgc abgc);
-		boolean xgSckAbgcSbzt(String delstr);
+		boolean xgSckAbgcSbzt(String delstr,Sckabgc abgc);
 		List<Sckabgc> selectSckShabgc(Sckabgc abgc);
 		int selectAbgcShCount(Sckabgc abgc);
 		boolean xgSckAbgcShzt(Sckabgc abgc);
+		boolean xgSckAbgcTH(Sckabgc abgc);
 		boolean bzAbgc(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc);

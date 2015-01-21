@@ -28,6 +28,12 @@ $(function(){
 function delJckwqgz(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt2=='已上报'){
+			alert("该项目已上报，不能执行删除操作！");
+			return false;
+		}
+	}
 	for(var i=1;i<rows.length;i++){
 		id+="','"+rows[i].id ;
 	}
@@ -183,13 +189,11 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select>
-                               <span>&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px">
+                               <span>&nbsp;上报状态：</span>
+                              	<select id="sbzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="ss4" style="width:70px">
@@ -224,7 +228,7 @@ text-decoration:none;
 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" />
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgz_add.jsp','900','450');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:return CheckSelect();" style="border-width:0px;" />
+                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delJckwqgz();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz();" style="border-width:0px;cursor: hand;" />
                              </p>
 					</div>

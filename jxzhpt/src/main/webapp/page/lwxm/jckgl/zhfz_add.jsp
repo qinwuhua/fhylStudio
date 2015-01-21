@@ -65,12 +65,17 @@ var zdStr;
 	  		delay : 200,
 	  		max : 50,
 	  		extraParams : {
-	  			/*dist:$.cookie("dist"),*/
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
 	  			}
 	  		},
+	  			xzqhdm:function() {
+  				var d = $.cookie("dist");
+  				if(d=='360000') return "";
+  				else return d;
+  			}
+  		},
 	  		dataType : 'json',// 返回类型
 	  		// 对返回的json对象进行解析函数，函数返回一个数组
 	  		parse : function(data) {

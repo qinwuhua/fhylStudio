@@ -3,20 +3,23 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm})
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd})
 	</insert>
 
 	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
 		select * from (
-		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
-		xmkid=xmk_wqgz.id) t where 1=1
+		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from
+		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t where 
+			sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and gydw like '%'||(#{gydw})||'%'
+			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhmc like '%'||(#{xzqhmc})||'%'
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -30,8 +33,8 @@
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
-		<if test="shzt!='' and shzt!= null ">
-			and sck_shzt like '%'||(#{shzt})||'%'
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -41,17 +44,18 @@
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
-		order by sck_sbzt desc
+		order by sck_sbzt2
 	</select>
 	<select id="selectWqgzCount" parameterType="hashmap" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
-		xmkid=xmk_wqgz.id)
-		where 1=1
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
+			where sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and gydw like '%'||(#{gydw})||'%'
+			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhmc like '%'||(#{xzqhmc})||'%'
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -65,8 +69,8 @@
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
-		<if test="shzt!='' and shzt!= null ">
-			and sck_shzt like '%'||(#{shzt})||'%'
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -92,23 +96,29 @@
 	</delete>
 
 	<update id="xgSckWqgzShzt" parameterType="sckwqgz">
-		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
+		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
 	</update>
-	<update id="xgSckWqgzSbzt" parameterType="String">
-		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate where sckid
-		in(#{delstr})
+	<update id="xgSckWqgzSbzt" parameterType="hashmap">
+		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
+ 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
+	</update>
+	<update id="xgSckWqgzTH" parameterType="sckwqgz">
+		update sck_wqgz set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 	</update>
 
 	<select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id) t
-		where sck_sbzt='已上报'
+		where sck_sbzt='已上报' and sck_sbthcd=7
+			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and gydw like '%'||(#{gydw})||'%'
+			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhmc like '%'||(#{xzqhmc})||'%'
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -123,7 +133,7 @@
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
-			and shzt like '%'||(#{shzt})||'%'
+			and sck_shzt like '%'||(#{shzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -139,12 +149,15 @@
 		resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id)
-		where sck_sbzt='已上报'
+		where sck_sbzt='已上报' and sck_sbthcd=7
+			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and gydw like '%'||(#{gydw})||'%'
+			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhmc like '%'||(#{xzqhmc})||'%'
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -159,7 +172,7 @@
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
-			and shzt like '%'||(#{shzt})||'%'
+			and sck_shzt like '%'||(#{shzt})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'

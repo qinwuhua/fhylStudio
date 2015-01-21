@@ -109,7 +109,7 @@ function saveWqgz(){
 	var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
 	"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+
-	"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html();
+	"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&sck_sbthcd="+$.cookie("unit2").length;
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/insertSckwqgz.do',

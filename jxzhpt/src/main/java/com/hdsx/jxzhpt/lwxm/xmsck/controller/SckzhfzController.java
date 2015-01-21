@@ -163,7 +163,7 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckZhfzSbzt(){
-		if(zhfzServer.xgSckZhfzSbzt(delstr)){
+		if(zhfzServer.xgSckZhfzSbzt(delstr,sckzhfz)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -186,6 +186,13 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void xgSckZhfzTH(){
+		try {
+			JsonUtils.write(zhfzServer.xgSckZhfzTH(sckzhfz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void bzZhfz(){

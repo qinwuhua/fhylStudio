@@ -134,7 +134,7 @@ var zdStr;
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+"&lxbm="+
-		$("#lxbm").val()+"&lxmc="+$("#lxmc").html();
+		$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&sck_sbthcd="+$.cookie("unit2").length;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckzhfz.do',

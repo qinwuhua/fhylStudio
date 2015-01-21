@@ -22,13 +22,19 @@
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqhmc","360000");
+	loadDist("xzqhmc",$.cookie("dist"));
 	jckglAbgc();
 });
 
 function delJckabgc(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt2=='已上报'){
+			alert("该项目已上报，不能执行删除操作！");
+			return false;
+		}
+	}
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
 	}
@@ -183,13 +189,11 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select>
-                               <span>&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px">
+                               <span>&nbsp;上报状态：</span>
+                              	<select id="sbzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="ss4" style="width:70px">

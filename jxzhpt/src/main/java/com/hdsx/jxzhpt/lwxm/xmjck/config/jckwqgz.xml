@@ -19,7 +19,8 @@
  			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
@@ -33,8 +34,8 @@
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and jsdj like '%'||(#{jsdj})||'%'
@@ -43,7 +44,7 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sbzt desc
+ 			order by sbzt2 
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
@@ -53,7 +54,8 @@
  			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
@@ -67,8 +69,8 @@
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and shzt like '%'||(#{shzt})||'%'
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and jsdj like '%'||(#{jsdj})||'%'
@@ -97,11 +99,12 @@
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
- 	select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,DISTNAME xzqhmc,substr(roadcode,5,7) xzqhdm,roadname lxmc,
- 		roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,F045 pddj,decode(substr(F052, 0, 4), null,substr(F051,0,4),
- 		substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
+ 	select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,DISTNAME xzqhmc,substr(roadcode,length(roadcode)-5,6) xzqhdm,
+ 		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,F045 pddj,decode(substr(F052, 0, 4), null,
+ 		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
 		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
-		and F010 in('中桥','大桥','特大桥') and roadbm like #{qlbh} ||'%'
+		and F010 in('中桥','大桥','特大桥') and roadbm like #{qlbh} ||'%' and
+		substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
 		order by roadbm,F002
  </select>
  
@@ -118,7 +121,8 @@
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
@@ -151,7 +155,8 @@
  			and gydw like '%'||(#{gydw})||'%'
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'

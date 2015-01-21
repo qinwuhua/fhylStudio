@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckabgcServer;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
@@ -33,7 +32,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("lxmc", abgc.getLxmc());
 		hm.put("xmnf", abgc.getXmnf());
 		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
+		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
 		hm.put("page", abgc.getPage());
@@ -56,6 +55,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	public List<Jckabgc> selectGpsroad(Jckabgc abgc) {
 		hm = new HashMap<String, Object>();
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("xzqhdm", abgc.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
 	@Override
@@ -96,7 +96,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("lxmc", abgc.getLxmc());
 		hm.put("xmnf", abgc.getXmnf());
 		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
+		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
 		return queryOne("selectAbgcCount", hm);

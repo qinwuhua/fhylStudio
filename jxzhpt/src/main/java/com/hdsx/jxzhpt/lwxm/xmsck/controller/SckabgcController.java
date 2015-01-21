@@ -162,7 +162,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckAbgcSbzt(){
-		if(abgcServer.xgSckAbgcSbzt(delstr)){
+		if(abgcServer.xgSckAbgcSbzt(delstr,sckabgc)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -186,6 +186,13 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void xgSckAbgcTH(){
+		try {
+			JsonUtils.write(abgcServer.xgSckAbgcTH(sckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void bzAbgc(){

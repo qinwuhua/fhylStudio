@@ -60,6 +60,7 @@
 	<action name="updateSckwqgz" class="sckwqgzController" method="updateSckwqgz"/>
 	<action name="selectSckwqgzById" class="sckwqgzController" method="selectSckwqgzById"/>
 	<action name="xgSckWqgzSbzt" class="sckwqgzController" method="xgSckWqgzSbzt"/>
+	<action name="xgSckWqgzTH" class="sckwqgzController" method="xgSckWqgzTH"/>
 	<action name="selectSckShwqgz" class="sckwqgzController" method="selectSckShwqgz"/>
 	<action name="xgSckWqgzShzt" class="sckwqgzController" method="xgSckWqgzShzt"/>
 	<action name="bzWqgz" class="sckwqgzController" method="bzWqgz"/>
@@ -75,6 +76,7 @@
 	<action name="xgSckAbgcSbzt" class="sckabgcController" method="xgSckAbgcSbzt"/>
 	<action name="selectSckShabgc" class="sckabgcController" method="selectSckShabgc"/>
 	<action name="xgSckAbgcShzt" class="sckabgcController" method="xgSckAbgcShzt"/>
+	<action name="xgSckAbgcTH" class="sckabgcController" method="xgSckAbgcTH"/>
 	<action name="bzAbgc" class="sckabgcController" method="bzAbgc"/>
 	<action name="exportExcel_abgc_scgl" class="sckabgcController" method="exportExcel_abgc_scgl"/>
 	<action name="exportExcel_abgc_scsh" class="sckabgcController" method="exportExcel_abgc_scsh"/>
@@ -88,6 +90,7 @@
 	<action name="xgSckZhfzSbzt" class="sckzhfzController" method="xgSckZhfzSbzt"/>
 	<action name="selectSckShzhfz" class="sckzhfzController" method="selectSckShzhfz"/>
 	<action name="xgSckZhfzShzt" class="sckzhfzController" method="xgSckZhfzShzt"/>
+	<action name="xgSckZhfzTH" class="sckzhfzController" method="xgSckZhfzTH"/>
 	<action name="bzZhfz" class="sckzhfzController" method="bzZhfz"/>
 	<action name="exportExcel_zhfz_scgl" class="sckzhfzController" method="exportExcel_zhfz_scgl"/>
 	<action name="exportExcel_zhfz_scsh" class="sckzhfzController" method="exportExcel_zhfz_scsh"/>

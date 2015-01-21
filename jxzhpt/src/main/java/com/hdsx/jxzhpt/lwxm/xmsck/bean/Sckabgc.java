@@ -34,6 +34,7 @@ public class Sckabgc implements Serializable{
 		private String sck_shbm;
 		private int page;
 		private int rows;
+		private int sck_sbthcd;
 		//基础库字段
 		private String gydwdm;
 		private String gydwbm;
@@ -60,6 +61,7 @@ public class Sckabgc implements Serializable{
 		private Date shsj;
 		private String shbm;
 		private String bz;
+		private String sck_sbzt2;
 		
 		public String getSckid() {
 			return sckid;
@@ -205,7 +207,13 @@ public class Sckabgc implements Serializable{
 		public void setRows(int rows) {
 			this.rows = rows;
 		}
-
+		
+		public int getSck_sbthcd() {
+			return sck_sbthcd;
+		}
+		public void setSck_sbthcd(int sck_sbthcd) {
+			this.sck_sbthcd = sck_sbthcd;
+		}
 		public String getGydw() {
 			return gydw;
 		}
@@ -355,6 +363,12 @@ public class Sckabgc implements Serializable{
 		}
 		public void setBz(String bz) {
 			this.bz = bz;
+		}
+		public String getSck_sbzt2() {
+			return sck_sbzt2;
+		}
+		public void setSck_sbzt2(String sck_sbzt2) {
+			this.sck_sbzt2 = sck_sbzt2;
 		}
 		@Override
 		public String toString() {

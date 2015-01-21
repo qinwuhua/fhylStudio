@@ -36,7 +36,7 @@ function xgShzt(){
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/xgSckZhfzShzt.do",
 				 dataType : 'json',
-				 data : 'sckid=' +sckid,
+				 data : 'sckid=' +sckid+"&sck_shbm="+$.cookie("unit"),
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');
@@ -51,7 +51,39 @@ function xgShzt(){
 			});
 	}
 }
-
+function tuiHui(){
+	var rows=$('#grid').datagrid('getSelections');
+	var sckid= rows[0].sckid;
+	var sck_shzt=rows[0].sck_shzt;
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量退回！");
+		return;
+	}
+	if(sck_shzt=='已审核'){
+		alert("对不起，该项目已审核，不能执行退回操作！");
+		return;
+	}
+	if(confirm('您确定退回该项目？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmsck/xgSckZhfzTH.do",
+				 dataType : 'json',
+				 data : 'sckid=' +sckid,
+				 success : function(msg){
+					 if(msg){
+						 alert('退回成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('退回失败,请选择要退回项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
 </script>
 <style type="text/css">
 TD {
@@ -102,11 +134,9 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select>
-                               <span>&nbsp;审核状态：</span>
+                              	<span>&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
                               	</select>
@@ -141,6 +171,7 @@ text-decoration:none;
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
+                                <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_zhfz_scsh();" style="border-width:0px;cursor: hand;" />
 							 </p>
 						</div>
