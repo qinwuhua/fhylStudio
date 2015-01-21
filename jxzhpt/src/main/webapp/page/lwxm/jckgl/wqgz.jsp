@@ -92,6 +92,7 @@ function tuiHui(){
 	var id= rows[0].id;
 	var sbzt=rows[0].sbzt;
 	var sbthcd=rows[0].sbthcd;
+	var tbbmbm=rows[0].tbbmbm;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量退回！");
@@ -99,6 +100,10 @@ function tuiHui(){
 	}
 	if(sbzt=='未上报' && sbthcd==11){
 		alert("对不起，无法退回！");
+		return;
+	}
+	if(tbbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
 		return;
 	}
 	if(sbthcd<$.cookie("unit2").length){
