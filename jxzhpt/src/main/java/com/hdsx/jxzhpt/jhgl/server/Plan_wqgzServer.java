@@ -40,7 +40,6 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	List<TreeNode> queryWqgzNfs();
-<<<<<<< HEAD
 	
 	/**
 	 * @param xzqhdm
@@ -53,7 +52,6 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
-=======
 	/**
 	 * 根据ID删除危桥改造项目
 	 * @param id
@@ -66,5 +64,4 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	int editWqgzById(Plan_wqgz jh);
->>>>>>> refs/remotes/origin/master
 }

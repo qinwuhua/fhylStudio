@@ -49,7 +49,6 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<SjbbMessage> insertToSheet(String xzqhdm) {
 		return this.queryList("insertToSheet",xzqhdm);
 	}
@@ -57,7 +56,7 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	@Override
 	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
 		return this.queryList("exportExcel_jh",jck);
-=======
+	}
 	public boolean dropWqgzById(String id) {
 		return delete("dropWqgzById",id)>0;
 	}
@@ -65,6 +64,5 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	@Override
 	public int editWqgzById(Plan_wqgz jh) {
 		return update("editWqgzById", jh);
->>>>>>> refs/remotes/origin/master
 	}
 }

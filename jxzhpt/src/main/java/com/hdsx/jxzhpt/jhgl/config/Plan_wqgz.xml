@@ -104,7 +104,6 @@
 	<select id="queryWqgzById" parameterType="string" resultType="plan_wqgz">
 		select * from plan_wqgz jh where jh.id=#{id}
 	</select>
-<<<<<<< HEAD
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,xzqhmc v_1,sc.lxbm v_2,lxmc v_3,sc.qlbh v_4,qlmc v_5,sc.qlzxzh v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_wqgz sc,xmk_wqgz xm where sc.xmkid=xm.id and sck_sbzt='已上报'
 	</select>
@@ -114,7 +113,6 @@
 		where 1=1
 		order by jh.sbnf desc
 	</select>
-=======
 	<delete id="dropWqgzById" parameterType="string">
 		delete from plan_wqgz jh where jh.id=#{id}
 	</delete>
@@ -125,5 +123,4 @@
 			ablbzsqwh=#{ablbzsqwh},bz=#{bz} 
 		where id=#{id}
 	</update>
->>>>>>> refs/remotes/origin/master
 </mapper>

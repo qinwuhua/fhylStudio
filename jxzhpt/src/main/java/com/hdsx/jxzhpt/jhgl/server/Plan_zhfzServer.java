@@ -49,7 +49,7 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
-=======
+	/**
 	 * 根据ID删除信息
 	 * @param id
 	 * @return
@@ -61,5 +61,4 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	int editZhfzById(Plan_zhfz jh);
->>>>>>> refs/remotes/origin/master
 }
