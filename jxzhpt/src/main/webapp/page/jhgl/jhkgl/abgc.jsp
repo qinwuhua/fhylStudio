@@ -43,7 +43,7 @@
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;height: 100px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -110,7 +110,7 @@
 								<img alt="下发" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/xiafa_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/xiafa_1.png'" src="${pageContext.request.contextPath}/images/Button/xiafa_1.png" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importExcel()" style="vertical-align:middle;"/>
-				                <img alt="添加" onclick="AddAbgc()" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " style="vertical-align:middle;">
+				                <img alt="添加" onclick="openAddAbgc()" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " style="vertical-align:middle;">
 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="AddBridge()" style="vertical-align:middle;">
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
@@ -141,5 +141,6 @@
 	</div>
 	
 	<div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="abgc_add" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

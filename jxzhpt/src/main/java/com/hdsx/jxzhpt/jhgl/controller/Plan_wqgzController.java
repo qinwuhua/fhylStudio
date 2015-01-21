@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSON;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -51,6 +53,26 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void queryWqgzById(){
 		try {
 			JsonUtils.write(wqgzServer.queryWqgzById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dropWqgzById(){
+		try {
+			JsonUtils.write(wqgzServer.dropWqgzById(jh.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editWqgzById(){
+		try {
+			JsonUtils.write(wqgzServer.editWqgzById(jh), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

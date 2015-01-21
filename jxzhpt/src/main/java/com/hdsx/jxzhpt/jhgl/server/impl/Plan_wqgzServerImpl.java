@@ -45,4 +45,14 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public List<TreeNode> queryWqgzNfs() {
 		return queryList("queryWqgzNfs");
 	}
+
+	@Override
+	public boolean dropWqgzById(String id) {
+		return delete("dropWqgzById",id)>0;
+	}
+
+	@Override
+	public int editWqgzById(Plan_wqgz jh) {
+		return update("editWqgzById", jh);
+	}
 }

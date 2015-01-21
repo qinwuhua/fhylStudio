@@ -74,12 +74,19 @@ public class Plan_gcsj {
 	private String tzgs;//投资估算(万元)
 	private String jsxz;//建设性质
 	private String jsnr;//建设内容
+	private String scBz;
 	private List<Plan_lx_gcsj> plan_lx_gcsjs;
 	public List<Plan_lx_gcsj> getPlan_lx_gcsjs() {
 		return plan_lx_gcsjs;
 	}
 	public void setPlan_lx_gcsjs(List<Plan_lx_gcsj> plan_lx_gcsjs) {
 		this.plan_lx_gcsjs = plan_lx_gcsjs;
+	}
+	public String getScBz() {
+		return scBz;
+	}
+	public void setScBz(String scBz) {
+		this.scBz = scBz;
 	}
 	public String getId() {
 		return id;

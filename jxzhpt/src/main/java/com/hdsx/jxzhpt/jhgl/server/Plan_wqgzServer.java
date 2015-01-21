@@ -34,4 +34,16 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	List<TreeNode> queryWqgzNfs();
+	/**
+	 * 根据ID删除危桥改造项目
+	 * @param id
+	 * @return
+	 */
+	boolean dropWqgzById(String id);
+	/**
+	 * 根据ID修改计划信息
+	 * @param jh
+	 * @return
+	 */
+	int editWqgzById(Plan_wqgz jh);
 }

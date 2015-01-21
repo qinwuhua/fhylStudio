@@ -84,7 +84,20 @@
 	 					and lx.lxjsdj = #{lx.lxjsjd}
 	 				</if>
 	</select>
-	<select id="queryZhfaNfs"  resultType="treenode">
+	<select id="queryZhfzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
 	</select>
+	<select id="queryZhfzById" parameterType="string" resultType="plan_zhfz">
+		select * from plan_zhfz jh where jh.id=#{id}
+	</select>
+	<delete id="dropZhfzById" parameterType="string">
+		delete from plan_zhfz jh where jh.id=#{id}
+	</delete>
+	<update id="editZhfzById" parameterType="plan_zhfz">
+		update plan_zhfz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
+			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
+			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
+			bz=#{bz},pfsj=#{pfsj}
+		where id=#{id}
+	</update>
 </mapper>

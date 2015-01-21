@@ -34,4 +34,16 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	List<TreeNode> queryZhfaNfs();
+	/**
+	 * 根据ID删除信息
+	 * @param id
+	 * @return
+	 */
+	boolean dropZhfzById(String id);
+	/**
+	 * 根据ID修改灾害防治信息
+	 * @param jh
+	 * @return
+	 */
+	int editZhfzById(Plan_zhfz jh);
 }

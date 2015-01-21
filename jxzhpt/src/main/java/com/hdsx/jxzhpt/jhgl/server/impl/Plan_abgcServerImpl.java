@@ -46,4 +46,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean dropAbgcById(String id){
 		return delete("dropAbgcById",id)>0;
 	}
+	@Override
+	public int editAbgcById(Plan_abgc jh) {
+		return update("editAbgcById", jh);
+	}
 }

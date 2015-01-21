@@ -17,12 +17,17 @@ function shxm(jh,lx){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        	var id="'"+row.id+"'";
+	        	result+='<a href="javascript:dropShuih('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 	        	if(row.sbzt=="0"){
-	        		result="<a>上报</a>"
+	        		result="未上报";
 	        	}else if(row.sbzt=="1" && row.spzt=="0"){
 	        		result="上报待审批";
 	        	}else if(row.spzt=="1"){
@@ -93,12 +98,15 @@ function shxm_sb(jh,lx){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	return result;
 	        }},
 	        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 	        	if(row.sbzt=="0"){
-	        		result="<a>上报</a>"
+	        		result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
 	        	}else if(row.sbzt=="1"){
 	        		result="已上报";
 	        	}
@@ -164,12 +172,15 @@ function shxm_sh(jh,lx){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	return result;
 	        }},
 	        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 	        	if(row.spzt=="0"){
-	        		result="<a>审批</a>"
+	        		result='<a style="text-decoration:none;color:#3399CC;">审批</a>';
 	        	}else if(row.spzt=="1"){
 	        		result="已审批";
 	        	}
@@ -238,10 +249,12 @@ function shxm_zjxd(jh,lx){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;">详细</a>';
+	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;">资金下发</a>';
+	        	return '<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 	        }},
 	        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 	        	return '未开工';
@@ -300,6 +313,119 @@ function shxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
+function queryShuihById(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryShuihById.do',
+		dataType:'json',
+		data:"jh.id="+id,
+		success:function(data){
+			//基础
+			$('#lxmc').html(data.shuihs[0].lxmc);
+			$('#lxbm').html(data.shuihs[0].lxbm);
+			$('#jsdd').html(data.shuihs[0].jsdd);
+			$('#qdzh').html(data.shuihs[0].qdzh);
+			$('#zdzh').html(data.shuihs[0].zdzh);
+			$('#qzlc').html(data.shuihs[0].qzlc);
+			alert(data.shuihs[0].gydw);
+			$('#gydwxx').html(data.shuihs[0].gydw);
+			$('#xzqhdm').html(data.shuihs[0].xzqhdm);
+			$('#xzqhmc').html(data.shuihs[0].xzqhmc);
+			$('#yjsdj').html(data.shuihs[0].yjsdj);
+			$('#ylmlx').html(data.shuihs[0].ylmlx);
+			$('#yhlc').html(data.shuihs[0].yhlc);
+			$('#bhnr').html(data.shuihs[0].bhnr);
+			
+			//计划
+			$('#jhnf').html(data.sbnf);
+			$('#jhkgsj').html(data.jhkgsj);
+			$('#jhwgsj').html(data.jhwgsj);
+			$('#jhxdsj').html(data.xdsj);
+			$('#xmmc').html(data.xmmc);
+			$('#yhlb').html(data.yhlb);
+			$('#sjdw').html(data.sjdw);
+			$('#sjpfdw').html(data.sjpfdw);
+			$('#dc').html(data.dc);
+			$('#jc').html(data.jc);
+			$('#mc').html(data.mc);
+			$('#lmkd').html(data.lmkd);
+			$('#pfwh').html(data.pfwh);
+			$('#pfsj').html(data.pfsj);
+			$('#pfztz').html(data.pfztz);
+			$('#bbz').html(data.jhsybzje);
+			$('#dfzc').html(data.jhsydfzcje);
+			$('#lblSFSQABLBZ').html(data.sfsqablbz);
+			$('#lblABLBZWH').html(data.ablbzsqwh);
+			$('#sftqss').html(data.sftqss);
+			$('#jhxdwh').html(data.jhxdwh);
+			$('#gkpfwh').html(data.gksjwh);
+			$('#sjpfwh').html(data.sjpfwh);
+			$('#sfgydbm').html(data.sfgydbm);
+			$('#lblJHRemarks').html(data.jhbz);
+			
+		}
+	});
+}
+function dropShuih(id,readLoad){
+	if(confirm("确认要删除选中计划？")){
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropShuihById.do',
+			dataType:'text',
+			data:'jh.id='+id,
+			success:function(data){
+				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
+						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
+						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+				if(readLoad=="true"){
+					alert("删除成功！");
+					gridObj.datagrid("reload",params);
+				}
+			},
+			error:function(){
+				alert("删除失败！");
+			}
+		});
+	}
+}
+function dropShuihs(){
+	if(confirm("确认要删除选中计划？")){
+		var sel=gridObj.datagrid("getSelections");
+		$.each(sel,function(index,item){
+			dropShuih(item.id, "false");
+		});
+		alert("删除成功！");
+		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
+				"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
+				"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+		gridObj.datagrid("reload",params);
+	}
+}
+function editShuih(){
+	var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
+			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
+			'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
+			'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
+			'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
+			'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
+			'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
+			'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),
+			'jh.sfsqablbz':$('#lblSFSQABLBZ').val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
+			'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
+			'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
+			'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.jhbz':$('#lblJHRemarks').val()
+	};
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editShuihById.do',
+		dataType:'text',
+		data:jh,
+		success:function(data){
+			alert("修改成功！");
+			$('#shxm_xx').dialog('close');
+		}
+	});
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象
@@ -329,4 +455,5 @@ function gridBind(grid){
 	    onSelect:grid.onSelect,
 	    onClickRow:grid.onClickRow
 	});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

@@ -55,6 +55,26 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
+	public void dropShuihById(){
+		try {
+			JsonUtils.write(shuihServer.dropShuihById(jh.getId()),getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editShuihById(){
+		try {
+			JsonUtils.write(shuihServer.editShuihById(jh), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

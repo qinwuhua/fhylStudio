@@ -41,4 +41,10 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	boolean dropGcgjById(String id);
+	/**
+	 * 根据ID修改计划信息
+	 * @param jh
+	 * @return
+	 */
+	int editGcgjById(Plan_gcgj jh);
 }

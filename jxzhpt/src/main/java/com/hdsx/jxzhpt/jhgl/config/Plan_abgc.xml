@@ -104,5 +104,14 @@
 	<select id="queryAbgcNfs" resultType="treenode">
 		 select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
 	</select>
-	
+	<delete id="dropAbgcById" parameterType="string">
+		delete from plan_abgc jh where jh.id=#{id}
+	</delete>
+	<update id="editAbgcById" parameterType="plan_abgc">
+		update plan_abgc set jhnf=#{jhnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},
+			xdsj=#{xdsj},jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},
+			pfwh=#{pfwh},pfsj=#{pfsj},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
+			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
+		where id=#{id}
+	</update>
 </mapper>

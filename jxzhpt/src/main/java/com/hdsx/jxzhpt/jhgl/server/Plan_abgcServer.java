@@ -40,4 +40,9 @@ public interface Plan_abgcServer {
 	 * @param id
 	 */
 	boolean dropAbgcById(String id);
+	/**
+	 * 修改安保工程计划信息
+	 * @return
+	 */
+	int editAbgcById(Plan_abgc jh);
 }

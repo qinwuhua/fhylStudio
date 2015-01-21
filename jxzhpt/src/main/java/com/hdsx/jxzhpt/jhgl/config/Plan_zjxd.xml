@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.plan_zjxd">
+	<delete id="dropZjxdById" parameterType="string">
+		delete from plan_zjxd zj where zj.id=#{id}
+	</delete>
 </mapper>

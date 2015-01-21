@@ -49,4 +49,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean dropGcgjById(String id){
 		return delete("dropGcgjById",id)>0;
 	}
+
+	@Override
+	public int editGcgjById(Plan_gcgj jh) {
+		return update("editGcgjById", jh);
+	}
 }

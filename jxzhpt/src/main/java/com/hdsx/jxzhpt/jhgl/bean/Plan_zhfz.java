@@ -6,16 +6,17 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 
 public class Plan_zhfz {
 	private String id;//唯一ID
+	private String sck_zhfz_id;
 	private String sbnf;//计划年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
 	private String sjdw;//设计单位
 	private String sjpfdw;//设计批复单位
 	private String pfwh;//批复文号
-	private String pfsj;//批复时间
+	private Date pfsj;//批复时间
 	private String pfztz;//批复总投资
-	private String jhsybbzje;//计划使用部补助金额
-	private String jhsydfzczj;//计划使用地方自筹资金
+	private String jhsybzje;//计划使用部补助金额
+	private String jhsydfzcje;//计划使用地方自筹资金
 	private String sfsqablbz;//是否申请按比例补助
 	private String ablbzsqwh;//按比例补助申请文号
 	private String bz;//备注
@@ -55,6 +56,12 @@ public class Plan_zhfz {
 	private String wjsj;//台账完结时间
 	private String gys;//概预算
 	private Jckzhfz jckzhfz;
+	public String getSck_zhfz_id() {
+		return sck_zhfz_id;
+	}
+	public void setSck_zhfz_id(String sck_zhfz_id) {
+		this.sck_zhfz_id = sck_zhfz_id;
+	}
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;
 	}
@@ -103,10 +110,10 @@ public class Plan_zhfz {
 	public void setPfwh(String pfwh) {
 		this.pfwh = pfwh;
 	}
-	public String getPfsj() {
+	public Date getPfsj() {
 		return pfsj;
 	}
-	public void setPfsj(String pfsj) {
+	public void setPfsj(Date pfsj) {
 		this.pfsj = pfsj;
 	}
 	public String getPfztz() {
@@ -115,17 +122,17 @@ public class Plan_zhfz {
 	public void setPfztz(String pfztz) {
 		this.pfztz = pfztz;
 	}
-	public String getJhsybbzje() {
-		return jhsybbzje;
+	public String getJhsybzje() {
+		return jhsybzje;
 	}
-	public void setJhsybbzje(String jhsybbzje) {
-		this.jhsybbzje = jhsybbzje;
+	public void setJhsybzje(String jhsybzje) {
+		this.jhsybzje = jhsybzje;
 	}
-	public String getJhsydfzczj() {
-		return jhsydfzczj;
+	public String getJhsydfzcje() {
+		return jhsydfzcje;
 	}
-	public void setJhsydfzczj(String jhsydfzczj) {
-		this.jhsydfzczj = jhsydfzczj;
+	public void setJhsydfzcje(String jhsydfzcje) {
+		this.jhsydfzcje = jhsydfzcje;
 	}
 	public String getSfsqablbz() {
 		return sfsqablbz;

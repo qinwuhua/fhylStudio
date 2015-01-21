@@ -6,25 +6,41 @@
 		<action name="queryGcgjList" class="plan_gcgjController" method="queryGcgjList"/>
 		<action name="queryGcgjById" class="plan_gcgjController" method="queryGcgjById"/>
 		<action name="queryGcgjNfs" class="plan_gcgjController" method="queryGcgjNfs"/>
+		<action name="dropGcgjById" class="plan_gcgjController" method="dropGcgjById"/>
+		<action name="editGcgjById" class="plan_gcgjController" method="editGcgjById"/>
+		
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
 		<action name="queryGcsjList" class="plan_gcsjController" method="queryGcsjList"/>
 		<action name="queryGcsjById" class="plan_gcsjController" method="queryGcsjById"/>
+		<action name="dropGcsjById" class="plan_gcsjController" method="dropGcsjById"/>
+		<action name="editGcsjById" class="plan_gcsjController" method="editGcsjById"/>
+		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
 		<action name="queryAbgcNfs" class="plan_abgcController" method="queryAbgcNfs"/>
-		<action name="queryZhfaNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
-		<action name="queryZhfaById" class="plan_zhfzController" method="queryZhfaById"/>
+		<action name="dropAbgcById" class="plan_abgcController" method="dropAbgcById"/>
+		<action name="editAbgcById" class="plan_abgcController" method="editAbgcById"/>
+		
+		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
+		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
 		<action name="queryZhfzList" class="plan_zhfzController" method="queryZhfzList"/>
+		<action name="dropZhfzById" class="plan_zhfzController" method="dropZhfzById"/>
+		<action name="editZhfzById" class="plan_zhfzController" method="editZhfzById"/>
+		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
 		<action name="queryWqgzList" class="plan_wqgzController" method="queryWqgzList"/>
+		<action name="dropWqgzById" class="plan_wqgzController" method="dropWqgzById"/>
+		<action name="editWqgzById" class="plan_wqgzController" method="editWqgzById"/>
+		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
 		<action name="queryShuihList" class="plan_shuihController" method="queryShuihList"/>
+		<action name="dropShuihById" class="plan_shuihController" method="dropShuihById"/>
+		<action name="editShuihById" class="plan_shuihController" method="editShuihById"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
 		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>
-		
 	 </package>
 </struts>

@@ -48,4 +48,14 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return queryList("queryZhfzNfs");
 	}
 
+	@Override
+	public boolean dropZhfzById(String id) {
+		return delete("dropZhfzById",id)>0;
+	}
+
+	@Override
+	public int editZhfzById(Plan_zhfz jh) {
+		return update("editZhfzById",jh);
+	}
+
 }

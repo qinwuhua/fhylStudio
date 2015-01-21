@@ -18,7 +18,12 @@ function wqxm(jh,lx){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑    '+'删除';
+		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	var id="'"+row.id+"'";
+		        	result+='<a href="javascript:dropWqgz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	return result;
 		        }},
 		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result="";
@@ -91,12 +96,15 @@ function wqxm_sb(jh,lx){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_sb','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_sb','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	return result;
 		        }},
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if(row.sbzt=="0"){
-		        		result="<a>上报</a>"
+		        		result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
 		        	}else if(row.sbzt=="1"){
 		        		result="已上报";
 		        	}
@@ -157,12 +165,15 @@ function wqxm_sh(jh,lx){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_sh','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>    '+'编辑';
+		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_sh','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	return result;
 		        }},
 		        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if(row.spzt=="0"){
-		        		result="<a>审批</a>"
+		        		result='<a style="text-decoration:none;color:#3399CC;">审批</a>';
 		        	}else if(row.spzt=="1"){
 		        		result="已审批";
 		        	}
@@ -223,10 +234,12 @@ function wqxm_zjxd(jh,lx){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	return '定位    '+'<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;">详细</a>';
+		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	result+='<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-		        	return '<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;">资金下发</a>';
+		        	return '<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造资金下达','../zjxd/wqgz.jsp'"+')" style=" text-decoration:none;color:#3399CC;">资金下发</a>';
 		        }},
 		        {field:'sbzt',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
 		        	return '未开工';
@@ -277,20 +290,51 @@ function wqxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
-
 function queryWqgzById(id){
 	$.ajax({
 		url:'../../../jhgl/queryWqgzById.do',
 		data:"jh.id="+id,
-		dataType:'text',
+		dataType:'json',
 		success:function(data){
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
 				data:"sckid="+data.xmk_wqgz_id,
-				dataType:'text',
-				success:function(data){
-					alert(data);
+				dataType:'json',
+				success:function(jcAndSc){
+					if(jcAndSc!=null){
+						$('#qlmc').html(jcAndSc.qlmc);
+						$('#qlbm').html(jcAndSc.qlbm);
+						$('#qlzxzh').html(jcAndSc.qlzxzh);
+						$('#gydwxx').html(jcAndSc.gydw);
+						$('#xzqhdm').html(jcAndSc.xzqhdm);
+						$('#xzqhmc').html(jcAndSc.xzqhmc);
+						$('#lxmc').html(jcAndSc.lxmc);
+						$('#lxbm').html(jcAndSc.lxbm);
+						$('#kjzc').html(jcAndSc.kjzc);
+						$('#qlqc').html(jcAndSc.qlqc);
+						$('#qlqk').html(jcAndSc.qlqk);
+						$('#dkzdkj').html(jcAndSc.dkzdkj);
+						$('#jsdjxx').html(jcAndSc.jsdj);
+						$('#pddj').html(jcAndSc.pddj);
+						$('#xjnd').html(jcAndSc.xjnd);
+						$('#akjfl').html(jcAndSc.akjfl);
+						$('#sbjgxs').html(jcAndSc.sbjgxs);
+						$('#tsdq').html(jcAndSc.tsdq);
+						$('#xmnf').html(jcAndSc.xmnf);
+						$('#xmtype').html(jcAndSc.xmtype);
+						$('#bhnr').html(jcAndSc.bhnr);
+						$('#bz').html(jcAndSc.bz);
+						//审查库信息
+						$('#fapgdw').html(jcAndSc.fapgdw);
+						$('#fascdw').html(jcAndSc.fascdw);
+						$('#faspsj').html(jcAndSc.faspsj);
+						$('#spwh').html(jcAndSc.spwh);
+						$('#tzgs').html(jcAndSc.tzgs);
+						$('#jsxz').html(jcAndSc.jsxz);
+						$('#jsnr').html(jcAndSc.jsnr);
+						$('#scbz').html(jcAndSc.scbz);
+					}
 				}
 			});
 			//计划
@@ -306,44 +350,77 @@ function queryWqgzById(id){
 			$('#jhztz').html(data.pfztz);
 			$('#bbz').html(data.jhsybzje);
 			$('#zfzc').html(data.jhsydfzcje);
-			alert("是否申请按比例："+data.sfsqablbz);
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').html(data.ablbzsqwh);
+			$('#JHRemarks').html(data.bz);
+		}
+	});
+}
+function openAddWqgz(){
+	openAdd('wqgz_add','添加安保工程项目','../add/wqgzAdd.jsp');
+}
+function dropWqgz(id,readLoad){
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropWqgzById.do',
+			dataType:'text',
+			data:'jh.id='+id,
+			success:function(data){
+				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
+						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
+						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+				if(readLoad=="true"){
+					alert("删除成功！");
+					gridObj.datagrid("reload",params);
+				}
+			},
+			error:function(){
+				alert("删除失败！");
+			}
+		});
+}
+function dropWqgzs(){
+	if(confirm("确认要删除选中计划？")){
+		var sel=gridObj.datagrid("getSelections");
+		$.each(sel,function(index,item){
+			dropWqgz(item.id, "false");
+		});
+		alert("删除成功！");
+		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
+				"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
+				"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+		gridObj.datagrid("reload",params);
+	}
+}
+function editWqgz(){
+	var jh={'jh.id':$('#jhid').val(),
+			'jh.sbnf':$('#editjhnf').combobox('getValue'),
+			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),
+			'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
+			'jh.xdsj':$('#jhxdsj').datebox('getValue'),
+			'jh.jhxdwh':$('#jhxdwh').val(),
+			'jh.sjdw':$('#sjdw').val(),
+			'jh.sjpfdw':$('#sjpfdw').val(),
+			'jh.pfwh':$('#pfwh').val(),
+			'jh.pfsj':$('#pfsj').datebox('getValue'),
+			'jh.pfztz':$('#jhztz').val(),
+			'jh.jhsybzje':$('#bbz').val(),
+			'jh.jhsydfzcje':$('#zfzc').val(),
+			'jh.sfsqablbz':$('#sfsqablbz').val(),
+			'jh.ablbzsqwh':$('#ablbzwh').val(),
+			'jh.bz':$('#JHRemarks').val()
+	};
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editWqgzById.do',
+		dataType:'text',
+		data:jh,
+		success:function(data){
+			alert("修改成功！");
+			$('#wqgz_xx').dialog('close');
 		}
 	});
 	
-	/*$('#qlmc').html();
-	$('#qlbm').html();
-	$('#qlzxzh').html();
-	$('#gydw').html();
-	$('#xzqhdm').html();
-	$('#xzqhmc').html();
-	$('#lxmc').html();
-	$('#lxbm').html();
-	$('#kjzc').html();
-	$('#qlqc').html();
-	$('#qlqk').html();
-	$('#dkzdkj').html();
-	$('#jsdj').html();
-	$('#pddj').html();
-	$('#xjnd').html();
-	$('#akjfl').html();
-	$('#sbjgxs').html();
-	$('#tsdq').html();
-	$('#xmnf').html();
-	$('#xmtype').html();
-	$('#bhnr').html();
-	$('#bz').html();
-	//审查
-	$('#fapgdw').html();
-	$('#fascdw').html();
-	$('#faspsj').html();
-	$('#spwh').html();
-	$('#tzgs').html();
-	$('#jsxz').html();
-	$('#jsnr').html();
-	$('#scbz').html();
-	*/
 }
 /**
  * dataGrid绑定数据方法
@@ -374,4 +451,5 @@ function gridBind(grid){
 	    onSelect:grid.onSelect,
 	    onClickRow:grid.onClickRow
 	});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }
