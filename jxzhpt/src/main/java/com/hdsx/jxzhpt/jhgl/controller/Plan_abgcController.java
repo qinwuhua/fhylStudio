@@ -51,7 +51,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		String tableName="";
 		if("abgc".equals(flag)){
 			list = abgcServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
 			sheetb.setTableName("安保工程项目");
 			sheetb.setHeader(excelHtml);
 			sheetb.setSheetName("安保");
@@ -59,15 +59,15 @@ public class Plan_abgcController extends BaseActionSupport{
 			sheetb.setColnum((short)12);
 		}else if("wqgz".equals(flag)){
 			list = wqgzServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>桥梁编码</td><td>桥梁名称</td><td>批复总投资</td></tr>";
 			sheetb.setTableName("危桥改造项目");
 			sheetb.setHeader(excelHtml);
 			sheetb.setSheetName("危桥");
 			tableName="危桥改造项目";//excel 文件的名字
-			sheetb.setColnum((short)12);
+			sheetb.setColnum((short)11);
 		}else if("zhfz".equals(flag)){
 			list = zhfzServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>上报状态</td><td>管养单位</td><td>行政区划</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>总里程</td><td>隐患里程</td><td>修建/改建年度</td><td>项目年份</td></tr>";
+			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>建设规模</td><td>批复总投资</td></tr>";
 			sheetb.setTableName("灾害防治项目");
 			sheetb.setHeader(excelHtml);
 			sheetb.setSheetName("灾害");
