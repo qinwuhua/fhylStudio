@@ -67,7 +67,7 @@ a:active {
         						
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
-        						<span>路线：</span>
+        						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;

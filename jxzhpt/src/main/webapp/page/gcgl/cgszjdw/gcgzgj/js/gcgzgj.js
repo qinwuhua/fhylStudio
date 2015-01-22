@@ -1,4 +1,5 @@
 var obj=new Object();
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
@@ -6,7 +7,9 @@ function wqxiangxi(){
 	YMLib.UI.createWindow('wqxx','工程改造路面改建开工详情','gcgzgjxx.jsp','wqxx',700,450);
 	//window.open("gcgzgjxx.jsp");
 }
-function zjdw(){
+function zjdw(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx1','车购税资金到位情况','gcgzgjzjdw.jsp','wqxx1',800,500);
 	//window.open("gcgzgjzjdw.jsp");
 }
@@ -31,7 +34,7 @@ function tjgcgzgjcgs(){
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
 	var data="gcglgcgzgj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzgj.tbr="+$.cookie("truename")+"&gcglgcgzgj.tbsj="+tbsj+"&gcglgcgzgj.tbyf="+tbyf
-	+"&gcglgcgzgj.jhid="+"10";
+	+"&gcglgcgzgj.jhid="+parent.parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -94,25 +97,37 @@ function delCgs(index){
 }
 
 function showAll(){
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
+		gydw='';
+	var jgzt='0';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'js/sh.json',
+	    url:'../../../../gcgl/selectGcgzgjjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	jgzt:jgzt,
+	    	lxmc:lxmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-	            	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="zjdw()">资金拨付</a>   ';
-	         }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
+  				return '定位    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
+  			}},
+  			{field:'gydw',title:'管养单位',width:130,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
 	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
 	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'zlc',title:'总里程',width:80,align:'center'},
+	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:80,align:'center'},
 	        {field:'ylmlx',title:'原路面类型',width:100,align:'center'},
 	    ]]    
@@ -120,20 +135,24 @@ function showAll(){
 }
 
 function showAllZJ(){
+	var jhid=parent.obj1.jhid;
 	$('#zjgrid').datagrid({    
-		url:'../../../../gcgl/selectGcgzgjCgsList.do?jhid=10',
+		url:'../../../../gcgl/selectGcgzgjCgsList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:315,
+	    queryParams: {
+	    	jhid: jhid,
+		},
 	    columns:[[
 				{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 					if(row.sbsj==""||row.sbyf>row.tbyf){
-						return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
-					}
-					else return "月报已上报，不可操作";
+		        		return '<a href="#" onclick="editCgs('+index+')">编辑</a>    '+'<a href="#" onclick="delCgs('+index+')">删除</a>   ';
+		        	}
+		        	else return '编辑   '+'删除';
 				}},
 				{field:'tbyf',title:'填报月份 ',width:140,align:'center'},
 				{field:'tbsj',title:'填报时间 ',width:140,align:'center'},

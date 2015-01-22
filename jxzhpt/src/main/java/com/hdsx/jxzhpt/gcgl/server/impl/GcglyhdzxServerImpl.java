@@ -49,13 +49,13 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 	@Override
 	public int selectYhdzxYbByJhidCount1(Gcglyhdzx gcglyhdzx) {
 		// TODO Auto-generated method stub
-		return queryOne("selectYhdzxYbByJhidCount", gcglyhdzx);
+		return queryOne("selectYhdzxYbByJhidCount1", gcglyhdzx);
 	}
 
 	@Override
 	public List<Gcglyhdzx> selectYhdzxYbByJhid1(Gcglyhdzx gcglyhdzx) {
 		// TODO Auto-generated method stub
-		return queryList("selectYhdzxYbByJhid",gcglyhdzx);
+		return queryList("selectYhdzxYbByJhid1",gcglyhdzx);
 	}
 	
 	@Override

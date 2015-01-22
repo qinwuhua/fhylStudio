@@ -38,7 +38,7 @@ $(function(){
 	if(data.sjsgtmc!=''){
 		$("#xz_sjsgt").text("下载附件");
 	}
-	var data1="jhid="+data.jhid;
+	var data1="jhid="+data.id;
 	jiazai(data1);
 	});
 

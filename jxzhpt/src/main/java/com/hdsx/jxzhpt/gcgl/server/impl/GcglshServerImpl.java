@@ -49,13 +49,13 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	@Override
 	public int selectshYbByJhidCount1(Gcglsh gcglsh) {
 		// TODO Auto-generated method stub
-		return queryOne("selectshYbByJhidCount", gcglsh);
+		return queryOne("selectshYbByJhidCount1", gcglsh);
 	}
 
 	@Override
 	public List<Gcglsh> selectshYbByJhid1(Gcglsh gcglsh) {
 		// TODO Auto-generated method stub
-		return queryList("selectshYbByJhid",gcglsh);
+		return queryList("selectshYbByJhid1",gcglsh);
 	}
 
 	@Override
