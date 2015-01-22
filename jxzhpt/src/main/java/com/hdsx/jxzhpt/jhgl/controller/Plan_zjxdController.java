@@ -18,13 +18,14 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 @Controller
 public class Plan_zjxdController extends BaseActionSupport {
 	private int page=1;
-	private int rows=5;
+	private int rows=3;
 	private Plan_zjxd zjxd;
-	@Resource(name = "plan_abgcServerImpl")
+	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	public void queryZjxdByXmId(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
+			System.out.println("个数："+zjxdServer.queryZjxdCount(zjxd.getXmid()));
 			jsonMap.put("total", zjxdServer.queryZjxdCount(zjxd.getXmid()));
 			jsonMap.put("rows", zjxdServer.queryZjxdByXmId(zjxd.getXmid()));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
@@ -41,9 +42,44 @@ public class Plan_zjxdController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void editZjxdById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(zjxdServer.editZjxd(zjxd)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryZjxdExistById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("count", new Integer(zjxdServer.queryZjxdExistById(zjxd.getXmid())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void addZjxd(){
 		try {
-			JsonUtils.write(zjxdServer.addZjxd(zjxd),getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(zjxdServer.addZjxd(zjxd)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void dropZjxdById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(zjxdServer.dropZjxd(zjxd.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

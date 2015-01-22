@@ -260,7 +260,7 @@ function gclmsjxm_zjxd(jh,lx){
 				return result;
 			}},
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:openDialog('+"'gclmsj_zjxd','工程改造路面升级项目资金下达','../zjxd/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+				return '<a href="javascript:openDialog('+"'zjxd_gclmsj','工程改造路面升级项目资金下达','../zjxd/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 			}},
 			{field:'jszt',title:'建设状态',width:80,align:'center'},
 			{field:'c4',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){

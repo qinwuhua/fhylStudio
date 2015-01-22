@@ -19,7 +19,7 @@
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqhmc","360000");
+	loadDist("xzqhmc",$.cookie("dist"));
 	jckshAbgc();
 });
 
@@ -137,8 +137,6 @@ text-decoration:none;
                                <span>&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
                               	</select>

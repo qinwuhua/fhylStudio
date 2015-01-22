@@ -52,8 +52,22 @@ public class GcglabgcController extends BaseActionSupport{
 	private String kgzt;
 	private String lxmc;
 	private String qlmc;
+	private String jgzt;
+	private String yhtype;
 	
 	
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
@@ -127,6 +141,12 @@ public class GcglabgcController extends BaseActionSupport{
 	//添加月报
 	public void insertAbgcYb(){
 		System.out.println(gcglabgc);
+		if("县级".equals(yhtype)){
+			gcglabgc.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglabgc.setSfsj("是");
+		}
 		Boolean bl=gcglabgcServer.insertAbgcYb(gcglabgc);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -142,6 +162,23 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setJhid(jhid);
 		int count=gcglabgcServer.selectAbgcYbByJhidCount(gcglabgc);
 		List<Gcglabgc> list=gcglabgcServer.selectAbgcYbByJhid(gcglabgc);
+		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+//查询月报1
+	public void selectAbgcYbByJhid1(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setPage(page);
+		gcglabgc.setRows(rows);
+		gcglabgc.setJhid(jhid);
+		int count=gcglabgcServer.selectAbgcYbByJhidCount1(gcglabgc);
+		List<Gcglabgc> list=gcglabgcServer.selectAbgcYbByJhid1(gcglabgc);
 		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -330,6 +367,7 @@ public class GcglabgcController extends BaseActionSupport{
 			gcglabgc.setGydw(gydw.replaceAll("0*$",""));
 			gcglabgc.setKgzt(kgzt);
 			gcglabgc.setLxmc(lxmc);
+			gcglabgc.setJgzt(jgzt);
 			int count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);
 			List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList(gcglabgc);
 			EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
@@ -377,5 +415,15 @@ public class GcglabgcController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 		
+	}
+	//修改月报状态
+	public void sbAbgcYb(){
+		System.out.println(gcglabgc);
+		Boolean bl=gcglabgcServer.sbWqgzYb(gcglabgc);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 }

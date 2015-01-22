@@ -40,4 +40,10 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	Plan_zjxd queryZjxdById(String id);
+	/**
+	 * 查看是否有资金下达记录，以确定是否是追加记录
+	 * @param id
+	 * @return
+	 */
+	int queryZjxdExistById(String id);
 }

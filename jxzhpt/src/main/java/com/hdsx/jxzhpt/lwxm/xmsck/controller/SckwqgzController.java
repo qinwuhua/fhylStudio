@@ -162,10 +162,17 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckWqgzSbzt(){
-		if(wqgzServer.xgSckWqgzSbzt(delstr)){
+		if(wqgzServer.xgSckWqgzSbzt(delstr,sckwqgz)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void xgSckWqgzTH(){
+		try {
+			JsonUtils.write(wqgzServer.xgSckWqgzTH(sckwqgz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void selectSckShwqgz(){

@@ -37,6 +37,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -65,7 +66,7 @@ a:active {
         						<input id="gydw" style="width: 200px;">
         						<span>路线名称：</span>
         							<input type="text" id="lx" >
-        						<span>桥梁：</span>
+        						<span>桥梁名称：</span>
         							<input type="text" id="ql" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>

@@ -26,12 +26,13 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	@Override
 	public List<Sckzhfz> selectSckzhfz(Sckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
 		hm.put("xmnf", zhfz.getXmnf());
 		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
+		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
 		hm.put("page", zhfz.getPage());
@@ -42,12 +43,13 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	@Override
 	public int selectZhfzCount(Sckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
 		hm.put("xmnf", zhfz.getXmnf());
 		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
+		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
 		return queryOne("selectZhfzCount", hm);
@@ -71,14 +73,19 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean xgSckZhfzSbzt(String delstr) {
-		if(update("xgSckZhfzSbzt", delstr)>0) return true;
+	public boolean xgSckZhfzSbzt(String delstr,Sckzhfz zhfz) {
+		hm=new HashMap<String, Object>();
+		hm.put("delstr", delstr);
+		hm.put("sck_sbbm", zhfz.getSck_sbbm());
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
+		if(update("xgSckZhfzSbzt", hm)>0) return true;
 		else return false;
 	}
 
 	@Override
 	public List<Sckzhfz> selectSckShzhfz(Sckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
@@ -95,6 +102,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	@Override
 	public int selectZhfzShCount(Sckzhfz zhfz) {
 		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
 		hm.put("gydw", zhfz.getGydw());
 		hm.put("xzqhmc", zhfz.getXzqhmc());
 		hm.put("lxmc", zhfz.getLxmc());
@@ -109,6 +117,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	@Override
 	public boolean xgSckZhfzShzt(Sckzhfz zhfz) {
 		if(update("xgSckZhfzShzt", zhfz)>0)return true;
+		else return false;
+	}
+	@Override
+	public boolean xgSckZhfzTH(Sckzhfz zhfz) {
+		if(update("xgSckZhfzTH", zhfz)>0)return true;
 		else return false;
 	}
 
@@ -137,4 +150,6 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		if(count<1) return true;
 		else return false;
 	}
+
+
 }

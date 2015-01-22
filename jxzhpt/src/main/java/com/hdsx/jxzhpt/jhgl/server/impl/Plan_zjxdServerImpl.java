@@ -46,4 +46,9 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public Plan_zjxd queryZjxdById(String id) {
 		return queryOne("queryZjxdById", id);
 	}
+
+	@Override
+	public int queryZjxdExistById(String id) {
+		return queryOne("queryZjxdExistById", id);
+	}
 }

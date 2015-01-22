@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>安保工程</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>安保工程</title>
 </head>
 <body>
 	<div style="text-align: center;">
@@ -182,84 +182,9 @@
 			</tr>
 			<tr>
 				<td align="center">
-
-					<table width="100%" height="90%" cellpadding="0" cellspacing="0"
-						border="1" style="padding-top: 10px;">
-						<tr>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								操作</td>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								资金追加</td>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								下达年份</td>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								下达资金</td>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								填报部门</td>
-							<td
-								style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-								填报时间</td>
-						</tr>
-
-						<tr>
-							<td><a id="rpZJXX_ctl01_btnEdit"
-								href="javascript:__doPostBack('rpZJXX$ctl01$btnEdit','')"
-								style="color: #0066CB;">编辑</a> &nbsp;|&nbsp; <a
-								onclick="return CheckDel(&quot;2014&quot;,&quot;0&quot;);"
-								id="rpZJXX_ctl01_btnDel" disabled="disabled"
-								style="color: #0066CB;">删除</a></td>
-							<td><span id="rpZJXX_ctl01_SFZJ" style="font-size: 10pt;">否</span>
-							</td>
-							<td><span id="rpZJXX_ctl01_XDNF" style="font-size: 10pt;">2014</span>
-							</td>
-							<td><span id="rpZJXX_ctl01_XDZJ" style="font-size: 10pt;">100</span>
-							</td>
-							<td><span id="rpZJXX_ctl01_TBDW" style="font-size: 10pt;">江西省</span>
-							</td>
-							<td><span id="rpZJXX_ctl01_TBSJ" style="font-size: 10pt;">2014-08-26</span>
-							</td>
-						</tr>
-
-						<tr>
-							<td><a id="rpZJXX_ctl02_btnEdit"
-								href="javascript:__doPostBack('rpZJXX$ctl02$btnEdit','')"
-								style="color: #0066CB;">编辑</a> &nbsp;|&nbsp; <a
-								onclick="return CheckDel(&quot;2014&quot;,&quot;1&quot;);"
-								id="rpZJXX_ctl02_btnDel" disabled="disabled"
-								style="color: #0066CB;">删除</a></td>
-							<td><span id="rpZJXX_ctl02_SFZJ" style="font-size: 10pt;">是</span>
-							</td>
-							<td><span id="rpZJXX_ctl02_XDNF" style="font-size: 10pt;">2014</span>
-							</td>
-							<td><span id="rpZJXX_ctl02_XDZJ" style="font-size: 10pt;">11</span>
-							</td>
-							<td><span id="rpZJXX_ctl02_TBDW" style="font-size: 10pt;">江西省</span>
-							</td>
-							<td><span id="rpZJXX_ctl02_TBSJ" style="font-size: 10pt;">2014-09-19</span>
-							</td>
-						</tr>
-
+					<table id="zjxdList" width="100%" height="90%" cellpadding="0"
+						cellspacing="0" border="1" style="padding-top: 10px;">
 					</table>
-
-
-				</td>
-			</tr>
-			<tr>
-				<td>共 <span id="lblcount">2</span>条记录，当前 <span id="lblcurrent">1/1</span>页&nbsp;&nbsp;
-					<a id="hlfist" disabled="disabled">首页</a>&nbsp; <a id="hlprev"
-					disabled="disabled">上一页</a>&nbsp; <a id="hlnext"
-					disabled="disabled">下一页</a>&nbsp; <a id="hllast"
-					disabled="disabled">末页</a>&nbsp;&nbsp; <select name="ddlPage"
-					onchange="javascript:setTimeout('__doPostBack(\'ddlPage\',\'\')', 0)"
-					id="ddlPage">
-						<option selected="selected" value="1">1</option>
-
-				</select>
 				</td>
 			</tr>
 		</table>
@@ -272,23 +197,31 @@
 						<tr>
 							<td>
 								<a href="javascript:openZjxd('zjxd','资金下达','../zjxd/zjxd.jsp','800','250')"">
-									<img id="imgAdd"   onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加"
-										onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
-										src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width: 0px; cursor: hand;" />
+									<img id="imgAdd"
+									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'"
+									alt="添加"
+									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
+									src="${pageContext.request.contextPath}/images/Button/tianj1.gif"
+									style="border-width: 0px; cursor: hand;" />
 								</a>
 							</td>
-							<td><a href="javascript:void(0)" onclick="Return()"> <img
-									src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
-									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
-									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
-									style="border: 0">
-							</a></td>
+							<td>
+								<a href="javascript:closeWindow('zjxd_abgc')"> 
+									<img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF"
+										alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
+										onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
+										style="border: 0">
+								</a>
+							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
+	<div id="zjxd" style="font-size: 12px; width: 80%;"></div>
+	<script type="text/javascript">
+	queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
+	</script>
 </body>
 </html>

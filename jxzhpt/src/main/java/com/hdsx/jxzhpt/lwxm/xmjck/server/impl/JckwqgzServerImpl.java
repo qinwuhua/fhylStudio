@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
@@ -27,9 +26,6 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
-		if("11101360000".equals(wqgz.getGydw())){
-			wqgz.setGydw("");
-		}
 		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
@@ -37,7 +33,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("qlmc", wqgz.getQlmc());
 		hm.put("xmnf", wqgz.getXmnf());
 		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("shzt", wqgz.getShzt());
+		hm.put("sbzt", wqgz.getSbzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
 		hm.put("page", wqgz.getPage());
@@ -60,12 +56,14 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	public List<Jckwqgz> selectGpsroad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("qlbh", wqgz.getQlbh());
+		hm.put("xzqhdm", wqgz.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
 	@Override
 	public List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("qlbh", wqgz.getQlbh());
+		hm.put("xzqhdm", wqgz.getXzqhdm());
 		return queryList("JckWqgzRoad", hm);
 	}
 
@@ -94,9 +92,6 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public int selectWqgzCount(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
-		if("11101360000".equals(wqgz.getGydw())){
-			wqgz.setGydw("");
-		}
 		hm.put("sbthcd", wqgz.getSbthcd());
 		hm.put("gydw", wqgz.getGydw());
 		hm.put("xzqhmc", wqgz.getXzqhmc());
@@ -104,7 +99,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		hm.put("qlmc", wqgz.getQlmc());
 		hm.put("xmnf", wqgz.getXmnf());
 		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("shzt", wqgz.getShzt());
+		hm.put("sbzt", wqgz.getSbzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
 		return queryOne("selectWqgzCount", hm);

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
@@ -33,7 +32,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		hm.put("lxmc", zhfz.getLxmc());
 		hm.put("xmnf", zhfz.getXmnf());
 		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
+		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
 		hm.put("page", zhfz.getPage());
@@ -56,12 +55,14 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	public List<Jckzhfz> selectGpsroad(Jckzhfz zhfz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("xzqhdm", zhfz.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
 	@Override
 	public List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz) {
 		hm = new HashMap<String, Object>();
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("xzqhdm", zhfz.getXzqhdm());
 		return queryList("JckzhfzRoad", hm);
 	}
 
@@ -96,7 +97,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		hm.put("lxmc", zhfz.getLxmc());
 		hm.put("xmnf", zhfz.getXmnf());
 		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
+		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
 		return queryOne("selectZhfzCount", hm);

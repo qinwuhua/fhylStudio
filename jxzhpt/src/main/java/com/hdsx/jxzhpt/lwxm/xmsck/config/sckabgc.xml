@@ -2,22 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckabgc">
 <insert id="insertSckabgc"  parameterType="sckabgc">
-	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,lxbm,lxmc)
+	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd)
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc})
+		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd})
 </insert>
  
  <select id="selectSckabgc" parameterType="hashmap" resultType="sckabgc">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
+ 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from 
+ 			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
+ 			and  sck_sbthcd &lt;=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -25,29 +29,31 @@
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 			and sck_lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sck_sbzt desc
+ 			order by sck_sbzt2
  </select>
   <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
- 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
- 		 where 1=1
+ 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
+ 			and  sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
   		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -55,14 +61,14 @@
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
- 		<if test="shzt!='' and shzt!= null ">
- 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 			and sck_lxbm like #{lxbm}||'%'
  		</if>
  </select>
  <select id="selectSckabgcById" parameterType="sckabgc" resultType="sckabgc">
@@ -79,24 +85,31 @@
  </delete>
  
   <update id="xgSckAbgcShzt" parameterType="sckabgc" >
- 	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate where sckid=#{sckid}
+ 	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
-  <update id="xgSckAbgcSbzt" parameterType="String" >
- 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate where sckid in(#{delstr})
+  <update id="xgSckAbgcSbzt" parameterType="hashmap" >
+ 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
+ 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
  </update>
+ <update id="xgSckAbgcTH" parameterType="sckabgc">
+	update sck_abgc set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+</update>
  
   <select id="selectSckShabgc" parameterType="hashmap" resultType="sckabgc">
  	select * from (
  		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
- 		where sck_sbzt='已上报'
+ 		where sck_sbzt='已上报' and sck_sbthcd=7
+			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -111,22 +124,25 @@
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 			and sck_lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc
  </select>
   <select id="selectAbgcShCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
- 		 where sck_sbzt='已上报'
+ 		 where sck_sbzt='已上报' and sck_sbthcd=7
+			and sck_sbthcd>=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and gydw like '%'||(#{gydw})||'%'
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
  		</if>
   		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhmc like '%'||(#{xzqhmc})||'%'
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
  		</if>
  		<if test="lxmc!='' and lxmc!= null ">
- 			and lxmc like '%'||(#{lxmc})||'%'
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
  			and xmnf like '%'||(#{xmnf})||'%'
@@ -141,13 +157,13 @@
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
- 			and lxbm like #{lxbm}||'%'
+ 			and sck_lxbm like #{lxbm}||'%'
  		</if>
  </select>
  <select id="bzAbgc" parameterType="sckabgc" resultType="int">
 		select count(*) from sck_abgc where 1=1
 		<if test="lxbm!='' and lxbm!= null ">
-			and lxbm=#{lxbm}
+			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
 			and sczdzh>=#{qdzh}

@@ -44,6 +44,17 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	}
 
 	@Override
+	public int selectAbgcYbByJhidCount1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectAbgcYbByJhidCount1", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglabgc> selectAbgcYbByJhid1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectAbgcYbByJhid1",gcglabgc);
+	}
+	@Override
 	public Boolean updateAbgcYb(Gcglabgc gcglabgc) {
 		if(update("updateAbgcYb", gcglabgc)>0){
 			return true;
@@ -190,6 +201,15 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public Gcglabgc selectWqgzjhFile(Gcglabgc gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
+
+	@Override
+	public Boolean sbWqgzYb(Gcglabgc gcglabgc) {
+		if(update("sbWqgzYb", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

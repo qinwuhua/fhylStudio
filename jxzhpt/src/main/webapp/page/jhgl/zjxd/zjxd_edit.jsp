@@ -75,7 +75,7 @@
 						<tr style="height: 30px;">
 							<td align="center">
 							<td align="center">
-								<input type="image" name="btnAdd" id="btnAdd" onclick="addZjxd()"
+								<input type="image" name="btnAdd" id="btnAdd" onclick="editZjxd()"
 								onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存"
 								onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'"
 								src="${pageContext.request.contextPath}/images/Button/baocun1.gif" style="border-width: 0px;" />
@@ -90,20 +90,7 @@
 			</tr>
 		</table>
 		<script type="text/javascript">
-		$('#tbdw').html($.cookie("truename"));
 		var myDate = new Date();
-		var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
-		$('#tbsj').html(date);
-		$.ajax({
-			type:'post',
-			url:'../../../jhgl/queryZjxdExistById.do',
-			dataType:'json',
-			data:'zjxd.xmid='+xxId,
-			success:function(data){
-				if(data.count!="0")
-					$('input[id="rList_1"]').attr("checked",'checked');
-			}
-		});
 		var years=[];
 		for(var i=0;i<=10;i++){
 			years.push({text:(myDate.getFullYear()-i)});
@@ -112,6 +99,19 @@
 		    data:years,
 		    valueField:'text',    
 		    textField:'text'   
+		});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryZjxdById.do',
+			dataType:'json',
+			data:'zjxd.id='+zjId,
+			success:function(data){
+				alert(data.id);
+				$('#zjxdnf').combobox('setValue',data.xdnf);
+				$('#xdzj').val(data.xdzj);
+				$('#tbdw').html(data.tbdw);
+				$('#tbsj').html(data.tbtime);
+			}
 		});
 		</script>
 	</center>

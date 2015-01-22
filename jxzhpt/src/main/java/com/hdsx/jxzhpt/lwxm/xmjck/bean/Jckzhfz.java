@@ -36,7 +36,7 @@ public class Jckzhfz implements Serializable{
 	private Date shsj;
 	private String shbm;
 	private String bz;
-	private String sbthcd;
+	private int sbthcd;
 	private int page;
 	private int rows;
 	private String sbzt2;
@@ -197,10 +197,10 @@ public class Jckzhfz implements Serializable{
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
-	public String getSbthcd() {
+	public int getSbthcd() {
 		return sbthcd;
 	}
-	public void setSbthcd(String sbthcd) {
+	public void setSbthcd(int sbthcd) {
 		this.sbthcd = sbthcd;
 	}
 	public int getPage() {

@@ -4,13 +4,21 @@
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
 				 	'sbthcd':$.cookie("unit2").length,
-				 	'gydw':$('#gydw').combobox("getValue"),
+				 	'gydw':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#gydw').combobox("getValue");
+				 	},
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
 				 	'qlmc':$("#qlmc").val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'shzt':$("#shzt").val(),
+				 	'sbzt':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#sbzt').val();
+				 	},
 				 	'jsdj':$("#jsdj").val(),
 				 	'akjfl':$("#akjfl").val()
 				},
@@ -24,7 +32,7 @@
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.sbzt2=="未上报"){
+					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -39,12 +47,11 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
-							return  '<span style="color:grey;">未上报</span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
+					{field:'shzt',title:'审核状态',width:80,align:'center'},
 				 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 			        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -64,12 +71,24 @@
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {
 				 	'sbthcd':$.cookie("unit2").length,
-				 	'gydw':$("#gydw").val(),
-				 	'xzqhmc':$("#xzqhmc").val(),
+				 	'gydw':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#gydw').combobox("getValue");
+				 	},
+				 	'xzqhmc':function(){
+				 		if("360000"==$('#xzqhmc').combobox("getValue")){
+				 			return "";
+				 		}else return $('#xzqhmc').combobox("getValue");
+				 	},
 				 	'lxmc' : $('#lxmc').val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'shzt':$("#shzt").val(),
+				 	'sbzt':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#sbzt').val();
+				 	},
 				 	'lxjsdj':$("#lxjsdj").val(),
 				 	'lxbm':$("#lxbm").val()
 				},
@@ -83,7 +102,7 @@
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.sbzt2=="未上报"){
+					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -98,12 +117,11 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-					}else if(row.sbzt2=="未上报" && row.sbthcd==7){
-						return  '<span style="color:grey;">未上报</span>';
 					}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
+				{field:'shzt',title:'审核状态',width:80,align:'center'},
 		        {field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -123,13 +141,25 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectZhfz.do',
 			 queryParams : {
-				 'sbthcd':$.cookie("unit2").length,
-				 	'gydw':$("#gydw").val(),
-				 	'xzqhmc':$("#xzqhmc").val(),
+				 	'sbthcd':$.cookie("unit2").length,
+				 	'gydw':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#gydw').combobox("getValue");
+				 	},
+				 	'xzqhmc':function(){
+				 		if("360000"==$('#xzqhmc').combobox("getValue")){
+				 			return "";
+				 		}else return $('#xzqhmc').combobox("getValue");
+				 	},
 				 	'lxmc' : $('#lxmc').val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'shzt':$("#shzt").val(),
+				 	'sbzt':function(){
+				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 			return "";
+				 		}else return $('#sbzt').val();
+				 	},
 				 	'lxjsdj':$("#lxjsdj").val(),
 				 	'lxbm':$("#lxbm").val()
 				},
@@ -143,7 +173,7 @@
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					if(row.sbzt2=="未上报"){
+					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -158,12 +188,11 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
-							return  '<span style="color:grey;">未上报</span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
+				{field:'shzt',title:'审核状态',width:80,align:'center'},
 		        {field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -184,9 +213,17 @@ function jckshWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectJckShwqgz.do',
 		 queryParams : {
-			 	'sbthcd':$.cookie("unit2").length,
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':$("#xmnf").val(),
@@ -232,9 +269,17 @@ function jckshAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectAbgcSh.do',
 		 queryParams : {
-			 	'sbthcd':$.cookie("unit2").length,
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
@@ -285,9 +330,17 @@ function jckshZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectZhfzSh.do',
 		 queryParams : {
-			 	'sbthcd':$.cookie("unit2").length,
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
@@ -334,50 +387,32 @@ function jckshZhfz(){
 	    ]]    
 	});  
 }
-//审查库管理
-function sckglWqgz(){
-	$("#grid").datagrid({    
-		 url:"../js/sckgl1.json",
-		    striped:true,
-		    pagination:true,
-		    rownumbers:true,
-		    pageNumber:1,
-		    pageSize:10,
-		    height:325,
-		    width:1100,
-	    columns:[[    
-			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
-			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-				'<a href="javascript:ckSck('+"'wqgz_ck.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-				'<a href="javascript:xgSck('+"'wqgz_xg.jsp','900','500'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-				'<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">删除</a>';
-			}},
-	        {field:'sbzt',title:'上报状态',width:80,align:'center'}, 
-	        {field:'gydw',title:'管养单位',width:160,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
-	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
-	        {field:'qlzxzh',title:'桥梁中心桩号',width:120,align:'center'},
-	        {field:'lxbh',title:'路线编号',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'qlpddj',title:'桥梁评定等级',width:140,align:'center'},
-	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
-	    ]]    
-	});  
-}
+
 //审查库管理
 function sckglWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckwqgz.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
+			 	'sbzt':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#sbzt').val();
+			 	},
 			 	'jsdj':$("#jsdj").val(),
 			 	'akjfl':$("#akjfl").val()
 			},
@@ -391,7 +426,7 @@ function sckglWqgz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -404,12 +439,13 @@ function sckglWqgz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
-				return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-				}else{
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
 			}},
+				{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -429,12 +465,25 @@ function sckglAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckabgc.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
+			 	'sbzt':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#sbzt').val();
+			 	},
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val()
 			},
@@ -448,7 +497,7 @@ function sckglAbgc(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -461,12 +510,13 @@ function sckglAbgc(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
-				return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-				}else{
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
 			}},
+			{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -486,12 +536,25 @@ function sckglZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckzhfz.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
+			 	'sbzt':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#sbzt').val();
+			 	},
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val()
 			},
@@ -505,7 +568,7 @@ function sckglZhfz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -518,12 +581,13 @@ function sckglZhfz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt=="未上报"){
-				return '<a href=javascript:shangB("'+row.id+'") style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-				}else{
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
 			}},
+			{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -544,8 +608,17 @@ function sckshWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShwqgz.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':$("#xmnf").val(),
@@ -597,8 +670,17 @@ function sckshAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShabgc.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
@@ -645,8 +727,17 @@ function sckshZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShzhfz.do',
 		 queryParams : {
-			 	'gydw':$("#gydw").val(),
-			 	'xzqhmc':$("#xzqhmc").val(),
+			 'sck_sbthcd':$.cookie("unit2").length,
+			 	'gydw':function(){
+			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 			return "";
+			 		}else return $('#gydw').combobox("getValue");
+			 	},
+			 	'xzqhmc':function(){
+			 		if("360000"==$('#xzqhmc').combobox("getValue")){
+			 			return "";
+			 		}else return $('#xzqhmc').combobox("getValue");
+			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),

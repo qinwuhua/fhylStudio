@@ -120,6 +120,6 @@
         	</tr>
 		</table>
 	</div>
-	<div id="gclmgj_zjxd" style="text-align: left;font-size: 12px;width:100%;"></div>
+	<div id="zjxd_gclmgj" style="text-align: left;font-size: 12px;width:100%;"></div>
 </body>
 </html>

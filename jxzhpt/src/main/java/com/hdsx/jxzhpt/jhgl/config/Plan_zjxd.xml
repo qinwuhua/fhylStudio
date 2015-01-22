@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.plan_zjxd">
+	<select id="queryZjxdByXmId" parameterType="string" resultType="plan_zjxd">
+		select * from plan_zjxd where xmid=#{id} order by xdnf
+	</select>
+	<select id="queryZjxdCount" parameterType="string" resultType="int">
+		select count(*) from plan_zjxd where xmid=#{id}
+	</select>
+	<select id="queryZjxdById" parameterType="string" resultType="plan_zjxd">
+		select * from plan_zjxd where id=#{id}
+	</select>
+	<select id="queryZjxdExistById" parameterType="string" resultType="int">
+		select count(*) from plan_zjxd where xmid=#{id}
+	</select>
+	<insert id="addZjxd" parameterType="plan_zjxd">
+		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime) 
+		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime})
+	</insert>
+	<update id="editZjxd" parameterType="plan_zjxd">
+		update plan_zjxd set 
+			<if test="xdnf!=null and xdnf!=''">
+				xdnf=#{xdnf},
+			</if>
+			<if test="xdzj!=null and xdzj!=''">
+				xdzj=#{xdzj},
+			</if>
+			<if test="sfzj!=null and sfzj!=''">
+				sfzj=#{sfzj},
+			</if>
+			<if test="tbdw!=null and tbdw!=''">
+				tbdw=#{tbdw},
+			</if>
+			<if test="tbtime!=null and tbtime!=''">
+				tbtime=#{tbtime},
+			</if>
+			id=#{id}
+		where id=#{id}
+	</update>
 	<delete id="dropZjxdById" parameterType="string">
 		delete from plan_zjxd zj where zj.id=#{id}
 	</delete>

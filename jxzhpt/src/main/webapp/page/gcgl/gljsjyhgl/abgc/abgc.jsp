@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
-		<script type="text/javascript" src="js/abgc.js"></script>
+	<script type="text/javascript" src="js/abgc.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -67,7 +67,7 @@ a:active {
         						
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
-        						<span>路线：</span>
+        						<span>路线名称：</span>
         							<input type="text" id="lxmc" />
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;

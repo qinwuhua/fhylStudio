@@ -37,7 +37,7 @@ public class Jckabgc implements Serializable{
 	private String shbm;
 	private String bz;
 	private String tsqhbm;
-	private String sbthcd;
+	private int sbthcd;
 	private int page;
 	private int rows;
 	private String sbzt2;
@@ -215,13 +215,12 @@ public class Jckabgc implements Serializable{
 	public void setTsqhbm(String tsqhbm) {
 		this.tsqhbm = tsqhbm;
 	}
-	public String getSbthcd() {
+	public int getSbthcd() {
 		return sbthcd;
 	}
-	public void setSbthcd(String sbthcd) {
+	public void setSbthcd(int sbthcd) {
 		this.sbthcd = sbthcd;
 	}
-
 	public String getSbzt2() {
 		return sbzt2;
 	}

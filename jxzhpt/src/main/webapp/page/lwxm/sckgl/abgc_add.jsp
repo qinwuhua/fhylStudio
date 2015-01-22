@@ -58,10 +58,14 @@ var zdStr;
 	  		delay : 200,
 	  		max : 50,
 	  		extraParams : {
-	  			/*dist:$.cookie("dist"),*/
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
+	  			},
+	  			xzqhdm:function() {
+	  				var d = $.cookie("dist");
+	  				if(d=='360000') return "";
+	  				else return d;
 	  			}
 	  		},
 	  		dataType : 'json',// 返回类型
@@ -133,8 +137,8 @@ var zdStr;
 		}
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").val()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
-		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+"&lxbm="+
-		$("#lxbm").val()+"&lxmc="+$("#lxmc").html();
+		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
+		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+$.cookie("unit2").length;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckabgc.do',

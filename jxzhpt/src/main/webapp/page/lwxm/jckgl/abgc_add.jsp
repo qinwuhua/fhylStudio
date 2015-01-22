@@ -64,10 +64,14 @@ text-decoration:none;
 	  		delay : 200,
 	  		max : 50,
 	  		extraParams : {
-	  			/*dist:$.cookie("dist"),*/
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
+	  			},
+	  			xzqhdm:function() {
+	  				var d = $.cookie("dist");
+	  				if(d=='360000') return "";
+	  				else return d;
 	  			}
 	  		},
 	  		dataType : 'json',// 返回类型

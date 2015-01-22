@@ -7,7 +7,7 @@ public class Plan_zjxd {
 	private String xdzj;
 	private String sfzj;//是否是追加资金
 	private String tbdw;
-	private String tbdate;
+	private String tbtime;
 	public String getId() {
 		return id;
 	}
@@ -44,10 +44,10 @@ public class Plan_zjxd {
 	public void setTbdw(String tbdw) {
 		this.tbdw = tbdw;
 	}
-	public String getTbdate() {
-		return tbdate;
+	public String getTbtime() {
+		return tbtime;
 	}
-	public void setTbdate(String tbdate) {
-		this.tbdate = tbdate;
+	public void setTbtime(String tbtime) {
+		this.tbtime = tbtime;
 	}
 }

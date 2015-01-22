@@ -39,6 +39,13 @@
 		<action name="dropShuihById" class="plan_shuihController" method="dropShuihById"/>
 		<action name="editShuihById" class="plan_shuihController" method="editShuihById"/>
 		
+		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
+		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>
+		<action name="addZjxd" class="plan_zjxdController" method="addZjxd"/>
+		<action name="dropZjxdById" class="plan_zjxdController" method="dropZjxdById"/>
+		<action name="queryZjxdById" class="plan_zjxdController" method="queryZjxdById"/>
+		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
+		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
 		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>

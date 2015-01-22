@@ -49,6 +49,12 @@ public interface GcglabgcServer {
 
 	int selectWqgzjhListCount(Gcglabgc gcglabgc);
 
+	int selectAbgcYbByJhidCount1(Gcglabgc gcglabgc);
+
+	List<Gcglabgc> selectAbgcYbByJhid1(Gcglabgc gcglabgc);
+
+	Boolean sbWqgzYb(Gcglabgc gcglabgc);
+
 	
 
 }

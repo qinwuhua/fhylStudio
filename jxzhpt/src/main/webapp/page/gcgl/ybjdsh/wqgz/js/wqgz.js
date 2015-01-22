@@ -110,7 +110,7 @@ function showAll(){
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" onclick="ybsb('+index+')">月报审核</a>    ';
+	        	return '定位    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
@@ -125,7 +125,6 @@ function showAll(){
 	    ]]    
 	}); 
 }
-var jhid=10;
 function showYBlist(){
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
@@ -138,9 +137,12 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核')
+	              		if(row.shzt=='未审核'&&row.sfth=='否')
 			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
-	              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'已审核   '+'退回   ';
+	              		if(row.shzt=='未审核'&&row.sfth=='是')
+				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'未审核   '+'退回';
+	              		if(row.shzt=='已审核')
+	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'已审核   '+'退回   ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},

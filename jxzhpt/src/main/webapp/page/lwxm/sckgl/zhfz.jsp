@@ -21,7 +21,7 @@
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqhmc","360000");
+	loadDist("xzqhmc",$.cookie("dist"));
 	sckglZhfz();
 });
 
@@ -29,7 +29,7 @@ function delSckzhfz(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
-		if(rows[i].sck_sbzt=='已上报'){
+		if(rows[i].sck_sbzt2=='已上报'){
 			alert("该项目已上报，不能执行删除操作！");
 			return false;
 		}
@@ -87,24 +87,27 @@ function xgShzt(id){
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid=rows[0].sckid;
-	for(var i=0;i<rows.length;i++){
-		if(rows[i].sck_sbzt=='已上报'){
-			alert("该项目已上报！");
-			return false;
-		}
-	}
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
 	}
+	if($.cookie("unit2").length==7){
+		alert("该项目已上报到省级单位，请勿重复操作！");
+		return ;
+	}
+	if(rows[0].sck_sbzt2=='已上报'){
+		alert("该项目已上报，请勿重复操作！");
+		return ;
+	}
 	if(confirm('您确定上报该项目？')){
+		var data = "delstr="+sckid+"&sck_sbbm="+$.cookie("unit2")+"&sck_sbthcd="+($.cookie("unit2").length-2);
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/xmsck/xgSckZhfzSbzt.do",
 			 dataType : 'json',
-			 data : 'delstr=' +sckid,
+			 data : data,
 			 success : function(msg){
 				 if(msg){
-					 alert('上报成功！');
+					 alert('上报成功！'); 
 					 $("#grid").datagrid('reload');
 				 }else{
 					 alert('上报失败,请选择要上报项目！');
@@ -115,6 +118,49 @@ function shangB(){
 			 }
 		});
 }
+}
+function tuiHui(){
+	var rows=$('#grid').datagrid('getSelections');
+	var sckid= rows[0].sckid;
+	var sck_sbzt=rows[0].sck_sbzt;
+	var sck_sbthcd=rows[0].sck_sbthcd;
+	var scbmbm=rows[0].scbmbm;
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量退回！");
+		return;
+	}
+	if(sck_sbzt=='未上报' && sck_sbthcd==11){
+		alert("对不起，无法退回！");
+		return;
+	}
+	if(scbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
+		return;
+	}
+	if(sck_sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	if(confirm('您确定退回该项目？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmsck/xgSckZhfzTH.do",
+				 dataType : 'json',
+				 data : 'sckid=' +sckid,
+				 success : function(msg){
+					 if(msg){
+						 alert('退回成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('退回失败,请选择要退回项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
 }
 </script>
 <style type="text/css">
@@ -166,13 +212,11 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select>
-                               <span>&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px">
+                               <span>&nbsp;上报状态：</span>
+                              	<select id="sbzt" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="ss4"  style="width:70px">
@@ -203,8 +247,9 @@ text-decoration:none;
                               	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglAbgc();" style="border-width:0px;cursor: hand;" />
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglZhfz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
+								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule_sc('SCK_Disaster')" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('zhfz_sc');" style="border-width:0px;" />
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('zhfz_add.jsp','900','500');" style="border-width:0px;" />
