@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,12 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.util.Region;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.jhgl.server.impl.Plan_abgcServerImpl;
+import com.hdsx.jxzhpt.jhgl.server.impl.Plan_wqgzServerImpl;
+import com.hdsx.jxzhpt.jhgl.server.impl.Plan_zhfzServerImpl;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckwqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
@@ -41,6 +46,7 @@ public class ExcelModule extends BaseActionSupport {
 	private SckzhfzServer zhfzServer;
 	private String moduleName;
 	private String xzqhdm;
+	
 	public void getModule() {
 		String filename = moduleName;
 		if (filename == null || "".equals(filename)) {
@@ -157,7 +163,97 @@ public class ExcelModule extends BaseActionSupport {
 			}
 		}
 	}
-
+	
+	public void getModule_jh() {
+		String filename = moduleName;
+		if (filename == null || "".equals(filename)) {
+			return;
+		}
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			InputStream fi = ExcelModule.class.getClassLoader().getResourceAsStream("/excelModule/" + filename + ".xls");
+			POIFSFileSystem ps = new POIFSFileSystem(fi);
+			HSSFWorkbook wb = new HSSFWorkbook(ps);
+			HSSFSheet sheet = wb.getSheetAt(0);
+			CellStyle style = sheet.getRow(3).getCell(1).getCellStyle();
+			for (int i = 4; i <=sheet.getLastRowNum(); i++) {
+				sheet.removeRow(sheet.getRow(i));
+			}
+			// 去数据库将数据拿到放到模板中
+			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
+			String descr="";
+			Plan_wqgzServer wqgzServer = new Plan_wqgzServerImpl();
+			Plan_abgcServer abgcServer = new Plan_abgcServerImpl();
+			Plan_zhfzServer zhfzServer = new Plan_zhfzServerImpl();
+			if("Plan_Bridge".equals(moduleName)){
+				list = wqgzServer.insertToSheet(xzqhdm);
+				descr = "填表说明: \n"+
+					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
+					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
+					"3.列5-列6桥梁编码、桥梁名称。\n"+
+					"4.列7桥梁中心桩号：按照数字型填写。\n"+
+					"5.列8建设性质：按照拟改造工程分类填写为加固改造、拆除重建（新建）。\n"+
+					"6.列9建设内容：详细填写项目实施内容。\n"+
+					"7.列10-列13：上报年份、计划开工时间、计划完工时间、计划下达时间。\n"+
+					"8.列14设计单位、列15设计批复单位：填写单位全称。\n"+
+					"9.列16批复文号：填写设计批复文件文号。 \n"+
+					"10列17：批复时间。          \n"+
+					"11.列18-列20：填写批复总投资额、拟申请的部投资额及地方自筹资金额。数值填写至个位数，如总投资为155.3万元填写为155。列18=列19+列20。\n"+    
+					"12.列21是否申请按比例补助、列20按比例补助申请文号：根据《公路路网结构改造工程管理办法》（交公路发{2011}182号）第十九条有关规定，\n"+
+					"总投资超过500万元的项目可按照项目投资比例进行补助。如第21列填写“是”，第22列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
+					"13.列23：备注";
+			}else if("Plan_Security".equals(moduleName)){
+				list = abgcServer.insertToSheet(xzqhdm);
+				descr = "填表说明:\n"+
+					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
+					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
+					"3.列5-列6路段的起点、止点桩号：填写改造路段的起、止点桩号。按照数字型填写，以公里为单位，保留三位小数，如：K708+245填写为708.245。\n"+
+					"4.列7隐患里程：填写带两位小数的阿拉伯数字。单位：公里。\n"+
+					"5.列8建设性质：按照拟改造工程分类填写，中修、大修。\n"+
+					"6.列9建设内容：详细填写项目实施内容。\n"+
+					"7.列10计划完成：填写阿拉伯数字。单位：处。\n"+
+					"8.列11-列14：上报年份、计划开工时间、计划完工时间、计划下达时间。\n"+
+					"9.列15设计单位、列16设计批复单位：填写单位全称。\n"+
+					"10.列17批复文号：填写设计批复文件文号。 \n"+
+					"11.列18：批复时间。          \n"+
+					"12.列19-列21：填写批复总投资额、拟申请的部投资额及地方自筹资金额。数值填写至个位数，如总投资为155.3万元填写为155。列19=列20+列21。\n"+    
+					"13.列22是否申请按比例补助、列23按比例补助申请文号：根据《公路路网结构改造工程管理办法》（交公路发{2011}182号）第十九条有关规定，\n"+
+					"总投资超过500万元的项目可按照项目投资比例进行补助。如第22列填写“是”，第23列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
+					"14.列24：备注";
+			}else{
+				list = zhfzServer.insertToSheet(xzqhdm);
+				descr = "填表说明: \n"+
+					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
+					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
+					"3.列5-列6路段的起点、止点桩号：填写改造路段的起、止点桩号。按照数字型填写，以公里为单位，保留三位小数，如：K708+245填写为708.245。\n"+
+					"4.列7隐患里程：填写带两位小数的阿拉伯数字。单位：公里。\n"+
+					"5.列8建设性质：按照拟改造工程分类填写，中修、大修。\n"+
+					"6.列9建设内容：详细填写项目实施内容。\n"+
+					"7.列10-列13：上报年份、计划开工时间、计划完工时间、计划下达时间。\n"+
+					"8.列14设计单位、列15设计批复单位：填写单位全称。\n"+
+					"9.列16批复文号：填写设计批复文件文号。 \n"+
+					"10列17：批复时间。          \n"+
+					"11.列18-列20：填写批复总投资额、拟申请的部投资额及地方自筹资金额。数值填写至个位数，如总投资为155.3万元填写为155。列18=列19+列20。\n"+    
+					"12.列21是否申请按比例补助、列20按比例补助申请文号：根据《公路路网结构改造工程管理办法》（交公路发{2011}182号）第十九条有关规定，\n"+
+					"总投资超过500万元的项目可按照项目投资比例进行补助。如第21列填写“是”，第22列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
+					"13.列23：备注";
+			}
+			insertDataToSheet(wb, list, style,descr);
+			wb.write(out);
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			HttpServletResponse response = getresponse();
+			try {
+				response.getWriter().write("该名称模板不存在！");
+			} catch (IOException e1) {
+			}
+		}
+	}
 	public void insertDataToSheet(HSSFWorkbook wb, List<SjbbMessage> list,
 			CellStyle style,String descr) throws Exception {
 		HSSFSheet sheet = wb.getSheetAt(0);

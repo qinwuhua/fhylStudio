@@ -71,6 +71,7 @@
 	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
 	<action name="updateYhdzxYb" class="gcglyhdzxController" method="updateYhdzxYb"/>
 	<action name="selectYhdzxYbByJhid" class="gcglyhdzxController" method="selectYhdzxYbByJhid"/>
+	<action name="selectYhdzxYbByJhid1" class="gcglyhdzxController" method="selectYhdzxYbByJhid1"/>
 	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
 	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
 	<action name="insertYhdzxCgs" class="gcglyhdzxController" method="insertYhdzxCgs"/>
@@ -86,12 +87,14 @@
 	<action name="selectYhdzxjhList" class="gcglyhdzxController" method="selectYhdzxjhList"/>
 	<action name="selectYhdzxjhFile" class="gcglyhdzxController" method="selectYhdzxjhFile"/>
 	<action name="deleteYhdzxFile" class="gcglyhdzxController" method="deleteYhdzxFile"/>
+	<action name="sbYhdzxYb" class="gcglyhdzxController" method="sbYhdzxYb"/>
 
 	<!-- sh -->
 	<action name="deleteshYb" class="gcglshController" method="deleteshYb"/>
 	<action name="insertshYb" class="gcglshController" method="insertshYb"/>
 	<action name="updateshYb" class="gcglshController" method="updateshYb"/>
 	<action name="selectshYbByJhid" class="gcglshController" method="selectshYbByJhid"/>
+	<action name="selectshYbByJhid1" class="gcglshController" method="selectshYbByJhid1"/>
 	<action name="shShYb" class="gcglshController" method="shShYb"/>
 	<action name="selectShCgsList" class="gcglshController" method="selectShCgsList"/>
 	<action name="deleteShCgs" class="gcglshController" method="deleteShCgs"/>
@@ -106,6 +109,7 @@
 	<action name="selectShjhList" class="gcglshController" method="selectShjhList"/>
 	<action name="selectShjhFile" class="gcglshController" method="selectShjhFile"/>
 	<action name="deleteShFile" class="gcglshController" method="deleteShFile"/>
+	<action name="sbShYb" class="gcglshController" method="sbShYb"/>
 	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>

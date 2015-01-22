@@ -29,7 +29,7 @@ $(function(){
 	$("#jhsybzje").text(data.jhsybzje);$("#jhsydfzcje").text(data.jhsydfzcje);$("#sjlmlx").text(data.sjlmlx);$("#sfsqablbz").text(data.sfsqablbz);$("#ablbzsqwh").text(data.ablbzsqwh);
 	$("#sfgyhbm").text(data.sfgyhbm);$("#gkbgmc").text(data.gkbgmc);$("#gkbglj").text(data.gkbglj);$("#sjsgtmc").text(data.sjsgtmc);$("#sjsgtlj").text(data.sjsgtlj);
 	$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);$("#sjwgsj").text(data.sjwgsj);$("#kgzt").text(data.kgzt);$("#jgzt").text(data.jgzt);
-	$("#yjwgsj").text(data.yjwgsj);$("#v").text(data.sfqxkg);$("#jsdw").text(data.jsdw);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);
+	$("#yjwgsj").text(data.yjwgsj);$("#sfqxkg").text(data.sfqxkg);$("#jsdw").text(data.jsdw);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);
 	$("#htje").text(data.htje);$("#sgxkwj").text(data.sgxkwj);$("#jgtcwj").text(data.jgtcwj);$("#jgyswj").text(data.jgyswj);$("#wjsczt").text(data.wjsczt);
 	$("#gsztz").text(data.gsztz);$("#scbz").text(data.scbz);$("#jhbz").text(data.jhbz);
 	
@@ -39,7 +39,7 @@ $(function(){
 	if(data.sjsgtmc!=''){
 		$("#xz_sjsgt").text("下载附件");
 	}
-	var data1="jhid="+data.jhid;
+	var data1="jhid="+data.id;
 	jiazai(data1);
 	});
 </script>
@@ -580,7 +580,7 @@ a {
 					预计完工时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-					<span id="yjjgsj"></span>
+					<span id="yjwgsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

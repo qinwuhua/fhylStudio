@@ -245,7 +245,7 @@
 	</if> -->
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap">
- 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
-	values(sys_guid(),(select ID from XMK_Abgc where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},'未上报','未审核')
+ 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,lxbm,lxmc,sczlc,scyhlc)
+	values(sys_guid(),(select ID from XMK_Abgc where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7})
  </insert>
 </mapper>

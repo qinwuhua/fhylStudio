@@ -3,9 +3,15 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
+/**
+ * @author chc
+ *
+ */
 public interface Plan_wqgzServer {
 	/**
 	 * 危桥改造列表
@@ -34,6 +40,18 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	List<TreeNode> queryWqgzNfs();
+	
+	/**
+	 * @param xzqhdm
+	 * @return
+	 */
+	List<SjbbMessage> insertToSheet(String xzqhdm);
+	/**
+	 * 
+	 * @param jck
+	 * @return
+	 */
+	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
 	/**
 	 * 根据ID删除危桥改造项目
 	 * @param id

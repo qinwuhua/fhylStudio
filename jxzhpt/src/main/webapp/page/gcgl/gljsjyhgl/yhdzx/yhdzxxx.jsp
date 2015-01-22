@@ -30,7 +30,7 @@ $(function(){
 	$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#htje").text(data.htje);$("#sgxkwj").text(data.sgxkwj);$("#jgtcwj").text(data.jgtcwj);
 	$("#jgyswj").text(data.jgyswj);$("#gys").text(data.gys);$("#wjgyy").text(data.wjgyy);
 	//$("#pqi").text(data.pqi);
-	var data1="jhid="+data.jhid;
+	var data1="jhid="+data.id;
 	jiazai(data1);
 });
 </script>

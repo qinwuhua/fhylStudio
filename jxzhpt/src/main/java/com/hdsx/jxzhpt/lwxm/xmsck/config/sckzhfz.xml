@@ -240,12 +240,8 @@
 		and xzqhdm like '%'||(#{xzqhdm})||'%'
 	</if> -->
  </select>
- <insert id="importAbgc_sc" parameterType="hashMap">
- 	insert into sck_zhfz(sckid,sck_sbzt,sck_shzt)
-	values(sys_guid(),'未上报','未审核')
- </insert>
   <insert id="importZhfz_sc" parameterType="hashMap">
-	insert into sck_zhfz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
-	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},'未上报','未审核')
+	insert into sck_zhfz(sckid,xmkid,lxbm,lxmc,sczlc,scyhlc,scqdzh,sczdzh,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
+	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{2},#{3},#{6},#{7},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核')
  </insert>
 </mapper>

@@ -10,7 +10,9 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer {
@@ -49,6 +51,14 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
+	public List<SjbbMessage> insertToSheet(String xzqhdm) {
+		return this.queryList("insertToSheet",xzqhdm);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
+		return this.queryList("exportExcel_jh",jck);
+	}
 	public boolean dropZhfzById(String id) {
 		return delete("dropZhfzById",id)>0;
 	}

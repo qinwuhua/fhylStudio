@@ -182,7 +182,7 @@ where  t1.spzt='1'
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
 	</if>
 	<if test="jgzt != null and  jgzt != ''">
-			and t1.jgzt like '%'||trim(#{kgzt})||'%'
+			and t1.jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t2.lxmc like '%'||trim(#{lxmc})||'%'
