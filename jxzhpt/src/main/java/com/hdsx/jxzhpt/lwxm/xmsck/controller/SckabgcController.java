@@ -205,15 +205,11 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void lrjhSckabgc(){
-		try {
 			boolean b = abgcServer.lrjhSckabgc(sckabgc);
 			if(b){
 				abgcServer.xglrjhSckabgc(sckabgc);
 				ResponseUtils.write(getresponse(), "true");
 			}else ResponseUtils.write(getresponse(), "false");
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	

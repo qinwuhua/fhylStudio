@@ -3,8 +3,10 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -58,13 +60,19 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,14,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(3,15,fs,Jckabgc.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			try{
+				for (Map<String, String> map : data) {
+					map.put("9", map.get("9").substring(0, 4));
+					map.put("12", map.get("12").substring(0, 4)+"年");
+					map.put("tbbmbm", tbbmbm1);
+					map.put("sbthcd", sbthcd1);
+				}
 				boolean b=abgcServer.importAbgc(data);
 				if(b)
 					response.getWriter().print(fileuploadFileName+"导入成功");

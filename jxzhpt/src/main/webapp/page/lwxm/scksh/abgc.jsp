@@ -88,12 +88,18 @@ function tuiHui(){
 function insertJhk(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid= rows[0].sckid;
+	var sck_shzt= rows[0].sck_shzt;
+	var lrjh= rows[0].lrjh;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量列入计划！");
 		return;
 	}
-	if(rows[0].lrjh=='已列入'){
+ 	if(sck_shzt=='未审核'){
+		alert("对不起，该项目未审核！");
+		return;
+	} 
+ 	if(lrjh=='已列入'){
 		alert("该项目已列入计划，请勿重复操作！");
 		return;
 	}
@@ -207,6 +213,7 @@ text-decoration:none;
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_abgc_scsh();" style="border-width:0px;cursor: hand;" />
+                                <img name="lrjh" id="lrjh" src="../../../images/Button/xiafa_1.png" onmouseover="this.src='../../../images/Button/xiafa_2.png'" onmouseout="this.src='../../../images/Button/xiafa_1.png'   " src=""  onclick="insertJhk();" style="border-width:0px;" />
 							 </p>
 						</div>
 				</fieldset>

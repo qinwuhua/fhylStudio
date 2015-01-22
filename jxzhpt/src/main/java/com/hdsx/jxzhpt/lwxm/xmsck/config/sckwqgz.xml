@@ -7,6 +7,13 @@
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd})
 	</insert>
+	
+	<insert id="lrjhSckwqgz"  parameterType="sckwqgz">
+		insert into plan_wqgz(id,sckid,xdzt) values(sys_guid(),#{sckid},'未下达')
+	</insert>
+ 	<insert id="xglrjhSckwqgz"  parameterType="sckwqgz">
+		update sck_wqgz set lrjh='已列入'  where sckid=#{sckid}
+	</insert>
 
 	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
 		select * from (

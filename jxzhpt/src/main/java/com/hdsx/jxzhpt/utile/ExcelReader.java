@@ -308,4 +308,33 @@ public class ExcelReader {
 		}
     	return lastData;
     }
+
+
+public static List<Map<String,String>> removeBlankRow2(List<Map> data){
+	List<Map<String,String>> lastData = new ArrayList<Map<String,String>>();
+	boolean [] position = new boolean[data.size()];
+	for(int j=0;j<data.size();j++){
+		Map map = data.get(j);
+		int len = map.keySet().size();
+		Set set = map.keySet();
+		Iterator iter = set.iterator();
+		int i=0;
+		while(iter.hasNext()){
+			String key = iter.next().toString();
+			String value=map.get(""+key+"").toString();
+			if(value!=null && (!"".equals(value)))
+				break;
+			if(i==len-1){
+				position[j]=true;
+			}
+			i++;
+		}
+	}
+	for(int i=0;i<position.length;i++){
+		if(!position[i]){
+			lastData.add(data.get(i));
+		}
+	}
+	return lastData;
+}
 }

@@ -67,6 +67,7 @@
 	<action name="exportExcel_wqgz_scgl" class="sckwqgzController" method="exportExcel_wqgz_scgl"/>
 	<action name="exportExcel_wqgz_scsh" class="sckwqgzController" method="exportExcel_wqgz_scsh"/>
 	<action name="importWqgz_sc" class="sckwqgzController" method="importWqgz_sc"/>
+	<action name="lrjhSckwqgz" class="sckwqgzController" method="lrjhSckwqgz"/>
 	<!-- 安保工程 -->
 	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
 	<action name="selectSckabgc" class="sckabgcController" method="selectSckabgc"/>
@@ -96,5 +97,6 @@
 	<action name="exportExcel_zhfz_scgl" class="sckzhfzController" method="exportExcel_zhfz_scgl"/>
 	<action name="exportExcel_zhfz_scsh" class="sckzhfzController" method="exportExcel_zhfz_scsh"/>
 	<action name="importZhfz_sc" class="sckzhfzController" method="importZhfz_sc"/>
+	<action name="lrjhSckzhfz" class="sckzhfzController" method="lrjhSckzhfz"/>
  </package>
 </struts>
