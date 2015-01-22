@@ -43,6 +43,8 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private String delstr;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String tbbmbm1;
+	private String sbthcd1;
 	
 	public void importAbgc(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
@@ -62,12 +64,17 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 				return;
 			}
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			//将数据插入到数据库
-			boolean b=abgcServer.importAbgc(data);
-			if(b)
-				response.getWriter().print(fileuploadFileName+"导入成功");
-			else 
-				response.getWriter().print(fileuploadFileName+"导入失败");
+			try{
+				boolean b=abgcServer.importAbgc(data);
+				if(b)
+					response.getWriter().print(fileuploadFileName+"导入成功");
+				else 
+					response.getWriter().print(fileuploadFileName+"导入失败");
+			}catch(Exception e){
+				e.printStackTrace();
+				response.getWriter().print(fileuploadFileName+"数据有误");
+			}
+			
 		}catch(Exception e){}
 	}
 	public void exportExcel_abgc(){
@@ -255,6 +262,17 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
 	}
-	
+	public String getTbbmbm1() {
+		return tbbmbm1;
+	}
+	public void setTbbmbm1(String tbbmbm1) {
+		this.tbbmbm1 = tbbmbm1;
+	}
+	public String getSbthcd1() {
+		return sbthcd1;
+	}
+	public void setSbthcd1(String sbthcd1) {
+		this.sbthcd1 = sbthcd1;
+	}
 	
 }

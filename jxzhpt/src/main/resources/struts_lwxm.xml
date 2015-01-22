@@ -81,6 +81,7 @@
 	<action name="exportExcel_abgc_scgl" class="sckabgcController" method="exportExcel_abgc_scgl"/>
 	<action name="exportExcel_abgc_scsh" class="sckabgcController" method="exportExcel_abgc_scsh"/>
 	<action name="importAbgc_sc" class="sckabgcController" method="importAbgc_sc"/>
+	<action name="lrjhSckabgc" class="sckabgcController" method="lrjhSckabgc"/>
 	<!-- 灾害防治 -->
 	<action name="insertSckzhfz" class="sckzhfzController" method="insertSckzhfz"/>
 	<action name="selectSckzhfz" class="sckzhfzController" method="selectSckzhfz"/>

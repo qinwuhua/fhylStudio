@@ -85,6 +85,39 @@ function tuiHui(){
 	}
 }
 
+function insertJhk(){
+	var rows=$('#grid').datagrid('getSelections');
+	var sckid= rows[0].sckid;
+	rows=rows.length;
+	if(rows>1){
+		alert("不支持批量列入计划！");
+		return;
+	}
+	if(rows[0].lrjh=='已列入'){
+		alert("该项目已列入计划，请勿重复操作！");
+		return;
+	}
+	if(confirm('您确定将该项目列入计划？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmsck/lrjhSckabgc.do",
+				 dataType : 'json',
+				 data : 'sckid=' +sckid,
+				 success : function(msg){
+					 if(msg){
+						 alert('列入计划成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('列入计划失败！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
+
 </script>
 <style type="text/css">
 TD {

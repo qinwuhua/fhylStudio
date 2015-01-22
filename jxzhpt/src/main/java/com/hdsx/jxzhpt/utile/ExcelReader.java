@@ -110,7 +110,7 @@ public class ExcelReader {
         for (int i = startCol; i <= rowNum; i++) {
             row = sheet.getRow(i);
             int j = 0;
-            Map<String,Object> m = new HashMap<String,Object>();
+            Map m = new HashMap();
             while (j < colnum) {
             	try {
 					Object object = clazz.newInstance();

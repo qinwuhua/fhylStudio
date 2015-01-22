@@ -6,6 +6,12 @@
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd})
 </insert>
+<insert id="lrjhSckabgc"  parameterType="sckabgc">
+	insert into plan_abgc(sckid,xdzt) values(#{sckid},'未下达')
+</insert>
+ <insert id="xglrjhSckabgc"  parameterType="sckabgc">
+	update sck_abgc set lrjh='已列入'  where sckid=#{sckid}
+</insert>
  
  <select id="selectSckabgc" parameterType="hashmap" resultType="sckabgc">
  	select * from (
@@ -92,7 +98,7 @@
  		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
  </update>
  <update id="xgSckAbgcTH" parameterType="sckabgc">
-	update sck_abgc set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 </update>
  
   <select id="selectSckShabgc" parameterType="hashmap" resultType="sckabgc">

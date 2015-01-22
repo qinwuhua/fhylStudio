@@ -92,7 +92,7 @@
  		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
  </update>
  <update id="xgSckZhfzTH" parameterType="sckzhfz">
-	update sck_zhfz set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+	update sck_zhfz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 </update>
  
   <select id="selectSckShzhfz" parameterType="hashmap" resultType="sckzhfz">
