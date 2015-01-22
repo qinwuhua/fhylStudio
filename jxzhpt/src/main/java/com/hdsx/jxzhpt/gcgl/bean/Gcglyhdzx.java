@@ -96,6 +96,8 @@ public class Gcglyhdzx implements Serializable {
 	private String gys;
 	private String wjgyy;
 	private String tiaojian;
+	private String sfsj;
+	private String sfth;
 	
 	private int page;
 	private int rows;
@@ -611,6 +613,18 @@ public class Gcglyhdzx implements Serializable {
 	}
 	public void setTiaojian(String tiaojian) {
 		this.tiaojian = tiaojian;
+	}
+	public String getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(String sfsj) {
+		this.sfsj = sfsj;
+	}
+	public String getSfth() {
+		return sfth;
+	}
+	public void setSfth(String sfth) {
+		this.sfth = sfth;
 	}
 
 	

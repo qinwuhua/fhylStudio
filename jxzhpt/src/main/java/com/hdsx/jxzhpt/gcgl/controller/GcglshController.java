@@ -56,7 +56,21 @@ public class GcglshController extends BaseActionSupport{
 	private String gydw;
 	private String kgzt;
 	private String lxmc;
+	private String jgzt;
+	private String yhtype;
 	
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
@@ -120,7 +134,12 @@ public class GcglshController extends BaseActionSupport{
 	}
 	//添加月报
 	public void insertshYb(){
-		System.out.println(gcglsh+"---------------------------");
+		if("县级".equals(yhtype)){
+			gcglsh.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglsh.setSfsj("是");
+		}
 		Boolean bl=gcglshServer.insertshYb(gcglsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -135,6 +154,22 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setJhid(jhid);
 		int count=gcglshServer.selectshYbByJhidCount(gcglsh);
 		List<Gcglsh> list=gcglshServer.selectshYbByJhid(gcglsh);
+		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	//查询月报
+	public void selectshYbByJhid1(){
+		gcglsh.setPage(page);
+		gcglsh.setRows(rows);
+		gcglsh.setJhid(jhid);
+		int count=gcglshServer.selectshYbByJhidCount1(gcglsh);
+		List<Gcglsh> list=gcglshServer.selectshYbByJhid1(gcglsh);
 		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -324,6 +359,7 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setGydw(gydw.replaceAll("0*$",""));
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
+		gcglsh.setJgzt(jgzt);
 		int count=gcglshServer.selectWqgzjhListCount(gcglsh);
 		List<Gcglsh> list=gcglshServer.selectWqgzjhList(gcglsh);
 		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
@@ -372,5 +408,14 @@ public class GcglshController extends BaseActionSupport{
 		}
 		
 	}
-		
+	//修改月报状态
+	public void sbShYb(){
+		System.out.println(gcglsh);
+		Boolean bl=gcglshServer.sbWqgzYb(gcglsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}	
 }
