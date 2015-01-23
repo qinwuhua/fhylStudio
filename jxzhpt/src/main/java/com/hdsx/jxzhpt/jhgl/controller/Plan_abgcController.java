@@ -117,6 +117,9 @@ public class Plan_abgcController extends BaseActionSupport{
 		HttpServletResponse response= getresponse();
 		ee.makeExcel(tableName, sheetBeans, response);
 	}
+	/**
+	 * 查询安保工程的列表信息
+	 */
 	public void queryAbgcList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
@@ -127,7 +130,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 查询安保工程的年份列表
+	 */
 	public void queryAbgcNfs(){
 		try {
 			JsonUtils.write(abgcServer.queryAbgcNfs(), getresponse().getWriter()) ;
@@ -137,7 +142,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 根据ID查询安保工程的相信信息
+	 */
 	public void queryAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.queryAbgcById(jh.getId()), getresponse().getWriter());
@@ -147,6 +154,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 根据ID删除安保工程计划
+	 */
 	public void dropAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.dropAbgcById(jh.getId()), getresponse().getWriter());
@@ -156,7 +166,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改安保工程的详细信息
+	 */
 	public void editAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.editAbgcById(jh), getresponse().getWriter());
@@ -166,7 +178,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改安保工程的上报和审批状态
+	 */
 	public void editAbgcStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
