@@ -325,7 +325,7 @@ function showYBlist(){
 
 
 function uploadFile(str){
-	alert(str);
+	//alert(str);
 	var title='';
 	if(str=='sgxkwj')
 		title='请选择施工许可文件';
