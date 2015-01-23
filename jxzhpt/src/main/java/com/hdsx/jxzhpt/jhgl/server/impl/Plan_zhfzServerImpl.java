@@ -51,8 +51,8 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public List<SjbbMessage> insertToSheet(String xzqhdm) {
-		return this.queryList("insertToSheet",xzqhdm);
+	public List<SjbbMessage> insertToSheet(Map map) {
+		return this.queryList("insertToSheet",map);
 	}
 
 	@Override
@@ -69,6 +69,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
+	public boolean importZhfz_jh(List<Map> data) {
+		return this.insertBatch("importZhfz_jh", data)==data.size()?true:false;
+	}
 	public boolean editZhfzStatus(Plan_zhfz jh) {
 		return update("editZhfzStatus", jh)>0;
 	}

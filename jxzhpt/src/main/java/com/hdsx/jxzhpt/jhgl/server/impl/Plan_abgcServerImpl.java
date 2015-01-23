@@ -48,8 +48,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return delete("dropAbgcById",id)>0;
 	}
 	@Override
-	public List<SjbbMessage> insertToSheet(String xzqhdm) {
-		return this.queryList("insertToSheet",xzqhdm);
+	public List<SjbbMessage> insertToSheet(Map map) {
+		return this.queryList("insertToSheet",map);
 	}
 	@Override
 	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
@@ -59,6 +59,9 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return update("editAbgcById", jh);
 	}
 	@Override
+	public boolean importAbgc_jh(List<Map> data) {
+		return this.insertBatch("importAbgc_jh", data)==data.size()?true:false;
+	}
 	public boolean editStatus(Plan_abgc jh) {
 		return update("editStatus", jh)>0;
 	}

@@ -114,7 +114,33 @@ function exportExcel(flag){
 	}
 	window.location.href="/jxzhpt/jhgl/exportExcel_jh.do?flag="+flag+"&"+param;
 }
-
+//excel审查库数据导入
+function importData_jh(flag){
+	var url="";
+	if(flag=='wqgz_jh'){
+		url="/jxzhpt/xmsck/importWqgz_jh.do";
+	}
+	if(flag=='abgc_jh'){
+		url="/jxzhpt/xmsck/importAbgc_jh.do";
+	}
+	if(flag=='zhfz_jh'){
+		url="/jxzhpt/xmsck/importZhfz_jh.do";
+	}
+	//YMLib.UI.createWindow('wqxx1','车购税资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
 
 
 

@@ -119,6 +119,16 @@
 		if(flag=='zhfz_sc'){
 			parent.window.location = '/jxzhpt/page/lwxm/sckgl/zhfz.jsp';
 		}
+		//计划库数据导入返回
+		if(flag=='wqgz_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/wqgz.jsp';
+		}
+		if(flag=='abgc_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/abgc.jsp';
+		}
+		if(flag=='zhfz_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/zhfz.jsp';
+		}
  		dg.cancel();
 	}
 </script>

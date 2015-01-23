@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
@@ -45,7 +46,7 @@ public interface Plan_abgcServer {
 	 * @param xzqhdm
 	 * @return
 	 */
-	List<SjbbMessage> insertToSheet(String xzqhdm);
+	List<SjbbMessage> insertToSheet(Map map);
 	/**
 	 * @param jck
 	 * @return
@@ -56,6 +57,9 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	int editAbgcById(Plan_abgc jh);
+	
+	
+	boolean importAbgc_jh(List<Map> data);
 
 	boolean editStatus(Plan_abgc jh);
 }

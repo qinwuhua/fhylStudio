@@ -21,7 +21,7 @@ public interface SckabgcServer {
 		boolean bzAbgc(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc);
-		List<SjbbMessage> insertToSheet(String xzqhdm);
+		List<SjbbMessage> insertToSheet(Map map);
 		boolean importAbgc_sc(List<Map> list);
 		boolean lrjhSckabgc(Sckabgc abgc);
 		boolean xglrjhSckabgc(Sckabgc abgc);

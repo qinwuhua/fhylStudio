@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -45,8 +47,8 @@ public class ExcelModule extends BaseActionSupport {
 	@Resource(name = "sckzhfzServerImpl")
 	private SckzhfzServer zhfzServer;
 	private String moduleName;
-	private String xzqhdm;
-	
+	private String xzqhmc;
+	private String sck_sbthcd;
 	public void getModule() {
 		String filename = moduleName;
 		if (filename == null || "".equals(filename)) {
@@ -102,8 +104,11 @@ public class ExcelModule extends BaseActionSupport {
 			// 去数据库将数据拿到放到模板中
 			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 			String descr="";
+			Map map = new HashMap();
+			map.put("xzqhmc", xzqhmc);
+			map.put("sck_sbthcd", sck_sbthcd);
 			if ("SCK_Security".equals(moduleName)) { // 安保的数据
-				list = abgcServer.insertToSheet(xzqhdm);
+				list = abgcServer.insertToSheet(map);
 				descr="填表说明：\n"+
 					"1.列1桥梁代码：按照路线编码+县级政区编码+L+4位数字。桥梁代码必须与养护统计报表保持一致。\n"+   
 					"2.列2桥梁名称，填写桥梁的具体名称，如：高升大桥等。\n"+
@@ -117,7 +122,7 @@ public class ExcelModule extends BaseActionSupport {
 					"10.列12建设内容：填写改造桥梁详细项目实施内容。\n"+
 					"11.列13备注。";
 			} else if ("SCK_Bridge".equals(moduleName)) { // 危桥的数据
-				list = wqgzServer.insertToSheet(xzqhdm);
+				list = wqgzServer.insertToSheet(map);
 				descr="填报说明：\n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》 （网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -134,7 +139,7 @@ public class ExcelModule extends BaseActionSupport {
 					"12.列16建设内容：填写改造路段详细项目实施内容。\n"+
 					"13.列17备注。";
 			} else { // 灾害防治的数据
-				list = zhfzServer.insertToSheet(xzqhdm);
+				list = zhfzServer.insertToSheet(map);
 				descr="填报说明：\n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -188,8 +193,11 @@ public class ExcelModule extends BaseActionSupport {
 			Plan_wqgzServer wqgzServer = new Plan_wqgzServerImpl();
 			Plan_abgcServer abgcServer = new Plan_abgcServerImpl();
 			Plan_zhfzServer zhfzServer = new Plan_zhfzServerImpl();
+			Map map = new HashMap();
+			map.put("xzqhmc", xzqhmc);
+			map.put("sck_sbthcd", sck_sbthcd);
 			if("Plan_Bridge".equals(moduleName)){
-				list = wqgzServer.insertToSheet(xzqhdm);
+				list = wqgzServer.insertToSheet(map);
 				descr = "填表说明: \n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -206,7 +214,7 @@ public class ExcelModule extends BaseActionSupport {
 					"总投资超过500万元的项目可按照项目投资比例进行补助。如第21列填写“是”，第22列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
 					"13.列23：备注";
 			}else if("Plan_Security".equals(moduleName)){
-				list = abgcServer.insertToSheet(xzqhdm);
+				list = abgcServer.insertToSheet(map);
 				descr = "填表说明:\n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -224,7 +232,7 @@ public class ExcelModule extends BaseActionSupport {
 					"总投资超过500万元的项目可按照项目投资比例进行补助。如第22列填写“是”，第23列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
 					"14.列24：备注";
 			}else{
-				list = zhfzServer.insertToSheet(xzqhdm);
+				list = zhfzServer.insertToSheet(map);
 				descr = "填表说明: \n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
 					"2.列3路线编号、列4路线名称：按照《公路路线标识规则和过道编号》（GB/T917-2009）的相关规定填报。路线编号只填写一位字母吗（G、S、X）加相应的编号。\n"+
@@ -290,12 +298,22 @@ public class ExcelModule extends BaseActionSupport {
 		this.moduleName = moduleName;
 	}
 
-	public String getXzqhdm() {
-		return xzqhdm;
+	
+
+	public String getSck_sbthcd() {
+		return sck_sbthcd;
 	}
 
-	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
+	public void setSck_sbthcd(String sck_sbthcd) {
+		this.sck_sbthcd = sck_sbthcd;
+	}
+
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
 	}
 	
 }

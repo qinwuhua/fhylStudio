@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
@@ -45,7 +46,7 @@ public interface Plan_wqgzServer {
 	 * @param xzqhdm
 	 * @return
 	 */
-	List<SjbbMessage> insertToSheet(String xzqhdm);
+	List<SjbbMessage> insertToSheet(Map map);
 	/**
 	 * 
 	 * @param jck
@@ -64,6 +65,10 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	int editWqgzById(Plan_wqgz jh);
+	
+	
+	boolean importWqgz_jh(List<Map> data);
+	
 	/**
 	 * 修改危桥改造计划状态
 	 * @param jh

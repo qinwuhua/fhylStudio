@@ -1,5 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -17,6 +20,8 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
@@ -37,6 +42,35 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_abgc jh;
 	private Jckabgc lx;
 	private String flag;//标记是哪个模块
+	private String fileuploadFileName;
+	private File fileupload;
+	
+	public void importAbgc_jh(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			//将数据插入到数据库
+			boolean b=abgcServer.importAbgc_jh(data);
+			if(b)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败");
+		}catch(Exception e){}
+	}
 	/**
 	 * excel导出
 	 * 通过flag来区分导出哪个excel
@@ -178,6 +212,18 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
 	
 }
