@@ -23,6 +23,9 @@
 		<result property="sbbmdm" column="sbbmdm"/>
 		<result property="spbmdm" column="spbmdm"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="jckabgc"  id="abgc_lx">
@@ -42,7 +45,7 @@
 			(
 				select rownum as num,t.* from 
 				(
-					select  jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,jh.jh_sbthcd,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
+					select  jh.sfylsjl,jh.jgzt,jh.kgzt,jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,jh.jh_sbthcd,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
 	    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
 				 		and jh.jhnf=#{jh.jhnf}

@@ -57,6 +57,7 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 
 	@Override
 	public boolean editGcsjStatus(Plan_gcsj jh) {
+		System.out.println("升级："+jh.getJh_sbthcd());
 		return update("editGcsjStatus", jh)>0;
 	}
 

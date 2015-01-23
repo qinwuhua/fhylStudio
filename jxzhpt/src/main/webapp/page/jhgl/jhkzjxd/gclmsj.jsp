@@ -20,7 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={jhnf:null},lx={lxmc:null};
+			var jh={jhnf:null,sbzt:'1',spzt:'1'},lx={lxmc:null};
 			sbnf("sbnf");
 			gclmsjxm_zjxd(jh,lx);
 		});
@@ -149,6 +149,6 @@
 		</table>
 	</div>
 	
-	<div id="zjxd_gclmsj" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="gclmsj_zjxd" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

@@ -20,7 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={jhnf:null,spzt:'0',sbzt:null},lx={lxmc:null};
+			var jh={jhnf:null,spzt:'0',sbzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
 			gclmsjxm_sb(jh,lx);
 		});
@@ -28,26 +28,8 @@
 			var jh={jhnf:null,spzt:'0',sbzt:null};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,
 					xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
-			//管养单位编码
-			var sheng = new RegExp("^[0-9]{7}0000$");
-			var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
-			var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-			if(lx.gydwdm=="36"){
-				lx.gydwdm=null;
-			}else if(shi1.test(lx.gydwdm) || shi2.test(lx.gydwdm) ){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-2)+"__";
-			}
-			else if(sheng.test(lx.gydwdm)){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-4)+"____";
-			}
-			//行政区划代码
-			var yi1 = new RegExp("^36[0-9][1-9]00$");
-			var yi2= new RegExp("^36[1-9][0-9]00$");
-			if(lx.xzqhdm=="360000"){
-				lx.xzqhdm=null;
-			}else if(yi1.test(lx.xzqhdm) || yi2.test(lx.xzqhdm)){
-				lx.xzqhdm=lx.xzqhdm.substring(0, lx.xzqhdm.length-2)+"__";
-			}
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
 				jh.sbnf=$("#sbnf").combo("getValue");
 			}
@@ -61,6 +43,39 @@
 				lx.lxbm=$("#gldj").combo("getValue");
 			}
 			gclmsjxm_sb(jh,lx);
+		}
+		function sbList(){
+			var selList=gridObj.datagrid('getSelections');
+			var isOk=true;
+			$.each(selList,function(index,item){
+				if(item.jh_sbthcd>0)
+					isOk=false;
+			});
+			if(isOk){
+				$.each(selList,function(index,item){
+					var date=new Date();
+					var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+							'jh.jh_sbthcd':item.jh_sbthcd+2};
+					editStatus(jh);
+				});
+				alert("上报成功！");
+				searchGcsj();
+			}else{
+				alert("请检查选中的数据，只能上报未上报过的计划！");
+			}
+		}
+		function sb(id,jh_sbthcd){
+			var date=new Date();
+			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(editStatus(jh)){
+				alert("上报成功！");
+				searchGcsj();
+			}
 		}
 		$(window).resize(function () { 
 			$('#grdab').datagrid('resize'); 
@@ -133,7 +148,7 @@
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchGcsj()" style="vertical-align:middle;padding-left: 8px;"/>
-        						<img id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>
@@ -159,7 +174,7 @@
         	</tr>
 		</table>
 	</div>
-	
+	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 	<div id="gclmsj_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

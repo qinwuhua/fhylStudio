@@ -201,8 +201,11 @@ function zhfzxm_sh(jh,lx){
 	        	}
 	        	return result;
 	        }},
-	        {field:'c5',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	return '有';
+	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+	        	if(row.sfylsjl=='0')
+	        		return '无';
+	        	else if(row.sfylsjl=='1')
+	        		return '有';
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
@@ -272,11 +275,21 @@ function zhfzxm_zjxd(jh,lx){
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:openDialog('+"'zjxd_zhfz','灾害防治项目计划详情','../zjxd/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 	        }},
-	        {field:'c4',title:'建设状态',width:80,align:'center',formatter:function(value,row,index){
-	        	return '未开工';
-	        }},
-	        {field:'c4',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	return '有';
+	        {field:'c4',title:'建设状态',width:80,align:'center',
+	        	formatter:function(value,row,index){
+	        		if(row.kgzt=='0' && row.jgzt=='0')
+	        			return '未开工';
+	        		else if(row.kgzt=='1' && row.jgzt=='0')
+	        			return '在建';
+	        		else if(row.kgzt=='1' && row.jgzt=='1')
+	        			return '竣工';
+	        	}
+	        },
+	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+	        	if(row.sfylsjl=='0')
+	        		return '无';
+	        	else if(row.sfylsjl=='1')
+	        		return '有';
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},

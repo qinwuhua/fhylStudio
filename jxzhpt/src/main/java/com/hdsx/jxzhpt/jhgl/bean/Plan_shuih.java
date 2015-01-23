@@ -73,12 +73,19 @@ public class Plan_shuih {
 	private String jh_sbthcd;
 	private String sbbmdm;
 	private String spbmdm;
+	private String sfylsjl;//最近年份是否有历史记录
 	private List<Plan_lx_shuih> shuihs;//水毁路段集合
 	public String getScBz() {
 		return scBz;
 	}
 	public void setScBz(String scBz) {
 		this.scBz = scBz;
+	}
+	public String getSfylsjl() {
+		return sfylsjl;
+	}
+	public void setSfylsjl(String sfylsjl) {
+		this.sfylsjl = sfylsjl;
 	}
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
