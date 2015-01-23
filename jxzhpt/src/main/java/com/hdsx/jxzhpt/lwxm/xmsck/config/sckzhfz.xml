@@ -184,29 +184,31 @@
  	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id
  	where 1=1
  	<if test="gydw!='' and gydw!= null "  >
-		and gydw like '%'||(#{gydw})||'%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhmc like '%'||(#{xzqhmc})||'%'
-	</if>
-	<if test="lxmc!='' and lxmc!= null ">
-		and lxmc like '%'||(#{lxmc})||'%'
-	</if>
-	<if test="xmnf!='' and xmnf!= null ">
-		and xmnf like '%'||(#{xmnf})||'%'
-	</if>
-	<if test="xmtype!='' and xmtype!= null ">
-		and xmtype like '%'||(#{xmtype})||'%'
-	</if>
-	<if test="shzt!='' and shzt!= null ">
-		and shzt like '%'||(#{shzt})||'%'
-	</if>
-	<if test="lxjsdj!='' and lxjsdj!= null ">
-		and lxjsdj like '%'||(#{lxjsdj})||'%'
-	</if>
-	<if test="lxbm!='' and lxbm!= null ">
-		and lxbm like #{lxbm}||'%'
-	</if>
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
+ 		</if>
+  		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
  </select>
   <select id="exportExcel_zhfz_scsh" parameterType="sckzhfz" resultType="sjbb">
  	select
@@ -214,39 +216,37 @@
  	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id 
  	where 1=1 and sck_sbzt='已上报'
  	<if test="gydw!='' and gydw!= null "  >
-		and gydw like '%'||(#{gydw})||'%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhmc like '%'||(#{xzqhmc})||'%'
-	</if>
-	<if test="lxmc!='' and lxmc!= null ">
-		and lxmc like '%'||(#{lxmc})||'%'
-	</if>
-	<if test="xmnf!='' and xmnf!= null ">
-		and xmnf like '%'||(#{xmnf})||'%'
-	</if>
-	<if test="xmtype!='' and xmtype!= null ">
-		and xmtype like '%'||(#{xmtype})||'%'
-	</if>
-	<if test="shzt!='' and shzt!= null ">
-		and shzt like '%'||(#{shzt})||'%'
-	</if>
-	<if test="lxjsdj!='' and lxjsdj!= null ">
-		and lxjsdj like '%'||(#{lxjsdj})||'%'
-	</if>
-	<if test="lxbm!='' and lxbm!= null ">
-		and lxbm like #{lxbm}||'%'
-	</if>
+ 			and scbmbm in(select id from xtgl_department 
+ 			where id=#{gydw} or parent=#{gydw})
+ 		</if>
+  		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
  </select>
  <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
  	select 
  	gydw v_0,xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,zlc v_6,yhlc v_7,gjxjnd v_8
  	from xmk_zhfz where 1=1 and sbzt='已上报'
- 	and  sbthcd &lt;=#{sck_sbthcd}
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm in(select id from xtgl_xzqh
-		where id=#{xzqhmc} or parent=#{xzqhmc})
-	</if>
+	and tbbmbm like #{tbdw}||'%' and sbthcd &lt;=#{sck_sbthcd} and sbbm like #{sbdw}||'%'
  </select>
   <insert id="importZhfz_sc" parameterType="hashMap">
 	insert into sck_zhfz(sckid,xmkid,lxbm,lxmc,sczlc,scyhlc,scqdzh,sczdzh,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)

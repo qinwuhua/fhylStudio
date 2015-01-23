@@ -106,7 +106,8 @@
 		select * from plan_wqgz jh where jh.id=#{id}
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
-		select xzqhdm v_0,xzqhmc v_1,sc.lxbm v_2,lxmc v_3,sc.qlbh v_4,qlmc v_5,sc.qlzxzh v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_wqgz sc,xmk_wqgz xm where sc.xmkid=xm.id and sck_sbzt='已上报'
+		select xzqhdm v_0,xzqhmc v_1,sc.sck_lxbm v_2,lxmc v_3,sc.sck_qlbh v_4,qlmc v_5,sc.sck_qlzxzh v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_wqgz sc,xmk_wqgz xm where sc.xmkid=xm.id and sck_sbzt='已上报'
+		and scbmbm like #{tbdw}||'%' and sck_sbthcd &lt;=#{sck_sbthcd} and sck_sbbm like #{sbdw}||'%'
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="sjbb">
 		select decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.sbnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qlbh v_8,lx.qlmc v_9,jh.pfztz v_10 
@@ -137,4 +138,7 @@
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
+	<insert id="importWqgz_jh" parameterType="hashMap">
+		
+	</insert>
 </mapper>
