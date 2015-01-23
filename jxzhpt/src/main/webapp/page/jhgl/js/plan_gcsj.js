@@ -111,8 +111,9 @@ function gclmsjxm_sb(jh,lx){
 			}},
 			{field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 				var result;
+				alert(row.jh_sbthcd);
 				if(row.sbzt=="0"){
-					result="<a style='text-decoration:none;color:#3399CC;'>上报</a>";
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 				}else if(row.sbzt=="1"){
 					result="已上报";
 				}
@@ -470,4 +471,25 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function editStatus(jh){
+	var result;
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editGcsjStatus.do',
+		dataType:'json',
+		data:jh,
+		async:false,
+		success:function(data){
+			if(data.result){
+				result = true;
+			}else{
+				result = false;
+			}
+		},
+		error:function(){
+			result=false;
+		}
+	});
+	return result;
 }

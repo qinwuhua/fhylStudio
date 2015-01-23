@@ -210,7 +210,7 @@
 		gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},remarks=#{remarks}
 		where id=#{id}
 	</update>
-	<update id="editGcsjStatus" parameterType="plan_gcgj">
+	<update id="editGcsjStatus" parameterType="plan_gcsj">
 		update plan_gcgj set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>
 			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>

@@ -15,7 +15,7 @@
 		<action name="queryGcsjById" class="plan_gcsjController" method="queryGcsjById"/>
 		<action name="dropGcsjById" class="plan_gcsjController" method="dropGcsjById"/>
 		<action name="editGcsjById" class="plan_gcsjController" method="editGcsjById"/>
-		<action name="editGcgjStatus" class="plan_gcsjController" method="editGcgjStatus"/>
+		<action name="editGcsjStatus" class="plan_gcsjController" method="editGcsjStatus"/>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
