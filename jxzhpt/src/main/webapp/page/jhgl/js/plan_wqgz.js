@@ -20,9 +20,15 @@ function wqxm(jh,lx){
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-		        	var id="'"+row.id+"'";
-		        	result+='<a href="javascript:dropWqgz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	if(row.jh_sbthcd>0){
+		        		result+='<a style="text-decoration:none;">编辑</a>    ';
+			        	result+='<a style="text-decoration:none;">删除</a>';
+		        	}else{
+		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+			        	var id="'"+row.id+"'";
+			        	result+='<a href="javascript:dropWqgz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	}
+		        	
 		        	return result;
 		        }},
 		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
@@ -98,13 +104,16 @@ function wqxm_sb(jh,lx){
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_sb','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	if(row.jh_sbthcd==0)
+		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	else
+		        		result+='<a style="text-decoration:none;">编辑</a>';
 		        	return result;
 		        }},
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if(row.sbzt=="0"){
-		        		result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
+		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 		        	}else if(row.sbzt=="1"){
 		        		result="已上报";
 		        	}
@@ -167,13 +176,17 @@ function wqxm_sh(jh,lx){
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_sh','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	if(row.jh_sbthcd==2)
+		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		        	else
+		        		result+='<a style="text-decoration:none;">编辑</a>';
 		        	return result;
 		        }},
 		        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if(row.spzt=="0"){
-		        		result='<a style="text-decoration:none;color:#3399CC;">审批</a>';
+		        		result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+		        		result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 		        	}else if(row.spzt=="1"){
 		        		result="已审批";
 		        	}
@@ -299,7 +312,7 @@ function queryWqgzById(id){
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
-				data:"sckid="+data.xmk_wqgz_id,
+				data:"sckid="+data.sckid,
 				dataType:'json',
 				success:function(jcAndSc){
 					if(jcAndSc!=null){
@@ -452,4 +465,25 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function editStatus(jh){
+	var result;
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editWqgzStatus.do',
+		dataType:'json',
+		data:jh,
+		async:false,
+		success:function(data){
+			if(data.result){
+				result = true;
+			}else{
+				result = false;
+			}
+		},
+		error:function(){
+			result=false;
+		}
+	});
+	return result;
 }

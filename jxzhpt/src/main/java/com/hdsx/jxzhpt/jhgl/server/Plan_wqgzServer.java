@@ -69,4 +69,10 @@ public interface Plan_wqgzServer {
 	
 	boolean importWqgz_jh(List<Map> data);
 	
+	/**
+	 * 修改危桥改造计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editWqgzStatus(Plan_wqgz jh);
 }

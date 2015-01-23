@@ -117,39 +117,39 @@
 		<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglzhfz">
 		update PLAN_ZHFZ set SGXKWJ=#{tiaojian}
-		where SCK_ZHFZ_ID=#{jhid}
+		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglzhfz">
 		update PLAN_ZHFZ set JGTCWJ=#{tiaojian}
-		where SCK_ZHFZ_ID=#{jhid}
+		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglzhfz">
 		update PLAN_ZHFZ set JGYSWJ=#{tiaojian}
-		where SCK_ZHFZ_ID=#{jhid}
+		where SCKID=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglzhfz" resultType="gcglzhfz">
-		select ${tiaojian} tiaojian from PLAN_ZHFZ where SCK_ZHFZ_ID=#{jhid}
+		select ${tiaojian} tiaojian from PLAN_ZHFZ where SCKID=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglzhfz">
-		update PLAN_ZHFZ set WJGYY=#{wjgyy} where SCK_ZHFZ_ID=#{jhid}
+		update PLAN_ZHFZ set WJGYY=#{wjgyy} where SCKID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglzhfz">
-		update PLAN_ZHFZ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where SCK_ZHFZ_ID=#{jhid}
+		update PLAN_ZHFZ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where SCKID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglzhfz">
-		update PLAN_ZHFZ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCK_ZHFZ_ID=#{jhid}
+		update PLAN_ZHFZ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCKID=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglzhfz" resultType="gcglzhfz">
 select * from (
 select m.*,rownum rn from (
 select 
-t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCK_ZHFZ_ID jhid,
+t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
 t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 t2.gydw,t2.xzqhdm,t2.xzqhmc,t2.lxjsdj,t2.lxbm,t2.lxmc,t2.qdzh,t2.zdzh,t2.qzlc,t2.yhlc,t2.gjxjnd,t2.yhnr,t2.xmnf,t2.xmtype,t2.bz,
 t3.tzgs,t3.spwh,t3.fapgdw,t3.fascdw,t3.faspsj,t3.jsxz,t3.jsnr,t3.scbz
-from PLAN_ZHFZ t1 left join XMK_ZHFZ t2 on t1.SCK_ZHFZ_ID=t2.id left join SCK_ZHFZ t3 on t3.xmkid=t2.id 
+from PLAN_ZHFZ t1 left join XMK_ZHFZ t2 on t1.SCKID=t2.id left join SCK_ZHFZ t3 on t3.xmkid=t2.id 
 where  t1.spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t2.gydwbm like '%'||trim(#{gydw})||'%'
@@ -170,7 +170,7 @@ where  t1.spzt='1'
 			where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglzhfz" resultType="int">
-	 	select count(*) from PLAN_ZHFZ t1 left join XMK_ZHFZ t2 on t1.SCK_ZHFZ_ID=t2.id left join SCK_ZHFZ t3 on t3.xmkid=t2.id 
+	 	select count(*) from PLAN_ZHFZ t1 left join XMK_ZHFZ t2 on t1.SCKID=t2.id left join SCK_ZHFZ t3 on t3.xmkid=t2.id 
 	 	where 1=1 and spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t2.gydwbm like '%'||trim(#{gydw})||'%'
@@ -186,7 +186,7 @@ where  t1.spzt='1'
 	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglzhfz" resultType="gcglzhfz">
-	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ZHFZ where SCK_ZHFZ_ID=#{jhid}
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ZHFZ where SCKID=#{jhid}
 	 </select>
 	
 </mapper>

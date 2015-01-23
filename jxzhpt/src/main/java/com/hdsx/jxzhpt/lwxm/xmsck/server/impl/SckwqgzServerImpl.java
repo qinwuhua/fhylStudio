@@ -155,5 +155,17 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public boolean lrjhSckwqgz(Sckwqgz wqgz) {
+		if(update("lrjhSckwqgz", wqgz)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean xglrjhSckwqgz(Sckwqgz wqgz) {
+		if(update("xglrjhSckwqgz", wqgz)>0) return true;
+		else return false;
+	}
+
 
 }

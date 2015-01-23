@@ -55,7 +55,22 @@ public class GcglyhdzxController extends BaseActionSupport{
 	private String gydw;
 	private String kgzt;
 	private String lxmc;
+	private String jgzt;
+	private String yhtype;
 	
+	
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
@@ -119,6 +134,12 @@ public class GcglyhdzxController extends BaseActionSupport{
 	}
 	//添加月报
 	public void insertYhdzxYb(){
+		if("县级".equals(yhtype)){
+			gcglyhdzx.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglyhdzx.setSfsj("是");
+		}
 		Boolean bl=gcglyhdzxServer.insertYhdzxYb(gcglyhdzx);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -143,6 +164,24 @@ public class GcglyhdzxController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//查询月报
+	public void selectYhdzxYbByJhid1(){
+		Gcglyhdzx gcglyhdzx = new Gcglyhdzx();
+		gcglyhdzx.setPage(page);
+		gcglyhdzx.setRows(rows);
+		gcglyhdzx.setJhid(jhid);
+		int count=gcglyhdzxServer.selectYhdzxYbByJhidCount1(gcglyhdzx);
+		List<Gcglyhdzx> list=gcglyhdzxServer.selectYhdzxYbByJhid1(gcglyhdzx);
+		EasyUIPage<Gcglyhdzx> e=new EasyUIPage<Gcglyhdzx>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	//修改月报
 	public void updateYhdzxYb(){
 		Boolean bl=gcglyhdzxServer.updateYhdzxYb(gcglyhdzx);
@@ -325,6 +364,7 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setGydw(gydw.replaceAll("0*$",""));
 		gcglyhdzx.setKgzt(kgzt);
 		gcglyhdzx.setLxmc(lxmc);
+		gcglyhdzx.setJgzt(jgzt);
 		int count=gcglyhdzxServer.selectWqgzjhListCount(gcglyhdzx);
 		List<Gcglyhdzx> list=gcglyhdzxServer.selectWqgzjhList(gcglyhdzx);
 		EasyUIPage<Gcglyhdzx> e=new EasyUIPage<Gcglyhdzx>();
@@ -372,5 +412,15 @@ public class GcglyhdzxController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 		
+	}
+	//修改月报状态
+	public void sbYhdzxYb(){
+		System.out.println(gcglyhdzx);
+		Boolean bl=gcglyhdzxServer.sbWqgzYb(gcglyhdzx);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 }

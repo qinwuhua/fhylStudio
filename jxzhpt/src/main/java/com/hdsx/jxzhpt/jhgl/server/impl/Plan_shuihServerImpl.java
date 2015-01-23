@@ -55,4 +55,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public int editShuihById(Plan_shuih jh) {
 		return update("editShuihById", jh);
 	}
+
+	@Override
+	public boolean editShuihStatus(Plan_shuih jh) {
+		return update("editShuihStatus", jh)>0;
+	}
 }

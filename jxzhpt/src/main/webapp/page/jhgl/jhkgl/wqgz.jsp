@@ -56,7 +56,9 @@
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
+        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
+        						<span>&nbsp;桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
+        						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>上报年份：</span>
@@ -89,7 +91,7 @@
 									<option value="5">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox">
+								<select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -98,22 +100,17 @@
 									<option value="C">村道</option>
 									<option value="Z">专道</option>
 								</select>
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:225px;" />
-        						<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:80px;" class="easyui-combobox">
+								<span>&nbsp;跨径分类：</span>
+        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:94px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select>
-							</p>
+        					</p>
 							<p style="margin:8px 0px 4px 20px;">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
-								<img alt="下发" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/xiafa_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/xiafa_1.png'" src="${pageContext.request.contextPath}/images/Button/xiafa_1.png" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
 								<img alt="添加"  onclick="openAddWqgz()" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " style="vertical-align:middle;">

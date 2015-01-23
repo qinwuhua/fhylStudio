@@ -148,6 +148,18 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		else return false;
 	}
 
+	@Override
+	public boolean lrjhSckabgc(Sckabgc abgc) {
+		if(insert("lrjhSckabgc", abgc)>0) return  true;
+		else return false;
+	}
+
+	@Override
+	public boolean xglrjhSckabgc(Sckabgc abgc) {
+		if(insert("xglrjhSckabgc", abgc)>0) return  true;
+		else return false;
+	}
+
 
 
 }

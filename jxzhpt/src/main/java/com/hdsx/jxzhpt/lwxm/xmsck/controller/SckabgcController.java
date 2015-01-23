@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.lwxm.xmsck.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -203,6 +204,14 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void lrjhSckabgc(){
+			boolean b = abgcServer.lrjhSckabgc(sckabgc);
+			if(b){
+				abgcServer.xglrjhSckabgc(sckabgc);
+				ResponseUtils.write(getresponse(), "true");
+			}else ResponseUtils.write(getresponse(), "false");
+	}
+	
 	
 	public Sckabgc getSckabgc() {
 		return sckabgc;

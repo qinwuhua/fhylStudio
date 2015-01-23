@@ -25,7 +25,27 @@
 			sbnf("sbnf");
 			gclmgjxm(jh,lx);
 		});
-		
+		function searchGcgj(){
+			var jh={jhnf:null,sbzt:null,spzt:null};
+			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
+			//管养单位编码
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			//行政区划代码
+			lx.xzqhdm = filterXzqhdm(lx.xzqhdm);
+			if($("#sbnf").combo("getValue")!=""){
+				jh.sbnf=$("#sbnf").combo("getValue");
+			}
+			if($('#txtlxmc').val()!=""){
+				lx.lxmc=$('#txtlxmc').val();
+			}
+			if($("#yjsdj").combo("getValue")!=""){
+				lx.yjsdj= $("#yjsdj").combo("getValue");
+			}
+			if($("#gldj").combo("getValue")!=""){
+				lx.lxbm=$("#gldj").combo("getValue");
+			}
+			gclmgjxm(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});

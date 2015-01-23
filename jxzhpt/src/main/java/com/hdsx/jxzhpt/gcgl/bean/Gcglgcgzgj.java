@@ -111,6 +111,8 @@ public class Gcglgcgzgj implements Serializable {
 	private String wjgyy;
 	private String scbz;
 	private String jhbz;	
+	private String sfsj;
+	private String sfth;
 	
 	private int page;
 	private int rows;
@@ -704,6 +706,18 @@ public class Gcglgcgzgj implements Serializable {
 	}
 	public void setJhbz(String jhbz) {
 		this.jhbz = jhbz;
+	}
+	public String getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(String sfsj) {
+		this.sfsj = sfsj;
+	}
+	public String getSfth() {
+		return sfth;
+	}
+	public void setSfth(String sfth) {
+		this.sfth = sfth;
 	}
 
 	

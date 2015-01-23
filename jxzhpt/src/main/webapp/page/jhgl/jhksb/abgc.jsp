@@ -25,7 +25,86 @@
 			sbnf("sbnf");
 			abgcxm_sb(jh,lx);
 		});
-		
+		function searchAbgc(){
+			var jh={jhnf:null,sbzt:null,spzt:'0'};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+				lxmc:null,lxjsdj:null,lxbm:null
+			};
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.gydwdm=null;
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			abgcxm_sb(jh,lx);
+		}
+		function sbList(){
+			var selList=gridObj.datagrid('getSelections');
+			var isOk=true;
+			$.each(selList,function(index,item){
+				if(item.jh_sbthcd==2)
+					isOk=false;
+			});
+			if(isOk){
+				$.each(selList,function(index,item){
+					var date=new Date();
+					var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+							'jh.jh_sbthcd':item.jh_sbthcd+2};
+					editStatus(jh);
+				});
+				alert("上报成功！");
+				searchAbgc();
+			}else{
+				alert("请检查选中的数据，只能上报未上报过的计划！");
+			}
+		}
+		function sb(id,jh_sbthcd){
+			var date=new Date();
+			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(editStatus(jh)){
+				alert("上报成功！");
+				searchAbgc();
+			}
+		}
+		function editStatus(jh){
+			var result;
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/editStatus.do',
+				dataType:'json',
+				data:jh,
+				async:false,
+				success:function(data){
+					if(data.result){
+						result = true;
+					}else{
+						result = false;
+					}
+				},
+				error:function(){
+					result=false;
+				}
+			});
+			return result;
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -60,15 +139,13 @@
         						<span>上报年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;上报状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;">
+        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
+								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -78,7 +155,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
+								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 									<option selected="selected" value="">全部</option>
 									<option value="1">一级公路</option>
 									<option value="2">二级公路</option>
@@ -87,7 +164,7 @@
 									<option value="5">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -110,8 +187,8 @@
 										</select>
         							</td>
         							<td>
-        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;padding-left: 8px;"/>
-        								<img id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 8px;"/>
+        								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                 	</td>
                                 </tr>
@@ -141,7 +218,7 @@
         	</tr>
 		</table>
 	</div>
-
+	<div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 	<div id="abgc_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

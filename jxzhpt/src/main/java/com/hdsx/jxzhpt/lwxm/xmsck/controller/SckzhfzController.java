@@ -205,7 +205,13 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	
+	public void lrjhSckzhfz(){
+		boolean b = zhfzServer.lrjhSckzhfz(sckzhfz);
+		if(b){
+			zhfzServer.xglrjhSckzhfz(sckzhfz);
+			ResponseUtils.write(getresponse(), "true");
+		}else ResponseUtils.write(getresponse(), "false");
+	}
 	
 
 	public Sckzhfz getSckzhfz() {

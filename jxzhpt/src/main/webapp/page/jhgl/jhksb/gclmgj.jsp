@@ -25,7 +25,43 @@
 			sbnf("sbnf");
 			gclmgjxm_sb(jh,lx);
 		});
-		
+		function searchGcgj(){
+			var jh={jhnf:null,sbzt:null,spzt:0};
+			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
+			//管养单位编码
+			var sheng = new RegExp("^[0-9]{7}0000$");
+			var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+			var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+			if(lx.gydwdm=="36"){
+				lx.gydwdm="%"+lx.gydwdm+"%";
+			}else if(shi1.test(lx.gydwdm) || shi2.test(lx.gydwdm) ){
+				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-2)+"__";
+			}
+			else if(sheng.test(lx.gydwdm)){
+				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-4)+"____";
+			}
+			//行政区划代码
+			var yi1 = new RegExp("^36[0-9][1-9]00$");
+			var yi2= new RegExp("^36[1-9][0-9]00$");
+			if(lx.xzqhdm=="360000"){
+				lx.xzqhdm=="36____";
+			}else if(yi1.test(lx.xzqhdm) || yi2.test(lx.xzqhdm)){
+				lx.xzqhdm=lx.xzqhdm.substring(0, lx.xzqhdm.length-2)+"__";
+			}
+			if($("#sbnf").combo("getValue")!=""){
+				jh.sbnf=$("#sbnf").combo("getValue");
+			}
+			if($('#txtlxmc').val()!=""){
+				lx.lxmc=$('#txtlxmc').val();
+			}
+			if($("#yjsdj").combo("getValue")!=""){
+				lx.yjsdj= $("#yjsdj").combo("getValue");
+			}
+			if($("#gldj").combo("getValue")!=""){
+				lx.lxbm=$("#gldj").combo("getValue");
+			}
+			gclmgjxm_sb(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -98,7 +134,7 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;padding-left: 8px;"/>
+        						<img onclick="searchGcgj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
         						<img id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>

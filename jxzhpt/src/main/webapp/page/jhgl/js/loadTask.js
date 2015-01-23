@@ -223,3 +223,34 @@ function editZjxd(){
 		}
 	});
 }
+function filterGydwdm(gydwdm){
+	var result=null;
+	var sheng = new RegExp("^[0-9]{7}0000$");
+	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+	if(gydwdm=="36"){
+		result=null;
+	}else if(shi1.test(gydwdm) || shi2.test(gydwdm) ){
+		result=gydwdm.substring(0, gydwdm.length-2)+"__";
+	}
+	else if(sheng.test(gydwdm)){
+		result=gydwdm.substring(0, gydwdm.length-4)+"____";
+	}else{
+		result=gydwdm;
+	}
+	return result;
+}
+function filterXzqhdm(xzqhdm){
+	var yi1 = new RegExp("^36[0-9][1-9]00$");
+	var yi2= new RegExp("^36[1-9][0-9]00$");
+	var result=null;
+	if(xzqhdm=="360000"){
+		result=null;
+	}else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
+		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
+	}else{
+		result=xzqhdm;
+	}
+	
+	return result;
+}

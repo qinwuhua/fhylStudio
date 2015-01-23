@@ -69,8 +69,13 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean importZhfz_jh(List<Map> data) {
 		return this.insertBatch("importZhfz_jh", data)==data.size()?true:false;
+=======
+	public boolean editZhfzStatus(Plan_zhfz jh) {
+		return update("editZhfzStatus", jh)>0;
+>>>>>>> refs/remotes/origin/master
 	}
 
 }

@@ -70,12 +70,33 @@ public class Plan_shuih {
 	private String jhbz;//备注
 	private String scBz;//审查备注
 	private String wjgyy;//未竣工原因
+	private String jh_sbthcd;
+	private String sbbmdm;
+	private String spbmdm;
 	private List<Plan_lx_shuih> shuihs;//水毁路段集合
 	public String getScBz() {
 		return scBz;
 	}
 	public void setScBz(String scBz) {
 		this.scBz = scBz;
+	}
+	public String getJh_sbthcd() {
+		return jh_sbthcd;
+	}
+	public void setJh_sbthcd(String jh_sbthcd) {
+		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getSbbmdm() {
+		return sbbmdm;
+	}
+	public void setSbbmdm(String sbbmdm) {
+		this.sbbmdm = sbbmdm;
+	}
+	public String getSpbmdm() {
+		return spbmdm;
+	}
+	public void setSpbmdm(String spbmdm) {
+		this.spbmdm = spbmdm;
 	}
 	public String getId() {
 		return id;

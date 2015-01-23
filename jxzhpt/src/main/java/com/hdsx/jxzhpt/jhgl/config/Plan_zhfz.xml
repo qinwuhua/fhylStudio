@@ -6,6 +6,7 @@
 		<result property="sbnf" column="sbnf"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="pfztz" column="pfztz"/>
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
@@ -25,9 +26,9 @@
 		select * from 
 			(
 				select rownum as num,t.* from (
-					select jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+					select jh.jh_sbthcd,jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 					lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc
-				 	from plan_zhfz jh left join xmk_zhfz lx on jh.sck_zhfz_id=lx.id where 1=1
+				 	from plan_zhfz jh left join xmk_zhfz lx on jh.sckid=lx.id where 1=1
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
@@ -37,11 +38,11 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
-	 				<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
+	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+	 					and lx.gydwdm like #{lx.gydwdm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 					and lx.xzqhdm like #{lx.xzqhdm}
 	 				</if>
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -52,37 +53,37 @@
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsjd}
 	 				</if>
-				 	order by jh.sbnf desc
+				 	order by jh.sbzt,jh.spzt,jh.sbnf desc
 			 	) t
 			)
  			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryZhfzCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from PLAN_zhfz jh where 1=1
+		select count(*) from plan_zhfz jh left join xmk_zhfz lx on jh.sckid=lx.id where 1=1
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf=#{jh.sbnf}
-	 				</if>
-	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 					and jh.sbzt=#{jh.sbzt}
-	 				</if>
-	 				<if test="jh.spzt!=null and jh.spzt!=''">
-	 					and jh.spzt=#{jh.spzt}
-	 				</if>
-	 				<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
-	 				</if>
-	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
-	 				</if>
-	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
-	 				</if>
-	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsjd}
-	 				</if>
+	 		and jh.sbnf=#{jh.sbnf}
+	 	</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+	 		and lx.gydwdm like #{lx.gydwdm}
+	 	</if>
+	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 		and lx.xzqhdm like #{lx.xzqhdm}
+	 	</if>
+	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 	</if>
+	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 		and lx.lxbm like #{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 		and lx.lxjsdj = #{lx.lxjsjd}
+	 	</if>
 	</select>
 	<select id="queryZhfzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
@@ -106,6 +107,19 @@
 			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
 			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
 			bz=#{bz},pfsj=#{pfsj}
+		where id=#{id}
+	</update>
+	<update id="editZhfzStatus" parameterType="plan_zhfz">
+		update plan_zhfz set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
 </mapper>

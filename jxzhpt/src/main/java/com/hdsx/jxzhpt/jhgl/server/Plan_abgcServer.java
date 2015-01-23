@@ -60,4 +60,6 @@ public interface Plan_abgcServer {
 	
 	
 	boolean importAbgc_jh(List<Map> data);
+
+	boolean editStatus(Plan_abgc jh);
 }

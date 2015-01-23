@@ -12,20 +12,26 @@ function abgcxm(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        	var id="'"+row.id+"'";
-	        	result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	if(row.jh_sbthcd>0){
+	        		result+='<a style="text-decoration:none;">编辑</a>    ';
+		        	result+='<a style="text-decoration:none;">删除</a>';
+	        	}
+	        	else{
+	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        		var id="'"+row.id+"'";
+		        	result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	}
 	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
-	        	if(row.sbzt=="0"){
+	        	if(row.jh_sbthcd==0){
 					result="未上报";
 				}
-				else if(row.sbzt=="1" && row.spzt=="0"){
+				else if(row.jh_sbthcd==2){
 					result="上报待审批";
 				}
-				else if(row.sbzt=="1" && row.spzt=="1"){
+				else if(row.jh_sbthcd==4){
 					result="已审批";
 				}
 	        	return result;
@@ -96,15 +102,20 @@ function abgcxm_sb(jh,lx){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'abgc_sb','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	if(row.jh_sbthcd==0){
+	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	}else{
+	        		result+='<a style="text-decoration:none;">编辑</a>';
+	        	}
 	        	return result;
 	        }},
 	        {field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result="";
-				if(row.sbzt=="0"){
-					result="<a style='text-decoration:none;color:#3399CC;'>上报</a>";
+				if(row.jh_sbthcd=="0"){
+					var id="'"+row.id+"'";
+					result='<a href="javascript:sb('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 				}
-				else if(row.sbzt=="1"){
+				else if(row.jh_sbthcd=="2"){
 					result="已上报";
 				}
 				return result;
@@ -172,13 +183,18 @@ function abgcxm_sh(jh,lx){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>  ';
 	        	result+='<a href="javascript:openDialog('+"'abgc_sh','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	if(row.jh_sbthcd==2)
+	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        	else
+	        		result+='<a style="text-decoration:none;">编辑</a>';
 	        	return result;
 	        }},
 	        {field:'c4',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 				if(row.spzt=='0'){
-					result="<a style='text-decoration:none;color:#3399CC;'>审批</a>";
+					var id="'"+row.id+"'";
+					result='<a href="javascript:sp('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+					result+='<a href="javascript:tuihhui('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 				}
 				else if(row.spzt=="1"){
 					result="已审批";

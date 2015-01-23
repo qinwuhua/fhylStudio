@@ -53,4 +53,10 @@ public interface GcglgcgzgjServer {
 
 	Gcglgcgzgj selectWqgzjhFile(Gcglgcgzgj gcglgcgzgj);
 
+	int selectgcgzgjYbByJhidCount1(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selectgcgzgjYbByJhid1(Gcglgcgzgj gcglgcgzgj);
+
+	Boolean sbWqgzYb(Gcglgcgzgj gcglgcgzgj);
+
 }

@@ -20,7 +20,7 @@ public interface JckabgcServer {
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);
 	boolean xgJckAbgcTH(Jckabgc abgc);
-	boolean importAbgc(List<Map> list);
+	boolean importAbgc(List<Map<String,String>> list);
 	List<SjbbMessage> exportExcel_abgc(Jckabgc jckabgc);
 	List<SjbbMessage> exportExcel_abgc_sh(Jckabgc jckabgc);
 	boolean onceAbgc(Jckabgc abgc);

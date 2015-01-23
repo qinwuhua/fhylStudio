@@ -52,6 +52,12 @@ public interface GcglshServer {
 
 	Boolean insertWqgzkg(Gcglsh gcglsh);
 
+	int selectshYbByJhidCount1(Gcglsh gcglsh);
+
+	List<Gcglsh> selectshYbByJhid1(Gcglsh gcglsh);
+
+	Boolean sbWqgzYb(Gcglsh gcglsh);
+
 
 	
 }

@@ -142,7 +142,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean importAbgc(List<Map> list) {
+	public boolean importAbgc(List<Map<String,String>> list) {
 		return this.insertBatch("importAbgc",list)==list.size()?true:false;
 	}
 

@@ -95,7 +95,7 @@
  	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
  </update>
   <update id="xgJckWqgzTH" parameterType="jckwqgz" >
- 	update xmk_wqgz set sbzt='未上报',sbthcd=(sbthcd+2) where id =#{id}
+ 	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{id}
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
@@ -103,8 +103,10 @@
  		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,F045 pddj,decode(substr(F052, 0, 4), null,
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
 		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
-		and F010 in('中桥','大桥','特大桥') and roadbm like #{qlbh} ||'%' and
-		substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
+		and F010 in('中桥','大桥','特大桥') and roadbm like #{qlbh} ||'%' 
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		</if>
 		order by roadbm,F002
  </select>
  

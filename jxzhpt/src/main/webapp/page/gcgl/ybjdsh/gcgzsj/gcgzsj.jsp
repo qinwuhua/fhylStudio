@@ -11,11 +11,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/gcgzsj.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -36,6 +36,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -50,7 +51,6 @@ a:active {
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;月报进度审核管理>&nbsp;工程改造路面升级施工过程管理</div>
 					</div>
-	           
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
@@ -62,13 +62,13 @@ a:active {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 200px;">
-        						<span>路线：</span>
-        							<input type="text" id="lx" >
+        						<span>路线名称：</span>
+        							<input type="text" id="lxmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>

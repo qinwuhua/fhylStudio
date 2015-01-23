@@ -11,13 +11,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="js/gcgzsj.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			
 			showAllZJ();
 		});
 	</script>
@@ -31,6 +29,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -43,13 +42,6 @@ a:active {
 		<table width="98%" border="0"
 			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
 			cellpadding="0">
-
-			<tr>
-				<td height="45" align="left"
-					background="${pageContext.request.contextPath}/images/jt.jpg"
-					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-					工程改造路面升级项目资金到位情况</td>
-			</tr>
 			<tr id="trTJ">
 				<td height="30" align="left" style="font-size: 12px;">
 					项目计划下达资金共【<span id="lblXDZJ" style="color: Red; font-weight: bold;">111</span>】万元，

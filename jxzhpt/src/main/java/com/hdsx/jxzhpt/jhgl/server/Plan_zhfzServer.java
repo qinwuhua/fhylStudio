@@ -38,7 +38,6 @@ public interface Plan_zhfzServer {
 	 */
 	List<TreeNode> queryZhfaNfs();
 	/**
-<<<<<<< HEAD
 	 * @param xzqhdm
 	 * @return
 	 */
@@ -64,4 +63,10 @@ public interface Plan_zhfzServer {
 	int editZhfzById(Plan_zhfz jh);
 	
 	boolean importZhfz_jh(List<Map> data);
+	/**
+	 * 修改灾害防治的计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editZhfzStatus(Plan_zhfz jh);
 }

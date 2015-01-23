@@ -69,7 +69,7 @@ var zdStr;
 	  				var d = $("#lxbm").val();
 	  				return d;
 	  		},
-	  			xzqhdm:function() {
+	  		xzqhdm:function() {
   				var d = $.cookie("dist");
   				if(d=='360000') return "";
   				else return d;

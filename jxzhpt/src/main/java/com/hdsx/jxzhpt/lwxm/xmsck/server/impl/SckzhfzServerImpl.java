@@ -151,5 +151,17 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		else return false;
 	}
 
+	@Override
+	public boolean lrjhSckzhfz(Sckzhfz zhfz) {
+		if(update("lrjhSckzhfz", zhfz)>0)return true;
+		else return false;
+	}
+
+	@Override
+	public boolean xglrjhSckzhfz(Sckzhfz zhfz) {
+		if(update("xglrjhSckzhfz", zhfz)>0)return true;
+		else return false;
+	}
+
 
 }
