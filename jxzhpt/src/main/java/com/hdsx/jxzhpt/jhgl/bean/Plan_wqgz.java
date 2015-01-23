@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 
 public class Plan_wqgz {
 	private String id;//唯一ID
-	private String xmk_wqgz_id;//危桥改造项目库ID
+	private String xckid;//危桥改造项目库ID
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
@@ -56,17 +56,38 @@ public class Plan_wqgz {
 	private Date wjsj;//台账完结时间
 	private String gys;//概预算
 	private Jckwqgz jckwqgz;
+	private String jh_sbthcd;
+	private String sbbmdm;
+	private String spbmdm;
+	public String getJh_sbthcd() {
+		return jh_sbthcd;
+	}
+	public void setJh_sbthcd(String jh_sbthcd) {
+		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getSbbmdm() {
+		return sbbmdm;
+	}
+	public void setSbbmdm(String sbbmdm) {
+		this.sbbmdm = sbbmdm;
+	}
+	public String getSpbmdm() {
+		return spbmdm;
+	}
+	public void setSpbmdm(String spbmdm) {
+		this.spbmdm = spbmdm;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getXmk_wqgz_id() {
-		return xmk_wqgz_id;
+	public String getXckid() {
+		return xckid;
 	}
-	public void setXmk_wqgz_id(String xmk_wqgz_id) {
-		this.xmk_wqgz_id = xmk_wqgz_id;
+	public void setXckid(String xckid) {
+		this.xckid = xckid;
 	}
 	public String getSbnf() {
 		return sbnf;

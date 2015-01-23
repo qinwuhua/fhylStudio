@@ -20,7 +20,9 @@
 		<result property="pfztz" column="pfztz"/>
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
-		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="sbbmdm" column="sbbmdm"/>
+		<result property="spbmdm" column="spbmdm"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
 	<resultMap type="jckabgc"  id="abgc_lx">
@@ -40,33 +42,33 @@
 			(
 				select rownum as num,t.* from 
 				(
-					select  jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
+					select  jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,jh.jh_sbthcd,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
 	    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
-	    			<if test="jh.jhnf!=null and jh.jhnf!=''">
-	 					and jh.jhnf=#{jh.jhnf}
-	 				</if>
-	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 					and jh.sbzt=#{jh.sbzt}
-	 				</if>
-	 				<if test="jh.spzt!=null and jh.spzt!=''">
-	 					and jh.spzt=#{jh.spzt}
-	 				</if>
-	 				<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
-	 				</if>
-	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
-	 				</if>
-	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
-	 				</if>
-	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsjd}
-	 				</if>
-	    			order by jh.jhnf desc
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				 		and lx.gydwdm like #{lx.gydwdm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and lx.xzqhdm like #{lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 	</if>
+	    			order by jh.sbzt,jh.spzt,jh.jhnf desc
 	    		) t
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -82,21 +84,21 @@
 	 	<if test="jh.spzt!=null and jh.spzt!=''">
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
-	 	<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
-	 				</if>
-	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
-	 				</if>
-	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
-	 				</if>
-	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 					and lx.lxjsdj = #{lx.lxjsjd}
-	 				</if>
+	 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+	 		and lx.gydwdm like #{lx.gydwdm}
+	 	</if>
+	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 		and lx.xzqhdm like #{lx.xzqhdm}
+	 	</if>
+	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 	</if>
+	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 		and lx.lxbm like #{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 		and lx.lxjsdj = #{lx.lxjsjd}
+	 	</if>
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultMap="abgc_jh">
 		select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id}
@@ -108,10 +110,37 @@
 		delete from plan_abgc jh where jh.id=#{id}
 	</delete>
 	<update id="editAbgcById" parameterType="plan_abgc">
-		update plan_abgc set jhnf=#{jhnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},
-			xdsj=#{xdsj},jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},
-			pfwh=#{pfwh},pfsj=#{pfsj},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
+		update plan_abgc set 
+			<if test="jhnf!=null and jhnf!=''">
+				jhnf=#{jhnf},
+			</if>
+			<if test="jhkgsj!=null and jhkgsj!=''">
+				jhkgsj=#{jhkgsj},
+			</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">
+				jhwgsj=#{jhwgsj},
+			</if>
+			<if test="xdsj!=null and xdsj!=''">
+				xdsj=#{xdsj},
+			</if>
+			<if test="pfsj!=null and pfsj!=''">
+				pfsj=#{pfsj},
+			</if>
+			jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
 			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
+		where id=#{id}
+	</update>
+	<update id="editStatus" parameterType="plan_abgc">
+		update plan_abgc set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
 </mapper>

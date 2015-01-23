@@ -75,12 +75,33 @@ public class Plan_gcsj {
 	private String jsxz;//建设性质
 	private String jsnr;//建设内容
 	private String scBz;
+	private int jh_sbthcd;//上报退回状态的长度标示
+	private String sbbmdm;//上报部门的部门代码
+	private String spbmdm;//审批部门的部门代码
 	private List<Plan_lx_gcsj> plan_lx_gcsjs;
 	public List<Plan_lx_gcsj> getPlan_lx_gcsjs() {
 		return plan_lx_gcsjs;
 	}
 	public void setPlan_lx_gcsjs(List<Plan_lx_gcsj> plan_lx_gcsjs) {
 		this.plan_lx_gcsjs = plan_lx_gcsjs;
+	}
+	public int getJh_sbthcd() {
+		return jh_sbthcd;
+	}
+	public void setJh_sbthcd(int jh_sbthcd) {
+		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getSbbmdm() {
+		return sbbmdm;
+	}
+	public void setSbbmdm(String sbbmdm) {
+		this.sbbmdm = sbbmdm;
+	}
+	public String getSpbmdm() {
+		return spbmdm;
+	}
+	public void setSpbmdm(String spbmdm) {
+		this.spbmdm = spbmdm;
 	}
 	public String getScBz() {
 		return scBz;

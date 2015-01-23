@@ -18,14 +18,22 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			alert("unit2："+$.cookie("unit2"));
+			//alert("用户角色："+$.cookie("roleid"));
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:null};
+			var lx={gydw:null,gydwdm:null};//filterGydwdm($.cookie("unit"))
 			sbnf("sbnf");
 			abgcxm(jh,lx);
 		});
-		
+		function searchAbgc(){
+			var lx={"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm};
+			//管养单位编码
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			alert(xzqhdm);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -53,6 +61,14 @@
         						<select id="gydw" style="width:227px;"></select>
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
+        						<span style="vertical-align:middle;">&nbsp;项目状态：</span>
+        						<select name="ddlXMtype" id="ddlXMtype" style="width:104px;vertical-align:middle;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="待上报">待上报</option>
+									<option value="已上报">已上报</option>
+									<option value="已入库">已入库</option>
+									<option value="已下达">已下达</option>
+								</select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
         					</p>
@@ -98,16 +114,7 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span style="vertical-align:middle;">项目状态：</span>
-        						<select name="ddlXMtype" id="ddlXMtype" style="width:80px;vertical-align:middle;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="待上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="已入库">已入库</option>
-									<option value="已下达">已下达</option>
-								</select>
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
-								<img alt="下发" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/xiafa_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/xiafa_1.png'" src="${pageContext.request.contextPath}/images/Button/xiafa_1.png" style="vertical-align:middle;"/>
+								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importExcel()" style="vertical-align:middle;"/>
 				                <img alt="添加" onclick="openAddAbgc()" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " style="vertical-align:middle;">

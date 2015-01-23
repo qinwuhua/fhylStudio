@@ -55,4 +55,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public int editWqgzById(Plan_wqgz jh) {
 		return update("editWqgzById", jh);
 	}
+
+	@Override
+	public boolean editWqgzStatus(Plan_wqgz jh) {
+		return update("editWqgzStatus", jh)>0;
+	}
 }

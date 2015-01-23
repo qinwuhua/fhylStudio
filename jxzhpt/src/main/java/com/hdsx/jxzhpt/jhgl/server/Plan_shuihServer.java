@@ -46,4 +46,10 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	int editShuihById(Plan_shuih jh);
+	/**
+	 * 修改水毁计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editShuihStatus(Plan_shuih jh);
 }

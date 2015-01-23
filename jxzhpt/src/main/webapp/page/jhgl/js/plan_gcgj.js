@@ -347,24 +347,6 @@ function gclmgjxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
-function searchGcgj(){
-	alert("管养单位代码："+$("#gydw").combo("getValue"));
-	var jh={jhnf:null,sbzt:null,spzt:null};
-	var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
-	if($("#sbnf").combo("getValue")!=""){
-		jh.sbnf=$("#sbnf").combo("getValue");
-	}
-	if($('#txtlxmc').val()!=""){
-		lx.lxmc=$('#txtlxmc').val();
-	}
-	if($("#yjsdj").combo("getValue")!=""){
-		lx.yjsdj= $("#yjsdj").combo("getValue");
-	}
-	if($("#gldj").combo("getValue")!=""){
-		lx.lxbm=$("#gldj").combo("getValue");
-	}
-	gclmgjxm(jh,lx);
-}
 function queryGcgjXx(id){
 	$.ajax({
 		type:'post',

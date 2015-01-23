@@ -74,6 +74,16 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void editAbgcStatus(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(abgcServer.editStatus(jh)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// get set
 	public int getPage() {
 		return page;

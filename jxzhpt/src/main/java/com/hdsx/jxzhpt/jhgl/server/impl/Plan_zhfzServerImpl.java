@@ -58,4 +58,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return update("editZhfzById",jh);
 	}
 
+	@Override
+	public boolean editZhfzStatus(Plan_zhfz jh) {
+		return update("editZhfzStatus", jh)>0;
+	}
+
 }

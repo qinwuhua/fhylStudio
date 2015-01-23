@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 
 public class Plan_zhfz {
 	private String id;//唯一ID
-	private String sck_zhfz_id;
+	private String sckid;
 	private String sbnf;//计划年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
@@ -55,12 +55,33 @@ public class Plan_zhfz {
 	private String  wjzt;//台账完结状态
 	private String wjsj;//台账完结时间
 	private String gys;//概预算
+	private int jh_sbthcd;//上报退回状态的长度标示
+	private String sbbmdm;//上报部门的部门代码
+	private String spbmdm;//审批部门的部门代码
 	private Jckzhfz jckzhfz;
-	public String getSck_zhfz_id() {
-		return sck_zhfz_id;
+	public int getJh_sbthcd() {
+		return jh_sbthcd;
 	}
-	public void setSck_zhfz_id(String sck_zhfz_id) {
-		this.sck_zhfz_id = sck_zhfz_id;
+	public void setJh_sbthcd(int jh_sbthcd) {
+		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getSbbmdm() {
+		return sbbmdm;
+	}
+	public void setSbbmdm(String sbbmdm) {
+		this.sbbmdm = sbbmdm;
+	}
+	public String getSpbmdm() {
+		return spbmdm;
+	}
+	public void setSpbmdm(String spbmdm) {
+		this.spbmdm = spbmdm;
+	}
+	public String getSckid() {
+		return sckid;
+	}
+	public void setSckid(String sckid) {
+		this.sckid = sckid;
 	}
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;

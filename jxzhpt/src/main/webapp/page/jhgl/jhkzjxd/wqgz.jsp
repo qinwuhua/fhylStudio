@@ -19,7 +19,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:null,spzt:null};
+			var jh={sbnf:null,sbzt:'1',spzt:'1'};
 			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			sbnf("sbnf");
 			wqxm_zjxd(jh,lx);

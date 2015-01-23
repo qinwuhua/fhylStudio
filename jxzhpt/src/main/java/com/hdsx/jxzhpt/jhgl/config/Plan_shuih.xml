@@ -6,6 +6,7 @@
 		<result property="sbnf" column="sbnf"/>
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="xdsj" column="xdsj"/>
 		<result property="xmmc" column="xmmc"/>
 		<result property="yhlb" column="yhlb"/>
@@ -52,7 +53,7 @@
 	<select id="queryShuihList"  parameterType="java.util.Map" resultMap="shuih_jh">
 		select * from (
 			select rownum as num,t.* from (	
-				select jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+				select jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 				where 1=1
@@ -69,10 +70,10 @@
 						select l.jhid from PLAN_lx_shuih l 
 						where 1=1 
 							<if test="l.gydwdm!=null and l.gydwdm!=''">
-								and l.gydwdm like '%'||#{l.gydwdm}||'%'
+								and l.gydwdm like #{l.gydwdm}
 							</if>
-							<if test="l.xzqhmc!=null and l.xzqhmc!=''">
-								and l.xzqhmc =#{l.xzqhmc}
+							<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+								and l.xzqhdm like #{l.xzqhdm}
 							</if>
 							<if test="l.lxmc!=null and l.lxmc!=''">
 								and l.lxmc like '%'||#{l.lxmc}||'%'
@@ -90,7 +91,7 @@
 									B.AREACODE=#{l.tsdqbm}
 								</if>
 						     	 )
-						     ) order by jh.sbnf desc
+						     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
 						) t
 				)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -110,11 +111,11 @@
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="l.gydwdm!=null and l.gydwdm!=''">
-							and l.gydwdm like '%'||#{l.gydwdm}||'%'
-						</if>
-						<if test="l.xzqhmc!=null and l.xzqhmc!=''">
-							and l.xzqhmc =#{l.xzqhmc}
-						</if>
+								and l.gydwdm like #{l.gydwdm}
+							</if>
+							<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+								and l.xzqhdm like #{l.xzqhdm}
+							</if>
 						<if test="l.lxmc!=null and l.lxmc!=''">
 							and l.lxmc like '%'||#{l.lxmc}||'%'
 						</if>
@@ -161,6 +162,19 @@
 			dc=#{dc},jc=#{jc},mc=#{mc},lmkd=#{lmkd},pfwh=#{pfwh},pfztz=#{pfztz},jhsybzje=#{jhsybzje},
 			jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},sftqss=#{sftqss},
 			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},jhbz=#{jhbz}
+		where id=#{id}
+	</update>
+	<update id="editShuihStatus" parameterType="plan_shuih">
+		update plan_shuih set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
 </mapper>

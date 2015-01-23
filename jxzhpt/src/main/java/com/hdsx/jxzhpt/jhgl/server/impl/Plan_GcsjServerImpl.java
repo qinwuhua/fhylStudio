@@ -55,4 +55,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return update("editGcsjById", jh);
 	}
 
+	@Override
+	public boolean editGcsjStatus(Plan_gcsj jh) {
+		return update("editGcsjStatus", jh)>0;
+	}
+
 }

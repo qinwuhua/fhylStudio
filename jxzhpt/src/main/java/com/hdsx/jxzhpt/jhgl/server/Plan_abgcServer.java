@@ -45,4 +45,6 @@ public interface Plan_abgcServer {
 	 * @return
 	 */
 	int editAbgcById(Plan_abgc jh);
+
+	boolean editStatus(Plan_abgc jh);
 }

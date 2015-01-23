@@ -46,4 +46,10 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	int editZhfzById(Plan_zhfz jh);
+	/**
+	 * 修改灾害防治的计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editZhfzStatus(Plan_zhfz jh);
 }

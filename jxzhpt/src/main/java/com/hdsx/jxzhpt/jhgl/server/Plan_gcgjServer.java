@@ -47,4 +47,10 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	int editGcgjById(Plan_gcgj jh);
+	/**
+	 * 修改改建工程计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editGcgjStatus(Plan_gcgj jh);
 }

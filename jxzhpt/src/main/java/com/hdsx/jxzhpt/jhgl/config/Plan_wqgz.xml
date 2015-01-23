@@ -9,6 +9,7 @@
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="pfztz" column="pfztz"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<association property="jckwqgz"  resultMap="wqgz_lx" ></association>
 	</resultMap>
 	<resultMap type="jckwqgz"  id="wqgz_lx">
@@ -25,9 +26,9 @@
 			(
 				select rownum as num,t.* from
 				(
-					select jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
+					select jh.jh_sbthcd,jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
 					lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qlmc,lx.qlbh
-	 				from plan_wqgz jh left join xmk_wqgz lx on jh.xmk_wqgz_id=lx.id 
+	 				from plan_wqgz jh left join xmk_wqgz lx on jh.sckid=lx.id 
 	 				where 1=1
 	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
@@ -38,11 +39,11 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
-	 				<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
+	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+	 					and lx.gydwdm like #{lx.gydwdm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 					and lx.xzqhdm like #{lx.xzqhdm}
 	 				</if>
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -59,13 +60,13 @@
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
 	 				</if>
-	 				order by jh.sbnf desc
+	 				order by jh.sbzt,jh.spzt,jh.sbnf desc
 	 			) t
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from PLAN_wqgz jh 
+		select count(*) from plan_wqgz jh left join xmk_wqgz lx on jh.sckid=lx.id 
 		where 1=1
 	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
@@ -76,11 +77,11 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
-	 				<if test="lx.gydw!=null and lx.gydw!=''">
-	 					and lx.gydw=#{lx.gydw}
+	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+	 					and lx.gydwdm like #{lx.gydwdm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm=#{lx.xzqhdm}
+	 					and lx.xzqhdm like #{lx.xzqhdm}
 	 				</if>
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -112,6 +113,19 @@
 			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfsj=#{pfsj},
 			pfztz=#{pfztz},jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},
 			ablbzsqwh=#{ablbzsqwh},bz=#{bz} 
+		where id=#{id}
+	</update>
+	<update id="editWqgzStatus" parameterType="plan_wqgz">
+		update plan_wqgz set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
 </mapper>

@@ -79,6 +79,18 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
+	public void editWqgzStatus(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(wqgzServer.editWqgzStatus(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

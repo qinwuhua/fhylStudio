@@ -54,4 +54,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public int editGcgjById(Plan_gcgj jh) {
 		return update("editGcgjById", jh);
 	}
+
+	@Override
+	public boolean editGcgjStatus(Plan_gcgj jh) {
+		return update("editGcgjStatus",jh)>0;
+	}
 }

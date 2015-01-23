@@ -46,4 +46,10 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	int editWqgzById(Plan_wqgz jh);
+	/**
+	 * 修改危桥改造计划状态
+	 * @param jh
+	 * @return
+	 */
+	boolean editWqgzStatus(Plan_wqgz jh);
 }

@@ -50,4 +50,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public int editAbgcById(Plan_abgc jh) {
 		return update("editAbgcById", jh);
 	}
+	@Override
+	public boolean editStatus(Plan_abgc jh) {
+		return update("editStatus", jh)>0;
+	}
 }

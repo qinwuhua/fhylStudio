@@ -86,6 +86,18 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void editGcgjStatus(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//get set
 	public int getPage() {
 		return page;
