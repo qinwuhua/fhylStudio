@@ -59,12 +59,10 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return update("editAbgcById", jh);
 	}
 	@Override
-<<<<<<< HEAD
 	public boolean importAbgc_jh(List<Map> data) {
 		return this.insertBatch("importAbgc_jh", data)==data.size()?true:false;
-=======
+	}
 	public boolean editStatus(Plan_abgc jh) {
 		return update("editStatus", jh)>0;
->>>>>>> refs/remotes/origin/master
 	}
 }

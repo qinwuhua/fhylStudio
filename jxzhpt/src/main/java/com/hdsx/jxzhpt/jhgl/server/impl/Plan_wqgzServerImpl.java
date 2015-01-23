@@ -67,12 +67,10 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-<<<<<<< HEAD
 	public boolean importWqgz_jh(List<Map> data) {
 		return this.insertBatch("importWqgz_jh", data)==data.size()?true:false;
-=======
+	}
 	public boolean editWqgzStatus(Plan_wqgz jh) {
 		return update("editWqgzStatus", jh)>0;
->>>>>>> refs/remotes/origin/master
 	}
 }
