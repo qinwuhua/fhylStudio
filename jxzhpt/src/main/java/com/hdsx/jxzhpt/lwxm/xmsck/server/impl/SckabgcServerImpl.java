@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
@@ -139,7 +140,6 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
-		System.out.println(list+"@#@#"+tbbmbm+"@#！@"+sbthcd);
 		for (Map<String, String> map : list) {
 			map.put("scbmbm", tbbmbm);
 			map.put("sck_sbthcd", sbthcd);

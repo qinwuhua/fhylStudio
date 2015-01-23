@@ -23,7 +23,6 @@ $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
 	sckglAbgc();
-	alert($.cookie("unit2"));
 });
 
 function delSckabgc(){

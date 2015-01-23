@@ -64,7 +64,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	public List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz) {
 		hm = new HashMap<String, Object>();
 		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("xzqhdm", zhfz.getXzqhdm());
+		hm.put("gydwbm", zhfz.getGydwbm());
 		return queryList("JckzhfzRoad", hm);
 	}
 

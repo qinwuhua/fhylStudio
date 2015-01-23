@@ -14,7 +14,9 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -59,7 +61,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Sckabgc.class);
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckzhfz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -74,7 +76,9 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			}else{
 				response.getWriter().print(fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void exportExcel_abgc_scgl(){
 		try {

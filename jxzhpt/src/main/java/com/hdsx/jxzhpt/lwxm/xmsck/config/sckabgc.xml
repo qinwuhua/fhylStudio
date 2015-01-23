@@ -166,7 +166,7 @@
  			and sck_lxbm like #{lxbm}||'%'
  		</if>
  </select>
- <select id="bzAbgc" parameterType="sckabgc" resultType="int">
+<select id="bzAbgc" parameterType="sckabgc" resultType="int">
 		select count(*) from sck_abgc where 1=1
 		<if test="lxbm!='' and lxbm!= null ">
 			and sck_lxbm=#{lxbm}
@@ -178,7 +178,7 @@
 			and to_number(scqdzh) &lt;=#{zdzh}
 		</if>
 	</select>
-	<select id="daoRuabgcsh" parameterType="sckwqgz" resultType="sckwqgz">
+	<select id="daoRuabgcsh" parameterType="sckabgc" resultType="sckabgc">
  		select * from xmk_abgc where shzt='已审核'
  		<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
@@ -192,7 +192,7 @@
 		<if test="zdzh!='' and zdzh!= null ">
 			and to_number(zdzh) >=#{zdzh}
 		</if>
- </select>
+ </select>	
 	
  <select id="exportExcel_abgc_scgl" parameterType="sckabgc" resultType="sjbb">
  	select
@@ -260,9 +260,9 @@
 		and tbbmbm like #{tbdw}||'%'
 	</if>
  </select>
-  <insert id="importAbgc_sc" parameterType="hashMap">
- 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,lxbm,lxmc,sczlc,scyhlc)
-	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7})
+  <insert id="importAbgc_sc" parameterType="hashMap" >
+ 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd)
+	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd})
 
  </insert>
 </mapper>

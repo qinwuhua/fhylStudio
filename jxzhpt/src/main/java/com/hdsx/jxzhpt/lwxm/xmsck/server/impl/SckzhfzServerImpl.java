@@ -177,7 +177,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 			zh.setQdzh(map.get("9"));
 			zh.setZdzh(map.get("10"));
 			if(queryList("daoRuzhfzsh", zh).size()>0){
-				int count = (Integer)queryOne("bzAbgc", zh);
+				int count = (Integer)queryOne("bzZhfz", zh);
 				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}

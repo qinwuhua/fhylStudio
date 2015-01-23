@@ -65,7 +65,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	public List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("qlbh", wqgz.getQlbh());
-		hm.put("xzqhdm", wqgz.getXzqhdm());
+		hm.put("gydwbm", wqgz.getGydwbm());
 		return queryList("JckWqgzRoad", hm);
 	}
 

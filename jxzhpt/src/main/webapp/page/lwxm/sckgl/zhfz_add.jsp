@@ -62,6 +62,11 @@ var zdStr;
 	  				var d = $("#lxbm").val();
 	  				return d;
 	  			},
+	  			gydwbm:function() {
+	  				var d = $.cookie("unit2");
+	  				if(d=='36') return "";
+	  				else return d;
+	  			},
 	  			xzqhdm:function() {
 	  				var d = $.cookie("dist");
 	  				if(d=='360000') return "";

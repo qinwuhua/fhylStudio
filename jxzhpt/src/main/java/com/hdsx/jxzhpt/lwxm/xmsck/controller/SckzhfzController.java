@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -59,14 +60,14 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckzhfz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			//将数据插入到数据库
-			if(zhfzServer.yanZhen(data, tbbmbm1).equals("sckwqgz_ok")){
+			if(zhfzServer.yanZhen(data, tbbmbm1).equals("sckzhfz_ok")){
 				if(zhfzServer.importZhfz_sc(data,tbbmbm2,sbthcd1)) 
 					response.getWriter().print(fileuploadFileName+"导入成功");
 				else 
