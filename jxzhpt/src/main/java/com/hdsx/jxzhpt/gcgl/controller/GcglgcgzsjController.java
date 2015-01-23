@@ -57,7 +57,21 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	private String gydw;
 	private String kgzt;
 	private String lxmc;
+	private String jgzt;
+	private String yhtype;
 	
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
 	public String getJhid() {
 		return jhid;
 	}
@@ -127,6 +141,12 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	}
 	//添加月报
 	public void insertgcgzsjYb(){
+		if("县级".equals(yhtype)){
+			gcglgcgzsj.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglgcgzsj.setSfsj("是");
+		}
 		Boolean bl=gcglgcgzsjServer.insertgcgzsjYb(gcglgcgzsj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -141,6 +161,22 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setJhid(jhid);
 		int count=gcglgcgzsjServer.selectgcgzsjYbByJhidCount(gcglgcgzsj);
 		List<Gcglgcgzsj> list=gcglgcgzsjServer.selectgcgzsjYbByJhid(gcglgcgzsj);
+		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	//查询月报
+	public void selectgcgzsjYbByJhid1(){
+		gcglgcgzsj.setPage(page);
+		gcglgcgzsj.setRows(rows);
+		gcglgcgzsj.setJhid(jhid);
+		int count=gcglgcgzsjServer.selectgcgzsjYbByJhidCount1(gcglgcgzsj);
+		List<Gcglgcgzsj> list=gcglgcgzsjServer.selectgcgzsjYbByJhid1(gcglgcgzsj);
 		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -329,6 +365,7 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setGydw(gydw.replaceAll("0*$",""));
 		gcglgcgzsj.setKgzt(kgzt);
 		gcglgcgzsj.setLxmc(lxmc);
+		gcglgcgzsj.setJgzt(jgzt);
 		int count=gcglgcgzsjServer.selectWqgzjhListCount(gcglgcgzsj);
 		List<Gcglgcgzsj> list=gcglgcgzsjServer.selectWqgzjhList(gcglgcgzsj);
 		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
@@ -376,5 +413,15 @@ public class GcglgcgzsjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 		
+	}
+	//修改月报状态
+	public void sbGcgzsjYb(){
+		System.out.println(gcglgcgzsj);
+		Boolean bl=gcglgcgzsjServer.sbWqgzYb(gcglgcgzsj);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 }

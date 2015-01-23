@@ -3,7 +3,9 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zhfzServer {
@@ -34,6 +36,19 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	List<TreeNode> queryZhfaNfs();
+	/**
+<<<<<<< HEAD
+	 * @param xzqhdm
+	 * @return
+	 */
+	List<SjbbMessage> insertToSheet(String xzqhdm);
+	
+	/**
+	 * 
+	 * @param jck
+	 * @return
+	 */
+	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
 	/**
 	 * 根据ID删除信息
 	 * @param id

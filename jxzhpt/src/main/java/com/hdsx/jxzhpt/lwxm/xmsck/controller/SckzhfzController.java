@@ -68,7 +68,9 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败");
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void exportExcel_zhfz_scgl(){
 		try {
@@ -203,7 +205,13 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	
+	public void lrjhSckzhfz(){
+		boolean b = zhfzServer.lrjhSckzhfz(sckzhfz);
+		if(b){
+			zhfzServer.xglrjhSckzhfz(sckzhfz);
+			ResponseUtils.write(getresponse(), "true");
+		}else ResponseUtils.write(getresponse(), "false");
+	}
 	
 
 	public Sckzhfz getSckzhfz() {

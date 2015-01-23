@@ -71,6 +71,7 @@
 	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
 	<action name="updateYhdzxYb" class="gcglyhdzxController" method="updateYhdzxYb"/>
 	<action name="selectYhdzxYbByJhid" class="gcglyhdzxController" method="selectYhdzxYbByJhid"/>
+	<action name="selectYhdzxYbByJhid1" class="gcglyhdzxController" method="selectYhdzxYbByJhid1"/>
 	<action name="deleteYhdzxYb" class="gcglyhdzxController" method="deleteYhdzxYb"/>
 	<action name="shYhdzxYb" class="gcglyhdzxController" method="shYhdzxYb"/>
 	<action name="insertYhdzxCgs" class="gcglyhdzxController" method="insertYhdzxCgs"/>
@@ -86,12 +87,14 @@
 	<action name="selectYhdzxjhList" class="gcglyhdzxController" method="selectYhdzxjhList"/>
 	<action name="selectYhdzxjhFile" class="gcglyhdzxController" method="selectYhdzxjhFile"/>
 	<action name="deleteYhdzxFile" class="gcglyhdzxController" method="deleteYhdzxFile"/>
+	<action name="sbYhdzxYb" class="gcglyhdzxController" method="sbYhdzxYb"/>
 
 	<!-- sh -->
 	<action name="deleteshYb" class="gcglshController" method="deleteshYb"/>
 	<action name="insertshYb" class="gcglshController" method="insertshYb"/>
 	<action name="updateshYb" class="gcglshController" method="updateshYb"/>
 	<action name="selectshYbByJhid" class="gcglshController" method="selectshYbByJhid"/>
+	<action name="selectshYbByJhid1" class="gcglshController" method="selectshYbByJhid1"/>
 	<action name="shShYb" class="gcglshController" method="shShYb"/>
 	<action name="selectShCgsList" class="gcglshController" method="selectShCgsList"/>
 	<action name="deleteShCgs" class="gcglshController" method="deleteShCgs"/>
@@ -106,12 +109,14 @@
 	<action name="selectShjhList" class="gcglshController" method="selectShjhList"/>
 	<action name="selectShjhFile" class="gcglshController" method="selectShjhFile"/>
 	<action name="deleteShFile" class="gcglshController" method="deleteShFile"/>
+	<action name="sbShYb" class="gcglshController" method="sbShYb"/>
 	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
 	<action name="updategcgzgjYb" class="gcglgcgzgjController" method="updategcgzgjYb"/>
 	<action name="deletegcgzgjYb" class="gcglgcgzgjController" method="deletegcgzgjYb"/>
 	<action name="selectgcgzgjYbByJhid" class="gcglgcgzgjController" method="selectgcgzgjYbByJhid"/>
+	<action name="selectgcgzgjYbByJhid1" class="gcglgcgzgjController" method="selectgcgzgjYbByJhid1"/>
 	<action name="shgcgzgjYb" class="gcglgcgzgjController" method="shgcgzgjYb"/>
 	<action name="insertGcgzgjCgs" class="gcglgcgzgjController" method="insertGcgzgjCgs"/>
 	<action name="updateGcgzgjCgs" class="gcglgcgzgjController" method="updateGcgzgjCgs"/>
@@ -126,12 +131,14 @@
 	<action name="selectGcgzgjjhList" class="gcglgcgzgjController" method="selectGcgzgjjhList"/>
 	<action name="selectGcgzgjjhFile" class="gcglgcgzgjController" method="selectGcgzgjjhFile"/>
 	<action name="deleteGcgzgjFile" class="gcglgcgzgjController" method="deleteGcgzgjFile"/>
+	<action name="sbGcgzgjYb" class="gcglgcgzgjController" method="sbGcgzgjYb"/>
 	
 	<!-- gcgzsj -->
 	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>
 	<action name="deletegcgzsjYb" class="gcglgcgzsjController" method="deletegcgzsjYb"/>
 	<action name="updategcgzsjYb" class="gcglgcgzsjController" method="updategcgzsjYb"/>
 	<action name="selectgcgzsjYbByJhid" class="gcglgcgzsjController" method="selectgcgzsjYbByJhid"/>
+	<action name="selectgcgzsjYbByJhid1" class="gcglgcgzsjController" method="selectgcgzsjYbByJhid1"/>
 	<action name="shgcgzsjyb" class="gcglgcgzsjController" method="shgcgzsjyb"/>
 	<action name="insertGcgzsjCgs" class="gcglgcgzsjController" method="insertGcgzsjCgs"/>
 	<action name="updateGcgzsjCgs" class="gcglgcgzsjController" method="updateGcgzsjCgs"/>
@@ -146,6 +153,7 @@
 	<action name="selectGcgzsjjhList" class="gcglgcgzsjController" method="selectGcgzsjjhList"/>
 	<action name="selectGcgzsjjhFile" class="gcglgcgzsjController" method="selectGcgzsjjhFile"/>
 	<action name="deleteGcgzsjFile" class="gcglgcgzsjController" method="deleteGcgzsjFile"/>
+	<action name="sbGcgzsjYb" class="gcglgcgzsjController" method="sbGcgzsjYb"/>
 	
 	<!-- hsly -->
 	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>

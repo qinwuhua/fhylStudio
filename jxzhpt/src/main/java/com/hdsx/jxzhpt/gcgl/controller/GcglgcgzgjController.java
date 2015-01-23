@@ -58,13 +58,20 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	private String gydw;
 	private String kgzt;
 	private String lxmc;
+	private String jgzt;
+	private String yhtype;
 	
-	
-	public GcglgcgzgjServer getGcglgcgzgjServer() {
-		return gcglgcgzgjServer;
+	public String getJgzt() {
+		return jgzt;
 	}
-	public void setGcglgcgzgjServer(GcglgcgzgjServer gcglgcgzgjServer) {
-		this.gcglgcgzgjServer = gcglgcgzgjServer;
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
 	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
@@ -129,6 +136,12 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//添加月报
 	public void insertgcgzgjYb(){
+		if("县级".equals(yhtype)){
+			gcglgcgzgj.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglgcgzgj.setSfsj("是");
+		}
 		Boolean bl=gcglgcgzgjServer.insertgcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -143,6 +156,22 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setJhid(jhid);
 		int count=gcglgcgzgjServer.selectgcgzgjYbByJhidCount(gcglgcgzgj);
 		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectgcgzgjYbByJhid(gcglgcgzgj);
+		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	//查询月报
+	public void selectgcgzgjYbByJhid1(){
+		gcglgcgzgj.setPage(page);
+		gcglgcgzgj.setRows(rows);
+		gcglgcgzgj.setJhid(jhid);
+		int count=gcglgcgzgjServer.selectgcgzgjYbByJhidCount1(gcglgcgzgj);
+		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectgcgzgjYbByJhid1(gcglgcgzgj);
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -332,6 +361,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setGydw(gydw.replaceAll("0*$",""));
 		gcglgcgzgj.setKgzt(kgzt);
 		gcglgcgzgj.setLxmc(lxmc);
+		gcglgcgzgj.setJgzt(jgzt);
 		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);
 		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
@@ -379,5 +409,15 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 		
+	}
+	//修改月报状态
+	public void sbGcgzgjYb(){
+		System.out.println(gcglgcgzgj);
+		Boolean bl=gcglgcgzgjServer.sbWqgzYb(gcglgcgzgj);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 }

@@ -43,13 +43,6 @@ a:active {
 		<table width="98%" border="0"
 			style="margin-top: 1px; margin-left: 1px;" cellspacing="0"
 			cellpadding="0">
-
-			<tr>
-				<td height="45" align="left"
-					background="${pageContext.request.contextPath}/images/jt.jpg"
-					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-					灾害防治项目资金到位情况</td>
-			</tr>
 			<tr id="trTJ">
 				<td height="30" align="left" style="font-size: 12px;">
 					项目计划下达资金共【<span id="lblXDZJ" style="color: Red; font-weight: bold;">111</span>】万元，

@@ -1,3 +1,5 @@
+var obj=new Object();
+var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
@@ -8,15 +10,15 @@ function wqxiangxi(){
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
-var obj=new Object();
-var jhid=10;
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
 	YMLib.UI.createWindow('wqxx','水毁项目月报详情','shybxx.jsp','wqxx',700,430);
 	//window.open("wqgzybxx.jsp");
 }
-function ybsb(){
+function ybsb(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx1','水毁项目月报列表','shyb.jsp','wqxx1',1059,450);
 	//window.open("wqgzyb.jsp");
 }
@@ -27,25 +29,37 @@ function Edityb(index){
 	//window.open("shybxg.jsp");
 }
 function showAll(){
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
+		gydw='';
+	var jgzt='0';
+	var kgzt='1';
+	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'js/sh.json',
+	    url:'../../../../gcgl/selectShjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
 	    height:440,
+	    queryParams: {
+	    	gydw: gydw,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a href="#" onclick="wqxiangxi()">详细</a>    '+'<a href="#" onclick="ybsb()">月报审核</a>   ';
-	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
+ 	        	 return '定位    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
+ 	        }},
+ 	        {field:'gydw',title:'管养单位',width:130,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
 	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
 	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'zlc',title:'总里程',width:80,align:'center'},
+	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:80,align:'center'},
 	        {field:'ylmlx',title:'原路面类型',width:100,align:'center'},
 	    ]]    
@@ -89,7 +103,7 @@ function shShyb(){
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
 	var data = "gcglsh.zjje="+$("#tj_zjje").val()+"&gcglsh.xgcsyj="+$("#tj_xgcsyj").val()+"&gcglsh.cscyj="+$("#tj_cscyj").val()
-	+"&gcglsh.shtime="+sbsj+"&gcglsh.shuser="+$.cookie("truename")+"&gcglsh.jhid="+jhid+"&gcglsh.id="+parent.obj.id;
+	+"&gcglsh.shtime="+sbsj+"&gcglsh.shuser="+$.cookie("truename")+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -109,7 +123,7 @@ function shShyb(){
 }
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectshYbByJhid.do?jhid='+jhid,
+	    url:'../../../../gcgl/selectshYbByJhid1.do?jhid='+parent.obj1.jhid,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -119,9 +133,12 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核')
-				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>';
-		              		else return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核';
+	              		if(row.shzt=='未审核'&&row.sfth=='否')
+				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
+		              		if(row.shzt=='未审核'&&row.sfth=='是')
+					        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'未审核   '+'退回';
+		              		if(row.shzt=='已审核')
+		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'已审核   '+'退回   ';
 			        }},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
@@ -143,4 +160,24 @@ function showYBlist(){
 			    ]
 	    ]
 	});
+}
+function thsjyb(index){
+	var data1=$("#ybgrid").datagrid('getRows')[index];
+	var data="gcglsh.id="+data1.id+"&gcglsh.sfsj=是"+"&gcglsh.sfth=是";
+	if(confirm("确认退回吗？")){
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/sbShYb.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					alert('退回成功！');
+					$("#ybgrid").datagrid('reload');
+				}else{
+					alert('退回失败！');
+				}
+			}
+		});	
+	}	
 }

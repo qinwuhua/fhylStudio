@@ -90,8 +90,10 @@
 		xzqhmc,F044 gydwbm,F045 gydw,
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
 		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD
-		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' and 
-		substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' 
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		</if>
  		and<![CDATA[ROWNUM <=50]]>
 		group by roadname,roadcode,F114,F044,F045
 		order by roadcode,min(roadstart)
@@ -115,7 +117,7 @@
 		update xmk_abgc set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
 	</update>
 	<update id="xgJckAbgcTH" parameterType="String">
-		update xmk_abgc set sbzt='未上报',sbthcd=(sbthcd+2) where id =#{id}
+		update xmk_abgc set sbthcd=(sbthcd+2) where id =#{id}
 	</update>
 
 	<select id="selectJckShabgc" parameterType="hashmap" resultType="jckabgc">
@@ -219,11 +221,10 @@
 	</select>
 	<insert id="importAbgc" parameterType="hashMap">
 		insert into
-		xmk_abgc(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,zlc,yhlc,gjxjnd,xmnf,xmtype,bz,tbsj)
-		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},sysdate)
+		xmk_abgc(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,yhlc,gjxjnd,lxjsdj,yhnr,xmnf,xmtype,bz,tbsj,tbbmbm,sbthcd,shzt,sbzt)
+		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
 	</insert>
-	<select id="exportExcel_abgc_sh" parameterType="jckabgc"
-		resultType="sjbb">
+	<select id="exportExcel_abgc_sh" parameterType="jckabgc" resultType="sjbb">
 		select
 		shzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc
 		v_7,qzlc v_8,yhlc v_9,gjxjnd v_10,xmnf v_11

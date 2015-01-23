@@ -80,6 +80,7 @@ function openZjxd(id,title,href,width,height,zjid){
 	}).dialog("setTitle",title).dialog("open");
 }
 function addZjxd(){
+	var zjxd={xmid:xxId,xdnf:'',xdzj:'',sfzj:'',tbdw:'',tbdate:''};
 	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj').val(),
 			'zjxd.sfzj':$('input[name="rList"]:checked').val(),'zjxd.tbdw':$('#tbdw').html(),
 			'zjxd.tbtime':$('#tbsj').html()};
@@ -93,6 +94,32 @@ function addZjxd(){
 		}
 	});
 }
+//excel模板导出
+//审查库模板导出
+function exportModule(filename){
+	YMLib.UI.createWindow('exportChooseDw','按单位导出模板','/jxzhpt/page/chooseDw.jsp?filename='+filename,'exportChooseDw',400,300);
+	//window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
+}
+//导出excel
+function exportExcel(flag){
+	var param="";
+	if(flag=='abgc'){
+		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
+	}else if(flag=='wqgz'){
+		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
+	}else if(flag=='zhfz'){
+		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
+	}else{
+		//param="";
+	}
+	window.location.href="/jxzhpt/jhgl/exportExcel_jh.do?flag="+flag+"&"+param;
+}
+
+
+
+
+
+
 function closeWindow(id){
 	$('#'+id).dialog("close");
 }

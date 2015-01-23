@@ -6,6 +6,12 @@
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd})
 </insert>
+<insert id="lrjhSckzhfz"  parameterType="sckzhfz">
+		insert into plan_zhfz(id,sckid,xdzt) values(sys_guid(),#{sckid},'未下达')
+</insert>
+ <insert id="xglrjhSckzhfz"  parameterType="sckzhfz">
+		update sck_zhfz set lrjh='已列入'  where sckid=#{sckid}
+</insert>
  
  <select id="selectSckzhfz" parameterType="hashmap" resultType="sckzhfz">
  	select * from (
@@ -92,7 +98,7 @@
  		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
  </update>
  <update id="xgSckZhfzTH" parameterType="sckzhfz">
-	update sck_zhfz set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+	update sck_zhfz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 </update>
  
   <select id="selectSckShzhfz" parameterType="hashmap" resultType="sckzhfz">
@@ -240,12 +246,8 @@
 		and xzqhdm like '%'||(#{xzqhdm})||'%'
 	</if> -->
  </select>
- <insert id="importAbgc_sc" parameterType="hashMap">
- 	insert into sck_zhfz(sckid,sck_sbzt,sck_shzt)
-	values(sys_guid(),'未上报','未审核')
- </insert>
   <insert id="importZhfz_sc" parameterType="hashMap">
-	insert into sck_zhfz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
-	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},'未上报','未审核')
+	insert into sck_zhfz(sckid,xmkid,lxbm,lxmc,sczlc,scyhlc,scqdzh,sczdzh,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
+	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{2},#{3},#{6},#{7},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核')
  </insert>
 </mapper>

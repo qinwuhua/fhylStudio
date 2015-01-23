@@ -24,10 +24,32 @@
 			and jhid =#{jhid}
 		</if>
 	</select>
+	<select id="selectgcgzsjYbByJhid1" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
+		select * from (
+		select m.*,rownum rn from (
+			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj from GCGL_GCGZSJ t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
+			where 1=1 and sfsj='是' 
+		<if test="jhid != null and  jhid != ''">
+			and t1.jhid =#{jhid}
+		</if>
+		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectgcgzsjYbByJhidCount1" parameterType="gcglgcgzsj" resultType="int">
+		select count(*) from GCGL_GCGZSJ 
+		where 1=1 and sfsj='是' 
+		<if test="jhid != null and  jhid != ''">
+			and jhid =#{jhid}
+		</if>
+	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzsjYb" parameterType="gcglgcgzsj">
-		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt)
-		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt})
+		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth)
+		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否')
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_GCGZSJ where sbyf=#{sbyf} and jhid=#{jhid}
@@ -36,6 +58,11 @@
 	<update id="updategcgzsjYb" parameterType="gcglgcgzsj">
 		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm}
 		where id=#{id} and jhid=#{jhid}
+	</update>
+	<!-- 修改月报状态 -->
+	<update id="sbWqgzYb" parameterType="gcglgcgzsj">
+		update GCGL_GCGZSJ set sfsj=#{sfsj},sfth=#{sfth}
+		where id=#{id}
 	</update>
 	<!-- 删除月报 -->
 	<delete id="deletegcgzsjYb" parameterType="gcglgcgzsj">
@@ -120,17 +147,20 @@
 		select 
 		t1.lxmc,t1.lxbm,t1.yjsdj,t1.qdzh,t1.zdzh,t1.qzlc,t1.gydw,t1.gydwbm,t1.xzqhdm,t1.xzqhmc,t1.xmlc,t1.bhnr,t1.bz lxbz,  
 		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.scbz,
-		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmkid jhid,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
-		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje,t2.jhsydfzczj,t2.
-		sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.remarks,t2.
-		xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
+		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmkid id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
+		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje,t2.jhsydfzczj,t1.id jhid,
+		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.remarks,
+		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
 		from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
-		where t2.jgzt='0' and t2.spzt='1'
+		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t1.lxmc like '%'||trim(#{lxmc})||'%'
@@ -143,12 +173,15 @@
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglgcgzsj" resultType="int">
 	 	select count(*) from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
-		where t2.jgzt='0' and t2.spzt='1'
+		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t1.lxmc like '%'||trim(#{lxmc})||'%'

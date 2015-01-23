@@ -11,8 +11,9 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="js/gcgzsj.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			var sbsj;

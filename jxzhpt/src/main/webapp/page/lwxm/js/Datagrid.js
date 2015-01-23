@@ -3,9 +3,12 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
-				 	'sbthcd':$.cookie("unit2").length,
+				 	'sbthcd':function(){
+				 		if($.cookie("unit2").length==2) return 7;
+				 		else return $.cookie("unit2").length;
+				 	},
 				 	'gydw':function(){
-				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 				 			return "";
 				 		}else return $('#gydw').combobox("getValue");
 				 	},
@@ -70,9 +73,12 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {
-				 	'sbthcd':$.cookie("unit2").length,
+				 	'sbthcd':function(){
+				 		if($.cookie("unit2").length==2) return 7;
+				 		else return $.cookie("unit2").length;
+				 	},
 				 	'gydw':function(){
-				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 				 			return "";
 				 		}else return $('#gydw').combobox("getValue");
 				 	},
@@ -141,9 +147,12 @@
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectZhfz.do',
 			 queryParams : {
-				 	'sbthcd':$.cookie("unit2").length,
+				 	'sbthcd':function(){
+				 		if($.cookie("unit2").length==2) return 7;
+				 		else return $.cookie("unit2").length;
+				 	},
 				 	'gydw':function(){
-				 		if("11101360000"==$('#gydw').combobox("getValue")){
+				 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 				 			return "";
 				 		}else return $('#gydw').combobox("getValue");
 				 	},
@@ -213,9 +222,12 @@ function jckshWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectJckShwqgz.do',
 		 queryParams : {
-			 'sbthcd':$.cookie("unit2").length,
+			 'sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -269,9 +281,12 @@ function jckshAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectAbgcSh.do',
 		 queryParams : {
-			 'sbthcd':$.cookie("unit2").length,
+			 'sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -330,9 +345,12 @@ function jckshZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmjck/selectZhfzSh.do',
 		 queryParams : {
-			 'sbthcd':$.cookie("unit2").length,
+			 'sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -393,9 +411,12 @@ function sckglWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckwqgz.do',
 		 queryParams : {
-			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -465,9 +486,12 @@ function sckglAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckabgc.do',
 		 queryParams : {
-			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -536,9 +560,12 @@ function sckglZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckzhfz.do',
 		 queryParams : {
-			 	'sck_sbthcd':$.cookie("unit2").length,
+			 	'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -608,9 +635,12 @@ function sckshWqgz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShwqgz.do',
 		 queryParams : {
-			 'sck_sbthcd':$.cookie("unit2").length,
+			 'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -670,9 +700,12 @@ function sckshAbgc(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShabgc.do',
 		 queryParams : {
-			 'sck_sbthcd':$.cookie("unit2").length,
+			 'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},
@@ -727,9 +760,12 @@ function sckshZhfz(){
 	$("#grid").datagrid({    
 		 url:'/jxzhpt/xmsck/selectSckShzhfz.do',
 		 queryParams : {
-			 'sck_sbthcd':$.cookie("unit2").length,
+			 'sck_sbthcd':function(){
+			 		if($.cookie("unit2").length==2) return 7;
+			 		else return $.cookie("unit2").length;
+			 	},
 			 	'gydw':function(){
-			 		if("11101360000"==$('#gydw').combobox("getValue")){
+			 		if("11101360000"==$('#gydw').combobox("getValue") || "36"==$('#gydw').combobox("getValue")){
 			 			return "";
 			 		}else return $('#gydw').combobox("getValue");
 			 	},

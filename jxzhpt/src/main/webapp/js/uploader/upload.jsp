@@ -14,6 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript"src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <link href="${pageContext.request.contextPath }/js/uploader/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/util/jquery.cookie.js"></script>
 <style type="text/css">
 .as {
 	font-size: 14px;
@@ -57,7 +58,8 @@
 			'width' : 92,
 			//另外上传的参数
 			'scriptData' : {
-				
+				'tbbmbm1':$.cookie("unit"),
+				'sbthcd1':$.cookie("unit2").length
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
 				$('<li></li>').appendTo('.files').text(response);

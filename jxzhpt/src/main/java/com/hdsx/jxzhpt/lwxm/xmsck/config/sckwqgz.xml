@@ -7,6 +7,13 @@
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd})
 	</insert>
+	
+	<insert id="lrjhSckwqgz"  parameterType="sckwqgz">
+		insert into plan_wqgz(id,sckid,xdzt) values(sys_guid(),#{sckid},'未下达')
+	</insert>
+ 	<insert id="xglrjhSckwqgz"  parameterType="sckwqgz">
+		update sck_wqgz set lrjh='已列入'  where sckid=#{sckid}
+	</insert>
 
 	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
 		select * from (
@@ -103,7 +110,7 @@
  		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
 	</update>
 	<update id="xgSckWqgzTH" parameterType="sckwqgz">
-		update sck_wqgz set sck_sbzt='未上报',sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 	</update>
 
 	<select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
@@ -262,7 +269,7 @@
 	</select>
 	<select id="insertToSheet" resultType="sjbb" parameterType="String">
 		select
-		qlbh v_0,qlmc v_1,qlzxzh v_2,qlqc v_3,qlkd v_4
+		qlbh v_0,qlmc v_1,qlzxzh v_2,lxbm v_3,qlqc v_4,qlkd v_5
 		from xmk_wqgz where sbzt='已上报'
 		<!-- <if test="xzqhdm!='' and xzqhdm!= null ">
 			and xzqhdm like '%'||(#{xzqhdm})||'%'
@@ -270,9 +277,9 @@
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
-		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt)
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm)
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
-		qlmc=trim(#{1})),#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},'未上报','未审核')
+		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3})
 	</insert>
 <!-- <select id="onceWqgz" parameterType="sckwqgz" resultType="int"> 
 		select count(*) from ???_wqgz where 1=1 <if test="qlbh!='' and qlbh!= null 

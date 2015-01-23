@@ -3,8 +3,10 @@ package com.hdsx.jxzhpt.lwxm.xmjck.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +45,8 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private String delstr;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String tbbmbm1;
+	private String sbthcd1;
 	
 	public void importAbgc(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
@@ -56,18 +60,29 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,14,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(3,15,fs,Jckabgc.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			//将数据插入到数据库
-			boolean b=abgcServer.importAbgc(data);
-			if(b)
-				response.getWriter().print(fileuploadFileName+"导入成功");
-			else 
-				response.getWriter().print(fileuploadFileName+"导入失败");
+			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
+			try{
+				for (Map<String, String> map : data) {
+					map.put("9", map.get("9").substring(0, 4));
+					map.put("12", map.get("12").substring(0, 4)+"年");
+					map.put("tbbmbm", tbbmbm1);
+					map.put("sbthcd", sbthcd1);
+				}
+				boolean b=abgcServer.importAbgc(data);
+				if(b)
+					response.getWriter().print(fileuploadFileName+"导入成功");
+				else 
+					response.getWriter().print(fileuploadFileName+"导入失败");
+			}catch(Exception e){
+				e.printStackTrace();
+				response.getWriter().print(fileuploadFileName+"数据有误");
+			}
+			
 		}catch(Exception e){}
 	}
 	public void exportExcel_abgc(){
@@ -255,6 +270,17 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
 	}
-	
+	public String getTbbmbm1() {
+		return tbbmbm1;
+	}
+	public void setTbbmbm1(String tbbmbm1) {
+		this.tbbmbm1 = tbbmbm1;
+	}
+	public String getSbthcd1() {
+		return sbthcd1;
+	}
+	public void setSbthcd1(String sbthcd1) {
+		this.sbthcd1 = sbthcd1;
+	}
 	
 }

@@ -46,6 +46,17 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		// TODO Auto-generated method stub
 		return queryList("selectshYbByJhid",gcglsh);
 	}
+	@Override
+	public int selectshYbByJhidCount1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectshYbByJhidCount1", gcglsh);
+	}
+
+	@Override
+	public List<Gcglsh> selectshYbByJhid1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectshYbByJhid1",gcglsh);
+	}
 
 	@Override
 	public Boolean updateshYb(Gcglsh gcglsh) {
@@ -196,5 +207,13 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	public Gcglsh selectWqgzjhFile(Gcglsh gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryOne("selectWqgzjhFile", gcglwqgz);
+	}
+	@Override
+	public Boolean sbWqgzYb(Gcglsh gcglabgc) {
+		if(update("sbWqgzYb", gcglabgc)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
