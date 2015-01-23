@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -140,7 +141,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean importZhfz_sc(List<Map> list) {System.out.println(list);
+	public boolean importZhfz_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		for (Map<String, String> map : list) {
+			map.put("scbmbm", tbbmbm);
+			map.put("sck_sbthcd", sbthcd);
+		}
 		return this.insertBatch("importZhfz_sc", list)==list.size()?true:false;
 	}
 
@@ -161,6 +166,22 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	public boolean xglrjhSckzhfz(Sckzhfz zhfz) {
 		if(update("xglrjhSckzhfz", zhfz)>0)return true;
 		else return false;
+	}
+
+	@Override
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+		Sckzhfz zh = new Sckzhfz();
+		for (Map<String, String> map : data) {
+			zh.setGydwbm(tbbmbm);
+			zh.setLxbm(map.get("2"));
+			zh.setQdzh(map.get("9"));
+			zh.setZdzh(map.get("10"));
+			if(queryList("daoRuzhfzsh", zh).size()>0){
+				int count = (Integer)queryOne("bzAbgc", zh);
+				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+			}else return "无此项目或此项目不属于您的管理范围！";
+		}
+		return "sckzhfz_ok";
 	}
 
 

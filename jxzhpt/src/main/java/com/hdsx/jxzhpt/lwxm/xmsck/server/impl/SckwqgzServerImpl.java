@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckwqgzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -144,7 +145,11 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean importWqgz_sc(List<Map> list) {
+	public boolean importWqgz_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		for (Map<String, String> map : list) {
+			map.put("scbmbm", tbbmbm);
+			map.put("sck_sbthcd", sbthcd);
+		}
 		return this.insertBatch("importWqgz_sc", list)==list.size()?true:false;
 	}
 
@@ -165,6 +170,22 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	public boolean xglrjhSckwqgz(Sckwqgz wqgz) {
 		if(update("xglrjhSckwqgz", wqgz)>0) return true;
 		else return false;
+	}
+
+	@Override
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+		Sckwqgz wq = new Sckwqgz();
+		for (Map<String, String> map : data) {
+			wq.setGydwbm(tbbmbm);
+			wq.setQlbh(map.get("0"));
+			wq.setLxbm(map.get("3"));
+			wq.setQlzxzh(map.get("2"));
+			if(queryList("daoRuwqgzsh", wq).size()>0){
+				int count = (Integer)queryOne("bzWqgz", wq);
+				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+			}else return "无此项目或此项目不属于您的管理范围！";
+		}
+		return "sckwqgz_ok";
 	}
 
 

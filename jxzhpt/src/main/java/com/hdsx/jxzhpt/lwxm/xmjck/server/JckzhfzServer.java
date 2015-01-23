@@ -20,8 +20,9 @@ public interface JckzhfzServer {
 	List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz);
 	int selectZhfzShCount(Jckzhfz zhfz);
 	boolean xgJckZhfzTH(Jckzhfz zhfz);
-	boolean importZhfz(List<Map> list);
+	boolean importZhfz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List <SjbbMessage> exportExcel_zhfz(Jckzhfz jckzhfz);
 	List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz);
 	boolean onceZhfz(Jckzhfz zhfz);
+	String yanZhen(List<Map<String,String>> data,String tbbmbm);
 }

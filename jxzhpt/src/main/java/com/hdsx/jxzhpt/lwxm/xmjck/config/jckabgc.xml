@@ -91,9 +91,12 @@
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
 		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD
 		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' 
-		<if test="xzqhdm!='' and xzqhdm!= null ">
-			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		<if test="gydwbm!='' and gydwbm!= null ">
+			and F044 in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
+<!-- 		<if test="xzqhdm!='' and xzqhdm!= null ">
+			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		</if> -->
  		and<![CDATA[ROWNUM <=50]]>
 		group by roadname,roadcode,F114,F044,F045
 		order by roadcode,min(roadstart)
@@ -102,7 +105,9 @@
 		select
 		id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
 		from xmk_abgc where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%'
-		and xzqhdm in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm})
+		<if test="gydwbm!='' and gydwbm!= null ">
+			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+		</if>
 		order by lxbm
 	</select>
 
@@ -242,5 +247,29 @@
 		<if test="zdzh!='' and zdzh!= null ">
 			and qdzh &lt;=#{zdzh}
 		</if>
+	</select>
+	
+		<select id="daoRuabgc" parameterType="jckabgc" resultType="jckabgc">
+		select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends)
+		zdzh,(max(roadends)-min(roadstart)) qzlc,
+		substr(roadcode,length(roadcode)-5,6) xzqhdm, 
+		(select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6))
+		xzqhmc,F044 gydwbm,F045 gydw,
+		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
+		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD
+		where substr(roadcode,1,1) in('G','S','X') and F048='1' 
+		<if test="gydwbm!='' and gydwbm!= null ">
+			and F044 in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and roadcode=#{lxbm}
+		</if>
+		<if test="qdzh!='' and qdzh!= null ">
+			and roadstart &lt;=#{qdzh}
+		</if>
+		<if test="zdzh!='' and zdzh!= null ">
+			and roadends >=#{zdzh}
+		</if>
+		group by roadname,roadcode,F114,F044,F045
 	</select>
 </mapper>

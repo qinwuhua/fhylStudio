@@ -104,9 +104,12 @@
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
 		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
 		and F010 in('中桥','大桥','特大桥') and roadbm like #{qlbh} ||'%' 
-		<if test="xzqhdm!='' and xzqhdm!= null ">
-			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		<if test="gydwbm!='' and gydwbm!= null ">
+			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
+<!--  		<if test="xzqhdm!='' and xzqhdm!= null ">
+			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
+		</if>  -->
 		order by roadbm,F002
  </select>
  
@@ -194,7 +197,7 @@
  			and qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and qlzxzh=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
  		</if>
  </select>
  
@@ -234,14 +237,32 @@
  	<include refid="wqgz_commonsql"/>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
-	insert into xmk_wqgz(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj) 
-		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},sysdate)
+	insert into xmk_wqgz(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt) 
+		values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
  </insert>
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
  	select
 	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
  	from xmk_wqgz where sbzt='已上报'
  	<include refid="wqgz_commonsql"/>
+ </select>
+ 
+   <select id="daoRuwqgz"  parameterType="jckwqgz" resultType="jckwqgz">
+ 	select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,DISTNAME xzqhmc,substr(roadcode,length(roadcode)-5,6) xzqhdm,
+ 		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,F045 pddj,decode(substr(F052, 0, 4), null,
+ 		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
+		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
+		and F010 in('中桥','大桥','特大桥') 
+		<if test="gydwbm!='' and gydwbm!= null ">
+			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
+		</if>
+		<if test="qlbh!='' and qlbh!= null "  >
+ 			and roadbm=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (roadcode=#{lxbm} and roadpos=#{qlzxzh})
+ 		</if>
+		order by roadbm,F002
  </select>
 </mapper>
 

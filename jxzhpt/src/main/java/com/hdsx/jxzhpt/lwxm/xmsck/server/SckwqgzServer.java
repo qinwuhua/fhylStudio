@@ -22,7 +22,8 @@ public interface SckwqgzServer {
 		List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz);
 		List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz);
 		List<SjbbMessage> insertToSheet(Map map);
-		boolean importWqgz_sc(List<Map> list);
+		boolean importWqgz_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 		boolean lrjhSckwqgz(Sckwqgz wqgz);
 		boolean xglrjhSckwqgz(Sckwqgz wqgz);
+		String yanZhen(List<Map<String, String>> data, String tbbmbm);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
@@ -137,7 +138,12 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean importAbgc_sc(List<Map> list) {
+	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		System.out.println(list+"@#@#"+tbbmbm+"@#！@"+sbthcd);
+		for (Map<String, String> map : list) {
+			map.put("scbmbm", tbbmbm);
+			map.put("sck_sbthcd", sbthcd);
+		}
 		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
 	}
 
@@ -160,6 +166,20 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		else return false;
 	}
 
-
+	@Override
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+		Sckabgc ab = new Sckabgc();
+		for (Map<String, String> map : data) {
+			ab.setGydwbm(tbbmbm);
+			ab.setLxbm(map.get("2"));
+			ab.setQdzh(map.get("9"));
+			ab.setZdzh(map.get("10"));
+			if(queryList("daoRuabgcsh", ab).size()>0){
+				int count = (Integer)queryOne("bzAbgc", ab);
+				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+			}else return "无此项目或此项目不属于您的管理范围！";
+		}
+		return "sckabgc_ok";
+	}
 
 }

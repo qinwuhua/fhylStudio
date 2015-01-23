@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
@@ -56,6 +57,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	public List<Jckwqgz> selectGpsroad(Jckwqgz wqgz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("qlbh", wqgz.getQlbh());
+		hm.put("gydwbm", wqgz.getGydwbm());
 		hm.put("xzqhdm", wqgz.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
@@ -111,8 +113,14 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public boolean importWqgz(List<Map> data) {
-		return this.insertBatch("importWqgz", data)==data.size()?true:false;
+	public boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		for (Map<String, String> map : list) {
+			map.put("8", map.get("8").substring(0, 4));
+			map.put("16", map.get("16").substring(0, 4)+"年");
+			map.put("tbbmbm", tbbmbm);
+			map.put("sbthcd", sbthcd);
+		}
+		return this.insertBatch("importWqgz", list)==list.size()?true:false;
 	}
 	public List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
@@ -161,6 +169,22 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		int count = (Integer)queryOne("onceWqgz", wqgz);
 		if(count<1) return true;
 		else return false;
+	}
+
+	@Override
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+		Jckwqgz zh = new Jckwqgz();
+		for (Map<String, String> map : data) {
+			zh.setGydwbm(tbbmbm);
+			zh.setQlbh(map.get("5"));
+			zh.setLxbm(map.get("3"));
+			zh.setQlzxzh(map.get("7"));
+			if(queryList("daoRuwqgz", zh).size()>0){
+				int count = (Integer)queryOne("onceWqgz", zh);
+				if(count>0) return "项目基础库中已存在该项目，请勿重复添加！";
+			}else return "无此项目或此项目不属于您的管理范围！";
+		}
+		return "jckwqgz_ok";
 	}
 
 }

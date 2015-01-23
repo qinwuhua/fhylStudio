@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -55,6 +56,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	public List<Jckzhfz> selectGpsroad(Jckzhfz zhfz) {
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("gydwbm", zhfz.getGydwbm());
 		hm.put("xzqhdm", zhfz.getXzqhdm());
 		return queryList("selectGpsroad", hm);
 	}
@@ -142,7 +144,13 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public boolean importZhfz(List<Map> list) {
+	public boolean importZhfz(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		for (Map<String, String> map : list) {
+			map.put("9", map.get("9").substring(0, 4));
+			map.put("12", map.get("12").substring(0, 4)+"年");
+			map.put("tbbmbm", tbbmbm);
+			map.put("sbthcd", sbthcd);
+		}
 		return this.insertBatch("importZhfz",list)==list.size()?true:false;
 	}
 
@@ -158,6 +166,22 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		int count = (Integer)queryOne("onceZhfz", zhfz);
 		if(count<1) return true;
 		else return false;
+	}
+
+	@Override
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+		Jckzhfz zh = new Jckzhfz();
+		for (Map<String, String> map : data) {
+			zh.setGydwbm(tbbmbm);
+			zh.setLxbm(map.get("3"));
+			zh.setQdzh(map.get("5"));
+			zh.setZdzh(map.get("6"));
+			if(queryList("daoRuzhfz", zh).size()>0){
+				int count = (Integer)queryOne("onceZhfz", zh);
+				if(count>0) return "项目基础库中已存在该项目，请勿重复添加！";
+			}else return "无此项目或此项目不属于您的管理范围！";
+		}
+		return "jckzhfz_ok";
 	}
 
 }
