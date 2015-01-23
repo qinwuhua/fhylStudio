@@ -199,11 +199,13 @@
  </select>
  
  <sql id="wqgz_commonsql">
- 	<if test="gydw!= null and gydw!='' "  >
-		and gydw like '%'||(#{gydw})||'%'
+ 	<if test="gydw!='' and gydw!= null "  >
+		and tbbmbm in(select id from xtgl_department 
+		where id=#{gydw} or parent=#{gydw})
 	</if>
 	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhmc like '%'||(#{xzqhmc})||'%'
+		and xzqhdm in(select id from xtgl_xzqh
+		where id=#{xzqhmc} or parent=#{xzqhmc})
 	</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'
@@ -217,8 +219,8 @@
 	<if test="xmtype!='' and xmtype!= null ">
 		and xmtype like '%'||(#{xmtype})||'%'
 	</if>
-	<if test="shzt!='' and shzt!= null ">
-		and shzt like '%'||(#{shzt})||'%'
+	<if test="sbzt!='' and sbzt!= null ">
+		and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 	</if>
 	<if test="jsdj!='' and jsdj!= null ">
 		and jsdj like '%'||(#{jsdj})||'%'
