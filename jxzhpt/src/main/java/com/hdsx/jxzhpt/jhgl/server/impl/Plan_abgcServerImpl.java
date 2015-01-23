@@ -1,13 +1,18 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.regex.Pattern;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.controller.ImportVerify;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -60,6 +65,19 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	}
 	@Override
 	public boolean importAbgc_jh(List<Map> data) {
+		for (Map map : data) {
+			Iterator iterator = map.entrySet().iterator();
+			while(iterator.hasNext()){
+				Entry next = (Map.Entry)iterator.next();
+				try{
+					String regex="^[0-9]{4}$";
+					System.out.println("2013".matches(regex));
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			System.out.println(map.size());
+		}
 		return this.insertBatch("importAbgc_jh", data)==data.size()?true:false;
 	}
 	public boolean editStatus(Plan_abgc jh) {

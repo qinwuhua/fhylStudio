@@ -39,9 +39,7 @@
 		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
-	<!-- <insert id="importAbgc_jh" parameterType="plan_abgc">
-		insert into plan_abgc (id,jhnf,jhkgsj,jhwgsj,)
-	</insert> -->
+	
 	<select id="queryAbgcList"  parameterType="java.util.Map"  resultMap="abgc_jh">
 		select * from 
 			(
@@ -157,7 +155,4 @@
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
-	<insert id="importAbgc_jh" parameterType="hashMap">
-		
-	</insert>
 </mapper>
