@@ -27,7 +27,40 @@
 			sbnf("sbnf");
 			wqxm(jh,lx);
 		});
-		
+		function searchWqgz(){
+			var jh={jhnf:null,sbzt:null,spzt:null};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
+			};
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.gydwdm=null;
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			alert("路线名称11："+lx.lxmc);
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlAKJFL').combobox('getText')!="全部"){
+				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
+			}
+			wqxm(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -110,7 +143,7 @@
 								</select>
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
 								<img alt="添加"  onclick="openAddWqgz()" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " style="vertical-align:middle;">
