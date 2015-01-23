@@ -239,7 +239,10 @@
  	select 
  	xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,zlc v_6,yhlc v_7,gjxjnd v_8
  	from xmk_abgc where sbzt='已上报'
-	and tbbmbm like #{tbdw}||'%' and sbthcd &lt;=#{sck_sbthcd} and sbbm like #{sbdw}||'%'
+	and sbthcd &lt;=#{sck_sbthcd} and sbbm like #{sbdw}||'%'
+	<if test="tbdw!=null and tbdw!=''">
+		and tbbmbm like #{tbdw}||'%'
+	</if>
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap">
  	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,lxbm,lxmc,sczlc,scyhlc)
