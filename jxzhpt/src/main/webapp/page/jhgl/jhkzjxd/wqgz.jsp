@@ -114,6 +114,6 @@
         	</tr>
 		</table>
 	</div>
-	<div id="zjxd_wqgz" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="wqgz_zjxd" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

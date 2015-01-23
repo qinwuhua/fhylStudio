@@ -40,6 +40,9 @@
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
 		<result property="bz" column="bz"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<collection property="plan_lx_gcgjs" ofType="plan_lx_gcgj" resultMap="lx"/>
 	</resultMap>
@@ -64,7 +67,7 @@
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
 			select rownum as num,t.* from(
-			select jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
@@ -102,7 +105,7 @@
 								B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
-					     ) order by jh.sbnf desc
+					     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
 					) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}

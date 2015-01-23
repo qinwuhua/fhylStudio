@@ -10,6 +10,9 @@
 		<result property="pfztz" column="pfztz"/>
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
 		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
 	</resultMap>
 	<resultMap type="jckzhfz"  id="zhfz_lx">
@@ -26,7 +29,7 @@
 		select * from 
 			(
 				select rownum as num,t.* from (
-					select jh.jh_sbthcd,jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+					select jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 					lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc
 				 	from plan_zhfz jh left join xmk_zhfz lx on jh.sckid=lx.id where 1=1
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">

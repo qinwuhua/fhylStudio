@@ -73,12 +73,19 @@ public class Plan_gcgj {
 	private int jh_sbthcd;//上报退回状态的长度标示
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
+	private String sfylsjl;//最近年份是否有历史记录
 	private List<Plan_lx_gcgj> plan_lx_gcgjs;//对应所有的路线集合
 	public List<Plan_lx_gcgj> getPlan_lx_gcgjs() {
 		return plan_lx_gcgjs;
 	}
 	public void setPlan_lx_gcgjs(List<Plan_lx_gcgj> plan_lx_gcgjs) {
 		this.plan_lx_gcgjs = plan_lx_gcgjs;
+	}
+	public String getSfylsjl() {
+		return sfylsjl;
+	}
+	public void setSfylsjl(String sfylsjl) {
+		this.sfylsjl = sfylsjl;
 	}
 	public int getJh_sbthcd() {
 		return jh_sbthcd;

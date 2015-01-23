@@ -9,6 +9,9 @@
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="pfztz" column="pfztz"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<association property="jckwqgz"  resultMap="wqgz_lx" ></association>
 	</resultMap>
@@ -26,7 +29,7 @@
 			(
 				select rownum as num,t.* from
 				(
-					select jh.jh_sbthcd,jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
+					select jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
 					lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qlmc,lx.qlbh
 	 				from plan_wqgz jh left join xmk_wqgz lx on jh.sckid=lx.id 
 	 				where 1=1

@@ -61,7 +61,7 @@
 					editStatus(jh);
 				});
 				alert("上报成功！");
-				searchShuih();
+				searchGcsj();
 			}else{
 				alert("请检查选中的数据，只能上报未上报过的计划！");
 			}
@@ -148,7 +148,7 @@
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchGcsj()" style="vertical-align:middle;padding-left: 8px;"/>
-        						<img id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>
@@ -174,7 +174,7 @@
         	</tr>
 		</table>
 	</div>
-	
+	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 	<div id="gclmsj_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

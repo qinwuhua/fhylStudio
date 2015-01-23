@@ -26,41 +26,41 @@
 			gclmgjxm_sh(jh,lx);
 		});
 		function searchGcgj(){
-			var jh={jhnf:null,sbzt:"1",spzt:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
-			//管养单位编码
-			var sheng = new RegExp("^[0-9]{7}0000$");
-			var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
-			var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-			if(lx.gydwdm=="36"){
-				lx.gydwdm="%"+lx.gydwdm+"%";
-			}else if(shi1.test(lx.gydwdm) || shi2.test(lx.gydwdm) ){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-2)+"__";
-			}
-			else if(sheng.test(lx.gydwdm)){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-4)+"____";
-			}
-			//行政区划代码
-			var yi1 = new RegExp("^36[0-9][1-9]00$");
-			var yi2= new RegExp("^36[1-9][0-9]00$");
-			if(lx.xzqhdm=="360000"){
-				lx.xzqhdm=="36____";
-			}else if(yi1.test(lx.xzqhdm) || yi2.test(lx.xzqhdm)){
-				lx.xzqhdm=lx.xzqhdm.substring(0, lx.xzqhdm.length-2)+"__";
-			}
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
 				jh.sbnf=$("#sbnf").combo("getValue");
 			}
-			if($('#txtlxmc').val()!=""){
-				lx.lxmc=$('#txtlxmc').val();
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
-			if($("#yjsdj").combo("getValue")!=""){
-				lx.yjsdj= $("#yjsdj").combo("getValue");
+			if($("#ddlPDDJ").combo("getValue")!=""){
+				lx.yjsdj= $("#ddlPDDJ").combo("getValue");
 			}
-			if($("#gldj").combo("getValue")!=""){
-				lx.lxbm=$("#gldj").combo("getValue");
+			if($("#ddlGldj").combo("getValue")!=""){
+				lx.lxbm=$("#ddlGldj").combo("getValue");
 			}
 			gclmgjxm_sh(jh,lx);
+		}
+		function sp(id,jh_sbthcd){
+			var date=new Date();
+			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var jh={'jh.id':id,'jh.spsj':sbsj,'jh.spbmdm':$.cookie("unit"),'jh.spzt':'1',
+					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(editStatus(jh)){
+				alert("审批成功！");
+				searchGcgj();
+			}
+		}
+		function tuihui(id,jh_sbthcd){
+			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd-2};
+			if(editStatus(jh)){
+				alert("成功将计划退回！");
+				searchGcgj();
+			}
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -96,15 +96,13 @@
         						<span>上报年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;审批状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;">
+        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
+								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -114,7 +112,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
+								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;">
 									<option selected="selected" value="">全部</option>
 									<option value="1">一级公路</option>
 									<option value="2">二级公路</option>
@@ -123,7 +121,7 @@
 									<option value="5">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>

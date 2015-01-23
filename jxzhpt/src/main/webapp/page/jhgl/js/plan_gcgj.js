@@ -124,7 +124,7 @@ function gclmgjxm_sb(jh,lx){
 				formatter : function(value, row, index) {
 					var result="";
 					if(row.sbzt=="0"){
-						result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
+						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 					}
 					else if(row.sbzt=="1"){
 						result="已上报";
@@ -204,7 +204,8 @@ function gclmgjxm_sh(jh,lx){
 				formatter : function(value, row, index) {
 					var result;
 					if(row.spzt=='0'){
-						result="<a style='text-decoration:none;color:#3399CC;'>审批</a>";
+						result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+						result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 					}
 					else if(row.spzt=="1"){
 						result="已审批";
@@ -212,11 +213,12 @@ function gclmgjxm_sh(jh,lx){
 					return result;
 				}
 		    },
-		    {field : 'c5',title : '最近年份历史修建记录',width : 80,align : 'center',
-				formatter : function(value, row, index) {
-					return '有';
-				}
-		    },
+		    {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+	        	if(row.sfylsjl=='0')
+	        		return '无';
+	        	else if(row.sfylsjl=='1')
+	        		return '有';
+	        }},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
 		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
@@ -286,14 +288,22 @@ function gclmgjxm_zjxd(jh,lx){
 		    {field:'zjxf',title:'资金下发',width:60,align:'center',formatter:function(value,row,index){
 		    	return '<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目资金下达','../zjxd/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 		    }},
-		    {field : 'c4',title : '建设状态',width : 80,align : 'center',
+		    {field : 'kgzt',title : '建设状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
-					return '未开工';
+					if(row.kgzt=='0' && row.jgzt=='0')
+						return '未开工';
+					else if(row.kgzt=='1' && row.jgzt=='0')
+						return '在建';
+					else if(row.kgzt=='1' && row.jgzt=='1')
+						return '竣工';
 				}
 		    },
-		    {field : 'c5',title : '最近年份历史修建记录',width : 80,align : 'center',
+		    {field : 'sfylsjl',title : '是否有修建记录',width : 80,align : 'center',
 				formatter : function(value, row, index) {
-					return '有';
+					if(row.sfylsjl=='0')
+		        		return '无';
+		        	else if(row.sfylsjl=='1')
+		        		return '有';
 				}
 		    },
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
@@ -495,4 +505,25 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function editStatus(jh){
+	var result;
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editGcgjStatus.do',
+		dataType:'json',
+		data:jh,
+		async:false,
+		success:function(data){
+			if(data.result){
+				result = true;
+			}else{
+				result = false;
+			}
+		},
+		error:function(){
+			result=false;
+		}
+	});
+	return result;
 }
