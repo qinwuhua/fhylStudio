@@ -20,8 +20,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			alert("unit2："+$.cookie("unit2"));
-			//alert("用户角色："+$.cookie("roleid"));
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={jhnf:null,sbzt:null,spzt:null};
@@ -116,14 +114,6 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span style="vertical-align:middle;">项目状态：</span>
-        						<select name="ddlXMtype" id="ddlXMtype" style="width:80px;vertical-align:middle;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="待上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="已入库">已入库</option>
-									<option value="已下达">已下达</option>
-								</select>
 								<img alt="下发" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/xiafa_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/xiafa_1.png'" src="${pageContext.request.contextPath}/images/Button/xiafa_1.png" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/>

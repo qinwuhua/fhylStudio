@@ -22,9 +22,14 @@ function gclmsjxm(jh,lx){
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-				var id="'"+row.id+"'";
-				result+='<a href="javascript:dropGcsj('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				if(row.jh_sbthcd==0){
+					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+					var id="'"+row.id+"'";
+					result+='<a href="javascript:dropGcsj('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				}else{
+					result+='<a style="text-decoration:none;">编辑</a>    ';
+					result+='<a style="text-decoration:none;">删除</a>';
+				}
 				return result;
 			}},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
@@ -106,13 +111,16 @@ function gclmsjxm_sb(jh,lx){
 				var result="";
 				result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sb','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+				if(row.jh_sbthcd==0)
+					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+				else
+					result+='<a style="text-decoration:none;">编辑</a>';
 				return result;
 			}},
 			{field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 				var result;
 				if(row.sbzt=="0"){
-					result="<a style='text-decoration:none;color:#3399CC;'>上报</a>";
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 				}else if(row.sbzt=="1"){
 					result="已上报";
 				}
@@ -180,21 +188,28 @@ function gclmsjxm_sh(jh,lx){
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>   ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+				if(row.jh_sbthcd==2)
+					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+				else
+					result+='<a style="text-decoration:none;">编辑</a>';
 				return result;
 			}},
 			{field:'c1',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 				var result;
 				if(row.spzt=="0"){
-					result="<a style='text-decoration:none;color:#3399CC;'>审批</a>";
+					result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+					result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 				}else if(row.spzt=="1"){
 					result="已审批";
 				}
 				return result;
 			}},
-			{field:'c4',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){
-				return '有';
-			}},
+			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+	        	if(row.sfylsjl=='0')
+	        		return '无';
+	        	else if(row.sfylsjl=='1')
+	        		return '有';
+	        }},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -262,9 +277,21 @@ function gclmsjxm_zjxd(jh,lx){
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
 				return '<a href="javascript:openDialog('+"'zjxd_gclmsj','工程改造路面升级项目资金下达','../zjxd/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 			}},
-			{field:'jszt',title:'建设状态',width:80,align:'center'},
-			{field:'c4',title:'最近年份历史修建记录',width:80,align:'center',formatter:function(value,row,index){
-				return '有';
+			{field:'kgzt',title:'建设状态',width:80,align:'center',
+				formatter:function(value,row){
+					if(value=='0' && row.jgzt=='0')
+						return '未开工';
+					else if(value=='1' && row.jgzt=='0')
+						return '在建';
+					else if(value=='1' && row.jgzt=='1')
+						return '竣工';
+				}
+			},
+			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+				if(row.sfylsjl=='0')
+	        		return '无';
+	        	else if(row.sfylsjl=='1')
+	        		return '有';
 			}},
 		  	{field:'sbnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
@@ -470,4 +497,25 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function editStatus(jh){
+	var result;
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editGcsjStatus.do',
+		dataType:'json',
+		data:jh,
+		async:false,
+		success:function(data){
+			if(data.result){
+				result = true;
+			}else{
+				result = false;
+			}
+		},
+		error:function(){
+			result=false;
+		}
+	});
+	return result;
 }

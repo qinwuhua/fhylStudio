@@ -59,6 +59,13 @@ public class Plan_zhfz {
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private Jckzhfz jckzhfz;
+	private String sfylsjl;//最近年份是否有历史记录
+	public String getSfylsjl() {
+		return sfylsjl;
+	}
+	public void setSfylsjl(String sfylsjl) {
+		this.sfylsjl = sfylsjl;
+	}
 	public int getJh_sbthcd() {
 		return jh_sbthcd;
 	}

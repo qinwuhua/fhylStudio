@@ -98,7 +98,7 @@ function tjshyb(){
 	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()
 	+"&gcglsh.qksm="+$("#tj_qksm").val()+"&gcglsh.wcqk="+$("#tj_wcqk").val()
-	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+sbyf+"&gcglsh.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+sbyf+"&gcglsh.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -249,7 +249,7 @@ function showAll(){
 	}); 
 }
 function showYBlist(){
-	var jhid=parent.obj1.jhid;
+	var jhid=parent.obj1.id;
 	var yhjb=$.cookie("unit2");
 	var yhtype='';
 	if(yhjb.length==11){

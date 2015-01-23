@@ -62,7 +62,7 @@ a:active {
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 200px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lx" >
+        							<input type="text" id="lxmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>

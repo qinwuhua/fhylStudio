@@ -18,7 +18,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			alert("unit2："+$.cookie("unit2"));
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={sbnf:null,sbzt:'1',spzt:null};
@@ -158,16 +157,6 @@
         					</p>
         					<table style="margin:8px 0px 4px 20px;">
         						<tr>
-        							<td align="left">
-										<span>项目状态：</span>
-										<select name="xmZT" id="xmZT" style="width:70px;">
-											<option selected="selected" value="">全部</option>
-											<option value="未上报">未上报</option>
-											<option value="已上报">已上报</option>
-											<option value="未审核">未审核</option>
-											<option value="已审核">已审核</option>
-										</select>
-        							</td>
         							<td>
         								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
         								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

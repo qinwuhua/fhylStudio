@@ -33,10 +33,10 @@ public class Plan_gcsj {
 	private String tbbm;//填报部门
 	private String sbzt;//上报状态
 	private String sbbm;//上报部门
-	private String sbsj;//上报时间
+	private Date sbsj;//上报时间
 	private String spzt;//审批状态
 	private String spbm;//审批部门
-	private String spsj;//审批时间
+	private Date spsj;//审批时间
 	private String xmwybh;//项目唯一编号(手填)
 	private String xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
@@ -78,12 +78,19 @@ public class Plan_gcsj {
 	private int jh_sbthcd;//上报退回状态的长度标示
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
+	private String sfylsjl;//最近年份是否有历史记录
 	private List<Plan_lx_gcsj> plan_lx_gcsjs;
 	public List<Plan_lx_gcsj> getPlan_lx_gcsjs() {
 		return plan_lx_gcsjs;
 	}
 	public void setPlan_lx_gcsjs(List<Plan_lx_gcsj> plan_lx_gcsjs) {
 		this.plan_lx_gcsjs = plan_lx_gcsjs;
+	}
+	public String getSfylsjl() {
+		return sfylsjl;
+	}
+	public void setSfylsjl(String sfylsjl) {
+		this.sfylsjl = sfylsjl;
 	}
 	public int getJh_sbthcd() {
 		return jh_sbthcd;
@@ -283,10 +290,10 @@ public class Plan_gcsj {
 	public void setSbbm(String sbbm) {
 		this.sbbm = sbbm;
 	}
-	public String getSbsj() {
+	public Date getSbsj() {
 		return sbsj;
 	}
-	public void setSbsj(String sbsj) {
+	public void setSbsj(Date sbsj) {
 		this.sbsj = sbsj;
 	}
 	public String getSpzt() {
@@ -301,10 +308,10 @@ public class Plan_gcsj {
 	public void setSpbm(String spbm) {
 		this.spbm = spbm;
 	}
-	public String getSpsj() {
+	public Date getSpsj() {
 		return spsj;
 	}
-	public void setSpsj(String spsj) {
+	public void setSpsj(Date spsj) {
 		this.spsj = spsj;
 	}
 	public String getXmwybh() {

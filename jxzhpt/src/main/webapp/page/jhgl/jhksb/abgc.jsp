@@ -176,16 +176,6 @@
         					</p>
         					<table style="margin:8px 0px 4px 20px;">
         						<tr>
-        							<td align="left">
-										<span>项目状态：</span>
-										<select name="xmZT" id="xmZT" style="width:70px;">
-											<option selected="selected" value="">全部</option>
-											<option value="未上报">未上报</option>
-											<option value="已上报">已上报</option>
-											<option value="未审核">未审核</option>
-											<option value="已审核">已审核</option>
-										</select>
-        							</td>
         							<td>
         								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 8px;"/>
         								<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

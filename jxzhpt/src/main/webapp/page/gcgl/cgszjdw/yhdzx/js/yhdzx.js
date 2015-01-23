@@ -3,7 +3,9 @@ var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',700,450);
 	//window.open("yhdzxxx.jsp");
 }
@@ -34,7 +36,7 @@ function tjyhdzxcgs(){
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
 	var data="gcglyhdzx.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglyhdzx.tbr="+$.cookie("truename")+"&gcglyhdzx.tbsj="+tbsj+"&gcglyhdzx.tbyf="+tbyf
-	+"&gcglyhdzx.jhid="+parent.parent.obj1.jhid;
+	+"&gcglyhdzx.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -140,7 +142,7 @@ function showAll(){
 }
 
 function showAllZJ(){
-	var jhid=parent.obj1.jhid;
+	var jhid=parent.obj1.id;
 	$('#zjgrid').datagrid({    
 		url:'../../../../gcgl/selectYhdzxCgsList.do',
 	    striped:true,
@@ -165,4 +167,77 @@ function showAllZJ(){
 				{field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
 	    ]]    
 	}); 
+}
+//
+function uploadFile(str){
+	//alert(str);
+	var title='';
+	if(str=='sgxkwj')
+		title='请选择施工许可文件';
+	if(str=='jgtcwj')
+		title='请选择交工通车文件';
+	if(str=='jgyswj')
+		title='请选择完工验收文件';
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : title,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadYhdzxFile.do"+'&flag='+'cgszjdw%2fyhdzx%2fyhdzxxx'+'&type='+str+'&jhid='+parent.obj1.id,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="../../../../gcgl/downYhdzxFile.do?type="+str+"&jhid="+parent.obj1.id;
+	}
+	else return;
+}
+function deleteFile(str){
+	if(confirm("确认删除吗？")){
+	var data="jhid="+parent.obj1.id+"&type="+str;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/deleteYhdzxFile.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				location.reload();
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});	
+	}
+}
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectYhdzxjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+				if(msg.sgxkwj!=''){
+					$("#xz_sgxkwj").text("下载附件");
+				}
+				if(msg.jgtcwj!=''){
+					$("#xz_jgtcwj").text("下载附件");
+				}
+				if(msg.jgyswj!=''){
+					$("#xz_jgyswj").text("下载附件");
+				}
+			}
+	});	
 }

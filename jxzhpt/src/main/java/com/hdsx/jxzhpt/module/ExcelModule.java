@@ -47,7 +47,8 @@ public class ExcelModule extends BaseActionSupport {
 	@Resource(name = "sckzhfzServerImpl")
 	private SckzhfzServer zhfzServer;
 	private String moduleName;
-	private String xzqhmc;
+	private String sbdw;
+	private String tbdw;
 	private String sck_sbthcd;
 	public void getModule() {
 		String filename = moduleName;
@@ -105,8 +106,9 @@ public class ExcelModule extends BaseActionSupport {
 			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 			String descr="";
 			Map map = new HashMap();
-			map.put("xzqhmc", xzqhmc);
+			map.put("sbdw", sbdw);
 			map.put("sck_sbthcd", sck_sbthcd);
+			map.put("tbdw", tbdw);
 			if ("SCK_Security".equals(moduleName)) { // 安保的数据
 				list = abgcServer.insertToSheet(map);
 				descr="填表说明：\n"+
@@ -194,8 +196,9 @@ public class ExcelModule extends BaseActionSupport {
 			Plan_abgcServer abgcServer = new Plan_abgcServerImpl();
 			Plan_zhfzServer zhfzServer = new Plan_zhfzServerImpl();
 			Map map = new HashMap();
-			map.put("xzqhmc", xzqhmc);
+			map.put("sbdw", sbdw);
 			map.put("sck_sbthcd", sck_sbthcd);
+			map.put("tbdw", tbdw);
 			if("Plan_Bridge".equals(moduleName)){
 				list = wqgzServer.insertToSheet(map);
 				descr = "填表说明: \n"+
@@ -308,12 +311,20 @@ public class ExcelModule extends BaseActionSupport {
 		this.sck_sbthcd = sck_sbthcd;
 	}
 
-	public String getXzqhmc() {
-		return xzqhmc;
+	public String getSbdw() {
+		return sbdw;
 	}
 
-	public void setXzqhmc(String xzqhmc) {
-		this.xzqhmc = xzqhmc;
+	public void setSbdw(String sbdw) {
+		this.sbdw = sbdw;
+	}
+
+	public String getTbdw() {
+		return tbdw;
+	}
+
+	public void setTbdw(String tbdw) {
+		this.tbdw = tbdw;
 	}
 	
 }

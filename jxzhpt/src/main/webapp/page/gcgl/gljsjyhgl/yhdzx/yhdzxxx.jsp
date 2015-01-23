@@ -41,7 +41,7 @@ a {
 </style>
 </head>
 <body style="margin: 0 0 0 0">
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
+	<div style="text-align: left; font-size: 12px; margin: 5px;">
 		 <table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;"
             cellspacing="0" cellpadding="0">

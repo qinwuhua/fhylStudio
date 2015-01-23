@@ -59,11 +59,18 @@ public class Plan_wqgz {
 	private String jh_sbthcd;
 	private String sbbmdm;
 	private String spbmdm;
+	private String sfylsjl;//最近年份是否有历史记录
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
 	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getSfylsjl() {
+		return sfylsjl;
+	}
+	public void setSfylsjl(String sfylsjl) {
+		this.sfylsjl = sfylsjl;
 	}
 	public String getSbbmdm() {
 		return sbbmdm;

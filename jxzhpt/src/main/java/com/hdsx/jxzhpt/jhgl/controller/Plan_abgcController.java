@@ -46,6 +46,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private File fileupload;
 	
 	public void importAbgc_jh(){
+		System.out.println("进入数据处理");
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try{
@@ -57,7 +58,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,24,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -69,7 +70,9 @@ public class Plan_abgcController extends BaseActionSupport{
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败");
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * excel导出
@@ -117,6 +120,9 @@ public class Plan_abgcController extends BaseActionSupport{
 		HttpServletResponse response= getresponse();
 		ee.makeExcel(tableName, sheetBeans, response);
 	}
+	/**
+	 * 查询安保工程的列表信息
+	 */
 	public void queryAbgcList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));
@@ -127,7 +133,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 查询安保工程的年份列表
+	 */
 	public void queryAbgcNfs(){
 		try {
 			JsonUtils.write(abgcServer.queryAbgcNfs(), getresponse().getWriter()) ;
@@ -137,7 +145,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 根据ID查询安保工程的相信信息
+	 */
 	public void queryAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.queryAbgcById(jh.getId()), getresponse().getWriter());
@@ -147,6 +157,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 根据ID删除安保工程计划
+	 */
 	public void dropAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.dropAbgcById(jh.getId()), getresponse().getWriter());
@@ -156,7 +169,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改安保工程的详细信息
+	 */
 	public void editAbgcById(){
 		try {
 			JsonUtils.write(abgcServer.editAbgcById(jh), getresponse().getWriter());
@@ -166,7 +181,9 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改安保工程的上报和审批状态
+	 */
 	public void editAbgcStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();

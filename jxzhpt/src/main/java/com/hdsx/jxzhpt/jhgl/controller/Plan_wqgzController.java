@@ -47,19 +47,22 @@ public class Plan_wqgzController extends BaseActionSupport {
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,23,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			System.out.println(data);
 			//将数据插入到数据库
 			boolean b=wqgzServer.importWqgz_jh(data);
 			if(b)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败");
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void queryWqgzNfs(){
 		try {
