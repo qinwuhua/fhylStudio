@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
@@ -41,7 +42,7 @@ public interface Plan_zhfzServer {
 	 * @param xzqhdm
 	 * @return
 	 */
-	List<SjbbMessage> insertToSheet(String xzqhdm);
+	List<SjbbMessage> insertToSheet(Map map);
 	
 	/**
 	 * 
@@ -61,4 +62,6 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	int editZhfzById(Plan_zhfz jh);
+	
+	boolean importZhfz_jh(List<Map> data);
 }

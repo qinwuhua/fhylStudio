@@ -13,18 +13,24 @@
 <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../js/YMLib.js"></script></script>
+<script type="text/javascript" src="../js/util/jquery.cookie.js"></script></script>
 <script type="text/javascript" src="../js/util/utile.js"></script></script>
 <script type="text/javascript">
 	$(function(){
 		loadDist("xzqh","360000");	
+		/* console.info($.cookie('unit'));
+		console.info($.cookie('unit2'));
+		console.info($.cookie('dist'));
+		console.info($.cookie('dist2')); */
 	});
 	function exportModule_sc(){
+		var xzqhmc=("360000"==$('#xzqh').combobox("getValue"))?"":$('#xzqh').combobox("getValue");
 		var filename = getParam('filename');
 		var tempVar = filename.substring(0,filename.indexOf('_'));
 		if(tempVar=='SCK')
-			window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&xzqhdm="+$('#xzqh').combotree('getText');
+			window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&sck_sbthcd="+$.cookie('unit2').length+"&xzqhmc="+xzqhmc;
 		else
-			window.location.href="/jxzhpt/xtgl/getModule_jh.do?moduleName="+filename+"&xzqhdm="+$('#xzqh').combotree('getText');
+			window.location.href="/jxzhpt/xtgl/getModule_jh.do?moduleName="+filename+"&sck_sbthcd="+$.cookie('unit2').length+"&xzqhmc="+xzqhmc;
 		setInterval(function(){window.parent.$('#exportChooseDw').window('close');},1000); 
 		
 	}

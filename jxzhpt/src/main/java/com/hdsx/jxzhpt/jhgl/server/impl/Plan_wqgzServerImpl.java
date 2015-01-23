@@ -49,8 +49,8 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-	public List<SjbbMessage> insertToSheet(String xzqhdm) {
-		return this.queryList("insertToSheet",xzqhdm);
+	public List<SjbbMessage> insertToSheet(Map map) {
+		return this.queryList("insertToSheet",map);
 	}
 
 	@Override
@@ -64,5 +64,10 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	@Override
 	public int editWqgzById(Plan_wqgz jh) {
 		return update("editWqgzById", jh);
+	}
+
+	@Override
+	public boolean importWqgz_jh(List<Map> data) {
+		return this.insertBatch("importWqgz_jh", data)==data.size()?true:false;
 	}
 }
