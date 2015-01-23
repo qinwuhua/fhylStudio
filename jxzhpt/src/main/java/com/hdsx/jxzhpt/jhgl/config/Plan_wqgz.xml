@@ -146,6 +146,6 @@
 	</update>
 	<insert id="importWqgz_jh" parameterType="hashMap">
 		insert into PLAN_WQGZ(id,sckid,sbnf,jhkgsj,jhwgsj,xdsj,sjdw,sjpfdw,pfwh,pfsj,pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,bz,xdzt)
-		values(sys_guid(),(select id from sck_wqgz where sck_lxbm=#{2}  and sck_qlbh=#{4} and sck_qlzxzh=#{6}),#{9},to_date(#{10},'yyyy-mm-dd'),to_date(#{11},'yyyy-mm-dd'),to_date(#{12},'yyyy-mm-dd'),#{13},#{14},#{15},to_date(#{16},'yyyy-mm-dd'),#{17},#{18},#{19},#{20},#{21},#{22},'0')
+		values(sys_guid(),(select id from xmk_wqgz where lxbm=#{2}  and qlbh=#{4} and qlzxzh=#{6}),#{9},to_date(#{10},'yyyy-mm-dd'),to_date(#{11},'yyyy-mm-dd'),to_date(#{12},'yyyy-mm-dd'),#{13},#{14},#{15},to_date(#{16},'yyyy-mm-dd'),#{17},#{18},#{19},#{20},#{21},#{22},'0')
 	</insert>
 </mapper>

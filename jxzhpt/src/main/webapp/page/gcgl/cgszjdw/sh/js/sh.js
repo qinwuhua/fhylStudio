@@ -3,7 +3,9 @@ var obj1=new Object();
 function dingwei(){
 	alert("在地图上定位");
 }
-function wqxiangxi(){
+function wqxiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
 	YMLib.UI.createWindow('wqxx','水毁项目开工详情','shxx.jsp','wqxx',700,450);
 	//window.open("shxx.jsp");
 }
@@ -34,7 +36,7 @@ function tjshcgs(){
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
 	var data="gcglsh.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglsh.tbr="+$.cookie("truename")+"&gcglsh.tbsj="+tbsj+"&gcglsh.tbyf="+tbyf
-	+"&gcglsh.jhid="+parent.parent.obj1.jhid;
+	+"&gcglsh.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -134,7 +136,7 @@ function showAll(){
 	}); 
 }
 function showAllZJ(){
-	var jhid=parent.obj1.jhid;
+	var jhid=parent.obj1.id;
 	$('#zjgrid').datagrid({    
 		url:'../../../../gcgl/selectShCgsList.do',
 	    striped:true,
@@ -159,4 +161,77 @@ function showAllZJ(){
 				{field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
 	    ]]    
 	}); 
+}
+//
+function uploadFile(str){
+	//alert(str);
+	var title='';
+	if(str=='sgxkwj')
+		title='请选择施工许可文件';
+	if(str=='jgtcwj')
+		title='请选择交工通车文件';
+	if(str=='jgyswj')
+		title='请选择完工验收文件';
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : title,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadShFile.do"+'&flag='+'cgszjdw%2fsh%2fshxx'+'&type='+str+'&jhid='+parent.obj1.id,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="../../../../gcgl/downShFile.do?type="+str+"&jhid="+parent.obj1.id;
+	}
+	else return;
+}
+function deleteFile(str){
+	if(confirm("确认删除吗？")){
+	var data="jhid="+parent.obj1.id+"&type="+str;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/deleteShFile.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				location.reload();
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});	
+	}
+}
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectShjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+				if(msg.sgxkwj!=''){
+					$("#xz_sgxkwj").text("下载附件");
+				}
+				if(msg.jgtcwj!=''){
+					$("#xz_jgtcwj").text("下载附件");
+				}
+				if(msg.jgyswj!=''){
+					$("#xz_jgyswj").text("下载附件");
+				}
+			}
+	});	
 }

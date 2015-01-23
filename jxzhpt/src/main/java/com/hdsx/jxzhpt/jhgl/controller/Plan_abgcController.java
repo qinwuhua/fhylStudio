@@ -46,6 +46,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private File fileupload;
 	
 	public void importAbgc_jh(){
+		System.out.println("进入数据处理");
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try{

@@ -97,7 +97,7 @@ function tjgcgzsjyb(){
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#tj_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#tj_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#tj_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#tj_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#tj_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#tj_kgdl").val()+"&gcglgcgzsj.qksm="+$("#tj_qksm").val()+"&gcglgcgzsj.bywctze="+$("#tj_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#tj_bywcgzl").val()
-	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+sbyf+"&gcglgcgzsj.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+sbyf+"&gcglgcgzsj.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -248,7 +248,7 @@ function showAll(){
 }
 
 function showYBlist(){
-	var jhid=parent.obj1.jhid;
+	var jhid=parent.obj1.id;
 	var yhjb=$.cookie("unit2");
 	var yhtype='';
 	if(yhjb.length==11){
@@ -351,7 +351,7 @@ function downFile(str){
 }
 function deleteFile(str){
 	if(confirm("确认删除吗？")){
-	var data="jhid="+parent.obj1.jhid+"&type="+str;
+	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/deleteGcgzsjFile.do',

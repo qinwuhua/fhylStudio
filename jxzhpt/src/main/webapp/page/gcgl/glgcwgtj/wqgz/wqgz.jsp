@@ -11,24 +11,21 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/wqgz.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			loadUnit("gydw",$.cookie("unit"));
 			showAll();
 		});
-		$(window).resize(function () { 
-			$('#datagrid').datagrid('resize'); 
-		});
+		
 	</script>
 	<style type="text/css">
 <!--
@@ -40,6 +37,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -65,21 +63,14 @@ a:active {
         				<div>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
-        						<select id="gydw" style="width:200px;"></select>
-        						<span>开工状态：</span>
-        						<select id="sbnf" style="width: 65px;">
-        							<option value="">全部</option>
-        							<option value="已开工">已开工</option>
-        							<option value="未开工">未开工</option>
-        						</select>
-        						<span>路线：</span>
-        							<input type="text" id="lx" >
-        						<span>桥梁：</span>
-        							<input type="text" id="ql" >
+        						<input id="gydw" style="width: 200px;">
+        						<span>路线名称：</span>
+        							<input type="text" id="lxmc" >
+        						<span>桥梁名称：</span>
+        							<input type="text" id="qlmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
-        							<span></span>
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
         					</p>
         				</div>
         			</fieldset>
