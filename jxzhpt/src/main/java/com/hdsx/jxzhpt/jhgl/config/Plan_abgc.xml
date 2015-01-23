@@ -113,7 +113,7 @@
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,xzqhmc v_1,sc.sck_lxbm v_2,sc.sck_lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,sc.scyhlc v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_abgc sc,xmk_abgc xm where sc.xmkid=xm.id and sck_sbzt='已上报' and sc.lrjh='已列入'
-		and sck_sbthcd &lt;=#{sck_sbthcd} and sck_sbbm like #{sbdw}||'%'
+		and sck_sbthcd &lt;=#{sck_sbthcd}  
 		<if test="tbdw!=null and tbdw!=''">
 		 	and scbmbm like #{tbdw}||'%'
 	    </if>
@@ -161,7 +161,8 @@
 		where id=#{id}
 	</update>
 	<insert id="importAbgc_jh" parameterType="hashMap">
-		insert into PLAN_ABGC(id,sckid,sbnf,jhkgsj,jhwgsj,xdsj,sjdw,sjpfdw,pfwh,pfsj,pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,bz)
-		values(sys_guid(),(select id from sck_abgc where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5}),#{9},#{10},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},#{20},#{21},#{22},#{22},#{23})
+		insert into PLAN_ABGC(id,sckid,JHNF,jhkgsj,jhwgsj,xdsj,sjdw,sjpfdw,pfwh,pfsj,pfztz,JHSYBBZJE,JHSYDFZCZJ,sfsqablbz,ablbzsqwh,REMARKS,xdzt)
+		values(sys_guid(),(select id from xmk_abgc where lxbm=#{2} and lxmc=#{3} and qdzh=#{4} and zdzh=#{5}),#{9},to_date(#{11},'yyyy-mm-dd'),to_date(#{12},'yyyy-mm-dd'),to_date(#{13},'yyyy-mm-dd'),
+		#{14},#{15},#{16},to_date(#{17},'yyyy-mm-dd'),#{18},#{19},#{20},#{21},#{22},#{23},'0')
 	</insert>
 </mapper>

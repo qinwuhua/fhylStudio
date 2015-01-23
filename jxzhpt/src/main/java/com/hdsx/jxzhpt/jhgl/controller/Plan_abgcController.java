@@ -57,7 +57,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,24,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -69,7 +69,9 @@ public class Plan_abgcController extends BaseActionSupport{
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败");
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * excel导出
