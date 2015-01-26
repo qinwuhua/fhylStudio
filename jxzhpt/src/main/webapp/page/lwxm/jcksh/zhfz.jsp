@@ -25,9 +25,14 @@ $(function(){
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id = rows[0].id;
+	var shzt=rows[0].shzt;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量审核！");
+		return;
+	}
+	if(shzt=='已审核'){
+		alert("该项目已审核，请勿重复操作！");
 		return;
 	}
 	if(confirm('您确定审核通过该项目？')){
@@ -170,7 +175,7 @@ text-decoration:none;
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckshZhfz();"style="border-width:0px;cursor: hand;" />
-								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shenPi();" style="border-width:0px;" />
+								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_zhfz_sh();" style="border-width:0px;cursor: hand;" />
 							 </p>
