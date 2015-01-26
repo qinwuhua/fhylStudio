@@ -527,3 +527,6 @@ function editStatus(jh){
 	});
 	return result;
 }
+function exportGj(filename){
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;
+}

@@ -61,4 +61,14 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return update("editGcsjStatus", jh)>0;
 	}
 
+	@Override
+	public boolean insertGcsj_Jh(List<Map> jh) {
+		return insertBatch("insertGcsj_Jh", jh)==jh.size();
+	}
+
+	@Override
+	public boolean insertGcsj_lx(List<Map> lx) {
+		return insertBatch("insertGcsj_lx", lx)==lx.size();
+	}
+
 }

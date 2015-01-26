@@ -60,4 +60,14 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public boolean editShuihStatus(Plan_shuih jh) {
 		return update("editShuihStatus", jh)>0;
 	}
+
+	@Override
+	public boolean insertShuih_Jh(List<Map> jh) {
+		return insertBatch("insertShuih_Jh", jh)==jh.size();
+	}
+
+	@Override
+	public boolean insertShuih_Lx(List<Map> lx) {
+		return insertBatch("insertShuih_Lx", lx)==lx.size();
+	}
 }

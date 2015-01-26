@@ -9,6 +9,7 @@
 		<action name="dropGcgjById" class="plan_gcgjController" method="dropGcgjById"/>
 		<action name="editGcgjById" class="plan_gcgjController" method="editGcgjById"/>
 		<action name="editGcgjStatus" class="plan_gcgjController" method="editGcgjStatus"/>
+		<action name="importGcgj_jh" class="plan_gcgjController" method="importGcgj_jh"/>
 		
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
 		<action name="queryGcsjList" class="plan_gcsjController" method="queryGcsjList"/>
@@ -16,6 +17,7 @@
 		<action name="dropGcsjById" class="plan_gcsjController" method="dropGcsjById"/>
 		<action name="editGcsjById" class="plan_gcsjController" method="editGcsjById"/>
 		<action name="editGcsjStatus" class="plan_gcsjController" method="editGcsjStatus"/>
+		<action name="importGcsj_jh" class="plan_gcsjController" method="importGcsj_jh"/>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
@@ -44,6 +46,7 @@
 		<action name="dropShuihById" class="plan_shuihController" method="dropShuihById"/>
 		<action name="editShuihById" class="plan_shuihController" method="editShuihById"/>
 		<action name="editShuihStatus" class="plan_shuihController" method="editShuihStatus"/>
+		<action name="importShuih_jh" class="plan_shuihController" method="importShuih_jh"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>

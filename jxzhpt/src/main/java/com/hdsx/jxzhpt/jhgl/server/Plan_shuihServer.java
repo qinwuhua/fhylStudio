@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
@@ -52,4 +53,16 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	boolean editShuihStatus(Plan_shuih jh);
+	/**
+	 * 添加计划信息
+	 * @param jh
+	 * @return
+	 */
+	boolean insertShuih_Jh(List<Map> jh);
+	/**
+	 * 添加路线信息
+	 * @param lx
+	 * @return
+	 */
+	boolean insertShuih_Lx(List<Map> lx);
 }

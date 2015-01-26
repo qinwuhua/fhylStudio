@@ -59,4 +59,14 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean editGcgjStatus(Plan_gcgj jh) {
 		return update("editGcgjStatus",jh)>0;
 	}
+
+	@Override
+	public boolean insertGcgj_jh(List<Map> jh) {
+		return insertBatch("insertGcgj_jh", jh)==jh.size();
+	}
+
+	@Override
+	public boolean insertGcgj_lx(List<Map> lx) {
+		return insertBatch("insertGcgj_lx", lx)==lx.size();
+	}
 }

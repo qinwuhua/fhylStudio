@@ -65,6 +65,6 @@
 	<action name="getModule" class="excelModule" method="getModule"/>
 	<action name="getModule_sc" class="excelModule" method="getModule_sc"/>
 	<action name="getModule_jh" class="excelModule" method="getModule_jh"/>
-	
+	<action name="getModule_jhfeiLw" class="excelModule" method="getModule_jhfeiLw"/>
  </package>
 </struts>

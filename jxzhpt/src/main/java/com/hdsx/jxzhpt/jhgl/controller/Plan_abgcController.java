@@ -127,6 +127,9 @@ public class Plan_abgcController extends BaseActionSupport{
 		jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
+			String regex="^[0-9]*.[0-9]{3}$";
+			boolean result="123.111".matches(regex);
+			System.out.println("检验结果："+result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

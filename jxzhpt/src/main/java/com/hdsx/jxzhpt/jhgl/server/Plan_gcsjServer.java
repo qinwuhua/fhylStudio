@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
@@ -53,4 +54,16 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	boolean editGcsjStatus(Plan_gcsj jh);
+	/**
+	 * 添加工程升级计划
+	 * @param jh
+	 * @return
+	 */
+	boolean insertGcsj_Jh(List<Map> jh);
+	/**
+	 * 添加工程升级路线
+	 * @param lx
+	 * @return
+	 */
+	boolean insertGcsj_lx(List<Map> lx);
 }

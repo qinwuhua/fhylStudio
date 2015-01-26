@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -234,7 +235,7 @@ public class ExcelModule extends BaseActionSupport {
 					"13.列22是否申请按比例补助、列23按比例补助申请文号：根据《公路路网结构改造工程管理办法》（交公路发{2011}182号）第十九条有关规定，\n"+
 					"总投资超过500万元的项目可按照项目投资比例进行补助。如第22列填写“是”，第23列需填写省级交通运输主管部门报交通运输部的申请文件文号。\n"+
 					"14.列24：备注";
-			}else{
+			}else if("Plan_Disaster".equals(moduleName)){
 				list = zhfzServer.insertToSheet(map);
 				descr = "填表说明: \n"+
 					"1.列1行政区划代码、列2行政区划名称填写到县级，其中行政区划代码具体参照国家统计局网站最近一次公布《行政区划代码》（网址：http;//www.stats.gov.cn/tjbz/xzqhdm)。\n"+
@@ -293,6 +294,26 @@ public class ExcelModule extends BaseActionSupport {
 		
 	}
 
+	public void getModule_jhfeiLw(){
+		String filename=moduleName;
+		System.out.println("文件名称："+moduleName);
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			OutputStream out;
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+			out = new BufferedOutputStream(response.getOutputStream());
+			InputStream fi = ExcelModule.class.getClassLoader().getResourceAsStream("/excelModule/" + filename + ".xls");
+			POIFSFileSystem ps = new POIFSFileSystem(fi);
+			HSSFWorkbook wb = new HSSFWorkbook(ps);
+			wb.write(out);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getModuleName() {
 		return moduleName;
 	}

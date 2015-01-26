@@ -129,6 +129,7 @@
 		if(flag=='zhfz_jh'){
 			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/zhfz.jsp';
 		}
+		
  		dg.cancel();
 	}
 </script>

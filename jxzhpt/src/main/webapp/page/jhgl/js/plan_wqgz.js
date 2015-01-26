@@ -9,7 +9,6 @@ function sbnf(id){
 	}); 
 }
 function wqxm(jh,lx){
-	alert("开头："+lx.lxmc);
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,

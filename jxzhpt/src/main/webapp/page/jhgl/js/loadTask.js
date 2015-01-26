@@ -116,6 +116,7 @@ function exportExcel(flag){
 }
 //excel审查库数据导入
 function importData_jh(flag){
+	alert(flag);
 	var url="";
 	if(flag=='wqgz_jh'){
 		url="/jxzhpt/jhgl/importWqgz_jh.do";
@@ -125,6 +126,15 @@ function importData_jh(flag){
 	}
 	if(flag=='zhfz_jh'){
 		url="/jxzhpt/jhgl/importZhfz_jh.do";
+	}
+	if(flag=='gcgj_jh'){
+		url="/jxzhpt/jhgl/importGcgj_jh.do";
+	}
+	if(flag=='gcsj_jh'){
+		url="/jxzhpt/jhgl/importGcsj_jh.do";
+	}
+	if(flag=='shuih_jh'){
+		url="/jxzhpt/jhgl/importShuih_jh.do";
 	}
 	//YMLib.UI.createWindow('wqxx1','车购税资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
 	var weatherDlg = new J.dialog( {

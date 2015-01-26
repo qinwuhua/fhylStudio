@@ -40,7 +40,6 @@
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
-			alert("路线名称11："+lx.lxmc);
 			if($('#txtBridge').val()!=''){
 				lx.qlmc=$('#txtBridge').val();
 			}

@@ -1,16 +1,25 @@
 package com.hdsx.jxzhpt.jhgl.controller;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -25,7 +34,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_gcgjServer gcgjServer;//工程改建
 	private Plan_gcgj jh;
 	private Plan_lx_gcgj lx;
-	
+	private String fileuploadFileName;
+	private File fileupload;
 	/**
 	 * 获取工程改建项目列表
 	 */
@@ -98,6 +108,54 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void importGcgj_jh(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader.readExcelContent(3,43,fs,Plan_gcgj.class);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			String strVerify=null;
+			boolean boolJh=false,boolLx=false;
+			for (Map map : data) {
+				UUID jhId = UUID.randomUUID(); 
+				map.put("jhid", jhId.toString().replace("-", ""));
+				map.put("gydwdm", "测试管养单位");
+				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
+				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
+				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
+				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
+				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
+				strVerify = ImportVerify.gcgjVerify(map);
+			}
+			System.out.println(data);
+			//将数据插入到数据库
+			if(strVerify.equals("")){
+				boolJh=gcgjServer.insertGcgj_jh(data);
+				boolLx=gcgjServer.insertGcgj_lx(data);
+			}
+			
+			if(boolJh && boolLx)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r"+strVerify);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//get set
 	public int getPage() {
 		return page;
@@ -128,5 +186,20 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	public void setLx(Plan_lx_gcgj lx) {
 		this.lx = lx;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+
+	public File getFileupload() {
+		return fileupload;
+	}
+
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
 }
