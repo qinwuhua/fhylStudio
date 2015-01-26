@@ -26,6 +26,14 @@ var zdStr;
 		autoCompleteLXBM();
 
 		$("#save_button").click(function(){
+			if($("#scqdzh").val()==null || $("#scqdzh").val()==''){
+				alert("对不起，起点桩号不能为空！");
+				return false;
+			}
+			if($("#sczdzh").val()==null || $("#sczdzh").val()==''){
+				alert("对不起，止点桩号不能为空！");
+				return false;
+			}
 			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
 			$.ajax({
 				type:'post',
@@ -61,6 +69,11 @@ var zdStr;
 	  			lxbm:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
+	  			},
+	  			gydwbm:function() {
+	  				var d = $.cookie("unit2");
+	  				if(d=='36') return "";
+	  				else return d;
 	  			},
 	  			xzqhdm:function() {
 	  				var d = $.cookie("dist");

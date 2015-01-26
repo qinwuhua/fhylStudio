@@ -58,7 +58,8 @@
 			'width' : 92,
 			//另外上传的参数
 			'scriptData' : {
-				'tbbmbm1':$.cookie("unit"),
+				'tbbmbm1':$.cookie("unit2"),
+				'tbbmbm2':$.cookie("unit"),
 				'sbthcd1':$.cookie("unit2").length
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {

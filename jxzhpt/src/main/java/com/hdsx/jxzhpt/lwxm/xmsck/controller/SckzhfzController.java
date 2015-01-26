@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -39,6 +40,9 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	private SckzhfzServer zhfzServer;
 	private Sckzhfz sckzhfz=new Sckzhfz();
 	private String delstr;
+	private String tbbmbm1;
+	private String tbbmbm2;
+	private String sbthcd1;
 	private String fileuploadFileName;
 	private File fileupload;
 	
@@ -56,18 +60,21 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckzhfz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			//将数据插入到数据库
-			boolean b=zhfzServer.importZhfz_sc(data);
-			if(b)
-				response.getWriter().print(fileuploadFileName+"导入成功");
-			else 
-				response.getWriter().print(fileuploadFileName+"导入失败");
+			if(zhfzServer.yanZhen(data, tbbmbm1).equals("sckzhfz_ok")){
+				if(zhfzServer.importZhfz_sc(data,tbbmbm2,sbthcd1)) 
+					response.getWriter().print(fileuploadFileName+"导入成功");
+				else 
+					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
+			}else{
+				response.getWriter().print(fileuploadFileName+zhfzServer.yanZhen(data, tbbmbm1));
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -248,6 +255,24 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public String getTbbmbm1() {
+		return tbbmbm1;
+	}
+	public void setTbbmbm1(String tbbmbm1) {
+		this.tbbmbm1 = tbbmbm1;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
+	}
+	public String getSbthcd1() {
+		return sbthcd1;
+	}
+	public void setSbthcd1(String sbthcd1) {
+		this.sbthcd1 = sbthcd1;
 	}
 	
 }

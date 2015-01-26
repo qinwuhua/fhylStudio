@@ -39,6 +39,9 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	private SckwqgzServer wqgzServer;
 	private Sckwqgz sckwqgz=new Sckwqgz();
 	private String delstr;
+	private String tbbmbm1;
+	private String tbbmbm2;
+	private String sbthcd1;
 	private String fileuploadFileName;
 	private File fileupload;
 	
@@ -60,13 +63,16 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			//将数据插入到数据库
-			boolean b=wqgzServer.importWqgz_sc(data);
-			if(b)
-				response.getWriter().print(fileuploadFileName+"导入成功");
-			else 
-				response.getWriter().print(fileuploadFileName+"导入失败");
+			if(wqgzServer.yanZhen(data, tbbmbm1).equals("sckwqgz_ok")){
+				if(wqgzServer.importWqgz_sc(data,tbbmbm2,sbthcd1)) 
+					response.getWriter().print(fileuploadFileName+"导入成功");
+				else 
+					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
+			}else{
+				response.getWriter().print(fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
+			}
 		}catch(Exception e){}
 	}
 	public void exportExcel_wqgz_scgl(){
@@ -245,6 +251,24 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public String getTbbmbm1() {
+		return tbbmbm1;
+	}
+	public void setTbbmbm1(String tbbmbm1) {
+		this.tbbmbm1 = tbbmbm1;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
+	}
+	public String getSbthcd1() {
+		return sbthcd1;
+	}
+	public void setSbthcd1(String sbthcd1) {
+		this.sbthcd1 = sbthcd1;
 	}
 	
 }

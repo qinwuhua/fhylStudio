@@ -23,15 +23,15 @@
 		console.info($.cookie('dist2')); */
 	});
 	function exportModule_sc(){
-		var tbdw=$('#gydw').combotree("getValue");
+		var tbdw=("11101360000"==$('#gydw').combotree("getValue") || "36"==$('#gydw').combotree("getValue"))?"":$('#gydw').combotree("getValue");
 		tbdw=tbdw.substring(0,tbdw.length-2);
 		var sbdw=$.cookie('unit2');
 		var filename = getParam('filename');
 		var tempVar = filename.substring(0,filename.indexOf('_'));
 		if(tempVar=='SCK')
-			window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&sck_sbthcd="+$.cookie('unit2').length+"&tbdw="+tbdw+"&sbdw="+sbdw;
+			window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&sck_sbthcd="+(sbdw.length==2?7:sbdw.length)+"&tbdw="+tbdw+"&sbdw="+sbdw;
 		else
-			window.location.href="/jxzhpt/xtgl/getModule_jh.do?moduleName="+filename+"&sck_sbthcd="+$.cookie('unit2').length+"&tbdw="+tbdw+"&sbdw="+sbdw;
+			window.location.href="/jxzhpt/xtgl/getModule_jh.do?moduleName="+filename+"&sck_sbthcd="+(sbdw.length==2?7:sbdw.length)+"&tbdw="+tbdw+"&sbdw="+sbdw;
 		setInterval(function(){window.parent.$('#exportChooseDw').window('close');},1000); 
 		
 	}

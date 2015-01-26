@@ -110,7 +110,7 @@
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,xzqhmc v_1,sc.sck_lxbm v_2,lxmc v_3,sc.sck_qlbh v_4,qlmc v_5,sc.sck_qlzxzh v_6,sc.jsxz v_7,sc.jsnr v_8 from sck_wqgz sc,xmk_wqgz xm where sc.xmkid=xm.id and sck_sbzt='已上报'
-		and sck_sbthcd &lt;=#{sck_sbthcd} and sck_sbbm like #{sbdw}||'%'
+		and sck_sbthcd &lt;=#{sck_sbthcd} 
 		<if test="tbdw!=null and tbdw!=''">
 		 	and scbmbm like #{tbdw}||'%'
 		 </if>

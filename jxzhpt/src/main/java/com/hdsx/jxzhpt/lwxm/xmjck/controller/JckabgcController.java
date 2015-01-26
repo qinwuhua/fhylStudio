@@ -44,6 +44,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private String fileuploadFileName;
 	private File fileupload;
 	private String tbbmbm1;
+	private String tbbmbm2;
 	private String sbthcd1;
 	
 	public void importAbgc(){
@@ -65,17 +66,14 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			}
 			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			try{
-				for (Map<String, String> map : data) {
-					map.put("9", map.get("9").substring(0, 4));
-					map.put("12", map.get("12").substring(0, 4)+"年");
-					map.put("tbbmbm", tbbmbm1);
-					map.put("sbthcd", sbthcd1);
+				if(abgcServer.yanZhen(data, tbbmbm1).equals("ok")){
+					if(abgcServer.importAbgc(data,tbbmbm2,sbthcd1)) 
+						response.getWriter().print(fileuploadFileName+"导入成功");
+					else 
+						response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
+				}else{
+					response.getWriter().print(fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
 				}
-				boolean b=abgcServer.importAbgc(data);
-				if(b)
-					response.getWriter().print(fileuploadFileName+"导入成功");
-				else 
-					response.getWriter().print(fileuploadFileName+"导入失败");
 			}catch(Exception e){
 				e.printStackTrace();
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -239,6 +237,12 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	
 
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
+	}
 	public Jckabgc getJckabgc() {
 		return jckabgc;
 	}

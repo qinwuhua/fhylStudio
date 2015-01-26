@@ -19,10 +19,11 @@ public interface JckwqgzServer {
 	boolean xgJckWqgzShzt(Jckwqgz wqgz);
 	boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
-	boolean importWqgz(List<Map> data);
+	boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
 	boolean xgJckWqgzTH(Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
 	boolean onceWqgz(Jckwqgz wqgz);
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm);
 }
