@@ -26,9 +26,14 @@ $(function(){
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
+	var shzt=rows[0].shzt;
 	rows=rows.length;
 	if(rows>1){
 		alert("不支持批量审核！");
+		return;
+	}
+	if(shzt=='已审核'){
+		alert("该项目已审核，请勿重复操作！");
 		return;
 	}
 	if(confirm('您确定审核通过该项目？')){
