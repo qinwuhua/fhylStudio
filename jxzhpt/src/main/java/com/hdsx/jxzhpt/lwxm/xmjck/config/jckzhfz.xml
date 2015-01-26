@@ -74,7 +74,7 @@
  	select * from xmk_zhfz where id=#{id}
  </select>
  <update id="updateJckzhfz" parameterType="jckzhfz" >
- 	update xmk_zhfz set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},gydwbm=#{gydwbm},qdzh=#{qdzh},zdzh=#{zdzh},
+ 	update xmk_zhfz set lxbm=#{lxbm},lxmc=#{lxmc},gydw=#{gydw},qdzh=#{qdzh},zdzh=#{zdzh},
  	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
  	yhnr=#{yhnr},bz=#{bz} where id=#{id}
  </update>
@@ -214,8 +214,8 @@
  	<include refid="zhfz_commonsql"/>
  </select>
  <insert id="importZhfz"  parameterType="hashMap">
-	insert into xmk_zhfz(id,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,yhlc,gjxjnd,lxjsdj,yhnr,xmnf,xmtype,bz,tbsj,tbbmbm,sbthcd,shzt,sbzt) 
-	values(sys_guid(),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
+	insert into xmk_zhfz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,yhlc,gjxjnd,lxjsdj,yhnr,xmnf,xmtype,bz,tbsj,tbbmbm,sbthcd,shzt,sbzt) 
+	values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
  </insert>
  <select id="exportExcel_zhfz_sh" parameterType="jckzhfz" resultType="sjbb">
  	select

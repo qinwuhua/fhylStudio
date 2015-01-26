@@ -70,7 +70,7 @@ text-decoration:none;
 					危桥改造项目基本信息
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编码：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qlbh"></span></td>
@@ -81,7 +81,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qlzxzh"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="gydw"></span></td>
@@ -92,7 +92,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xzqhmc"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="lxmc"></span></td>
@@ -103,7 +103,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="kjzc"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qlqc"></span></td>
@@ -114,7 +114,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="dkzdkj"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="jsdj"></span></td>
@@ -125,7 +125,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xjgjnd"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="akjfl"></span></td>
@@ -137,7 +137,7 @@ text-decoration:none;
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xmnf"></span></td>

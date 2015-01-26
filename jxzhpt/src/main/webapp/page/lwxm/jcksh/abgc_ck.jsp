@@ -64,7 +64,7 @@ text-decoration:none;
 					安保工程项目基本信息
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="lxbm" ></span></td>
@@ -75,7 +75,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="gydw"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff;"align="left">
 					<span id="qdzh"></span></td>
@@ -86,7 +86,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="qzlc"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xzqhdm"></span></td>
@@ -97,7 +97,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xjnd"></span></td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="lxjsdj"></span></td>
@@ -109,7 +109,7 @@ text-decoration:none;
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xmnf"></span></td>

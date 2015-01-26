@@ -80,91 +80,91 @@ text-decoration:none;
 					危桥改造项目基本信息
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right">桥梁编码：</td>
+				<td style="background-color: #ffffff; height: 20px;width:17%" align="left">
 					<span id="qlbh"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right">桥梁名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:17%" align="left">
 					<span id="qlmc"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁中心桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right">桥梁中心桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:" align="left">
 					<span id="qlzxzh"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gydw"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划代码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="xzqhdm"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xzqhmc"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="lxmc"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="lxbm"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">跨径总长(米)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径总长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="kjzc"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁全长(米)：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="qlqc"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">桥梁全宽(米)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="qlkd"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">单孔最大跨径(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dkzdkj"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">技术等级：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jsdj"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">评定等级：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="pddj"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xjgjnd"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">按跨径分类：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="akjfl"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">上部结构形式：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="sbjgxs"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmnf"></span></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="xmtype"></span></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">病害内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="bhnr"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="bz"></span>
 				</td>
 			</tr>
@@ -173,43 +173,43 @@ text-decoration:none;
 					危桥改造项目基本信息
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="fapgdw"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审查单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="fascdw"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审批时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="faspsj"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="spwh"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tzgs"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jsxz"></span>
 				</td>
 			</tr>
-				<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">建设内容：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
 					<span id="jsnr"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
 					<span id="scbz"></span>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="6" style="background-color: #ffffff; height: 35px;"
+			<tr style="height: 30px;">
+				<td colspan="6" style="background-color: #ffffff; height: 30px;"
 					align="center"> <a href="javascript:void(0)" id="qx_window"
 					class="easyui-linkbutton" plain="true" iconCls="icon-ok">确定</a></td>
 			</tr>

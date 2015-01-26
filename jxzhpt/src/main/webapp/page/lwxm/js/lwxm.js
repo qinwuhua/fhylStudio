@@ -10,34 +10,34 @@ function addJck(jsp,w,h){
 //基础库安保工程
 function xgJckabgc(xg_id){
 	rowid=xg_id;
-	YMLib.UI.createWindow('jck_xg','修改项目信息','abgc_xg.jsp','jck_xg',900,500);
+	YMLib.UI.createWindow('jck_xg','修改项目信息','abgc_xg.jsp','jck_xg',900,450);
 }
 function ckJckabgc(ck_id){
 	rowid=ck_id;
-	YMLib.UI.createWindow('jck_ck','查看项目详情','abgc_ck.jsp','jck_ck',900,500);
+	YMLib.UI.createWindow('jck_ck','查看项目详情','abgc_ck.jsp','jck_ck',900,450);
 }
 
 //基础库灾害防治
 function xgJckzhfz(xg_id){
 	rowid=xg_id;
-	YMLib.UI.createWindow('jck_xg','修改项目信息','zhfz_xg.jsp','jck_xg',900,500);
+	YMLib.UI.createWindow('jck_xg','修改项目信息','zhfz_xg.jsp','jck_xg',900,450);
 }
 function ckJckzhfz(ck_id){
 	rowid=ck_id;
-	YMLib.UI.createWindow('jck_ck','查看项目详情','zhfz_ck.jsp','jck_ck',900,500);
+	YMLib.UI.createWindow('jck_ck','查看项目详情','zhfz_ck.jsp','jck_ck',900,450);
 }
 
 //基础库危桥改造
 function xgJckwqgz(xg_id){
 	rowid=xg_id;
-	YMLib.UI.createWindow('jck_xg','修改项目信息','wqgz_xg.jsp','jck_xg',900,500);
+	YMLib.UI.createWindow('jck_xg','修改项目信息','wqgz_xg.jsp','jck_xg',900,450);
 }
 function ckJckwqgz(ck_id){
 	rowid=ck_id;
-	YMLib.UI.createWindow('jck_ck','查看项目详情','wqgz_ck.jsp','jck_ck',900,500);
+	YMLib.UI.createWindow('jck_ck','查看项目详情','wqgz_ck.jsp','jck_ck',900,450);
 }
 
-
+//审查库项目添加
 function addSck(jsp,w,h){
 	var unit=$.cookie("unit");
 	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {

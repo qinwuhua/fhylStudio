@@ -97,31 +97,31 @@ function autoCompleteLXBM(){
 			function(e, item) {
 				if(item==undefined) return ;
 				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
-				$("#qlmc").val(item.qlmc);
-				$("#qlzxzh").val(parseFloat(item.qlzxzh));
-				$("#gydw").val(item.gydw);
-				$("#xzqhdm").val(item.xzqhdm);
-				$("#xzqhmc").val(item.xzqhmc);
-				$("#lxmc").val(item.lxmc);
-				$("#lxbm").val(item.lxbm);
-				$("#kjzc").val(item.kjzc);
-				$("#qlqc").val(item.qlqc);
-				$("#qlkd").val(item.qlkd);
-				$("#dkzdkj").val(item.dkzdkj);
+				$("#qlmc").html(item.qlmc);
+				$("#qlzxzh").html(parseFloat(item.qlzxzh));
+				$("#gydw").html(item.gydw);
+				$("#xzqhdm").html(item.xzqhdm);
+				$("#xzqhmc").html(item.xzqhmc);
+				$("#lxmc").html(item.lxmc);
+				$("#lxbm").html(item.lxbm);
+				$("#kjzc").html(item.kjzc);
+				$("#qlqc").html(item.qlqc);
+				$("#qlkd").html(item.qlkd);
+				$("#dkzdkj").html(item.dkzdkj);
 /* 				$("#jsdj").val(item.jsdj); */
-				$("#pddj").val(item.pddj);
-				$("#xjgjnd").val(item.xjgjnd);
-				$("#akjfl").val(item.akjfl);
-				$("#sbjgxs").val(item.sbjgxs);
+				$("#pddj").html(item.pddj);
+				$("#xjgjnd").html(item.xjgjnd);
+				$("#akjfl").html(item.akjfl);
+				$("#sbjgxs").html(item.sbjgxs);
 				$("#bhnr").val(item.bhnr);
 				$("#bz").val(item.bz);
 			});
 }
 function saveWqgz(){
-	var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").val()+"&qlzxzh="+$("#qlzxzh").val()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").val()
-	+"&xzqhdm="+$("#xzqhdm").val()+"&xzqhmc="+$("#xzqhmc").val()+"&lxmc="+$("#lxmc").val()+"&lxbm="+$("#lxbm").val()+"&kjzc="+$("#kjzc").val()+
-	"&qlqc="+$("#qlqc").val()+"&qlkd="+$("#qlkd").val()+"&dkzdkj="+$("#dkzdkj").val()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").val()+"&xjgjnd="+$("#xjgjnd").val()
-	+"&akjfl="+$("#akjfl").val()+"&sbjgxs="+$("#sbjgxs").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
+	var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").html()
+	+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&lxmc="+$("#lxmc").html()+"&lxbm="+$("#lxbm").html()+"&kjzc="+$("#kjzc").html()+
+	"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
+	+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
 	"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit2").length;
 	$.ajax({
 		type:'post',
@@ -143,93 +143,94 @@ function saveWqgz(){
 
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁编号：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="qlbh"id="qlbh" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="qlmc"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁中心桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qlbh"id="qlbh" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qlmc" id="qlmc" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁中心桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qlzxzh" id="qlzxzh" style="width: 156px" /></td>
+					<span id="qlzxzh"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="gydw" style="width: 156px" />
+					<span id="gydw"></span>
 					<input type="text" id="gydwbm" style="display:none"/></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="xzqhdm" id="xzqhdm" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input  id="xzqhmc" style="width: 160px" /></td>
+					<span id="xzqhdm"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xzqhmc"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="lxbm"id="lxbm" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">跨径总长(米)：</td>
+					<span id="lxmc"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="kjzc"id="kjzc" style="width: 156px" /></td>
+					<span id="lxbm"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径总长(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="kjzc"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">桥梁全长(米)：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qlqc" id="qlqc" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">桥梁全宽(米)：</td>
+					<span id="qlqc"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="qlkd" id="qlkd" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">单孔最大跨径(米)：</td>
+					<span id="qlkd"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">单孔最大跨径(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="dkzdkj"id="dkzdkj" style="width: 156px" /></td>
+					<span id="dkzdkj"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">技术等级：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsdj" style="width:160px">
+					<select id="jsdj" style="width:155px">
 							<option selected="selected"  value="一级公路">一级公路</option>
 							<option value="二级公路">二级公路</option>
 							<option value="三级公路">三级公路</option>
 							<option value="四级公路">四级公路</option>
 							<option value="等外公路">等外公路</option>
                     </select></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">评定等级：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="pddj"id="pddj" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xjgjnd"id="xjgjnd" style="width: 156px" /></td>
+					<span id="pddj"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xjgjnd"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">按跨径分类：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按跨径分类：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="akjfl" id="akjfl" style="width: 156px" /></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">上部结构形式：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<input type="text" name="sbjgxs"id="sbjgxs" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
+					<span id="akjfl"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sbjgxs"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf"  style="width:160px">
-									<option selected="selected"  value="2014年">2014年</option>
+					<select id="xmnf"  style="width:155px">
+									<option selected value="2015年">2015年</option>
+									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
 									<option value="2010年">2010年</option>
                               	</select></td>
-				<td style="background-color: #ffffff; height: 20px;" align="right">项目状态：</td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
-					<select id="xmtype" style="width:160px">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<select id="xmtype" style="width:155px">
 									<option selected="selected"  value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 									<option value="未审核">已入库</option>
@@ -237,19 +238,19 @@ function saveWqgz(){
                               	</select></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">病害内容：</td>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea id="bhnr" rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea id="bz" rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff; height: 35px;"
 					align="center"><a href="javascript:void(0)" id="save_button"
 					class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a> <a

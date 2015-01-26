@@ -72,13 +72,13 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编码：</td>
-				<td style="background-color: #ffffff; " align="left">
+				<td style="background-color: #ffffff; width:19%" align="left">
 					<span id="qlbh"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁名称：</td>
-				<td style="background-color: #ffffff; " align="left">
+				<td style="background-color: #ffffff; width:18%" align="left">
 					<span id="qlmc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁中心桩号：</td>
-				<td style="background-color: #ffffff; " align="left">
+				<td style="background-color: #ffffff; width:18%" align="left">
 					<span id="qlzxzh"></span></td>
 			</tr>
 			<tr style="height: 30px;">
@@ -86,7 +86,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; " align="left">
 					<span id="gydw"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff;width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="xzqhdm"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -97,7 +97,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="lxmc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
-				<td style="background-color: #ffffff; width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="lxbm"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨径总长(米)：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -108,7 +108,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qlqc"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
-				<td style="background-color: #ffffff; width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="qlkd"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">单孔最大跨径(米)：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -119,7 +119,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="jsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
-				<td style="background-color: #ffffff;width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="pddj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -130,7 +130,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="akjfl"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
-				<td style="background-color: #ffffff;width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="sbjgxs"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -142,10 +142,10 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<span id="xmnf"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
-				<td style="background-color: #ffffff;width:15%" align="left">
+				<td style="background-color: #ffffff;" align="left">
 					<span id="xmtype"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff;width:15%" align="left"></td>
+				<td style="background-color: #ffffff;" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">病害内容：</td>

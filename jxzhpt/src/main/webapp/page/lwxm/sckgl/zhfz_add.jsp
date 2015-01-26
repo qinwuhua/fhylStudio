@@ -183,118 +183,118 @@ text-decoration:none;
 					灾害防治项目基本信息
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="lxbm" id="lxbm" style="width: 150px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线名称：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="lxmc"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">管养单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="gydw"></span>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="qdzh"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="zdzh"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总里程：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="qzlc"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划代码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="xzqhdm"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">行政区划名称：</td>
-				<td style="background-color: #ffffff; height: 20px;"align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划名称：</td>
+				<td style="background-color: #ffffff; "align="left">
 					<span id="xzqhmc"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">修建/改建年度：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">修建/改建年度：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="gjxjnd"></span></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">路线技术等级：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线技术等级：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="lxjsdj"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="yhlc"></span></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">特殊地区：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目年份：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="xmnf"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">项目状态：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<span id="xmtype"></span></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">隐患内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患内容：</td>
+				<td colspan="5" style="background-color: #ffffff; " align="left">
 					<span id="yhnr"></span>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 30px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 30px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
 					<span id="bz"></span>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					灾害防治项目审查信息
+					安保工程项目审查信息
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">起点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px"onblur="changeZlc()" /><br/>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px" onblur="changeZlc()"/><br/>
 					<span id="qd"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">止点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px" onblur="changeZlc()" /><br/>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">总里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总里程：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<span id="sczlc">0</span>&nbsp;公里
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">隐患里程：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scyhlc" style="width: 150px" value="0"/>&nbsp;公里
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
+					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案评估单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
+				<td style="background-color: #ffffff; " align="left">
 					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审查单位：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审查单位：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="fascdw"id="fascdw" style="width: 156px" /></td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">方案审批时间：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案审批时间：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<input type=text id="faspsj" class="easyui-datebox" />
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">审批文号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">投资估算：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
-					<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff;" align="left">
 					<select id="jsxz" style="width: 150px">
 						<option value="中修"selected>中修</option>
 						<option value="大修">大修</option>
@@ -302,19 +302,19 @@ text-decoration:none;
 					</select>
 				</td>
 			</tr>
-				<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">建设内容：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设内容：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
 					<textarea id="jsnr"rows="2"  style="width:99%"></textarea>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color: #ffffff; height: 20px;width:15%" align="right">备&nbsp;&nbsp;注：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
+				<td colspan="5" style="background-color: #ffffff;" align="left">
 					<textarea id="scbz" rows="2" style="width:99%"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<tr style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff; height: 35px;"
 					align="center"><a href="javascript:void(0)" id="save_button"
 					class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a> <a

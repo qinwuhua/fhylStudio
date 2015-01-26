@@ -12,11 +12,11 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="../../../js/YMLib.js"></script>></script>
+<script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 	$(function(){
-		selAbgcById()
+		selAbgcById();
 		$("#qx_window").click(function(){
 			parent.$('#sck_ck').window('destroy');
 		});	
@@ -77,18 +77,18 @@ text-decoration:none;
 					安保工程项目基本信息
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
-				<td style="background-color: #ffffff;" align="left">
+				<td style="background-color: #ffffff;width:18%" align="left">
 					<span id="lxbm"></span>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
-				<td style="background-color: #ffffff;" align="left">
+				<td style="background-color: #ffffff;width:18%" align="left">
 					<span id="lxmc"></span>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="gydw"></span>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qdzh"></span>
@@ -99,7 +99,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; " align="left">
 					<span id="qzlc"></span>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xzqhdm"></span>
@@ -110,7 +110,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff; " align="left">
 					<span id="gjxjnd"></span>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="lxjsdj"></span>
@@ -122,7 +122,7 @@ text-decoration:none;
 					<span id="tsdq"></span>
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xmnf"></span>
@@ -148,7 +148,7 @@ text-decoration:none;
 					安保工程项目审查信息
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scqdzh"></span>
@@ -160,13 +160,13 @@ text-decoration:none;
 					<span id="sczlc"></span>&nbsp;公里
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scyhlc"></span>&nbsp;公里
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="fapgdw"></span>
@@ -178,7 +178,7 @@ text-decoration:none;
 					<span id="faspsj"></span>
 				</td>
 			</tr>
-			<tr style="height: 25px;">
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="spwh"></span>
@@ -202,8 +202,8 @@ text-decoration:none;
 					<span id="scbz"></span>
 				</td>
 			</tr>
-			<tr>
-				<td colspan="6" style="background-color: #ffffff; height: 35px;"
+			<tr style="height: 30px;">
+				<td colspan="6" style="background-color: #ffffff; height: 30px;"
 					align="center"> <a href="javascript:void(0)" id="qx_window"
 					class="easyui-linkbutton" plain="true" iconCls="icon-ok">确定</a></td>
 			</tr>

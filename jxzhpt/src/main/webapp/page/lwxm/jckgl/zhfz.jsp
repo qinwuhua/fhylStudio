@@ -174,6 +174,7 @@ text-decoration:none;
 							  <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
                               		<option selected="selected" value="">全部</option>
+                              		<option value="2015年">2015年</option>
 									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>
 									<option value="2012年">2012年</option>
