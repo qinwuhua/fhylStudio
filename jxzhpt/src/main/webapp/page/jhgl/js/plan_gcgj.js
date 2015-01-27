@@ -49,7 +49,8 @@ function gclmgjxm(jh,lx){
 		    },
 		    {field : 'c5',title : '资金追加',width : 80,align : 'center',
 				formatter : function(value, row, index) {
-					return '<a>资金追加</a>';
+					var id="'"+row.id+"'";
+	        		return '<a href="javascript:openZjxd('+"'gclmgj_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 				}
 		    },
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
@@ -124,7 +125,12 @@ function gclmgjxm_sb(jh,lx){
 				formatter : function(value, row, index) {
 					var result="";
 					if(row.sbzt=="0"){
-						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+						var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+						var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+						if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")))
+							result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+						else
+							result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
 					}
 					else if(row.sbzt=="1"){
 						result="已上报";

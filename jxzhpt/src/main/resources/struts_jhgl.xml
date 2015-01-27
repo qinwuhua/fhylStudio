@@ -54,6 +54,7 @@
 		<action name="dropZjxdById" class="plan_zjxdController" method="dropZjxdById"/>
 		<action name="queryZjxdById" class="plan_zjxdController" method="queryZjxdById"/>
 		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
+		<action name="insertZjzj" class="plan_zjxdController" method="insertZjzj"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>

@@ -40,6 +40,9 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_shuih" alias="plan_shuih"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih" alias="plan_lx_shuih"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd" alias="plan_zjxd"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj" alias="plan_zjzj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx" alias="plan_yhdzx"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx" alias="plan_lx_yhdzx"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
@@ -97,6 +100,7 @@
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_wqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_shuih.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjxd.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_yhdzx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
   </mappers>
