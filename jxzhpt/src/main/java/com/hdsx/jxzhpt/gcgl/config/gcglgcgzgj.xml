@@ -117,28 +117,28 @@
 <!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglgcgzgj">
 		update PLAN_GCGJ set SGXKWJ=#{tiaojian}
-		where XMK_YHDZX_ID=#{jhid}
+		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglgcgzgj">
 		update PLAN_GCGJ set JGTCWJ=#{tiaojian}
-		where XMK_YHDZX_ID=#{jhid}
+		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglgcgzgj">
 		update PLAN_GCGJ set JGYSWJ=#{tiaojian}
-		where XMK_YHDZX_ID=#{jhid}
+		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
-		select ${tiaojian} tiaojian from PLAN_GCGJ where XMK_YHDZX_ID=#{jhid}
+		select ${tiaojian} tiaojian from PLAN_GCGJ where id=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set WJGYY=#{wjgyy} where XMK_YHDZX_ID=#{jhid}
+		update PLAN_GCGJ set WJGYY=#{wjgyy} where id=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where XMK_YHDZX_ID=#{jhid}
+		update PLAN_GCGJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where XMK_YHDZX_ID=#{jhid}
+		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
@@ -146,7 +146,7 @@
 		select m.*,rownum rn from (
 		select 
 		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj,
-		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.bz jhbz,t2.XMK_YHDZX_ID id,t2.wjgyy,t2.scbz,t1.id jhid,
+		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.bz jhbz,t2.id id,t2.wjgyy,t2.scbz,t1.id jhid,
 		t2.sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmmc,t2.lmkd,t2.sftqss,t2.sjdw,t2.yhlb,t2.dc,t2.jc,t2.mc,t2.sjpfdw,t2.pfwh,t2.pfsj,t2.pfztz,t2.jhsybzje,t2.jhsydfzcje,t2.sjlmlx,t2.sfsqablbz,t2.ablbzsqwh,t2.sfgyhbm,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.wjsczt,t2.gsztz
 		from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
 		where t2.spzt='1'
@@ -185,6 +185,6 @@
 	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
-	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCGJ where XMK_YHDZX_ID=#{jhid}
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCGJ where id=#{jhid}
 	 </select>
 </mapper>

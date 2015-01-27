@@ -32,7 +32,7 @@ $(function(){
 		var data ="id="+parent.rowid+"&qlbh="+$("#qlbh").html()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydw="+$("#gydw").html()
 		+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&lxmc="+$("#lxmc").html()+"&lxbm="+$("#lxbm").html()+"&kjzc="+$("#kjzc").html()+
 		"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
-		+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").html()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val();
+		+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/updateWqgzById.do',
@@ -81,7 +81,7 @@ function wqgzById(){
 		$("#xjgjnd").html(msg.xjgjnd);
 		$("#akjfl").html(msg.akjfl);
 		$("#sbjgxs").html(msg.sbjgxs);
-		$("#xmnf").val(msg.xmnf);
+		$("#xmnf").combobox("setValue",msg.xmnf);
 		$("#xmtype").html(msg.xmtype);
 		$("#bhnr").val(msg.bhnr);
 		$("#bz").val(msg.bz);
@@ -170,7 +170,7 @@ function wqgzById(){
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select id="xmnf"  style="width:155px">
+					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
 									<option selected value="2015年">2015年</option>
 									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>

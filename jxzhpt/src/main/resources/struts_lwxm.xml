@@ -35,6 +35,7 @@
 	<action name="exportExcel_wqgz" class="jckwqgzController" method="exportExcel_wqgz"/>
 	<action name="exportExcel_wqgz_sh" class="jckwqgzController" method="exportExcel_wqgz_sh"/>
 	<action name="onceWqgz" class="jckwqgzController" method="onceWqgz"/>
+	<action name="selJsdj" class="jckwqgzController" method="selJsdj"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>

@@ -13,5 +13,8 @@ public interface GcglaqybServer {
 
 	Boolean insertAqybb(Gcglaqyb gcglaqyb);
 
-	
+	int selectaqyblistCount(Gcglaqyb gcglaqyb);
+
+	List<Gcglaqyb> selectaqyblist(Gcglaqyb gcglaqyb);
+
 }

@@ -258,6 +258,12 @@
 		</if>
  			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=#{qlzxzh}))
 		order by roadbm,F002
- </select>
+ 	</select>
+   <select id="selJsdj"  parameterType="jckwqgz" resultType="jckwqgz">
+	   	select F114 jsdj from JXJCK_2013.GPSROAD where 
+	   		roadcode=#{lxbm}
+			and roadstart  &lt;=#{qlzxzh}
+	     	and roadends >#{qlzxzh}
+   </select>
 </mapper>
 

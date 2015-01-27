@@ -170,5 +170,6 @@
 	<!-- aqyb -->
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
 	<action name="insertAqybb" class="gcglaqybController" method="insertAqybb"/>
+	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
  </package>
 </struts>

@@ -14,6 +14,8 @@ import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	private Map<String, Object> hm;
+	private ArrayList<String> list;
+	private List<Map<String,Object>> lm;
 	public JckabgcServerImpl() {
 		super("jckabgc", "jdbc");
 	}
@@ -70,7 +72,12 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 
 	@Override
 	public boolean deleteAbgcById(String delstr) {
-		if(delete("deleteJckAbgc", delstr)>0) return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteJckAbgc2", list)>0) return true;
 		else return false;
 	}
 
@@ -88,6 +95,17 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		hm.put("sbthcd", abgc.getSbthcd());
 		if(update("xgJckAbgcSbzt", hm)>0) return true;
 		else return false;
+		/*String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", abgc.getSbbm());
+			hm.put("sbthcd", abgc.getSbthcd());
+			lm.add(hm);
+		}
+		if(update("xgJckAbgcSbzt2", lm)>0) return true;
+		else return false;*/
 	}
 
 	@Override
