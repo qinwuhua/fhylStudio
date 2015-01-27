@@ -13,8 +13,7 @@
 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2  from xmk_abgc t where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -45,8 +44,7 @@
 		select count(*) from xmk_abgc where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -130,8 +128,7 @@
 		select rownum num ,t.* from xmk_abgc t where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -164,8 +161,7 @@
 		select count(*) from xmk_abgc where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh

@@ -10,7 +10,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
@@ -81,7 +81,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':function(){
 				 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -156,7 +156,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':function(){
 				 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -232,7 +232,7 @@ function jckshWqgz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -291,7 +291,7 @@ function jckshAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -355,7 +355,7 @@ function jckshZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -421,7 +421,7 @@ function sckglWqgz(){
 			 	'gydw':function(){
 			 		if( "36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -497,7 +497,7 @@ function sckglAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -572,7 +572,7 @@ function sckglZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -648,7 +648,7 @@ function sckshWqgz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -713,7 +713,7 @@ function sckshAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -773,7 +773,7 @@ function sckshZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
