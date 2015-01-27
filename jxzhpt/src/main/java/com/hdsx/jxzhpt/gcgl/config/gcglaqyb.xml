@@ -2,32 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcglaqyb">
 
-	<select id="selectshYbByJhid" parameterType="gcglsh" resultType="gcglsh">
+	<select id="selectaqyblist" parameterType="gcglaqyb" resultType="gcglaqyb">
 		select * from (
 		select m.*,rownum rn from (
-			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj from GCGL_SH t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
+			select * from GCGL_AQGLYBB 
 			where 1=1
-		<if test="jhid != null and  jhid != ''">
-			and t1.jhid =#{jhid}
-		</if>
-		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
+			<if test="uploadepartment != null and  uploadepartment != ''">
+			and uploadepartment like '%'||trim(#{uploadepartment})||'%'
+			</if>
+			<if test="reportmonth != null and  reportmonth != ''">
+			and reportmonth like '%'||trim(#{reportmonth})||'%'
+			</if>
+			<if test="filename != null and  filename != ''">
+			and filename like '%'||trim(#{filename})||'%'
+			</if>
+		order by to_number(substr(reportmonth,0,4))desc,to_number(replace(reportmonth,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectshYbByJhidCount" parameterType="gcglsh" resultType="int">
-		select count(*) from GCGL_SH 
+	<select id="selectaqyblistCount" parameterType="gcglaqyb" resultType="int">
+		select count(*) from GCGL_AQGLYBB 
 		where 1=1
-		<if test="jhid != null and  jhid != ''">
-			and jhid =#{jhid}
+		<if test="uploadepartment != null and  uploadepartment != ''">
+		and uploadepartment like '%'||trim(#{uploadepartment})||'%'
+		</if>
+		<if test="reportmonth != null and  reportmonth != ''">
+		and reportmonth like '%'||trim(#{reportmonth})||'%'
+		</if>
+		<if test="filename != null and  filename != ''">
+		and filename like '%'||trim(#{filename})||'%'
 		</if>
 	</select>
 	<!-- 添加月报 -->
-	<insert id="insertshYb" parameterType="gcglsh">
-		insert into GCGL_SH(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk})
+	<insert id="insertAqybb" parameterType="gcglaqyb">
+		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth)
+		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglsh" resultType="gcglsh">
 		select * from GCGL_SH where sbyf=#{sbyf} and jhid=#{jhid}

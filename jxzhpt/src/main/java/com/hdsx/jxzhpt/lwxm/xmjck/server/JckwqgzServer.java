@@ -26,4 +26,5 @@ public interface JckwqgzServer {
 	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);
+	Jckwqgz selJsdj(Jckwqgz wqgz);
 }

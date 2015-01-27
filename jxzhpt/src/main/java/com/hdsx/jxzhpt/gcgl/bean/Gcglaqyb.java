@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Gcglaqyb implements Serializable {
 
@@ -13,12 +14,15 @@ public class Gcglaqyb implements Serializable {
 	private String sendingunits;//下发单位
 	private String uploadpath;//上传路径
 	private String uploadpeople;//上传人
-	private String uploadtime;//时间
+	private Date uploadtime;//时间
 	private String filename;//文件名
 	private String uploadepartment;//上传部门
 	private String remark;//备注
 	private String wenhao;//文号
 	private String reportmonth;//上报年月
+	
+	private int page;
+	private int rows;
 	public String getId() {
 		return id;
 	}
@@ -49,10 +53,11 @@ public class Gcglaqyb implements Serializable {
 	public void setUploadpeople(String uploadpeople) {
 		this.uploadpeople = uploadpeople;
 	}
-	public String getUploadtime() {
+
+	public Date getUploadtime() {
 		return uploadtime;
 	}
-	public void setUploadtime(String uploadtime) {
+	public void setUploadtime(Date uploadtime) {
 		this.uploadtime = uploadtime;
 	}
 	public String getFilename() {
@@ -84,6 +89,28 @@ public class Gcglaqyb implements Serializable {
 	}
 	public void setReportmonth(String reportmonth) {
 		this.reportmonth = reportmonth;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	@Override
+	public String toString() {
+		return "Gcglaqyb [id=" + id + ", xspath=" + xspath + ", sendingunits="
+				+ sendingunits + ", uploadpath=" + uploadpath
+				+ ", uploadpeople=" + uploadpeople + ", uploadtime="
+				+ uploadtime + ", filename=" + filename + ", uploadepartment="
+				+ uploadepartment + ", remark=" + remark + ", wenhao=" + wenhao
+				+ ", reportmonth=" + reportmonth + "]";
 	}
 
 	

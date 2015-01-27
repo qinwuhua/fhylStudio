@@ -187,4 +187,9 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		return "jckwqgz_ok";
 	}
 
+	@Override
+	public Jckwqgz selJsdj(Jckwqgz wqgz) {
+		return queryOne("selJsdj", wqgz);
+	}
+
 }

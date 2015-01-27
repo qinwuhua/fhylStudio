@@ -15,9 +15,32 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			var ybdata=parent.obj;
+			$("#cgsdwzj").text(ybdata.cgsdwzj);
+			$("#tbr").text(ybdata.tbr);
+			$("#tbsj").text(ybdata.tbsj);
+			$("#tbyf").text(ybdata.tbyf);
+			
+			$("#wc_btz").text(ybdata.wc_btz);
+			$("#wc_stz").text(ybdata.wc_stz);
+			$("#wc_qttz").text(ybdata.wc_qttz);
+			$("#zjdw_btz").text(ybdata.zjdw_btz);
+			$("#zjdw_stz").text(ybdata.zjdw_stz);
+			$("#zjdw_qttz").text(ybdata.zjdw_qttz);
+			$("#bywcgl").text(ybdata.bywcgl);
+			$("#kgdl").text(ybdata.kgdl);
+			$("#qksm").text(ybdata.qksm);
+			$("#sbsj").text(ybdata.sbsj);
+			$("#sbyf").text(ybdata.sbyf);
+			
+			$("#shzt").text(ybdata.shzt);
+			$("#shuser").text(ybdata.shuser);
+			if(ybdata.shtime!=null)
+			$("#shtime").text(ybdata.shtime);
+			else $("#shtime").text('');
+			$("#zjje").text(ybdata.zjje);
+			$("#xgcsyj").text(ybdata.xgcsyj);
+			$("#cscyj").text(ybdata.cscyj);
 		});
 	</script>
 	<style type="text/css">
@@ -40,8 +63,8 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-  			
-			<tr>
+
+           <tr>
                 <td>
                     <br />
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
@@ -50,48 +73,48 @@ a:active {
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                width: 25%;; padding-left: 10px;">
                                 车购税资金到位情况
                             </td>
                         </tr>
                         <tr style="height: 30px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 15%; padding-right: 5px;">
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                 padding-right: 5px;">
                                 车购税资金到位
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"
                                 colspan="5">
-                                <span id="lblCGS">8</span>
+                                <span id="cgsdwzj"></span>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                                border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="lblTBR">admin</label>
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <label id="tbr"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;
-                                border-top: 1px none #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="lblTBSJ">2014-09-19</label>
+                                border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+                                <label id="tbsj"></label>
                                 &nbsp;
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; font-weight: bold; font-size: small;
-                                text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                                text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报月份</font></b>
                             </td>
                             <td style="border-bottom: 1px solid #C0C0C0; border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="lblTBYF">2014-09</label>
+                                 text-align: left; padding-left: 10px;">
+                                <label id="tbyf"></label>
                                 &nbsp;
                             </td>
                         </tr>
@@ -110,9 +133,9 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <b>部投资</b>：<label id="WC_BTZ">9</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <b>省投资</b>：<label id="WC_STZ">9</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <b>其他投资</b>：<label id="WC_QTTZ">9</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>部投资</b>：<label id="wc_btz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>省投资</b>：<label id="wc_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>其他投资</b>：<label id="wc_qttz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -123,9 +146,9 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <b>部投资</b>：<label id="ZJ_BTZ">8</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <b>省投资</b>：<label id="ZJ_STZ">9</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <b>其他投资</b>：<label id="ZJ_QTTZ">9</label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>部投资</b>：<label id="zjdw_btz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>省投资</b>：<label id="zjdw_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <b>其他投资</b>：<label id="zjdw_qttz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -136,7 +159,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <label id="KGDL">9</label>
+                                <label id="kgdl"></label>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -147,7 +170,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <label id="QKSM">9</label>
+                                <label id="qksm"></label>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -158,7 +181,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="BYWCGL">9</label>公里
+                                <label id="bywcgl"></label>公里
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -167,7 +190,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="SBSJ">2014-09-19</label>
+                                <label id="sbsj"></label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -177,14 +200,14 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                                <label id="SBYF">2014-09</label>
+                                <label id="sbyf"></label>
                                 &nbsp;
                             </td>
                         </tr>
                         <tr style="height: 25px;">
                             <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;
-                                width: 15%; padding-left: 10px;">
+                                 padding-left: 10px;">
                                 月报审核信息
                             </td>
                         </tr>
@@ -196,7 +219,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                                <label id="SHZT">未审核</label>
+                                <label id="shzt"></label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -206,7 +229,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                                <label id="SHR"></label>
+                                <label id="shuser"></label>
                                 &nbsp;
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
@@ -216,7 +239,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                                 text-align: left; padding-left: 10px;" class="style3">
-                                <label id="SHSJ"></label>
+                                <label id="shtime"></label>
                                 &nbsp;
                             </td>
                         </tr>
@@ -228,19 +251,19 @@ a:active {
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left;
                                 padding-left: 10px;" class="style3">
-                                <label id="ZJJE">0</label>万元
-                                &nbsp;
+                                <label id="zjje"></label>
+                                万元 &nbsp;
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="height: 35px;">
                             <td style="font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px; border-bottom: 1px solid #C0C0C0;" class="style1">
+                                padding-right: 5px; border-bottom: 1px solid #C0C0C0;" class="style2">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">相关处室意见：</font></b>
                             </td>
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left;
-                                padding-left: 10px;" class="style1">
-                                <label id="XGCSYJ"></label>
+                                padding-left: 10px;" class="style3">
+                                <label id="xgcsyj"></label>
                                 &nbsp;
                             </td>
                         </tr>
@@ -251,12 +274,11 @@ a:active {
                             </td>
                             <td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0;
                                 border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;" class="style3">
-                                <label id="CSCYJ"></label>
+                                <label id="cscyj"></label>
                                 &nbsp;
                             </td>
                         </tr>
                     </table>
-
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
                         cellspacing="0" cellpadding="0">
@@ -270,6 +292,6 @@ a:active {
             </tr>
         </table>
     </div>
-    </form>
+  </form>
 </body>
 </html>

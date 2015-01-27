@@ -23,8 +23,9 @@
 		console.info($.cookie('dist2')); */
 	});
 	function exportModule_sc(){
-		var tbdw=("11101360000"==$('#gydw').combotree("getValue") || "36"==$('#gydw').combotree("getValue"))?"":$('#gydw').combotree("getValue");
-		tbdw=tbdw.substring(0,tbdw.length-2);
+		var tbdw=("36"==$('#gydw').combotree("getValue"))?"":$('#gydw').combotree("getValue");
+		tbdw=filterGydwdm(tbdw);
+		//alert($('#gydw').combotree("getValue") +' ____ '+tbdw)
 		var sbdw=$.cookie('unit2');
 		var filename = getParam('filename');
 		var tempVar = filename.substring(0,filename.indexOf('_'));
@@ -34,6 +35,23 @@
 			window.location.href="/jxzhpt/xtgl/getModule_jh.do?moduleName="+filename+"&sck_sbthcd="+(sbdw.length==2?7:sbdw.length)+"&tbdw="+tbdw+"&sbdw="+sbdw;
 		setInterval(function(){window.parent.$('#exportChooseDw').window('close');},1000); 
 		
+	}
+	function filterGydwdm(gydwdm){
+		var result=null;
+		var sheng = new RegExp("^[0-9]{7}0000$");
+		var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+		var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+		if(gydwdm=="36"){
+			result=null;
+		}else if(shi1.test(gydwdm) || shi2.test(gydwdm) ){
+			result=gydwdm.substring(0, gydwdm.length-2)+"__";
+		}
+		else if(sheng.test(gydwdm)){
+			result=gydwdm.substring(0, gydwdm.length-4)+"____";
+		}else{
+			result=gydwdm;
+		}
+		return result;
 	}
 </script>
 </head>

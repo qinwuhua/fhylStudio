@@ -10,7 +10,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':$("#xzqhmc").val(),
 				 	'lxmc' : $('#lxmc').val(),
@@ -81,7 +81,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':function(){
 				 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -156,7 +156,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $('#gydw').combobox("getValue");
+				 		}else return $.cookie("unit2");
 				 	},
 				 	'xzqhmc':function(){
 				 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -232,7 +232,7 @@ function jckshWqgz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -291,7 +291,7 @@ function jckshAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -355,7 +355,7 @@ function jckshZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -421,7 +421,7 @@ function sckglWqgz(){
 			 	'gydw':function(){
 			 		if( "36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -451,7 +451,7 @@ function sckglWqgz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -464,7 +464,7 @@ function sckglWqgz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
@@ -497,7 +497,7 @@ function sckglAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -526,7 +526,7 @@ function sckglAbgc(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -539,7 +539,7 @@ function sckglAbgc(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
@@ -572,7 +572,7 @@ function sckglZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -601,7 +601,7 @@ function sckglZhfz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
@@ -614,7 +614,7 @@ function sckglZhfz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
@@ -648,7 +648,7 @@ function sckshWqgz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -713,7 +713,7 @@ function sckshAbgc(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){
@@ -773,7 +773,7 @@ function sckshZhfz(){
 			 	'gydw':function(){
 			 		if("36"==$('#gydw').combobox("getValue")){
 			 			return "";
-			 		}else return $('#gydw').combobox("getValue");
+			 		}else return $.cookie("unit2");
 			 	},
 			 	'xzqhmc':function(){
 			 		if("360000"==$('#xzqhmc').combobox("getValue")){

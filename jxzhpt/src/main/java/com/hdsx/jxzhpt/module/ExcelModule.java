@@ -82,6 +82,7 @@ public class ExcelModule extends BaseActionSupport {
 	}
 
 	public void getModule_sc() {
+		System.out.println(tbdw );
 		String filename = moduleName;
 		if (filename == null || "".equals(filename)) {
 			return;

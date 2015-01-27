@@ -12,8 +12,7 @@
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_zhfz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -44,8 +43,7 @@
 	select count(*) from xmk_zhfz where 1=1
 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -121,8 +119,7 @@
  		select rownum num ,t.* from xmk_zhfz t where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			aand xzqhdm in(select id from xtgl_xzqh
@@ -153,8 +150,7 @@
 	select count(*) from xmk_zhfz where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			aand xzqhdm in(select id from xtgl_xzqh
@@ -215,7 +211,7 @@
  </select>
  <insert id="importZhfz"  parameterType="hashMap">
 	insert into xmk_zhfz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,yhlc,gjxjnd,lxjsdj,yhnr,xmnf,xmtype,bz,tbsj,tbbmbm,sbthcd,shzt,sbzt) 
-	values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
+	values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},to_number(#{6})-to_number(#{5}),#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
  </insert>
  <select id="exportExcel_zhfz_sh" parameterType="jckzhfz" resultType="sjbb">
  	select

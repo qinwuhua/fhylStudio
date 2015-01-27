@@ -13,8 +13,7 @@
 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2  from xmk_abgc t where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -45,8 +44,7 @@
 		select count(*) from xmk_abgc where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -130,8 +128,7 @@
 		select rownum num ,t.* from xmk_abgc t where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -164,8 +161,7 @@
 		select count(*) from xmk_abgc where sbzt='已上报' and sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
 		</if>
 		<if test="xzqhmc!='' and xzqhmc!= null ">
 			and xzqhdm in(select id from xtgl_xzqh
@@ -229,7 +225,7 @@
 	<insert id="importAbgc" parameterType="hashMap">
 		insert into
 		xmk_abgc(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qdzh,zdzh,qzlc,yhlc,gjxjnd,lxjsdj,yhnr,xmnf,xmtype,bz,tbsj,tbbmbm,sbthcd,shzt,sbzt)
-		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
+		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},to_number(#{6})-to_number(#{5}),#{8},#{9},#{10},#{11},#{12},#{13},#{14},sysdate,#{tbbmbm},#{sbthcd},'未审核','未上报')
 	</insert>
 	<select id="exportExcel_abgc_sh" parameterType="jckabgc" resultType="sjbb">
 		select
@@ -274,4 +270,11 @@
 		</if>
 		group by roadname,roadcode,F114,F044, F045
 	</select>
+	
+	<delete id="deleteJckAbgc2" parameterType="java.util.List">
+		delete from xmk_abgc where id =#{String}
+	</delete>
+	<update id="xgJckAbgcSbzt2" parameterType="hashmap">
+		update xmk_abgc set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
+	</update>
 </mapper>
