@@ -223,13 +223,19 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void onceWqgz(){
 		boolean b = wqgzServer.onceWqgz(jckwqgz);
-		System.out.println("**************************************"+b);
 		if(b){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
-	} 
+	}
+	public void selJsdj(){
+		try {
+			JsonUtils.write(wqgzServer.selJsdj(jckwqgz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	public Jckwqgz getJckwqgz() {

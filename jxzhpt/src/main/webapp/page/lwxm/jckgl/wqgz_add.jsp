@@ -108,11 +108,20 @@ function autoCompleteLXBM(){
 				$("#qlqc").html(item.qlqc);
 				$("#qlkd").html(item.qlkd);
 				$("#dkzdkj").html(item.dkzdkj);
-/* 				$("#jsdj").val(item.jsdj); */
+				$.ajax({
+					type : 'post',
+					url : '/jxzhpt/xmjck/selJsdj.do',
+					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
+					dataType:'json',
+					success : function(msg) {
+					$("#jsdj").html(msg.jsdj);
+					}
+				});
 				$("#pddj").html(item.pddj);
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#sbjgxs").html(item.sbjgxs);
+				$("#xmtype").html('待上报');
 				$("#bhnr").val(item.bhnr);
 				$("#bz").val(item.bz);
 			});
@@ -120,8 +129,8 @@ function autoCompleteLXBM(){
 function saveWqgz(){
 	var data ="qlbh="+$("#qlbh").val()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydwbm="+$("#gydwbm").val()+"&gydw="+$("#gydw").html()
 	+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&lxmc="+$("#lxmc").html()+"&lxbm="+$("#lxbm").html()+"&kjzc="+$("#kjzc").html()+
-	"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
-	+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
+	"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").html()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
+	+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val()+
 	"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit2").length;
 	$.ajax({
 		type:'post',
@@ -139,6 +148,7 @@ function saveWqgz(){
 		}
 	});
 }
+
 </script>
 
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
@@ -191,13 +201,7 @@ function saveWqgz(){
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsdj" style="width:155px">
-							<option selected="selected"  value="一级公路">一级公路</option>
-							<option value="二级公路">二级公路</option>
-							<option value="三级公路">三级公路</option>
-							<option value="四级公路">四级公路</option>
-							<option value="等外公路">等外公路</option>
-                    </select></td>
+					<span id="jsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="pddj"></span></td>
@@ -220,7 +224,7 @@ function saveWqgz(){
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf"  style="width:155px">
+					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
 									<option selected value="2015年">2015年</option>
 									<option value="2014年">2014年</option>
 									<option value="2013年">2013年</option>
@@ -230,12 +234,7 @@ function saveWqgz(){
                               	</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmtype" style="width:155px">
-									<option selected="selected"  value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">已入库</option>
-									<option value="已审核">已下达</option>
-                              	</select></td>
+					<span id="xmtype"></span></td>
 				<td colspan="2" style="background-color: #ffffff; height: 20px;width:15%" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">

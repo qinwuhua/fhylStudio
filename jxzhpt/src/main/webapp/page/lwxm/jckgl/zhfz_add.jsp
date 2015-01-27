@@ -110,6 +110,7 @@ text-decoration:none;
 					$("#lxjsdj").html(item.lxjsdj);
 					$("#gydw").html(item.gydw);
 					$("#gydwbm").val(item.gydwbm);
+					$("#xmzt").html('待上报');
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
@@ -135,7 +136,7 @@ text-decoration:none;
 		}
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
-		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmzt").val()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
+		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmzt").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
 		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit2").length;
 		$.ajax({
 			type:'post',
@@ -180,7 +181,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 145px" onblur="changeZlc()"/><br/>
+					<input type="text" name="qdzh" id="qdzh" style="width: 156px" onblur="changeZlc()"/><br/>
 					<span id="qd"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -216,7 +217,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf">
+					<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
 						<option selected value="2015年">2015年</option>
 						<option value="2014年">2014年</option>
 						<option value="2013年">2013年</option>
@@ -227,13 +228,7 @@ text-decoration:none;
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmzt" >
-						<option selected value="未上报">未上报</option>
-						<option value="已上报">已上报</option>
-						<option value="已入库">已入库</option>
-						<option value="已下达">已下达</option>
-					</select>	
-				</td>
+					<span id="xmzt"></span>	</td>
 				<td colspan="2" style="background-color: #ffffff; height: 30px;width:15%" align="left"></td>
 			</tr>
 			<tr style="height: 35px;">

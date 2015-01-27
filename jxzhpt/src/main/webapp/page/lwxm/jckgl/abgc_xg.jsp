@@ -49,7 +49,7 @@ var zdStr;
 			}
 			var data ="id="+parent.rowid+"&lxbm="+$("#lxbm").html()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&qdzh="+$("#qdzh").val()
 			+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#qzlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
-			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").html()+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
+			"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val();
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmjck/updateAbgcById.do',
@@ -92,7 +92,7 @@ var zdStr;
 			$("#xjnd").html(msg.gjxjnd);
 			$("#lxjsdj").html(msg.lxjsdj);
 			$("#yhlc").val(msg.yhlc);
-			$("#xmnf").html(msg.xmnf);
+			$("#xmnf").combobox("setValue",msg.xmnf);
 			$("#xmtype").html(msg.xmtype);
 			$("#yhnr").val(msg.yhnr);
 			$("#bz").val(msg.bz);
@@ -162,7 +162,14 @@ var zdStr;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 30px;" align="left">
-					<span id="xmnf" style="font-size: 13px"></span></td>
+					<select id="xmnf" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+						<option selected value="2015年">2015年</option>
+						<option value="2014年">2014年</option>
+						<option value="2013年">2013年</option>
+						<option value="2012年">2012年</option>
+						<option value="2011年">2011年</option>
+						<option value="2010年">2010年</option>
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 30px;width:15%" align="left">
 					<span id="xmtype"></span></td>
