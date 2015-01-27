@@ -34,6 +34,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	private Plan_lx_shuih lx;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String gydwdm;
 	
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
@@ -122,7 +123,8 @@ public class Plan_shuihController extends BaseActionSupport {
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
-				map.put("gydwdm", "测试管养单位");
+				map.put("gydwdm", getGydwdm());
+				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
@@ -190,5 +192,13 @@ public class Plan_shuihController extends BaseActionSupport {
 	}
 	public void setLx(Plan_lx_shuih lx) {
 		this.lx = lx;
+	}
+
+	public String getGydwdm() {
+		return gydwdm;
+	}
+
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
 	}
 }

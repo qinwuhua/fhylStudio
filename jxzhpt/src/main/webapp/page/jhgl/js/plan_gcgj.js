@@ -35,11 +35,14 @@ function gclmgjxm(jh,lx){
 		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
 					var result="";
-					if(row.sbzt=="0"){
+					if(row.sbzt=="0" && row.jh_sbthcd==0){
 						result="未上报";
 					}
+					else if(row.sbzt=="0" && row.jh_sbthcd==2){
+						result="已上报";
+					}
 					else if(row.sbzt=="1" && row.spzt=="0"){
-						result="上报待审批";
+						result="未审批";
 					}
 					else if(row.sbzt=="1" && row.spzt=="1"){
 						result="已审批";
@@ -105,8 +108,7 @@ function gclmgjxm(jh,lx){
 	gridBind(grid);
 }
 function gclmgjxm_sb(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
 		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
@@ -124,16 +126,19 @@ function gclmgjxm_sb(jh,lx){
 		    {field : 'sbzt',title : '上报状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
 					var result="";
-					if(row.sbzt=="0"){
-						var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-						var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-						if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")))
-							result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-						else
-							result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
+					var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+					var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+					if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==2){
+						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>   |    ';
+						result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+					}else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
+						result='<a style="text-decoration:none;">已上报</a>';
 					}
-					else if(row.sbzt=="1"){
-						result="已上报";
+							
+					if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
+						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+					}else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
+						result='<a style="text-decoration:none;">已上报</a>';
 					}
 					return result;
 				}
@@ -191,7 +196,7 @@ function gclmgjxm_sb(jh,lx){
 }
 function gclmgjxm_sh(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
 		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
@@ -278,7 +283,7 @@ function gclmgjxm_sh(jh,lx){
 }
 function gclmgjxm_zjxd(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jhwgsj":jh.jhwgsj,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
 		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
@@ -390,7 +395,7 @@ function queryGcgjXx(id){
 			$('#tzgs').html(data.tzgs);
 			$('#jsxz').html(data.jsxz);
 			$('#jsnr').html(data.jsnr);
-			$('#sbnf').html(data.sbnf);
+			$('#sbnfxx').html(data.sbnf);
 			$('#jhkgsj').html(data.jhkgsj);
 			$('#jhwgsj').html(data.jhwgsj);
 			$('#xdsj').html(data.xdsj);

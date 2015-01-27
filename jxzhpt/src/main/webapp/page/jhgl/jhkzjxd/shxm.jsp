@@ -20,12 +20,37 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:'1'};
-			var lx={gydw:null,gydwbm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
 			shxm_zjxd(jh,lx);
 		});
-		
+		function searchShuih(){
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+				lxmc:null,yjsdj:null,lxbm:null
+			};
+			alert(lx.gydwdm);
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.sbnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			shxm_zjxd(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -95,7 +120,7 @@
 									<option value="C">村道</option>
 									<option value="Z">专道</option>
 								</select>
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchShuih()" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

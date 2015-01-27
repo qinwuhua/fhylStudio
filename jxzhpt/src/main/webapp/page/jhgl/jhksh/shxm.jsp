@@ -20,14 +20,14 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:null};
-			var lx={gydw:null,gydwdm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			alert($.cookie("unit2"));
 			sbnf("sbnf");
 			shxm_sh(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:'1',spzt:null};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null

@@ -20,13 +20,13 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:null};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			sbnf("sbnf");
 			gclmgjxm_sh(jh,lx);
 		});
 		function searchGcgj(){
-			var jh={jhnf:null,sbzt:'1',spzt:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);

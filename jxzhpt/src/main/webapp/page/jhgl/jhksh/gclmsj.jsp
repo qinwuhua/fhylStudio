@@ -20,12 +20,13 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={jhnf:null,sbzt:'1',spzt:null},lx={lxmc:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4},
+			lx={lxmc:null,gydwdm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
 			gclmsjxm_sh(jh,lx);
 		});
 		function searchGcsj(){
-			var jh={jhnf:null,sbzt:'1',spzt:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,
 					xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);

@@ -36,6 +36,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private Plan_lx_gcsj lx;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String gydwdm;
 	
 	public void queryGcsjList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
@@ -124,7 +125,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
-				map.put("gydwdm", "测试管养单位");
+				map.put("gydwdm", getGydwdm());
+				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
 				map.put("40", map.get("40").toString().substring(0, map.get("40").toString().indexOf(".")));
@@ -192,5 +194,13 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	public void setLx(Plan_lx_gcsj lx) {
 		this.lx = lx;
+	}
+
+	public String getGydwdm() {
+		return gydwdm;
+	}
+
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
 	}
 }

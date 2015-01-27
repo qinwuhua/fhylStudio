@@ -107,6 +107,9 @@
 				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1
+			 	<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
 			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
 					and jh.jhnf =#{jh.jhnf}
 				</if>
@@ -149,6 +152,9 @@
 	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
 		select count(jh.id) from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 		 	where 1=1
+		 	<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
 		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
 				and jh.jhnf =#{jh.jhnf}
 			</if>

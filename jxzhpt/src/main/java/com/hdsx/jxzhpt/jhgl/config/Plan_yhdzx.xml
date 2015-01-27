@@ -25,7 +25,15 @@
 		<result property="yjsdj" column="yjsdj"/>
 		<result property="ylmlx" column="ylmlx"/>
 	</resultMap>
-	<select id="" parameterMap="java.util.map" resultMap="yhdzx_jh">
-		
+	<select id="queryYhdzxList" parameterType="java.util.Map" resultMap="yhdzx_jh">
+		select rownum as num,t.* from 
+       		(
+       			select jh.id,jh.sbnf,jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.pfztz,
+	       			lx.lxmc,lx.lxbm,lx.gydwmc,lx.xzqhmc,lx.qdzh,lx.zdzh,lx.qzlc,
+	       			lx.hdlc,lx.yjsdj,lx.ylmkd,lx.ylmlx 
+	       		from plan_yhdzx jh left join plan_lx_yhdzx lx on jh.id=lx.jhid 
+       			order by jh.sbzt,jh.spzt,jh.sbnf desc
+       		) t
+       	where where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 </mapper>

@@ -60,6 +60,9 @@
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 				where 1=1
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 					and jh.sbnf =#{jh.sbnf}
 				</if>

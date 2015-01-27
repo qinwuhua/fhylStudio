@@ -17,15 +17,28 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_gcsj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
+		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+		var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+		var xian=true;
+		if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+			xian=false;
+		}
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={jhnf:null,spzt:'0',sbzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
+			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0},
+			lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
 			sbnf("sbnf");
 			gclmsjxm_sb(jh,lx);
 		});
 		function searchGcsj(){
-			var jh={jhnf:null,spzt:'0',sbzt:null};
+			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,
 					xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
@@ -48,7 +61,7 @@
 			var selList=gridObj.datagrid('getSelections');
 			var isOk=true;
 			$.each(selList,function(index,item){
-				if(item.jh_sbthcd>0)
+				if((item.jh_sbthcd==2 && xian) || (item.jh_sbthcd==4 && !xian))
 					isOk=false;
 			});
 			if(isOk){
@@ -58,6 +71,9 @@
 						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
 							'jh.jh_sbthcd':item.jh_sbthcd+2};
+					if(xian){
+						jh['jh.sbzt']='0';
+					}
 					editStatus(jh);
 				});
 				alert("上报成功！");
@@ -72,8 +88,18 @@
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
 					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(xian){
+				jh['jh.sbzt']='0';
+			}
 			if(editStatus(jh)){
 				alert("上报成功！");
+				searchGcsj();
+			}
+		}
+		function tuihui(id,jh_sbthcd){
+			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd-2};
+			if(editStatus(jh)){
+				alert("成功将计划退回！");
 				searchGcsj();
 			}
 		}

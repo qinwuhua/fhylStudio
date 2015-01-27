@@ -13,10 +13,10 @@ public class ImportVerify {
 		if(!lxbhVerify(obj.get("3").toString())){
 			result+="【路线编码】";
 		}
-		if(!zhVerify(obj.get("8").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("8").toString())){
 			result+="【起点桩号】";
 		}
-		if(!zhVerify(obj.get("9").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("9").toString())){
 			result+="【止点桩号】";
 		}
 		if(!doubleVerify(obj.get("10").toString())){
@@ -34,7 +34,7 @@ public class ImportVerify {
 		if(!obj.get("17").toString().equals("路面改造工程项目")){
 			result+="【建设性质】";
 		}
-		if(!otherVerify("^[0-9]*.[0-9]{2}$", obj.get("20").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$", obj.get("20").toString())){
 			result+="【路面宽度】";
 		}
 		if(!obj.get("21").toString().equals("是") && !obj.get("21").toString().equals("否")){
@@ -54,9 +54,6 @@ public class ImportVerify {
 		}
 		if(!obj.get("29").toString().equals("大修") && !obj.get("29").toString().equals("中修") && !obj.get("29").toString().equals("预防性养护")){
 			result+="【养护类别】";
-		}
-		if(!obj.get("30").toString().equals("垫层") && !obj.get("30").toString().equals("基层") && !obj.get("30").toString().equals("面层")){
-			result+="【设计路面类型】";
 		}
 		if(!numVerify(obj.get("34").toString())){
 			result+="【批复总投资】";
@@ -94,10 +91,10 @@ public class ImportVerify {
 		if(!lxbhVerify(obj.get("3").toString())){
 			result+="【路线编码】";
 		}
-		if(!zhVerify(obj.get("8").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("8").toString())){
 			result+="【起点桩号】";
 		}
-		if(!zhVerify(obj.get("9").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("9").toString())){
 			result+="【止点桩号】";
 		}
 		if(!doubleVerify(obj.get("10").toString())){
@@ -115,7 +112,7 @@ public class ImportVerify {
 		if(!obj.get("17").toString().equals("水毁重建工程项目")){
 			result+="【建设性质】";
 		}
-		if(!otherVerify("^[0-9]*.[0-9]{2}$", obj.get("20").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$", obj.get("20").toString())){
 			result+="【路面宽度】";
 		}
 		if(!obj.get("21").toString().equals("是") && !obj.get("21").toString().equals("否")){
@@ -135,9 +132,6 @@ public class ImportVerify {
 		}
 		if(!obj.get("29").toString().equals("大修") && !obj.get("29").toString().equals("中修") && !obj.get("29").toString().equals("预防性养护")){
 			result+="【养护类别】";
-		}
-		if(!obj.get("30").toString().equals("垫层") && !obj.get("30").toString().equals("基层") && !obj.get("30").toString().equals("面层")){
-			result+="【设计路面类型】";
 		}
 		if(!numVerify(obj.get("34").toString())){
 			result+="【批复总投资】";

@@ -17,16 +17,28 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
+		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+		var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+		var xian=true;
+		if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+			xian=false;
+		}
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:null,spzt:'0'};
-			var lx={gydw:null,gydwbm:null};
+			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
 			sbnf("sbnf");
 			shxm_sb(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:null,spzt:'0'};
+			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
 			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null
@@ -54,7 +66,7 @@
 			var selList=gridObj.datagrid('getSelections');
 			var isOk=true;
 			$.each(selList,function(index,item){
-				if(item.jh_sbthcd>0)
+				if((item.jh_sbthcd==2 && xian) || (item.jh_sbthcd==4 && !xian))
 					isOk=false;
 			});
 			if(isOk){
@@ -64,6 +76,9 @@
 						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
 							'jh.jh_sbthcd':item.jh_sbthcd+2};
+					if(xian){
+						jh['jh.sbzt']='0';
+					}
 					editStatus(jh);
 				});
 				alert("上报成功！");
@@ -78,8 +93,18 @@
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
 					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(xian){
+				jh['jh.sbzt']='0';
+			}
 			if(editStatus(jh)){
 				alert("上报成功！");
+				searchShuih();
+			}
+		}
+		function tuihui(id,jh_sbthcd){
+			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd-2};
+			if(editStatus(jh)){
+				alert("成功将计划退回！");
 				searchShuih();
 			}
 		}

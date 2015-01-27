@@ -71,6 +71,9 @@
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
@@ -112,6 +115,9 @@
 	</select>
 	<select id="queryGcgjCount" resultType="int" parameterType="java.util.Map">
 		select count(*) from PLAN_GCGJ jh where 1=1
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>

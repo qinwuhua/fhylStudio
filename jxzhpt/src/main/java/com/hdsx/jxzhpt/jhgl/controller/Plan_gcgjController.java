@@ -34,6 +34,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_gcgjServer gcgjServer;//工程改建
 	private Plan_gcgj jh;
 	private Plan_lx_gcgj lx;
+	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
 	/**
@@ -110,6 +111,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	
 	public void importGcgj_jh(){
+		System.out.println(" 管养单位代码："+gydwdm);
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -133,12 +135,14 @@ public class Plan_gcgjController extends BaseActionSupport{
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
-				map.put("gydwdm", "测试管养单位");
+				map.put("gydwdm", getGydwdm());
+				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
+				
 				strVerify = ImportVerify.gcgjVerify(map);
 			}
 			System.out.println(data);
@@ -201,5 +205,11 @@ public class Plan_gcgjController extends BaseActionSupport{
 
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
 	}
 }

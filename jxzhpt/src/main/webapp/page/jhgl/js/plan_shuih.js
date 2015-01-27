@@ -92,7 +92,7 @@ function shxm(jh,lx){
 }
 function shxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
@@ -109,16 +109,20 @@ function shxm_sb(jh,lx){
 	        }},
 	        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
-	        	if(row.sbzt=="0"){
-	        		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-					var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-					if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")))
-						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					else
-						result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
-	        	}else if(row.sbzt=="1"){
-	        		result="已上报";
-	        	}
+        		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))  && row.jh_sbthcd==2){
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>    |    ';
+					result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+				}else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
+					result='<a style="text-decoration:none;">已上报</a>';
+				}
+				
+				if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+				}else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
+					result='<a style="text-decoration:none;">已上报</a>';
+				}
 	        	return result;
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
@@ -174,7 +178,7 @@ function shxm_sb(jh,lx){
 }
 function shxm_sh(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
@@ -258,7 +262,7 @@ function shxm_sh(jh,lx){
 }
 function shxm_zjxd(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,

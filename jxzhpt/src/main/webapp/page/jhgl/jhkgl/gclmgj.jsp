@@ -23,7 +23,7 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			sbnf("sbnf");
 			gclmgjxm(jh,lx);
 		});
