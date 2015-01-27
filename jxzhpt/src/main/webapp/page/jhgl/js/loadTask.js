@@ -65,6 +65,7 @@ function openAdd(id,title,href){
 }
 function openZjxd(id,title,href,width,height,zjid){
 	zjId=zjid;
+	bz=id;
 	$('#'+id).dialog({
 		iconCls : 'icon-edit',
 		href:href,

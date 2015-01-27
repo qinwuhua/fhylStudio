@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -20,6 +21,7 @@ public class Plan_zjxdController extends BaseActionSupport {
 	private int page=1;
 	private int rows=3;
 	private Plan_zjxd zjxd;
+	private Plan_lwxm_zjzj zjzj;
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	public void queryZjxdByXmId(){
@@ -86,6 +88,16 @@ public class Plan_zjxdController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void insertZjzj(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(zjxdServer.insertZjzj(zjzj)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	//set get
 	public int getPage() {
 		return page;
@@ -110,5 +122,11 @@ public class Plan_zjxdController extends BaseActionSupport {
 	}
 	public void setZjxdServer(Plan_zjxdServer zjxdServer) {
 		this.zjxdServer = zjxdServer;
+	}
+	public Plan_lwxm_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_lwxm_zjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

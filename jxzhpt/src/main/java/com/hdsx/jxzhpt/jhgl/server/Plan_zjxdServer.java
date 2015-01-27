@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 
 public interface Plan_zjxdServer {
@@ -46,4 +47,10 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	int queryZjxdExistById(String id);
+	/**
+	 * 添加资金追加信息
+	 * @param zjzj
+	 * @return
+	 */
+	boolean insertZjzj(Plan_lwxm_zjzj zjzj);
 }

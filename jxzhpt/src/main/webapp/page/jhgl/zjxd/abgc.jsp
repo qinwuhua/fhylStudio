@@ -196,7 +196,7 @@
 					<table>
 						<tr>
 							<td>
-								<a href="javascript:openZjxd('zjxd','资金下达','../zjxd/zjxd.jsp','800','250')"">
+								<a href="javascript:openZjxd('zjxd','资金下达','../zjxd/zjxd.jsp','800','250')">
 									<img id="imgAdd"
 									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'"
 									alt="添加"

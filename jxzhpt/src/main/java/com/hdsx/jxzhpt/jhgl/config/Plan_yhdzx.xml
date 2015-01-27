@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_yhdzx">
+	<resultMap type="plan_yhdzx" id="yhdzx_jh">
+		<id property="id" column="id" />
+		<result property="sbnf" column="sbnf"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="spzt" column="spzt"/>
+		<result property="yhlb" column="yhlb"/>
+		<result property="pfztz" column="pfztz"/>
+		<collection property="plan_yhdzxs" ofType="plan_lx_yhdzx" resultMap="shuih_lx"/>
+	</resultMap>
+	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">
+		<id property="id" column="id" />
+		<result property="lxbm" column="lxbm"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="gydwmc" column="gydwmc"/>
+		<result property="gydwdm" column="gydwdm"/>
+		<result property="xzqhdm" column="xzqhdm"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="qzlc" column="qzlc"/>
+		<result property="hdlc" column="hdlc"/>
+		<result property="yjsdj" column="yjsdj"/>
+		<result property="ylmlx" column="ylmlx"/>
+	</resultMap>
+	<select id="" parameterMap="java.util.map" resultMap="yhdzx_jh">
+		
+	</select>
+</mapper>

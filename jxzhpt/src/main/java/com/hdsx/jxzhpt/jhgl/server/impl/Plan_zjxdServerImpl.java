@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
@@ -50,5 +51,10 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	@Override
 	public int queryZjxdExistById(String id) {
 		return queryOne("queryZjxdExistById", id);
+	}
+
+	@Override
+	public boolean insertZjzj(Plan_lwxm_zjzj zjzj) {
+		return insert("insertZjzj", zjzj)>0;
 	}
 }

@@ -36,9 +36,15 @@ function abgcxm(jh,lx){
 				}
 	        	return result;
 	        }},
-	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-	        	return '资金追加';
-	        }},
+	        {field:'c5',title:'资金追加',width:80,align:'center',
+	        	formatter:function(value,row,index){
+	        		var id="'"+row.id+"'";
+	        		if(row.jgzt!='1')
+	        			return '<a href="javascript:openZjxd('+"'abgc_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+	        		else
+	        			return '资金追加';
+	        	}
+	        },
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -113,7 +119,12 @@ function abgcxm_sb(jh,lx){
 	        	var result="";
 				if(row.jh_sbthcd=="0"){
 					var id="'"+row.id+"'";
-					result='<a href="javascript:sb('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+					var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+					var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+					if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")))
+						result='<a href="javascript:sb('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+					else
+						result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
 				}
 				else if(row.jh_sbthcd=="2"){
 					result="已上报";
