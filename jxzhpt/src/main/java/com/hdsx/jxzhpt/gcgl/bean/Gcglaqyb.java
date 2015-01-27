@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Gcglaqyb implements Serializable {
 
@@ -13,7 +14,7 @@ public class Gcglaqyb implements Serializable {
 	private String sendingunits;//下发单位
 	private String uploadpath;//上传路径
 	private String uploadpeople;//上传人
-	private String uploadtime;//时间
+	private Date uploadtime;//时间
 	private String filename;//文件名
 	private String uploadepartment;//上传部门
 	private String remark;//备注
@@ -49,10 +50,11 @@ public class Gcglaqyb implements Serializable {
 	public void setUploadpeople(String uploadpeople) {
 		this.uploadpeople = uploadpeople;
 	}
-	public String getUploadtime() {
+
+	public Date getUploadtime() {
 		return uploadtime;
 	}
-	public void setUploadtime(String uploadtime) {
+	public void setUploadtime(Date uploadtime) {
 		this.uploadtime = uploadtime;
 	}
 	public String getFilename() {
@@ -84,6 +86,15 @@ public class Gcglaqyb implements Serializable {
 	}
 	public void setReportmonth(String reportmonth) {
 		this.reportmonth = reportmonth;
+	}
+	@Override
+	public String toString() {
+		return "Gcglaqyb [id=" + id + ", xspath=" + xspath + ", sendingunits="
+				+ sendingunits + ", uploadpath=" + uploadpath
+				+ ", uploadpeople=" + uploadpeople + ", uploadtime="
+				+ uploadtime + ", filename=" + filename + ", uploadepartment="
+				+ uploadepartment + ", remark=" + remark + ", wenhao=" + wenhao
+				+ ", reportmonth=" + reportmonth + "]";
 	}
 
 	

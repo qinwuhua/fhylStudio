@@ -1,5 +1,17 @@
 function aqgltj(){
-	YMLib.UI.createWindow('wqxx','安全管理月报表添加','aqgltj.jsp','wqxx',600,320);
+	var weatherDlg = new J.dialog( {
+		id : 'id2',
+		title : '安全管理月报表添加',
+		page : 'upload.jsp?url='+"/jxzhpt/gcgl/uploadAqybFile.do"+'&flag='+'aqyjgl%2faqgl%2faqgl',
+		width : 550,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
 }
 function aqglxg(){
 	YMLib.UI.createWindow('wqxx','安全管理月报表添加','aqglxg.jsp','wqxx',600,320);

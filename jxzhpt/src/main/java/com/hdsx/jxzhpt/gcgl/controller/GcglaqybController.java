@@ -2,9 +2,11 @@ package com.hdsx.jxzhpt.gcgl.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -30,11 +32,7 @@ import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
-/**
- * 系统管理Controller层
- * @author xunq
- *
- */
+
 @Scope("prototype")
 @Controller
 public class GcglaqybController extends BaseActionSupport{
@@ -43,14 +41,20 @@ public class GcglaqybController extends BaseActionSupport{
 	private int page = 1;
 	private int rows = 10;
 	
-	private File upload; //获取client的文件
-	private String uploadFileName; // 获取文件名
+	private String fileuploadFileName;
+	private File fileupload;
+	private String sendingunits;
+	private String filename;
+	private String wenhao;
+	private String reportmonth;
+	private String remark;
 	
 	@Resource(name = "gcglaqybServerImpl")
 	private GcglaqybServer gcglaqybServer;
 	
 	private Gcglaqyb gcglaqyb = new Gcglaqyb();
 	private String jhid;
+	
 	public int getPage() {
 		return page;
 	}
@@ -62,12 +66,6 @@ public class GcglaqybController extends BaseActionSupport{
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
-	}
-	public GcglaqybServer getGcglaqybServer() {
-		return gcglaqybServer;
-	}
-	public void setGcglaqybServer(GcglaqybServer gcglaqybServer) {
-		this.gcglaqybServer = gcglaqybServer;
 	}
 	public Gcglaqyb getGcglaqyb() {
 		return gcglaqyb;
@@ -81,38 +79,72 @@ public class GcglaqybController extends BaseActionSupport{
 	public void setJhid(String jhid) {
 		this.jhid = jhid;
 	}
-	
-	public File getUpload() {
-		return upload;
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
 	}
-	public void setUpload(File upload) {
-		this.upload = upload;
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
 	}
-	public String getUploadFileName() {
-		return uploadFileName;
+	public File getFileupload() {
+		return fileupload;
 	}
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
-	public void addAqyb(){
-		System.out.println("方法开始");
+	public String getSendingunits() {
+		return sendingunits;
+	}
+	public void setSendingunits(String sendingunits) {
+		this.sendingunits = sendingunits;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public String getWenhao() {
+		return wenhao;
+	}
+	public void setWenhao(String wenhao) {
+		this.wenhao = wenhao;
+	}
+	public String getReportmonth() {
+		return reportmonth;
+	}
+	public void setReportmonth(String reportmonth) {
+		this.reportmonth = reportmonth;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public void uploadAqybFile(){
+		HttpServletResponse response = ServletActionContext.getResponse();
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
-		System.out.println("路径："+realPath);
 		File dir = new File(realPath+"upload\\");
-//		if (!dir.exists())
-//			dir.mkdir();//创建文件夹
-//		try {
-//			System.out.println("11111");
-//			FileUtils.copyFile(upload, new File(realPath+"upload\\"+uploadFileName));
-//			System.out.println("22222");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println(uploadFileName+"*------------------------------*");
-//		ResponseUtils.write(getresponse(), "true");
-	}
-	
+		fileuploadFileName=new Date().getTime()+"-"+fileuploadFileName;
+		if (!dir.exists())
+			dir.mkdir();//创建文件夹
+
+		try {
+			FileUtils.copyFile(fileupload, new File(realPath+"upload\\"+fileuploadFileName));
+			response.getWriter().print(fileuploadFileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+	}
+	public void insertAqybb(){
+		gcglaqyb.setUploadtime(new Date());
+		Boolean bl=gcglaqybServer.insertAqybb(gcglaqyb);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}	
 }
