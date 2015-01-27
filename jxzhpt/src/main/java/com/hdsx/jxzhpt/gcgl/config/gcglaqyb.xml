@@ -2,23 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcglaqyb">
 
-	<select id="selectshYbByJhid" parameterType="gcglsh" resultType="gcglsh">
+	<select id="selectaqyblist" parameterType="gcglaqyb" resultType="gcglaqyb">
 		select * from (
 		select m.*,rownum rn from (
 			select * from GCGL_AQGLYBB 
 			where 1=1
-		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
+			<if test="uploadepartment != null and  uploadepartment != ''">
+			and uploadepartment like '%'||trim(#{uploadepartment})||'%'
+			</if>
+			<if test="reportmonth != null and  reportmonth != ''">
+			and reportmonth like '%'||trim(#{reportmonth})||'%'
+			</if>
+			<if test="filename != null and  filename != ''">
+			and filename like '%'||trim(#{filename})||'%'
+			</if>
+		order by to_number(substr(reportmonth,0,4))desc,to_number(replace(reportmonth,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectshYbByJhidCount" parameterType="gcglsh" resultType="int">
-		select count(*) from GCGL_SH 
+	<select id="selectaqyblistCount" parameterType="gcglaqyb" resultType="int">
+		select count(*) from GCGL_AQGLYBB 
 		where 1=1
-		<if test="jhid != null and  jhid != ''">
-			and jhid =#{jhid}
+		<if test="uploadepartment != null and  uploadepartment != ''">
+		and uploadepartment like '%'||trim(#{uploadepartment})||'%'
+		</if>
+		<if test="reportmonth != null and  reportmonth != ''">
+		and reportmonth like '%'||trim(#{reportmonth})||'%'
+		</if>
+		<if test="filename != null and  filename != ''">
+		and filename like '%'||trim(#{filename})||'%'
 		</if>
 	</select>
 	<!-- 添加月报 -->

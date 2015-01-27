@@ -48,6 +48,10 @@ public class GcglaqybController extends BaseActionSupport{
 	private String wenhao;
 	private String reportmonth;
 	private String remark;
+	private String gydw;
+	private String wjmc;
+	private String ddlyear;
+	private String ddlmonth;
 	
 	@Resource(name = "gcglaqybServerImpl")
 	private GcglaqybServer gcglaqybServer;
@@ -55,6 +59,30 @@ public class GcglaqybController extends BaseActionSupport{
 	private Gcglaqyb gcglaqyb = new Gcglaqyb();
 	private String jhid;
 	
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getWjmc() {
+		return wjmc;
+	}
+	public void setWjmc(String wjmc) {
+		this.wjmc = wjmc;
+	}
+	public String getDdlyear() {
+		return ddlyear;
+	}
+	public void setDdlyear(String ddlyear) {
+		this.ddlyear = ddlyear;
+	}
+	public String getDdlmonth() {
+		return ddlmonth;
+	}
+	public void setDdlmonth(String ddlmonth) {
+		this.ddlmonth = ddlmonth;
+	}
 	public int getPage() {
 		return page;
 	}
@@ -146,5 +174,22 @@ public class GcglaqybController extends BaseActionSupport{
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
-	}	
+	}
+	public void selectaqyblist(){
+		gcglaqyb.setReportmonth(ddlyear+"-"+ddlmonth);
+		gcglaqyb.setUploadepartment(gydw.replaceAll("0*$",""));
+		gcglaqyb.setFilename(wjmc);
+		gcglaqyb.setRows(rows);
+		gcglaqyb.setPage(page);
+		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);
+		List<Gcglaqyb> list=gcglaqybServer.selectaqyblist(gcglaqyb);
+		EasyUIPage<Gcglaqyb> e=new EasyUIPage<Gcglaqyb>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }

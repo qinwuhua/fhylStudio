@@ -20,6 +20,9 @@ public class Gcglaqyb implements Serializable {
 	private String remark;//备注
 	private String wenhao;//文号
 	private String reportmonth;//上报年月
+	
+	private int page;
+	private int rows;
 	public String getId() {
 		return id;
 	}
@@ -86,6 +89,19 @@ public class Gcglaqyb implements Serializable {
 	}
 	public void setReportmonth(String reportmonth) {
 		this.reportmonth = reportmonth;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
 	}
 	@Override
 	public String toString() {
