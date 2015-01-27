@@ -25,7 +25,7 @@
 		<result property="yjsdj" column="yjsdj"/>
 		<result property="ylmlx" column="ylmlx"/>
 	</resultMap>
-	<select id="" parameterMap="java.util.map" resultMap="yhdzx_jh">
+	<!-- <select id="" parameterMap="java.util.map" resultMap="yhdzx_jh">
 		
-	</select>
+	</select> -->
 </mapper>
