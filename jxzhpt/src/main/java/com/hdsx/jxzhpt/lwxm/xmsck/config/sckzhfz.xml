@@ -19,8 +19,7 @@
  			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t where
  			sck_sbthcd &lt;=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -51,8 +50,7 @@
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
   		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -107,8 +105,7 @@
  		where sck_sbzt='已上报' and sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
  		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
@@ -140,8 +137,7 @@
  		 where sck_sbzt='已上报' and sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
  		</if>
   		<if test="xzqhmc!='' and xzqhmc!= null "  >
  			and xzqhdm in(select id from xtgl_xzqh
