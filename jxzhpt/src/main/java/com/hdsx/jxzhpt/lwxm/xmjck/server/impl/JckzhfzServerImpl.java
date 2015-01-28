@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.utile.SjbbMessage;
 public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	private Map<String, Object> hm;
 	private List<String> list;
+	private List<Map<String,Object>> lm;
 	public JckzhfzServerImpl() {
 		super("jckzhfz", "jdbc");
 	}
@@ -88,11 +89,16 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 
 	@Override
 	public boolean xgJckZhfzSbzt(String delstr,Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sbbm", zhfz.getSbbm());
-		hm.put("sbthcd", zhfz.getSbthcd());
-		if(update("xgJckzhfzSbzt", hm)>0) return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", zhfz.getSbbm());
+			hm.put("sbthcd", zhfz.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgJckzhfzSbzt", lm)>0) return true;
 		else return false;
 	}
 

@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,13 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	private Map<String, Object> hm;
+	private ArrayList<String> list;
+	private List<Map<String,Object>> lm;
 	public SckabgcServerImpl() {
 		super("sckabgc", "jdbc");
 	}
@@ -59,7 +60,12 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public boolean deleteSckAbgc(String delstr) {
-		if(delete("deleteSckAbgc", delstr)>0) return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteSckAbgc", list)>0) return true;
 		else return false;
 	}
 	@Override
@@ -73,11 +79,16 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 	@Override
 	public boolean xgSckAbgcSbzt(String delstr,Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sck_sbbm", abgc.getSck_sbbm());
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		if(update("xgSckAbgcSbzt", hm)>0) return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_sbbm", abgc.getSck_sbbm());
+			hm.put("sck_sbthcd", abgc.getSck_sbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgSckAbgcSbzt", lm)>0) return true;
 		else return false;
 	}
 

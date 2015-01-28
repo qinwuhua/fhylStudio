@@ -76,12 +76,18 @@
  	qzlc=#{qzlc},xzqhdm=#{xzqhdm},xzqhmc=#{xzqhmc},gjxjnd=#{gjxjnd},lxjsdj=#{lxjsdj},yhlc=#{yhlc},xmnf=#{xmnf},xmtype=#{xmtype},
  	yhnr=#{yhnr},bz=#{bz} where id=#{id}
  </update>
+ 
+  <delete id="deleteJckzhfz" parameterType="java.util.List" >
+ 	delete from xmk_zhfz where id =#{String}
+ </delete>
+ 
+  <update id="xgJckzhfzSbzt" parameterType="hashmap" >
+ 	update xmk_zhfz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
+ </update>
  <update id="xgJckzhfzShzt" parameterType="jckzhfz" >
  	update xmk_zhfz set shzt='已审核' where id=#{id}
  </update>
- <update id="xgJckzhfzSbzt" parameterType="hashmap" >
- 	update xmk_zhfz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
- </update>
+
  <update id="xgJckZhfzTH" parameterType="jckzhfz" >
  	update xmk_zhfz set sbthcd=(sbthcd+2) where id =#{id}
  </update>
@@ -109,10 +115,6 @@
 		</if>
  	order by lxbm
  </select>
- 
- <delete id="deleteJckzhfz" parameterType="String" >
- 	delete from xmk_zhfz where id in #{delstr}
- </delete>
  
   <select id="selectJckShzhfz" parameterType="hashmap" resultType="jckzhfz">
  	select * from (

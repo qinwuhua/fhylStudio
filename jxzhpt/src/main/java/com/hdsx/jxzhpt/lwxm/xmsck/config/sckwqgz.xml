@@ -96,17 +96,19 @@
 		select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where
 		sckid=#{sckid}
 	</select>
-	<delete id="deleteSckWqgz" parameterType="String">
-		delete from sck_wqgz where sckid in(#{delstr})
+	<delete id="deleteSckWqgz" parameterType="java.util.List">
+		delete from sck_wqgz where sckid =#{String}
 	</delete>
 
+	<update id="xgSckWqgzSbzt" parameterType="hashmap">
+		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
+ 		sck_sbthcd=#{sck_sbthcd} where sckid =#{sckid}
+	</update>
+	
 	<update id="xgSckWqgzShzt" parameterType="sckwqgz">
 		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
 	</update>
-	<update id="xgSckWqgzSbzt" parameterType="hashmap">
-		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
- 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
-	</update>
+
 	<update id="xgSckWqgzTH" parameterType="sckwqgz">
 		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 	</update>

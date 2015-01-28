@@ -148,7 +148,7 @@ var zdStr;
 			alert("对不起，隐患里程不能大于总里程！");
 			return false;
 		}
-		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").val()+"&scyhlc="+$("#scyhlc").val()
+		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
 		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+$.cookie("unit2").length;

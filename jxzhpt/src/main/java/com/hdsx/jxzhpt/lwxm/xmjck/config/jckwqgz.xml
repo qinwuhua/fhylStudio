@@ -86,12 +86,18 @@
  		dkzdkj=#{dkzdkj},akjfl=#{akjfl},sbjgxs=#{sbjgxs},bhnr=#{bhnr},bz=#{bz},xmnf=#{xmnf},xmtype=#{xmtype}
  		where id=#{id}
  </update>
+  <delete id="deleteJckWqgz" parameterType="java.util.List" >
+ 	delete from xmk_wqgz where id =#{String}
+ </delete>
+ 
+ <update id="xgJckwqgzSbzt" parameterType="hashmap" >
+ 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
+ </update>
+ 
  <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
  	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
-   <update id="xgJckwqgzSbzt" parameterType="hashmap" >
- 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
- </update>
+
   <update id="xgJckWqgzTH" parameterType="jckwqgz" >
  	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{id}
  </update>
@@ -186,9 +192,7 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  </select>
- <delete id="deleteJckWqgz" parameterType="String" >
- 	delete from xmk_wqgz where id in #{delstr}
- </delete>
+
  <select id="onceWqgz" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz where 1=1
  		<if test="qlbh!='' and qlbh!= null "  >

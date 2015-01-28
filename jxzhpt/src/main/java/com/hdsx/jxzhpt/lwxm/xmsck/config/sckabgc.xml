@@ -84,17 +84,19 @@
  	where sckid=#{sckid}
  </update>
  
- <delete id="deleteSckAbgc" parameterType="String" >
- 	delete from sck_abgc where sckid in(#{delstr})
+ <delete id="deleteSckAbgc" parameterType="java.util.List" >
+ 	delete from sck_abgc where sckid =#{String}
  </delete>
+ 
+ <update id="xgSckAbgcSbzt" parameterType="hashmap" >
+ 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
+ 		sck_sbthcd=#{sck_sbthcd} where sckid =#{sckid}
+ </update>
  
   <update id="xgSckAbgcShzt" parameterType="sckabgc" >
  	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
-  <update id="xgSckAbgcSbzt" parameterType="hashmap" >
- 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
- 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
- </update>
+
  <update id="xgSckAbgcTH" parameterType="sckabgc">
 	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 </update>

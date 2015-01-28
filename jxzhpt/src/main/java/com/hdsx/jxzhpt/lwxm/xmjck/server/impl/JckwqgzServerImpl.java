@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	private Map<String, Object> hm;
+	private ArrayList<String> list;
+	private List<Map<String,Object>> lm;
 	public JckwqgzServerImpl() {
 		super("jckwqgz", "jdbc");
 	}
@@ -70,7 +73,12 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 
 	@Override
 	public boolean deleteWqgzById(String delstr) {
-		if(delete("deleteJckWqgz", delstr)>0) return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteJckWqgz", list)>0) return true;
 		else return false;
 	}
 
@@ -82,11 +90,16 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 
 	@Override
 	public boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sbbm", wqgz.getSbbm());
-		hm.put("sbthcd", wqgz.getSbthcd());
-		if(update("xgJckwqgzSbzt", hm)>0) return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", wqgz.getSbbm());
+			hm.put("sbthcd", wqgz.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgJckwqgzSbzt", lm)>0) return true;
 		else return false;
 	}
 
