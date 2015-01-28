@@ -126,7 +126,7 @@
 	//必须的 
 	function tianjian(){
 		//alert("jinru");
-		if($("#fileQueue").text()==''){alert("jinru1111");
+		if($("#fileQueue").text()==''){//alert("jinru1111");
 			addaqyb('');
 			//alert($("#fileQueue").text());
 		}
@@ -187,8 +187,8 @@
 		$("#tj_reportmonth").append("<option value="+mystr1+">"+mystr1+"</option>");
 		$("#tj_reportmonth").append("<option value="+mystr2+">"+mystr2+"</option>");
 		$("#tj_reportmonth").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-		$("#tj_reportmonth").append("<option value="+mystr3+">"+mystr3+"</option>");
-		$("#tj_reportmonth").append("<option value="+mystr4+">"+mystr4+"</option>");
+// 		$("#tj_reportmonth").append("<option value="+mystr3+">"+mystr3+"</option>");
+// 		$("#tj_reportmonth").append("<option value="+mystr4+">"+mystr4+"</option>");
 		setGydw("tj_sendingunits","36");
 	});
 	function setGydw(id, dwbm){

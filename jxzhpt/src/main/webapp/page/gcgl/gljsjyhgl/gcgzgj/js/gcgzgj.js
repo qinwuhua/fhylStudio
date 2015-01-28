@@ -53,7 +53,8 @@ function Edityb(index){
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglsh.id="+data1.id;
+	var data="gcglgcgzgj.id="+data1.id;
+	//alert(data);
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
@@ -98,7 +99,7 @@ function tjgcgzgjyb(){
 	+"&gcglgcgzgj.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglgcgzgj.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglgcgzgj.bywcdc="+$("#tj_bywcdc").val()+"&gcglgcgzgj.bywcjc="+$("#tj_bywcjc").val()+"&gcglgcgzgj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzgj.kgdl="+$("#tj_kgdl").val()
 	+"&gcglgcgzgj.qksm="+$("#tj_qksm").val()+"&gcglgcgzgj.wcqk="+$("#tj_wcqk").val()
-	+"&gcglgcgzgj.sbsj="+sbsj+"&gcglgcgzgj.sbyf="+sbyf+"&gcglgcgzgj.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	+"&gcglgcgzgj.sbsj="+sbsj+"&gcglgcgzgj.sbyf="+$("#tj_sbyf").val()+"&gcglgcgzgj.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
