@@ -67,4 +67,10 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	boolean insertGcgj_lx(List<Map> lx);
+	/**
+	 * 根据路线编码到2013年路线数据库中查找是否有这一项
+	 * @param lxbm
+	 * @return
+	 */
+	int queryGPSBylxbm(String lxbm);
 }

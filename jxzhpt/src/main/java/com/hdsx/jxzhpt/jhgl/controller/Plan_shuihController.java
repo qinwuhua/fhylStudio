@@ -131,6 +131,9 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
 				strVerify=ImportVerify.shuihVerify(map);
+				if(shuihServer.queryGPSBylxbm(map.get("3").toString())==0){
+					strVerify+="【"+map.get("3").toString()+"】不存在！";
+				}
 			}
 			System.out.println(data);
 			if(strVerify.equals("")){

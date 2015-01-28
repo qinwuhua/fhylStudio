@@ -20,33 +20,32 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:'1'};
-			var lx={gydw:null,gydwbm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
 			abgcxm_zjxd(jh,lx);
 		});
 		function searchAbgc(){
+			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm};
-			//管养单位编码
-			var sheng = new RegExp("^[0-9]{7}0000$");
-			var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
-			var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-			if(lx.gydwdm=="36"){
-				lx.gydwdm="%"+lx.gydwdm+"%";
-			}else if(shi1.test(lx.gydwdm) || shi2.test(lx.gydwdm) ){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-2)+"__";
+			lx.gydwbm = filterGydwdm(lx.gydwbm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
-			else if(sheng.test(lx.gydwdm)){
-				lx.gydwdm=lx.gydwdm.substring(0, lx.gydwdm.length-4)+"____";
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
-			//行政区划代码
-			var yi1 = new RegExp("^36[0-9][1-9]00$");
-			var yi2= new RegExp("^36[1-9][0-9]00$");
-			if(lx.xzqhdm=="360000"){
-				lx.xzqhdm=="36____";
-			}else if(yi1.test(lx.xzqhdm) || yi2.test(lx.xzqhdm)){
-				lx.xzqhdm=lx.xzqhdm.substring(0, lx.xzqhdm.length-2)+"__";
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.sbzt=$('#ddlSHZT').combobox('getValue');
 			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			abgcxm_zjxd(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 

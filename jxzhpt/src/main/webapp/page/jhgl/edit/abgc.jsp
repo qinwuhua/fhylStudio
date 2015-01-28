@@ -268,7 +268,7 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<select id="editjhnf" style="width: 60px;"></select> &nbsp;
+					<select id="editjhnf" class="easyui-combobox" style="width: 60px;"></select> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
@@ -494,31 +494,32 @@
 			$('#SFSQABLBZ').val(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
-			
-			$('#lxmc').html(data.jckabgc.lxmc);
-			$('#lxbm').html(data.jckabgc.lxbm);
-			$('#gydwxx').html(data.jckabgc.gydw);
-			$('#qdzh').html(data.jckabgc.qdzh);
-			$('#zdzh').html(data.jckabgc.zdzh);
-			$('#qzlc').html(data.jckabgc.qzlc);
-			$('#xzqhdm').html(data.jckabgc.xzqhdm);
-			$('#xzqhmc').html(data.jckabgc.xzqhmc);
-			$('#xjgjnd').html(data.jckabgc.xjgjnd);
-			$('#jsdjxx').html(data.jckabgc.jsdj);
-			$('#yhlc').html(data.jckabgc.yhlc);
-			$('#tsdq').html(data.jckabgc.tsdq);
-			$('#xmnf').html(data.jckabgc.xmnf);
-			$('#xmzt').html(data.jckabgc.xmzt);
-			$('#yhnr').html(data.jckabgc.yhnr);
-			$('#bz').html(data.jckabgc.bz);
 			//审查库
 			$.ajax({
 				type:'post',
 				url:'../../../xmsck/selectSckabgcById.do',
 				dataType:'json',
-				data:'sckid='+data.jckabgc.id,
+				data:'sckid='+data.sckid,
 				success:function(sck){
 					if(sck!=null){
+						//基础
+						$('#lxmc').html(sck.lxmc);
+						$('#lxbm').html(sck.lxbm);
+						$('#gydwxx').html(sck.gydw);
+						$('#qdzh').html(sck.qdzh);
+						$('#zdzh').html(sck.zdzh);
+						$('#qzlc').html(sck.qzlc);
+						$('#xzqhdm').html(sck.xzqhdm);
+						$('#xzqhmc').html(sck.xzqhmc);
+						$('#xjgjnd').html(sck.gjxjnd);
+						$('#jsdjxx').html(sck.lxjsdj);
+						$('#yhlc').html(sck.yhlc);
+						$('#tsdq').html(sck.tsdq);
+						$('#xmnf').html(sck.xmnf);
+						$('#xmzt').html(sck.xmzt);
+						$('#yhnr').html(sck.yhnr);
+						$('#bz').html(sck.bz);
+						//审查
 						$('#scqdzh').html(sck.scqdzh);
 						$('#sczdzh').html(sck.sczdzh);
 						$('#sczlc').html(sck.sczdzh);

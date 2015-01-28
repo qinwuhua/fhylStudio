@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_wqgz">
 	<resultMap type="plan_wqgz"  id="wqgz_jh">
 		<id property="id" column="id" />
+		<result property="sckid" column="sckid"/>
 		<result property="sbnf" column="sbnf"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
@@ -29,10 +30,11 @@
 			(
 				select rownum as num,t.* from
 				(
-					select jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.sbzt,jh.spzt,jh.pfztz,
-					lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qlmc,lx.qlbh
-	 				from plan_wqgz jh left join xmk_wqgz lx on jh.sckid=lx.id 
-	 				where 1=1
+					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+	 				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
 	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
@@ -42,8 +44,8 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
-	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-	 					and lx.gydwdm like #{lx.gydwdm}
+	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 					and lx.gydwbm like #{lx.gydwbm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 	 					and lx.xzqhdm like #{lx.xzqhdm}
@@ -69,38 +71,41 @@
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from plan_wqgz jh left join xmk_wqgz lx on jh.sckid=lx.id 
-		where 1=1
+		select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+	 	<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
 	 	<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 					and jh.sbnf=#{jh.sbnf}
-	 				</if>
-	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 					and jh.sbzt=#{jh.sbzt}
-	 				</if>
-	 				<if test="jh.spzt!=null and jh.spzt!=''">
-	 					and jh.spzt=#{jh.spzt}
-	 				</if>
-	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-	 					and lx.gydwdm like #{lx.gydwdm}
-	 				</if>
-	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm like #{lx.xzqhdm}
-	 				</if>
-	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 				</if>
-	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 					and lx.lxbm like #{lx.lxbm}||'%'
-	 				</if>
-	 				<if test="lx.jsdj!=null and lx.jsdj!=''">
-	 					and lx.jsdj = #{lx.jsjd}
-	 				</if>
-	 				<if test="lx.qlmc!=null and lx.qlmc!=''">
-	 					and lx.qlmc like '%'||#{lx.qlmc}||'%'
-	 				</if>
-	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
-	 					and lx.akjfl like #{lx.akjfl}||'%'
-	 				</if>
+	 		and jh.sbnf=#{jh.sbnf}
+	 	</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 		and lx.gydwbm like #{lx.gydwbm}
+	 	</if>
+	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 		and lx.xzqhdm like #{lx.xzqhdm}
+	 	</if>
+	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 	</if>
+	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 		and lx.lxbm like #{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.jsdj!=null and lx.jsdj!=''">
+	 		and lx.jsdj = #{lx.jsjd}
+	 	</if>
+	 	<if test="lx.qlmc!=null and lx.qlmc!=''">
+	 		and lx.qlmc like '%'||#{lx.qlmc}||'%'
+	 	</if>
+	 	<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 		and lx.akjfl like #{lx.akjfl}||'%'
+	 	</if>
 	</select>
 	<select id="queryWqgzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_wqgz t order by t.sbnf

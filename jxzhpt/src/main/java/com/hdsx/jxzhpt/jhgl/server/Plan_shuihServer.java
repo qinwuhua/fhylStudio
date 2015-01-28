@@ -65,4 +65,10 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	boolean insertShuih_Lx(List<Map> lx);
+	/**
+	 * 查询次路线是否存在
+	 * @param lxbm
+	 * @return
+	 */
+	int queryGPSBylxbm(String lxbm);
 }

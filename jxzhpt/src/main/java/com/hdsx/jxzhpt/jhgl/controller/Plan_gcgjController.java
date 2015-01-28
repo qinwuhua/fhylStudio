@@ -142,8 +142,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
-				
 				strVerify = ImportVerify.gcgjVerify(map);
+				if(gcgjServer.queryGPSBylxbm(map.get("3").toString())==0){
+					strVerify+="路线【"+map.get("3").toString()+"】不存在";
+				}
 			}
 			System.out.println(data);
 			//将数据插入到数据库

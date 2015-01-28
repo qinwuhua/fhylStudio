@@ -2,11 +2,16 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function sbnf(id){
+	var myDate = new Date();
+	var years=[];
+	for(var i=0;i<=10;i++){
+		years.push({text:(myDate.getFullYear()-i)});
+	}
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryGcgjNfs.do',
+	    data:years,
 	    valueField:'text',    
 	    textField:'text'   
-	}); 
+	});
 }
 /**
  * 工程路面改建列表信息

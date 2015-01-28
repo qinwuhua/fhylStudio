@@ -19,12 +19,43 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:'1'};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
 			wqxm_zjxd(jh,lx);
 		});
-		
+		function searchWqgz(){
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
+					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
+			};
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.gydwdm=null;
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#txtBridge').val()!=''){
+				lx.qlmc=$('#txtBridge').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.jhnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlAKJFL').combobox('getText')!="全部"){
+				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
+			}
+			wqxm_zjxd(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});

@@ -23,14 +23,14 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwdm:null};//filterGydwdm($.cookie("unit"))
+			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
 			abgcxm(jh,lx);
 		});
 		function searchAbgc(){
 			var lx={"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm};
 			//管养单位编码
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.gydwbm = filterGydwdm(lx.gydwbm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			alert(xzqhdm);
 		}
