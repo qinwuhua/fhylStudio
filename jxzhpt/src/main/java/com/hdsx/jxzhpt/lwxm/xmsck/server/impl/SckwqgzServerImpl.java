@@ -138,9 +138,16 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean xgSckWqgzShzt(Sckwqgz wqgz) {
-		if(update("xgSckWqgzShzt", wqgz)>0) return true;
-		else return false;
+	public boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", wqgz.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckWqgzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override

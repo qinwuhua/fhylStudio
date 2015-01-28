@@ -26,22 +26,21 @@ $(function(){
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
-	var shzt=rows[0].shzt;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量审核！");
-		return;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].shzt=='已审核'){
+			alert("有项目已审核，请勿重复操作！");
+			return ;
+		}
 	}
-	if(shzt=='已审核'){
-		alert("该项目已审核，请勿重复操作！");
-		return;
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
 	}
 	if(confirm('您确定审核通过该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/xgJckAbgcShzt.do",
 				 dataType : 'json',
-				 data : 'id=' +id+"&shbm="+$.cookie("unit"),
+				 data : 'delstr='+id+"&shbm="+$.cookie("unit"),
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');
@@ -132,8 +131,8 @@ text-decoration:none;
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
                               	</select>
-                              <span>&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px">
+                              <span style="display: none;">&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>

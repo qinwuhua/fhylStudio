@@ -688,6 +688,7 @@ function sckshWqgz(){
 					return '<span style="color:grey;">已审核</span>';
 				}
 			}},
+				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -747,6 +748,7 @@ function sckshAbgc(){
 					return '<span style="color:grey;">已审核</span>';
 				}
 			}},
+			{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -807,6 +809,7 @@ function sckshZhfz(){
 					return '<span style="color:grey;">已审核</span>';
 				}
 			}},
+			{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},

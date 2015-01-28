@@ -125,9 +125,16 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean xgSckAbgcShzt(Sckabgc abgc) {
-		if(update("xgSckAbgcShzt", abgc)>0)return true;
-		else return false;
+	public boolean xgSckAbgcShzt(String delstr,Sckabgc abgc) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", abgc.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckAbgcShzt", lm)==lm.size()?true:false;
 	}
 	@Override
 	public boolean xgSckAbgcTH(Sckabgc abgc) {

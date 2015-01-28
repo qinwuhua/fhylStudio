@@ -83,9 +83,16 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public boolean xgJckWqgzShzt(Jckwqgz wqgz) {
-		if(update("xgJckwqgzShzt", wqgz)>0) return true;
-		else return false;
+	public boolean xgJckWqgzShzt(String delstr,Jckwqgz wqgz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", wqgz.getShbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgJckwqgzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override

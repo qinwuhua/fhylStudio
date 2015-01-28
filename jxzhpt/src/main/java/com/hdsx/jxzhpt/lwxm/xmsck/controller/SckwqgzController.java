@@ -194,7 +194,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckWqgzShzt(){
-		if(wqgzServer.xgSckWqgzShzt(sckwqgz)){
+		if(wqgzServer.xgSckWqgzShzt(delstr,sckwqgz)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

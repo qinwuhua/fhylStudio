@@ -30,7 +30,7 @@ function delSckwqgz(){
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_sbzt2=='已上报'){
-			alert("该项目已上报，不能执行删除操作！");
+			alert("有项目已上报，不能执行删除操作！");
 			return false;
 		}
 	}
@@ -183,8 +183,8 @@ text-decoration:none;
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
                               	</select>
-                              <span>&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px">
+                              <span style="display: none;">&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>
@@ -206,7 +206,7 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="jsdj" style="width:100px">
+                              	<select id="jsdj" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>

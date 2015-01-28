@@ -15,7 +15,7 @@ public interface JckzhfzServer {
 	List<Jckzhfz> selectGpsroad(Jckzhfz zhfz);
 	List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz);
 	boolean deleteZhfzById(String delstr);
-	boolean xgJckZhfzShzt(Jckzhfz zhfz);
+	boolean xgJckZhfzShzt(String delstr,Jckzhfz zhfz);
 	boolean xgJckZhfzSbzt(String delstr,Jckzhfz zhfz);
 	List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz);
 	int selectZhfzShCount(Jckzhfz zhfz);

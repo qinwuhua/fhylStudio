@@ -128,9 +128,16 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean xgSckZhfzShzt(Sckzhfz zhfz) {
-		if(update("xgSckZhfzShzt", zhfz)>0)return true;
-		else return false;
+	public boolean xgSckZhfzShzt(String delstr,Sckzhfz zhfz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", zhfz.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckZhfzShzt", lm)==lm.size()?true:false;
 	}
 	@Override
 	public boolean xgSckZhfzTH(Sckzhfz zhfz) {

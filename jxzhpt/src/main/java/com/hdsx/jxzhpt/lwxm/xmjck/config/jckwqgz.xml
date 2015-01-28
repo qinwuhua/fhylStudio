@@ -94,7 +94,7 @@
  	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
  </update>
  
- <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
+ <update id="xgJckwqgzShzt" parameterType="hashmap" >
  	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 

@@ -193,7 +193,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckAbgcShzt(){
-		if(abgcServer.xgSckAbgcShzt(sckabgc)){
+		if(abgcServer.xgSckAbgcShzt(delstr,sckabgc)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

@@ -182,8 +182,8 @@ text-decoration:none;
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
                               	</select>
-                              <span>&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px">
+                              <span style="display: none;">&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>

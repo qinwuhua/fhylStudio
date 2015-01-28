@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckabgc">
 <insert id="insertSckabgc"  parameterType="sckabgc">
-	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd)
+	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd,lrjh)
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd})
+		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入')
 </insert>
 <insert id="lrjhSckabgc"  parameterType="sckabgc">
 	insert into plan_abgc(sckid,xdzt) values(#{sckid},'未下达')
@@ -93,7 +93,7 @@
  		sck_sbthcd=#{sck_sbthcd} where sckid =#{sckid}
  </update>
  
-  <update id="xgSckAbgcShzt" parameterType="sckabgc" >
+  <update id="xgSckAbgcShzt" parameterType="hashmap" >
  	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
 

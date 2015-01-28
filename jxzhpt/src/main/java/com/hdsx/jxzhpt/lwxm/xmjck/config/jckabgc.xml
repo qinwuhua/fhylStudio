@@ -115,7 +115,7 @@
 	<update id="xgJckAbgcSbzt" parameterType="hashmap">
 		update xmk_abgc set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
 	</update>
-	<update id="xgJckAbgcShzt" parameterType="jckabgc">
+	<update id="xgJckAbgcShzt" parameterType="hashmap">
 		update xmk_abgc set shzt='已审核', shsj=sysdate,shbm=#{shbm} where id=#{id}
 	</update>
 	<update id="xgJckAbgcTH" parameterType="String">
