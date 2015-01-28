@@ -67,8 +67,8 @@
 			$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
 			$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
 			$("#tj_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#tj_sbyf").append("<option value="+mystr3+">"+mystr3+"</option>");
-			$("#tj_sbyf").append("<option value="+mystr4+">"+mystr4+"</option>");
+// 			$("#tj_sbyf").append("<option value="+mystr3+">"+mystr3+"</option>");
+// 			$("#tj_sbyf").append("<option value="+mystr4+">"+mystr4+"</option>");
 		
 		
 	});
