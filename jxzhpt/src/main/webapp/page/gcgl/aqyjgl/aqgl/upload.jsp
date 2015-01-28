@@ -126,7 +126,7 @@
 	//必须的 
 	function tianjian(){
 		//alert("jinru");
-		if($("#fileQueue").text()==''){alert("jinru1111");
+		if($("#fileQueue").text()==''){//alert("jinru1111");
 			addaqyb('');
 			//alert($("#fileQueue").text());
 		}

@@ -16,18 +16,61 @@
 	<script type="text/javascript" src="js/gcgzgj.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		var sbsj;
-		var sbyf;
-		$(function(){
-				var myDate = new Date();
-				var y = myDate.getFullYear();
-				var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-				var d = myDate.getDate();
-				sbsj = y+"-"+m+"-"+d;
-				sbyf = y+"-"+m;
-				$("#tj_sbsj").text(sbsj);
-				$("#tj_sbyf").text(sbyf);
-			});
+			var sbsj;
+			var sbyf;
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+			var d = myDate.getDate();
+			sbsj = y+"-"+m+"-"+d;
+			sbyf = y+"-"+m;
+			$("#tj_sbsj").text(sbsj);
+			//$("#tj_sbyf").text(sbyf);
+
+			var mystr='';
+			var mystr1='';
+			var mystr2='';
+			var mystr3='';
+			var mystr4='';
+			if(m=1){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+11;
+				mystr2=(y-1)+'-'+12;
+				mystr3=y+'-'+(m+1);
+				mystr4=y+'-'+(m+2);
+			}
+			else if(m=2){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+12;
+				mystr2=y+'-'+1;
+				mystr3=y+'-'+(m+1);
+				mystr4=y+'-'+(m+2);
+			}else if(m=11){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+9;
+				mystr2=y+'-'+10;
+				mystr3=y+'-'+12;
+				mystr4=(y+1)+'-'+1;
+			}else if(m=12){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+10;
+				mystr2=(y-1)+'-'+11;
+				mystr3=(y+1)+'-'+1;
+				mystr4=(y+1)+'-'+2;
+			}else{
+				mystr=y+'-'+m;
+				mystr1=y+'-'+(m-2);
+				mystr2=y+'-'+(m-1);
+				mystr3=y+'-'+(m+1);
+				mystr4=y+'-'+(m+2);
+			}
+			$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr3+">"+mystr3+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr4+">"+mystr4+"</option>");
+		
+		
 	});
 </script>
 <style type="text/css">
@@ -158,7 +201,8 @@ text-decoration: none;
                         </td>
                         <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                             border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                            <span id="tj_sbyf"></span>
+                           <select id="tj_sbyf"></select>
+                           
                         </td>
                     </tr>
                 </table>
