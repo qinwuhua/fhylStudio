@@ -110,7 +110,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateYhdzxCgs" parameterType="gcglyhdzx">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 
@@ -148,8 +148,9 @@
 		t2.sbnf,t1.lxmc,t1.lxbm,t1.gydwmc gydw,t1.gydwdm gydwbm,t1.qdzh,t1.zdzh,t1.qzlc,t1.hdlc hdhlc,t1.xzqhdm,t1.xzqhmc,t1.yjsdj jsdj,t1.ylmkd,t1.ylmlx,t1.ylmhd,
 		t2.description sczmsj,t2.xchsqk,t2.qtbz,
 		t2.classify,t2.reportingfee,t2.fee,t2.newfee,t2.totalinvest,t2.totalplacefund,t2.totalsubsidyfund,t2.accumulativesubsidyfund,
-		t2.nowyearsubsidyfund,t2.dianceng,t2.jiceng,t2.surface,t2.mark,t2.pqi,t2.planhistorycompara,t2.aadt,t2.constructnumber,
+		t2.nowyearsubsidyfund,t2.dianceng,t2.jiceng,t2.surface,t2.pqi,t2.planhistorycompara,t2.aadt,t2.constructnumber,
 		t2.replynumber,t2.devisenumbder,t2.plandownnumber,t2.remarks,t1.id jhid,t2.id,
+<!-- 		t2.mark, -->
 		t2.xdsj jhxdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gys,t2.wjgyy
 		from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
 		where t2.spzt='1'

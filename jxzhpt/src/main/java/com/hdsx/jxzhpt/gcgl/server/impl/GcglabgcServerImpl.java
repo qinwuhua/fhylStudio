@@ -56,6 +56,10 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	}
 	@Override
 	public Boolean updateAbgcYb(Gcglabgc gcglabgc) {
+		Gcglabgc gcglabgc1=queryOne("queryYbByYf", gcglabgc);
+		if(gcglabgc1!=null&&!gcglabgc1.getId().equals(gcglabgc.getId())){
+			return false;
+		}
 		if(update("updateAbgcYb", gcglabgc)>0){
 			return true;
 		}else{
@@ -95,6 +99,10 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 
 	@Override
 	public Boolean updateAbgcCgs(Gcglabgc gcglabgc) {
+		Gcglabgc gcglwqgz1=queryOne("queryCGSByYf", gcglabgc);
+		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglabgc.getId())){
+			return false;
+		}
 		if(update("updateAbgcCgs", gcglabgc)>0){
 			return true;
 		}else{

@@ -24,7 +24,36 @@
 		tbyf = y+"-"+m;
 		$("#tj_tbr").text($.cookie("truename"));
 		$("#tj_tbsj").text(tbsj);
-		$("#tj_tbyf").text(tbyf);
+//		$("#tj_tbyf").text(tbyf);
+		var mystr='';
+		var mystr1='';
+		var mystr2='';
+		if(m=1){
+			mystr=y+'-'+m;
+			mystr1=(y-1)+'-'+11;
+			mystr2=(y-1)+'-'+12;
+		}
+		else if(m=2){
+			mystr=y+'-'+m;
+			mystr1=(y-1)+'-'+12;
+			mystr2=y+'-'+1;
+		}else if(m=11){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+9;
+			mystr2=y+'-'+10;
+		}else if(m=12){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+10;
+			mystr2=(y-1)+'-'+11;
+		}else{
+			mystr=y+'-'+m;
+			mystr1=y+'-'+(m-2);
+			mystr2=y+'-'+(m-1);
+		}
+		$("#tj_tbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
+		$("#tj_tbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
+		$("#tj_tbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
+		$("#tj_tbyf").val(tbyf);
 	});
 </script>
 <style type="text/css">
@@ -87,7 +116,7 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="tj_tbyf"></span>&nbsp;
+                                <select id="tj_tbyf"></select>&nbsp;
                             </td>
                         </tr>
                     </table>

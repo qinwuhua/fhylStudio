@@ -55,6 +55,9 @@
 	<select id="queryYbByYf" parameterType="gcglabgc" resultType="gcglabgc">
 		select * from GCGL_ABGC where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
+	<select id="queryYbByYf1" parameterType="gcglabgc" resultType="int">
+		select count(*) from GCGL_ABGC where sbyf=#{sbyf} and jhid=#{jhid}
+	</select>
 	<!-- 修改月报 -->
 	<update id="updateAbgcYb" parameterType="gcglabgc">
 		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
@@ -112,7 +115,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateAbgcCgs" parameterType="gcglabgc">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	
