@@ -45,8 +45,11 @@
 			(
 				select rownum as num,t.* from 
 				(
-					select  jh.sfylsjl,jh.jgzt,jh.kgzt,jh.id,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sbzt,jh.spzt,jh.jhnf,jh.jh_sbthcd,lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.yhlc 
-	    			from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
+					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
 				 		and jh.jhnf=#{jh.jhnf}
 				 	</if>
@@ -56,8 +59,8 @@
 				 	<if test="jh.spzt!=null and jh.spzt!=''">
 				 		and jh.spzt=#{jh.spzt}
 				 	</if>
-				 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				 		and lx.gydwdm like #{lx.gydwdm}
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and lx.gydwbm like #{lx.gydwbm}
 				 	</if>
 				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 				 		and lx.xzqhdm like #{lx.xzqhdm}
@@ -77,34 +80,39 @@
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
-		select count(*) from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1
-		<if test="jh.jhnf!=null and jh.jhnf!=''">
-	 		and jh.jhnf=#{jh.jhnf}
-	 	</if>
-	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 		and jh.sbzt=#{jh.sbzt}
-	 	</if>
-	 	<if test="jh.spzt!=null and jh.spzt!=''">
-	 		and jh.spzt=#{jh.spzt}
-	 	</if>
-	 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-	 		and lx.gydwdm like #{lx.gydwdm}
-	 	</if>
-	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 		and lx.xzqhdm like #{lx.xzqhdm}
-	 	</if>
-	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 	</if>
-	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 		and lx.lxbm like #{lx.lxbm}||'%'
-	 	</if>
-	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 		and lx.lxjsdj = #{lx.lxjsjd}
-	 	</if>
+		select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and lx.gydwbm like #{lx.gydwbm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and lx.xzqhdm like #{lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 	</if>
 	</select>
-	<select id="queryAbgcById"  parameterType="string"  resultMap="abgc_jh">
-		select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id}
+	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
+		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
+		select * from Plan_Abgc jh where jh.id=#{id}
 	</select>
 	<select id="queryAbgcNfs" resultType="treenode">
 		 select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf

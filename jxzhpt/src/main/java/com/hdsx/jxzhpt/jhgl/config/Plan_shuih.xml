@@ -207,4 +207,7 @@
 			#{4},#{5},#{6},#{7},#{8},
 			#{9},#{10},#{11})
 	</insert>
+	<select id="queryGPSBylxbm" parameterType="string" resultType="int">
+		select count(*) from JXJCK_2013.GPSROAD t where t.roadcode=#{_parameter}
+	</select>
 </mapper>

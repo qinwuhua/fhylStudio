@@ -4,88 +4,94 @@ import java.util.Date;
 import java.util.List;
 
 public class Plan_yhdzx {
-	private String id;//计划ID
-	private String sbnf;//上报年份
+	private String id;
+	private String classify;//工程分类
+	private String ordernum;
+	private String planhistorycompara;//历史对比
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
-	private String sjdw;//设计单位
-	private String sjpfdw;//审计批复单位
-	private String pfwh;//批复文号
-	private Date pfsj;//批复时间
-	private String yhlb;//养护类别
-	private String dc;//垫层
-	private String jc;//基层
-	private String mc;//面层
-	private String pfztz;//批复总投资
-	private String jhsybzje;//计划使用部补助金额
-	private String jhsydfzcje;//计划使用地方自筹金额
-	private String sfsqablbz;//是否申请按比例补助
-	private String ablbzsqwh;//按比例补助申请文号
-	private String bz;//备注信息
-	private Date tbsj;//填报时间
-	private String tbbm;//填报部门
-	private String sbzt;//上报状态
-	private String sbbm;//上报部门
-	private Date sbsj;//上报时间
+	private String ygcode;//管养单位编码
 	private String spzt;//审批状态
-	private String spbm;//审批部门
 	private Date spsj;//审批时间
-	private Date xdsj;//下达时间
-	private String gkbgmc;//工可报告名称
-	private String gkbglj;//工可报告路径
-	private String sjsgtmc;//设计施工图名称
-	private String sjsgtlj;//设计施工图路径
-	private Date sjkgsj;//设计开工时间
-	private Date sjwgsj;//设计完工时间
+	private String sbzt;//上报状态
+	private Date sbsj;//上报时间
+	private String wjzt;//台账完结状态
+	private String wjsj;//台账完结时间
+	private Date xdsj;//计划下达时间
+	private Date sjkgsj;//实际开工时间
+	private Date sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
 	private String jldw;//监理单位
 	private String htje;//合同金额
+	private String kgzt;//开工状态
+	private String jgzt;//竣工状态
+	private Date yjwgsj;//预计完工时间
+	private String jsdw;//建设单位
+	private String description;//技术处置描述
+	private String xchsqk;//现场核实情况
+	private String aadt;//交通量
+	private String dianceng;//垫层
+	private String jiceng;//基层
+	private String surface;//面层
+	private String pqi;//PQI指标
+	private String fee;//核算经费
+	private String reportingfee;//上报经费
+	private String newfee;//审定经费
+	private String totalinvest;//总投资
+	private String totalsubsidyfund;//总补助资金
+	private String totalplacefund;//地方配套总投资
+	private String accumulativesubsidyfund;//累计补助资金
+	private String nowyearsubsidyfund;//本年补助资金
+	private String constructnumber;//施工图文号
+	private String replynumber;//工可批复文号
+	private String devisenumber;//设计批复文号
+	private String plandownnumber;//计划下达文号
 	private String sgxkwj;//施工许可文件
 	private String jgtcwj;//交工通车文件
 	private String jgyswj;//竣工验收文件
 	private String wjsczt;//文件上传状态
-	private String kgzt;//开工状态
-	private String jgzt;//竣工状态
+	private String gys;//概预算
 	private String wjgyy;//未竣工原因
-	private Date yjwgsj;//预计完工时间
-	private String xmmc;//项目名称
-	private String lmkd;//路面宽度
-	private String sftqss;//是否提前实施
-	private String sfgyhdm;//是否归市局管养单位
-	private String jsdw;//建设单位
-	private String jhxdwh;//计划下达文号
-	private String gksjwh;//工可批复文号
-	private String sjpfwh;//设计批复文号
-	private String wjzt;//台账完结状态
-	private Date wjsj;//台账完结时间
-	private String gsztz;//概算总投资
-	private String sfqxkg;//是否全线开工
-	private String jh_sbthcd;//上报退回长度
-	private String sbbmdm;//上报部门代码
-	private String spbmdm;//审批部门代码
-	private Plan_lx_yhdzx plan_yhdzx;
-	private List<Plan_lx_yhdzx> plan_yhdzxs;
-	
-	private String fapgdw;//方案评估单位
-	private String fascdw;//方案审查单位
-	private Date faspsj;//方案审批时间
-	private String spwh;//方案审批文号
-	private String tzgs;//投资估算
-	private String jsxz;//建设性质
-	private String jsnr;///建设内容
-	private String spbz;//审批备注
-	
+	private String remarks;//省统筹备注
+	private String qtbz;//其他备注
+	private Plan_lx_yhdzx plan_lx_yhdzx;
+	private List<Plan_lx_yhdzx> plan_lx_yhdzxs;
+	private String jh_sbthcd;//计划上报退回长度
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getSbnf() {
-		return sbnf;
+	public Plan_lx_yhdzx getPlan_lx_yhdzx() {
+		return plan_lx_yhdzx;
 	}
-	public void setSbnf(String sbnf) {
-		this.sbnf = sbnf;
+	public void setPlan_lx_yhdzx(Plan_lx_yhdzx plan_lx_yhdzx) {
+		this.plan_lx_yhdzx = plan_lx_yhdzx;
+	}
+	public List<Plan_lx_yhdzx> getPlan_lx_yhdzxs() {
+		return plan_lx_yhdzxs;
+	}
+	public void setPlan_lx_yhdzxs(List<Plan_lx_yhdzx> plan_lx_yhdzxs) {
+		this.plan_lx_yhdzxs = plan_lx_yhdzxs;
+	}
+	public String getClassify() {
+		return classify;
+	}
+	public void setClassify(String classify) {
+		this.classify = classify;
+	}
+	public String getOrdernum() {
+		return ordernum;
+	}
+	public void setOrdernum(String ordernum) {
+		this.ordernum = ordernum;
+	}
+	public String getPlanhistorycompara() {
+		return planhistorycompara;
+	}
+	public void setPlanhistorycompara(String planhistorycompara) {
+		this.planhistorycompara = planhistorycompara;
 	}
 	public Date getJhkgsj() {
 		return jhkgsj;
@@ -99,119 +105,11 @@ public class Plan_yhdzx {
 	public void setJhwgsj(Date jhwgsj) {
 		this.jhwgsj = jhwgsj;
 	}
-	public String getSjdw() {
-		return sjdw;
+	public String getYgcode() {
+		return ygcode;
 	}
-	public void setSjdw(String sjdw) {
-		this.sjdw = sjdw;
-	}
-	public String getSjpfdw() {
-		return sjpfdw;
-	}
-	public void setSjpfdw(String sjpfdw) {
-		this.sjpfdw = sjpfdw;
-	}
-	public String getPfwh() {
-		return pfwh;
-	}
-	public void setPfwh(String pfwh) {
-		this.pfwh = pfwh;
-	}
-	public Date getPfsj() {
-		return pfsj;
-	}
-	public void setPfsj(Date pfsj) {
-		this.pfsj = pfsj;
-	}
-	public String getYhlb() {
-		return yhlb;
-	}
-	public void setYhlb(String yhlb) {
-		this.yhlb = yhlb;
-	}
-	public String getDc() {
-		return dc;
-	}
-	public void setDc(String dc) {
-		this.dc = dc;
-	}
-	public String getJc() {
-		return jc;
-	}
-	public void setJc(String jc) {
-		this.jc = jc;
-	}
-	public String getMc() {
-		return mc;
-	}
-	public void setMc(String mc) {
-		this.mc = mc;
-	}
-	public String getPfztz() {
-		return pfztz;
-	}
-	public void setPfztz(String pfztz) {
-		this.pfztz = pfztz;
-	}
-	public String getJhsybzje() {
-		return jhsybzje;
-	}
-	public void setJhsybzje(String jhsybzje) {
-		this.jhsybzje = jhsybzje;
-	}
-	public String getJhsydfzcje() {
-		return jhsydfzcje;
-	}
-	public void setJhsydfzcje(String jhsydfzcje) {
-		this.jhsydfzcje = jhsydfzcje;
-	}
-	public String getSfsqablbz() {
-		return sfsqablbz;
-	}
-	public void setSfsqablbz(String sfsqablbz) {
-		this.sfsqablbz = sfsqablbz;
-	}
-	public String getAblbzsqwh() {
-		return ablbzsqwh;
-	}
-	public void setAblbzsqwh(String ablbzsqwh) {
-		this.ablbzsqwh = ablbzsqwh;
-	}
-	public String getBz() {
-		return bz;
-	}
-	public void setBz(String bz) {
-		this.bz = bz;
-	}
-	public Date getTbsj() {
-		return tbsj;
-	}
-	public void setTbsj(Date tbsj) {
-		this.tbsj = tbsj;
-	}
-	public String getTbbm() {
-		return tbbm;
-	}
-	public void setTbbm(String tbbm) {
-		this.tbbm = tbbm;
-	}
-	public String getSbzt() {
-		return sbzt;
-	}
-	public void setSbzt(String sbzt) {
-		this.sbzt = sbzt;
-	}
-	public String getSbbm() {
-		return sbbm;
-	}
-	public void setSbbm(String sbbm) {
-		this.sbbm = sbbm;
-	}
-	public Date getSbsj() {
-		return sbsj;
-	}
-	public void setSbsj(Date sbsj) {
-		this.sbsj = sbsj;
+	public void setYgcode(String ygcode) {
+		this.ygcode = ygcode;
 	}
 	public String getSpzt() {
 		return spzt;
@@ -219,47 +117,41 @@ public class Plan_yhdzx {
 	public void setSpzt(String spzt) {
 		this.spzt = spzt;
 	}
-	public String getSpbm() {
-		return spbm;
-	}
-	public void setSpbm(String spbm) {
-		this.spbm = spbm;
-	}
 	public Date getSpsj() {
 		return spsj;
 	}
 	public void setSpsj(Date spsj) {
 		this.spsj = spsj;
 	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public Date getSbsj() {
+		return sbsj;
+	}
+	public void setSbsj(Date sbsj) {
+		this.sbsj = sbsj;
+	}
+	public String getWjzt() {
+		return wjzt;
+	}
+	public void setWjzt(String wjzt) {
+		this.wjzt = wjzt;
+	}
+	public String getWjsj() {
+		return wjsj;
+	}
+	public void setWjsj(String wjsj) {
+		this.wjsj = wjsj;
+	}
 	public Date getXdsj() {
 		return xdsj;
 	}
 	public void setXdsj(Date xdsj) {
 		this.xdsj = xdsj;
-	}
-	public String getGkbgmc() {
-		return gkbgmc;
-	}
-	public void setGkbgmc(String gkbgmc) {
-		this.gkbgmc = gkbgmc;
-	}
-	public String getGkbglj() {
-		return gkbglj;
-	}
-	public void setGkbglj(String gkbglj) {
-		this.gkbglj = gkbglj;
-	}
-	public String getSjsgtmc() {
-		return sjsgtmc;
-	}
-	public void setSjsgtmc(String sjsgtmc) {
-		this.sjsgtmc = sjsgtmc;
-	}
-	public String getSjsgtlj() {
-		return sjsgtlj;
-	}
-	public void setSjsgtlj(String sjsgtlj) {
-		this.sjsgtlj = sjsgtlj;
 	}
 	public Date getSjkgsj() {
 		return sjkgsj;
@@ -291,6 +183,144 @@ public class Plan_yhdzx {
 	public void setHtje(String htje) {
 		this.htje = htje;
 	}
+	public String getKgzt() {
+		return kgzt;
+	}
+	public void setKgzt(String kgzt) {
+		this.kgzt = kgzt;
+	}
+	public String getJgzt() {
+		return jgzt;
+	}
+	public void setJgzt(String jgzt) {
+		this.jgzt = jgzt;
+	}
+	public Date getYjwgsj() {
+		return yjwgsj;
+	}
+	public void setYjwgsj(Date yjwgsj) {
+		this.yjwgsj = yjwgsj;
+	}
+	public String getJsdw() {
+		return jsdw;
+	}
+	public void setJsdw(String jsdw) {
+		this.jsdw = jsdw;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getXchsqk() {
+		return xchsqk;
+	}
+	public void setXchsqk(String xchsqk) {
+		this.xchsqk = xchsqk;
+	}
+	public String getAadt() {
+		return aadt;
+	}
+	public void setAadt(String aadt) {
+		this.aadt = aadt;
+	}
+	public String getDianceng() {
+		return dianceng;
+	}
+	public void setDianceng(String dianceng) {
+		this.dianceng = dianceng;
+	}
+	public String getJiceng() {
+		return jiceng;
+	}
+	public void setJiceng(String jiceng) {
+		this.jiceng = jiceng;
+	}
+	public String getSurface() {
+		return surface;
+	}
+	public void setSurface(String surface) {
+		this.surface = surface;
+	}
+	public String getPqi() {
+		return pqi;
+	}
+	public void setPqi(String pqi) {
+		this.pqi = pqi;
+	}
+	public String getFee() {
+		return fee;
+	}
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+	public String getReportingfee() {
+		return reportingfee;
+	}
+	public void setReportingfee(String reportingfee) {
+		this.reportingfee = reportingfee;
+	}
+	public String getNewfee() {
+		return newfee;
+	}
+	public void setNewfee(String newfee) {
+		this.newfee = newfee;
+	}
+	public String getTotalinvest() {
+		return totalinvest;
+	}
+	public void setTotalinvest(String totalinvest) {
+		this.totalinvest = totalinvest;
+	}
+	public String getTotalsubsidyfund() {
+		return totalsubsidyfund;
+	}
+	public void setTotalsubsidyfund(String totalsubsidyfund) {
+		this.totalsubsidyfund = totalsubsidyfund;
+	}
+	public String getTotalplacefund() {
+		return totalplacefund;
+	}
+	public void setTotalplacefund(String totalplacefund) {
+		this.totalplacefund = totalplacefund;
+	}
+	public String getAccumulativesubsidyfund() {
+		return accumulativesubsidyfund;
+	}
+	public void setAccumulativesubsidyfund(String accumulativesubsidyfund) {
+		this.accumulativesubsidyfund = accumulativesubsidyfund;
+	}
+	public String getNowyearsubsidyfund() {
+		return nowyearsubsidyfund;
+	}
+	public void setNowyearsubsidyfund(String nowyearsubsidyfund) {
+		this.nowyearsubsidyfund = nowyearsubsidyfund;
+	}
+	public String getConstructnumber() {
+		return constructnumber;
+	}
+	public void setConstructnumber(String constructnumber) {
+		this.constructnumber = constructnumber;
+	}
+	public String getReplynumber() {
+		return replynumber;
+	}
+	public void setReplynumber(String replynumber) {
+		this.replynumber = replynumber;
+	}
+	public String getDevisenumber() {
+		return devisenumber;
+	}
+	public void setDevisenumber(String devisenumber) {
+		this.devisenumber = devisenumber;
+	}
+	public String getPlandownnumber() {
+		return plandownnumber;
+	}
+	public void setPlandownnumber(String plandownnumber) {
+		this.plandownnumber = plandownnumber;
+	}
 	public String getSgxkwj() {
 		return sgxkwj;
 	}
@@ -315,17 +345,11 @@ public class Plan_yhdzx {
 	public void setWjsczt(String wjsczt) {
 		this.wjsczt = wjsczt;
 	}
-	public String getKgzt() {
-		return kgzt;
+	public String getGys() {
+		return gys;
 	}
-	public void setKgzt(String kgzt) {
-		this.kgzt = kgzt;
-	}
-	public String getJgzt() {
-		return jgzt;
-	}
-	public void setJgzt(String jgzt) {
-		this.jgzt = jgzt;
+	public void setGys(String gys) {
+		this.gys = gys;
 	}
 	public String getWjgyy() {
 		return wjgyy;
@@ -333,160 +357,22 @@ public class Plan_yhdzx {
 	public void setWjgyy(String wjgyy) {
 		this.wjgyy = wjgyy;
 	}
-	public Date getYjwgsj() {
-		return yjwgsj;
+	public String getRemarks() {
+		return remarks;
 	}
-	public void setYjwgsj(Date yjwgsj) {
-		this.yjwgsj = yjwgsj;
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
-	public String getXmmc() {
-		return xmmc;
+	public String getQtbz() {
+		return qtbz;
 	}
-	public void setXmmc(String xmmc) {
-		this.xmmc = xmmc;
-	}
-	public String getLmkd() {
-		return lmkd;
-	}
-	public void setLmkd(String lmkd) {
-		this.lmkd = lmkd;
-	}
-	public String getSftqss() {
-		return sftqss;
-	}
-	public void setSftqss(String sftqss) {
-		this.sftqss = sftqss;
-	}
-	public String getSfgyhdm() {
-		return sfgyhdm;
-	}
-	public void setSfgyhdm(String sfgyhdm) {
-		this.sfgyhdm = sfgyhdm;
-	}
-	public String getJsdw() {
-		return jsdw;
-	}
-	public void setJsdw(String jsdw) {
-		this.jsdw = jsdw;
-	}
-	public String getJhxdwh() {
-		return jhxdwh;
-	}
-	public void setJhxdwh(String jhxdwh) {
-		this.jhxdwh = jhxdwh;
-	}
-	public String getGksjwh() {
-		return gksjwh;
-	}
-	public void setGksjwh(String gksjwh) {
-		this.gksjwh = gksjwh;
-	}
-	public String getSjpfwh() {
-		return sjpfwh;
-	}
-	public void setSjpfwh(String sjpfwh) {
-		this.sjpfwh = sjpfwh;
-	}
-	public String getWjzt() {
-		return wjzt;
-	}
-	public void setWjzt(String wjzt) {
-		this.wjzt = wjzt;
-	}
-	public Date getWjsj() {
-		return wjsj;
-	}
-	public void setWjsj(Date wjsj) {
-		this.wjsj = wjsj;
-	}
-	public String getGsztz() {
-		return gsztz;
-	}
-	public void setGsztz(String gsztz) {
-		this.gsztz = gsztz;
-	}
-	public String getSfqxkg() {
-		return sfqxkg;
-	}
-	public void setSfqxkg(String sfqxkg) {
-		this.sfqxkg = sfqxkg;
-	}
-	public String getFapgdw() {
-		return fapgdw;
-	}
-	public void setFapgdw(String fapgdw) {
-		this.fapgdw = fapgdw;
-	}
-	public String getFascdw() {
-		return fascdw;
-	}
-	public void setFascdw(String fascdw) {
-		this.fascdw = fascdw;
-	}
-	public Date getFaspsj() {
-		return faspsj;
-	}
-	public void setFaspsj(Date faspsj) {
-		this.faspsj = faspsj;
-	}
-	public String getSpwh() {
-		return spwh;
-	}
-	public void setSpwh(String spwh) {
-		this.spwh = spwh;
-	}
-	public String getTzgs() {
-		return tzgs;
-	}
-	public void setTzgs(String tzgs) {
-		this.tzgs = tzgs;
-	}
-	public String getJsxz() {
-		return jsxz;
-	}
-	public void setJsxz(String jsxz) {
-		this.jsxz = jsxz;
-	}
-	public String getJsnr() {
-		return jsnr;
-	}
-	public void setJsnr(String jsnr) {
-		this.jsnr = jsnr;
-	}
-	public String getSpbz() {
-		return spbz;
-	}
-	public void setSpbz(String spbz) {
-		this.spbz = spbz;
-	}
-	public Plan_lx_yhdzx getPlan_yhdzx() {
-		return plan_yhdzx;
-	}
-	public void setPlan_yhdzx(Plan_lx_yhdzx plan_yhdzx) {
-		this.plan_yhdzx = plan_yhdzx;
-	}
-	public List<Plan_lx_yhdzx> getPlan_yhdzxs() {
-		return plan_yhdzxs;
-	}
-	public void setPlan_yhdzxs(List<Plan_lx_yhdzx> plan_yhdzxs) {
-		this.plan_yhdzxs = plan_yhdzxs;
+	public void setQtbz(String qtbz) {
+		this.qtbz = qtbz;
 	}
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
 	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
-	}
-	public String getSbbmdm() {
-		return sbbmdm;
-	}
-	public void setSbbmdm(String sbbmdm) {
-		this.sbbmdm = sbbmdm;
-	}
-	public String getSpbmdm() {
-		return spbmdm;
-	}
-	public void setSpbmdm(String spbmdm) {
-		this.spbmdm = spbmdm;
 	}
 }

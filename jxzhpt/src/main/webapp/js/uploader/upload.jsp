@@ -130,6 +130,15 @@
 		if(flag=='zhfz_jh'){
 			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/zhfz.jsp';
 		}
+		if(flag=='gcgj_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/gclmgj.jsp';
+		}
+		if(flag=='gcsj_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/gclmsj.jsp';
+		}
+		if(flag=='shuih_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/shxm.jsp';
+		}
 		
  		dg.cancel();
 	}
