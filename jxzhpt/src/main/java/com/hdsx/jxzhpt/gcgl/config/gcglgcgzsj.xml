@@ -56,7 +56,7 @@
 	</select>
 	<!-- 修改月报 -->
 	<update id="updategcgzsjYb" parameterType="gcglgcgzsj">
-		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm}
+		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf} 
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->

@@ -24,11 +24,37 @@
 			sbsj = y+"-"+m+"-"+d;
 			sbyf = y+"-"+m;
 			$("#tj_sbsj").text(sbsj);
-			$("#tj_sbyf").text(sbyf);
+			//$("#tj_sbyf").text(sbyf);
+
+			var mystr='';
+			var mystr1='';
+			var mystr2='';
+			if(m=1){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+11;
+				mystr2=(y-1)+'-'+12;
+			}
+			else if(m=2){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+12;
+				mystr2=y+'-'+1;
+			}else if(m=11){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+9;
+				mystr2=y+'-'+10;
+			}else if(m=12){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+10;
+				mystr2=(y-1)+'-'+11;
+			}else{
+				mystr=y+'-'+m;
+				mystr1=y+'-'+(m-2);
+				mystr2=y+'-'+(m-1);
+			}
+			$("#tj_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
+			$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
 		});
-		
-		
-		
 	</script>
 	<style type="text/css">
 <!--
@@ -139,7 +165,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; width: 15%; text-align: left; padding-left: 10px;">
-                                <span id="tj_sbyf"></span>
+                                <select id="tj_sbyf"></select>
                             </td>
                         </tr>
                     </table>

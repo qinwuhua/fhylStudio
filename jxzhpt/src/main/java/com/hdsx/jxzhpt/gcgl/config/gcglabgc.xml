@@ -57,7 +57,7 @@
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateAbgcYb" parameterType="gcglabgc">
-		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm}
+		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->

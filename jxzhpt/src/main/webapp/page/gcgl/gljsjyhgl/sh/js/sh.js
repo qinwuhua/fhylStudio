@@ -91,14 +91,14 @@ function tjshyb(){
 	}
 	if(yhjb.length<8&&yhjb.length>2){
 		yhtype='省级';
-		alert("省级用户不具备添加权限");
+		alert("省级用户您好，您不用为添加月报负责");
 		return;
 	}
 	var data = "gcglsh.wc_btz="+$("#tj_wc_btz").val()+"&gcglsh.wc_stz="+$("#tj_wc_stz").val()+"&gcglsh.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()
 	+"&gcglsh.qksm="+$("#tj_qksm").val()+"&gcglsh.wcqk="+$("#tj_wcqk").val()
-	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+sbyf+"&gcglsh.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	+"&gcglsh.sbsj="+sbsj+"&gcglsh.sbyf="+$("#tj_sbyf").val()+"&gcglsh.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -123,7 +123,7 @@ function xgshyb(){
 	+"&gcglsh.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#xg_bywcdc").val()+"&gcglsh.bywcjc="+$("#xg_bywcjc").val()+"&gcglsh.bywcmc="+$("#xg_bywcmc").val()+"&gcglsh.kgdl="+$("#xg_kgdl").val()
 	+"&gcglsh.qksm="+$("#xg_qksm").val()+"&gcglsh.wcqk="+$("#xg_wcqk").val()
-	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id;
+	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.sbyf="+$("#xg_sbyf").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
