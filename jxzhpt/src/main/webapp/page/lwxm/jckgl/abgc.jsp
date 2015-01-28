@@ -62,16 +62,18 @@ function delJckabgc(){
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
-	for(var i=1;i<rows.length;i++){
-		id+=","+rows[i].id ;
-	}
 	if($.cookie("unit2").length==7){
 		alert("该项目已上报到省级单位，请勿重复操作！");
 		return ;
 	}
-	if(rows[0].sbzt2=='已上报'){
-		alert("该项目已上报，请勿重复操作！");
-		return ;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sbzt2=='已上报'){
+			alert("有项目已上报，请勿重复操作！");
+			return ;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
 	}
 	if(confirm('您确定上报该项目？')){
 		var data = "delstr="+id+"&sbbm="+$.cookie("unit")+"&sbthcd="+($.cookie("unit2").length-2);

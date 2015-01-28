@@ -46,6 +46,7 @@ public class Jckwqgz implements Serializable{
 	private Date shsj;
 	private String shbm;
 	private int sbthcd;
+	private String tsdq;
 	private int page;
 	private int rows;
 	private String sbzt2;
@@ -278,6 +279,12 @@ public class Jckwqgz implements Serializable{
 	public void setSbzt2(String sbzt2) {
 		this.sbzt2 = sbzt2;
 	}
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	@Override
 	public String toString() {
 		return "Jckwqgz [id=" + id + ", qlmc=" + qlmc + ", qlbh=" + qlbh
@@ -291,8 +298,9 @@ public class Jckwqgz implements Serializable{
 				+ tbbmbm + ", tbsj=" + tbsj + ", ptx=" + ptx + ", pty=" + pty
 				+ ", xmnf=" + xmnf + ", xmtype=" + xmtype + ", sbzt=" + sbzt
 				+ ", sbsj=" + sbsj + ", sbbm=" + sbbm + ", shzt=" + shzt
-				+ ", shsj=" + shsj + ", shbm=" + shbm + ", page=" + page
-				+ ", rows=" + rows + "]";
+				+ ", shsj=" + shsj + ", shbm=" + shbm + ", sbthcd=" + sbthcd
+				+ ", tsdq=" + tsdq + ", page=" + page + ", rows=" + rows
+				+ ", sbzt2=" + sbzt2 + "]";
 	}
 	
 }

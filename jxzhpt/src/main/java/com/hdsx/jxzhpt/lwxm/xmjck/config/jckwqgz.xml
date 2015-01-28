@@ -237,8 +237,12 @@
  	<include refid="wqgz_commonsql"/>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
-	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt) 
-		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
+	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
+	<!-- ,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj, -->
+		xmnf,<!-- xmtype, -->bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt) 
+		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},
+		<!-- #{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17}, -->
+		#{9},#{10},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
  </insert>
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
  	select
@@ -265,5 +269,19 @@
 			and roadstart  &lt;=#{qlzxzh}
 	     	and roadends >#{qlzxzh}
    </select>
+ 
+  <insert id="importWqgz2"  parameterType="hashMap">
+	
+	insert into xmk_wqgz(gydwbm ,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,
+		qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt,jsdj) 
+		select (select id from xtgl_department where name=#{0}) gydwbm ,#{0} gydw,#{1} xzqhdm,#{2} xzqhmc,#{3} lxbm,
+		#{4} lxmc,#{5} qlbh,#{6} qlmc,#{7} qlzxzh,decode(substr(F052, 0, 4), null,substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,
+		to_char(F012) qlqc,to_char(F014) qlkd,to_char(F011) kjzc,to_char(F016) dkzdkj,F010 akjfl,F022 sbjgxs,F045 pddj,
+		#{8} xmnf,'待上报' xmtype,#{9} bhnr,#{10} bz,sysdate tbsj,#{tbbmbm} tbbmbm,
+		#{sbthcd} sbthcd,'未上报' sbzt,'未审核' shzt ,
+		(select F114 jsdj from JXJCK_2013.GPSROAD where roadcode=#{3} and roadstart  &lt;=#{7} and roadends >#{7})
+		from JXJCK_2013.DATA50 where roadbm =#{5}
+		
+ </insert>
 </mapper>
 

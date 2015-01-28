@@ -27,4 +27,5 @@ public interface JckwqgzServer {
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);
 	Jckwqgz selJsdj(Jckwqgz wqgz);
+	boolean importWqgz2(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 }

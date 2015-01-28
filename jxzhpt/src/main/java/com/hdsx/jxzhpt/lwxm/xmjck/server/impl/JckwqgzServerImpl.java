@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
@@ -115,13 +114,25 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
 		for (Map<String, String> map : list) {
-			map.put("8", map.get("8").substring(0, 4));
-			map.put("16", map.get("16").substring(0, 4)+"年");
+/*			map.put("8", map.get("8").substring(0, 4)+"年");*/
 			map.put("tbbmbm", tbbmbm);
 			map.put("sbthcd", sbthcd);
 		}
 		return this.insertBatch("importWqgz", list)==list.size()?true:false;
 	}
+	@Override
+	public boolean importWqgz2(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
+		for (Map<String, String> map : list) {
+			if(map.get("1").length()==8){
+				map.put("1", map.get("1").substring(0,6));
+			}
+			map.put("tbbmbm", tbbmbm);
+			map.put("sbthcd", sbthcd);
+		}
+		return this.insertBatch("importWqgz2", list)==list.size()?true:false;
+	}
+	
+	@Override
 	public List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz) {
 		hm=new HashMap<String, Object>();
 		hm.put("sbthcd", wqgz.getSbthcd());
