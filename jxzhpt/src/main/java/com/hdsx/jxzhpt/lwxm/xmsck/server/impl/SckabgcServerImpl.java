@@ -1,5 +1,7 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -157,11 +159,11 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
-		for (Map<String, String> map : list) {
-			map.put("scbmbm", tbbmbm);
-			map.put("sck_sbthcd", sbthcd);
-		}
+	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd){
+			for (Map<String, String> map : list) {
+				map.put("scbmbm", tbbmbm);
+				map.put("sck_sbthcd", sbthcd);
+				}
 		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
 	}
 

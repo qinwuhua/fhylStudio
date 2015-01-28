@@ -294,9 +294,9 @@
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
-		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm,scbmbm,sck_sbthcd)
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm,scbmbm,sck_sbthcd,lrjh)
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
-		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd})
+		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入')
 	</insert>
 <!-- <select id="onceWqgz" parameterType="sckwqgz" resultType="int"> 
 		select count(*) from ???_wqgz where 1=1 <if test="qlbh!='' and qlbh!= null 
