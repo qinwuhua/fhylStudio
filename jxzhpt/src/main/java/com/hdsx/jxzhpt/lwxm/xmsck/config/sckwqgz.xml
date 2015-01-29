@@ -186,13 +186,22 @@
 			and akjfl like #{akjfl}||'%'
 		</if>
 	</select>
-	 <select id="bzWqgz" parameterType="sckwqgz" resultType="int">
- 		select count(*) from sck_wqgz where 1=1
+		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from sck_wqgz where lrjh='未列入'
  		<if test="qlbh!='' and qlbh!= null "  >
  			and sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=#{qlzxzh})
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 		</if>
+ </select>
+	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from sck_wqgz where lrjh='已列入'
+ 		<if test="qlbh!='' and qlbh!= null "  >
+ 			and sck_qlbh=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
  		</if>
  </select>
 

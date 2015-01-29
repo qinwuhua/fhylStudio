@@ -164,16 +164,28 @@
  			and sck_lxbm like #{lxbm}||'%'
  		</if>
  </select>
- <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
-		select count(*) from sck_zhfz where 1=1
+  <select id="onceSckZhfz" parameterType="sckzhfz" resultType="int">
+		select count(*) from sck_zhfz where lrjh='未列入'
 		<if test="lxbm!='' and lxbm!= null ">
 			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(sczdzh)>=#{qdzh}
+			and to_number(sczdzh)>=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(scqdzh) &lt;=#{zdzh}
+			and to_number(scqdzh) &lt;=to_number(#{zdzh})
+		</if>
+	</select>
+ <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
+		select count(*) from sck_zhfz where lrjh='已列入'
+		<if test="lxbm!='' and lxbm!= null ">
+			and sck_lxbm=#{lxbm}
+		</if>
+		<if test="qdzh!='' and qdzh!= null ">
+			and to_number(sczdzh)>=to_number(#{qdzh})
+		</if>
+		<if test="zdzh!='' and zdzh!= null ">
+			and to_number(scqdzh) &lt;=to_number(#{zdzh})
 		</if>
 	</select>
 	<select id="daoRuzhfzsh" parameterType="sckzhfz" resultType="sckzhfz">

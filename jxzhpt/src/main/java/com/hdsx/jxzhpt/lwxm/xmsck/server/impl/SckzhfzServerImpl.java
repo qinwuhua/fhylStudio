@@ -203,5 +203,12 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		return "sckzhfz_ok";
 	}
 
+	@Override
+	public boolean onceSckZhfz(Sckzhfz zhfz) {
+		int count = (Integer)queryOne("onceSckZhfz", zhfz);
+		if(count==0) return true;
+		else return false;
+	}
+
 
 }

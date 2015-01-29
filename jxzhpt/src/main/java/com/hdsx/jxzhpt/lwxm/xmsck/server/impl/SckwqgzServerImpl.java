@@ -208,5 +208,12 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		return "sckwqgz_ok";
 	}
 
+	@Override
+	public boolean onceSckWqgz(Sckwqgz wqgz) {
+		int count = (Integer)queryOne("onceSckWqgz", wqgz);
+		if(count==0) return true;
+		else return false;
+	}
+
 
 }

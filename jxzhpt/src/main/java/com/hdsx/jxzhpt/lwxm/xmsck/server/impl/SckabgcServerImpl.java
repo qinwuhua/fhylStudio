@@ -195,11 +195,21 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 			ab.setQdzh(map.get("9"));
 			ab.setZdzh(map.get("10"));
 			if(queryList("daoRuabgcsh", ab).size()>0){
+				int c = (Integer)queryOne("onceSckAbgc", ab);
+				if(c==0){
 				int count = (Integer)queryOne("bzAbgc", ab);
-				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+				if(count>0) return "项目审查库中已存在此项目，请勿重复添加！";
+				}else return "此项目有补助历史";
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckabgc_ok";
+	}
+
+	@Override
+	public boolean onceSckAbgc(Sckabgc abgc) {
+		int count = (Integer)queryOne("onceSckAbgc", abgc);
+		if(count==0) return true;
+		else return false;
 	}
 
 }

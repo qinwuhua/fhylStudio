@@ -199,7 +199,7 @@
  			and qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=to_number(#{qlzxzh}))
  		</if>
  </select>
  
@@ -264,7 +264,7 @@
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
- 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=#{qlzxzh}))
+ 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=to_number(#{qlzxzh})))
 		order by roadbm,F002
  	</select>
    <select id="selJsdj"  parameterType="jckwqgz" resultType="jckwqgz">

@@ -239,10 +239,10 @@
 			and lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and zdzh>=#{qdzh}
+			and to_number(zdzh)>=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and qdzh &lt;=#{zdzh}
+			and to_number(qdzh) &lt;=to_number(#{zdzh})
 		</if>
 	</select>
 	
@@ -262,10 +262,10 @@
 			and roadcode=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and roadstart &lt;=#{qdzh}
+			and roadstart &lt;=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and roadends >=#{zdzh}
+			and roadends >=to_number(#{zdzh})
 		</if>
 		group by roadname,roadcode,F114,F044, F045
 	</select>

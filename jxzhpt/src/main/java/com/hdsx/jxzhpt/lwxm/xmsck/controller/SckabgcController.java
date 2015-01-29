@@ -62,7 +62,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			List<Map>[] dataMapArray;
 			try{
 				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckzhfz.class);
-			}catch(Exception e){
+			}catch(Exception e){ 
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
@@ -220,6 +220,14 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 				abgcServer.xglrjhSckabgc(sckabgc);
 				ResponseUtils.write(getresponse(), "true");
 			}else ResponseUtils.write(getresponse(), "false");
+	}
+	public void onceSckAbgc(){
+		boolean b = abgcServer.onceSckAbgc(sckabgc);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 	
 	
