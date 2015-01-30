@@ -109,8 +109,8 @@
 		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
 	</update>
 
-	<update id="xgSckWqgzTH" parameterType="sckwqgz">
-		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+	<update id="xgSckWqgzTH" parameterType="java.util.List">
+		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 	</update>
 
 	<select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
@@ -303,7 +303,7 @@
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
-		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm,scbmbm,sck_sbthcd,lrjh)
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,scbmbm,sck_sbthcd,lrjh)
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
 		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入')
 	</insert>

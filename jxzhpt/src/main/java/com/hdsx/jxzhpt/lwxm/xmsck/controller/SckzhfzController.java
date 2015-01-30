@@ -13,7 +13,6 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
@@ -199,7 +198,7 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgSckZhfzTH(){
 		try {
-			JsonUtils.write(zhfzServer.xgSckZhfzTH(sckzhfz),getresponse().getWriter());
+			JsonUtils.write(zhfzServer.xgSckZhfzTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

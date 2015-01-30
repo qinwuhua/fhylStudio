@@ -1,14 +1,11 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
-
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
@@ -139,8 +136,13 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		return this.updateBatch("xgSckAbgcShzt", lm)==lm.size()?true:false;
 	}
 	@Override
-	public boolean xgSckAbgcTH(Sckabgc abgc) {
-		if(update("xgSckAbgcTH", abgc)>0)return true;
+	public boolean xgSckAbgcTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgSckAbgcTH", list)>0)return true;
 		else return false;
 	}
 
@@ -198,8 +200,8 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 				int c = (Integer)queryOne("onceSckAbgc", ab);
 				if(c==0){
 				int count = (Integer)queryOne("bzAbgc", ab);
-				if(count>0) return "项目审查库中已存在此项目，请勿重复添加！";
-				}else return "此项目有补助历史";
+				if(count>0) return "该项目有补助历史！";
+				}else return "项目审查库中已存在此项目，请勿重复添加！";
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckabgc_ok";

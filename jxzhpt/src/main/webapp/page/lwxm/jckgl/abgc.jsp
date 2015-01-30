@@ -98,33 +98,30 @@ function shangB(){
 } 
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	var id= rows[0].id;
-	var sbzt=rows[0].sbzt;
-	var sbthcd=rows[0].sbthcd;
-	var tbbmbm=rows[0].tbbmbm;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量退回！");
-		return;
-	}
-	if(sbzt=='未上报' && sbthcd==11){
+	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
 		alert("对不起，无法退回！");
 		return;
 	}
-	if(tbbmbm==$.cookie("unit")){
+	if(rows[i].tbbmbm==$.cookie("unit")){
 		alert("对不起，您添加的项目无法退回！");
 		return;
 	}
-	if(sbthcd<$.cookie("unit2").length){
+	if(rows[i].sbthcd<$.cookie("unit2").length){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
+	}
+	}	
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
 	}
 	if(confirm('您确定退回该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/xgJckAbgcTH.do",
 				 dataType : 'json',
-				 data : 'id=' +id,
+				 data : 'delstr=' +id,
 				 success : function(msg){
 					 if(msg){
 						 alert('退回成功！');

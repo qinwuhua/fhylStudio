@@ -17,7 +17,7 @@ public interface SckabgcServer {
 		List<Sckabgc> selectSckShabgc(Sckabgc abgc);
 		int selectAbgcShCount(Sckabgc abgc);
 		boolean xgSckAbgcShzt(String delstr,Sckabgc abgc);
-		boolean xgSckAbgcTH(Sckabgc abgc);
+		boolean xgSckAbgcTH(String delstr);
 		boolean bzAbgc(Sckabgc abgc);
 		boolean onceSckAbgc(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc);

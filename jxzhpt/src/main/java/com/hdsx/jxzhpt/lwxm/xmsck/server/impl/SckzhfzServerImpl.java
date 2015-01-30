@@ -140,8 +140,13 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		return this.updateBatch("xgSckZhfzShzt", lm)==lm.size()?true:false;
 	}
 	@Override
-	public boolean xgSckZhfzTH(Sckzhfz zhfz) {
-		if(update("xgSckZhfzTH", zhfz)>0)return true;
+	public boolean xgSckZhfzTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgSckZhfzTH", list)>0)return true;
 		else return false;
 	}
 
@@ -196,8 +201,11 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 			zh.setQdzh(map.get("9"));
 			zh.setZdzh(map.get("10"));
 			if(queryList("daoRuzhfzsh", zh).size()>0){
+				int c = (Integer)queryOne("onceSckZhfz", zh);
+				if(c==0){
 				int count = (Integer)queryOne("bzZhfz", zh);
-				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+				if(count>0) return "该项目有补助历史！";
+				}else return "项目审查库中已存在此项目，请勿重复添加！";
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckzhfz_ok";

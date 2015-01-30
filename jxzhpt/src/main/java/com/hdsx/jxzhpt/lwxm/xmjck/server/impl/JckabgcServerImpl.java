@@ -157,8 +157,13 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean xgJckAbgcTH(Jckabgc abgc) {
-		if(update("xgJckAbgcTH", abgc)>0) return true;
+	public boolean xgJckAbgcTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgJckAbgcTH", list)>0) return true;
 		else return false;
 	}
 

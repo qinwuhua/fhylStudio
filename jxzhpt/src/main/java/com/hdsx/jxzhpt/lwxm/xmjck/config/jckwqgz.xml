@@ -98,8 +98,8 @@
  	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 
-  <update id="xgJckWqgzTH" parameterType="jckwqgz" >
- 	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{id}
+  <update id="xgJckWqgzTH" parameterType="java.util.List" >
+ 	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{String}
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">

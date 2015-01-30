@@ -22,7 +22,7 @@ public interface JckwqgzServer {
 	boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
-	boolean xgJckWqgzTH(Jckwqgz wqgz);
+	boolean xgJckWqgzTH(String delstr);
 	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);

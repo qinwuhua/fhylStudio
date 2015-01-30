@@ -14,7 +14,7 @@ public interface SckwqgzServer {
 		boolean updateSckWqgz(Sckwqgz wqgz);
 		Sckwqgz selectSckwqgzById(Sckwqgz wqgz);
 		boolean xgSckWqgzSbzt(String delstr,Sckwqgz wqgz);
-		boolean xgSckWqgzTH(Sckwqgz wqgz);
+		boolean xgSckWqgzTH(String delstr);
 		List<Sckwqgz> selectSckShwqgz(Sckwqgz wqgz);
 		int selectWqgzShCount(Sckwqgz wqgz);
 		boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz);
