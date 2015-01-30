@@ -77,25 +77,26 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		for (int i = 0; i < strs.length; i++) {
 			list.add(strs[i]);
 		}
-		if(deleteBatch("deleteJckAbgc2", list)>0) return true;
+		if(deleteBatch("deleteJckAbgc", list)>0) return true;
 		else return false;
 	}
 
 	@Override
-	public boolean xgJckAbgcShzt(Jckabgc abgc) {
-		if(update("xgJckAbgcShzt", abgc)>0) return true;
-		else return false;
+	public boolean xgJckAbgcShzt(String delstr,Jckabgc abgc) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", abgc.getShbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgJckAbgcShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
 	public boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sbbm", abgc.getSbbm());
-		hm.put("sbthcd", abgc.getSbthcd());
-		if(update("xgJckAbgcSbzt", hm)>0) return true;
-		else return false;
-		/*String[] strs = delstr.split(",");
+		String[] strs = delstr.split(",");
 		lm=new ArrayList<Map<String,Object>>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
@@ -104,8 +105,8 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 			hm.put("sbthcd", abgc.getSbthcd());
 			lm.add(hm);
 		}
-		if(update("xgJckAbgcSbzt2", lm)>0) return true;
-		else return false;*/
+		if(updateBatch("xgJckAbgcSbzt", lm)>0) return true;
+		else return false;
 	}
 
 	@Override
@@ -164,6 +165,9 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public boolean importAbgc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
 		for (Map<String, String> map : list) {
+			if(map.get("1").length()==8){
+				map.put("1", map.get("1").substring(0,6));
+			}
 			map.put("9", map.get("9").substring(0, 4));
 			map.put("12", map.get("12").substring(0, 4)+"年");
 			map.put("tbbmbm", tbbmbm);

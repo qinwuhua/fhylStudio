@@ -20,14 +20,14 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:'1',spzt:null};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
 			wqxm_sh(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:'1',spzt:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};

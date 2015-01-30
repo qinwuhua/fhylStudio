@@ -58,7 +58,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,20,fs,Jckwqgz.class);
+				dataMapArray = ExcelReader.readExcelContent(3,11,fs,Jckwqgz.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -66,14 +66,17 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			//去除excel中的空白行数据
 			List<Map<String,String>> data=ExcelReader.removeBlankRow2(dataMapArray[0]);
 			if(wqgzServer.yanZhen(data, tbbmbm1).equals("jckwqgz_ok")){
-				if(wqgzServer.importWqgz(data,tbbmbm2,sbthcd1)) 
+				System.out.println("***************"+data);
+				if(wqgzServer.importWqgz2(data,tbbmbm2,sbthcd1)) 
 					response.getWriter().print(fileuploadFileName+"导入成功");
 				else 
 					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 			}else{
 				response.getWriter().print(fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void exportExcel_wqgz(){
 		try {
@@ -175,7 +178,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckWqgzShzt(){
 		try {
-			JsonUtils.write(wqgzServer.xgJckWqgzShzt(jckwqgz),getresponse().getWriter());
+			JsonUtils.write(wqgzServer.xgJckWqgzShzt(delstr,jckwqgz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

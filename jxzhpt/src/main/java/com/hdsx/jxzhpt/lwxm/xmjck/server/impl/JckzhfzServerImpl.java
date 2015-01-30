@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,14 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	private Map<String, Object> hm;
+	private List<String> list;
+	private List<Map<String,Object>> lm;
 	public JckzhfzServerImpl() {
 		super("jckzhfz", "jdbc");
 	}
@@ -70,23 +72,40 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 
 	@Override
 	public boolean deleteZhfzById(String delstr) {
-		if(delete("deleteJckzhfz", delstr)>0) return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteJckzhfz", list)>0) return true;
 		else return false;
 	}
 
 	@Override
-	public boolean xgJckZhfzShzt(Jckzhfz zhfz) {
-		if(update("xgJckzhfzShzt", zhfz)>0) return true;
-		else return false;
+	public boolean xgJckZhfzShzt(String delstr,Jckzhfz zhfz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", zhfz.getShbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgJckzhfzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
 	public boolean xgJckZhfzSbzt(String delstr,Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sbbm", zhfz.getSbbm());
-		hm.put("sbthcd", zhfz.getSbthcd());
-		if(update("xgJckzhfzSbzt", hm)>0) return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", zhfz.getSbbm());
+			hm.put("sbthcd", zhfz.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgJckzhfzSbzt", lm)>0) return true;
 		else return false;
 	}
 
@@ -146,6 +165,9 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	@Override
 	public boolean importZhfz(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
 		for (Map<String, String> map : list) {
+			if(map.get("1").length()==8){
+				map.put("1", map.get("1").substring(0,6));
+			}
 			map.put("9", map.get("9").substring(0, 4));
 			map.put("12", map.get("12").substring(0, 4)+"年");
 			map.put("tbbmbm", tbbmbm);

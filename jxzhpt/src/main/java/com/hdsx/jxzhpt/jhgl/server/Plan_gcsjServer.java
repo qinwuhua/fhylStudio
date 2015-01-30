@@ -66,4 +66,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	boolean insertGcsj_lx(List<Map> lx);
+	/**
+	 * 根据路线编码查询是否有此路线
+	 * @param lxbm
+	 * @return
+	 */
+	int queryGPSBylxbm(String lxbm);
 }

@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd,lrjh)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd})
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入')
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="sckwqgz">
@@ -96,17 +96,19 @@
 		select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where
 		sckid=#{sckid}
 	</select>
-	<delete id="deleteSckWqgz" parameterType="String">
-		delete from sck_wqgz where sckid in(#{delstr})
+	<delete id="deleteSckWqgz" parameterType="java.util.List">
+		delete from sck_wqgz where sckid =#{String}
 	</delete>
 
-	<update id="xgSckWqgzShzt" parameterType="sckwqgz">
-		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
-	</update>
 	<update id="xgSckWqgzSbzt" parameterType="hashmap">
 		update sck_wqgz set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
- 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
+ 		sck_sbthcd=#{sck_sbthcd} where sckid =#{sckid}
 	</update>
+	
+	<update id="xgSckWqgzShzt" parameterType="hashmap">
+		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
+	</update>
+
 	<update id="xgSckWqgzTH" parameterType="sckwqgz">
 		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 	</update>
@@ -184,13 +186,22 @@
 			and akjfl like #{akjfl}||'%'
 		</if>
 	</select>
-	 <select id="bzWqgz" parameterType="sckwqgz" resultType="int">
- 		select count(*) from sck_wqgz where 1=1
+		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from sck_wqgz where lrjh='未列入'
  		<if test="qlbh!='' and qlbh!= null "  >
  			and sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=#{qlzxzh})
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 		</if>
+ </select>
+	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from sck_wqgz where lrjh='已列入'
+ 		<if test="qlbh!='' and qlbh!= null "  >
+ 			and sck_qlbh=#{qlbh}
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null "  >
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
  		</if>
  </select>
 
@@ -292,9 +303,9 @@
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
-		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm,scbmbm,sck_sbthcd)
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,qlbh,qlzxzh,lxbm,scbmbm,sck_sbthcd,lrjh)
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
-		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd})
+		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入')
 	</insert>
 <!-- <select id="onceWqgz" parameterType="sckwqgz" resultType="int"> 
 		select count(*) from ???_wqgz where 1=1 <if test="qlbh!='' and qlbh!= null 

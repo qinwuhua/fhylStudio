@@ -30,7 +30,7 @@ function delSckwqgz(){
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_sbzt2=='已上报'){
-			alert("该项目已上报，不能执行删除操作！");
+			alert("有项目已上报，不能执行删除操作！");
 			return false;
 		}
 	}
@@ -57,49 +57,25 @@ function delSckwqgz(){
 			});
 		}
 }
-function xgShzt(id){
-	var rows=$('#grid').datagrid('getSelections');
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量审核！");
-		return;
-	}
-	if(confirm('您确定审核通过该项目？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/xmsck/xgSckZhfzShzt.do",
-				 dataType : 'json',
-				 data : 'id=' +id,
-				 success : function(msg){
-					 if(msg){
-						 alert('审核成功！');
-						 $("#grid").datagrid('reload');
-					 }else{
-						 alert('审核失败,请选择要审核项目！');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-	}
-}
+
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid=rows[0].sckid;
-	for(var i=1;i<rows.length;i++){
-		sckid+=","+rows[i].sckid ;
-	}
 	if($.cookie("unit2").length==7){
 		alert("该项目已上报到省级单位，请勿重复操作！");
 		return ;
 	}
-	if(rows[0].sck_sbzt2=='已上报'){
-		alert("该项目已上报，请勿重复操作！");
-		return ;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sck_sbzt2=='已上报'){
+			alert("有项目已上报，请勿重复操作！");
+			return ;
+		}
+	}
+	for(var i=1;i<rows.length;i++){
+		sckid+=","+rows[i].sckid ;
 	}
 	if(confirm('您确定上报该项目？')){
-		var data = "delstr="+sckid+"&sck_sbbm="+$.cookie("unit2")+"&sck_sbthcd="+($.cookie("unit2").length-2);
+		var data = "delstr="+sckid+"&sck_sbbm="+$.cookie("unit")+"&sck_sbthcd="+($.cookie("unit2").length-2);
 		$.ajax({
 			 type : "POST",
 			 url : "/jxzhpt/xmsck/xgSckWqgzSbzt.do",
@@ -207,8 +183,8 @@ text-decoration:none;
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
                               	</select>
-                              <span>&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px">
+                              <span style="display: none;">&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>
@@ -230,7 +206,7 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="jsdj" style="width:100px">
+                              	<select id="jsdj" style="width:70px">
                               		<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>

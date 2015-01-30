@@ -133,6 +133,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("41", map.get("41").toString().substring(0, map.get("41").toString().indexOf(".")));
 				map.put("42", map.get("42").toString().substring(0, map.get("42").toString().indexOf(".")));
 				strVerify=ImportVerify.gcsjVerify(map);
+				if(gcsjServer.queryGPSBylxbm(map.get("3").toString())==0){
+					strVerify="【"+map.get("3").toString()+"】不存在！";
+				}
 			}
 			System.out.println(data);
 			if(strVerify.equals("")){

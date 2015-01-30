@@ -34,7 +34,7 @@ function tjabgccgs(){
 	var d = myDate.getDate();
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
-	var data="gcglabgc.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglabgc.tbr="+$.cookie("truename")+"&gcglabgc.tbsj="+tbsj+"&gcglabgc.tbyf="+tbyf
+	var data="gcglabgc.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglabgc.tbr="+$.cookie("truename")+"&gcglabgc.tbsj="+tbsj+"&gcglabgc.tbyf="+$("#tj_tbyf").val()
 	+"&gcglabgc.jhid="+parent.parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
@@ -57,7 +57,7 @@ function tjabgccgs(){
 //修改车购税
 function xgabgccgs(){
 	var data="gcglabgc.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.id="+parent.obj.id;
+	+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.tbyf="+$("#xg_tbyf").val();
 	//alert(data);
 	$.ajax({
 		type:'post',

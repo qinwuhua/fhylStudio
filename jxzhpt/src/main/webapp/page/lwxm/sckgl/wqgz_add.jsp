@@ -26,16 +26,15 @@ $(function(){
 		var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmsck/bzWqgz.do',
+			url:'/jxzhpt/xmsck/onceSckWqgz.do',
 			dataType:'json',
 	        data:datas,
 			success:function(msg){
 				if(Boolean(msg)){
-					saveWqgz();
+					bzWqgz();
 				}else{
-					if(confirm('该项目有补助历史，你确定继续提交吗？')){
-						saveWqgz();
-					}
+					alert("该项目已添加，请勿重复添加！");
+					return;
 				}
 			}
 		});
@@ -135,6 +134,24 @@ function saveWqgz(){
 			}
 		}
 	});  
+}
+function bzWqgz(){
+	var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/xmsck/bzWqgz.do',
+		dataType:'json',
+        data:datas,
+		success:function(msg){
+			if(Boolean(msg)){
+				saveWqgz();
+			}else{
+				if(confirm('该项目有补助历史，你确定继续提交吗？')){
+					saveWqgz();
+				}
+			}
+		}
+	});
 }
 </script>
 <style type="text/css">

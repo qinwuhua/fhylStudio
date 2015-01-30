@@ -16,9 +16,10 @@ public interface SckabgcServer {
 		boolean xgSckAbgcSbzt(String delstr,Sckabgc abgc);
 		List<Sckabgc> selectSckShabgc(Sckabgc abgc);
 		int selectAbgcShCount(Sckabgc abgc);
-		boolean xgSckAbgcShzt(Sckabgc abgc);
+		boolean xgSckAbgcShzt(String delstr,Sckabgc abgc);
 		boolean xgSckAbgcTH(Sckabgc abgc);
 		boolean bzAbgc(Sckabgc abgc);
+		boolean onceSckAbgc(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scgl(Sckabgc abgc);
 		List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc);
 		List<SjbbMessage> insertToSheet(Map map);

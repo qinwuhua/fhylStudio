@@ -16,7 +16,7 @@ public interface JckwqgzServer {
 	List<Jckwqgz> selectGpsroad(Jckwqgz wqgz);
 	List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz);
 	boolean deleteWqgzById(String delstr);
-	boolean xgJckWqgzShzt(Jckwqgz wqgz);
+	boolean xgJckWqgzShzt(String delstr,Jckwqgz wqgz);
 	boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
 	boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
@@ -27,4 +27,5 @@ public interface JckwqgzServer {
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);
 	Jckwqgz selJsdj(Jckwqgz wqgz);
+	boolean importWqgz2(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 }

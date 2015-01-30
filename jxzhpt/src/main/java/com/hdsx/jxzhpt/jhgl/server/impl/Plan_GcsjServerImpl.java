@@ -71,4 +71,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return insertBatch("insertGcsj_lx", lx)==lx.size();
 	}
 
+	@Override
+	public int queryGPSBylxbm(String lxbm) {
+		return queryOne("queryGPSBylxbm", lxbm);
+	}
+
 }

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckabgc">
 <insert id="insertSckabgc"  parameterType="sckabgc">
-	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd)
+	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd,lrjh)
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd})
+		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入')
 </insert>
 <insert id="lrjhSckabgc"  parameterType="sckabgc">
 	insert into plan_abgc(sckid,xdzt) values(#{sckid},'未下达')
@@ -84,17 +84,19 @@
  	where sckid=#{sckid}
  </update>
  
- <delete id="deleteSckAbgc" parameterType="String" >
- 	delete from sck_abgc where sckid in(#{delstr})
+ <delete id="deleteSckAbgc" parameterType="java.util.List" >
+ 	delete from sck_abgc where sckid =#{String}
  </delete>
  
-  <update id="xgSckAbgcShzt" parameterType="sckabgc" >
+ <update id="xgSckAbgcSbzt" parameterType="hashmap" >
+ 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
+ 		sck_sbthcd=#{sck_sbthcd} where sckid =#{sckid}
+ </update>
+ 
+  <update id="xgSckAbgcShzt" parameterType="hashmap" >
  	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
-  <update id="xgSckAbgcSbzt" parameterType="hashmap" >
- 	update sck_abgc set sck_sbzt='已上报', sck_sbsj=sysdate,sck_sbbm=#{sck_sbbm},
- 		sck_sbthcd=#{sck_sbthcd} where sckid in(#{delstr})
- </update>
+
  <update id="xgSckAbgcTH" parameterType="sckabgc">
 	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
 </update>
@@ -162,16 +164,28 @@
  			and sck_lxbm like #{lxbm}||'%'
  		</if>
  </select>
-<select id="bzAbgc" parameterType="sckabgc" resultType="int">
-		select count(*) from sck_abgc where 1=1
+ <select id="onceSckAbgc" parameterType="sckabgc" resultType="int">
+		select count(*) from sck_abgc where lrjh='未列入'
 		<if test="lxbm!='' and lxbm!= null ">
 			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(sczdzh)>=#{qdzh}
+			and to_number(sczdzh)>=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(scqdzh) &lt;=#{zdzh}
+			and to_number(scqdzh) &lt;=to_number(#{zdzh})
+		</if>
+	</select>
+<select id="bzAbgc" parameterType="sckabgc" resultType="int">
+		select count(*) from sck_abgc where lrjh='已列入'
+		<if test="lxbm!='' and lxbm!= null ">
+			and sck_lxbm=#{lxbm}
+		</if>
+		<if test="qdzh!='' and qdzh!= null ">
+			and to_number(sczdzh)>=to_number(#{qdzh})
+		</if>
+		<if test="zdzh!='' and zdzh!= null ">
+			and to_number(scqdzh) &lt;=to_number(#{zdzh})
 		</if>
 	</select>
 	<select id="daoRuabgcsh" parameterType="sckabgc" resultType="sckabgc">
@@ -257,8 +271,8 @@
 	</if>
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap" >
- 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd)
-	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd})
+ 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd,lrjh)
+	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd},'未列入')
 
  </insert>
 </mapper>

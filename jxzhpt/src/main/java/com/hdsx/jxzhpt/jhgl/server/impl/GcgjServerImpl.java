@@ -69,4 +69,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean insertGcgj_lx(List<Map> lx) {
 		return insertBatch("insertGcgj_lx", lx)==lx.size();
 	}
+
+	@Override
+	public int queryGPSBylxbm(String lxbm) {
+		return queryOne("queryGPSBylxbm", lxbm);
+	}
 }

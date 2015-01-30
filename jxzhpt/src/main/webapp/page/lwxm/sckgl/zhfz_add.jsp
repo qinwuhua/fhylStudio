@@ -29,16 +29,15 @@ var zdStr;
 			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/xmsck/bzZhfz.do',
+				url:'/jxzhpt/xmsck/onceSckZhfz.do',
 				dataType:'json',
 		        data:datas,
 				success:function(msg){
 					if(Boolean(msg)){
-						saveZhfz();
+						bzZhfz();
 					}else{
-						if(confirm('该项目有补助历史，你确定继续提交吗？')){
-							saveZhfz();
-						}
+						alert("该项目已添加，请勿重复添加！");
+						return;
 					}
 				}
 			}); 
@@ -161,6 +160,25 @@ var zdStr;
 			}
 		});  
 	}
+	function bzZhfz(){
+		var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xmsck/bzZhfz.do',
+			dataType:'json',
+	        data:datas,
+			success:function(msg){
+				if(Boolean(msg)){
+					saveZhfz();
+				}else{
+					if(confirm('该项目有补助历史，你确定继续提交吗？')){
+						saveZhfz();
+					}
+				}
+			}
+		}); 
+	}
+	
 	function changeZlc(){
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
 		$("#sczlc").html(zlc);

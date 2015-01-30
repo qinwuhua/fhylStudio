@@ -49,9 +49,11 @@ public class GcglaqybController extends BaseActionSupport{
 	private String reportmonth;
 	private String remark;
 	private String gydw;
+	private String gydw1;
 	private String wjmc;
 	private String ddlyear;
 	private String ddlmonth;
+	private String type;
 	
 	@Resource(name = "gcglaqybServerImpl")
 	private GcglaqybServer gcglaqybServer;
@@ -59,6 +61,18 @@ public class GcglaqybController extends BaseActionSupport{
 	private Gcglaqyb gcglaqyb = new Gcglaqyb();
 	private String jhid;
 	
+	public String getGydw1() {
+		return gydw1;
+	}
+	public void setGydw1(String gydw1) {
+		this.gydw1 = gydw1;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getGydw() {
 		return gydw;
 	}
@@ -177,10 +191,15 @@ public class GcglaqybController extends BaseActionSupport{
 	}
 	public void selectaqyblist(){
 		gcglaqyb.setReportmonth(ddlyear+"-"+ddlmonth);
-		gcglaqyb.setUploadepartment(gydw.replaceAll("0*$",""));
+		gcglaqyb.setUploadepartment(gydw);
 		gcglaqyb.setFilename(wjmc);
 		gcglaqyb.setRows(rows);
 		gcglaqyb.setPage(page);
+		if("全部".equals(type)){}
+		if("上传".equals(type)){}
+		if("接收".equals(type)){
+			gcglaqyb.setSendingunits(gydw1);
+		}
 		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);
 		List<Gcglaqyb> list=gcglaqybServer.selectaqyblist(gcglaqyb);
 		EasyUIPage<Gcglaqyb> e=new EasyUIPage<Gcglaqyb>();

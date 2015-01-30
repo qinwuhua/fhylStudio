@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	private Map<String, Object> hm;
+	private ArrayList<String> list;
+	private List<Map<String,Object>> lm;
 	public SckwqgzServerImpl() {
 		super("sckwqgz", "jdbc");
 	}
@@ -60,7 +63,12 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 
 	@Override
 	public boolean deleteSckWqgz(String delstr) {
-		if(delete("deleteSckWqgz", delstr)>0)return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteSckWqgz", list)>0)return true;
 		else return false;
 	}
 
@@ -77,11 +85,16 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 
 	@Override
 	public boolean xgSckWqgzSbzt(String delstr,Sckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sck_sbbm", wqgz.getSck_sbbm());
-		hm.put("sck_sbthcd", wqgz.getSck_sbthcd());
-		if(update("xgSckWqgzSbzt", hm)>0)return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_sbbm", wqgz.getSck_sbbm());
+			hm.put("sck_sbthcd", wqgz.getSck_sbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgSckWqgzSbzt", lm)>0)return true;
 		else return false;
 	}
 	@Override
@@ -125,9 +138,16 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean xgSckWqgzShzt(Sckwqgz wqgz) {
-		if(update("xgSckWqgzShzt", wqgz)>0) return true;
-		else return false;
+	public boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", wqgz.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckWqgzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
@@ -186,6 +206,13 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckwqgz_ok";
+	}
+
+	@Override
+	public boolean onceSckWqgz(Sckwqgz wqgz) {
+		int count = (Integer)queryOne("onceSckWqgz", wqgz);
+		if(count==0) return true;
+		else return false;
 	}
 
 

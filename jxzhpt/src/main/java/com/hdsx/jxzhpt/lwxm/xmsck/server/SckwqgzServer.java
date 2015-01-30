@@ -17,7 +17,7 @@ public interface SckwqgzServer {
 		boolean xgSckWqgzTH(Sckwqgz wqgz);
 		List<Sckwqgz> selectSckShwqgz(Sckwqgz wqgz);
 		int selectWqgzShCount(Sckwqgz wqgz);
-		boolean xgSckWqgzShzt(Sckwqgz wqgz);
+		boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz);
 		boolean bzWqgz(Sckwqgz wqgz);
 		List<SjbbMessage> exportExcel_wqgz_scgl(Sckwqgz wqgz);
 		List<SjbbMessage> exportExcel_wqgz_scsh(Sckwqgz wqgz);
@@ -26,4 +26,5 @@ public interface SckwqgzServer {
 		boolean lrjhSckwqgz(Sckwqgz wqgz);
 		boolean xglrjhSckwqgz(Sckwqgz wqgz);
 		String yanZhen(List<Map<String, String>> data, String tbbmbm);
+		boolean onceSckWqgz(Sckwqgz wqgz);
 }

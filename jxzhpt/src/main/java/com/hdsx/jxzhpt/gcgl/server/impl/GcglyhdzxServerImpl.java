@@ -60,6 +60,10 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 	
 	@Override
 	public Boolean updateYhdzxYb(Gcglyhdzx gcglyhdzx) {
+		Gcglyhdzx gcglzhfz1=queryOne("queryYbByYf", gcglyhdzx);
+		if(gcglzhfz1!=null&&!gcglzhfz1.getId().equals(gcglyhdzx.getId())){
+			return false;
+		}
 		if(update("updateYhdzxYb", gcglyhdzx)>0){
 			return true;
 		}else{
@@ -111,7 +115,10 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 
 	@Override
 	public Boolean updateYhdzxCgs(Gcglyhdzx gcglyhdzx) {
-		// TODO Auto-generated method stub
+		Gcglyhdzx gcglwqgz1=queryOne("queryCGSByYf", gcglyhdzx);
+		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglyhdzx.getId())){
+			return false;
+		}
 		if(update("updateYhdzxCgs", gcglyhdzx)>0){
 			return true;
 		}else{

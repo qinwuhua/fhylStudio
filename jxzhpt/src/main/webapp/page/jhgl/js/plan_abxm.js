@@ -4,7 +4,8 @@ var selRow=new Array();//已选择的行号
 function abgcxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
+			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1000,queryParams:params,
 	    columns:[[
@@ -25,13 +26,16 @@ function abgcxm(jh,lx){
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
-	        	if(row.jh_sbthcd==0){
+	        	if(row.sbzt=="0" && row.jh_sbthcd==0){
 					result="未上报";
 				}
-				else if(row.jh_sbthcd==2){
-					result="上报待审批";
+				else if(row.sbzt=="0" && row.jh_sbthcd==2){
+					result="已上报";
 				}
-				else if(row.jh_sbthcd==4){
+				else if(row.sbzt=="1" && row.spzt=="0"){
+					result="未审批";
+				}
+				else if(row.sbzt=="1" && row.spzt=="1"){
 					result="已审批";
 				}
 	        	return result;
@@ -98,8 +102,9 @@ function abgcxm(jh,lx){
 }
 function abgcxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
+			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -117,17 +122,19 @@ function abgcxm_sb(jh,lx){
 	        }},
 	        {field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result="";
-				if(row.jh_sbthcd=="0"){
-					var id="'"+row.id+"'";
-					var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-					var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-					if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")))
-						result='<a href="javascript:sb('+id+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					else
-						result='<a style="text-decoration:none;color:#3399CC;">上报</a>';
+				var id="'"+row.id+"'";
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))  && row.jh_sbthcd==2){
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>    |    ';
+					result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+				}else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
+					result='<a style="text-decoration:none;">已上报</a>';
 				}
-				else if(row.jh_sbthcd=="2"){
-					result="已上报";
+				if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
+					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+				}else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
+					result='<a style="text-decoration:none;">已上报</a>';
 				}
 				return result;
 	        }},
@@ -184,8 +191,9 @@ function abgcxm_sb(jh,lx){
 }
 function abgcxm_sh(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
+			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -271,8 +279,9 @@ function abgcxm_sh(jh,lx){
 }
 function abgcxm_zjxd(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
+			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -280,7 +289,7 @@ function abgcxm_zjxd(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_zjxd','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openDialog('+"'zjxd_abgc','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
@@ -354,11 +363,16 @@ function abgcxm_zjxd(jh,lx){
 	gridBind(grid);
 }
 function sbnf(id){
+	var myDate = new Date();
+	var years=[];
+	for(var i=0;i<=10;i++){
+		years.push({text:(myDate.getFullYear()-i)});
+	}
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryAbgcNfs.do',
+	    data:years,
 	    valueField:'text',    
-	    textField:'text'
-	}); 
+	    textField:'text'   
+	});
 }
 function queryAbgc(id){
 	$.ajax({
@@ -367,30 +381,32 @@ function queryAbgc(id){
 		data:"jh.id="+id,
 		dataType:'json',
 		success:function(data){
-			$('#lxmc').html(data.jckabgc.lxmc);
-			$('#lxbm').html(data.jckabgc.lxbm);
-			$('#gydwxx').html(data.jckabgc.gydw);
-			$('#qdzh').html(data.jckabgc.qdzh);
-			$('#zdzh').html(data.jckabgc.zdzh);
-			$('#qzlc').html(data.jckabgc.qzlc);
-			$('#xzqhdm').html(data.jckabgc.xzqhdm);
-			$('#xzqhmc').html(data.jckabgc.xzqhmc);
-			$('#xjgjnd').html(data.jckabgc.xjgjnd);
-			$('#jsdjxx').html(data.jckabgc.jsdj);
-			$('#yhlc').html(data.jckabgc.yhlc);
-			$('#tsdq').html(data.jckabgc.tsdq);
-			$('#xmnf').html(data.jckabgc.xmnf);
-			$('#xmzt').html(data.jckabgc.xmzt);
-			$('#yhnr').html(data.jckabgc.yhnr);
-			$('#bz').html(data.jckabgc.bz);
 			//审查库
 			$.ajax({
 				type:'post',
 				url:'../../../xmsck/selectSckabgcById.do',
 				dataType:'json',
-				data:'sckid='+data.jckabgc.id,
+				data:'sckid='+data.sckid,
 				success:function(data){
 					if(data!=null){
+						//基础
+						$('#lxmc').html(data.lxmc);
+						$('#lxbm').html(data.lxbm);
+						$('#gydwxx').html(data.gydw);
+						$('#qdzh').html(data.qdzh);
+						$('#zdzh').html(data.zdzh);
+						$('#qzlc').html(data.qzlc);
+						$('#xzqhdm').html(data.xzqhdm);
+						$('#xzqhmc').html(data.xzqhmc);
+						$('#xjgjnd').html(data.gjxjnd);
+						$('#jsdjxx').html(data.lxjsdj);
+						$('#yhlc').html(data.yhlc);
+						$('#tsdq').html(data.tsdq);
+						$('#xmnf').html(data.xmnf);
+						$('#xmzt').html(data.xmzt);
+						$('#yhnr').html(data.yhnr);
+						$('#bz').html(data.bz);
+						//审查
 						$('#scqdzh').html(data.scqdzh);
 						$('#sczdzh').html(data.sczdzh);
 						$('#sczlc').html(data.sczdzh);
@@ -407,7 +423,7 @@ function queryAbgc(id){
 				}
 			});
 			//计划
-			$('#jhnf').html(data.jhnf);
+			$('#jhnfxx').html(data.jhnf);
 			$('#JHKGSJ').html(data.jhkgsj);
 			$('#JHWGSJ').html(data.jhwgsj);
 			$('#JHXDSJ').html(data.xdsj);

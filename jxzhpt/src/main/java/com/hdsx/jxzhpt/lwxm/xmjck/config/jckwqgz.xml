@@ -86,12 +86,18 @@
  		dkzdkj=#{dkzdkj},akjfl=#{akjfl},sbjgxs=#{sbjgxs},bhnr=#{bhnr},bz=#{bz},xmnf=#{xmnf},xmtype=#{xmtype}
  		where id=#{id}
  </update>
- <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
+  <delete id="deleteJckWqgz" parameterType="java.util.List" >
+ 	delete from xmk_wqgz where id =#{String}
+ </delete>
+ 
+ <update id="xgJckwqgzSbzt" parameterType="hashmap" >
+ 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
+ </update>
+ 
+ <update id="xgJckwqgzShzt" parameterType="hashmap" >
  	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
-   <update id="xgJckwqgzSbzt" parameterType="hashmap" >
- 	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id in(#{delstr})
- </update>
+
   <update id="xgJckWqgzTH" parameterType="jckwqgz" >
  	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{id}
  </update>
@@ -186,16 +192,14 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  </select>
- <delete id="deleteJckWqgz" parameterType="String" >
- 	delete from xmk_wqgz where id in #{delstr}
- </delete>
+
  <select id="onceWqgz" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz where 1=1
  		<if test="qlbh!='' and qlbh!= null "  >
  			and qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=to_number(#{qlzxzh}))
  		</if>
  </select>
  
@@ -237,8 +241,12 @@
  	<include refid="wqgz_commonsql"/>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
-	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt) 
-		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
+	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
+	<!-- ,xjgjnd,qlqc,qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj, -->
+		xmnf,<!-- xmtype, -->bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt) 
+		values(sys_guid(),(select id from xtgl_department where name=#{0}),#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},
+		<!-- #{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17}, -->
+		#{9},#{10},sysdate,#{tbbmbm},#{sbthcd},'未上报','未审核')
  </insert>
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
  	select
@@ -256,7 +264,7 @@
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
- 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=#{qlzxzh}))
+ 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=to_number(#{qlzxzh})))
 		order by roadbm,F002
  	</select>
    <select id="selJsdj"  parameterType="jckwqgz" resultType="jckwqgz">
@@ -265,5 +273,19 @@
 			and roadstart  &lt;=#{qlzxzh}
 	     	and roadends >#{qlzxzh}
    </select>
+ 
+  <insert id="importWqgz2"  parameterType="hashMap">
+	
+	insert into xmk_wqgz(gydwbm ,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,xjgjnd,qlqc,
+		qlkd,kjzc,dkzdkj,akjfl,sbjgxs,pddj,xmnf,xmtype,bhnr,bz,tbsj,tbbmbm,sbthcd,sbzt,shzt,jsdj) 
+		select (select id from xtgl_department where name=#{0}) gydwbm ,#{0} gydw,#{1} xzqhdm,#{2} xzqhmc,#{3} lxbm,
+		#{4} lxmc,#{5} qlbh,#{6} qlmc,#{7} qlzxzh,decode(substr(F052, 0, 4), null,substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,
+		to_char(F012) qlqc,to_char(F014) qlkd,to_char(F011) kjzc,to_char(F016) dkzdkj,F010 akjfl,F022 sbjgxs,F045 pddj,
+		#{8} xmnf,'待上报' xmtype,#{9} bhnr,#{10} bz,sysdate tbsj,#{tbbmbm} tbbmbm,
+		#{sbthcd} sbthcd,'未上报' sbzt,'未审核' shzt ,
+		(select F114 jsdj from JXJCK_2013.GPSROAD where roadcode=#{3} and roadstart  &lt;=#{7} and roadends >#{7})
+		from JXJCK_2013.DATA50 where roadbm =#{5}
+		
+ </insert>
 </mapper>
 

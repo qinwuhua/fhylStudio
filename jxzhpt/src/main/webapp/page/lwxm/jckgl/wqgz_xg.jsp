@@ -31,7 +31,7 @@ $(function(){
 	$("#save_button").click(function(){
 		var data ="id="+parent.rowid+"&qlbh="+$("#qlbh").html()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydw="+$("#gydw").html()
 		+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&lxmc="+$("#lxmc").html()+"&lxbm="+$("#lxbm").html()+"&kjzc="+$("#kjzc").html()+
-		"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").val()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
+		"&qlqc="+$("#qlqc").html()+"&qlkd="+$("#qlkd").html()+"&dkzdkj="+$("#dkzdkj").html()+"&jsdj="+$("#jsdj").html()+"&pddj="+$("#pddj").html()+"&xjgjnd="+$("#xjgjnd").html()
 		+"&akjfl="+$("#akjfl").html()+"&sbjgxs="+$("#sbjgxs").html()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").html()+"&bhnr="+$("#bhnr").val()+"&bz="+$("#bz").val();
 		$.ajax({
 			type:'post',
@@ -76,7 +76,7 @@ function wqgzById(){
 		$("#qlqc").html(msg.qlqc);
 		$("#qlkd").html(msg.qlkd);
 		$("#dkzdkj").html(msg.dkzdkj);
-		$("#jsdj").val(msg.jsdj);
+		$("#jsdj").html(msg.jsdj);
 		$("#pddj").html(msg.pddj);
 		$("#xjgjnd").html(msg.xjgjnd);
 		$("#akjfl").html(msg.akjfl);
@@ -141,13 +141,7 @@ function wqgzById(){
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select id="jsdj" style="width:155px">
-							<option selected="selected"  value="一级公路">一级公路</option>
-							<option value="二级公路">二级公路</option>
-							<option value="三级公路">三级公路</option>
-							<option value="四级公路">四级公路</option>
-							<option value="等外公路">等外公路</option>
-                    </select></td>
+					<span id="jsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">评定等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<span id="pddj"></span></td>

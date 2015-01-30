@@ -252,4 +252,7 @@
 		values(sys_guid(),#{jhid},#{0},#{gydwdm},#{1},#{2},#{3},#{4},
 			#{5},#{6},#{7},#{8},#{9},#{10})
 	</insert>
+	<select id="queryGPSBylxbm" parameterType="string" resultType="int">
+		select count(*) from JXJCK_2013.GPSROAD t where t.roadcode=#{_parameter}
+	</select>
 </mapper>

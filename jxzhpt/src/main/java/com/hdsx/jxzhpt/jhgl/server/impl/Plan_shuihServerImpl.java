@@ -70,4 +70,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public boolean insertShuih_Lx(List<Map> lx) {
 		return insertBatch("insertShuih_Lx", lx)==lx.size();
 	}
+
+	@Override
+	public int queryGPSBylxbm(String lxbm) {
+		return queryOne("queryGPSBylxbm",lxbm);
+	}
 }

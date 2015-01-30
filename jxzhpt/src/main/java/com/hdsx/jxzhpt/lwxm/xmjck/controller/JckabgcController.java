@@ -180,7 +180,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckAbgcShzt(){
 		try {
-			JsonUtils.write(abgcServer.xgJckAbgcShzt(jckabgc),getresponse().getWriter());
+			JsonUtils.write(abgcServer.xgJckAbgcShzt(delstr,jckabgc),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

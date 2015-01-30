@@ -30,23 +30,38 @@ var zdStr;
 				alert("对不起，起点桩号不能为空！");
 				return false;
 			}
+			if(parseFloat($("#scqdzh").val())*1000<qdStr*1000){
+				alert("对不起，起点桩号不能小于"+qdStr+"！");
+				return false;
+			}
 			if($("#sczdzh").val()==null || $("#sczdzh").val()==''){
 				alert("对不起，止点桩号不能为空！");
+				return false;
+			}
+			if(parseFloat($("#sczdzh").val())*1000>zdStr*1000){
+				alert("对不起，止点桩号不能大于"+zdStr+"！");
+				return false;
+			}
+			if(parseFloat($("#scqdzh").val())*1000>parseFloat($("#sczdzh").val())*1000){
+				alert("对不起，起点桩号不能大于止点桩号！");
+				return false;
+			}
+			if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#sczlc").html())*1000){
+				alert("对不起，隐患里程不能大于总里程！");
 				return false;
 			}
 			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/xmsck/bzAbgc.do',
+				url:'/jxzhpt/xmsck/onceSckAbgc.do',
 				dataType:'json',
 		        data:datas,
 				success:function(msg){
 					if(Boolean(msg)){
-						saveAbgc();
+						bzAbgc();
 					}else{
-						if(confirm('该项目有补助历史，你确定继续提交吗？')){
-							saveAbgc();
-						}
+						alert("该项目已添加，请勿重复添加！");
+						return;
 					}
 				}
 			});
@@ -124,31 +139,8 @@ var zdStr;
 				});
 	}
 	function saveAbgc(){
-		if($("#scqdzh").val()==null || $("#scqdzh").val()==''){
-			alert("对不起，起点桩号不能为空！");
-			return false;
-		}
-		if(parseFloat($("#scqdzh").val())*1000<qdStr*1000){
-			alert("对不起，起点桩号不能小于"+qdStr+"！");
-			return false;
-		}
-		if($("#sczdzh").val()==null || $("#sczdzh").val()==''){
-			alert("对不起，止点桩号不能为空！");
-			return false;
-		}
-		if(parseFloat($("#sczdzh").val())*1000>zdStr*1000){
-			alert("对不起，止点桩号不能大于"+zdStr+"！");
-			return false;
-		}
-		if(parseFloat($("#scqdzh").val())*1000>parseFloat($("#sczdzh").val())*1000){
-			alert("对不起，起点桩号不能大于止点桩号！");
-			return false;
-		}
-		if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#sczlc").html())*1000){
-			alert("对不起，隐患里程不能大于总里程！");
-			return false;
-		}
-		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").val()+"&scyhlc="+$("#scyhlc").val()
+		
+		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
 		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+$.cookie("unit2").length;
@@ -168,6 +160,25 @@ var zdStr;
 				}
 			}
 		});  
+	}
+	
+	function bzAbgc(){
+		var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xmsck/bzAbgc.do',
+			dataType:'json',
+	        data:datas,
+			success:function(msg){
+				if(Boolean(msg)){
+					saveAbgc();
+				}else{
+					if(confirm('该项目有补助历史，你确定继续提交吗？')){
+						saveAbgc();
+					}
+				}
+			}
+		});
 	}
 	function changeZlc(){
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;

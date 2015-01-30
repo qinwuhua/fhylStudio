@@ -6,7 +6,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 
 public class Plan_wqgz {
 	private String id;//唯一ID
-	private String xckid;//危桥改造项目库ID
+	private String sckid;//危桥改造项目库ID
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
@@ -19,7 +19,7 @@ public class Plan_wqgz {
 	private String jhsydfzcje;//计划使用地方自筹金额
 	private String sfsqablbz;//是否申请按比例补助
 	private String ablbzsqwh;//按比例补助申请文号
-	private String bz;//备注
+	private String jhbz;//备注
 	private Date tbsj;//填报时间
 	private String tbbm;//填报部门
 	private String spzt;//审批状态
@@ -90,11 +90,11 @@ public class Plan_wqgz {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getXckid() {
-		return xckid;
+	public String getSckid() {
+		return sckid;
 	}
-	public void setXckid(String xckid) {
-		this.xckid = xckid;
+	public void setSckid(String sckid) {
+		this.sckid = sckid;
 	}
 	public String getSbnf() {
 		return sbnf;
@@ -168,11 +168,11 @@ public class Plan_wqgz {
 	public void setAblbzsqwh(String ablbzsqwh) {
 		this.ablbzsqwh = ablbzsqwh;
 	}
-	public String getBz() {
-		return bz;
+	public String getJhbz() {
+		return jhbz;
 	}
-	public void setBz(String bz) {
-		this.bz = bz;
+	public void setJhbz(String jhbz) {
+		this.jhbz = jhbz;
 	}
 	public Date getTbsj() {
 		return tbsj;

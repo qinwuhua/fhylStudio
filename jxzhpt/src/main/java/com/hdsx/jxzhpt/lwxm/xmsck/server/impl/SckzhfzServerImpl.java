@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,14 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	private Map<String, Object> hm;
+	private ArrayList<String> list;
+	private List<Map<String,Object>> lm;
 	public SckzhfzServerImpl() {
 		super("sckzhfz", "jdbc");
 	}
@@ -58,7 +60,12 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 
 	@Override
 	public boolean deleteSckZhfz(String delstr) {
-		if(delete("deleteSckZhfz", delstr)>0) return true;
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteSckZhfz", list)>0) return true;
 		else return false;
 	}
 
@@ -75,11 +82,16 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 
 	@Override
 	public boolean xgSckZhfzSbzt(String delstr,Sckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("delstr", delstr);
-		hm.put("sck_sbbm", zhfz.getSck_sbbm());
-		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
-		if(update("xgSckZhfzSbzt", hm)>0) return true;
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_sbbm", zhfz.getSck_sbbm());
+			hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgSckZhfzSbzt", lm)>0) return true;
 		else return false;
 	}
 
@@ -116,9 +128,16 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean xgSckZhfzShzt(Sckzhfz zhfz) {
-		if(update("xgSckZhfzShzt", zhfz)>0)return true;
-		else return false;
+	public boolean xgSckZhfzShzt(String delstr,Sckzhfz zhfz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", zhfz.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckZhfzShzt", lm)==lm.size()?true:false;
 	}
 	@Override
 	public boolean xgSckZhfzTH(Sckzhfz zhfz) {
@@ -182,6 +201,13 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckzhfz_ok";
+	}
+
+	@Override
+	public boolean onceSckZhfz(Sckzhfz zhfz) {
+		int count = (Integer)queryOne("onceSckZhfz", zhfz);
+		if(count==0) return true;
+		else return false;
 	}
 
 
