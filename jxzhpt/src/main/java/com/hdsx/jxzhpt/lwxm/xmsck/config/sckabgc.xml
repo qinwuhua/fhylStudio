@@ -97,8 +97,8 @@
  	update sck_abgc set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
 
- <update id="xgSckAbgcTH" parameterType="sckabgc">
-	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+ <update id="xgSckAbgcTH" parameterType="java.util.List">
+	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 </update>
  
   <select id="selectSckShabgc" parameterType="hashmap" resultType="sckabgc">
@@ -197,10 +197,10 @@
 			and lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(qdzh) &lt;=#{qdzh}
+			and to_number(qdzh) &lt;=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(zdzh) >=#{zdzh}
+			and to_number(zdzh) >=to_number(#{zdzh})
 		</if>
  </select>	
 	

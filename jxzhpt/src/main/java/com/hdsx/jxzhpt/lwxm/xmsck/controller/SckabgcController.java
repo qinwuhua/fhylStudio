@@ -201,7 +201,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgSckAbgcTH(){
 		try {
-			JsonUtils.write(abgcServer.xgSckAbgcTH(sckabgc),getresponse().getWriter());
+			JsonUtils.write(abgcServer.xgSckAbgcTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

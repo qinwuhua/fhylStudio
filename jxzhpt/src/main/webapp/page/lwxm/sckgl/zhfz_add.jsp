@@ -172,7 +172,7 @@ var zdStr;
 					saveZhfz();
 				}else{
 					if(confirm('该项目有补助历史，你确定继续提交吗？')){
-						saveZhfz();
+						 saveZhfz(); 
 					}
 				}
 			}

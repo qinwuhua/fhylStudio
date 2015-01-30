@@ -97,8 +97,8 @@
  	update sck_zhfz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
  </update>
 
- <update id="xgSckZhfzTH" parameterType="sckzhfz">
-	update sck_zhfz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{sckid}
+ <update id="xgSckZhfzTH" parameterType="java.util.List">
+	update sck_zhfz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 </update>
  
   <select id="selectSckShzhfz" parameterType="hashmap" resultType="sckzhfz">

@@ -56,23 +56,30 @@ function xgShzt(){
 }
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	var id= rows[0].id;
-	var shzt=rows[0].shzt;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量退回！");
+	var id=rows[0].id;
+	for(var i=0;i<rows.length;i++){
+	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
+		alert("对不起，无法退回！");
 		return;
 	}
-	if(shzt=='已审核'){
-		alert("对不起，该项目已审核，不能执行退回操作！");
+	if(rows[i].tbbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
 		return;
+	}
+	if(rows[i].sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	}	
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
 	}
 	if(confirm('您确定退回该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmjck/xgJckWqgzTH.do",
 				 dataType : 'json',
-				 data : 'id=' +id,
+				 data : 'delstr=' +id,
 				 success : function(msg){
 					 if(msg){
 						 alert('退回成功！');

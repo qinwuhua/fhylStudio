@@ -157,8 +157,13 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public boolean xgJckZhfzTH(Jckzhfz zhfz) {
-		if(update("xgJckZhfzTH", zhfz)>0)return true;
+	public boolean xgJckZhfzTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgJckZhfzTH", list)>0) return true;
 		else return false;
 	}
 

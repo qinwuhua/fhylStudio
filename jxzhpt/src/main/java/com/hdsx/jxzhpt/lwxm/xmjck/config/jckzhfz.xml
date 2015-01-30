@@ -88,8 +88,8 @@
  	update xmk_zhfz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 
- <update id="xgJckZhfzTH" parameterType="jckzhfz" >
- 	update xmk_zhfz set sbthcd=(sbthcd+2) where id =#{id}
+ <update id="xgJckZhfzTH" parameterType="java.util.List" >
+ 	update xmk_zhfz set sbthcd=(sbthcd+2) where id =#{String}
  </update>
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckzhfz">
  	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,(max(roadends)-min(roadstart)) qzlc,
@@ -247,15 +247,15 @@
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and F044 in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
+		group by roadname,roadcode,F114,F044, F045 having 
 		<if test="lxbm!='' and lxbm!= null ">
-			and roadcode=#{lxbm}
+			roadcode=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and roadstart &lt;=to_number(#{qdzh})
+			and min(roadstart) &lt;=to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and roadends >=to_number(#{zdzh})
+			and max(roadends) >=to_number(#{zdzh})
 		</if>
-		group by roadname,roadcode,F114,F044,F045
 	</select>
 </mapper>

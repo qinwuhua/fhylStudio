@@ -14,7 +14,7 @@ public interface SckzhfzServer {
 		boolean updateSckZhfz(Sckzhfz zhfz);
 		Sckzhfz selectSckzhfzById(Sckzhfz zhfz);
 		boolean xgSckZhfzSbzt(String delstr,Sckzhfz zhfz);
-		boolean xgSckZhfzTH(Sckzhfz zhfz);
+		boolean xgSckZhfzTH(String delstr);
 		List<Sckzhfz> selectSckShzhfz(Sckzhfz zhfz);
 		int selectZhfzShCount(Sckzhfz zhfz);
 		boolean xgSckZhfzShzt(String delstr,Sckzhfz zhfz);

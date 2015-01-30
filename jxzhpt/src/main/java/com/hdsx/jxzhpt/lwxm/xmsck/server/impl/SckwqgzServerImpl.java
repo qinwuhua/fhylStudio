@@ -98,8 +98,13 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 	@Override
-	public boolean xgSckWqgzTH(Sckwqgz wqgz) {
-		if(update("xgSckWqgzTH", wqgz)>0) return true;
+	public boolean xgSckWqgzTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgSckWqgzTH", list)>0)return true;
 		else return false;
 	}
 
