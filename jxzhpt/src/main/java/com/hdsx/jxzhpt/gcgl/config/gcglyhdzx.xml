@@ -138,7 +138,7 @@
 		update PLAN_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglyhdzx">
-		update PLAN_YHDZX set jhxdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where id=#{jhid}
+		update PLAN_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where id=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
@@ -153,7 +153,7 @@
 <!-- 		t2.mark, -->
 		t2.xdsj jhxdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gys,t2.wjgyy
 		from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
-		where t2.spzt='1'
+		where 1=1
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>
@@ -174,7 +174,7 @@
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglyhdzx" resultType="int">
 	 	select count(*) from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
-		where t2.spzt='1'
+		where 1=1
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
 	</if>

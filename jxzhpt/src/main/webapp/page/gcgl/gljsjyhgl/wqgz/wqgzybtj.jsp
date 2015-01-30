@@ -54,6 +54,7 @@
 			$("#tj_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
 			$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
 			$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
+			//alert(parent.data.cgsdwzj);
 		});
 	</script>
 	<style type="text/css">
@@ -174,7 +175,7 @@ a:active {
                         cellspacing="0" cellpadding="0">
                         <tr style="height: 30px;">
                             <td align="center">
-                                <img src="${pageContext.request.contextPath}/images/Button/baocun1.gif" id="Img1" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" style="cursor: hand" onclick="tjwqgzyb();" />
+                                <img id="addbtn" src="${pageContext.request.contextPath}/images/Button/baocun1.gif" id="Img1" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/baocun2.gif'" alt="保存" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/baocun1.gif'" style="cursor: hand" onclick="tjwqgzyb();" />
                                 <img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" id="Img2" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" onclick="closes('wqxxtj')" style="cursor: hand" />
                             </td>
                         </tr>
