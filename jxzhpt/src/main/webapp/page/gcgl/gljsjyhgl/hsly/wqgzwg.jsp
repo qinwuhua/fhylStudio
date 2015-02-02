@@ -33,6 +33,9 @@
 			if(m<=9){
 				m='0'+m;
 			}
+			if(d<=9){
+				d='0'+d;
+			}
 			$('#tj_sjwgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
 		
