@@ -52,7 +52,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try{
 			if(!"xls".equals(fileType)){
-				response.getWriter().print(fileuploadFileName+"："+"不是excel文件");
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
 				return ;
 			}
 			response.setCharacterEncoding("utf-8"); 
@@ -61,22 +61,22 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			try{
 				dataMapArray = ExcelReader.readExcelContent(3,15,fs,Jckabgc.class);
 			}catch(Exception e){
-				response.getWriter().print(fileuploadFileName+"："+"数据有误");
+				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
 			try{
 				List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 				if(abgcServer.yanZhen(data, tbbmbm1).equals("jckabgc_ok")){
 					if(abgcServer.importAbgc(data,tbbmbm2,sbthcd1)) 
-						response.getWriter().print(fileuploadFileName+"："+"导入成功");
+						response.getWriter().print(fileuploadFileName+"导入成功");
 					else 
-						response.getWriter().print(fileuploadFileName+"："+"服务器异常,请重试");
+						response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 				}else{
 					response.getWriter().print("提示："+fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
 				}
 			}catch(Exception e){
 				e.printStackTrace();
-				response.getWriter().print(fileuploadFileName+"："+"导入失败，请重试");
+				response.getWriter().print(fileuploadFileName+"导入失败，请重试");
 			}
 		}catch(Exception e){}
 	}

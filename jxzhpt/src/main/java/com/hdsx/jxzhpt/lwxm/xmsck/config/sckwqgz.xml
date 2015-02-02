@@ -189,19 +189,19 @@
 		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='未列入'
  		<if test="qlbh!='' and qlbh!= null "  >
- 			and sck_qlbh=#{qlbh}
+ 			and (sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
 	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='已列入'
  		<if test="qlbh!='' and qlbh!= null "  >
- 			and sck_qlbh=#{qlbh}
+ 			and (sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
 
@@ -211,10 +211,10 @@
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
  	<if test="qlbh!='' and qlbh!= null "  >
- 			and qlbh=#{qlbh}
+ 			and (qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh}))
  		</if>
  </select>
  

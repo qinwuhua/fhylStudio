@@ -156,8 +156,8 @@ text-decoration:none;
 		</div>
 		</td></tr>
 		<tr>
-			<td align="left" style="padding-left:10px; padding-right:10px;">
-				<fieldset style="width:100%;text-align:left;vertical-align:middle;">
+			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 				<div>

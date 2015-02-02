@@ -225,7 +225,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		if(daoRu==""){
 			if(once==""){
 				if(bz=="")return "sckwqgz_ok";
-				else return "&nbsp;桥梁编码为</br>"+bz+"的项目有补助历史！";
+				else return "bz";
 			}
 			else return "&nbsp;桥梁编码为</br>"+once+"的项目已添加，请勿重复添加！";
 		}else return "&nbsp;无桥梁编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";

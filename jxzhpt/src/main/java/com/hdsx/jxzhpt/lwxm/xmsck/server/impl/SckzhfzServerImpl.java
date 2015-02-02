@@ -195,6 +195,9 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	@Override
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
 		Sckzhfz zh = new Sckzhfz();
+		String daoRu="";
+		String once="";
+		String bz="";
 		for (Map<String, String> map : data) {
 			zh.setGydwbm(tbbmbm);
 			zh.setLxbm(map.get("2"));
@@ -203,13 +206,25 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 			if(queryList("daoRuzhfzsh", zh).size()>0){
 				int c = (Integer)queryOne("onceSckZhfz", zh);
 				if(c==0){
-				int count = (Integer)queryOne("bzZhfz", zh);
-				if(count>0) return "该项目有补助历史！";
-				}else return "项目审查库中已存在此项目，请勿重复添加！";
-			}else return "无此项目或此项目不属于您的管理范围！";
+					int count = (Integer)queryOne("bzZhfz", zh);
+					if(count>0){
+						bz+=map.get("2")+"   ";
+					}
+					}else{
+						once+=map.get("2")+"   ";
+					}
+				}else{
+					daoRu+=map.get("2")+"   ";
+				}
+			}
+			if(daoRu==""){
+				if(once==""){
+					if(bz=="")return "sckzhfz_ok";
+					else return "&nbsp;路线编码为</br>"+bz+"的项目有补助历史！";
+				}
+				else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
+			}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 		}
-		return "sckzhfz_ok";
-	}
 
 	@Override
 	public boolean onceSckZhfz(Sckzhfz zhfz) {
