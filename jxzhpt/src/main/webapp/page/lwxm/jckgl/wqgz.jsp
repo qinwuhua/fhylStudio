@@ -143,15 +143,15 @@ text-decoration:none;
 </style>
 </head>
 <body>
-	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
+	<table align="left" width="100%" height="20%" cellpadding="0" cellspacing="0" border="0">
 		<tr><td>
 		<div id="righttop">
 		<div id="p_top">路网项目>&nbsp;项目基础库管理>&nbsp;危桥改造项目</div>
 		</div>
 		</td></tr>
 		<tr>
-			<td align="left" style="padding-left:10px; padding-right:25px;">
-				<fieldset style="width:1080px;text-align:left;vertical-align:middle;">
+			<td align="left" style="padding-left:10px; padding-right:10px;">
+				<fieldset style="width:100%;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
@@ -236,11 +236,8 @@ text-decoration:none;
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
         					共有【&nbsp;<span id="wqgz" style="font-weight: bold; color: #FF0000">15</span>&nbsp;】个危桥改造项目。</td>
         </tr>
-        <tr>
-            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            			<table id="grid" width="100%" height="320px"></table>
-            	</td>
-       		 </tr>
-		</table>
+	</table>
+<!-- 	<tbody id="grid"></tbody> -->
+	<div id="grid" width="100%" ></div>
 </body>
 </html>

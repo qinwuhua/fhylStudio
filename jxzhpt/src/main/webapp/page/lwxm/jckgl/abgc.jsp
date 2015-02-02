@@ -156,8 +156,8 @@ text-decoration:none;
 		</div>
 		</td></tr>
 		<tr>
-			<td align="left" style="padding-left:10px; padding-right:25px;">
-				<fieldset style="width:1080px;text-align:left;vertical-align:middle;">
+			<td align="left" style="padding-left:10px; padding-right:10px;">
+				<fieldset style="width:100%;text-align:left;vertical-align:middle;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 				<div>
@@ -243,11 +243,12 @@ text-decoration:none;
         					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
         					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
        	 	</tr>
-        	<tr>
+        	<!-- <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             			<table id="grid" width="100%" height="320px"></table>
             	</td>
-       		 </tr>
+       		 </tr> -->
 		</table>
+		<div id="grid" width="100%" ></div>
 </body>
 </html>
