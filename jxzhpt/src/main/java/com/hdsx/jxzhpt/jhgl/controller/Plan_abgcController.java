@@ -79,38 +79,20 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 通过flag来区分导出哪个excel
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
-	public void exportExcel_jh(){
+	public void exportExcel_jh_abgc(){
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
 		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
 		SheetBean sheetb = new SheetBean();
 		String excelHtml="";
 		String tableName="";
-		if("abgc".equals(flag)){
-			list = abgcServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
-			sheetb.setTableName("安保工程项目");
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("安保");
-			tableName="安保工程项目";//excel 文件的名字
-			sheetb.setColnum((short)12);
-		}else if("wqgz".equals(flag)){
-			list = wqgzServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>桥梁编码</td><td>桥梁名称</td><td>批复总投资</td></tr>";
-			sheetb.setTableName("危桥改造项目");
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("危桥");
-			tableName="危桥改造项目";//excel 文件的名字
-			sheetb.setColnum((short)11);
-		}else if("zhfz".equals(flag)){
-			list = zhfzServer.exportExcel_jh(lx);
-			excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>建设规模</td><td>批复总投资</td></tr>";
-			sheetb.setTableName("灾害防治项目");
-			sheetb.setHeader(excelHtml);
-			sheetb.setSheetName("灾害");
-			tableName="灾害防治项目";//excel 文件的名字
-			sheetb.setColnum((short)12);
-		}else{}
+		list = abgcServer.exportExcel_jh(jh, lx);
+		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
+		sheetb.setTableName("安保工程项目");
+		sheetb.setHeader(excelHtml);
+		sheetb.setSheetName("安保");
+		tableName="安保工程项目";//excel 文件的名字
+		sheetb.setColnum((short)12);
 		sheetb.setList(list);
 		sheetb.setFooter(null);
 		sheetBeans.add(sheetb);

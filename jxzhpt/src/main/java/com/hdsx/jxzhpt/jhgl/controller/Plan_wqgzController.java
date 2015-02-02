@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,10 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
+import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.SheetBean;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -35,6 +39,36 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private String fileuploadFileName;
 	private File fileupload;
 	
+	
+	/**
+	 * excel导出
+	 * 通过flag来区分导出哪个excel
+	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
+	 */
+	public void exportExcel_jh_wqgz(){
+		System.out.println("******************");
+		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
+		ExportExcel_new ee = new ExportExcel_new();
+		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+		SheetBean sheetb = new SheetBean();
+		String excelHtml="";
+		String tableName="";
+		list = wqgzServer.exportExcel_jh(jh, lx);
+		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>桥梁编码</td><td>桥梁名称</td><td>批复总投资</td></tr>";
+		sheetb.setTableName("危桥改造项目");
+		sheetb.setHeader(excelHtml);
+		sheetb.setSheetName("危桥");
+		tableName="危桥改造项目";//excel 文件的名字
+		sheetb.setColnum((short)11);
+		sheetb.setList(list);
+		sheetb.setFooter(null);
+		sheetBeans.add(sheetb);
+		String stylefileName="module.xls";
+		//导出excel
+		ee.initStyle(ee.workbook, stylefileName);
+		HttpServletResponse response= getresponse();
+		ee.makeExcel(tableName, sheetBeans, response);
+	}
 	public void importWqgz_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();

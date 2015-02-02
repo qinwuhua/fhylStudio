@@ -52,7 +52,7 @@ public interface Plan_wqgzServer {
 	 * @param jck
 	 * @return
 	 */
-	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
+	List<SjbbMessage> exportExcel_jh(Plan_wqgz jh,Jckwqgz lx);
 	/**
 	 * 根据ID删除危桥改造项目
 	 * @param id

@@ -31,8 +31,8 @@
 			    rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:325,
-			    width:1100,
+			    height:$(window).height()-$(window).height()*0.25,
+			    width:$(window).width(),
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
@@ -105,8 +105,8 @@
 				rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:325,
-			    width:1100,
+			    height:$(window).height()-$(window).height()*0.25,
+			    width:$(window).width(),
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
@@ -180,8 +180,8 @@
 			    rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:325,
-			    width:1100,
+			    height:$(window).height()-$(window).height()*0.25,
+			    width:$(window).width(),
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){

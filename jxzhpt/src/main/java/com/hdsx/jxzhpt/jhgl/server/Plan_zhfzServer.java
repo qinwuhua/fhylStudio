@@ -48,7 +48,7 @@ public interface Plan_zhfzServer {
 	 * @param jck
 	 * @return
 	 */
-	List<SjbbMessage> exportExcel_jh(Jckabgc jck);
+	List<SjbbMessage> exportExcel_jh(Plan_zhfz jh,Jckzhfz lx);
 	/**
 	 * 根据ID删除信息
 	 * @param id
