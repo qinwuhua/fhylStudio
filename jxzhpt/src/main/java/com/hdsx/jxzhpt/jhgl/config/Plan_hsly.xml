@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_hsly">
+	<insert id="insertHsly" parameterType="hashMap">
+		insert into Plan_hsly (id,xmmc,jsxz,jsgmhj,jsgmy,jsgme,
+			jsgms,jsgmf,jsgmdldq,kgn,wgn,jhnf,ztz,zytz,dfta,gndk,
+			lywz,zyjsnr,xzscl,gkpfwh,sgtpfwh,TBBM,tbsj,XZQHDM,XZQHmc)
+		values (sys_guid(),#{1},#{2},#{3},#{4},#{5},
+			#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},
+			#{16},#{17},#{18},#{19},#{20},#{tbbm},#{tbsj},(select id from XTGL_XZQH where name =#{xzqhmc}),#{xzqhmc})
+	</insert>
+	<select id="queryHslyList" resultType="plan_hsly" parameterType="plan_hsly">
+		select * from plan_hsly where 1=1 
+		<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
+			and xzqhdm =#{xzqhdm}
+		</if>
+		<if test="jhnf!=null and jhnf!=''">
+			and jhnf=#{jhnf}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+	</select>
+	<select id="queryHslyCount" resultType="int" parameterType="plan_hsly">
+		select count(*) from plan_hsly where 1=1 
+		<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
+			and xzqhdm =#{xzqhdm}
+		</if>
+		<if test="jhnf!=null and jhnf!=''">
+			and jhnf=#{jhnf}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+	</select>
+	<select id="queryHslyById" parameterType="string" resultType="plan_hsly">
+		select * from plan_hsly where id=#{id}
+	</select>
+	<select id="queryHslyZjzj" parameterType="string" resultType="plan_hsly">
+		select jhnf,ztz,zytzcgs as zytz,dfzc as dfta,gndk,lywz,zyjsnr,xzscnl as xzscl from PLAN_HSLY_ZJZJ t
+		where t.PLANID=#{id}
+	</select>
+	<update id="editHsly" parameterType="plan_hsly">
+		update plan_hsly set jhnf=#{jhnf},jsgmhj=#{jsgmhj},jsgmy=#{jsgmy},jsgme=#{jsgme},
+			jsgms=#{jsgms},jsgmf=#{jsgmf},jsgmdldq=#{jsgmdldq},ztz=#{ztz},zytz=#{zytz},
+			dfta=#{dfta},gndk=#{gndk},lywz=#{lywz},jsxz=#{jsxz},gkpfwh=#{gkpfwh},
+			sgtpfwh=#{sgtpfwh},zyjsnr=#{zyjsnr},xzscl=#{xzscl}
+		where id=#{id}
+	</update>
+	<delete id="dropHslyById" parameterType="string">
+		delete from plan_hsly where id=#{id}
+	</delete>
+</mapper>

@@ -22,21 +22,21 @@
 					项目名称</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblXMMC">乐安县万崇至湖坪公路</span> &nbsp;
+					<span id="lblXMMC"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					行政区划</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblXZQHMC">南昌市</span> &nbsp;
+					<span id="lblXZQHMC"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划年份</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="lblJHNF">2013</span> &nbsp;
+					<span id="lblJHNF"></span> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -45,21 +45,21 @@
 					建设规模合计</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSGMHJ">8.5</span> 公里
+					<span id="lblJSGMHJ"></span> 公里
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					建设规模(一级公路)</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblJSGMY">0</span> 公里
+					<span id="lblJSGMY"></span> 公里
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					建设规模(二级公路)</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSGME">0</span> 公里
+					<span id="lblJSGME"></span> 公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -68,21 +68,21 @@
 					建设规模(三级公路)</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSGMS">8.5</span> 公里
+					<span id="lblJSGMS"></span> 公里
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					建设规模(四级公路)</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblJSGMF">0</span> 公里
+					<span id="lblJSGMF"></span> 公里
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					建设规模(独立大桥)</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSGMDLDQ">0</span> 公里
+					<span id="lblJSGMDLDQ"></span> 公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -91,21 +91,21 @@
 					建设性质</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblJSXZ">新改建</span> &nbsp;
+					<span id="lblJSXZ"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					工可批复文号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblGKPFWH">赣交规划字[2012]112号</span>
+					<span id="lblGKPFWH"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					初设或施工图批复文号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblSGTPFWH">抚交规划字[2012]49号</span>
+					<span id="lblSGTPFWH"></span>
 				</td>
 			</tr>
 		</table>
@@ -125,85 +125,7 @@
 		</tr>
 		<tr>
 			<td align="center">
-
-				<table width="100%" height="90%" cellpadding="0" cellspacing="0"
-					border="1" style="padding-top: 10px;">
-					<tr>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							操作</td>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							资金追加</td>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							下达年份</td>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							下达资金</td>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							填报部门</td>
-						<td
-							style="border-style: solid solid solid solid; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: 12px; text-align: center; background-color: #F1F8FF; padding-right: 5px;">
-							填报时间</td>
-					</tr>
-
-					<tr>
-						<td><a id="rpZJXX_ctl01_btnEdit"
-							href="javascript:__doPostBack('rpZJXX$ctl01$btnEdit','')"
-							style="color: #0066CB;">编辑</a> &nbsp;|&nbsp; <a
-							onclick="return CheckDel(&quot;2014&quot;,&quot;0&quot;);"
-							id="rpZJXX_ctl01_btnDel" disabled="disabled"
-							style="color: #0066CB;">删除</a></td>
-						<td><span id="rpZJXX_ctl01_SFZJ" style="font-size: 10pt;">否</span>
-						</td>
-						<td><span id="rpZJXX_ctl01_XDNF" style="font-size: 10pt;">2014</span>
-						</td>
-						<td><span id="rpZJXX_ctl01_XDZJ" style="font-size: 10pt;">5</span>
-						</td>
-						<td><span id="rpZJXX_ctl01_TBDW" style="font-size: 10pt;">江西省</span>
-						</td>
-						<td><span id="rpZJXX_ctl01_TBSJ" style="font-size: 10pt;">2014-08-26</span>
-						</td>
-					</tr>
-
-					<tr>
-						<td><a id="rpZJXX_ctl02_btnEdit"
-							href="javascript:__doPostBack('rpZJXX$ctl02$btnEdit','')"
-							style="color: #0066CB;">编辑</a> &nbsp;|&nbsp; <a
-							onclick="return CheckDel(&quot;2013&quot;,&quot;0&quot;);"
-							id="rpZJXX_ctl02_btnDel"
-							href="javascript:__doPostBack('rpZJXX$ctl02$btnDel','')"
-							style="color: #0066CB;">删除</a></td>
-						<td><span id="rpZJXX_ctl02_SFZJ" style="font-size: 10pt;">否</span>
-						</td>
-						<td><span id="rpZJXX_ctl02_XDNF" style="font-size: 10pt;">2013</span>
-						</td>
-						<td><span id="rpZJXX_ctl02_XDZJ" style="font-size: 10pt;">5</span>
-						</td>
-						<td><span id="rpZJXX_ctl02_TBDW" style="font-size: 10pt;">江西省</span>
-						</td>
-						<td><span id="rpZJXX_ctl02_TBSJ" style="font-size: 10pt;">2014-08-26</span>
-						</td>
-					</tr>
-
-				</table>
-
-
-			</td>
-		</tr>
-		<tr>
-			<td>共 <span id="lblcount">2</span>条记录，当前 <span id="lblcurrent">1/1</span>页&nbsp;&nbsp;
-				<a id="hlfist" disabled="disabled">首页</a>&nbsp; <a id="hlprev"
-				disabled="disabled">上一页</a>&nbsp; <a id="hlnext" disabled="disabled">下一页</a>&nbsp;
-				<a id="hllast" disabled="disabled">末页</a>&nbsp;&nbsp; <select
-				name="ddlPage"
-				onchange="javascript:setTimeout('__doPostBack(\'ddlPage\',\'\')', 0)"
-				id="ddlPage">
-					<option selected="selected" value="1">1</option>
-
-			</select>
+				<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;"></table>
 			</td>
 		</tr>
 		</table>
@@ -221,12 +143,13 @@
 										src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width: 0px; cursor: hand;" />
 								</a>
 							</td>
-							<td><a href="javascript:void(0)" onclick="Return()"> <img
-									src="../images/Button/fanhui1.GIF" alt="返回"
-									onmouseover="this.src='../images/Button/fanhui2.GIF'"
-									onmouseout="this.src='../images/Button/fanhui1.GIF'"
-									style="border: 0">
-							</a></td>
+							<td>
+								<a href="javascript:closeWindow('zjxd_hslygl')">
+									<img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF"
+									alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
+									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" style="border: 0">
+								</a>
+							</td>
 						</tr>
 					</table>
 				</td>
@@ -234,5 +157,35 @@
 		</table>
 	</div>
 	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
+	<script type="text/javascript">
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryHslyById.do',
+		data:"hsly.id="+xxId,
+		dataType:'json',
+		success:function(data){
+			$('#lblXMMC').html(data.xmmc);
+			$('#lblXZQHMC').html(data.xzqhmc);
+			$('#lblJHNF').html(data.jhnf);
+			$('#lblJSGMHJ').html(data.jsgmhj);
+			$('#lblJSGMY').html(data.jsgmy);
+			$('#lblJSGME').html(data.jsgme);
+			$('#lblJSGMS').html(data.jsgms);
+			$('#lblJSGMF').html(data.jsgmf);
+			$('#lblJSGMDLDQ').html(data.jsgmdldq);
+			$('#lblZTZxx').html(data.ztz);
+			$('#lblZYTZxx').html(data.zytz);
+			$('#lblDFZC').html(data.dfta);
+			$('#lblGNDK').html(data.gndk);
+			$('#lblLYWZ').html(data.lywz);
+			$('#lblJSXZ').html(data.jsxz);
+			$('#lblGKPFWH').html(data.gkpfwh);
+			$('#lblSGTPFWH').html(data.sgtpfwh);
+			$('#lblZYJSNR').html(data.zyjsnr);
+			$('#lblXZSCNL').html(data.xzscl);
+		}
+	});
+	queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
+	</script>
 </body>
 </html>

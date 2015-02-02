@@ -37,6 +37,9 @@
 			if(m<=9){
 				m='0'+m;
 			}
+			if(d<=9){
+				d='0'+d;
+			}
 			var data=parent.obj1;
 			$('#tj_xdsj').datebox('setValue', data.jhxdsj);
 			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);

@@ -63,6 +63,11 @@
 		<action name="editYhdzxStatus" class="plan_yhdzxController" method="editYhdzxStatus"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
+		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>
+		<action name="queryHslyById" class="plan_hslyController" method="queryHslyById"/>
+		<action name="queryHslyZjzj" class="plan_hslyController" method="queryHslyZjzj"/>
+		<action name="editHsly" class="plan_hslyController" method="editHsly"/>
+		<action name="dropHslyById" class="plan_hslyController" method="dropHslyById"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>

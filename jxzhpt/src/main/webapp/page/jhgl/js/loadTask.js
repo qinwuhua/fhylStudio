@@ -92,6 +92,8 @@ function addZjxd(){
 		data:zjxd,
 		success:function(data){
 			alert("添加成功！");
+			closeWindow("zjxd");
+			queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 		}
 	});
 }

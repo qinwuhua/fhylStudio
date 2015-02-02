@@ -142,6 +142,9 @@
 		if(flag=='yhdzx_jh'){
 			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/yhdzx.jsp';
 		}
+		if(flag=='hsly_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/hslygl.jsp';
+		}
  		dg.cancel();
 	}
 </script>
