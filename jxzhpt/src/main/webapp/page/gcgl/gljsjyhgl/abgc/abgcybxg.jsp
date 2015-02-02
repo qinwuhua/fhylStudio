@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			getYuefen();
 			var data=parent.obj;
 			$("#xg_wc_btz").val(data.wc_btz);
 			$("#xg_wc_stz").val(data.wc_stz);
@@ -27,42 +28,23 @@
 			$("#xg_kgdl").val(data.kgdl);
 			$("#xg_qksm").val(data.qksm);
 			$("#xg_sbsj").text(data.sbsj);
-//			$("#xg_sbyf").text(data.sbyf);
-			
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1;  
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			if(m=1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
-			}
-			else if(m=2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-			}else if(m=11){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+9;
-				mystr2=y+'-'+10;
-			}else if(m=12){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+10;
-				mystr2=(y-1)+'-'+11;
-			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-			}
-			$("#xg_sbyf").val('');
-			$("#xg_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#xg_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
-			$("#xg_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
-			$("#xg_sbyf").val(data.sbyf);
+
 		});
+		function getYuefen(){
+			var data="jhid="+parent.obj.jhid;
+			$.ajax({
+				type:'post',
+				url:'../../../../gcgl/selectWqgzyf.do',
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					for ( var i = 0; i < msg.length; i++){
+						$("#xg_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+					}
+					$("#xg_sbyf").val(parent.obj.sbyf);
+				}
+			});	
+	}
 	</script>
 	<style type="text/css">
 <!--

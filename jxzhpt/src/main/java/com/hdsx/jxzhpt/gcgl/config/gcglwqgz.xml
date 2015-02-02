@@ -195,5 +195,7 @@ where  t1.spzt='1'
 	 <select id="selectWqgzjhFile" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_WQGZ where SCKID=#{jhid}
 	 </select>
-	 
+	  <select id="selectWqgzyf" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select tbyf from GCGL_CGS where jhid=#{jhid}
+	 </select>
 </mapper>

@@ -382,10 +382,7 @@ public class GcglwqgzController extends BaseActionSupport{
 		Gcglwqgz g= gcglwqgzServer.selectWqgzjhFile(gcglwqgz);
 		try {
 			JsonUtils.write(g, getresponse().getWriter());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -422,6 +419,16 @@ public class GcglwqgzController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectWqgzyf(){
+		gcglwqgz.setJhid(jhid);
+		List<Gcglwqgz> g= gcglwqgzServer.selectWqgzyf(gcglwqgz);
+		try {
+			JsonUtils.write(g, getresponse().getWriter());
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
