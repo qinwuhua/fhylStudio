@@ -71,6 +71,9 @@ function shangB(){
 			return ;
 		}
 	}
+	for(var i=1;i<rows.length;i++){
+		id+=","+rows[i].id ;
+	}
 	if(confirm('您确定上报该项目？')){
 		var data = "delstr="+id+"&sbbm="+$.cookie("unit")+"&sbthcd="+($.cookie("unit2").length-2);
 		$.ajax({

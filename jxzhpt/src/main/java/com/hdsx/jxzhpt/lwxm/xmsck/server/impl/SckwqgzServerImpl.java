@@ -200,17 +200,35 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	@Override
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
 		Sckwqgz wq = new Sckwqgz();
+		String daoRu="";
+		String once="";
+		String bz="";
 		for (Map<String, String> map : data) {
 			wq.setGydwbm(tbbmbm);
 			wq.setQlbh(map.get("0"));
 			wq.setLxbm(map.get("3"));
 			wq.setQlzxzh(map.get("2"));
 			if(queryList("daoRuwqgzsh", wq).size()>0){
+				int c = (Integer)queryOne("onceSckWqgz", wq);
+				if(c==0){
 				int count = (Integer)queryOne("bzWqgz", wq);
-				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
-			}else return "无此项目或此项目不属于您的管理范围！";
+				if(count>0){
+					bz+=map.get("0")+"   ";
+				}
+				}else{
+					once+=map.get("0")+"   ";
+				}
+			}else{
+				daoRu+=map.get("0")+"   ";
+			}
 		}
-		return "sckwqgz_ok";
+		if(daoRu==""){
+			if(once==""){
+				if(bz=="")return "sckwqgz_ok";
+				else return "&nbsp;桥梁编码为</br>"+bz+"的项目有补助历史！";
+			}
+			else return "&nbsp;桥梁编码为</br>"+once+"的项目已添加，请勿重复添加！";
+		}else return "&nbsp;无桥梁编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 	}
 
 	@Override

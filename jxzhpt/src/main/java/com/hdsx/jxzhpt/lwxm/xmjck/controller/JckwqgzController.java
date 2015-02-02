@@ -51,7 +51,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 		HttpServletResponse response = ServletActionContext.getResponse();
 		try{
 			if(!"xls".equals(fileType)){
-				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				response.getWriter().print(fileuploadFileName+"："+"不是excel文件");
 				return ;
 			}
 			response.setCharacterEncoding("utf-8"); 
@@ -60,19 +60,23 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			try{
 				dataMapArray = ExcelReader.readExcelContent(3,11,fs,Jckwqgz.class);
 			}catch(Exception e){
-				response.getWriter().print(fileuploadFileName+"数据有误");
+				response.getWriter().print(fileuploadFileName+"："+"数据有误");
 				return;
 			}
-			//去除excel中的空白行数据
-			List<Map<String,String>> data=ExcelReader.removeBlankRow2(dataMapArray[0]);
+			try{
+				//去除excel中的空白行数据
+				List<Map<String,String>> data=ExcelReader.removeBlankRow2(dataMapArray[0]);
 			if(wqgzServer.yanZhen(data, tbbmbm1).equals("jckwqgz_ok")){
-				System.out.println("***************"+data);
 				if(wqgzServer.importWqgz2(data,tbbmbm2,sbthcd1)) 
-					response.getWriter().print(fileuploadFileName+"导入成功");
+					response.getWriter().print(fileuploadFileName+"："+"导入成功");
 				else 
-					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
+					response.getWriter().print(fileuploadFileName+"："+"服务器异常,请重试");
 			}else{
-				response.getWriter().print(fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
+				response.getWriter().print("提示："+fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
+			}
+			}catch(Exception e){
+				e.printStackTrace();
+				response.getWriter().print(fileuploadFileName+"："+"导入失败，请重试");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

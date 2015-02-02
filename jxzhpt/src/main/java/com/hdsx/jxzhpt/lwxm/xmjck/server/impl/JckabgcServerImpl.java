@@ -170,11 +170,17 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public boolean importAbgc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
 		for (Map<String, String> map : list) {
-			if(map.get("1").length()==8){
+			if(map.get("1").length()!=6){
 				map.put("1", map.get("1").substring(0,6));
 			}
-			map.put("9", map.get("9").substring(0, 4));
-			map.put("12", map.get("12").substring(0, 4)+"年");
+			if(map.get("9").length()!=4){
+				map.put("9", map.get("9").substring(0, 4));
+			}
+			if(map.get("12").length()!=4){
+				map.put("12", map.get("12").substring(0, 4)+"年");
+			}else{
+				map.put("12", map.get("12")+"年");
+			}
 			map.put("tbbmbm", tbbmbm);
 			map.put("sbthcd", sbthcd);
 		}
@@ -199,6 +205,8 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	@Override
 	public String yanZhen(List<Map<String,String>> data,String tbbmbm){
 		Jckabgc ab = new Jckabgc();
+		String daoRu="";
+		String once="";
 		for (Map<String, String> map : data) {
 			ab.setGydwbm(tbbmbm);
 			ab.setLxbm(map.get("3"));
@@ -206,10 +214,17 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 			ab.setZdzh(map.get("6"));
 			if(queryList("daoRuabgc", ab).size()>0){
 				int count = (Integer)queryOne("onceAbgc", ab);
-				if(count>0) return "基础库中已存在该项目，请勿重复添加！";
-			}else return "无此项目或此项目不属于您的管理范围！";
+				if(count>0){
+					once+=map.get("3")+"    ";
+				}
+			}else{
+				daoRu+=map.get("3")+"    ";
+			}
 		}
-		return "ok";
+		if(daoRu==""){
+			if(once=="") return "jckabgc_ok";
+			else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
+		}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 	}
 	
 }

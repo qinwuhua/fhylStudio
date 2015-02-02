@@ -20,7 +20,7 @@ $(function(){
 	$("#save_button").click(function(){
 		var data ="sckid="+parent.rowid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 		"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-		"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val();
+		"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val();
 		alert(data);
 		$.ajax({
 			type:'post',
@@ -78,7 +78,7 @@ function selWqgzById(){
 		$("#faspsj").datebox('setValue',msg.faspsj);
 		$("#spwh").val(msg.spwh);
 		$("#tzgs").val(msg.tzgs);
-		$("#jsxz").val(msg.jsxz);
+		$("#jsxz").combobox("setValue",msg.jsxz);
 		$("#jsnr").val(msg.jsnr);
 		$("#scbz").val(msg.scbz);
 		}
@@ -216,10 +216,9 @@ text-decoration:none;
 					<input type="text" name="tzgs"id="tzgs" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsxz">
-						<option value="中修"selected>中修</option>
-						<option value="大修">大修</option>
-						<option value="改建">改建</option>
+					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'">
+						<option value="加固改造"selected>加固改造</option>
+						<option value="拆除重建">拆除重建</option>
 					</select>
 				</td>
 			</tr>
