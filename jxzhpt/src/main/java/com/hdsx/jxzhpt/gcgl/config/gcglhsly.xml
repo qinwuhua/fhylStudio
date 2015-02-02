@@ -86,4 +86,80 @@
 		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
+	
+	<!-- 上传 -->
+	<update id="uploadWqgzFilesgxk" parameterType="gcglhsly">
+		update PLAN_HSLY set SGXKWJ=#{tiaojian}
+		where id=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgtc" parameterType="gcglhsly">
+		update PLAN_HSLY set JGTCWJ=#{tiaojian}
+		where id=#{jhid}
+	</update>
+		<update id="uploadWqgzFilejgys" parameterType="gcglhsly">
+		update PLAN_HSLY set JGYSWJ=#{tiaojian}
+		where id=#{jhid}
+	</update>
+	<!-- 下载 -->
+	<select id="downWqgzFile" parameterType="gcglhsly" resultType="gcglhsly">
+		select ${tiaojian} tiaojian from PLAN_HSLY where id=#{jhid}
+	</select>
+	<update id="insertWqgzwwg" parameterType="gcglhsly">
+		update PLAN_HSLY set WJGYY=#{wjgyy} where id=#{jhid}
+	</update>
+	<update id="insertWqgzwg" parameterType="gcglhsly">
+		update PLAN_HSLY set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
+	</update>
+	<update id="insertWqgzkg" parameterType="gcglhsly">
+		update PLAN_HSLY set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
+	</update>
+	
+	<select id="selectWqgzjhList" parameterType="gcglhsly" resultType="gcglhsly">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		xmmc,xzqhdm,xzqhmc,jhnf,jsgmhj,jsgmy,jsgme,jsgms,jsgmf,jsgmdldq,kgn,wgn,
+		ztz,zytz,dfta,gndk,lywz,jsxz,gkpfwh,sgtpfwh,zyjsnr,xzscl,
+		xdsj,sjkgsj,yjwgsj,sjwgsj,sgdw,jldw,jsdw,htje,sgxkwj,jgtcwj,jgyswj,
+		wjgyy,gsztz,sfqxkg,kgzt,jgzt,id jhid,id
+		from PLAN_HSLY 
+		where 1=1
+	<if test="xzqhdm != null and  xzqhdm != ''">
+			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="xmmc != null and  xmmc != ''">
+			and xmmc like '%'||trim(#{xmmc})||'%'
+	</if>
+	order by jhnf desc
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	 <select id="selectWqgzjhListCount" parameterType="gcglhsly" resultType="int">
+	 	select count(*) 	
+	 	from PLAN_HSLY 
+		where 1=1
+	<if test="xzqhdm != null and  xzqhdm != ''">
+			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="xmmc != null and  xmmc != ''">
+			and xmmc like '%'||trim(#{xmmc})||'%'
+	</if>
+	 </select>
+	 <select id="selectWqgzjhFile" parameterType="gcglhsly" resultType="gcglhsly">
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_HSLY where id=#{jhid}
+	 </select>
 </mapper>

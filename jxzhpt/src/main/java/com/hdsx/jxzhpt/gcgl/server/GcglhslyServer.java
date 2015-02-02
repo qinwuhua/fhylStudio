@@ -32,5 +32,27 @@ public interface GcglhslyServer {
 	Boolean updateHslyCgs(Gcglhsly gcglhsly);
 
 	Boolean deleteHslyCgs(Gcglhsly gcglhsly);
+
+	Gcglhsly downWqgzFile(Gcglhsly gcglhsly);
+
+	boolean uploadWqgzFilesgxk(Gcglhsly gcglhsly);
+
+	boolean uploadWqgzFilejgtc(Gcglhsly gcglhsly);
+
+	boolean uploadWqgzFilejgys(Gcglhsly gcglhsly);
+
+	Boolean insertWqgzkg(Gcglhsly gcglhsly);
+
+	Boolean insertWqgzwg(Gcglhsly gcglhsly);
+
+	Boolean insertWqgzwwg(Gcglhsly gcglhsly);
+
+	int selectWqgzjhListCount(Gcglhsly gcglhsly);
+
+	List<Gcglhsly> selectWqgzjhList(Gcglhsly gcglhsly);
+
+	Gcglhsly selectWqgzjhFile(Gcglhsly gcglhsly);
+
+	Boolean sbWqgzYb(Gcglhsly gcglhsly);
 	
 }

@@ -166,6 +166,15 @@
 	<action name="deleteHslyCgs" class="gcglhslyController" method="deleteHslyCgs"/>
 	<action name="selectHslyCgsList" class="gcglhslyController" method="selectHslyCgsList"/>
 	
+	<action name="uploadHslyFile" class="gcglhslyController" method="uploadHslyFile"/>
+	<action name="downHslyFile" class="gcglhslyController" method="downHslyFile"/>
+	<action name="insertHslykg" class="gcglhslyController" method="insertHslykg"/>
+	<action name="insertHslywg" class="gcglhslyController" method="insertHslywg"/>
+	<action name="insertHslywwg" class="gcglhslyController" method="insertHslywwg"/>
+	<action name="selectHslyjhList" class="gcglhslyController" method="selectHslyjhList"/>
+	<action name="selectHslyjhFile" class="gcglhslyController" method="selectHslyjhFile"/>
+	<action name="deleteHslyFile" class="gcglhslyController" method="deleteHslyFile"/>
+	<action name="sbHslyYb" class="gcglhslyController" method="sbHslyYb"/>
 	
 	<!-- aqyb -->
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>

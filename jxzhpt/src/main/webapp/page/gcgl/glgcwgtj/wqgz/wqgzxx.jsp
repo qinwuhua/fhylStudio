@@ -30,6 +30,7 @@ $(function(){
 	$("#jhbz").text(data.jhbz);$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);
 	$("#yjjgsj").text(data.yjjgsj);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#jsdw").text(data.jsdw);
 	$("#gys").text(data.gys);$("#htje").text(data.htje);$("#sjwgsj").text(data.sjwgsj);$("#jhbz").text(data.jhbz);	
+	$("#sjwgsj").text(data.sjwgsj);
 	if(data.gkbgmc!=''){
 		$("#xz_gkbg").text("下载附件");
 	}
@@ -522,10 +523,10 @@ a {
 				</td>
 				<td
 					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
-					&nbsp;</td>
+					实际完工时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-					&nbsp;</td>
+					<span id="sjwgsj"></span>&nbsp;</td>
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6"

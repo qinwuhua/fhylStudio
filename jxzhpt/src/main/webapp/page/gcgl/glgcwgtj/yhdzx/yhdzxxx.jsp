@@ -30,6 +30,7 @@ $(function(){
 	$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#htje").text(data.htje);$("#sgxkwj").text(data.sgxkwj);$("#jgtcwj").text(data.jgtcwj);
 	$("#jgyswj").text(data.jgyswj);$("#gys").text(data.gys);$("#wjgyy").text(data.wjgyy);
 	//$("#pqi").text(data.pqi);
+	$("#sjwgsj").text(data.sjwgsj);
 	var data1="jhid="+data.id;
 	jiazai(data1);
 });
@@ -495,10 +496,10 @@ a {
 				</td>
 				<td
 					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
-					&nbsp;</td>
+					实际完工时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
-					&nbsp;</td>
+					<span id="sjwgsj"></span>&nbsp;</td>
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6"
