@@ -23,6 +23,13 @@ public class Plan_lx_yhdzx {
 	private String tbbmdm;//填报部门代码
 	private Date tbsj;//填报时间
 	private String jhid;//计划ID
+	private String tsdq;//特殊地区
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getId() {
 		return id;
 	}

@@ -297,7 +297,7 @@ function gclmgjxm_zjxd(jh,lx){
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_zjxd','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		    		result+='<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		    		return result ;
 		    	}
 		    },

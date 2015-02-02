@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Plan_yhdzx {
 	private String id;
+	private String sbnf;
 	private String classify;//工程分类
 	private String ordernum;
 	private String planhistorycompara;//历史对比
@@ -54,9 +55,50 @@ public class Plan_yhdzx {
 	private String wjgyy;//未竣工原因
 	private String remarks;//省统筹备注
 	private String qtbz;//其他备注
+	private String tbbm;//填报部门
+	private String tbsj;//填报时间
+	private String mark;//续建表示
 	private Plan_lx_yhdzx plan_lx_yhdzx;
 	private List<Plan_lx_yhdzx> plan_lx_yhdzxs;
 	private String jh_sbthcd;//计划上报退回长度
+	private String sbbm;//上报部门
+	private String spbm;//审批部门
+	public String getSbbm() {
+		return sbbm;
+	}
+	public void setSbbm(String sbbm) {
+		this.sbbm = sbbm;
+	}
+	public String getSpbm() {
+		return spbm;
+	}
+	public void setSpbm(String spbm) {
+		this.spbm = spbm;
+	}
+	public String getSbnf() {
+		return sbnf;
+	}
+	public void setSbnf(String sbnf) {
+		this.sbnf = sbnf;
+	}
+	public String getTbbm() {
+		return tbbm;
+	}
+	public void setTbbm(String tbbm) {
+		this.tbbm = tbbm;
+	}
+	public String getTbsj() {
+		return tbsj;
+	}
+	public void setTbsj(String tbsj) {
+		this.tbsj = tbsj;
+	}
+	public String getMark() {
+		return mark;
+	}
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
 	public String getId() {
 		return id;
 	}

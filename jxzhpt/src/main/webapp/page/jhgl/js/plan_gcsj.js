@@ -288,7 +288,7 @@ function gclmsjxm_zjxd(jh,lx){
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_zjxd','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+				result+='<a href="javascript:openDialog('+"'zjxd_gclmsj','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 				return result;
 			}},
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){

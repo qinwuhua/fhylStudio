@@ -275,7 +275,7 @@ function shxm_zjxd(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'shxm_zjxd','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openDialog('+"'zjxd_shxm','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
@@ -362,7 +362,6 @@ function queryShuihById(id){
 			$('#qdzh').html(data.shuihs[0].qdzh);
 			$('#zdzh').html(data.shuihs[0].zdzh);
 			$('#qzlc').html(data.shuihs[0].qzlc);
-			alert(data.shuihs[0].gydw);
 			$('#gydwxx').html(data.shuihs[0].gydw);
 			$('#xzqhdm').html(data.shuihs[0].xzqhdm);
 			$('#xzqhmc').html(data.shuihs[0].xzqhmc);
@@ -397,7 +396,6 @@ function queryShuihById(id){
 			$('#sjpfwh').html(data.sjpfwh);
 			$('#sfgydbm').html(data.sfgydbm);
 			$('#lblJHRemarks').html(data.jhbz);
-			
 		}
 	});
 }

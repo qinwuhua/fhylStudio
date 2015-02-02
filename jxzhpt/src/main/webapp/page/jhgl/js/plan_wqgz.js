@@ -267,7 +267,7 @@ function wqxm_zjxd(jh,lx){
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_zjxd','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		        	result+='<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	return result;
 		        }},
 		        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){

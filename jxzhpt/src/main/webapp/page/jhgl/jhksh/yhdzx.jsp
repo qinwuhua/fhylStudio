@@ -22,15 +22,15 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			yhdzxxm_zjxd(jh,lx);
+			yhdzxxm_sp(jh,lx);
 		});
 		function searchYhdzx(){
-			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			yhdzxxm_zjxd(jh,lx);
+			yhdzxxm_sp(jh,lx);
 		}
 		function sp(id,jh_sbthcd){
 			var date=new Date();
@@ -61,7 +61,7 @@
 			<tr>
 				<td>
 	                 <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;养护大中修项目</div>
+						<div id="p_top">计划管理>&nbsp;项目计划库审批>&nbsp;养护大中修项目</div>
 					</div>
 	            </td>
         	</tr>
@@ -119,8 +119,11 @@
 									<option value="3">三级公路</option>
 									<option value="4">四级公路</option>
 									<option value="5">等外公路</option>
-								</select>&nbsp;&nbsp;&nbsp;&nbsp;
-								<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 10px;"/>
+								</select>
+        					</p>
+        					<p style="margin-left:12px;margin-bottom: 5px;">
+        						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 10px;"/>
+        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -145,6 +148,6 @@
 		</table>
 	</div>
 	
-	<div id="zjxd_yhdzx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

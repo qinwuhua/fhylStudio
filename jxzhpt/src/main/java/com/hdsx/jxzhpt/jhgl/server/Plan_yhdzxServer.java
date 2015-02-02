@@ -23,12 +23,6 @@ public interface Plan_yhdzxServer {
 	 */
 	int queryYhdzxCount(Plan_yhdzx jh,Plan_lx_yhdzx lx);
 	/**
-	 * 根据ID查询详细信息
-	 * @param id
-	 * @return
-	 */
-	Plan_yhdzx queyrYhdzxById(String id);
-	/**
 	 * 获取养护大中修年份
 	 * @return
 	 */
@@ -63,4 +57,10 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	boolean insertYhdzx_lx(List<Map> lx);
+	/**
+	 * 根据ID查询详细信息
+	 * @param id
+	 * @return
+	 */
+	Plan_yhdzx queryYhdzxById(String id);
 }

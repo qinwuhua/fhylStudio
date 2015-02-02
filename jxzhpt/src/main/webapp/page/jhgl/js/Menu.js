@@ -102,6 +102,13 @@ $(function() {
 		href:'./jhksb/gclmgj.jsp'
 	});
 	createMenu('LeftMenu',{
+		id:'menu_0101030205',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu2',
+		href:'./jhksb/yhdzx.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101030206',
 		title:'水毁项目',
 		imgSrc:'../../images/sh_s.png',

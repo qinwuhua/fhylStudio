@@ -289,7 +289,7 @@ function zhfzxm_zjxd(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zhfz_zjxd','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openDialog('+"'zjxd_zhfz','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
@@ -369,7 +369,6 @@ function queryZhfzById(id){
 		dataType:'json',
 		data:'jh.id='+id,
 		success:function(data){
-			alert("审查库ID："+data.sckid);
 			$.ajax({
 				type : 'post',
 				url : '../../../xmsck/selectSckzhfzById.do',

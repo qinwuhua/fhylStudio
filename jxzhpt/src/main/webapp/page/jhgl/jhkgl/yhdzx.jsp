@@ -7,21 +7,31 @@
 	<title>养护大中修</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			yhdzxxm();
+			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
+			sbnf('sbnf');
+			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			yhdzxxm(jh,lx);
 		});
-		
+		function searchYhdzx(){
+			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
+			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			yhdzxxm(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -51,12 +61,20 @@
         						<select id="xzqh" style="width:170px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" id="txtRoad" style="width:80px;"  type="text"/>
+        						<span>&nbsp;计划状态：</span>
+        						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
+									<option value="全部">全部</option>
+									<option value="未上报">未上报</option>
+									<option value="已上报">已上报</option>
+									<option value="未审核">未审核</option>
+									<option value="已审核">已审核</option>
+								</select>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
+        						<select id="sbnf" class="easyui-combobox" style="width: 80px;"></select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
+								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -66,7 +84,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:170px;">
+								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -76,7 +94,7 @@
 									<option value="Z">专道</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:84px;">
+								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:84px;">
 									<option selected="selected" value="">全部</option>
 									<option value="1">一级公路</option>
 									<option value="2">二级公路</option>
@@ -85,19 +103,13 @@
 									<option value="5">等外公路</option>
 								</select>
         					</p>
-        					<table style="margin:8px 0px 8px 20px;">
-        						<tr>
-        							<td>
-        								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
-        							</td>
-        							<td>
-        								<img onmouseover="this.src='${pageContext.request.contextPath}/images/Button/update2.gif'" alt="导入" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/update1.gif'" src="${pageContext.request.contextPath}/images/Button/update1.gif" style="border-width:0px;cursor: hand;margin-left: 10px;"/>
-        							</td>
-        							<td style="margin: 0px; padding: 0px; vertical-align: middle;">
-        								<span style="color: #FF0000; font-weight: 700"">【<span id="lblDRCount">0</span>条未更新】</span>
-        							</td>
-        						</tr>
-        					</table>
+        					<p style="margin-left:12px;margin-bottom: 5px;">
+        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;padding-left: 8px;"/>
+								<img alt="导出模版" onclick="exportYh('Plan_Yhdzx')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img alt="导入" onclick="importData_jh('yhdzx_jh')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+				                <img alt="删除"  onclick="dropYhdzxs()" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
+				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('zhfz')"/>
+        					</p>
         				</div>
         			</fieldset>
         		</td>
@@ -121,7 +133,6 @@
 		</table>
 	</div>
 	
-	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;">
-	</div>
+	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

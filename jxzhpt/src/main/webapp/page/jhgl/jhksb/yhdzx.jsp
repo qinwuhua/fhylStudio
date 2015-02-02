@@ -19,25 +19,40 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
+		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+		var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+		var xian=true;
+		if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+			xian=false;
+		}
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={sbzt:null,spzt:'0',jh_sbthcd:0};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			yhdzxxm_zjxd(jh,lx);
+			yhdzxxm_sb(jh,lx);
 		});
 		function searchYhdzx(){
-			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			yhdzxxm_zjxd(jh,lx);
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
+			yhdzxxm_sb(jh,lx);
 		}
-		function sp(id,jh_sbthcd){
+		function sb(id,jh_sbthcd){
 			var date=new Date();
 			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-			var jh={'jh.id':id,'jh.spsj':sbsj,'jh.spbm':$.cookie("unit"),'jh.spzt':'1',
+			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
 					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(xian){
+				jh['jh.sbzt']='0';
+			}
 			if(editStatus(jh)){
 				alert("上报成功！");
 				searchYhdzx();
@@ -61,7 +76,7 @@
 			<tr>
 				<td>
 	                 <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;养护大中修项目</div>
+						<div id="p_top">计划管理>&nbsp;项目计划库上报>&nbsp;养护大中修项目</div>
 					</div>
 	            </td>
         	</tr>
@@ -119,8 +134,12 @@
 									<option value="3">三级公路</option>
 									<option value="4">四级公路</option>
 									<option value="5">等外公路</option>
-								</select>&nbsp;&nbsp;&nbsp;&nbsp;
-								<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 10px;"/>
+								</select>
+        					</p>
+        					<p style="margin-left:12px;margin-bottom: 5px;">
+        						<img onclick="searchGcsj()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+        						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -145,6 +164,6 @@
 		</table>
 	</div>
 	
-	<div id="zjxd_yhdzx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

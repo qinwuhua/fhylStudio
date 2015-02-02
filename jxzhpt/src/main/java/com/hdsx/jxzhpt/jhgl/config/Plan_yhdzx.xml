@@ -4,11 +4,34 @@
 	<resultMap type="plan_yhdzx" id="yhdzx_jh">
 		<id property="id" column="id" />
 		<result property="sbnf" column="sbnf"/>
+		<result property="classify" column="classify"/>
+		<result property="fee" column="fee"/>
+		<result property="newfee" column="newfee"/>
+		<result property="reportingfee" column="reportingfee"/>
+		<result property="totalinvest" column="totalinvest"/>
+		<result property="totalsubsidyfund" column="totalsubsidyfund"/>
+		<result property="nowyearsubsidyfund" column="nowyearsubsidyfund"/>
+		<result property="accumulativesubsidyfund" column="accumulativesubsidyfund"/>
+		<result property="dianceng" column="dianceng"/>
+		<result property="jiceng" column="jiceng"/>
+		<result property="surface" column="surface"/>
+		<result property="mark" column="mark"/>
+		<result property="pqi" column="pqi"/>
+		<result property="aadt" column="aadt"/>
+		<result property="constructnumber" column="constructnumber"/>
+		<result property="replynumber" column="replynumber"/>
+		<result property="devisenumber" column="devisenumber"/>
+		<result property="plandownnumber" column="plandownnumber"/>
+		<result property="description" column="description"/>
+		<result property="xchsqk" column="xchsqk"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
-		<result property="yhlb" column="yhlb"/>
-		<result property="pfztz" column="pfztz"/>
-		<collection property="plan_yhdzxs" ofType="plan_lx_yhdzx" resultMap="shuih_lx"/>
+		<result property="remarks" column="remarks"/>
+		<result property="qtbz" column="qtbz"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
+		<collection property="plan_lx_yhdzxs" ofType="plan_lx_yhdzx" resultMap="yhdzx_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">
 		<id property="id" column="id" />
@@ -24,5 +47,126 @@
 		<result property="hdlc" column="hdlc"/>
 		<result property="yjsdj" column="yjsdj"/>
 		<result property="ylmlx" column="ylmlx"/>
+		<result property="ylmkd" column="ylmkd"/>
+		<result property="ylmhd" column="ylmhd"/>
 	</resultMap>
+	<select id="queryYhdzxList" parameterType="java.util.Map" resultMap="yhdzx_jh">
+		select * from (
+			select rownum as num,t.* from (
+	    		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
+	       		where 1=1 
+	       		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+				<if test="jh.sbnf!=null and jh.sbnf!=''">
+					and jh.sbnf =#{jh.sbnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and lx.gydwdm like #{lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and lx.xzqhdm like #{lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.tsdq!=null and lx.tsdq!=''">
+					and lx.xzqhdm in (
+						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{l.tsdq})
+				</if>
+	       		order by jh.sbzt,jh.spzt,jh.sbnf
+	       		) t
+	       	)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryYhdzxCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from plan_yhdzx jh left join plan_lx_yhdzx lx 
+		on (jh.id=lx.jhid) where 1=1
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				and lx.xzqhdm like #{lx.xzqhdm}
+			</if>
+			<if test="lx.lxmc!=null and lx.lxmc!=''">
+				and lx.lxmc like '%'||#{lx.lxmc}||'%'
+			</if>
+			<if test="lx.lxbm!=null and lx.lxbm!=''">
+				and lx.lxbm like '%'||#{lx.lxbm}||'%'
+			</if>
+			<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+				and lx.yjsdj=#{lx.yjsdj}
+			</if>
+			<if test="lx.tsdq!=null and lx.tsdq!=''">
+				and lx.xzqhdm in (
+					select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{l.tsdq})
+			</if> 
+	</select>
+	<select id="queryYhdzxById" parameterType="string" resultMap="yhdzx_jh">
+		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid)
+		where jh.id=#{id}
+	</select>
+	<update id="editYhdzxStatus" parameterType="plan_yhdzx">
+		update plan_yhdzx set 
+			<if test="sbbm!=null">sbbm=(select name from XTGL_DEPARTMENT t where t.id = #{sbbm}),</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=(select name from XTGL_DEPARTMENT t where t.id = #{spbm}),</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
+	</update>
+	<delete id="dropYhdzxById" parameterType="java.util.List">
+		delete from plan_yhdzx jh where jh.id =#{id}
+	</delete>
+	<insert id="insertYhdzx_lx" parameterType="hashMap">
+		insert into plan_lx_yhdzx (id,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
+			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
+			yjsdj,ylmkd,ylmhd,ylmlx,bhnr,
+			tbbm,tbbmdm,tbsj) 
+		values (
+			sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},
+			#{3},#{4},#{5},#{6},#{7},#{8},
+			#{9},#{10},#{11},#{12},#{13},
+			(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{gydwdm},#{tbsj})
+	</insert>
+	<insert id="insertYhdzx_jh" parameterType="hashMap">
+		insert into plan_yhdzx (
+	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,description,dianceng,
+	    	jiceng,surface,reportingfee,fee,newfee,
+	    	totalinvest,totalplacefund,totalsubsidyfund,accumulativesubsidyfund,nowyearsubsidyfund,
+	    	mark,pqi,aadt,constructnumber,replynumber,devisenumbder,
+	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
+		values (
+			#{jhid},#{14},#{15},to_date(#{16},'yyyy-mm-dd'),to_date(#{17},'yyyy-mm-dd'),to_date(#{18},'yyyy-mm-dd'),#{19},#{20},
+			#{21},#{22},#{23},#{24},#{25},
+			#{26},#{27},#{28},#{29},#{30},
+			#{31},#{32},#{33},#{34},#{35},#{36},
+			#{37},#{38},#{39},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
+	</insert>
 </mapper>

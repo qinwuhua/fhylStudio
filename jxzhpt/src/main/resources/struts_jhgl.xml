@@ -56,6 +56,14 @@
 		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
 		<action name="insertZjzj" class="plan_zjxdController" method="insertZjzj"/>
 		
+		<action name="importYhdzx_jh" class="plan_yhdzxController" method="importYhdzx_jh"/>
+		<action name="queryYhdzxList" class="plan_yhdzxController" method="queryYhdzxList"/>
+		<action name="queryYhdzxById" class="plan_yhdzxController" method="queryYhdzxById"/>
+		<action name="dropYhdzxById" class="plan_yhdzxController" method="dropYhdzxById"/>
+		<action name="editYhdzxStatus" class="plan_yhdzxController" method="editYhdzxStatus"/>
+		
+		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
+		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
 		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>

@@ -139,7 +139,9 @@
 		if(flag=='shuih_jh'){
 			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/shxm.jsp';
 		}
-		
+		if(flag=='yhdzx_jh'){
+			parent.window.location = '/jxzhpt/page/jhgl/jhkgl/yhdzx.jsp';
+		}
  		dg.cancel();
 	}
 </script>

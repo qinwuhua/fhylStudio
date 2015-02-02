@@ -247,15 +247,37 @@
 					<span id="lblQTBZ"></span>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
-            	<td align="center" colspan="6">
-                	<img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " onclick="window.close()" />
+			<tr style="height: 25px;">
+            	<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+                	养护大中修项目资金下发信息
                 </td>
+            </tr>
+            <tr>
+				<td align="center" colspan="6">
+					<table id="zjxdList" width="100%" height="90%" cellpadding="0" cellspacing="0" border="1" style="padding-top: 10px;"></table>
+				</td>
+			</tr>
+			<tr style="height: 30px;text-align: center;" align="center">
+            	<td align="center" colspan="6">
+					<a href="javascript:openZjxd('zjxd','资金下达','../zjxd/zjxd.jsp','800','250')"" style="text-align: center;">
+						<img id="imgAdd"   onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加"
+							onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
+							src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width: 0px; cursor: hand;" />
+					</a>
+					<a href="javascript:closeWindow('zjxd_yhdzx')" onclick="Return()"  style="text-align: center;"> 
+						<img src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
+						onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
+						onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
+						style="border: 0">
+					</a>
+				</td>
             </tr>
 		</table>
 	</div>
+	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
 	<script type="text/javascript">
 		queryYhdzxById(xxId);
+		queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 	</script>
 </body>
 </html>

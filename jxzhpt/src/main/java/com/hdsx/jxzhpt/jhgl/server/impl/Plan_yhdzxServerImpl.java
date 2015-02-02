@@ -36,11 +36,6 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	}
 
 	@Override
-	public Plan_yhdzx queyrYhdzxById(String id) {
-		return queryOne("queyrYhdzxById", id);
-	}
-
-	@Override
 	public List<TreeNode> queryYhdzxNfs() {
 		return queryList("queryYhdzxNfs");
 	}
@@ -62,11 +57,16 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 
 	@Override
 	public boolean insertYhdzx_jh(List<Map> jh) {
-		return insert("insertYhdzx_jh", jh)==jh.size();
+		return insertBatch("insertYhdzx_jh", jh)==jh.size();
 	}
 
 	@Override
 	public boolean insertYhdzx_lx(List<Map> lx) {
-		return insert("insertYhdzx_lx", lx)==lx.size();
+		return insertBatch("insertYhdzx_lx", lx)==lx.size();
+	}
+
+	@Override
+	public Plan_yhdzx queryYhdzxById(String id) {
+		return queryOne("queryYhdzxById", id);
 	}
 }
