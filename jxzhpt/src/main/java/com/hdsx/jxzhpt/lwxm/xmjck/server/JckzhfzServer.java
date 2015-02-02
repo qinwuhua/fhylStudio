@@ -15,11 +15,11 @@ public interface JckzhfzServer {
 	List<Jckzhfz> selectGpsroad(Jckzhfz zhfz);
 	List<Jckzhfz> JckzhfzRoad(Jckzhfz zhfz);
 	boolean deleteZhfzById(String delstr);
-	boolean xgJckZhfzShzt(Jckzhfz zhfz);
+	boolean xgJckZhfzShzt(String delstr,Jckzhfz zhfz);
 	boolean xgJckZhfzSbzt(String delstr,Jckzhfz zhfz);
 	List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz);
 	int selectZhfzShCount(Jckzhfz zhfz);
-	boolean xgJckZhfzTH(Jckzhfz zhfz);
+	boolean xgJckZhfzTH(String delstr);
 	boolean importZhfz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List <SjbbMessage> exportExcel_zhfz(Jckzhfz jckzhfz);
 	List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz);

@@ -94,12 +94,12 @@
  	update xmk_wqgz set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
  </update>
  
- <update id="xgJckwqgzShzt" parameterType="jckwqgz" >
+ <update id="xgJckwqgzShzt" parameterType="hashmap" >
  	update xmk_wqgz set shzt='已审核',shsj=sysdate,shbm=#{shbm} where id=#{id}
  </update>
 
-  <update id="xgJckWqgzTH" parameterType="jckwqgz" >
- 	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{id}
+  <update id="xgJckWqgzTH" parameterType="java.util.List" >
+ 	update xmk_wqgz set sbthcd=(sbthcd+2) where id =#{String}
  </update>
  
   <select id="selectGpsroad"  parameterType="hashmap" resultType="jckwqgz">
@@ -199,7 +199,7 @@
  			and qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=to_number(#{qlzxzh}))
  		</if>
  </select>
  
@@ -264,7 +264,7 @@
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
- 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=#{qlzxzh}))
+ 			and (roadbm=#{qlbh} or (roadcode=#{lxbm} and roadpos=to_number(#{qlzxzh})))
 		order by roadbm,F002
  	</select>
    <select id="selJsdj"  parameterType="jckwqgz" resultType="jckwqgz">

@@ -19,7 +19,39 @@
 		$("#xg_cgsdwzj").val(data.cgsdwzj);
 		$("#xg_tbr").text(data.tbr);
 		$("#xg_tbsj").text(data.tbsj);
-		$("#xg_tbyf").text(data.tbyf);
+
+		var myDate = new Date();
+		var y = myDate.getFullYear();
+		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+		var mystr='';
+		var mystr1='';
+		var mystr2='';
+		if(m=1){
+			mystr=y+'-'+m;
+			mystr1=(y-1)+'-'+11;
+			mystr2=(y-1)+'-'+12;
+		}
+		else if(m=2){
+			mystr=y+'-'+m;
+			mystr1=(y-1)+'-'+12;
+			mystr2=y+'-'+1;
+		}else if(m=11){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+9;
+			mystr2=y+'-'+10;
+		}else if(m=12){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+10;
+			mystr2=(y-1)+'-'+11;
+		}else{
+			mystr=y+'-'+m;
+			mystr1=y+'-'+(m-2);
+			mystr2=y+'-'+(m-1);
+		}
+		$("#xg_tbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
+		$("#xg_tbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
+		$("#xg_tbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
+		$("#xg_tbyf").val(data.tbyf);
 	});
 </script>
 <style type="text/css">
@@ -82,7 +114,7 @@ text-decoration: none;
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="xg_tbyf"></span>&nbsp;
+                                <select id="xg_tbyf"></select>&nbsp;
                             </td>
                         </tr>
                     </table>

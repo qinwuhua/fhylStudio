@@ -28,6 +28,7 @@ function showAll(){
 	var wjmc=$("#wjmc").val();
 	var ddlyear=+$("#ddlYear").val();
 	var ddlmonth=$("#ddlMonth").val();
+	var type=$("#type").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectaqyblist.do',
 	    striped:true,
@@ -41,15 +42,18 @@ function showAll(){
 	    	wjmc:wjmc,
 	    	ddlyear: ddlyear,
 	    	ddlmonth: ddlmonth,
+	    	type:type,
+	    	gydw1: $.cookie("unit2"),
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:120,align:'center',formatter:function(value,row,index){
-	        	return '<a href="#" onclick="download()">下载</a>    '+'<a href="#" onclick="download()">查看</a>    '+'<a href="#" onclick="aqglxg()">编辑</a>    '+'<a href="#" onclick="download()">删除</a>    ';
+	        	return '<a href="#" onclick="download()">下载</a>    '+'<a href="#" onclick="aqglxg()">编辑</a>    '+'<a href="#" onclick="download()">删除</a>    ';
 	        }},
 	        {field:'filename',title:'文件名称',width:200,align:'center'},
 	        {field:'wenhao',title:'文号',width:200,align:'center'},
-	        {field:'uploadpeople',title:'上传人',width:200,align:'center'},
-	        {field:'reportmonth',title:'上报月份',width:200,align:'center'},
+	        {field:'uploadpeople',title:'上传人',width:100,align:'center'},
+	        {field:'uploadpath',title:'上传单位',width:200,align:'center'},
+	        {field:'reportmonth',title:'上报月份',width:100,align:'center'},
 	        {field:'remark',title:'备注',width:200,align:'center'},
 	    ]]    
 	}); 

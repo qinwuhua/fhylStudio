@@ -172,7 +172,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckZhfzShzt(){
 		try {
-			JsonUtils.write(zhfzServer.xgJckZhfzShzt(jckzhfz),getresponse().getWriter());
+			JsonUtils.write(zhfzServer.xgJckZhfzShzt(delstr,jckzhfz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -213,7 +213,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckZhfzTH(){
 		try {
-			JsonUtils.write(zhfzServer.xgJckZhfzTH(jckzhfz),getresponse().getWriter());
+			JsonUtils.write(zhfzServer.xgJckZhfzTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -62,7 +62,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			List<Map>[] dataMapArray;
 			try{
 				dataMapArray = ExcelReader.readExcelContent(4,19,fs,Jckzhfz.class);
-			}catch(Exception e){
+			}catch(Exception e){ 
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
@@ -193,7 +193,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckAbgcShzt(){
-		if(abgcServer.xgSckAbgcShzt(sckabgc)){
+		if(abgcServer.xgSckAbgcShzt(delstr,sckabgc)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -201,7 +201,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgSckAbgcTH(){
 		try {
-			JsonUtils.write(abgcServer.xgSckAbgcTH(sckabgc),getresponse().getWriter());
+			JsonUtils.write(abgcServer.xgSckAbgcTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -220,6 +220,14 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 				abgcServer.xglrjhSckabgc(sckabgc);
 				ResponseUtils.write(getresponse(), "true");
 			}else ResponseUtils.write(getresponse(), "false");
+	}
+	public void onceSckAbgc(){
+		boolean b = abgcServer.onceSckAbgc(sckabgc);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
 	}
 	
 	

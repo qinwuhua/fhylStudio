@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzgjCgs" parameterType="gcglgcgzgj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->

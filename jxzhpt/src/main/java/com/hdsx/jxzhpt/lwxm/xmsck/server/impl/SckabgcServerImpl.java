@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
-
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
@@ -125,13 +124,25 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean xgSckAbgcShzt(Sckabgc abgc) {
-		if(update("xgSckAbgcShzt", abgc)>0)return true;
-		else return false;
+	public boolean xgSckAbgcShzt(String delstr,Sckabgc abgc) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", abgc.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckAbgcShzt", lm)==lm.size()?true:false;
 	}
 	@Override
-	public boolean xgSckAbgcTH(Sckabgc abgc) {
-		if(update("xgSckAbgcTH", abgc)>0)return true;
+	public boolean xgSckAbgcTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgSckAbgcTH", list)>0)return true;
 		else return false;
 	}
 
@@ -150,11 +161,11 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
-		for (Map<String, String> map : list) {
-			map.put("scbmbm", tbbmbm);
-			map.put("sck_sbthcd", sbthcd);
-		}
+	public boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd){
+			for (Map<String, String> map : list) {
+				map.put("scbmbm", tbbmbm);
+				map.put("sck_sbthcd", sbthcd);
+				}
 		return this.insertBatch("importAbgc_sc", list)==list.size()?true:false;
 	}
 
@@ -186,11 +197,21 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 			ab.setQdzh(map.get("9"));
 			ab.setZdzh(map.get("10"));
 			if(queryList("daoRuabgcsh", ab).size()>0){
+				int c = (Integer)queryOne("onceSckAbgc", ab);
+				if(c==0){
 				int count = (Integer)queryOne("bzAbgc", ab);
-				if(count>0) return "项目审查库中已存在该项目，请勿重复添加！";
+				if(count>0) return "该项目有补助历史！";
+				}else return "项目审查库中已存在此项目，请勿重复添加！";
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckabgc_ok";
+	}
+
+	@Override
+	public boolean onceSckAbgc(Sckabgc abgc) {
+		int count = (Integer)queryOne("onceSckAbgc", abgc);
+		if(count==0) return true;
+		else return false;
 	}
 
 }

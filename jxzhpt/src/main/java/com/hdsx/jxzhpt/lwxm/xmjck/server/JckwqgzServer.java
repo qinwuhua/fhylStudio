@@ -16,13 +16,13 @@ public interface JckwqgzServer {
 	List<Jckwqgz> selectGpsroad(Jckwqgz wqgz);
 	List<Jckwqgz> JckWqgzRoad(Jckwqgz wqgz);
 	boolean deleteWqgzById(String delstr);
-	boolean xgJckWqgzShzt(Jckwqgz wqgz);
+	boolean xgJckWqgzShzt(String delstr,Jckwqgz wqgz);
 	boolean xgJckWqgzSbzt(String delstr,Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_wqgz(Jckwqgz jckwqgz);
 	boolean importWqgz(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz);
 	int selectWqgzShCount(Jckwqgz wqgz);
-	boolean xgJckWqgzTH(Jckwqgz wqgz);
+	boolean xgJckWqgzTH(String delstr);
 	List<SjbbMessage> exportExcel_wqgz_sh(Jckwqgz wqgz);
 	boolean onceWqgz(Jckwqgz wqgz);
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm);

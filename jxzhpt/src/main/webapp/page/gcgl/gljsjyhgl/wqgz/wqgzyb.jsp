@@ -15,10 +15,17 @@
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
-		$(function(){
+	var data;	
+	$(function(){
 			
 			showYBlist();
+			setTimeout("shezhi()",1000);
+			
 		});
+		function shezhi(){
+			data=$("#ybgrid").datagrid('getRows')[0];
+			//alert(data.cgsdwzj);
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -64,7 +71,7 @@ a:active {
                     <table>
                         <tr>
                             <td>
-                                <img id="imgAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'" onClick="AddInfo()" src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width:0px;cursor: hand;" />
+                                <img id="imgAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'" onclick="AddInfo()" src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width:0px;cursor: hand;" />
                             </td>
                             <td>
                                 <a href="javascript:void(0)" onclick="window.close();">

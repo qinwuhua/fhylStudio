@@ -26,22 +26,21 @@ $(function(){
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid=rows[0].sckid;
-	var shzt=rows[0].sck_shzt;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量审核！");
-		return;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sck_shzt=='已审核'){
+			alert("有项目已审核，请勿重复操作！");
+			return ;
+		}
 	}
-	if(shzt=='已审核'){
-		alert("该项目已审核，请勿重复操作！");
-		return;
+	for(var i=1;i<rows.length;i++){
+		sckid+=","+rows[i].sckid ;
 	}
 	if(confirm('您确定审核通过该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/xgSckAbgcShzt.do",
 				 dataType : 'json',
-				 data : 'sckid=' +sckid+"&sck_shbm="+$.cookie("unit"),
+				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit"),
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');
@@ -58,23 +57,30 @@ function xgShzt(){
 }
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	var sckid= rows[0].sckid;
-	var sck_shzt=rows[0].sck_shzt;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量退回！");
+	var sckid=rows[0].sckid;
+	for(var i=0;i<rows.length;i++){
+	if(rows[i].sck_sbzt=='未上报' && rows[i].sck_sbthcd==11){
+		alert("对不起，无法退回！");
 		return;
 	}
-	if(sck_shzt=='已审核'){
-		alert("对不起，该项目已审核，不能执行退回操作！");
+	if(rows[i].scbmbm==$.cookie("unit")){
+		alert("对不起，您添加的项目无法退回！");
 		return;
+	}
+	if(rows[i].sck_sbthcd<$.cookie("unit2").length){
+		alert("对不起，该项目已上报，不能执行退回操作！");
+		return;
+	}
+	}	
+	for(var i=1;i<rows.length;i++){
+		sckid+=","+rows[i].sckid ;
 	}
 	if(confirm('您确定退回该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/xgSckAbgcTH.do",
 				 dataType : 'json',
-				 data : 'sckid=' +sckid,
+				 data : 'delstr=' +sckid,
 				 success : function(msg){
 					 if(msg){
 						 alert('退回成功！');
@@ -172,8 +178,8 @@ text-decoration:none;
 									<option value="2012年">2012年</option>
 									<option value="2011年">2011年</option>
                               	</select>
-                              <span>&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px">
+                              <span style="display: none;">&nbsp;项目状态： </span>
+                              	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
 									<option value="已上报">已上报</option>
@@ -219,7 +225,7 @@ text-decoration:none;
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_abgc_scsh();" style="border-width:0px;cursor: hand;" />
-                                <img name="lrjh" id="lrjh" src="../../../images/Button/xiafa_1.png" onmouseover="this.src='../../../images/Button/xiafa_2.png'" onmouseout="this.src='../../../images/Button/xiafa_1.png'   " src=""  onclick="insertJhk();" style="border-width:0px;" />
+                                <img name="lrjh" id="lrjh" src="../../../images/Button/lrjh_1.png" onmouseover="this.src='../../../images/Button/lrjh_2.png'" onmouseout="this.src='../../../images/Button/lrjh_1.png'   " src=""  onclick="insertJhk();" style="border-width:0px;" />
 							 </p>
 						</div>
 				</fieldset>

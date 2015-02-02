@@ -98,8 +98,13 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 	@Override
-	public boolean xgSckWqgzTH(Sckwqgz wqgz) {
-		if(update("xgSckWqgzTH", wqgz)>0) return true;
+	public boolean xgSckWqgzTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgSckWqgzTH", list)>0)return true;
 		else return false;
 	}
 
@@ -138,9 +143,16 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean xgSckWqgzShzt(Sckwqgz wqgz) {
-		if(update("xgSckWqgzShzt", wqgz)>0) return true;
-		else return false;
+	public boolean xgSckWqgzShzt(String delstr,Sckwqgz wqgz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("sckid", strs[i]);
+			hm.put("sck_shbm", wqgz.getSck_shbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgSckWqgzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
@@ -199,6 +211,13 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 			}else return "无此项目或此项目不属于您的管理范围！";
 		}
 		return "sckwqgz_ok";
+	}
+
+	@Override
+	public boolean onceSckWqgz(Sckwqgz wqgz) {
+		int count = (Integer)queryOne("onceSckWqgz", wqgz);
+		if(count==0) return true;
+		else return false;
 	}
 
 

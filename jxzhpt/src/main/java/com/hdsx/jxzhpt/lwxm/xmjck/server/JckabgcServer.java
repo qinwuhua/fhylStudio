@@ -15,11 +15,11 @@ public interface JckabgcServer {
 	List<Jckabgc> selectGpsroad(Jckabgc abgc);
 	List<Jckabgc> selectJckRoad(Jckabgc abgc);
 	boolean deleteAbgcById(String delstr);
-	boolean xgJckAbgcShzt(Jckabgc abgc);
+	boolean xgJckAbgcShzt(String delstr,Jckabgc abgc);
 	boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc);
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);
-	boolean xgJckAbgcTH(Jckabgc abgc);
+	boolean xgJckAbgcTH(String delstr);
 	boolean importAbgc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<SjbbMessage> exportExcel_abgc(Jckabgc jckabgc);
 	List<SjbbMessage> exportExcel_abgc_sh(Jckabgc jckabgc);

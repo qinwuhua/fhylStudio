@@ -62,6 +62,10 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 
 	@Override
 	public Boolean updategcgzsjYb(Gcglgcgzsj gcglgcgzsj) {
+		Gcglgcgzsj gcglzhfz1=queryOne("queryYbByYf", gcglgcgzsj);
+		if(gcglzhfz1!=null&&gcglzhfz1.getId().equals(gcglgcgzsj.getId())){
+			return false;
+		}
 		if(update("updategcgzsjYb", gcglgcgzsj)>0){
 		return true;
 		}else{
@@ -114,6 +118,10 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 
 	@Override
 	public Boolean updateGcgzsjCgs(Gcglgcgzsj gcglgcgzsj) {
+		Gcglgcgzsj gcglwqgz1=queryOne("queryCGSByYf", gcglgcgzsj);
+		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglgcgzsj.getId())){
+			return false;
+		}
 		if(update("updateGcgzsjCgs", gcglgcgzsj)>0){
 			return true;
 		}else{

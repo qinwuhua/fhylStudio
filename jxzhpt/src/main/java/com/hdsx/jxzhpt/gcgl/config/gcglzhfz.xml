@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateZhfzCgs" parameterType="gcglzhfz">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 		<!-- 上传 -->
@@ -170,7 +170,7 @@ where  t1.spzt='1'
 			where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglzhfz" resultType="int">
-	 	select count(*) PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+	 	select count(*) from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
 		where  t1.spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'

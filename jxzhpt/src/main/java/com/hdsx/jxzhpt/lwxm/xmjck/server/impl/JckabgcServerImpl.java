@@ -82,9 +82,16 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean xgJckAbgcShzt(Jckabgc abgc) {
-		if(update("xgJckAbgcShzt", abgc)>0) return true;
-		else return false;
+	public boolean xgJckAbgcShzt(String delstr,Jckabgc abgc) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", abgc.getShbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgJckAbgcShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
@@ -150,8 +157,13 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	}
 
 	@Override
-	public boolean xgJckAbgcTH(Jckabgc abgc) {
-		if(update("xgJckAbgcTH", abgc)>0) return true;
+	public boolean xgJckAbgcTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgJckAbgcTH", list)>0) return true;
 		else return false;
 	}
 

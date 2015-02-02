@@ -16,6 +16,9 @@
 			<if test="filename != null and  filename != ''">
 			and filename like '%'||trim(#{filename})||'%'
 			</if>
+			<if test="sendingunits != null and  sendingunits != ''">
+			and sendingunits like '%'||trim(#{sendingunits})||'%'
+			</if>
 		order by to_number(substr(reportmonth,0,4))desc,to_number(replace(reportmonth,'-','')) desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -36,10 +39,10 @@
 		and filename like '%'||trim(#{filename})||'%'
 		</if>
 	</select>
-	<!-- 添加月报 -->
+	<!-- 添加-->
 	<insert id="insertAqybb" parameterType="gcglaqyb">
-		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth)
-		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth})
+		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth,uploadpath)
+		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth},#{uploadpath})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglsh" resultType="gcglsh">
 		select * from GCGL_SH where sbyf=#{sbyf} and jhid=#{jhid}

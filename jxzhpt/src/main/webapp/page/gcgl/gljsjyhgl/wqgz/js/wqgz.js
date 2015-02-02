@@ -51,6 +51,7 @@ function Showybxx(index){
 }
 var ybxiangxi;
 function Edityb(index){
+	//alert(index);
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
 	ybxiangxi=data;
@@ -114,7 +115,7 @@ function tjwqgzyb(){
 				parent.$("#ybgrid").datagrid('reload');
 				closes('wqxxtj');
 			}else{
-				alert('该月月报可能已存在，保存失败！');
+				alert('该月尚未拨付车购税或该月月报可能已存在，保存失败！');
 			}
 		}
 	});	
@@ -237,7 +238,7 @@ function showAll(){
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbm',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
 	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
@@ -278,6 +279,7 @@ function showYBlist(){
 	    columns:[
 	             [
 	              	{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
+	              		
 	              		if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='否')
 	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'已上报    '+'未审核    ';

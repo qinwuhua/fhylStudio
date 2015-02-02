@@ -82,9 +82,16 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public boolean xgJckZhfzShzt(Jckzhfz zhfz) {
-		if(update("xgJckzhfzShzt", zhfz)>0) return true;
-		else return false;
+	public boolean xgJckZhfzShzt(String delstr,Jckzhfz zhfz) {
+		String[] strs = delstr.split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("shbm", zhfz.getShbm());
+			lm.add(hm);
+		}
+		return this.updateBatch("xgJckzhfzShzt", lm)==lm.size()?true:false;
 	}
 
 	@Override
@@ -150,8 +157,13 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 	}
 
 	@Override
-	public boolean xgJckZhfzTH(Jckzhfz zhfz) {
-		if(update("xgJckZhfzTH", zhfz)>0)return true;
+	public boolean xgJckZhfzTH(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		if(updateBatch("xgJckZhfzTH", list)>0) return true;
 		else return false;
 	}
 

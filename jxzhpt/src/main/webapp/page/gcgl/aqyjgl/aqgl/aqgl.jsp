@@ -24,7 +24,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit("gydw",'36');
 			$("#ddlYear").val();
 			var myDate = new Date();
 			var y = myDate.getFullYear();
@@ -75,7 +75,7 @@ a:active {
         							&nbsp;&nbsp;
         						<span>文件名称：</span>
         							<input type="text" id="wjmc" >
-        							&nbsp;&nbsp;
+        							
         							<span>年份：</span>
         							<select name="ddlYear" id="ddlYear" style="width: 60px;">
 
@@ -96,7 +96,13 @@ a:active {
 										<option id="yf11" value="11">11</option>
 										<option id="yf12" value="12">12</option> 
 									</select>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>状态：</span>
+									<select id="type">
+										<option value="全部">全部</option> 
+										<option value="上传">上传</option> 
+										<option value="接收">接收</option> 
+									</select>
+									&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
 									 <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"

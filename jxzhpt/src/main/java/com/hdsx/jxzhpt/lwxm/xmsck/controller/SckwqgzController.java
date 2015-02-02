@@ -73,7 +73,9 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			}else{
 				response.getWriter().print(fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void exportExcel_wqgz_scgl(){
 		try {
@@ -176,7 +178,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgSckWqgzTH(){
 		try {
-			JsonUtils.write(wqgzServer.xgSckWqgzTH(sckwqgz),getresponse().getWriter());
+			JsonUtils.write(wqgzServer.xgSckWqgzTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -194,7 +196,15 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckWqgzShzt(){
-		if(wqgzServer.xgSckWqgzShzt(sckwqgz)){
+		if(wqgzServer.xgSckWqgzShzt(delstr,sckwqgz)){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void onceSckWqgz(){
+		boolean b = wqgzServer.onceSckWqgz(sckwqgz);
+		if(b){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

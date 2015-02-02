@@ -60,6 +60,10 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 
 	@Override
 	public Boolean updateshYb(Gcglsh gcglsh) {
+		Gcglsh gcglzhfz1=queryOne("queryYbByYf", gcglsh);
+		if(gcglzhfz1!=null&&!gcglzhfz1.getId().equals(gcglsh.getId())){
+			return false;
+		}
 		if(update("updateshYb", gcglsh)>0){
 			return true;
 		}else{
@@ -112,6 +116,10 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 
 	@Override
 	public Boolean updateShCgs(Gcglsh gcglsh) {
+		Gcglsh gcglwqgz1=queryOne("queryCGSByYf", gcglsh);
+		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglsh.getId())){
+			return false;
+		}
 		if(update("updateShCgs", gcglsh)>0){
 			return true;
 		}else{

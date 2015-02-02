@@ -28,6 +28,7 @@
 	text-decoration: none;
 }
 </style>
+
 <script type="text/javascript">
         var dg = frameElement.lhgDG;
         $(document).ready(function() {
@@ -105,7 +106,7 @@
 	function addaqyb(response){
 		//alert("xxxxxxx");
 		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()+"&gcglaqyb.uploadepartment="+$.cookie("unit")
-		+"&gcglaqyb.xspath="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename");
+		+"&gcglaqyb.xspath="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename")+"&gcglaqyb.uploadpath="+$("#uploadpath").val();
 //		alert(data);
 		$.ajax({
 				type:'post',
@@ -126,11 +127,9 @@
 	//必须的 
 	function tianjian(){
 		//alert("jinru");
-		if($("#fileQueue").text()==''){//alert("jinru1111");
+		if($("#fileQueue").text()==''){
 			addaqyb('');
-			//alert($("#fileQueue").text());
 		}
-		//alert($("#fileQueue").text());
 		uploadifyUpload();
 	}
 	function uploadifyUpload() {
@@ -144,11 +143,13 @@
  		dg.cancel();
 	}
 	$(function(){
+		setGydw("tj_sendingunits","36");
+		var data1="yhdw="+$.cookie("unit");
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
-		var mystr3='';
-		var mystr4='';
+// 		var mystr3='';
+// 		var mystr4='';
 		var myDate = new Date();
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -184,18 +185,27 @@
 			mystr3=y+'-'+(m+1);
 			mystr4=y+'-'+(m+2);
 		}
-		$("#tj_reportmonth").append("<option value="+mystr1+">"+mystr1+"</option>");
-		$("#tj_reportmonth").append("<option value="+mystr2+">"+mystr2+"</option>");
 		$("#tj_reportmonth").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-// 		$("#tj_reportmonth").append("<option value="+mystr3+">"+mystr3+"</option>");
-// 		$("#tj_reportmonth").append("<option value="+mystr4+">"+mystr4+"</option>");
-		setGydw("tj_sendingunits","36");
+		$("#tj_reportmonth").append("<option value="+mystr2+">"+mystr2+"</option>");
+		$("#tj_reportmonth").append("<option value="+mystr1+">"+mystr1+"</option>");
+		// 		$("#tj_reportmonth").append("<option value="+mystr3+">"+mystr3+"</option>");
+		// 		$("#tj_reportmonth").append("<option value="+mystr4+">"+mystr4+"</option>");
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xtgl/selAllBm.do',
+			data:data1,
+			dataType:'json',
+			success:function(msg){
+				$("#uploadpath").val(msg[0].text);
+			}
+		});	
+		
 	});
 	function setGydw(id, dwbm){
 			$('#' + id).tree(
 			{
 				checkbox : true,
-				//multiple:true,
+				multiple:true,
 				url : '/jxzhpt/xtgl/selAllBm2.do?yhdw=' + dwbm,
 				onBeforeExpand : function(node, param) {
 					$('#' + id).tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
@@ -209,7 +219,21 @@
 						codes+=nodes[i].id+',';
 					}
 					$('#sendingunitsid').val(codes);
-				}
+				},
+				 onLoadSuccess : function(node, data) {
+			            // $('#trees').combotree('tree').tree("expandAll").tree(
+			            // "collapseAll");
+			            var t = $(this);
+			            if (data) {
+			                $(data).each(function(index, d) {
+			                    if (this.state == 'closed') {
+			                        t.tree('expandAll');
+			                         t.tree("collapseAll");
+			                    }
+			                });
+
+			            }
+			        }
 			});
 
 	}
@@ -233,7 +257,7 @@
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
                                		<ul id="tj_sendingunits"></ul>
-                                 
+                             	  <input type="hidden" id="uploadpath">
                                    <input type="hidden" id="sendingunitsid">
                                 </td>
                             </tr>

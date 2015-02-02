@@ -178,7 +178,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckWqgzShzt(){
 		try {
-			JsonUtils.write(wqgzServer.xgJckWqgzShzt(jckwqgz),getresponse().getWriter());
+			JsonUtils.write(wqgzServer.xgJckWqgzShzt(delstr,jckwqgz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -219,7 +219,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void xgJckWqgzTH(){
 		try {
-			JsonUtils.write(wqgzServer.xgJckWqgzTH(jckwqgz),getresponse().getWriter());
+			JsonUtils.write(wqgzServer.xgJckWqgzTH(delstr),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
