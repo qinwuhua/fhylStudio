@@ -24,4 +24,27 @@ public interface Plan_hslyServer {
 	 * @return
 	 */
 	int queryHslyCount(Plan_hsly hsly);
+	/**
+	 * 根据ID查询详细信息
+	 * @param id
+	 * @return
+	 */
+	Plan_hsly queryHslyById(String id);
+	/**
+	 * 根据计划ID查询资金追加信息
+	 * @param id 计划信息ID
+	 * @return
+	 */
+	List<Plan_hsly> queryHslyZjzj(String id);
+	/**
+	 * 修改红色旅游信息
+	 * @param hsly
+	 */
+	boolean editHsly(Plan_hsly hsly);
+	/**
+	 * 根据ID删除信息
+	 * @param id
+	 * @return
+	 */
+	boolean dropHslyById(String id);
 }

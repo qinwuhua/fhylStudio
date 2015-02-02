@@ -32,5 +32,19 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 	public int queryHslyCount(Plan_hsly hsly) {
 		return queryOne("queryHslyCount", hsly);
 	}
-
+	@Override
+	public Plan_hsly queryHslyById(String id) {
+		return queryOne("queryHslyById", id);
+	}
+	public List<Plan_hsly> queryHslyZjzj(String id){
+		return queryList("queryHslyZjzj",id);
+	}
+	@Override
+	public boolean editHsly(Plan_hsly hsly) {
+		return update("editHsly", hsly)>0;
+	}
+	@Override
+	public boolean dropHslyById(String id) {
+		return delete("dropHslyById",id)>0;
+	}
 }
