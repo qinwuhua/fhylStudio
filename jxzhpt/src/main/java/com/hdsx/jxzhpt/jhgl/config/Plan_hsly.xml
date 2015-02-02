@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_hsly">
+	<insert id="insertHsly" parameterType="hashMap">
+		insert into Plan_hsly (id,xmmc,jsxz,jsgmhj,jsgmy,jsgme,
+			jsgms,jsgmf,jsgmdldq,kgn,wgn,jhnf,ztz,zytz,dfta,gndk,
+			lywz,zyjsnr,xzscl,gkpfwh,sgtpfwh,TBBM,tbsj,XZQHDM,XZQHmc)
+		values (sys_guid(),#{1},#{2},#{3},#{4},#{5},
+			#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},
+			#{16},#{17},#{18},#{19},#{20},#{tbbm},#{tbsj},(select id from XTGL_XZQH where name =#{xzqhmc}),#{xzqhmc})
+	</insert>
+</mapper>

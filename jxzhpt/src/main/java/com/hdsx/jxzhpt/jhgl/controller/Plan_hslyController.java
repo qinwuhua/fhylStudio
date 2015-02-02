@@ -2,10 +2,12 @@ package com.hdsx.jxzhpt.jhgl.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -13,6 +15,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_hsly;
+import com.hdsx.jxzhpt.jhgl.server.Plan_hslyServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -24,6 +28,9 @@ public class Plan_hslyController  extends BaseActionSupport{
 	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
+	private Plan_hsly hsly;
+	@Resource(name = "plan_HslyServerImpl")
+	private Plan_hslyServer hslyServer;
 	
 	public void importHsly_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
@@ -47,18 +54,19 @@ public class Plan_hslyController  extends BaseActionSupport{
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
 			for (Map map : data) {
-				for(int i=0;i<21;i++){
-					System.out.println(map.get(""+i).toString());
-				}
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
+				map.put("tbsj", new Date());
+				map.put("tbbm", getGydwdm());
+				map.put("xzqhmc", map.get("0").toString().substring(map.get("0").toString().indexOf("省")));
 				//strVerify=ImportVerify.gcsjVerify(map);
 //				if(gcsjServer.queryGPSBylxbm(map.get("3").toString())==0){
 //					strVerify="【"+map.get("3").toString()+"】不存在！";
 //				}
 			}
 			System.out.println(data);
+			hslyServer.insertHsly(data);
 //			if(strVerify.equals("")){
 //				boolJh=gcsjServer.insertGcsj_Jh(data);
 //				boolLx=gcsjServer.insertGcsj_lx(data);
@@ -75,6 +83,12 @@ public class Plan_hslyController  extends BaseActionSupport{
 	//get set
 	public int getPage() {
 		return page;
+	}
+	public Plan_hsly getHsly() {
+		return hsly;
+	}
+	public void setHsly(Plan_hsly hsly) {
+		this.hsly = hsly;
 	}
 	public void setPage(int page) {
 		this.page = page;
