@@ -20,9 +20,9 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			querySumShuih();
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
-			alert($.cookie("unit2"));
 			sbnf("sbnf");
 			shxm_sh(jh,lx);
 		});

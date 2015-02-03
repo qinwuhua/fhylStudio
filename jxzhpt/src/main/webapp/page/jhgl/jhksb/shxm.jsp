@@ -26,6 +26,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			querySumShuih();
 			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(!xian){

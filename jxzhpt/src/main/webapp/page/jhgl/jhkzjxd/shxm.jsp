@@ -20,6 +20,15 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/querySumShuih.do',
+				dataType:'json',
+				success:function(data){
+					$('#lblCount').html(data.id);
+					$('#lblXDZJ').html(data.jhsybzje);
+				}
+			});
 			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
@@ -31,7 +40,6 @@
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null
 			};
-			alert(lx.gydwdm);
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
@@ -128,7 +136,8 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】个水毁项目，下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">30</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】个水毁项目，
+        			下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">30</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

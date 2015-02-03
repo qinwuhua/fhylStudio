@@ -218,13 +218,13 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./jhkzjxd/hslygl.jsp'
 	});
-	createMenu('LeftMenu',{
-		id:'menu_0101030409',
-		title:'战备公路项目',
-		imgSrc:'../../images/zb_s.png',
-		renderTo:'left_menu4',
-		href:'./jhkzjxd/zbgl.jsp'
-	});
+//	createMenu('LeftMenu',{
+//		id:'menu_0101030409',
+//		title:'战备公路项目',
+//		imgSrc:'../../images/zb_s.png',
+//		renderTo:'left_menu4',
+//		href:'./jhkzjxd/zbgl.jsp'
+//	});
 	
 	createMenu('LeftMenu',{
 		id:'menu_0101030501',

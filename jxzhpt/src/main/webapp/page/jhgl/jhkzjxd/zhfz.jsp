@@ -20,6 +20,15 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/querySumZhfz.do',
+				dataType:'json',
+				success:function(data){
+					$('#lblCount').html(data.id);
+					$('#lblXDZJ').html(data.jhsybzje);
+				}
+			});
 			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");

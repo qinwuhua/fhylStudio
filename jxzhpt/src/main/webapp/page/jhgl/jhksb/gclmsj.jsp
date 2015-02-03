@@ -26,6 +26,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			querySumMessage();
 			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0},
 			lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(!xian){

@@ -19,6 +19,15 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/querySumWqgz.do',
+				dataType:'json',
+				success:function(data){
+					$('#lblCount').html(data.id);
+					$('#lblXDZJ').html(data.jhsybzje);
+				}
+			});
 			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
@@ -133,7 +142,8 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">9</span>&nbsp;】个危桥改造项目，下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">255</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">9</span>&nbsp;】个危桥改造项目，
+        			下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">255</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

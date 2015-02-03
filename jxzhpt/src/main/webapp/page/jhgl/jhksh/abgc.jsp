@@ -20,6 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			querySumAbgc();
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			sbnf("sbnf");
@@ -168,14 +169,12 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个安保工程项目，
-        			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">53.899</span>&nbsp;】公里，
-        			审查总里程共【&nbsp;<span id="lblSCZLC" style="font-weight: bold; color: #FF0000">53.899</span>&nbsp;】公里，
-        			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里，
-        			审查隐患里程共【&nbsp;<span id="lblSCYHLC" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里；
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">40</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">25</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">15</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
+        			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
+        			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
+        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>
