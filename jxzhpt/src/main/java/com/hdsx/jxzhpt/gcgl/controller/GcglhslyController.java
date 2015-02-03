@@ -137,6 +137,12 @@ public class GcglhslyController extends BaseActionSupport{
 	}
 	//添加月报
 	public void inserthslyYb(){
+		if("县级".equals(yhtype)){
+			gcglhsly.setSfsj("否");
+		}
+		if("市级".equals(yhtype)){
+			gcglhsly.setSfsj("是");
+		}
 		Boolean bl=gcglhslyServer.inserthslyYb(gcglhsly);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -160,6 +166,22 @@ public class GcglhslyController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//查询月报
+		public void selecthslyYbByJhid1(){
+			gcglhsly.setPage(page);
+			gcglhsly.setRows(rows);
+			gcglhsly.setJhid(jhid);
+			int count=gcglhslyServer.selecthslyYbByJhidCount1(gcglhsly);
+			List<Gcglhsly> list=gcglhslyServer.selecthslyYbByJhid1(gcglhsly);
+			EasyUIPage<Gcglhsly> e=new EasyUIPage<Gcglhsly>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
 	//修改月报
 	public void updatehslyYb(){
 		Boolean bl=gcglhslyServer.updatehslyYb(gcglhsly);

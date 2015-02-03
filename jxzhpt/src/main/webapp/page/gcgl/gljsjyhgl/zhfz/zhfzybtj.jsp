@@ -25,40 +25,23 @@
 			sbsj = y+"-"+m+"-"+d;
 			sbyf = y+"-"+m;
 			$("#tj_sbsj").text(sbsj);
-			//$("#tj_sbyf").text(sbyf);
-
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			if(m=1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
+			getYuefen();
+	});
+	function getYuefen(){
+		//alert(parent.parent.obj1.jhid);
+		var data="jhid="+parent.parent.obj1.jhid;
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/selectWqgzyf.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				for ( var i = 0; i < msg.length; i++){
+					$("#tj_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+				}
 			}
-			else if(m=2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-			}else if(m=11){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+9;
-				mystr2=y+'-'+10;
-			}else if(m=12){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+10;
-				mystr2=(y-1)+'-'+11;
-			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-			}
-			$("#tj_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
-			$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
 		});
-		
-		
-		
+	}
 	</script>
 	<style type="text/css">
 <!--

@@ -125,7 +125,7 @@ function showAll(){
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbm',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
 	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},

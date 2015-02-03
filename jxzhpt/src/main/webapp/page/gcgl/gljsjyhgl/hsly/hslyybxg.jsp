@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			getYuefen();
 			var data=parent.obj;
 			$("#xg_bywcdc").val(data.bywcdc);
 			$("#xg_bywcjc").val(data.bywcjc);
@@ -23,8 +24,23 @@
 			$("#xg_qksm").val(data.qksm);
 			$("#xg_bfzj").val(data.bfzj);
 			$("#xg_sbsj").text(data.sbsj);
-			$("#xg_sbyf").text(data.sbyf);
+		//	$("#xg_sbyf").text(data.sbyf);
 		});
+		function getYuefen(){
+			var data="jhid="+parent.obj.jhid;
+			$.ajax({
+				type:'post',
+				url:'../../../../gcgl/selectWqgzyf.do',
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					for ( var i = 0; i < msg.length; i++){
+						$("#xg_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+					}
+					$("#xg_sbyf").val(parent.obj.sbyf);
+				}
+			});	
+	}
 	</script>
 	<style type="text/css">
 <!--
@@ -130,7 +146,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="xg_sbyf"></span>
+                                <select id="xg_sbyf"></select>
                             </td>
                         </tr>
                     </table>

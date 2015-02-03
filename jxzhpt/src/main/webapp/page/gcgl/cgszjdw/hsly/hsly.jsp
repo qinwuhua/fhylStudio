@@ -11,17 +11,19 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/hsly.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/hsly.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadDist("xzqh","360000");
+			loadDist("xzqhdm","360000");
+			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
 	</script>
@@ -35,6 +37,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -44,40 +47,42 @@ a:active {
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;车购税资金到位情况>&nbsp;红色旅游施工过程管理</div>
+				<div id="righttop">
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;红色旅游施工过程管理</div>
 					</div>
-
+	        
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
+        					<p style="margin: 1% 0% 1% 2%;">
         						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 200px;">
+        						<input id="xzqhdm" style="width: 200px;">
+        						
+        						<span>开工状态：</span>
+        						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>
-        							<input type="text" id="lx" >
+        							<input type="text" id="lxmc" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>
         	</tr>
 
 		<tr>
-         <td style="padding-left: 10px; padding-top: 5px; font-size: 12px;">
+         <td style="padding-left: 10px; padding-top: 1%; font-size: 12px;">
             <div>
-
-		<table id="datagrid" width="100%">
+		<table id="datagrid" >
 			</table>
 			</div>
 			</td>

@@ -49,7 +49,22 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 	}
 
 	@Override
+	public int selecthslyYbByJhidCount1(Gcglhsly gcglhsly) {
+		// TODO Auto-generated method stub
+		return queryOne("selecthslyYbByJhidCount1", gcglhsly);
+	}
+
+	@Override
+	public List<Gcglhsly> selecthslyYbByJhid1(Gcglhsly gcglhsly) {
+		// TODO Auto-generated method stub
+		return queryList("selecthslyYbByJhid1",gcglhsly);
+	}
+	@Override
 	public Boolean updatehslyYb(Gcglhsly gcglhsly) {
+		Gcglhsly gcglzhfz1=queryOne("queryYbByYf", gcglhsly);
+		if(gcglzhfz1!=null&&!gcglzhfz1.getId().equals(gcglhsly.getId())){
+			return false;
+		}
 		if(update("updatehslyYb", gcglhsly)>0){
 		return true;
 		}else{
@@ -102,6 +117,10 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 
 	@Override
 	public Boolean updateHslyCgs(Gcglhsly gcglhsly) {
+		Gcglhsly gcglwqgz1=queryOne("queryCGSByYf", gcglhsly);
+		if(gcglwqgz1!=null&&!gcglwqgz1.getId().equals(gcglhsly.getId())){
+			return false;
+		}
 		if(update("updateHslyCgs", gcglhsly)>0){
 			return true;
 		}else{

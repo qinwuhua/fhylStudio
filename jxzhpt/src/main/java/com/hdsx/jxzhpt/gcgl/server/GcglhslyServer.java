@@ -54,5 +54,9 @@ public interface GcglhslyServer {
 	Gcglhsly selectWqgzjhFile(Gcglhsly gcglhsly);
 
 	Boolean sbWqgzYb(Gcglhsly gcglhsly);
+
+	int selecthslyYbByJhidCount1(Gcglhsly gcglhsly);
+
+	List<Gcglhsly> selecthslyYbByJhid1(Gcglhsly gcglhsly);
 	
 }

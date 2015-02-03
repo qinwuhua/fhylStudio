@@ -161,6 +161,7 @@
 	<action name="deletehslyYb" class="gcglhslyController" method="deletehslyYb"/>
 	<action name="updatehslyYb" class="gcglhslyController" method="updatehslyYb"/>
 	<action name="selecthslyYbByJhid" class="gcglhslyController" method="selecthslyYbByJhid"/>
+	<action name="selecthslyYbByJhid1" class="gcglhslyController" method="selecthslyYbByJhid1"/>
 	<action name="shhslyYb" class="gcglhslyController" method="shhslyYb"/>
 	<action name="insertHslyCgs" class="gcglhslyController" method="insertHslyCgs"/>
 	<action name="updateHslyCgs" class="gcglhslyController" method="updateHslyCgs"/>

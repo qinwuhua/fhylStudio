@@ -216,7 +216,8 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:440,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydw,
 	    	kgzt: kgzt,
@@ -276,6 +277,8 @@ function showYBlist(){
 	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'已上报    '+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj=='否'&&row.sfth=='是')	
 	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'审核不通过    ';
+	              			if(row.shzt=='未审核'&&row.sfsj=='是')	
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    </a>'+'未审核    ';
 	              			if(row.shzt=='已审核')
 	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'已审核    ';
 	              		}

@@ -63,7 +63,7 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	@Override
 	public Boolean updategcgzsjYb(Gcglgcgzsj gcglgcgzsj) {
 		Gcglgcgzsj gcglzhfz1=queryOne("queryYbByYf", gcglgcgzsj);
-		if(gcglzhfz1!=null&&gcglzhfz1.getId().equals(gcglgcgzsj.getId())){
+		if(gcglzhfz1!=null&&!gcglzhfz1.getId().equals(gcglgcgzsj.getId())){
 			return false;
 		}
 		if(update("updategcgzsjYb", gcglgcgzsj)>0){

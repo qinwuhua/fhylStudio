@@ -117,28 +117,28 @@
 <!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglgcgzsj">
 		update PLAN_GCSJ set SGXKWJ=#{tiaojian}
-		where XMKID=#{jhid}
+		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglgcgzsj">
 		update PLAN_GCSJ set JGTCWJ=#{tiaojian}
-		where XMKID=#{jhid}
+		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglgcgzsj">
 		update PLAN_GCSJ set JGYSWJ=#{tiaojian}
-		where XMKID=#{jhid}
+		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
-		select ${tiaojian} tiaojian from PLAN_GCSJ where XMKID=#{jhid}
+		select ${tiaojian} tiaojian from PLAN_GCSJ where id=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set WJGYY=#{wjgyy} where XMKID=#{jhid}
+		update PLAN_GCSJ set WJGYY=#{wjgyy} where id=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where XMKID=#{jhid}
+		update PLAN_GCSJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where XMKID=#{jhid}
+		update PLAN_GCSJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
@@ -147,7 +147,7 @@
 		select 
 		t1.lxmc,t1.lxbm,t1.yjsdj,t1.qdzh,t1.zdzh,t1.qzlc,t1.gydw,t1.gydwbm,t1.xzqhdm,t1.xzqhmc,t1.xmlc,t1.bhnr,t1.bz lxbz,  
 		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.scbz,
-		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmkid id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
+		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.id id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
 		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje,t2.jhsydfzczj,t1.id jhid,
 		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.remarks,
 		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
@@ -188,6 +188,6 @@
 	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
-	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCSJ where XMKID=#{jhid}
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCSJ where id=#{jhid}
 	 </select>
 </mapper>

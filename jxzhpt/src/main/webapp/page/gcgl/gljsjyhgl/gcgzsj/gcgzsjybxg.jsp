@@ -15,48 +15,30 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			getYuefen();
 			var datayb=parent.obj;
 			$("#xg_qlwcqk_z").val(datayb.qlwcqk_z);$("#xg_qlwcqk_ym").val(datayb.qlwcqk_ym);$("#xg_sdwcqk_z").val(datayb.sdwcqk_z);$("#xg_sdwcqk_ym").val(datayb.sdwcqk_ym);$("#xg_hdwcqk_m").val(datayb.hdwcqk_m);
 			$("#xg_ljtsfwcqk").val(datayb.ljtsfwcqk);$("#xg_dcwcqk").val(datayb.dcwcqk);$("#xg_jcwcqk").val(datayb.jcwcqk);$("#xg_bywcmc").val(datayb.bywcmc);$("#xg_lqlmwcqk").val(datayb.lqlmwcqk);$("#xg_snlmwcqk").val(datayb.snlmwcqk);
 			$("#xg_zycgs").val(datayb.zycgs);$("#xg_dfbz").val(datayb.dfbz);$("#xg_yhdk").val(datayb.yhdk);$("#xg_sttxdk").val(datayb.sttxdk);$("#xg_qtzj").val(datayb.qtzj);
 			$("#xg_kgdl").val(datayb.kgdl);$("#xg_qksm").val(datayb.qksm);$("#xg_bywctze").val(datayb.bywctze);$("#xg_bywcgzl").val(datayb.bywcgzl);
 			$("#xg_sbsj").text(datayb.sbsj);
-//			$("#xg_sbyf").text(data.sbyf);
-			
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1;  
-			var mystr='';
-			var mystr1='';
-			var mystr2='';
-			if(m=1){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+11;
-				mystr2=(y-1)+'-'+12;
-			}
-			else if(m=2){
-				mystr=y+'-'+m;
-				mystr1=(y-1)+'-'+12;
-				mystr2=y+'-'+1;
-			}else if(m=11){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+9;
-				mystr2=y+'-'+10;
-			}else if(m=12){
-				mystr=y+'-'+m;
-				mystr1=y+'-'+10;
-				mystr2=(y-1)+'-'+11;
-			}else{
-				mystr=y+'-'+m;
-				mystr1=y+'-'+(m-2);
-				mystr2=y+'-'+(m-1);
-			}
-			$("#xg_sbyf").val('');
-			$("#xg_sbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#xg_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
-			$("#xg_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
-			$("#xg_sbyf").val(data.sbyf);
+
 		});
+		function getYuefen(){
+			var data="jhid="+parent.obj.jhid;
+			$.ajax({
+				type:'post',
+				url:'../../../../gcgl/selectWqgzyf.do',
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					for ( var i = 0; i < msg.length; i++){
+						$("#xg_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+					}
+					$("#xg_sbyf").val(parent.obj.sbyf);
+				}
+			});	
+	}
 	</script>
 	<style type="text/css">
 <!--

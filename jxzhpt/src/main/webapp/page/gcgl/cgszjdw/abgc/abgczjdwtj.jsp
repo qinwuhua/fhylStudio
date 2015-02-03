@@ -24,7 +24,6 @@
 		tbyf = y+"-"+m;
 		$("#tj_tbr").text($.cookie("truename"));
 		$("#tj_tbsj").text(tbsj);
-//		$("#tj_tbyf").text(tbyf);
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
@@ -55,7 +54,6 @@
 
 	});
 
-	
 </script>
 <style type="text/css">
 <!--
