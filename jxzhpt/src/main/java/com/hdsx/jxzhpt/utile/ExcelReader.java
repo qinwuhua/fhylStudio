@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -312,6 +313,7 @@ public class ExcelReader {
 
 public static List<Map<String,String>> removeBlankRow2(List<Map> data){
 	List<Map<String,String>> lastData = new ArrayList<Map<String,String>>();
+	HashSet<Map<String,String>> hash;
 	boolean [] position = new boolean[data.size()];
 	for(int j=0;j<data.size();j++){
 		Map map = data.get(j);
@@ -335,6 +337,9 @@ public static List<Map<String,String>> removeBlankRow2(List<Map> data){
 			lastData.add(data.get(i));
 		}
 	}
+	hash = new HashSet<Map<String,String>>(lastData);
+	lastData.clear();
+	lastData.addAll(hash);
 	return lastData;
 }
 }

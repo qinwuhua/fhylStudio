@@ -182,15 +182,23 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean lrjhSckabgc(Sckabgc abgc) {
-		if(insert("lrjhSckabgc", abgc)>0) return  true;
-		else return false;
+	public boolean lrjhSckabgc(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("lrjhSckabgc", list)==list.size()?true:false;
 	}
 
 	@Override
-	public boolean xglrjhSckabgc(Sckabgc abgc) {
-		if(insert("xglrjhSckabgc", abgc)>0) return  true;
-		else return false;
+	public boolean xglrjhSckabgc(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("lrjhSckabgc", list)==list.size()?true:false;
 	}
 
 	@Override
