@@ -8,11 +8,11 @@
 		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls})
 	</insert>
 	
-	<insert id="lrjhSckwqgz"  parameterType="sckwqgz">
-		insert into plan_wqgz(id,sckid,xdzt) values(sys_guid(),#{sckid},'未下达')
+	<insert id="lrjhSckwqgz"  parameterType="java.util.List">
+		insert into plan_wqgz(id,sckid,xdzt) values(sys_guid(),#{String},'未下达')
 	</insert>
- 	<insert id="xglrjhSckwqgz"  parameterType="sckwqgz">
-		update sck_wqgz set lrjh='已列入'  where sckid=#{sckid}
+ 	<insert id="xglrjhSckwqgz"  parameterType="java.util.List">
+		update sck_wqgz set lrjh='已列入'  where sckid=#{String}
 	</insert>
 
 	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">

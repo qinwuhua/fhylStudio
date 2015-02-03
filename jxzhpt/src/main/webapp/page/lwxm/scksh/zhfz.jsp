@@ -99,27 +99,25 @@ function tuiHui(){
 function insertJhk(){
 	var rows=$('#grid').datagrid('getSelections');
 	var sckid= rows[0].sckid;
-	var sck_shzt= rows[0].sck_shzt;
-	var lrjh= rows[0].lrjh;
-	rows=rows.length;
-	if(rows>1){
-		alert("不支持批量列入计划！");
-		return;
+	for(var i=0;i<rows.length;i++){
+		if(rows[i].sck_shzt=='未审核'){
+			alert("对不起，该项目未审核！");
+			return;
+		} 
+	 	if(rows[0].lrjh=='已列入'){
+			alert("该项目已列入计划，请勿重复操作！");
+			return;
+		}
 	}
- 	if(sck_shzt=='未审核'){
-		alert("对不起，该项目未审核！");
-		return;
-	} 
- 	if(lrjh=='已列入'){
-		alert("该项目已列入计划，请勿重复操作！");
-		return;
+ 	for(var i=1;i<rows.length;i++){
+		sckid+=","+rows[i].sckid ;
 	}
 	if(confirm('您确定将该项目列入计划？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
 				 dataType : 'json',
-				 data : 'sckid=' +sckid,
+				 data : 'delstr=' +sckid,
 				 success : function(msg){
 					 if(msg){
 						 alert('列入计划成功！');

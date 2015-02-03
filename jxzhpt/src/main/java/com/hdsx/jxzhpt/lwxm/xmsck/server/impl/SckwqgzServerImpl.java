@@ -191,15 +191,23 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean lrjhSckwqgz(Sckwqgz wqgz) {
-		if(update("lrjhSckwqgz", wqgz)>0) return true;
-		else return false;
+	public boolean lrjhSckwqgz(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("lrjhSckwqgz", list)==list.size()?true:false;
 	}
 
 	@Override
-	public boolean xglrjhSckwqgz(Sckwqgz wqgz) {
-		if(update("xglrjhSckwqgz", wqgz)>0) return true;
-		else return false;
+	public boolean xglrjhSckwqgz(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("xglrjhSckwqgz", list)==list.size()?true:false;
 	}
 
 	@Override

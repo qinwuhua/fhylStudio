@@ -186,15 +186,23 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean lrjhSckzhfz(Sckzhfz zhfz) {
-		if(update("lrjhSckzhfz", zhfz)>0)return true;
-		else return false;
+	public boolean lrjhSckzhfz(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("lrjhSckzhfz", list)==list.size()?true:false;
 	}
 
 	@Override
-	public boolean xglrjhSckzhfz(Sckzhfz zhfz) {
-		if(update("xglrjhSckzhfz", zhfz)>0)return true;
-		else return false;
+	public boolean xglrjhSckzhfz(String delstr) {
+		String[] strs = delstr.split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			list.add(strs[i]);
+		}
+		return insertBatch("xglrjhSckzhfz", list)==list.size()?true:false;
 	}
 
 	@Override

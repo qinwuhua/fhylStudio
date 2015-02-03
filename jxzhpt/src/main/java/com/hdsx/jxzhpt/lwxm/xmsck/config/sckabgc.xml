@@ -6,11 +6,11 @@
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入',#{bzls})
 </insert>
-<insert id="lrjhSckabgc"  parameterType="sckabgc">
-	insert into plan_abgc(sckid,xdzt) values(#{sckid},'未下达')
+<insert id="lrjhSckabgc"  parameterType="java.util.List">
+	insert into plan_abgc(sckid,xdzt) values(#{String},'未下达')
 </insert>
- <insert id="xglrjhSckabgc"  parameterType="sckabgc">
-	update sck_abgc set lrjh='已列入'  where sckid=#{sckid}
+ <insert id="xglrjhSckabgc"  parameterType="java.util.List">
+	update sck_abgc set lrjh='已列入'  where sckid=#{String}
 </insert>
  
  <select id="selectSckabgc" parameterType="hashmap" resultType="sckabgc">
