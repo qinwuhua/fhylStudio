@@ -116,7 +116,7 @@ function autoCompleteQLBH(){
 function saveWqgz(){
 	var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-	"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+
+	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+
 	"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&sck_sbthcd="+$.cookie("unit2").length;
 	$.ajax({
 		type:'post',
@@ -285,10 +285,9 @@ text-decoration:none;
 					<input type="text" name="tzgs"id="tzgs" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsxz">
-						<option value="中修"selected>中修</option>
-						<option value="大修">大修</option>
-						<option value="改建">改建</option>
+					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'">
+						<option value="加固改造"selected>加固改造</option>
+						<option value="拆除重建">拆除重建</option>
 					</select>
 				</td>
 			</tr>

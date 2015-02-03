@@ -56,8 +56,11 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return this.queryList("insertToSheet",map);
 	}
 	@Override
-	public List<SjbbMessage> exportExcel_jh(Jckabgc jck) {
-		return this.queryList("exportExcel_jh",jck);
+	public List<SjbbMessage> exportExcel_jh(Plan_abgc jh,Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return this.queryList("exportExcel_jh",params);
 	}
 	public int editAbgcById(Plan_abgc jh) {
 		return update("editAbgcById", jh);

@@ -143,8 +143,13 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public boolean importWqgz2(List<Map<String,String>> list,String tbbmbm,String sbthcd) {
 		for (Map<String, String> map : list) {
-			if(map.get("1").length()==8){
+			if(map.get("1").length()!=6){
 				map.put("1", map.get("1").substring(0,6));
+			}
+			if(map.get("8").length()!=4){
+				map.put("8", map.get("8").substring(0, 4)+"年");
+			}else{
+				map.put("8", map.get("8")+"年");
 			}
 			map.put("tbbmbm", tbbmbm);
 			map.put("sbthcd", sbthcd);
@@ -210,6 +215,8 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	@Override
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
 		Jckwqgz zh = new Jckwqgz();
+		String daoRu="";
+		String once="";
 		for (Map<String, String> map : data) {
 			zh.setGydwbm(tbbmbm);
 			zh.setQlbh(map.get("5"));
@@ -217,10 +224,17 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 			zh.setQlzxzh(map.get("7"));
 			if(queryList("daoRuwqgz", zh).size()>0){
 				int count = (Integer)queryOne("onceWqgz", zh);
-				if(count>0) return "项目基础库中已存在该项目，请勿重复添加！";
-			}else return "无此项目或此项目不属于您的管理范围！";
+				if(count>0){
+					once+=map.get("5")+"    ";
+				}
+			}else{
+				daoRu+=map.get("5")+"    ";
+			}
 		}
-		return "jckwqgz_ok";
+		if(daoRu==""){
+			if(once=="") return "jckwqgz_ok";
+			else return "&nbsp;桥梁编码为</br>"+once+"的项目已添加，请勿重复添加！";
+		}else return "&nbsp;无桥梁编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 	}
 
 	@Override

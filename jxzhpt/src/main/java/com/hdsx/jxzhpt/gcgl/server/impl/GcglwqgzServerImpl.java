@@ -236,4 +236,10 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		}
 	}
 
+	@Override
+	public List<Gcglwqgz> selectWqgzyf(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzyf", gcglwqgz);
+	}
+
 }

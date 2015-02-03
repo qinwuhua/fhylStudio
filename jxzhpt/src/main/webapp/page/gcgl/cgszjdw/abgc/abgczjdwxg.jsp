@@ -23,34 +23,34 @@
 		var myDate = new Date();
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+//		$("#tj_tbyf").text(tbyf);
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
-		if(m=1){
+		if(m==1){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+11;
 			mystr2=(y-1)+'-'+12;
 		}
-		else if(m=2){
+		else if(m==2){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+12;
 			mystr2=y+'-'+1;
-		}else if(m=11){
-			mystr=y+'-'+m;
-			mystr1=y+'-'+9;
-			mystr2=y+'-'+10;
-		}else if(m=12){
-			mystr=y+'-'+m;
-			mystr1=y+'-'+10;
-			mystr2=(y-1)+'-'+11;
 		}else{
 			mystr=y+'-'+m;
 			mystr1=y+'-'+(m-2);
 			mystr2=y+'-'+(m-1);
 		}
-		$("#xg_tbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-		$("#xg_tbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
-		$("#xg_tbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
+
+		$("#xg_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
+		$("#xg_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
+		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
+		var sj1=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(0,4);
+		var sj2=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(5,2).replace(/\b(0+)/gi,"");
+		if(mystr1.substr(0,4)<sj1){$("#"+mystr1).remove();}
+		else if(mystr1.substr(5,1)<sj2){$("#"+mystr1).remove();}
+		if(mystr2.substr(0,4)<sj1){$("#"+mystr2).remove();}
+		else if(mystr2.substr(5,1)<sj2){$("#"+mystr2).remove();}
 		$("#xg_tbyf").val(data.tbyf);
 	});
 </script>

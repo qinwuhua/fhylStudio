@@ -45,9 +45,7 @@
 			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);
 			$('#tj_yjjgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
-		
-		
-		
+
 	</script>
 	<style type="text/css">
 <!--

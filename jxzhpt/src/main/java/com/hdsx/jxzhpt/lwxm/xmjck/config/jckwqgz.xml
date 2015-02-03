@@ -204,13 +204,12 @@
  </select>
  
  <sql id="wqgz_commonsql">
+ 	and  sbthcd &lt;=#{sbthcd}
  	<if test="gydw!='' and gydw!= null "  >
-		and tbbmbm in(select id from xtgl_department 
-		where id=#{gydw} or parent=#{gydw})
+		and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
 	</if>
 	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm in(select id from xtgl_xzqh
-		where id=#{xzqhmc} or parent=#{xzqhmc})
+		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
 	</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'

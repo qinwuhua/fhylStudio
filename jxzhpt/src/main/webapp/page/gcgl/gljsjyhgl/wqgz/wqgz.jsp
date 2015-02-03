@@ -47,7 +47,7 @@ a:active {
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99.8%" border="0" style="margin-top: 0.1%; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;危桥改造施工过程管理</div>
@@ -56,12 +56,12 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99.7%;text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
+        					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 200px;">
         						
@@ -81,9 +81,9 @@ a:active {
         	</tr>
 
             <tr>
-                <td width="100%" style="padding-top: 10px;padding-left:10px;">
+                <td style="padding-top: 1%;padding-left: 10px;">
                     <div>
-						<table id="datagrid" width="100%">
+						<table id="datagrid" >
 						</table>
 					</div>
 			</td>

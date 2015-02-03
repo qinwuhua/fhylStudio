@@ -14,9 +14,7 @@
 	<script type="text/javascript" src="js/hsly.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
-		$(function(){
 			var sbsj;
-//			var sbyf;
 			$(function(){
 					var myDate = new Date();
 					var y = myDate.getFullYear();
@@ -56,7 +54,7 @@
 					$("#tj_sbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
 					$("#tj_sbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
 				});
-		});
+		//function
 	</script>
 	<style type="text/css">
 <!--

@@ -115,7 +115,7 @@ function tjwqgzyb(){
 				parent.$("#ybgrid").datagrid('reload');
 				closes('wqxxtj');
 			}else{
-				alert('该月尚未拨付车购税或该月月报可能已存在，保存失败！');
+				alert('该月月报可能已存在，保存失败！');
 			}
 		}
 	});	
@@ -221,7 +221,8 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:440,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydw,
 	    	kgzt: kgzt,

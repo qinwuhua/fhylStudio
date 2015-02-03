@@ -191,6 +191,9 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	@Override
 	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
 		Sckabgc ab = new Sckabgc();
+		String daoRu="";
+		String once="";
+		String bz="";
 		for (Map<String, String> map : data) {
 			ab.setGydwbm(tbbmbm);
 			ab.setLxbm(map.get("2"));
@@ -199,13 +202,25 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 			if(queryList("daoRuabgcsh", ab).size()>0){
 				int c = (Integer)queryOne("onceSckAbgc", ab);
 				if(c==0){
-				int count = (Integer)queryOne("bzAbgc", ab);
-				if(count>0) return "该项目有补助历史！";
-				}else return "项目审查库中已存在此项目，请勿重复添加！";
-			}else return "无此项目或此项目不属于您的管理范围！";
+					int count = (Integer)queryOne("bzAbgc", ab);
+					if(count>0){
+						bz+=map.get("2")+"   ";
+					}
+					}else{
+						once+=map.get("2")+"   ";
+					}
+				}else{
+					daoRu+=map.get("2")+"   ";
+				}
+			}
+			if(daoRu==""){
+				if(once==""){
+					if(bz=="")return "sckabgc_ok";
+					else return "<script type='text/javascript'>alert('hehe');</script";
+				}
+				else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
+			}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 		}
-		return "sckabgc_ok";
-	}
 
 	@Override
 	public boolean onceSckAbgc(Sckabgc abgc) {

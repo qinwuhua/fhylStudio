@@ -146,162 +146,175 @@ function exportModule_sc(filename){
 	//window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
 }
 //危桥改造导出excel 
+var cd=$.cookie("unit2").length==2?7:$.cookie("unit2").length;
 function exportExcel_wqgz(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val();
+ 	'&akjfl='+$("#akjfl").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_wqgz.do?"+param;
 }
 //安保工程改造导出excel 
 function exportExcel_abgc(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_abgc.do?"+param;
 }
 //灾害防治改造导出excel 
 function exportExcel_zhfz(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz.do?"+param;
 }
 //危桥改造审核excel导出
 function exportExcel_wqgz_sh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val();
+ 	'&akjfl='+$("#akjfl").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_wqgz_sh.do?"+param;
 }
 //安保工程审核excel导出
 function exportExcel_abgc_sh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_abgc_sh.do?"+param;
 }
 //灾害防治审核excel导出
 function exportExcel_zhfz_sh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz_sh.do?"+param;
 }
 //危桥改造审查库管理excel导出
 function exportExcel_wqgz_scgl(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val();
+ 	'&akjfl='+$("#akjfl").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scgl.do?"+param;
 }
 //安保工程审查库管理excel导出
 function exportExcel_abgc_scgl(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_abgc_scgl.do?"+param;
 }
 //灾害防治审查库管理excel导出
 function exportExcel_zhfz_scgl(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_zhfz_scgl.do?"+param;
 }
 //危桥改造审查库管理excel导出
 function exportExcel_wqgz_scsh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val();
+ 	'&akjfl='+$("#akjfl").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
 }
 //安保工程审查库管理excel导出
 function exportExcel_abgc_scsh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_abgc_scsh.do?"+param;
 }
 //灾害防治审查库管理excel导出
 function exportExcel_zhfz_scsh(){
-	var param='gydw='+$("#gydw").combotree('getText')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getText')+
+	var param='gydw='+$("#gydw").combotree('getValue')+
+ 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").val()+
  	'&xmtype='+$("#xmtype").val()+
  	'&shzt='+$("#shzt").val()+
  	'&lxjsdj='+$("#lxjsdj").val()+
- 	'&lxbm='+$("#lxbm").val();
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_zhfz_scsh.do?"+param;
 }

@@ -74,7 +74,10 @@
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>
 		<action name="queryXzqhByParent" class="treeSelController" method="queryXzqhByParent"/>
 		
-		<action name="exportExcel_jh" class="plan_abgcController" method="exportExcel_jh"/>
+		<action name="exportExcel_jh_abgc" class="plan_abgcController" method="exportExcel_jh_abgc"/>
+		<action name="exportExcel_jh_wqgz" class="plan_wqgzController" method="exportExcel_jh_wqgz"/>
+		<action name="exportExcel_jh_zhfz" class="plan_zhfzController" method="exportExcel_jh_zhfz"/>
+		
 		<action name="importAbgc_jh" class="plan_abgcController" method="importAbgc_jh"/>
 		<action name="importWqgz_jh" class="plan_wqgzController" method="importWqgz_jh"/>
 		<action name="importZhfz_jh" class="plan_zhfzController" method="importZhfz_jh"/>

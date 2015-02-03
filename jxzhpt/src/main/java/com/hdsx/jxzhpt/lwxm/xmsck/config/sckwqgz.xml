@@ -189,19 +189,19 @@
 		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='未列入'
  		<if test="qlbh!='' and qlbh!= null "  >
- 			and sck_qlbh=#{qlbh}
+ 			and (sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
 	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='已列入'
  		<if test="qlbh!='' and qlbh!= null "  >
- 			and sck_qlbh=#{qlbh}
+ 			and (sck_qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh}))
+ 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
 
@@ -211,10 +211,10 @@
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
  	<if test="qlbh!='' and qlbh!= null "  >
- 			and qlbh=#{qlbh}
+ 			and (qlbh=#{qlbh}
  		</if>
  		<if test="lxbm!='' and lxbm!= null "  >
- 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh})
+ 			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh}))
  		</if>
  </select>
  
@@ -225,13 +225,12 @@
 		shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc
 		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
 		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
-		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+		and sck_sbthcd &lt;=#{sck_sbthcd}
+		<if test="gydw!='' and gydw!= null "  >
+			and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhmc!='' and xzqhmc!= null "  >
+			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -242,12 +241,12 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
-		<if test="xmtype!='' and xmtype!= null ">
+		<!--<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
 			and sck_shzt like '%'||(#{shzt})||'%'
-		</if>
+		</if> -->
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
 		</if>
@@ -262,13 +261,12 @@
 		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
 		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and
 		sck_sbzt='已上报'
-		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department 
- 			where id=#{gydw} or parent=#{gydw})
+		and sck_sbthcd &lt;=#{sck_sbthcd}
+		<if test="gydw!='' and gydw!= null "  >
+			and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhmc!='' and xzqhmc!= null "  >
+			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -279,12 +277,12 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||(#{xmnf})||'%'
 		</if>
-		<if test="xmtype!='' and xmtype!= null ">
+		<!-- <if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
 		<if test="shzt!='' and shzt!= null ">
 			and sck_shzt like '%'||(#{shzt})||'%'
-		</if>
+		</if> -->
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
 		</if>
@@ -296,6 +294,7 @@
 		select
 		qlbh v_0,qlmc v_1,qlzxzh v_2,lxbm v_3,qlqc v_4,qlkd v_5
 		from xmk_wqgz where sbzt='已上报'
+		and id not in (select xmkid from sck_wqgz)
 		and sbthcd &lt;=#{sck_sbthcd}  
 		<if test="tbdw!=null and tbdw!=''">
 			and tbbmbm like #{tbdw}||'%'

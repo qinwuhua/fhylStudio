@@ -153,8 +153,36 @@
 	</select>
 	<select id="exportExcel_jh" parameterType="hashMap" resultType="sjbb">
 		select  decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.jhnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,lx.yhlc v_10,jh.pfztz v_11
-		from  Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where 1=1 
-		
+		 from plan_abgc jh
+  		left join sck_abgc sc on (jh.sckid = sc.sckid)
+  		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1 
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+	    <if test="jh.jhnf!=null and jh.jhnf!=''">
+	 		and jh.jhnf=#{jh.jhnf}
+	 	</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 		and lx.gydwbm like #{lx.gydwbm}
+	 	</if>
+	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 		and lx.xzqhdm like #{lx.xzqhdm}
+	 	</if>
+	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 	</if>
+	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 		and lx.lxbm like #{lx.lxbm}||'%'
+	 	</if>
+	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 		and lx.lxjsdj = #{lx.lxjsjd}
+	 	</if>
 		order by jh.jhnf desc
 	</select>
 	<delete id="dropAbgcById" parameterType="string">

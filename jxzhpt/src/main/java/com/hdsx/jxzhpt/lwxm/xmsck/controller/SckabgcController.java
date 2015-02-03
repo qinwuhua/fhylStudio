@@ -74,7 +74,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 				else 
 					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 			}else{
-				response.getWriter().print(fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
+				response.getWriter().print("提示："+fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
 			}
 		}catch(Exception e){
 			e.printStackTrace();

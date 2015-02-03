@@ -71,7 +71,10 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 				else 
 					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 			}else{
-				response.getWriter().print(fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
+				if(wqgzServer.yanZhen(data, tbbmbm1).equals("bz")){
+					response.getWriter().print("bz");
+				}else
+				response.getWriter().print("提示："+fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
