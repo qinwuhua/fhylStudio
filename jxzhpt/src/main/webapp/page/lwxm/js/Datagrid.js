@@ -439,7 +439,8 @@ function sckglWqgz(){
 			 		}else return $('#sbzt').val();
 			 	},
 			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val()
+			 	'akjfl':$("#akjfl").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -471,6 +472,7 @@ function sckglWqgz(){
 				}
 			}},
 				{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
+				{field:'bzls',title:'补助历史',width:60,align:'center'},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -514,7 +516,8 @@ function sckglAbgc(){
 			 		}else return $('#sbzt').val();
 			 	},
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -546,6 +549,7 @@ function sckglAbgc(){
 				}
 			}},
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
+			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -589,7 +593,8 @@ function sckglZhfz(){
 			 		}else return $('#sbzt').val();
 			 	},
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -621,6 +626,7 @@ function sckglZhfz(){
 				}
 			}},
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center'},
+			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -661,7 +667,8 @@ function sckshWqgz(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val()
+			 	'akjfl':$("#akjfl").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -689,6 +696,7 @@ function sckshWqgz(){
 				}
 			}},
 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
+				{field:'bzls',title:'补助历史',width:60,align:'center'},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -726,7 +734,8 @@ function sckshAbgc(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -749,6 +758,7 @@ function sckshAbgc(){
 				}
 			}},
 			{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
+			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},
@@ -787,7 +797,8 @@ function sckshZhfz(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bzls':$("#bzls").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -810,6 +821,7 @@ function sckshZhfz(){
 				}
 			}},
 			{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
+			{field:'bzls',title:'补助历史',width:60,align:'center'},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编号',width:120,align:'center'},

@@ -19,6 +19,7 @@
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript">
 var xmkid;
+var bzls;
 $(function(){
 	autoCompleteQLBH();
 
@@ -116,8 +117,9 @@ function autoCompleteQLBH(){
 function saveWqgz(){
 	var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+
-	"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&sck_sbthcd="+$.cookie("unit2").length;
+	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
+	"&scbmbm="+$.cookie("unit")+"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+
+	"&sck_sbthcd="+$.cookie("unit2").length+"&bzls="+bzls;
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/insertSckwqgz.do',
@@ -144,9 +146,11 @@ function bzWqgz(){
         data:datas,
 		success:function(msg){
 			if(Boolean(msg)){
+				bzls="无";
 				saveWqgz();
 			}else{
 				if(confirm('该项目有补助历史，你确定继续提交吗？')){
+					bzls="有";
 					saveWqgz();
 				}
 			}

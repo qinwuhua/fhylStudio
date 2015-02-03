@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd,lrjh)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd,lrjh,bzls)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入')
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls})
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="sckwqgz">
@@ -48,6 +48,9 @@
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_sbzt2
@@ -83,6 +86,9 @@
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
 	</select>
 
 	<update id="updateSckwqgz" parameterType="sckwqgz">
@@ -147,6 +153,9 @@
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_shzt desc
@@ -185,13 +194,14 @@
 		<if test="akjfl!='' and akjfl!= null ">
 			and akjfl like #{akjfl}||'%'
 		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
 	</select>
 		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='未列入'
  		<if test="qlbh!='' and qlbh!= null "  >
  			and (sck_qlbh=#{qlbh}
- 		</if>
- 		<if test="lxbm!='' and lxbm!= null "  >
  			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
@@ -199,8 +209,6 @@
  		select count(*) from sck_wqgz where lrjh='已列入'
  		<if test="qlbh!='' and qlbh!= null "  >
  			and (sck_qlbh=#{qlbh}
- 		</if>
- 		<if test="lxbm!='' and lxbm!= null "  >
  			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
  </select>
@@ -210,10 +218,8 @@
  		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
- 	<if test="qlbh!='' and qlbh!= null "  >
+ 		<if test="qlbh!='' and qlbh!= null "  >
  			and (qlbh=#{qlbh}
- 		</if>
- 		<if test="lxbm!='' and lxbm!= null "  >
  			or (lxbm=#{lxbm} and to_number(qlzxzh)=#{qlzxzh}))
  		</if>
  </select>
@@ -302,12 +308,8 @@
 	</select>
 	<insert id="importWqgz_sc" parameterType="hashMap">
 		insert into
-		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,scbmbm,sck_sbthcd,lrjh)
+		sck_wqgz(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,scbmbm,sck_sbthcd,lrjh,bzls)
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
-		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入')
+		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入','无')
 	</insert>
-<!-- <select id="onceWqgz" parameterType="sckwqgz" resultType="int"> 
-		select count(*) from ???_wqgz where 1=1 <if test="qlbh!='' and qlbh!= null 
-		" > and qlbh=#{qlbh} </if> <if test="lxbm!='' and lxbm!= null " > or (lxbm=#{lxbm} 
-		and qlzxzh=#{qlzxzh}) </if> </select> -->
 </mapper>

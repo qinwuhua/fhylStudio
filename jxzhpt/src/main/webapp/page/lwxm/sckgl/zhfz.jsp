@@ -219,6 +219,12 @@ text-decoration:none;
 									<option value="C">村道</option>
 									<option value="Z">专道</option>
                               	</select>
+                              	<span>&nbsp;补助历史：</span>
+                              	<select id="bzls" style="width:70px">
+                              		<option selected="selected" value="">全部</option>
+									<option value="无">无补助历史</option>
+									<option value="有">有补助历史</option>
+                              	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglZhfz();" style="border-width:0px;cursor: hand;" />

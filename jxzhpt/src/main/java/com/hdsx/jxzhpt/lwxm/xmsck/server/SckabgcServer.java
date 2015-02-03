@@ -26,5 +26,5 @@ public interface SckabgcServer {
 		boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 		boolean lrjhSckabgc(Sckabgc abgc);
 		boolean xglrjhSckabgc(Sckabgc abgc);
-		String yanZhen(List<Map<String, String>> data, String tbbmbm);
+		String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1);
 }

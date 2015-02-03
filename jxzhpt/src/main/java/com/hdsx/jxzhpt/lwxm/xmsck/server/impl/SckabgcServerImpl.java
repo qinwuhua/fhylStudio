@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("bzls", abgc.getBzls());
 		hm.put("page", abgc.getPage());
 		hm.put("rows", abgc.getRows());
 		return queryList("selectSckabgc", hm);
@@ -54,6 +56,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		hm.put("sbzt", abgc.getSbzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("bzls", abgc.getBzls());
 		return queryOne("selectAbgcCount", hm);
 	}
 
@@ -103,6 +106,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		hm.put("shzt", abgc.getShzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("bzls", abgc.getBzls());
 		hm.put("page", abgc.getPage());
 		hm.put("rows", abgc.getRows());
 		return queryList("selectSckShabgc", hm);
@@ -120,6 +124,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		hm.put("shzt", abgc.getShzt());
 		hm.put("lxjsdj", abgc.getLxjsdj());
 		hm.put("lxbm", abgc.getLxbm());
+		hm.put("bzls", abgc.getBzls());
 		return queryOne("selectAbgcShCount", hm);
 	}
 
@@ -189,12 +194,13 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1) {
 		Sckabgc ab = new Sckabgc();
 		String daoRu="";
 		String once="";
 		String bz="";
-		for (Map<String, String> map : data) {
+		for (Iterator<Map<String, String>> iterator = data.iterator(); iterator.hasNext();) {
+			Map<String, String> map = (Map<String, String>) iterator.next();
 			ab.setGydwbm(tbbmbm);
 			ab.setLxbm(map.get("2"));
 			ab.setQdzh(map.get("9"));
@@ -205,6 +211,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 					int count = (Integer)queryOne("bzAbgc", ab);
 					if(count>0){
 						bz+=map.get("2")+"   ";
+						iterator.remove();
 					}
 					}else{
 						once+=map.get("2")+"   ";
@@ -213,14 +220,23 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 					daoRu+=map.get("2")+"   ";
 				}
 			}
-			if(daoRu==""){
-				if(once==""){
-					if(bz=="")return "sckabgc_ok";
-					else return "<script type='text/javascript'>alert('hehe');</script";
+		if(daoRu==""){
+			if(once==""){
+				if(bz==""){
+					return "sckabgc_ok";
+				}else {
+					if(data.size()>0){
+					importAbgc_sc(data,tbbmbm2,sbthcd1);
+					}
+					return "&nbsp;路线编码为</br>"+bz+"的项目有补助历史，未导入，若想保存请手动添加！";
 				}
-				else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
-			}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
+			}else {
+				return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
+			}
+		}else {
+			return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 		}
+	}
 
 	@Override
 	public boolean onceSckAbgc(Sckabgc abgc) {

@@ -68,13 +68,14 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			}
 			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			//将数据插入到数据库
-			if(abgcServer.yanZhen(data, tbbmbm1).equals("sckabgc_ok")){
+			String str=abgcServer.yanZhen(data, tbbmbm1,tbbmbm2, sbthcd1);
+			if(str.equals("sckabgc_ok")){
 				if(abgcServer.importAbgc_sc(data,tbbmbm2,sbthcd1)) 
 					response.getWriter().print(fileuploadFileName+"导入成功");
 				else 
 					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 			}else{
-				response.getWriter().print("提示："+fileuploadFileName+abgcServer.yanZhen(data, tbbmbm1));
+				response.getWriter().print("提示："+fileuploadFileName+str);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

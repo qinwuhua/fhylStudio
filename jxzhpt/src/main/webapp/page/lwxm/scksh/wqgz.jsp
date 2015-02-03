@@ -166,7 +166,7 @@ text-decoration:none;
                               	</select>
                                <span>&nbsp;路线名称：</span>
         						<input type="text" id="lxmc" style="width:95px;" />
-                              <span>&nbsp;&nbsp;&nbsp;桥梁名称：</span>
+                              <span>&nbsp;桥梁名称：</span>
                               	<input id="qlmc" type="text" style="width:95px"/>
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
@@ -211,12 +211,18 @@ text-decoration:none;
 									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
-                              	<select id="akjfl" style="width:100px">
+                              	<select id="akjfl" style="width:87px">
                               		<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
+                              	</select>
+                              	<span>&nbsp;补助历史：</span>
+                              	<select id="bzls" style="width:100px">
+                              		<option selected="selected" value="">全部</option>
+									<option value="无">无补助历史</option>
+									<option value="有">有补助历史</option>
                               	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
