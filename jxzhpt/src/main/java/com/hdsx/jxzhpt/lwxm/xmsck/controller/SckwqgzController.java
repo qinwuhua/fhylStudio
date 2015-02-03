@@ -65,16 +65,14 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			}
 			List<Map<String,String>> data = ExcelReader.removeBlankRow2(dataMapArray[0]);
 			//将数据插入到数据库
-			if(wqgzServer.yanZhen(data, tbbmbm1).equals("sckwqgz_ok")){
+			String str=wqgzServer.yanZhen(data, tbbmbm1,tbbmbm2,sbthcd1);
+			if(str.equals("sckwqgz_ok")){
 				if(wqgzServer.importWqgz_sc(data,tbbmbm2,sbthcd1)) 
 					response.getWriter().print(fileuploadFileName+"导入成功");
 				else 
 					response.getWriter().print(fileuploadFileName+"服务器异常,请重试");
 			}else{
-				if(wqgzServer.yanZhen(data, tbbmbm1).equals("bz")){
-					response.getWriter().print("bz");
-				}else
-				response.getWriter().print("提示："+fileuploadFileName+wqgzServer.yanZhen(data, tbbmbm1));
+				response.getWriter().print("提示："+fileuploadFileName+str);
 			}
 		}catch(Exception e){
 			e.printStackTrace();

@@ -37,6 +37,7 @@ public class Sckwqgz implements Serializable{
 	private int sck_sbthcd;
 	private String sck_sbzt2;
 	private String lrjh;
+	private String bzls;
 	//基础库字段
 	private String qlmc;
 	private String qlbh;
@@ -424,6 +425,12 @@ public class Sckwqgz implements Serializable{
 	}
 	public void setLrjh(String lrjh) {
 		this.lrjh = lrjh;
+	}
+	public String getBzls() {
+		return bzls;
+	}
+	public void setBzls(String bzls) {
+		this.bzls = bzls;
 	}
 	@Override
 	public String toString() {

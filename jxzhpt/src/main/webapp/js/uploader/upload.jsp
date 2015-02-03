@@ -64,15 +64,7 @@
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
 				/* $('<li></li>').appendTo('.files').text(response); */
-				if(response=='bz'){
-					if(confirm('表中有补助历史的项目，你确定继续提交吗？')){
-						alert("true");
-					}else{
-						return;
-					}
-				}else{
-					$("#sp").html(response);
-				}
+				$("#sp").html(response);
 			},
 			onError : function(event, queueID, fileObj) {
 				alert("文件:" + fileObj.name + "上传失败");

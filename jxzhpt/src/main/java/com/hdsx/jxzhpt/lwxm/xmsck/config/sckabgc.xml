@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.sckabgc">
 <insert id="insertSckabgc"  parameterType="sckabgc">
-	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd,lrjh)
+	insert into sck_abgc(sckid,xmkid,scqdzh,sczdzh,sczlc,scyhlc,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,sck_sbthcd,lrjh,bzls)
 		values(sys_guid(),#{xmkid},#{scqdzh},#{sczdzh},#{sczlc},#{scyhlc},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入')
+		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入',#{bzls})
 </insert>
 <insert id="lrjhSckabgc"  parameterType="sckabgc">
 	insert into plan_abgc(sckid,xdzt) values(#{sckid},'未下达')
@@ -43,8 +43,11 @@
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
  		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sck_sbzt2
+ 			order by sck_sbzt2,sck_shzt,bzls
  </select>
   <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
@@ -73,6 +76,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
  		</if>
  </select>
  <select id="selectSckabgcById" parameterType="sckabgc" resultType="sckabgc">
@@ -131,6 +137,9 @@
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
  		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc
  </select>
@@ -162,6 +171,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
  		</if>
  </select>
  <select id="onceSckAbgc" parameterType="sckabgc" resultType="int">
@@ -275,8 +287,8 @@
 	</if>
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap" >
- 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd,lrjh)
-	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd},'未列入')
+ 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd,lrjh,bzls)
+	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd},'未列入','无')
 
  </insert>
 </mapper>

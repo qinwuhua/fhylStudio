@@ -25,6 +25,6 @@ public interface SckwqgzServer {
 		boolean importWqgz_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 		boolean lrjhSckwqgz(Sckwqgz wqgz);
 		boolean xglrjhSckwqgz(Sckwqgz wqgz);
-		String yanZhen(List<Map<String, String>> data, String tbbmbm);
+		String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1);
 		boolean onceSckWqgz(Sckwqgz wqgz);
 }

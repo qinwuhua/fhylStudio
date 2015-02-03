@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("bzls", zhfz.getBzls());
 		hm.put("page", zhfz.getPage());
 		hm.put("rows", zhfz.getRows());
 		return queryList("selectSckzhfz", hm);
@@ -55,6 +57,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		hm.put("sbzt", zhfz.getSbzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("bzls", zhfz.getBzls());
 		return queryOne("selectZhfzCount", hm);
 	}
 
@@ -107,6 +110,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		hm.put("shzt", zhfz.getShzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("bzls", zhfz.getBzls());
 		hm.put("page", zhfz.getPage());
 		hm.put("rows", zhfz.getRows());
 		return queryList("selectSckShzhfz", hm);
@@ -124,6 +128,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		hm.put("shzt", zhfz.getShzt());
 		hm.put("lxjsdj", zhfz.getLxjsdj());
 		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("bzls", zhfz.getBzls());
 		return queryOne("selectZhfzShCount", hm);
 	}
 
@@ -193,12 +198,13 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1) {
 		Sckzhfz zh = new Sckzhfz();
 		String daoRu="";
 		String once="";
 		String bz="";
-		for (Map<String, String> map : data) {
+		for (Iterator<Map<String, String>> iterator = data.iterator(); iterator.hasNext();) {
+			Map<String, String> map = (Map<String, String>) iterator.next();
 			zh.setGydwbm(tbbmbm);
 			zh.setLxbm(map.get("2"));
 			zh.setQdzh(map.get("9"));
@@ -209,6 +215,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 					int count = (Integer)queryOne("bzZhfz", zh);
 					if(count>0){
 						bz+=map.get("2")+"   ";
+						iterator.remove();
 					}
 					}else{
 						once+=map.get("2")+"   ";
@@ -217,14 +224,23 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 					daoRu+=map.get("2")+"   ";
 				}
 			}
-			if(daoRu==""){
-				if(once==""){
-					if(bz=="")return "sckzhfz_ok";
-					else return "&nbsp;路线编码为</br>"+bz+"的项目有补助历史！";
+		if(daoRu==""){
+			if(once==""){
+				if(bz==""){
+					return "sckzhfz_ok";
+				}else {
+					if(data.size()>0){
+					importZhfz_sc(data,tbbmbm2,sbthcd1);
+					}
+					return "&nbsp;路线编码为</br>"+bz+"的项目有补助历史，未导入，若想保存请手动添加！";
 				}
-				else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
-			}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
+			}else {
+				return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
+			}
+		}else {
+			return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 		}
+	}
 
 	@Override
 	public boolean onceSckZhfz(Sckzhfz zhfz) {

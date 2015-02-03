@@ -22,6 +22,7 @@
 var xmkid;
 var qdStr;
 var zdStr;
+var bzls;
 	$(function(){
 		autoCompleteLXBM();
 
@@ -143,7 +144,7 @@ var zdStr;
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
-		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+$.cookie("unit2").length;
+		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+$.cookie("unit2").length+"&bzls="+bzls;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckabgc.do',
@@ -171,9 +172,11 @@ var zdStr;
 	        data:datas,
 			success:function(msg){
 				if(Boolean(msg)){
+					bzls="无";
 					saveAbgc();
 				}else{
 					if(confirm('该项目有补助历史，你确定继续提交吗？')){
+						bzls="有";
 						saveAbgc();
 					}
 				}

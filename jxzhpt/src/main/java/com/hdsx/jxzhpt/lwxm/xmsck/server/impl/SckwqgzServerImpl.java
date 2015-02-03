@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.lwxm.xmsck.server.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		hm.put("sbzt", wqgz.getSbzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("bzls", wqgz.getBzls());
 		hm.put("page", wqgz.getPage());
 		hm.put("rows", wqgz.getRows());
 		return queryList("selectSckwqgz",hm);
@@ -58,6 +60,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		hm.put("sbzt", wqgz.getSbzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("bzls", wqgz.getBzls());
 		return queryOne("selectWqgzCount",hm);
 	}
 
@@ -121,6 +124,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		hm.put("shzt", wqgz.getShzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("bzls", wqgz.getBzls());
 		hm.put("page", wqgz.getPage());
 		hm.put("rows", wqgz.getRows());
 		return queryList("selectSckShwqgz",hm);
@@ -139,6 +143,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		hm.put("shzt", wqgz.getShzt());
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
+		hm.put("bzls", wqgz.getBzls());
 		return queryOne("selectWqgzShCount",hm);
 	}
 
@@ -198,12 +203,13 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public String yanZhen(List<Map<String, String>> data, String tbbmbm) {
+	public String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1) {
 		Sckwqgz wq = new Sckwqgz();
 		String daoRu="";
 		String once="";
 		String bz="";
-		for (Map<String, String> map : data) {
+		for (Iterator<Map<String, String>> iterator = data.iterator(); iterator.hasNext();) {
+			Map<String, String> map = (Map<String, String>) iterator.next();
 			wq.setGydwbm(tbbmbm);
 			wq.setQlbh(map.get("0"));
 			wq.setLxbm(map.get("3"));
@@ -214,6 +220,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 				int count = (Integer)queryOne("bzWqgz", wq);
 				if(count>0){
 					bz+=map.get("0")+"   ";
+					iterator.remove();
 				}
 				}else{
 					once+=map.get("0")+"   ";
@@ -224,11 +231,20 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		}
 		if(daoRu==""){
 			if(once==""){
-				if(bz=="")return "sckwqgz_ok";
-				else return "bz";
+				if(bz==""){
+					return "sckwqgz_ok";
+				}else {
+					if(data.size()>0){
+					importWqgz_sc(data,tbbmbm2,sbthcd1);
+					}
+					return "&nbsp;桥梁编码为</br>"+bz+"的项目有补助历史，未导入，若想保存请手动添加！";
+				}
+			}else {
+				return "&nbsp;桥梁编码为</br>"+once+"的项目已添加，请勿重复添加！";
 			}
-			else return "&nbsp;桥梁编码为</br>"+once+"的项目已添加，请勿重复添加！";
-		}else return "&nbsp;无桥梁编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
+		}else {
+			return "&nbsp;无桥梁编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
+		}
 	}
 
 	@Override
