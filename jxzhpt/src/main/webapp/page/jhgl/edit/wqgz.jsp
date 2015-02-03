@@ -462,12 +462,12 @@
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
-				data:"sckid="+data.xmk_wqgz_id,
+				data:"sckid="+data.sckid,
 				dataType:'json',
 				success:function(jcAndSc){
 					if(jcAndSc!=null){
 						$('#qlmc').html(jcAndSc.qlmc);
-						$('#qlbm').html(jcAndSc.qlbm);
+						$('#qlbm').html(jcAndSc.qlbh);
 						$('#qlzxzh').html(jcAndSc.qlzxzh);
 						$('#gydwxx').html(jcAndSc.gydw);
 						$('#xzqhdm').html(jcAndSc.xzqhdm);

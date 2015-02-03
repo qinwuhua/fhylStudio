@@ -19,7 +19,7 @@ public class Plan_wqgz {
 	private String jhsydfzcje;//计划使用地方自筹金额
 	private String sfsqablbz;//是否申请按比例补助
 	private String ablbzsqwh;//按比例补助申请文号
-	private String jhbz;//备注
+	private String bz;//备注
 	private Date tbsj;//填报时间
 	private String tbbm;//填报部门
 	private String spzt;//审批状态
@@ -168,11 +168,11 @@ public class Plan_wqgz {
 	public void setAblbzsqwh(String ablbzsqwh) {
 		this.ablbzsqwh = ablbzsqwh;
 	}
-	public String getJhbz() {
-		return jhbz;
+	public String getBz() {
+		return bz;
 	}
-	public void setJhbz(String jhbz) {
-		this.jhbz = jhbz;
+	public void setBz(String bz) {
+		this.bz = bz;
 	}
 	public Date getTbsj() {
 		return tbsj;

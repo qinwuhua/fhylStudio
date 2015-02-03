@@ -56,13 +56,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhkgl/hslygl.jsp'
 	});
-	createMenu('LeftMenu',{
-		id:'menu_0101030109',
-		title:'战备公路项目',
-		imgSrc:'../../images/zb_s.png',
-		renderTo:'left_menu1',
-		href:'./jhkgl/zbgl.jsp'
-	});
+//	createMenu('LeftMenu',{
+//		id:'menu_0101030109',
+//		title:'战备公路项目',
+//		imgSrc:'../../images/zb_s.png',
+//		renderTo:'left_menu1',
+//		href:'./jhkgl/zbgl.jsp'
+//	});
 	
 	
 	
@@ -282,13 +282,13 @@ $(function() {
 		renderTo:'left_menu5',
 		href:'../sjcx/jhkgl/hslygl.jsp'
 	});
-	createMenu('LeftMenu',{
-		id:'menu_0101030509',
-		title:'战备公路项目',
-		imgSrc:'../../images/zb_s.png',
-		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/zbgl.jsp'
-	});
+//	createMenu('LeftMenu',{
+//		id:'menu_0101030509',
+//		title:'战备公路项目',
+//		imgSrc:'../../images/zb_s.png',
+//		renderTo:'left_menu5',
+//		href:'../sjcx/jhkgl/zbgl.jsp'
+//	});
 	menuQx();
 });
 function menuQx(){

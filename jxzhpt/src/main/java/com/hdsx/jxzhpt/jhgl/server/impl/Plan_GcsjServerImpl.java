@@ -76,4 +76,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return queryOne("queryGPSBylxbm", lxbm);
 	}
 
+	@Override
+	public Plan_gcsj querySumMessage() {
+		return queryOne("querySumMessage", null);
+	}
+
 }

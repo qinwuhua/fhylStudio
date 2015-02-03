@@ -11,14 +11,6 @@
 		<table width="97%" height="90%" cellpadding="0" cellspacing="0"
 			border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
-				<td height="25" align="left" background="../images/page/dht_bg.jpg"
-					style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-					<font color="#1a5780" style="font-size: small">计划管理</font>&nbsp;>&nbsp;
-					<font color="#1a5780" style="font-size: small">项目计划库管理</font>&nbsp;>&nbsp;
-					<font color="Gray" style="font-size: small"> 危桥改造项目管理</font>
-				</td>
-			</tr>
-			<tr>
 				<td height="45" align="left" background="../images/page/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
 					危桥改造项目基础库信息</td>
@@ -271,12 +263,12 @@
 				//基础和审查
 				$.ajax({
 					url:'../../../xmsck/selectSckwqgzById.do',
-					data:"sckid="+data.xmk_wqgz_id,
+					data:"sckid="+data.sckid,
 					dataType:'json',
 					success:function(jcAndSc){
 						if(jcAndSc!=null){
 							$('#qlmc').html(jcAndSc.qlmc);
-							$('#qlbm').html(jcAndSc.qlbm);
+							$('#qlbm').html(jcAndSc.qlbh);
 							$('#qlzxzh').html(jcAndSc.qlzxzh);
 							$('#gydwxx').html(jcAndSc.gydw);
 							$('#xzqhdm').html(jcAndSc.xzqhdm);

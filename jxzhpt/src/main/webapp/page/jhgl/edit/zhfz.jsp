@@ -512,8 +512,8 @@
 			$('#jhbz').val(data.bz);
 			$.ajax({
 				type : 'post',
-				url : '../../../xmjck/selectZhfzById.do',
-				data :"id="+data.sck_zhfz_id,
+				url : '../../../xmsck/selectSckzhfzById.do',
+				data :"sckid="+data.sckid,
 				dataType:'json',
 				success:function(jcAndSc){
 					if(jcAndSc!=null){

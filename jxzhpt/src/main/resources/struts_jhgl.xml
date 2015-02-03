@@ -11,6 +11,7 @@
 		<action name="editGcgjStatus" class="plan_gcgjController" method="editGcgjStatus"/>
 		<action name="importGcgj_jh" class="plan_gcgjController" method="importGcgj_jh"/>
 		
+		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
 		<action name="queryGcsjList" class="plan_gcsjController" method="queryGcsjList"/>
 		<action name="queryGcsjById" class="plan_gcsjController" method="queryGcsjById"/>

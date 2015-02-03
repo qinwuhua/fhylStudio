@@ -79,6 +79,8 @@
 	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
 		<id property="id" column="id" />
 		<result property="lxmc" column="lxmc"/>
+		<result property="qzlc" column="qzlc"/>
+		<result property="xmlc" column="xmlc"/>
 		<result property="lxbm" column="lxbm"/>
 		<result property="xzqhdm" column="xzqhdm"/>
 		<result property="xzqhmc" column="xzqhmc"/>
@@ -191,7 +193,6 @@
 					    	)
 					    )
 	</select>
-	
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
 		select jh.id,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
 		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
@@ -200,7 +201,10 @@
 		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.gkbglj,jh.sjsgtmc,jh.sjsgtlj,jh.remarks
 		from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id where jh.id=#{id}
 	</select>
-	
+	<select id="querySumMessage" resultMap="gcsj_jh">
+		select count(t.id) as id,sum(l.qzlc) as qzlc,sum(l.xmlc) as xmlc,sum(t.pftz) as pftz,sum(t.jhsybbzje) as jhsybbzje,sum(t.jhsydfzczj) as jhsydfzczj 
+		from plan_gcsj t left join plan_lx_gcsj l on (t.id=l.jhid)
+	</select>
 	<select id="queryGcsjNfs" resultType="treenode">
 		 select distinct jh.jhnf as text from PLAN_GCSJ jh order by jh.jhnf
 	</select>
@@ -229,7 +233,6 @@
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
-
 	<insert id="insertGcsj_Jh" parameterType="hashMap">
 		insert into plan_gcsj (id,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,
 			xmwybh,xmmc,jsjsbz,sftqss,jhnf,

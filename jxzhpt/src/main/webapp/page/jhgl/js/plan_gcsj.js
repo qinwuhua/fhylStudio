@@ -361,6 +361,21 @@ function gclmsjxm_zjxd(jh,lx){
 	};
 	gridBind(grid);
 }
+function querySumMessage(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumMessage.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZLC').html(data.plan_lx_gcsjs[0].qzlc);
+			$('#lblXMLC').html(data.plan_lx_gcsjs[0].xmlc);
+			$('#lblZTZ').html(data.pftz);
+			$('#lblBTZ').html(data.jhsybbzje);
+			$('#lblDFTZ').html(data.jhsydfzczj);
+		}
+	});
+}
 function queryGcsjXx(id){
 	$.ajax({
 		type:'post',
@@ -370,7 +385,7 @@ function queryGcsjXx(id){
 		success:function(data){
 			$('#lxmc').html(data.plan_lx_gcsjs[0].lxmc);
 			$('#lxbm').html(data.plan_lx_gcsjs[0].lxbm);
-			$('#jsdd').html(data.plan_lx_gcsjs[0].jsdd);
+			$('#jsdd').html(data.plan_lx_gcsjs[0].yjsdj);
 			$('#qdzh').html(data.plan_lx_gcsjs[0].qdzh);
 			$('#zdzh').html(data.plan_lx_gcsjs[0].zdzh);
 			$('#qzlc').html(data.plan_lx_gcsjs[0].qzlc);

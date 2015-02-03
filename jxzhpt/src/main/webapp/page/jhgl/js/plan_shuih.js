@@ -31,13 +31,18 @@ function shxm(jh,lx){
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
-	        	if(row.sbzt=="0"){
-	        		result="未上报";
-	        	}else if(row.sbzt=="1" && row.spzt=="0"){
-	        		result="上报待审批";
-	        	}else if(row.spzt=="1"){
-	        		result="已审批";
-	        	}
+	        	if(row.sbzt=="0" && row.jh_sbthcd==0){
+					result="未上报";
+				}
+				else if(row.sbzt=="0" && row.jh_sbthcd==2){
+					result="已上报";
+				}
+				else if(row.sbzt=="1" && row.spzt=="0"){
+					result="未审批";
+				}
+				else if(row.sbzt=="1" && row.spzt=="1"){
+					result="已审批";
+				}
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){

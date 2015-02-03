@@ -8,21 +8,12 @@
 </head>
 <body>
 	<div style="text-align: center;">
-		<table width="97%" height="90%" cellpadding="0" cellspacing="0"
-			border="0" style="margin-top: 10px; margin-left: 13px;">
-			<tr>
-				<td height="25" align="left" background="../images/page/dht_bg.jpg"
-					style="padding-left: 25px; background-repeat: no-repeat; font-size: 12px;">
-					<font color="#1a5780" style="font-size: small">计划管理</font>&nbsp;>&nbsp;
-					<font color="#1a5780" style="font-size: small">项目计划库管理</font>&nbsp;>&nbsp;
-					<font color="Gray" style="font-size: small"> 安保工程项目管理</font>
-				</td>
-			</tr>
-			<tr>
+		<table width="97%" height="90%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
+			<!-- <tr>
 				<td height="45" align="left" background="../images/page/jt.jpg"
 					style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
 					安保工程项目计划库信息</td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td>
 					<table width="100%" border="0"
@@ -39,21 +30,21 @@
 								路线名称</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="LXMC">官塘-李家坊</span>
+								<span id="lxmc"></span>
 							</td>
 							<td
 								style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								路线编码</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="LXBH">Y001360802</span>
+								<span id="lxbm"></span>
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								管养单位</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-								<span id="GYDW">吉安市吉州区交通局</span>
+								<span id="gydwxx"></span>
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -62,21 +53,21 @@
 								起点桩号</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="QDZH">0</span>
+								<span id="qdzh"></span>
 							</td>
 							<td
 								style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								止点桩号</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="ZDZH">10.726</span>
+								<span id="zdzh"></span>
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								总里程</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="QZLC">10.726</span> 公里
+								<span id="qzlc"></span> 公里
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -85,21 +76,21 @@
 								行政区划代码</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="XZQHDM">360802</span>
+								<span id="xzqhdm"></span>
 							</td>
 							<td
 								style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								行政区划名称</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="XZQHMC">吉安市吉州区</span>
+								<span id="xzqhmc"></span>
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								修建/改建年度</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="GJXJND">2010</span>
+								<span id="xjgjnd"></span>
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -108,21 +99,21 @@
 								路线技术等级</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="lblJSDJ">四级公路</span> &nbsp;
+								<span id="jsdjxx"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								隐患里程</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="YHLC">5</span> 公里
+								<span id="yhlc"></span> 公里
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								特殊地区</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="lblTSDQ">罗霄山山脉</span>&nbsp;
+								<span id="lblTSDQ"></span>&nbsp;
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -131,14 +122,14 @@
 								项目年份</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="lblXMNF">2010</span>&nbsp;
+								<span id="xmnf"></span>&nbsp;
 							</td>
 							<td
 								style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								项目状态</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="lblXMTYPE">待上报</span> &nbsp;
+								<span id="lblXMTYPE"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
@@ -153,7 +144,7 @@
 								隐患内容</td>
 							<td colspan="5"
 								style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="YHNR">2010000000</span>
+								<span id="yhnr"></span>
 							</td>
 						</tr>
 						<tr style="height: 50px;">
@@ -162,7 +153,7 @@
 								备&nbsp;&nbsp;&nbsp; 注</td>
 							<td colspan="5"
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="REMARKS"></span>&nbsp;
+								<span id="bz"></span>&nbsp;
 							</td>
 						</tr>
 					</table>
@@ -221,6 +212,42 @@
 	</div>
 	<div id="zjxd" style="font-size: 12px; width: 80%;"></div>
 	<script type="text/javascript">
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryAbgcById.do',
+		data:"jh.id="+xxId,
+		dataType:'json',
+		success:function(data){
+			//审查库
+			$.ajax({
+				type:'post',
+				url:'../../../xmsck/selectSckabgcById.do',
+				dataType:'json',
+				data:'sckid='+data.sckid,
+				success:function(data){
+					if(data!=null){
+						//基础
+						$('#lxmc').html(data.lxmc);
+						$('#lxbm').html(data.lxbm);
+						$('#gydwxx').html(data.gydw);
+						$('#qdzh').html(data.qdzh);
+						$('#zdzh').html(data.zdzh);
+						$('#qzlc').html(data.qzlc);
+						$('#xzqhdm').html(data.xzqhdm);
+						$('#xzqhmc').html(data.xzqhmc);
+						$('#xjgjnd').html(data.gjxjnd);
+						$('#jsdjxx').html(data.lxjsdj);
+						$('#yhlc').html(data.yhlc);
+						$('#tsdq').html(data.tsdq);
+						$('#xmnf').html(data.xmnf);
+						$('#xmzt').html(data.xmzt);
+						$('#yhnr').html(data.yhnr);
+						$('#bz').html(data.bz);
+					}
+				}
+			});
+		}
+	}); 
 	queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 	</script>
 </body>

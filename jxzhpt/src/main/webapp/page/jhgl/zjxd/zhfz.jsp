@@ -26,21 +26,21 @@
 								路线名称</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_LXMC">文坊-冷水</span> &nbsp;
+								<span id="lxmc"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								路线编码</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_LXBM">Y51636068</span> &nbsp;
+								<span id="lxbm"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								管养单位</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_GYDW">鹰潭市贵溪市交通局</span> &nbsp;
+								<span id="gydwxx"></span> &nbsp;
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -49,21 +49,21 @@
 								起点桩号</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_QDZH">30.018</span> &nbsp;
+								<span id="qdzh"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								止点桩号</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_ZDZH">36.913</span> &nbsp;
+								<span id="zdzh"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								总里程</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_ZLC">6.895</span> 公里
+								<span id="zlc"></span> 公里
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -72,21 +72,21 @@
 								行政区划代码</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_XZQHDM">360681</span> &nbsp;
+								<span id="xzqhdm"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								行政区划名称</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_XZQHMC">鹰潭市贵溪市</span> &nbsp;
+								<span id="xzqhmc"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								修建/改建年度</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_XJND">2006</span> &nbsp;
+								<span id="xjnd"></span> &nbsp;
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -95,21 +95,21 @@
 								路线技术等级</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="lblLXJSDJ">三级公路</span> &nbsp;
+								<span id="lxjsdjxx"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								建设规模</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_YHLC">2</span> 公里
+								<span id="yhlc"></span> 公里
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								特殊地区</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="lblTSDQ">罗霄山山脉</span> &nbsp;
+								<span id="lblTSDQ"></span> &nbsp;
 							</td>
 						</tr>
 						<tr style="height: 30px;">
@@ -118,14 +118,14 @@
 								项目年份</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<span id="Lab_XMNF">2014</span> &nbsp;
+								<span id="xmnf"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 								项目状态</td>
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_XMTYPE">待上报</span> &nbsp;
+								<span id="Lab_XMTYPE"></span> &nbsp;
 							</td>
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
@@ -140,7 +140,7 @@
 								灾害内容</td>
 							<td colspan="5"
 								style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_ZHNR">g</span> &nbsp;
+								<span id="zhnr"></span> &nbsp;
 							</td>
 						</tr>
 						<tr style="height: 50px;">
@@ -149,7 +149,7 @@
 								备&nbsp;&nbsp;&nbsp; 注</td>
 							<td colspan="5"
 								style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
-								<span id="Lab_BZ">g</span> &nbsp;
+								<span id="bz"></span> &nbsp;
 							</td>
 						</tr>
 					</table>
@@ -203,6 +203,54 @@
 	</div>
 	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
 	<script type="text/javascript">
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryZhfzById.do',
+		dataType:'json',
+		data:'jh.id='+xxId,
+		success:function(data){
+			$.ajax({
+				type : 'post',
+				url : '../../../xmsck/selectSckzhfzById.do',
+				data :"sckid="+data.sckid,
+				dataType:'json',
+				success:function(jcAndSc){
+					if(jcAndSc!=null){
+						//基础库
+						$('#lxmc').html(jcAndSc.lxmc);
+						$('#lxbm').html(jcAndSc.lxbm);
+						$('#gydwxx').html(jcAndSc.gydw);
+						$('#qdzh').html(jcAndSc.qdzh);
+						$('#zdzh').html(jcAndSc.zdzh);
+						$('#zlc').html(jcAndSc.zlc);
+						$('#xzqhdm').html(jcAndSc.xzqhdm);
+						$('#xzqhmc').html(jcAndSc.xzqhmc);
+						$('#xjnd').html(jcAndSc.gjxjnd);
+						$('#lxjsdjxx').html(jcAndSc.lxjsdj);
+						$('#yhlc').html(jcAndSc.yhlc);
+						$('#tsdq').html(jcAndSc.tsdq);
+						$('#xmnf').html(jcAndSc.xmnf);
+						$('#xmzt').html(jcAndSc.xmzt);
+						$('#zhnr').html(jcAndSc.zhnr);
+						$('#bz').html(jcAndSc.bz);
+						//审查库
+						$('#SCQDZH').html(jcAndSc.scqdzh);
+						$('#SCZDZH').html(jcAndSc.sczdzh);
+						$('#SCZLC').html(jcAndSc.sczlc);
+						$('#SCYHLC').html(jcAndSc.scyhlc);
+						$('#FAPGDW').html(jcAndSc.fapgdw);
+						$('#FASCDW').html(jcAndSc.fascdw);
+						$('#FASPSJ').html(jcAndSc.faspsj);
+						$('#SPWH').html(jcAndSc.spwh);
+						$('#TZGS').html(jcAndSc.tzgs);
+						$('#JSXZ').html(jcAndSc.jsxz);
+						$('#JSNR').html(jcAndSc.jsnr);
+						$('#scbz').html(jcAndSc.scbz);
+					}
+				}
+			});
+		}
+	});
 	queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 	</script>
 </body>

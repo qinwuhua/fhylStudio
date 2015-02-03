@@ -38,6 +38,16 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private File fileupload;
 	private String gydwdm;
 	
+	public void querySumMessage(){
+		try {
+			JsonUtils.write(gcsjServer.querySumMessage(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryGcsjList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));

@@ -158,9 +158,9 @@
 	</delete>
 	<update id="editWqgzById" parameterType="plan_wqgz">
 		update plan_wqgz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
-			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfsj=#{pfsj},
+			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfsj=#{pfsj} ,
 			pfztz=#{pfztz},jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},
-			ablbzsqwh=#{ablbzsqwh},bz=#{bz} 
+			ablbzsqwh=#{ablbzsqwh},bz=#{bz}
 		where id=#{id}
 	</update>
 	<update id="editWqgzStatus" parameterType="plan_wqgz">

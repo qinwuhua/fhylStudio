@@ -144,7 +144,7 @@ function dropById(id){
 		success:function(data){
 			if(data.result=='true'){
 				alert("删除成功！");
-				hslyglxm();
+				searchHsly();
 			}
 		}
 	});

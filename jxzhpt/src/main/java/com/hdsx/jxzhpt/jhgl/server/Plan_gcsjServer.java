@@ -72,4 +72,9 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	int queryGPSBylxbm(String lxbm);
+	/**
+	 * 总计信息查询
+	 * @return
+	 */
+	Plan_gcsj querySumMessage();
 }
