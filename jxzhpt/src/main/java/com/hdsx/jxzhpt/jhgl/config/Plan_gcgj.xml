@@ -232,4 +232,8 @@
 	<select id="queryGPSBylxbm" parameterType="string" resultType="int">
 		select count(*) from JXJCK_2013.GPSROAD t where t.roadcode=#{_parameter}
 	</select>
+	<select id="querySumGcgj" resultMap="gcgj_lx">
+		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
+		sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
+	</select>
 </mapper>

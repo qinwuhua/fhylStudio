@@ -85,4 +85,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean editStatus(Plan_abgc jh) {
 		return update("editStatus", jh)>0;
 	}
+	@Override
+	public Plan_abgc querySumAbgc() {
+		return queryOne("querySumAbgc", null);
+	}
 }

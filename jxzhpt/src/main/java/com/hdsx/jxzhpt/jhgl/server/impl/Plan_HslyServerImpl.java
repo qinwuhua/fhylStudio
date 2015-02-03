@@ -47,4 +47,8 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 	public boolean dropHslyById(String id) {
 		return delete("dropHslyById",id)>0;
 	}
+	@Override
+	public Plan_hsly querySumHsly() {
+		return queryOne("querySumHsly", null);
+	}
 }

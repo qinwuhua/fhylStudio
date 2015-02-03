@@ -7,6 +7,11 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_hsly;
 
 public interface Plan_hslyServer {
 	/**
+	 * 信息总计查询
+	 * @return
+	 */
+	Plan_hsly querySumHsly();
+	/**
 	 * 添加
 	 * @param list
 	 * @return

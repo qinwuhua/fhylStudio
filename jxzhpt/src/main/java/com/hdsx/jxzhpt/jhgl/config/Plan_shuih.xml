@@ -143,6 +143,11 @@
 	<select id="queryShuihNfs"  resultType="treenode">
 		select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
 	</select>
+	<select id="querySumShuih" resultMap="shuih_jh">
+		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
+		sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje
+		from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
+	</select>
 	<select id="queryShuihById" parameterType="string" resultMap="shuih_jh">
 		select * from plan_lx_shuih lx right join plan_shuih jh on lx.jhid=jh.id
 		where jh.id=#{id}

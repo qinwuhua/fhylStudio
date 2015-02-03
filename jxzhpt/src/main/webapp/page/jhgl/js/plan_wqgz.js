@@ -1,6 +1,19 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function querySumWqgz(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumWqgz.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZTZ').html(data.pfztz);
+			$('#lblBTZ').html(data.jhsybzje);
+			$('#lblDFTZ').html(data.jhsydfzcje);
+		}
+	});
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];

@@ -35,6 +35,16 @@ public class Plan_hslyController  extends BaseActionSupport{
 	@Resource(name = "plan_HslyServerImpl")
 	private Plan_hslyServer hslyServer;
 	
+	public void querySumHsly(){
+		try {
+			JsonUtils.write(hslyServer.querySumHsly(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryHslyById(){
 		try {
 			JsonUtils.write(hslyServer.queryHslyById(hsly.getId()), getresponse().getWriter());

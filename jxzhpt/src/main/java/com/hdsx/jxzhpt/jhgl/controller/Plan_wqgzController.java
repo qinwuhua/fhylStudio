@@ -39,6 +39,15 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private String fileuploadFileName;
 	private File fileupload;
 	
+	public void querySumWqgz(){
+		try {
+			JsonUtils.write(wqgzServer.querySumWqgz(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * excel导出

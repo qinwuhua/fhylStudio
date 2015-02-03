@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -75,4 +76,9 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	boolean editWqgzStatus(Plan_wqgz jh);
+	/**
+	 * 查询总计信息
+	 * @return
+	 */
+	Plan_wqgz querySumWqgz();
 }

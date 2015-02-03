@@ -1,6 +1,21 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function querySumAbgc(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumAbgc.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZLC').html(data.zlc);
+			$('#lblYHLC').html(data.yhlc);
+			$('#lblZTZ').html(data.pfztz);
+			$('#lblBTZ').html(data.jhsybbzje);
+			$('#lblDFTZ').html(data.jhsydfzczj);
+		}
+	});
+}
 function abgcxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,

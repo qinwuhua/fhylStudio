@@ -11,6 +11,11 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zhfzServer {
 	/**
+	 * 查询总计信息
+	 * @return
+	 */
+	Plan_zhfz querySumZhfz();
+	/**
 	 * 查询灾害防治列表
 	 * @param page
 	 * @param rows

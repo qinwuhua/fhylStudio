@@ -69,4 +69,9 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public Plan_yhdzx queryYhdzxById(String id) {
 		return queryOne("queryYhdzxById", id);
 	}
+
+	@Override
+	public Plan_yhdzx querySumYhdzx() {
+		return queryOne("querySumYhdzx", null);
+	}
 }

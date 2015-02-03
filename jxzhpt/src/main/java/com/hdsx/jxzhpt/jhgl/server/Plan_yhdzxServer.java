@@ -9,6 +9,11 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_yhdzxServer {
 	/**
+	 * 总计信息查询
+	 * @return
+	 */
+	Plan_yhdzx querySumYhdzx();
+	/**
 	 * 养护大中修列表查询
 	 * @param jh
 	 * @param lx

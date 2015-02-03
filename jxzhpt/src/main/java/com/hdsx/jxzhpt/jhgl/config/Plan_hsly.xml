@@ -50,4 +50,10 @@
 	<delete id="dropHslyById" parameterType="string">
 		delete from plan_hsly where id=#{id}
 	</delete>
+	<select id="querySumHsly" resultType="plan_hsly">
+		select count(jh.id) as id,sum(jh.jsgmhj) as jsgmhj,sum(jh.jsgmy) as jsgmy,
+       	sum(jh.jsgme) as jsgme,sum(jh.jsgms) as jsgms,sum(jh.jsgmf) as jsgmf,
+       	sum(jh.jsgmdldq) as jsgmdldq,sum(jh.ztz) as ztz,sum(jh.zytz) as zytz
+		from plan_hsly jh
+	</select>
 </mapper>

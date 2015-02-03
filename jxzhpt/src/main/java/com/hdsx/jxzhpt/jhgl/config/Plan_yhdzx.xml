@@ -169,4 +169,9 @@
 			#{31},#{32},#{33},#{34},#{35},#{36},
 			#{37},#{38},#{39},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
 	</insert>
+	<select id="querySumYhdzx" resultMap="yhdzx_jh">
+		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.hdlc) as hdlc,
+		sum(jh.TOTALINVEST) as totalinvest,sum(jh.totalsubsidyfund) as totalsubsidyfund
+		from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
+	</select>
 </mapper>

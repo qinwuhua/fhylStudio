@@ -81,4 +81,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return update("editZhfzStatus", jh)>0;
 	}
 
+	@Override
+	public Plan_zhfz querySumZhfz() {
+		return queryOne("querySumZhfz", null);
+	}
+
 }

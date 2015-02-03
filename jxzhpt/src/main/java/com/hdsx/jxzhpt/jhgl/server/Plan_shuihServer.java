@@ -9,6 +9,11 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 水毁信息总计
+	 * @return
+	 */
+	Plan_shuih querySumShuih();
+	/**
 	 * 查询水毁列表
 	 * @param page
 	 * @param rows

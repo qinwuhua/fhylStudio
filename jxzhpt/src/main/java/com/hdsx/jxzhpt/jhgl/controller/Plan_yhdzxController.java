@@ -48,6 +48,16 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	
+	public void querySumYhdzx(){
+		try {
+			JsonUtils.write(yhdzxServer.querySumYhdzx(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryYhdzxList(){
 		try {
 			Map<String, Object> jsonMap=new HashMap<String, Object>();

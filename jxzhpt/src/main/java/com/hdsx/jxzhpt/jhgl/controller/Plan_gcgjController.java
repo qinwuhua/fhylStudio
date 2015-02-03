@@ -37,6 +37,17 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
+	
+	public void querySumGcgj(){
+		try {
+			JsonUtils.write(gcgjServer.querySumGcgj(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * 获取工程改建项目列表
 	 */

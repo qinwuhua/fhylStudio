@@ -8,7 +8,11 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
-	
+	/**
+	 * 信息总计
+	 * @return
+	 */
+	Plan_gcgj querySumGcgj();
 	/**
 	 * 分页查询
 	 * @param page

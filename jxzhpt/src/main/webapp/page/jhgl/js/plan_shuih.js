@@ -1,6 +1,21 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function querySumShuih(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumShuih.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZLC').html(data.shuihs[0].qzlc);
+			$('#lblXMLC').html(data.shuihs[0].yhlc);
+			$('#lblZTZ').html(data.pfztz);
+			$('#lblBTZ').html(data.jhsybzje);
+			$('#lblDFTZ').html(data.jhsydfzcje);
+		}
+	});
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];

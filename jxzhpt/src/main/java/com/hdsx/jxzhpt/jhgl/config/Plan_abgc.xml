@@ -231,4 +231,9 @@
 		update PLAN_ABGC set JHNF=#{9},jhkgsj=to_date(#{11},'yyyy-mm-dd'),jhwgsj=to_date(#{12},'yyyy-mm-dd'),xdsj=to_date(#{13},'yyyy-mm-dd'),sjdw=#{14},sjpfdw=#{15},pfwh=#{16},pfsj=to_date(#{17},'yyyy-mm-dd'),pfztz=#{18},JHSYBBZJE=#{19},JHSYDFZCZJ=#{20},sfsqablbz=#{21},ablbzsqwh=#{22},REMARKS=#{23}
 		where sckid = (select sckid from sck_abgc where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5})
 	</update>
+	<select id="querySumAbgc" resultMap="abgc_jh">
+		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.zlc) as zlc,sum(x.yhlc) as yhlc,
+		sum(p.pfztz) as pfztz,sum(p.jhsybbzje) as jhsybbzje,sum(p.jhsydfzczj) as jhsydfzczj
+		from xmk_abgc x right join sck_abgc s on (x.id=s.xmkid) right join plan_abgc p on (s.sckid=p.sckid)
+	</select>
 </mapper>

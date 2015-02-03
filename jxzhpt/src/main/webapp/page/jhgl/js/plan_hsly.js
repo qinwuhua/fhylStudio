@@ -1,6 +1,25 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function querySumHsly(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumHsly.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblGMHJ').html(data.jsgmhj);
+			$('#lblYJGL').html(data.jsgmy);
+			$('#lblEJGL').html(data.jsgme);
+			$('#lblSJGL').html(data.jsgms);
+			$('#lblSIJGL').html(data.jsgmf);
+			$('#lblDLDQ').html(data.jsgmdldq);
+			$('#lblDLDQ').html(data.jsgmdldq);
+			$('#lblZTZ').html(data.ztz);
+			$('#lblZYTZ').html(data.zytz);
+		}
+	});
+}
 function exportHsly(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;
 }

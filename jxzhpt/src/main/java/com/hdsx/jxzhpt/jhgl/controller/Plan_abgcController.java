@@ -45,6 +45,16 @@ public class Plan_abgcController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	
+	public void querySumAbgc(){
+		try {
+			JsonUtils.write(abgcServer.querySumAbgc(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void importAbgc_jh(){
 		System.out.println("进入数据处理");
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());

@@ -36,6 +36,16 @@ public class Plan_shuihController extends BaseActionSupport {
 	private File fileupload;
 	private String gydwdm;
 	
+	public void querySumShuih(){
+		try {
+			JsonUtils.write(shuihServer.querySumShuih(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {

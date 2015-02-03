@@ -1,6 +1,20 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function querySumYhdzx(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/querySumYhdzx.do',
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZLC').html(data.plan_lx_yhdzxs[0].qzlc);
+			$('#lblHDLC').html(data.plan_lx_yhdzxs[0].hdlc);
+			$('#lblZTZ').html(data.totalinvest);
+			$('#lblZBZZJ').html(data.totalsubsidyfund);
+		}
+	});
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];

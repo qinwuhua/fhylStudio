@@ -12,6 +12,8 @@
 		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="kgzt" column="kgzt"/>
+		<result property="jhsybzje" column="jhsybzje"/>
+		<result property="jhsydfzcje" column="jhsydfzcje"/>
 		<result property="sfylsjl" column="sfylsjl"/>
 		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
 	</resultMap>
@@ -199,27 +201,9 @@
 		update PLAN_ZHFZ set sbnf=#{9},jhkgsj=to_date(#{10},'yyyy-mm-dd'),jhwgsj=to_date(#{11},'yyyy-mm-dd'),xdsj=to_date(#{12},'yyyy-mm-dd'),sjdw=#{13},sjpfdw=#{14},pfwh=#{15},pfsj=to_date(#{16},'yyyy-mm-dd'),pfztz=#{17},jhsybzje=#{18},jhsydfzcje=#{19},sfsqablbz=#{20},ablbzsqwh=#{21},bz=#{22}
 		where sckid = (select sckid from sck_zhfz where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5})
 	</update>
+	<select id="querySumZhfz" resultMap="zhfz_jh">
+		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.zlc) as zlc,sum(x.yhlc) as yhlc,
+		sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
+		from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -76,4 +76,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public boolean editWqgzStatus(Plan_wqgz jh) {
 		return update("editWqgzStatus", jh)>0;
 	}
+
+	@Override
+	public Plan_wqgz querySumWqgz() {
+		return queryOne("querySumWqgz",null);
+	}
 }

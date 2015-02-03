@@ -38,6 +38,16 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	
+	public void querySumZhfz(){
+		try {
+			JsonUtils.write(zhfzServer.querySumZhfz(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * excel导出
 	 * 通过flag来区分导出哪个excel

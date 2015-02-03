@@ -31,6 +31,7 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
+			querySumWqgz();
 			sbnf("sbnf");
 			wqxm_sb(jh,lx);
 		});

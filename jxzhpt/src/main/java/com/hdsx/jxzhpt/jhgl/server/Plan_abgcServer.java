@@ -10,6 +10,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
 	/**
+	 * 查询总计信息
+	 * @return
+	 */
+	Plan_abgc querySumAbgc();
+	
+	/**
 	 * 查询列表
 	 * @param page
 	 * @param rows
