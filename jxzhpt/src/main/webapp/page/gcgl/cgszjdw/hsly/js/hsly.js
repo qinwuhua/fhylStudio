@@ -35,6 +35,10 @@ function tjhslycgs(){
 	var d = myDate.getDate();
 	tbsj = y+"-"+m+"-"+d;
 	tbyf = y+"-"+m;
+	if($("#tj_cgsdwzj").val()==''){
+		alert("请您填入本月资金");
+		return;
+	}
 	var data="gcglhsly.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglhsly.tbr="+$.cookie("truename")+"&gcglhsly.tbsj="+tbsj+"&gcglhsly.tbyf="+$("#tj_tbyf").val()
 	+"&gcglhsly.jhid="+parent.parent.obj1.id;
 	//alert(data);

@@ -173,13 +173,31 @@ a:active {
                         </tr>
                        
                         <tr style="height: 35px;">
+                         <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                               本月完成投资额：
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
+                                 <input name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元
+                            </td>
+                         <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                            width: 20%; padding-right: 5px;">
+                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成工作量：</font></b>
+                        </td>
+                        <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+                            <input name="BYWCQK" type="text" id="tj_bywcgzl"  style="width: 40px;"/>公里
+                        </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
                                 截至开工段落：
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
+                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
                                 <input name="JZKGDL" type="text" id="tj_kgdl"  style="width: 40px;"/>
                             </td>
                         </tr>
@@ -191,31 +209,10 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="QKSM" type="text" id="tj_qksm" style="width: 170px;" />
+                                <input name="QKSM" type="text" id="tj_qksm" style="width: 350px;" />
                             </td>
                         </tr>
-                          <tr style="height: 35px;">
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
-                               本月完成投资额：
-                            </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                 <input name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元
-                            </td>
-                        </tr>
-                     
 					<tr style="height: 35px;">
-                        <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                            color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                            width: 20%; padding-right: 5px;">
-                            <b><font color="#009ACD" style="cursor: hand; font-size: 12px">本月完成工作量：</font></b>
-                        </td>
-                        <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                            <input name="BYWCQK" type="text" id="tj_bywcgzl"  style="width: 40px;"/>公里
-                        </td>
                         <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                             color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                             width: 20%; padding-right: 5px;">
@@ -231,7 +228,7 @@ a:active {
                             <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
                         </td>
                         <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+                            border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
                             <select id="tj_sbyf"></select>
                         </td>
                     </tr>

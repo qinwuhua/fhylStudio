@@ -93,7 +93,7 @@ public class Gcglzhfz implements Serializable {
 	private String kgzt;
 	private String jgzt;
 	private String wjgyy;
-	private String sfsj;
+	private Integer sfsj;
 	private String sfth;
 	private String sgxkwj;
 	private String jgtcwj;
@@ -611,10 +611,11 @@ public class Gcglzhfz implements Serializable {
 	public void setTiaojian(String tiaojian) {
 		this.tiaojian = tiaojian;
 	}
-	public String getSfsj() {
+	
+	public Integer getSfsj() {
 		return sfsj;
 	}
-	public void setSfsj(String sfsj) {
+	public void setSfsj(Integer sfsj) {
 		this.sfsj = sfsj;
 	}
 	public String getSfth() {

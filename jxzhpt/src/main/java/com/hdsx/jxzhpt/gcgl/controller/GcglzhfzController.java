@@ -55,8 +55,14 @@ public class GcglzhfzController extends BaseActionSupport{
 	private String lxmc;
 	private String jgzt;
 	private String yhtype;
+	private Integer sfsj;
 	
-	
+	public Integer getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(Integer sfsj) {
+		this.sfsj = sfsj;
+	}
 	public String getJgzt() {
 		return jgzt;
 	}
@@ -69,12 +75,7 @@ public class GcglzhfzController extends BaseActionSupport{
 	public void setYhtype(String yhtype) {
 		this.yhtype = yhtype;
 	}
-	public GcglzhfzServer getGcglzhfzServer() {
-		return gcglzhfzServer;
-	}
-	public void setGcglzhfzServer(GcglzhfzServer gcglzhfzServer) {
-		this.gcglzhfzServer = gcglzhfzServer;
-	}
+	
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
@@ -138,10 +139,10 @@ public class GcglzhfzController extends BaseActionSupport{
 	//添加月报
 	public void insertZhfzYb(){
 		if("县级".equals(yhtype)){
-			gcglzhfz.setSfsj("否");
+			gcglzhfz.setSfsj(11);
 		}
 		if("市级".equals(yhtype)){
-			gcglzhfz.setSfsj("是");
+			gcglzhfz.setSfsj(9);
 		}
 		Boolean bl=gcglzhfzServer.insertZhfzYb(gcglzhfz);
 		if(bl){
@@ -156,6 +157,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
 		gcglzhfz.setJhid(jhid);
+		gcglzhfz.setSfsj(sfsj);
 		int count=gcglzhfzServer.selectZhfzYbByJhidCount(gcglzhfz);
 		List<Gcglzhfz> list=gcglzhfzServer.selectZhfzYbByJhid(gcglzhfz);
 		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
@@ -250,6 +252,7 @@ public class GcglzhfzController extends BaseActionSupport{
 	}
 
 	public void deleteZhfzCgs() {
+		
 		Boolean bl = gcglzhfzServer.deleteZhfzCgs(gcglzhfz);
 		if (bl) {
 			ResponseUtils.write(getresponse(), "true");

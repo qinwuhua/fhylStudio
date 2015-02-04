@@ -138,7 +138,7 @@ text-decoration: none;
                         <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                             text-align: left; padding-left: 10px;" colspan="5">
                             <b>部投资</b>：<label id="wc_btz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <b>省投资</b>：<label id="wc_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--                             <b>省投资</b>：<label id="wc_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
                             <b>其他投资</b>：<label id="wc_qttz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>
@@ -151,7 +151,7 @@ text-decoration: none;
                         <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
                             text-align: left; padding-left: 10px;" colspan="5">
                             <b>部投资</b>：<label id="zjdw_btz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <b>省投资</b>：<label id="zjdw_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--                             <b>省投资</b>：<label id="zjdw_stz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
                             <b>其他投资</b>：<label id="zjdw_qttz"></label>万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>

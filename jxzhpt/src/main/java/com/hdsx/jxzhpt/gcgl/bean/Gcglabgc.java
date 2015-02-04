@@ -98,7 +98,7 @@ public class Gcglabgc implements Serializable {
 	private String sgxkwj;
 	private String jgtcwj;
 	private String jgyswj;
-	private String sfsj;
+	private Integer sfsj;
 	private String sfth;
 	
 	private String tiaojian;
@@ -617,10 +617,11 @@ public class Gcglabgc implements Serializable {
 	public void setTsdq(String tsdq) {
 		this.tsdq = tsdq;
 	}
-	public String getSfsj() {
+	
+	public Integer getSfsj() {
 		return sfsj;
 	}
-	public void setSfsj(String sfsj) {
+	public void setSfsj(Integer sfsj) {
 		this.sfsj = sfsj;
 	}
 	public String getSfth() {
