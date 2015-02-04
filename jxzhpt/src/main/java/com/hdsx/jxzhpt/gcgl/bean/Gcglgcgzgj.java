@@ -111,7 +111,7 @@ public class Gcglgcgzgj implements Serializable {
 	private String wjgyy;
 	private String scbz;
 	private String jhbz;	
-	private String sfsj;
+	private Integer sfsj;
 	private String sfth;
 	
 	private int page;
@@ -707,10 +707,11 @@ public class Gcglgcgzgj implements Serializable {
 	public void setJhbz(String jhbz) {
 		this.jhbz = jhbz;
 	}
-	public String getSfsj() {
+	
+	public Integer getSfsj() {
 		return sfsj;
 	}
-	public void setSfsj(String sfsj) {
+	public void setSfsj(Integer sfsj) {
 		this.sfsj = sfsj;
 	}
 	public String getSfth() {

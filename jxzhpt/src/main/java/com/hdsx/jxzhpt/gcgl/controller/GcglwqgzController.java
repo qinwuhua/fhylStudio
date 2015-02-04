@@ -48,8 +48,15 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String qlmc;
 	private String jgzt;
 	private String yhtype;
+	private Integer sfsj;
 	
 	
+	public Integer getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(Integer sfsj) {
+		this.sfsj = sfsj;
+	}
 	public String getJgzt() {
 		return jgzt;
 	}
@@ -136,10 +143,10 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void insertWqgzYb(){
 		System.out.println(gcglwqgz);
 		if("县级".equals(yhtype)){
-			gcglwqgz.setSfsj("否");
+			gcglwqgz.setSfsj(11);
 		}
 		if("市级".equals(yhtype)){
-			gcglwqgz.setSfsj("是");
+			gcglwqgz.setSfsj(9);
 		}
 		Boolean bl=gcglwqgzServer.insertWqgzYb(gcglwqgz);
 		if(bl){
@@ -154,6 +161,7 @@ public class GcglwqgzController extends BaseActionSupport{
 		gcglwqgz.setPage(page);
 		gcglwqgz.setRows(rows);
 		gcglwqgz.setJhid(jhid);
+		gcglwqgz.setSfsj(sfsj);
 		int count=gcglwqgzServer.selectWqgzYbByJhidCount(gcglwqgz);
 		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzYbByJhid(gcglwqgz);
 		EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();

@@ -100,7 +100,8 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:440,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydw,
 	    	kgzt: kgzt,
@@ -136,13 +137,11 @@ function showYBlist(){
 	    columns:[
 	             [
 					{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
-	              		if(row.shzt=='未审核'&&row.sfth=='否')
+						if(row.shzt=='未审核'&&row.sfsj==7)
 				        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
-		              		if(row.shzt=='未审核'&&row.sfth=='是')
-					        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'未审核   '+'退回';
 		              		if(row.shzt=='已审核')
 		              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核   '+'退回   ';
-						}},
+					}},
 					{field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 					{field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
 					{field:'dcwcqk',title:'本月完成垫层（m³）',width:130,align:'center',rowspan:2},
@@ -164,7 +163,7 @@ function showYBlist(){
 }
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglgcgzsj.id="+data1.id+"&gcglgcgzsj.sfsj=是"+"&gcglgcgzsj.sfth=是";
+	var data="gcglgcgzsj.id="+data1.id+"&gcglgcgzsj.sfsj=9";
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',

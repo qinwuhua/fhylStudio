@@ -107,10 +107,17 @@ public class Gcglwqgz implements Serializable {
 	private String jgtcwj;
 	private String jgyswj;
 
-	private String sfsj;
+	private Integer sfsj;
 	private String sfth;
+	private String sbthcd;
 	
 	
+	public String getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(String sbthcd) {
+		this.sbthcd = sbthcd;
+	}
 	public String getQlmc() {
 		return qlmc;
 	}
@@ -670,10 +677,11 @@ public class Gcglwqgz implements Serializable {
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
 	}
-	public String getSfsj() {
+	
+	public Integer getSfsj() {
 		return sfsj;
 	}
-	public void setSfsj(String sfsj) {
+	public void setSfsj(Integer sfsj) {
 		this.sfsj = sfsj;
 	}
 	public String getSfth() {

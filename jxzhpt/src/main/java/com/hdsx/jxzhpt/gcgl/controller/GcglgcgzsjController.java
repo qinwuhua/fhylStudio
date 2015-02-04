@@ -59,7 +59,14 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	private String lxmc;
 	private String jgzt;
 	private String yhtype;
+	private Integer sfsj;
 	
+	public Integer getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(Integer sfsj) {
+		this.sfsj = sfsj;
+	}
 	public String getJgzt() {
 		return jgzt;
 	}
@@ -142,10 +149,10 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	//添加月报
 	public void insertgcgzsjYb(){
 		if("县级".equals(yhtype)){
-			gcglgcgzsj.setSfsj("否");
+			gcglgcgzsj.setSfsj(11);
 		}
 		if("市级".equals(yhtype)){
-			gcglgcgzsj.setSfsj("是");
+			gcglgcgzsj.setSfsj(9);
 		}
 		Boolean bl=gcglgcgzsjServer.insertgcgzsjYb(gcglgcgzsj);
 		if(bl){
@@ -159,6 +166,7 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setPage(page);
 		gcglgcgzsj.setRows(rows);
 		gcglgcgzsj.setJhid(jhid);
+		gcglgcgzsj.setSfsj(sfsj);
 		int count=gcglgcgzsjServer.selectgcgzsjYbByJhidCount(gcglgcgzsj);
 		List<Gcglgcgzsj> list=gcglgcgzsjServer.selectgcgzsjYbByJhid(gcglgcgzsj);
 		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();

@@ -58,7 +58,14 @@ public class GcglshController extends BaseActionSupport{
 	private String lxmc;
 	private String jgzt;
 	private String yhtype;
+	private Integer sfsj;
 	
+	public Integer getSfsj() {
+		return sfsj;
+	}
+	public void setSfsj(Integer sfsj) {
+		this.sfsj = sfsj;
+	}
 	public String getJgzt() {
 		return jgzt;
 	}
@@ -135,10 +142,10 @@ public class GcglshController extends BaseActionSupport{
 	//添加月报
 	public void insertshYb(){
 		if("县级".equals(yhtype)){
-			gcglsh.setSfsj("否");
+			gcglsh.setSfsj(11);
 		}
 		if("市级".equals(yhtype)){
-			gcglsh.setSfsj("是");
+			gcglsh.setSfsj(9);
 		}
 		Boolean bl=gcglshServer.insertshYb(gcglsh);
 		if(bl){
@@ -152,6 +159,7 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		gcglsh.setJhid(jhid);
+		gcglsh.setSfsj(sfsj);
 		int count=gcglshServer.selectshYbByJhidCount(gcglsh);
 		List<Gcglsh> list=gcglshServer.selectshYbByJhid(gcglsh);
 		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();

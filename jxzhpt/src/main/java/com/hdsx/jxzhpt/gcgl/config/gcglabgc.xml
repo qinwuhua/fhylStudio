@@ -6,7 +6,7 @@
 		select * from (
 		select m.*,rownum rn from (
 			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj from GCGL_ABGC t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
-			where 1=1
+			where 1=1 and t1.sfsj &lt;=#{sfsj}
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
@@ -19,7 +19,7 @@
 	</select>
 	<select id="selectAbgcYbByJhidCount" parameterType="gcglabgc" resultType="int">
 		select count(*) from GCGL_ABGC 
-		where 1=1
+		where 1=1 and sfsj &lt;=#{sfsj}
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
@@ -28,7 +28,7 @@
 		select * from (
 		select m.*,rownum rn from (
 			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj from GCGL_ABGC t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
-			where 1=1 and sfsj='是' 
+			where 1=1 and sfsj=7 
 		<if test="jhid != null and  jhid != ''">
 			and t1.jhid =#{jhid}
 		</if>
@@ -41,7 +41,7 @@
 	</select>
 	<select id="selectAbgcYbByJhidCount1" parameterType="gcglabgc" resultType="int">
 		select count(*) from GCGL_ABGC 
-		where 1=1 and sfsj='是' 
+		where 1=1 and sfsj=7 
 		<if test="jhid != null and  jhid != ''">
 			and jhid =#{jhid}
 		</if>
@@ -65,7 +65,7 @@
 	</update>
 	<!-- 修改月报状态 -->
 	<update id="sbWqgzYb" parameterType="gcglabgc">
-		update GCGL_ABGC set sfsj=#{sfsj},sfth=#{sfth}
+		update GCGL_ABGC set sfsj=#{sfsj}
 		where id=#{id}
 	</update>
 	<!-- 删除月报 -->
