@@ -243,5 +243,4 @@
 	<select id="lwBzbz" parameterType="bzbz" resultType="bzbz">
 		select * from lwbzbz where xmlx=#{xmlx} and lx=#{lx}
 	</select>
->>>>>>> refs/remotes/origin/master
 </mapper>
