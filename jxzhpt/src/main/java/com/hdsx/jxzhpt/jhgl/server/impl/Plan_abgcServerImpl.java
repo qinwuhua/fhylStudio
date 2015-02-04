@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map.Entry;
 import java.util.regex.Pattern;
 import java.util.Set;
 
+import org.apache.struts2.views.xslt.ArrayAdapter;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
@@ -49,7 +51,12 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	}
 	
 	public boolean dropAbgcById(String id){
-		return delete("dropAbgcById",id)>0;
+		String [] ids=id.split(",");
+		List<String> idlist=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			idlist.add(ids[i]);
+		}
+		return deleteBatch("dropAbgcById",idlist)==idlist.size();
 	}
 	@Override
 	public List<SjbbMessage> insertToSheet(Map map) {
@@ -88,5 +95,14 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public Plan_abgc querySumAbgc() {
 		return queryOne("querySumAbgc", null);
+	}
+	@Override
+	public boolean updateLrztBySckid(String sckId) {
+		String [] scks=sckId.split(",");
+		List<String> sckArray=new ArrayList<String>();
+		for(int i=0;i<scks.length;i++){
+			sckArray.add(scks[i]);
+		}
+		return updateBatch("updateLrztBySckid", sckArray)==sckArray.size();
 	}
 }

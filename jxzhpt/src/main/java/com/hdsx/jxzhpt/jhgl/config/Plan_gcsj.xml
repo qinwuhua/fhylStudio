@@ -240,14 +240,14 @@
 			pfsj,ql,ql_m,sd,sd_m,
 			hd,ljtsf,dc,jc,lqlm,snlm,
 			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
-			ablbzsqwh,gksjwh,sjpfwh,remarks) 
+			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl) 
 		values(#{jhid},#{11},#{12},to_date(#{13},'yyyy-mm-dd'),#{14},#{15},#{16},#{17},
 			#{18},#{19},#{20},#{21},SUBSTR(#{22},0,4),
 			to_date(#{23},'yyyy-mm-dd'),to_date(#{24},'yyyy-mm-dd'),#{25},#{26},#{27},
 			to_date(#{28},'yyyy-mm-dd'),#{29},#{30},#{31},#{32},
 			#{33},#{34},#{35},#{36},#{37},#{38},
 			#{39},#{40},#{41},#{42},#{43},
-			#{44},#{45},#{46},#{47})
+			#{44},#{45},#{46},#{47},#{sfylsjl})
 	</insert>
 	<insert id="insertGcsj_lx" parameterType="hashMap">
 		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,lxmc,
@@ -255,7 +255,14 @@
 		values(sys_guid(),#{jhid},#{0},#{gydwdm},#{1},#{2},#{3},#{4},
 			#{5},#{6},#{7},#{8},#{9},#{10})
 	</insert>
-	<select id="queryGPSBylxbm" parameterType="string" resultType="int">
-		select count(*) from JXJCK_2013.GPSROAD t where t.roadcode=#{_parameter}
+	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
+		select  t.roadcode as lxbm,t.roadname as lxmc,
+		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc from JXJCK_2013.GPSROAD t where 
+		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
+	</select>
+	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">
+		select count(jh.id) from plan_lx_gcsj lx right join plan_gcsj jh 
+		on (lx.jhid=jh.id) 
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<=#{zdzh})]]>
 	</select>
 </mapper>

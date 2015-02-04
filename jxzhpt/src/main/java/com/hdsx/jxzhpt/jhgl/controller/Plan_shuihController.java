@@ -140,9 +140,26 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
+				Plan_lx_shuih shuih=new Plan_lx_shuih();
+				shuih.setLxbm(map.get("3").toString());
+				shuih.setQdzh(map.get("8").toString());
+				shuih.setZdzh(map.get("9").toString());
+				shuih.setGydwdm(map.get("gydwdm").toString());
+				map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 				strVerify=ImportVerify.shuihVerify(map);
-				if(shuihServer.queryGPSBylxbm(map.get("3").toString())==0){
-					strVerify+="【"+map.get("3").toString()+"】不存在！";
+				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+				if(queryGPSBylxbm==null){
+					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+				}else{
+					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+						strVerify+="路线名称不正确;";
+					}
+					if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+						strVerify+="起止里程不正确;";
+					}
+				}
+				if(!strVerify.equals("")){
+					break;
 				}
 			}
 			System.out.println(data);

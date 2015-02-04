@@ -141,8 +141,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 				return;
 			}
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			String strVerify=null;
+			String strVerify="";
 			boolean boolJh=false,boolLx=false;
+			System.out.println(data);
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
@@ -153,12 +154,29 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
-				strVerify = ImportVerify.gcgjVerify(map);
-				if(gcgjServer.queryGPSBylxbm(map.get("3").toString())==0){
-					strVerify+="路线【"+map.get("3").toString()+"】不存在";
+				Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
+				gcgj.setLxbm(map.get("3").toString());
+				gcgj.setQdzh(map.get("8").toString());
+				gcgj.setZdzh(map.get("9").toString());
+				gcgj.setQzlc(map.get("10").toString());
+				gcgj.setGydwdm(map.get("gydwdm").toString());
+				map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
+				strVerify+= ImportVerify.gcgjVerify(map);
+				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
+				if(queryGPSBylxbm==null){
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+				}else{
+					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+						strVerify+="路线名称不正确;";
+					}
+					if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+						strVerify+="起止里程不正确;";
+					}
+				}
+				if(!strVerify.equals("")){
+					break;
 				}
 			}
-			System.out.println(data);
 			//将数据插入到数据库
 			if(strVerify.equals("")){
 				boolJh=gcgjServer.insertGcgj_jh(data);

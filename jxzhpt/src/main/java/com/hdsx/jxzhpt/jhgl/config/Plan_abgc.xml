@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_abgc">
 	<resultMap type="plan_abgc"  id="abgc_jh">
 		<id property="id" column="id" />
+		<result property="sckid" column="sckid"/>
 		<result property="xdsj" column="xdsj"/>
 		<result property="jhnf" column="jhnf"/>
 		<result property="sbzt" column="sbzt"/>
@@ -236,4 +237,7 @@
 		sum(p.pfztz) as pfztz,sum(p.jhsybbzje) as jhsybbzje,sum(p.jhsydfzczj) as jhsydfzczj
 		from xmk_abgc x right join sck_abgc s on (x.id=s.xmkid) right join plan_abgc p on (s.sckid=p.sckid)
 	</select>
+	<update id="updateLrztBySckid" parameterType="java.util.List">
+ 		update sck_abgc set lrjh='未列入'  where sckid=#{String}
+ 	</update>
 </mapper>

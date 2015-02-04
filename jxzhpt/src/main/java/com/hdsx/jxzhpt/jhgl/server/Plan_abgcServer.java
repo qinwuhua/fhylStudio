@@ -10,6 +10,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
 	/**
+	 * 删除后修改审查库信息的列入状态
+	 * @param sckId
+	 * @return
+	 */
+	boolean updateLrztBySckid(String sckId);
+	/**
 	 * 查询总计信息
 	 * @return
 	 */
