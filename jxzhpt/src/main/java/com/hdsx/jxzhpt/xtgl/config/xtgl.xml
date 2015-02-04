@@ -243,4 +243,5 @@
 	<select id="selQxListByRoleid" parameterType="param" resultType="param">
 		select sourceid from xtgl_role_resource where roleid=#{roleid}
 	</select>
+		
 </mapper>

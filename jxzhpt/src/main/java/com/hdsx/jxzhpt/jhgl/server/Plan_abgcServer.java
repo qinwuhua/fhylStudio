@@ -6,9 +6,16 @@ import java.util.Map;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
+	/**
+	 * 删除后修改审查库信息的列入状态
+	 * @param sckId
+	 * @return
+	 */
+	boolean updateLrztBySckid(String sckId);
 	/**
 	 * 查询总计信息
 	 * @return
@@ -68,4 +75,5 @@ public interface Plan_abgcServer {
 	boolean importAbgc_jh(List<Map> data);
 
 	boolean editStatus(Plan_abgc jh);
+	Bzbz lwBzbz(Bzbz bz);
 }

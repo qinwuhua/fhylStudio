@@ -228,12 +228,7 @@ function shxm_sh(jh,lx){
 	        	}
 	        	return result;
 	        }},
-	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
-	        		return '无';
-	        	else if(row.sfylsjl=='1')
-	        		return '有';
-	        }},
+	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -311,12 +306,7 @@ function shxm_zjxd(jh,lx){
 	        				return '竣工';
 	        		}
 	        },
-	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
-	        		return '无';
-	        	else if(row.sfylsjl=='1')
-	        		return '有';
-	        }},
+	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
