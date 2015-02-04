@@ -19,10 +19,10 @@ public class ImportVerify {
 		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("9").toString())){
 			result+="【止点桩号】";
 		}
-		if(!doubleVerify(obj.get("10").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("10").toString())){
 			result+="【起止里程】";
 		}
-		if(!doubleVerify(obj.get("11").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("11").toString())){
 			result+="【隐患里程】";
 		}
 		if(!timeVerify(obj.get("14").toString())){
@@ -168,16 +168,16 @@ public class ImportVerify {
 		if(!lxbhVerify(obj.get("3").toString())){
 			result+="【路线编码】";
 		}
-		if(!zhVerify(obj.get("7").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("7").toString())){
 			result+="【起点桩号】";
 		}
-		if(!zhVerify(obj.get("8").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("8").toString())){
 			result+="【止点桩号】";
 		}
-		if(!doubleVerify(obj.get("9").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("9").toString())){
 			result+="【起止里程】";
 		}
-		if(!doubleVerify(obj.get("10").toString())){
+		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("10").toString())){
 			result+="【项目里程】";
 		}
 		if(!timeVerify(obj.get("13").toString())){
@@ -220,9 +220,6 @@ public class ImportVerify {
 		}
 		if(obj.get("43").toString().equals("是") && obj.get("44").toString().length()==0){
 			result+="【按比例申请文号】";
-		}
-		if(!result.equals("")){
-			result+="信息填写有问题，请检查";
 		}
 		return result;
 	}

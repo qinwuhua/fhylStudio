@@ -28,6 +28,7 @@
 		<action name="editAbgcById" class="plan_abgcController" method="editAbgcById"/>
 		<action name="editStatus" class="plan_abgcController" method="editAbgcStatus"/>
 		<action name="querySumAbgc" class="plan_abgcController" method="querySumAbgc"/>
+		<action name="updateLrztBySckid" class="plan_abgcController" method="updateLrztBySckid"/>
 		<action name="lwBzbz" class="plan_abgcController" method="lwBzbz"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>

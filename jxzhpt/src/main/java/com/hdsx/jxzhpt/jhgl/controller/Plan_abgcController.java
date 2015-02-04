@@ -159,7 +159,9 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void dropAbgcById(){
 		try {
-			JsonUtils.write(abgcServer.dropAbgcById(jh.getId()), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(abgcServer.dropAbgcById(jh.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -187,6 +189,18 @@ public class Plan_abgcController extends BaseActionSupport{
 			result.put("result", new Boolean(abgcServer.editStatus(jh)).toString());
 			JsonUtils.write(result,getresponse().getWriter());
 		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateLrztBySckid(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(abgcServer.updateLrztBySckid(jh.getSckid())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

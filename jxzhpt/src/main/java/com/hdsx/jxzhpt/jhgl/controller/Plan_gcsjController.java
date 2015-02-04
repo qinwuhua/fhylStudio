@@ -132,6 +132,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			String strVerify=null;
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			System.out.println(data);
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
@@ -142,12 +143,28 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("40", map.get("40").toString().substring(0, map.get("40").toString().indexOf(".")));
 				map.put("41", map.get("41").toString().substring(0, map.get("41").toString().indexOf(".")));
 				map.put("42", map.get("42").toString().substring(0, map.get("42").toString().indexOf(".")));
+				Plan_lx_gcsj lx=new Plan_lx_gcsj();
+				lx.setLxbm(map.get("3").toString());
+				lx.setQdzh(map.get("7").toString());
+				lx.setZdzh(map.get("8").toString());
+				lx.setGydwdm(map.get("gydwdm").toString());
+				map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
 				strVerify=ImportVerify.gcsjVerify(map);
-				if(gcsjServer.queryGPSBylxbm(map.get("3").toString())==0){
-					strVerify="【"+map.get("3").toString()+"】不存在！";
+				Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
+				if(queryGPSBylxbm==null && strVerify.equals("")){
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+				}else{
+					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+						strVerify+="路线名称不正确;";
+					}
+					if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
+						strVerify+="起止里程不正确;";
+					}
+				}
+				if(!strVerify.equals("")){
+					break;
 				}
 			}
-			System.out.println(data);
 			if(strVerify.equals("")){
 				boolJh=gcsjServer.insertGcsj_Jh(data);
 				boolLx=gcsjServer.insertGcsj_lx(data);

@@ -508,6 +508,7 @@ function editZhfz(){
 		success:function(data){
 			alert("修改成功！");
 			$('#zhfz_xx').dialog('close');
+			searchZhfz();
 		}
 	});
 }
