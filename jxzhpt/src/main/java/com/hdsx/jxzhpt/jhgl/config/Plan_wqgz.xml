@@ -191,9 +191,21 @@
 		delete from plan_wqgz jh where jh.id=#{id}
 	</delete>
 	<update id="editWqgzById" parameterType="plan_wqgz">
-		update plan_wqgz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
-			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfsj=#{pfsj} ,
-			pfztz=#{pfztz},jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},
+		update plan_wqgz set sbnf=#{sbnf},
+		<if test="jhkgsj!=null and jhkgsj!=''">
+			jhkgsj=#{jhkgsj},
+		</if>
+		<if test="jhwgsj!=null and jhwgsj!=''">
+			jhwgsj=#{jhwgsj},
+		</if>
+		<if test="xdsj!=null and xdsj!=''">
+			xdsj=#{xdsj},
+		</if>
+		<if test="pfsj!=null and pfsj!=''">
+			pfsj=#{pfsj},
+		</if>
+			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
+			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},
 			ablbzsqwh=#{ablbzsqwh},bz=#{bz}
 		where id=#{id}
 	</update>

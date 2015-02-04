@@ -482,6 +482,7 @@ function editWqgz(){
 		success:function(data){
 			alert("修改成功！");
 			$('#wqgz_xx').dialog('close');
+			searchWqgz();
 		}
 	});
 	

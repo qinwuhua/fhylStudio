@@ -367,7 +367,7 @@
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<!-- <input type="text" id="SFSQABLBZ"/>  -->
-					<span id="SFSQABLBZ"></span>
+					<span id="sfsqablbz"></span>
 					&nbsp;
 				</td>
 				<td

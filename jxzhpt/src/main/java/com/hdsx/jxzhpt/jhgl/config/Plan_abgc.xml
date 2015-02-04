@@ -205,10 +205,10 @@
 				xdsj=#{xdsj},
 			</if>
 			<if test="pfsj!=null and pfsj!=''">
-				pfsj=#{pfsj},
+				pfsj=#{pfsj}
 			</if>
-			jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
-			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
+			<!-- jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
+			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks} -->
 		where id=#{id}
 	</update>
 	<update id="editStatus" parameterType="plan_abgc">
