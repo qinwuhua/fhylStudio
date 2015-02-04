@@ -278,7 +278,7 @@
  </select>
   <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
  	select 
- 	xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,zlc v_6,yhlc v_7,gjxjnd v_8
+ 	xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,qzlc v_6,yhlc v_7,gjxjnd v_8
  	from xmk_abgc where sbzt='已上报'
  	and id not in (select xmkid from sck_abgc)
 	and sbthcd &lt;=#{sck_sbthcd}  
@@ -287,8 +287,10 @@
 	</if>
  </select>
   <insert id="importAbgc_sc" parameterType="hashMap" >
- 	insert into sck_abgc(sckid,xmkid,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,scqdzh,sczdzh,sck_lxbm,sck_lxmc,sczlc,scyhlc,scbmbm,sck_sbthcd,lrjh,bzls)
-	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},'未上报','未审核',#{9},#{10},#{2},#{3},#{6},#{7},#{scbmbm},#{sck_sbthcd},'未列入','无')
+ 	insert into sck_abgc(sckid,xmkid,
+ 	scqdzh,sczdzh,sczlc,scyhlc,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,scbz,sck_sbzt,sck_shzt,sck_lxbm,sck_lxmc,scbmbm,sck_sbthcd,lrjh,bzls)
+	values(sys_guid(),(select ID from XMK_ABGC where lxbm=trim(#{2}) and lxmc=trim(#{3})),
+	#{9},#{10},to_number(#{10})-to_number(#{9}),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},'未上报','未审核',#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入','无')
 
  </insert>
 </mapper>

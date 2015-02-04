@@ -141,6 +141,7 @@
 		  where sc.xmkid = xm.id
 	  	  and jh.sckid = sc.sckid
 		  and sck_sbzt = '已上报'
+		  and jh.spzt='0'
 		  and sck_sbthcd &lt;=#{sck_sbthcd} 
 		  <if test="tbdw!=null and tbdw!=''">
 		 	 and scbmbm like #{tbdw}||'%'

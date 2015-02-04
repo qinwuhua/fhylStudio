@@ -81,7 +81,13 @@ public class ExportExcel_new<T> {
 	// 存放每行的数据
 	String[] rowArray;
 	// 存放每行被占用的单元格位置
-	String[] numArray = new String[1000];
+	String[] numArray = new String[]{"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",
+									"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""};
 	// 单元格
 	HSSFCell ce;
 	// 所用的行
@@ -93,7 +99,6 @@ public class ExportExcel_new<T> {
 	@SuppressWarnings("unchecked")
 	public void exportExcel(List<SheetBean> sheetBeans,OutputStream out) {
 		int sheetnum=workbook.getNumberOfSheets();
-		System.out.println(sheetnum);
 		if(sheetnum>0){
 			for(int i=0;i<sheetnum;i++){
 				workbook.removeSheetAt(i);
@@ -146,41 +151,12 @@ public class ExportExcel_new<T> {
 		}
 		
 	}
-	public List splitList(List<T> list){
-		List<List<T>> result=new ArrayList<List<T>>();
-		if(list.size()/60000==1){
-			List<T> list1=new ArrayList<T>();
-			List<T> list2=new ArrayList<T>();
-			for(int i=0;i<list.size();i++){
-				if(i<60000)
-					list1.add(list.get(i));
-				else
-					list2.add(list.get(i));
-			}
-			result.add(list1);
-			result.add(list2);
-		}else if(list.size()/60000==2){
-			List<T> list1=new ArrayList<T>();
-			List<T> list2=new ArrayList<T>();
-			List<T> list3=new ArrayList<T>();
-			for(int i=0;i<list.size();i++){
-				if(i<60000) list1.add(list.get(i));
-				else if(i>=60000 && i<120000) list2.add(list.get(i));
-				else list3.add(list.get(i));
-			}
-			result.add(list1);
-			result.add(list2);
-			result.add(list3);
-		}
-		return result;
-	}
 	public void guodu(SheetBean sheetBean){
 		double[] statistics = null;
 		Map<String,String> statis_fields = sheetBean.getStatis_field();
 		if (statis_fields!=null) {
 			Set<String> keys=statis_fields.keySet();
 			Iterator iter1=keys.iterator();
-			System.out.println("-------------------------statis_fields size : "+statis_fields.size()+"-------------------------");
 			statistics = new double[sheetBean.getColnum()];
 			for (int i = 0; i < statis_fields.size() && iter1.hasNext(); i++) {
 				if (statis_fields!= null && "min".equals(statis_fields.get(iter1.next()).toString())) {
@@ -234,13 +210,10 @@ public class ExportExcel_new<T> {
 				for (int j = 0; j < rowArray.length - 1; j++) {
 					// 判断是否有单元格合并行为
 					if (rowArray[j].length() >= 3) {
-						String temp = rowArray[j].substring(
-								rowArray[j].length() - 3, rowArray[j].length());
+						String temp = rowArray[j].substring(rowArray[j].length() - 3, rowArray[j].length());
 						String temp2 = "";
 						if (rowArray[j].length() >= 4) {
-							temp2 = rowArray[j].substring(
-									rowArray[j].length() - 4,
-									rowArray[j].length());
+							temp2 = rowArray[j].substring(rowArray[j].length() - 4,rowArray[j].length());
 						}
 						if (temp.endsWith("'")) {
 							if (!Character.isDigit(temp.charAt(1))) {
@@ -248,10 +221,6 @@ public class ExportExcel_new<T> {
 								rowNum = isTrueOrFalse(rowNum, numArray[i]);
 								ce = tempRow.createCell(rowNum);
 								ce.setCellValue((String) headers.get(bt));
-								/*
-								 * if (sfColor(bt)) { ce.setCellStyle(style2); }
-								 * else { ce.setCellStyle(style3); }
-								 */
 								ce.setCellStyle(style2);
 								rowNum += 1;
 							} else {
@@ -817,11 +786,9 @@ public class ExportExcel_new<T> {
 			if (tempNum != num) {
 				num = isTrueOrFalse(num, rowNum);
 			}
-			return num;
 
-		} else {
-			return num;
-		}
+		} 
+		return num;
 	}
 
 	/**
@@ -844,7 +811,7 @@ public class ExportExcel_new<T> {
 		 */
 
 		for (int k = i + 1; k < (i + value); k++) {
-			temp = array[k] + j + ",";
+			temp = array[k] + j + ","; 
 			array[k] = temp;
 		}
 	}
