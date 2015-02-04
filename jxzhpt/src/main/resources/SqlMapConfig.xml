@@ -10,6 +10,7 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Master" alias="master"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Unit" alias="unit"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Param" alias="param"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Bzbz" alias="bzbz"/>
      <!-- qwh begin -->
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglabgc" alias="gcglabgc"/>
