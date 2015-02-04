@@ -26,6 +26,7 @@ import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -44,6 +45,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private String flag;//标记是哪个模块
 	private String fileuploadFileName;
 	private File fileupload;
+	private Bzbz bzbz;
 	
 	public void querySumAbgc(){
 		try {
@@ -188,6 +190,15 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void lwBzbz(){
+		try {
+			JsonUtils.write(abgcServer.lwBzbz(bzbz), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// get set
 	public int getPage() {
 		return page;
@@ -236,6 +247,12 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public Bzbz getBzbz() {
+		return bzbz;
+	}
+	public void setBzbz(Bzbz bzbz) {
+		this.bzbz = bzbz;
 	}
 	
 }

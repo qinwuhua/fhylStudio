@@ -198,7 +198,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		for (int i = 0; i < strs.length; i++) {
 			list.add(strs[i]);
 		}
-		return insertBatch("lrjhSckabgc", list)==list.size()?true:false;
+		return insertBatch("xglrjhSckabgc", list)==list.size()?true:false;
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer {
@@ -88,5 +89,9 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public Plan_abgc querySumAbgc() {
 		return queryOne("querySumAbgc", null);
+	}
+	@Override
+	public Bzbz lwBzbz(Bzbz bz) {
+		return queryOne("lwBzbz", bz);
 	}
 }

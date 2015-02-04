@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
@@ -68,4 +69,5 @@ public interface Plan_abgcServer {
 	boolean importAbgc_jh(List<Map> data);
 
 	boolean editStatus(Plan_abgc jh);
+	Bzbz lwBzbz(Bzbz bz);
 }
