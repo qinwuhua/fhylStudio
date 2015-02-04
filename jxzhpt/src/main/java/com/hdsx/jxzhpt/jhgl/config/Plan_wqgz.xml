@@ -222,4 +222,7 @@
 		from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
 		right join plan_wqgz jh on (sc.sckid=jh.id)
 	</select>
+	<update id="updateLrztBySckid" parameterType="java.util.List">
+ 		update sck_wqgz set lrjh='未列入'  where sckid=#{String}
+ 	</update>
 </mapper>

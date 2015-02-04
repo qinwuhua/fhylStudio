@@ -48,7 +48,7 @@ function wqxm(jh,lx){
 		        	}else{
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	var id="'"+row.id+"'";
-			        	result+='<a href="javascript:dropWqgz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+			        	result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">删除</a>';
 		        	}
 		        	
 		        	return result;
@@ -420,17 +420,32 @@ function queryWqgzById(id){
 function openAddWqgz(){
 	openAdd('wqgz_add','添加安保工程项目','../add/wqgzAdd.jsp');
 }
-function dropWqgz(id,readLoad){
+function dropWqgzs(){
+	if(confirm("确认要删除选中计划？")){
+		var sel=gridObj.datagrid("getSelections");
+		var id="",sckid="";
+		$.each(sel,function(index,item){
+			if(index==(sel.length)){
+				id+=item.id;
+			}else{
+				id+=item.id+",";
+			}
+			if(index==(sel.length)){
+				sckid+=item.sckid;
+			}else{
+				sckid+=item.sckid+",";
+			}
+		});
+		var params={'jh.id':id,'jh.sckid':sckid}
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropWqgzById.do',
-			dataType:'text',
-			data:'jh.id='+id,
+			dataType:'json',
+			data:params,
 			success:function(data){
-				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
-						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-				if(readLoad=="true"){
+				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,
+						"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+				if(data.edit && data.drop){
 					alert("删除成功！");
 					gridObj.datagrid("reload",params);
 				}
@@ -439,18 +454,6 @@ function dropWqgz(id,readLoad){
 				alert("删除失败！");
 			}
 		});
-}
-function dropWqgzs(){
-	if(confirm("确认要删除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
-		$.each(sel,function(index,item){
-			dropWqgz(item.id, "false");
-		});
-		alert("删除成功！");
-		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-				"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
-				"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-		gridObj.datagrid("reload",params);
 	}
 }
 function editWqgz(){

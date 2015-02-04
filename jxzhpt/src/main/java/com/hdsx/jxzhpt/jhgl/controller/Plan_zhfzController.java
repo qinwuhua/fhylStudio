@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -138,7 +139,10 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	
 	public void dropZhfzById(){
 		try {
-			JsonUtils.write(zhfzServer.dropZhfzById(jh.getId()), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("drop", new Boolean(zhfzServer.dropZhfzById(jh.getId())).toString());
+			result.put("edit", new Boolean(zhfzServer.updateLrztBySckid(jh.getSckid())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

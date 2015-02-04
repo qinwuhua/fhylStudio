@@ -210,6 +210,7 @@ public class ImportVerify {
 		if(!numVerify(obj.get("42").toString())){
 			result+="【计划使用省补助资金】";
 		}
+		
 		if(new Integer(obj.get("40").toString()).intValue()!=
 				new Integer(obj.get("41").toString()).intValue()
 				+new Integer(obj.get("42").toString()).intValue()){

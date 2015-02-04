@@ -11,6 +11,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zhfzServer {
 	/**
+	 * 修改审查库列入计划状态
+	 * @param sckid
+	 * @return
+	 */
+	boolean updateLrztBySckid(String sckid);
+	/**
 	 * 查询总计信息
 	 * @return
 	 */
