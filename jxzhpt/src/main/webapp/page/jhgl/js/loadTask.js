@@ -108,7 +108,6 @@ function exportExcel(flag){
 	var param=JSON.stringify(queryParams);
 	param=param.replace(/null/g,'').replace(/undefined/g,'');
 	param=param.substring(1, param.length-1);
-	alert(param);
 	if(flag=='abgc'){
 		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
 		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+param;
