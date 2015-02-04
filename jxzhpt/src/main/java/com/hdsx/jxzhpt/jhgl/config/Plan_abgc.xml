@@ -240,4 +240,8 @@
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_abgc set lrjh='未列入'  where sckid=#{String}
  	</update>
+	<select id="lwBzbz" parameterType="bzbz" resultType="bzbz">
+		select * from lwbzbz where xmlx=#{xmlx} and lx=#{lx}
+	</select>
+>>>>>>> refs/remotes/origin/master
 </mapper>
