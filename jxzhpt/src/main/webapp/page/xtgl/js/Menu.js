@@ -38,7 +38,7 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_010406',
 		title:'编目编码管理',
-		imgSrc:'../../images/bmbm.jpg',
+		imgSrc:'../../images/bmbm.png',
 		renderTo:'left_menu1',
 		href:'./bmbm.jsp'
 	});
