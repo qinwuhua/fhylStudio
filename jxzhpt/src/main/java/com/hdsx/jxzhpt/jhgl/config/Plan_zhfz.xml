@@ -176,7 +176,7 @@
 		update plan_zhfz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
 			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
 			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
-			bz=#{bz},pfsj=#{pfsj}
+			bz=#{bz},pfsj=#{pfsj} 
 		where id=#{id}
 	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">
