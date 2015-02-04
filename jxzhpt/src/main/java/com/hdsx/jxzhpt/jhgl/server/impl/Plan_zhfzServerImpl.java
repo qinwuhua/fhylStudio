@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,12 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return this.queryList("exportExcel_jh",params);
 	}
 	public boolean dropZhfzById(String id) {
-		return delete("dropZhfzById",id)>0;
+		String [] ids=id.split(",");
+		List<String> idlist=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			idlist.add(ids[i]);
+		}
+		return deleteBatch("dropZhfzById",idlist)==idlist.size();
 	}
 
 	@Override
@@ -84,6 +90,16 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	@Override
 	public Plan_zhfz querySumZhfz() {
 		return queryOne("querySumZhfz", null);
+	}
+
+	@Override
+	public boolean updateLrztBySckid(String sckid) {
+		String [] ids=sckid.split(",");
+		List<String> idlist=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			idlist.add(ids[i]);
+		}
+		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
 
 }

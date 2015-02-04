@@ -102,7 +102,7 @@ $(function() {
 		href:'./jhksb/gclmgj.jsp'
 	});
 	createMenu('LeftMenu',{
-		id:'menu_0101030205',
+		id:'menu_0101030207',
 		title:'养护大中修项目',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu2',
@@ -151,6 +151,13 @@ $(function() {
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu3',
 		href:'./jhksh/gclmgj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101030307',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu3',
+		href:'./jhksh/yhdzx.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101030306',

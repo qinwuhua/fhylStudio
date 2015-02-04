@@ -35,10 +35,8 @@
 			zhfzxm(jh,lx);
 		});
 		function searchZhfz(){
+			alert("查询");
 			var jh={jhnf:null,sbzt:null,spzt:null};
-			if(!xian){
-				jh.jh_sbthcd=2;
-			}
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,lxjsdj:null,lxbm:null
@@ -60,7 +58,7 @@
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
 			}
-			zhfzxm_sb(jh,lx);
+			zhfzxm(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 

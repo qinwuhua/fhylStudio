@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
  *
  */
 public interface Plan_wqgzServer {
+	boolean updateLrztBySckid(String sckid);
 	/**
 	 * 危桥改造列表
 	 * @param page

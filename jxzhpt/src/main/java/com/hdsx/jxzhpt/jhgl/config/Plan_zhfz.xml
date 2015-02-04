@@ -207,4 +207,7 @@
 		sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
 		from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
 	</select>
+	<update id="updateLrztBySckid" parameterType="java.util.List">
+ 		update sck_zhfz set lrjh='未列入'  where sckid=#{String}
+ 	</update>
 </mapper>
