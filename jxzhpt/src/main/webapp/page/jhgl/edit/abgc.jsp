@@ -337,14 +337,14 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="JHZTZ"></input> 万元
+					<input type="text" id="JHZTZ" onblur="bzSum()"></input> 万元
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">计划使用部补助金额</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="bbz"></input> 万元
+					<span id="bbz"></span> 万元
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划使用地方自筹资金
@@ -366,7 +366,9 @@
 					class="style1">&nbsp;是否申请按比例补助</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="SFSQABLBZ"/> &nbsp;
+					<!-- <input type="text" id="SFSQABLBZ"/>  -->
+					<span id="SFSQABLBZ"></span>
+					&nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;按比例补助申请文号
@@ -469,6 +471,10 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	var bz;
+	var bl;
+	var fd;
+	var bzzj;
 	sbnf("editjhnf");
 	$.ajax({
 		type:'post',
@@ -488,10 +494,10 @@
 			$('#PFWH').val(data.pfwh);
 			$('#PFSJ').datebox('setValue',data.pfsj);
 			$('#JHZTZ').val(data.pfztz);
-			$('#bbz').val(data.jhsybbzje);
+			$('#bbz').html(data.jhsybbzje);
 			$('#DFZC').val(data.jhsydfzczj);
 			$('#JHXDWH').val(data.jhxdwh);
-			$('#SFSQABLBZ').val(data.sfsqablbz);
+			$('#SFSQABLBZ').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
 			//审查库
@@ -505,6 +511,22 @@
 						//基础
 						$('#lxmc').html(sck.lxmc);
 						$('#lxbm').html(sck.lxbm);
+						if(sck.lxbm.substr(0,1)=="X"){
+							bz="县";
+						}else{
+							bz="国省";
+						}
+						 $.ajax({
+							type:'post',
+							url:'../../../jhgl/lwBzbz.do',
+							data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
+							dataType:'json',
+							success:function(data){
+								bz=data.bz;
+								bl=data.bl;
+								fd=data.fd;
+							}
+						}); 
 						$('#gydwxx').html(sck.gydw);
 						$('#qdzh').html(sck.qdzh);
 						$('#zdzh').html(sck.zdzh);
@@ -536,7 +558,28 @@
 				}
 			});
 		}
-	}); 
+	});
+	
+	function bzSum(){
+		var ztz;
+		if(isNaN($("#JHZTZ").val())){
+			alert("请输入投资金额！");
+			$("#JHZTZ").focus();
+			return;
+		}
+		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if(ztz*1000000000000000>=bzzj*1000000000000000){
+			$("#bbz").html(bzzj.toFixed(3));
+		}else{
+			$("#bbz").html(ztz.toFixed(3));
+		}
+		if(parseFloat($("#JHZTZ").val())>=500){
+			$("#SFSQABLBZ").html("是");
+		}else{
+			$("#SFSQABLBZ").html("否");
+		}
+	}
 	</script>
 </body>
 </html>

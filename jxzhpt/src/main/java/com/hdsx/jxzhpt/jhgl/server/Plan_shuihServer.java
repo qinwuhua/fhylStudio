@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 根据路线查询是否有记录
+	 * @param shuih
+	 * @return
+	 */
+	int queryJlBylx(Plan_lx_shuih shuih);
+	/**
 	 * 水毁信息总计
 	 * @return
 	 */
@@ -75,5 +81,5 @@ public interface Plan_shuihServer {
 	 * @param lxbm
 	 * @return
 	 */
-	int queryGPSBylxbm(String lxbm);
+	Plan_lx_shuih queryGPSBylxbm(Plan_lx_shuih shuih);
 }

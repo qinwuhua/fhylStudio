@@ -23,10 +23,10 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
-		    <div id="left_menu1" title="道班养护" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu1" title="道班养护" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
-		    <div id="left_menu2" title="灾毁情况统计" data-options="iconCls:'icon-reload'" style="overflow:auto;text-align: center;">
+		    <div id="left_menu2" title="灾毁情况统计" data-options="iconCls:'icon-reload'" style="overflow:auto;">
 	
 		    </div>
 		</div>

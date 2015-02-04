@@ -72,12 +72,17 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	}
 
 	@Override
-	public int queryGPSBylxbm(String lxbm) {
-		return queryOne("queryGPSBylxbm",lxbm);
+	public Plan_lx_shuih queryGPSBylxbm(Plan_lx_shuih shuih){
+		return queryOne("queryGPSBylxbm",shuih);
 	}
 
 	@Override
 	public Plan_shuih querySumShuih() {
 		return queryOne("querySumShuih", null);
+	}
+
+	@Override
+	public int queryJlBylx(Plan_lx_shuih shuih) {
+		return queryOne("queryJlBylx", shuih);
 	}
 }

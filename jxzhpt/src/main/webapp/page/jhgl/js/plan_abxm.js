@@ -467,34 +467,42 @@ function openAddAbgc(){
 }
 function dropOne(id){
 	if(confirm("确认要删除选中计划？")){
+		var sel=gridObj.datagrid("getSelections");
+		var strId="",sckId="";
+		$.each(sel,function(index,item){
+			if(index==sel.length-1){
+				strId+=item.id;
+			}else{
+				strId+=item.id+",";
+			}
+			if(index==sel.length-1){
+				sckId+=item.sckid;
+			}else{
+				sckId+=item.sckid+",";
+			}
+		});
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropAbgcById.do',
-			dataType:'text',
-			data:'jh.id='+id,
+			dataType:'json',
+			data:'jh.id='+strId,
 			success:function(data){
 				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
 						"jh.jhwgsj":null,"jh.pfztz":null,
 						"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-				if(readLoad=="true"){
-					alert("删除成功！");
-					gridObj.datagrid("reload",params);
-				}
+				$.ajax({
+					type:'post',
+					url:'../../../jhgl/updateLrztBySckid.do',
+					dataType:'json',
+					data:'jh.sckid='+sckId,
+					success:function(up){
+						if(up.result && data.result){
+							gridObj.datagrid("reload",params);
+						}
+					}
+				});
 			}
 		});
-	}
-}
-function dropAbgcs(id,readLoad){
-	if(confirm("确认要删除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
-		$.each(sel,function(index,item){
-			dropOne(item.id, "false");
-		});
-		alert("删除成功！");
-		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-				"jh.jhwgsj":null,"jh.pfztz":null,
-				"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-		gridObj.datagrid("reload",params);
 	}
 }
 function editAbgc(){
@@ -509,10 +517,10 @@ function editAbgc(){
 			'jh.pfwh':$('#PFWH').val(),
 			'jh.pfsj':$('#PFSJ').datebox('getValue'),
 			'jh.pfztz':$('#JHZTZ').val(),
-			'jh.jhsybbzje':$('#bbz').val(),
+			'jh.jhsybbzje':$('#bbz').html(),
 			'jh.jhsydfzczj':$('#DFZC').val(),
 			'jh.jhxdwh':$('#JHXDWH').val(),
-			'jh.sfsqablbz':$('#SFSQABLBZ').val(),
+			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ABLBZWH').val(),
 			'jh.remarks':$('#JHRemarks').val()};
 	$.ajax({
@@ -523,6 +531,7 @@ function editAbgc(){
 		success:function(data){
 			alert("修改成功！");
 			$('#abgc_xx').dialog('close');
+			searchAbgc();
 		}
 	});
 }

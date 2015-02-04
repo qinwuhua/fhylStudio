@@ -21,7 +21,6 @@ $(function(){
 		var data ="sckid="+parent.rowid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 		"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
 		"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val();
-		alert(data);
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/updateSckwqgz.do',

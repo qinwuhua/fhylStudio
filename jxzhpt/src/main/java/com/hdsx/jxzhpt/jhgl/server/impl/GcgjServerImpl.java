@@ -71,12 +71,22 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 
 	@Override
-	public int queryGPSBylxbm(String lxbm) {
-		return queryOne("queryGPSBylxbm", lxbm);
+	public int queryGPSBylxbm1(Plan_lx_gcgj lx) {
+		return queryOne("queryGPSBylxbm", lx);
 	}
 
 	@Override
 	public Plan_gcgj querySumGcgj() {
 		return queryOne("querySumGcgj", null);
+	}
+
+	@Override
+	public int queryJlBylx(Plan_lx_gcgj lx) {
+		return queryOne("queryJlBylx", lx);
+	}
+
+	@Override
+	public Plan_lx_gcgj queryGPSBylxbm(Plan_lx_gcgj lx) {
+		return queryOne("queryGPSBylxbm2", lx);
 	}
 }

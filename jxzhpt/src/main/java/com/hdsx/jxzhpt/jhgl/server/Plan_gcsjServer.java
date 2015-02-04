@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcsjServer {
 	/**
+	 * 根据路线信息查询是否有记录
+	 * @param lx
+	 * @return
+	 */
+	int queryJlBylx(Plan_lx_gcsj lx);
+	/**
 	 * 工程升级查询
 	 * @param jh
 	 * @param lx
@@ -71,7 +77,7 @@ public interface Plan_gcsjServer {
 	 * @param lxbm
 	 * @return
 	 */
-	int queryGPSBylxbm(String lxbm);
+	Plan_lx_gcsj queryGPSBylxbm(Plan_lx_gcsj gcsj);
 	/**
 	 * 总计信息查询
 	 * @return

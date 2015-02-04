@@ -23,13 +23,13 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:195px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
-		    <div id="left_menu1" title="基础库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu1" title="基础库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    	
 		    </div>
-		    <div id="left_menu2" title="计划库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu2" title="计划库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
-		    <div id="left_menu3" title="工程库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;text-align: center;">
+		    <div id="left_menu3" title="工程库统计分析" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
 		</div>
