@@ -91,7 +91,7 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return queryOne("querySumAbgc", null);
 	}
 	@Override
-	public Bzbz lwBzbz(Bzbz bz) {
-		return queryOne("lwBzbz", bz);
+	public Bzbz lwBzbz(Bzbz bzbz) {
+		return queryOne("lwBzbz", bzbz);
 	}
 }

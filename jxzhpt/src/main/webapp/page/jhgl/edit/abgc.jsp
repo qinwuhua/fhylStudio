@@ -366,7 +366,9 @@
 					class="style1">&nbsp;是否申请按比例补助</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="SFSQABLBZ"/> &nbsp;
+					<!-- <input type="text" id="SFSQABLBZ"/>  -->
+					<span id="SFSQABLBZ"></span>
+					&nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;按比例补助申请文号
@@ -495,7 +497,7 @@
 			$('#bbz').html(data.jhsybbzje);
 			$('#DFZC').val(data.jhsydfzczj);
 			$('#JHXDWH').val(data.jhxdwh);
-			$('#SFSQABLBZ').val(data.sfsqablbz);
+			$('#SFSQABLBZ').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
 			//审查库
@@ -562,18 +564,20 @@
 		var ztz;
 		if(isNaN($("#JHZTZ").val())){
 			alert("请输入投资金额！");
+			$("#JHZTZ").focus();
 			return;
 		}
 		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*bz+parseFloat(fd)*1000000000000000)/1000000000000000;
-		alert("总投资="+ztz+"补助="+bzzj);
+		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
 			$("#bbz").html(bzzj.toFixed(3));
 		}else{
 			$("#bbz").html(ztz.toFixed(3));
 		}
 		if(parseFloat($("#JHZTZ").val())>=500){
-			alert("是");
+			$("#SFSQABLBZ").html("是");
+		}else{
+			$("#SFSQABLBZ").html("否");
 		}
 	}
 	</script>

@@ -237,6 +237,9 @@
 		from xmk_abgc x right join sck_abgc s on (x.id=s.xmkid) right join plan_abgc p on (s.sckid=p.sckid)
 	</select>
 	<select id="lwBzbz" parameterType="bzbz" resultType="bzbz">
-		select * from lwbzbz where xmlx=#{xmlx} and lx=#{lx}
+		select * from lwbzbz where xmlx=#{xmlx} 
+		<if test="lx!=null and lx!=''">
+		and lx=#{lx}
+		</if>
 	</select>
 </mapper>

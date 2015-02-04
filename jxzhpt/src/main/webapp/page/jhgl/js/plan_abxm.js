@@ -509,10 +509,10 @@ function editAbgc(){
 			'jh.pfwh':$('#PFWH').val(),
 			'jh.pfsj':$('#PFSJ').datebox('getValue'),
 			'jh.pfztz':$('#JHZTZ').val(),
-			'jh.jhsybbzje':$('#bbz').val(),
+			'jh.jhsybbzje':$('#bbz').html(),
 			'jh.jhsydfzczj':$('#DFZC').val(),
 			'jh.jhxdwh':$('#JHXDWH').val(),
-			'jh.sfsqablbz':$('#SFSQABLBZ').val(),
+			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ABLBZWH').val(),
 			'jh.remarks':$('#JHRemarks').val()};
 	$.ajax({

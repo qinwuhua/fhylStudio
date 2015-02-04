@@ -465,9 +465,9 @@ function editWqgz(){
 			'jh.pfwh':$('#pfwh').val(),
 			'jh.pfsj':$('#pfsj').datebox('getValue'),
 			'jh.pfztz':$('#jhztz').val(),
-			'jh.jhsybzje':$('#bbz').val(),
+			'jh.jhsybzje':$('#bbz').html(),
 			'jh.jhsydfzcje':$('#zfzc').val(),
-			'jh.sfsqablbz':$('#sfsqablbz').val(),
+			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ablbzwh').val(),
 			'jh.bz':$('#JHRemarks').val()
 	};
