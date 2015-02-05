@@ -174,10 +174,22 @@
 		delete from plan_zhfz jh where jh.id=#{id}
 	</delete>
 	<update id="editZhfzById" parameterType="plan_zhfz">
-		update plan_zhfz set sbnf=#{sbnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
+		update plan_zhfz set sbnf=#{sbnf},
+			<if test="jhkgsj!=null and jhkgsj!=''">
+				jhkgsj=#{jhkgsj},
+			</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">
+				jhwgsj=#{jhwgsj},
+			</if>
+			<if test="xdsj!=null and xdsj!=''">
+				xdsj=#{xdsj},
+			</if>
+			<if test="pfsj!=null and pfsj!=''">
+				pfsj=#{pfsj},
+			</if>
 			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
 			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
-			bz=#{bz},pfsj=#{pfsj} 
+			bz=#{bz}
 		where id=#{id}
 	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">

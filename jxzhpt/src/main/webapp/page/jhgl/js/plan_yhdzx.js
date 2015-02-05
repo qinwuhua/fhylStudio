@@ -529,30 +529,26 @@ function dropYhdzx(id){
 }
 function dropYhdzxs(){
 	var grid =$('#grid').datagrid('getSelections');
-	var a=true;
+	var id="";
 	$.each(grid,function(index,item){
-		if(!a){
-			return false;
-		}else{
-			$.ajax({
-				type:'post',
-				url:'../../../jhgl/dropYhdzxById.do',
-				dataType:'json',
-				data:'jh.id='+item.id,
-				async:false,
-				success:function(data){
-					if(data.result=="false"){
-						a=false;
-					}
-				}
-			});
-		}
-		if(a){
-			alert("删除成功！");
-			searchYhdzx();
+			if(index==grid.length-1){
+				id=item.id;
+			}else{
+				
+			}
+	});
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/dropYhdzxById.do',
+		dataType:'json',
+		data:'jh.id='+item.id,
+		async:false,
+		success:function(data){
+			if(data.result=="false"){
+				a=false;
+			}
 		}
 	});
-	
 }
 function editStatus(jh){
 	var result;

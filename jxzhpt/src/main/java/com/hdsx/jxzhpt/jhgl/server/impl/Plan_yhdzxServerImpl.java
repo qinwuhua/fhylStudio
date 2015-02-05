@@ -43,7 +43,12 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 
 	@Override
 	public boolean dropYhdzxById(String id) {
-		return delete("dropYhdzxById",id)>0;
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropYhdzxById",list)==list.size();
 	}
 
 	@Override

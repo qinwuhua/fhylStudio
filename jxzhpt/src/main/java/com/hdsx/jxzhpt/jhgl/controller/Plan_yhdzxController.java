@@ -84,7 +84,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void dropYhdzxById(){
 		try {
 			Map<String, Object> result=new HashMap<String, Object>();
-			result.put("result", new Boolean(yhdzxServer.dropYhdzxById(jh.getId())));
+			result.put("jh", new Boolean(yhdzxServer.dropYhdzxById(jh.getId())));
+			result.put("lx", new Boolean(yhdzxServer.dropYhdzxLxByJhid(jh.getId())).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

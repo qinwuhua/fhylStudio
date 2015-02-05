@@ -49,7 +49,12 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 
 	@Override
 	public boolean dropShuihById(String id) {
-		return delete("dropShuihById",id)>0;
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropShuihById",list)==list.size();
 	}
 
 	@Override

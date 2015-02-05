@@ -79,7 +79,10 @@ public class Plan_shuihController extends BaseActionSupport {
 	
 	public void dropShuihById(){
 		try {
-			JsonUtils.write(shuihServer.dropShuihById(jh.getId()),getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("jh", new Boolean(shuihServer.dropShuihById(jh.getId())).toString());
+			result.put("lx", new Boolean(shuihServer.dropShuihLxByJhid(jh.getId())).toString());
+			JsonUtils.write(result,getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

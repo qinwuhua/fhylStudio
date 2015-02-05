@@ -41,7 +41,7 @@ function shxm(jh,lx){
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        	var id="'"+row.id+"'";
-	        	result+='<a href="javascript:dropShuih('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">删除</a>';
 	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
@@ -434,14 +434,31 @@ function dropShuih(id,readLoad){
 function dropShuihs(){
 	if(confirm("确认要删除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
+		var id="";
 		$.each(sel,function(index,item){
-			dropShuih(item.id, "false");
+			if(index==sel.length-1){
+				id+=item.id;
+			}else{
+				id+=item.id+",";
+			}
 		});
-		alert("删除成功！");
-		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-				"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
-				"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-		gridObj.datagrid("reload",params);
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropShuihById.do',
+			dataType:'json',
+			data:'jh.id='+id,
+			success:function(data){
+				if(data.jh && data.lx){
+					var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"lx.gydw":null,
+							"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+					alert("删除成功！");
+					gridObj.datagrid("reload",params);
+				}
+			},
+			error:function(){
+				alert("删除失败！");
+			}
+		});
 	}
 }
 function editShuih(){

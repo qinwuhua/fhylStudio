@@ -152,7 +152,7 @@
 		select * from plan_lx_shuih lx right join plan_shuih jh on lx.jhid=jh.id
 		where jh.id=#{id}
 	</select>
-	<delete id="dropShuihById" parameterType="string">
+	<delete id="dropShuihById" parameterType="java.util.List">
 		delete from plan_shuih jh where jh.id=#{id}
 	</delete>
 	<update id="editShuihById" parameterType="plan_shuih">

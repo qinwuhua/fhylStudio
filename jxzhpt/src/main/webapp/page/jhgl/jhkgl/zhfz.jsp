@@ -35,7 +35,6 @@
 			zhfzxm(jh,lx);
 		});
 		function searchZhfz(){
-			alert("查询");
 			var jh={jhnf:null,sbzt:null,spzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
