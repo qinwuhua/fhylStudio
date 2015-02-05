@@ -8,8 +8,8 @@ function querySumAbgc(){
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.zlc);
-			$('#lblYHLC').html(data.yhlc);
+			$('#lblZLC').html(data.jckabgc.qzlc);
+			$('#lblYHLC').html(data.jckabgc.yhlc);
 			$('#lblZTZ').html(data.pfztz);
 			$('#lblBTZ').html(data.jhsybbzje);
 			$('#lblDFTZ').html(data.jhsydfzczj);
@@ -60,15 +60,15 @@ function abgcxm(jh,lx){
 				}
 	        	return result;
 	        }},
-	        {field:'c5',title:'资金追加',width:80,align:'center',
-	        	formatter:function(value,row,index){
-	        		var id="'"+row.id+"'";
-	        		if(row.jgzt!='1')
-	        			return '<a href="javascript:openZjxd('+"'abgc_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
-	        		else
-	        			return '资金追加';
-	        	}
-	        },
+//	        {field:'c5',title:'资金追加',width:80,align:'center',
+//	        	formatter:function(value,row,index){
+//	        		var id="'"+row.id+"'";
+//	        		if(row.jgzt!='1')
+//	        			return '<a href="javascript:openZjxd('+"'abgc_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//	        		else
+//	        			return '资金追加';
+//	        	}
+//	        },
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},

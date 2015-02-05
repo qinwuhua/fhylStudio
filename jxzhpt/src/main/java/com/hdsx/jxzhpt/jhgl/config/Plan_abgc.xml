@@ -36,8 +36,9 @@
 		<result property="gydw" column="gydw"/>
 		<result property="qdzh" column="qdzh"/>
 		<result property="zdzh" column="zdzh"/>
+		<result property="xzqhdm" column="xzqhdm"/>
 		<result property="xzqhmc" column="xzqhmc"/>
-		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="qzlc" column="qzlc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
 	

@@ -206,11 +206,9 @@
 	</insert>
 	<insert id="insertShuih_Lx" parameterType="hashMap">
 		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
-			lxmc,jsdd,bhnr,ylmlx,qdzh,
-			zdzh,qzlc,yhlc) 
-		values(sys_guid(),#{jhid},#{0},#{gydwdm},#{1},#{2},#{3},
-			#{4},#{5},#{6},#{7},#{8},
-			#{9},#{10},#{11})
+			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH) 
+		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},
+			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select  t.roadcode as lxbm,t.roadname as lxmc,

@@ -44,6 +44,10 @@ function shxm(jh,lx){
 	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">删除</a>';
 	        	return result;
 	        }},
+//	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+//	        	var id="'"+row.id+"'";
+//        		return '<a href="javascript:openZjxd('+"'shxm_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 	        	if(row.sbzt=="0" && row.jh_sbthcd==0){
@@ -59,10 +63,6 @@ function shxm(jh,lx){
 					result="已审批";
 				}
 	        	return result;
-	        }},
-	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-	        	var id="'"+row.id+"'";
-        		return '<a href="javascript:openZjxd('+"'shxm_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
