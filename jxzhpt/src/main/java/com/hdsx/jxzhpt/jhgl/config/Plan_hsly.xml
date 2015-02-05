@@ -47,7 +47,7 @@
 			sgtpfwh=#{sgtpfwh},zyjsnr=#{zyjsnr},xzscl=#{xzscl}
 		where id=#{id}
 	</update>
-	<delete id="dropHslyById" parameterType="string">
+	<delete id="dropHslyById" parameterType="java.util.List">
 		delete from plan_hsly where id=#{id}
 	</delete>
 	<select id="querySumHsly" resultType="plan_hsly">

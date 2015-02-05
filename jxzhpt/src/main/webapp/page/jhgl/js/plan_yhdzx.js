@@ -39,8 +39,7 @@ function yhdzxxm(jh,lx){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-		        	  var id="'"+row.id+"'";
-		        	  result+='<a href="javascript:dropYhdzx('+id+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">删除</a>';
 		        	  return result;
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center',
@@ -528,27 +527,30 @@ function dropYhdzx(id){
 	});
 }
 function dropYhdzxs(){
-	var grid =$('#grid').datagrid('getSelections');
-	var id="";
-	$.each(grid,function(index,item){
-			if(index==grid.length-1){
-				id=item.id;
-			}else{
-				
+	if(confirm("确定要删除所选中的计划?删除后不能回复，如有需要请重新添加！")){
+		var grid =$('#grid').datagrid('getSelections');
+		var id="";
+		$.each(grid,function(index,item){
+				if(index==grid.length-1){
+					id+=item.id;
+				}else{
+					id+=item.id+",";
+				}
+		});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropYhdzxById.do',
+			dataType:'json',
+			data:'jh.id='+id,
+			async:false,
+			success:function(data){
+				if(data.jh && data.lx){
+					alert("删除成功！");
+					searchYhdzx();
+				}
 			}
-	});
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/dropYhdzxById.do',
-		dataType:'json',
-		data:'jh.id='+item.id,
-		async:false,
-		success:function(data){
-			if(data.result=="false"){
-				a=false;
-			}
-		}
-	});
+		});
+	}
 }
 function editStatus(jh){
 	var result;

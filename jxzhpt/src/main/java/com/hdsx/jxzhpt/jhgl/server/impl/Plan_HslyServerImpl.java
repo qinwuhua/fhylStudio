@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,12 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 	}
 	@Override
 	public boolean dropHslyById(String id) {
-		return delete("dropHslyById",id)>0;
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropHslyById",list)==list.size();
 	}
 	@Override
 	public Plan_hsly querySumHsly() {
