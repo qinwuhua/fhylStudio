@@ -365,7 +365,7 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" style="width: 80px;" id="zfzc"/> 万元
+					<span id="zfzc"></span> 万元
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -459,7 +459,7 @@
 			$('#pfsj').datebox('setValue',data.pfsj);
 			$('#jhztz').val(data.pfztz);
 			$('#bbz').html(data.jhsybzje);
-			$('#zfzc').val(data.jhsydfzcje);
+			$('#zfzc').html(data.jhsydfzcje);
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.bz);
@@ -529,10 +529,13 @@
 		bzzj=(parseFloat($("#qlqc").html())*1000000000000000*parseFloat($("#qlqk").html())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
 			$("#bbz").html(bzzj.toFixed(3));
+			$("#zfzc").html((parseFloat($("#jhztz").val())-bzzj.toFixed(3)).toFixed(3));
 		}else{
 			$("#bbz").html(ztz.toFixed(3));
+			$("#zfzc").html((parseFloat($("#jhztz").val())-ztz.toFixed(3)).toFixed(3));
 		}
-		if(parseFloat($("#jhztz").val())>=500){
+		
+		if(parseFloat($("#jhztz").val())*100000>=500*100000){
 			$("#sfsqablbz").html("是");
 		}else{
 			$("#sfsqablbz").html("否");
