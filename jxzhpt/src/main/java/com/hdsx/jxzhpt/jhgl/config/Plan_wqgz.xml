@@ -238,4 +238,7 @@
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_wqgz set lrjh='未列入'  where sckid=#{String}
  	</update>
+ 	<select id="queryJckWqgz" parameterType="String" resultType="plan_wqgz">
+		select * from xmk_wqgz where qlbh=#{String}
+	</select>
 </mapper>
