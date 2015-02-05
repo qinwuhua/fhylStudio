@@ -25,6 +25,7 @@
 		<result property="lxmc" column="lxmc"/>
 		<result property="qdzh" column="qdzh"/>
 		<result property="zdzh" column="zdzh"/>
+		<result property="qzlc" column="qzlc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
 	<select id="queryZhfzList"  parameterType="java.util.Map"  resultMap="zhfz_jh">
@@ -215,7 +216,7 @@
 		where sckid = (select sckid from sck_zhfz where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5})
 	</update>
 	<select id="querySumZhfz" resultMap="zhfz_jh">
-		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.zlc) as zlc,sum(x.yhlc) as yhlc,
+		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.yhlc) as yhlc,
 		sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
 		from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
 	</select>

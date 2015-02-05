@@ -48,9 +48,9 @@ function hslyglxm(hsly){
 	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">删除</a>';
 	        	return result;
 	        }},
-	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;">资金追加</a>';
-	        }},
+//	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+//	        	return '<a style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//	        }},
 	        {field:'c4',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){
 	        	return '计划年份';
 	        }},
