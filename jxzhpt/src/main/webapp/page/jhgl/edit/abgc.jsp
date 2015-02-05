@@ -384,26 +384,19 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divGKBG_TJ" style="display: none;">
+					<div id="divGKBG_TJ" style="display: block;">
 						<table width="100%" cellpadding="0" cellspacing="0">
 							<tr>
-								<td align="left" nowrap="nowrap" style="width: 50%;"><span
-									id="lblGKBG_GK">暂无附件！</span> <a
-									onclick="return CheckFJ(this.innerText);" id="btnGKBG_GK"
-									href="javascript:__doPostBack('btnGKBG_GK','')"
-									style="color: #2C7ED1;"></a></td>
-								<td align="left"><a onclick="return toDialogRoad('GKBG');"
-									id="btnUpdate_GK"
-									href="javascript:__doPostBack('btnUpdate_GK','')"
-									style="color: #2C7ED1;">上传</a>&nbsp;|&nbsp;</td>
+								<td align="left" nowrap="nowrap" style="width: 50%;">
+									<span id="lblGKBG_GK">暂无附件！</span></td>
+								<td align="left">
+									<a id="gkbg"  onclick="uploadFile('gkbg')"href="#"style="color: #2C7ED1;">上传</a>
+									&nbsp;|&nbsp;删除</td>
 							</tr>
 						</table>
 					</div>
-					<div id="divGKBG_XZ" style="display: block;">
-						<span id="lblGKBG_XZ">暂无附件！</span> <a
-							onclick="return CheckFJ(this.innerText);" id="btnGKBGXZ"
-							href="javascript:__doPostBack('btnGKBGXZ','')"
-							style="color: #2C7ED1;"></a>
+					<div id="divGKBG_XZ" style="display: none;">
+						<span id="lblGKBG_XZ">暂无附件！</span>
 					</div>
 				</td>
 			</tr>
@@ -413,23 +406,19 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<div id="divSJSGT_TJ" style="display: none;">
+					<div id="divSJSGT_TJ" style="display: block;">
 						<table width="100%" cellpadding="0" cellspacing="0"
 							style="height: 14px">
 							<tr>
 								<td align="left" nowrap="nowrap" style="width: 50%;"><span
-									id="lblSJSGT_SG">暂无附件！</span> <a
-									onclick="return CheckFJ(this.innerText);" id="btnSJSGT_SG"
-									href="javascript:__doPostBack('btnSJSGT_SG','')"
-									style="color: #2C7ED1;"></a></td>
-								<td align="left"><a onclick="return toDialogRoad('SJSGT');"
-									id="btnUpdate_SG"
-									href="javascript:__doPostBack('btnUpdate_SG','')"
-									style="color: #2C7ED1;">上传</a>&nbsp;|&nbsp;</td>
+									id="lblSJSGT_SG">暂无附件！</span></td>
+								<td align="left">
+									<a onclick="uploadFile('jhsgt')" id="gkbg" href="#" style="color: #2C7ED1;">上传</a>
+									&nbsp;|&nbsp;删除</td>
 							</tr>
 						</table>
 					</div>
-					<div id="divSJSGT_XZ" style="display: block;">
+					<div id="divSJSGT_XZ" style="display: none;">
 						<span id="lblSJSGT_XZ">暂无附件！</span> <a
 							onclick="return CheckFJ(this.innerText);" id="btnSJSGTXZ"
 							href="javascript:__doPostBack('btnSJSGTXZ','')"

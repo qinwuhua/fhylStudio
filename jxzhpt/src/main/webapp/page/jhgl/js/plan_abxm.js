@@ -535,6 +535,29 @@ function editAbgc(){
 		}
 	});
 }
+
+function uploadFile(str){
+	alert($('#jhid').val());
+	var title="";
+	if(str=="gkbg"){
+		title='请选择工可报告附件';
+	}else{
+		title='请选择设计施工图附件';
+	}
+	var weatherDlg = new J.dialog( {
+		id : 'files1',
+		title : title,
+		page : '../upload.jsp?url='+"/jxzhpt/jhgl/uploadAbgcFile.do"+'&flag='+'abgc'+'&type='+str+'&jhid='+$('#jhid').val(),
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

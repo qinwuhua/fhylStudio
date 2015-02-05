@@ -222,4 +222,10 @@
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_zhfz set lrjh='未列入'  where sckid=#{String}
  	</update>
+ 	<update id="updateGkbg" parameterType="plan_zhfz">
+ 		update plan_zhfz set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
+ 	</update>
+ 	<update id="updateSjsgt" parameterType="plan_zhfz">
+ 		update plan_zhfz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
+ 	</update>
 </mapper>

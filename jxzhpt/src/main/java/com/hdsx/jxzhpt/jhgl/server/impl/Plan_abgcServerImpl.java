@@ -144,4 +144,12 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public Bzbz lwBzbz(Bzbz bz) {
 		return queryOne("lwBzbz", bz);
 	}
+	@Override
+	public boolean updateGkbg(Plan_abgc jh) {
+		return update("updateGkbg", jh)>0;
+	}
+	@Override
+	public boolean updateSjsgt(Plan_abgc jh) {
+		return update("updateSjsgt", jh)>0;
+	}
 }

@@ -60,6 +60,8 @@ public class Plan_zhfz {
 	private String spbmdm;//审批部门的部门代码
 	private Jckzhfz jckzhfz;
 	private String sfylsjl;//最近年份是否有历史记录
+	private String gkbgdata;
+	private String sjsgtdata;
 	public String getSfylsjl() {
 		return sfylsjl;
 	}
@@ -389,5 +391,17 @@ public class Plan_zhfz {
 	}
 	public void setGys(String gys) {
 		this.gys = gys;
+	}
+	public String getGkbgdata() {
+		return gkbgdata;
+	}
+	public void setGkbgdata(String gkbgdata) {
+		this.gkbgdata = gkbgdata;
+	}
+	public String getSjsgtdata() {
+		return sjsgtdata;
+	}
+	public void setSjsgtdata(String sjsgtdata) {
+		this.sjsgtdata = sjsgtdata;
 	}
 }

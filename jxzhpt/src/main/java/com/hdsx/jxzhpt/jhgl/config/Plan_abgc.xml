@@ -247,4 +247,10 @@
 		and lx=#{lx}
 		</if>
 	</select>
+	<update id="updateGkbg" parameterType="plan_abgc">
+ 		update plan_abgc set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
+ 	</update>
+ 	<update id="updateSjsgt" parameterType="plan_abgc">
+ 		update plan_abgc set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
+ 	</update>
 </mapper>

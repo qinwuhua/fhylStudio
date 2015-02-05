@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -209,6 +210,32 @@ public class Plan_abgcController extends BaseActionSupport{
 			JsonUtils.write(abgcServer.lwBzbz(bzbz), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void uploadAbgcFile(){
+		try {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			int n=1024;
+			byte buffer[] = new byte[n]; 
+				while ((fs.read(buffer, 0, n) != -1) && (n> 0)) { 
+				    System.out.print(new String(buffer));   
+				}
+				if("gkbg".equals(jh.getGkbgmc())){
+					   jh.setGkbgmc(fileuploadFileName);
+					   jh.setGkbgdata(new String(buffer));
+					   if(abgcServer.updateGkbg(jh))
+						   response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}else{
+					jh.setSjsgtmc(fileuploadFileName);
+					jh.setSjsgtdata(new String(buffer));
+					if(abgcServer.updateSjsgt(jh))
+						response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
