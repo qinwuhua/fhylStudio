@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcsjServer {
 	/**
+	 * 根据计划ID删除路线
+	 * @param id
+	 * @return
+	 */
+	boolean dropGcsjLxByJhid(String id);
+	/**
 	 * 根据路线信息查询是否有记录
 	 * @param lx
 	 * @return

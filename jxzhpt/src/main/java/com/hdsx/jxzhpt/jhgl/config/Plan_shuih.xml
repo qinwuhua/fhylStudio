@@ -221,4 +221,7 @@
 		select count(jh.id) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
 		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<=#{zdzh})]]>
 	</select>
+	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
+		delete from plan_lx_shuih where jhid=#{String}
+	</delete>
 </mapper>

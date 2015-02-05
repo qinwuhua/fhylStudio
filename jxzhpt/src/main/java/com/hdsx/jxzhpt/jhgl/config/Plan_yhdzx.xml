@@ -174,4 +174,7 @@
 		sum(jh.TOTALINVEST) as totalinvest,sum(jh.totalsubsidyfund) as totalsubsidyfund
 		from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
 	</select>
+	<select id="dropYhdzxLxByJhid" parameterType="java.util.List">
+		delete from plan_lx_yhdzx where jhid=#{String}
+	</select>
 </mapper>

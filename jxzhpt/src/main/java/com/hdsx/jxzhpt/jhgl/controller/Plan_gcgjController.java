@@ -91,7 +91,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 
 	public void dropGcgjById(){
 		try {
-			JsonUtils.write(gcgjServer.dropGcgjById(jh.getId()), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("jh", new Boolean(gcgjServer.dropGcgjById(jh.getId())).toString());
+			result.put("lx", new Boolean(gcgjServer.dropGcgjLxByJhid(jh.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

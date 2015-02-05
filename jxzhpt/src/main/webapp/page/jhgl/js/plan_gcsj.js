@@ -30,7 +30,7 @@ function gclmsjxm(jh,lx){
 				if(row.jh_sbthcd==0){
 					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 					var id="'"+row.id+"'";
-					result+='<a href="javascript:dropGcsj('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+					result+='<a href="javascript:dropGcsjs()" style="text-decoration:none;color:#3399CC;">删除</a>';
 				}else{
 					result+='<a style="text-decoration:none;">编辑</a>    ';
 					result+='<a style="text-decoration:none;">删除</a>';
@@ -429,17 +429,27 @@ function queryGcsjXx(id){
 		}
 	});
 }
-function dropGcsj(id,readLoad){
+function dropGcsjs(){
+	if(confirm("确认要删除选中计划？")){
+		var sel=gridObj.datagrid("getSelections");
+		var id="";
+		$.each(sel,function(index,item){
+			if(index==sel.length-1){
+				id+=item.id;
+			}else{
+				id+=item.id+",";
+			}
+		});
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropGcsjById.do',
-			dataType:'text',
+			dataType:'json',
 			data:'jh.id='+id,
 			success:function(data){
-				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-						"jh.jhwgsj":null,"jh.pfztz":null,
-						"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-				if(readLoad=="true"){
+				if(data.jh && data.lx){
+					var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
+							"jh.jhwgsj":null,"jh.pfztz":null,
+							"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 					alert("删除成功！");
 					gridObj.datagrid("reload",params);
 				}
@@ -448,18 +458,6 @@ function dropGcsj(id,readLoad){
 				alert("删除失败！");
 			}
 		});
-}
-function dropGcsjs(){
-	if(confirm("确认要删除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
-		$.each(sel,function(index,item){
-			dropGcsj(item.id, "false");
-		});
-		alert("删除成功！");
-		var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
-				"jh.jhwgsj":null,"jh.pfztz":null,
-				"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-		gridObj.datagrid("reload",params);
 	}
 }
 function editGcsj(){

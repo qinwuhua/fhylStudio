@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 根据计划ID删除路线信息
+	 * @param id
+	 * @return
+	 */
+	boolean dropShuihLxByJhid(String id);
+	/**
 	 * 根据路线查询是否有记录
 	 * @param shuih
 	 * @return

@@ -472,14 +472,35 @@ function dropZhfz(id,readLoad){
 function dropZhfzs(){
 	if(confirm("确认要删除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
+		var id="",sckid="";
 		$.each(sel,function(index,item){
-			dropZhfz(item.id, "false");
+			if(index==sel.length-1){
+				id+=item.id;
+				sckid+=item.sckid;
+			}else{
+				id+=item.id+",";
+				sckid+=item.sckid+",";
+			}
 		});
-		alert("删除成功！");
-		var params={"jh.sbzt":null,"jh.spzt":null,"jh.sbnf":null,"jh.jhkgsj":null,
-				"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
-				"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-		gridObj.datagrid("reload",params);
+		var params={'jh.id':id,'jh.sckid':sckid};
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropZhfzById.do',
+			dataType:'json',
+			data:params,
+			success:function(data){
+				var params={"jh.sbzt":null,"jh.spzt":null,"jh.sbnf":null,"jh.jhkgsj":null,
+						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
+						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
+				if(data.edit && data.drop){
+					alert("删除成功！");
+					gridObj.datagrid("reload",params);
+				}
+			},
+			error:function(){
+				alert("删除失败！");
+			}
+		});
 	}
 }
 function editZhfz(){

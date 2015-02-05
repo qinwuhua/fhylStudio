@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,5 +74,15 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	@Override
 	public Plan_yhdzx querySumYhdzx() {
 		return queryOne("querySumYhdzx", null);
+	}
+
+	@Override
+	public boolean dropYhdzxLxByJhid(String id) {
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropYhdzxLxByJhid", list)==list.size();
 	}
 }

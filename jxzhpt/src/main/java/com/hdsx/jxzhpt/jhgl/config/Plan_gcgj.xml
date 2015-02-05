@@ -168,7 +168,7 @@
 	<select id="queryGcgjNfs" resultType="treenode">
 		 select distinct t.sbnf as text from PLAN_GCgJ t order by t.sbnf
 	</select>
-	<delete id="dropGcgjById" parameterType="string">
+	<delete id="dropGcgjById" parameterType="java.util.List">
 		delete from plan_gcgj jh where jh.id=#{id}
 	</delete>
 	<update id="editGcgjById" parameterType="plan_gcgj">
@@ -246,4 +246,7 @@
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
 		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh})]]>
 	</select>
+	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
+		delete from plan_lx_gcgj where jhid=#{String}
+	</delete>
 </mapper>

@@ -1,8 +1,10 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.views.xslt.ArrayAdapter;
 import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
@@ -47,7 +49,12 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 	
 	public boolean dropGcgjById(String id){
-		return delete("dropGcgjById",id)>0;
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropGcgjById",list)==list.size();
 	}
 
 	@Override
@@ -88,5 +95,15 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	@Override
 	public Plan_lx_gcgj queryGPSBylxbm(Plan_lx_gcgj lx) {
 		return queryOne("queryGPSBylxbm2", lx);
+	}
+
+	@Override
+	public boolean dropGcgjLxByJhid(String id) {
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropGcgjLxByJhid", list)==list.size();
 	}
 }

@@ -83,7 +83,10 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void dropGcsjById(){
 		try {
-			JsonUtils.write(gcsjServer.dropGcsjById(jh.getId()), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("jh", new Boolean(gcsjServer.dropGcsjById(jh.getId())).toString());
+			result.put("lx", new Boolean(gcsjServer.dropGcsjLxByJhid(jh.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

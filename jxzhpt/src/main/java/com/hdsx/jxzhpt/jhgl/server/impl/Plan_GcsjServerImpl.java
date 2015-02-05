@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.server.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,12 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 
 	@Override
 	public boolean dropGcsjById(String id) {
-		return delete("dropGcsjById", id) > 0;
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropGcsjById", list) ==list.size();
 	}
 
 	@Override
@@ -84,6 +90,16 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	@Override
 	public int queryJlBylx(Plan_lx_gcsj lx) {
 		return queryOne("queryJlBylx", lx);
+	}
+
+	@Override
+	public boolean dropGcsjLxByJhid(String id) {
+		String [] ids=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<ids.length;i++){
+			list.add(ids[i]);
+		}
+		return deleteBatch("dropGcsjLxByJhid", list)==list.size();
 	}
 
 }
