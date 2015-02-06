@@ -219,7 +219,7 @@
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_shuih" resultType="int">
 		select count(jh.id) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<=#{zdzh})]]>
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<=#{zdzh}) and jh.sbnf<#{jhid}]]>
 	</select>
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}
@@ -240,7 +240,11 @@
 		</if>
 		where jh.id=#{id}
 	</update>
-	<select id="queryShuihwjById" parameterType="plan_gcgj" resultType="plan_shuih">
+	<select id="queryShuihwjById" parameterType="plan_shuih" resultType="plan_shuih">
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_shuih j where id=#{id}
+	</select>
+	<select id="queryJhExist" parameterType="plan_lx_shuih" resultType="int">
+		select count(*) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
+		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
 	</select>
 </mapper>

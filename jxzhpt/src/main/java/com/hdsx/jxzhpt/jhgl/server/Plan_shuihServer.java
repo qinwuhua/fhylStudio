@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 查询此路段是否有计划
+	 * @param shuih
+	 * @return
+	 */
+	int queryJhExist(Plan_lx_shuih shuih);
+	/**
 	 * 根据ID查询相应文件下载
 	 * @param id
 	 * @return

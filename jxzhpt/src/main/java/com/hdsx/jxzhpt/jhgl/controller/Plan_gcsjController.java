@@ -215,19 +215,25 @@ public class Plan_gcsjController extends BaseActionSupport{
 				lx.setQdzh(map.get("7").toString());
 				lx.setZdzh(map.get("8").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
-				map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
-				strVerify=ImportVerify.gcsjVerify(map);
-				Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
-				if(queryGPSBylxbm==null && strVerify.equals("")){
-					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+				lx.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				if(gcsjServer.queryJhExist(lx)==0){
+					strVerify=ImportVerify.gcsjVerify(map);
+					Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
+					if(queryGPSBylxbm==null && strVerify.equals("")){
+						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+					}else{
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="路线名称不正确;";
+						}else if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
+							strVerify+="起止里程不正确;";
+						}else{
+							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
+						}
+					}
 				}else{
-					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-						strVerify+="路线名称不正确;";
-					}
-					if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
-						strVerify+="起止里程不正确;";
-					}
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】已经存在计划！";
 				}
+				
 				if(!strVerify.equals("")){
 					break;
 				}

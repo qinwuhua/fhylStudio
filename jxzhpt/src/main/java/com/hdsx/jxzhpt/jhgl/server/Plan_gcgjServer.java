@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
 	/**
+	 * 查询此路段是否存在计划
+	 * @param gcgj
+	 * @return
+	 */
+	int queryJhExist(Plan_lx_gcgj gcgj);
+	/**
 	 * 根据ID查询对应文件
 	 * @param id
 	 * @return

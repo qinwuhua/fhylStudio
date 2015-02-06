@@ -112,4 +112,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return queryOne("queryWjById", id);
 	}
 
+	@Override
+	public int queryJhExist(Plan_lx_gcsj lx) {
+		return queryOne("queryJhExist", lx);
+	}
+
 }

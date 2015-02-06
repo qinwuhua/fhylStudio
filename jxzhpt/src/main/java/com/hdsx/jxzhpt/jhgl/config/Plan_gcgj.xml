@@ -243,7 +243,7 @@
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh}) and jh.sbnf!=#{jhid}]]>
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh}) and jh.sbnf<#{jhid}]]>
 	</select>
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
@@ -266,5 +266,9 @@
 	</update>
 	<select id="queryGjwjById" parameterType="plan_gcgj" resultType="plan_gcgj">
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcgj j where id=#{id}
+	</select>
+	<select id="queryJhExist" parameterType="plan_lx_gcgj" resultType="int">
+		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
 	</select>
 </mapper>

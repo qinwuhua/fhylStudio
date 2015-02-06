@@ -574,10 +574,10 @@
 			$('#tzgs').html(data.tzgs);
 			$('#jsxz').html(data.jsxz);
 			$('#jsnr').html(data.jsnr);
-			if(data.gkbgmc!=null){
+			if(data.gkbgmc!=null && data.gkbgmc!=''){
 				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
 			}
-			if(data.sjsgtmc!=null){
+			if(data.sjsgtmc!=null && data.sjsgtmc!=''){
 				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
 			}
 		}
