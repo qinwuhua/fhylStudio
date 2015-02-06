@@ -436,10 +436,12 @@ function queryGcgjXx(id){
 			$('#gksjwh').html(data.gksjwh);
 			$('#bz').html(data.bz);
 			if(data.gkbgmc!=null){
-				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+				var mc="'"+data.gkbgmc+"'";
+				$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
 			}
 			if(data.sjsgtmc!=null){
-				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+				var mc="'"+data.sjsgtmc+"'";
+				$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
 			}
 		}
 	}); 
@@ -572,6 +574,12 @@ function editStatus(jh){
 		}
 	});
 	return result;
+}
+function downGkwj(file){
+	window.location.href="/jxzhpt/jhgl/queryGjwjById.do?jh.id="+xxId+"&jh.gkbgmc="+file;
+}
+function downSjt(file){
+	window.location.href="/jxzhpt/jhgl/queryGjwjById.do?jh.id="+xxId+"&jh.sjsgtmc="+file;
 }
 function exportGj(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;

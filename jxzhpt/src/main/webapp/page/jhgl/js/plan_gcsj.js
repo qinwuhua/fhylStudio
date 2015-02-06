@@ -426,6 +426,14 @@ function queryGcsjXx(id){
 			$('#sfgyhbm').html(data.sfgyhbm);
 			$('#gksjwh').html(data.gksjwh);
 			$('#remarks').html(data.remarks);
+			if(data.gkbgmc!=null){
+				var mc="'"+data.gkbgmc+"'";
+				$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
+			}
+			if(data.sjsgtmc!=null){
+				var mc="'"+data.sjsgtmc+"'";
+				$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
+			}
 		}
 	});
 }
@@ -538,6 +546,12 @@ function editStatus(jh){
 		}
 	});
 	return result;
+}
+function downGkwj(file){
+	window.location.href="/jxzhpt/jhgl/queryWjById.do?jh.id="+xxId+"&jh.gkbgmc="+file;
+}
+function downSjt(file){
+	window.location.href="/jxzhpt/jhgl/queryWjById.do?jh.id="+xxId+"&jh.sjsgtmc="+file;
 }
 function exportSj(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;

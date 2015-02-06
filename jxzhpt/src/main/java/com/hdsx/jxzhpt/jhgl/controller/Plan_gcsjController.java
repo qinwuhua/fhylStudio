@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,6 +44,28 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private String uploadGkFileName;
 	private File uploadSjt;
 	private String uploadSjtFileName;
+	
+	public void queryWjById(){
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			Plan_gcsj gcsj = gcsjServer.queryWjById(jh.getId());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] file=null;
+			if(jh.getGkbgmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getGkbgmc().substring(0,jh.getGkbgmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getGkbgmc().substring(jh.getGkbgmc().indexOf(".")));
+				file=gcsj.getGkbgwj();
+			}else if(jh.getSjsgtmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getSjsgtmc().substring(0,jh.getSjsgtmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getSjsgtmc().substring(jh.getSjsgtmc().indexOf(".")));
+				file=gcsj.getSjsgtwj();
+			}
+			out.write(file);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void uploadGcsjFile(){
 		try{

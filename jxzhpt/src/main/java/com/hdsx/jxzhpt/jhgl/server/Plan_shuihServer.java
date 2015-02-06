@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 根据ID查询相应文件下载
+	 * @param id
+	 * @return
+	 */
+	Plan_shuih queryShuihwjById(String id);
+	/**
 	 * 上传文件到数据库中
 	 * @param jh
 	 * @return

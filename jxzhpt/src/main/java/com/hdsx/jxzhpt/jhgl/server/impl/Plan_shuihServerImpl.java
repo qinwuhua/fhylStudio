@@ -106,4 +106,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public boolean uploadShuihFile(Plan_shuih jh) {
 		return update("uploadShuihFile", jh)>0;
 	}
+
+	@Override
+	public Plan_shuih queryShuihwjById(String id) {
+		return queryOne("queryShuihwjById", id);
+	}
 }

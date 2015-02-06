@@ -42,6 +42,28 @@ public class Plan_shuihController extends BaseActionSupport {
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
+	public void queryShuihwjById(){
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			Plan_shuih shuih = shuihServer.queryShuihwjById(jh.getId());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] file=null;
+			if(jh.getGkbgmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getGkbgmc().substring(0,jh.getGkbgmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getGkbgmc().substring(jh.getGkbgmc().indexOf(".")));
+				file=shuih.getGkbgwj();
+			}else if(jh.getSjsgtmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getSjsgtmc().substring(0,jh.getSjsgtmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getSjsgtmc().substring(jh.getSjsgtmc().indexOf(".")));
+				file=shuih.getSjsgtwj();
+			}
+			out.write(file);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void uploadShuihFile(){
 		try{
 			HttpServletResponse response = ServletActionContext.getResponse();

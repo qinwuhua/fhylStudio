@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
 	/**
+	 * 根据ID查询对应文件
+	 * @param id
+	 * @return
+	 */
+	Plan_gcgj queryGjwjById(String id);
+	/**
 	 * 上传文件到数据库中
 	 * @param jh
 	 * @return

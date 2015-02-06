@@ -107,4 +107,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return update("uploadGcsjFile", jh)>0;
 	}
 
+	@Override
+	public Plan_gcsj queryWjById(String id) {
+		return queryOne("queryWjById", id);
+	}
+
 }

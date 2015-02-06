@@ -508,7 +508,6 @@ function queryYhdzxById(id){
 			$('#lblXCHSQK').html(data.xchsqk);
 			$('#lblSTCBZ').html(data.remarks);
 			$('#lblQTBZ').html(data.qtbz);
-			data.classify;
 		}
 	});
 }

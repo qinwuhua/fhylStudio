@@ -284,4 +284,7 @@
 		</if>
 		where jh.id=#{id}
 	</update>
+	<select id="queryWjById" parameterType="plan_gcsj" resultType="plan_gcsj">
+		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcsj j where id=#{id}
+	</select>
 </mapper>

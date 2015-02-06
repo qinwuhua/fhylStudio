@@ -111,4 +111,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean uploadGcgjFile(Plan_gcgj jh) {
 		return update("uploadGcgjFile", jh)>0;
 	}
+
+	@Override
+	public Plan_gcgj queryGjwjById(String id) {
+		return queryOne("queryGjwjById", id);
+	}
 }

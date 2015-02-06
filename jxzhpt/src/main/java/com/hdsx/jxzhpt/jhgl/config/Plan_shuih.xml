@@ -240,4 +240,7 @@
 		</if>
 		where jh.id=#{id}
 	</update>
+	<select id="queryShuihwjById" parameterType="plan_gcgj" resultType="plan_shuih">
+		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_shuih j where id=#{id}
+	</select>
 </mapper>
