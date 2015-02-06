@@ -25,8 +25,26 @@
 			sbyf = y+"-"+m;
 			$("#tj_sbsj").text(sbsj);
 			getYuefen();
+			//alert(parent.data.wcqk);
+			
 		});
-	
+	var wcqkmax;
+	var wcqkmin;
+	function chaxun(){
+		var data="gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype=wqgz"+"&gcglwqgz.sbyf="+$("#tj_sbyf").find("option:selected").text();
+		$.ajax({
+			type:'post',
+			url:'../../../../gcgl/selectWqgzwcqk.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				wcqkmax=msg.wcqkmax;
+				wcqkmin=msg.wcqkmin;
+				$("#tj_wcqk").val(">"+msg.wcqkmin+",<"+msg.wcqkmax);
+				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+			}
+		});	
+	}
 	function getYuefen(){
 		//alert(parent.parent.obj1.jhid);
 		var data="jhid="+parent.parent.obj1.jhid;
@@ -37,13 +55,55 @@
 			dataType:'json',
 			success:function(msg){
 				for ( var i = 0; i < msg.length; i++){
-					$("#tj_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+					$("#tj_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 				}
+				$("#tj_zjdw_btz").val(msg[0].cgsdwzj);
+				chaxun();
 			}
 		});	
 		
 	}	
-		
+	function setZjDW(){
+		$("#tj_zjdw_btz").val($("#tj_sbyf").val());
+		chaxun();
+	}
+	
+	function checkZJ1(aa){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	    if( !g.test(aa.value)){
+	    	alert("请输入正确的金额");
+	    	$(aa).val('');
+	    }
+	}
+	function checkwcqk1(aa){
+		$(aa).val('');
+		$("#tj_wcqk").attr("style",'color:#000000;width: 70px;');
+	}
+	function checkWCQK(aa){
+		var g=/(^[1-9][0-9]$)|(^100&)|(^[1-9]$)$/;
+		 if( !g.test(aa.value)){
+		    	alert("请输入正确的数值1-100");
+		    	$(aa).val('');
+		    	$("#tj_wcqk").val(">"+wcqkmin+",<"+wcqkmax);
+				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+		    }
+		if(wcqkmin!=''){
+			if(Number(aa.value)<=Number(wcqkmin)){
+				alert("请输入大于"+wcqkmin+"的值");
+				$(aa).val('');
+				$("#tj_wcqk").val(">"+wcqkmin+",<"+wcqkmax);
+				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+			}
+		}
+		if(wcqkmax!=''){
+			if(Number(aa.value)>=Number(wcqkmax)){
+				alert("请输入小于"+wcqkmax+"的值");
+				$(aa).val('');
+				$("#tj_wcqk").val(">"+wcqkmin+",<"+wcqkmax);
+				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+			}
+		}
+	}
 	</script>
 	<style type="text/css">
 <!--
@@ -80,9 +140,9 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='checkZJ1(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" />&nbsp;&nbsp;&nbsp;&nbsp; -->
-                                 其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                 其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='checkZJ1(this)' />&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -93,9 +153,9 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input style="width: 50px" name="ZJ_BTZ" type="text" id="tj_zjdw_btz"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" name="ZJ_BTZ" type="text" id="tj_zjdw_btz"  readonly="readonly"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input style="width: 50px" name="ZJ_STZ" type="text" id="tj_zjdw_stz" />&nbsp;&nbsp;&nbsp;&nbsp;  -->
-                                其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='checkZJ1(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -115,7 +175,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
-                                <input style="width: 50px" name="WCQK" type="text" id="tj_wcqk" />
+                                <input style="width: 70px" name="WCQK" type="text" id="tj_wcqk"  onfocus="checkwcqk1(this)" onblur="checkWCQK(this)"/>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -155,7 +215,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
-                                <select id="tj_sbyf"></select>
+                                <select id="tj_sbyf" onchange="setZjDW()"></select>
                             </td>
                         </tr>
                     </table>

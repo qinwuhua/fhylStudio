@@ -23,6 +23,7 @@
 	<action name="deleteWqgzFile" class="gcglwqgzController" method="deleteWqgzFile"/>
 	<action name="sbWqgzYb" class="gcglwqgzController" method="sbWqgzYb"/>
 	<action name="selectWqgzyf" class="gcglwqgzController" method="selectWqgzyf"/>
+	<action name="selectWqgzwcqk" class="gcglwqgzController" method="selectWqgzwcqk"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
