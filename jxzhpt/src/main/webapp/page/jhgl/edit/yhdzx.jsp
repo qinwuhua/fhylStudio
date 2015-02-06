@@ -298,6 +298,10 @@
 			$('#txtQTBZ').val(data.qtbz);
 		}
 	});
+	function updateYhdzx(){
+		var jh={};
+		var lx={};
+	}
 	</script>
 </body>
 </html>

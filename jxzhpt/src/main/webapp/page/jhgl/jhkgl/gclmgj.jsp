@@ -103,14 +103,14 @@
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
-								<span>&nbsp;原技术等级：</span>
+								<span>&nbsp;技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;">
 									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="gldj" id="gldj" class="easyui-combobox" style="width:104px;">

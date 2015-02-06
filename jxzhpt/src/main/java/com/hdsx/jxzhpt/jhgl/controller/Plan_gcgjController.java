@@ -234,6 +234,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
 				strVerify+= ImportVerify.gcgjVerify(map);
 				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
+				map.put("yjsdj",queryGPSBylxbm.getYjsdj());
 				if(queryGPSBylxbm==null){
 					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 				}else{

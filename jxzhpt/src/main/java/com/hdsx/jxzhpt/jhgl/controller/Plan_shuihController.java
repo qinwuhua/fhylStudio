@@ -214,6 +214,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 				strVerify=ImportVerify.shuihVerify(map);
 				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+				map.put("yjsdj", queryGPSBylxbm.getYjsdj());
 				if(queryGPSBylxbm==null){
 					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 				}else{

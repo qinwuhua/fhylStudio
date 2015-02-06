@@ -223,9 +223,9 @@
 	</insert>
 	<insert id="insertGcgj_lx" parameterType="hashMap">
 		insert into plan_lx_gcgj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
-			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH) 
+			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj) 
 		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},
-			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm})
+			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm},#{yjsdj})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from JXJCK_2013.GPSROAD t 
@@ -233,7 +233,8 @@
 	</select>
 	<select id="queryGPSBylxbm2" parameterType="plan_lx_gcgj" resultType="plan_lx_gcgj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc from JXJCK_2013.GPSROAD t where 
+		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj
+		 from JXJCK_2013.GPSROAD t where 
 		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="querySumGcgj" resultMap="gcgj_lx">
