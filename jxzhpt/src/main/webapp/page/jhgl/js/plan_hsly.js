@@ -1,5 +1,4 @@
 var gridObj;//列表对象
-var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function querySumHsly(){
 	$.ajax({
@@ -45,7 +44,7 @@ function hslyglxm(hsly){
 	        	var result='';
 	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../edit/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
 //	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
@@ -155,7 +154,7 @@ function queryHslyXx(id){
 	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></td></tr>');
 }
 function dropById(){
-	if(confirm("确认删除选中计划吗？")){
+	if(confirm("确认移除选中计划吗？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
@@ -172,7 +171,7 @@ function dropById(){
 			dataType:'json',
 			success:function(data){
 				if(data.result=='true'){
-					alert("删除成功！");
+					alert("移除成功！");
 					searchHsly();
 				}
 			}

@@ -106,4 +106,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 		}
 		return deleteBatch("dropGcgjLxByJhid", list)==list.size();
 	}
+
+	@Override
+	public boolean uploadGcgjFile(Plan_gcgj jh) {
+		return update("uploadGcgjFile", jh)>0;
+	}
 }

@@ -35,12 +35,12 @@ function abgcxm(jh,lx){
 	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if(row.jh_sbthcd>0){
 	        		result+='<a style="text-decoration:none;">编辑</a>    ';
-		        	result+='<a style="text-decoration:none;">删除</a>';
+		        	result+='<a style="text-decoration:none;">移除</a>';
 	        	}
 	        	else{
 	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        		var id="'"+row.id+"'";
-		        	result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	}
 	        	return result;
 	        }},
@@ -466,7 +466,7 @@ function openAddAbgc(){
 	openAdd('abgc_add','添加安保工程项目','../add/abgcAdd.jsp');
 }
 function dropOne(id){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var strId="",sckId="";
 		$.each(sel,function(index,item){

@@ -33,6 +33,8 @@
 		<result property="spzt" column="spzt"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="kgzt" column="kgzt"/>
+		<result property="gkbgmc" column="gkbgmc"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
 		<result property="sfylsjl" column="sfylsjl"/>
 		<collection property="shuihs" ofType="plan_lx_shuih" resultMap="shuih_lx"/>
 	</resultMap>
@@ -222,4 +224,20 @@
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}
 	</delete>
+	<update id="uploadShuihFile" parameterType="plan_shuih">
+		update plan_shuih jh set 
+		<if test="gkbgmc!=null and gkbgmc!=''">
+			jh.GKBGMC=#{gkbgmc},
+		</if>
+		<if test="gkbgwj!=null">
+			jh.gkbgwj=#{gkbgwj}
+		</if>
+		<if test="sjsgtmc!=null and sjsgtmc!=''">
+			jh.SJSGTMC=#{sjsgtmc},
+		</if>
+		<if test="sjsgtwj!=null">
+			jh.sjsgtwj=#{sjsgtwj}
+		</if>
+		where jh.id=#{id}
+	</update>
 </mapper>

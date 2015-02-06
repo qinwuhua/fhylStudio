@@ -41,7 +41,7 @@ function shxm(jh,lx){
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        	var id="'"+row.id+"'";
-	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
 //	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
@@ -406,11 +406,17 @@ function queryShuihById(id){
 			$('#sjpfwh').html(data.sjpfwh);
 			$('#sfgydbm').html(data.sfgydbm);
 			$('#lblJHRemarks').html(data.jhbz);
+			if(data.gkbgmc!=null){
+				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=null){
+				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+			}
 		}
 	});
 }
 function dropShuih(id,readLoad){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropShuihById.do',
@@ -421,18 +427,18 @@ function dropShuih(id,readLoad){
 						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(readLoad=="true"){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}
 }
 function dropShuihs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
@@ -451,12 +457,12 @@ function dropShuihs(){
 				if(data.jh && data.lx){
 					var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"lx.gydw":null,
 							"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}

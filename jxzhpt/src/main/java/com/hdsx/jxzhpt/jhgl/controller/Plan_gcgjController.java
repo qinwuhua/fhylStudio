@@ -1,6 +1,9 @@
 package com.hdsx.jxzhpt.jhgl.controller;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +14,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -38,6 +42,44 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
+	
+	public void uploadGkbg(){
+		try {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=null;
+			if(uploadGk!=null){
+				file =new byte[(int)uploadGk.length()];
+				inputStream=new FileInputStream(uploadGk);
+			}
+			if(uploadSjt!=null){
+				file=new byte[(int)uploadSjt.length()];
+				inputStream=new FileInputStream(uploadSjt);
+			}
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			if(uploadGkFileName!=null){
+				jh.setGkbgmc(uploadGkFileName);
+				jh.setGkbgwj(file);
+			}
+			if(uploadSjtFileName!=null){
+				jh.setSjsgtmc(uploadSjtFileName);
+				jh.setSjsgtwj(file);
+			}
+			gcgjServer.uploadGcgjFile(jh);
+			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void querySumGcgj(){
 		try {
@@ -165,6 +207,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 				gcgj.setZdzh(map.get("9").toString());
 				gcgj.setQzlc(map.get("10").toString());
 				gcgj.setGydwdm(map.get("gydwdm").toString());
+				gcgj.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
 				map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
 				strVerify+= ImportVerify.gcgjVerify(map);
 				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
@@ -247,5 +290,33 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+	public File getUploadGk() {
+		return uploadGk;
+	}
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 }

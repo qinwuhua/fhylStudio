@@ -11,6 +11,7 @@
 		<action name="editGcgjStatus" class="plan_gcgjController" method="editGcgjStatus"/>
 		<action name="importGcgj_jh" class="plan_gcgjController" method="importGcgj_jh"/>
 		<action name="querySumGcgj" class="plan_gcgjController" method="querySumGcgj"/>
+		<action name="uploadGkbg" class="plan_gcgjController" method="uploadGkbg"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -20,6 +21,7 @@
 		<action name="editGcsjById" class="plan_gcsjController" method="editGcsjById"/>
 		<action name="editGcsjStatus" class="plan_gcsjController" method="editGcsjStatus"/>
 		<action name="importGcsj_jh" class="plan_gcsjController" method="importGcsj_jh"/>
+		<action name="uploadGcsjFile" class="plan_gcsjController" method="uploadGcsjFile"/>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
@@ -55,6 +57,7 @@
 		<action name="editShuihStatus" class="plan_shuihController" method="editShuihStatus"/>
 		<action name="importShuih_jh" class="plan_shuihController" method="importShuih_jh"/>
 		<action name="querySumShuih" class="plan_shuihController" method="querySumShuih"/>
+		<action name="uploadShuihFile" class="plan_shuihController" method="uploadShuihFile"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>

@@ -102,4 +102,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return deleteBatch("dropGcsjLxByJhid", list)==list.size();
 	}
 
+	@Override
+	public boolean uploadGcsjFile(Plan_gcsj jh) {
+		return update("uploadGcsjFile", jh)>0;
+	}
+
 }

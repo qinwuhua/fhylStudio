@@ -1,6 +1,9 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function uploadFile(){
+	$("#uploadGk").uploadifyUpload();
+}
 function querySumGcgj(){
 	$.ajax({
 		type:'post',
@@ -48,7 +51,7 @@ function gclmgjxm(jh,lx){
 		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		    		var id="'"+row.id+"'";
-		    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">删除</a>';
+		    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		    		return result;
 		    	}
 		    },
@@ -432,6 +435,12 @@ function queryGcgjXx(id){
 			$('#sfgyhbm').html(data.sfgyhbm);
 			$('#gksjwh').html(data.gksjwh);
 			$('#bz').html(data.bz);
+			if(data.gkbgmc!=null){
+				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=null){
+				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+			}
 		}
 	}); 
 }
@@ -446,17 +455,17 @@ function dropGcgj(id,readLoad){
 						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(readLoad=="true"){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 }
 function dropGcgjs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
@@ -476,12 +485,12 @@ function dropGcgjs(){
 					var params={"jh.sbzt":null,"jh.spzt":null,"jh.sbnf":null,"jh.jhkgsj":null,
 							"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 							"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-						alert("删除成功！");
+						alert("移除成功！");
 						gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}

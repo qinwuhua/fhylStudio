@@ -101,4 +101,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		}
 		return deleteBatch("dropShuihLxByJhid", list)==list.size();
 	}
+
+	@Override
+	public boolean uploadShuihFile(Plan_shuih jh) {
+		return update("uploadShuihFile", jh)>0;
+	}
 }

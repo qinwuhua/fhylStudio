@@ -46,10 +46,10 @@ function zhfzxm(jh,lx){
 	        	if(row.jh_sbthcd==0){
 	        		result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	var id="'"+row.id+"'";
-		        	result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+		        	result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	}else{
 	        		result+='<a style="text-decoration:none;">编辑</a>    ';
-		        	result+='<a style="text-decoration:none;">删除</a>';
+		        	result+='<a style="text-decoration:none;">移除</a>';
 	        	}
 	        	return result;
 	        }},
@@ -460,17 +460,17 @@ function dropZhfz(id,readLoad){
 						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(readLoad=="true"){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 }
 function dropZhfzs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="",sckid="";
 		$.each(sel,function(index,item){
@@ -493,12 +493,12 @@ function dropZhfzs(){
 						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(data.edit && data.drop){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}

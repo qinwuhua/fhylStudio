@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
 	/**
+	 * 上传文件到数据库中
+	 * @param jh
+	 * @return
+	 */
+	boolean uploadGcgjFile(Plan_gcgj jh);
+	/**
 	 * 根据计划ID删除路线信息
 	 * @param id
 	 * @return

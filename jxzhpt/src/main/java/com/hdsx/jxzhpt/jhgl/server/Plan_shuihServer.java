@@ -9,6 +9,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
 	/**
+	 * 上传文件到数据库中
+	 * @param jh
+	 * @return
+	 */
+	boolean uploadShuihFile(Plan_shuih jh);
+	/**
 	 * 根据计划ID删除路线信息
 	 * @param id
 	 * @return

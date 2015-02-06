@@ -30,10 +30,10 @@ function gclmsjxm(jh,lx){
 				if(row.jh_sbthcd==0){
 					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 					var id="'"+row.id+"'";
-					result+='<a href="javascript:dropGcsjs()" style="text-decoration:none;color:#3399CC;">删除</a>';
+					result+='<a href="javascript:dropGcsjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 				}else{
 					result+='<a style="text-decoration:none;">编辑</a>    ';
-					result+='<a style="text-decoration:none;">删除</a>';
+					result+='<a style="text-decoration:none;">移除</a>';
 				}
 				return result;
 			}},
@@ -430,7 +430,7 @@ function queryGcsjXx(id){
 	});
 }
 function dropGcsjs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
@@ -450,12 +450,12 @@ function dropGcsjs(){
 					var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"jh.jhkgsj":null,
 							"jh.jhwgsj":null,"jh.pfztz":null,
 							"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}
