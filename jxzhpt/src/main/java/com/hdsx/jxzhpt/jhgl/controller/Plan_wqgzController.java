@@ -17,6 +17,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -176,6 +177,33 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void uploadWqgzFile(){
+		try {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			int n=1024;
+			byte buffer[] = new byte[n]; 
+				while ((fs.read(buffer, 0, n) != -1) && (n> 0)) { 
+				    System.out.print(new String(buffer));   
+				}
+				if("gkbg".equals(jh.getGkbgmc())){
+					   jh.setGkbgmc(fileuploadFileName);
+					   jh.setGkbgdata(new String(buffer));
+					   if(wqgzServer.updateGkbg(jh))
+						   response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}else{
+					jh.setSjsgtmc(fileuploadFileName);
+					jh.setSjsgtdata(new String(buffer));
+					if(wqgzServer.updateSjsgt(jh))
+						response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//set get
 	public int getPage() {
 		return page;

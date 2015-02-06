@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
@@ -129,5 +130,14 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 			idlist.add(ids[i]);
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
+	}
+
+	@Override
+	public boolean updateGkbg(Plan_wqgz jh) {
+		return update("updateGkbg", jh)>0;
+	}
+	@Override
+	public boolean updateSjsgt(Plan_wqgz jh) {
+		return update("updateSjsgt", jh)>0;
 	}
 }

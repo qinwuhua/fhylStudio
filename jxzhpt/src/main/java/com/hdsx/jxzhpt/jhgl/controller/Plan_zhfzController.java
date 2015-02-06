@@ -171,6 +171,33 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void uploadZhfzFile(){
+		try {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			int n=1024;
+			byte buffer[] = new byte[n]; 
+				while ((fs.read(buffer, 0, n) != -1) && (n> 0)) { 
+				    System.out.print(new String(buffer));   
+				}
+				if("gkbg".equals(jh.getGkbgmc())){
+					   jh.setGkbgmc(fileuploadFileName);
+					   jh.setGkbgdata(new String(buffer));
+					   if(zhfzServer.updateGkbg(jh))
+					   response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}else{
+					jh.setSjsgtmc(fileuploadFileName);
+					jh.setSjsgtdata(new String(buffer));
+					if(zhfzServer.updateSjsgt(jh))
+						response.getWriter().print(fileuploadFileName+"导入成功");
+					   else response.getWriter().print(fileuploadFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//set get
 	public int getPage() {
 		return page;

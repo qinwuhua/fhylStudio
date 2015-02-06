@@ -241,4 +241,10 @@
  	<select id="queryJckWqgz" parameterType="String" resultType="plan_wqgz">
 		select * from xmk_wqgz where qlbh=#{String}
 	</select>
+	<update id="updateGkbg" parameterType="plan_wqgz">
+ 		update plan_wqgz set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
+ 	</update>
+ 	<update id="updateSjsgt" parameterType="plan_wqgz">
+ 		update plan_wqgz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
+ 	</update>
 </mapper>
