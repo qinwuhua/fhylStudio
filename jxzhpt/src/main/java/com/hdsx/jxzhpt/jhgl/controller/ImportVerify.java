@@ -164,6 +164,19 @@ public class ImportVerify {
 	
 	public static String gcsjVerify(Map obj){
 		String result="";
+		String [] jsdj={"一级公路","二级公路","三级公路","四级公路","等外公路"};
+		boolean yjsdj=false,xjsdj=false;
+		for(int i=0;i<jsdj.length;i++){
+			if(obj.get("5").toString().equals(jsdj[i])){
+				yjsdj=true;
+			}
+			if(obj.get("39").toString().equals(jsdj[i])){
+				xjsdj=true;
+			}
+		}
+		if(!yjsdj || !xjsdj){
+			result+="技术等级只能填：一级公路、二级公路、三级公路、四级公路、等外公路<br/>";
+		}
 		//路线编码验证
 		if(!lxbhVerify(obj.get("3").toString())){
 			result+="【路线编码】";

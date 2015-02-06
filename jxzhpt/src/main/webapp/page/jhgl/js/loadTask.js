@@ -83,7 +83,7 @@ function openZjxd(id,title,href,width,height,zjid){
 function addZjxd(){
 	var zjxd={xmid:xxId,xdnf:'',xdzj:'',sfzj:'',tbdw:'',tbdate:''};
 	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj').val(),
-			'zjxd.sfzj':$('input[name="rList"]:checked').val(),'zjxd.tbdw':$('#tbdw').html(),
+			'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
 			'zjxd.tbtime':$('#tbsj').html()};
 	$.ajax({
 		type:'post',
@@ -193,7 +193,7 @@ function queryZjxdList(url){
 				return result;
 			}
 		},
-		{field : 'sfzj',title : '上报年份',width : 150,align : 'center',
+		{field : 'sfzj',title : '是否追加',width : 150,align : 'center',
 			formatter : function(value, row, index) {
 				if (row.sfzj == "0") {
 					return "否";

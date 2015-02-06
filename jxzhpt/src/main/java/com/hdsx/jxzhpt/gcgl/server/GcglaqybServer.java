@@ -8,6 +8,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface GcglaqybServer {
 
@@ -16,5 +17,7 @@ public interface GcglaqybServer {
 	int selectaqyblistCount(Gcglaqyb gcglaqyb);
 
 	List<Gcglaqyb> selectaqyblist(Gcglaqyb gcglaqyb);
+
+	List<TreeNode> selAllBm3(String yhdw);
 
 }

@@ -157,11 +157,11 @@
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;">

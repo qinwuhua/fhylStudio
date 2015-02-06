@@ -240,7 +240,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			if(boolJh && boolLx)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
-				response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
+				response.getWriter().print(fileuploadFileName+"导入失败！</br>"+strVerify);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

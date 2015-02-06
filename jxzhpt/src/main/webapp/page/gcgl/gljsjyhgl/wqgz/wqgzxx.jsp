@@ -20,7 +20,7 @@ $(function(){
 	//$("#").text(data.);
 	var data=parent.obj1;
 	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);
-	$("#qlmc").text(data.qlmc);$("#qlbm").text(data.qlbh);$("#qlzxzh").text(data.qlzxzh);$("#gydw").text(data.gydw);$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#qlkd").text(data.qlkd);
+	$("#qlmc").text(data.qlmc);$("#qlbm").text(data.qlbh);$("#qlzxzh").text(data.qlzxzh);$("#gydw").text(data.gydw);$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#qlqk").text(data.qlkd);
 	$("#qlqc").text(data.qlqc);$("#kjzc").text(data.kjzc);$("#dkzdkj").text(data.dkzdkj);$("#jsdj").text(data.jsdj);$("#pddj").text(data.pddj);$("#xjgjnd").text(data.xjgjnd);
 	$("#akjfl").text(data.akjfl);$("#sbjgxs").text(data.sbjgxs);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
 	$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);

@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglaqybServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 @Service
 public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
@@ -44,6 +45,11 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	public List<Gcglaqyb> selectaqyblist(Gcglaqyb gcglaqyb) {
 		// TODO Auto-generated method stub
 		return queryList("selectaqyblist",gcglaqyb);
+	}
+
+	@Override
+	public List<TreeNode> selAllBm3(String yhdw) {
+		return queryList("selAllBm3", yhdw);
 	}
 
 
