@@ -1,8 +1,16 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -214,28 +223,54 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	public void uploadAbgcFile(){
+	public void uploadAbgcFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
 		try {
-			HttpServletResponse response = ServletActionContext.getResponse();
-			FileInputStream fs = new FileInputStream(this.fileupload);
-			int n=1024;
-			byte buffer[] = new byte[n]; 
-				while ((fs.read(buffer, 0, n) != -1) && (n> 0)) { 
-				    System.out.print(new String(buffer));   
-				}
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 
+				fs=new FileInputStream(this.fileupload);
+				data=new byte[(int) this.fileupload.length()];
+				fs.read(data);
 				if("gkbg".equals(jh.getGkbgmc())){
 					   jh.setGkbgmc(fileuploadFileName);
-					   jh.setGkbgdata(new String(buffer));
+					   jh.setGkbgdata(new String(data));
 					   if(abgcServer.updateGkbg(jh))
 						   response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
 				}else{
 					jh.setSjsgtmc(fileuploadFileName);
-					jh.setSjsgtdata(new String(buffer));
+					jh.setSjsgtdata(new String(data));
 					if(abgcServer.updateSjsgt(jh))
 						response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
 				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	public void downAbgcFile(){
+        try {
+        	Plan_abgc abgc = abgcServer.queryAbgcById(jh.getId());
+        	HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream out = response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= abgc.getGkbgdata().getBytes();
+                out.write(buffer);
+                out.flush();
+                out.close();
+        	}else{
+        		OutputStream out= response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= abgc.getSjsgtdata().getBytes();
+                out.write(buffer);
+                out.flush();
+                out.close();
+        	}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

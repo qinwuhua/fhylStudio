@@ -558,6 +558,12 @@ function uploadFile(str){
 	weatherDlg.ShowDialog();
 	return false;
 }
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+str+"&jh.id="+$('#jhid').val();
+	}
+	else return;
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

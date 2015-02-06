@@ -1,8 +1,12 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -181,24 +185,61 @@ public class Plan_wqgzController extends BaseActionSupport {
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
 			FileInputStream fs = new FileInputStream(this.fileupload);
+			BufferedInputStream in = new BufferedInputStream(fs);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//			DataOutputStream dos = new DataOutputStream(baos);
+			int len=0;
 			int n=1024;
-			byte buffer[] = new byte[n]; 
-				while ((fs.read(buffer, 0, n) != -1) && (n> 0)) { 
-				    System.out.print(new String(buffer));   
+			byte b[] = new byte[n]; 
+				while ((len=in.read(b,0,n))!= -1) { 
+				    bos.write(b,0,len);
 				}
+				fs.close();
+				in.close();
+				bos.flush();
+				bos.close();
+				byte[] data =bos.toByteArray();
 				if("gkbg".equals(jh.getGkbgmc())){
 					   jh.setGkbgmc(fileuploadFileName);
-					   jh.setGkbgdata(new String(buffer));
+					   jh.setGkbgdata(new String(data));
 					   if(wqgzServer.updateGkbg(jh))
 						   response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
 				}else{
 					jh.setSjsgtmc(fileuploadFileName);
-					jh.setSjsgtdata(new String(buffer));
+					jh.setSjsgtdata(new String(data));
 					if(wqgzServer.updateSjsgt(jh))
 						response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
 				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void downWqgzFile(){
+        try {
+        	Plan_wqgz wqgz =wqgzServer.queryWqgzById(jh.getId());
+        	HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream output = response.getOutputStream();
+//        		BufferedOutputStream out=new BufferedOutputStream(output);
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getGkbgdata().getBytes();
+                output.write(buffer);
+                output.flush();
+                output.close();
+//    			out.close();
+        	}else{
+        		OutputStream output = response.getOutputStream();
+//        		BufferedOutputStream out=new BufferedOutputStream(output);
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getSjsgtdata().getBytes();
+                output.write(buffer);
+                output.flush();
+                output.close();
+//    			out.close();
+        	}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

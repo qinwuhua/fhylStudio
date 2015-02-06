@@ -46,7 +46,7 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public Plan_zhfz queryZhfaById(String id) {
+	public Plan_zhfz queryZhfzById(String id) {
 		return queryOne("queryZhfzById", id);
 	}
 

@@ -379,51 +379,21 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">工可报告
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					工可报告
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divGKBG_TJ" style="display: block;">
-						<table width="100%" cellpadding="0" cellspacing="0">
-							<tr>
-								<td align="left" nowrap="nowrap" style="width: 50%;">
-									<span id="lblGKBG_GK">暂无附件！</span></td>
-								<td align="left">
-									<a id="gkbg"  onclick="uploadFile('gkbg')"href="#"style="color: #2C7ED1;">上传</a>
-									&nbsp;|&nbsp;删除</td>
-							</tr>
-						</table>
-					</div>
-					<div id="divGKBG_XZ" style="display: none;">
-						<span id="lblGKBG_XZ">暂无附件！</span>
-					</div>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<a onclick="downFile('gkbg')" id="xz_gkbg" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
+					<a id="gkbg"  onclick="uploadFile('gkbg')"href="#"style="color: #2C7ED1;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计施工图
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					设计施工图
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<div id="divSJSGT_TJ" style="display: block;">
-						<table width="100%" cellpadding="0" cellspacing="0"
-							style="height: 14px">
-							<tr>
-								<td align="left" nowrap="nowrap" style="width: 50%;"><span
-									id="lblSJSGT_SG">暂无附件！</span></td>
-								<td align="left">
-									<a onclick="uploadFile('jhsgt')" id="gkbg" href="#" style="color: #2C7ED1;">上传</a>
-									&nbsp;|&nbsp;删除</td>
-							</tr>
-						</table>
-					</div>
-					<div id="divSJSGT_XZ" style="display: none;">
-						<span id="lblSJSGT_XZ">暂无附件！</span> <a
-							onclick="return CheckFJ(this.innerText);" id="btnSJSGTXZ"
-							href="javascript:__doPostBack('btnSJSGTXZ','')"
-							style="color: #2C7ED1;"></a>
-					</div>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<a onclick="downFile('jhsgt')" id="xz_jhsgt" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
+					<a id="jhsgt"  onclick="uploadFile('jhsgt')"href="#"style="color: #2C7ED1;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -489,6 +459,12 @@
 			$('#SFSQABLBZ').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
+			if(data.gkbgmc!=''){
+				$("#xz_gkbg").text("下载附件");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_jhsgt").text("下载附件");
+			}
 			//审查库
 			$.ajax({
 				type:'post',

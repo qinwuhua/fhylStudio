@@ -413,4 +413,5 @@ public class Plan_abgc {
 	public void setSjsgtdata(String sjsgtdata) {
 		this.sjsgtdata = sjsgtdata;
 	}
+
 }

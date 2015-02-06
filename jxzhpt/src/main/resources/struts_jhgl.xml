@@ -31,6 +31,7 @@
 		<action name="updateLrztBySckid" class="plan_abgcController" method="updateLrztBySckid"/>
 		<action name="lwBzbz" class="plan_abgcController" method="lwBzbz"/>
 		<action name="uploadAbgcFile" class="plan_abgcController" method="uploadAbgcFile"/>
+		<action name="downAbgcFile" class="plan_abgcController" method="downAbgcFile"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
@@ -40,6 +41,7 @@
 		<action name="editZhfzStatus" class="plan_zhfzController" method="editZhfzStatus"/>
 		<action name="querySumZhfz" class="plan_zhfzController" method="querySumZhfz"/>
 		<action name="uploadZhfzFile" class="plan_zhfzController" method="uploadZhfzFile"/>
+		<action name="downZhfzFile" class="plan_zhfzController" method="downZhfzFile"/>
 		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
@@ -49,6 +51,7 @@
 		<action name="editWqgzStatus" class="plan_wqgzController" method="editWqgzStatus"/>
 		<action name="querySumWqgz" class="plan_wqgzController" method="querySumWqgz"/>
 		<action name="uploadWqgzFile" class="plan_wqgzController" method="uploadWqgzFile"/>
+		<action name="downWqgzFile" class="plan_wqgzController" method="downWqgzFile"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
