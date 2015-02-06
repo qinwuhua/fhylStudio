@@ -393,62 +393,23 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">工可报告
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					工可报告
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divGKBG_TJ" style="display: none;">
-						<table width="100%" cellpadding="0" cellspacing="0">
-							<tr>
-								<td align="left" nowrap="nowrap" style="width: 50%;"><span
-									id="lblGKBG_GK">暂无附件！</span> <a
-									onclick="return CheckFJ(this.innerText);" id="btnGKBG_GK"
-									href="javascript:__doPostBack('btnGKBG_GK','')"
-									style="color: #2C7ED1;"></a></td>
-								<td align="left"><a onclick="return toDialogRoad('GKBG');"
-									id="btnUpdate_GK"
-									href="javascript:__doPostBack('btnUpdate_GK','')"
-									style="color: #2C7ED1;">上传</a>&nbsp;|&nbsp;</td>
-							</tr>
-						</table>
-					</div>
-					<div id="divGKBG_XZ" style="display: block;">
-						<span id="lblGKBG_XZ">暂无附件！</span> <a
-							onclick="return CheckFJ(this.innerText);" id="btnGKBGXZ"
-							href="javascript:__doPostBack('btnGKBGXZ','')"
-							style="color: #2C7ED1;"></a>
-					</div>
+				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<div id="fileQueue"></div>
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
+					<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计施工图
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					设计施工图
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<div id="divSJSGT_TJ" style="display: none;">
-						<table width="100%" cellpadding="0" cellspacing="0"
-							style="height: 14px">
-							<tr>
-								<td align="left" nowrap="nowrap" style="width: 50%;"><span
-									id="lblSJSGT_SG">暂无附件！</span> <a
-									onclick="return CheckFJ(this.innerText);" id="btnSJSGT_SG"
-									href="javascript:__doPostBack('btnSJSGT_SG','')"
-									style="color: #2C7ED1;"></a></td>
-								<td align="left"><a onclick="return toDialogRoad('SJSGT');"
-									id="btnUpdate_SG"
-									href="javascript:__doPostBack('btnUpdate_SG','')"
-									style="color: #2C7ED1;">上传</a>&nbsp;|&nbsp;</td>
-							</tr>
-						</table>
-					</div>
-					<div id="divSJSGT_XZ" style="display: block;">
-						<span id="lblSJSGT_XZ">暂无附件！</span> <a
-							onclick="return CheckFJ(this.innerText);" id="btnSJSGTXZ"
-							href="javascript:__doPostBack('btnSJSGTXZ','')"
-							style="color: #2C7ED1;"></a>
-					</div>
+				<td id="td_sjt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<div id="fileQueue1"></div>
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -491,6 +452,72 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editsbnf");
+	$("#uploadGk").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadShuihFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue',
+		'fileDataName' : 'uploadGk',
+		'auto' : false,
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'jh.id':xxId
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			$('#td_gkbg').html("<a>"+response+"</a>");
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+
+		}
+	});
+	$("#uploadSjt").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadShuihFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue1',
+		'fileDataName' : 'uploadSjt',
+		'auto' : false,
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'jh.id':xxId
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			$('#td_sjt').html("<a>"+response+"</a>");
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+	
+		}
+	});
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryShuihById.do',
@@ -547,6 +574,12 @@
 			$('#tzgs').html(data.tzgs);
 			$('#jsxz').html(data.jsxz);
 			$('#jsnr').html(data.jsnr);
+			if(data.gkbgmc!=null){
+				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=null){
+				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+			}
 		}
 	});
 	</script>

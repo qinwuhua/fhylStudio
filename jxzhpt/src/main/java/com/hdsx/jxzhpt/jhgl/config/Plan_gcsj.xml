@@ -38,9 +38,9 @@
 		<result property="xmwybh" column="xmwybh"/>
 		<result property="xdsj" column="xdsj"/>
 		<result property="gkbgmc" column="gkbgmc"/>
-		<result property="gkbglj" column="gkbglj"/>
+		<result property="gkbgwj" column="gkbgwj"/>
 		<result property="sjsgtmc" column="sjsgtmc"/>
-		<result property="sjsgtlj" column="sjsgtlj"/>
+		<result property="sjsgtwj" column="sjsgtwj"/>
 		<result property="sjkgsj" column="sjkgsj"/>
 		<result property="sjwgsj" column="sjwgsj"/>
 		<result property="sgdw" column="sgdw"/>
@@ -198,7 +198,7 @@
 		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
 		jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.jhxdwh,jh.xmwybh,jh.xmmc,jh.sjdw,jh.sjpfdw,jh.jsjsbz,jh.ql,jh.ql_m,
 		jh.sd,jh.sd_m,jh.hd,jh.ljtsf,jh.dc,jh.jc,jh.lqlm,jh.snlm,jh.gjhjsdj,jh.sftqss,jh.pfwh,jh.pfsj,jh.pftz,
-		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.gkbglj,jh.sjsgtmc,jh.sjsgtlj,jh.remarks
+		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.sjsgtmc,jh.remarks
 		from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id where jh.id=#{id}
 	</select>
 	<select id="querySumMessage" resultMap="gcsj_jh">
@@ -251,9 +251,9 @@
 	</insert>
 	<insert id="insertGcsj_lx" parameterType="hashMap">
 		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,lxmc,
-			yjsdj,bhnr,qdzh,zdzh,qzlc,xmlc,TBSJ,TBBMBH)
+			yjsdj,bhnr,qdzh,zdzh,qzlc,xmlc,TBSJ,TBBMBH,yjsdj)
 		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},#{4},
-			#{5},#{6},#{7},#{8},#{9},#{10},#{tbsj},#{gydwdm})
+			#{5},#{6},#{7},#{8},#{9},#{10},#{tbsj},#{gydwdm},#{yjsdj})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
@@ -268,4 +268,23 @@
 	<delete id="dropGcsjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcsj where jhid=#{String}
 	</delete>
+	<update id="uploadGcsjFile" parameterType="plan_gcsj">
+		update plan_gcsj jh set 
+		<if test="gkbgmc!=null and gkbgmc!=''">
+			jh.GKBGMC=#{gkbgmc},
+		</if>
+		<if test="gkbgwj!=null">
+			jh.gkbgwj=#{gkbgwj}
+		</if>
+		<if test="sjsgtmc!=null and sjsgtmc!=''">
+			jh.SJSGTMC=#{sjsgtmc},
+		</if>
+		<if test="sjsgtwj!=null">
+			jh.sjsgtwj=#{sjsgtwj}
+		</if>
+		where jh.id=#{id}
+	</update>
+	<select id="queryWjById" parameterType="plan_gcsj" resultType="plan_gcsj">
+		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcsj j where id=#{id}
+	</select>
 </mapper>

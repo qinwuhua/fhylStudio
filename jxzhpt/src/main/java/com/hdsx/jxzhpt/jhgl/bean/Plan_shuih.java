@@ -33,9 +33,9 @@ public class Plan_shuih {
 	private Date spsj;//审批时间
 	private Date xdsj;//下达时间
 	private String gkbgmc;//工可报告附件名称
-	private String gkbglj;//工可报告附件路径
+	private byte[] gkbgwj;//工可报告附件路径
 	private String sjsgtmc;//设计施工图名称
-	private String sjsgtlj;//设计施工图文件路径
+	private byte[] sjsgtwj;//设计施工图文件路径
 	private Date sjkgsj;//实际开工时间
 	private Date sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
@@ -279,23 +279,23 @@ public class Plan_shuih {
 	public void setGkbgmc(String gkbgmc) {
 		this.gkbgmc = gkbgmc;
 	}
-	public String getGkbglj() {
-		return gkbglj;
-	}
-	public void setGkbglj(String gkbglj) {
-		this.gkbglj = gkbglj;
-	}
 	public String getSjsgtmc() {
 		return sjsgtmc;
 	}
 	public void setSjsgtmc(String sjsgtmc) {
 		this.sjsgtmc = sjsgtmc;
 	}
-	public String getSjsgtlj() {
-		return sjsgtlj;
+	public byte[] getGkbgwj() {
+		return gkbgwj;
 	}
-	public void setSjsgtlj(String sjsgtlj) {
-		this.sjsgtlj = sjsgtlj;
+	public void setGkbgwj(byte[] gkbgwj) {
+		this.gkbgwj = gkbgwj;
+	}
+	public byte[] getSjsgtwj() {
+		return sjsgtwj;
+	}
+	public void setSjsgtwj(byte[] sjsgtwj) {
+		this.sjsgtwj = sjsgtwj;
 	}
 	public Date getSjkgsj() {
 		return sjkgsj;

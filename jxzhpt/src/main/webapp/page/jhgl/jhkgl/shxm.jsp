@@ -12,6 +12,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_shuih.js"></script>
@@ -28,7 +30,34 @@
 			sbnf("sbnf");
 			shxm(jh,lx);
 		});
-		
+		function searchShuih(){
+			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			if(!xian){
+				jh.jh_sbthcd=2;
+			}
+			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+				lxmc:null,yjsdj:null,lxbm:null
+			};
+			lx.gydwdm = filterGydwdm(lx.gydwdm);
+			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.sbnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')!="全部"){
+				jh.spzt=$('#ddlSHZT').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			shxm(jh,lx);
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -83,11 +112,11 @@
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
 									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
@@ -101,7 +130,7 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+        						<img onclick="searchShuih()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         						<img onclick="exportSh('Plan_ShuiH')" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img onclick="importData_jh('shuih_jh')" alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         						<img  onclick="dropShuihs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">

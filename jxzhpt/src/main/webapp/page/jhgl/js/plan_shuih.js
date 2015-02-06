@@ -29,9 +29,9 @@ function sbnf(id){
 	});
 }
 function shxm(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
+			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -41,7 +41,7 @@ function shxm(jh,lx){
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        	var id="'"+row.id+"'";
-	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">删除</a>';
+	        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
 //	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
@@ -116,9 +116,9 @@ function shxm(jh,lx){
 	gridBind(grid);
 }
 function shxm_sb(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
+			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -202,9 +202,9 @@ function shxm_sb(jh,lx){
 	gridBind(grid);
 }
 function shxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
+			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -281,9 +281,9 @@ function shxm_sh(jh,lx){
 	gridBind(grid);
 }
 function shxm_zjxd(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
+			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj};
 	var grid={id:'grid',url:'../../../jhgl/queryShuihList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
@@ -406,11 +406,19 @@ function queryShuihById(id){
 			$('#sjpfwh').html(data.sjpfwh);
 			$('#sfgydbm').html(data.sfgydbm);
 			$('#lblJHRemarks').html(data.jhbz);
+			if(data.gkbgmc!=null){
+				var mc="'"+data.gkbgmc+"'";
+				$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
+			}
+			if(data.sjsgtmc!=null){
+				var mc="'"+data.sjsgtmc+"'";
+				$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
+			}
 		}
 	});
 }
 function dropShuih(id,readLoad){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropShuihById.do',
@@ -421,18 +429,18 @@ function dropShuih(id,readLoad){
 						"jh.jhwgsj":null,"jh.pfztz":null,"lx.gydw":null,"lx.gydwdm":null,
 						"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(readLoad=="true"){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}
 }
 function dropShuihs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
@@ -451,12 +459,12 @@ function dropShuihs(){
 				if(data.jh && data.lx){
 					var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,"lx.gydw":null,
 							"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}
@@ -537,6 +545,12 @@ function editStatus(jh){
 		}
 	});
 	return result;
+}
+function downGkwj(file){
+	window.location.href="/jxzhpt/jhgl/queryShuihwjById.do?jh.id="+xxId+"&jh.gkbgmc="+file;
+}
+function downSjt(file){
+	window.location.href="/jxzhpt/jhgl/queryShuihwjById.do?jh.id="+xxId+"&jh.sjsgtmc="+file;
 }
 function exportSh(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;

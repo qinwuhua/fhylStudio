@@ -35,9 +35,9 @@ public class Plan_gcgj {
 	private Date spsj;//审批时间
 	private Date xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
-	private String gkbglj;//工可报告附件路径
+	private byte[] gkbgwj;//工可报告附件文件
 	private String sjsgtmc;//设计施工图附件名称
-	private String sjsgtlj;//设计施工图附件路径
+	private byte[] sjsgtwj;//设计施工图附件路径
 	private Date sjkgsj;//实际开工时间
 	private Date sjwgsj;//实际完工时间
 	private String sgdw;//施工单位
@@ -291,11 +291,11 @@ public class Plan_gcgj {
 	public void setGkbgmc(String gkbgmc) {
 		this.gkbgmc = gkbgmc;
 	}
-	public String getGkbglj() {
-		return gkbglj;
+	public byte[] getGkbgwj() {
+		return gkbgwj;
 	}
-	public void setGkbglj(String gkbglj) {
-		this.gkbglj = gkbglj;
+	public void setGkbgwj(byte[] gkbgwj) {
+		this.gkbgwj = gkbgwj;
 	}
 	public String getSjsgtmc() {
 		return sjsgtmc;
@@ -303,11 +303,11 @@ public class Plan_gcgj {
 	public void setSjsgtmc(String sjsgtmc) {
 		this.sjsgtmc = sjsgtmc;
 	}
-	public String getSjsgtlj() {
-		return sjsgtlj;
+	public byte[] getSjsgtwj() {
+		return sjsgtwj;
 	}
-	public void setSjsgtlj(String sjsgtlj) {
-		this.sjsgtlj = sjsgtlj;
+	public void setSjsgtwj(byte[] sjsgtwj) {
+		this.sjsgtwj = sjsgtwj;
 	}
 	public Date getSjkgsj() {
 		return sjkgsj;

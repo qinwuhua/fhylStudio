@@ -33,6 +33,8 @@
 		<result property="spzt" column="spzt"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="kgzt" column="kgzt"/>
+		<result property="gkbgmc" column="gkbgmc"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
 		<result property="sfylsjl" column="sfylsjl"/>
 		<collection property="shuihs" ofType="plan_lx_shuih" resultMap="shuih_lx"/>
 	</resultMap>
@@ -206,13 +208,13 @@
 	</insert>
 	<insert id="insertShuih_Lx" parameterType="hashMap">
 		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
-			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH) 
+			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj) 
 		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},
-			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm})
+			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm},#{yjsdj})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc from JXJCK_2013.GPSROAD t where 
+		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj from JXJCK_2013.GPSROAD t where 
 		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_shuih" resultType="int">
@@ -222,4 +224,23 @@
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}
 	</delete>
+	<update id="uploadShuihFile" parameterType="plan_shuih">
+		update plan_shuih jh set 
+		<if test="gkbgmc!=null and gkbgmc!=''">
+			jh.GKBGMC=#{gkbgmc},
+		</if>
+		<if test="gkbgwj!=null">
+			jh.gkbgwj=#{gkbgwj}
+		</if>
+		<if test="sjsgtmc!=null and sjsgtmc!=''">
+			jh.SJSGTMC=#{sjsgtmc},
+		</if>
+		<if test="sjsgtwj!=null">
+			jh.sjsgtwj=#{sjsgtwj}
+		</if>
+		where jh.id=#{id}
+	</update>
+	<select id="queryShuihwjById" parameterType="plan_gcgj" resultType="plan_shuih">
+		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_shuih j where id=#{id}
+	</select>
 </mapper>

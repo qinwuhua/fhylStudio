@@ -1,5 +1,7 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,6 +40,66 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
+	
+	public void queryWjById(){
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			Plan_gcsj gcsj = gcsjServer.queryWjById(jh.getId());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] file=null;
+			if(jh.getGkbgmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getGkbgmc().substring(0,jh.getGkbgmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getGkbgmc().substring(jh.getGkbgmc().indexOf(".")));
+				file=gcsj.getGkbgwj();
+			}else if(jh.getSjsgtmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getSjsgtmc().substring(0,jh.getSjsgtmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getSjsgtmc().substring(jh.getSjsgtmc().indexOf(".")));
+				file=gcsj.getSjsgtwj();
+			}
+			out.write(file);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void uploadGcsjFile(){
+		try{
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=null;
+			if(uploadGk!=null){
+				file =new byte[(int)uploadGk.length()];
+				inputStream=new FileInputStream(uploadGk);
+			}
+			if(uploadSjt!=null){
+				file=new byte[(int)uploadSjt.length()];
+				inputStream=new FileInputStream(uploadSjt);
+			}
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			if(uploadGkFileName!=null){
+				jh.setGkbgmc(uploadGkFileName);
+				jh.setGkbgwj(file);
+			}
+			if(uploadSjtFileName!=null){
+				jh.setSjsgtmc(uploadSjtFileName);
+				jh.setSjsgtwj(file);
+			}
+			gcsjServer.uploadGcsjFile(jh);
+			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public void querySumMessage(){
 		try {
@@ -178,7 +240,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			if(boolJh && boolLx)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
-				response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
+				response.getWriter().print(fileuploadFileName+"导入失败！</br>"+strVerify);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -237,5 +299,37 @@ public class Plan_gcsjController extends BaseActionSupport{
 
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 }

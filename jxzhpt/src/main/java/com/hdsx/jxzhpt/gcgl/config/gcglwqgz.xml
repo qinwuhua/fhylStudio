@@ -116,20 +116,20 @@
 	</update>
 	<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglwqgz">
-		update PLAN_WQGZ set SGXKWJ=#{tiaojian}
+		update PLAN_WQGZ set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
 		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglwqgz">
-		update PLAN_WQGZ set JGTCWJ=#{tiaojian}
+		update PLAN_WQGZ set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
 		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglwqgz">
-		update PLAN_WQGZ set JGYSWJ=#{tiaojian}
+		update PLAN_WQGZ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
 		where SCKID=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglwqgz" resultType="gcglwqgz">
-		select ${tiaojian} tiaojian from PLAN_WQGZ where SCKID=#{jhid}
+		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_WQGZ where SCKID=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglwqgz">
 		update PLAN_WQGZ set WJGYY=#{wjgyy} where SCKID=#{jhid}
@@ -196,6 +196,21 @@ where  t1.spzt='1'
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_WQGZ where SCKID=#{jhid}
 	 </select>
 	  <select id="selectWqgzyf" parameterType="gcglwqgz" resultType="gcglwqgz">
-	 	select tbyf from GCGL_CGS where jhid=#{jhid}
+	 	select tbyf,cgsdwzj from GCGL_CGS where jhid=#{jhid} 
+	 	order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
 	 </select>
+	 
+	 <select id="selectWqgzwcqkmin" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select max(wcqk) wcqkmin 
+	 	from GCGL_WQGZ 
+	 	where 1=1 and jhid=#{jhid}
+	 	and	to_date(sbyf,'yyyy-mm')&lt;to_date(#{sbyf},'yyyy-mm') 
+	 </select>
+	 <select id="selectWqgzwcqkmax" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select min(wcqk) wcqkmax 
+	 	from GCGL_WQGZ 
+	 	where 1=1 and jhid=#{jhid}
+	 	and	to_date(sbyf,'yyyy-mm')&gt;to_date(#{sbyf},'yyyy-mm') 
+	 </select>	 
+	 
 </mapper>
