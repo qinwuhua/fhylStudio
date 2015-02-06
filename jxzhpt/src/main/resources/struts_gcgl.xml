@@ -183,5 +183,6 @@
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
 	<action name="insertAqybb" class="gcglaqybController" method="insertAqybb"/>
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
+	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
  </package>
 </struts>

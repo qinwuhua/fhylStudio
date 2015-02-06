@@ -344,8 +344,6 @@ public class GcglwqgzController extends BaseActionSupport{
 		                fos.write(data, 0, size); 
 		            }  
 		        } 
-			
-			
 			FileInputStream fis= new FileInputStream(file);
 			//byte [] arr = new byte[1024*10];
 			int i=0;

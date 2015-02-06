@@ -202,14 +202,15 @@
 		
 	});
 	function setGydw(id, dwbm){
+		alert("xx");
 			$('#' + id).tree(
 			{
 				checkbox : true,
 				multiple:true,
-				url : '/jxzhpt/xtgl/selAllBm2.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
 				onBeforeExpand : function(node, param) {
-					$('#' + id).tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
-							+ node.id;
+// 					$('#' + id).tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
+// 							+ node.id;
 				},
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');

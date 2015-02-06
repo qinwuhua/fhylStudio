@@ -39,66 +39,9 @@
 		and filename like '%'||trim(#{filename})||'%'
 		</if>
 	</select>
-	<!-- 添加-->
-	<insert id="insertAqybb" parameterType="gcglaqyb">
-		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth,uploadpath)
-		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth},#{uploadpath})
-	</insert>
-	<select id="queryYbByYf" parameterType="gcglsh" resultType="gcglsh">
-		select * from GCGL_SH where sbyf=#{sbyf} and jhid=#{jhid}
-	</select>
-	<!-- 修改月报 -->
-	<update id="updateshYb" parameterType="gcglsh">
-		update GCGL_SH set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm}
-		where id=#{id} and jhid=#{jhid}
-	</update>
-	<!-- 删除月报 -->
-	<delete id="deleteshYb" parameterType="gcglsh">
-		delete from GCGL_SH where id=#{id}
-	</delete>
-	<!-- 审核月报 -->
-	<update id="shShYb" parameterType="gcglsh">
-		update GCGL_SH set shuser=#{shuser},shtime=#{shtime},zjje=#{zjje},xgcsyj=#{xgcsyj},cscyj=#{cscyj},shzt='已审核'
-		where id=#{id} and jhid=#{jhid}
-	</update>
-	<!-- 添加车购税 -->
-	<insert id="insertShCgs" parameterType="gcglsh">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
-	</insert>
-	<select id="queryCGSByYf" parameterType="gcglsh" resultType="gcglsh">
-		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
-	</select>
-	<!-- 查询cgs -->
-	<select id="selectShCgsList" parameterType="gcglsh" resultType="gcglsh">
-		select * from (
-		select m.*,rownum rn from (
-			select t1.*,t2.sbsj,t2.sbyf from GCGL_CGS t1 left join GCGL_SH t2 on t1.jhid=t2.jhid and t1.tbyf=t2.sbyf
-			where 1=1
-		<if test="jhid != null and  jhid != ''">
-			and t1.jhid =#{jhid}
-		</if>
-		order by to_number(substr(tbyf,0,4))desc,to_number(replace(tbyf,'-','')) desc
-		)  m
-			where <![CDATA[rownum<=(#{page} * #{rows})]]>
-		) 
-			where RN>((#{page} - 1) * #{rows})
-		
-	</select>
-	<select id="selectShCgsListCount" parameterType="gcglsh" resultType="int">
-		select count(*) from GCGL_CGS 
-		where 1=1
-		<if test="jhid != null and  jhid != ''">
-			and jhid =#{jhid}
-		</if>
-	</select>
-	<!-- 删除cgs -->
-	<delete id="deleteShCgs" parameterType="gcglsh">
-		delete from GCGL_CGS where id=#{id}
-	</delete>
-	<!-- 修改cgs -->
-	<update id="updateShCgs" parameterType="gcglsh">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj}
-		where id=#{id} and jhid=#{jhid}
-	</update>
+
+
+	<select id="selAllBm3" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'closed' state from xtgl_department x where  id like '%36%' order by to_number(id)
+	</select>	
 </mapper>
