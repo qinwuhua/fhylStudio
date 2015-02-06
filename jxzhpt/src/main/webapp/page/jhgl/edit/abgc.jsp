@@ -382,18 +382,20 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					工可报告
 				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<a onclick="downFile('gkbg')" id="xz_gkbg" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
-					<a id="gkbg"  onclick="uploadFile('gkbg')"href="#"style="color: #2C7ED1;">上传</a>
+				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<div id="fileQueue"></div>
+						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
+						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					设计施工图
 				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<a onclick="downFile('jhsgt')" id="xz_jhsgt" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
-					<a id="jhsgt"  onclick="uploadFile('jhsgt')"href="#"style="color: #2C7ED1;">上传</a>
+				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<div id="fileQueue1"></div>
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+						<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -430,6 +432,75 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	$("#uploadGk").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadAbgcFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue',
+		'fileDataName' : 'uploadGk',
+		'auto' : false,
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'jh.id':xxId,
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			$('#td_gkbg').html("<a>"+response+"</a>");
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+
+		}
+	});
+	
+	$("#uploadSjt").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadAbgcFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue1',
+		'fileDataName' : 'uploadSjt',
+		'auto' : false,
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'jh.id':xxId,
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			$('#td_sjsgt').html("<a>"+response+"</a>");
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+
+		}
+	});
+	
+	
 	var bz;
 	var bl;
 	var fd;

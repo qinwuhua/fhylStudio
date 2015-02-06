@@ -196,13 +196,13 @@ public class Plan_zhfzController  extends BaseActionSupport{
 				byte[] data =bos.toByteArray();
 				if("gkbg".equals(jh.getGkbgmc())){
 					   jh.setGkbgmc(fileuploadFileName);
-					   jh.setGkbgdata(new String(data));
+					   jh.setGkbgdata(data);
 					   if(zhfzServer.updateGkbg(jh))
 						   response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
 				}else{
 					jh.setSjsgtmc(fileuploadFileName);
-					jh.setSjsgtdata(new String(data));
+					jh.setSjsgtdata(data);
 					if(zhfzServer.updateSjsgt(jh))
 						response.getWriter().print(fileuploadFileName+"导入成功");
 					   else response.getWriter().print(fileuploadFileName+"导入失败");
@@ -220,7 +220,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
         		OutputStream output = response.getOutputStream();
 //        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
-        		byte[]  buffer= zhfz.getGkbgdata().getBytes();
+        		byte[]  buffer= zhfz.getGkbgdata();
                 output.write(buffer);
                 output.flush();
                 output.close();
@@ -229,7 +229,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
         		OutputStream output = response.getOutputStream();
 //        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
-        		byte[]  buffer= zhfz.getSjsgtdata().getBytes();
+        		byte[]  buffer= zhfz.getSjsgtdata();
                 output.write(buffer);
                 output.flush();
                 output.close();

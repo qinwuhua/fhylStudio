@@ -56,6 +56,10 @@ public class Plan_abgcController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	private Bzbz bzbz;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
 	
 	public void querySumAbgc(){
 		try {
@@ -228,22 +232,25 @@ public class Plan_abgcController extends BaseActionSupport{
 		byte[] data;
 		try {
 				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8"); 
-				fs=new FileInputStream(this.fileupload);
-				data=new byte[(int) this.fileupload.length()];
-				fs.read(data);
-				if("gkbg".equals(jh.getGkbgmc())){
-					   jh.setGkbgmc(fileuploadFileName);
-					   jh.setGkbgdata(new String(data));
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
 					   if(abgcServer.updateGkbg(jh))
-						   response.getWriter().print(fileuploadFileName+"导入成功");
-					   else response.getWriter().print(fileuploadFileName+"导入失败");
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
 				}else{
-					jh.setSjsgtmc(fileuploadFileName);
-					jh.setSjsgtdata(new String(data));
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
 					if(abgcServer.updateSjsgt(jh))
-						response.getWriter().print(fileuploadFileName+"导入成功");
-					   else response.getWriter().print(fileuploadFileName+"导入失败");
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
 				}	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -259,18 +266,21 @@ public class Plan_abgcController extends BaseActionSupport{
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getGkbgdata().getBytes();
+        		byte[]  buffer= abgc.getGkbgdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
+                response.getWriter().write(uploadGkFileName);
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getSjsgtdata().getBytes();
+        		byte[]  buffer= abgc.getSjsgtdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
+                response.getWriter().write(uploadSjtFileName);
         	}
+        	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -329,6 +339,38 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void setBzbz(Bzbz bzbz) {
 		this.bzbz = bzbz;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 	
 }
