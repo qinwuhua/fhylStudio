@@ -470,9 +470,10 @@ public class GcglwqgzController extends BaseActionSupport{
 	}
 	private byte [] inputStreamToByte(InputStream is) throws IOException { 
 	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    byte [] array = new byte[(int) fileupload.length()];
 	    int ch; 
-	    while((ch = is.read() ) != -1){ 
-	        bAOutputStream.write(ch); 
+	    while((ch = is.read(array) ) != -1){ 
+	        bAOutputStream.write(array); 
 	    } 
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 

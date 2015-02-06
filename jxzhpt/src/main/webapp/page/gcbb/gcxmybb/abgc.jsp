@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,16 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			$("#kssj").datebox({    
-			     
-			});  
-			$("#jssj").datebox({    
-		     
-			});  
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -47,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;安保工程统计月报表</div>
@@ -69,9 +71,9 @@ a:active {
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>起始年月：</span>
-        						<input type="text" id="kssj"  style="width:150px;">
+        						<input type="text" id="kssj"  class="easyui-datebox"  style="width:150px;">
         						<span>截止年月：</span>
-        						<input type="text" id="jssj"  style="width:150px;">
+        						<input type="text" id="jssj"  class="easyui-datebox"  style="width:150px;">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
@@ -107,15 +109,68 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/abgc.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:126px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="3000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省2015年公路路网结构改造工程统计月报表（二）   安保工程 </caption>
+								<thead>
+									<tr>
+										<td rowspan="3">路线编码</td>
+										<td rowspan="3">路线名称</td>
+										<td colspan="4">基本情况</td>
+										<td colspan="3">本年计划投资(万元)</td>
+										<td rowspan="2">隐患类型</td>
+										<td rowspan="2">建设类型</td>
+										<td colspan="2">计划处治隐患</td>
+										<td colspan="2">建设年限</td>
+										<td colspan="2">本月完成工程量</td>
+										<td colspan="2">自元月至本月底完成工程量</td>
+										<td colspan="2">开工至本月底累计完成工程量</td>
+										<td colspan="3">本月完成投资(万元)</td>
+										<td colspan="3">自元月至本月底完成投资（万元）</td>
+										<td colspan="3">开工至本月底累计完成投资(万元)</td>
+										<td rowspan="2">主要建设内容</td>
+									</tr>	
+									<tr>
+										<td>起点桩号</td>
+										<td>止点桩号</td>
+										<td>技术等级</td>
+										<td>公路修建/改建年度</td>
+										<td>合计</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>处</td>
+										<td>公里</td>
+										<td>计划开工年</td>
+										<td>计划完工年</td>
+										<td>处</td>
+										<td>公里</td>
+										<td>处</td>
+										<td>公里</td>
+										<td>处</td>
+										<td>公里</td>
+										<td>总投资</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>总投资</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>总投资</td>
+										<td>部投资</td>
+										<td>省投资</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>

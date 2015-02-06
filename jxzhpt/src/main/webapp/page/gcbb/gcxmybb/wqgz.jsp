@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,16 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			$("#kssj").datebox({    
-			     
-			});  
-			$("#jssj").datebox({    
-		     
-			});  
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -47,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;危桥改造统计月报表</div>
@@ -69,9 +71,9 @@ a:active {
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>起始年月：</span>
-        						<input type="text" id="kssj" style="width:150px;">
+        						<input type="text" id="kssj" class="easyui-datebox" style="width:150px;">
         						<span>截止年月：</span>
-        						<input type="text" id="jssj" style="width:150px;">
+        						<input type="text" id="jssj" class="easyui-datebox" style="width:150px;">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
@@ -107,15 +109,84 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/wqgz.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:126px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="3000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省2015年公路路网结构改造工程统计月报表（一）   危桥工程 </caption>
+								<thead>
+									<tr>
+										<td rowspan="3">桥梁名称</td>
+										<td rowspan="3">桥梁代码</td>
+										<td rowspan="3">桥梁中心桩号</td>
+										<td colspan="3">所属路线情况</td>
+										<td colspan="8">老桥梁基本状况</td>
+										<td colspan="2" rowspan="2">评定等级</td>
+										<td colspan="3" rowspan="2">本年计划投资(万元)</td>
+										<td colspan="3" rowspan="2">本月完成投资（万元）</td>
+										<td colspan="3" rowspan="2">自元月至本月完成投资（万元）</td>
+										<td colspan="3" rowspan="2">开工至本月完成投资（万元）</td>
+										<td colspan="3">本年自元月至本月底形象进度完成情况</td>
+										<td colspan="3">开工至本月底形象进度完成情况 </td> 
+										<td rowspan="3">建设性质</td>
+										<td colspan="2">建设年限</td>
+										<td rowspan="3">主要建设内容</td>
+									</tr>	
+									<tr>
+										<td rowspan="2">路线编码</td>
+										<td rowspan="2">路线名称</td>
+										<td rowspan="2">技术等级</td>
+										<td rowspan="2">桥梁全长(米)</td>
+										<td rowspan="2">跨径总长(米)</td>
+										<td rowspan="2">单跨最大跨径 (米)</td>
+										<td rowspan="2">桥梁全宽</td>
+										<td rowspan="2">主桥上部构造结构形式</td>
+										<td colspan="2">按跨径分类</td>
+										<td rowspan="2">修建/改建年度</td>
+										<td>危桥加固</td>
+										<td>危桥改建</td>
+										<td>危桥重建</td>
+										<td>危桥加固</td>
+										<td>危桥改建</td>
+										<td>危桥重建</td>
+										<td rowspan="2">计划开工年</td>
+										<td rowspan="2">计划完工年</td>
+									</tr>
+									<tr>
+										<td>大桥</td>
+										<td>中桥</td>
+										<td>四类</td>
+										<td>五类</td>
+										<td>合计</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>合计</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>合计</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>合计</td>
+										<td>部投资</td>
+										<td>省投资</td>
+										<td>百分比（%）</td>
+										<td>百分比（%）</td>
+										<td>百分比（%）</td>
+										<td>百分比（%）</td>
+										<td>百分比（%）</td>
+										<td>百分比（%）</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>
