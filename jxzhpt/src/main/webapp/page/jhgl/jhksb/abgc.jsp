@@ -26,6 +26,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			querySumAbgc();
 			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
@@ -60,6 +61,9 @@
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlTSDQ').combobox('getValue')!=''){
+				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
 			}
 			abgcxm_sb(jh,lx);
 		}

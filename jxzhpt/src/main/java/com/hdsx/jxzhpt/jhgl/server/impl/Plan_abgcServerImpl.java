@@ -152,4 +152,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public boolean updateSjsgt(Plan_abgc jh) {
 		return update("updateSjsgt", jh)>0;
 	}
+	@Override
+	public List<TreeNode> queryTsdq() {
+		return queryList("queryTsdq");
+	}
 }

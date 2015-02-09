@@ -20,6 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			querySumGcgj();
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
@@ -42,6 +43,9 @@
 			}
 			if($("#ddlGldj").combo("getValue")!=""){
 				lx.lxbm=$("#ddlGldj").combo("getValue");
+			}
+			if($('#ddlTSDQ').combo("getValue")!=''){
+				lx.tsdqbm=$('#ddlTSDQ').combo("getValue");
 			}
 			gclmgjxm_sh(jh,lx);
 		}

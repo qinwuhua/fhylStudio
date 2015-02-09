@@ -84,7 +84,7 @@
 				</if>
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (
-						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{l.tsdq})
+						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
 				</if>
 	       		order by jh.sbzt,jh.spzt,jh.sbnf
 	       		) t
@@ -123,7 +123,7 @@
 			</if>
 			<if test="lx.tsdq!=null and lx.tsdq!=''">
 				and lx.xzqhdm in (
-					select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{l.tsdq})
+					select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
 			</if> 
 	</select>
 	<select id="queryYhdzxById" parameterType="string" resultMap="yhdzx_jh">

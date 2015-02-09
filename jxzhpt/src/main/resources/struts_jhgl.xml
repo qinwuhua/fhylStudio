@@ -102,6 +102,7 @@
 		<action name="importAbgc_jh" class="plan_abgcController" method="importAbgc_jh"/>
 		<action name="importWqgz_jh" class="plan_wqgzController" method="importWqgz_jh"/>
 		<action name="importZhfz_jh" class="plan_zhfzController" method="importZhfz_jh"/>
+		<action name="queryTsdq" class="plan_abgcController" method="queryTsdq"/>
 		
 	 </package>
 </struts>

@@ -174,11 +174,7 @@
 					历史对比
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblLSDB">
-						<a href='###' onclick='openshuihui(1661.700,1680.700,2013,1)'
-							style='cursor: help;text-decoration: none;' title='点击查看2013年水毁灾害路面重建[1661.700-1672.181];'>
-							2013年水毁灾害路面重建[1661.700-1672.181];</a>
-					</span>
+					<span id="lblLSDB"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					交通量</td>

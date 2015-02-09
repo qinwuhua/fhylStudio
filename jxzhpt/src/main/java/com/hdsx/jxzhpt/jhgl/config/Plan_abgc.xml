@@ -76,6 +76,9 @@
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		and lx.lxjsdj = #{lx.lxjsjd}
 				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from BT_XZQHTSDQ t where t.areacode=#{lx.tsdq})
+				 	</if>
 	    			order by jh.sbzt,jh.spzt,jh.jhnf desc
 	    		) t
     		)
@@ -110,6 +113,9 @@
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from BT_XZQHTSDQ t where t.areacode=#{lx.tsdq})
 				 	</if>
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
@@ -254,4 +260,7 @@
  	<update id="updateSjsgt" parameterType="plan_abgc">
  		update plan_abgc set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
  	</update>
+	<select id="queryTsdq" resultType="treenode">
+		select t.areacode as id,t.areaname as text from BT_SPECIALAREA t
+	</select>
 </mapper>

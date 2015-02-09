@@ -111,6 +111,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
+			System.out.println("特殊地区："+lx.getTsdqbm());
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
 			jsonMap.put("rows",shuihServer.queryShuihList(page, rows, jh, lx));
 			JsonUtils.write(jsonMap, getresponse().getWriter());

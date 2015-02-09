@@ -275,6 +275,17 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void queryTsdq(){
+		try {
+			System.out.println("特殊地区："+abgcServer.queryTsdq().size());
+			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	// get set
 	public int getPage() {
 		return page;

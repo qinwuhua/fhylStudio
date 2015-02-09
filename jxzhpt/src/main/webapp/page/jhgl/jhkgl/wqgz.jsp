@@ -22,6 +22,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('tsdq');
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
 			querySumWqgz();
@@ -105,7 +106,7 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox">
+								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>

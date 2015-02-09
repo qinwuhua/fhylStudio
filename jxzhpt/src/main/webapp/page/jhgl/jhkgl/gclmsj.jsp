@@ -24,6 +24,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('tsdq');
 			var jh={jhnf:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
 			gclmsjxm(jh,lx);
@@ -47,7 +48,9 @@
 			if($("#gldj").combo("getValue")!=""){
 				lx.lxbm=$("#gldj").combo("getValue");
 			}
-			alert(lx.gydwdm+"     "+lx.xzqhdm);
+			if($("#tsdq").combo("getValue")!=""){
+				lx.tsdqbm=$("#tsdq").combo("getValue");
+			}
 			gclmsjxm(jh,lx);
 		}
 		$(window).resize(function () { 
