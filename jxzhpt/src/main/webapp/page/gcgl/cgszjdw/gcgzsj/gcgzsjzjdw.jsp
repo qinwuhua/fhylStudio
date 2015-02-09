@@ -63,7 +63,7 @@ a:active {
 
 		</table>
 		<table width="100%" border="0"
-			style="border-style: solid; border-width: 3px 1px 1px 1px; margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
+			style="border-style: solid; border-width: 0px 0px 0px 0px; margin-top: 8px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
 			cellspacing="0" cellpadding="0">
 			<tr style="height: 30px;">
 				<td align="center">

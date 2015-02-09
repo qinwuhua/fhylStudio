@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
@@ -82,4 +83,6 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	Plan_wqgz querySumWqgz();
+	boolean updateGkbg(Plan_wqgz jh);
+	boolean updateSjsgt(Plan_wqgz jh);
 }

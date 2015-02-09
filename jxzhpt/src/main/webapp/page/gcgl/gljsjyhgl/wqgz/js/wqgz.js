@@ -80,6 +80,34 @@ function Delyb(index){
 var jhid=10;
 //添加月报
 function tjwqgzyb(){
+	if($("#tj_wc_btz").val()==''||$("#tj_wc_btz").val()==null){
+		alert("请您填入本月完成部投资");
+		return;
+	}
+	if($("#tj_wc_qttz").val()==''||$("#tj_wc_qttz").val()==null){
+		alert("请您填入本月完成其他投资");
+		return;
+	}
+	if($("#tj_zjdw_qttz").val()==''||$("#tj_zjdw_qttz").val()==null){
+		alert("请您填入本月到位其他投资");
+		return;
+	}
+	if($("#tj_bywcmc").val()==''||$("#tj_bywcmc").val()==null){
+		alert("请您填入本月完成面层");
+		return;
+	}
+	if($("#tj_wcqk").val()==''||$("#tj_wcqk").val()==null||$("#tj_wcqk").val().substr(0,1)=='>'){
+		alert("请您填入本月完成情况");
+		return;
+	}
+	if($("#tj_kgdl").val()==''||$("#tj_kgdl").val()==null){
+		alert("请您填入截至开工段落");
+		return;
+	}
+	if($("#tj_sbyf").val()==''||$("#tj_sbyf").val()==null){
+		alert("请您等待上级拨付车购税再上报");
+		return;
+	}
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -102,8 +130,8 @@ function tjwqgzyb(){
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()
-	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
-	//alert(data);
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	//alert(data +"----"+$("#tj_sbyf").val());
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertWqgzYb.do',
@@ -121,6 +149,34 @@ function tjwqgzyb(){
 	});	
 }
 function xgwqgzyb(){
+	if($("#xg_wc_btz").val()==''||$("#xg_wc_btz").val()==null){
+		alert("请您填入本月完成部投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''||$("#xg_wc_qttz").val()==null){
+		alert("请您填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''||$("#xg_zjdw_qttz").val()==null){
+		alert("请您填入本月到位其他投资");
+		return;
+	}
+	if($("#xg_bywcmc").val()==''||$("#xg_bywcmc").val()==null){
+		alert("请您填入本月完成面层");
+		return;
+	}
+	if($("#xg_wcqk").val()==''||$("#xg_wcqk").val()==null){
+		alert("请您填入本月完成情况");
+		return;
+	}
+	if($("#xg_kgdl").val()==''||$("#xg_kgdl").val()==null){
+		alert("请您填入截至开工段落");
+		return;
+	}
+	if($("#xg_sbyf").val()==''||$("#xg_sbyf").val()==null){
+		alert("请您等待上级拨付车购税再上报");
+		return;
+	}
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").val()
@@ -284,7 +340,7 @@ function showYBlist(){
 		},
 	    columns:[
 	             [
-	              	{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
+	              	{field:'c',title:'操作',width:213,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		
 	              		if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==11)
@@ -307,13 +363,13 @@ function showYBlist(){
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
 	              		}
 	              	}},
-			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
-			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
-			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
-			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+			        {field:'sbyf',title:'上报月份',width:70,align:'center',rowspan:2},
+			        {field:'sbsj',title:'上报时间',width:82,align:'center',rowspan:2},
+			        {field:'bywcmc',title:'本月完成面层（公里）',width:122,align:'center',rowspan:2},
+			        {field:'kgdl',title:'截至开工段落',width:85,align:'center',rowspan:2},
 			        {title:'本月完成投资（万元）',colspan:2},
 			        {title:'本月资金到位（万元）',colspan:2},
-			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
+			        {field:'qksm',title:'情况说明',width:90,align:'center',rowspan:2}
 	             ],
 	             [
 			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
@@ -353,13 +409,17 @@ function uploadFile(str){
 	return false;
 }
 
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
-	}
-	else return;
-}
+//function downFile(str){
+//	if($("#xz_"+str).text()!='暂无附件'){
+//		parent.window.location.href="www.baidu.com";
+//		//parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+//	}
+//	else return;
+//}
 function deleteFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+	}
 	if(confirm("确认删除吗？")){
 	var data="jhid="+parent.obj1.jhid+"&type="+str;
 	$.ajax({
@@ -390,13 +450,16 @@ function jiazaifujian(data1){
 		async:false,
 		success:function(msg){
 				if(msg.sgxkwj!=''){
-					$("#xz_sgxkwj").text("下载附件");
+					$("#xz_sgxkwj").text(msg.sgxkwj);
+					$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
 				}
 				if(msg.jgtcwj!=''){
-					$("#xz_jgtcwj").text("下载附件");
+					$("#xz_jgtcwj").text(msg.jgtcwj);
+					$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
 				}
 				if(msg.jgyswj!=''){
-					$("#xz_jgyswj").text("下载附件");
+					$("#xz_jgyswj").text(msg.jgyswj);
+					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
 				}
 			}
 	});	

@@ -1,8 +1,12 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +21,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -38,6 +43,10 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private Jckwqgz lx;
 	private String fileuploadFileName;
 	private File fileupload;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
 	
 	public void querySumWqgz(){
 		try {
@@ -176,6 +185,65 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void uploadWqgzFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
+		try {
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
+					   if(wqgzServer.updateGkbg(jh))
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
+				}else{
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
+					if(wqgzServer.updateSjsgt(jh))
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	public void downWqgzFile(){
+        try {
+        	Plan_wqgz wqgz = wqgzServer.queryWqgzById(jh.getId());
+        	HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream out = response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getGkbgdata();
+                out.write(buffer);
+                out.flush();
+                out.close();
+                response.getWriter().write(uploadGkFileName);
+        	}else{
+        		OutputStream out= response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getSjsgtdata();
+                out.write(buffer);
+                out.flush();
+                out.close();
+                response.getWriter().write(uploadSjtFileName);
+        	}
+        	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//set get
 	public int getPage() {
 		return page;
@@ -227,6 +295,38 @@ public class Plan_wqgzController extends BaseActionSupport {
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 	
 }

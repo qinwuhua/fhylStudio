@@ -36,8 +36,9 @@
 		<result property="gydw" column="gydw"/>
 		<result property="qdzh" column="qdzh"/>
 		<result property="zdzh" column="zdzh"/>
+		<result property="xzqhdm" column="xzqhdm"/>
 		<result property="xzqhmc" column="xzqhmc"/>
-		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="qzlc" column="qzlc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
 	
@@ -247,4 +248,10 @@
 		and lx=#{lx}
 		</if>
 	</select>
+	<update id="updateGkbg" parameterType="plan_abgc">
+ 		update plan_abgc set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
+ 	</update>
+ 	<update id="updateSjsgt" parameterType="plan_abgc">
+ 		update plan_abgc set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
+ 	</update>
 </mapper>

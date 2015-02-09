@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -21,7 +22,8 @@ import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer {
-
+	private Plan_abgcServer abgc;
+	private Bzbz bz;
 	public Plan_abgcServerImpl() {
 		super("plan_abgc", "jdbc");
 	}
@@ -75,18 +77,51 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	}
 	@Override
 	public boolean importAbgc_jh(List<Map> data) {
+//		for (Map map : data) {
+//			Iterator iterator = map.entrySet().iterator();
+//			while(iterator.hasNext()){
+//				Entry next = (Map.Entry)iterator.next();
+//				try{
+//					String regex="^[0-9]{4}$";
+//					System.out.println("2013".matches(regex));
+//				}catch(Exception e){
+//					e.printStackTrace();
+//				}
+//			}
+//			System.out.println(map.size());
+//		}
+		abgc =new Plan_abgcServerImpl();
+		bz= new Bzbz();
 		for (Map map : data) {
-			Iterator iterator = map.entrySet().iterator();
-			while(iterator.hasNext()){
-				Entry next = (Map.Entry)iterator.next();
-				try{
-					String regex="^[0-9]{4}$";
-					System.out.println("2013".matches(regex));
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			if("X".equals(map.get("2").toString().substring(0, 1))){
+				bz.setLx("县");
+			}else{
+				bz.setLx("国省");
 			}
-			System.out.println(map.size());
+			bz.setXmlx("安保");
+			Bzbz lwbz = abgc.lwBzbz(bz);
+			double ztz = Double.parseDouble(map.get("18").toString());
+			double bl = Double.parseDouble(lwbz.getBl());
+			double bzzj=0.0;
+			ztz=(ztz*bl*100000+3*100000)/100000;
+			bzzj=(Double.parseDouble(map.get("6").toString())*100000*Double.parseDouble(lwbz.getBz())+
+					Double.parseDouble(lwbz.getFd())*100000)/100000;
+			if(ztz>=bzzj){
+			String zj =bzzj+"";
+			String zczj=(Double.parseDouble(map.get("18").toString())*100000-bzzj*100000)/100000+"";
+				map.put("19", zj);
+				map.put("20", zczj);
+			}else{
+				String zczj=(Double.parseDouble(map.get("18").toString())*100000-ztz*100000)/100000+"";
+				String ztz1=ztz+"";
+				map.put("19", ztz1);
+				map.put("20", zczj);
+			}
+			if(Double.parseDouble(map.get("18").toString())*100000>=500*100000){
+				map.put("21", "是");
+			}else{
+				map.put("21", "否");
+			}
 		}
 		return this.insertBatch("importAbgc_jh", data)==data.size()?true:false;
 	}
@@ -108,5 +143,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	}
 	public Bzbz lwBzbz(Bzbz bz) {
 		return queryOne("lwBzbz", bz);
+	}
+	@Override
+	public boolean updateGkbg(Plan_abgc jh) {
+		return update("updateGkbg", jh)>0;
+	}
+	@Override
+	public boolean updateSjsgt(Plan_abgc jh) {
+		return update("updateSjsgt", jh)>0;
 	}
 }

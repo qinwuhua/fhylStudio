@@ -153,26 +153,26 @@
 		var myDate = new Date();
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-		if(m=1){
+		if(m==1){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+11;
 			mystr2=(y-1)+'-'+12;
 			mystr3=y+'-'+(m+1);
 			mystr4=y+'-'+(m+2);
 		}
-		else if(m=2){
+		else if(m==2){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+12;
 			mystr2=y+'-'+1;
 			mystr3=y+'-'+(m+1);
 			mystr4=y+'-'+(m+2);
-		}else if(m=11){
+		}else if(m==11){
 			mystr=y+'-'+m;
 			mystr1=y+'-'+9;
 			mystr2=y+'-'+10;
 			mystr3=y+'-'+12;
 			mystr4=(y+1)+'-'+1;
-		}else if(m=12){
+		}else if(m==12){
 			mystr=y+'-'+m;
 			mystr1=y+'-'+10;
 			mystr2=(y-1)+'-'+11;
@@ -202,15 +202,12 @@
 		
 	});
 	function setGydw(id, dwbm){
+		alert("xx");
 			$('#' + id).tree(
 			{
 				checkbox : true,
 				multiple:true,
-				url : '/jxzhpt/xtgl/selAllBm2.do?yhdw=' + dwbm,
-				onBeforeExpand : function(node, param) {
-					$('#' + id).tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
-							+ node.id;
-				},
+				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
 					codes='';
@@ -220,20 +217,6 @@
 					}
 					$('#sendingunitsid').val(codes);
 				},
-				 onLoadSuccess : function(node, data) {
-			            // $('#trees').combotree('tree').tree("expandAll").tree(
-			            // "collapseAll");
-			            var t = $(this);
-			            if (data) {
-			                $(data).each(function(index, d) {
-			                    if (this.state == 'closed') {
-			                        t.tree('expandAll');
-			                         t.tree("collapseAll");
-			                    }
-			                });
-
-			            }
-			        }
 			});
 
 	}

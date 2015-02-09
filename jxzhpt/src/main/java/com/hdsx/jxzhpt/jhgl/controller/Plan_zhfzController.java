@@ -1,8 +1,12 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +20,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -38,6 +43,10 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private Jckzhfz lx;
 	private String fileuploadFileName;
 	private File fileupload;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
 	
 	public void querySumZhfz(){
 		try {
@@ -119,7 +128,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	}
 	public void queryZhfaById(){
 		try {
-			JsonUtils.write(zhfzServer.queryZhfaById(jh.getId()), getresponse().getWriter());
+			JsonUtils.write(zhfzServer.queryZhfzById(jh.getId()), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -171,6 +180,66 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void uploadZhfzFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
+		try {
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
+					   if(zhfzServer.updateGkbg(jh))
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
+				}else{
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
+					if(zhfzServer.updateSjsgt(jh))
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	public void downZhfzFile(){
+        try {
+        	Plan_zhfz zhfz =zhfzServer.queryZhfzById(jh.getId());
+        	HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream output = response.getOutputStream();
+//        		BufferedOutputStream out=new BufferedOutputStream(output);
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= zhfz.getGkbgdata();
+                output.write(buffer);
+                output.flush();
+                output.close();
+//    			out.close();
+        	}else{
+        		OutputStream output = response.getOutputStream();
+//        		BufferedOutputStream out=new BufferedOutputStream(output);
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= zhfz.getSjsgtdata();
+                output.write(buffer);
+                output.flush();
+                output.close();
+//    			out.close();
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//set get
 	public int getPage() {
 		return page;
@@ -213,6 +282,38 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 	
 }

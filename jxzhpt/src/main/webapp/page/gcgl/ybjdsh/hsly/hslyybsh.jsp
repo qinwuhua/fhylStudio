@@ -20,6 +20,14 @@
 			$("#sh_bfzj").text(data.bfzj);
 			
 		});
+		function checkZJ(aa){
+			var str=aa.value;
+			var g = /^\d+(?=\.{0,1}\d+$|$)/;
+		    if( !g.test(str)){
+		    	alert("请输入正确的金额");
+		    	$(aa).val('');
+		    }
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -67,7 +75,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                              <input style="width: 50px" type="text" id="tj_zjje"  value="0"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                              <input style="width: 50px" type="text" id="tj_zjje"  value="0" onblur="checkZJ(this)"/>&nbsp;&nbsp;&nbsp;&nbsp;
                               
                             </td>
                         </tr>
@@ -79,7 +87,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="BYWCMC" type="text" id="tj_xgcsyj" style="width: 150px;" />
+                                <input name="BYWCMC" type="text" id="tj_xgcsyj" style="width: 150px;" value="同意"/>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -90,7 +98,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="JZKGDL" type="text" id="tj_cscyj" style="width: 150px;" />
+                                <input name="JZKGDL" type="text" id="tj_cscyj" style="width: 150px;" value="同意"/>
                             </td>
                         </tr>
                        

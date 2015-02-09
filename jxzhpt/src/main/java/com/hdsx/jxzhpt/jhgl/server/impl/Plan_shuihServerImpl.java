@@ -101,4 +101,20 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		}
 		return deleteBatch("dropShuihLxByJhid", list)==list.size();
 	}
+
+	@Override
+	public boolean uploadShuihFile(Plan_shuih jh) {
+		return update("uploadShuihFile", jh)>0;
+	}
+
+	@Override
+	public Plan_shuih queryShuihwjById(String id) {
+		return queryOne("queryShuihwjById", id);
+	}
+
+	@Override
+	public int queryJhExist(Plan_lx_shuih shuih) {
+		System.out.println("进入");
+		return queryOne("queryJhExist", shuih);
+	}
 }

@@ -1,8 +1,10 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,66 @@ public class Plan_shuihController extends BaseActionSupport {
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
+	
+	public void queryShuihwjById(){
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			Plan_shuih shuih = shuihServer.queryShuihwjById(jh.getId());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] file=null;
+			if(jh.getGkbgmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getGkbgmc().substring(0,jh.getGkbgmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getGkbgmc().substring(jh.getGkbgmc().indexOf(".")));
+				file=shuih.getGkbgwj();
+			}else if(jh.getSjsgtmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getSjsgtmc().substring(0,jh.getSjsgtmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getSjsgtmc().substring(jh.getSjsgtmc().indexOf(".")));
+				file=shuih.getSjsgtwj();
+			}
+			out.write(file);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void uploadShuihFile(){
+		try{
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=null;
+			if(uploadGk!=null){
+				file =new byte[(int)uploadGk.length()];
+				inputStream=new FileInputStream(uploadGk);
+			}
+			if(uploadSjt!=null){
+				file=new byte[(int)uploadSjt.length()];
+				inputStream=new FileInputStream(uploadSjt);
+			}
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			if(uploadGkFileName!=null){
+				jh.setGkbgmc(uploadGkFileName);
+				jh.setGkbgwj(file);
+			}
+			if(uploadSjtFileName!=null){
+				jh.setSjsgtmc(uploadSjtFileName);
+				jh.setSjsgtwj(file);
+			}
+			shuihServer.uploadShuihFile(jh);
+			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public void querySumShuih(){
 		try {
@@ -130,13 +192,14 @@ public class Plan_shuihController extends BaseActionSupport {
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			String strVerify=null;
+			String strVerify="";
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
+				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
@@ -148,19 +211,26 @@ public class Plan_shuihController extends BaseActionSupport {
 				shuih.setQdzh(map.get("8").toString());
 				shuih.setZdzh(map.get("9").toString());
 				shuih.setGydwdm(map.get("gydwdm").toString());
-				map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
-				strVerify=ImportVerify.shuihVerify(map);
-				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
-				if(queryGPSBylxbm==null){
-					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+				shuih.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				if(shuihServer.queryJhExist(shuih)==0){
+					strVerify=ImportVerify.shuihVerify(map);
+					Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+					map.put("yjsdj", queryGPSBylxbm.getYjsdj());
+					if(queryGPSBylxbm==null){
+						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+					}else{
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="路线名称不正确;";
+						}else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+							strVerify+="起止里程不正确;";
+						}else{
+							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+						}
+					}
 				}else{
-					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-						strVerify+="路线名称不正确;";
-					}
-					if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
-						strVerify+="起止里程不正确;";
-					}
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已存在计划！";
 				}
+				
 				if(!strVerify.equals("")){
 					break;
 				}
@@ -233,5 +303,37 @@ public class Plan_shuihController extends BaseActionSupport {
 
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 }

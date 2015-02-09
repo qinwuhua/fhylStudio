@@ -1,8 +1,11 @@
 package com.hdsx.jxzhpt.gcgl.controller;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -264,14 +267,13 @@ public class GcglwqgzController extends BaseActionSupport{
 			}
 		}
 		
-		public void uploadWqgzFile(){
+		public void uploadWqgzFile() throws Exception{
 			HttpServletResponse response = ServletActionContext.getResponse();
 			String jhid1=jhid;
 			String type1=type;
 			gcglwqgz.setJhid(jhid);
 			gcglwqgz.setTiaojian(type);
 			Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
-			System.out.println(gcglwqgz1);
 			if(gcglwqgz1!=null)
 			if(gcglwqgz1.getTiaojian()!=""||gcglwqgz1.getTiaojian()!=null){
 				try {
@@ -282,36 +284,29 @@ public class GcglwqgzController extends BaseActionSupport{
 					e.printStackTrace();
 				}
 			}
-			
-			String realPath = ServletActionContext.getServletContext().getRealPath("/");
-			File dir = new File(realPath+"upload\\");
-			fileuploadFileName=new Date().getTime()+"-"+fileuploadFileName;
-			if (!dir.exists())
-				dir.mkdir();//创建文件夹
-
-			try {
-				FileUtils.copyFile(fileupload, new File(realPath+"upload\\"+fileuploadFileName));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			String tiaojian=fileuploadFileName;
-			
 			gcglwqgz.setTiaojian(tiaojian);
 			gcglwqgz.setJhid(jhid1);
 			
+			 InputStream inputStream = new FileInputStream(fileupload);
 			boolean bl = false;
-			if("sgxkwj".equals(type1))
+			if("sgxkwj".equals(type1)){
+				gcglwqgz.setSgxkwjfile(inputStreamToByte(inputStream));
 				bl=gcglwqgzServer.uploadWqgzFilesgxk(gcglwqgz);
-			if("jgtcwj".equals(type1))
+			}
+			if("jgtcwj".equals(type1)){
+				gcglwqgz.setJgtcwjfile(inputStreamToByte(inputStream));
 				bl=gcglwqgzServer.uploadWqgzFilejgtc(gcglwqgz);
-			if("jgyswj".equals(type1))
+			}
+			if("jgyswj".equals(type1)){
+				gcglwqgz.setJgyswjfile(inputStreamToByte(inputStream));
 				bl=gcglwqgzServer.uploadWqgzFilejgys(gcglwqgz);
+			}
 			try {
 				if(bl)
-				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入成功");
+				response.getWriter().print(fileuploadFileName+"导入成功");
 				else
-				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入失败");
+				response.getWriter().print(fileuploadFileName+"导入失败");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -323,21 +318,42 @@ public class GcglwqgzController extends BaseActionSupport{
 			response.setContentType("octets/stream");
 			gcglwqgz.setJhid(jhid);
 			gcglwqgz.setTiaojian(type);
+			gcglwqgz.setLxmc(type+"file");
 			Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
+			byte[] data = gcglwqgz1.getSgxkwjfile();
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getTiaojian();
-			
-			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.substring(14, filename.length()).getBytes("gb2312"), "ISO-8859-1"));
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
 			File file=new File(realPath+"upload\\"+gcglwqgz1.getTiaojian());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
 			FileInputStream fis= new FileInputStream(file);
-			//byte [] arr = new byte[1024*10];
-			int i=0;
-			while((i=fis.read())!=-1){
-				out.write(i);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
 			}
 			fis.close();
 			out.flush();
 			out.close();
+			file.delete();
 		}
 		public void insertWqgzkg(){
 			Boolean bl=gcglwqgzServer.insertWqgzkg(gcglwqgz);
@@ -399,20 +415,21 @@ public class GcglwqgzController extends BaseActionSupport{
 		
 		gcglwqgz.setJhid(jhid);
 		gcglwqgz.setTiaojian(type);
-		Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
-		String realPath = ServletActionContext.getServletContext().getRealPath("/");
-		String filename=gcglwqgz1.getTiaojian();
 		gcglwqgz.setTiaojian("");		
 		boolean bl = false;
-		if("sgxkwj".equals(type))
+		if("sgxkwj".equals(type)){
+			gcglwqgz.setSgxkwjfile(new byte[] {});
 			bl=gcglwqgzServer.uploadWqgzFilesgxk(gcglwqgz);
-		if("jgtcwj".equals(type))
+		}
+		if("jgtcwj".equals(type)){
+			gcglwqgz.setJgtcwjfile(new byte[] {});
 			bl=gcglwqgzServer.uploadWqgzFilejgtc(gcglwqgz);
-		if("jgyswj".equals(type))
+		}
+		if("jgyswj".equals(type)){
+			gcglwqgz.setJgyswjfile(new byte[] {});
 			bl=gcglwqgzServer.uploadWqgzFilejgys(gcglwqgz);
+		}
 		if(bl){
-			File file=new File(realPath+"upload\\"+filename);
-			file.delete();
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -439,4 +456,26 @@ public class GcglwqgzController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void selectWqgzwcqk(){
+		Gcglwqgz gcglwqgz1 = new Gcglwqgz();
+		if("wqgz".equals(yhtype)){
+			gcglwqgz1=gcglwqgzServer.selectWqgzwcqk(gcglwqgz);
+		}
+		try {
+			JsonUtils.write(gcglwqgz1, getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private byte [] inputStreamToByte(InputStream is) throws IOException { 
+	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    int ch; 
+	    while((ch = is.read() ) != -1){ 
+	        bAOutputStream.write(ch); 
+	    } 
+	    byte data [] =bAOutputStream.toByteArray(); 
+	    bAOutputStream.close(); 
+	    return data; 
+	} 
 }
+	

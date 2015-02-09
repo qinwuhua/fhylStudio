@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
@@ -42,7 +43,7 @@ public interface Plan_zhfzServer {
 	 * @param id
 	 * @return
 	 */
-	Plan_zhfz queryZhfaById(String id);
+	Plan_zhfz queryZhfzById(String id);
 	/**
 	 * 查询灾害防治年份列表
 	 * @return
@@ -80,4 +81,6 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	boolean editZhfzStatus(Plan_zhfz jh);
+	boolean updateGkbg(Plan_zhfz jh);
+	boolean updateSjsgt(Plan_zhfz jh);
 }

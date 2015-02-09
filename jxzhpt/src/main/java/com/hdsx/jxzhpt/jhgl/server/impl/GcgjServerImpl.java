@@ -106,4 +106,19 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 		}
 		return deleteBatch("dropGcgjLxByJhid", list)==list.size();
 	}
+
+	@Override
+	public boolean uploadGcgjFile(Plan_gcgj jh) {
+		return update("uploadGcgjFile", jh)>0;
+	}
+
+	@Override
+	public Plan_gcgj queryGjwjById(String id) {
+		return queryOne("queryGjwjById", id);
+	}
+
+	@Override
+	public int queryJhExist(Plan_lx_gcgj lx) {
+		return queryOne("queryJhExist", lx);
+	}
 }

@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.gcgl.bean;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -111,7 +112,44 @@ public class Gcglwqgz implements Serializable {
 	private String sfth;
 	private String sbthcd;
 	
+	private String wcqkmax;
+	private String wcqkmin;
 	
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
+	
+	
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public String getWcqkmax() {
+		return wcqkmax;
+	}
+	public void setWcqkmax(String wcqkmax) {
+		this.wcqkmax = wcqkmax;
+	}
+	public String getWcqkmin() {
+		return wcqkmin;
+	}
+	public void setWcqkmin(String wcqkmin) {
+		this.wcqkmin = wcqkmin;
+	}
 	public String getSbthcd() {
 		return sbthcd;
 	}

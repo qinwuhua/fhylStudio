@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -29,6 +31,9 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
+import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
+import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -54,9 +59,20 @@ public class GcglaqybController extends BaseActionSupport{
 	private String ddlyear;
 	private String ddlmonth;
 	private String type;
+	private String yhdw;
 	
+	
+	public String getYhdw() {
+		return yhdw;
+	}
+	public void setYhdw(String yhdw) {
+		this.yhdw = yhdw;
+	}
+
 	@Resource(name = "gcglaqybServerImpl")
 	private GcglaqybServer gcglaqybServer;
+	@Resource(name = "xtglServerImpl")
+	private XtglServer xtglServer;
 	
 	private Gcglaqyb gcglaqyb = new Gcglaqyb();
 	private String jhid;
@@ -211,4 +227,38 @@ public class GcglaqybController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	
+	
+	public void selAllBm3(){
+		List<TreeNode> l=gcglaqybServer.selAllBm3(yhdw);
+		
+		
+		
+		TreeNode root = returnRoot(l,l.get(0));
+		List<TreeNode> children = root.getChildren();
+		try{
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private TreeNode returnRoot(List<TreeNode> list, TreeNode zzjgTree){
+
+		for(TreeNode temp : list){
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					zzjgTree.setState("closed");
+					zzjgTree.getChildren().add(temp);
+					returnRoot(list,temp);
+				}
+			}
+		}
+		return zzjgTree;
+	}
+	
+	
+	
 }

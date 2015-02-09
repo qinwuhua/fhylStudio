@@ -36,23 +36,6 @@
 						<tr style="height: 35px;">
 							<td
 								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">是否为追加资金：</font>
-							</td>
-							<td
-								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<table id="rList" border="0">
-									<tr>
-										<td>
-											<input id="rList_0" type="radio" name="rList" value="0" checked="checked" />
-											<label for="rList_0">否</label></td>
-										<td>
-											<input id="rList_1" type="radio" name="rList" value="1" />
-											<label for="rList_1">是</label></td>
-									</tr>
-								</table>
-							</td>
-							<td
-								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font>
 							</td>
 							<td
@@ -66,6 +49,22 @@
 							<td
 								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<span id="tbsj"></span>
+							</td>
+							<td style="display:none;border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<font color="#009ACD" style="cursor: hand; font-size: 12px">是否为追加资金：</font>
+								<input id="sfzj" value="0" type="hidden"/>
+							</td>
+							<td style="display:none;border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<table id="rList" border="0">
+									<tr>
+										<td>
+											<input id="rList_0" type="radio" name="rList" value="0" checked="checked" />
+											<label for="rList_0">否</label></td>
+										<td>
+											<input id="rList_1" type="radio" name="rList" value="1" />
+											<label for="rList_1">是</label></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 					</table>
@@ -101,7 +100,7 @@
 			data:'zjxd.xmid='+xxId,
 			success:function(data){
 				if(data.count!="0")
-					$('input[id="rList_1"]').attr("checked",'checked');
+					$('#sfzj').val("1");
 			}
 		});
 		var years=[];

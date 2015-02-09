@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
+import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer {
-
+	private Plan_abgcServer abgc;
+	private Bzbz bz;
 	public Plan_zhfzServerImpl() {
 		super("plan_zhfz", "jdbc");
 	}
@@ -42,7 +46,7 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public Plan_zhfz queryZhfaById(String id) {
+	public Plan_zhfz queryZhfzById(String id) {
 		return queryOne("queryZhfzById", id);
 	}
 
@@ -79,9 +83,35 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 
 	@Override
 	public boolean importZhfz_jh(List<Map> data) {
+		abgc =new Plan_abgcServerImpl();
+		bz= new Bzbz();
+		for (Map map : data) {
+			bz.setXmlx("灾害");
+			Bzbz lwbz = abgc.lwBzbz(bz);
+			double ztz = Double.parseDouble(map.get("17").toString());
+			double bl = Double.parseDouble(lwbz.getBl());
+			double bzzj=0.0;
+			ztz=(ztz*bl*100000+3*100000)/100000;
+			bzzj=(Double.parseDouble(map.get("6").toString())*100000*Double.parseDouble(lwbz.getBz())+
+					Double.parseDouble(lwbz.getFd())*100000)/100000;
+			if(ztz>=bzzj){
+			String zj =bzzj+"";
+			String zczj=(Double.parseDouble(map.get("17").toString())*100000-bzzj*100000)/100000+"";
+				map.put("18", zj);
+				map.put("19", zczj);
+			}else{
+				String zczj=(Double.parseDouble(map.get("17").toString())*100000-ztz*100000)/100000+"";
+				String ztz1=ztz+"";
+				map.put("18", ztz1);
+				map.put("19", zczj);
+			}
+			if(Double.parseDouble(map.get("17").toString())*100000>=500*100000){
+				map.put("20", "是");
+			}else{
+				map.put("20", "否");
+			}
+		}
 		return this.insertBatch("importZhfz_jh", data)==data.size()?true:false;
-		//System.out.println("---------------\n"+data);
-		//return this.update("importZhfz_jh", data)==data.size()?true:false;
 	}
 	public boolean editZhfzStatus(Plan_zhfz jh) {
 		return update("editZhfzStatus", jh)>0;
@@ -100,6 +130,15 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 			idlist.add(ids[i]);
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
+	}
+
+	@Override
+	public boolean updateGkbg(Plan_zhfz jh) {
+		return update("updateGkbg", jh)>0;
+	}
+	@Override
+	public boolean updateSjsgt(Plan_zhfz jh) {
+		return update("updateSjsgt", jh)>0;
 	}
 
 }

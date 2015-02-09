@@ -1,9 +1,12 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +40,66 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
+	
+	public void queryWjById(){
+		try {
+			HttpServletResponse response = getresponse();
+			response.setContentType("octets/stream");
+			Plan_gcsj gcsj = gcsjServer.queryWjById(jh.getId());
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] file=null;
+			if(jh.getGkbgmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getGkbgmc().substring(0,jh.getGkbgmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getGkbgmc().substring(jh.getGkbgmc().indexOf(".")));
+				file=gcsj.getGkbgwj();
+			}else if(jh.getSjsgtmc()!=null){
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(jh.getSjsgtmc().substring(0,jh.getSjsgtmc().indexOf(".")).getBytes("gb2312"), "ISO-8859-1")+ jh.getSjsgtmc().substring(jh.getSjsgtmc().indexOf(".")));
+				file=gcsj.getSjsgtwj();
+			}
+			out.write(file);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void uploadGcsjFile(){
+		try{
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=null;
+			if(uploadGk!=null){
+				file =new byte[(int)uploadGk.length()];
+				inputStream=new FileInputStream(uploadGk);
+			}
+			if(uploadSjt!=null){
+				file=new byte[(int)uploadSjt.length()];
+				inputStream=new FileInputStream(uploadSjt);
+			}
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			if(uploadGkFileName!=null){
+				jh.setGkbgmc(uploadGkFileName);
+				jh.setGkbgwj(file);
+			}
+			if(uploadSjtFileName!=null){
+				jh.setSjsgtmc(uploadSjtFileName);
+				jh.setSjsgtwj(file);
+			}
+			gcsjServer.uploadGcsjFile(jh);
+			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public void querySumMessage(){
 		try {
@@ -140,6 +203,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
+				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
@@ -151,19 +215,25 @@ public class Plan_gcsjController extends BaseActionSupport{
 				lx.setQdzh(map.get("7").toString());
 				lx.setZdzh(map.get("8").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
-				map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
-				strVerify=ImportVerify.gcsjVerify(map);
-				Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
-				if(queryGPSBylxbm==null && strVerify.equals("")){
-					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+				lx.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				if(gcsjServer.queryJhExist(lx)==0){
+					strVerify=ImportVerify.gcsjVerify(map);
+					Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
+					if(queryGPSBylxbm==null && strVerify.equals("")){
+						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+					}else{
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="路线名称不正确;";
+						}else if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
+							strVerify+="起止里程不正确;";
+						}else{
+							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
+						}
+					}
 				}else{
-					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-						strVerify+="路线名称不正确;";
-					}
-					if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
-						strVerify+="起止里程不正确;";
-					}
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】已经存在计划！";
 				}
+				
 				if(!strVerify.equals("")){
 					break;
 				}
@@ -176,7 +246,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			if(boolJh && boolLx)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
-				response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
+				response.getWriter().print(fileuploadFileName+"导入失败！</br>"+strVerify);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -235,5 +305,37 @@ public class Plan_gcsjController extends BaseActionSupport{
 
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 }

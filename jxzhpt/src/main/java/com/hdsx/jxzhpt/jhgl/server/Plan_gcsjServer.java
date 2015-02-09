@@ -9,6 +9,24 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcsjServer {
 	/**
+	 * 判断计划中是否有此数据
+	 * @param lx
+	 * @return
+	 */
+	int queryJhExist(Plan_lx_gcsj lx);
+	/**
+	 * 根据ID查询对应文件
+	 * @param id
+	 * @return
+	 */
+	Plan_gcsj queryWjById(String id);
+	/**
+	 * 上传文件，把文件存入数据库中
+	 * @param jh
+	 * @return
+	 */
+	boolean uploadGcsjFile(Plan_gcsj jh);
+	/**
 	 * 根据计划ID删除路线
 	 * @param id
 	 * @return

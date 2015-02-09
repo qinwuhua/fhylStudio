@@ -23,6 +23,7 @@
 	<action name="deleteWqgzFile" class="gcglwqgzController" method="deleteWqgzFile"/>
 	<action name="sbWqgzYb" class="gcglwqgzController" method="sbWqgzYb"/>
 	<action name="selectWqgzyf" class="gcglwqgzController" method="selectWqgzyf"/>
+	<action name="selectWqgzwcqk" class="gcglwqgzController" method="selectWqgzwcqk"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
@@ -182,5 +183,6 @@
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
 	<action name="insertAqybb" class="gcglaqybController" method="insertAqybb"/>
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
+	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
  </package>
 </struts>

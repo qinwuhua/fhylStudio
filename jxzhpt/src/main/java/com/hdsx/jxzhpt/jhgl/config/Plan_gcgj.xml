@@ -36,7 +36,7 @@
 		<result property="sjpfwh" column="sjpfwh"/>
 		<result property="sfgyhbm" column="sfgyhbm"/>
 		<result property="gkbgmc" column="gkbgmc"/>
-		<result property="sjsgtlj" column="sjsgtlj"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
 		<result property="bz" column="bz"/>
@@ -159,7 +159,7 @@
        		jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.xdsj,jh.xmmc,jh.yhlb,jh.sjdw,jh.sjpfdw,
        		jh.sjlmlx,jh.dc,jh.jc,jh.mc,jh.lmkd,jh.pfwh,jh.pfsj,jh.pfztz,jh.jhsybzje,
        		jh.jhsydfzcje,jh.sfsqablbz,jh.ablbzsqwh,jh.sftqss,jh.jhxdwh,jh.gksjwh,
-       		jh.sjpfwh,jh.sfgyhbm,jh.gkbgmc,jh.sjsgtlj,jh.bz,
+       		jh.sjpfwh,jh.sfgyhbm,jh.gkbgmc,jh.sjsgtmc,jh.bz,
        		l.lxmc,l.lxbm,l.jsdd,l.qdzh,l.zdzh,l.qzlc,l.gydw,l.xzqhdm,l.xzqhmc,
        		l.yjsdj,l.ylmlx,l.yhlc,l.bhnr
 		from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on l.jhid=jh.id 
@@ -223,11 +223,9 @@
 	</insert>
 	<insert id="insertGcgj_lx" parameterType="hashMap">
 		insert into plan_lx_gcgj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
-			lxmc,jsdd,bhnr,ylmlx,qdzh,
-			zdzh,qzlc,yhlc) 
-		values(sys_guid(),#{jhid},#{0},#{gydwdm},#{1},#{2},#{3},
-			#{4},#{5},#{6},#{7},#{8},
-			#{9},#{10},#{11})
+			lxmc,jsdd,bhnr,ylmlx,qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj) 
+		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},
+			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm},#{yjsdj})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from JXJCK_2013.GPSROAD t 
@@ -235,7 +233,8 @@
 	</select>
 	<select id="queryGPSBylxbm2" parameterType="plan_lx_gcgj" resultType="plan_lx_gcgj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc from JXJCK_2013.GPSROAD t where 
+		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj
+		 from JXJCK_2013.GPSROAD t where 
 		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="querySumGcgj" resultMap="gcgj_lx">
@@ -244,9 +243,32 @@
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh})]]>
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh}) and jh.sbnf<#{jhid}]]>
 	</select>
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
 	</delete>
+	<update id="uploadGcgjFile" parameterType="plan_gcgj">
+		update plan_gcgj jh set 
+		<if test="gkbgmc!=null and gkbgmc!=''">
+			jh.GKBGMC=#{gkbgmc},
+		</if>
+		<if test="gkbgwj!=null">
+			jh.gkbgwj=#{gkbgwj}
+		</if>
+		<if test="sjsgtmc!=null and sjsgtmc!=''">
+			jh.SJSGTMC=#{sjsgtmc},
+		</if>
+		<if test="sjsgtwj!=null">
+			jh.sjsgtwj=#{sjsgtwj}
+		</if>
+		where jh.id=#{id}
+	</update>
+	<select id="queryGjwjById" parameterType="plan_gcgj" resultType="plan_gcgj">
+		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcgj j where id=#{id}
+	</select>
+	<select id="queryJhExist" parameterType="plan_lx_gcgj" resultType="int">
+		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
+	</select>
 </mapper>

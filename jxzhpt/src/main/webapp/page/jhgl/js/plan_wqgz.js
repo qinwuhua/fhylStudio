@@ -44,11 +44,11 @@ function wqxm(jh,lx){
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	if(row.jh_sbthcd>0){
 		        		result+='<a style="text-decoration:none;">编辑</a>    ';
-			        	result+='<a style="text-decoration:none;">删除</a>';
+			        	result+='<a style="text-decoration:none;">移除</a>';
 		        	}else{
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	var id="'"+row.id+"'";
-			        	result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">删除</a>';
+			        	result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		        	}
 		        	
 		        	return result;
@@ -69,10 +69,10 @@ function wqxm(jh,lx){
 					}
 					return result;
 		        }},
-		        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-		        	var id="'"+row.id+"'";
-	        		return '<a href="javascript:openZjxd('+"'wqgz_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
-		        }},
+//		        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+//		        	var id="'"+row.id+"'";
+//	        		return '<a href="javascript:openZjxd('+"'wqgz_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -421,7 +421,7 @@ function openAddWqgz(){
 	openAdd('wqgz_add','添加安保工程项目','../add/wqgzAdd.jsp');
 }
 function dropWqgzs(){
-	if(confirm("确认要删除选中计划？")){
+	if(confirm("确认要移除选中计划？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="",sckid="";
 		$.each(sel,function(index,item){
@@ -446,12 +446,12 @@ function dropWqgzs(){
 				var params={"jh.sbzt":null,"jh.spzt":null,"jh.jhnf":null,
 						"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 				if(data.edit && data.drop){
-					alert("删除成功！");
+					alert("移除成功！");
 					gridObj.datagrid("reload",params);
 				}
 			},
 			error:function(){
-				alert("删除失败！");
+				alert("移除失败！");
 			}
 		});
 	}
@@ -469,7 +469,7 @@ function editWqgz(){
 			'jh.pfsj':$('#pfsj').datebox('getValue'),
 			'jh.pfztz':$('#jhztz').val(),
 			'jh.jhsybzje':$('#bbz').html(),
-			'jh.jhsydfzcje':$('#zfzc').val(),
+			'jh.jhsydfzcje':$('#zfzc').html(),
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ablbzwh').val(),
 			'jh.bz':$('#JHRemarks').val()
@@ -487,6 +487,7 @@ function editWqgz(){
 	});
 	
 }
+
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

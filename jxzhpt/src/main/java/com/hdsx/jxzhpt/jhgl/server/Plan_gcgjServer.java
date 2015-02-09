@@ -9,6 +9,24 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
 	/**
+	 * 查询此路段是否存在计划
+	 * @param gcgj
+	 * @return
+	 */
+	int queryJhExist(Plan_lx_gcgj gcgj);
+	/**
+	 * 根据ID查询对应文件
+	 * @param id
+	 * @return
+	 */
+	Plan_gcgj queryGjwjById(String id);
+	/**
+	 * 上传文件到数据库中
+	 * @param jh
+	 * @return
+	 */
+	boolean uploadGcgjFile(Plan_gcgj jh);
+	/**
 	 * 根据计划ID删除路线信息
 	 * @param id
 	 * @return
