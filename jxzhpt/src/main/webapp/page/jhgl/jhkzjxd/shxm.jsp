@@ -20,6 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/querySumShuih.do',
@@ -56,6 +57,9 @@
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlTSDQ').combobox('getValue')!=''){
+				lx.tsdqbm=$('#ddlTSDQ').combobox('getValue');
 			}
 			shxm_zjxd(jh,lx);
 		}

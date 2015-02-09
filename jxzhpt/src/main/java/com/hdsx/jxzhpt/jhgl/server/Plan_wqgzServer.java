@@ -85,4 +85,5 @@ public interface Plan_wqgzServer {
 	Plan_wqgz querySumWqgz();
 	boolean updateGkbg(Plan_wqgz jh);
 	boolean updateSjsgt(Plan_wqgz jh);
+	Plan_wqgz queryWqgzFjById(String id);
 }

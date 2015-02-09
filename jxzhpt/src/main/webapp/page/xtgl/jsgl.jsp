@@ -48,7 +48,7 @@ function deleteJs(_id){
 
 $(function(){
 	$("#jsgl_table").datagrid({
-		border : true,
+		border:true,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',

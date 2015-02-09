@@ -42,6 +42,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./bmbm.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010407',
+		title:'补助标准',
+		imgSrc:'../../images/bzbz.png',
+		renderTo:'left_menu1',
+		href:'./bzbz.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

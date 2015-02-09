@@ -105,7 +105,7 @@
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
 					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								B.AREACODE=#{l.tsdqbm}
+								and B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
 					     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
@@ -149,7 +149,7 @@
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
 					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								B.AREACODE=#{l.tsdqbm}
+								and B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
 					     )

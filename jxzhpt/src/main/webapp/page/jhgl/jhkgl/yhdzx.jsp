@@ -22,6 +22,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('tsdq');
 			querySumYhdzx();
 			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
 			sbnf('sbnf');
@@ -31,6 +32,61 @@
 		function searchYhdzx(){
 			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.sbnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#tsdq').combobox('getValue')!=''){
+				lx.tsdq=$('#tsdq').combobox('getValue');
+			}
+			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#jhzt').combo("getValue")=="未上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=0;
+					}else{
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#jhzt').combo("getValue")=="已上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}else{
+						jh.sbzt='1';
+						jh.spzt='0';
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#jhzt').combo("getValue")=="未审批"){
+					jh.sbzt='1';
+					jh.spzt='0';
+					jh.jh_sbthcd=4;
+				}
+				if($('#jhzt').combo("getValue")=="已审批"){
+					jh.sbzt='1';
+					jh.spzt='1';
+					jh.jh_sbthcd=6;
+				}
+			}
 			yhdzxxm(jh,lx);
 		}
 		$(window).resize(function () { 
@@ -75,7 +131,7 @@
         						<span>上报年份：</span>
         						<select id="sbnf" class="easyui-combobox" style="width: 80px;"></select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
+								<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:80px;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -105,7 +161,7 @@
 								</select>
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;padding-left: 8px;"/>
+        						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img alt="导出模版" onclick="exportYh('Plan_Yhdzx')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
 								<img alt="导入" onclick="importData_jh('yhdzx_jh')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 				                <img alt="删除"  onclick="dropYhdzxs()" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">

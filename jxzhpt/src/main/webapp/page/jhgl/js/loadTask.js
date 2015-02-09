@@ -19,6 +19,13 @@ function jhnf(id,url){
 	    textField:'text'   
 	}); 
 }
+function tsdq(id){
+	$('#'+id).combobox({    
+	    url:'../../../jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}
 function AddWqgz(){
 	openDialog("wqgz_xx", "添加危桥改造计划库信息", "../add/wqgzAdd.jsp");
 }

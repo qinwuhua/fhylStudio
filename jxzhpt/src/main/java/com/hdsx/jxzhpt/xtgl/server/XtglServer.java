@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.xtgl.server;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -121,5 +122,9 @@ public interface XtglServer {
 	List<TreeNode> selQxByRoleid(Param param);
 
 	List<Param> selQxListByRoleid(Param param);
+
+	List<Bzbz> selBzbz(Bzbz bzbz);
+
+	boolean updateBzbz(List<Bzbz> l);
 
 }

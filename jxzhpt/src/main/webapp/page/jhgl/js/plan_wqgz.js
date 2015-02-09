@@ -30,11 +30,7 @@ function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
-			"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl};
-	queryParams='&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&jh.jhkgsj='+jh.jhkgsj+
-	'&jh.jhwgsj='+jh.jhwgsj+'&jh.pfztz='+jh.pfztz+
-	'&lx.gydw='+lx.gydw+'&lx.gydwdm='+lx.gydwdm+'&lx.xzqhmc='+lx.xzqhmc+'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc+
-	'&lx.qlmc='+lx.qlmc+'&lx.akjfl='+lx.akjfl;
+			"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 		    columns:[[
@@ -358,6 +354,7 @@ function queryWqgzById(id){
 		dataType:'json',
 		success:function(data){
 			//计划
+			$("#jhid").val(data.id);
 			$('#jhnf').html(data.jhnf);
 			$('#jhkgsj').html(data.jhkgsj);
 			$('#jhwgsj').html(data.jhwgsj);
@@ -373,6 +370,12 @@ function queryWqgzById(id){
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').html(data.ablbzsqwh);
 			$('#JHRemarks').html(data.bz);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
@@ -485,36 +488,12 @@ function editWqgz(){
 			searchWqgz();
 		}
 	});
-	
 }
-
-function uploadFile(str){
-	alert($('#jhid').val());
-	var title="";
-	if(str=="gkbg"){
-		title='请选择工可报告附件';
-	}else{
-		title='请选择设计施工图附件';
-	}
-	var weatherDlg = new J.dialog( {
-		id : 'files1',
-		title : title,
-		page : '../upload.jsp?url='+"/jxzhpt/jhgl/uploadWqgzFile.do"+'&flag='+'wqgz'+'&type='+str+'&jhid='+$('#jhid').val(),
-		width : 450,
-		height : 400,
-		top : 0,
-		rang : true,
-		resize : false,
-		cover : true
-	});
-	weatherDlg.ShowDialog();
-	return false;
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
 }
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+str+"&jh.id="+$('#jhid').val();
-	}
-	else return;
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
 }
 
 /**

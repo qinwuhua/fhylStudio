@@ -1,24 +1,16 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -260,9 +252,9 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void downAbgcFile(){
         try {
-        	Plan_abgc abgc = abgcServer.queryAbgcById(jh.getId());
+        	Plan_abgc abgc = abgcServer.queryFjById(jh.getId());
         	HttpServletResponse response = getresponse();
-			response.setContentType("octets/stream");
+        	response.setContentType("application/x-download"); 
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
@@ -270,7 +262,6 @@ public class Plan_abgcController extends BaseActionSupport{
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadGkFileName);
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
@@ -278,9 +269,19 @@ public class Plan_abgcController extends BaseActionSupport{
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadSjtFileName);
         	}
         	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryTsdq(){
+		try {
+			System.out.println("特殊地区："+abgcServer.queryTsdq().size());
+			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

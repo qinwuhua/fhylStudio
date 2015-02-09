@@ -26,6 +26,7 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -46,6 +47,7 @@ public class XtglController extends BaseActionSupport{
 	private XtglServer xtglServer;
 	//单位实体
 	private Unit unit;
+	private Bzbz bzbz;
 	private Param param;
 	//用户实体
 	private Master master;
@@ -777,6 +779,31 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	
+	public void selBzbz(){
+		List<Bzbz> l=xtglServer.selBzbz(bzbz);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void updateBzbz(){
+		List<Bzbz> roadList;
+		boolean bl=false;
+		try {
+			roadList = JsonUtils.json2List(bzbz.getId(), Bzbz.class);
+			bl=xtglServer.updateBzbz(roadList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}
@@ -854,6 +881,12 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setParam(Param param) {
 		this.param = param;
+	}
+	public Bzbz getBzbz() {
+		return bzbz;
+	}
+	public void setBzbz(Bzbz bzbz) {
+		this.bzbz = bzbz;
 	}
 	
 	

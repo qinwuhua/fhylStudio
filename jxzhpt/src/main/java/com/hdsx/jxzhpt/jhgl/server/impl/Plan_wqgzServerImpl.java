@@ -140,4 +140,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public boolean updateSjsgt(Plan_wqgz jh) {
 		return update("updateSjsgt", jh)>0;
 	}
+
+	@Override
+	public Plan_wqgz queryWqgzFjById(String id) {
+		return queryOne("queryWqgzFjById", id);
+	}
 }

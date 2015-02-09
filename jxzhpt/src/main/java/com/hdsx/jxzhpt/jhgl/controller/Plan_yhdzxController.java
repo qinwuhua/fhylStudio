@@ -132,6 +132,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
+				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 			}
 			System.out.println(data);
 			yhdzxServer.insertYhdzx_lx(data);
