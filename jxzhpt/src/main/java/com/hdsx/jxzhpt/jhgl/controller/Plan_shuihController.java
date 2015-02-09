@@ -192,7 +192,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
 			}
-			String strVerify=null;
+			String strVerify="";
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
 			for (Map map : data) {
@@ -211,20 +211,26 @@ public class Plan_shuihController extends BaseActionSupport {
 				shuih.setQdzh(map.get("8").toString());
 				shuih.setZdzh(map.get("9").toString());
 				shuih.setGydwdm(map.get("gydwdm").toString());
-				map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
-				strVerify=ImportVerify.shuihVerify(map);
-				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
-				map.put("yjsdj", queryGPSBylxbm.getYjsdj());
-				if(queryGPSBylxbm==null){
-					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+				shuih.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				if(shuihServer.queryJhExist(shuih)==0){
+					strVerify=ImportVerify.shuihVerify(map);
+					Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+					map.put("yjsdj", queryGPSBylxbm.getYjsdj());
+					if(queryGPSBylxbm==null){
+						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
+					}else{
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="路线名称不正确;";
+						}else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+							strVerify+="起止里程不正确;";
+						}else{
+							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+						}
+					}
 				}else{
-					if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-						strVerify+="路线名称不正确;";
-					}
-					if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
-						strVerify+="起止里程不正确;";
-					}
+					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已存在计划！";
 				}
+				
 				if(!strVerify.equals("")){
 					break;
 				}

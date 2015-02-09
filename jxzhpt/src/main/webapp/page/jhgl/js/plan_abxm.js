@@ -536,27 +536,11 @@ function editAbgc(){
 	});
 }
 
-function uploadFile(str){
-	alert($('#jhid').val());
-	var title="";
-	if(str=="gkbg"){
-		title='请选择工可报告附件';
-	}else{
-		title='请选择设计施工图附件';
+function downFile(str){
+	if($("#xz_"+str).text()=='下载附件'){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+str+"&jh.id="+$('#jhid').val();
 	}
-	var weatherDlg = new J.dialog( {
-		id : 'files1',
-		title : title,
-		page : '../upload.jsp?url='+"/jxzhpt/jhgl/uploadAbgcFile.do"+'&flag='+'abgc'+'&type='+str+'&jhid='+$('#jhid').val(),
-		width : 450,
-		height : 400,
-		top : 0,
-		rang : true,
-		resize : false,
-		cover : true
-	});
-	weatherDlg.ShowDialog();
-	return false;
+	else return;
 }
 /**
  * dataGrid绑定数据方法

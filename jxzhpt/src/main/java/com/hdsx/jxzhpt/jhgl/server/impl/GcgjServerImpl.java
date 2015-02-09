@@ -116,4 +116,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public Plan_gcgj queryGjwjById(String id) {
 		return queryOne("queryGjwjById", id);
 	}
+
+	@Override
+	public int queryJhExist(Plan_lx_gcgj lx) {
+		return queryOne("queryJhExist", lx);
+	}
 }

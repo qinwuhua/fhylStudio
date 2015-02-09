@@ -43,7 +43,7 @@ public interface Plan_zhfzServer {
 	 * @param id
 	 * @return
 	 */
-	Plan_zhfz queryZhfaById(String id);
+	Plan_zhfz queryZhfzById(String id);
 	/**
 	 * 查询灾害防治年份列表
 	 * @return

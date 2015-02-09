@@ -395,9 +395,8 @@
 					工可报告
 				</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblGKBG_GK">暂无附件！</span>&nbsp;&nbsp;
+					<a onclick="downFile('gkbg')" id="xz_gkbg" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
 					<a id="gkbg"  onclick="uploadFile('gkbg')"href="#"style="color: #2C7ED1;">上传</a>
-						&nbsp;|&nbsp;删除
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -405,9 +404,8 @@
 					设计施工图
 				</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="lblGKBG_GK">暂无附件！</span>&nbsp;&nbsp;
+					<a onclick="downFile('jhsgt')" id="xz_jhsgt" href="#" style="color: #2C7ED1;">暂无附件</a>&nbsp;&nbsp;
 					<a id="jhsgt"  onclick="uploadFile('jhsgt')"href="#"style="color: #2C7ED1;">上传</a>
-						&nbsp;|&nbsp;删除
 				</td>
 			</tr>
 			<tr id="trSY" style="height: 25px;">
@@ -467,6 +465,12 @@
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.bz);
+			if(data.gkbgmc!=''){
+				$("#xz_gkbg").text("下载附件");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_jhsgt").text("下载附件");
+			}
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
