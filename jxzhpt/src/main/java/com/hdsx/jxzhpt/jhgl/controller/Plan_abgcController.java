@@ -1,24 +1,16 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -262,10 +254,10 @@ public class Plan_abgcController extends BaseActionSupport{
         try {
         	Plan_abgc abgc = abgcServer.queryAbgcById(jh.getId());
         	HttpServletResponse response = getresponse();
-			response.setContentType("octets/stream");
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= abgc.getGkbgdata();
                 out.write(buffer);
                 out.flush();
@@ -274,6 +266,7 @@ public class Plan_abgcController extends BaseActionSupport{
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= abgc.getSjsgtdata();
                 out.write(buffer);
                 out.flush();

@@ -215,25 +215,22 @@ public class Plan_zhfzController  extends BaseActionSupport{
         try {
         	Plan_zhfz zhfz =zhfzServer.queryZhfzById(jh.getId());
         	HttpServletResponse response = getresponse();
-			response.setContentType("octets/stream");
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream output = response.getOutputStream();
-//        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= zhfz.getGkbgdata();
                 output.write(buffer);
                 output.flush();
                 output.close();
-//    			out.close();
         	}else{
         		OutputStream output = response.getOutputStream();
-//        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= zhfz.getSjsgtdata();
                 output.write(buffer);
                 output.flush();
                 output.close();
-//    			out.close();
         	}
 		} catch (Exception e) {
 			e.printStackTrace();

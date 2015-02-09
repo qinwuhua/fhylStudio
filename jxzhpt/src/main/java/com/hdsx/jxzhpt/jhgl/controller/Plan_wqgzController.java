@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSON;
@@ -220,10 +221,10 @@ public class Plan_wqgzController extends BaseActionSupport {
         try {
         	Plan_wqgz wqgz = wqgzServer.queryWqgzById(jh.getId());
         	HttpServletResponse response = getresponse();
-			response.setContentType("octets/stream");
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= wqgz.getGkbgdata();
                 out.write(buffer);
                 out.flush();
@@ -232,6 +233,7 @@ public class Plan_wqgzController extends BaseActionSupport {
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
+        		response.setContentType("application/x-download"); 
         		byte[]  buffer= wqgz.getSjsgtdata();
                 out.write(buffer);
                 out.flush();
