@@ -432,6 +432,13 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	function downFile1(){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+}
+	function downFile2(){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
+}
+	
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
@@ -453,7 +460,7 @@
 			'jh.id':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_gkbg').html("<a>"+response+"</a>");
+			$('#td_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+response+"</a>");
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -487,7 +494,7 @@
 			'jh.id':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_sjsgt').html("<a>"+response+"</a>");
+			$('#td_sjsgt').html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+response+"</a>");
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -531,10 +538,10 @@
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
 			if(data.gkbgmc!=''){
-				$("#xz_gkbg").text("下载附件");
+				$('#td_gkbg').html("<a href='#' onclick='downFile1()'style='text-decoration:none;color:#3399CC;' >"+data.gkbgmc+"</a>");
 			}
 			if(data.sjsgtmc!=''){
-				$("#xz_jhsgt").text("下载附件");
+				$("#td_sjsgt").html("<a href='#' onclick='downFile2()'style='text-decoration:none;color:#3399CC;' >"+data.sjsgtmc+"</a>");
 			}
 			//审查库
 			$.ajax({
