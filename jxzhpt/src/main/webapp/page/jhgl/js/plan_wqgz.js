@@ -358,6 +358,7 @@ function queryWqgzById(id){
 		dataType:'json',
 		success:function(data){
 			//计划
+			$("#jhid").val(data.id);
 			$('#jhnf').html(data.jhnf);
 			$('#jhkgsj').html(data.jhkgsj);
 			$('#jhwgsj').html(data.jhwgsj);
@@ -373,6 +374,12 @@ function queryWqgzById(id){
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').html(data.ablbzsqwh);
 			$('#JHRemarks').html(data.bz);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
 			//基础和审查
 			$.ajax({
 				url:'../../../xmsck/selectSckwqgzById.do',
@@ -485,7 +492,12 @@ function editWqgz(){
 			searchWqgz();
 		}
 	});
-	
+}
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+}
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
 }
 
 /**

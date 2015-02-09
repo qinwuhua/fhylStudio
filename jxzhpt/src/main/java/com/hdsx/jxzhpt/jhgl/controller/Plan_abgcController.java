@@ -252,26 +252,23 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void downAbgcFile(){
         try {
-        	Plan_abgc abgc = abgcServer.queryAbgcById(jh.getId());
+        	Plan_abgc abgc = abgcServer.queryFjById(jh.getId());
         	HttpServletResponse response = getresponse();
+        	response.setContentType("application/x-download"); 
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
-        		response.setContentType("application/x-download"); 
         		byte[]  buffer= abgc.getGkbgdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadGkFileName);
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
-        		response.setContentType("application/x-download"); 
         		byte[]  buffer= abgc.getSjsgtdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadSjtFileName);
         	}
         	
 		} catch (Exception e) {

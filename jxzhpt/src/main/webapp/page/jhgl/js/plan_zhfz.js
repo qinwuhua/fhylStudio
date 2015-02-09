@@ -428,6 +428,7 @@ function queryZhfzById(id){
 				}
 			});
 			//计划信息
+			$("#jhid").val(data.id);
 			$('#jhnf').html(data.sbnf);
 			$('#jhkgsj').html(data.jhkgsj);
 			$('#jhwgsj').html(data.jhwgsj);
@@ -443,6 +444,12 @@ function queryZhfzById(id){
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').html(data.ablbzsqwh);
 			$('#jhbz').html(data.bz);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
 		}
 	});
 }
@@ -532,6 +539,12 @@ function editZhfz(){
 			searchZhfz();
 		}
 	});
+}
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+}
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
 }
 
 /**

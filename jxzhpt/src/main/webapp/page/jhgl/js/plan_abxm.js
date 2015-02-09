@@ -443,6 +443,7 @@ function queryAbgc(id){
 				}
 			});
 			//计划
+			$('#jhid').val(data.id);
 			$('#jhnfxx').html(data.jhnf);
 			$('#JHKGSJ').html(data.jhkgsj);
 			$('#JHWGSJ').html(data.jhwgsj);
@@ -459,6 +460,12 @@ function queryAbgc(id){
 			$('#SFSQABLBZ').html(data.sfsqablbz);
 			$('#ABLBZWH').html(data.ablbzsqwh);
 			$('#JHRemarks').html(data.remarks);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
 		}
 	}); 
 }
@@ -534,6 +541,12 @@ function editAbgc(){
 			searchAbgc();
 		}
 	});
+}
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+}
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
 }
 
 /**

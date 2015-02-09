@@ -78,4 +78,5 @@ public interface Plan_abgcServer {
 	Bzbz lwBzbz(Bzbz bz);
 	boolean updateGkbg(Plan_abgc jh);
 	boolean updateSjsgt(Plan_abgc jh);
+	Plan_abgc queryFjById(String id);
 }

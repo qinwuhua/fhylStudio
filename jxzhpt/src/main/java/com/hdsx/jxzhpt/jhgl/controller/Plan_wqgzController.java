@@ -219,28 +219,24 @@ public class Plan_wqgzController extends BaseActionSupport {
 	}
 	public void downWqgzFile(){
         try {
-        	Plan_wqgz wqgz = wqgzServer.queryWqgzById(jh.getId());
+        	Plan_wqgz wqgz = wqgzServer.queryWqgzFjById(jh.getId());
         	HttpServletResponse response = getresponse();
+        	response.setContentType("application/x-download"); 
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
-        		response.setContentType("application/x-download"); 
         		byte[]  buffer= wqgz.getGkbgdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadGkFileName);
         	}else{
         		OutputStream out= response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
-        		response.setContentType("application/x-download"); 
         		byte[]  buffer= wqgz.getSjsgtdata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-                response.getWriter().write(uploadSjtFileName);
         	}
-        	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
