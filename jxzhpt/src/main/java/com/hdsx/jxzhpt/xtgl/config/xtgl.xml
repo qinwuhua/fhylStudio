@@ -243,5 +243,10 @@
 	<select id="selQxListByRoleid" parameterType="param" resultType="param">
 		select sourceid from xtgl_role_resource where roleid=#{roleid}
 	</select>
-		
+	<select id="selBzbz" parameterType="bzbz" resultType="bzbz">
+		select * from lwbzbz order by xmlx,lx
+	</select>
+	<update id="updateBzbz" parameterType="bzbz">
+		update lwbzbz set bz=#{bz},bl=#{bl},fd=#{fd} where id=#{id}
+	</update>
 </mapper>
