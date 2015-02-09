@@ -24,6 +24,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('tsdq');
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
 			querySumWqgz();
@@ -49,8 +50,45 @@
 			if($('#sbnf').combobox('getText')!=""){
 				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#ddlSHZT').combo("getValue")=="未上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=0;
+					}else{
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="已上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}else{
+						jh.sbzt='1';
+						jh.spzt='0';
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="未审批"){
+					jh.sbzt='1';
+					jh.spzt='0';
+					jh.jh_sbthcd=4;
+				}
+				if($('#ddlSHZT').combo("getValue")=="已审批"){
+					jh.sbzt='1';
+					jh.spzt='1';
+					jh.jh_sbthcd=6;
+				}
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
@@ -107,7 +145,7 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox">
+								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>

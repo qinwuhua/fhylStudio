@@ -156,4 +156,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	public Plan_abgc queryFjById(String id) {
 		return queryOne("queryAbgcFjById", id);
 	}
+	@Override
+	public List<TreeNode> queryTsdq() {
+		return queryList("queryTsdq");
+	}
 }

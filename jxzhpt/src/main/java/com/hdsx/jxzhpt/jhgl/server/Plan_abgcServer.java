@@ -11,6 +11,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_abgcServer {
 	/**
+	 * 查询特殊地区的下拉框
+	 * @return
+	 */
+	List<TreeNode> queryTsdq();
+	
+	/**
 	 * 删除后修改审查库信息的列入状态
 	 * @param sckId
 	 * @return
