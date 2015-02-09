@@ -43,6 +43,10 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private Jckzhfz lx;
 	private String fileuploadFileName;
 	private File fileupload;
+	private File uploadGk;
+	private String uploadGkFileName;
+	private File uploadSjt;
+	private String uploadSjtFileName;
 	
 	public void querySumZhfz(){
 		try {
@@ -176,64 +180,57 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	public void uploadZhfzFile(){
+	public void uploadZhfzFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
 		try {
-			HttpServletResponse response = ServletActionContext.getResponse();
-			FileInputStream fs = new FileInputStream(this.fileupload);
-			BufferedInputStream in = new BufferedInputStream(fs);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-//			DataOutputStream dos = new DataOutputStream(baos);
-			int len=0;
-			int n=1024;
-			byte b[] = new byte[n]; 
-				while ((len=in.read(b,0,n))!= -1) { 
-				    bos.write(b,0,len);
-				}
-				fs.close();
-				in.close();
-				bos.flush();
-				bos.close();
-				byte[] data =bos.toByteArray();
-				if("gkbg".equals(jh.getGkbgmc())){
-					   jh.setGkbgmc(fileuploadFileName);
-					   jh.setGkbgdata(new String(data));
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
 					   if(zhfzServer.updateGkbg(jh))
-						   response.getWriter().print(fileuploadFileName+"导入成功");
-					   else response.getWriter().print(fileuploadFileName+"导入失败");
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
 				}else{
-					jh.setSjsgtmc(fileuploadFileName);
-					jh.setSjsgtdata(new String(data));
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
 					if(zhfzServer.updateSjsgt(jh))
-						response.getWriter().print(fileuploadFileName+"导入成功");
-					   else response.getWriter().print(fileuploadFileName+"导入失败");
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
 				}	
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			fs.close();
 		}
 	}
 	public void downZhfzFile(){
         try {
         	Plan_zhfz zhfz =zhfzServer.queryZhfzById(jh.getId());
         	HttpServletResponse response = getresponse();
-			response.setContentType("octets/stream");
         	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream output = response.getOutputStream();
-//        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
-        		byte[]  buffer= zhfz.getGkbgdata().getBytes();
+        		response.setContentType("application/x-download"); 
+        		byte[]  buffer= zhfz.getGkbgdata();
                 output.write(buffer);
                 output.flush();
                 output.close();
-//    			out.close();
         	}else{
         		OutputStream output = response.getOutputStream();
-//        		BufferedOutputStream out=new BufferedOutputStream(output);
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
-        		byte[]  buffer= zhfz.getSjsgtdata().getBytes();
+        		response.setContentType("application/x-download"); 
+        		byte[]  buffer= zhfz.getSjsgtdata();
                 output.write(buffer);
                 output.flush();
                 output.close();
-//    			out.close();
         	}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -282,6 +279,38 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+
+	public File getUploadGk() {
+		return uploadGk;
+	}
+
+	public void setUploadGk(File uploadGk) {
+		this.uploadGk = uploadGk;
+	}
+
+	public String getUploadGkFileName() {
+		return uploadGkFileName;
+	}
+
+	public void setUploadGkFileName(String uploadGkFileName) {
+		this.uploadGkFileName = uploadGkFileName;
+	}
+
+	public File getUploadSjt() {
+		return uploadSjt;
+	}
+
+	public void setUploadSjt(File uploadSjt) {
+		this.uploadSjt = uploadSjt;
+	}
+
+	public String getUploadSjtFileName() {
+		return uploadSjtFileName;
+	}
+
+	public void setUploadSjtFileName(String uploadSjtFileName) {
+		this.uploadSjtFileName = uploadSjtFileName;
 	}
 	
 }

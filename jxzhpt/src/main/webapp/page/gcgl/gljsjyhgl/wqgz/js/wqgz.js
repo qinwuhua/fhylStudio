@@ -409,12 +409,13 @@ function uploadFile(str){
 	return false;
 }
 
-function downFile(str){
-	if($("#xz_"+str).text()!='暂无附件'){
-		parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
-	}
-	else return;
-}
+//function downFile(str){
+//	if($("#xz_"+str).text()!='暂无附件'){
+//		parent.window.location.href="www.baidu.com";
+//		//parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+//	}
+//	else return;
+//}
 function deleteFile(str){
 	if($("#xz_"+str).text()=='暂无附件'){
 		return;

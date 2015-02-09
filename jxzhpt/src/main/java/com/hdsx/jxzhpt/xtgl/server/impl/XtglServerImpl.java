@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -422,5 +423,16 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<Param> selQxListByRoleid(Param param) {
 		return queryList("selQxListByRoleid", param);
+	}
+
+	@Override
+	public List<Bzbz> selBzbz(Bzbz bzbz) {
+		return queryList("selBzbz", bzbz);
+	}
+
+	@Override
+	public boolean updateBzbz(List<Bzbz> l) {
+		int b=updateBatch("updateBzbz", l);
+		return b>0?true:false;
 	}
 }

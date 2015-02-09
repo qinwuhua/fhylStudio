@@ -59,7 +59,8 @@
 	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
 	
 	<action name="selQxByRoleid" class="xtglController" method="selQxByRoleid"></action>
-	
+	<action name="selBzbz" class="xtglController" method="selBzbz"></action>
+	<action name="updateBzbz" class="xtglController" method="updateBzbz"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>
