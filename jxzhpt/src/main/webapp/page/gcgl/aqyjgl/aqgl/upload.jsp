@@ -208,10 +208,6 @@
 				checkbox : true,
 				multiple:true,
 				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
-				onBeforeExpand : function(node, param) {
-// 					$('#' + id).tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
-// 							+ node.id;
-				},
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
 					codes='';
@@ -221,20 +217,6 @@
 					}
 					$('#sendingunitsid').val(codes);
 				},
-// 				 onLoadSuccess : function(node, data) {
-// 			            // $('#trees').combotree('tree').tree("expandAll").tree(
-// 			            // "collapseAll");
-// 			            var t = $(this);
-// 			            if (data) {
-// 			                $(data).each(function(index, d) {
-// 			                    if (this.state == 'closed') {
-// 			                        t.tree('expand');
-// 			                     //    t.tree("collapseAll");
-// 			                    }
-// 			                });
-
-// 			            }
-// 			        }
 			});
 
 	}

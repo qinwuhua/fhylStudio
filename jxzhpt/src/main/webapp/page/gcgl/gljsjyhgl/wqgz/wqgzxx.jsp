@@ -41,6 +41,15 @@ $(function(){
 	jiazaifujian(data1);
 });
 
+
+function downFile(str){
+	if($("#xz_"+str).text()!='暂无附件'){
+		//parent.window.location.href="www.baidu.com";
+		parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+		
+	}
+	else return;
+}
 </script>
 <style type="text/css">
 a {
