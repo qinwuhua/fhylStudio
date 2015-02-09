@@ -345,14 +345,15 @@ public class GcglwqgzController extends BaseActionSupport{
 		            }  
 		        } 
 			FileInputStream fis= new FileInputStream(file);
-			//byte [] arr = new byte[1024*10];
-			int i=0;
-			while((i=fis.read())!=-1){
-				out.write(i);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
 			}
 			fis.close();
 			out.flush();
 			out.close();
+			file.delete();
 		}
 		public void insertWqgzkg(){
 			Boolean bl=gcglwqgzServer.insertWqgzkg(gcglwqgz);

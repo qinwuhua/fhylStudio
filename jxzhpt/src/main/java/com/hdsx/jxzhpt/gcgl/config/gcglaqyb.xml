@@ -39,9 +39,13 @@
 		and filename like '%'||trim(#{filename})||'%'
 		</if>
 	</select>
+	<insert id="insertAqybb" parameterType="gcglaqyb">
+		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth,uploadpath)
+		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth},#{uploadpath})
+	</insert>
 
 
 	<select id="selAllBm3" parameterType="String" resultType="treenode">
-	  select distinct x.id ,x.name text,parent ,'closed' state from xtgl_department x where  id like '%36%' order by to_number(id)
+	  select distinct x.id ,x.name text,parent ,'open' state from xtgl_department x where  id like '%36%' order by to_number(id)
 	</select>	
 </mapper>
