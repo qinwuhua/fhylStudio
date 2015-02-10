@@ -226,4 +226,19 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 	}
 
+	@Override
+	public Jckzhfz selZhfzCount(Jckzhfz zhfz) {
+		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
+		hm.put("gydw", zhfz.getGydw());
+		hm.put("xzqhmc", zhfz.getXzqhmc());
+		hm.put("lxmc", zhfz.getLxmc());
+		hm.put("xmnf", zhfz.getXmnf());
+		hm.put("xmtype", zhfz.getXmtype());
+		hm.put("sbzt", zhfz.getSbzt());
+		hm.put("lxjsdj", zhfz.getLxjsdj());
+		hm.put("lxbm", zhfz.getLxbm());
+		return queryOne("selZhfzCount", hm);
+	}
+
 }

@@ -294,4 +294,36 @@
 	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),
 	#{2},#{3},#{9},#{10},to_number(#{10})-to_number(#{9}),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},'未上报','未审核',#{scbmbm},#{sck_sbthcd},'未列入','无')
  </insert>
+ <select id="selSckZhfzCount" parameterType="hashmap" resultType="sckzhfz">
+ 		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
+ 			sck_sbthcd &lt;=#{sck_sbthcd}
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+  		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ </select>
 </mapper>

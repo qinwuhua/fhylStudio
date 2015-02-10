@@ -257,5 +257,21 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		else return false;
 	}
 
+	@Override
+	public Sckzhfz selSckZhfzCount(Sckzhfz zhfz) {
+		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
+		hm.put("gydw", zhfz.getGydw());
+		hm.put("xzqhmc", zhfz.getXzqhmc());
+		hm.put("lxmc", zhfz.getLxmc());
+		hm.put("xmnf", zhfz.getXmnf());
+		hm.put("xmtype", zhfz.getXmtype());
+		hm.put("sbzt", zhfz.getSbzt());
+		hm.put("lxjsdj", zhfz.getLxjsdj());
+		hm.put("lxbm", zhfz.getLxbm());
+		hm.put("bzls", zhfz.getBzls());
+		return queryOne("selSckZhfzCount", hm);
+	}
+
 
 }

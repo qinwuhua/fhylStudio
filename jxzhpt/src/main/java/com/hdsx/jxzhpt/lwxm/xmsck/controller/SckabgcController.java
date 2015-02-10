@@ -230,7 +230,13 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	
+	public void selSckAbgcCount(){
+		try {
+			JsonUtils.write(abgcServer.selSckAbgcCount(sckabgc), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Sckabgc getSckabgc() {
 		return sckabgc;

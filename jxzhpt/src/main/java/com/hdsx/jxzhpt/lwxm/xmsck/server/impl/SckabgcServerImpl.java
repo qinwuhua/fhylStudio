@@ -253,4 +253,20 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		else return false;
 	}
 
+	@Override
+	public Sckabgc selSckAbgcCount(Sckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
+		hm.put("gydw", abgc.getGydw());
+		hm.put("xzqhmc", abgc.getXzqhmc());
+		hm.put("lxmc", abgc.getLxmc());
+		hm.put("xmnf", abgc.getXmnf());
+		hm.put("xmtype", abgc.getXmtype());
+		hm.put("sbzt", abgc.getSbzt());
+		hm.put("lxjsdj", abgc.getLxjsdj());
+		hm.put("lxbm", abgc.getLxbm());
+		hm.put("bzls", abgc.getBzls());
+		return queryOne("selSckAbgcCount", hm);
+	}
+
 }
