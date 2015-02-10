@@ -122,7 +122,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt:jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -136,7 +136,7 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:80,align:'center'},
-	        {field:'ylmlx',title:'原路面类型',width:100,align:'center'},
+	        {field:'ylmlx',title:'原路面类型',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -152,7 +152,7 @@ function showAllZJ(){
 	    pageSize:10,
 	    height:315,
 	    queryParams: {
-	    	jhid: jhid,
+	    	jhid: jhid
 		},
 	    columns:[[
 				{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

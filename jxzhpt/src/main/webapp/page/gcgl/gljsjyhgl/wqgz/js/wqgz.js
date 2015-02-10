@@ -284,7 +284,7 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc,
+	    	qlmc:qlmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -336,7 +336,7 @@ function showYBlist(){
 	    queryParams: {
 	    	jhid: jhid,
 	    	yhtype:yhtype,
-	    	sfsj:sfsj,
+	    	sfsj:sfsj
 		},
 	    columns:[
 	             [
@@ -452,14 +452,17 @@ function jiazaifujian(data1){
 				if(msg.sgxkwj!=''){
 					$("#xz_sgxkwj").text(msg.sgxkwj);
 					$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=sgxkwj'+"&jhid="+parent.obj1.jhid);
 				}
 				if(msg.jgtcwj!=''){
 					$("#xz_jgtcwj").text(msg.jgtcwj);
 					$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgtcwj'+"&jhid="+parent.obj1.jhid);
 				}
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 				}
 			}
 	});	

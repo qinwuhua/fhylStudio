@@ -20,4 +20,30 @@ public interface GcglaqybServer {
 
 	List<TreeNode> selAllBm3(String yhdw);
 
+	boolean uploadAqybFile(Gcglaqyb gcglaqyb);
+
+	Gcglaqyb selectAqybById(Gcglaqyb gcglaqyb);
+
+	Boolean insertAqybb1(Gcglaqyb gcglaqyb);
+
+	boolean uploadAqybFile1(Gcglaqyb gcglaqyb);
+
+	boolean deleteAqybb(Gcglaqyb gcglaqyb);
+
+	boolean uploadMbglFile(Gcglaqyb gcglaqyb);
+
+	boolean uploadMbglFile1(Gcglaqyb gcglaqyb);
+
+	Boolean insertMbgl(Gcglaqyb gcglaqyb);
+
+	Boolean insertMbgl1(Gcglaqyb gcglaqyb);
+
+	int selectmbgllistCount(Gcglaqyb gcglaqyb);
+
+	List<Gcglaqyb> selectmbgllist(Gcglaqyb gcglaqyb);
+
+	Gcglaqyb selectMbglById(Gcglaqyb gcglaqyb);
+
+	boolean deleteMbgl(Gcglaqyb gcglaqyb);
+
 }

@@ -106,7 +106,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
              {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

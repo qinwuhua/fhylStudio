@@ -11,19 +11,27 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/mbgl.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="js/mbgl.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			$("#ddlYear").val();
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
+			$("#yf"+m).attr("selected","selected");
 			showAll();
 		});
 	</script>
@@ -37,6 +45,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -46,7 +55,7 @@ a:active {
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;安全应急管理>&nbsp;模板管理</div>
@@ -54,46 +63,42 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
+        					<p style="margin: 1% 0px 1% 2%;">
         						<span>文件名称：</span>
         							<input type="text" id="wjmc" >
         							&nbsp;&nbsp;
         							<span>年份：</span>
-        							<select name="ddlYear" id="ddlYear">
-										<option selected="selected" value="全部">全部</option>
-										<option value="2011">2011</option>
-										<option value="2012">2012</option>
-										<option value="2013">2013</option>
-										<option value="2014">2014</option>
+        							<select name="ddlYear" id="ddlYear" style="width: 60px;">
+
 									</select>
 									<span>月份：</span>
 									<select name="ddlMonth" id="ddlMonth">
-										<option selected="selected" value="全部">全部</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09">09</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option> 
+										<option selected="selected" value="">全部</option>
+										<option id="yf1" value="1">01</option>
+										<option id="yf2" value="2">02</option>
+										<option id="yf3" value="3">03</option>
+										<option id="yf4" value="4">04</option>
+										<option id="yf5" value="5">05</option>
+										<option id="yf6" value="6">06</option>
+										<option id="yf7" value="7">07</option>
+										<option id="yf8" value="8">08</option>
+										<option id="yf9" value="9">09</option>
+										<option id="yf10" value="10">10</option>
+										<option id="yf11" value="11">11</option>
+										<option id="yf12" value="12">12</option> 
 									</select>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;border-width:0px;cursor: hand;" onclick="showAll()" />
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="mbgltj()" style="vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="mbgltj()" style="vertical-align: -40%;border-width:0px;cursor: hand;" />
                                     
         					</p>
         				</div>
@@ -102,13 +107,13 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
+                <td style="padding-top: 1%;padding-left:10px;">
                     <div>
-				<table id="datagrid" width="100%">
-				</table>
-				</div>
+						<table id="datagrid" >
+						</table>
+					</div>
 				</td>
-				</tr>
+			</tr>
 		</table>
 	</div>
 </body>

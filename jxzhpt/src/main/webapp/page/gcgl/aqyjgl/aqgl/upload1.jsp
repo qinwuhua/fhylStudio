@@ -64,11 +64,13 @@
 			'width' : 92,
 			//另外上传的参数
 			'scriptData' : {
-
+				id:parent.obj1.id
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
 				if(response!=null||response!='error'){
 					addaqyb(response);
+				}else{
+					alert("对不起，附件未上传成功");
 				}
 				$('<li></li>').appendTo('.files').text(response);
 			},
@@ -103,11 +105,12 @@
 </script>
 <script type="text/javascript">
 	function addaqyb(response){
-		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()+"&gcglaqyb.uploadepartment="+$.cookie("unit")
-		+"&gcglaqyb.id="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename")+"&gcglaqyb.uploadpath="+$("#uploadpath").val();
+		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()
+		+"&gcglaqyb.id="+response;
+		alert(data);
 		$.ajax({
 				type:'post',
-				url:'../../../../gcgl/insertAqybb.do',
+				url:'../../../../gcgl/insertAqybb1.do',
 				data:data,
 				dataType:'json',
 				async:false,
@@ -123,9 +126,8 @@
 	}
 	//必须的 
 	function tianjian(){
-		//alert("jinru");
-		if($("#fileQueue").text()==''){
-			alert("请添加上传文件");
+		if($("#fileQueue").text()=="原文件："+parent.obj1.xspath){
+			addaqyb(parent.obj1.id);
 		}
 		uploadifyUpload();
 	}
@@ -184,14 +186,18 @@
 				$("#uploadpath").val(msg[0].text);
 			}
 		});	
-		
+		$("#tj_filename").val(parent.obj1.filename);
+		$("#tj_wenhao").val(parent.obj1.wenhao);
+		$("#tj_reportmonth").val(parent.obj1.reportmonth);
+		$("#tj_remark").val(parent.obj1.remark);
+		$("#fileQueue").text("原文件："+parent.obj1.xspath);
 	});
 	function setGydw(id, dwbm){
 			$('#' + id).tree(
 			{
 				checkbox : true,
 				multiple:true,
-				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
+				url : '/jxzhpt/gcgl/selAllBm4.do?id=' + parent.obj1.id,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
 					codes='';
@@ -201,8 +207,28 @@
 					}
 					$('#sendingunitsid').val(codes);
 				},
+			onLoadSuccess: function (node){
+// 					var data=parent.obj1.sendingunits.split(",");
+// 					for(var i=0,len=data.length;i<len;i++){
+// 						var node1 = $('#' + id).tree('find', data[i]);
+// 						$('#' + id).tree('check', node1.target);
+// 					}
+// 					$(data).each(function(i, obj){
+//                                 var n = $('#' + id).tree('find',obj);
+//                                 if(n){
+//                                     $('#' + id).tree('check',n.target);
+//                                 }
+//                    });
+				var nodes=$('#' + id).tree('getChecked');
+				codes='';
+				$('#sendingunitsid').val('');
+				for(var i=0;i<nodes.length;i++){
+					codes+=nodes[i].id+',';
+				}
+				$('#sendingunitsid').val(codes);
+				}
 			});
-
+			
 	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
@@ -296,7 +322,7 @@
 		
 		
 		<p>
-			<a href="javascript:;" onClick="tianjian()"  class="easyui-linkbutton" iconCls="save"
+			<a href="#" onClick="tianjian()"  class="easyui-linkbutton" iconCls="save"
 				class="as" > 保存 </a> 
             <a href="#" class="easyui-linkbutton" iconCls="back" onclick="fanhui()" >返回 </a>
            </p>

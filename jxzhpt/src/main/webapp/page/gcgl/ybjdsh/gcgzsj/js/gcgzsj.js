@@ -106,7 +106,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -120,7 +120,7 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'xmlc',title:'项目里程',width:80,align:'center'},
-	        {field:'yjsdj',title:'技术等级',width:100,align:'center'},
+	        {field:'yjsdj',title:'技术等级',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -156,7 +156,7 @@ function showYBlist(){
 					{field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
 					{field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
 					{field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
-					{field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1},
+					{field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});

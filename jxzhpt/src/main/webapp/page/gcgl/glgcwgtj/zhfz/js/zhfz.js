@@ -43,7 +43,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -57,7 +57,7 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
-	        {field:'lxjsdj',title:'路线技术等级',width:100,align:'center'},
+	        {field:'lxjsdj',title:'路线技术等级',width:100,align:'center'}
 	    ]]    
 	}); 
 }

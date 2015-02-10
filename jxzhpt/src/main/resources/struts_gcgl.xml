@@ -181,8 +181,22 @@
 	
 	<!-- aqyb -->
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
+	<action name="uploadAqybFile1" class="gcglaqybController" method="uploadAqybFile1"/>
 	<action name="insertAqybb" class="gcglaqybController" method="insertAqybb"/>
+	<action name="insertAqybb1" class="gcglaqybController" method="insertAqybb1"/>
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
 	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
+	<action name="selAllBm4" class="gcglaqybController" method="selAllBm4"/>
+	<action name="deleteAqybb" class="gcglaqybController" method="deleteAqybb"/>
+	<action name="downAqybbFile" class="gcglaqybController" method="downAqybbFile"/>
+	
+	<!-- mbgl -->
+	<action name="uploadMbglFile" class="gcglaqybController" method="uploadMbglFile"/>
+	<action name="uploadMbglFile1" class="gcglaqybController" method="uploadMbglFile1"/>
+	<action name="insertMbgl" class="gcglaqybController" method="insertMbgl"/>
+	<action name="insertMbgl1" class="gcglaqybController" method="insertMbgl1"/>
+	<action name="selectmbgllist" class="gcglaqybController" method="selectmbgllist"/>
+	<action name="downMbglFile" class="gcglaqybController" method="downMbglFile"/>
+	<action name="deleteMbgl" class="gcglaqybController" method="deleteMbgl"/>
  </package>
 </struts>

@@ -30,22 +30,90 @@
 		select count(*) from GCGL_AQGLYBB 
 		where 1=1
 		<if test="uploadepartment != null and  uploadepartment != ''">
+			and uploadepartment like '%'||trim(#{uploadepartment})||'%'
+			</if>
+			<if test="reportmonth != null and  reportmonth != ''">
+			and reportmonth like '%'||trim(#{reportmonth})||'%'
+			</if>
+			<if test="filename != null and  filename != ''">
+			and filename like '%'||trim(#{filename})||'%'
+			</if>
+			<if test="sendingunits != null and  sendingunits != ''">
+			and sendingunits like '%'||trim(#{sendingunits})||'%'
+			</if>
+	</select>
+	<update id="insertAqybb" parameterType="gcglaqyb">
+		update GCGL_AQGLYBB set sendingunits=#{sendingunits},uploadpeople=#{uploadpeople},uploadtime=#{uploadtime},filename=#{filename},uploadepartment=#{uploadepartment},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth},uploadpath=#{uploadpath}
+		where id=#{id}
+	</update>
+	<update id="insertAqybb1" parameterType="gcglaqyb">
+		update GCGL_AQGLYBB set sendingunits=#{sendingunits},filename=#{filename},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth}
+		where id=#{id}
+	</update>
+	<insert id="uploadAqybFile" parameterType="gcglaqyb" >
+		insert into GCGL_AQGLYBB(id,ybfile,xspath)
+		values(#{id},#{ybfile},#{xspath})
+	</insert>
+	<insert id="uploadAqybFile1" parameterType="gcglaqyb" >
+		update GCGL_AQGLYBB set ybfile=#{ybfile},xspath=#{xspath} where id=#{id}
+	</insert>
+	<select id="selAllBm3" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'open' state from xtgl_department x where  id like '%36%' order by to_number(id)
+	</select>	
+	<select id="selectAqybById" parameterType="gcglaqyb" resultType="gcglaqyb">
+	  select * from GCGL_AQGLYBB where id=#{id}
+	</select>
+	<delete id="deleteAqybb" parameterType="gcglaqyb">
+		delete from GCGL_AQGLYBB where id=#{id}
+	</delete>
+	
+	<insert id="uploadMbglFile" parameterType="gcglaqyb" >
+		insert into GCGL_AQGLMBGL(id,ybfile,xspath)
+		values(#{id},#{ybfile},#{xspath})
+	</insert>
+	<insert id="uploadMbglFile1" parameterType="gcglaqyb" >
+		update GCGL_AQGLMBGL set ybfile=#{ybfile},xspath=#{xspath} where id=#{id}
+	</insert>
+	<update id="insertMbgl" parameterType="gcglaqyb">
+		update GCGL_AQGLMBGL set uploadpeople=#{uploadpeople},uploadtime=#{uploadtime},filename=#{filename},uploadepartment=#{uploadepartment},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth},uploadpath=#{uploadpath}
+		where id=#{id}
+	</update>
+	<update id="insertMbgl1" parameterType="gcglaqyb">
+		update GCGL_AQGLMBGL set filename=#{filename},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth}
+		where id=#{id}
+	</update>
+	<select id="selectmbgllist" parameterType="gcglaqyb" resultType="gcglaqyb">
+		select * from (
+		select m.*,rownum rn from (
+			select * from GCGL_AQGLMBGL 
+			where 1=1
+			<if test="reportmonth != null and  reportmonth != ''">
+			and reportmonth like '%'||trim(#{reportmonth})||'%'
+			</if>
+			<if test="filename != null and  filename != ''">
+			and filename like '%'||trim(#{filename})||'%'
+			</if>
+		order by to_number(substr(reportmonth,0,4))desc,to_number(replace(reportmonth,'-','')) desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectmbgllistCount" parameterType="gcglaqyb" resultType="int">
+		select count(*) from GCGL_AQGLMBGL 
+		where 1=1
+		<if test="uploadepartment != null and  uploadepartment != ''">
 		and uploadepartment like '%'||trim(#{uploadepartment})||'%'
 		</if>
 		<if test="reportmonth != null and  reportmonth != ''">
 		and reportmonth like '%'||trim(#{reportmonth})||'%'
 		</if>
-		<if test="filename != null and  filename != ''">
-		and filename like '%'||trim(#{filename})||'%'
-		</if>
 	</select>
-	<insert id="insertAqybb" parameterType="gcglaqyb">
-		insert into GCGL_AQGLYBB(id,xspath,sendingunits,uploadpeople,uploadtime,filename,uploadepartment,remark,wenhao,reportmonth,uploadpath)
-		values(sys_guid(),#{xspath},#{sendingunits},#{uploadpeople},#{uploadtime},#{filename},#{uploadepartment},#{remark},#{wenhao},#{reportmonth},#{uploadpath})
-	</insert>
-
-
-	<select id="selAllBm3" parameterType="String" resultType="treenode">
-	  select distinct x.id ,x.name text,parent ,'open' state from xtgl_department x where  id like '%36%' order by to_number(id)
-	</select>	
+	<select id="selectMbglById" parameterType="gcglaqyb" resultType="gcglaqyb">
+	  select * from GCGL_AQGLMBGL where id=#{id}
+	</select>
+	<delete id="deleteMbgl" parameterType="gcglaqyb">
+		delete from GCGL_AQGLMBGL where id=#{id}
+	</delete>
 </mapper>

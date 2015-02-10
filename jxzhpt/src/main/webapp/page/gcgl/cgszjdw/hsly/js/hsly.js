@@ -120,7 +120,7 @@ function showAll(){
 	    	xzqhdm: xzqhdm,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
              {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -132,7 +132,7 @@ function showAll(){
 	        {field:'jsxz',title:'建设性质',width:140,align:'center'},
 	        {field:'ztz',title:'总投资',width:100,align:'center'},
 	        {field:'kgn',title:'开工年',width:90,align:'center'},
-	        {field:'wgn',title:'完工年',width:90,align:'center'},
+	        {field:'wgn',title:'完工年',width:90,align:'center'}
 	    ]]    
 	}); 
 }
@@ -148,7 +148,7 @@ function showAllZJ(){
 	    pageSize:10,
 	    height:315,
 	    queryParams: {
-	    	jhid: jhid,
+	    	jhid: jhid
 		},
 	    columns:[[
 				{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

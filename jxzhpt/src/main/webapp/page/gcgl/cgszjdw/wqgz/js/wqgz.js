@@ -122,7 +122,7 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc,
+	    	qlmc:qlmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -153,7 +153,7 @@ function showAllZJ(){
 	    pageSize:10,
 	    height:315,
 	    queryParams: {
-	    	jhid: jhid,
+	    	jhid: jhid
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
