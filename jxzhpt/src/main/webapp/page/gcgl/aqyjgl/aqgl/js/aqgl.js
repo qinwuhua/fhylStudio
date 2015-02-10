@@ -54,7 +54,7 @@ function showAll(){
 	        {field:'uploadpeople',title:'上传人',width:100,align:'center'},
 	        {field:'uploadpath',title:'上传单位',width:200,align:'center'},
 	        {field:'reportmonth',title:'上报月份',width:100,align:'center'},
-	        {field:'remark',title:'备注',width:200,align:'center'},
+	        {field:'remark',title:'备注',width:200,align:'center'}
 	    ]]    
 	}); 
 }
