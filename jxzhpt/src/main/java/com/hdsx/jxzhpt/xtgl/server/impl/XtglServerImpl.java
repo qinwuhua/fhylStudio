@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
@@ -434,5 +435,25 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public boolean updateBzbz(List<Bzbz> l) {
 		int b=updateBatch("updateBzbz", l);
 		return b>0?true:false;
+	}
+
+	@Override
+	public List<Plan_flwbzbz> queryFlwbzbz() {
+		return queryList("queryFlwbzbz");
+	}
+
+	@Override
+	public boolean addFlwbzbz(Plan_flwbzbz flwbzbz) {
+		return insert("addFlwbzbz", flwbzbz)>0;
+	}
+
+	@Override
+	public Plan_flwbzbz queryFlwbzbzById(String id) {
+		return queryOne("queryFlwbzbzById", id);
+	}
+
+	@Override
+	public boolean updateFlwbzbz(Plan_flwbzbz flwbzbz) {
+		return update("updateFlwbzbz", flwbzbz)>0;
 	}
 }
