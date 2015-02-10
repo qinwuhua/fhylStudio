@@ -48,7 +48,7 @@ function startSearch(){
 	//alert($('#test').combobox("getValue")+"|"+$('#test').combobox("getText"));
 	
 	$("#jsgl_table").datagrid({
-		border:false,
+		border:true,
 		fit:true,
 		pagination:true,
 	    rownumbers:true,

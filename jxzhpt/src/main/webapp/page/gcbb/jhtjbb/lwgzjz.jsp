@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,10 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -41,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造工程进展情况</div>
@@ -90,17 +98,60 @@ a:active {
         			</fieldset>
         		</td>
         	</tr>
-
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/2014lwgzjz.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:126px;">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="2000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路路网结构改造工程进展情况汇总表(截止12月底) </caption>
+								<thead>
+									<tr>
+										<td rowspan="3">项目</td>
+										<td colspan="5">计划下达</td>
+										<td colspan="5">实际完成</td>
+										<td colspan="6"></td>
+									</tr>	
+									<tr>
+										<td colspan="2">工程量</td>
+										<td colspan="3">投资</td>
+										<td colspan="2">工程量</td>
+										<td colspan="3">投资</td>
+										<td>已拨付资金</td>
+										<td>拨付比例</td>
+										<td>完成工程量</td>
+										<td>完成总投资</td>
+										<td>完成中央投资</td>
+										<td>地方配套资金</td>
+									</tr>
+									<tr>
+										<td>单位1</td>
+										<td>单位2</td>
+										<td>总投资(万元)</td>
+										<td>中央投资(万元)</td>
+										<td>地方自筹(万元)</td>
+										<td>单位1</td>
+										<td>单位2</td>
+										<td>总投资(万元)</td>
+										<td>中央投资(万元) </td>
+										<td>地方自筹(万元)</td>
+										<td>(万元)</td>
+										<td>(%)</td>
+										<td>比例</td>
+										<td>比例</td>
+										<td>比例</td>
+										<td>到位比例</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>

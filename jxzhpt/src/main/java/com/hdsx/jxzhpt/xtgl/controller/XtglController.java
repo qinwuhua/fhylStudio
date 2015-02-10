@@ -26,8 +26,10 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 /**
@@ -46,7 +48,9 @@ public class XtglController extends BaseActionSupport{
 	private XtglServer xtglServer;
 	//单位实体
 	private Unit unit;
+	private Bzbz bzbz;
 	private Param param;
+	private Plan_flwbzbz flwbzbz;
 	//用户实体
 	private Master master;
 	private String yhm;
@@ -777,6 +781,78 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	
+	public void selBzbz(){
+		List<Bzbz> l=xtglServer.selBzbz(bzbz);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void updateBzbz(){
+		List<Bzbz> roadList;
+		boolean bl=false;
+		try {
+			roadList = JsonUtils.json2List(bzbz.getId(), Bzbz.class);
+			bl=xtglServer.updateBzbz(roadList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(bl == true){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	/**
+	 * 查询非路网项目的补助标准列表
+	 */
+	public void queryFlwbzbz(){
+		try {
+			JsonUtils.write(xtglServer.queryFlwbzbz(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addFlwbzbz(){
+		Map<String, String> result=new HashMap<String, String>();
+		try {
+			result.put("result", new Boolean(xtglServer.addFlwbzbz(flwbzbz)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryFlwbzbzById(){
+		try {
+			JsonUtils.write(xtglServer.queryFlwbzbzById(flwbzbz.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateFlwbzbz(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.updateFlwbzbz(flwbzbz)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}
@@ -855,6 +931,16 @@ public class XtglController extends BaseActionSupport{
 	public void setParam(Param param) {
 		this.param = param;
 	}
-	
-	
+	public Bzbz getBzbz() {
+		return bzbz;
+	}
+	public void setBzbz(Bzbz bzbz) {
+		this.bzbz = bzbz;
+	}
+	public Plan_flwbzbz getFlwbzbz() {
+		return flwbzbz;
+	}
+	public void setFlwbzbz(Plan_flwbzbz flwbzbz) {
+		this.flwbzbz = flwbzbz;
+	}
 }

@@ -20,6 +20,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/querySumMessage.do',
@@ -51,6 +52,9 @@
 			}
 			if($("#gldj").combo("getValue")!=""){
 				lx.lxbm=$("#gldj").combo("getValue");
+			}
+			if($("#ddlTSDQ").combo("getValue")!=""){
+				lx.tsdqbm=$("#ddlTSDQ").combo("getValue");
 			}
 			gclmsjxm_zjxd(jh,lx);
 		}

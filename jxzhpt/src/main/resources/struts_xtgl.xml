@@ -59,12 +59,19 @@
 	<action name="createAnyChartXml" class="xtglController" method="createAnyChartXml"></action>
 	
 	<action name="selQxByRoleid" class="xtglController" method="selQxByRoleid"></action>
-	
+	<action name="selBzbz" class="xtglController" method="selBzbz"></action>
+	<action name="updateBzbz" class="xtglController" method="updateBzbz"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>
 	<action name="getModule_sc" class="excelModule" method="getModule_sc"/>
 	<action name="getModule_jh" class="excelModule" method="getModule_jh"/>
 	<action name="getModule_jhfeiLw" class="excelModule" method="getModule_jhfeiLw"/>
+	
+	<!-- rh -->
+	<action name="queryFlwbzbz" class="xtglController" method="queryFlwbzbz"></action>
+	<action name="addFlwbzbz" class="xtglController" method="addFlwbzbz"></action>
+	<action name="queryFlwbzbzById" class="xtglController" method="queryFlwbzbzById"></action>
+	<action name="updateFlwbzbz" class="xtglController" method="updateFlwbzbz"></action>
  </package>
 </struts>

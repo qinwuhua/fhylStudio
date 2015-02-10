@@ -7,6 +7,7 @@
 	<title>安保工程项目</title>
 </head>
 <body>
+
 	<script type="text/javascript">
 		if(bz=="xx" || bz=="sb"){
 			$("#trSY").hide();
@@ -384,6 +385,7 @@
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<div id="fileQueue"></div>
+						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
 						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
 						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
@@ -394,7 +396,8 @@
 				</td>
 				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
 					<div id="fileQueue1"></div>
-					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+						<a id="xz_sjsgt"  href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
+						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
 						<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
@@ -432,6 +435,13 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	function downFile1(){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+}
+	function downFile2(){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
+}
+	
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
@@ -453,7 +463,7 @@
 			'jh.id':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_gkbg').html("<a>"+response+"</a>");
+			$('#xz_gkbg').html(response);
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -487,7 +497,7 @@
 			'jh.id':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_sjsgt').html("<a>"+response+"</a>");
+			$('#xz_sjsgt').html(response);
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -531,10 +541,10 @@
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
 			if(data.gkbgmc!=''){
-				$("#xz_gkbg").text("下载附件");
+				$('#xz_gkbg').html(data.gkbgmc);
 			}
 			if(data.sjsgtmc!=''){
-				$("#xz_jhsgt").text("下载附件");
+				$("#xz_sjsgt").html(data.sjsgtmc);
 			}
 			//审查库
 			$.ajax({

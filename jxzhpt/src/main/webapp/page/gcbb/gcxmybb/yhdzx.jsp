@@ -21,16 +21,6 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			$("#kssj").datebox({    
-			     
-			});  
-			$("#jssj").datebox({    
-		     
-			});  
-			showAlljz();
 		});
 	</script>
 	<style type="text/css">
@@ -69,9 +59,9 @@ a:active {
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>起始年月：</span>
-        						<input type="text" id="kssj" style="width:150px;">
+        						<input type="text" id="kssj" class="easyui-datebox" style="width:150px;">
         						<span>截止年月：</span>
-        						<input type="text" id="jssj" style="width:150px;">
+        						<input type="text" id="jssj"  class="easyui-datebox" style="width:150px;">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"

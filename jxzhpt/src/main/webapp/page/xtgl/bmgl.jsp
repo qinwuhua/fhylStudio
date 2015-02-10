@@ -53,7 +53,7 @@ function deleteDw(_id){
 }
 function startSearch(){
 	$('#xtgl_dwgl_table').treegrid({
-		border : false,
+		border:true,
 		rownumbers: false,
 		fit : true,
 		fitColumns : true,

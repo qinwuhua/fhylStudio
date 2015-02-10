@@ -66,7 +66,7 @@ function updateZt(_id,_zt){
 $(function(){
 	loadDist2("xzqhdm","360000");
 	$("#jsgl_table").datagrid({
-		border : false,
+		border:true,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',

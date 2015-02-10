@@ -243,5 +243,24 @@
 	<select id="selQxListByRoleid" parameterType="param" resultType="param">
 		select sourceid from xtgl_role_resource where roleid=#{roleid}
 	</select>
-		
+	<select id="selBzbz" parameterType="bzbz" resultType="bzbz">
+		select * from lwbzbz order by xmlx,lx
+	</select>
+	<update id="updateBzbz" parameterType="bzbz">
+		update lwbzbz set bz=#{bz},bl=#{bl},fd=#{fd} where id=#{id}
+	</update>
+	<select id="queryFlwbzbz" resultType="flwbzbz">
+		select * from plan_flwbzbz
+	</select>
+	<insert id="addFlwbzbz" parameterType="flwbzbz">
+		insert into plan_flwbzbz (xmlx,gldj,tsdq ,bzzj,jsdj) 
+		values (#{xmlx},#{gldj},#{tsdq},#{bzzj},#{jsdj})
+	</insert>
+	<select id="queryFlwbzbzById" parameterType="string" resultType="flwbzbz">
+		select * from plan_flwbzbz where id=#{id}
+	</select>
+	<update id="updateFlwbzbz" parameterType="flwbzbz">
+		update plan_flwbzbz set xmlx=#{xmlx},gldj=#{gldj},tsdq=#{tsdq},
+		bzzj=#{bzzj},jsdj=#{jsdj} where id=#{id}
+	</update>
 </mapper>
