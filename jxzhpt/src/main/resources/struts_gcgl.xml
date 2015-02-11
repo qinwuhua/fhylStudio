@@ -187,6 +187,7 @@
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
 	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
 	<action name="selAllBm4" class="gcglaqybController" method="selAllBm4"/>
+	<action name="selAllBm5" class="gcglaqybController" method="selAllBm5"/>
 	<action name="deleteAqybb" class="gcglaqybController" method="deleteAqybb"/>
 	<action name="downAqybbFile" class="gcglaqybController" method="downAqybbFile"/>
 	
@@ -198,5 +199,22 @@
 	<action name="selectmbgllist" class="gcglaqybController" method="selectmbgllist"/>
 	<action name="downMbglFile" class="gcglaqybController" method="downMbglFile"/>
 	<action name="deleteMbgl" class="gcglaqybController" method="deleteMbgl"/>
+	
+	<!-- xxtz -->
+	<action name="uploadTzFile" class="gcglaqybController" method="uploadTzFile"/>
+	<action name="insertTz" class="gcglaqybController" method="insertTz"/>
+	<action name="insertTz1" class="gcglaqybController" method="insertTz1"/>
+	<action name="deleteTzfile" class="gcglaqybController" method="deleteTzfile"/>
+	<action name="deleteTzfile1" class="gcglaqybController" method="deleteTzfile1"/>
+	<action name="selectxxtzlist" class="gcglaqybController" method="selectxxtzlist"/>
+	<action name="selectTzfile" class="gcglaqybController" method="selectTzfile"/>
+	<action name="deleteTzByid" class="gcglaqybController" method="deleteTzByid"/>
+	<action name="deleteTzByid1" class="gcglaqybController" method="deleteTzByid1"/>
+	<action name="insertTzck" class="gcglaqybController" method="insertTzck"/>
+	
+	<action name="selectxxtzcxlist" class="gcglaqybController" method="selectxxtzcxlist"/>
+	<action name="deleteTzckByid" class="gcglaqybController" method="deleteTzckByid"/>
+	<action name="xgTzzt" class="gcglaqybController" method="xgTzzt"/>
+	<action name="downXxtzFile" class="gcglaqybController" method="downXxtzFile"/>
  </package>
 </struts>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
+import com.hdsx.jxzhpt.gcgl.bean.Gcgltz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
@@ -153,4 +154,146 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 		}
 	}
 
+	@Override
+	public boolean uploadTzFile(Gcgltz gcgltz) {
+		if(insert("uploadTzFile", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertTz1(Gcgltz gcgltz) {
+		if(insert("insertTz1", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertTz(Gcgltz gcgltz) {
+		if(insert("insertTz", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteTzfile(Gcgltz gcgltz) {
+		if(delete("deleteTzfile", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteTzfile1(Gcgltz gcgltz) {
+		Gcgltz gcgltz1=queryOne("queryTzbyId", gcgltz);
+		if(gcgltz1==null)
+		delete("deleteTzfile1", gcgltz);
+		return true;
+	}
+
+	@Override
+	public int selectxxtzlistCount(Gcgltz gcgltz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectxxtzlistCount", gcgltz);
+	}
+
+	@Override
+	public List<Gcgltz> selectxxtzlist(Gcgltz gcgltz) {
+		// TODO Auto-generated method stub
+		return queryList("selectxxtzlist",gcgltz);
+	}
+
+	@Override
+	public Gcgltz selecttzById(Gcgltz gcgltz) {
+		return queryOne("queryTzbyId", gcgltz);
+	}
+
+	@Override
+	public List<Gcgltz> selectTzfile(Gcgltz gcgltz) {
+		return queryList("selectTzfile", gcgltz);
+	}
+
+	@Override
+	public Boolean deleteTzByid(Gcgltz gcgltz) {
+		if(delete("deleteTzByid", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean deleteTzByid1(Gcgltz gcgltz) {
+		gcgltz.setTzid(gcgltz.getId());
+		if(delete("deleteTzByid", gcgltz)>0 && delete("deleteTzfile1", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean insertTzck(Gcgltz gcgltz) {
+		if(update("updateTzfszt", gcgltz)>0 && insert("insertTzck", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public int selectxxtzlist1Count(Gcgltz gcgltz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectxxtzlistCount1", gcgltz);
+	}
+
+	@Override
+	public List<Gcgltz> selectxxtzlist1(Gcgltz gcgltz) {
+		// TODO Auto-generated method stub
+		return queryList("selectxxtzlist1",gcgltz);
+	}
+
+	@Override
+	public Boolean deleteTzckByid(Gcgltz gcgltz) {
+		
+		gcgltz.setTzid(gcgltz.getId());
+		List<Gcgltz> list=queryList("selecttzbytzid",gcgltz);
+		if(list.size()==0){
+			if(delete("deleteTzByid1", gcgltz)>0){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			if(delete("deleteTzByid1", gcgltz)>0 && delete("deleteTzfile1", gcgltz)>0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+	}
+
+	@Override
+	public Boolean xgTzzt(Gcgltz gcgltz) {
+		if(update("xgTzzt", gcgltz)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public Gcgltz selectxxtzById(Gcgltz gcgltz) {
+		
+		return queryOne("selectxxtzById", gcgltz);
+	}
+	
 }

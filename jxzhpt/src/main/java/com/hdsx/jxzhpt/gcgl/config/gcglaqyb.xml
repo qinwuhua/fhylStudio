@@ -116,4 +116,126 @@
 	<delete id="deleteMbgl" parameterType="gcglaqyb">
 		delete from GCGL_AQGLMBGL where id=#{id}
 	</delete>
+	
+	<insert id="uploadTzFile" parameterType="gcgltz" >
+		insert into GCGL_MESSAGETJFILE(id,tzid,tzfile,filename)
+		values(#{id},#{tzid},#{tzfile},#{filename})
+	</insert>
+	<insert id="insertTz" parameterType="gcgltz" >
+		insert into GCGL_MESSAGETJ(id,reportper,title,contens,tjdepartmentcode,reportperuid,fsdwmc,reporttime)
+		values(#{id},#{reportper},#{title},#{contens},#{tjdepartmentcode},#{reportperuid},#{fsdwmc},#{reporttime})
+	</insert>
+	<insert id="insertTz1" parameterType="gcgltz" >
+		update GCGL_MESSAGETJ set title=#{title},contens=#{contens},tjdepartmentcode=#{tjdepartmentcode}
+		where id=#{id}
+	</insert>
+	<delete id="deleteTzfile" parameterType="gcgltz">
+		delete from GCGL_MESSAGETJFILE where id=#{id}
+	</delete>
+	<select id="queryTzbyId" parameterType="gcgltz" resultType="gcgltz">
+		select * from GCGL_MESSAGETJ where id=#{id}
+	</select>
+	<delete id="deleteTzfile1" parameterType="gcgltz">
+		delete from GCGL_MESSAGETJFILE where tzid=#{tzid}
+	</delete>
+		<select id="selectxxtzlist" parameterType="gcgltz" resultType="gcgltz">
+		select * from (
+		select m.*,rownum rn from (
+			select * from GCGL_MESSAGETJ 
+			where 1=1
+			<if test="reportperuid != null and  reportperuid != ''">
+			and reportperuid like '%'||trim(#{reportperuid})||'%'
+			</if>
+			<if test="kssj != null  and kssj != ''">
+					and reporttime >= #{kssj}
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and reporttime <= #{jssj}]]>
+			</if>
+		order by reporttime desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectxxtzlistCount" parameterType="gcgltz" resultType="int">
+		select count(*) from GCGL_MESSAGETJ 
+			where 1=1
+			<if test="reportperuid != null and  reportperuid != ''">
+			and reportperuid like '%'||trim(#{reportperuid})||'%'
+			</if>
+			<if test="kssj != null  and kssj != ''">
+					and reporttime >= #{kssj}
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and reporttime <= #{jssj}]]>
+			</if>
+	</select>
+	<select id="selectTzfile" parameterType="gcgltz" resultType="gcgltz">
+		select id,filename,tzid from GCGL_MESSAGETJFILE where tzid=#{tzid}
+	</select>
+	<delete id="deleteTzByid" parameterType="gcgltz">
+		delete from GCGL_MESSAGETJ where id=#{id}
+	</delete>
+	<update id="updateTzfszt" parameterType="gcgltz">
+		update GCGL_MESSAGETJ set fszt='已发送' where id=#{id}
+	</update>
+	<select id="insertTzck" parameterType="gcgltz">
+		insert into GCGL_MESSAGECK( id,reporttime,reportper,title,contens,tjdepartmentcode,reportperuid,fsdwmc)
+		values(#{id},#{reporttime},#{reportper},#{title},#{contens},#{tjdepartmentcode},#{reportperuid},#{fsdwmc})
+	</select>
+	
+	<select id="selectxxtzlist1" parameterType="gcgltz" resultType="gcgltz">
+		select * from (
+		select m.*,rownum rn from (
+			select * from GCGL_MESSAGECK 
+			where 1=1
+			<if test="tjdepartmentcode != null and  tjdepartmentcode != ''">
+			and tjdepartmentcode like '%'||trim(#{tjdepartmentcode})||'%'
+			</if>
+			<if test="kssj != null  and kssj != ''">
+					and reporttime >= #{kssj}
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and reporttime <= #{jssj}]]>
+			</if>
+			<if test="ckzt != null and  ckzt != ''">
+			and ckzt like '%'||trim(#{ckzt})||'%'
+			</if>
+		order by reporttime desc
+		)  m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+		
+	</select>
+	<select id="selectxxtzlistCount1" parameterType="gcgltz" resultType="int">
+		select count(*) from GCGL_MESSAGECK 
+			where 1=1
+			<if test="tjdepartmentcode != null and  tjdepartmentcode != ''">
+			and tjdepartmentcode like '%'||trim(#{tjdepartmentcode})||'%'
+			</if>
+			<if test="kssj != null  and kssj != ''">
+					and reporttime >= #{kssj}
+			</if>
+			<if test="jssj != null and jssj != ''">
+					<![CDATA[and reporttime <= #{jssj}]]>
+			</if>
+			<if test="ckzt != null and  ckzt != ''">
+			and ckzt like '%'||trim(#{ckzt})||'%'
+			</if>
+	</select>
+		<delete id="deleteTzByid1" parameterType="gcgltz">
+		delete from GCGL_MESSAGECK where id=#{id}
+	</delete>
+	<update id="xgTzzt" parameterType="gcgltz">
+		update GCGL_MESSAGECK set ckzt='已查看' where id=#{id}
+	</update>
+	<select id="selectxxtzById" resultType="gcgltz" parameterType="gcgltz">
+		select * from GCGL_MESSAGETJFILE where id=#{id}
+	</select>
+	<select id="selecttzbytzid" resultType="gcgltz" parameterType="gcgltz">
+		select id,filename,tzid from GCGL_MESSAGETJFILE where tzid=#{tzid}
+	</select>
 </mapper>

@@ -11,13 +11,27 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/xxcx.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="js/xxcx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			var data=parent.obj1;
+			$("#title").text(data.title);
+			$("#contens").text(data.contens);
+			var data1="id="+data.id;
+			$.ajax({
+				type:'post',
+				url:'../../../../gcgl/selectTzfile.do',
+				data:data1,
+				dataType:'json',
+				success:function(msg){
+					if(msg.length==0){
+						$('<li></li>').appendTo('.files').html("无附件");
+					}
+					for(var i=0;i<msg.length;i++)
+					$('<li></li>').appendTo('.files').html(msg[i].filename+'                   <a href="/jxzhpt/gcgl/downXxtzFile.do?id='+msg[i].id+'"  style="text-decoration:none;"> 下载 </a> ');
+				}
+			});	
 		});
 	</script>
 	<style type="text/css">
@@ -30,6 +44,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -48,26 +63,15 @@ a:active {
                         <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
-							<tr style="height: 35px;">
-                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                    padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">通知单位 </font></b>
-                                </td>
-                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                   <span>江西省</span>
-                                </td>
-                            </tr>
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">通知名称 </font></b>
+                                    <b><font color="#009ACD" style=" font-size: 12px">通知名称 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <span>通知1</span>
+                                <span id="title"></span>
                                 </td>
                             </tr>
                             
@@ -75,22 +79,23 @@ a:active {
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">通知内容 </font></b>
+                                    <b><font color="#009ACD" style=" font-size: 12px">通知内容 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                  <span>xxxxxxxxxxxxxxxx</span>
+                                  <span id="contens"></span>
                                 </td>
                             </tr>
                        		<tr style="height: 35px;">
                                  <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">附件 </font></b>
+                                    <b><font color="#009ACD" style=" font-size: 12px">附件 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                   信息通知.xls<input type="button" value="下载">
+                                   	<ol class=files>
+									</ol>
                                 </td>
                             </tr>
                         </table>

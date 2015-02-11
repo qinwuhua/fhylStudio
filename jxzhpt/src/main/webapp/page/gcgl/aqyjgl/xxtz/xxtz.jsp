@@ -11,28 +11,50 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/xxtz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="js/xxtz.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
 	</style>
 	<script type="text/javascript">
+		
 		$(function(){
+			var date=new Date();
+			var y = date.getFullYear();
+			var m = date.getMonth()+1;
+			var d = date.getDate(); 
+			var m1;
+			var y1;
+			if(m==1){
+				m1=12;
+				y1=y-1;
+			}else{
+				m1=m-1;
+				y1=y;
+			}
+			if(m<=9){
+				m='0'+m;
+			}
+			if(m1<=9){
+				m1='0'+m1;
+			}
+			if(d<=9){
+				d='0'+d;
+			}
 			$("#kssj").datebox({    
 			    
 			});  
 			$("#jssj").datebox({    
 		    
 			});  
-
-			
-			
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
+			$('#kssj').datebox('setValue', y1+"-"+m1+"-"+d);
+			$('#jssj').datebox('setValue',  y+"-"+m+"-"+d);
 			showAll();
 		});
 	</script>
@@ -55,7 +77,7 @@ a:active {
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;安全应急管理>&nbsp;信息通知</div>
@@ -64,12 +86,12 @@ a:active {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin: 8px 0px 8px 20px;">
+        					<p style="margin: 1% 0px 1% 2%;">
         						<span>发布时间：</span>
         							<input type="text" id="kssj" >
         							<span>至</span>
@@ -79,7 +101,7 @@ a:active {
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									<input type="image" name="btnSelect" id="btnSelect" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" /> --%>
                                     <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>
             
                                     <img alt="添加" src="${pageContext.request.contextPath}/images/Button/tianjia1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianjia2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianjia1.gif' " onclick="xxtztj()" style="border-width:0px;cursor: hand;vertical-align: -40%;" />
@@ -91,9 +113,9 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
+                <td style="padding-top: 1%;padding-left:10px;">
                     <div>
-				<table id="datagrid" width="100%">
+				<table id="datagrid" >
 				</table>
 
 		</table>

@@ -8,11 +8,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
+import com.hdsx.jxzhpt.gcgl.bean.Gcgltz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
@@ -55,7 +59,9 @@ public class GcglaqybController extends BaseActionSupport{
 	private static final long serialVersionUID = 1L;
 	private int page = 1;
 	private int rows = 10;
-	
+	private Date kssj;
+	private Date jssj;
+	private String ckzt;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String sendingunits;
@@ -72,6 +78,12 @@ public class GcglaqybController extends BaseActionSupport{
 	private String yhdw;
 	private String id;
 	
+	public String getCkzt() {
+		return ckzt;
+	}
+	public void setCkzt(String ckzt) {
+		this.ckzt = ckzt;
+	}
 	public String getId() {
 		return id;
 	}
@@ -87,10 +99,28 @@ public class GcglaqybController extends BaseActionSupport{
 
 	@Resource(name = "gcglaqybServerImpl")
 	private GcglaqybServer gcglaqybServer;
-	
+	private Gcgltz gcgltz=new Gcgltz();
 	private Gcglaqyb gcglaqyb = new Gcglaqyb();
 	private String jhid;
 	
+	public Date getKssj() {
+		return kssj;
+	}
+	public void setKssj(Date kssj) {
+		this.kssj = kssj;
+	}
+	public Date getJssj() {
+		return jssj;
+	}
+	public void setJssj(Date jssj) {
+		this.jssj = jssj;
+	}
+	public Gcgltz getGcgltz() {
+		return gcgltz;
+	}
+	public void setGcgltz(Gcgltz gcgltz) {
+		this.gcgltz = gcgltz;
+	}
 	public String getGydw1() {
 		return gydw1;
 	}
@@ -539,6 +569,227 @@ public class GcglaqybController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void uploadTzFile(){
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try {
+			InputStream inputStream = new FileInputStream(fileupload);
+			String s = UUID.randomUUID().toString(); 
+			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			gcgltz.setId(s1);
+			gcgltz.setTzid(id);
+			gcgltz.setFilename(fileuploadFileName);
+			gcgltz.setTzfile(inputStreamToByte(inputStream));
+			boolean bl=gcglaqybServer.uploadTzFile(gcgltz);
+			if(bl)
+			response.getWriter().print(fileuploadFileName+"    上传成功"+s1);
+			else
+			response.getWriter().print(fileuploadFileName+"    上传失败"+s1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void insertTz(){
+		;
+		Date riqi = null;
+		try {
+			riqi = new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		gcgltz.setReporttime(riqi);
+		Boolean bl=gcglaqybServer.insertTz(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void insertTz1(){
+		Boolean bl=gcglaqybServer.insertTz1(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void deleteTzfile(){
+		Boolean bl=gcglaqybServer.deleteTzfile(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void deleteTzfile1(){
+		gcgltz.setId(id);
+		gcgltz.setTzid(id);
+		Boolean bl=gcglaqybServer.deleteTzfile1(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectxxtzlist(){
+		gcgltz.setReportperuid(gydw);
+		gcgltz.setKssj(kssj);
+		gcgltz.setJssj(jssj);
+		gcgltz.setRows(rows);
+		gcgltz.setPage(page);
+		int count=gcglaqybServer.selectxxtzlistCount(gcgltz);
+		List<Gcgltz> list=gcglaqybServer.selectxxtzlist(gcgltz);
+		EasyUIPage<Gcgltz> e=new EasyUIPage<Gcgltz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selAllBm5(){
+		List<TreeNode> l=gcglaqybServer.selAllBm3(yhdw);
+		gcgltz.setId(id);
+		Gcgltz gcglaqyb1 = gcglaqybServer.selecttzById(gcgltz);
+		String [] dwbm=gcglaqyb1.getTjdepartmentcode().split(",");
+		List<String> list=new ArrayList<String>();
+		for (int i = 0; i < dwbm.length; i++) {
+			list.add(dwbm[i]);
+		}
+		TreeNode root = returnRoot1(l,l.get(0),list);
+		List<TreeNode> children = root.getChildren();
+		try{
+		    String s=JSONArray.fromObject(children).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void selectTzfile(){
+		gcgltz.setTzid(id);
+		List<Gcgltz> list = gcglaqybServer.selectTzfile(gcgltz);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteTzByid(){
+		Boolean bl=gcglaqybServer.deleteTzByid(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void deleteTzByid1(){
+		Boolean bl=gcglaqybServer.deleteTzByid1(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//通知查看
+	public void insertTzck(){
+		Boolean bl=gcglaqybServer.insertTzck(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectxxtzcxlist(){
+		gcgltz.setTjdepartmentcode(gydw);
+		gcgltz.setKssj(kssj);
+		gcgltz.setJssj(jssj);
+		gcgltz.setCkzt(ckzt);
+		gcgltz.setRows(rows);
+		gcgltz.setPage(page);
+		int count=gcglaqybServer.selectxxtzlist1Count(gcgltz);
+		List<Gcgltz> list=gcglaqybServer.selectxxtzlist1(gcgltz);
+		EasyUIPage<Gcgltz> e=new EasyUIPage<Gcgltz>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void deleteTzckByid(){
+		Boolean bl=gcglaqybServer.deleteTzckByid(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void xgTzzt(){
+		gcgltz.setId(id);
+		Boolean bl=gcglaqybServer.xgTzzt(gcgltz);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	@RequestMapping("file/download")  
+	public void downXxtzFile(){
+		try {
+			HttpServletResponse response = getresponse();
+			OutputStream out = new BufferedOutputStream(response.getOutputStream());
+			response.setContentType("multipart/form-data");
+			gcgltz.setId(id);
+			Gcgltz gcglwqgz1=gcglaqybServer.selectxxtzById(gcgltz);
+			byte[] data = gcglwqgz1.getTzfile();
+			String realPath = ServletActionContext.getServletContext().getRealPath("/");
+			String filename=gcglwqgz1.getFilename();
+			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+			File file=new File(realPath+"upload\\"+gcglwqgz1.getFilename());
+			if (!file.exists()) { 
+	            file.createNewFile(); // 如果文件不存在，则创建 
+	        } 
+			FileOutputStream fos = new FileOutputStream(file); 
+			 InputStream in = new InputStream() {
+				@Override
+				public int read() throws IOException {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+			}; 
+		        int size = 0; 
+		        if (data.length > 0) { 
+		            fos.write(data, 0, data.length); 
+		        } else { 
+		            while ((size = in.read(data)) != -1) { 
+		                fos.write(data, 0, size); 
+		            }  
+		        } 
+			FileInputStream fis= new FileInputStream(file);
+			byte [] arr = new byte[1024*10];
+			int i;
+			while((i=fis.read(arr))!=-1){
+				out.write(arr,0,i);
+				out.flush();
+			}
+			fis.close();
+			out.close();
+			file.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

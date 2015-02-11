@@ -20,8 +20,25 @@ public class Gcgltz implements Serializable {
 	private String tzid;
 	private byte[] tzfile;
 	private String filename;
+	private String fszt;
+	private String fsdwmc;
+	private Date kssj;
+	private Date jssj;
 	private int page;
 	private int rows;
+	
+	public Date getKssj() {
+		return kssj;
+	}
+	public void setKssj(Date kssj) {
+		this.kssj = kssj;
+	}
+	public Date getJssj() {
+		return jssj;
+	}
+	public void setJssj(Date jssj) {
+		this.jssj = jssj;
+	}
 	public String getId() {
 		return id;
 	}
@@ -99,6 +116,18 @@ public class Gcgltz implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getFszt() {
+		return fszt;
+	}
+	public void setFszt(String fszt) {
+		this.fszt = fszt;
+	}
+	public String getFsdwmc() {
+		return fsdwmc;
+	}
+	public void setFsdwmc(String fsdwmc) {
+		this.fsdwmc = fsdwmc;
 	}
 	
 }
