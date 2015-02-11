@@ -415,11 +415,14 @@ function queryGcsjXx(id){
 			$('#ljtsf').html(data.ljtsf);
 			$('#dc').html(data.dc);
 			$('#jc').html(data.jc);
+			$('#lqlm').html(data.lqlm);
+			$('#snlm').html(data.snlm);
+			$('#gjhjsdj').html(data.gjhjsdj);
 			$('#pfwh').html(data.pfwh);
 			$('#pfsj').html(data.pfsj);
-			$('#pftz').html(data.pftz);
-			$('#jhsybzje').html(data.jhsybzje);
-			$('#jhsydfzcje').html(data.jhsydfzcje);
+			$('#jhtz').html(data.pftz);
+			$('#jhsybbzje').html(data.jhsybbzje);
+			$('#jhsysbzje').html(data.jhsysbzje);
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#sftqss').html(data.sftqss);
 			$('#jhxdwh').html(data.jhxdwh);

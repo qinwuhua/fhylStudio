@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_yhdzx">
 	<resultMap type="plan_yhdzx" id="yhdzx_jh">
 		<id property="id" column="id" />
+		<result property="xdsj" column="xdsj"/>
 		<result property="sbnf" column="sbnf"/>
 		<result property="classify" column="classify"/>
 		<result property="fee" column="fee"/>
@@ -31,6 +32,8 @@
 		<result property="remarks" column="remarks"/>
 		<result property="qtbz" column="qtbz"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
+		<result property="totalplacefund" column="totalplacefund"/>
+		<result property="devisenumbder" column="devisenumbder"/>
 		<collection property="plan_lx_yhdzxs" ofType="plan_lx_yhdzx" resultMap="yhdzx_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">
@@ -130,6 +133,18 @@
 		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid)
 		where jh.id=#{id}
 	</select>
+	<update id="editYhdzxById" parameterType="java.util.Map">
+		update plan_yhdzx jh set jh.sbnf=#{jh.sbnf},jh.jhkgsj=#{jh.jhkgsj},jh.jhwgsj=#{jh.jhwgsj},
+		jh.classify=#{jh.classify},jh.aadt=#{jh.aadt},jh.pqi=#{jh.pqi},jh.dianceng=#{jh.dianceng},jh.jiceng=#{jh.jiceng},
+		jh.surface=#{jh.surface},jh.fee=#{jh.fee},jh.newfee=#{jh.newfee},jh.totalinvest=#{jh.totalinvest},
+		jh.totalplacefund=#{jh.totalplacefund},jh.totalsubsidyfund=#{jh.totalsubsidyfund},
+		jh.accumulativesubsidyfund=#{jh.accumulativesubsidyfund},jh.nowyearsubsidyfund=#{jh.nowyearsubsidyfund},
+		jh.reportingfee=#{jh.reportingfee},jh.mark=#{jh.mark},jh.plandownnumber=#{jh.plandownnumber},
+		jh.xdsj=#{jh.xdsj},jh.constructnumber=#{jh.constructnumber},jh.replynumber=#{jh.replynumber},
+		jh.devisenumbder=#{jh.devisenumbder},jh.description=#{jh.description},jh.xchsqk=#{jh.xchsqk}<!-- ,
+		jh.remarks=#{jh.remarks},jh.qtbz=#{jh.qtbz} -->
+		where jh.id=#{jh.id}
+	</update>
 	<update id="editYhdzxStatus" parameterType="plan_yhdzx">
 		update plan_yhdzx set 
 			<if test="sbbm!=null">sbbm=(select name from XTGL_DEPARTMENT t where t.id = #{sbbm}),</if>

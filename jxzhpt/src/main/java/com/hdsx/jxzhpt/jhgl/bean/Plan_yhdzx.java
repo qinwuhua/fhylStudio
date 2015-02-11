@@ -45,7 +45,7 @@ public class Plan_yhdzx {
 	private String nowyearsubsidyfund;//本年补助资金
 	private String constructnumber;//施工图文号
 	private String replynumber;//工可批复文号
-	private String devisenumber;//设计批复文号
+	private String devisenumbder;//设计批复文号
 	private String plandownnumber;//计划下达文号
 	private String sgxkwj;//施工许可文件
 	private String jgtcwj;//交工通车文件
@@ -351,11 +351,11 @@ public class Plan_yhdzx {
 	public void setReplynumber(String replynumber) {
 		this.replynumber = replynumber;
 	}
-	public String getDevisenumber() {
-		return devisenumber;
+	public String getDevisenumbder() {
+		return devisenumbder;
 	}
-	public void setDevisenumber(String devisenumber) {
-		this.devisenumber = devisenumber;
+	public void setDevisenumbder(String devisenumbder) {
+		this.devisenumbder = devisenumbder;
 	}
 	public String getPlandownnumber() {
 		return plandownnumber;

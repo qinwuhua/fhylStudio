@@ -52,8 +52,11 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	}
 
 	@Override
-	public boolean editYhdzxById(Plan_yhdzx jh) {
-		return update("editYhdzxById", jh)>0;
+	public boolean editYhdzxById(Plan_yhdzx jh,Plan_lx_yhdzx lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return update("editYhdzxById", params)>0;
 	}
 
 	@Override

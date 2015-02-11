@@ -10,6 +10,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 @Service
@@ -120,5 +121,15 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	@Override
 	public int queryJhExist(Plan_lx_gcgj lx) {
 		return queryOne("queryJhExist", lx);
+	}
+
+	@Override
+	public String queryTsdqByXzqh(String xzqh) {
+		return queryOne("queryTsdqByXzqh",xzqh);
+	}
+
+	@Override
+	public Plan_flwbzbz queryBzzj(Plan_flwbzbz flwbzbz) {
+		return queryOne("queryBzzj", flwbzbz);
 	}
 }

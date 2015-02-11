@@ -59,6 +59,7 @@
 						handler: function(){
 							$('#add').show();
 							$('#update').hide();
+							$('#tsdq').combotree('clear');
 							$('#addFlwbzbz').dialog("open",false);
 						}
 					}

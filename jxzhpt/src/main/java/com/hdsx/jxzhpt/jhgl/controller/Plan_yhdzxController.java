@@ -96,8 +96,21 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void editYhdzxStatus(){
 		try {
+			System.out.println("设计批复问好："+jh.getDevisenumbder());
 			Map<String,String> result=new HashMap<String, String>();
 			result.put("result", new Boolean(yhdzxServer.editYhdzxStatus(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editYhdzxById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

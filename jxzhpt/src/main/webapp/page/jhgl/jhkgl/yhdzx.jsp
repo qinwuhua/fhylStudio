@@ -47,7 +47,7 @@
 			if($('#tsdq').combobox('getValue')!=''){
 				lx.tsdq=$('#tsdq').combobox('getValue');
 			}
-			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!='全部'){
+			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!="全部"){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
 				var xian=true;
@@ -119,7 +119,7 @@
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" id="txtRoad" style="width:80px;"  type="text"/>
         						<span>&nbsp;计划状态：</span>
-        						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
+        						<select id="jhzt" class="easyui-combobox" name="jhzt" style="width: 70px;">
 									<option value="全部">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>

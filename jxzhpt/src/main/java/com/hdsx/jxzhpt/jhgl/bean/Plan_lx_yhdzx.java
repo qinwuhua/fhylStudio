@@ -24,6 +24,13 @@ public class Plan_lx_yhdzx {
 	private Date tbsj;//填报时间
 	private String jhid;//计划ID
 	private String tsdq;//特殊地区
+	private String bhnr;
+	public String getBhnr() {
+		return bhnr;
+	}
+	public void setBhnr(String bhnr) {
+		this.bhnr = bhnr;
+	}
 	public String getTsdq() {
 		return tsdq;
 	}

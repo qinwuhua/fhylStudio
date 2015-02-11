@@ -82,6 +82,7 @@
 		<action name="dropYhdzxById" class="plan_yhdzxController" method="dropYhdzxById"/>
 		<action name="editYhdzxStatus" class="plan_yhdzxController" method="editYhdzxStatus"/>
 		<action name="querySumYhdzx" class="plan_yhdzxController" method="querySumYhdzx"/>
+		<action name="editYhdzxById" class="plan_yhdzxController" method="editYhdzxById"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>
