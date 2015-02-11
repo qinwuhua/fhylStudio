@@ -240,7 +240,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 					gcgj.setYjsdj(queryGPSBylxbm.getYjsdj());//技术等级
 					if(queryGPSBylxbm==null){
 						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
-					}else if(queryGPSBylxbm==null && strVerify.equals("")){
+					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						gcgj.setTsdqbm(gcgjServer.queryTsdqByXzqh(gcgj.getXzqhdm()));
 						//设置非路网项目的查询条件
@@ -264,7 +264,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 						}else{
 							//验证金额
 						}
-						
 						//验证是否与计划相符
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
 							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";

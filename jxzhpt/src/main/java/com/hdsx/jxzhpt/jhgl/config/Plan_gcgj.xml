@@ -178,7 +178,7 @@
 			<if test="jhwgsj!=null and jhwgsj!=''">
 				jhwgsj=#{jhwgsj},
 			</if>
-			<if test="xdsj!=null and xdsj=!=''">
+			<if test="xdsj!=null and xdsj!=''">
 				xdsj=#{xdsj},
 			</if>
 			<if test="pfsj!=null and pfsj!=''">
@@ -187,7 +187,9 @@
 			xmmc=#{xmmc},yhlb=#{yhlb},sjdw=#{sjdw},sjpfdw=#{sjpfdw},sjlmlx=#{sjlmlx},
 			dc=#{dc},jc=#{jc},mc=#{mc},lmkd=#{lmkd},pfwh=#{pfwh},pfztz=#{pfztz},jhsybzje=#{jhsybzje},
 			jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},sftqss=#{sftqss},
-			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},bz=#{bz}
+			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},bz=#{bz},
+			fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},spwh=#{spwh},tzgs=#{tzgs},
+			jsxz=#{jsxz},jsnr=#{jsnr}
 		where id=#{id}
 	</update>
 	<update id="editGcgjStatus" parameterType="plan_gcgj">

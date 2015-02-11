@@ -129,18 +129,18 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案评估单位</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fapgdw"></span>
+					<input id="fapgdw" type="text"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					方案审查单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fascdw"></span>
+					<input id="fascdw" type="text"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案审批时间</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="faspsj"></span>
+					<input id="faspsj" type="text" class="easyui-datebox"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -148,19 +148,19 @@
 					审批文号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="spwh"></span>
+					<input id="spwh" type="text"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					投资估算
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="tzgs"></span>&nbsp;万元
+					<input id="tzgs" type="text"/>&nbsp;万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设性质
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="jsxz"></span>
+					<input id="jsxz" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -169,7 +169,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="jsnr"></span>
+					<input id="jsnr" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -522,13 +522,13 @@
 			$('#ylmlx').html(data.plan_lx_gcgjs[0].ylmlx);
 			$('#yhlc').html(data.plan_lx_gcgjs[0].yhlc);
 			$('#bhnr').html(data.plan_lx_gcgjs[0].bhnr);
-			$('#fapgdw').html(data.fapgdw);
-			$('#fascdw').html(data.fascdw);
-			$('#faspsj').html(data.faspsj);
-			$('#spwh').html(data.spwh);
-			$('#tzgs').html(data.tzgs);
-			$('#jsxz').html(data.jsxz);
-			$('#jsnr').html(data.jsnr);
+			$('#fapgdw').val(data.fapgdw);
+			$('#fascdw').val(data.fascdw);
+			$('#faspsj').datebox('setValue',data.faspsj);
+			$('#spwh').val(data.spwh);
+			$('#tzgs').val(data.tzgs);
+			$('#jsxz').val(data.jsxz);
+			$('#jsnr').val(data.jsnr);
 			if(data.gkbgmc!=null && data.gkbgmc!=''){
 				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
 			}

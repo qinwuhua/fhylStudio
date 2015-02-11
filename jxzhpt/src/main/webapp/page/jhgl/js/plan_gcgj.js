@@ -500,7 +500,6 @@ function dropGcgjs(){
 	}
 }
 function editGcgj(){
-	alert($('#bz').val());
 	var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
 			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
 			'jh.xdsj':$('#xdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
@@ -512,7 +511,10 @@ function editGcgj(){
 			'jh.sfsqablbz':$('#sfsqablbz').val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),
 			'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
 			'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-			'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.bz':$('#bz').val()
+			'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.bz':$('#bz').val(),
+			'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),
+			'jh.faspsj':$('#faspsj').datebox('getValue'),'jh.spwh':$('#spwh').val(),
+			'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),'jh.jsnr':$('#jsnr').val()
 		};
 	$.ajax({
 		type:'post',

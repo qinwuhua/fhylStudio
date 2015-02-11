@@ -64,7 +64,7 @@ public class Plan_gcgj {
 	private String sfqxkg;//全线开工状态
 	private String fapgdw;//方案评估单位
 	private String fascdw;//方案审查单位
-	private String faspsj;//方案审批时间
+	private Date faspsj;//方案审批时间
 	private String spwh;//审批文号
 	private String tzgs;//投资估算(万元)
 	private String jsxz;//建设性质
@@ -465,10 +465,10 @@ public class Plan_gcgj {
 	public void setFascdw(String fascdw) {
 		this.fascdw = fascdw;
 	}
-	public String getFaspsj() {
+	public Date getFaspsj() {
 		return faspsj;
 	}
-	public void setFaspsj(String faspsj) {
+	public void setFaspsj(Date faspsj) {
 		this.faspsj = faspsj;
 	}
 	public String getSpwh() {
