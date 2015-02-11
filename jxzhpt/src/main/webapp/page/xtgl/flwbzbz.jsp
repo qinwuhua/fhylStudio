@@ -56,11 +56,43 @@
 				toolbar:[
 					{
 						iconCls: 'icon-add',
+						text:'添加',
 						handler: function(){
 							$('#add').show();
 							$('#update').hide();
 							$('#tsdq').combotree('clear');
 							$('#addFlwbzbz').dialog("open",false);
+						}
+					},
+					{
+						iconCls: 'icon-remove',
+						text:'删除',
+						handler: function(){
+							var rows = $('#xtgl_flwbzbz_table').datagrid('getSelections');
+							if(rows.length==0){
+								alert("请选择要删除的数据！");
+								return;
+							}
+							var id="";
+							$.each(rows,function(index,item){
+								if(index==rows.length-1){
+									id+=item.id;
+								}else{
+									id+=item.id+",";
+								}
+							});
+							$.ajax({
+								type:'post',
+								url:'../../xtgl/dropFlwbzbzById.do',
+								dataType:'json',
+								data:'flwbzbz.id='+id,
+								success:function(data){
+									if(data.result){
+										alert("删除成功！");
+										$('#xtgl_flwbzbz_table').datagrid('reload');
+									}
+								}
+							});
 						}
 					}
 				]

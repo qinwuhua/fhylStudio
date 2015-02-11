@@ -263,4 +263,7 @@
 		update plan_flwbzbz set xmlx=#{xmlx},gldj=#{gldj},tsdq=#{tsdq},
 		bzzj=#{bzzj},jsdj=#{jsdj} where id=#{id}
 	</update>
+	<delete id="dropFlwbzbzById" parameterType="java.util.List">
+		delete from plan_flwbzbz where id=#{id}
+	</delete>
 </mapper>

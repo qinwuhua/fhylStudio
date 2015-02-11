@@ -456,4 +456,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public boolean updateFlwbzbz(Plan_flwbzbz flwbzbz) {
 		return update("updateFlwbzbz", flwbzbz)>0;
 	}
+
+	@Override
+	public boolean dropFlwbzbzById(String id) {
+		String [] idArray=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<idArray.length;i++){
+			list.add(idArray[i]);
+		}
+		return deleteBatch("dropFlwbzbzById", list)==list.size();
+	}
 }

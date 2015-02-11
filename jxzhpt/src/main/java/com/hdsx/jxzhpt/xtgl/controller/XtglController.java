@@ -853,6 +853,18 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void dropFlwbzbzById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.dropFlwbzbzById(flwbzbz.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}

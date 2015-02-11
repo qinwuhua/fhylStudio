@@ -49,6 +49,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./bzbz.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010408',
+		title:'非路网项目补助标准',
+		imgSrc:'../../images/bzbz.png',
+		renderTo:'left_menu1',
+		href:'./flwbzbz.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

@@ -135,4 +135,6 @@ public interface XtglServer {
 	Plan_flwbzbz queryFlwbzbzById(String id);
 
 	boolean updateFlwbzbz(Plan_flwbzbz flwbzbz);
+
+	boolean dropFlwbzbzById(String id);
 }
