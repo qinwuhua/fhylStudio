@@ -49,6 +49,17 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
+	public void insertGcgjLx(){
+		lx.setTbsj(new Date());
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(gcgjServer.insertPlan_lx_Gcgj(lx)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryGjwjById(){
 		try {
 			HttpServletResponse response = getresponse();

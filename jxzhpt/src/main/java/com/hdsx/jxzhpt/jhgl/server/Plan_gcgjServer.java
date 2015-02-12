@@ -10,6 +10,13 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
 	/**
+	 * 添加一条路线信息
+	 * @param lx
+	 * @return
+	 */
+	boolean insertPlan_lx_Gcgj(Plan_lx_gcgj lx);
+	
+	/**
 	 * 根据条件查询补助资金
 	 * @param flwbzbz
 	 * @return

@@ -132,4 +132,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public Plan_flwbzbz queryBzzj(Plan_flwbzbz flwbzbz) {
 		return queryOne("queryBzzj", flwbzbz);
 	}
+
+	@Override
+	public boolean insertPlan_lx_Gcgj(Plan_lx_gcgj lx) {
+		return insert("insertPlan_lx_Gcgj", lx)>0;
+	}
 }
