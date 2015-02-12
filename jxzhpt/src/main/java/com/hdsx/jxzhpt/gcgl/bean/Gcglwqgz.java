@@ -1,6 +1,5 @@
 package com.hdsx.jxzhpt.gcgl.bean;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 

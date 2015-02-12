@@ -101,6 +101,10 @@ public class Gcglabgc implements Serializable {
 	private Integer sfsj;
 	private String sfth;
 	
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
+	
 	private String tiaojian;
 	private int page;
 	private int rows;
@@ -629,6 +633,24 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setSfth(String sfth) {
 		this.sfth = sfth;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
 	}
 	
 }

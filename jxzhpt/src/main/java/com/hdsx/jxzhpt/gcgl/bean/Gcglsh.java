@@ -64,7 +64,9 @@ public class Gcglsh implements Serializable {
 	private String jsxz;//建设性质
 	private String jsnr;//建设内容
 	private String bz;//备注
-
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
 	private String sbnf;//上报年份
 	private Date jhkgsj;//计划开工时间
 	private Date jhwgsj;//计划完工时间
@@ -719,6 +721,24 @@ public class Gcglsh implements Serializable {
 	}
 	public void setSfth(String sfth) {
 		this.sfth = sfth;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
 	}
 	
 	

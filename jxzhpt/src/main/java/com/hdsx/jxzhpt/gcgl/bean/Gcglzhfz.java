@@ -30,7 +30,9 @@ public class Gcglzhfz implements Serializable {
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
-	
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;
 	private String tbyf;
@@ -623,6 +625,24 @@ public class Gcglzhfz implements Serializable {
 	}
 	public void setSfth(String sfth) {
 		this.sfth = sfth;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
 	}
 	
 }

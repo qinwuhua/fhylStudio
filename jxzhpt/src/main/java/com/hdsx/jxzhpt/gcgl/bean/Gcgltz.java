@@ -26,7 +26,9 @@ public class Gcgltz implements Serializable {
 	private Date jssj;
 	private int page;
 	private int rows;
-	
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
 	public Date getKssj() {
 		return kssj;
 	}
@@ -128,6 +130,24 @@ public class Gcgltz implements Serializable {
 	}
 	public void setFsdwmc(String fsdwmc) {
 		this.fsdwmc = fsdwmc;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
 	}
 	
 }
