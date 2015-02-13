@@ -192,6 +192,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	
 	public void editGcgjStatus(){
 		try {
+			System.out.println("进入");
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -274,6 +275,13 @@ public class Plan_gcgjController extends BaseActionSupport{
 									+"【"+flw.getXmlx()+"】项目的补助标准;";
 						}else{
 							//验证金额
+							Integer bzzj=new Integer(flwResult.getBzzj());
+							Double yhlc=new Double(map.get("11").toString());
+							int je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).intValue();
+							Integer pfztz=new Integer(map.get("34").toString());
+							if(je!=pfztz.intValue()){
+								strVerify+="<br/>批复总投资与计算结果不符<br/>";
+							}
 						}
 						//验证是否与计划相符
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){

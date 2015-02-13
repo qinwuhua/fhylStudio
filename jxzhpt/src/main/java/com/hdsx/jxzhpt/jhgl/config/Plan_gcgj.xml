@@ -202,6 +202,7 @@
 			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
 			<if test="spsj!=null">spsj=#{spsj},</if>
 			<if test="spzt!=null">spzt=#{spzt},</if>
+			<if test="bcapzj!=null">bcapzj=#{bcapzj},</if>
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
