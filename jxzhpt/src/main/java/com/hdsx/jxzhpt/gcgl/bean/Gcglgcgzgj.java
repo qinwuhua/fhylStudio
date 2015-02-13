@@ -39,6 +39,9 @@ public class Gcglgcgzgj implements Serializable {
 	private String tbsj;
 	private String tbr;
 	
+	private  byte[] sgxkwjfile;
+	private  byte[] jgtcwjfile;
+	private  byte[] jgyswjfile;
 	//基础信息
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
@@ -719,6 +722,24 @@ public class Gcglgcgzgj implements Serializable {
 	}
 	public void setSfth(String sfth) {
 		this.sfth = sfth;
+	}
+	public byte[] getSgxkwjfile() {
+		return sgxkwjfile;
+	}
+	public void setSgxkwjfile(byte[] sgxkwjfile) {
+		this.sgxkwjfile = sgxkwjfile;
+	}
+	public byte[] getJgtcwjfile() {
+		return jgtcwjfile;
+	}
+	public void setJgtcwjfile(byte[] jgtcwjfile) {
+		this.jgtcwjfile = jgtcwjfile;
+	}
+	public byte[] getJgyswjfile() {
+		return jgyswjfile;
+	}
+	public void setJgyswjfile(byte[] jgyswjfile) {
+		this.jgyswjfile = jgyswjfile;
 	}
 
 	

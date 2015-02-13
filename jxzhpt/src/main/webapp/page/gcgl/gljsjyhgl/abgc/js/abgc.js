@@ -341,13 +341,16 @@ function showYBlist(){
 		return false;
 	}
 
-	function downFile(str){
-		if($("#xz_"+str).text()=='下载附件'){
-			parent.window.location.href="../../../../gcgl/downAbgcFile.do?type="+str+"&jhid="+parent.obj1.jhid;
-		}
-		else return;
-	}
+//	function downFile(str){
+//		if($("#xz_"+str).text()=='下载附件'){
+//			parent.window.location.href="../../../../gcgl/downAbgcFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+//		}
+//		else return;
+//	}
 	function deleteFile(str){
+		if($("#xz_"+str).text()=='暂无附件'){
+			return;
+		}
 		if(confirm("确认删除吗？")){
 		var data="jhid="+parent.obj1.jhid+"&type="+str;
 		$.ajax({
@@ -378,13 +381,19 @@ function showYBlist(){
 			async:false,
 			success:function(msg){
 					if(msg.sgxkwj!=''){
-						$("#xz_sgxkwj").text("下载附件");
+						$("#xz_sgxkwj").text(msg.sgxkwj);
+						$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=sgxkwj'+"&jhid="+parent.obj1.jhid);
 					}
 					if(msg.jgtcwj!=''){
-						$("#xz_jgtcwj").text("下载附件");
+						$("#xz_jgtcwj").text(msg.jgtcwj);
+						$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgtcwj'+"&jhid="+parent.obj1.jhid);
 					}
 					if(msg.jgyswj!=''){
-						$("#xz_jgyswj").text("下载附件");
+						$("#xz_jgyswj").text(msg.jgyswj);
+						$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 					}
 				}
 		});	

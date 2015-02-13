@@ -116,20 +116,20 @@
 	</update>
 <!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set SGXKWJ=#{tiaojian}
+		update PLAN_GCSJ set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set JGTCWJ=#{tiaojian}
+		update PLAN_GCSJ set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set JGYSWJ=#{tiaojian}
+		update PLAN_GCSJ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
-		select ${tiaojian} tiaojian from PLAN_GCSJ where id=#{jhid}
+		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_GCSJ where id=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglgcgzsj">
 		update PLAN_GCSJ set WJGYY=#{wjgyy} where id=#{jhid}
@@ -149,7 +149,7 @@
 		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.scbz,
 		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.id id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
 		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje,t2.jhsydfzczj,t1.id jhid,
-		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.gkbglj,t2.sjsgtmc,t2.sjsgtlj,t2.remarks,
+		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.sjsgtmc,t2.remarks,
 		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
 		from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
 		where t2.spzt='1'

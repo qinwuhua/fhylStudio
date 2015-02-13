@@ -356,6 +356,7 @@ public class GcglwqgzController extends BaseActionSupport{
 				}
 				fis.close();
 				out.close();
+				fos.close();
 				file.delete();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -422,7 +423,6 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void deleteWqgzFile(){
 		
 		gcglwqgz.setJhid(jhid);
-		gcglwqgz.setTiaojian(type);
 		gcglwqgz.setTiaojian("");		
 		boolean bl = false;
 		if("sgxkwj".equals(type)){
@@ -477,14 +477,14 @@ public class GcglwqgzController extends BaseActionSupport{
 	}
 	private byte [] inputStreamToByte(InputStream is) throws IOException { 
 	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
-	    byte [] array = new byte[(int) fileupload.length()];
+	    byte [] arr = new byte[1024*10];
 	    int ch; 
-	    while((ch = is.read(array) ) != -1){ 
-	        bAOutputStream.write(array); 
+	    while((ch = is.read(arr) ) != -1){ 
+	        bAOutputStream.write(arr,0,ch); 
 	    } 
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
-	} 
+	}
 }
 	

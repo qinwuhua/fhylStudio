@@ -1,9 +1,13 @@
 package com.hdsx.jxzhpt.gcgl.controller;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +19,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
@@ -266,7 +271,7 @@ public class GcglabgcController extends BaseActionSupport{
 			}
 		}
 		
-		public void uploadAbgcFile(){
+		public void uploadAbgcFile() throws Exception{
 			HttpServletResponse response = ServletActionContext.getResponse();
 			String jhid1=jhid;
 			String type1=type;
@@ -284,62 +289,83 @@ public class GcglabgcController extends BaseActionSupport{
 					e.printStackTrace();
 				}
 			}
-			
-			String realPath = ServletActionContext.getServletContext().getRealPath("/");
-			File dir = new File(realPath+"upload\\");
-			fileuploadFileName=new Date().getTime()+"-"+fileuploadFileName;
-			if (!dir.exists())
-				dir.mkdir();//创建文件夹
-
-			try {
-				FileUtils.copyFile(fileupload, new File(realPath+"upload\\"+fileuploadFileName));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			String tiaojian=fileuploadFileName;
 			
 			gcglabgc.setTiaojian(tiaojian);
 			gcglabgc.setJhid(jhid1);
-			
+			InputStream inputStream = new FileInputStream(fileupload);
 			boolean bl = false;
-			if("sgxkwj".equals(type1))
+			if("sgxkwj".equals(type1)){
+				gcglabgc.setSgxkwjfile(inputStreamToByte(inputStream));
 				bl=gcglabgcServer.uploadWqgzFilesgxk(gcglabgc);
-			if("jgtcwj".equals(type1))
+			}
+			if("jgtcwj".equals(type1)){
+				gcglabgc.setJgtcwjfile(inputStreamToByte(inputStream));
 				bl=gcglabgcServer.uploadWqgzFilejgtc(gcglabgc);
-			if("jgyswj".equals(type1))
+			}
+			if("jgyswj".equals(type1)){
+				gcglabgc.setJgyswjfile(inputStreamToByte(inputStream));
 				bl=gcglabgcServer.uploadWqgzFilejgys(gcglabgc);
+			}
 			try {
 				if(bl)
-				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入成功");
+				response.getWriter().print(fileuploadFileName+"导入成功");
 				else
-				response.getWriter().print(fileuploadFileName.substring(14, fileuploadFileName.length())+"导入失败");
+				response.getWriter().print(fileuploadFileName+"导入失败");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		@RequestMapping("file/download")  
 		public void downAbgcFile() throws IOException{
-			HttpServletResponse response = getresponse();
-			OutputStream out = new BufferedOutputStream(response.getOutputStream());
-			response.setContentType("octets/stream");
-			gcglabgc.setJhid(jhid);
-			gcglabgc.setTiaojian(type);
-			Gcglabgc gcglabgc1=gcglabgcServer.downWqgzFile(gcglabgc);
-			String realPath = ServletActionContext.getServletContext().getRealPath("/");
-			String filename=gcglabgc1.getTiaojian();
-			
-			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.substring(14, filename.length()).getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglabgc1.getTiaojian());
-			FileInputStream fis= new FileInputStream(file);
-			//byte [] arr = new byte[1024*10];
-			int i=0;
-			while((i=fis.read())!=-1){
-				out.write(i);
+			try {
+				HttpServletResponse response = getresponse();
+				OutputStream out = new BufferedOutputStream(response.getOutputStream());
+				response.setContentType("octets/stream");
+				gcglabgc.setJhid(jhid);
+				gcglabgc.setTiaojian(type);
+				gcglabgc.setLxmc(type+"file");
+				Gcglabgc gcglabgc1=gcglabgcServer.downWqgzFile(gcglabgc);
+				byte[] data = gcglabgc1.getSgxkwjfile();
+				String realPath = ServletActionContext.getServletContext().getRealPath("/");
+				String filename=gcglabgc1.getTiaojian();
+				
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+				File file=new File(realPath+"upload\\"+gcglabgc1.getTiaojian());
+				if (!file.exists()) { 
+		            file.createNewFile(); // 如果文件不存在，则创建 
+		        } 
+				FileOutputStream fos = new FileOutputStream(file); 
+				 InputStream in = new InputStream() {
+					@Override
+					public int read() throws IOException {
+						// TODO Auto-generated method stub
+						return 0;
+					}
+				}; 
+			        int size = 0; 
+			        if (data.length > 0) { 
+			            fos.write(data, 0, data.length); 
+			        } else { 
+			            while ((size = in.read(data)) != -1) { 
+			                fos.write(data, 0, size); 
+			            }  
+			        } 
+				FileInputStream fis= new FileInputStream(file);
+				byte [] arr = new byte[1024*10];
+				int i;
+				while((i=fis.read(arr))!=-1){
+					out.write(arr,0,i);
+					out.flush();
+				}
+				fis.close();
+				out.close();
+				fos.close();
+				file.delete();
+				} catch (Exception e) {
+					e.printStackTrace();
 			}
-			fis.close();
-			out.flush();
-			out.close();
 		}
 		public void insertAbgckg(){
 			Boolean bl=gcglabgcServer.insertWqgzkg(gcglabgc);
@@ -392,31 +418,29 @@ public class GcglabgcController extends BaseActionSupport{
 		try {
 			JsonUtils.write(g, getresponse().getWriter());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	public void deleteAbgcFile(){
 		
 		gcglabgc.setJhid(jhid);
-		gcglabgc.setTiaojian(type);
-		Gcglabgc gcglabgc1=gcglabgcServer.downWqgzFile(gcglabgc);
-		String realPath = ServletActionContext.getServletContext().getRealPath("/");
-		String filename=gcglabgc1.getTiaojian();
 		gcglabgc.setTiaojian("");		
 		boolean bl = false;
-		if("sgxkwj".equals(type))
+		if("sgxkwj".equals(type)){
+			gcglabgc.setSgxkwjfile(new byte[] {});
 			bl=gcglabgcServer.uploadWqgzFilesgxk(gcglabgc);
-		if("jgtcwj".equals(type))
+		}
+		if("jgtcwj".equals(type)){
+			gcglabgc.setJgtcwjfile(new byte[] {});
 			bl=gcglabgcServer.uploadWqgzFilejgtc(gcglabgc);
-		if("jgyswj".equals(type))
+		}
+		if("jgyswj".equals(type)){
+			gcglabgc.setJgyswjfile(new byte[] {});
 			bl=gcglabgcServer.uploadWqgzFilejgys(gcglabgc);
+		}
 		if(bl){
-			File file=new File(realPath+"upload\\"+filename);
-			file.delete();
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -432,5 +456,16 @@ public class GcglabgcController extends BaseActionSupport{
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
+	}
+	private byte [] inputStreamToByte(InputStream is) throws IOException { 
+	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    byte [] arr = new byte[1024*10];
+	    int ch; 
+	    while((ch = is.read(arr) ) != -1){ 
+	        bAOutputStream.write(arr,0,ch); 
+	    } 
+	    byte data [] =bAOutputStream.toByteArray(); 
+	    bAOutputStream.close(); 
+	    return data; 
 	}
 }

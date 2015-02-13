@@ -117,20 +117,20 @@
 	
 	<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglhsly">
-		update PLAN_HSLY set SGXKWJ=#{tiaojian}
+		update PLAN_HSLY set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglhsly">
-		update PLAN_HSLY set JGTCWJ=#{tiaojian}
+		update PLAN_HSLY set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglhsly">
-		update PLAN_HSLY set JGYSWJ=#{tiaojian}
+		update PLAN_HSLY set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglhsly" resultType="gcglhsly">
-		select ${tiaojian} tiaojian from PLAN_HSLY where id=#{jhid}
+		select ${tiaojian} tiaojian,${xzqhmc} sgxkwjfile from PLAN_HSLY where id=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglhsly">
 		update PLAN_HSLY set WJGYY=#{wjgyy} where id=#{jhid}
