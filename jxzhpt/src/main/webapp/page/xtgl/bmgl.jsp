@@ -61,7 +61,7 @@ function startSearch(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectDwList.do',
 		queryParams : {
-			'unit.id' : $.cookie("unit")=="36"?"":$.cookie("unit")
+			'unit.id' : $.cookie("unit")=="36"?"":$.cookie("unit2")
 		},
 		idField:'id',
 		treeField:'name',

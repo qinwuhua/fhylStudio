@@ -61,7 +61,6 @@
 	<action name="selQxByRoleid" class="xtglController" method="selQxByRoleid"></action>
 	<action name="selBzbz" class="xtglController" method="selBzbz"></action>
 	<action name="updateBzbz" class="xtglController" method="updateBzbz"></action>
-	<action name="selLines" class="dzdtController" method="selLines"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>

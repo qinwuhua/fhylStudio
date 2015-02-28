@@ -16,13 +16,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
-<script type="text/javascript" src="../js/grid.js"></script>
+<script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
-	jckWqgz();
+	jckglWqgz();
 });
 
 function delJckwqgz(){

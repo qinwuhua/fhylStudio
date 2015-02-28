@@ -33,7 +33,8 @@ function login(){
 		     		var unit2=msg.UNIT;
 		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
 		     		if(unit2.substr(unit2.length-2,unit2.length)=="00") unit2=unit2.substr(0,unit2.length-2);
-		     		$.cookie("unit2",unit2, {expires: 1});
+		     		if(msg.UNIT=="36") $.cookie("unit2","______36", {expires: 1});
+		     			else $.cookie("unit2",unit2, {expires: 1});
 		     		
 		     		if(msg.UNIT=="36") $.cookie("dist","360000", {expires: 1});
 		     		else $.cookie("dist",msg.UNIT.substr(msg.UNIT.length-6,msg.UNIT.length), {expires: 1});

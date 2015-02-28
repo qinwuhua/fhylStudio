@@ -59,7 +59,7 @@ function createAnyChartXml(){
 		}
 	});
 }
-function selLines(_id,_parent){
+/* function selLines(_id,_parent){
 	$.ajax({
 		type:"post",
 		url:"../../xtgl/selLines.do",
@@ -68,7 +68,7 @@ function selLines(_id,_parent){
 			addLine();
 		}
 	});
-}
+} */
 function addLine(){
     require(["esri/geometry/Polyline","esri/graphic","esri/Color","esri/symbols/SimpleLineSymbol"], function(Polyline,Graphic,Color, SimpleLineSymbol) {
         //创建线对象

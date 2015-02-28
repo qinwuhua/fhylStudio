@@ -1,5 +1,5 @@
 //基础库管理
-	function jckWqgz(){
+	function jckglWqgz(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
@@ -77,7 +77,7 @@
 	});
 	}
 
-	function jckAbgc(){
+	function jckglAbgc(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {
@@ -162,7 +162,7 @@
 	});
 	}
 
-	function jckZhfz(){
+	function jckglZhfz(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectZhfz.do',
 			 queryParams : {
@@ -247,7 +247,7 @@
 	}
 	
 	//审查库管理
-	function sckWqgz(){
+	function sckglWqgz(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmsck/selectSckwqgz.do',
 			 queryParams : {
@@ -329,7 +329,7 @@
 	});
 	}
 
-	function sckAbgc(){
+	function sckglAbgc(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmsck/selectSckabgc.do',
 			 queryParams : {
@@ -417,7 +417,7 @@
 		 },
 	});
 	}
-	function sckZhfz(){
+	function sckglZhfz(){
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmsck/selectSckzhfz.do',
 			 queryParams : {
