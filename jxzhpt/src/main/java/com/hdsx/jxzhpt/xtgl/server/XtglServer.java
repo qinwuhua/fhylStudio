@@ -9,6 +9,7 @@ import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
+import com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs;
 
 public interface XtglServer {
 
@@ -137,4 +138,6 @@ public interface XtglServer {
 	boolean updateFlwbzbz(Plan_flwbzbz flwbzbz);
 
 	boolean dropFlwbzbzById(String id);
+	
+	List<Yhdzxcs> queryYhdzxcs();
 }

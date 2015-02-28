@@ -24,7 +24,7 @@
 			});
 			
 			$('#xtgl_flwbzbz_table').datagrid({
-				url:'../../xtgl/queryFlwbzbz.do',
+				url:'../../xtgl/queryYhdzxcs.do',
 				pagination:true,
 				rownumbers:true,
 			    pageNumber:1,
@@ -37,21 +37,10 @@
 							return '<a href="javascript:update('+"'"+row.id+"'"+')">编辑</a>';
 						}
 					},
-					{field:'xmlx',title:'项目类型',width:100,align:'center'},
-					{field:'gldj',title:'公路等级',width:100,align:'center',
-						formatter:function(value){
-							if(value=="X"){
-								return '县道';
-							}else if(value=="S"){
-								return '省道';
-							}else if(value=="G"){
-								return '国道';
-							}
-						}
-					},
-					{field:'jsdj',title:'技术等级',width:100,align:'center'},
-					{field:'tsdq',title:'特殊地区',width:150,align:'center'},
-					{field:'bzzj',title:'补助金额',width:100,align:'center'}
+					{field:'cslx',title:'参数类型',width:100,align:'center'},
+					{field:'clmc',title:'材料名称',width:100,align:'center'},
+					{field:'lfmdj',title:'立方米单价',width:100,align:'center'},
+					{field:'sddj',title:'审定单价',width:150,align:'center'}
 				]],
 				toolbar:[
 					{
@@ -98,75 +87,13 @@
 				]
 			});
 		});
-		function addFlwbzbz(){
-			var bzbz={'flwbzbz.xmlx':$('#xmlx').val(),
-					'flwbzbz.gldj':$('#gldj').val(),
-					'flwbzbz.jsdj':$('#gljsdj').val(),
-					'flwbzbz.tsdq':$('#tsdq').combotree("getText"),
-					'flwbzbz.bzzj':$('#bzzj').val()
-			};
-			$.ajax({
-				type:'post',
-				url:'../../xtgl/addFlwbzbz.do',
-				dataType:'json',
-				data:bzbz,
-				success:function(data){
-					if(data.result=="true"){
-						$('#addFlwbzbz').dialog("close",false);
-						$('#xtgl_flwbzbz_table').datagrid('reload');
-					}
-				}
-			});
-		}
-		
-		function update(id){
-			$('#add').hide();
-			$('#update').show();
-			$.ajax({
-				type:'post',
-				url:'../../xtgl/queryFlwbzbzById.do',
-				dataType:'json',
-				data:'flwbzbz.id='+id,
-				success:function(data){
-					$('#flwid').val(data.id);
-					$('#xmlx').val(data.xmlx),
-					$('#gldj').val(data.gldj),
-					$('#gljsdj').val(data.jsdj),
-					$('#tsdq').combotree("setValue",data.tsdq),
-					$('#bzzj').val(data.bzzj)
-					$('#addFlwbzbz').dialog("open",false);
-				}
-			});
-		}
-		
-		function updateFlwbzbz(){
-			var bzbz={'flwbzbz.xmlx':$('#xmlx').val(),
-					'flwbzbz.gldj':$('#gldj').val(),
-					'flwbzbz.jsdj':$('#gljsdj').val(),
-					'flwbzbz.tsdq':$('#tsdq').combotree("getText"),
-					'flwbzbz.bzzj':$('#bzzj').val(),
-					'flwbzbz.id':$('#flwid').val()
-			};
-			$.ajax({
-				type:'post',
-				url:'../../xtgl/updateFlwbzbz.do',
-				dataType:'json',
-				data:bzbz,
-				success:function(data){
-					if(data.result){
-						$('#addFlwbzbz').dialog("close",false);
-						$('#xtgl_flwbzbz_table').datagrid('reload');
-					}
-				}
-			});
-		}
 	</script>
 </head>
 <body>
 	<div border="false">
 		<div data-options="region:'north',border:true,split:true" style="height:40px;border-left:0px;border-right:0px;border-top:0px;">
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;非路网项目补助标准</div>
+				<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;养护大中修路面参数设置</div>
 			</div>
 		</div>
 		<div style="margin-left: 20px;margin-bottom: 5px;">
@@ -192,55 +119,45 @@
         data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 		<table>
 			<tr style="height: 25px;">
-				<td width="100" align="right" style="padding-right: 10px;">项目类型</td>
+				<td width="100" align="right" style="padding-right: 10px;">参数类型</td>
 				<td width="150" align="left">
-				<input type="hidden" id="flwid"/>
-					<select id="xmlx" style="width: 125px;">
-						<option value="工程改造路面升级">工程改造路面升级</option>
-						<option value="工程改造路面改建">工程改造路面改建</option>
-						<option value="水毁项目">水毁项目</option>
-						<option value="红色旅游项目">红色旅游项目</option>
+					<input type="hidden" id="flwid"/>
+					<select id="addsellmjg" style="width: 80px;">
+						<option selected="selected">-请选择-</option>
+						<option value="上面层">上面层</option>
+						<option value="中面层">中面层</option>
+						<option value="下面层">下面层</option>
+						<option value="封层">封层</option>
+						<option value="上基层">上基层</option>
+						<option value="中基层">中基层</option>
+						<option value="下基层">下基层</option>
+						<option value="垫层">垫层</option>
+						<option value="原路">原路</option>
 					</select>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">公路等级</td>
+				<td align="right" style="padding-right: 10px;">材料名称</td>
 				<td>
-					<select id="gldj" style="width: 80px;">
-						<option value="G">国道</option>
-						<option value="S">省道</option>
-						<option value="X">县道</option>
-					</select>
+					<input id="txtclmc" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">公路技术等级</td>
+				<td align="right" style="padding-right: 10px;">立方米单价</td>
 				<td>
-					<select id="gljsdj" style="width: 80px;">
-						<option value="一级公路">一级公路</option>
-						<option value="二级公路">二级公路</option>
-						<option value="三级公路">三级公路</option>
-						<option value="四级公路">四级公路</option>
-						<option value="等外公路">等外公路</option>
-					</select>
+					<input type="text" id="txtlfmdj"/>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">特殊地区</td>
+				<td align="right" style="padding-right: 10px;">审定单价</td>
 				<td>
-					<select id="tsdq" style="width: 100px;"></select>
-				</td>
-			</tr>
-			<tr style="height: 25px;">
-				<td align="right" style="padding-right: 10px;">补助金额</td>
-				<td>
-					<input id="bzzj" style="width: 120px;" type="text"/>
+					<input id="txtsddj" type="text">
 				</td>
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="2" align="center">
-					<input id="add" type="button" onclick="addFlwbzbz()" value="添加补助标准" style="margin-top: 5px;"/>
-					<input id="update" type="button" onclick="updateFlwbzbz()" value="修改补助标准" style="margin-top: 5px;"/>
+					<input id="add" type="button" onclick="" value="添加" style="margin-top: 5px;"/>
+					<input id="update" type="button" onclick="" value="修改" style="margin-top: 5px;"/>
 				</td>
 			</tr>
 		</table>
