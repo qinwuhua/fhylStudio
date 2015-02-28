@@ -95,6 +95,8 @@
 	}
 
 	function jckglAbgc(){
+		alert($(window).height());
+		alert($(window).width());
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {
@@ -124,8 +126,10 @@
 				rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:$(window).height()-$(window).height()*0.25,
-			    width:$(window).width(),
+			    //height:$(window).height()-$(window).height()*0.25,
+			   // width:$(window).width(),
+			    height:$(window).height()-180,
+				width:$(window).width()-10,
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){

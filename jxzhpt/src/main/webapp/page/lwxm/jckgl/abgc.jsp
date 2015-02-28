@@ -147,13 +147,13 @@ text-decoration:none;
 </style>
 </head>
 <body>
-		
-
-	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr><td>
 		<div id="righttop">
 		<div id="p_top">路网项目>&nbsp;项目基础库管理>&nbsp;安保工程项目</div>
 		</div>
+
+	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
+		<tr><td>
+		
 		</td></tr>
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">

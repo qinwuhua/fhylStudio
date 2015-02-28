@@ -17,6 +17,7 @@ import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
+import com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 
 @Service
@@ -482,5 +483,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		}
 		return deleteBatch("dropFlwbzbzById", list)==list.size();
 
+	}
+	
+	public List<Yhdzxcs> queryYhdzxcs(){
+		return queryList("queryYhdzxcs");
 	}
 }
