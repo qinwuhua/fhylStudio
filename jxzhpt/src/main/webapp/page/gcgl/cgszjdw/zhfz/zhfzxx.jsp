@@ -19,7 +19,7 @@
 $(function(){
 	var data=parent.obj1;
 	$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#gydw").text(data.gydw);$("#qdzh").text(data.qdzh);$("#zdzh").text(data.zdzh);$("#qzlc").text(data.qzlc);
-	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#lxjsdj").text(data.lxjsdj);$("#xjgjnd").text(data.xjgjnd);
+	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#lxjsdj").text(data.lxjsdj);$("#gjxjnd").text(data.gjxjnd);
 	$("#yhlc").text(data.yhlc);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
 	$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);
 	$("#tzgs").text(data.tzgs);$("#spwh").text(data.spwh);$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);
@@ -68,7 +68,7 @@ a {
 					路线编码</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lxbh"></span>
+					<span id="lxbm"></span>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -497,7 +497,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"> <a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -530,7 +530,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -564,7 +564,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>

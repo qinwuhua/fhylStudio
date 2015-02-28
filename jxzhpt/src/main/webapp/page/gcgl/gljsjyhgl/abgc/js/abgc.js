@@ -80,7 +80,7 @@ function tjabgcyb(){
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
-	var sbyf = y+"-"+m;
+	//var sbyf = y+"-"+m;
 	var yhjb=$.cookie("unit2");
 	var yhtype='';
 	if(yhjb.length==11){

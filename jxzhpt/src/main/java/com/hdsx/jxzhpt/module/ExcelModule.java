@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -348,5 +347,4 @@ public class ExcelModule extends BaseActionSupport {
 	public void setTbdw(String tbdw) {
 		this.tbdw = tbdw;
 	}
-	
 }

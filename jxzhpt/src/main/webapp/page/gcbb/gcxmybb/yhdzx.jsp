@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,6 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -37,12 +39,23 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;养护路面大中修工程进度报表</div>
@@ -97,15 +110,76 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/yhdzx.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:150px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="4500px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015养护路面大中修工程进度报表 </caption>
+								<thead>
+									<tr>
+										<td rowspan="4">项目名称</td>
+										<td rowspan="4">是否归口市局养护部门</td>
+										<td rowspan="4">建设地点</td>
+										<td rowspan="4">路线编号</td>
+										<td rowspan="4">起讫点桩号</td>
+										<td rowspan="4">里程长度（km）</td>
+										<td colspan="3">养护类别（KM）</td>
+										<td rowspan="4">开工日--竣工日</td>
+										<td rowspan="4">原路面类型</td>
+										<td rowspan="4">设计路面类型</td>
+										<td colspan="15">主 要 工 程数 量 完 成 情 况</td>
+										<td colspan="6">投 资 额 完 成 情 况 </td>
+										<td rowspan="4">形象进度<br>（未开工\在建\完工）</td>
+										<td rowspan="4">备注</td>
+									</tr>	
+									<tr>
+										<td rowspan="3">大修（KM）</td>
+										<td rowspan="3">中修（KM）</td>
+										<td rowspan="3">预防性养护</td>
+										<td colspan="5">垫层</td>
+										<td colspan="5">基层</td>
+										<td colspan="5">面层</td>
+										<td rowspan="3">计划（万元）</td>
+										<td rowspan="3">批准预算（万元）</td>
+										<td rowspan="3">本月完成（万元）</td>
+										<td colspan="3">累计</td>
+									</tr>
+									<tr>
+										<td rowspan="2">计划数量（M³）</td>										
+										<td rowspan="2">本月完成数量（M³）</td>
+										<td colspan="3">累计</td>
+										<td rowspan="2">计划数量（M³）</td>										
+										<td rowspan="2">本月完成数量（M³）</td>
+										<td colspan="3">累计</td>
+										<td rowspan="2">计划数量（M³）</td>										
+										<td rowspan="2">本月完成数量（M³）</td>
+										<td colspan="3">累计</td>
+										<td rowspan="2">年初至本月完成（万元）</td>
+										<td rowspan="2">自开工累计完成（万元）</td>
+										<td rowspan="2">完成比例(%)</td>
+									</tr>
+									<tr>
+										<td>年初至本月完成数量（M³）</td>
+										<td>自开工累计完成数量（M³）</td>
+										<td>完成比例(%)</td>
+										<td>年初至本月完成数量（M³）</td>
+										<td>自开工累计完成数量（M³）</td>
+										<td>完成比例(%)</td>
+										<td>年初至本月完成数量（M³）</td>
+										<td>自开工累计完成数量（M³）</td>
+										<td>完成比例(%)</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>

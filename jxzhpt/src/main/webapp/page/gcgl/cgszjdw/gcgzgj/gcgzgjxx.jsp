@@ -580,7 +580,7 @@ a {
 					预计完工时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-					<span id="yjjgsj"></span>
+					<span id="yjwgsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -646,7 +646,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -680,7 +680,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -714,7 +714,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
