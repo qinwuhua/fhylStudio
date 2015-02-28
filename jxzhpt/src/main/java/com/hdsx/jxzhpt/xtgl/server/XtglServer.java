@@ -127,4 +127,6 @@ public interface XtglServer {
 
 	boolean updateBzbz(List<Bzbz> l);
 
+	List<Unit> selectLxQlDataList(String id);
+
 }

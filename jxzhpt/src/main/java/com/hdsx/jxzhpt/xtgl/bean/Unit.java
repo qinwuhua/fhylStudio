@@ -20,6 +20,10 @@ public class Unit implements Serializable {
 	private String unit;//行政区划
 	private String iconCls="icon-none";
 	private String state="open";
+	private String roadcode;
+	private String roadstart;
+	private String roadends;
+	private String roadname;
 	private String bmid;
 	private String desr;
 	/**
@@ -93,6 +97,30 @@ public class Unit implements Serializable {
 	}
 	public void setDesr(String desr) {
 		this.desr = desr;
+	}
+	public String getRoadcode() {
+		return roadcode;
+	}
+	public void setRoadcode(String roadcode) {
+		this.roadcode = roadcode;
+	}
+	public String getRoadstart() {
+		return roadstart;
+	}
+	public void setRoadstart(String roadstart) {
+		this.roadstart = roadstart;
+	}
+	public String getRoadends() {
+		return roadends;
+	}
+	public void setRoadends(String roadends) {
+		this.roadends = roadends;
+	}
+	public String getRoadname() {
+		return roadname;
+	}
+	public void setRoadname(String roadname) {
+		this.roadname = roadname;
 	}
 	
 	

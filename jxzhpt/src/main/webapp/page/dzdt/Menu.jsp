@@ -25,7 +25,7 @@ $(function(){
 	$('#tab01').css('height', LeftHeight-39);
 	loadDataunit();
 	$(".datagrid-header").css("display","none");
-	createAnyChartXml();
+	//createAnyChartXml();
 });
 
 function createAnyChartXml(){

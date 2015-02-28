@@ -22,40 +22,36 @@ function loadDataunit(){
 			if(row.id.length==6){
 				var child=$("#dataunit_tree").treegrid("getChildren",row.id);
 				if(child == ""){
+					var node = $('#dataunit_tree').treegrid('getSelected');
 					$('#dataunit_tree').treegrid('append',{
 						parent: row.id,
 						data: [{
-							id: 'G',name: '国道',state:'closed',iconCls:'icon-none'
+							id: 'G'+row.id,name: '国道',state:'closed',iconCls:'icon-none',parent: row.id
 						  	},{
-							id: 'S',name: '省道',state:'closed',iconCls:'icon-none'
+							id: 'S'+row.id,name: '省道',state:'closed',iconCls:'icon-none',parent: row.id
 							},{
-							id: 'X',name: '县道',state:'closed',iconCls:'icon-none'
+							id: 'X'+row.id,name: '县道',state:'closed',iconCls:'icon-none',parent: row.id
 							},{
-							id: 'Y',name: '乡道',state:'closed',iconCls:'icon-none'
+							id: 'Y'+row.id,name: '乡道',state:'closed',iconCls:'icon-none',parent: row.id
 							},{
-							id: 'Z',name: '专道',state:'closed',iconCls:'icon-none'
+							id: 'Z'+row.id,name: '专道',state:'closed',iconCls:'icon-none',parent: row.id
 							},{
-							id: 'C',name: '村道',state:'closed',iconCls:'icon-none'
+							id: 'C'+row.id,name: '村道',state:'closed',iconCls:'icon-none',parent: row.id
 							}
 						]
 					});
 				}
-			}else if(row.id.length==7){
-				$('#dataunit_tree').treegrid('append',{
-					parent: row.id,
-					url:'../../xtgl/selecLx'
-				});
-			}
-			
-			else{
+			}else{
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){
+			alert(row.id+"|"+row.parent);
 			if(row.id.length>=14){
 				if(row.sjlx==1) drawLine(row.id);
 				else drawPoint(row.id);
 			}
 		},onClickRow:function(row){
+			alert(row.id+"|"+row.parent);
 			if(row.id.length>=14){
 				if(row.sjlx==1) drawLine(row.id);
 				else drawPoint(row.id);

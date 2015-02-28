@@ -233,7 +233,6 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 
 	@Override
 	public List<Unit> selectXzqhList(Unit unit) {
-		System.out.println(unit.getId()+"++++++++");
 		return queryList("selectXzqhList", unit);
 	}
 
@@ -434,5 +433,22 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public boolean updateBzbz(List<Bzbz> l) {
 		int b=updateBatch("updateBzbz", l);
 		return b>0?true:false;
+	}
+
+	@Override
+	public List<Unit> selectLxQlDataList(String id) {
+		HashMap<String, String> hm=new HashMap<String, String>();
+		
+		if(id.length()==7){
+			//路线
+			String xzqh=id.substring(1);
+			String roadcode=id.substring(0,1);
+			hm.put("xzqh",xzqh);
+			hm.put("roadcode",roadcode);
+			return queryList("selectLxDataList", hm);
+		}else{
+			//桥梁
+		}
+		return null;
 	}
 }

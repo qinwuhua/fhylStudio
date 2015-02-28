@@ -249,4 +249,12 @@
 	<update id="updateBzbz" parameterType="bzbz">
 		update lwbzbz set bz=#{bz},bl=#{bl},fd=#{fd} where id=#{id}
 	</update>
+	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
+		select roadcode id,#{roadcode}||#{xzqh} parent,
+		roadcode||'('||roadstart||'-'||roadends||')' name
+		from JXJCK_2013.gpsroad 
+		where roadcode like #{roadcode}||'%' and substr(roadcode,length(roadcode)-5) like #{xzqh}||'%'
+		and ldlx!='2.下行' and ldlx!='4.匝道'
+		order by roadcode,roadstart
+	</select>
 </mapper>
