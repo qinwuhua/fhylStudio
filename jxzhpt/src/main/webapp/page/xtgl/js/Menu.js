@@ -56,6 +56,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./flwbzbz.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010409',
+		title:'养护大中修路面结构参数',
+		imgSrc:'../../images/bzbz.png',
+		renderTo:'left_menu1',
+		href:'./yhdzxlmcs.jsp'
+	});
 	menuQx();
 });
 function menuQx(){
