@@ -30,7 +30,7 @@
 			    rownumbers:true,
 			    pageNumber:1,
 			    pageSize:10,
-			    height:$(window).height()-$(window).height()*0.25,
+			    height:$(window).height()-180,
 			    width:$(window).width(),
 		    columns:[[    
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
@@ -95,8 +95,6 @@
 	}
 
 	function jckglAbgc(){
-		alert($(window).height());
-		alert($(window).width());
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {

@@ -146,11 +146,12 @@ text-decoration:none;
 </style>
 </head>
 <body>
-	<table align="left" width="100%" height="20%" cellpadding="0" cellspacing="0" border="0">
-		<tr><td>
-		<div id="righttop">
+<div id="righttop">
 		<div id="p_top">路网项目>&nbsp;项目基础库管理>&nbsp;危桥改造项目</div>
 		</div>
+	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
+		<tr><td>
+		
 		</td></tr>
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
