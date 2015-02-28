@@ -140,4 +140,6 @@ public interface XtglServer {
 	boolean dropFlwbzbzById(String id);
 	
 	List<Yhdzxcs> queryYhdzxcs();
+	
+	List<Unit> selectLxQlDataList(String id);
 }

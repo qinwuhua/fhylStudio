@@ -14,18 +14,13 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/sjcx.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#cc").combotree({
-			checkbox: false,
-		 	url: "../js/gydw.json",
-		});
-		$("#ss").combotree({
-			checkbox: false,
-		 	url: "../js/xzqh.json",
-		});
+		loadUnit("gydw",$.cookie("unit"));
+		loadDist("xzqhmc",$.cookie("dist"));
 	});
 </script>
 <style type="text/css">
@@ -51,32 +46,57 @@ text-decoration:none;
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 160px"/></td>
+					<select  id="gydw" style="width:160px"></select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">行政区划：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="ss" style="width: 160px" /></td>
-					<td style="background-color: #ffffff;width:15%" align="right">路线名称：</td>
+					<select id="xzqhmc" style="width:160px"></select></td>
+				<td style="background-color: #ffffff;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" id="pid" style="width: 145px"/></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combobox" /></td>
+					<select  id="xmnf" style="width: 160px" class="easyui-combobox" >
+					<option selected="selected" value="">全部</option>
+						<option value="2015">2015</option>
+						<option value="2014">2014</option>
+						<option value="2013">2013</option>
+						<option value="2012">2012</option>
+						<option value="2011">2011</option>
+						<option value="2010">2010</option>
+					</select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combobox" /></td>
+					<select  id="cc" style="width: 160px" class="easyui-combobox" >
+					<option selected="selected" value="">全部</option>
+						<option value="待上报">待上报</option>
+						<option value="已上报">已上报</option>
+					</select></td>
 					<td style="background-color: #ffffff;;width:15%" align="right">审核状态：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 150px" class="easyui-combobox" /></td>
+					<select  id="cc" style="width: 150px" class="easyui-combobox" >
+					<option selected="selected" value="">全部</option>
+						<option value="已审核">已审核</option>
+						<option value="已审核">未审核</option>
+					</select></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combobox" /></td>
+					<select  id="cc" style="width: 160px" class="easyui-combobox" >
+					
+					</select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input  id="cc" style="width: 160px" class="easyui-combobox" /></td>
+					<select  id="cc" style="width: 160px" class="easyui-combobox" >
+							<option selected="selected" value="">全部</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
+									</select></td>
 				<td colspan="2" style="background-color: #ffffff;width:15%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="cxzd('zdycx_zd.jsp','980','380');" style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
 				</td>

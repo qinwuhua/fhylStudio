@@ -62,7 +62,7 @@ public class XtglController extends BaseActionSupport{
 	private String username;
 	private String password;
 	private String gmgid;
-	
+	private String id;
 	private String yzm;
 	/**
 	 * 重置密碼
@@ -394,18 +394,31 @@ public class XtglController extends BaseActionSupport{
 	 * 行政区划树列表
 	 */
 	public void selectXzqhList(){
-		int count = xtglServer.selectXzqhListCount(unit);
-		List<Unit> list = xtglServer.selectXzqhList(unit);
-		int len=unit.getId().length();
-		for(int i=0;i<list.size();i++){
-			if(!unit.getId().equals(list.get(i).getId()))
-			{
-				list.get(i).set_parentId(list.get(i).getParent());
+		
+		int count =0;
+		List<Unit> list=new ArrayList<Unit>();
+		if(id==null){
+			System.out.println("-----------");
+			count = xtglServer.selectXzqhListCount(unit);
+			list = xtglServer.selectXzqhList(unit);
+			int len=unit.getId().length();
+			for(int i=0;i<list.size();i++){
+				if(!unit.getId().equals(list.get(i).getId()))
+				{
+					list.get(i).set_parentId(list.get(i).getParent());
+				}
+				if(list.get(i).getBmid().length()>=12){
+					list.get(i).setState("closed");
+				}
 			}
-			if(list.get(i).getBmid().length()>=12){
+		}else{
+			list = xtglServer.selectLxQlDataList(id);
+			for(int i=0;i<list.size();i++){
+				list.get(i).set_parentId(list.get(i).getParent());	
 				list.get(i).setState("closed");
 			}
 		}
+		
 		EasyUIPage<Unit> ep = new EasyUIPage<Unit>();
 		ep.setTotal(count);
 		ep.setRows(list);
@@ -969,5 +982,11 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setYhdzxcs(Yhdzxcs yhdzxcs) {
 		this.yhdzxcs = yhdzxcs;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
