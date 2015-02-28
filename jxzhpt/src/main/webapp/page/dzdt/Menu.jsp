@@ -45,7 +45,7 @@ function createAnyChartXml(){
 	//var height=$(window).height();
     barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
     barChart_1.width =350;
-    barChart_1.height =300; 
+    barChart_1.height =300;
     barChart_1.padding =0;
     barChart_1.wMode="transparent";
     barChart_1.write("anychart_div");
@@ -59,7 +59,28 @@ function createAnyChartXml(){
 		}
 	});
 }
-
+function selLines(_id,_parent){
+	$.ajax({
+		type:"post",
+		url:"../../xtgl/selLines.do",
+		dataType:'json',
+		success:function(msg){
+			addLine();
+		}
+	});
+}
+function addLine(){
+    require(["esri/geometry/Polyline","esri/graphic","esri/Color","esri/symbols/SimpleLineSymbol"], function(Polyline,Graphic,Color, SimpleLineSymbol) {
+        //创建线对象
+        var singlePathPolyline = new Polyline([[113.8603169850484,37.85472940612672],[112.58044213169312,37.93973954398797], [112.23567879481143,37.547748352738935]]);
+        //创建样式
+        var symbol=new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 0, 255]), 5);
+        //创建Graphic
+        var graphic = new Graphic(singlePathPolyline, symbol);
+        //将Graphic叠加到地图
+        map.graphics.add(graphic);
+    });
+}
 </script>
 </head>
 <body class="easyui-layout" style="background:#fafafa;" scroll="no">
@@ -92,7 +113,7 @@ function createAnyChartXml(){
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 					
 					 <div title="地图" style="overflow: hidden;" href="" iconCls="icon-note">
-						<div id="map" style="width:100%;height:500px;"></div>
+						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
 				</div>
 		    </div>
