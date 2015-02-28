@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/ptgx.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,16 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			$("#kssj").datebox({    
-			     
-			});  
-			$("#jssj").datebox({    
-		     
-			});  
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -47,12 +39,23 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;项目进展报表>&nbsp;普通干线公路建设项目进展情况表</div>
@@ -124,15 +127,53 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/ptgx.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:150px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="3000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表（三）    灾害防治 </caption>
+								<thead>
+									<tr>
+										<td>序号</td>
+										<td>项目名称</td>
+										<td>所在地市</td>
+										<td>特殊区域</td>
+										<td>计划年度</td>
+										<td>起点桩号</td>
+										<td>讫点桩号</td>
+										<td>计划里程（里程）</td>
+										<td>概算总投资(万元)</td>
+										<td>概算总投资(万元)</td>
+										<td>已拨付资金（万元）</td>
+										<td>本次拨付资金（万元）</td>
+										<td>累计拨付资金（万元）</td>
+										<td>未拨付资金（万元）</td>
+										<td>建设状态</td>
+										<td> 垫层（m³ </td>
+										<td>基层（m³）</td>
+										<td>完工里程（公里）</td>
+										<td>未开工里程(公里)</td>
+										<td>开工日期</td>
+										<td>全线开工</td>
+										<td>开工段落</td>
+										<td>完工日期</td>
+										<td> 预计完工时间 </td>
+										<td> 情况说明 </td>
+										<td> 计划下达文号 </td>
+										<td> 相关处室意见</td>
+										<td> 财审处意见 </td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>
