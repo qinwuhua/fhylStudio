@@ -26,7 +26,6 @@ $(function(){
 	jckglAbgc();
 });
 
-
 function delJckabgc(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
