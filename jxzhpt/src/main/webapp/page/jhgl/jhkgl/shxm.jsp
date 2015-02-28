@@ -24,6 +24,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('tsdq');
 			querySumShuih();
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:null};
@@ -31,10 +32,7 @@
 			shxm(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
-			if(!xian){
-				jh.jh_sbthcd=2;
-			}
+			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null
@@ -55,6 +53,49 @@
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#tsdq').combobox('getValue')!=''){
+				lx.tsdqbm=$('#tsdq').combobox('getValue');
+			}
+			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#ddlSHZT').combo("getValue")=="未上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=0;
+					}else{
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="已上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}else{
+						jh.sbzt='1';
+						jh.spzt='0';
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#ddlSHZT').combo("getValue")=="未审批"){
+					jh.sbzt='1';
+					jh.spzt='0';
+					jh.jh_sbthcd=4;
+				}
+				if($('#ddlSHZT').combo("getValue")=="已审批"){
+					jh.sbzt='1';
+					jh.spzt='1';
+					jh.jh_sbthcd=6;
+				}
 			}
 			shxm(jh,lx);
 		}
@@ -92,7 +133,7 @@
         						<span>上报年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;">
+        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
@@ -100,7 +141,7 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;">
+								<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:80px;">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -110,7 +151,7 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;">
+								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;">
 									<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>
@@ -119,7 +160,7 @@
 									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>

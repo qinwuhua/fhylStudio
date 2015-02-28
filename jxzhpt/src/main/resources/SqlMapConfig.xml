@@ -21,6 +21,7 @@
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj" alias="gcglgcgzsj"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglhsly" alias="gcglhsly"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb" alias="gcglaqyb"/>
+      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgltz" alias="gcgltz"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
@@ -45,6 +46,7 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx" alias="plan_yhdzx"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx" alias="plan_lx_yhdzx"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_hsly" alias="plan_hsly"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz" alias="flwbzbz"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>

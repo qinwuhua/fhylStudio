@@ -19,7 +19,7 @@
 	</script>
 	<div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:100%;">
        	<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
-       		<tr style="height: 25px;">
+       		<!-- <tr style="height: 25px;">
             	<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
                 	工程改造路面改建项目基本信息
                 </td>
@@ -119,8 +119,8 @@
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<span id="bhnr"></span> &nbsp;
 				</td>
-			</tr>
-			<tr style="height: 25px;">
+			</tr> -->
+			<tr id="tr_scxx" style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					工程改造路面改建项目审查信息
 				</td>
@@ -391,7 +391,7 @@
 			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " onclick="window.close()" />
+                	<img onclick="$('#gclmgj_xx').dialog('close')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
                 </td>
             </tr>
 		</table>

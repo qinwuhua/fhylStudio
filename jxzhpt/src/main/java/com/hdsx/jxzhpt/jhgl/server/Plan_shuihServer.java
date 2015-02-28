@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_shuihServer {
@@ -106,4 +107,16 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	Plan_lx_shuih queryGPSBylxbm(Plan_lx_shuih shuih);
+	/**
+	 * 根据行政区划查询特殊地区
+	 * @param xzqhdm
+	 * @return
+	 */
+	String queryTsdqByXzqh(String xzqhdm);
+	/**
+	 * 查询补助金额信息
+	 * @param flw
+	 * @return
+	 */
+	Plan_flwbzbz queryBzzj(Plan_flwbzbz flw);
 }

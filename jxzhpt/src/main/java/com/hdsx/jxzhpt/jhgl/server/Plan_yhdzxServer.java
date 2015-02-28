@@ -47,7 +47,7 @@ public interface Plan_yhdzxServer {
 	 * @param jh
 	 * @return
 	 */
-	boolean editYhdzxById(Plan_yhdzx jh);
+	boolean editYhdzxById(Plan_yhdzx jh,Plan_lx_yhdzx lx);
 	/**
 	 * 修改养护大中修的状态信息
 	 * @param jh

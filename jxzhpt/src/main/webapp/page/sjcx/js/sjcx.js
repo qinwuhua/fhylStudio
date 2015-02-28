@@ -3,26 +3,35 @@ function cxzd(jsp,w,h){
 	YMLib.UI.createWindow('zd_xz','项目字段选择列表',jsp,'zd_xz',w,h);
 }
 //路网项目JS
-function addJck(jsp,w,h){
-	YMLib.UI.createWindow('jck_add','添加项目',jsp,'jck_add',w,h);
+//基础库安保工程
+function ckJckabgc(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('jck_ck','查看项目详情','abgc_jck_ck.jsp','jck_ck',900,450);
 }
-function xgJck(jsp,w,h){
-	YMLib.UI.createWindow('jck_xg','修改项目',jsp,'jck_xg',w,h);
+//基础库灾害防治
+function ckJckzhfz(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('jck_ck','查看项目详情','zhfz_jck_ck.jsp','jck_ck',900,450);
 }
-function ckJck(jsp,w,h){
-	YMLib.UI.createWindow('jck_ck','查看项目详情',jsp,'jck_ck',w,h);
+//基础库危桥改造
+function ckJckwqgz(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('jck_ck','查看项目详情','wqgz_jck_ck.jsp','jck_ck',900,450);
 }
-function ckJcksh(jsp,w,h){
-	YMLib.UI.createWindow('jck_ck','查看项目详情',jsp,'jck_ck',w,h);
+//审查库危桥改造
+function ckSckwqgz(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('sck_ck','查看项目详情','wqgz_sck_ck.jsp','sck_ck',900,500);
 }
-function addSck(jsp,w,h){
-	YMLib.UI.createWindow('sck_add','添加项目',jsp,'sck_add',w,h);
+//审查库安保工程
+function ckSckabgc(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('sck_ck','查看项目详情','abgc_sck_ck.jsp','sck_ck',900,500);
 }
-function xgSck(jsp,w,h){
-	YMLib.UI.createWindow('sck_xg','修改项目',jsp,'sck_xg',w,h);
-}
-function ckSck(jsp,w,h){
-	YMLib.UI.createWindow('sck_ck','查看项目详情',jsp,'sck_ck',w,h);
+//审查库灾害防治
+function ckSckzhfz(ck_id){
+	rowid=ck_id;
+	YMLib.UI.createWindow('sck_ck','查看项目详情','zhfz_sck_ck.jsp','sck_ck',900,500);
 }
 //基础库管理
 function zdy(){

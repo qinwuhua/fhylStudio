@@ -11,6 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_gcgj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
@@ -20,6 +25,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			querySumGcgj();
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
@@ -43,16 +49,26 @@
 			if($("#ddlGldj").combo("getValue")!=""){
 				lx.lxbm=$("#ddlGldj").combo("getValue");
 			}
+			if($('#ddlTSDQ').combo("getValue")!=''){
+				lx.tsdqbm=$('#ddlTSDQ').combo("getValue");
+			}
 			gclmgjxm_sh(jh,lx);
 		}
+		var id1,jh_sbthcd1;
 		function sp(id,jh_sbthcd){
+			id1=id;
+			jh_sbthcd1=jh_sbthcd;
+			$('#bcapzjdiv').dialog('open');
+		}
+		function spbtn(){
 			var date=new Date();
 			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-			var jh={'jh.id':id,'jh.spsj':sbsj,'jh.spbmdm':$.cookie("unit"),'jh.spzt':'1',
-					'jh.jh_sbthcd':jh_sbthcd+2};
+			var jh={'jh.id':id1,'jh.spsj':sbsj,'jh.spbmdm':$.cookie("unit"),'jh.spzt':'1',
+					'jh.jh_sbthcd':jh_sbthcd1+2,'jh.bcapzj':$('#sel_bcapzj').val()};
 			if(editStatus(jh)){
 				alert("审批成功！");
+				$('#bcapzjdiv').dialog('close');
 				searchGcgj();
 			}
 		}
@@ -159,7 +175,28 @@
         	</tr>
 		</table>
 	</div>
-	
+	<div id="bcapzjdiv" title="本次安排资金比例" class="easyui-dialog" style="width:215px;height:100px"
+		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+		<table>
+			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+				本次安排资金：</td>
+				<td>
+					<select id="sel_bcapzj" style="width: 100px;">
+						<option value="全部">全部</option>
+						<option value="二分之一">1/2</option>
+						<option value="三分之一">1/3</option>
+						<option value="四分之一">1/4</option>
+					</select>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td align="center" colspan="2" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; background-color: #F1F8FF; padding-right: 5px;">
+					<input onclick="spbtn()" type="button" value="确定审批" style="text-align: center;width: 100px;"/>
+				</td>
+			</tr>
+		</table>
+	</div>
 	<div id="gclmgj_sh" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

@@ -67,8 +67,7 @@
 
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
-				alert(response);
-				if(response!=null||response!=''){
+				if(response!=null||response!='error'){
 					addaqyb(response);
 				}
 				$('<li></li>').appendTo('.files').text(response);
@@ -104,10 +103,8 @@
 </script>
 <script type="text/javascript">
 	function addaqyb(response){
-		//alert("xxxxxxx");
 		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()+"&gcglaqyb.uploadepartment="+$.cookie("unit")
-		+"&gcglaqyb.xspath="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename")+"&gcglaqyb.uploadpath="+$("#uploadpath").val();
-//		alert(data);
+		+"&gcglaqyb.id="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename")+"&gcglaqyb.uploadpath="+$("#uploadpath").val();
 		$.ajax({
 				type:'post',
 				url:'../../../../gcgl/insertAqybb.do',
@@ -128,7 +125,7 @@
 	function tianjian(){
 		//alert("jinru");
 		if($("#fileQueue").text()==''){
-			addaqyb('');
+			alert("请添加上传文件");
 		}
 		uploadifyUpload();
 	}
@@ -148,8 +145,6 @@
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
-// 		var mystr3='';
-// 		var mystr4='';
 		var myDate = new Date();
 		var y = myDate.getFullYear();
 		var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -157,33 +152,23 @@
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+11;
 			mystr2=(y-1)+'-'+12;
-			mystr3=y+'-'+(m+1);
-			mystr4=y+'-'+(m+2);
 		}
 		else if(m==2){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+12;
 			mystr2=y+'-'+1;
-			mystr3=y+'-'+(m+1);
-			mystr4=y+'-'+(m+2);
 		}else if(m==11){
 			mystr=y+'-'+m;
 			mystr1=y+'-'+9;
 			mystr2=y+'-'+10;
-			mystr3=y+'-'+12;
-			mystr4=(y+1)+'-'+1;
 		}else if(m==12){
 			mystr=y+'-'+m;
 			mystr1=y+'-'+10;
 			mystr2=(y-1)+'-'+11;
-			mystr3=(y+1)+'-'+1;
-			mystr4=(y+1)+'-'+2;
 		}else{
 			mystr=y+'-'+m;
 			mystr1=y+'-'+(m-2);
 			mystr2=y+'-'+(m-1);
-			mystr3=y+'-'+(m+1);
-			mystr4=y+'-'+(m+2);
 		}
 		$("#tj_reportmonth").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
 		$("#tj_reportmonth").append("<option value="+mystr2+">"+mystr2+"</option>");
@@ -202,7 +187,6 @@
 		
 	});
 	function setGydw(id, dwbm){
-		alert("xx");
 			$('#' + id).tree(
 			{
 				checkbox : true,
@@ -228,14 +212,14 @@
 <body onunload="fanhui()">
 	<form method="post" enctype="multipart/form-data" id="formfile">
 		<center>
-		                        <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
+		                <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
 							<tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">接收单位 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">接收单位 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
@@ -248,7 +232,7 @@
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">文件名称 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">文件名称 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
@@ -261,7 +245,7 @@
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">文号 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">文号 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
@@ -273,7 +257,7 @@
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">上报月份 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">上报月份 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
@@ -284,7 +268,7 @@
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">备注 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">备注 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
@@ -295,7 +279,7 @@
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     width: 15%; padding-right: 5px; vertical-align: middle;" rowspan="2">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">上传文件 </font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">上传文件 </font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                     border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">

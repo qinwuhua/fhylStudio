@@ -26,6 +26,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -211,23 +212,55 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("41", map.get("41").toString().substring(0, map.get("41").toString().indexOf(".")));
 				map.put("42", map.get("42").toString().substring(0, map.get("42").toString().indexOf(".")));
 				Plan_lx_gcsj lx=new Plan_lx_gcsj();
+				lx.setXzqhdm(map.get("1").toString());
 				lx.setLxbm(map.get("3").toString());
 				lx.setQdzh(map.get("7").toString());
 				lx.setZdzh(map.get("8").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
 				lx.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
 				if(gcsjServer.queryJhExist(lx)==0){
+					//内容验证
 					strVerify=ImportVerify.gcsjVerify(map);
+					//从计划中查询是否有此计划
 					Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
-					if(queryGPSBylxbm==null && strVerify.equals("")){
+					if(queryGPSBylxbm==null){
 						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
-					}else{
+					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
+						//验证一下信息是否相同
+						if(map.get("5").toString().equals(queryGPSBylxbm.getYjsdj())){
+							lx.setYjsdj(queryGPSBylxbm.getYjsdj());//技术等级
+						}else{
+							strVerify+="【"+map.get("4").toString()+"】中的技术等级与计划内的技术等级不符<br/>";
+						}
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-							strVerify+="路线名称不正确;";
+							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
 						}else if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
-							strVerify+="起止里程不正确;";
+							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 						}else{
 							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
+						}
+						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
+						lx.setTsdqbm(gcsjServer.queryTsdqByXzqh(lx.getXzqhdm()));
+						//设置非路网项目的查询条件
+						Plan_flwbzbz flw=new Plan_flwbzbz();
+						flw.setXmlx("工程改造路面升级");//建设项目类型
+						flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
+						flw.setJsdj(lx.getYjsdj());//技术等级
+						flw.setTsdq(lx.getTsdqbm());
+						Plan_flwbzbz flwResult=gcsjServer.queryBzzj(flw);
+						if(flwResult==null){
+							String gldj=null;
+							if(flw.getGldj().equals("X"))
+								gldj="县道";
+							if(flw.getGldj().equals("S"))
+								gldj="省道";
+							if(flw.getGldj().equals("G"))
+								gldj="国道";
+							strVerify+="请先添加【"+gldj+"】技术等级【"+flw.getJsdj()+"】"+
+									(flw.getTsdq()==null ? "" : "特殊地区为【"+flw.getTsdq()+"】")
+									+"【"+flw.getXmlx()+"】项目的补助标准;";
+						}else{
+							//对金额进行技术验证
 						}
 					}
 				}else{

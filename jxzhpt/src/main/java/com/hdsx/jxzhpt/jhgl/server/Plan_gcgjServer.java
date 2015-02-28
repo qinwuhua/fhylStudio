@@ -5,9 +5,30 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcgjServer {
+	/**
+	 * 添加一条路线信息
+	 * @param lx
+	 * @return
+	 */
+	boolean insertPlan_lx_Gcgj(Plan_lx_gcgj lx);
+	
+	/**
+	 * 根据条件查询补助资金
+	 * @param flwbzbz
+	 * @return
+	 */
+	Plan_flwbzbz queryBzzj(Plan_flwbzbz flwbzbz);
+	/**
+	 * 根据行政区划查询特殊地区
+	 * @param xzqh
+	 * @return
+	 */
+	String queryTsdqByXzqh(String xzqh);
+	
 	/**
 	 * 查询此路段是否存在计划
 	 * @param gcgj

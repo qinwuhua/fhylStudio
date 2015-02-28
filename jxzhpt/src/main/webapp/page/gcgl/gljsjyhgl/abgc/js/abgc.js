@@ -80,7 +80,7 @@ function tjabgcyb(){
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
 	var d = myDate.getDate();
 	var sbsj = y+"-"+m+"-"+d;
-	var sbyf = y+"-"+m;
+	//var sbyf = y+"-"+m;
 	var yhjb=$.cookie("unit2");
 	var yhtype='';
 	if(yhjb.length==11){
@@ -221,7 +221,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -238,7 +238,7 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
-	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'},
+	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -271,7 +271,7 @@ function showYBlist(){
 	    queryParams: {
 	    	jhid: jhid,
 	    	yhtype:yhtype,
-	    	sfsj:sfsj,
+	    	sfsj:sfsj
 		},
 	    columns:[
 	             [
@@ -341,13 +341,16 @@ function showYBlist(){
 		return false;
 	}
 
-	function downFile(str){
-		if($("#xz_"+str).text()=='下载附件'){
-			parent.window.location.href="../../../../gcgl/downAbgcFile.do?type="+str+"&jhid="+parent.obj1.jhid;
-		}
-		else return;
-	}
+//	function downFile(str){
+//		if($("#xz_"+str).text()=='下载附件'){
+//			parent.window.location.href="../../../../gcgl/downAbgcFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+//		}
+//		else return;
+//	}
 	function deleteFile(str){
+		if($("#xz_"+str).text()=='暂无附件'){
+			return;
+		}
 		if(confirm("确认删除吗？")){
 		var data="jhid="+parent.obj1.jhid+"&type="+str;
 		$.ajax({
@@ -378,13 +381,19 @@ function showYBlist(){
 			async:false,
 			success:function(msg){
 					if(msg.sgxkwj!=''){
-						$("#xz_sgxkwj").text("下载附件");
+						$("#xz_sgxkwj").text(msg.sgxkwj);
+						$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=sgxkwj'+"&jhid="+parent.obj1.jhid);
 					}
 					if(msg.jgtcwj!=''){
-						$("#xz_jgtcwj").text("下载附件");
+						$("#xz_jgtcwj").text(msg.jgtcwj);
+						$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgtcwj'+"&jhid="+parent.obj1.jhid);
 					}
 					if(msg.jgyswj!=''){
-						$("#xz_jgyswj").text("下载附件");
+						$("#xz_jgyswj").text(msg.jgyswj);
+						$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 					}
 				}
 		});	

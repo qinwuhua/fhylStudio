@@ -226,5 +226,20 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 			else return "&nbsp;路线编码为</br>"+once+"的项目已添加，请勿重复添加！";
 		}else return "&nbsp;无路线编码为</br>"+daoRu+"的项目或此项目不属于您的管理范围！";
 	}
+
+	@Override
+	public Jckabgc selAbgcCount(Jckabgc abgc) {
+		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", abgc.getSbthcd());
+		hm.put("gydw", abgc.getGydw());
+		hm.put("xzqhmc", abgc.getXzqhmc());
+		hm.put("lxmc", abgc.getLxmc());
+		hm.put("xmnf", abgc.getXmnf());
+		hm.put("xmtype", abgc.getXmtype());
+		hm.put("sbzt", abgc.getSbzt());
+		hm.put("lxjsdj", abgc.getLxjsdj());
+		hm.put("lxbm", abgc.getLxbm());
+		return queryOne("selAbgcCount", hm);
+	}
 	
 }

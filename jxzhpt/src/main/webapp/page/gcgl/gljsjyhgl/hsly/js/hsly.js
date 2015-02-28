@@ -218,7 +218,7 @@ function showAll(){
 	    	xzqhdm: xzqhdm,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -236,7 +236,7 @@ function showAll(){
 	        {field:'jsxz',title:'建设性质',width:80,align:'center'},
 	        {field:'ztz',title:'总投资',width:80,align:'center'},
 	        {field:'kgn',title:'开工年',width:90,align:'center'},
-	        {field:'wgn',title:'完工年',width:90,align:'center'},
+	        {field:'wgn',title:'完工年',width:90,align:'center'}
 	    ]]    
 	}); 
 }
@@ -269,7 +269,7 @@ function showYBlist(){
 	    queryParams: {
 	    	jhid: jhid,
 	    	yhtype:yhtype,
-	    	sjsj:sfsj,
+	    	sjsj:sfsj
 		},
 	    columns:[
 	             [
@@ -333,13 +333,16 @@ function uploadFile(str){
 	return false;
 }
 
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downHslyFile.do?type="+str+"&jhid="+parent.obj1.id;
-	}
-	else return;
-}
+//function downFile(str){
+//	if($("#xz_"+str).text()=='下载附件'){
+//		parent.window.location.href="../../../../gcgl/downHslyFile.do?type="+str+"&jhid="+parent.obj1.id;
+//	}
+//	else return;
+//}
 function deleteFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+	}
 	if(confirm("确认删除吗？")){
 	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
@@ -369,15 +372,21 @@ function jiazai(ooo){
 		dataType:'json',
 		async:false,
 		success:function(msg){
-				if(msg.sgxkwj!=''){
-					$("#xz_sgxkwj").text("下载附件");
-				}
-				if(msg.jgtcwj!=''){
-					$("#xz_jgtcwj").text("下载附件");
-				}
-				if(msg.jgyswj!=''){
-					$("#xz_jgyswj").text("下载附件");
-				}
+			if(msg.sgxkwj!=''){
+				$("#xz_sgxkwj").text(msg.sgxkwj);
+				$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgtcwj!=''){
+				$("#xz_jgtcwj").text(msg.jgtcwj);
+				$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgyswj!=''){
+				$("#xz_jgyswj").text(msg.jgyswj);
+				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+			}
 			}
 	});	
 }

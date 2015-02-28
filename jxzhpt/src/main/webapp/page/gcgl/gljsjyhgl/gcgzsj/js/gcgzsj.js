@@ -223,7 +223,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 			 {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -243,7 +243,7 @@ function showAll(){
 	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
 	        {field:'qzlc',title:'总里程',width:80,align:'center'},
 	        {field:'xmlc',title:'项目里程',width:80,align:'center'},
-	        {field:'yjsdj',title:'技术等级',width:100,align:'center'},
+	        {field:'yjsdj',title:'技术等级',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -276,7 +276,7 @@ function showYBlist(){
 	    queryParams: {
 	    	jhid: jhid,
 	    	yhtype:yhtype,
-	    	sfsj:sfsj,
+	    	sfsj:sfsj
 		},
 	    columns:[
 	             [
@@ -317,7 +317,7 @@ function showYBlist(){
 			        {field:'dfbz',title:'地方补助 ',width:79,align:'center',rowspan:1},
 			        {field:'yhdk',title:'银行贷款',width:79,align:'center',rowspan:1},
 			        {field:'sttxdk',title:'省厅贴息',width:79,align:'center',rowspan:1},
-			        {field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1},
+			        {field:'qtzj',title:'其他资金',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});
@@ -347,13 +347,16 @@ function uploadFile(str){
 	return false;
 }
 
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downGcgzsjFile.do?type="+str+"&jhid="+parent.obj1.id;
-	}
-	else return;
-}
+//function downFile(str){
+//	if($("#xz_"+str).text()=='下载附件'){
+//		parent.window.location.href="../../../../gcgl/downGcgzsjFile.do?type="+str+"&jhid="+parent.obj1.id;
+//	}
+//	else return;
+//}
 function deleteFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+	}
 	if(confirm("确认删除吗？")){
 	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
@@ -383,15 +386,21 @@ function jiazai(ooo){
 		dataType:'json',
 		async:false,
 		success:function(msg){
-				if(msg.sgxkwj!=''){
-					$("#xz_sgxkwj").text("下载附件");
-				}
-				if(msg.jgtcwj!=''){
-					$("#xz_jgtcwj").text("下载附件");
-				}
-				if(msg.jgyswj!=''){
-					$("#xz_jgyswj").text("下载附件");
-				}
+			if(msg.sgxkwj!=''){
+				$("#xz_sgxkwj").text(msg.sgxkwj);
+				$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgtcwj!=''){
+				$("#xz_jgtcwj").text(msg.jgtcwj);
+				$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgyswj!=''){
+				$("#xz_jgyswj").text(msg.jgyswj);
+				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+			}
 			}
 	});	
 }

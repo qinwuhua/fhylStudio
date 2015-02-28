@@ -13,6 +13,7 @@
 		<action name="querySumGcgj" class="plan_gcgjController" method="querySumGcgj"/>
 		<action name="uploadGkbg" class="plan_gcgjController" method="uploadGkbg"/>
 		<action name="queryGjwjById" class="plan_gcgjController" method="queryGjwjById"/>
+		<action name="insertGcgjLx" class="plan_gcgjController" method="insertGcgjLx"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -82,6 +83,7 @@
 		<action name="dropYhdzxById" class="plan_yhdzxController" method="dropYhdzxById"/>
 		<action name="editYhdzxStatus" class="plan_yhdzxController" method="editYhdzxStatus"/>
 		<action name="querySumYhdzx" class="plan_yhdzxController" method="querySumYhdzx"/>
+		<action name="editYhdzxById" class="plan_yhdzxController" method="editYhdzxById"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>
@@ -102,6 +104,7 @@
 		<action name="importAbgc_jh" class="plan_abgcController" method="importAbgc_jh"/>
 		<action name="importWqgz_jh" class="plan_wqgzController" method="importWqgz_jh"/>
 		<action name="importZhfz_jh" class="plan_zhfzController" method="importZhfz_jh"/>
+		<action name="queryTsdq" class="plan_abgcController" method="queryTsdq"/>
 		
 	 </package>
 </struts>

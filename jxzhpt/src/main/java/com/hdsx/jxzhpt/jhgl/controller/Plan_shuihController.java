@@ -23,6 +23,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -111,6 +112,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
+			System.out.println("特殊地区："+lx.getTsdqbm());
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
 			jsonMap.put("rows",shuihServer.queryShuihList(page, rows, jh, lx));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
@@ -207,6 +209,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
 				Plan_lx_shuih shuih=new Plan_lx_shuih();
+				shuih.setXzqhdm(map.get("1").toString());
 				shuih.setLxbm(map.get("3").toString());
 				shuih.setQdzh(map.get("8").toString());
 				shuih.setZdzh(map.get("9").toString());
@@ -218,11 +221,37 @@ public class Plan_shuihController extends BaseActionSupport {
 					map.put("yjsdj", queryGPSBylxbm.getYjsdj());
 					if(queryGPSBylxbm==null){
 						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
-					}else{
+					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
+						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
+						shuih.setTsdqbm(shuihServer.queryTsdqByXzqh(shuih.getXzqhdm()));
+						shuih.setYjsdj(queryGPSBylxbm.getYjsdj());
+						//设置非路网项目的查询条件
+						Plan_flwbzbz flw=new Plan_flwbzbz();
+						flw.setXmlx("水毁项目");//建设项目类型
+						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
+						flw.setJsdj(shuih.getYjsdj());//技术等级
+						flw.setTsdq(shuih.getTsdqbm());
+						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
+						if(flwResult==null){
+							String gldj=null;
+							if(flw.getGldj().equals("X"))
+								gldj="县道";
+							if(flw.getGldj().equals("S"))
+								gldj="省道";
+							if(flw.getGldj().equals("G"))
+								gldj="国道";
+							strVerify+="请先添加【"+gldj+"】技术等级【"+flw.getJsdj()+"】"+
+									(flw.getTsdq()==null ? "" : "特殊地区为【"+flw.getTsdq()+"】")
+									+"【"+flw.getXmlx()+"】项目的补助标准;";
+						}else{
+							//验证金额
+						}
+						
+						//验证信息是否相符
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-							strVerify+="路线名称不正确;";
+							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
 						}else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
-							strVerify+="起止里程不正确;";
+							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 						}else{
 							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 						}

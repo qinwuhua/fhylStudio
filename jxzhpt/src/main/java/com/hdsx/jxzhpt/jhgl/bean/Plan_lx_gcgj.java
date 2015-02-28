@@ -28,6 +28,7 @@ public class Plan_lx_gcgj {
 	private String bz;//备注
 	private String yjsdj;//原技术等级
 	private String tsdqbm;//特殊地区编码
+	private Plan_gcgj plan_gcgj;//对应工程改建对象
 	public String getTsdqbm() {
 		return tsdqbm;
 	}
@@ -40,7 +41,6 @@ public class Plan_lx_gcgj {
 	public void setTsdqbm(String tsdqbm) {
 		this.tsdqbm = tsdqbm;
 	}
-	private Plan_gcgj plan_gcgj;//对应工程改建对象
 	public Plan_gcgj getPlan_gcgj() {
 		return plan_gcgj;
 	}

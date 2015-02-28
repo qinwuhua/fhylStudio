@@ -6,6 +6,7 @@ import java.util.List;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.jxzhpt.xtgl.bean.Unit;
 
@@ -127,6 +128,15 @@ public interface XtglServer {
 
 	boolean updateBzbz(List<Bzbz> l);
 
-	List<Unit> selectLxQlDataList(String id);
+	List<Plan_flwbzbz> queryFlwbzbz();
 
+	boolean addFlwbzbz(Plan_flwbzbz flwbzbz);
+
+	Plan_flwbzbz queryFlwbzbzById(String id);
+
+	boolean updateFlwbzbz(Plan_flwbzbz flwbzbz);
+
+	boolean dropFlwbzbzById(String id);
+	
+	List<Unit> selectLxQlDataList(String id);
 }

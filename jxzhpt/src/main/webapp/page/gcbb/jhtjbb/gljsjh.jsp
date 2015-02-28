@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,10 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -41,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路建设下达计划</div>
@@ -90,17 +98,51 @@ a:active {
         			</fieldset>
         		</td>
         	</tr>
-
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/2014gljh.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:126px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" >
+							<table width="2000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目）</caption>
+								<thead>
+									<tr>
+										<td rowspan="2">备注</td>
+										<td rowspan="2">项目名称</td>
+										<td rowspan="2">行政等级</td>
+										<td rowspan="2">起点桩号</td>
+										<td rowspan="2">终点桩号</td>
+										<td rowspan="2">路线编码</td>
+										<td colspan="3"></td>
+										<td rowspan="2">建设性质</td>
+										<td colspan="7">建 设 规 模（ 公 里 ） / （ 延 米 ）</td>
+										<td rowspan="2">路面宽度</td>
+										<td rowspan="2">技术方案</td>
+										<td rowspan="2">总投资（万元）</td>
+										<td rowspan="2">中央投资（万元）</td>
+									</tr>	
+									<tr>
+										<td>特殊地区 </td>
+										<td>市</td>
+										<td>县</td>
+										<td>合计</td>
+										<td>一级公路</td>
+										<td>二级公路</td>
+										<td>三级公路</td>
+										<td>四级公路</td>
+										<td>大桥</td>
+										<td>隧道</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_gcsjServer {
@@ -107,4 +108,16 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	Plan_gcsj querySumMessage();
+	/**
+	 * 查询补助资金
+	 * @param flw
+	 * @return
+	 */
+	Plan_flwbzbz queryBzzj(Plan_flwbzbz flw);
+	/**
+	 * 根据行政区划查询特殊地区
+	 * @param xzqhdm
+	 * @return
+	 */
+	String queryTsdqByXzqh(String xzqhdm);
 }

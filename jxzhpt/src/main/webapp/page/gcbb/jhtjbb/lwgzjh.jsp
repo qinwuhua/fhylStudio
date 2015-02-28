@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/zhmb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,10 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			showAlljz();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 		});
 	</script>
 	<style type="text/css">
@@ -41,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+<body style="padding-right:1px">
+	<div>
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表</div>
@@ -90,17 +98,34 @@ a:active {
         			</fieldset>
         		</td>
         	</tr>
-
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                	
-                    <div>
-                    <img width="100%" alt="" src="images/2014lwgzjh.png">
-				<table >
-				</table>
+            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:126px;">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" >
+							<table width="1200px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路路网结构改造工程进展情况汇总表(截止12月底) </caption>
+								<thead>
+									<tr>
+										<td width="150px;"></td>
+										<td width="150px;"></td>
+										<td width="150px;">座/项目数</td>
+										<td width="150px;">延米</td>
+										<td width="150px;">处治里程</td>
+										<td width="150px;">补助资金(万元)</td>
+										<td width="150px;">部安排资金</td>
+										<td width="150px;">总投资(万元)</td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
 					</div>
-					</td>
-					</tr>
+				</td>
+			</tr>
 		</table>
 	</div>
 </body>

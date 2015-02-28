@@ -111,7 +111,11 @@
 		select distinct t.sbnf as text from PLAN_wqgz t order by t.sbnf
 	</select>
 	<select id="queryWqgzById" parameterType="string" resultType="plan_wqgz">
-		select * from plan_wqgz jh where jh.id=#{id}
+		<!-- select * from plan_wqgz jh where jh.id=#{id} -->
+		select 	id,sckid,sbnf,jhkgsj,jhwgsj, sjdw,sjpfdw,pfwh, pfsj,pfztz, jhsybzje, jhsydfzcje, sfsqablbz,ablbzsqwh, bz,tbsj,
+	 tbbm,spzt,spbm,spsj,sbzt, sbbm, sbsj, xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw,jldw,htje,sgxkwj,
+	jgtcwj,jgyswj,wjsczt,kgzt,jgzt,yjjgsj,wjgyy, jsdw, jhxdwh, xdzt, xfzt,xfsj,xfbm,wjzt,wjsj,gys, sbbmdm,spbmdm,sfylsjl
+	from plan_wqgz jh where jh.id=#{id}
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,
@@ -247,4 +251,7 @@
  	<update id="updateSjsgt" parameterType="plan_wqgz">
  		update plan_wqgz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
  	</update>
+ 	<select id="queryWqgzFjById" parameterType="string" resultType="plan_wqgz">
+		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
+	</select>
 </mapper>

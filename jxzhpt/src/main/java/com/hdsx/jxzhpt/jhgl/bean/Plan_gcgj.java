@@ -64,7 +64,7 @@ public class Plan_gcgj {
 	private String sfqxkg;//全线开工状态
 	private String fapgdw;//方案评估单位
 	private String fascdw;//方案审查单位
-	private String faspsj;//方案审批时间
+	private Date faspsj;//方案审批时间
 	private String spwh;//审批文号
 	private String tzgs;//投资估算(万元)
 	private String jsxz;//建设性质
@@ -74,12 +74,19 @@ public class Plan_gcgj {
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
+	private String bcapzj;//本次安排资金
 	private List<Plan_lx_gcgj> plan_lx_gcgjs;//对应所有的路线集合
 	public List<Plan_lx_gcgj> getPlan_lx_gcgjs() {
 		return plan_lx_gcgjs;
 	}
 	public void setPlan_lx_gcgjs(List<Plan_lx_gcgj> plan_lx_gcgjs) {
 		this.plan_lx_gcgjs = plan_lx_gcgjs;
+	}
+	public String getBcapzj() {
+		return bcapzj;
+	}
+	public void setBcapzj(String bcapzj) {
+		this.bcapzj = bcapzj;
 	}
 	public String getSfylsjl() {
 		return sfylsjl;
@@ -465,10 +472,10 @@ public class Plan_gcgj {
 	public void setFascdw(String fascdw) {
 		this.fascdw = fascdw;
 	}
-	public String getFaspsj() {
+	public Date getFaspsj() {
 		return faspsj;
 	}
-	public void setFaspsj(String faspsj) {
+	public void setFaspsj(Date faspsj) {
 		this.faspsj = faspsj;
 	}
 	public String getSpwh() {

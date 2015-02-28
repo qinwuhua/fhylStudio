@@ -226,6 +226,13 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			ResponseUtils.write(getresponse(), "true");
 		}else ResponseUtils.write(getresponse(), "false");
 	}
+	public void selectWqgzCount(){
+		try {
+			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzCount(sckwqgz)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	public Sckwqgz getSckwqgz() {

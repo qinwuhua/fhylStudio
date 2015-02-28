@@ -100,78 +100,78 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./jhkgl/hslygl.jsp'
 	});
-	createMenux('LeftMenu',{
+/*	createMenux('LeftMenu',{
 		id:'menu_0101060209',
 		title:'战备公路项目',
 		imgSrc:'../../images/zb_s.png',
 		renderTo:'left_menu2',
 		href:'./jhkgl/zbgl.jsp'
-	});
+	});*/
 	
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101060301',
-		title:'危桥改造项目',
+		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./gcgl/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060302',
-		title:'安保工程项目',
+		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/abgc.jsp'
+		href:'./gcgl/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060303',
-		title:'灾害防治项目',
+		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/zhfz.jsp'
+		href:'./gcgl/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060304',
-		title:'工程改造路面升级项目',
+		title:'工程改造路面升级施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/gclmsj.jsp'
+		href:'./gcgl/gcgzsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060305',
-		title:'工程改造路面改建项目',
+		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/gclmgj.jsp'
+		href:'./gcgl/gcgzgj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060306',
-		title:'养护大中修项目',
+		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/yhdzx.jsp'
+		href:'./gcgl/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060307',
-		title:'水毁项目',
+		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/shxm.jsp'
+		href:'./gcgl/sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060308',
-		title:'红色旅游公路项目',
+		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/hslygl.jsp'
+		href:'./gcgl/hsly.jsp'
 	});
-	createMenux('LeftMenu',{
+/*	createMenux('LeftMenu',{
 		id:'menu_0101060309',
 		title:'战备公路项目',
 		imgSrc:'../../images/zb_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/zbgl.jsp'
-	});
+		href:'./gcgl/zbgl.jsp'
+	});*/
 	
 	
 	createMenux('LeftMenu',{

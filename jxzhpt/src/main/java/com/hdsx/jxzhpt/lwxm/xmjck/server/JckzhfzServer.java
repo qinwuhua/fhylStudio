@@ -25,4 +25,5 @@ public interface JckzhfzServer {
 	List<SjbbMessage> exportExcel_zhfz_sh(Jckzhfz jckzhfz);
 	boolean onceZhfz(Jckzhfz zhfz);
 	String yanZhen(List<Map<String,String>> data,String tbbmbm);
+	Jckzhfz selZhfzCount(Jckzhfz zhfz);
 }

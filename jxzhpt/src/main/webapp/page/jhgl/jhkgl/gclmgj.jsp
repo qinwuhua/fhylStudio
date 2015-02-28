@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_gcgj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
@@ -24,7 +25,10 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
+			gydwComboxTree("add_gydwxx");
 			xzqhComboxTree("xzqh");
+			xzqhComboxTree("add_xzqh");
+			tsdq('tsdq');
 			querySumGcgj();
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
@@ -50,11 +54,75 @@
 			if($("#gldj").combo("getValue")!=""){
 				lx.lxbm=$("#gldj").combo("getValue");
 			}
+			if($('#tsdq').combo("getValue")!=''){
+				lx.tsdqbm=$('#tsdq').combo("getValue");
+			}
+			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!='全部'){
+				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+				var xian=true;
+				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+					xian=false;
+				}
+				if($('#jhzt').combo("getValue")=="未上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=0;
+					}else{
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}
+				}
+				if($('#jhzt').combo("getValue")=="已上报"){
+					if(xian){
+						jh.sbzt='0';
+						jh.spzt='0';
+						jh.jh_sbthcd=2;
+					}else{
+						jh.sbzt='1';
+						jh.spzt='0';
+						jh.jh_sbthcd=4;
+					}
+				}
+				if($('#jhzt').combo("getValue")=="未审批"){
+					jh.sbzt='1';
+					jh.spzt='0';
+					jh.jh_sbthcd=4;
+				}
+				if($('#jhzt').combo("getValue")=="已审批"){
+					jh.sbzt='1';
+					jh.spzt='1';
+					jh.jh_sbthcd=6;
+				}
+			}
 			gclmgjxm(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
+		function addlx(){
+			var row=gridObj.datagrid('getSelected');
+			alert(row.id);
+			var lx={'lx.lxmc':$('#add_lxmc').val(),'lx.lxbm':$('#add_lxbm').val(),
+					'lx.xzqhdm':$('#add_xzqh').combo("getValue"),'lx.xzqhmc':$('#add_xzqh').combo("getText"),
+					'lx.jsdd':$('#add_jsdd').val(),'lx.gydw':$('#add_gydwxx').combo("getText"),
+					'lx.gydwdm':$('#add_gydwxx').combo("getValue"),'lx.bhnr':$('#add_bhnr').val(),
+					'lx.qdzh':$('#add_qdzh').val(),'lx.zdzh':$('#add_zdzh').val(),
+					'lx.qzlc':$('#add_qzlc').val(),'lx.yhlc':$('#add_yhlc').val(),
+					'lx.ylmlx':$('#add_ylmlx').val(),'lx.yjsdj':$('#add_yjsdjxx').val(),
+					'lx.jhid':row.id,'lx.tbbmbh':$.cookie("unit")};
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/insertGcgjLx.do',
+				data:lx,
+				dataType:'json',
+				success:function(data){
+					
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -153,7 +221,103 @@
         	</tr>
 		</table>
 	</div>
-	
+	<div id="add_lx" class="easyui-dialog" title="添加路线" style="width:800px;height:300px;"
+		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
+		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
+       		<tr style="height: 25px;">
+            	<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+                	工程改造路面改建路线信息
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+                <td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">
+                	路线名称
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                    <input id="add_lxmc" type="text"/>
+                </td>
+                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                	路线编码
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                    <input id="add_lxbm" type="text"/>
+                </td>
+                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                	建设地点
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+                    <input id="add_jsdd" type="text"/>
+                </td>
+            </tr>
+            <tr style="height: 30px;">
+            	<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+                	起点桩号
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                    <input id="add_qdzh" type="text"/>
+                </td>
+                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                	止点桩号
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+                    <input id="add_zdzh" type="text"/>
+                </td>
+                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+                	起止里程
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+                    <input id="add_qzlc" type="text" style="width:60px;"/>公里
+                </td>
+            </tr>
+			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					管养单位
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<select id="add_gydwxx" style="width:125px;"></select>
+				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					行政区划
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<select id="add_xzqh" style="width:125px;"></select>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					隐患里程
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="add_yhlc" type="text" style="width:60px;"/>公里
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">
+                	原技术等级
+                </td>
+                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+                    <input id="add_yjsdjxx" type="text"/>
+                </td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					原路面类型
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="add_ylmlx" type="text"/>
+				</td>
+			</tr>
+			<tr style="height: 50px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					病害内容
+				</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<textarea id="add_bhnr" style="width: 400px;height: 40px;"></textarea> &nbsp;
+				</td>
+			</tr>
+			<tr style="height: 30px;" align="center">
+				<td colspan="6" align="center" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: center; padding-left: 10px;">
+					<input onclick="addlx()" type="button" value="添    加" style="width: 80px;text-align: center;" />
+				</td>
+			</tr>
+		</table>
+	</div>
 	<div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

@@ -44,10 +44,9 @@
 		<result property="jgzt" column="jgzt"/>
 		<result property="sfylsjl" column="sfylsjl"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
-		<collection property="plan_lx_gcgjs" ofType="plan_lx_gcgj" resultMap="lx"/>
+		<collection property="plan_lx_gcgjs" column="jhid" javaType="ArrayList" ofType="plan_lx_gcgj" resultMap="lx"/>
 	</resultMap>
 	<resultMap id="lx" type="plan_lx_gcgj">
-		<id property="id" column="id" />
 		<result property="gydw" column="gydw"/>
 		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="lxmc" column="lxmc"/>
@@ -62,12 +61,13 @@
 		<result property="yjsdj" column="yjsdj"/>
 		<result property="ylmlx" column="ylmlx"/>
 		<result property="bhnr" column="bhnr"/>
+		<result property="jhid" column="jhid"/>
 	</resultMap>
 	
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
 			select rownum as num,t.* from(
-			select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
@@ -101,13 +101,12 @@
 						<if test="l.lxbm!=null and l.lxbm!=''">
 							and l.lxbm like #{l.lxbm}
 						</if>
+						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
 					     and l.xzqhdm in (
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
-					     	WHERE 1=1 
-					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								B.AREACODE=#{l.tsdqbm}
-							</if>
+					     	WHERE and B.AREACODE=#{l.tsdqbm}
 					     	 )
+					     </if>
 					     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
 					) t
 			)
@@ -145,17 +144,17 @@
 						<if test="l.lxbm!=null and l.lxbm!=''">
 							and l.lxbm like #{l.lxbm}
 						</if>
+						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
 					     and l.xzqhdm in (
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
-					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								B.AREACODE=#{l.tsdqbm}
-							</if>
+								and B.AREACODE=#{l.tsdqbm}
 					     	 )
+					    </if>
 					     )
 	</select>
 	<select id="queryGcgjById" resultMap="gcgj_lx" parameterType="string">
-		select jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
+		select jh.id,jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
        		jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.xdsj,jh.xmmc,jh.yhlb,jh.sjdw,jh.sjpfdw,
        		jh.sjlmlx,jh.dc,jh.jc,jh.mc,jh.lmkd,jh.pfwh,jh.pfsj,jh.pfztz,jh.jhsybzje,
        		jh.jhsydfzcje,jh.sfsqablbz,jh.ablbzsqwh,jh.sftqss,jh.jhxdwh,jh.gksjwh,
@@ -179,7 +178,7 @@
 			<if test="jhwgsj!=null and jhwgsj!=''">
 				jhwgsj=#{jhwgsj},
 			</if>
-			<if test="xdsj!=null and xdsj=!=''">
+			<if test="xdsj!=null and xdsj!=''">
 				xdsj=#{xdsj},
 			</if>
 			<if test="pfsj!=null and pfsj!=''">
@@ -188,7 +187,9 @@
 			xmmc=#{xmmc},yhlb=#{yhlb},sjdw=#{sjdw},sjpfdw=#{sjpfdw},sjlmlx=#{sjlmlx},
 			dc=#{dc},jc=#{jc},mc=#{mc},lmkd=#{lmkd},pfwh=#{pfwh},pfztz=#{pfztz},jhsybzje=#{jhsybzje},
 			jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},sftqss=#{sftqss},
-			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},bz=#{bz}
+			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},bz=#{bz},
+			fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},spwh=#{spwh},tzgs=#{tzgs},
+			jsxz=#{jsxz},jsnr=#{jsnr}
 		where id=#{id}
 	</update>
 	<update id="editGcgjStatus" parameterType="plan_gcgj">
@@ -201,6 +202,7 @@
 			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
 			<if test="spsj!=null">spsj=#{spsj},</if>
 			<if test="spzt!=null">spzt=#{spzt},</if>
+			<if test="bcapzj!=null">bcapzj=#{bcapzj},</if>
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
@@ -271,4 +273,23 @@
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
 		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
 	</select>
+	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
+		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}
+	</select>
+	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
+		select * from plan_flwbzbz f where 
+		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="tsdq==null or tsdq==''">
+			and f.tsdq is null
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and f.tsqd =#{tsdq}
+		</if>
+	</select>
+	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">
+		insert into plan_lx_gcgj (id,lxmc,lxbm,xzqhdm,xzqhmc,jsdd,gydw,gydwdm,bhnr,
+		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh)
+		values(sys_guid(),#{lxmc},#{lxbm},#{xzqhdm},#{xzqhmc},#{jsdd},#{gydw},#{gydwdm},#{bhnr},
+		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid},#{tbsj},#{tbbmbh})
+	</insert>
 </mapper>

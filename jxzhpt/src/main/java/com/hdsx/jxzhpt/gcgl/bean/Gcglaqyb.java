@@ -21,6 +21,8 @@ public class Gcglaqyb implements Serializable {
 	private String wenhao;//文号
 	private String reportmonth;//上报年月
 	
+	private byte[] ybfile;
+
 	private int page;
 	private int rows;
 	public String getId() {
@@ -102,6 +104,13 @@ public class Gcglaqyb implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	
+	public byte[] getYbfile() {
+		return ybfile;
+	}
+	public void setYbfile(byte[] ybfile) {
+		this.ybfile = ybfile;
 	}
 	@Override
 	public String toString() {

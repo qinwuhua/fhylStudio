@@ -92,13 +92,12 @@
 							<if test="l.lxbm!=null and l.lxbm!=''">
 								and l.lxbm like #{l.lxbm}
 							</if>
+						    <if test="l.tsdqbm!=null and l.tsdqbm!=''">
 						     and l.xzqhdm in (
 						     	select B.XZQHDM from BT_XZQHTSDQ b 
-						     	WHERE 1=1 
-						     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-									B.AREACODE=#{l.tsdqbm}
-								</if>
+						     	WHERE B.AREACODE=#{l.tsdqbm}
 						     	 )
+						     </if>
 						     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
 						) t
 				)
@@ -137,7 +136,7 @@
 					     	select B.XZQHDM from BT_XZQHTSDQ b 
 					     	WHERE 1=1 
 					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								B.AREACODE=#{l.tsdqbm}
+								and B.AREACODE=#{l.tsdqbm}
 							</if>
 					     	 )
 					     )
@@ -246,5 +245,18 @@
 	<select id="queryJhExist" parameterType="plan_lx_shuih" resultType="int">
 		select count(*) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
 		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
+	</select>
+	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
+		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}
+	</select>
+	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
+		select * from plan_flwbzbz f where 
+		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="tsdq==null or tsdq==''">
+			and f.tsdq is null
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and f.tsqd =#{tsdq}
+		</if>
 	</select>
 </mapper>

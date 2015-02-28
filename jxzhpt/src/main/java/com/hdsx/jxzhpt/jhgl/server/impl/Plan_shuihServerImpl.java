@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServer {
@@ -114,7 +115,16 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 
 	@Override
 	public int queryJhExist(Plan_lx_shuih shuih) {
-		System.out.println("进入");
 		return queryOne("queryJhExist", shuih);
+	}
+
+	@Override
+	public String queryTsdqByXzqh(String xzqhdm) {
+		return queryOne("queryTsdqByXzqh",xzqhdm);
+	}
+
+	@Override
+	public Plan_flwbzbz queryBzzj(Plan_flwbzbz flw) {
+		return queryOne("queryBzzj", flw);
 	}
 }

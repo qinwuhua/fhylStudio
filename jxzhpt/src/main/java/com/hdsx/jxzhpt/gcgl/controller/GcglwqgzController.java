@@ -19,6 +19,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
@@ -312,48 +313,56 @@ public class GcglwqgzController extends BaseActionSupport{
 				e.printStackTrace();
 			}
 		}
-		public void downWqgzFile() throws IOException{
-			HttpServletResponse response = getresponse();
-			OutputStream out = new BufferedOutputStream(response.getOutputStream());
-			response.setContentType("octets/stream");
-			gcglwqgz.setJhid(jhid);
-			gcglwqgz.setTiaojian(type);
-			gcglwqgz.setLxmc(type+"file");
-			Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
-			byte[] data = gcglwqgz1.getSgxkwjfile();
-			String realPath = ServletActionContext.getServletContext().getRealPath("/");
-			String filename=gcglwqgz1.getTiaojian();
-			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getTiaojian());
-			if (!file.exists()) { 
-	            file.createNewFile(); // 如果文件不存在，则创建 
-	        } 
-			FileOutputStream fos = new FileOutputStream(file); 
-			 InputStream in = new InputStream() {
-				@Override
-				public int read() throws IOException {
-					// TODO Auto-generated method stub
-					return 0;
-				}
-			}; 
-		        int size = 0; 
-		        if (data.length > 0) { 
-		            fos.write(data, 0, data.length); 
-		        } else { 
-		            while ((size = in.read(data)) != -1) { 
-		                fos.write(data, 0, size); 
-		            }  
+		@RequestMapping("file/download")  
+		public void downWqgzFile() {
+			try {
+				HttpServletResponse response = getresponse();
+				OutputStream out = new BufferedOutputStream(response.getOutputStream());
+				response.setContentType("multipart/form-data");
+				gcglwqgz.setJhid(jhid);
+				gcglwqgz.setTiaojian(type);
+				gcglwqgz.setLxmc(type+"file");
+				Gcglwqgz gcglwqgz1=gcglwqgzServer.downWqgzFile(gcglwqgz);
+				byte[] data = gcglwqgz1.getSgxkwjfile();
+				String realPath = ServletActionContext.getServletContext().getRealPath("/");
+				String filename=gcglwqgz1.getTiaojian();
+				response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
+				File file=new File(realPath+"upload\\"+gcglwqgz1.getTiaojian());
+				if (!file.exists()) { 
+		            file.createNewFile(); // 如果文件不存在，则创建 
 		        } 
-			FileInputStream fis= new FileInputStream(file);
-			byte [] arr = new byte[1024*10];
-			int i;
-			while((i=fis.read(arr))!=-1){
-				out.write(arr,0,i);
+				FileOutputStream fos = new FileOutputStream(file); 
+				 InputStream in = new InputStream() {
+					@Override
+					public int read() throws IOException {
+						// TODO Auto-generated method stub
+						return 0;
+					}
+				}; 
+			        int size = 0; 
+			        if (data.length > 0) { 
+			            fos.write(data, 0, data.length); 
+			        } else { 
+			            while ((size = in.read(data)) != -1) { 
+			                fos.write(data, 0, size); 
+			            }  
+			        } 
+				FileInputStream fis= new FileInputStream(file);
+				byte [] arr = new byte[1024*10];
+				int i;
+				while((i=fis.read(arr))!=-1){
+					out.write(arr,0,i);
+					out.flush();
+				}
+				fis.close();
+				out.close();
+				fos.close();
+				file.delete();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			fis.close();
-			out.flush();
-			out.close();
-			file.delete();
+			
+			
 		}
 		public void insertWqgzkg(){
 			Boolean bl=gcglwqgzServer.insertWqgzkg(gcglwqgz);
@@ -414,7 +423,6 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void deleteWqgzFile(){
 		
 		gcglwqgz.setJhid(jhid);
-		gcglwqgz.setTiaojian(type);
 		gcglwqgz.setTiaojian("");		
 		boolean bl = false;
 		if("sgxkwj".equals(type)){
@@ -469,13 +477,14 @@ public class GcglwqgzController extends BaseActionSupport{
 	}
 	private byte [] inputStreamToByte(InputStream is) throws IOException { 
 	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
+	    byte [] arr = new byte[1024*10];
 	    int ch; 
-	    while((ch = is.read() ) != -1){ 
-	        bAOutputStream.write(ch); 
+	    while((ch = is.read(arr) ) != -1){ 
+	        bAOutputStream.write(arr,0,ch); 
 	    } 
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
-	} 
+	}
 }
 	

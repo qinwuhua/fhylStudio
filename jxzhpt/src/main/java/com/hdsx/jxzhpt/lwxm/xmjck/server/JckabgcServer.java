@@ -25,4 +25,5 @@ public interface JckabgcServer {
 	List<SjbbMessage> exportExcel_abgc_sh(Jckabgc jckabgc);
 	boolean onceAbgc(Jckabgc abgc);
 	String yanZhen(List<Map<String,String>> data,String tbbmbm);
+	Jckabgc selAbgcCount(Jckabgc abgc);
 }

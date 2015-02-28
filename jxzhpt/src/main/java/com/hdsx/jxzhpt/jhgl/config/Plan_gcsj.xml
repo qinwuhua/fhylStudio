@@ -139,13 +139,12 @@
 							<if test="lx.lxbm!=null and lx.lxbm!=''">
 								and lx.lxbm like 'S'||#{lx.lxbm}
 							</if>
+							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 						    and lx.xzqhdm in (
 						    	select b.XZQHDM from BT_XZQHTSDQ b 
-						    	WHERE 1=1 
-						    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-									b.AREACODE=#{lx.tsdqbm}
-								</if>
+						    	WHERE b.AREACODE=#{lx.tsdqbm}
 						    	)
+						    </if>
 						    ) order by jh.sbzt,jh.spzt,jh.jhnf desc
 				) t
 		 )
@@ -184,13 +183,12 @@
 						<if test="lx.lxbm!=null and lx.lxbm!=''">
 							and lx.lxbm like 'S'||#{lx.lxbm}
 						</if>
+						<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 					    and lx.xzqhdm in (
 					    	select B.XZQHDM from BT_XZQHTSDQ b 
-					    	WHERE 1=1 
-					    	<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-								B.AREACODE=#{lx.tsdqbm}
-							</if>
+					    	WHERE B.AREACODE=#{lx.tsdqbm}
 					    	)
+					    </if>
 					    )
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
@@ -257,7 +255,8 @@
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc from JXJCK_2013.GPSROAD t where 
+		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj 
+		from JXJCK_2013.GPSROAD t where 
 		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">
@@ -290,5 +289,18 @@
 	<select id="queryJhExist" parameterType="plan_lx_gcsj" resultType="int">
 		select count(jh.id) from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
 		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.jhnf=#{jhid}
+	</select>
+	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
+		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}
+	</select>
+	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
+		select * from plan_flwbzbz f where 
+		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="tsdq==null or tsdq==''">
+			and f.tsdq is null
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and f.tsqd =#{tsdq}
+		</if>
 	</select>
 </mapper>

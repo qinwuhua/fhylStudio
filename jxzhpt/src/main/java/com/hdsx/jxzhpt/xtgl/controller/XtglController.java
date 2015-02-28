@@ -29,6 +29,7 @@ import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 /**
@@ -49,6 +50,7 @@ public class XtglController extends BaseActionSupport{
 	private Unit unit;
 	private Bzbz bzbz;
 	private Param param;
+	private Plan_flwbzbz flwbzbz;
 	//用户实体
 	private Master master;
 	private String yhm;
@@ -817,6 +819,65 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	/**
+	 * 查询非路网项目的补助标准列表
+	 */
+	public void queryFlwbzbz(){
+		try {
+			JsonUtils.write(xtglServer.queryFlwbzbz(), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addFlwbzbz(){
+		Map<String, String> result=new HashMap<String, String>();
+		try {
+			result.put("result", new Boolean(xtglServer.addFlwbzbz(flwbzbz)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryFlwbzbzById(){
+		try {
+			JsonUtils.write(xtglServer.queryFlwbzbzById(flwbzbz.getId()), getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateFlwbzbz(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.updateFlwbzbz(flwbzbz)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dropFlwbzbzById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.dropFlwbzbzById(flwbzbz.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}
@@ -901,12 +962,16 @@ public class XtglController extends BaseActionSupport{
 	public void setBzbz(Bzbz bzbz) {
 		this.bzbz = bzbz;
 	}
+	public Plan_flwbzbz getFlwbzbz() {
+		return flwbzbz;
+	}
+	public void setFlwbzbz(Plan_flwbzbz flwbzbz) {
+		this.flwbzbz = flwbzbz;
+	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
 }

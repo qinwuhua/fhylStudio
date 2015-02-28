@@ -72,7 +72,7 @@ function showAll(){
 	    	xzqhdm: xzqhdm,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
             {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -84,7 +84,7 @@ function showAll(){
 	        {field:'jsxz',title:'建设性质',width:110,align:'center'},
 	        {field:'ztz',title:'总投资',width:80,align:'center'},
 	        {field:'kgn',title:'开工年',width:90,align:'center'},
-	        {field:'wgn',title:'完工年',width:90,align:'center'},
+	        {field:'wgn',title:'完工年',width:90,align:'center'}
 	    ]]    
 	}); 
 }
@@ -167,4 +167,85 @@ function thsjyb(index){
 			}
 		});	
 	}	
+}
+function uploadFile(str){
+	//alert(str);
+	var title='';
+	if(str=='sgxkwj')
+		title='请选择施工许可文件';
+	if(str=='jgtcwj')
+		title='请选择交工通车文件';
+	if(str=='jgyswj')
+		title='请选择完工验收文件';
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : title,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadHslyFile.do"+'&flag='+'gljsjyhgl%2fhsly%2fhslyxx'+'&type='+str+'&jhid='+parent.obj1.id,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+//function downFile(str){
+//	if($("#xz_"+str).text()=='下载附件'){
+//		parent.window.location.href="../../../../gcgl/downHslyFile.do?type="+str+"&jhid="+parent.obj1.id;
+//	}
+//	else return;
+//}
+function deleteFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+	}
+	if(confirm("确认删除吗？")){
+	var data="jhid="+parent.obj1.id+"&type="+str;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/deleteHslyFile.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				location.reload();
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});	
+	}
+}
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectHslyjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+			if(msg.sgxkwj!=''){
+				$("#xz_sgxkwj").text(msg.sgxkwj);
+				$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgtcwj!=''){
+				$("#xz_jgtcwj").text(msg.jgtcwj);
+				$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgyswj!=''){
+				$("#xz_jgyswj").text(msg.jgyswj);
+				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+			}
+			}
+	});	
 }

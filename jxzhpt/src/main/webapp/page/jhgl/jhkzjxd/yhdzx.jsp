@@ -22,6 +22,7 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			tsdq('ddlTSDQ');
 			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
@@ -30,6 +31,21 @@
 		function searchYhdzx(){
 			var jh={sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
+			}
+			if($('#sbnf').combobox('getText')!=""){
+				jh.sbnf=$('#sbnf').combobox('getValue');
+			}
+			if($('#ddlPDDJ').combobox('getText')!="全部"){
+				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
+			}
+			if($('#ddlGldj').combobox('getText')!='全部'){
+				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlTSDQ').combobox('getValue')!=''){
+				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			}
 			yhdzxxm_zjxd(jh,lx);
 		}
 		function sp(id,jh_sbthcd){

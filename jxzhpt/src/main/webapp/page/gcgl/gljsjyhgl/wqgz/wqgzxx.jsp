@@ -43,12 +43,10 @@ $(function(){
 
 
 function downFile(str){
-	if($("#xz_"+str).text()!='暂无附件'){
-		//parent.window.location.href="www.baidu.com";
-		parent.window.location.href="../../../../gcgl/downWqgzFile.do?type="+str+"&jhid="+parent.obj1.jhid;
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
 		
 	}
-	else return;
 }
 </script>
 <style type="text/css">
@@ -554,7 +552,7 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"> <a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
-									href=""
+									href="#"
 									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
@@ -587,7 +585,7 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
-									href=""
+									href="#"
 									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
@@ -621,7 +619,7 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
-									href=""  
+									href="#"  
 									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>

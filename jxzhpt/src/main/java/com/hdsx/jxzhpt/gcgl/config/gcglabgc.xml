@@ -121,20 +121,20 @@
 	
 	<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglabgc">
-		update PLAN_ABGC set SGXKWJ=#{tiaojian}
+		update PLAN_ABGC set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
 		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglabgc">
-		update PLAN_ABGC set JGTCWJ=#{tiaojian}
+		update PLAN_ABGC set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
 		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglabgc">
-		update PLAN_ABGC set JGYSWJ=#{tiaojian}
+		update PLAN_ABGC set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
 		where SCKID=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglabgc" resultType="gcglabgc">
-		select ${tiaojian} tiaojian from PLAN_ABGC where SCKID=#{jhid}
+		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_ABGC where SCKID=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglabgc">
 		update PLAN_ABGC set WJGYY=#{wjgyy} where SCKID=#{jhid}

@@ -39,12 +39,13 @@ function showAll(){
 	    rownumbers:true,
 	    pageNumber:1,
 	    pageSize:10,
-	    height:440,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

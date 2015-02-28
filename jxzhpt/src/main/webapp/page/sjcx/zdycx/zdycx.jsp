@@ -79,7 +79,6 @@ text-decoration:none;
 					<input  id="cc" style="width: 160px" class="easyui-combobox" /></td>
 				<td colspan="2" style="background-color: #ffffff;width:15%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="cxzd('zdycx_zd.jsp','980','380');" style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
-						<img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>
 			</tr>
 			</table><br/>

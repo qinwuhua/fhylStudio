@@ -141,4 +141,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return update("updateSjsgt", jh)>0;
 	}
 
+	@Override
+	public Plan_zhfz queryZhfzFjById(String id) {
+		return queryOne("queryZhfzFjById", id);
+	}
+
 }

@@ -12,17 +12,16 @@
 				 			return "";
 				 		}else return $.cookie("unit2");
 				 	},
-				 	'xzqhmc':$("#xzqhmc").val(),
+				 	'xzqhmc':function(){
+				 		if("360000"==$('#xzqhmc').combobox("getValue")){
+				 			return "";
+				 		}else return $('#xzqhmc').combobox("getValue");
+				 	},
 				 	'lxmc' : $('#lxmc').val(),
 				 	'qlmc':$("#qlmc").val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':function(){
-				 		var gydw=$('#gydw').combobox("getValue");
-				 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-				 			return "";
-				 		}else return $('#sbzt').val();
-				 	},
+				 	'sbzt':$('#sbzt').val(),
 				 	'jsdj':$("#jsdj").val(),
 				 	'akjfl':$("#akjfl").val()
 				},
@@ -51,6 +50,8 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+							return '<span style="color:grey;">未上报</span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
@@ -68,6 +69,29 @@
 			        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 		    ]]    
 		});  
+		var sbthcd;
+	 	var gydw;
+	 	var xzqhmc;
+	 		if($.cookie("unit2").length==2){
+	 			sbthcd=7;
+	 		}else  sbthcd=$.cookie("unit2").length;
+	 		if("36"==$('#gydw').combobox("getValue")){
+	 			gydw="";
+	 		}else gydw=$.cookie("unit2");
+	 		if("360000"==$('#xzqhmc').combobox("getValue")){
+	 			xzqhmc="";
+	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+	 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+$("#akjfl").val();
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/xmjck/selectWqgzCount.do",
+		 dataType : 'json',
+		 data : data,
+		 success : function(msg){
+			 $("#wqgz1").html(msg);
+		 },
+	});
 	}
 
 	function jckglAbgc(){
@@ -91,12 +115,7 @@
 				 	'lxmc' : $('#lxmc').val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':function(){
-				 		var gydw=$('#gydw').combobox("getValue");
-				 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-				 			return "";
-				 		}else return $('#sbzt').val();
-				 	},
+				 	'sbzt':$('#sbzt').val(),
 				 	'lxjsdj':$("#lxjsdj").val(),
 				 	'lxbm':$("#lxbm").val()
 				},
@@ -125,6 +144,8 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+						return '<span style="color:grey;">未上报</span>';
 					}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
@@ -143,6 +164,35 @@
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 		    ]]    
 		});  
+		var sbthcd;
+	 	var gydw;
+	 	var xzqhmc;
+	 		if($.cookie("unit2").length==2){
+	 			sbthcd=7;
+	 		}else  sbthcd=$.cookie("unit2").length;
+	 		if("36"==$('#gydw').combobox("getValue")){
+	 			gydw="";
+	 		}else gydw=$.cookie("unit2");
+	 		if("360000"==$('#xzqhmc').combobox("getValue")){
+	 			xzqhmc="";
+	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
+	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/xmjck/selAbgcCount.do",
+		 dataType : 'json',
+		 data : data,
+		 success : function(msg){
+			 $("#abgc1").html(msg.sbthcd);
+			 if(msg.qzlc!=null && msg.qzlc!=""){
+				 $("#abgc2").html(msg.qzlc);
+			 }else $("#abgc2").html("0");
+			 if(msg.yhlc!=null && msg.yhlc!=""){
+				 $("#abgc3").html(msg.yhlc);
+			 }else $("#abgc3").html("0");
+		 },
+	});
 	}
 
 	function jckglZhfz(){
@@ -166,12 +216,7 @@
 				 	'lxmc' : $('#lxmc').val(),
 				 	'xmnf':$("#xmnf").val(),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':function(){
-				 		var gydw=$('#gydw').combobox("getValue");
-				 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-				 			return "";
-				 		}else return $('#sbzt').val();
-				 	},
+				 	'sbzt':$('#sbzt').val(),
 				 	'lxjsdj':$("#lxjsdj").val(),
 				 	'lxbm':$("#lxbm").val()
 				},
@@ -200,6 +245,8 @@
 				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+							return '<span style="color:grey;">未上报</span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
@@ -218,6 +265,35 @@
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'}
 		    ]]    
 		});  
+		var sbthcd;
+	 	var gydw;
+	 	var xzqhmc;
+	 		if($.cookie("unit2").length==2){
+	 			sbthcd=7;
+	 		}else  sbthcd=$.cookie("unit2").length;
+	 		if("36"==$('#gydw').combobox("getValue")){
+	 			gydw="";
+	 		}else gydw=$.cookie("unit2");
+	 		if("360000"==$('#xzqhmc').combobox("getValue")){
+	 			xzqhmc="";
+	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
+	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/xmjck/selZhfzCount.do",
+		 dataType : 'json',
+		 data : data,
+		 success : function(msg){
+			 $("#abgc1").html(msg.sbthcd);
+			 if(msg.qzlc!=null && msg.qzlc!=""){
+				 $("#abgc2").html(msg.qzlc);
+			 }else $("#abgc2").html("0");
+			 if(msg.yhlc!=null && msg.yhlc!=""){
+				 $("#abgc3").html(msg.yhlc);
+			 }else $("#abgc3").html("0");
+		 },
+	});
 	}
 	
 //基础库审核
@@ -432,12 +508,7 @@ function sckglWqgz(){
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':function(){
-			 		var gydw=$('#gydw').combobox("getValue");
-			 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-			 			return "";
-			 		}else return $('#sbzt').val();
-			 	},
+			 	'sbzt':$('#sbzt').val(),
 			 	'jsdj':$("#jsdj").val(),
 			 	'akjfl':$("#akjfl").val(),
 			 	'bzls':$("#bzls").val()
@@ -465,8 +536,10 @@ function sckglWqgz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
+						return '<span style="color:grey;">未上报</span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
@@ -486,6 +559,30 @@ function sckglWqgz(){
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
+	var sbthcd;
+ 	var gydw;
+ 	var xzqhmc;
+ 		if($.cookie("unit2").length==2){
+ 			sbthcd=7;
+ 		}else  sbthcd=$.cookie("unit2").length;
+ 		if("36"==$('#gydw').combobox("getValue")){
+ 			gydw="";
+ 		}else gydw=$.cookie("unit2");
+ 		if("360000"==$('#xzqhmc').combobox("getValue")){
+ 			xzqhmc="";
+ 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+ 	var data="sck_sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+ 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+
+ 	$("#akjfl").val()+"&bzls="+$("#bzls").val();
+ 	$.ajax({
+	 type : "POST",
+	 url : "/jxzhpt/xmsck/selectWqgzCount.do",
+	 dataType : 'json',
+	 data : data,
+	 success : function(msg){
+		 $("#wqgz1").html(msg);
+	 },
+});
 }
 
 function sckglAbgc(){
@@ -509,12 +606,7 @@ function sckglAbgc(){
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':function(){
-			 		var gydw=$('#gydw').combobox("getValue");
-			 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-			 			return "";
-			 		}else return $('#sbzt').val();
-			 	},
+			 	'sbzt':$('#sbzt').val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").val()
@@ -542,8 +634,10 @@ function sckglAbgc(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
+						return '<span style="color:grey;">未上报</span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
@@ -564,6 +658,35 @@ function sckglAbgc(){
 	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
+	var sck_sbthcd;
+ 	var gydw;
+ 	var xzqhmc;
+ 		if($.cookie("unit2").length==2){
+ 			sck_sbthcd=7;
+ 		}else  sck_sbthcd=$.cookie("unit2").length;
+ 		if("36"==$('#gydw').combobox("getValue")){
+ 			gydw="";
+ 		}else gydw=$.cookie("unit2");
+ 		if("360000"==$('#xzqhmc').combobox("getValue")){
+ 			xzqhmc="";
+ 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	$.ajax({
+	 type : "POST",
+	 url : "/jxzhpt/xmsck/selSckAbgcCount.do",
+	 dataType : 'json',
+	 data : data,
+	 success : function(msg){
+		 $("#abgc1").html(msg.sck_sbthcd);
+		 if(msg.sczlc!=null && msg.sczlc!=""){
+			 $("#abgc2").html(msg.sczlc);
+		 }else $("#abgc2").html("0");
+		 if(msg.scyhlc!=null && msg.scyhlc!=""){
+			 $("#abgc3").html(msg.scyhlc);
+		 }else $("#abgc3").html("0");
+	 },
+});
 }
 function sckglZhfz(){
 	$("#grid").datagrid({    
@@ -586,12 +709,7 @@ function sckglZhfz(){
 			 	'lxmc' : $('#lxmc').val(),
 			 	'xmnf':$("#xmnf").val(),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':function(){
-			 		var gydw=$('#gydw').combobox("getValue");
-			 		if(gydw=="11101360000" || gydw=='21101360000' || gydw=='36'){
-			 			return "";
-			 		}else return $('#sbzt').val();
-			 	},
+			 	'sbzt':$('#sbzt').val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").val()
@@ -619,8 +737,10 @@ function sckglZhfz(){
 				}
 			}},    
 			{field:'sck_sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
+				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7){
 					return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+					}else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
+						return '<span style="color:grey;">未上报</span>';
 					}else{
 					return '<span style="color:grey;">已上报</span>';
 				}
@@ -641,6 +761,35 @@ function sckglZhfz(){
 	        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
+	var sck_sbthcd;
+ 	var gydw;
+ 	var xzqhmc;
+ 		if($.cookie("unit2").length==2){
+ 			sck_sbthcd=7;
+ 		}else  sck_sbthcd=$.cookie("unit2").length;
+ 		if("36"==$('#gydw').combobox("getValue")){
+ 			gydw="";
+ 		}else gydw=$.cookie("unit2");
+ 		if("360000"==$('#xzqhmc').combobox("getValue")){
+ 			xzqhmc="";
+ 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	$.ajax({
+	 type : "POST",
+	 url : "/jxzhpt/xmsck/selSckZhfzCount.do",
+	 dataType : 'json',
+	 data : data,
+	 success : function(msg){
+		 $("#abgc1").html(msg.sck_sbthcd);
+		 if(msg.sczlc!=null && msg.sczlc!=""){
+			 $("#abgc2").html(msg.sczlc);
+		 }else $("#abgc2").html("0");
+		 if(msg.scyhlc!=null && msg.scyhlc!=""){
+			 $("#abgc3").html(msg.scyhlc);
+		 }else $("#abgc3").html("0");
+	 },
+});
 }
 //审查库审核
 function sckshWqgz(){

@@ -83,4 +83,5 @@ public interface Plan_zhfzServer {
 	boolean editZhfzStatus(Plan_zhfz jh);
 	boolean updateGkbg(Plan_zhfz jh);
 	boolean updateSjsgt(Plan_zhfz jh);
+	Plan_zhfz queryZhfzFjById(String id);
 }

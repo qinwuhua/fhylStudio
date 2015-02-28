@@ -59,7 +59,7 @@
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
-		<if test="shzt!='' and shzt!= null ">
+		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
 		</if>
 		<if test="lxjsdj!='' and lxjsdj!= null ">
@@ -268,5 +268,33 @@
 			and max(roadends) >=to_number(#{zdzh})
 		</if>
 	</select>
-	
+	<select id="selAbgcCount" parameterType="hashmap" resultType="jckabgc">
+		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where 1=1
+			and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="lxjsdj!='' and lxjsdj!= null ">
+			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like #{lxbm}||'%'
+		</if>
+	</select>
 </mapper>
