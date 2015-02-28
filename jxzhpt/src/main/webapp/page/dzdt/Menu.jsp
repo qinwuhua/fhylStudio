@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+<link rel='stylesheet' href='http://js.arcgis.com/3.12/esri/css/esri.css'>
 <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
@@ -19,15 +20,26 @@
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="js/Menu.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script rel='stylesheet' src='http://js.arcgis.com/3.12/init.js'></script>
 <script type="text/javascript">
+var map;
 $(function(){
 	var LeftHeight = $(window).height();
 	$('#tab01').css('height', LeftHeight-39);
 	loadDataunit();
 	$(".datagrid-header").css("display","none");
 	//createAnyChartXml();
+	dojo.addOnLoad(init);
 });
-
+function init() {
+    //创建地图对象
+    require(["esri/map","esri/layers/ArcGISDynamicMapServiceLayer", "dojo/domReady!"], function(Map,ArcGISDynamicMapServiceLayer) {
+        map = new Map("map");
+        //叠加图层
+        var layer = new ArcGISDynamicMapServiceLayer("http://211.101.37.251:6080/arcgis/rest/services/SXGXPTMAP/MapServer");
+        map.addLayer(layer);
+    });
+}
 function createAnyChartXml(){
 	//var right=window.document.getElementById("anychart_div"); //获取右侧frame对象
 	//var height=$(window).height();
@@ -80,8 +92,7 @@ function createAnyChartXml(){
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 					
 					 <div title="地图" style="overflow: hidden;" href="" iconCls="icon-note">
-						<img src="../../images/dt.jpg" style="height:100%;width:100%;"/>
-						<!--<iframe id="map2" name="map2" style="width: 100%; height: 100%; display: block"  marginwidth="0" marginheight="0" frameborder="0" src=""></iframe>-->
+						<div id="map" style="width:100%;height:500px;"></div>
 					</div>
 				</div>
 		    </div>
