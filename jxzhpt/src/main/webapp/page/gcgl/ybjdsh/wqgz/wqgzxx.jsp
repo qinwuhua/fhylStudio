@@ -19,7 +19,8 @@
 $(function(){
 	//$("#").text(data.);
 	var data=parent.obj1;
-	$("#qlmc").text(data.qlmc);$("#qlbm").text(data.qlbm);$("#qlzxzh").text(data.qlzxzh);$("#gydw").text(data.gydw);$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#qlkd").text(data.qlkd);
+	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);
+	$("#qlmc").text(data.qlmc);$("#qlbm").text(data.qlbh);$("#qlzxzh").text(data.qlzxzh);$("#gydw").text(data.gydw);$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#qlqk").text(data.qlkd);
 	$("#qlqc").text(data.qlqc);$("#kjzc").text(data.kjzc);$("#dkzdkj").text(data.dkzdkj);$("#jsdj").text(data.jsdj);$("#pddj").text(data.pddj);$("#xjgjnd").text(data.xjgjnd);
 	$("#akjfl").text(data.akjfl);$("#sbjgxs").text(data.sbjgxs);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
 	$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);
@@ -40,6 +41,13 @@ $(function(){
 	jiazaifujian(data1);
 });
 
+
+function downFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+		
+	}
+}
 </script>
 <style type="text/css">
 a {
@@ -544,8 +552,8 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"> <a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
-									href=""
-									style="color: #2C7ED1;">暂无附件</a></td>
+									href="#"
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -577,8 +585,8 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
-									href=""
-									style="color: #2C7ED1;">暂无附件</a></td>
+									href="#"
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -611,8 +619,8 @@ a {
 							<tr>
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
-									href=""
-									style="color: #2C7ED1;">暂无附件</a></td>
+									href="#"  
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>

@@ -366,7 +366,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -400,7 +400,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
@@ -434,7 +434,7 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
+									style="color: #000000;cursor:default; ">暂无附件</a></td>
 								<td align="left">
 									<table>
 										<tr>
