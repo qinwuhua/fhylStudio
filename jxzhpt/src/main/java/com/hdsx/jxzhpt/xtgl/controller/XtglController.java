@@ -31,6 +31,7 @@ import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
+import com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs;
 import com.hdsx.webutil.struts.BaseActionSupport;
 /**
  * 系统管理Controller层
@@ -51,6 +52,7 @@ public class XtglController extends BaseActionSupport{
 	private Bzbz bzbz;
 	private Param param;
 	private Plan_flwbzbz flwbzbz;
+	private Yhdzxcs yhdzxcs;
 	//用户实体
 	private Master master;
 	private String yhm;
@@ -877,6 +879,13 @@ public class XtglController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryYhdzxcs(){
+		try {
+			JsonUtils.write(xtglServer.queryYhdzxcs(), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public String getYhdw() {
 		return yhdw;
@@ -967,6 +976,12 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void setFlwbzbz(Plan_flwbzbz flwbzbz) {
 		this.flwbzbz = flwbzbz;
+	}
+	public Yhdzxcs getYhdzxcs() {
+		return yhdzxcs;
+	}
+	public void setYhdzxcs(Yhdzxcs yhdzxcs) {
+		this.yhdzxcs = yhdzxcs;
 	}
 	public String getId() {
 		return id;

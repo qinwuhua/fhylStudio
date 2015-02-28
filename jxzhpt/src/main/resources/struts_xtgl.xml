@@ -74,5 +74,6 @@
 	<action name="queryFlwbzbzById" class="xtglController" method="queryFlwbzbzById"></action>
 	<action name="updateFlwbzbz" class="xtglController" method="updateFlwbzbz"></action>
 	<action name="dropFlwbzbzById" class="xtglController" method="dropFlwbzbzById"></action>
+	<action name="queryYhdzxcs" class="xtglController" method="queryYhdzxcs"></action>
  </package>
 </struts>

@@ -266,6 +266,9 @@
 	<delete id="dropFlwbzbzById" parameterType="java.util.List">
 		delete from plan_flwbzbz where id=#{id}
 	</delete>
+	<select id="queryYhdzxcs" resultType="yhdzxcs">
+		select * from xtgl_yhdzxcs
+	</select>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
 		select roadcode id,#{roadcode}||#{xzqh} parent,
 		roadcode||'('||roadstart||'-'||roadends||')' name
