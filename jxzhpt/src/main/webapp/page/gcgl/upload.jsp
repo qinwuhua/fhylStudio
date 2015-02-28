@@ -17,7 +17,7 @@
 <style type="text/css">
 .as {
 	font-size: 14px;
-	color: #4E4E4E;
+	color: #3399CC;
 	text-decoration: none;
 }
 </style>
@@ -120,7 +120,7 @@
 			<a href="javascript:;" onClick="javascript:uploadifyUpload()"
 				class="as"> 开始上传 </a> &nbsp; <a
 				href="javascript:jQuery('#fileupload').uploadifyClearQueue()"
-				class="as"> 取消上传 </a> 
+				class="as"> 取消上传 </a> &nbsp;
             <a href="#" class="as" onclick="fanhui()" >返回 </a>
 		</p>
 		<ol class=files>
