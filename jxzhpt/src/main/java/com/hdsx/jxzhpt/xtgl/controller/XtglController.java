@@ -435,12 +435,14 @@ public class XtglController extends BaseActionSupport{
 		int count = xtglServer.selectDwListCount(unit);
 		List<Unit> list = xtglServer.selectDwList(unit);
 		int len=unit.getId().length();
+		System.out.println(unit.getId());
+		System.out.println(len);
 		for(int i=0;i<list.size();i++){
-			if(!unit.getId().equals(list.get(i).getId()))
+			if(!unit.getId().equals(list.get(i).getId())&&i!=0)
 			{
 				list.get(i).set_parentId(list.get(i).getParent());
 			}
-			if(list.get(i).getId().length()==len+11){
+			if(list.get(i).getUnit().length()>len+4+11){
 				list.get(i).setState("closed");
 			}
 		}

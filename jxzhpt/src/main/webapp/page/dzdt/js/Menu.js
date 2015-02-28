@@ -45,13 +45,13 @@ function loadDataunit(){
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){
-			selLines(row.id,row.parent);
+			addLine();
 			if(row.id.length>=14){
 				if(row.sjlx==1) drawLine(row.id);
 				else drawPoint(row.id);
 			}
 		},onClickRow:function(row){
-			selLines(row.id,row.parent);
+			addLine();
 			if(row.id.length>=14){
 				if(row.sjlx==1) drawLine(row.id);
 				else drawPoint(row.id);

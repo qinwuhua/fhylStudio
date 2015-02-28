@@ -90,7 +90,7 @@ function selBzbz(){
     		<tbody id="bzbz_table"></tbody>
     	</table>
     	<div style="width:700px;margin-top:10px;text-align:center;">
-    		<a id="dwgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true" >保　存</a>
+    		<a id="dwgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false" >保　存</a>
     	</div>
     </div>
 </div>
