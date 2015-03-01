@@ -146,12 +146,10 @@ text-decoration:none;
 </style>
 </head>
 <body>
-	<table align="left" width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr><td>
-		<div id="righttop">
+<div id="righttop">
 		<div id="p_top">路网项目>&nbsp;项目审查库管理>&nbsp;安保工程项目</div>
 		</div>
-		</td></tr>
+	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;">

@@ -102,6 +102,11 @@ public class Gcglwqgz implements Serializable {
 	private String kgzt;
 	private String jgzt;
 	private String wjgyy;
+	private String zbfzj;
+	private String nxdzj;
+	private String nbfzj;
+	private String yhtype;
+	private String zxdzj;
 	
 	private String sgxkwj;
 	private String jgtcwj;
@@ -114,6 +119,7 @@ public class Gcglwqgz implements Serializable {
 	private String wcqkmax;
 	private String wcqkmin;
 	
+	private String nf;
 	private  byte[] sgxkwjfile;
 	private  byte[] jgtcwjfile;
 	private  byte[] jgyswjfile;
@@ -726,6 +732,42 @@ public class Gcglwqgz implements Serializable {
 	}
 	public void setSfth(String sfth) {
 		this.sfth = sfth;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
+	}
+	public String getZbfzj() {
+		return zbfzj;
+	}
+	public void setZbfzj(String zbfzj) {
+		this.zbfzj = zbfzj;
+	}
+	public String getNxdzj() {
+		return nxdzj;
+	}
+	public void setNxdzj(String nxdzj) {
+		this.nxdzj = nxdzj;
+	}
+	public String getNbfzj() {
+		return nbfzj;
+	}
+	public void setNbfzj(String nbfzj) {
+		this.nbfzj = nbfzj;
+	}
+	public String getYhtype() {
+		return yhtype;
+	}
+	public void setYhtype(String yhtype) {
+		this.yhtype = yhtype;
+	}
+	public String getZxdzj() {
+		return zxdzj;
+	}
+	public void setZxdzj(String zxdzj) {
+		this.zxdzj = zxdzj;
 	}
 	
 	

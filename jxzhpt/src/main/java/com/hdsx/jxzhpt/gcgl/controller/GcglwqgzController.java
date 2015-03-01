@@ -475,6 +475,15 @@ public class GcglwqgzController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void selectWqgzbzzj(){
+		Gcglwqgz gcglwqgz1 = new Gcglwqgz();
+		gcglwqgz1=gcglwqgzServer.selectWqgzbzzj(gcglwqgz);
+		try {
+			JsonUtils.write(gcglwqgz1, getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	private byte [] inputStreamToByte(InputStream is) throws IOException { 
 	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
 	    byte [] arr = new byte[1024*10];

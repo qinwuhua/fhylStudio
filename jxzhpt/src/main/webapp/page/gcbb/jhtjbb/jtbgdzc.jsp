@@ -13,6 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="../js/common.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<style>
@@ -23,6 +24,7 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
+			getYearList();
 		});
 	</script>
 	<style type="text/css">
@@ -73,18 +75,7 @@ table thead tr td {
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>上报年份：</span>
-        						<select id="" style="width:80px;">
-        							<option>2014年</option>
-        							<option>2013年</option>
-        							<option>2012年</option>
-        							<option>2011年</option>
-        							<option>2010年</option>
-        							<option>2009年</option>
-        							<option>2008年</option>
-        							<option>2007年</option>
-        							<option>2006年</option>
-        							<option>2005年</option>
-        							<option>2004年</option>
+        						<select id="year" style="width:80px;">
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

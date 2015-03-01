@@ -254,8 +254,25 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		if(gcglwqgz2!=null){
 			gcglwqgz.setWcqkmax(gcglwqgz2.getWcqkmax());
 		}else{
-			gcglwqgz.setWcqkmax("101");
+			gcglwqgz.setWcqkmax("100");
 		}
+		return gcglwqgz;
+	}
+
+	@Override
+	public Gcglwqgz selectWqgzbzzj(Gcglwqgz gcglwqgz) {
+		Gcglwqgz gcglwqgz1 = queryOne("selectwqzj1", gcglwqgz);
+		Gcglwqgz gcglwqgz2 = queryOne("selectwqzj2", gcglwqgz);
+		Gcglwqgz gcglwqgz3 = queryOne("selectwqzj3", gcglwqgz);
+		Gcglwqgz gcglwqgz4 = queryOne("selectwqzj4", gcglwqgz);
+		if(gcglwqgz1!=null)
+		gcglwqgz.setZbfzj(gcglwqgz1.getZbfzj());
+		if(gcglwqgz2!=null)
+		gcglwqgz.setNbfzj(gcglwqgz2.getNbfzj());
+		if(gcglwqgz3!=null)
+		gcglwqgz.setNxdzj(gcglwqgz3.getNxdzj());
+		if(gcglwqgz4!=null)
+			gcglwqgz.setZxdzj(gcglwqgz4.getZxdzj());
 		return gcglwqgz;
 	}
 

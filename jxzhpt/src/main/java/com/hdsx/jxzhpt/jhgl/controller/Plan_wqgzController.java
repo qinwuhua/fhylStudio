@@ -166,7 +166,6 @@ public class Plan_wqgzController extends BaseActionSupport {
 	
 	public void editWqgzById(){
 		try {
-			System.out.println("计划开工时间"+jh.getJhkgsj());
 			JsonUtils.write(wqgzServer.editWqgzById(jh), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

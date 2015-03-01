@@ -97,7 +97,7 @@ function tjabgcyb(){
 	var data = "gcglabgc.wc_btz="+$("#tj_wc_btz").val()+"&gcglabgc.wc_stz="+$("#tj_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglabgc.bywc_c="+$("#tj_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+$("#tj_kgdl").val()+"&gcglabgc.qksm="+$("#tj_qksm").val()
-	+"&gcglabgc.sbsj="+sbsj+"&gcglabgc.sbyf="+$("#tj_sbyf").val()+"&gcglabgc.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	+"&gcglabgc.sbsj="+sbsj+"&gcglabgc.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglabgc.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -120,7 +120,7 @@ function xgabgcyb(){
 	var data = "gcglabgc.wc_btz="+$("#xg_wc_btz").val()+"&gcglabgc.wc_stz="+$("#xg_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglabgc.bywc_c="+$("#xg_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#xg_bywc_gl").val()+"&gcglabgc.kgdl="+$("#xg_kgdl").val()+"&gcglabgc.qksm="+$("#xg_qksm").val()
-	+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.sbyf="+$("#xg_sbyf").val();
+	+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.sbyf="+$("#xg_sbyf").find("option:selected").text();
 	//alert(data);
 	$.ajax({
 		type:'post',

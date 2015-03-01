@@ -40,7 +40,11 @@
 			success:function(msg){
 				wcqkmax=msg.wcqkmax;
 				wcqkmin=msg.wcqkmin;
-				$("#tj_wcqk").val(">"+msg.wcqkmin+",<"+msg.wcqkmax);
+				if(wcqkmax==100){
+					$("#tj_wcqk").val(">"+msg.wcqkmin+",<="+msg.wcqkmax);
+				}else{
+					$("#tj_wcqk").val(">"+msg.wcqkmin+",<"+msg.wcqkmax);
+				}
 				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
 			}
 		});	
@@ -58,6 +62,7 @@
 					$("#tj_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 				}
 				$("#tj_zjdw_btz").val(msg[0].cgsdwzj);
+				$("#tjbtz").text(msg[0].cgsdwzj);
 				chaxun();
 			}
 		});	
@@ -65,6 +70,7 @@
 	}	
 	function setZjDW(){
 		$("#tj_zjdw_btz").val($("#tj_sbyf").val());
+		$("#tjbtz").text($("#tj_sbyf").val());
 		chaxun();
 	}
 	
@@ -96,11 +102,20 @@
 			}
 		}
 		if(wcqkmax!=''){
-			if(Number(aa.value)>=Number(wcqkmax)){
-				alert("请输入小于"+wcqkmax+"的值");
-				$(aa).val('');
-				$("#tj_wcqk").val(">"+wcqkmin+",<"+wcqkmax);
-				$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+			if(wcqkmax==100){
+				if(Number(aa.value)>Number(wcqkmax)){
+					alert("请输入小于等于"+wcqkmax+"的值");
+					$(aa).val('');
+					$("#tj_wcqk").val(">"+wcqkmin+",<="+wcqkmax);
+					$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+				}
+			}else{
+				if(Number(aa.value)>=Number(wcqkmax)){
+					alert("请输入小于"+wcqkmax+"的值");
+					$(aa).val('');
+					$("#tj_wcqk").val(">"+wcqkmin+",<"+wcqkmax);
+					$("#tj_wcqk").attr("style",'color:#CCCCCC;width: 70px;');
+				}
 			}
 		}
 	}
@@ -153,7 +168,9 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input style="width: 50px" name="ZJ_BTZ" type="text" id="tj_zjdw_btz"  readonly="readonly"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：
+                                <span style="width: 50px" id="tjbtz"></span>
+                                <input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input style="width: 50px" name="ZJ_STZ" type="text" id="tj_zjdw_stz" />&nbsp;&nbsp;&nbsp;&nbsp;  -->
                                 其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='checkZJ1(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>

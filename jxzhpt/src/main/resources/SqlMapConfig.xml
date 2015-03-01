@@ -111,5 +111,7 @@
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_hsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
+	<!-- chc -->
+	<mapper resource="com/hdsx/jxzhpt/gcbb/config/gcbb.xml"/>
   </mappers>
 </configuration>

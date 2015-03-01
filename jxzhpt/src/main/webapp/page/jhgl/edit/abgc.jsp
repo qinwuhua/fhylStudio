@@ -345,7 +345,8 @@
 					class="style1">计划使用部补助金额</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="bbz"></span> 万元
+					<input type="text" id="bbz" onblur="zjSum()"/>万元
+					<br/><span id="bbzts"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划使用地方自筹资金
@@ -515,6 +516,7 @@
 	var bl;
 	var fd;
 	var bzzj;
+	var ts;
 	sbnf("editjhnf");
 	$.ajax({
 		type:'post',
@@ -534,10 +536,10 @@
 			$('#PFWH').val(data.pfwh);
 			$('#PFSJ').datebox('setValue',data.pfsj);
 			$('#JHZTZ').val(data.pfztz);
-			$('#bbz').html(data.jhsybbzje);
+			$('#bbz').val(data.jhsybbzje);
 			$('#DFZC').html(data.jhsydfzczj);
 			$('#JHXDWH').val(data.jhxdwh);
-			$('#SFSQABLBZ').html(data.sfsqablbz);
+			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
 			if(data.gkbgmc!=''){
@@ -571,6 +573,7 @@
 								bz=data.bz;
 								bl=data.bl;
 								fd=data.fd;
+								bzInit();
 							}
 						}); 
 						$('#gydwxx').html(sck.gydw);
@@ -605,7 +608,23 @@
 			});
 		}
 	});
-	
+	function bzInit(){
+		if($("#sfsqablbz").html()=="否"){
+			document.getElementById("ABLBZWH").disabled=true;
+		}
+		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
+		}
+		
+	}
 	function bzSum(){
 		var ztz;
 		if(isNaN($("#JHZTZ").val())){
@@ -616,17 +635,39 @@
 		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
 		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
-			$("#bbz").html(bzzj.toFixed(3));
+			ts=bzzj.toFixed(3);
+			$("#bbz").val(bzzj.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 			$("#DFZC").html((parseFloat($("#JHZTZ").val())-bzzj.toFixed(3)).toFixed(3));
 		}else{
-			$("#bbz").html(ztz.toFixed(3));
+			ts=ztz.toFixed(3);
+			$("#bbz").val(ztz.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 			$("#DFZC").html((parseFloat($("#JHZTZ").val())-ztz.toFixed(3)).toFixed(3));
 		}
 		if(parseFloat($("#JHZTZ").val())*100000>=500*100000){
-			$("#SFSQABLBZ").html("是");
+			$("#sfsqablbz").html("是");
+			document.getElementById("ABLBZWH").disabled=false;
 		}else{
-			$("#SFSQABLBZ").html("否");
+			$("#sfsqablbz").html("否");
+			$("#ABLBZWH").val("");
+			document.getElementById("ABLBZWH").disabled=true;
 		}
+	}
+	function zjSum(){
+		if($("#bbz").val()*1000>ts*1000){
+			alert("补助金额不能大于"+ts+"万元");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		if(isNaN($("#bbz").val()) || $("#bbz").val()==""){
+			alert("请填写补助金额");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		$("#DFZC").html((parseFloat($("#JHZTZ").val())-$("#bbz").val()).toFixed(3));
 	}
 	</script>
 </body>

@@ -146,12 +146,10 @@ text-decoration:none;
 </style>
 </head>
 <body>
-	<table align="left" width="100%" height="20%" cellpadding="0" cellspacing="0" border="0">
-		<tr><td>
-		<div id="righttop">
+	<div id="righttop">
 		<div id="p_top">路网项目>&nbsp;项目基础库管理>&nbsp;危桥改造项目</div>
 		</div>
-		</td></tr>
+	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
 			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
@@ -213,7 +211,7 @@ text-decoration:none;
 									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
-                              	<select id="akjfl" style="width:100px">
+                              	<select id="akjfl" style="width:85px">
                               		<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>

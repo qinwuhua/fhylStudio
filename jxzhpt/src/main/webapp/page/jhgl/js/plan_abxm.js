@@ -525,7 +525,7 @@ function editAbgc(){
 			'jh.pfwh':$('#PFWH').val(),
 			'jh.pfsj':$('#PFSJ').datebox('getValue'),
 			'jh.pfztz':$('#JHZTZ').val(),
-			'jh.jhsybbzje':$('#bbz').html(),
+			'jh.jhsybbzje':$('#bbz').val(),
 			'jh.jhsydfzczj':$('#DFZC').html(),
 			'jh.jhxdwh':$('#JHXDWH').val(),
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
