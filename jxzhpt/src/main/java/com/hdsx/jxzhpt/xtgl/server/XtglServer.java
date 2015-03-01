@@ -142,4 +142,6 @@ public interface XtglServer {
 	List<Yhdzxcs> queryYhdzxcs();
 	
 	List<Unit> selectLxQlDataList(String id);
+
+	List<TreeNode> loadBmbmList(Unit unit);
 }

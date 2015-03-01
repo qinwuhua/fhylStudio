@@ -488,4 +488,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<Yhdzxcs> queryYhdzxcs(){
 		return queryList("queryYhdzxcs");
 	}
+
+	@Override
+	public List<TreeNode> loadBmbmList(Unit unit) {
+		return queryList("loadBmbmList",unit);
+	}
 }

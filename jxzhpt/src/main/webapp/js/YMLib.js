@@ -1260,11 +1260,13 @@ function loadUnit(id, dwbm) {
 function loadBmbm(id, name) {
 	$('#' + id).combobox(
 			{
-				url : '/jxzhpt/xtgl/getBmbmTreeByName.do?yhm='
+				url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
 						+ encodeURI(encodeURI(name)),
 				valueField : 'bmid',
-				textField : 'name'
-
+				textField : 'name',
+				panelHeight:'auto',
+				multiple:true,
+				checkbox:true,
 			});
 }
 // 获取url中参数

@@ -61,6 +61,7 @@
 	<action name="selQxByRoleid" class="xtglController" method="selQxByRoleid"></action>
 	<action name="selBzbz" class="xtglController" method="selBzbz"></action>
 	<action name="updateBzbz" class="xtglController" method="updateBzbz"></action>
+	<action name="getBmbmTreeByName2" class="loadBmbmController" method="getBmbmTreeByName2"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>
