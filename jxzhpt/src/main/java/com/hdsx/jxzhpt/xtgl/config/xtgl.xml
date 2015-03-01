@@ -110,7 +110,7 @@
 		DELETE FROM xtgl_role_resource WHERE ROLEID in  ${roleid}
 	</delete>
 	<select id="selectDwList" parameterType="unit" resultType="unit">
-		select * from xtgl_department where id like rtrim(#{id})||'%' order by id 
+		select * from xtgl_department where id like rtrim(#{id})||'%'  order by id 
 	</select>
 	<select id="selectDwListCount" parameterType="unit" resultType="int">
 		select count(*) from xtgl_department where id like rtrim(#{id})||'%'

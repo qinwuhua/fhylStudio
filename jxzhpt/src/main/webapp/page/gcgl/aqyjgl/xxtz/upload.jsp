@@ -45,7 +45,7 @@
 			//和以下input的name属性一致 
 			'auto' : false,
 			//是否自动开始 
-			'multi' : true,
+			'multi' : true, 
 			//是否支持多文件上传 
 			//'buttonText' : '浏览...',
 			'buttonImg': '${pageContext.request.contextPath }/js/uploader/btn_view.png',
