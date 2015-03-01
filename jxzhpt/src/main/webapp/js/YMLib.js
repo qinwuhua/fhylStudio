@@ -1265,8 +1265,7 @@ function loadBmbm(id, name) {
 				valueField : 'bmid',
 				textField : 'name',
 				panelHeight:'auto',
-				multiple:true,
-				checkbox:true,
+				multiple:true
 			});
 }
 // 获取url中参数

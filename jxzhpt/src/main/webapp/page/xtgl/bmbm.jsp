@@ -94,10 +94,10 @@ function startSearch(){
 }
 $(function(){
 	startSearch();
-	/*loadBmbm("test", "开工状态");
+	/* loadBmbm("test", "开工状态");
 	$("#test2").click(function(){
 		alert($("#test").combobox("getValues")+"|"+$("#test").combobox("getText"));
-	});*/
+	}); */
 });
 </script>
 <div border="false">
@@ -107,8 +107,8 @@ $(function(){
 	</div>
 </div>
 <div region="center" border="false" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;height:700px;" onselectstart="return false">
-	<input id="test"/>
-	<input type="button" value="s" id="test2"/>
+	<!-- <input id="test"/>
+	<input type="button" value="s" id="test2"/> -->
 	<table id="xtgl_dwgl_table"></table>
 </div>
 </div>
