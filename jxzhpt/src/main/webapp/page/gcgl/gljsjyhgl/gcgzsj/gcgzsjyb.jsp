@@ -17,10 +17,6 @@
 	<script type="text/javascript">
 		$(function(){
 			showYBlist();
-			if(parent.obj1.jhsybbzje=='')
-				$("#jhxdzj").text('0');
-			else
-				$("#jhxdzj").text(parent.obj1.jhsybbzje);
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
@@ -44,6 +40,10 @@
 						$("#nxdzj").text('0');
 					else
 						$("#nxdzj").text(msg.nxdzj);
+					if(msg.zxdzj=='')
+						$("#jhxdzj").text('0');
+					else
+						$("#jhxdzj").text(msg.zxdzj);
 				}
 			});	
 		}

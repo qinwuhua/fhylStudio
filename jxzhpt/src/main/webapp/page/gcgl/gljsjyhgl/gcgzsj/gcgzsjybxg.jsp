@@ -33,12 +33,18 @@
 				dataType:'json',
 				success:function(msg){
 					for ( var i = 0; i < msg.length; i++){
-						$("#xg_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+						$("#xg_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 					}
 					$("#xg_sbyf").val(parent.obj.sbyf);
+					$("#xg_zycgs").val($("#xg_sbyf").val());
+					$("#tjbtz").text($("#xg_sbyf").val());
 				}
 			});	
 	}
+		function setZjDW(){
+			$("#xg_zycgs").val($("#xg_sbyf").val());
+			$("#tjbtz").text($("#xg_sbyf").val());
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -165,8 +171,10 @@ a:active {
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5"
                                 class="style1">
-                                中央车购税：<input name="ZYCGS" type="text" id="xg_zycgs" onblur="CheckCGS(this.value)" style="width: 30px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                                地方补助：<input name="DFBZ" type="text" id="xg_dfbz"  style="width: 30px;"/>&nbsp;&nbsp;&nbsp;&nbsp; 银行贷款：<input name="YHDK" type="text" id="xg_yhdk"  style="width: 30px;"/>&nbsp;&nbsp;&nbsp;&nbsp;省厅贴息：<input name="STTX" type="text" id="xg_sttxdk"  style="width: 30px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其他投资：<input name="QTTZ" type="text" id="xg_qtzj"  style="width: 30px;"/>
+                                中央车购税：
+                                <span style="width: 50px" id="tjbtz"></span>万元
+                                <input name="ZYCGS" type="hidden" id="xg_zycgs"  style="width: 30px;"/>&nbsp;&nbsp;
+                                地方补助：<input name="DFBZ" type="text" id="xg_dfbz"  style="width: 30px;"/>万元&nbsp;&nbsp; 银行贷款：<input name="YHDK" type="text" id="xg_yhdk"  style="width: 30px;"/>万元&nbsp;&nbsp;省厅贴息：<input name="STTX" type="text" id="xg_sttxdk"  style="width: 30px;"/>万元&nbsp;&nbsp; 其他投资：<input name="QTTZ" type="text" id="xg_qtzj"  style="width: 30px;"/>万元
                             </td>
                         </tr>
                        
@@ -227,7 +235,7 @@ a:active {
                         </td>
                         <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                             border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                            <select id="xg_sbyf"></select>
+                            <select id="xg_sbyf" onchange="setZjDW()"></select>
                         </td>
                     </tr>
                     </table>

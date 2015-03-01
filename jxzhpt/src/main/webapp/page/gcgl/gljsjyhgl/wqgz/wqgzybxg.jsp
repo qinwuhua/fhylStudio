@@ -40,16 +40,15 @@
 					for ( var i = 0; i < msg.length; i++){
 						$("#xg_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 					}
-					$("#xg_zjdw_btz").val(msg[0].cgsdwzj);
-					$("#tjbtz").text(msg[0].cgsdwzj);
 					$("#xg_sbyf").val(parent.obj.sbyf);
+					$("#xg_zjdw_btz").val($("#xg_sbyf").val());
+					$("#tjbtz").text($("#xg_sbyf").val());
 				}
 			});	
 	}
 		function setZjDW(){
 			$("#xg_zjdw_btz").val($("#xg_sbyf").val());
 			$("#tjbtz").text($("#xg_sbyf").val());
-		
 		}
 	</script>
 	<style type="text/css">
