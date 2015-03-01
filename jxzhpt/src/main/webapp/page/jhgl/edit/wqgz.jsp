@@ -608,14 +608,19 @@
 		}
 	});
 	function bzInit(){
+		if($("#sfsqablbz").html()=="否"){
+			document.getElementById("ablbzwh").disabled=true;
+		}
 		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
 		bzzj=(parseFloat($("#qlqc").html())*1000000000000000*parseFloat($("#qlqk").html())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-		if(ztz*1000000000000000>=bzzj*1000000000000000){
-			ts=bzzj.toFixed(3);
-			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
-		}else{
-			ts=ztz.toFixed(3);
-			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
 		}
 	}
 	function bzSum(){
@@ -641,8 +646,11 @@
 		
 		if(parseFloat($("#jhztz").val())*100000>=500*100000){
 			$("#sfsqablbz").html("是");
+			document.getElementById("ablbzwh").disabled=false;
 		}else{
 			$("#sfsqablbz").html("否");
+			$("#ablbzwh").val("");
+			document.getElementById("ablbzwh").disabled=true;
 		}
 	}
 	function zjSum(){
