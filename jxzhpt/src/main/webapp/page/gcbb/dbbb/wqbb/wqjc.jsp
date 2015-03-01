@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/wqbb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
@@ -21,10 +22,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			showAlljc();
+			loadUnit("gydw",$.cookie("unit"));
+			//showAlljc();
 		});
 	</script>
 	<style type="text/css">
@@ -41,12 +40,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;对部报表>&nbsp;危桥基础库报表</div>
@@ -75,13 +84,42 @@ a:active {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                    <div>
-				<table id="datagrid" width="100%">
-				</table>
-				</div>
+               <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<div style="width:100%;height:150px">
+                		<div  class="easyui-layout" fit="true" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="3000px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><!-- 省统筹养护大中修工程项目进展情况表  --></caption>
+								<thead>
+									<tr>
+										<td>管养单位</td>
+										<td>行政区划代码 </td>
+										<td>行政区划名称</td>
+										<td>路线编码</td>
+										<td>路线名称 </td>
+										<td>桥梁编码</td>
+										<td>桥梁名称 </td>
+										<td>桥梁中心桩号</td>
+										<td>修建/改建年度</td>
+										<td>桥梁全长</td>
+										<td>桥梁全宽 </td>
+										<td>跨径总长</td>
+										<td>单孔最大跨径</td>
+										<td>按跨径分类</td>
+										<td>上部结构形式</td>
+										<td>评定等级</td>
+										<td>病害内容</td>
+										<td>备注</td>
+								</thead>
+								<tbody>
+								
+								</tbody>
+							</table>
+							</div>
+						</div>
+					</div>
 				</td>
-				</tr>
+			</tr>
 		</table>
 	</div>
 </body>

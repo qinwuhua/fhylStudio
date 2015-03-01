@@ -26,4 +26,5 @@
 <include file="struts_gcgl.xml"></include>
 <include file="struts_lwxm.xml"></include>
 <include file="struts_jhgl.xml"></include>
+<include file="struts_gcbb.xml"></include>
 </struts>
