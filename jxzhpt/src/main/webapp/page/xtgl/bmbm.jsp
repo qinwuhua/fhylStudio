@@ -93,11 +93,11 @@ function startSearch(){
 	$("#dwgl_layout").layout();
 }
 $(function(){
-	//startSearch();
-	loadBmbm("test", "开工状态");
+	startSearch();
+	/*loadBmbm("test", "开工状态");
 	$("#test2").click(function(){
 		alert($("#test").combobox("getValues")+"|"+$("#test").combobox("getText"));
-	});
+	});*/
 });
 </script>
 <div border="false">
