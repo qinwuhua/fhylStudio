@@ -94,6 +94,12 @@ $(function(){
 		]]
 	});
 });
+$(function(){
+	var year=new Date().getFullYear();
+	for(var i=year;i>=2000;i--){
+		$("#unit").append("<option value="+'i'+">"+i+"年</option>");
+	}
+});
 </script>
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
@@ -110,11 +116,6 @@ $(function(){
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
  							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
