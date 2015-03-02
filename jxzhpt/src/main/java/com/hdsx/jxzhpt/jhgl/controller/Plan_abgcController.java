@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
@@ -44,6 +45,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_zhfzServer zhfzServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
+	private Plan_upload uploads;
 	private String flag;//标记是哪个模块
 	private String fileuploadFileName;
 	private File fileupload;
@@ -229,18 +231,18 @@ public class Plan_abgcController extends BaseActionSupport{
 						fs=new FileInputStream(this.uploadGk);
 						data=new byte[(int) this.uploadGk.length()];
 						fs.read(data);
-					   jh.setGkbgmc(uploadGkFileName);
-					   jh.setGkbgdata(data);
-					   if(abgcServer.updateGkbg(jh))
+					   uploads.setFilename(uploadGkFileName);
+					   uploads.setFiledata(data);
+					   if(abgcServer.updateGkbg(uploads))
 						   response.getWriter().print(uploadGkFileName+"导入成功");
 					   else response.getWriter().print(uploadGkFileName+"导入失败");
 				}else{
 					fs=new FileInputStream(this.uploadSjt);
 					data=new byte[(int) this.uploadSjt.length()];
 					fs.read(data);
-					jh.setSjsgtmc(uploadSjtFileName);
-					jh.setSjsgtdata(data);
-					if(abgcServer.updateSjsgt(jh))
+					uploads.setFilename(uploadSjtFileName);
+					uploads.setFiledata(data);
+					if(abgcServer.updateSjsgt(uploads))
 						response.getWriter().print(uploadSjtFileName+"导入成功");
 					   else response.getWriter().print(uploadSjtFileName+"导入失败");
 				}	
@@ -369,9 +371,14 @@ public class Plan_abgcController extends BaseActionSupport{
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
 	}
 	
 }

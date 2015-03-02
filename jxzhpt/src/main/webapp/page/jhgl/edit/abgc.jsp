@@ -461,7 +461,7 @@
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'jh.id':xxId,
+			'uploads.parent':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
 			$('#xz_gkbg').html(response);
@@ -495,7 +495,7 @@
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'jh.id':xxId,
+			'uploads.parent':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
 			$('#xz_sjsgt').html(response);
