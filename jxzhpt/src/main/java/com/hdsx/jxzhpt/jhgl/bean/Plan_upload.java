@@ -9,7 +9,7 @@ public class Plan_upload {
 		private String filename;
 		private byte[] filedata;
 		private String filetype;
-		private String parent;
+		private String parentid;
 		public String getId() {
 			return id;
 		}
@@ -34,11 +34,11 @@ public class Plan_upload {
 		public void setFiletype(String filetype) {
 			this.filetype = filetype;
 		}
-		public String getParent() {
-			return parent;
+		public String getParentid() {
+			return parentid;
 		}
-		public void setParent(String parent) {
-			this.parent = parent;
+		public void setParentid(String parentid) {
+			this.parentid = parentid;
 		}
 		
 		

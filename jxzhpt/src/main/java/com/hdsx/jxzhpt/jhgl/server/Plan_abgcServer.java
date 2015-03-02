@@ -87,5 +87,7 @@ public interface Plan_abgcServer {
 //	boolean updateSjsgt(Plan_abgc jh);
 	boolean updateGkbg(Plan_upload uploads);
 	boolean updateSjsgt(Plan_upload uploads);
-	Plan_abgc queryFjById(String id);
+	Plan_upload queryFjById(String id);
+	List<Plan_upload> queryFjByParentId(Plan_upload uploads);
+	boolean deleteFile(Plan_upload uploads);
 }

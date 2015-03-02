@@ -264,16 +264,22 @@
  		update plan_abgc set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
  	</update>  -->
  	<insert id="insertGkbg" parameterType="plan_upload">
- 		insert into plan_upload(filename,filedata,parent,filetype)
- 		 values(#{filename},#{filedata},#{parent},'工可报告')
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{parentid},'工可报告')
  	</insert>
 	<insert id="insertSjsgt" parameterType="plan_upload">
- 		insert into plan_upload(filename,filedata,parent,filetype)
- 		 values(#{filename},#{filedata},#{parent},'设计施工图')
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{parentid},'设计施工图')
  	</insert>
- 	<select id="queryAbgcFjById"  parameterType="string"  resultType="plan_abgc">
-		select  gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from Plan_Abgc jh where jh.id=#{id}
+ 	<select id="queryFjById"  parameterType="plan_upload"  resultType="plan_upload">
+		select  * from plan_upload where id=#{id}
 	</select>
+	<select id="queryFjByParentId"  parameterType="plan_upload"  resultType="plan_upload">
+		select  id,filename,parentid,filetype from plan_upload where parentid=#{id} order by filename desc
+	</select>
+	<delete id="deleteFile" parameterType="plan_upload" >
+		delete from plan_upload where id=#{id}
+	</delete>
 	<select id="queryTsdq" resultType="treenode">
 		select t.areacode as id,t.areaname as text from BT_SPECIALAREA t
 

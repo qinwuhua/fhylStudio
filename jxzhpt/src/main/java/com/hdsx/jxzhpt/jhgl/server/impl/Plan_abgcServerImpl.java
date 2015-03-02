@@ -160,11 +160,19 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return insert("insertSjsgt", uploads)>0;
 	}
 	@Override
-	public Plan_abgc queryFjById(String id) {
-		return queryOne("queryAbgcFjById", id);
+	public Plan_upload queryFjById(String id) {
+		return queryOne("queryFjById", id);
 	}
 	@Override
 	public List<TreeNode> queryTsdq() {
 		return queryList("queryTsdq");
+	}
+	@Override
+	public List<Plan_upload> queryFjByParentId(Plan_upload uploads) {
+		return queryList("queryFjByParentId",uploads);
+	}
+	@Override
+	public boolean deleteFile(Plan_upload uploads) {
+		return delete("deleteFile", uploads)>0 ? true:false;
 	}
 }

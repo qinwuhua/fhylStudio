@@ -254,25 +254,15 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void downAbgcFile(){
         try {
-        	Plan_abgc abgc = abgcServer.queryFjById(jh.getId());
+        	Plan_upload file= abgcServer.queryFjById(uploads.getId());
         	HttpServletResponse response = getresponse();
         	response.setContentType("application/x-download"); 
-        	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
-        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getGkbgdata();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= file.getFiledata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-        	}else{
-        		OutputStream out= response.getOutputStream();
-        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getSjsgtdata();
-                out.write(buffer);
-                out.flush();
-                out.close();
-        	}
-        	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -288,6 +278,22 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryFjByParentId(){
+		List<Plan_upload> filelist = abgcServer.queryFjByParentId(uploads);
+		try {
+			JsonUtils.write(filelist, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteFile(){
+		try {
+			JsonUtils.write(abgcServer.deleteFile(uploads),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// get set
 	public int getPage() {
 		return page;
