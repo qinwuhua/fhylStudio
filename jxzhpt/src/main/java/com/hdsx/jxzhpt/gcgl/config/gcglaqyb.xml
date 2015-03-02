@@ -7,9 +7,6 @@
 		select m.*,rownum rn from (
 			select * from GCGL_AQGLYBB 
 			where 1=1
-			<if test="uploadepartment != null and  uploadepartment != ''">
-			and uploadepartment like '%'||trim(#{uploadepartment})||'%'
-			</if>
 			<if test="reportmonth != null and  reportmonth != ''">
 			and reportmonth like '%'||trim(#{reportmonth})||'%'
 			</if>
@@ -17,7 +14,7 @@
 			and filename like '%'||trim(#{filename})||'%'
 			</if>
 			<if test="sendingunits != null and  sendingunits != ''">
-			and sendingunits like '%'||trim(#{sendingunits})||'%'
+			${sendingunits}
 			</if>
 		order by to_number(substr(reportmonth,0,4))desc,to_number(replace(reportmonth,'-','')) desc
 		)  m
@@ -29,18 +26,15 @@
 	<select id="selectaqyblistCount" parameterType="gcglaqyb" resultType="int">
 		select count(*) from GCGL_AQGLYBB 
 		where 1=1
-		<if test="uploadepartment != null and  uploadepartment != ''">
-			and uploadepartment like '%'||trim(#{uploadepartment})||'%'
-			</if>
-			<if test="reportmonth != null and  reportmonth != ''">
+		<if test="reportmonth != null and  reportmonth != ''">
 			and reportmonth like '%'||trim(#{reportmonth})||'%'
-			</if>
-			<if test="filename != null and  filename != ''">
+		</if>
+		<if test="filename != null and  filename != ''">
 			and filename like '%'||trim(#{filename})||'%'
-			</if>
-			<if test="sendingunits != null and  sendingunits != ''">
-			and sendingunits like '%'||trim(#{sendingunits})||'%'
-			</if>
+		</if>
+		<if test="sendingunits != null and  sendingunits != ''">
+			${sendingunits}
+		</if>
 	</select>
 	<update id="insertAqybb" parameterType="gcglaqyb">
 		update GCGL_AQGLYBB set sendingunits=#{sendingunits},uploadpeople=#{uploadpeople},uploadtime=#{uploadtime},filename=#{filename},uploadepartment=#{uploadepartment},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth},uploadpath=#{uploadpath}

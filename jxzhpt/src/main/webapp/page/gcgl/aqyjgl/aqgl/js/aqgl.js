@@ -36,8 +36,6 @@ function closes(str){
 }
 function showAll(){
 	var gydw=$("#gydw").combobox("getValue");
-	if(gydw=='36')
-		gydw='';
 	var wjmc=$("#wjmc").val();
 	var ddlyear=+$("#ddlYear").val();
 	var ddlmonth=$("#ddlMonth").val();
