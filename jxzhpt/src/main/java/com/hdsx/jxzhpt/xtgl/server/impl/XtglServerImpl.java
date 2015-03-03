@@ -502,6 +502,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	
 	public Yhdzxcs queryYhdzxcsById(String id){
 		return queryOne("queryYhdzxcsById", id);
+		
 	}
 
 	@Override
