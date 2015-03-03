@@ -110,7 +110,7 @@
 		DELETE FROM xtgl_role_resource WHERE ROLEID in  ${roleid}
 	</delete>
 	<select id="selectDwList" parameterType="unit" resultType="unit">
-		select * from xtgl_department where id like rtrim(#{id})||'%' order by id 
+		select * from xtgl_department where id like rtrim(#{id})||'%'  order by unit 
 	</select>
 	<select id="selectDwListCount" parameterType="unit" resultType="int">
 		select count(*) from xtgl_department where id like rtrim(#{id})||'%'
@@ -159,10 +159,10 @@
 		where t.id=b.parent(+)
 	</select>
 	<select id="selectXzqhListCount" parameterType="unit" resultType="int">
-		select count(*) from xtgl_xzqh
+		select count(*) from xtgl_xzqh where id like #{id}||'%'
 	</select>
 	<select id="selectXzqhList" parameterType="unit" resultType="unit">
-		select * from xtgl_xzqh order by bmid
+		select * from xtgl_xzqh where id like #{id}||'%' order by bmid
 	</select>
 	<select id="checkXzqhCfById" parameterType="unit" resultType="unit">
 		select * from xtgl_xzqh where id=#{id}
@@ -290,4 +290,15 @@
 		and ldlx!='2.下行' and ldlx!='4.匝道'
 		order by roadcode,roadstart
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	<select id="loadBmbmList" parameterType="unit" resultType="treenode">
+    	select t.*,(select name from xtgl_bmbm where id=t.parent) text from xtgl_bmbm t order by id 
+	</select>
+	
 </mapper>

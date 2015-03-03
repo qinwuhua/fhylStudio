@@ -212,5 +212,16 @@ where  t1.spzt='1'
 	 	where 1=1 and jhid=#{jhid}
 	 	and	to_date(sbyf,'yyyy-mm')&gt;to_date(#{sbyf},'yyyy-mm') 
 	 </select>	 
-	 
+	 <select id="selectwqzj1" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(cgsdwzj) zbfzj from gcgl_cgs where jhid=#{jhid}
+	 </select>
+	  <select id="selectwqzj2" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(cgsdwzj) nbfzj from gcgl_cgs where jhid=#{jhid} and tbyf like #{nf}||'%'
+	 </select>
+	  <select id="selectwqzj3" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(xdzj) nxdzj from PLAN_ZJXD where xmid=#{jhid} and xdnf like #{nf}||'%'
+	 </select>
+	 <select id="selectwqzj4" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select sum(xdzj) zxdzj from PLAN_ZJXD where xmid=#{jhid}
+	 </select>
 </mapper>

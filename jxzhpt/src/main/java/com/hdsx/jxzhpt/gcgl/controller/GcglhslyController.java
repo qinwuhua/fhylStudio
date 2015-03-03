@@ -67,6 +67,7 @@ public class GcglhslyController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	
+	
 	public Integer getSfsj() {
 		return sfsj;
 	}

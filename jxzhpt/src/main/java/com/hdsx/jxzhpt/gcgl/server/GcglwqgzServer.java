@@ -60,5 +60,7 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz selectWqgzwcqk(Gcglwqgz gcglwqgz);
 
+	Gcglwqgz selectWqgzbzzj(Gcglwqgz gcglwqgz);
+
 
 }

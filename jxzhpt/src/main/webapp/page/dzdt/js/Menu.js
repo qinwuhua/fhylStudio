@@ -10,7 +10,7 @@ function loadDataunit(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectXzqhList.do',
 		queryParams : {
-			"unit.id":$.cookie("unit")
+			"unit.id":$.cookie("dist2")
 		},
 		idField:'id',
 		treeField:'name',
@@ -45,16 +45,14 @@ function loadDataunit(){
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){
-			alert(row.id+"|"+row.parent);
-			if(row.id.length>=14){
-				if(row.sjlx==1) drawLine(row.id);
-				else drawPoint(row.id);
+			addLine();
+			if(row.cj=="lx"){
+				addLine();
 			}
 		},onClickRow:function(row){
-			alert(row.id+"|"+row.parent);
-			if(row.id.length>=14){
-				if(row.sjlx==1) drawLine(row.id);
-				else drawPoint(row.id);
+			addLine();
+			if(row.cj=="lx"){
+				addLine();
 			}
 		}
 	});

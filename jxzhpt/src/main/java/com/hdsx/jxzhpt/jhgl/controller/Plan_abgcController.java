@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
@@ -44,6 +45,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_zhfzServer zhfzServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
+	private Plan_upload uploads;
 	private String flag;//标记是哪个模块
 	private String fileuploadFileName;
 	private File fileupload;
@@ -229,18 +231,18 @@ public class Plan_abgcController extends BaseActionSupport{
 						fs=new FileInputStream(this.uploadGk);
 						data=new byte[(int) this.uploadGk.length()];
 						fs.read(data);
-					   jh.setGkbgmc(uploadGkFileName);
-					   jh.setGkbgdata(data);
-					   if(abgcServer.updateGkbg(jh))
+					   uploads.setFilename(uploadGkFileName);
+					   uploads.setFiledata(data);
+					   if(abgcServer.updateGkbg(uploads))
 						   response.getWriter().print(uploadGkFileName+"导入成功");
 					   else response.getWriter().print(uploadGkFileName+"导入失败");
 				}else{
 					fs=new FileInputStream(this.uploadSjt);
 					data=new byte[(int) this.uploadSjt.length()];
 					fs.read(data);
-					jh.setSjsgtmc(uploadSjtFileName);
-					jh.setSjsgtdata(data);
-					if(abgcServer.updateSjsgt(jh))
+					uploads.setFilename(uploadSjtFileName);
+					uploads.setFiledata(data);
+					if(abgcServer.updateSjsgt(uploads))
 						response.getWriter().print(uploadSjtFileName+"导入成功");
 					   else response.getWriter().print(uploadSjtFileName+"导入失败");
 				}	
@@ -252,25 +254,15 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void downAbgcFile(){
         try {
-        	Plan_abgc abgc = abgcServer.queryFjById(jh.getId());
+        	Plan_upload file= abgcServer.queryFjById(uploads.getId());
         	HttpServletResponse response = getresponse();
         	response.setContentType("application/x-download"); 
-        	if("gkbg".equals(jh.getGkbgmc())){
         		OutputStream out = response.getOutputStream();
-        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getGkbgdata();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= file.getFiledata();
                 out.write(buffer);
                 out.flush();
                 out.close();
-        	}else{
-        		OutputStream out= response.getOutputStream();
-        		response.addHeader("Content-Disposition", "attachment;filename="+new String(abgc.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= abgc.getSjsgtdata();
-                out.write(buffer);
-                out.flush();
-                out.close();
-        	}
-        	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -286,6 +278,22 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryFjByParentId(){
+		List<Plan_upload> filelist = abgcServer.queryFjByParentId(uploads);
+		try {
+			JsonUtils.write(filelist, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteFile(){
+		try {
+			JsonUtils.write(abgcServer.deleteFile(uploads),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// get set
 	public int getPage() {
 		return page;
@@ -369,9 +377,14 @@ public class Plan_abgcController extends BaseActionSupport{
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
 	}
 	
 }

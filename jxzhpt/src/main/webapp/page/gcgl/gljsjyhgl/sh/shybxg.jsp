@@ -41,12 +41,20 @@
 			dataType:'json',
 			success:function(msg){
 				for ( var i = 0; i < msg.length; i++){
-					$("#xg_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+					$("#xg_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 				}
 				$("#xg_sbyf").val(parent.obj.sbyf);
+				$("#xg_zjdw_btz").val($("#xg_sbyf").val());
+				$("#tjbtz").text($("#xg_sbyf").val());
 			}
 		});	
 }
+	function setZjDW(){
+		alert("xx");
+		$("#xg_zjdw_btz").val($("#xg_sbyf").val());
+		$("#tjbtz").text($("#xg_sbyf").val());
+	
+	}
 </script>
 <style type="text/css">
 <!--
@@ -83,7 +91,7 @@ text-decoration: none;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input type="text" id="xg_wc_btz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                部投资：<input type="text" id="xg_wc_btz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 <!--                                 省投资：<input type="text" id="xg_wc_stz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;  -->
                                 其他投资：<input type="text" id="xg_wc_qttz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
@@ -96,7 +104,9 @@ text-decoration: none;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input name="ZJ_BTZ" type="text" id="xg_zjdw_btz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：
+                                <span style="width: 50px" id="tjbtz"></span>
+                                <input style="width: 50px" name="ZJ_BTZ" type="hidden" id="xg_zjdw_btz" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input name="ZJ_STZ" type="text" id="xg_zjdw_stz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;  -->
                                 其他投资：<input type="text" id="xg_zjdw_qttz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
@@ -181,7 +191,7 @@ text-decoration: none;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
-                                <select id="xg_sbyf"></select>
+                                <select id="xg_sbyf" onchange="setZjDW()"></select>
                             </td>
                         </tr>
                     </table>

@@ -11,6 +11,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/zhmb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
@@ -21,10 +22,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			$('#gydw').combotree({   
-				url:"js/gydw.json"
-			}); 
-			showAllwc();
+			loadUnit("gydw",$.cookie("unit"));
 		});
 	</script>
 	<style type="text/css">
@@ -41,12 +39,22 @@ a:hover {
 a:active {
  text-decoration: none;
 }
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
-<body>
+<body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;对部报表>&nbsp;灾害进度库完成信息模板</div>

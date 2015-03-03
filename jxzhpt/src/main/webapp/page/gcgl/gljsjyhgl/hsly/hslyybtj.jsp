@@ -36,10 +36,16 @@
 					dataType:'json',
 					success:function(msg){
 						for ( var i = 0; i < msg.length; i++){
-							$("#tj_sbyf").append("<option value="+msg[i].tbyf+">"+msg[i].tbyf+"</option>");
+							$("#tj_sbyf").append("<option value="+msg[i].cgsdwzj+">"+msg[i].tbyf+"</option>");
 						}
+						$("#tj_bfzj").val(msg[0].cgsdwzj);
+						$("#tjbtz").text(msg[0].cgsdwzj);
 					}
 				});
+			}
+			function setZjDW(){
+				$("#tj_bfzj").val($("#tj_sbyf").val());
+				$("#tjbtz").text($("#tj_sbyf").val());
 			}
 		//function
 	</script>
@@ -78,7 +84,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="BFZJ" type="text" id="tj_bfzj"  style="width: 50px;"/>
+                                <span style="width: 50px" id="tjbtz"></span>
+                                <input name="BFZJ" type="hidden" id="tj_bfzj"  style="width: 50px;"/>
                             </td>
                             </tr>
                              <tr style="height: 35px;">
@@ -152,7 +159,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
-                                <select id="tj_sbyf"></select>
+                                <select id="tj_sbyf" onchange="setZjDW()"></select>
                             </td>
                         </tr>
                     </table>

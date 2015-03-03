@@ -18,6 +18,7 @@
 <script type="text/javascript"> 
 $(function(){
 	var data=parent.obj1;//$("#").text(data.);
+	$("#sjwgsj").text(data.sjwgsj);
 	$("#xmmc").text(data.xmmc);$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#jhnf").text(data.jhnf);$("#jsgmhj").text(data.jsgmhj);
 	$("#jsgmy").text(data.jsgmy);$("#jsgme").text(data.jsgme);$("#jsgms").text(data.jsgms);$("#jsgmf").text(data.jsgmf);$("#jsgmdldq").text(data.jsgmdldq);
 	$("#ztz").text(data.ztz);$("#zytz").text(data.zytz);$("#dfta").text(data.dfta);$("#gndk").text(data.gndk);$("#lywz").text(data.lywz);
@@ -337,14 +338,12 @@ a {
                         width: 19%; text-align: left; padding-left: 10px;">
                         <span id="gsztz"></span>
                     </td>
-                    <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
-                        background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-                        &nbsp;
-                    </td>
-                    <td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                        width: 18%; text-align: left; padding-left: 10px;">
-                        &nbsp;
-                    </td>
+                   <td
+					style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 16%; padding-right: 5px;">
+					实际完工时间</td>
+				<td
+					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;  text-align: left; padding-left: 10px;">
+					<span id="sjwgsj"></span>&nbsp;</td>
                 </tr>
                 <tr style="height: 25px;">
                     <td colspan="6" style="border-style: solid none solid solid; border-width: 1px; border-color: #C0C0C0;

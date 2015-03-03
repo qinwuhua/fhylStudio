@@ -520,7 +520,7 @@ function editZhfz(){
 			'jh.pfwh':$('#pfwh').val(),
 			'jh.pfsj':$('#pfsj').datebox('getValue'),
 			'jh.pfztz':$('#jhztz').val(),
-			'jh.jhsybzje':$('#bbz').html(),
+			'jh.jhsybzje':$('#bbz').val(),
 			'jh.jhsydfzcje':$('#zfzc').html(),
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ablbzwh').val(),

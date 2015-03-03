@@ -150,4 +150,5 @@ public interface XtglServer {
 	boolean updateYhdzxcs(Yhdzxcs yhdzxcs);
 
 	List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs);
+	List<TreeNode> loadBmbmList(Unit unit);
 }

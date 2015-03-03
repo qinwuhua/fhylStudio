@@ -345,7 +345,8 @@
 					class="style1">计划使用部补助金额</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="bbz"></span> 万元
+					<input type="text" id="bbz" onblur="zjSum()"/>万元
+					<br/><span id="bbzts"></span>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划使用地方自筹资金
@@ -384,10 +385,21 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="fileQueue"></div>
-						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
-						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
-						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+						<table>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+								<td><div id="fileQueue" ></div></td>
+							</tr>
+							<tr>
+								<td rowspan="2">
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -395,10 +407,21 @@
 					设计施工图
 				</td>
 				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<div id="fileQueue1"></div>
-						<a id="xz_sjsgt"  href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
-						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
-						<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+								<td><div id="fileQueue1" ></div></td>
+							</tr>
+							<tr>
+								<td rowspan="2">
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -435,13 +458,31 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-	function downFile1(){
-		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
-}
-	function downFile2(){
-		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
-}
-	
+	function downFile(id){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	}
+	function deleteFile(id){
+		if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/jhgl/deleteFile.do",
+				 dataType : 'json',
+				 data : 'uploads.id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 fileShow();
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+	}
+
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
@@ -451,7 +492,7 @@
 		'fileDataName' : 'uploadGk',
 		'auto' : false,
 		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
+		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,
@@ -460,10 +501,11 @@
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'jh.id':xxId,
+			'uploads.parentid':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#xz_gkbg').html(response);
+			alert(response);
+			fileShow();
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -484,8 +526,8 @@
 		'queueID' : 'fileQueue1',
 		'fileDataName' : 'uploadSjt',
 		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
+		'multi' : true,
+		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,
@@ -494,10 +536,11 @@
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'jh.id':xxId,
+			'uploads.parentid':xxId,
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#xz_sjsgt').html(response);
+			alert(response);
+			fileShow();
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -515,6 +558,7 @@
 	var bl;
 	var fd;
 	var bzzj;
+	var ts;
 	sbnf("editjhnf");
 	$.ajax({
 		type:'post',
@@ -534,18 +578,14 @@
 			$('#PFWH').val(data.pfwh);
 			$('#PFSJ').datebox('setValue',data.pfsj);
 			$('#JHZTZ').val(data.pfztz);
-			$('#bbz').html(data.jhsybbzje);
+			$('#bbz').val(data.jhsybbzje);
 			$('#DFZC').html(data.jhsydfzczj);
 			$('#JHXDWH').val(data.jhxdwh);
-			$('#SFSQABLBZ').html(data.sfsqablbz);
+			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
-			if(data.gkbgmc!=''){
-				$('#xz_gkbg').html(data.gkbgmc);
-			}
-			if(data.sjsgtmc!=''){
-				$("#xz_sjsgt").html(data.sjsgtmc);
-			}
+			
+			fileShow();
 			//审查库
 			$.ajax({
 				type:'post',
@@ -571,6 +611,7 @@
 								bz=data.bz;
 								bl=data.bl;
 								fd=data.fd;
+								bzInit();
 							}
 						}); 
 						$('#gydwxx').html(sck.gydw);
@@ -605,7 +646,23 @@
 			});
 		}
 	});
-	
+	function bzInit(){
+		if($("#sfsqablbz").html()=="否"){
+			document.getElementById("ABLBZWH").disabled=true;
+		}
+		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
+		}
+		
+	}
 	function bzSum(){
 		var ztz;
 		if(isNaN($("#JHZTZ").val())){
@@ -616,17 +673,65 @@
 		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
 		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
-			$("#bbz").html(bzzj.toFixed(3));
+			ts=bzzj.toFixed(3);
+			$("#bbz").val(bzzj.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 			$("#DFZC").html((parseFloat($("#JHZTZ").val())-bzzj.toFixed(3)).toFixed(3));
 		}else{
-			$("#bbz").html(ztz.toFixed(3));
+			ts=ztz.toFixed(3);
+			$("#bbz").val(ztz.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 			$("#DFZC").html((parseFloat($("#JHZTZ").val())-ztz.toFixed(3)).toFixed(3));
 		}
 		if(parseFloat($("#JHZTZ").val())*100000>=500*100000){
-			$("#SFSQABLBZ").html("是");
+			$("#sfsqablbz").html("是");
+			document.getElementById("ABLBZWH").disabled=false;
 		}else{
-			$("#SFSQABLBZ").html("否");
+			$("#sfsqablbz").html("否");
+			$("#ABLBZWH").val("");
+			document.getElementById("ABLBZWH").disabled=true;
 		}
+	}
+	function zjSum(){
+		if($("#bbz").val()*1000>ts*1000){
+			alert("补助金额不能大于"+ts+"万元");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		if(isNaN($("#bbz").val()) || $("#bbz").val()==""){
+			alert("请填写补助金额");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		$("#DFZC").html((parseFloat($("#JHZTZ").val())-$("#bbz").val()).toFixed(3));
+	}
+	function fileShow(){
+		//加载文件
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryFjByParentId.do',
+			dataType:'json',
+			data:'uploads.id='+xxId,
+			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
+				$("#gkbgTable").empty();
+				$("#sjsgtTable").empty();
+				var gkbg="";
+				var sjsgt="";
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].filetype=="工可报告"){
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}if(data[i].filetype=="设计施工图"){
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}
+					}
+				$("#gkbgTable").append(gkbg);
+				$("#sjsgtTable").append(sjsgt);
+			}
+		});
 	}
 	</script>
 </body>

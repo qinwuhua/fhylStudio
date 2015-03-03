@@ -451,6 +451,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			return queryList("selectLxDataList", hm);
 		}else{
 			//桥梁
+			
 		}
 		return null;
 	}
@@ -506,5 +507,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs) {
 		return queryList("queryYhdzxcsByLx",yhdzxcs);
+	}
+	
+	public List<TreeNode> loadBmbmList(Unit unit) {
+		return queryList("loadBmbmList",unit);
 	}
 }

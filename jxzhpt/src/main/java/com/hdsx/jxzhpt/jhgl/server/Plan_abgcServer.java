@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
@@ -82,7 +83,11 @@ public interface Plan_abgcServer {
 
 	boolean editStatus(Plan_abgc jh);
 	Bzbz lwBzbz(Bzbz bz);
-	boolean updateGkbg(Plan_abgc jh);
-	boolean updateSjsgt(Plan_abgc jh);
-	Plan_abgc queryFjById(String id);
+//	boolean updateGkbg(Plan_abgc jh);
+//	boolean updateSjsgt(Plan_abgc jh);
+	boolean updateGkbg(Plan_upload uploads);
+	boolean updateSjsgt(Plan_upload uploads);
+	Plan_upload queryFjById(String id);
+	List<Plan_upload> queryFjByParentId(Plan_upload uploads);
+	boolean deleteFile(Plan_upload uploads);
 }

@@ -51,7 +51,7 @@ function showAll(){
 	        	 return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},

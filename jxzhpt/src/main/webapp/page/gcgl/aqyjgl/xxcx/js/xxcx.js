@@ -47,13 +47,13 @@ function showAll(){
 	        {field:'c',title:'操作',width:120,align:'center',formatter:function(value,row,index){
 	        	if(row.ckzt=='未查看')
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xxcxxx1('+index+')">未查看</a>&nbsp;&nbsp;        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deleteTzck('+index+')">删除</a>    ';
-	        	else 	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xxcxxx('+index+')">已查看</a>&nbsp;&nbsp;        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deleteTzck1('+index+')">删除</a>    ';
+	        	else 	return '<a style="text-decoration:none;color:#6E6E6E;" href="#" onclick="xxcxxx('+index+')">已查看</a>&nbsp;&nbsp;        '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="deleteTzck1('+index+')">删除</a>    ';
 
 	        }},
 	        {field:'title',title:'信息名称',width:200,align:'center'},
 	        {field:'contens',title:'信息内容',width:500,align:'center'},
 	        {field:'reportper',title:'发布人',width:100,align:'center'},
-	        {field:'reporttime',title:'时间',width:94,align:'center'}
+	        {field:'reporttime',title:'时间',width:95,align:'center'}
 	    ]]    
 	}); 
 }
