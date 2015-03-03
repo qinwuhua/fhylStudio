@@ -451,6 +451,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			return queryList("selectLxDataList", hm);
 		}else{
 			//桥梁
+			
 		}
 		return null;
 	}
