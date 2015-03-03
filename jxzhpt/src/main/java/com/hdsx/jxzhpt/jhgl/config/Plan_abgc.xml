@@ -121,7 +121,7 @@
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
 		<!-- select * from Plan_Abgc jh left join Xmk_Abgc lx on jh.sckid=lx.id where jh.id=#{id} -->
 		select id,sckid,jhnf,jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh, pfsj,pfztz,jhsybbzje,jhsydfzczj,sfsqablbz,ablbzsqwh, remarks, tbsj, tbbm, spzt,spbm,
-	spsj,sbzt,sbbm,sbsj,xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw, jldw, htje,sgxkwj,jgtcwj, jgyswj,wjsczt,kgzt,jgzt,wjgyy,
+	spsj,sbzt,sbbm,sbsj,xdsj,gkbglj,sjsgtlj,sjkgsj,sjwgsj,sgdw, jldw, htje,sgxkwj,jgtcwj, jgyswj,wjsczt,kgzt,jgzt,wjgyy,
 	yjwgsj, jhwc_c,jsdw,jhxdwh,xdzt,xfzt,xfsj,xfbm,wjzt,sfylsjl from Plan_Abgc jh where jh.id=#{id}
 	</select>
 	<select id="queryAbgcNfs" resultType="treenode">
