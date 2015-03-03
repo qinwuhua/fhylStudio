@@ -14,6 +14,9 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="./js/lkpd.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
@@ -119,7 +122,7 @@ $(function(){
  							<option>全部</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
+	 					<a id="yhgl_btn_add" href="javascript:insertData('mxb');" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
  					</p>
  				</div>
  			</fieldset>
