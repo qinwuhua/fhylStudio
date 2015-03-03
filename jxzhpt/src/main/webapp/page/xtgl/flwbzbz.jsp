@@ -25,19 +25,19 @@
 			
 			$('#xtgl_flwbzbz_table').datagrid({
 				url:'../../xtgl/queryFlwbzbz.do',
-				pagination:true,
+				//pagination:true,
 				rownumbers:true,
 			    pageNumber:1,
-			    pageSize:10,
-			    height:325,
-			    width:1000,
+			    pageSize:1,
+			    height:500,
+			    width:790,
 				columns:[[
 					{field:'id',title:'操作',width:80,align:'center',
 						formatter : function(value, row, index){
 							return '<a href="javascript:update('+"'"+row.id+"'"+')">编辑</a>';
 						}
 					},
-					{field:'xmlx',title:'项目类型',width:100,align:'center'},
+					{field:'xmlx',title:'项目类型',width:150,align:'center'},
 					{field:'gldj',title:'公路等级',width:100,align:'center',
 						formatter:function(value){
 							if(value=="X"){
@@ -50,8 +50,8 @@
 						}
 					},
 					{field:'jsdj',title:'技术等级',width:100,align:'center'},
-					{field:'tsdq',title:'特殊地区',width:150,align:'center'},
-					{field:'bzzj',title:'补助金额',width:100,align:'center'}
+					{field:'bzzj',title:'补助金额',width:100,align:'center'},
+					{field:'tsdq',title:'特殊地区',width:225,align:'center'}
 				]],
 				toolbar:[
 					{

@@ -142,4 +142,12 @@ public interface XtglServer {
 	List<Yhdzxcs> queryYhdzxcs();
 	
 	List<Unit> selectLxQlDataList(String id);
+
+	boolean addYhdzxcs(Yhdzxcs yhdzxcs);
+
+	Yhdzxcs queryYhdzxcsById(String id);
+	
+	boolean updateYhdzxcs(Yhdzxcs yhdzxcs);
+
+	List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs);
 }

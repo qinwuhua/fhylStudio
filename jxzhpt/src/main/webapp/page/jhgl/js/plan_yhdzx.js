@@ -474,6 +474,9 @@ function queryYhdzxById(id){
 		data:'jh.id='+id,
 		success:function(data){
 			$('#lblYear').html(data.sbnf);
+			$('#lbljhkgsj').html(data.jhkgsj);
+			$('#lbljhwgsj').html(data.jhwgsj);
+			$('#lbljhxdsj').html(data.xdsj);
 			$('#lblLXMC').html(data.plan_lx_yhdzxs[0].lxmc);
 			$('#lblLXBM').html(data.plan_lx_yhdzxs[0].lxbm);
 			$('#lblGYDWMC').html(data.plan_lx_yhdzxs[0].gydwmc);
