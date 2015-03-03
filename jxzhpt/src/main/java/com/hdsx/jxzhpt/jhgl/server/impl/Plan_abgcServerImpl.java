@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
@@ -145,19 +146,33 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return queryOne("lwBzbz", bz);
 	}
 	@Override
-	public boolean updateGkbg(Plan_abgc jh) {
-		return update("updateGkbg", jh)>0;
+//	public boolean updateGkbg(Plan_abgc jh) {
+//		return update("updateGkbg", jh)>0;
+//	}
+	public boolean updateGkbg(Plan_upload uploads) {
+		return insert("insertGkbg", uploads)>0;
 	}
 	@Override
-	public boolean updateSjsgt(Plan_abgc jh) {
-		return update("updateSjsgt", jh)>0;
+//	public boolean updateSjsgt(Plan_abgc jh) {
+//		return update("updateSjsgt", jh)>0;
+//	}
+	public boolean updateSjsgt(Plan_upload uploads) {
+		return insert("insertSjsgt", uploads)>0;
 	}
 	@Override
-	public Plan_abgc queryFjById(String id) {
-		return queryOne("queryAbgcFjById", id);
+	public Plan_upload queryFjById(String id) {
+		return queryOne("queryFjById", id);
 	}
 	@Override
 	public List<TreeNode> queryTsdq() {
 		return queryList("queryTsdq");
+	}
+	@Override
+	public List<Plan_upload> queryFjByParentId(Plan_upload uploads) {
+		return queryList("queryFjByParentId",uploads);
+	}
+	@Override
+	public boolean deleteFile(Plan_upload uploads) {
+		return delete("deleteFile", uploads)>0 ? true:false;
 	}
 }

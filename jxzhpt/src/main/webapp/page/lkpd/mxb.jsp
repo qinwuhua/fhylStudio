@@ -14,6 +14,9 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="./js/lkpd.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
@@ -68,7 +71,7 @@ $(function(){
 		{
 			field : 'bj',
 			title : '操作',
-			width : 80,
+			width : 90,
 			align : 'center',
 			formatter : function(value,rec,index){
 				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+
@@ -94,6 +97,13 @@ $(function(){
 		]]
 	});
 });
+$(function(){
+	var year=new Date().getFullYear();
+	for(var i=year;i>=2000;i--){
+		$("#unit").append("<option value="+'i'+">"+i+"年</option>");
+	}
+});
+
 </script>
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
@@ -110,14 +120,9 @@ $(function(){
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
  							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
+	 					<a id="yhgl_btn_add" href="javascript:insertData('mxb');" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
  					</p>
  				</div>
  			</fieldset>

@@ -37,6 +37,8 @@
 		<action name="lwBzbz" class="plan_abgcController" method="lwBzbz"/>
 		<action name="uploadAbgcFile" class="plan_abgcController" method="uploadAbgcFile"/>
 		<action name="downAbgcFile" class="plan_abgcController" method="downAbgcFile"/>
+		<action name="queryFjByParentId" class="plan_abgcController" method="queryFjByParentId"/>
+		<action name="deleteFile" class="plan_abgcController" method="deleteFile"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>

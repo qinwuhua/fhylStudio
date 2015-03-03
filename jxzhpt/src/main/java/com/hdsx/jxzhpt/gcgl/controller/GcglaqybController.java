@@ -282,14 +282,21 @@ public class GcglaqybController extends BaseActionSupport{
 	}
 	public void selectaqyblist(){
 		gcglaqyb.setReportmonth(ddlyear+"-"+ddlmonth);
-		gcglaqyb.setUploadepartment(gydw);
+		String tiaojian="";
 		gcglaqyb.setFilename(wjmc);
 		gcglaqyb.setRows(rows);
 		gcglaqyb.setPage(page);
-		if("全部".equals(type)){}
-		if("上传".equals(type)){}
+		if("全部".equals(type)){
+			tiaojian="and (uploadepartment like '%'||trim("+gydw+")||'%'"+"or sendingunits like '%'||trim("+gydw+")||'%')";
+			gcglaqyb.setSendingunits(tiaojian);
+		}
+		if("上传".equals(type)){
+			tiaojian="and uploadepartment like '%'||trim("+gydw+")||'%'";
+			gcglaqyb.setSendingunits(tiaojian);
+			}
 		if("接收".equals(type)){
-			gcglaqyb.setSendingunits(gydw1);
+			tiaojian="and sendingunits like '%'||trim("+gydw+")||'%'";
+			gcglaqyb.setSendingunits(tiaojian);
 		}
 		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);
 		List<Gcglaqyb> list=gcglaqybServer.selectaqyblist(gcglaqyb);
