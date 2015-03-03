@@ -150,6 +150,18 @@
 				}
 			});
 		}
+		function selchange(){
+			$.ajax({
+				type:'post',
+				url:'../../xtgl/queryYhdzxcsByLx.do',
+				dataType:'json',
+				async:'false',
+				data:'yhdzxcs.cslx='+$('#selcslx').val(),
+				success:function(result){
+					$('#xtgl_flwbzbz_table').datagrid("loadData",result);
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -161,7 +173,7 @@
 		</div>
 		<div style="margin-left: 20px;margin-bottom: 5px;">
 			<span>参数类型：</span>
-			<select style="width: 80px;">
+			<select onchange="selchange()" id="selcslx" style="width: 80px;">
 				<option selected="selected">-请选择-</option>
 				<option value="上面层">上面层</option>
 				<option value="中面层">中面层</option>

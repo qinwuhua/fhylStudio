@@ -372,7 +372,7 @@
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;"></td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtglfdj" type="text" style="width: 80px;"/>
+								<input id="txtglfdj" value="0" type="text" style="width: 80px;"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">此项目只能选择一种 </td>
 						</tr>
@@ -422,7 +422,7 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					地方配套总投资</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="ztz">0</span>万元
+					<span id="dfptztz">0</span>万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					总补助资金</td>
@@ -505,9 +505,12 @@
 	xzqhComboxTree("txtXZQHMC");
 	gydwComboxTree("txtGYDWMC");
 	sbnf('lblYear');
-	$.each($('td [name=sdtd]'),function(index,item){
-		$(item).hide();
-	});
+	var sheng=new RegExp("^[0-9]{5}360000$");
+	if(!sheng.test($.cookie("unit"))){
+		$.each($('td [name=sdtd]'),function(index,item){
+			$(item).hide();
+		});
+	}
 	function loadCslx(id,cslx){
 		$.ajax({
 			type:'post',
@@ -599,29 +602,39 @@
 			$('#ztz').html(data.totalinvest);
 			$('#jhid').val(data.id);
 			var lmdate=$.parseJSON(data.plan_lx_yhdzxs[0].lmjg);
-			loadYhdzxcs(lmdate,"上面层","smc");
-			loadYhdzxcs(lmdate,"中面层","zmc");
-			loadYhdzxcs(lmdate,"下面层","xmc");
-			loadYhdzxcs(lmdate,"封层","fc");
-			loadYhdzxcs(lmdate,"上基层","sjc");
-			loadYhdzxcs(lmdate,"中基层","zjc");
-			loadYhdzxcs(lmdate,"下基层","xjc");
-			loadYhdzxcs(lmdate,"垫层","dc");
-			loadYhdzxcs(lmdate,"原路","yl");
-			$.each(JSON.parse(data.plan_lx_yhdzxs[0].aym),function(index,item){
-				var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.cd+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
-				$('#ymtr').after(html);
-			});
-			$.each(JSON.parse(data.plan_lx_yhdzxs[0].asl),function(index,item){
-				var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.sl+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
-				$('#asltr').after(html);
-			});
-			$('#seldw').val(JSON.parse(data.plan_lx_yhdzxs[0].glf).dw);
-			$('#txtglfdj').val(JSON.parse(data.plan_lx_yhdzxs[0].glf).dj);
-			$('#lblysdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).ysdj);
-			$('#lblpgdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).pgdj);
+			if(data.plan_lx_yhdzxs[0].lmjg!=""){
+				loadYhdzxcs(lmdate,"上面层","smc");
+				loadYhdzxcs(lmdate,"中面层","zmc");
+				loadYhdzxcs(lmdate,"下面层","xmc");
+				loadYhdzxcs(lmdate,"封层","fc");
+				loadYhdzxcs(lmdate,"上基层","sjc");
+				loadYhdzxcs(lmdate,"中基层","zjc");
+				loadYhdzxcs(lmdate,"下基层","xjc");
+				loadYhdzxcs(lmdate,"垫层","dc");
+				loadYhdzxcs(lmdate,"原路","yl");
+			}
+			if(data.plan_lx_yhdzxs[0].aym!=""){
+				$.each(JSON.parse(data.plan_lx_yhdzxs[0].aym),function(index,item){
+					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.cd+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
+					$('#ymtr').after(html);
+				});
+			}
+			if(data.plan_lx_yhdzxs[0].asl!=""){
+				$.each(JSON.parse(data.plan_lx_yhdzxs[0].asl),function(index,item){
+					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.sl+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
+					$('#asltr').after(html);
+				});
+			}
+			if(data.plan_lx_yhdzxs[0].glf!=""){
+				$('#seldw').val(JSON.parse(data.plan_lx_yhdzxs[0].glf).dw);
+				$('#txtglfdj').val(JSON.parse(data.plan_lx_yhdzxs[0].glf).dj);
+				$('#lblysdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).ysdj);
+				$('#lblpgdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).pgdj);
+			}
 			$('#lxhsjf').html(data.fee);
 			$('#lxspjf').html(data.newfee);
+			$('#dfptztz').html(data.totalplacefund);
+			$('#zbzzj').html(data.totalsubsidyfund);
 		}
 	});
 	function loadYhdzxcs(date,cslx,cs){
@@ -650,14 +663,12 @@
 				'jh.replynumber':$('#txtGKPFWH').val(),'jh.devisenumbder':$('#txtSJPFWHH').val(),
 				'jh.description':$('#txtJSCZMS').val(),'jh.xchsqk':$('#txtXCHSQK').val(),
 				'jh.remarks':$('#txtSTCBZ').val(),'jh.qtbz':$('#txtQTBZ').val(),'jh.id':$('#jhid').val(),
-				 'jh.fee':$('#lxhsjf').html(),'jh.newfee':$('#lxspjf').html()};
-		//核算经费 'jh.fee':$('#txtHSJF').val(),
-		//审定经费 'jh.newfee':$("#txtSDJF").val(),
+				'jh.fee':$('#lxhsjf').html(),'jh.newfee':$('#lxspjf').html(),
+				'jh.totalplacefund':$('#dfptztz').html(),'jh.totalsubsidyfund':$('#zbzzj').html(),
+				'jh.totalinvest':$('#ztz').html()};
 		//总投资 'jh.totalinvest':$('#txtZTZ').val(),
 		//地方配套 'jh.totalplacefund':$('#txtDFPTZTZ').val(),
 		//总补助资金  'jh.totalsubsidyfund':$('#txtZBZZJ').val(),
-		//累计补助 'jh.accumulativesubsidyfund':$('#txtLJBZZJ').val(),
-		//本年补助资金 'jh.nowyearsubsidyfund':$('#txtBNBZZJJ').val(),
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/editYhdzxById.do',
@@ -796,6 +807,8 @@
 		$('#lblpgdj').html(pgjg.toFixed(3));
 		$('#lxhsjf').html((zjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
 		$('#lxspjf').html((pgjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
+		$('#dfptztz').html($('#ztz').html()-$('#lxspjf').html());
+		$('#zbzzj').html($('#lxspjf').html());
 	}
 	function reckon(kd,hd,dj){
 		return (kd*(hd/100)*1000)*dj/10000;

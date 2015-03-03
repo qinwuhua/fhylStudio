@@ -153,9 +153,9 @@
 		jh.constructnumber=#{jh.constructnumber},jh.replynumber=#{jh.replynumber},
 		jh.devisenumbder=#{jh.devisenumbder},jh.description=#{jh.description},
 		jh.xchsqk=#{jh.xchsqk},jh.remarks=#{jh.remarks},jh.qtbz=#{jh.qtbz},
-		jh.fee=#{jh.fee},jh.newfee=#{jh.newfee}
-		<!-- jh.totalinvest=#{jh.totalinvest},
-		jh.totalplacefund=#{jh.totalplacefund},jh.totalsubsidyfund=#{jh.totalsubsidyfund},
+		jh.fee=#{jh.fee},jh.newfee=#{jh.newfee},jh.totalplacefund=#{jh.totalplacefund},
+		jh.totalsubsidyfund=#{jh.totalsubsidyfund},jh.totalinvest=#{jh.totalinvest}
+		<!-- 
 		jh.accumulativesubsidyfund=#{jh.accumulativesubsidyfund},
 		jh.nowyearsubsidyfund=#{jh.nowyearsubsidyfund},
 		 -->
@@ -176,7 +176,7 @@
 		delete from plan_yhdzx jh where jh.id =#{id}
 	</delete>
 	<insert id="insertYhdzx_lx" parameterType="hashMap">
-		insert into plan_lx_yhdzx (id,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
+		insert into plan_lx_yhdzx (lxid,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
 			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
 			yjsdj,ylmkd,ylmhd,ylmlx,DZXKD,
 			tbbm,tbbmdm,tbsj) 
