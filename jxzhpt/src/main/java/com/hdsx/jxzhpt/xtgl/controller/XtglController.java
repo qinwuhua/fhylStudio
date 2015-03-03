@@ -397,17 +397,18 @@ public class XtglController extends BaseActionSupport{
 		
 		int count =0;
 		List<Unit> list=new ArrayList<Unit>();
+		System.out.println(id+"++++++++++");
+		
 		if(id==null){
-			System.out.println("-----------");
 			count = xtglServer.selectXzqhListCount(unit);
 			list = xtglServer.selectXzqhList(unit);
 			int len=unit.getId().length();
 			for(int i=0;i<list.size();i++){
-				if(!unit.getId().equals(list.get(i).getId()))
+				if(!unit.getId().equals(list.get(i).getId())&&i!=0)
 				{
 					list.get(i).set_parentId(list.get(i).getParent());
 				}
-				if(list.get(i).getBmid().length()>=12){
+				if(list.get(i).getBmid().length()>=(len/2)*6+6||len==6){
 					list.get(i).setState("closed");
 				}
 			}
