@@ -250,7 +250,7 @@
 		update lwbzbz set bz=#{bz},bl=#{bl},fd=#{fd} where id=#{id}
 	</update>
 	<select id="queryFlwbzbz" resultType="flwbzbz">
-		select * from plan_flwbzbz
+		select * from plan_flwbzbz order by xmlx,gldj,jsdj,bzzj
 	</select>
 	<insert id="addFlwbzbz" parameterType="flwbzbz">
 		insert into plan_flwbzbz (xmlx,gldj,tsdq ,bzzj,jsdj) 
@@ -267,8 +267,21 @@
 		delete from plan_flwbzbz where id=#{id}
 	</delete>
 	<select id="queryYhdzxcs" resultType="yhdzxcs">
-		select * from xtgl_yhdzxcs
+		select * from xtgl_yhdzxcs order by cslx
 	</select>
+	<select id="queryYhdzxcsById" parameterType="string" resultType="yhdzxcs">
+		select * from xtgl_yhdzxcs where id=#{id}
+	</select>
+	<select id="queryYhdzxcsByLx" parameterType="yhdzxcs" resultType="yhdzxcs">
+		select * from xtgl_yhdzxcs where cslx=#{cslx}
+	</select>
+	<insert id="addYhdzxcs" parameterType="yhdzxcs">
+		insert into xtgl_yhdzxcs values (sys_guid(),#{cslx},#{clmc},#{lfmdj},#{sddj})
+	</insert>
+	<update id="updateYhdzxcs" parameterType="yhdzxcs">
+		update xtgl_yhdzxcs set cslx=#{cslx},clmc=#{clmc},lfmdj=#{lfmdj},sddj=#{sddj}
+		where id=#{id}
+	</update>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
 		select roadcode id,#{roadcode}||#{xzqh} parent,
 		roadcode||'('||roadstart||'-'||roadends||')' name

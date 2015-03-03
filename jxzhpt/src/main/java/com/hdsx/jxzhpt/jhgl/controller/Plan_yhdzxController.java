@@ -109,8 +109,10 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void editYhdzxById(){
 		try {
+			System.out.println("路面结构："+lx.getLmjg());
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("result", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
+			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -146,6 +148,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
+				map.put("13", map.get("13").toString().substring(0, map.get("13").toString().indexOf(".")));
 			}
 			System.out.println(data);
 			yhdzxServer.insertYhdzx_lx(data);

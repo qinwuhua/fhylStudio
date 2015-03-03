@@ -491,7 +491,7 @@
 		'queueID' : 'fileQueue',
 		'fileDataName' : 'uploadGk',
 		'auto' : false,
-		'multi' : true,
+		'multi' : false,
 		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,

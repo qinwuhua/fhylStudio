@@ -888,6 +888,30 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void addYhdzxcs(){
+		xtglServer.addYhdzxcs(yhdzxcs);
+	}
+	
+	public void queryYhdzxcsById(){
+		try {
+			JsonUtils.write(xtglServer.queryYhdzxcsById(yhdzxcs.getId()), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryYhdzxcsByLx(){
+		try {
+			JsonUtils.write(xtglServer.queryYhdzxcsByLx(yhdzxcs), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateYhdzxcs(){
+		xtglServer.updateYhdzxcs(yhdzxcs);
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}

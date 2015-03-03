@@ -491,6 +491,25 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	}
 
 	@Override
+	public boolean addYhdzxcs(Yhdzxcs yhdzxcs) {
+		return insert("addYhdzxcs", yhdzxcs)>0;
+	}
+
+	@Override
+	public boolean updateYhdzxcs(Yhdzxcs yhdzxcs) {
+		return update("updateYhdzxcs", yhdzxcs)>0;
+	}
+	
+	public Yhdzxcs queryYhdzxcsById(String id){
+		return queryOne("queryYhdzxcsById", id);
+		
+	}
+
+	@Override
+	public List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs) {
+		return queryList("queryYhdzxcsByLx",yhdzxcs);
+	}
+	
 	public List<TreeNode> loadBmbmList(Unit unit) {
 		return queryList("loadBmbmList",unit);
 	}
