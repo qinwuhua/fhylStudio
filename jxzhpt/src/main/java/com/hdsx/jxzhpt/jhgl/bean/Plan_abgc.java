@@ -63,8 +63,6 @@ public class Plan_abgc {
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
 	private Jckabgc jckabgc;
-	private byte[] gkbgdata;
-	private byte[] sjsgtdata;
 	public String getSfylsjl() {
 		return sfylsjl;
 	}
@@ -400,17 +398,5 @@ public class Plan_abgc {
 	}
 	public void setGys(String gys) {
 		this.gys = gys;
-	}
-	public byte[] getGkbgdata() {
-		return gkbgdata;
-	}
-	public void setGkbgdata(byte[] gkbgdata) {
-		this.gkbgdata = gkbgdata;
-	}
-	public byte[] getSjsgtdata() {
-		return sjsgtdata;
-	}
-	public void setSjsgtdata(byte[] sjsgtdata) {
-		this.sjsgtdata = sjsgtdata;
 	}
 }

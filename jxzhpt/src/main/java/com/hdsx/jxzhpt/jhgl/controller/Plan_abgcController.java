@@ -221,7 +221,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	public void uploadAbgcFile() throws Exception{
+	public void uploadFile() throws Exception{
 		FileInputStream fs=null;
 		byte[] data;
 		try {
@@ -252,7 +252,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			fs.close();
 		}
 	}
-	public void downAbgcFile(){
+	public void downFile(){
         try {
         	Plan_upload file= abgcServer.queryFjById(uploads.getId());
         	HttpServletResponse response = getresponse();
