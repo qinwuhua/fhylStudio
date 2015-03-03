@@ -159,10 +159,10 @@
 		where t.id=b.parent(+)
 	</select>
 	<select id="selectXzqhListCount" parameterType="unit" resultType="int">
-		select count(*) from xtgl_xzqh
+		select count(*) from xtgl_xzqh where id like #{id}||'%'
 	</select>
 	<select id="selectXzqhList" parameterType="unit" resultType="unit">
-		select * from xtgl_xzqh order by bmid
+		select * from xtgl_xzqh where id like #{id}||'%' order by bmid
 	</select>
 	<select id="checkXzqhCfById" parameterType="unit" resultType="unit">
 		select * from xtgl_xzqh where id=#{id}
