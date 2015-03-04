@@ -124,6 +124,9 @@ public class Gcglwqgz implements Serializable {
 	private  byte[] jgtcwjfile;
 	private  byte[] jgyswjfile;
 	
+	private String xjzt;
+	private String sjzt;
+	private String sjsh;
 	
 	public byte[] getJgtcwjfile() {
 		return jgtcwjfile;
@@ -768,6 +771,24 @@ public class Gcglwqgz implements Serializable {
 	}
 	public void setZxdzj(String zxdzj) {
 		this.zxdzj = zxdzj;
+	}
+	public String getXjzt() {
+		return xjzt;
+	}
+	public void setXjzt(String xjzt) {
+		this.xjzt = xjzt;
+	}
+	public String getSjzt() {
+		return sjzt;
+	}
+	public void setSjzt(String sjzt) {
+		this.sjzt = sjzt;
+	}
+	public String getSjsh() {
+		return sjsh;
+	}
+	public void setSjsh(String sjsh) {
+		this.sjsh = sjsh;
 	}
 	
 	

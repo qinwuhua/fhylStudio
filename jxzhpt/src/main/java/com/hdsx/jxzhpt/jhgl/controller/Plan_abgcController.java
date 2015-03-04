@@ -256,7 +256,7 @@ public class Plan_abgcController extends BaseActionSupport{
         try {
         	Plan_upload file= abgcServer.queryFjById(uploads.getId());
         	HttpServletResponse response = getresponse();
-        	response.setContentType("application/x-download"); 
+        	response.setContentType("application/octet-stream"); 
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
         		byte[]  buffer= file.getFiledata();

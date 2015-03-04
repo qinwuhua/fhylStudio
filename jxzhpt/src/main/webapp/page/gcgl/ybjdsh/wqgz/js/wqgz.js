@@ -86,13 +86,28 @@ function xgwqgzyb(){
 //显示所有
 var wqData;
 function showAll(){
-	var gydw=$("#gydw").combobox("getText");
+	var gydw=$("#gydw").combobox("getValue");
 	if(gydw=='36'||gydw=='江西省')
 		gydw='';
 	var kgzt='1';
 	var jgzt='0';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
+	var yhjb=$.cookie("unit2");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -107,22 +122,24 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc
+	    	qlmc:qlmc,
+	    	ybzt:ybzt,
+	    	sfsj:sfsj
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '定位    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbm',title:'桥梁编码',width:120,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
-	        {field:'qlqk',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
 	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
 	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
 	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
-	        {field:'gjnf',title:'改建/修建年度',width:100,align:'center'}
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -164,7 +181,7 @@ function showYBlist(){
 }
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=9";
+	var data="gcglwqgz.id="+data1.id+"&gcglwqgz.sfsj=9"+"&gcglwqgz.yhtype=7"+"&gcglwqgz.jhid="+data1.jhid;
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
