@@ -3,7 +3,7 @@ package com.hdsx.jxzhpt.wjxt.bean;
 import java.io.Serializable;
 import java.util.Date;
 
-public class trqk implements Serializable {
+public class Trqk implements Serializable {
 
 	/**
 	 * 
