@@ -122,7 +122,7 @@ $(function(){
  							<option>全部</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:insertData('mxb');" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)"  onclick="insertData('mxb');"   class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
  					</p>
  				</div>
  			</fieldset>

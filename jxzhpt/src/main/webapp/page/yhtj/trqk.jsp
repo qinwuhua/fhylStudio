@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>角色分配管理</title>
+<title>公路水毁抢修人财物投入情况</title>
 <link rel="stylesheet" type="text/css" href="../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
@@ -14,37 +14,10 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/trqk.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
 
 $(function(){
 	$("#jsgl_table").datagrid({
@@ -85,6 +58,17 @@ $(function(){
 		]]
 	});
 });
+
+$(function(){
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+});
 </script>
 <div style="width:100%;">
     <div  style="height:104px;" border="false">
@@ -101,17 +85,28 @@ $(function(){
  						<span>管养单位：</span>
  						<select id="unit" style="width:150px;">
  						</select>
- 						<span>上报年月：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>2014-12</option>
-	 						<option>2014-11</option>
-	 						<option>2014-10</option>
-	 						<option>2014-9</option>
-	 						<option>2014-8</option>
- 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">添加</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-excel">导出Excel</a>
+ 						<span>上报年份：</span>
+        				<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
+						<span>上报月份：</span>
+						<select name="ddlMonth" id="ddlMonth">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-search">查　询</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-add" onclick="trqkadd()">添加</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-excel">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>
