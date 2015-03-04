@@ -62,18 +62,22 @@
 			}
 			yhdzxxm_sb(jh,lx);
 		}
-		function sb(id,jh_sbthcd){
-			var date=new Date();
-			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
-					'jh.jh_sbthcd':jh_sbthcd+2};
-			if(xian){
-				jh['jh.sbzt']='0';
-			}
-			if(editStatus(jh)){
-				alert("上报成功！");
-				searchYhdzx();
+		function sb(id,jh_sbthcd,isreckon){
+			if(isreckon){
+				var date=new Date();
+				var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+					" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+				var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
+						'jh.jh_sbthcd':jh_sbthcd+2};
+				if(xian){
+					jh['jh.sbzt']='0';
+				}
+				if(editStatus(jh)){
+					alert("上报成功！");
+					searchYhdzx();
+				}
+			}else{
+				alert("请先在编辑中对项目的经费进行经费计算！");
 			}
 		}
 		function tuihui(id,jh_sbthcd){

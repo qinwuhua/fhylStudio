@@ -79,7 +79,7 @@
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from BT_XZQHTSDQ t where t.areacode=#{lx.tsdq})
 				 	</if>
-	    			order by jh.sbzt,jh.spzt,jh.jhnf desc
+	    			order by jh.sbzt,jh.spzt,jh.jhnf
 	    		) t
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
