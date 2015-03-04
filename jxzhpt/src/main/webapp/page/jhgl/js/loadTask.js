@@ -269,6 +269,20 @@ function filterGydwdm(gydwdm){
 	}
 	return result;
 }
+function roleName(){
+	var role="";
+	var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+	var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+	if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+		role="市级";
+	}else{
+		role="县级";
+	}
+	if(new RegExp("^[0-9]{5}360000$").test($.cookie("unit")) || $.cookie("unit")=="36"){
+		role="省级";
+	}
+	return role;
+}
 function filterXzqhdm(xzqhdm){
 	var yi1 = new RegExp("^36[0-9][1-9]00$");
 	var yi2= new RegExp("^36[1-9][0-9]00$");

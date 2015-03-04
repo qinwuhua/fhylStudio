@@ -94,7 +94,7 @@
 					and lx.xzqhdm in (
 						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
 				</if>
-	       		order by jh.sbzt,jh.spzt,jh.sbnf
+	       		order by jh.sbnf,jh.sbzt,jh.spzt
 	       		) t
 	       	)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}

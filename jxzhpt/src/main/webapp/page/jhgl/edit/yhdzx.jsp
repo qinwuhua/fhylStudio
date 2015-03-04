@@ -801,13 +801,14 @@
 			zjg=zjg+$('#txtglfdj').val()/10000;
 			pgjg=pgjg+$('#txtglfdj').val()/10000;
 		}
-		glfjson={dw:$('#seldw').val(),dj:$('#txtglfdj').val(),ysdj:zjg.toFixed(3),pgdj:pgjg.toFixed(3)};
+		pgjg=pgjg.toFixed(3);
+		glfjson={dw:$('#seldw').val(),dj:$('#txtglfdj').val(),ysdj:zjg.toFixed(3),pgdj:pgjg};
 		
 		$('#lblysdj').html(zjg.toFixed(3));
-		$('#lblpgdj').html(pgjg.toFixed(3));
+		$('#lblpgdj').html(pgjg);
 		$('#lxhsjf').html((zjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-		$('#lxspjf').html((pgjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-		$('#dfptztz').html($('#ztz').html()-$('#lxspjf').html());
+		$('#lxspjf').html((pgjg*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
+		$('#dfptztz').html(($('#ztz').html()-$('#lxspjf').html()).toFixed(3));
 		$('#zbzzj').html($('#lxspjf').html());
 	}
 	function reckon(kd,hd,dj){

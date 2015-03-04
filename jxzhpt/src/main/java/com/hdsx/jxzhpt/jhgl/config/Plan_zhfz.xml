@@ -61,7 +61,7 @@
 	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
 	 					and lx.lxjsdj = #{lx.lxjsjd}
 	 				</if>
-				 	order by jh.sbzt,jh.spzt,jh.sbnf desc
+				 	order by jh.sbzt,jh.spzt,jh.sbnf
 			 	) t
 			)
  			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}

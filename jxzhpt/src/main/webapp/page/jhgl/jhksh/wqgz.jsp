@@ -121,13 +121,6 @@
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
@@ -137,11 +130,6 @@
 								</select>
 								<span>&nbsp;跨径分类：</span>
         						<select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:94px;">
-									<option selected="selected" value="">全部</option>
-									<option value="特大桥">特大桥</option>
-									<option value="大桥">大桥</option>
-									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option>
 								</select>
         					</p>
 							<p style="margin:8px 0px 4px 20px;">

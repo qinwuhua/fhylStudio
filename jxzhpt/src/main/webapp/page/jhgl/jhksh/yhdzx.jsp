@@ -57,7 +57,7 @@
 			var jh={'jh.id':id,'jh.spsj':sbsj,'jh.spbm':$.cookie("unit"),'jh.spzt':'1',
 					'jh.jh_sbthcd':jh_sbthcd+2};
 			if(editStatus(jh)){
-				alert("上报成功！");
+				alert("审批成功！");
 				searchYhdzx();
 			}
 		}
