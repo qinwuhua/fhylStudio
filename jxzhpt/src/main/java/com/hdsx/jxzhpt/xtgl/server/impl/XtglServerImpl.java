@@ -131,6 +131,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			p.setSourceid(s[i]);
 			l.add(p);
 		}
+
 		if (insert("insertJs", param) > 0) {
 			if(insertBatch("insertRoleSourceBatch", l)>0) return true;
 			else return false;

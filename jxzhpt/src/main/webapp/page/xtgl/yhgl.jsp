@@ -49,7 +49,9 @@ function startSearch(){
 	
 	$("#jsgl_table").datagrid({
 		border:true,
-		fit:true,
+		//fit:true,
+		height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 		pagination:true,
 	    rownumbers:true,
 	    pageNumber:1,

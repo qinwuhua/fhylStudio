@@ -21,8 +21,8 @@ $(function(){
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
-		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
+    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:205px;overflow:hidden">
+		<div id="aa" fit="true" class="easyui-accordion" style="width:205px;">  
 		    <div id="left_menu1" title="计划统计报表" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
