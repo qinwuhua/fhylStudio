@@ -3,6 +3,7 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="wjxt" extends="struts-default" namespace="/wjxt">
-	
+	<action name="insertTrqk" class="trqkController" method="insertTrqk"/>
+	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
  </package>
 </struts>

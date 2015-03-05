@@ -23,11 +23,14 @@ public class Trqk implements Serializable {
 	private String zzj;
 	private String zxqc;
 	private String cstb;
-	private Date sbtbxj;
+	private String sbtbxj;
 	private String tbdw;
 	private String tjr;
-	private String shr;
+	private String shry;
 	private String tbsj;
+	private String gydwmc;
+	private String tbdwmc;
+	private String tiaojian;
 	
 	private int page;
 	private int rows;
@@ -115,10 +118,10 @@ public class Trqk implements Serializable {
 	public void setCstb(String cstb) {
 		this.cstb = cstb;
 	}
-	public Date getSbtbxj() {
+	public String getSbtbxj() {
 		return sbtbxj;
 	}
-	public void setSbtbxj(Date sbtbxj) {
+	public void setSbtbxj(String sbtbxj) {
 		this.sbtbxj = sbtbxj;
 	}
 	public String getTbdw() {
@@ -133,11 +136,11 @@ public class Trqk implements Serializable {
 	public void setTjr(String tjr) {
 		this.tjr = tjr;
 	}
-	public String getShr() {
-		return shr;
+	public String getShry() {
+		return shry;
 	}
-	public void setShr(String shr) {
-		this.shr = shr;
+	public void setShry(String shry) {
+		this.shry = shry;
 	}
 	public String getTbsj() {
 		return tbsj;
@@ -157,5 +160,36 @@ public class Trqk implements Serializable {
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
+	public String getGydwmc() {
+		return gydwmc;
+	}
+	public void setGydwmc(String gydwmc) {
+		this.gydwmc = gydwmc;
+	}
+	public String getTbdwmc() {
+		return tbdwmc;
+	}
+	public void setTbdwmc(String tbdwmc) {
+		this.tbdwmc = tbdwmc;
+	}
+	
+	public String getTiaojian() {
+		return tiaojian;
+	}
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
+	}
+	@Override
+	public String toString() {
+		return "Trqk [id=" + id + ", gydw=" + gydw + ", qxrs=" + qxrs
+				+ ", trqxjf=" + trqxjf + ", lq=" + lq + ", sn=" + sn + ", ss="
+				+ ss + ", bzd=" + bzd + ", gyy=" + gyy + ", lqlbl=" + lqlbl
+				+ ", wjj=" + wjj + ", zzj=" + zzj + ", zxqc=" + zxqc
+				+ ", cstb=" + cstb + ", sbtbxj=" + sbtbxj + ", tbdw=" + tbdw
+				+ ", tjr=" + tjr + ", shry=" + shry + ", tbsj=" + tbsj
+				+ ", gydwmc=" + gydwmc + ", tbdwmc=" + tbdwmc + ", page="
+				+ page + ", rows=" + rows + "]";
+	}
+
 	
 }
