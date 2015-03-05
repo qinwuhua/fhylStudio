@@ -37,7 +37,7 @@
 		<collection property="plan_lx_yhdzxs" ofType="plan_lx_yhdzx" resultMap="yhdzx_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">
-		<id property="lxid" column="lxid" />
+		<id property="id" column="id" />
 		<result property="lxbm" column="lxbm"/>
 		<result property="lxmc" column="lxmc"/>
 		<result property="gydwmc" column="gydwmc"/>
@@ -52,11 +52,6 @@
 		<result property="ylmlx" column="ylmlx"/>
 		<result property="ylmkd" column="ylmkd"/>
 		<result property="ylmhd" column="ylmhd"/>
-		<result property="dzxkd" column="dzxkd"/>
-		<result property="lmjg" column="lmjg"/>
-		<result property="aym" column="aym"/>
-		<result property="asl" column="asl"/>
-		<result property="glf" column="glf"/>
 	</resultMap>
 	<select id="queryYhdzxList" parameterType="java.util.Map" resultMap="yhdzx_jh">
 		select * from (
@@ -94,7 +89,7 @@
 					and lx.xzqhdm in (
 						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
 				</if>
-	       		order by jh.sbnf,jh.sbzt,jh.spzt
+	       		order by jh.sbzt,jh.spzt,jh.sbnf
 	       		) t
 	       	)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -138,27 +133,16 @@
 		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid)
 		where jh.id=#{id}
 	</select>
-	<update id="editYhdzxLxByid" parameterType="java.util.Map">
-		update plan_lx_yhdzx lx set lx.lxmc=#{lx.lxmc},lx.lxbm=#{lx.lxbm},
-		lx.qdzh=#{lx.qdzh},lx.zdzh=#{lx.zdzh},lx.qzlc=#{lx.qzlc},lx.hdlc=#{lx.hdlc},
-		lx.dzxkd=#{lx.dzxkd},lx.lmjg=#{lx.lmjg},lx.aym=#{lx.aym},
-		lx.asl=#{lx.asl},lx.glf=#{lx.glf}
-		where lx.lxid=#{lx.lxid}
-	</update>
 	<update id="editYhdzxById" parameterType="java.util.Map">
 		update plan_yhdzx jh set jh.sbnf=#{jh.sbnf},jh.jhkgsj=#{jh.jhkgsj},jh.jhwgsj=#{jh.jhwgsj},
 		jh.classify=#{jh.classify},jh.aadt=#{jh.aadt},jh.pqi=#{jh.pqi},jh.dianceng=#{jh.dianceng},jh.jiceng=#{jh.jiceng},
-		jh.surface=#{jh.surface},jh.reportingfee=#{jh.reportingfee},jh.mark=#{jh.mark},
-		jh.plandownnumber=#{jh.plandownnumber},jh.xdsj=#{jh.xdsj},
-		jh.constructnumber=#{jh.constructnumber},jh.replynumber=#{jh.replynumber},
-		jh.devisenumbder=#{jh.devisenumbder},jh.description=#{jh.description},
-		jh.xchsqk=#{jh.xchsqk},jh.remarks=#{jh.remarks},jh.qtbz=#{jh.qtbz},
-		jh.fee=#{jh.fee},jh.newfee=#{jh.newfee},jh.totalplacefund=#{jh.totalplacefund},
-		jh.totalsubsidyfund=#{jh.totalsubsidyfund},jh.totalinvest=#{jh.totalinvest}
-		<!-- 
-		jh.accumulativesubsidyfund=#{jh.accumulativesubsidyfund},
-		jh.nowyearsubsidyfund=#{jh.nowyearsubsidyfund},
-		 -->
+		jh.surface=#{jh.surface},jh.fee=#{jh.fee},jh.newfee=#{jh.newfee},jh.totalinvest=#{jh.totalinvest},
+		jh.totalplacefund=#{jh.totalplacefund},jh.totalsubsidyfund=#{jh.totalsubsidyfund},
+		jh.accumulativesubsidyfund=#{jh.accumulativesubsidyfund},jh.nowyearsubsidyfund=#{jh.nowyearsubsidyfund},
+		jh.reportingfee=#{jh.reportingfee},jh.mark=#{jh.mark},jh.plandownnumber=#{jh.plandownnumber},
+		jh.xdsj=#{jh.xdsj},jh.constructnumber=#{jh.constructnumber},jh.replynumber=#{jh.replynumber},
+		jh.devisenumbder=#{jh.devisenumbder},jh.description=#{jh.description},jh.xchsqk=#{jh.xchsqk}<!-- ,
+		jh.remarks=#{jh.remarks},jh.qtbz=#{jh.qtbz} -->
 		where jh.id=#{jh.id}
 	</update>
 	<update id="editYhdzxStatus" parameterType="plan_yhdzx">
@@ -176,27 +160,29 @@
 		delete from plan_yhdzx jh where jh.id =#{id}
 	</delete>
 	<insert id="insertYhdzx_lx" parameterType="hashMap">
-		insert into plan_lx_yhdzx (lxid,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
+		insert into plan_lx_yhdzx (id,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
 			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
-			yjsdj,ylmkd,ylmhd,ylmlx,DZXKD,
+			yjsdj,ylmkd,ylmhd,ylmlx,bhnr,
 			tbbm,tbbmdm,tbsj) 
 		values (
 			sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},
 			#{3},#{4},#{5},#{6},#{7},#{8},
-			#{9},#{10},#{11},#{12},#{18},
+			#{9},#{10},#{11},#{12},#{13},
 			(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{gydwdm},#{tbsj})
 	</insert>
 	<insert id="insertYhdzx_jh" parameterType="hashMap">
 		insert into plan_yhdzx (
-	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
-	    	jiceng,surface,reportingfee,totalinvest,
-	    	mark,constructnumber,replynumber,devisenumbder,
+	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,description,dianceng,
+	    	jiceng,surface,reportingfee,fee,newfee,
+	    	totalinvest,totalplacefund,totalsubsidyfund,accumulativesubsidyfund,nowyearsubsidyfund,
+	    	mark,pqi,aadt,constructnumber,replynumber,devisenumbder,
 	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
 		values (
-			#{jhid},#{13},#{14},to_date(#{15},'yyyy-mm-dd'),to_date(#{16},'yyyy-mm-dd'),to_date(#{17},'yyyy-mm-dd'),#{19},
-			#{20},#{21},#{22},#{23},
-			#{24},#{25},#{26},#{27},
-			#{28},#{29},#{30},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
+			#{jhid},#{14},#{15},to_date(#{16},'yyyy-mm-dd'),to_date(#{17},'yyyy-mm-dd'),to_date(#{18},'yyyy-mm-dd'),#{19},#{20},
+			#{21},#{22},#{23},#{24},#{25},
+			#{26},#{27},#{28},#{29},#{30},
+			#{31},#{32},#{33},#{34},#{35},#{36},
+			#{37},#{38},#{39},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
 	</insert>
 	<select id="querySumYhdzx" resultMap="yhdzx_jh">
 		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.hdlc) as hdlc,

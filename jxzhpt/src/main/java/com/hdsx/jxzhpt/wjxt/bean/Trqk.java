@@ -190,6 +190,5 @@ public class Trqk implements Serializable {
 				+ ", gydwmc=" + gydwmc + ", tbdwmc=" + tbdwmc + ", page="
 				+ page + ", rows=" + rows + "]";
 	}
-
-	
+ 
 }

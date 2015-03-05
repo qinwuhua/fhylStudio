@@ -18,8 +18,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm("ddlPDDJ", "技术等级");
-			loadBmbm("ddlGldj", "公路等级");
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
@@ -68,13 +66,6 @@
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;工程改造路面升级项目</div>
-					</div>
-	            </td>
-        	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
         			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
@@ -111,9 +102,22 @@
 								</select>
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;公路等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:104px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="G">国道</option>
+									<option value="S">省道</option>
+									<option value="X">县道</option>
+									<option value="Y">乡道</option>
+									<option value="C">村道</option>
+									<option value="Z">专道</option>
 								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchGcsj()" style="vertical-align:middle;"/>
         					</p>

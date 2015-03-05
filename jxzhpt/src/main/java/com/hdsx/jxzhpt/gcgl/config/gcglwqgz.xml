@@ -166,9 +166,6 @@ where  t1.spzt='1'
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
 	</if>
-	<if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>
 	order by t1.sbnf
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -193,9 +190,7 @@ where  t1.spzt='1'
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'
 	</if>
-	 <if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>	
+	 	
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_WQGZ where SCKID=#{jhid}
@@ -228,18 +223,5 @@ where  t1.spzt='1'
 	 </select>
 	 <select id="selectwqzj4" parameterType="gcglwqgz" resultType="gcglwqgz">
 	 	select sum(xdzj) zxdzj from PLAN_ZJXD where xmid=#{jhid}
-	 </select>
-	 <update id="updateSjZT" parameterType="gcglwqgz" >
-	 update PLAN_WQGZ set sjzt=#{sjzt} where sckid=#{jhid}
-	 </update>
-	 <update id="updateXjZT" parameterType="gcglwqgz" >
-	 update PLAN_WQGZ set xjzt=#{xjzt} where sckid=#{jhid}
-	 </update>
-	 <update id="updateSJSH" parameterType="gcglwqgz" >
-	 update PLAN_WQGZ set sjsh=#{sjsh} where sckid=#{jhid}
-	 </update>
-	 <select id="selectnumbyyh" parameterType="gcglwqgz" resultType="int">
-	 	select count(*) from GCGL_WQGZ 
-		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
 </mapper>

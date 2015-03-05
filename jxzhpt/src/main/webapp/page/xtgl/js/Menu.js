@@ -44,7 +44,7 @@ $(function() {
 	});
 	createMenu('LeftMenu',{
 		id:'menu_010407',
-		title:'补助标准',
+		title:'路网项目补助标准',
 		imgSrc:'../../images/bzbz.png',
 		renderTo:'left_menu1',
 		href:'./bzbz.jsp'
@@ -52,14 +52,14 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_010408',
 		title:'非路网项目补助标准',
-		imgSrc:'../../images/bzbz.png',
+		imgSrc:'../../images/flwbzbz.png',
 		renderTo:'left_menu1',
 		href:'./flwbzbz.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_010409',
 		title:'养护大中修路面结构参数',
-		imgSrc:'../../images/bzbz.png',
+		imgSrc:'../../images/jgcs.png',
 		renderTo:'left_menu1',
 		href:'./yhdzxlmcs.jsp'
 	});

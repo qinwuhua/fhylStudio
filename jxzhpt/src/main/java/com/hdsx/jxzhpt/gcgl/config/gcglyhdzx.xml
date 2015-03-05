@@ -166,9 +166,6 @@
 	<if test="lxmc != null and  lxmc != ''">
 			and t1.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
-	<if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>
 	order by t2.xdsj
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -190,24 +187,8 @@
 	<if test="lxmc != null and  lxmc != ''">
 			and t1.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
-	<if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglyhdzx" resultType="gcglyhdzx">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_YHDZX where id=#{jhid}
-	 </select>
-	 <update id="updateSjZT" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set sjzt=#{sjzt} where id=#{jhid}
-	 </update>
-	 <update id="updateXjZT" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set xjzt=#{xjzt} where id=#{jhid}
-	 </update>
-	 <update id="updateSJSH" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set sjsh=#{sjsh} where id=#{jhid}
-	 </update>
-	 <select id="selectnumbyyh" parameterType="gcglyhdzx" resultType="int">
-	 	select count(*) from GCGL_YHDZX 
-		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
 </mapper>

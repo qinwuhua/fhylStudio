@@ -39,8 +39,8 @@ function wqxm(jh,lx){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	if(row.jh_sbthcd>0){
-		        		result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
-			        	result+='<a style="text-decoration:none;color:black;">移除</a>';
+		        		result+='<a style="text-decoration:none;">编辑</a>    ';
+			        	result+='<a style="text-decoration:none;">移除</a>';
 		        	}else{
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	var id="'"+row.id+"'";

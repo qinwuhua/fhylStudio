@@ -63,21 +63,16 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 180px;">
+        						<input id="gydw" style="width: 200px;">
         						
         						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 60px;">
+        						<input id="kgzt" style="width: 100px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc"  style="width: 100px;">
+        							<input type="text" id="lxmc" >
         						<span>桥梁名称：</span>
-        						<input type="text" id="qlmc" style="width: 100px;">
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
-        							<option value="">全&nbsp;&nbsp;部</option>
-        							<option value="已上报">已上报</option>
-        							<option value="未上报">未上报</option>
-        						</select>
-        						&nbsp;&nbsp;&nbsp;&nbsp;
+        							<input type="text" id="qlmc" >
+        							&nbsp;&nbsp;&nbsp;&nbsp;
+        							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>

@@ -67,12 +67,6 @@ a:active {
         						<input id="kgzt" style="width: 100px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
-        							<option value="">全&nbsp;&nbsp;部</option>
-        							<option value="已上报">已上报</option>
-        							<option value="未上报">未上报</option>
-        						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
