@@ -53,7 +53,7 @@ function startSearch(){
 		height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 		pagination:true,
-	    rownumbers:true,
+	    rownumbers:true, 
 	    pageNumber:1,
 	    pageSize:10,
 	    fitColumns:true,
