@@ -59,6 +59,10 @@ function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
+	if($.cookie("unit2")=='______36'){
+			alert("对不起，无法退回！");
+			return;
+		}
 	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
 		alert("对不起，无法退回！");
 		return;

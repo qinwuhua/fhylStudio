@@ -60,6 +60,10 @@ function delJckzhfz(){
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
+	if($.cookie("unit2")=='______36'){
+		alert("对不起，您无法上报！");
+		return;
+	}
 	if($.cookie("unit2").length==7){
 		alert("项目已上报到省级单位，请勿重复操作！");
 		return ;
@@ -98,6 +102,10 @@ function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
+	if($.cookie("unit2")=='______36'){
+			alert("对不起，无法退回！");
+			return;
+		}
 	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
 		alert("对不起，无法退回！");
 		return;

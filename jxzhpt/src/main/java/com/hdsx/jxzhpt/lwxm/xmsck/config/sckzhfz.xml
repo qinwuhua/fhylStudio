@@ -141,7 +141,7 @@
  			and bzls like #{bzls}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sck_shzt desc
+ 			order by sck_shzt desc,lrjh desc
  </select>
   <select id="selectSckZhfzShCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)

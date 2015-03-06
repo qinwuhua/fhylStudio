@@ -4,7 +4,7 @@
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
 				 	'sbthcd':function(){
-				 		if($.cookie("unit2").length==2) return 7;
+				 		if($.cookie("unit2")=='______36') return 7;
 				 		else return $.cookie("unit2").length;
 				 	},
 				 	'gydw':function(){
@@ -77,7 +77,7 @@
 		var sbthcd;
 	 	var gydw;
 	 	var xzqhmc;
-	 		if($.cookie("unit2").length==2){
+	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 		if("36"==$('#gydw').combobox("getValue")){
@@ -104,7 +104,7 @@
 			 url:'/jxzhpt/xmjck/selectAbgc.do',
 			 queryParams : {
 				 	'sbthcd':function(){
-				 		if($.cookie("unit2").length==2) return 7;
+				 		if($.cookie("unit2")=='______36') return 7;
 				 		else return $.cookie("unit2").length;
 				 	},
 				 	'gydw':function(){
@@ -177,7 +177,7 @@
 		var sbthcd;
 	 	var gydw;
 	 	var xzqhmc;
-	 		if($.cookie("unit2").length==2){
+	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 		if("36"==$('#gydw').combobox("getValue")){
@@ -210,7 +210,7 @@
 			 url:'/jxzhpt/xmjck/selectZhfz.do',
 			 queryParams : {
 				 	'sbthcd':function(){
-				 		if($.cookie("unit2").length==2) return 7;
+				 		if($.cookie("unit2")=='______36') return 7;
 				 		else return $.cookie("unit2").length;
 				 	},
 				 	'gydw':function(){
@@ -283,7 +283,7 @@
 		var sbthcd;
 	 	var gydw;
 	 	var xzqhmc;
-	 		if($.cookie("unit2").length==2){
+	 	if($.cookie("unit2")=='______36'){
 	 			sbthcd=7;
 	 		}else  sbthcd=$.cookie("unit2").length;
 	 		if("36"==$('#gydw').combobox("getValue")){
@@ -317,7 +317,7 @@ function jckshWqgz(){
 		 url:'/jxzhpt/xmjck/selectJckShwqgz.do',
 		 queryParams : {
 			 'sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -373,7 +373,7 @@ function jckshWqgz(){
 	var sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -399,7 +399,7 @@ function jckshAbgc(){
 		 url:'/jxzhpt/xmjck/selectAbgcSh.do',
 		 queryParams : {
 			 'sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -460,7 +460,7 @@ function jckshAbgc(){
 	var sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -492,7 +492,7 @@ function jckshZhfz(){
 		 url:'/jxzhpt/xmjck/selectZhfzSh.do',
 		 queryParams : {
 			 'sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -553,7 +553,7 @@ function jckshZhfz(){
 	var sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -587,7 +587,7 @@ function sckglWqgz(){
 		 url:'/jxzhpt/xmsck/selectSckwqgz.do',
 		 queryParams : {
 			 	'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+			 		if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -663,7 +663,7 @@ function sckglWqgz(){
 	var sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -691,7 +691,7 @@ function sckglAbgc(){
 		 url:'/jxzhpt/xmsck/selectSckabgc.do',
 		 queryParams : {
 			 	'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+			 		if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -767,7 +767,7 @@ function sckglAbgc(){
 	var sck_sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sck_sbthcd=7;
  		}else  sck_sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -799,7 +799,7 @@ function sckglZhfz(){
 		 url:'/jxzhpt/xmsck/selectSckzhfz.do',
 		 queryParams : {
 			 	'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+			 		if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -875,7 +875,7 @@ function sckglZhfz(){
 	var sck_sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sck_sbthcd=7;
  		}else  sck_sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -908,7 +908,7 @@ function sckshWqgz(){
 		 url:'/jxzhpt/xmsck/selectSckShwqgz.do',
 		 queryParams : {
 			 'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -973,7 +973,7 @@ function sckshWqgz(){
 	var sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sbthcd=7;
  		}else  sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -1000,7 +1000,7 @@ function sckshAbgc(){
 		 url:'/jxzhpt/xmsck/selectSckShabgc.do',
 		 queryParams : {
 			 'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -1060,7 +1060,7 @@ function sckshAbgc(){
 	var sck_sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sck_sbthcd=7;
  		}else  sck_sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
@@ -1092,7 +1092,7 @@ function sckshZhfz(){
 		 url:'/jxzhpt/xmsck/selectSckShzhfz.do',
 		 queryParams : {
 			 'sck_sbthcd':function(){
-			 		if($.cookie("unit2").length==2) return 7;
+				 if($.cookie("unit2")=='______36') return 7;
 			 		else return $.cookie("unit2").length;
 			 	},
 			 	'gydw':function(){
@@ -1152,7 +1152,7 @@ function sckshZhfz(){
 	var sck_sbthcd;
  	var gydw;
  	var xzqhmc;
- 		if($.cookie("unit2").length==2){
+ 	if($.cookie("unit2")=='______36'){
  			sck_sbthcd=7;
  		}else  sck_sbthcd=$.cookie("unit2").length;
  		if("36"==$('#gydw').combobox("getValue")){
