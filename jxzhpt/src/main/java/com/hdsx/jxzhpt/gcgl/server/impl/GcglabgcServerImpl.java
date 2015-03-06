@@ -33,6 +33,10 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 				gcglabgc.setXjzt("未上报");
 				update("updateXjZT", gcglabgc);
 			}
+			if(gcglabgc.getSfsj()==7){
+				gcglabgc.setSjsh("未审核");
+				update("updateSJSH", gcglabgc);
+			}
 			return true;
 		}else{
 			return false;

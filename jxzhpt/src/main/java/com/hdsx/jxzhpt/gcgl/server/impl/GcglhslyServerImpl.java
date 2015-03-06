@@ -38,6 +38,10 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 				gcglhsly.setXjzt("未上报");
 				update("updateXjZT", gcglhsly);
 			}
+			if(gcglhsly.getSfsj()==7){
+				gcglhsly.setSjsh("未审核");
+				update("updateSJSH", gcglhsly);
+			}
 			return true;
 		}else{
 			return false;

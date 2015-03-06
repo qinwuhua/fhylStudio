@@ -165,6 +165,9 @@ public class GcglabgcController extends BaseActionSupport{
 		if("市级".equals(yhtype)){
 			gcglabgc.setSfsj(9);
 		}
+		if("省级".equals(yhtype)){
+			gcglabgc.setSfsj(7);
+		}
 		Boolean bl=gcglabgcServer.insertAbgcYb(gcglabgc);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

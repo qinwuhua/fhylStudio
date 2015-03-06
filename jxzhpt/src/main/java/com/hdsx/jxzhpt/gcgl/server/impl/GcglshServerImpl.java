@@ -37,6 +37,10 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 				gcglsh.setXjzt("未上报");
 				update("updateXjZT", gcglsh);
 			}
+			if(gcglsh.getSfsj()==7){
+				gcglsh.setSjsh("未审核");
+				update("updateSJSH", gcglsh);
+			}
 			return true;
 		}else{
 			return false;

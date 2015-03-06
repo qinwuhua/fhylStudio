@@ -157,6 +157,9 @@ public class GcglyhdzxController extends BaseActionSupport{
 		if("市级".equals(yhtype)){
 			gcglyhdzx.setSfsj(9);
 		}
+		if("省级".equals(yhtype)){
+			gcglyhdzx.setSfsj(7);
+		}
 		Boolean bl=gcglyhdzxServer.insertYhdzxYb(gcglyhdzx);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

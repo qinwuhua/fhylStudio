@@ -158,6 +158,9 @@ public class GcglshController extends BaseActionSupport{
 		if("市级".equals(yhtype)){
 			gcglsh.setSfsj(9);
 		}
+		if("省级".equals(yhtype)){
+			gcglsh.setSfsj(7);
+		}
 		Boolean bl=gcglshServer.insertshYb(gcglsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

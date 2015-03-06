@@ -165,6 +165,9 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		if("市级".equals(yhtype)){
 			gcglgcgzsj.setSfsj(9);
 		}
+		if("省级".equals(yhtype)){
+			gcglgcgzsj.setSfsj(7);
+		}
 		Boolean bl=gcglgcgzsjServer.insertgcgzsjYb(gcglgcgzsj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
