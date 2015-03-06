@@ -5,5 +5,7 @@
 <package name="wjxt" extends="struts-default" namespace="/wjxt">
 	<action name="insertTrqk" class="trqkController" method="insertTrqk"/>
 	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
+	<!--  -->
+	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
  </package>
 </struts>
