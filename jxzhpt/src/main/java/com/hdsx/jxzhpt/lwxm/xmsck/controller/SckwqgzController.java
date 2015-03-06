@@ -233,6 +233,13 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectWqgzShCount(){
+		try {
+			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzShCount(sckwqgz)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	public Sckwqgz getSckwqgz() {

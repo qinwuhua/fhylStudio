@@ -49,7 +49,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_sbzt2,sck_shzt,bzls
  </select>
-  <select id="selectAbgcCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckAbgcCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -143,7 +143,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc
  </select>
-  <select id="selectAbgcShCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckAbgcShCount" parameterType="hashmap" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
  		 where sck_sbzt='已上报' and sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -315,6 +315,39 @@
  		</if>
  		<if test="sbzt!='' and sbzt!= null ">
  			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ </select>
+ <select id="selSckAbgcShCount" parameterType="hashmap" resultType="sckabgc">
+ 		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+ 		 where sck_sbzt='已上报' and sck_sbthcd=7
+			and sck_sbthcd>=#{sck_sbthcd}
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+  		<if test="xzqhmc!='' and xzqhmc!= null "  >
+ 			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+ 		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'

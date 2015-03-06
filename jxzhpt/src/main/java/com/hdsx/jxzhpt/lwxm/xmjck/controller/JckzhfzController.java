@@ -240,6 +240,13 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selZhfzShCount(){
+		try {
+			JsonUtils.write(zhfzServer.selZhfzShCount(jckzhfz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Jckzhfz getJckzhfz() {
 		return jckzhfz;

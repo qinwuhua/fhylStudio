@@ -241,4 +241,19 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 		return queryOne("selZhfzCount", hm);
 	}
 
+	@Override
+	public Jckzhfz selZhfzShCount(Jckzhfz zhfz) {
+		hm=new HashMap<String, Object>();
+		hm.put("sbthcd", zhfz.getSbthcd());
+		hm.put("gydw", zhfz.getGydw());
+		hm.put("xzqhmc", zhfz.getXzqhmc());
+		hm.put("lxmc", zhfz.getLxmc());
+		hm.put("xmnf", zhfz.getXmnf());
+		hm.put("xmtype", zhfz.getXmtype());
+		hm.put("sbzt", zhfz.getSbzt());
+		hm.put("lxjsdj", zhfz.getLxjsdj());
+		hm.put("lxbm", zhfz.getLxbm());
+		return queryOne("selZhfzShCount", hm);
+	}
+
 }

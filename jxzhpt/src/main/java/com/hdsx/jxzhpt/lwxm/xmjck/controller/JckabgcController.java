@@ -241,6 +241,13 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selAbgcShCount(){
+		try {
+			JsonUtils.write(abgcServer.selAbgcShCount(jckabgc),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public String getTbbmbm2() {
 		return tbbmbm2;

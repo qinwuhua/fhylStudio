@@ -160,7 +160,7 @@
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_shzt desc
 	</select>
-	<select id="selectWqgzShCount" parameterType="hashmap"
+	<select id="selectSckWqgzShCount" parameterType="hashmap"
 		resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id)
