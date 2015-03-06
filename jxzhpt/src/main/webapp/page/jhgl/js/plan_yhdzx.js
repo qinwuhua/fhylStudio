@@ -39,37 +39,9 @@ function yhdzxxm(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  if(row.jh_sbthcd>0){
-		        		  result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
-			        	  result+='<a style="text-decoration:none;color:black;">移除</a>';
-		        	  }else{
-		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-			        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
-		        	  }
+		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		        	  return result;
-			      }},
-			      {field:'jh_sbthcd',title:'计划状态',align:'center',formatter:function(value,row,index){
-			    	  var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-			    	  var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-			    	  var xian=true;
-			    	  if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
-			    		  xian=false;
-			    	  }
-			    	  if(value=='0'){
-			    		  return '未上报';
-		    		  }else if(value=='2'){
-		    			  if(xian)
-		    				  return '已上报';
-		    			  else
-		    				  return '未上报';
-		    		  }else if(value=='4'){
-		    			  return '已上报';
-		    		  }
-			    	  if(value=='4'){
-			    		  return '未审核';
-			    	  }else if(value=='6'){
-			    		  return '已审核';
-			    	  }
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center',
 			    	  formatter:function(value,row,index){
@@ -173,14 +145,14 @@ function yhdzxxm_sb(jh,lx){
 			    		  var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 			    		  var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
 			    		  if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==2){
-			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+','+(row.plan_lx_yhdzxs[0].lmjg!="")+')" style="text-decoration:none;color:#3399CC;">上报</a>   |    ';
+			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>   |    ';
 			    			  result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 			    		  }else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
 			    			  result='<a style="text-decoration:none;">已上报</a>';
 			    		  }
 									
 			    		  if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
-			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+','+(row.plan_lx_yhdzxs[0].lmjg!="")+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
 			    		  }else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
 			    			  result='<a style="text-decoration:none;">已上报</a>';
 			    		  }
@@ -502,9 +474,6 @@ function queryYhdzxById(id){
 		data:'jh.id='+id,
 		success:function(data){
 			$('#lblYear').html(data.sbnf);
-			$('#lbljhkgsj').html(data.jhkgsj);
-			$('#lbljhwgsj').html(data.jhwgsj);
-			$('#lbljhxdsj').html(data.xdsj);
 			$('#lblLXMC').html(data.plan_lx_yhdzxs[0].lxmc);
 			$('#lblLXBM').html(data.plan_lx_yhdzxs[0].lxbm);
 			$('#lblGYDWMC').html(data.plan_lx_yhdzxs[0].gydwmc);
@@ -540,37 +509,6 @@ function queryYhdzxById(id){
 			$('#lblXCHSQK').html(data.xchsqk);
 			$('#lblSTCBZ').html(data.remarks);
 			$('#lblQTBZ').html(data.qtbz);
-			
-			var lmdate=$.parseJSON(data.plan_lx_yhdzxs[0].lmjg);
-			if(data.plan_lx_yhdzxs[0].lmjg!=""){
-				loadYhdzxcs(lmdate,"上面层","smc");
-				loadYhdzxcs(lmdate,"中面层","zmc");
-				loadYhdzxcs(lmdate,"下面层","xmc");
-				loadYhdzxcs(lmdate,"封层","fc");
-				loadYhdzxcs(lmdate,"上基层","sjc");
-				loadYhdzxcs(lmdate,"中基层","zjc");
-				loadYhdzxcs(lmdate,"下基层","xjc");
-				loadYhdzxcs(lmdate,"垫层","dc");
-				loadYhdzxcs(lmdate,"原路","yl");
-			}
-			if(data.plan_lx_yhdzxs[0].aym!=""){
-				$.each(JSON.parse(data.plan_lx_yhdzxs[0].aym),function(index,item){
-					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><span>'+item.xmmc+'</span></td><td align="center" style="border: 1px solid #C0C0C0;"><span>'+item.sm+'</span></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><span>'+item.cd+'</span></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><span>'+item.dj+'</span></td></tr>';
-					$('#ymtr').after(html);
-				});
-			}
-			if(data.plan_lx_yhdzxs[0].asl!=""){
-				$.each(JSON.parse(data.plan_lx_yhdzxs[0].asl),function(index,item){
-					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><span>'+item.xmmc+'</span></td><td align="center" style="border: 1px solid #C0C0C0;"><span>'+item.sm+'</span></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><span>'+item.sl+'</span></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><span>'+item.dj+'</span></td></tr>';
-					$('#asltr').after(html);
-				});
-			}
-			if(data.plan_lx_yhdzxs[0].glf!=""){
-				$('#seldw').val(JSON.parse(data.plan_lx_yhdzxs[0].glf).dw);
-				$('#txtglfdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).dj);
-				$('#lblysdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).ysdj);
-				$('#lblpgdj').html(JSON.parse(data.plan_lx_yhdzxs[0].glf).pgdj);
-			}
 		}
 	});
 }

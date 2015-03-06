@@ -185,6 +185,61 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void uploadWqgzFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
+		try {
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
+					   if(wqgzServer.updateGkbg(jh))
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
+				}else{
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
+					if(wqgzServer.updateSjsgt(jh))
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	public void downWqgzFile(){
+        try {
+        	Plan_wqgz wqgz = wqgzServer.queryWqgzFjById(jh.getId());
+        	HttpServletResponse response = getresponse();
+        	response.setContentType("application/x-download"); 
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream out = response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getGkbgmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getGkbgdata();
+                out.write(buffer);
+                out.flush();
+                out.close();
+        	}else{
+        		OutputStream out= response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(wqgz.getSjsgtmc().getBytes("GBK"),"ISO-8859-1"));
+        		byte[]  buffer= wqgz.getSjsgtdata();
+                out.write(buffer);
+                out.flush();
+                out.close();
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//set get
 	public int getPage() {

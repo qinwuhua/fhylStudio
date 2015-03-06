@@ -65,7 +65,7 @@
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
 	 				</if>
-	 				order by jh.sbzt,jh.spzt,jh.sbnf
+	 				order by jh.sbzt,jh.spzt,jh.sbnf desc
 	 			) t
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -113,7 +113,7 @@
 	<select id="queryWqgzById" parameterType="string" resultType="plan_wqgz">
 		<!-- select * from plan_wqgz jh where jh.id=#{id} -->
 		select 	id,sckid,sbnf,jhkgsj,jhwgsj, sjdw,sjpfdw,pfwh, pfsj,pfztz, jhsybzje, jhsydfzcje, sfsqablbz,ablbzsqwh, bz,tbsj,
-	 tbbm,spzt,spbm,spsj,sbzt, sbbm, sbsj, xdsj,gkbglj,sjsgtlj,sjkgsj,sjwgsj,sgdw,jldw,htje,sgxkwj,
+	 tbbm,spzt,spbm,spsj,sbzt, sbbm, sbsj, xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw,jldw,htje,sgxkwj,
 	jgtcwj,jgyswj,wjsczt,kgzt,jgzt,yjjgsj,wjgyy, jsdw, jhxdwh, xdzt, xfzt,xfsj,xfbm,wjzt,wjsj,gys, sbbmdm,spbmdm,sfylsjl
 	from plan_wqgz jh where jh.id=#{id}
 	</select>

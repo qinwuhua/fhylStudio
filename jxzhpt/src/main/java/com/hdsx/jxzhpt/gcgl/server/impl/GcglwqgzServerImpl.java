@@ -28,14 +28,6 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		}
 		gcglwqgz.setShzt("未审核");
 		if(insert("insertWqgzYb", gcglwqgz)>0){
-			if(gcglwqgz.getSfsj()==9){
-				gcglwqgz.setSjzt("未上报");
-				update("updateSjZT", gcglwqgz);
-			}
-			if(gcglwqgz.getSfsj()==11){
-				gcglwqgz.setXjzt("未上报");
-				update("updateXjZT", gcglwqgz);
-			}
 			return true;
 		}else{
 			return false;
@@ -91,16 +83,8 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 
 	@Override
 	public Boolean shwqgzyb(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
 		if(update("shwqgzyb", gcglwqgz)>0){
-			gcglwqgz.setYhtype("7");
-			int num3=queryOne("selectnumbyyh", gcglwqgz);
-			if(num3>0){
-				gcglwqgz.setSjsh("未审核");
-				update("updateSJSH", gcglwqgz);
-			}else{
-				gcglwqgz.setSjsh("已审核");
-				update("updateSJSH", gcglwqgz);
-			}
 			return true;
 		}else{
 			return false;
@@ -246,34 +230,6 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 	@Override
 	public Boolean sbWqgzYb(Gcglwqgz gcglwqgz) {
 		if(update("sbWqgzYb", gcglwqgz)>0){
-			gcglwqgz.setYhtype("11");
-			int num1=queryOne("selectnumbyyh", gcglwqgz);
-			if(num1>0){
-				gcglwqgz.setXjzt("未上报");
-				update("updateXjZT", gcglwqgz);
-			}else{
-				gcglwqgz.setXjzt("已上报");
-				update("updateXjZT", gcglwqgz);
-			}
-			gcglwqgz.setYhtype("9");
-			int num2=queryOne("selectnumbyyh", gcglwqgz);
-			if(num2>0){
-				gcglwqgz.setSjzt("未上报");
-				update("updateSjZT", gcglwqgz);
-			}else{
-				gcglwqgz.setSjzt("已上报");
-				update("updateSjZT", gcglwqgz);
-			}
-			gcglwqgz.setYhtype("7");
-			int num3=queryOne("selectnumbyyh", gcglwqgz);
-			if(num3>0){
-				gcglwqgz.setSjsh("未审核");
-				update("updateSJSH", gcglwqgz);
-			}
-//			else{
-//				gcglwqgz.setSjsh("已审核");
-//				update("updateXjZT", gcglwqgz);
-//			}
 			return true;
 		}else{
 			return false;

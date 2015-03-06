@@ -45,9 +45,7 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc,
-	    	ybzt:'',
-	    	sfsj:7
+	    	qlmc:qlmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

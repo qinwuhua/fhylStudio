@@ -359,21 +359,11 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="1">
-						<tbody id="gkbgTable"></tbody>
-					</table>
-						<table>
-							<tr>
-								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
-								<td><div id="fileQueue" ></div></td>
-							</tr>
-							<tr>
-								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
-								</td>
-							</tr>
-						</table>
+					<form method="post" enctype="multipart/form-data">
+						<div id="fileQueue"></div>
+						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
+						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					</form>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -381,21 +371,9 @@
 					设计施工图
 				</td>
 				<td id="td_sjt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="1">
-						<tbody id="sjsgtTable"></tbody>
-					</table>
-					<table>
-							<tr>
-								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
-								<td><div id="fileQueue1" ></div></td>
-							</tr>
-							<tr>
-								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
-								</td>
-							</tr>
-						</table>
+					<div id="fileQueue1"></div>
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -436,41 +414,16 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editjhnf");
-	function downFile(id){
-		parent.window.location.href="/jxzhpt/jhgl/downFile.do?uploads.id="+id;
-	}
-	function deleteFile(id){
-		if(confirm('确定删除所选数据？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/jhgl/deleteFile.do",
-				 dataType : 'json',
-				 data : 'uploads.id=' +id,
-				 success : function(msg){
-					 if(msg){
-						 alert('删除成功！');
-						 fileShow();
-					 }else{
-						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	}
-
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadFile.do',
+		'script' : '../../../jhgl/uploadGcsjFile.do',
 		'cancelImg' : '../../../js/uploader/cancel.png',
 		'queueID' : 'fileQueue',
 		'fileDataName' : 'uploadGk',
 		'auto' : false,
-		'multi' : true,
-		'buttonImg': '../../../js/uploader/bdll.png',
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,
@@ -479,11 +432,10 @@
 		'height' : 30,
 		'width' : 92,
 		'scriptData' : {
-			'uploads.parentid':xxId,
+			'jh.id':xxId
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			alert(response);
-			fileShow();
+			$('#td_gkbg').html("<a>"+response+"</a>");
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -495,41 +447,39 @@
 
 		}
 	});
-	
-	$("#uploadSjt").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue1',
-		'fileDataName' : 'uploadSjt',
-		'auto' : false,
-		'multi' : true,
-		'buttonImg': '../../../js/uploader/bdll.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'uploads.parentid':xxId,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			alert(response);
-			fileShow();
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
+$("#uploadSjt").uploadify({
+	/*注意前面需要书写path的代码*/
+	'uploader' : '../../../js/uploader/uploadify.swf',
+	'script' : '../../../jhgl/uploadGcsjFile.do',
+	'cancelImg' : '../../../js/uploader/cancel.png',
+	'queueID' : 'fileQueue1',
+	'fileDataName' : 'uploadSjt',
+	'auto' : false,
+	'multi' : false,
+	'buttonImg': '../../../js/uploader/btn_view.png',
+	'simUploadLimit' : 3,
+	'sizeLimit' : 20000000,
+	'queueSizeLimit' : 5,
+	'fileDesc' : '支持格式:xls',
+	'fileExt' : '',
+	'height' : 30,
+	'width' : 92,
+	'scriptData' : {
+		'jh.id':xxId
+	},
+	onComplete : function(event, queueID, fileObj, response, data) {
+		$('#td_sjt').html("<a>"+response+"</a>");
+	},
+	onError : function(event, queueID, fileObj) {
+		alert("文件:" + fileObj.name + "上传失败");
+	},
+	onCancel : function(event, queueID, fileObj) {
+	},
+	onQueueFull : function(event, queueSizeLimit) {
+		alert("最多支持上传文件数为：" + queueSizeLimit);
 
-		}
-	});
+	}
+});
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryGcsjById.do',
@@ -592,33 +542,14 @@
 			$('#tzgs').html(data.tzgs);
 			$('#jsxz').html(data.jsxz);
 			$('#jsnr').html(data.jsnr);
-			fileShow();
+			if(data.gkbgmc!=null && data.gkbgmc!=''){
+				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=null && data.sjsgtmc!=''){
+				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+			}
 		}
 	});
-	function fileShow(){
-		//加载文件
-		$.ajax({
-			type:'post',
-			url:'../../../jhgl/queryFjByParentId.do',
-			dataType:'json',
-			data:'uploads.id='+xxId,
-			success:function(data){
-				$("#gkbgTable").empty();
-				$("#sjsgtTable").empty();
-				var gkbg="";
-				var sjsgt="";
-				for ( var i = 0; i < data.length; i++) {
-					if(data[i].filetype=="工可报告"){
-						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-					}if(data[i].filetype=="设计施工图"){
-						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-					}
-					}
-				$("#gkbgTable").append(gkbg);
-				$("#sjsgtTable").append(sjsgt);
-			}
-		});
-	}
 	</script>
 </body>
 </html>

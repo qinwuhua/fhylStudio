@@ -31,14 +31,6 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		}
 		gcglgcgzgj.setShzt("未审核");
 		if(insert("insertgcgzgjYb", gcglgcgzgj)>0){
-			if(gcglgcgzgj.getSfsj()==9){
-				gcglgcgzgj.setSjzt("未上报");
-				update("updateSjZT", gcglgcgzgj);
-			}
-			if(gcglgcgzgj.getSfsj()==11){
-				gcglgcgzgj.setXjzt("未上报");
-				update("updateXjZT", gcglgcgzgj);
-			}
 			return true;
 		}else{
 			return false;
@@ -93,15 +85,6 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 	@Override
 	public Boolean shgcgzgjYb(Gcglgcgzgj gcglgcgzgj) {
 		if(update("shgcgzgjYb", gcglgcgzgj)>0){
-			gcglgcgzgj.setYhtype("7");
-			int num3=queryOne("selectnumbyyh", gcglgcgzgj);
-			if(num3>0){
-				gcglgcgzgj.setSjsh("未审核");
-				update("updateSJSH", gcglgcgzgj);
-			}else{
-				gcglgcgzgj.setSjsh("已审核");
-				update("updateSJSH", gcglgcgzgj);
-			}
 		return true;
 		}else{
 			return false;
@@ -238,29 +221,6 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 	@Override
 	public Boolean sbWqgzYb(Gcglgcgzgj gcglabgc) {
 		if(update("sbWqgzYb", gcglabgc)>0){
-			int num1=queryOne("selectnumbyyh", gcglabgc);
-			if(num1>0){
-				gcglabgc.setXjzt("未上报");
-				update("updateXjZT", gcglabgc);
-			}else{
-				gcglabgc.setXjzt("已上报");
-				update("updateXjZT", gcglabgc);
-			}
-			gcglabgc.setYhtype("9");
-			int num2=queryOne("selectnumbyyh", gcglabgc);
-			if(num2>0){
-				gcglabgc.setSjzt("未上报");
-				update("updateSjZT", gcglabgc);
-			}else{
-				gcglabgc.setSjzt("已上报");
-				update("updateSjZT", gcglabgc);
-			}
-			gcglabgc.setYhtype("7");
-			int num3=queryOne("selectnumbyyh", gcglabgc);
-			if(num3>0){
-				gcglabgc.setSjsh("未审核");
-				update("updateSJSH", gcglabgc);
-			}
 			return true;
 		}else{
 			return false;

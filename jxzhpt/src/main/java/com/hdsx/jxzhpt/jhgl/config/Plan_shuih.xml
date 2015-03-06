@@ -98,7 +98,7 @@
 						     	WHERE B.AREACODE=#{l.tsdqbm}
 						     	 )
 						     </if>
-						     ) order by jh.sbzt,jh.spzt,jh.sbnf
+						     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
 						) t
 				)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}

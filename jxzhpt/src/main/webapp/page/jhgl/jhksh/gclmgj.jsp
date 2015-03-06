@@ -23,8 +23,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm("ddlPDDJ", "技术等级");
-			loadBmbm("ddlGldj", "公路等级");
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
@@ -132,9 +130,22 @@
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;">
+									<option selected="selected" value="">全部</option>
+									<option value="一级公路">一级公路</option>
+									<option value="二级公路">二级公路</option>
+									<option value="三级公路">三级公路</option>
+									<option value="四级公路">四级公路</option>
+									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;">
+									<option selected="selected" value="">全部</option>
+									<option value="G">国道</option>
+									<option value="S">省道</option>
+									<option value="X">县道</option>
+									<option value="Y">乡道</option>
+									<option value="C">村道</option>
+									<option value="Z">专道</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">

@@ -212,21 +212,6 @@ function showAll(){
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
-	var yhjb=$.cookie("unit2");
-	var sfsj='';
-	if(yhjb.length==11){
-		yhtype='县级';
-		sfsj=11;
-	}
-	if(yhjb.length==9||yhjb.length==8){
-		yhtype='市级';
-		sfsj=9;
-	}
-	if(yhjb.length<8&&yhjb.length>=2){
-		yhtype='省级';
-		sfsj=7;
-	}
-	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectShjhList.do',
 	    striped:true,
@@ -240,9 +225,7 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
-	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	lxmc:lxmc
 		},
 	    columns:[[
 			{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -429,10 +412,10 @@ function sbsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
 	var data='';
 	if(yhjb.length==11){
-		data="gcglsh.id="+data1.id+"&gcglsh.sfsj=9"+"&gcglsh.yhtype=11"+"&gcglsh.jhid="+data1.jhid;
+		data="gcglsh.id="+data1.id+"&gcglsh.sfsj=9";
 	}
 	if(yhjb.length==9||yhjb.length==8){
-		data="gcglsh.id="+data1.id+"&gcglsh.sfsj=7"+"&gcglsh.yhtype=9"+"&gcglsh.jhid="+data1.jhid;
+		data="gcglsh.id="+data1.id+"&gcglsh.sfsj=7";
 	}
 	if(confirm("确认上报吗？")){
 		$.ajax({
@@ -453,7 +436,7 @@ function sbsjyb(index){
 }
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglsh.id="+data1.id+"&gcglsh.sfsj=11"+"&gcglsh.yhtype=9"+"&gcglsh.jhid="+data1.jhid;
+	var data="gcglsh.id="+data1.id+"&gcglsh.sfsj=11";
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',

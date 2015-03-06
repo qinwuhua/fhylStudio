@@ -42,9 +42,7 @@ function showAll(){
 	    	xzqhdm: xzqhdm,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc,
-	    	ybzt:'',
-	    	sfsj:7
+	    	lxmc:lxmc
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

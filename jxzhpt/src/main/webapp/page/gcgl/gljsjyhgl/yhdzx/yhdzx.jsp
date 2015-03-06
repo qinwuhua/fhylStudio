@@ -69,12 +69,6 @@ a:active {
         						<input id="kgzt" style="width: 100px;">
         						<span>路线：</span>
         							<input type="text" id="lxmc" >
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
-        							<option value="">全&nbsp;&nbsp;部</option>
-        							<option value="已上报">已上报</option>
-        							<option value="未上报">未上报</option>
-        						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							<span></span>

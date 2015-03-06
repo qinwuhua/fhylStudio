@@ -9,22 +9,17 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/uploader/uploadify.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm("ddlPDDJ", "技术等级");
-			loadBmbm("ddlGldj", "公路等级");
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
@@ -147,9 +142,22 @@
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
+									<option selected="selected" value="">全部</option>
+									<option value="G">国道</option>
+									<option value="S">省道</option>
+									<option value="X">县道</option>
+									<option value="Y">乡道</option>
+									<option value="C">村道</option>
+									<option value="Z">专道</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:84px;">
+									<option selected="selected" value="">全部</option>
+									<option value="1">一级公路</option>
+									<option value="2">二级公路</option>
+									<option value="3">三级公路</option>
+									<option value="4">四级公路</option>
+									<option value="5">等外公路</option>
 								</select>
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">

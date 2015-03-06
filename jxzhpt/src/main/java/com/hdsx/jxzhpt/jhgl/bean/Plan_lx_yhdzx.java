@@ -3,7 +3,7 @@ package com.hdsx.jxzhpt.jhgl.bean;
 import java.util.Date;
 
 public class Plan_lx_yhdzx {
-	private String lxid;//路线ID
+	private String id;//路线ID
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
 	private String qdzh;//起点桩号
@@ -25,41 +25,6 @@ public class Plan_lx_yhdzx {
 	private String jhid;//计划ID
 	private String tsdq;//特殊地区
 	private String bhnr;
-	private double dzxkd;//大中修宽度
-	private String lmjg;//路面结构数据信息，存储的为json字符串
-	private String aym;//按延米数据信息
-	private String asl;//按数量数据信息
-	private String glf;//管理费数据信息
-	public String getLmjg() {
-		return lmjg;
-	}
-	public void setLmjg(String lmjg) {
-		this.lmjg = lmjg;
-	}
-	public String getAym() {
-		return aym;
-	}
-	public void setAym(String aym) {
-		this.aym = aym;
-	}
-	public String getAsl() {
-		return asl;
-	}
-	public void setAsl(String asl) {
-		this.asl = asl;
-	}
-	public String getGlf() {
-		return glf;
-	}
-	public void setGlf(String glf) {
-		this.glf = glf;
-	}
-	public double getDzxkd() {
-		return dzxkd;
-	}
-	public void setDzxkd(double dzxkd) {
-		this.dzxkd = dzxkd;
-	}
 	public String getBhnr() {
 		return bhnr;
 	}
@@ -72,11 +37,11 @@ public class Plan_lx_yhdzx {
 	public void setTsdq(String tsdq) {
 		this.tsdq = tsdq;
 	}
-	public String getLxid() {
-		return lxid;
+	public String getId() {
+		return id;
 	}
-	public void setLxid(String lxid) {
-		this.lxid = lxid;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getLxmc() {
 		return lxmc;

@@ -102,39 +102,10 @@ public class Gcglzhfz implements Serializable {
 	private String jgyswj;
 	
 	private String tiaojian;
-	private String xjzt;
-	private String sjzt;
-	private String sjsh;
+	
 	
 	private int page;
 	private int rows;
-	
-	private String yhtype;
-	
-	public String getYhtype() {
-		return yhtype;
-	}
-	public void setYhtype(String yhtype) {
-		this.yhtype = yhtype;
-	}
-	public String getXjzt() {
-		return xjzt;
-	}
-	public void setXjzt(String xjzt) {
-		this.xjzt = xjzt;
-	}
-	public String getSjzt() {
-		return sjzt;
-	}
-	public void setSjzt(String sjzt) {
-		this.sjzt = sjzt;
-	}
-	public String getSjsh() {
-		return sjsh;
-	}
-	public void setSjsh(String sjsh) {
-		this.sjsh = sjsh;
-	}
 	public String getId() {
 		return id;
 	}

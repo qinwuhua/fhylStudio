@@ -62,6 +62,8 @@ public class Plan_wqgz {
 	private String sfylsjl;//最近年份是否有历史记录
 	private String qlqc;
 	private String qlkd;
+	private byte[] gkbgdata;
+	private byte[] sjsgtdata;
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
@@ -403,5 +405,17 @@ public class Plan_wqgz {
 	}
 	public void setQlkd(String qlkd) {
 		this.qlkd = qlkd;
+	}
+	public byte[] getGkbgdata() {
+		return gkbgdata;
+	}
+	public void setGkbgdata(byte[] gkbgdata) {
+		this.gkbgdata = gkbgdata;
+	}
+	public byte[] getSjsgtdata() {
+		return sjsgtdata;
+	}
+	public void setSjsgtdata(byte[] sjsgtdata) {
+		this.sjsgtdata = sjsgtdata;
 	}
 }

@@ -63,14 +63,9 @@ a:active {
         						<input id="gydw" style="width: 200px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
-        						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
-        							<option value="">全&nbsp;&nbsp;部</option>
-        							<option value="已审核">已审核</option>
-        							<option value="未审核">未审核</option>
-        						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;
+        							<span></span>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
         				</div>

@@ -17,9 +17,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm("ddlPDDJ", "技术等级");
-			loadBmbm("ddlGldj", "公路等级");
-			loadBmbm("ddlAKJFL", "跨径分类");
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			$.ajax({
@@ -96,11 +93,19 @@
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
+        						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
+        						<span>&nbsp;跨径分类：</span>
+        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:60px;">
+									<option selected="selected" value="">全部</option>
+									<option value="特大桥">特大桥</option>
+									<option value="大桥">大桥</option>
+									<option value="中桥">中桥</option>
+									<option value="小桥">小桥</option>
+								</select>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
+        						<span style=" vertical-align:middle;">桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
+        						<input name="txtBridge" type="text" id="txtBridge" style="width:165px;vertical-align:middle;" />
         						<span style="vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
         						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
@@ -112,15 +117,22 @@
 								</select>
 								<span style="vertical-align:middle;">&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;vertical-align:middle;">
+									<option selected="selected" value="">全部</option>
+									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
+									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
+									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
+									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
+									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
+									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
-								</select>
-								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:94px;">
-								</select>
-								<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:94px;">
+									<option selected="selected" value="">全部</option>
+									<option value="1">一级公路</option>
+									<option value="2">二级公路</option>
+									<option value="3">三级公路</option>
+									<option value="4">四级公路</option>
+									<option value="5">等外公路</option>
 								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
         					</p>
