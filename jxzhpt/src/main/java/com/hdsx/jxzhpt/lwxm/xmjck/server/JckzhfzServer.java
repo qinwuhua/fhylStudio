@@ -26,4 +26,5 @@ public interface JckzhfzServer {
 	boolean onceZhfz(Jckzhfz zhfz);
 	String yanZhen(List<Map<String,String>> data,String tbbmbm);
 	Jckzhfz selZhfzCount(Jckzhfz zhfz);
+	Jckzhfz selZhfzShCount(Jckzhfz zhfz);
 }

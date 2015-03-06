@@ -20,6 +20,7 @@
 	<action name="exportExcel_abgc_sh" class="jckabgcController" method="exportExcel_abgc_sh"/>
 	<action name="onceAbgc" class="jckabgcController" method="onceAbgc"/>
 	<action name="selAbgcCount" class="jckabgcController" method="selAbgcCount"/>
+	<action name="selAbgcShCount" class="jckabgcController" method="selAbgcShCount"/>
 	<!-- 危桥改造 -->
 	<action name="insertWqgz" class="jckwqgzController" method="insertWqgz"/>
 	<action name="selectWqgz" class="jckwqgzController" method="selectWqgz"/>
@@ -38,6 +39,7 @@
 	<action name="onceWqgz" class="jckwqgzController" method="onceWqgz"/>
 	<action name="selJsdj" class="jckwqgzController" method="selJsdj"/>
 	<action name="selectWqgzCount" class="jckwqgzController" method="selectWqgzCount"/>
+	<action name="selectWqgzShCount" class="jckwqgzController" method="selectWqgzShCount"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
 	<action name="selectZhfz" class="jckzhfzController" method="selectZhfz"/>
@@ -55,6 +57,7 @@
 	<action name="exportExcel_zhfz_sh" class="jckzhfzController" method="exportExcel_zhfz_sh"/>
 	<action name="onceZhfz" class="jckzhfzController" method="onceZhfz"/>
 	<action name="selZhfzCount" class="jckzhfzController" method="selZhfzCount"/>
+	<action name="selZhfzShCount" class="jckzhfzController" method="selZhfzShCount"/>
  </package>
  <package name="xmsck" extends="struts-default" namespace="/xmsck">
  <!-- 危桥改造 -->
@@ -74,6 +77,7 @@
 	<action name="importWqgz_sc" class="sckwqgzController" method="importWqgz_sc"/>
 	<action name="lrjhSckwqgz" class="sckwqgzController" method="lrjhSckwqgz"/>
 	<action name="selectWqgzCount" class="sckwqgzController" method="selectWqgzCount"/>
+	<action name="selectWqgzShCount" class="sckwqgzController" method="selectWqgzShCount"/>
 	<!-- 安保工程 -->
 	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
 	<action name="selectSckabgc" class="sckabgcController" method="selectSckabgc"/>
@@ -91,6 +95,7 @@
 	<action name="importAbgc_sc" class="sckabgcController" method="importAbgc_sc"/>
 	<action name="lrjhSckabgc" class="sckabgcController" method="lrjhSckabgc"/>
 	<action name="selSckAbgcCount" class="sckabgcController" method="selSckAbgcCount"/>
+	<action name="selSckAbgcShCount" class="sckabgcController" method="selSckAbgcShCount"/>
 	<!-- 灾害防治 -->
 	<action name="insertSckzhfz" class="sckzhfzController" method="insertSckzhfz"/>
 	<action name="selectSckzhfz" class="sckzhfzController" method="selectSckzhfz"/>
@@ -108,5 +113,6 @@
 	<action name="importZhfz_sc" class="sckzhfzController" method="importZhfz_sc"/>
 	<action name="lrjhSckzhfz" class="sckzhfzController" method="lrjhSckzhfz"/>
 	<action name="selSckZhfzCount" class="sckzhfzController" method="selSckZhfzCount"/>
+	<action name="selSckZhfzShCount" class="sckzhfzController" method="selSckZhfzShCount"/>
  </package>
 </struts>
