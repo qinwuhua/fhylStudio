@@ -33,20 +33,24 @@ text-decoration:none;
 	var zdStr;
 	$(function(){
 		$("#save_button").click(function(){
-			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/xmjck/onceAbgc.do',
-				dataType:'json',
-		        data:datas,
-				success:function(msg){
-					if(Boolean(msg)){
-						saveAbgc();
-					}else{
-						alert('该项目已添加过，请勿重复添加！');
+			if($("#lxbm").val()!="" && $("#lxbm").val()!=null){
+				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
+				$.ajax({
+					type:'post',
+					url:'/jxzhpt/xmjck/onceAbgc.do',
+					dataType:'json',
+			        data:datas,
+					success:function(msg){
+						if(Boolean(msg)){
+							saveAbgc();
+						}else{
+							alert('该项目已添加过，请勿重复添加！');
+						}
 					}
-				}
-			});
+				});
+			}else {
+				alert("请填写路线编码！");
+			}
 		});
 		$("#qx_window").click(function(){
 			parent.$('#jck_add').window('destroy');

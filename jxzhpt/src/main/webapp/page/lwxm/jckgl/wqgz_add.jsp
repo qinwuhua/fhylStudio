@@ -31,20 +31,24 @@ text-decoration:none;
 $(function(){
 	
 	$("#save_button").click(function(){
-		var datas="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/xmjck/onceWqgz.do',
-			dataType:'json',
-	        data:datas,
-			success:function(msg){
-				if(Boolean(msg)){
-					saveWqgz();
-				}else{
-					alert('该项目已添加过，请勿重复添加！');
+		if($("#qlbh").val()!="" && $("#qlbh").val()!=null){
+			var datas="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/xmjck/onceWqgz.do',
+				dataType:'json',
+		        data:datas,
+				success:function(msg){
+					if(Boolean(msg)){
+						saveWqgz();
+					}else{
+						alert('该项目已添加过，请勿重复添加！');
+					}
 				}
-			}
-		});
+			});
+		}else {
+			alert("请填写桥梁编号！");
+		}
 	});
 	$("#qx_window").click(function(){
 		parent.$('#jck_add').window('destroy');
