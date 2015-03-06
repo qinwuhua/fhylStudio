@@ -259,7 +259,7 @@ public class Plan_abgcController extends BaseActionSupport{
         	response.setContentType("application/octet-stream"); 
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= file.getFiledata();
+        		byte[]  buffer= file.getFiledata();              
                 out.write(buffer);
                 out.flush();
                 out.close();
