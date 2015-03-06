@@ -62,7 +62,14 @@ public class GcglyhdzxController extends BaseActionSupport{
 	private String jgzt;
 	private String yhtype;
 	private Integer sfsj;
+	private String ybzt;
 	
+	public String getYbzt() {
+		return ybzt;
+	}
+	public void setYbzt(String ybzt) {
+		this.ybzt = ybzt;
+	}
 	public Integer getSfsj() {
 		return sfsj;
 	}
@@ -396,6 +403,16 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setKgzt(kgzt);
 		gcglyhdzx.setLxmc(lxmc);
 		gcglyhdzx.setJgzt(jgzt);
+		gcglyhdzx.setShzt(ybzt);
+		if(sfsj==7){
+			gcglyhdzx.setTiaojian("sjsh");
+		}
+		if(sfsj==9){
+			gcglyhdzx.setTiaojian("sjzt");
+		}
+		if(sfsj==11){
+			gcglyhdzx.setTiaojian("xjzt");
+		}
 		int count=gcglyhdzxServer.selectWqgzjhListCount(gcglyhdzx);
 		List<Gcglyhdzx> list=gcglyhdzxServer.selectWqgzjhList(gcglyhdzx);
 		EasyUIPage<Gcglyhdzx> e=new EasyUIPage<Gcglyhdzx>();

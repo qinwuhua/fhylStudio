@@ -23,7 +23,7 @@
 function openJsUpdate(_id){
 	$("#tt").tabs("add",{
 		 title:"公路技术状况统计表",
-		 href :"mxb_add.jsp",
+		 href :"mxb_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',
 		 closable:true,

@@ -34,4 +34,12 @@
 		insert into WJXT_TRQK(id,gydw,qxrs,trqxjf,lq,sn,ss,bzd,gyy,lqlbl,wjj,zzj,zxqc,cstb,sbtbxj,tbdw,tjr,shry,tbsj,gydwmc,tbdwmc)
 		values(sys_guid(),#{gydw},#{qxrs},#{trqxjf},#{lq},#{sn},#{ss},#{bzd},#{gyy},#{lqlbl},#{wjj},#{zzj},#{zxqc},#{cstb},#{sbtbxj},#{tbdw},#{tjr},#{shry},#{tbsj},#{gydwmc},#{tbdwmc})
 	</insert>
+	<insert id="insertLqpdmxb" parameterType="lkmxb">
+		insert into LKPD_MXB(id,tbdw,tbnf,dwfzr,tjfzr,tjf,tbrq)
+		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{tjfzr},#{tjf},#{tbrq})
+	</insert>
+	<insert id="insertLqpdmxbdata" parameterType="hashMap">
+		insert into LKPD_MXB_DATA(id,mxb_id,lxbh,lxmc,qdzh,zdzh,qjfx,pdlc,mqi,pqi,sci,bci,tci,ydl,ldl,zdl,cdl,cadl,yllv)
+		values(#{id},#{mxb_id},#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16})
+	</insert>
 </mapper>

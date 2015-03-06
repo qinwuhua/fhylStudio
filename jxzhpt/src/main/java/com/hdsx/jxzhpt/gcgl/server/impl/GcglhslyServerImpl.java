@@ -30,6 +30,14 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 		}
 		gcglhsly.setShzt("未审核");
 		if(insert("inserthslyYb", gcglhsly)>0){
+			if(gcglhsly.getSfsj()==9){
+				gcglhsly.setSjzt("未上报");
+				update("updateSjZT", gcglhsly);
+			}
+			if(gcglhsly.getSfsj()==11){
+				gcglhsly.setXjzt("未上报");
+				update("updateXjZT", gcglhsly);
+			}
 			return true;
 		}else{
 			return false;
@@ -84,6 +92,15 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 	@Override
 	public Boolean shhslyYb(Gcglhsly gcglhsly) {
 		if(update("shhslyYb", gcglhsly)>0){
+			gcglhsly.setYhtype("7");
+			int num3=queryOne("selectnumbyyh", gcglhsly);
+			if(num3>0){
+				gcglhsly.setSjsh("未审核");
+				update("updateSJSH", gcglhsly);
+			}else{
+				gcglhsly.setSjsh("已审核");
+				update("updateSJSH", gcglhsly);
+			}
 		return true;
 		}else{
 			return false;
@@ -218,6 +235,29 @@ public class GcglhslyServerImpl extends BaseOperate implements GcglhslyServer {
 	@Override
 	public Boolean sbWqgzYb(Gcglhsly gcglabgc) {
 		if(update("sbWqgzYb", gcglabgc)>0){
+			int num1=queryOne("selectnumbyyh", gcglabgc);
+			if(num1>0){
+				gcglabgc.setXjzt("未上报");
+				update("updateXjZT", gcglabgc);
+			}else{
+				gcglabgc.setXjzt("已上报");
+				update("updateXjZT", gcglabgc);
+			}
+			gcglabgc.setYhtype("9");
+			int num2=queryOne("selectnumbyyh", gcglabgc);
+			if(num2>0){
+				gcglabgc.setSjzt("未上报");
+				update("updateSjZT", gcglabgc);
+			}else{
+				gcglabgc.setSjzt("已上报");
+				update("updateSjZT", gcglabgc);
+			}
+			gcglabgc.setYhtype("7");
+			int num3=queryOne("selectnumbyyh", gcglabgc);
+			if(num3>0){
+				gcglabgc.setSjsh("未审核");
+				update("updateSJSH", gcglabgc);
+			}
 			return true;
 		}else{
 			return false;

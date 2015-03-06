@@ -143,15 +143,31 @@ public class LkpdController extends BaseActionSupport{
 			}
 			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
 			String strVerify="";
-			boolean boolJh=false,boolLx=false;
-
-			System.out.println(data);
+			boolean booltb=false,booldata=false;
+			Lkmxb lkmxb1=new Lkmxb();
+			String s = UUID.randomUUID().toString(); 
+			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			lkmxb1.setTbdw(data.get(0).get("1").toString());
+			lkmxb1.setTbnf(data.get(0).get("7").toString());
+			lkmxb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			lkmxb1.setTjfzr(data.get(data.size()-1).get("4").toString().split("：")[1]);
+			lkmxb1.setTjf(data.get(data.size()-1).get("8").toString().split("：")[1]);
+			lkmxb1.setTbrq(data.get(data.size()-1).get("12").toString().split("：")[1]);
+			lkmxb1.setId(s1);
+			booltb=trqkServer.insertLqpdmxb(lkmxb1);
+			data.remove(0);
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
 			data.remove(data.size()-1);
-			System.out.println(data);
-			if(boolJh && boolLx)
+			int i=1;
+			for (Map map : data) {
+				map.put("id", i);
+				i++;
+				map.put("mxb_id", s1);
+			}
+			booldata=trqkServer.insertLqpdmxbdata(data);
+			if(booltb && booldata)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
 				response.getWriter().print(fileuploadFileName+"导入失败\r"+strVerify);

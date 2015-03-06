@@ -205,5 +205,18 @@ public class Lkmxb implements Serializable {
 	public void setTiaojian(String tiaojian) {
 		this.tiaojian = tiaojian;
 	}
+	@Override
+	public String toString() {
+		return "Lkmxb [id=" + id + ", tbdw=" + tbdw + ", tbnf=" + tbnf
+				+ ", dwfzr=" + dwfzr + ", tjfzr=" + tjfzr + ", tjf=" + tjf
+				+ ", tbrq=" + tbrq + ", mxb_id=" + mxb_id + ", lxbh=" + lxbh
+				+ ", lxmc=" + lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh
+				+ ", qjfx=" + qjfx + ", pdlc=" + pdlc + ", mqi=" + mqi
+				+ ", pqi=" + pqi + ", sci=" + sci + ", bci=" + bci + ", tci="
+				+ tci + ", ydl=" + ydl + ", ldl=" + ldl + ", zdl=" + zdl
+				+ ", cdl=" + cdl + ", cadl=" + cadl + ", yllv=" + yllv
+				+ ", tiaojian=" + tiaojian + ", page=" + page + ", rows="
+				+ rows + "]";
+	}
 	
 }

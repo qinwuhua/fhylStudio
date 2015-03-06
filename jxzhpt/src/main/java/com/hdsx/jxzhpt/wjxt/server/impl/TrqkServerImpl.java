@@ -2,10 +2,12 @@ package com.hdsx.jxzhpt.wjxt.server.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 
@@ -35,6 +37,21 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 	public List<Trqk> selectTrqkList(Trqk trqk) {
 		// TODO Auto-generated method stub
 		return queryList("selectTrqkList",trqk);
+	}
+
+	@Override
+	public boolean insertLqpdmxb(Lkmxb lkmxb1) {
+		if(insert("insertLqpdmxb", lkmxb1)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertLqpdmxbdata(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertLqpdmxbdata", data)==data.size();
 	}
 
 	
