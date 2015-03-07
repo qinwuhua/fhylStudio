@@ -205,6 +205,7 @@ public class Lkmxb implements Serializable {
 	public void setTiaojian(String tiaojian) {
 		this.tiaojian = tiaojian;
 	}
+
 	@Override
 	public String toString() {
 		return "Lkmxb [id=" + id + ", tbdw=" + tbdw + ", tbnf=" + tbnf

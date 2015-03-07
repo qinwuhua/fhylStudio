@@ -14,3 +14,4 @@ function insertData(flag){
 	weatherDlg.ShowDialog();
 	return false;
 }
+

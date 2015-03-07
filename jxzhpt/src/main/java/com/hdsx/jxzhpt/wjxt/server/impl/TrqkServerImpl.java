@@ -54,5 +54,32 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		return insertBatch("insertLqpdmxbdata", data)==data.size();
 	}
 
+	@Override
+	public List<Lkmxb> selectMxbList(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryList("selectMxbList",lkmxb);
+	}
+
+	@Override
+	public List<Lkmxb> getMxbDataList(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryList("getMxbDataList",lkmxb);
+	}
+
+	@Override
+	public Lkmxb getMxbDataList1(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("getMxbDataList1", lkmxb);
+	}
+
+	@Override
+	public Boolean deletemxb(Lkmxb lkmxb) {
+		if(delete("deletemxb", lkmxb)>0 && delete("deletemxb1", lkmxb)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	
 }

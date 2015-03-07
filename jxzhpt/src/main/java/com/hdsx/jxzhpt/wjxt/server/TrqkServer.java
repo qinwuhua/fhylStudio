@@ -20,4 +20,12 @@ public interface TrqkServer {
 
 	boolean insertLqpdmxbdata(List<Map> data);
 
+	List<Lkmxb> selectMxbList(Lkmxb lkmxb);
+
+	List<Lkmxb> getMxbDataList(Lkmxb lkmxb);
+
+	Lkmxb getMxbDataList1(Lkmxb lkmxb);
+
+	Boolean deletemxb(Lkmxb lkmxb);
+
 }

@@ -55,6 +55,16 @@ public class LkpdController extends BaseActionSupport{
 	private Lkmxb lkmxb=new Lkmxb();
 	private File fileupload;
 	private String fileuploadFileName;
+	private String id;
+	
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Lkmxb getLkmxb() {
 		return lkmxb;
@@ -122,7 +132,6 @@ public class LkpdController extends BaseActionSupport{
 	}
 
 	public void insertLkpdData(){
-		System.out.println("进入方法");
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -153,6 +162,7 @@ public class LkpdController extends BaseActionSupport{
 			lkmxb1.setTjfzr(data.get(data.size()-1).get("4").toString().split("：")[1]);
 			lkmxb1.setTjf(data.get(data.size()-1).get("8").toString().split("：")[1]);
 			lkmxb1.setTbrq(data.get(data.size()-1).get("12").toString().split("：")[1]);
+			
 			lkmxb1.setId(s1);
 			booltb=trqkServer.insertLqpdmxb(lkmxb1);
 			data.remove(0);
@@ -176,4 +186,39 @@ public class LkpdController extends BaseActionSupport{
 		}
 	}
 
+	public void selectMxbList(){
+		List<Lkmxb> list = trqkServer.selectMxbList(lkmxb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void getMxbDataList(){
+		System.out.println("开始"+id);
+		lkmxb.setId(id);
+		List<Lkmxb> list = trqkServer.getMxbDataList(lkmxb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void getMxbDataList1(){
+		lkmxb.setId(id);
+		Lkmxb lkmxb1 = trqkServer.getMxbDataList1(lkmxb);
+		try {
+			JsonUtils.write(lkmxb1, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void deletemxb(){
+		Boolean bl=trqkServer.deletemxb(lkmxb);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }

@@ -42,4 +42,23 @@
 		insert into LKPD_MXB_DATA(id,mxb_id,lxbh,lxmc,qdzh,zdzh,qjfx,pdlc,mqi,pqi,sci,bci,tci,ydl,ldl,zdl,cdl,cadl,yllv)
 		values(#{id},#{mxb_id},#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16})
 	</insert>
+	<select id="selectMxbList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	<select id="getMxbDataList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB_DATA  where mxb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getMxbDataList1" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB where id=#{id}
+	</select>
+	<delete id="deletemxb" parameterType="lkmxb" >
+		delete from LKPD_MXB_DATA  where mxb_id=#{id}
+	</delete>
+	<delete id="deletemxb1" parameterType="lkmxb" >
+		delete from LKPD_MXB where id=#{id}
+	</delete>
 </mapper>
