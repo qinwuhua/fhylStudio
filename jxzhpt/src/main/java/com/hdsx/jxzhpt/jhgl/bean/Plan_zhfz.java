@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.bean;
 import java.util.Date;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 
 public class Plan_zhfz {
 	private String id;//唯一ID
@@ -58,8 +59,14 @@ public class Plan_zhfz {
 	private int jh_sbthcd;//上报退回状态的长度标示
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
-	private Jckzhfz jckzhfz;
+	private Sckzhfz jckzhfz;
 	private String sfylsjl;//最近年份是否有历史记录
+	public Sckzhfz getJckzhfz() {
+		return jckzhfz;
+	}
+	public void setJckzhfz(Sckzhfz jckzhfz) {
+		this.jckzhfz = jckzhfz;
+	}
 	public String getSfylsjl() {
 		return sfylsjl;
 	}
@@ -89,12 +96,6 @@ public class Plan_zhfz {
 	}
 	public void setSckid(String sckid) {
 		this.sckid = sckid;
-	}
-	public Jckzhfz getJckzhfz() {
-		return jckzhfz;
-	}
-	public void setJckzhfz(Jckzhfz jckzhfz) {
-		this.jckzhfz = jckzhfz;
 	}
 	public String getId() {
 		return id;

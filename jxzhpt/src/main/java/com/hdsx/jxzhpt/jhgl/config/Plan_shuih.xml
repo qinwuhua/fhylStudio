@@ -74,39 +74,83 @@
 				<if test="jh.spzt!=null and jh.spzt!=''">
 					and jh.spzt=#{jh.spzt}
 				</if>
-					and jh.id in (
-						select l.jhid from PLAN_lx_shuih l 
-						where 1=1 
-							<if test="l.gydwdm!=null and l.gydwdm!=''">
-								and l.gydwdm like #{l.gydwdm}
-							</if>
-							<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-								and l.xzqhdm like #{l.xzqhdm}
-							</if>
-							<if test="l.lxmc!=null and l.lxmc!=''">
-								and l.lxmc like '%'||#{l.lxmc}||'%'
-							</if>
-							<if test="l.yjsdj!=null and l.yjsdj!=''">
-								and l.yjsdj=#{l.yjsdj}
-							</if>
-							<if test="l.lxbm!=null and l.lxbm!=''">
-								and l.lxbm like #{l.lxbm}
-							</if>
-						    <if test="l.tsdqbm!=null and l.tsdqbm!=''">
-						     and l.xzqhdm in (
-						     	select B.XZQHDM from BT_XZQHTSDQ b 
-						     	WHERE B.AREACODE=#{l.tsdqbm}
-						     	 )
-						     </if>
-						     ) order by jh.sbzt,jh.spzt,jh.sbnf
-						) t
-				)
+				<if test="l.gydwdm!=null and l.gydwdm!=''">
+					and l.gydwdm like #{l.gydwdm}
+				</if>
+				<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+					and l.xzqhdm like #{l.xzqhdm}
+				</if>
+				<if test="l.lxmc!=null and l.lxmc!=''">
+					and l.lxmc like '%'||#{l.lxmc}||'%'
+				</if>
+				<if test="l.yjsdj!=null and l.yjsdj!=''">
+					and l.yjsdj=#{l.yjsdj}
+				</if>
+				<if test="l.lxbm!=null and l.lxbm!=''">
+					and l.lxbm like #{l.lxbm}
+				</if>
+				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+					and l.xzqhdm in (select B.XZQHDM from BT_XZQHTSDQ b WHERE B.AREACODE=#{l.tsdqbm})
+				</if>
+				order by jh.sbnf desc,jh.sbzt asc,jh.spzt asc,jh.jh_sbthcd asc
+				) t
+			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryShuihCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from PLAN_shuih jh where 1=1
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf =#{jh.sbnf}
+			and jh.sbnf =#{jh.sbnf}
+		</if>
+		<if test="jh.sbzt!=null and jh.sbzt!=''">
+			and jh.sbzt=#{jh.sbzt}
+		</if>
+		<if test="jh.spzt!=null and jh.spzt!=''">
+			and jh.spzt=#{jh.spzt}
+		</if>
+		and jh.id in (
+			select l.jhid from PLAN_lx_shuih l
+			where 1=1 
+			<if test="l.gydwdm!=null and l.gydwdm!=''">
+				and l.gydwdm like #{l.gydwdm}
+			</if>
+			<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+				and l.xzqhdm like #{l.xzqhdm}
+			</if>
+			<if test="l.lxmc!=null and l.lxmc!=''">
+				and l.lxmc like '%'||#{l.lxmc}||'%'
+			</if>
+			<if test="l.yjsdj!=null and l.yjsdj!=''">
+				and l.yjsdj=#{l.yjsdj}
+			</if>
+			<if test="l.lxbm!=null and l.lxbm!=''">
+				and l.lxbm like #{l.lxbm}
+			</if>
+			and l.xzqhdm in (
+				select B.XZQHDM from BT_XZQHTSDQ b WHERE 1=1 
+				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+					and B.AREACODE=#{l.tsdqbm}
+				</if>
+			))
+	</select>
+	<select id="queryShuihNfs"  resultType="treenode">
+		select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
+	</select>
+	<select id="querySumShuih" resultMap="shuih_jh" parameterType="java.util.Map">
+		select count(id) as id,sum(qzlc) as qzlc,sum(yhlc) as yhlc,sum(pfztz) as pfztz,
+		sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje from (
+			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
+			sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje
+			from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
+			where 1=1
+			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
@@ -114,40 +158,7 @@
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
 			</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="l.gydwdm!=null and l.gydwdm!=''">
-								and l.gydwdm like #{l.gydwdm}
-							</if>
-							<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-								and l.xzqhdm like #{l.xzqhdm}
-							</if>
-						<if test="l.lxmc!=null and l.lxmc!=''">
-							and l.lxmc like '%'||#{l.lxmc}||'%'
-						</if>
-						<if test="l.yjsdj!=null and l.yjsdj!=''">
-							and l.yjsdj=#{l.yjsdj}
-						</if>
-						<if test="l.lxbm!=null and l.lxbm!=''">
-							and l.lxbm like #{l.lxbm}
-						</if>
-					     and l.xzqhdm in (
-					     	select B.XZQHDM from BT_XZQHTSDQ b 
-					     	WHERE 1=1 
-					     	<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-								and B.AREACODE=#{l.tsdqbm}
-							</if>
-					     	 )
-					     )
-	</select>
-	<select id="queryShuihNfs"  resultType="treenode">
-		select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
-	</select>
-	<select id="querySumShuih" resultMap="shuih_jh">
-		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
-		sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje
-		from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
+			group by jh.id)
 	</select>
 	<select id="queryShuihById" parameterType="string" resultMap="shuih_jh">
 		select * from plan_lx_shuih lx right join plan_shuih jh on lx.jhid=jh.id

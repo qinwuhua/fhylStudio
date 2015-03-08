@@ -56,6 +56,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhkgl/hslygl.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030110',
+		title:'资金切分',
+		imgSrc:'../../images/hs_s.png',
+		renderTo:'left_menu1',
+		href:'./jhkgl/zjqf.jsp'
+	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101030109',
 //		title:'战备公路项目',

@@ -8,11 +8,16 @@ function querySumAbgc(){
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.jckabgc.qzlc);
-			$('#lblYHLC').html(data.jckabgc.yhlc);
-			$('#lblZTZ').html(data.pfztz);
-			$('#lblBTZ').html(data.jhsybbzje);
-			$('#lblDFTZ').html(data.jhsydfzczj);
+			if(data.jckabgc.qzlc!=null && data.jckabgc.qzlc!="")
+				$('#lblZLC').html(data.jckabgc.qzlc);
+			if(data.jckabgc.yhlc!=null && data.jckabgc.yhlc!="")
+				$('#lblYHLC').html(data.jckabgc.yhlc);
+			if(data.pfztz!=null && data.pfztz!="")
+				$('#lblZTZ').html(data.pfztz);
+			if(data.jhsybbzje!=null && data.jhsybbzje!="")
+				$('#lblBTZ').html(data.jhsybbzje);
+			if(data.jhsydfzczj!=null && data.jhsydfzczj!="")
+				$('#lblDFTZ').html(data.jhsydfzczj);
 		}
 	});
 }

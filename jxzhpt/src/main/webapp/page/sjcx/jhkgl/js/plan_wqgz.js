@@ -1,10 +1,12 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-function querySumWqgz(){
+function querySumWqgz(jh,lx){
+	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumWqgz.do',
+		data:param,
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);

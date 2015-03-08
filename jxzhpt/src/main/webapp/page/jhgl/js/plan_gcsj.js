@@ -1,7 +1,23 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-
+function queryGcsjSum(jh,lx){
+	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryGcsjSum.do',
+		data:param,
+		dataType:'json',
+		success:function(data){
+			$('#lblCount').html(data.id);
+			$('#lblZLC').html(data.plan_lx_gcsjs[0].qzlc);
+			$('#lblXMLC').html(data.plan_lx_gcsjs[0].xmlc);
+			$('#lblZTZ').html(data.pftz);
+			$('#lblBTZ').html(data.jhsybbzje);
+			$('#lblDFTZ').html(data.jhsydfzczj);
+		}
+	});
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
@@ -362,21 +378,6 @@ function gclmsjxm_zjxd(jh,lx){
 		}
 	};
 	gridBind(grid);
-}
-function querySumMessage(){
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/querySumMessage.do',
-		dataType:'json',
-		success:function(data){
-			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.plan_lx_gcsjs[0].qzlc);
-			$('#lblXMLC').html(data.plan_lx_gcsjs[0].xmlc);
-			$('#lblZTZ').html(data.pftz);
-			$('#lblBTZ').html(data.jhsybbzje);
-			$('#lblDFTZ').html(data.jhsydfzczj);
-		}
-	});
 }
 function queryGcsjXx(id){
 	$.ajax({

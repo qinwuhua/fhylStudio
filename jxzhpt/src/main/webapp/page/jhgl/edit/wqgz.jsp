@@ -215,21 +215,22 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fapgdw"></span> &nbsp;
+					<input id="fapgdw" type="text"/> &nbsp;
+					<input id="sckid" type="hidden"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">方案审查单位
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fascdw"></span> &nbsp;
+					<input id="fascdw" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">方案审批时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="faspsj"></span> &nbsp;
+					<input id="faspsj" type="text"  class="easyui-datebox"/> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -238,21 +239,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="spwh"></span> &nbsp;
+					<input id="spwh" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">投资估算
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="tzgs"></span> 万元
+					<input id="tzgs" type="text"/> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建设性质
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="jsxz"></span>&nbsp;
+					<input id="jsxz" type="text"/>&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -261,7 +262,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="jsnr"></span> &nbsp;
+					<textarea id="jsnr" style="width: 600px;height: 40px;"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -270,7 +271,7 @@
 					注</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="scbz"></span> &nbsp;&nbsp;
+					<textarea id="scbz" style="width: 600px;height: 40px;"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -573,6 +574,7 @@
 		success:function(data){
 			//计划
 			$('#jhid').val(data.id);
+			$('#sckid').val(data.sckid);
 			$('#editjhnf').combobox('select',data.sbnf);
 			$('#jhkgsj').datebox('setValue',data.jhkgsj);
 			$('#jhwgsj').datebox('setValue',data.jhkgsj);
@@ -619,12 +621,12 @@
 						$('#bhnr').html(jcAndSc.bhnr);
 						$('#bz').html(jcAndSc.bz);
 						//审查库信息
-						$('#fapgdw').html(jcAndSc.fapgdw);
-						$('#fascdw').html(jcAndSc.fascdw);
-						$('#faspsj').html(jcAndSc.faspsj);
-						$('#spwh').html(jcAndSc.spwh);
-						$('#tzgs').html(jcAndSc.tzgs);
-						$('#jsxz').html(jcAndSc.jsxz);
+						$('#fapgdw').val(jcAndSc.fapgdw);
+						$('#fascdw').val(jcAndSc.fascdw);
+						$('#faspsj').datebox('setValue', jcAndSc.faspsj);
+						$('#spwh').val(jcAndSc.spwh);
+						$('#tzgs').val(jcAndSc.tzgs);
+						$('#jsxz').val(jcAndSc.jsxz);
 						 $.ajax({
 							type:'post',
 							url:'../../../jhgl/lwBzbz.do',
@@ -637,8 +639,8 @@
 								bzInit();
 							}
 						}); 
-						$('#jsnr').html(jcAndSc.jsnr);
-						$('#scbz').html(jcAndSc.scbz);
+						$('#jsnr').val(jcAndSc.jsnr);
+						$('#scbz').val(jcAndSc.scbz);
 					}
 				}
 			});

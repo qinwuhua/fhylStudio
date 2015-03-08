@@ -118,7 +118,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	
 	public void querySumGcgj(){
 		try {
-			JsonUtils.write(gcgjServer.querySumGcgj(), getresponse().getWriter());
+			JsonUtils.write(gcgjServer.querySumGcgj(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

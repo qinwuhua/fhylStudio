@@ -55,9 +55,17 @@ public class Plan_abgcController extends BaseActionSupport{
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
+	public void queryAbgcListByStatus(){
+		try {
+			JsonUtils.write(abgcServer.queryAbgcListByStatus(jh,lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void querySumAbgc(){
 		try {
-			JsonUtils.write(abgcServer.querySumAbgc(), getresponse().getWriter());
+			JsonUtils.write(abgcServer.querySumAbgc(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -131,9 +139,6 @@ public class Plan_abgcController extends BaseActionSupport{
 		jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
-			String regex="^[0-9]*.[0-9]{3}$";
-			boolean result="123.111".matches(regex);
-			System.out.println("检验结果："+result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -181,7 +186,11 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void editAbgcById(){
 		try {
-			JsonUtils.write(abgcServer.editAbgcById(jh), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			System.out.println("审查："+jh.getSckid());
+			result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
+			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

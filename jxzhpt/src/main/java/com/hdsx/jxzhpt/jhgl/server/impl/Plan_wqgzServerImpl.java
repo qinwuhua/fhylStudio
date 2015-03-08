@@ -118,8 +118,11 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-	public Plan_wqgz querySumWqgz() {
-		return queryOne("querySumWqgz",null);
+	public Plan_wqgz querySumWqgz(Plan_wqgz jh,Jckwqgz lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryOne("querySumWqgz",params);
 	}
 
 	@Override
@@ -144,5 +147,18 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	@Override
 	public Plan_wqgz queryWqgzFjById(String id) {
 		return queryOne("queryWqgzFjById", id);
+	}
+
+	@Override
+	public boolean editWqgzSckxx(Plan_wqgz jh) {
+		return update("editWqgzSckxx", jh)>0;
+	}
+
+	@Override
+	public List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryList("queryWqgzByStatus",param);
 	}
 }

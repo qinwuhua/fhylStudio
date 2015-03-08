@@ -17,7 +17,7 @@
 		<result property="sfylsjl" column="sfylsjl"/>
 		<association property="jckzhfz"  column="SCK_ZHFZ_ID"  resultMap="zhfz_lx"></association>
 	</resultMap>
-	<resultMap type="jckzhfz"  id="zhfz_lx">
+	<resultMap type="sckzhfz"  id="zhfz_lx">
 		<id property="id" column="id" />
 		<result property="gydw" column="gydw"/>
 		<result property="xzqhmc" column="xzqhmc"/>
@@ -46,8 +46,8 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
-	 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-	 					and lx.gydwdm like #{lx.gydwdm}
+	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 					and lx.gydwbm like #{lx.gydwbm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 	 					and lx.xzqhdm like #{lx.xzqhdm}
@@ -66,6 +66,22 @@
 			)
  			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	<select id="queryZhfzByStatus" parameterType="java.util.Map" resultType="plan_zhfz">
+		select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
+		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 		and lx.gydwbm like #{lx.gydwbm}
+	 	</if>
+	</select>
 	<select id="queryZhfzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
@@ -81,8 +97,8 @@
 	 	<if test="jh.spzt!=null and jh.spzt!=''">
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
-	 	<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-	 		and lx.gydwdm like #{lx.gydwdm}
+	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 		and lx.gydwbm like #{lx.gydwbm}
 	 	</if>
 	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 	 		and lx.xzqhdm like #{lx.xzqhdm}
@@ -196,6 +212,14 @@
 			bz=#{bz}
 		where id=#{id}
 	</update>
+	<update id="editZhfzSckBysckid" parameterType="plan_zhfz">
+		update SCK_ZHFZ set 
+			scqdzh=#{jckzhfz.scqdzh},sczdzh=#{jckzhfz.sczdzh},sczlc=#{jckzhfz.sczlc},
+			scyhlc=#{jckzhfz.scyhlc},fapgdw=#{jckzhfz.fapgdw},fascdw=#{jckzhfz.fascdw},
+			faspsj=#{jckzhfz.faspsj},spwh=#{jckzhfz.spwh},tzgs=#{jckzhfz.tzgs},
+			jsxz=#{jckzhfz.jsxz},jsnr=#{jckzhfz.jsnr},scbz=#{jckzhfz.scbz}
+		where sckid=#{sckid}
+	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">
 		update plan_zhfz set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>
@@ -218,10 +242,25 @@
 		update PLAN_ZHFZ set sbnf=#{9},jhkgsj=to_date(#{10},'yyyy-mm-dd'),jhwgsj=to_date(#{11},'yyyy-mm-dd'),xdsj=to_date(#{12},'yyyy-mm-dd'),sjdw=#{13},sjpfdw=#{14},pfwh=#{15},pfsj=to_date(#{16},'yyyy-mm-dd'),pfztz=#{17},jhsybzje=#{18},jhsydfzcje=#{19},sfsqablbz=#{20},ablbzsqwh=#{21},bz=#{22}
 		where sckid = (select sckid from sck_zhfz where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5})
 	</update>
-	<select id="querySumZhfz" resultMap="zhfz_jh">
-		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.yhlc) as yhlc,
-		sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
-		from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
+	<select id="querySumZhfz" resultMap="zhfz_jh" parameterType="java.util.Map">
+		select count(id) as id,sum(qzlc) as qzlc,sum(yhlc) as yhlc,
+		sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje from(
+			select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.yhlc) as yhlc,
+			sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
+			from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
+			where 1=1
+			<if test="x.gydwbm!=null and x.gydwbm!=''">
+				and x.gydwbm like #{x.gydwbm}
+			</if>
+			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='')">
+				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
+			</if>
+			<if test="p.sbzt!=null and p.sbzt!=''">
+				and p.sbzt=#{p.sbzt}
+			</if>
+			<if test="p.spzt!=null and p.spzt!=''">
+				and p.spzt=#{p.spzt}
+			</if> group by p.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_zhfz set lrjh='未列入'  where sckid=#{String}

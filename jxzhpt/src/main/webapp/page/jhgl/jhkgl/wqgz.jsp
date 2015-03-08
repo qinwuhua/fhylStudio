@@ -31,7 +31,7 @@
 			tsdq('tsdq');
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
-			querySumWqgz();
+			querySumWqgz(jh,lx);
 			sbnf("sbnf");
 			wqxm(jh,lx);
 		});

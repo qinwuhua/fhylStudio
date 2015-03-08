@@ -34,9 +34,9 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			querySumZhfz();
 			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:null,lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			querySumZhfz(jh,lx);
 			sbnf("sbnf");
 			zhfzxm(jh,lx);
 		});

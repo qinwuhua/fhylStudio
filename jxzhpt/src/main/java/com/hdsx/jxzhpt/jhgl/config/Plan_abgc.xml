@@ -29,8 +29,7 @@
 		<result property="sfylsjl" column="sfylsjl"/>
 		<association property="jckabgc"  resultMap="abgc_lx"></association>
 	</resultMap>
-	<resultMap type="jckabgc"  id="abgc_lx">
-		<id property="id" column="id" />
+	<resultMap type="sckabgc"  id="abgc_lx">
 		<result property="lxmc" column="lxmc"/>
 		<result property="lxbm" column="lxbm"/>
 		<result property="gydw" column="gydw"/>
@@ -83,6 +82,25 @@
 	    		) t
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryAbgcListByStatus" parameterType="java.util.Map" resultType="plan_abgc">
+		select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+		left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+		<if test="jh.jhnf!=null and jh.jhnf!=''">
+			and jh.jhnf=#{jh.jhnf}
+		</if>
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="jh.sbzt!=null and jh.sbzt!=''">
+			and jh.sbzt=#{jh.sbzt}
+		</if>
+		<if test="jh.spzt!=null and jh.spzt!=''">
+			and jh.spzt=#{jh.spzt}
+		</if>
+		<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+			and lx.gydwbm like #{lx.gydwbm}
+		</if>
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
@@ -220,6 +238,13 @@
 			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
 		where id=#{id}
 	</update>
+	<update id="editAbgcSckBysckid" parameterType="plan_abgc">
+		update SCK_ABGC set 
+		scqdzh=#{jckabgc.scqdzh},sczdzh=#{jckabgc.sczdzh},sczlc=#{jckabgc.sczlc},scyhlc=#{jckabgc.scyhlc},
+		fapgdw=#{jckabgc.fapgdw},fascdw=#{jckabgc.fascdw},spwh=#{jckabgc.spwh},tzgs=#{jckabgc.tzgs},
+		faspsj=#{jckabgc.faspsj},jsxz=#{jckabgc.jsxz},jsnr=#{jckabgc.jsnr},scbz=#{jckabgc.scbz}
+		where sckid=#{sckid}
+	</update>
 	<update id="editStatus" parameterType="plan_abgc">
 		update plan_abgc set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>
@@ -242,10 +267,25 @@
 		update PLAN_ABGC set JHNF=#{9},jhkgsj=to_date(#{11},'yyyy-mm-dd'),jhwgsj=to_date(#{12},'yyyy-mm-dd'),xdsj=to_date(#{13},'yyyy-mm-dd'),sjdw=#{14},sjpfdw=#{15},pfwh=#{16},pfsj=to_date(#{17},'yyyy-mm-dd'),pfztz=#{18},JHSYBBZJE=#{19},JHSYDFZCZJ=#{20},sfsqablbz=#{21},ablbzsqwh=#{22},REMARKS=#{23}
 		where sckid = (select sckid from sck_abgc where sck_lxbm=#{2} and sck_lxmc=#{3} and scqdzh=#{4} and sczdzh=#{5})
 	</update>
-	<select id="querySumAbgc" resultMap="abgc_jh">
-		select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.zlc) as zlc,sum(x.yhlc) as yhlc,
-		sum(p.pfztz) as pfztz,sum(p.jhsybbzje) as jhsybbzje,sum(p.jhsydfzczj) as jhsydfzczj
-		from xmk_abgc x right join sck_abgc s on (x.id=s.xmkid) right join plan_abgc p on (s.sckid=p.sckid)
+	<select id="querySumAbgc" resultMap="abgc_jh" parameterType="java.util.Map">
+		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
+		sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj from(
+			select count(p.id) as id,sum(s.sczlc) as zlc,sum(s.scyhlc) as yhlc,
+			sum(p.pfztz) as pfztz,sum(p.jhsybbzje) as jhsybbzje,sum(p.jhsydfzczj) as jhsydfzczj
+			from xmk_abgc x right join sck_abgc s on (x.id=s.xmkid) right join plan_abgc p on (s.sckid=p.sckid)
+			where 1=1
+			<if test="x.gydwbm!=null and x.gydwbm!=''">
+				and x.gydwbm like #{x.gydwbm}
+			</if>
+			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='')">
+				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
+			</if>
+			<if test="p.sbzt!=null and p.sbzt!=''">
+				and p.sbzt=#{p.sbzt}
+			</if>
+			<if test="p.spzt!=null and p.spzt!=''">
+				and p.spzt=#{p.spzt}
+			</if> group by p.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_abgc set lrjh='未列入'  where sckid=#{String}

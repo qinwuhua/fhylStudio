@@ -239,9 +239,25 @@
 		 from JXJCK_2013.GPSROAD t where 
 		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
 	</select>
-	<select id="querySumGcgj" resultMap="gcgj_lx">
-		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
-		sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
+	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
+		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje
+			,sum(qzlc) as qzlc,sum(yhlc) as yhlc from(
+			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
+			sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
+			where 1=1
+			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			group by jh.id)
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 

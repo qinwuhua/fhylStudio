@@ -51,6 +51,7 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_upload" alias="plan_upload"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz" alias="flwbzbz"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs" alias="yhdzxcs"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.PlanZjqf" alias="planzjqf"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
@@ -112,6 +113,7 @@
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjxd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_yhdzx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_hsly.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjqf.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
 	<!-- chc -->

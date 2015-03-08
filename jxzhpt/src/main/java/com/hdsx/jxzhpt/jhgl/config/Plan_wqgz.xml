@@ -16,8 +16,7 @@
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<association property="jckwqgz"  resultMap="wqgz_lx" ></association>
 	</resultMap>
-	<resultMap type="jckwqgz"  id="wqgz_lx">
-		<id property="id" column="id" />
+	<resultMap type="sckwqgz"  id="wqgz_lx">
 		<result property="gydw" column="gydw"/>
 		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="lxbm" column="lxbm"/>
@@ -69,6 +68,22 @@
 	 			) t
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryWqgzByStatus" parameterType="java.util.Map" resultType="plan_wqgz">
+		select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 		and jh.sbzt=#{jh.sbzt}
+	 	</if>
+	 	<if test="jh.spzt!=null and jh.spzt!=''">
+	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 		and lx.gydwbm like #{lx.gydwbm}
+	 	</if>
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
@@ -157,8 +172,8 @@
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
 		left join xmk_wqgz lx on (sc.xmkid = lx.id)
 		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-		and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-	</if>
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
 			and jh.sbnf=#{jh.sbnf}
 		</if>
@@ -213,6 +228,15 @@
 			ablbzsqwh=#{ablbzsqwh},bz=#{bz}
 		where id=#{id}
 	</update>
+	<update id="editWqgzSckxx" parameterType="plan_wqgz">
+		update SCK_WQGZ set 
+			<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">
+				faspsj=#{jckwqgz.faspsj},
+			</if>
+			fapgdw=#{jckwqgz.fapgdw},fascdw=#{jckwqgz.fascdw},
+			spwh=#{jckwqgz.spwh},tzgs=#{jckwqgz.tzgs},jsxz=#{jckwqgz.jsxz},jsnr=#{jckwqgz.jsnr},scbz=#{jckwqgz.scbz}
+		where sckid=#{sckid}
+	</update>
 	<update id="editWqgzStatus" parameterType="plan_wqgz">
 		update plan_wqgz set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>
@@ -235,9 +259,25 @@
 		where sckid = (select sckid from sck_wqgz where sck_lxbm=#{2}  and sck_qlbh=#{4} and sck_qlzxzh=#{6})
 	</update>
 	<select id="querySumWqgz" parameterType="java.util.Map" resultType="plan_wqgz">
-		select count(jh.id) as id,sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje 
-		from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
-		right join plan_wqgz jh on (sc.sckid=jh.id)
+		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,
+		sum(jhsydfzcje) as jhsydfzcje from (
+			select count(jh.id) as id,sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,
+			sum(jh.jhsydfzcje) as jhsydfzcje 
+			from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
+			right join plan_wqgz jh on (sc.sckid=jh.sckid)
+			where 1=1
+			<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				and lx.gydwbm like #{lx.gydwbm}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+		 		and jh.sbzt=#{jh.sbzt}
+		 	</if>
+		 	<if test="jh.spzt!=null and jh.spzt!=''">
+		 		and jh.spzt=#{jh.spzt}
+		 	</if> group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_wqgz set lrjh='未列入'  where sckid=#{String}

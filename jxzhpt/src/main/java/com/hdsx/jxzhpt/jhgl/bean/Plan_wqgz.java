@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.jhgl.bean;
 import java.util.Date;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 
 public class Plan_wqgz {
 	private String id;//唯一ID
@@ -55,7 +56,7 @@ public class Plan_wqgz {
 	private String wjzt;//台账完结状态
 	private Date wjsj;//台账完结时间
 	private String gys;//概预算
-	private Jckwqgz jckwqgz;
+	private Sckwqgz jckwqgz;
 	private String jh_sbthcd;
 	private String sbbmdm;
 	private String spbmdm;
@@ -386,10 +387,10 @@ public class Plan_wqgz {
 	public void setGys(String gys) {
 		this.gys = gys;
 	}
-	public Jckwqgz getJckwqgz() {
+	public Sckwqgz getJckwqgz() {
 		return jckwqgz;
 	}
-	public void setJckwqgz(Jckwqgz jckwqgz) {
+	public void setJckwqgz(Sckwqgz jckwqgz) {
 		this.jckwqgz = jckwqgz;
 	}
 	public String getQlqc() {

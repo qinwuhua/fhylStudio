@@ -4,10 +4,12 @@ var selRow=new Array();//已选择的行号
 function uploadFile(){
 	$("#uploadGk").uploadifyUpload();
 }
-function querySumGcgj(){
+function querySumGcgj(jh,lx){
+	var params={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumGcgj.do',
+		data:params,
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);

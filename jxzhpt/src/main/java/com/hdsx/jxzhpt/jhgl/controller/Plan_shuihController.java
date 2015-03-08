@@ -101,7 +101,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	
 	public void querySumShuih(){
 		try {
-			JsonUtils.write(shuihServer.querySumShuih(), getresponse().getWriter());
+			JsonUtils.write(shuihServer.querySumShuih(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

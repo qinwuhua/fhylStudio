@@ -48,9 +48,17 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
+	public void queryZhfzByStatus(){
+		try {
+			JsonUtils.write(zhfzServer.queryZhfzByStatus(jh,lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void querySumZhfz(){
 		try {
-			JsonUtils.write(zhfzServer.querySumZhfz(), getresponse().getWriter());
+			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -161,7 +169,11 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	
 	public void editZhfzById(){
 		try {
-			JsonUtils.write(zhfzServer.editZhfzById(jh), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("jh", new Boolean((zhfzServer.editZhfzById(jh)>0)).toString());
+			result.put("sc", new Boolean(zhfzServer.editZhfzSckBysckid(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
