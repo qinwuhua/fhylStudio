@@ -25,22 +25,22 @@
 			
 			$('#xtgl_flwbzbz_table').datagrid({
 				url:'../../xtgl/queryYhdzxcs.do',
-				//pagination:true,
+				pagination:true,
 				rownumbers:true,
 			    pageNumber:1,
-			    pageSize:1,
-			    height:470,
-			    width:600,
+			    pageSize:10,
+			    height:325,
+			    width:1000,
 				columns:[[
 					{field:'id',title:'操作',width:80,align:'center',
 						formatter : function(value, row, index){
-							return '<a href="javascript:loadYhdzxlmcs('+"'"+row.id+"'"+')">编辑</a>';
+							return '<a href="javascript:update('+"'"+row.id+"'"+')">编辑</a>';
 						}
 					},
 					{field:'cslx',title:'参数类型',width:100,align:'center'},
-					{field:'clmc',title:'材料名称',width:190,align:'center'},
-					{field:'lfmdj',title:'立方米单价',width:96,align:'center'},
-					{field:'sddj',title:'审定单价',width:100,align:'center'}
+					{field:'clmc',title:'材料名称',width:100,align:'center'},
+					{field:'lfmdj',title:'立方米单价',width:100,align:'center'},
+					{field:'sddj',title:'审定单价',width:150,align:'center'}
 				]],
 				toolbar:[
 					{
@@ -87,81 +87,6 @@
 				]
 			});
 		});
-		
-		function addYhdzxlmcs(){
-			var lmcs = {
-					'yhdzxcs.cslx' : $('#addsellmjg').val(),
-					'yhdzxcs.clmc' : $('#txtclmc').val(),
-					'yhdzxcs.lfmdj' : $('#txtlfmdj').val(),
-					'yhdzxcs.sddj' : $('#txtsddj').val()
-				};
-			$.ajax({
-				url:'../../xtgl/addYhdzxcs.do',
-				data:lmcs,
-				dataType:'json',
-				success:function(result){
-					alert("添加成功！");
-					$('#addFlwbzbz').dialog("close");
-					$('#xtgl_flwbzbz_table').datagrid('reload');
-				},
-				error:function(){
-					alert("添加错误！");
-				}
-			});
-		}
-		
-		function loadYhdzxlmcs(id){
-			$('#add').hide();
-			$('#update').show();
-			$.ajax({
-				url:'../../xtgl/queryYhdzxcsById.do',
-				data:'yhdzxcs.id='+id,
-				dataType:'json',
-				success:function(result){
-					$('#yhdzxcsid').val(result.id);
-					$('#addsellmjg').val(result.cslx);
-					$('#txtclmc').val(result.clmc);
-					$('#txtlfmdj').val(result.lfmdj);
-					$('#txtsddj').val(result.sddj);
-					$('#addFlwbzbz').dialog("open",false);
-				}
-			});
-		}
-		
-		function updateYhdzxcs(){
-			var lmcs = {
-					'yhdzxcs.id':$('#yhdzxcsid').val(),
-					'yhdzxcs.cslx' : $('#addsellmjg').val(),
-					'yhdzxcs.clmc' : $('#txtclmc').val(),
-					'yhdzxcs.lfmdj' : $('#txtlfmdj').val(),
-					'yhdzxcs.sddj' : $('#txtsddj').val()
-				};
-			$.ajax({
-				url:'../../xtgl/updateYhdzxcs.do',
-				data:lmcs,
-				dataType:'json',
-				success:function(result){
-					alert("修改成功！");
-					$('#addFlwbzbz').dialog("close");
-					$('#xtgl_flwbzbz_table').datagrid('reload');
-				},
-				error:function(){
-					alert("修改出错！");
-				}
-			});
-		}
-		function selchange(){
-			$.ajax({
-				type:'post',
-				url:'../../xtgl/queryYhdzxcsByLx.do',
-				dataType:'json',
-				async:'false',
-				data:'yhdzxcs.cslx='+$('#selcslx').val(),
-				success:function(result){
-					$('#xtgl_flwbzbz_table').datagrid("loadData",result);
-				}
-			});
-		}
 	</script>
 </head>
 <body>
@@ -173,7 +98,7 @@
 		</div>
 		<div style="margin-left: 20px;margin-bottom: 5px;">
 			<span>参数类型：</span>
-			<select onchange="selchange()" id="selcslx" style="width: 80px;">
+			<select style="width: 80px;">
 				<option selected="selected">-请选择-</option>
 				<option value="上面层">上面层</option>
 				<option value="中面层">中面层</option>
@@ -196,7 +121,7 @@
 			<tr style="height: 25px;">
 				<td width="100" align="right" style="padding-right: 10px;">参数类型</td>
 				<td width="150" align="left">
-					<input type="hidden" id="yhdzxcsid"/>
+					<input type="hidden" id="flwid"/>
 					<select id="addsellmjg" style="width: 80px;">
 						<option selected="selected">-请选择-</option>
 						<option value="上面层">上面层</option>
@@ -231,8 +156,8 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="2" align="center">
-					<input id="add" type="button" onclick="addYhdzxlmcs()" value="添加" style="margin-top: 5px;"/>
-					<input id="update" type="button" onclick="updateYhdzxcs()" value="修改" style="margin-top: 5px;"/>
+					<input id="add" type="button" onclick="" value="添加" style="margin-top: 5px;"/>
+					<input id="update" type="button" onclick="" value="修改" style="margin-top: 5px;"/>
 				</td>
 			</tr>
 		</table>

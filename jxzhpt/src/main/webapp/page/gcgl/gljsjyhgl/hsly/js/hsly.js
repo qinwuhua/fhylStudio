@@ -89,8 +89,6 @@ function tjhslyyb(){
 	}
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
-		alert("省级用户您好，您不用为添加月报负责");
-		return;
 	}
 	var data = "gcglhsly.bywcdc="+$("#tj_bywcdc").val()+"&gcglhsly.bywcjc="+$("#tj_bywcjc").val()+"&gcglhsly.bywcmc="+$("#tj_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
 	+"&gcglhsly.qksm="+$("#tj_qksm").val()+"&gcglhsly.bfzj="+$("#tj_bfzj").val()

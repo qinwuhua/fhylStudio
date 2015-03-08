@@ -74,11 +74,4 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	Plan_yhdzx queryYhdzxById(String id);
-	/**
-	 * 根据ID修改路线信息
-	 * @param jh
-	 * @param lx
-	 * @return
-	 */
-	boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx);
 }

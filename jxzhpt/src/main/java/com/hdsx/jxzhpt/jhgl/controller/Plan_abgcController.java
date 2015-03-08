@@ -230,7 +230,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	public void uploadFile() throws Exception{
+	public void uploadAbgcFile() throws Exception{
 		FileInputStream fs=null;
 		byte[] data;
 		try {
@@ -261,14 +261,14 @@ public class Plan_abgcController extends BaseActionSupport{
 			fs.close();
 		}
 	}
-	public void downFile(){
+	public void downAbgcFile(){
         try {
         	Plan_upload file= abgcServer.queryFjById(uploads.getId());
         	HttpServletResponse response = getresponse();
-        	response.setContentType("application/octet-stream"); 
+        	response.setContentType("application/x-download"); 
         		OutputStream out = response.getOutputStream();
         		response.addHeader("Content-Disposition", "attachment;filename="+new String(file.getFilename().getBytes("GBK"),"ISO-8859-1"));
-        		byte[]  buffer= file.getFiledata();
+        		byte[]  buffer= file.getFiledata();              
                 out.write(buffer);
                 out.flush();
                 out.close();

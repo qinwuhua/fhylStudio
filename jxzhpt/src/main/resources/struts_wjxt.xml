@@ -3,6 +3,13 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="wjxt" extends="struts-default" namespace="/wjxt">
-	
+	<action name="insertTrqk" class="trqkController" method="insertTrqk"/>
+	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
+	<!--  -->
+	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
+	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
+	<action name="getMxbDataList" class="lkpdController" method="getMxbDataList"/>
+	<action name="getMxbDataList1" class="lkpdController" method="getMxbDataList1"/>
+	<action name="deletemxb" class="lkpdController" method="deletemxb"/>
  </package>
 </struts>

@@ -22,7 +22,7 @@ function save(){
 		alert("请输入角色名称！");
 		return false;
 	}
-	if($("#source").combotree("getValues")==""){
+	if(YMLib.Var.note==undefined){
 		alert("请选择角色权限！");
 		return false;
 	}
@@ -31,7 +31,7 @@ function save(){
 		 type : "POST",
 		 url : "../../xtgl/insertJs.do",
 		 dataType : 'json',
-		 data : param,
+		 data : param+"&param.source="+YMLib.Var.note,
 		 success : function(msg){
 			 if(msg){
 				 alert('保存成功！');

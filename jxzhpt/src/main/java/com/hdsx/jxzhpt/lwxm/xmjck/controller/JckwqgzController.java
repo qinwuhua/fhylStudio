@@ -250,6 +250,13 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectWqgzShCount(){
+		try {
+			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzShCount(jckwqgz)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public Jckwqgz getJckwqgz() {
 		return jckwqgz;

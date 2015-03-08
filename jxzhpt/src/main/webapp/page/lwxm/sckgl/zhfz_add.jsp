@@ -64,7 +64,7 @@ var bzls;
 	  			},
 	  			gydwbm:function() {
 	  				var d = $.cookie("unit2");
-	  				if(d=='36') return "";
+	  				if(d=='______36') return "";
 	  				else return d;
 	  			},
 	  			xzqhdm:function() {
@@ -140,10 +140,14 @@ var bzls;
 			alert("对不起，隐患里程不能大于总里程！");
 			return false;
 		}
+		var sbthcd=$.cookie("unit2").length;
+		if($.cookie("unit2")=="______36"){
+			sbthcd=7;
+		}
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scbmbm="+$.cookie("unit")+"&lxbm="+
-		$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&sck_sbthcd="+$.cookie("unit2").length+"&bzls="+bzls;
+		$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&sck_sbthcd="+sbthcd+"&bzls="+bzls;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckzhfz.do',

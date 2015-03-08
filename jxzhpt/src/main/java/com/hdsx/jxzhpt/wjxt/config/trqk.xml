@@ -2,27 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.trqk">
 
-	<select id="selectAbgcYbByJhid" parameterType="gcglabgc" resultType="gcglabgc">
+	<select id="selectTrqkList" parameterType="trqk" resultType="trqk">
 		select * from (
 		select m.*,rownum rn from (
-			select t1.*,t2.tbr,t2.tbsj,t2.tbyf,t2.cgsdwzj from GCGL_ABGC t1 left join GCGL_CGS t2 on t1.jhid=t2.jhid and t1.sbyf=t2.tbyf
-			where 1=1 and t1.sfsj &lt;=#{sfsj}
-		<if test="jhid != null and  jhid != ''">
-			and t1.jhid =#{jhid}
+			select * from WJXT_TRQK
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+			and gydw like '%'||#{jhid}||'%'
 		</if>
-		order by to_number(substr(sbyf,0,4))desc,to_number(replace(sbyf,'-','')) desc
+		<if test="tiaojian != null and  tiaojian != ''">
+			and tbsj like #{tiaojian}||'%'
+		</if>
+		order by tbsj desc
 		)  m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
 		
 	</select>
-	<select id="selectAbgcYbByJhidCount" parameterType="gcglabgc" resultType="int">
-		select count(*) from GCGL_ABGC 
-		where 1=1 and sfsj &lt;=#{sfsj}
-		<if test="jhid != null and  jhid != ''">
-			and jhid =#{jhid}
+	<select id="selectTrqkListCount" parameterType="trqk" resultType="int">
+		select count(*) from WJXT_TRQK 
+		where 1=1 
+		<if test="gydw != null and  gydw != ''">
+			and gydw like '%'||#{jhid}||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+			and tbsj like #{tiaojian}||'%'
 		</if>
 	</select>
-
+	<insert id="insertTrqk" parameterType="trqk">
+		insert into WJXT_TRQK(id,gydw,qxrs,trqxjf,lq,sn,ss,bzd,gyy,lqlbl,wjj,zzj,zxqc,cstb,sbtbxj,tbdw,tjr,shry,tbsj,gydwmc,tbdwmc)
+		values(sys_guid(),#{gydw},#{qxrs},#{trqxjf},#{lq},#{sn},#{ss},#{bzd},#{gyy},#{lqlbl},#{wjj},#{zzj},#{zxqc},#{cstb},#{sbtbxj},#{tbdw},#{tjr},#{shry},#{tbsj},#{gydwmc},#{tbdwmc})
+	</insert>
+	<insert id="insertLqpdmxb" parameterType="lkmxb">
+		insert into LKPD_MXB(id,tbdw,tbnf,dwfzr,tjfzr,tjf,tbrq)
+		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{tjfzr},#{tjf},#{tbrq})
+	</insert>
+	<insert id="insertLqpdmxbdata" parameterType="hashMap">
+		insert into LKPD_MXB_DATA(id,mxb_id,lxbh,lxmc,qdzh,zdzh,qjfx,pdlc,mqi,pqi,sci,bci,tci,ydl,ldl,zdl,cdl,cadl,yllv)
+		values(#{id},#{mxb_id},#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16})
+	</insert>
+	<select id="selectMxbList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	<select id="getMxbDataList" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB_DATA  where mxb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getMxbDataList1" parameterType="lkmxb" resultType="lkmxb">
+		select * from LKPD_MXB where id=#{id}
+	</select>
+	<delete id="deletemxb" parameterType="lkmxb" >
+		delete from LKPD_MXB_DATA  where mxb_id=#{id}
+	</delete>
+	<delete id="deletemxb1" parameterType="lkmxb" >
+		delete from LKPD_MXB where id=#{id}
+	</delete>
 </mapper>

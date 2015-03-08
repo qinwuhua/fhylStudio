@@ -161,6 +161,9 @@ public class GcglhslyController extends BaseActionSupport{
 		if("市级".equals(yhtype)){
 			gcglhsly.setSfsj(9);
 		}
+		if("省级".equals(yhtype)){
+			gcglhsly.setSfsj(7);
+		}
 		Boolean bl=gcglhslyServer.inserthslyYb(gcglhsly);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

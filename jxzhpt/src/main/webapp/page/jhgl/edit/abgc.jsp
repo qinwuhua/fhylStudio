@@ -386,7 +386,7 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0"
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0"
 								cellpadding="1" cellspacing="1">
 						<tbody id="gkbgTable"></tbody>
 					</table>
@@ -460,7 +460,7 @@
 	</div>
 	<script type="text/javascript">
 	function downFile(id){
-		parent.window.location.href="/jxzhpt/jhgl/downFile.do?uploads.id="+id;
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 	}
 	function deleteFile(id){
 		if(confirm('确定删除所选数据？')){
@@ -487,12 +487,12 @@
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadFile.do',
+		'script' : '../../../jhgl/uploadAbgcFile.do',
 		'cancelImg' : '../../../js/uploader/cancel.png',
 		'queueID' : 'fileQueue',
 		'fileDataName' : 'uploadGk',
 		'auto' : false,
-		'multi' : true,
+		'multi' : false,
 		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
@@ -522,7 +522,7 @@
 	$("#uploadSjt").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadFile.do',
+		'script' : '../../../jhgl/uploadAbgcFile.do',
 		'cancelImg' : '../../../js/uploader/cancel.png',
 		'queueID' : 'fileQueue1',
 		'fileDataName' : 'uploadSjt',
@@ -553,7 +553,8 @@
 
 		}
 	});
-
+	
+	
 	var bz;
 	var bl;
 	var fd;
@@ -584,6 +585,7 @@
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ABLBZWH').val(data.ablbzsqwh);
 			$('#JHRemarks').val(data.remarks);
+			
 			fileShow();
 			//审查库
 			$.ajax({
@@ -715,6 +717,8 @@
 			dataType:'json',
 			data:'uploads.id='+xxId,
 			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
 				$("#gkbgTable").empty();
 				$("#sjsgtTable").empty();
 				var gkbg="";

@@ -39,6 +39,10 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 				gcglgcgzsj.setXjzt("未上报");
 				update("updateXjZT", gcglgcgzsj);
 			}
+			if(gcglgcgzsj.getSfsj()==7){
+				gcglgcgzsj.setSjsh("未审核");
+				update("updateSJSH", gcglgcgzsj);
+			}
 			return true;
 		}else{
 			return false;

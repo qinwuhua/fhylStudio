@@ -48,8 +48,25 @@ public class TrqkController extends BaseActionSupport{
 	private int rows = 10;
 	@Resource(name = "trqkServerImpl")
 	private TrqkServer trqkServer;
-	
+	private String gydw;
+	private String tiaojian;
 	private Trqk trqk=new Trqk();
+
+	public String getGydw() {
+		return gydw;
+	}
+
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+
+	public String getTiaojian() {
+		return tiaojian;
+	}
+
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
+	}
 
 	public int getPage() {
 		return page;
@@ -73,6 +90,31 @@ public class TrqkController extends BaseActionSupport{
 
 	public void setTrqk(Trqk trqk) {
 		this.trqk = trqk;
+	}
+	
+	public void insertTrqk(){
+		Boolean bl=trqkServer.insertTrqk(trqk);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectTrqkList(){
+		trqk.setPage(page);
+		trqk.setRows(rows);
+		trqk.setGydw(gydw);
+		trqk.setTiaojian(tiaojian);
+		int count=trqkServer.selectTrqkListCount(trqk);
+		List<Trqk> list=trqkServer.selectTrqkList(trqk);
+		EasyUIPage<Trqk> e=new EasyUIPage<Trqk>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 }

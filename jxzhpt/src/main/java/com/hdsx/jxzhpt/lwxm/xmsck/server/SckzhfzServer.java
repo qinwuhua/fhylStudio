@@ -28,4 +28,5 @@ public interface SckzhfzServer {
 		String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1);
 		boolean onceSckZhfz(Sckzhfz zhfz);
 		Sckzhfz selSckZhfzCount(Sckzhfz zhfz);
+		Sckzhfz selSckZhfzShCount(Sckzhfz zhfz);
 }

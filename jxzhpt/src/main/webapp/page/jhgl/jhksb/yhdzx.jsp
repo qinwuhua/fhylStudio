@@ -26,8 +26,6 @@
 			xian=false;
 		}
 		$(function(){
-			loadBmbm("ddlPDDJ", "技术等级");
-			loadBmbm("ddlGldj", "公路等级");
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
@@ -63,22 +61,18 @@
 			}
 			yhdzxxm_sb(jh,lx);
 		}
-		function sb(id,jh_sbthcd,isreckon){
-			if(isreckon){
-				var date=new Date();
-				var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-					" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-				var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
-						'jh.jh_sbthcd':jh_sbthcd+2};
-				if(xian){
-					jh['jh.sbzt']='0';
-				}
-				if(editStatus(jh)){
-					alert("上报成功！");
-					searchYhdzx();
-				}
-			}else{
-				alert("请先在编辑中对项目的经费进行经费计算！");
+		function sb(id,jh_sbthcd){
+			var date=new Date();
+			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
+					'jh.jh_sbthcd':jh_sbthcd+2};
+			if(xian){
+				jh['jh.sbzt']='0';
+			}
+			if(editStatus(jh)){
+				alert("上报成功！");
+				searchYhdzx();
 			}
 		}
 		function tuihui(id,jh_sbthcd){
@@ -141,9 +135,22 @@
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
+									<option selected="selected" value="">全部</option>
+									<option value="G">国道</option>
+									<option value="S">省道</option>
+									<option value="X">县道</option>
+									<option value="Y">乡道</option>
+									<option value="C">村道</option>
+									<option value="Z">专道</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:84px;">
+									<option selected="selected" value="">全部</option>
+									<option value="1">一级公路</option>
+									<option value="2">二级公路</option>
+									<option value="3">三级公路</option>
+									<option value="4">四级公路</option>
+									<option value="5">等外公路</option>
 								</select>
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">

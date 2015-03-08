@@ -745,9 +745,11 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	public void selAllQx(){
-		List<TreeNode> l=xtglServer.selAllQx(yhdw);
-		try {   
-		    String s=JSONArray.fromObject(l).toString();
+		List<TreeNode> l=xtglServer.selQxByRoleid(param);
+		TreeNode root = returnRoot(l,l.get(0),new ArrayList<Param>());
+		List<TreeNode> children = root.getChildren();
+		try {
+		    String s=JSONArray.fromObject(children).toString();
             ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -756,7 +758,7 @@ public class XtglController extends BaseActionSupport{
 	
 	public void selAllQx2(){
 		List<TreeNode> l=xtglServer.selAllQx2(yhdw);
-		try {   
+		try {
 		    String s=JSONArray.fromObject(l).toString();
             ResponseUtils.write(getresponse(), s);
 		} catch (Exception e) {
@@ -886,30 +888,6 @@ public class XtglController extends BaseActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void addYhdzxcs(){
-		xtglServer.addYhdzxcs(yhdzxcs);
-	}
-	
-	public void queryYhdzxcsById(){
-		try {
-			JsonUtils.write(xtglServer.queryYhdzxcsById(yhdzxcs.getId()), getresponse().getWriter());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void queryYhdzxcsByLx(){
-		try {
-			JsonUtils.write(xtglServer.queryYhdzxcsByLx(yhdzxcs), getresponse().getWriter());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void updateYhdzxcs(){
-		xtglServer.updateYhdzxcs(yhdzxcs);
 	}
 	
 	public String getYhdw() {

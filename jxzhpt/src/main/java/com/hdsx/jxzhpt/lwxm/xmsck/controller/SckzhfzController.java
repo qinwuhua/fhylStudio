@@ -234,6 +234,13 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selSckZhfzShCount(){
+		try {
+			JsonUtils.write(zhfzServer.selSckZhfzShCount(sckzhfz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	public Sckzhfz getSckzhfz() {

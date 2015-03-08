@@ -16,6 +16,7 @@
 <script type="text/javascript" src="../../js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
+<script type="text/javascript" src="./js/trqk.js"></script>
 
 <style type="text/css">
 TD {
@@ -28,7 +29,13 @@ text-decoration:none;
 </head>
 <body>
 <script type="text/javascript">
-	
+	$(function(){
+		loadUnit("gydw",'36');
+		loadUnit("tbdw",$.cookie("unit"));
+		$("#tbsj").datebox({    
+		    
+		});  
+	});
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -122,8 +129,8 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
-				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
-				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
+				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="addtrqk()">保存</a>
+				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel" onclick="closes('trqk_add')">取消</a></td>
 			</tr>
 			</table>
 </body>

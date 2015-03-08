@@ -192,7 +192,61 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	public void uploadZhfzFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
+		try {
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadGk!=null)){
+						fs=new FileInputStream(this.uploadGk);
+						data=new byte[(int) this.uploadGk.length()];
+						fs.read(data);
+					   jh.setGkbgmc(uploadGkFileName);
+					   jh.setGkbgdata(data);
+					   if(zhfzServer.updateGkbg(jh))
+						   response.getWriter().print(uploadGkFileName+"导入成功");
+					   else response.getWriter().print(uploadGkFileName+"导入失败");
+				}else{
+					fs=new FileInputStream(this.uploadSjt);
+					data=new byte[(int) this.uploadSjt.length()];
+					fs.read(data);
+					jh.setSjsgtmc(uploadSjtFileName);
+					jh.setSjsgtdata(data);
+					if(zhfzServer.updateSjsgt(jh))
+						response.getWriter().print(uploadSjtFileName+"导入成功");
+					   else response.getWriter().print(uploadSjtFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	public void downZhfzFile(){
+        try {
+        	Plan_zhfz zhfz =zhfzServer.queryZhfzFjById(jh.getId());
+        	HttpServletResponse response = getresponse();
+        	response.setContentType("application/x-download"); 
+        	if("gkbg".equals(jh.getGkbgmc())){
+        		OutputStream output = response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getGkbgmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= zhfz.getGkbgdata();
+                output.write(buffer);
+                output.flush();
+                output.close();
+        	}else{
+        		OutputStream output = response.getOutputStream();
+        		response.addHeader("Content-Disposition", "attachment;filename="+new String(zhfz.getSjsgtmc().getBytes("gb2312"),"ISO-8859-1"));
+        		byte[]  buffer= zhfz.getSjsgtdata();
+                output.write(buffer);
+                output.flush();
+                output.close();
+        	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//set get
 	public int getPage() {
