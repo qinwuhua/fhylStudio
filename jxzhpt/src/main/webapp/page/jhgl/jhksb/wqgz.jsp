@@ -243,10 +243,10 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">9</span>&nbsp;】个危桥改造项目，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">338</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">199</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">139</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
+        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

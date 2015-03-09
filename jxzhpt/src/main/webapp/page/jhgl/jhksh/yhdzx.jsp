@@ -23,11 +23,15 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
 			sbnf('sbnf');
+			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			querySumYhdzx(jh,lx);
-			yhdzxxm_sp(jh,lx);
+			if(roleName()=="省级"){
+				querySumYhdzx(jh,lx);
+				yhdzxxm_sp(jh,lx);
+			}else{
+				alert("只有省级用户才能查看审核中的计划信息");
+			}
 		});
 		function searchYhdzx(){
 			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
