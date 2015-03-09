@@ -244,6 +244,8 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		
 		Map<String,Object> parameter=new HashMap<String,Object>();
 		List<HashMap<String, String>> l=new ArrayList<HashMap<String,String>>();
+		//l=queryList("createGsAnyChartXml", param);
+		
 		String[] arr={"安保","水毁","工程改造"};
 		int[] arr2={10,23,45};
 		for(int i=0;i<3;i++){
@@ -452,9 +454,9 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			return queryList("selectLxDataList", hm);
 		}else{
 			//桥梁
-			
+			hm.put("roadcode",id);
+			return queryList("selectQlDataList", hm);
 		}
-		return null;
 	}
 	
 	public List<Plan_flwbzbz> queryFlwbzbz() {

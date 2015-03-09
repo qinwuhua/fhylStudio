@@ -63,6 +63,8 @@
 	<action name="updateBzbz" class="xtglController" method="updateBzbz"></action>
 	<action name="getBmbmTreeByName2" class="loadBmbmController" method="getBmbmTreeByName2"></action>
 	
+	<action name="xmlxCountTj" class="dzdtController" method="xmlxCountTj"></action>
+	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>
 	<action name="getModule_sc" class="excelModule" method="getModule_sc"/>
