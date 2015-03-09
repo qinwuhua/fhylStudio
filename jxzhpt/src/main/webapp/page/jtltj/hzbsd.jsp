@@ -67,7 +67,7 @@ function showMxbAll(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../wjxt/selectJtlsdList.do',
 		queryParams : {
-			'jtlhz.tbnf' : $('#unit').val()
+			'jtlhzgd.tbnf' : $('#unit').val()
 		},
 		striped : true,
 		singleSelect : false,
@@ -102,7 +102,7 @@ function showMxbAll(){
  					<p style="margin: 5px;">
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
- 							<option>全部</option>
+ 							<option value="">全部</option>
  						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showMxbAll()">查　询</a>
 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="inserttsdData('hzbsd')">导入数据</a>
@@ -111,7 +111,7 @@ function showMxbAll(){
  			</fieldset>
         </div>
     </div>
-    <div id="tt" border="false" class="easyui-tabs"  style="height:420px;">
+    <div id="tt" border="false" class="easyui-tabs"  style="height:430px;">
 	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 	    	<table id="jsgl_table" style="height:100%;" ></table>
 	    </div>
