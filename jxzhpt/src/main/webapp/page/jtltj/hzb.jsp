@@ -104,7 +104,7 @@ function showMxbAll(){
  						<select id="unit" style="width:150px;">
  							<option value="">全部</option>
  						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showMxbAll()">查　询</a>
 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="insertData('hzb')">导入数据</a>
  					</p>
  				</div>
