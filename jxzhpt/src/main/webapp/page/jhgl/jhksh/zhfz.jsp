@@ -25,9 +25,10 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
+				queryZjqf($('#sbnf').combobox("getValue"));
 				querySumZhfz(jh,lx);
 				zhfzxm_sh(jh,lx);
 			}else{
@@ -161,6 +162,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个灾害防治项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，

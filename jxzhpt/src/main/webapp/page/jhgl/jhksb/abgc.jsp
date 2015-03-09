@@ -31,34 +31,14 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			sbnf("sbnf");
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
-			if(!xian){
+			if(roleName()=="市" || roleName()=="省"){
 				jh.jh_sbthcd=2;
 			}
-			//查询切分资金
-			var xzqhdm="";
-			if(roleName()=="县级"){
-				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
-			}else if(roleName()=="市级"){
-				xzqhdm="360000";
-			}
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':new Date().getFullYear()},
-				dataType:'json',
-				success:function(data){
-					$.each(JSON.parse(data.zjqf),function(index,item){
-						if(item.id==$.cookie("unit").substring(5)){
-							$('#lblQfzj').html(item.abgc);
-						}
-					});
-				}
-			});
+			queryZjqf($('#sbnf').combobox("getValue"));
 			querySumAbgc(jh,lx);
-			sbnf("sbnf");
 			abgcxm_sb(jh,lx);
 		});
 		function searchAbgc(){
