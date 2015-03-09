@@ -405,7 +405,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			l.add(p);
 		}
 		if (update("updateJs", param)>0){
-			if(delete("deleteRoleSourceById",param)>0){
+			if(delete("deleteRoleSourceById",param)>=0){
 				if(insertBatch("insertRoleSourceBatch", l)>0){
 					return true;
 				}else return false;
