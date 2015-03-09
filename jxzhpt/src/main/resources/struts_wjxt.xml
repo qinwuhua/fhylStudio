@@ -16,6 +16,13 @@
 	<action name="selectTjbList" class="lkpdController" method="selectTjbList"/>
 	<action name="getTjbDataList" class="lkpdController" method="getTjbDataList"/>
 	<action name="getTjbDataList1" class="lkpdController" method="getTjbDataList1"/>
+	<action name="deletetjb" class="lkpdController" method="deletetjb"/>
+	
+	<action name="insertJtlhzData" class="jtlController" method="insertJtlhzData"/>
+	<action name="selectJtlList" class="jtlController" method="selectJtlList"/>
+	<action name="getJtlDataList" class="jtlController" method="getJtlDataList"/>
+	<action name="getJtlDataList1" class="jtlController" method="getJtlDataList1"/>
+	<action name="deletejtl" class="jtlController" method="deletejtl"/>
 	
  </package>
 </struts>

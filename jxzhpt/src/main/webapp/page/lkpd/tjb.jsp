@@ -32,28 +32,25 @@ function openJsUpdate(_id){
 		 selected:true
 	});
 }
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
+function Deletemxb(_id){
+	var data="lktjb.id="+_id;
+	if(!confirm("确认删除吗？")){
+		return;
+	}
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/wjxt/deletetjb.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				$("#jsgl_table").datagrid('reload');
+			}else{
+				alert('删除失败！');
+			}
 		}
-	});
+	});	
 }
 
 function showTjbAll(){

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
@@ -113,6 +114,57 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 	public Lktjb getTjbDataList1(Lktjb lktjb) {
 		// TODO Auto-generated method stub
 		return queryOne("getTjbDataList1", lktjb);
+	}
+	
+	@Override
+	public Boolean deletetjb(Lktjb lktjb) {
+		if(delete("deletetjb", lktjb)>0 && delete("deletetjb1", lktjb)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean insertJtlhz(Jtlhz jtlhz1) {
+		if(insert("insertJtlhz", jtlhz1)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertJtlhzdata(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertJtlhzdata", data)==data.size();
+	}
+
+	@Override
+	public List<Jtlhz> selectJtlList(Jtlhz jtlhz) {
+		// TODO Auto-generated method stub
+		return queryList("selectJtlList",jtlhz);
+	}
+
+	@Override
+	public List<Jtlhz> getJtlDataList(Jtlhz jtlhz) {
+		// TODO Auto-generated method stub
+		return queryList("getJtlDataList", jtlhz);
+	}
+
+	@Override
+	public Jtlhz getJtlDataList1(Jtlhz jtlhz) {
+		// TODO Auto-generated method stub
+		return queryOne("getJtlDataList1", jtlhz);
+	}
+
+	@Override
+	public Boolean deletejtl(Jtlhz jtlhz) {
+		if(delete("deletejtl", jtlhz)>0 && delete("deletejtl1", jtlhz)>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	

@@ -167,11 +167,18 @@ public class LkpdController extends BaseActionSupport{
 			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
 			lkmxb1.setTbdw(data.get(0).get("1").toString());
 			lkmxb1.setTbnf(data.get(0).get("7").toString());
+			if(data.get(data.size()-1).get("0").toString().split("：").length>1)
 			lkmxb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			else lkmxb1.setDwfzr("");
+			if(data.get(data.size()-1).get("4").toString().split("：").length>1)
 			lkmxb1.setTjfzr(data.get(data.size()-1).get("4").toString().split("：")[1]);
+			else lkmxb1.setTjfzr("");
+			if(data.get(data.size()-1).get("8").toString().split("：").length>1)
 			lkmxb1.setTjf(data.get(data.size()-1).get("8").toString().split("：")[1]);
+			else lkmxb1.setTjf("");
+			if(data.get(data.size()-1).get("12").toString().split("：").length>1)
 			lkmxb1.setTbrq(data.get(data.size()-1).get("12").toString().split("：")[1]);
-			
+			else lkmxb1.setTbrq("");
 			lkmxb1.setId(s1);
 			booltb=trqkServer.insertLqpdmxb(lkmxb1);
 			data.remove(0);
@@ -258,12 +265,18 @@ public class LkpdController extends BaseActionSupport{
 			lktjb1.setId(s1);
 			lktjb1.setTbdw(data.get(0).get("1").toString());
 			lktjb1.setTbnf(data.get(0).get("4").toString());
-			System.out.println(data.get(data.size()-1).get("0").toString());
+			if(data.get(data.size()-1).get("0").toString().split("：").length>1)
 			lktjb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			else lktjb1.setDwfzr("");
+			if(data.get(data.size()-1).get("2").toString().split("：").length>1)
 			lktjb1.setFzr(data.get(data.size()-1).get("2").toString().split("：")[1]);
+			else lktjb1.setFzr("");
+			if(data.get(data.size()-1).get("5").toString().split("：").length>1)
 			lktjb1.setTbr(data.get(data.size()-1).get("5").toString().split("：")[1]);
+			else lktjb1.setTbr("");
+			if(data.get(data.size()-1).get("8").toString().split("：").length>1)
 			lktjb1.setTbrq(data.get(data.size()-1).get("8").toString().split("：")[1]);
-			System.out.println(lktjb1);
+			else lktjb1.setTbrq("");
 			boolean booltb=false,booldata=false;
 			booltb=trqkServer.insertLktjb(lktjb1);
 			data.remove(0);
@@ -312,6 +325,14 @@ public class LkpdController extends BaseActionSupport{
 			JsonUtils.write(lkmxb1, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	public void deletetjb(){
+		Boolean bl=trqkServer.deletetjb(lktjb);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
 		}
 	}
 }

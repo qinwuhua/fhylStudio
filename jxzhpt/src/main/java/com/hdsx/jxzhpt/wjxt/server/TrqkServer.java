@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
@@ -38,5 +39,19 @@ public interface TrqkServer {
 	List<Lktjb> getTjbDataList(Lktjb lktjb);
 
 	Lktjb getTjbDataList1(Lktjb lktjb);
+
+	boolean insertJtlhz(Jtlhz jtlhz1);
+
+	boolean insertJtlhzdata(List<Map> data);
+
+	Boolean deletetjb(Lktjb lktjb);
+
+	List<Jtlhz> selectJtlList(Jtlhz jtlhz);
+
+	List<Jtlhz> getJtlDataList(Jtlhz jtlhz);
+
+	Jtlhz getJtlDataList1(Jtlhz jtlhz);
+
+	Boolean deletejtl(Jtlhz jtlhz);
 
 }
