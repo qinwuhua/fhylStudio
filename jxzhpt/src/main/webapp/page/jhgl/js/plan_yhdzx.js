@@ -41,8 +41,12 @@ function yhdzxxm(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-		        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
+		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+			        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	  }else{
+		        		  result+="编辑      移除";
+		        	  }
 		        	  return result;
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center',
@@ -250,7 +254,7 @@ function yhdzxxm_sp(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
+		        	  if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=='0')
 		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	  else
 		        		  result+='编辑';
@@ -259,9 +263,11 @@ function yhdzxxm_sp(jh,lx){
 			      {field:'sbzt',title:'上报状态',width:80,align:'center',
 			    	  formatter:function(value,row,index){
 			    		  var result="";
-			    		  if(row.spzt=='0' && row.sbzt=='1'){
+			    		  if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=='0'){
 			    			  result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>   |    ';
 			    			  result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+			    		  }else if(roleName()!="省级" && row.jh_sbthcd==4 && row.spzt=='0'){
+			    			  result="审批      |    退回";
 			    		  }else{
 			    			  result='<a style="text-decoration:none;color:black;">已审批</a>';
 			    		  }

@@ -252,6 +252,18 @@ function editZjxd(){
 		}
 	});
 }
+function roleName(){
+	var sheng = new RegExp("^[0-9]{7}0000$");
+	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+	if(sheng.test($.cookie("unit"))){
+		return "省级";
+	}else if(shi1.test($.cookie("unit")) || shi2.test($.cookie("unit"))){
+		return "市级";
+	}else{
+		return "县级";
+	}
+}
 function filterGydwdm(gydwdm){
 	var result=null;
 	var sheng = new RegExp("^[0-9]{7}0000$");

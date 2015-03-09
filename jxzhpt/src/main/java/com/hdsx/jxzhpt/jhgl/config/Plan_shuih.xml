@@ -53,7 +53,6 @@
 		<result property="ylmlx" column="ylmlx"/>
 		<result property="yhlc" column="yhlc"/>
 		<result property="bhnr" column="bhnr"/>
-		
 	</resultMap>
 	<select id="queryShuihList"  parameterType="java.util.Map" resultMap="shuih_jh">
 		select * from (
@@ -95,35 +94,6 @@
 				order by jh.sbnf desc,jh.sbzt asc,jh.spzt asc,jh.jh_sbthcd asc
 				) t
 			)
-=======
-					and jh.id in (
-						select l.jhid from PLAN_lx_shuih l 
-						where 1=1 
-							<if test="l.gydwdm!=null and l.gydwdm!=''">
-								and l.gydwdm like #{l.gydwdm}
-							</if>
-							<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-								and l.xzqhdm like #{l.xzqhdm}
-							</if>
-							<if test="l.lxmc!=null and l.lxmc!=''">
-								and l.lxmc like '%'||#{l.lxmc}||'%'
-							</if>
-							<if test="l.yjsdj!=null and l.yjsdj!=''">
-								and l.yjsdj=#{l.yjsdj}
-							</if>
-							<if test="l.lxbm!=null and l.lxbm!=''">
-								and l.lxbm like #{l.lxbm}
-							</if>
-						    <if test="l.tsdqbm!=null and l.tsdqbm!=''">
-						     and l.xzqhdm in (
-						     	select B.XZQHDM from BT_XZQHTSDQ b 
-						     	WHERE B.AREACODE=#{l.tsdqbm}
-						     	 )
-						     </if>
-						     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
-						) t
-				)
->>>>>>> refs/remotes/origin/master
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryShuihCount"  parameterType="java.util.Map"  resultType="int">

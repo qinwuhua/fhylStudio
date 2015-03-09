@@ -7,11 +7,12 @@
 	<title>安保工程项目</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<style type="text/css">
 		.table{border: 1px solid #CBE0FF;}
 		.table tr{border: 1px solid #CBE0FF;}
@@ -48,6 +49,7 @@
 				xzqhfather="360000";
 			}
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
+			alert(xzqhfather);
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjqfByXzqh.do',
