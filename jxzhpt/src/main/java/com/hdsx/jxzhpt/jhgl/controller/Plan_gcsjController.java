@@ -125,6 +125,14 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
+	public void queryGcsjSum(){
+		try {
+			JsonUtils.write(gcsjServer.queryGcsjSum(jh,lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void queryGcsjById(){
 		try {
 			JsonUtils.write(gcsjServer.queryGcsjById(jh.getId()), getresponse().getWriter());

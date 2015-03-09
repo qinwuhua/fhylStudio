@@ -93,7 +93,6 @@ public class TrqkController extends BaseActionSupport{
 	}
 	
 	public void insertTrqk(){
-		System.out.println(trqk);
 		Boolean bl=trqkServer.insertTrqk(trqk);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");

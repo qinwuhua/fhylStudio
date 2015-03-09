@@ -37,7 +37,7 @@
  			and lxbm like #{lxbm}||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sbzt2
+ 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
  </select>
  <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
 	select count(*) from xmk_zhfz where 1=1
@@ -109,7 +109,7 @@
  </select>
   <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
  	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
- 	from xmk_zhfz where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%' 
+ 	from xmk_zhfz where shzt='已审核' and lxbm like #{lxbm}||'%' 
  	<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
@@ -118,7 +118,7 @@
  
   <select id="selectJckShzhfz" parameterType="hashmap" resultType="jckzhfz">
  	select * from (
- 		select rownum num ,t.* from xmk_zhfz t where sbzt='已上报' and sbthcd=7
+ 		select rownum num ,t.* from xmk_zhfz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
@@ -149,7 +149,7 @@
  			order by shzt desc
  </select>
  <select id="selectZhfzShCount" parameterType="hashmap" resultType="int">
-	select count(*) from xmk_zhfz where sbzt='已上报' and sbthcd=7
+	select count(*) from xmk_zhfz where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
@@ -218,7 +218,7 @@
  	select
 	shzt v_0,gydw v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,qzlc v_8,yhlc v_9,gjxjnd v_10,xmnf v_11
  	from xmk_zhfz
- 	where 1=1 and sbzt='已上报'
+ 	where sbthcd=7
  	<include refid="zhfz_commonsql"/>
  	</select>
     <select id="onceZhfz" parameterType="hashmap" resultType="int">
@@ -288,7 +288,7 @@
  		</if>
  </select>
  <select id="selZhfzShCount" parameterType="hashmap" resultType="jckzhfz">
-	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbzt='已上报' and sbthcd=7
+	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')

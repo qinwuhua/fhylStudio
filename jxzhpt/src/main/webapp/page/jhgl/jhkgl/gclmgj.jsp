@@ -29,9 +29,9 @@
 			xzqhComboxTree("xzqh");
 			xzqhComboxTree("add_xzqh");
 			tsdq('tsdq');
-			querySumGcgj();
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			querySumGcgj(jh,lx);
 			sbnf("sbnf");
 			gclmgjxm(jh,lx);
 		});

@@ -33,20 +33,24 @@ text-decoration:none;
 	var zdStr;
 	$(function(){
 		$("#save_button").click(function(){
-			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
-			$.ajax({
-				type:'post',
-				url:'/jxzhpt/xmjck/onceZhfz.do',
-				dataType:'json',
-		        data:datas,
-				success:function(msg){
-					if(Boolean(msg)){
-						saveZhfz();
-					}else{
-						alert('该项目已添加过，请勿重复添加！');
+			if($("#lxbm").val()!="" && $("#lxbm").val()!=null){
+				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
+				$.ajax({
+					type:'post',
+					url:'/jxzhpt/xmjck/onceZhfz.do',
+					dataType:'json',
+			        data:datas,
+					success:function(msg){
+						if(Boolean(msg)){
+							saveZhfz();
+						}else{
+							alert('该项目已添加过，请勿重复添加！');
+						}
 					}
-				}
-			});
+				});	
+			}else {
+				alert("请填写路线编码！");
+			}
 		});
 		$("#qx_window").click(function(){
 			parent.$('#jck_add').window('destroy');
@@ -70,7 +74,7 @@ text-decoration:none;
 	  			},
 	  			gydwbm:function() {
 	  				var d = $.cookie("unit2");
-	  				if(d=='36') return "";
+	  				if(d=='______36') return "";
 	  				else return d;
 	  			},
 	  			xzqhdm:function() {
@@ -134,10 +138,14 @@ text-decoration:none;
 			alert("对不起，隐患里程不能大于总里程！");
 			return false;
 		}
+		var sbthcd=$.cookie("unit2").length;
+		if($.cookie("unit2")=="______36"){
+			sbthcd=7;
+		}
 		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
 		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+
 		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmzt").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+$.cookie("unit2").length;
+		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+sbthcd;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmjck/insertZhfz.do',

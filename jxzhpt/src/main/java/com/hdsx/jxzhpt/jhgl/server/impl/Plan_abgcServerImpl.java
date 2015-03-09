@@ -130,8 +130,11 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return update("editStatus", jh)>0;
 	}
 	@Override
-	public Plan_abgc querySumAbgc() {
-		return queryOne("querySumAbgc", null);
+	public Plan_abgc querySumAbgc(Plan_abgc jh, Jckabgc lx ) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("p", jh);
+		param.put("x", lx);
+		return queryOne("querySumAbgc", param);
 	}
 	@Override
 	public boolean updateLrztBySckid(String sckId) {
@@ -174,5 +177,16 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public boolean deleteFile(Plan_upload uploads) {
 		return delete("deleteFile", uploads)>0 ? true:false;
+	}
+	@Override
+	public boolean editAbgcSckBysckid(Plan_abgc jh) {
+		return update("editAbgcSckBysckid", jh)>0;
+	}
+	@Override
+	public List<Plan_abgc> queryAbgcListByStatus(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryList("queryAbgcListByStatus",param);
 	}
 }

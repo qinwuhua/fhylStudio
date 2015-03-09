@@ -43,7 +43,7 @@
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
- 			order by sbzt2 
+ 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
   <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
@@ -118,7 +118,7 @@
  </select>
  
   <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
- 	select * from xmk_wqgz where shzt='已审核' and sbzt='已上报' and qlbh like #{qlbh}||'%' 
+ 	select * from xmk_wqgz where shzt='已审核' and qlbh like #{qlbh}||'%' 
  	<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
@@ -127,7 +127,7 @@
  
   <select id="selectJckShwqgz" parameterType="hashmap" resultType="jckwqgz">
  	select * from (
- 		select rownum num ,t.* from xmk_wqgz t where sbzt='已上报' and sbthcd=7
+ 		select rownum num ,t.* from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') 
@@ -161,7 +161,7 @@
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="hashmap" resultType="int">
- 		select count(*) from xmk_wqgz t where sbzt='已上报' and sbthcd=7
+ 		select count(*) from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
  			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') 
@@ -250,7 +250,7 @@
   <select id="exportExcel_wqgz_sh" parameterType="jckwqgz" resultType="sjbb">
  	select
 	shzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
- 	from xmk_wqgz where sbzt='已上报'
+ 	from xmk_wqgz where sbthcd=7
  	<include refid="wqgz_commonsql"/>
  </select>
  

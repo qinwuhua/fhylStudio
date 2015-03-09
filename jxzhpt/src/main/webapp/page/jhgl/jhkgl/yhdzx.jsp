@@ -23,10 +23,10 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			querySumYhdzx();
 			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		});
 		function searchYhdzx(){

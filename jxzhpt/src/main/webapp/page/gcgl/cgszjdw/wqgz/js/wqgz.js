@@ -108,6 +108,20 @@ function showAll(){
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
+//	var yhjb=$.cookie("unit2");
+//	var sfsj='';
+//	if(yhjb.length==11){
+//		yhtype='县级';
+//		sfsj=11;
+//	}
+//	if(yhjb.length==9||yhjb.length==8){
+//		yhtype='市级';
+//		sfsj=9;
+//	}
+//	if(yhjb.length<8&&yhjb.length>=2){
+//		yhtype='省级';
+//		sfsj=7;
+//	}
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzjhList.do',
 	    striped:true,
@@ -122,7 +136,9 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc
+	    	qlmc:qlmc,
+	    	ybzt:'',
+	    	sfsj:7
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

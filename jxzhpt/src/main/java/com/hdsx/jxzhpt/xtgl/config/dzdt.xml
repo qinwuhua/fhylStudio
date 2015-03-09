@@ -4,4 +4,18 @@
 	<select id="selLines" parameterType="dzdt" resultType="dzdt">
 		select * from JXJCK_2013.webroadline where roadcode='G6001'
 	</select>
+	<select id="xmlxCountTj" parameterType="param" resultType="param">
+		select id,name,(select name from xtgl_resource where id=t.parent) parent from xtgl_resource t where parent in ('01010201','01010203','01010301','01010502')
+		and id !='0101030110'
+		order by id
+	</select>
+	<select id="selSqlStrByLxid_sheng" parameterType="param" resultType="param">
+		
+	</select>
+	<select id="selSqlStrByLxid_shi" parameterType="param" resultType="param">
+		
+	</select>
+	<select id="selSqlStrByLxid_xian" parameterType="param" resultType="param">
+		
+	</select>
 </mapper>

@@ -61,7 +61,7 @@ function autoCompleteQLBH(){
   			},
   			gydwbm:function() {
   				var d = $.cookie("unit2");
-  				if(d=='36') return "";
+  				if(d=='______36') return "";
   				else return d;
   			},
   			xzqhdm:function() {
@@ -115,11 +115,15 @@ function autoCompleteQLBH(){
 			});
 }
 function saveWqgz(){
+	var sbthcd=$.cookie("unit2").length;
+	if($.cookie("unit2")=="______36"){
+		sbthcd=7;
+	}
 	var data ="xmkid="+xmkid+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
 	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
 	"&scbmbm="+$.cookie("unit")+"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+
-	"&sck_sbthcd="+$.cookie("unit2").length+"&bzls="+bzls;
+	"&sck_sbthcd="+sbthcd+"&bzls="+bzls;
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/insertSckwqgz.do',

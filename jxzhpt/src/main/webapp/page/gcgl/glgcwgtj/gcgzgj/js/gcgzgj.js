@@ -47,7 +47,9 @@ function showAll(){
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
-	    	qlmc:qlmc
+	    	qlmc:qlmc,
+	    	ybzt:'',
+	    	sfsj:7
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -92,18 +94,41 @@ function showYBlist(){
 					],
 					[
 					{field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-					{field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+				//	{field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
 					{field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
 					{field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-					{field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			//		{field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
 					{field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]
 	});
 }
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downGcgzgjFile.do?type="+str+"&jhid="+parent.obj1.id;
-	}
-	else return;
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectGcgzgjjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+				if(msg.sgxkwj!=''){
+					$("#xz_sgxkwj").text(msg.sgxkwj);
+					$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downGcgzgjFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+				}
+				if(msg.jgtcwj!=''){
+					$("#xz_jgtcwj").text(msg.jgtcwj);
+					$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzgjFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+				}
+				if(msg.jgyswj!=''){
+					$("#xz_jgyswj").text(msg.jgyswj);
+					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzgjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				}
+			}
+	});	
 }

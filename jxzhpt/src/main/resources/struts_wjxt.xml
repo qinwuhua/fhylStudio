@@ -7,5 +7,22 @@
 	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
 	<!--  -->
 	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
+	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
+	<action name="getMxbDataList" class="lkpdController" method="getMxbDataList"/>
+	<action name="getMxbDataList1" class="lkpdController" method="getMxbDataList1"/>
+	<action name="deletemxb" class="lkpdController" method="deletemxb"/>
+	
+	<action name="insertLkpdtjData" class="lkpdController" method="insertLkpdtjData"/>
+	<action name="selectTjbList" class="lkpdController" method="selectTjbList"/>
+	<action name="getTjbDataList" class="lkpdController" method="getTjbDataList"/>
+	<action name="getTjbDataList1" class="lkpdController" method="getTjbDataList1"/>
+	<action name="deletetjb" class="lkpdController" method="deletetjb"/>
+	
+	<action name="insertJtlhzData" class="jtlController" method="insertJtlhzData"/>
+	<action name="selectJtlList" class="jtlController" method="selectJtlList"/>
+	<action name="getJtlDataList" class="jtlController" method="getJtlDataList"/>
+	<action name="getJtlDataList1" class="jtlController" method="getJtlDataList1"/>
+	<action name="deletejtl" class="jtlController" method="deletejtl"/>
+	
  </package>
 </struts>

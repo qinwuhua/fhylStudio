@@ -1,10 +1,10 @@
 var rowid;
 function addJck(jsp,w,h){
-	var unit=$.cookie("unit");
-	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
-		alert("对不起，省级单位不可导入数据！");
-		return;
-	}
+//	var unit=$.cookie("unit");
+//	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
+//		alert("对不起，省级单位不可导入数据！");
+//		return;
+//	}
 	YMLib.UI.createWindow('jck_add','添加项目',jsp,'jck_add',w,h);
 }
 //基础库安保工程
@@ -39,11 +39,11 @@ function ckJckwqgz(ck_id){
 
 //审查库项目添加
 function addSck(jsp,w,h){
-	var unit=$.cookie("unit");
-	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
-		alert("对不起，省级单位不可导入数据！");
-		return;
-	}
+//	var unit=$.cookie("unit");
+//	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
+//		alert("对不起，省级单位不可导入数据！");
+//		return;
+//	}
 	YMLib.UI.createWindow('sck_add','添加项目',jsp,'sck_add',w,h);
 }
 //审查库危桥改造
@@ -75,11 +75,11 @@ function ckSckzhfz(ck_id){
 }
 //excel基础库数据导入
 function importData(flag){
-	var unit=$.cookie("unit");
-	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
-		alert("对不起，省级单位不可导入数据！");
-		return;
-	}
+//	var unit=$.cookie("unit");
+//	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
+//		alert("对不起，省级单位不可导入数据！");
+//		return;
+//	}
 	var url="";
 	if(flag=='wqgz'){
 		url="/jxzhpt/xmjck/importWqgz.do";
@@ -106,11 +106,11 @@ function importData(flag){
 }
 //excel审查库数据导入
 function importData_sc(flag){
-	var unit=$.cookie("unit");
-	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
-		alert("对不起，省级单位不可导入数据！");
-		return;
-	}
+//	var unit=$.cookie("unit");
+//	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
+//		alert("对不起，省级单位不可导入数据！");
+//		return;
+//	}
 	var url="";
 	if(flag=='wqgz_sc'){
 		url="/jxzhpt/xmsck/importWqgz_sc.do";

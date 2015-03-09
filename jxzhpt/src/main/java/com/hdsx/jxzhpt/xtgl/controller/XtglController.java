@@ -397,7 +397,6 @@ public class XtglController extends BaseActionSupport{
 		
 		int count =0;
 		List<Unit> list=new ArrayList<Unit>();
-		System.out.println(id+"++++++++++");
 		
 		if(id==null){
 			count = xtglServer.selectXzqhListCount(unit);
@@ -628,9 +627,8 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	public void createAnyChartXml(){
-		System.out.println("-----------------");
 		String anyChartXml = xtglServer.createGsAnyChartXml(param);
-		System.out.println("++++++"+anyChartXml);
+		//System.out.println("++++++"+anyChartXml);
 		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	

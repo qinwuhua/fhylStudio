@@ -21,8 +21,8 @@ $(function(){
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:205px;overflow:hidden">
-		<div id="aa" fit="true" class="easyui-accordion" style="width:205px;">  
+    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:200px;overflow:hidden">
+		<div id="aa" fit="true" class="easyui-accordion" style="width:195px;">  
 		    <div id="left_menu1" title="公路建设及养护管理" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>		   

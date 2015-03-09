@@ -191,6 +191,27 @@
 					    </if>
 					    )
 	</select>
+	<select id="queryGcsjSum" resultMap="gcsj_jh" parameterType="java.util.Map">
+		select count(id) as id, sum(qzlc) as qzlc,sum(xmlc) as xmlc,sum(pftz) as pftz,
+		sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj from (
+			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.xmlc) as xmlc,
+			sum(jh.pftz) as pftz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj
+			from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+			where 1=1
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			group by jh.id)
+	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
 		select jh.id,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
 		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,

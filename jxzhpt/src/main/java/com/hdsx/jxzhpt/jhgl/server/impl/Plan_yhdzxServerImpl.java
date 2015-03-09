@@ -80,8 +80,11 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	}
 
 	@Override
-	public Plan_yhdzx querySumYhdzx() {
-		return queryOne("querySumYhdzx", null);
+	public Plan_yhdzx querySumYhdzx(Plan_yhdzx jh,Plan_lx_yhdzx lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryOne("querySumYhdzx", params);
 	}
 
 	@Override

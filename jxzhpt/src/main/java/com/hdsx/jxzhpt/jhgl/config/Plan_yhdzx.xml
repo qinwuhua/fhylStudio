@@ -184,10 +184,26 @@
 			#{31},#{32},#{33},#{34},#{35},#{36},
 			#{37},#{38},#{39},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
 	</insert>
-	<select id="querySumYhdzx" resultMap="yhdzx_jh">
-		select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.hdlc) as hdlc,
-		sum(jh.TOTALINVEST) as totalinvest,sum(jh.totalsubsidyfund) as totalsubsidyfund
-		from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
+	<select id="querySumYhdzx" resultMap="yhdzx_jh" parameterType="java.util.Map">
+		select count(id) as id,sum(qzlc) as qzlc,sum(hdlc) as hdlc,
+		sum(TOTALINVEST) as totalinvest,sum(totalsubsidyfund) as totalsubsidyfund from (
+			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.hdlc) as hdlc,
+			sum(jh.TOTALINVEST) as totalinvest,sum(jh.totalsubsidyfund) as totalsubsidyfund
+			from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id) 
+			where 1=1
+			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			group by jh.id)
 	</select>
 	<select id="dropYhdzxLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_yhdzx where jhid=#{String}

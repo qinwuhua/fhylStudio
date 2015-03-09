@@ -30,16 +30,9 @@ $(function(){
 	$(".datagrid-header").css("display","none");
 	createAnyChartXml();
 	dojo.addOnLoad(init);
+	xmlxTj();
 });
-function init() {
-    //创建地图对象
-    require(["esri/map","esri/layers/ArcGISDynamicMapServiceLayer", "dojo/domReady!"], function(Map,ArcGISDynamicMapServiceLayer) {
-        map = new Map("map");
-        //叠加图层
-        var layer = new ArcGISDynamicMapServiceLayer("http://211.101.37.251:6080/arcgis/rest/services/SXGXPTMAP/MapServer");
-        map.addLayer(layer);
-    });
-}
+
 function createAnyChartXml(){
 	//var right=window.document.getElementById("anychart_div"); //获取右侧frame对象
 	//var height=$(window).height();
@@ -59,33 +52,32 @@ function createAnyChartXml(){
 		}
 	});
 }
-/* function selLines(_id,_parent){
+function xmlxTj(){
 	$.ajax({
 		type:"post",
-		url:"../../xtgl/selLines.do",
+		url:"../../xtgl/xmlxCountTj.do",
 		dataType:'json',
+		data:'param.id='+$.cookie("qx4"),
 		success:function(msg){
-			addLine();
+			if(msg!=null){
+				var htmlStr="";
+				for(var i=0;i<msg.length;i++){
+					if(msg[i].desr!=""){
+						htmlStr+="<tr><td height='25' width='120px' bgcolor='#FfFfFf' align='center' rowspan="+msg[i].desr+"><span>"+msg[i].parent+"（<span style='font-weight:700; color:#b80f0f;'>5</span>）</span></td>"+
+					    "<td width='250px' bgcolor='#FFFFFF' style='font-size: 12px' align='center'>"+msg[i].name+"</td>"+
+					    "<td bgcolor='#FFFFFF' align='center'><a href='#' onclick=turnTo('"+msg[i].parent+"','"+msg[i].name+"') style='font-size: 12px;font-weight:700; color:#b80f0f;' >"+msg[i].bz+"</a></td></tr>";
+					}else{
+						htmlStr+="<tr><td width='250px' bgcolor='#FFFFFF' style='font-size: 12px' align='center'>"+msg[i].name+"</td>"+
+					    "<td bgcolor='#FFFFFF' align='center'><a href='#' onclick=turnTo('"+msg[i].parent+"','"+msg[i].name+"') style='font-size: 12px;font-weight:700; color:#b80f0f;'>"+msg[i].bz+"</a></td></tr>";
+					}
+				}
+				$("#xmlxTj_table").html(htmlStr);
+			}
 		}
 	});
-} */
-function addLine(){
-    require(["esri/geometry/Polyline","esri/graphic","esri/Color","esri/symbols/SimpleLineSymbol","dojo/on"], function(Polyline,Graphic,Color, SimpleLineSymbol,on) {
-        //创建线对象
-        var singlePathPolyline = new Polyline([[113.8603169850484,37.85472940612672],[112.58044213169312,37.93973954398797], [112.23567879481143,37.547748352738935]]);
-        //创建样式
-        var symbol=new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 0, 255]), 5);
-        //创建Graphic
-        var graphic = new Graphic(singlePathPolyline, symbol);
-        
-        var showGraphic = on(map.graphics, 'click', function(evt) {
-            var graphic = evt.graphic;
-            //alert("graphic被点击");
-            YMLib.UI.createWindow('dzdt_add_lx','路线项目列表','./dzdt_lx.jsp','app_add',470,250);
-        });
-        //将Graphic叠加到地图
-        map.graphics.add(graphic);
-    }); 
+}
+function turnTo(_parent,_name){
+	alert(_parent);
 }
 </script>
 </head>
@@ -101,7 +93,7 @@ function addLine(){
 	<div region="east" iconCls="icon-table"  split="true" style="width:420px;">
 		<div border="false" class="easyui-tabs">
 	    	<div title="提醒信息">您当前共有 10 条信息需要处理， 共有 0 条通知。
-	    	<img src="../../images/ymtx.jpg" style="width:100%;"/>
+	    	<table id="xmlxTj_table" width="398" border="0" align="center" cellpadding="0" cellspacing="1" class="ll" bgcolor="#b8bdc1" style="font-size:12px;"></table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;"> 
 				<div>
 					<param name="wmode" value="transparent" />

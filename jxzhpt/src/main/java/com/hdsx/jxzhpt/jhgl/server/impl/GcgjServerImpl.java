@@ -84,8 +84,11 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 
 	@Override
-	public Plan_gcgj querySumGcgj() {
-		return queryOne("querySumGcgj", null);
+	public Plan_gcgj querySumGcgj(Plan_gcgj jh, Plan_lx_gcgj lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryOne("querySumGcgj", param);
 	}
 
 	@Override

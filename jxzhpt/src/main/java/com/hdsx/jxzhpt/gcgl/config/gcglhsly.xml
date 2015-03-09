@@ -164,6 +164,9 @@
 	<if test="xmmc != null and  xmmc != ''">
 			and xmmc like '%'||trim(#{xmmc})||'%'
 	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
 	order by jhnf desc
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -186,8 +189,24 @@
 	<if test="xmmc != null and  xmmc != ''">
 			and xmmc like '%'||trim(#{xmmc})||'%'
 	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglhsly" resultType="gcglhsly">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_HSLY where id=#{jhid}
+	 </select>
+	 <update id="updateSjZT" parameterType="gcglhsly" >
+	 update PLAN_HSLY set sjzt=#{sjzt} where id=#{jhid}
+	 </update>
+	 <update id="updateXjZT" parameterType="gcglhsly" >
+	 update PLAN_HSLY set xjzt=#{xjzt} where id=#{jhid}
+	 </update>
+	 <update id="updateSJSH" parameterType="gcglhsly" >
+	 update PLAN_HSLY set sjsh=#{sjsh} where id=#{jhid}
+	 </update>
+	 <select id="selectnumbyyh" parameterType="gcglhsly" resultType="int">
+	 	select count(*) from GCGL_HSLY 
+		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
 </mapper>

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 
 public class Plan_abgc {
 	private String id;//唯一ID
@@ -62,7 +63,7 @@ public class Plan_abgc {
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
-	private Jckabgc jckabgc;
+	private Sckabgc jckabgc;
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
 	public String getSfylsjl() {
@@ -95,10 +96,10 @@ public class Plan_abgc {
 	public void setSpbmdm(String spbmdm) {
 		this.spbmdm = spbmdm;
 	}
-	public Jckabgc getJckabgc() {
+	public Sckabgc getJckabgc() {
 		return jckabgc;
 	}
-	public void setJckabgc(Jckabgc jckabgc) {
+	public void setJckabgc(Sckabgc jckabgc) {
 		this.jckabgc = jckabgc;
 	}
 	public String getId() {

@@ -270,12 +270,13 @@
 		select * from xtgl_yhdzxcs
 	</select>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
-		select roadcode id,#{roadcode}||#{xzqh} parent,
-		roadcode||'('||roadstart||'-'||roadends||')' name
-		from JXJCK_2013.gpsroad 
-		where roadcode like #{roadcode}||'%' and substr(roadcode,length(roadcode)-5) like #{xzqh}||'%'
-		and ldlx!='2.下行' and ldlx!='4.匝道'
-		order by roadcode,roadstart
+		select name id,#{roadcode}||#{xzqh} parent ,name,'lx' bmid from (
+		select 
+		    distinct roadcode name
+		    from JXJCK_2013.gpsroad 
+		    where roadcode like #{roadcode}||'%' and substr(roadcode,length(roadcode)-5) like #{xzqh}||'%'
+		    and ldlx!='2.下行' and ldlx!='4.匝道'
+		    order by roadcode)
 	</select>
 	
 	
@@ -287,5 +288,10 @@
 	<select id="loadBmbmList" parameterType="unit" resultType="treenode">
     	select t.*,(select name from xtgl_bmbm where id=t.parent) text from xtgl_bmbm t order by id 
 	</select>
-	
+	<select id="selectQlDataList" parameterType="hashmap" resultType="unit">
+		select roadbm id,f002 name,#{roadcode} parent,'ql' bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
+	</select>
+	<select id="createGsAnyChartXml" parameterType="param" resultType="hashmap">
+		select * from xmk_abgc
+	</select>
 </mapper>

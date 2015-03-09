@@ -43,7 +43,7 @@ public interface Plan_shuihServer {
 	 * 水毁信息总计
 	 * @return
 	 */
-	Plan_shuih querySumShuih();
+	Plan_shuih querySumShuih(Plan_shuih jh,Plan_lx_shuih lx);
 	/**
 	 * 查询水毁列表
 	 * @param page
