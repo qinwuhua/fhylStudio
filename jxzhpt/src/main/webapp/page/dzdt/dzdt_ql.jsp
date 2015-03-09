@@ -17,35 +17,6 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_add_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.roleid=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
-
 $(function(){
 	$("#jsgl_table").datagrid({
 		border:true,
@@ -74,7 +45,7 @@ $(function(){
 			width : 100,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '南昌-万年';
+				return '广福罗汉桥';
 			}
 		},{
 			field : 'qzd',
@@ -82,7 +53,7 @@ $(function(){
 			width : 100,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '0-2.375';
+				return '8.88';
 			}
 		},{
 			field : 'unit',
@@ -90,7 +61,7 @@ $(function(){
 			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '南昌市交通运输局';
+				return '南昌市南昌县交通局';
 			}
 		},{
 			field : 'nf',

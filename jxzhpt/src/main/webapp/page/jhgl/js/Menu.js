@@ -59,7 +59,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030110',
 		title:'资金切分',
-		imgSrc:'../../images/hs_s.png',
+		imgSrc:'../../images/zjqf.png',
 		renderTo:'left_menu1',
 		href:'./jhkgl/zjqf.jsp'
 	});

@@ -77,7 +77,7 @@ function xmlxTj(){
 	});
 }
 function turnTo(_parent,_name){
-	alert(_parent);
+	//alert(_parent);
 }
 </script>
 </head>

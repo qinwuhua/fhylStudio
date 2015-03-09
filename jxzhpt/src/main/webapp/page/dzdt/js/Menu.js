@@ -78,7 +78,8 @@ function addPoint(){
          var graphic = new Graphic(point, symbol);
          var showGraphic = on(map.graphics, 'click', function(evt) {
              var graphic = evt.graphic;
-             alert("graphic被点击");
+             //alert("graphic被点击");
+             YMLib.UI.createWindow('dzdt_add_ql','桥梁项目列表','./dzdt_ql.jsp','app_add',470,250);
          });
          //将Graphic叠加到地图
          map.graphics.add(graphic);
