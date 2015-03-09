@@ -42,14 +42,13 @@
 		});
 		function loadZjqfByIdAndXzqh(){
 			//首先查询是否有上级的资金分配
-			var xzqhfather;
+			var xzqhfather=null;
 			if(roleName()=="县级"){
 				xzqhfather=$.cookie("unit").substring(5).substring(0,4)+"00";
 			}else if(roleName()=="市级"){
 				xzqhfather="360000";
 			}
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
-			alert(xzqhfather);
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjqfByXzqh.do',
@@ -93,12 +92,10 @@
 					if(data!=null){
 						$('#zjqfid').val(data.id);
 						$.each(JSON.parse(data.zjqf),function(index,item){
-							if(($.cookie("unit").substring(5)!="360000" && $.cookie("unit").substring(5)!=item.id) || $.cookie("unit").substring(5)=="360000"){
-								var tds=$('#'+item.id+' input');
-								$(tds[0]).val(item.wqgz);
-								$(tds[1]).val(item.abgc);
-								$(tds[2]).val(item.zhfz);
-							}
+							var tds=$('#'+item.id+' input');
+							$(tds[0]).val(item.wqgz);
+							$(tds[1]).val(item.abgc);
+							$(tds[2]).val(item.zhfz);
 						});
 					}else{
 						var text= $("#zjqf_table input:gt(3)");
@@ -111,7 +108,7 @@
 		}
 		function save(){
 			if(roleName()=="县级"){
-				alert("只有市级和市级以上才能进行资金切分");
+				alert("只有省级和市级以上才能进行资金切分");
 				return;
 			}
 			var trsum = $('#zjqf_table tr:eq(2) input');

@@ -35,6 +35,25 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
+			//查询切分资金
+			var xzqhdm="";
+			if(roleName()=="县级"){
+				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+			}else if(roleName()=="市级"){
+				xzqhdm="360000";
+			}
+			$.ajax({
+				type:'post',async:false,dataType:'json',
+				url:'../../../jhgl/queryZjqfByXzqh.do',
+				data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':new Date().getFullYear()},
+				success:function(data){
+					$.each(JSON.parse(data.zjqf),function(index,item){
+						if(item.id==$.cookie("unit").substring(5)){
+							$('#lblQfzj').html(item.zhfz);
+						}
+					});
+				}
+			});
 			querySumZhfz(jh,lx);
 			sbnf("sbnf");
 			zhfzxm_sb(jh,lx);
@@ -65,35 +84,12 @@
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
 			}
+			querySumZhfz(jh,lx);
 			zhfzxm_sb(jh,lx);
 		}
 		function sbList(){
-			var zjqf={'zjqf.xzqhdm':'','zjqf.nf':''};
-			var xzqhdm="";
-			if(roleName()=="县级"){
-				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
-			}else if(roleName()=="市级"){
-				xzqhdm="360000";
-			}
-			zjqf['zjqf.xzqhdm']=xzqhdm;
-			zjqf['zjqf.nf']=new Date().getFullYear();
-			var sfsb=false;//是否上报：如果总资金部补助资金等于切分的资金就可以上报了
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:zjqf,
-				dataType:'json',
-				success:function(data){
-					$.each(JSON.parse(data.zjqf),function(index,item){
-						if(item.id==$.cookie("unit").substring(5)){
-							sfsb=$('#lblBTZ').html()==item.zhfz;
-						}
-					});
-				}
-			});
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			//if(sfsb){
+			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,
 						'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
@@ -121,8 +117,9 @@
 						searchZhfz();
 					}
 				});
-			//}
-			return;
+			}else{
+				alert("计划项目的资金不等于分到的资金！");
+			}
 		}
 		function sb(id,jh_sbthcd){
 			var date=new Date();
@@ -229,6 +226,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个灾害防治项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，

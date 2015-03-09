@@ -35,6 +35,30 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
+			//查询分到的资金
+			var zjqf={'zjqf.xzqhdm':'','zjqf.nf':''};
+			var xzqhdm="";
+			if(roleName()=="县级"){
+				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+			}else if(roleName()=="市级"){
+				xzqhdm="360000";
+			}
+			zjqf['zjqf.xzqhdm']=xzqhdm;
+			zjqf['zjqf.nf']=new Date().getFullYear();
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../../jhgl/queryZjqfByXzqh.do',
+				data:zjqf,
+				dataType:'json',
+				success:function(data){
+					$.each(JSON.parse(data.zjqf),function(index,item){
+						if(item.id==$.cookie("unit").substring(5)){
+							$('#lblQfzj').html(item.wqgz);
+						}
+					});
+				}
+			});
 			querySumWqgz(jh,lx);
 			sbnf("sbnf");
 			wqxm_sb(jh,lx);
@@ -72,35 +96,12 @@
 			if($('#ddlAKJFL').combobox('getText')!="全部"){
 				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
 			}
+			querySumWqgz(jh,lx);
 			wqxm_sb(jh,lx);
 		}
 		function sbList(){
-			var zjqf={'zjqf.xzqhdm':'','zjqf.nf':''};
-			var xzqhdm="";
-			if(roleName()=="县级"){
-				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
-			}else if(roleName()=="市级"){
-				xzqhdm="360000";
-			}
-			zjqf['zjqf.xzqhdm']=xzqhdm;
-			zjqf['zjqf.nf']=new Date().getFullYear();
-			var sfsb=false;//是否上报：如果总资金部补助资金等于切分的资金就可以上报了
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:zjqf,
-				dataType:'json',
-				success:function(data){
-					$.each(JSON.parse(data.zjqf),function(index,item){
-						if(item.id==$.cookie("unit").substring(5)){
-							sfsb=$('#lblBTZ').html()==item.wqgz;
-						}
-					});
-				}
-			});
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			if(sfsb){
+			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,
 						'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
@@ -243,6 +244,7 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
+        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
