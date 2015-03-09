@@ -23,6 +23,10 @@
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglhsly" alias="gcglhsly"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb" alias="gcglaqyb"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgltz" alias="gcgltz"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Trqk" alias="trqk"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lkmxb" alias="lkmxb"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lktjb" alias="lktjb"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Jtlhz" alias="jtlhz"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
@@ -50,6 +54,7 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_upload" alias="plan_upload"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz" alias="flwbzbz"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs" alias="yhdzxcs"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.PlanZjqf" alias="planzjqf"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>
@@ -91,6 +96,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglhsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglaqyb.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/wjxt/config/trqk.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckabgc.xml"/>
@@ -110,6 +116,7 @@
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjxd.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_yhdzx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_hsly.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_zjqf.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/treeSelect.xml"/>
 	<!-- rh -->
 	<!-- chc -->

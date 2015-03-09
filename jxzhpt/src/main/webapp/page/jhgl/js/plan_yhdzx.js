@@ -1,10 +1,12 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-function querySumYhdzx(){
+function querySumYhdzx(jh,lx){
+	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumYhdzx.do',
+		data:param,
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);
@@ -39,8 +41,12 @@ function yhdzxxm(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-		        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
+		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+			        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	  }else{
+		        		  result+="编辑      移除";
+		        	  }
 		        	  return result;
 			      }},
 			      {field:'lxbm',title:'路线编码',width:80,align:'center',
@@ -136,25 +142,21 @@ function yhdzxxm_sb(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
+		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	  else
+		        		  result+='编辑';
 		        	  return result;
 			      }},
 			      {field:'sbzt',title:'上报状态',width:80,align:'center',
 			    	  formatter:function(value,row,index){
 			    		  var result="";
-			    		  var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-			    		  var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-			    		  if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==2){
-			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>   |    ';
-			    			  result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
-			    		  }else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
-			    			  result='<a style="text-decoration:none;">已上报</a>';
-			    		  }
-									
-			    		  if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
-			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-			    		  }else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
-			    			  result='<a style="text-decoration:none;">已上报</a>';
+			    		  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
+			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+','+(row.plan_lx_yhdzxs[0].lmjg!="")+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+			    			  if(roleName()!="县级")
+			    				  result+='   |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+			    		  }else{
+			    			  result='<a style="text-decoration:none;color:black;">已上报</a>';
 			    		  }
 			    		  return result;
 			    	  }
@@ -252,17 +254,22 @@ function yhdzxxm_sp(jh,lx){
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	  if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=='0')
+		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        	  else
+		        		  result+='编辑';
 		        	  return result;
 			      }},
 			      {field:'sbzt',title:'上报状态',width:80,align:'center',
 			    	  formatter:function(value,row,index){
 			    		  var result="";
-			    		  if(row.spzt=='0' && row.sbzt=='1'){
+			    		  if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=='0'){
 			    			  result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>   |    ';
 			    			  result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+			    		  }else if(roleName()!="省级" && row.jh_sbthcd==4 && row.spzt=='0'){
+			    			  result="审批      |    退回";
 			    		  }else{
-			    			  result='<a style="text-decoration:none;">已审批</a>';
+			    			  result='<a style="text-decoration:none;color:black;">已审批</a>';
 			    		  }
 			    		  return result;
 			    	  }

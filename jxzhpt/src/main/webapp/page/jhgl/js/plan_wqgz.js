@@ -1,16 +1,21 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-function querySumWqgz(){
+function querySumWqgz(jh,lx){
+	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumWqgz.do',
+		data:param,
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);
-			$('#lblZTZ').html(data.pfztz);
-			$('#lblBTZ').html(data.jhsybzje);
-			$('#lblDFTZ').html(data.jhsydfzcje);
+			if(data.pfztz!=null && data.pfztz!="")
+				$('#lblZTZ').html(data.pfztz);
+			if(data.jhsybzje!=null && data.jhsybzje!="")
+				$('#lblBTZ').html(data.jhsybzje);
+			if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
+				$('#lblDFTZ').html(data.jhsydfzcje);
 		}
 	});
 }
@@ -38,13 +43,13 @@ function wqxm(jh,lx){
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	if(row.jh_sbthcd>0){
-		        		result+='<a style="text-decoration:none;">编辑</a>    ';
-			        	result+='<a style="text-decoration:none;">移除</a>';
-		        	}else{
+		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	var id="'"+row.id+"'";
 			        	result+='<a href="javascript:dropWqgzs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	}else{
+		        		result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
+			        	result+='<a style="text-decoration:none;color:black;">移除</a>';
 		        	}
 		        	
 		        	return result;
@@ -125,29 +130,22 @@ function wqxm_sb(jh,lx){
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_sb','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	if(row.jh_sbthcd==0)
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		        	else
-		        		result+='<a style="text-decoration:none;">编辑</a>';
+		        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 		        	return result;
 		        }},
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
-		        	var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-					var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-					if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))  && row.jh_sbthcd==2){
-						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>    |    ';
-						result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
-					}else if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit")) && row.jh_sbthcd==4){
-						result='<a style="text-decoration:none;">已上报</a>';
-					}
-					
-					if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==0){
-						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					}else if((xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))) && row.jh_sbthcd==2){
-						result='<a style="text-decoration:none;">已上报</a>';
-					}
+		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2)){
+		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+		        		if(roleName()=="市级")
+		        			result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+		        	}else{
+		        		result='<a style="text-decoration:none;color:black;">已上报</a>';
+		        	}
 		        	return result;
 		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
@@ -206,11 +204,11 @@ function wqxm_sh(jh,lx){
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		        	result+='<a href="javascript:openDialog('+"'wqgz_sh','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	if(row.jh_sbthcd==2)
+		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	if((roleName()=="省级" && row.jh_sbthcd<=4))
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		        	else
-		        		result+='<a style="text-decoration:none;">编辑</a>';
+		        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 		        	return result;
 		        }},
 		        {field:'sbzt',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
@@ -407,7 +405,7 @@ function queryWqgzById(id){
 						$('#bz').html(jcAndSc.bz);
 						//审查库信息
 						$('#fapgdw').html(jcAndSc.fapgdw);
-						$('#fascdw').html(jcAndSc.fascdw);
+						$('#fascdw').htmll(jcAndSc.fascdw);
 						$('#faspsj').html(jcAndSc.faspsj);
 						$('#spwh').html(jcAndSc.spwh);
 						$('#tzgs').html(jcAndSc.tzgs);
@@ -475,7 +473,11 @@ function editWqgz(){
 			'jh.jhsydfzcje':$('#zfzc').html(),
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ablbzwh').val(),
-			'jh.bz':$('#JHRemarks').val()
+			'jh.bz':$('#JHRemarks').val(),
+			'jh.jckwqgz.fapgdw':$('#fapgdw').val(),'jh.jckwqgz.fascdw':$('#fascdw').val(),
+			'jh.jckwqgz.faspsj':$('#faspsj').datebox('getValue'),'jh.jckwqgz.spwh':$('#spwh').val(),
+			'jh.jckwqgz.tzgs':$('#tzgs').val(),'jh.jckwqgz.jsxz':$('#jsxz').val(),
+			'jh.sckid':$('#sckid').val(),'jh.jckwqgz.jsnr':$('#jsnr').val(),'jh.jckwqgz.scbz':$('#scbz').val(),
 	};
 	$.ajax({
 		type:'post',

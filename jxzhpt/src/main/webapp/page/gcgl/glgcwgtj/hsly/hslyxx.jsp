@@ -365,22 +365,8 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('sgxkwj')" id="xz_sgxkwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
-								<td align="left">
-									<table>
-										<tr>
-											<td><a onclick="uploadFile('sgxkwj')"
-												id="sc_jgtcwj"
-												href="#"
-												style="color: #2C7ED1;">上传</a></td>
-											<td>&nbsp;|&nbsp;</td>
-											<td><a onclick="deleteFile('sgxkwj')"
-												
-												href="#"
-												style="color: #2C7ED1;">删除</a></td>
-										</tr>
-									</table>
-								</td>
+									style="color: #000000;cursor:default">暂无附件</a></td>
+								
 							</tr>
 						</table>
 					</div>
@@ -399,22 +385,8 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgtcwj')" id="xz_jgtcwj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
-								<td align="left">
-									<table>
-										<tr>
-											<td><a onclick="uploadFile('jgtcwj')"
-												id="sc_jgtcwj"
-												href="#"
-												style="color: #2C7ED1;">上传</a></td>
-											<td>&nbsp;|&nbsp;</td>
-											<td><a onclick="deleteFile('jgtcwj')"
-												
-												href="#"
-												style="color: #2C7ED1;">删除</a></td>
-										</tr>
-									</table>
-								</td>
+									style="color: #000000;cursor:default">暂无附件</a></td>
+								
 							</tr>
 						</table>
 					</div>
@@ -433,22 +405,8 @@ a {
 								<td align="center" nowrap="nowrap" style="width: 50%;"><a
 									onclick="downFile('jgyswj')" id="xz_jgyswj"
 									href="#"
-									style="color: #2C7ED1;">暂无附件</a></td>
-								<td align="left">
-									<table>
-										<tr>
-											<td><a onclick="uploadFile('jgyswj')"
-												id="sc_jgyswj"
-												href="#"
-												style="color: #2C7ED1;">上传</a></td>
-											<td>&nbsp;|&nbsp;</td>
-											<td><a onclick="deleteFile('jgyswj')"
-											
-												href="#"
-												style="color: #2C7ED1;">删除</a></td>
-										</tr>
-									</table>
-								</td>
+									style="color: #000000;cursor:default">暂无附件</a></td>
+							
 							</tr>
 						</table>
 					</div>

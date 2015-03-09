@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.plan_zjqf">
+	<insert id="addZjqf" parameterType="planzjqf">
+		insert into plan_zjqf (id,nf,xzqhdm,zjqf) values(sys_guid(),#{nf},#{xzqhdm},#{zjqf})
+	</insert>
+	<update id="editZjqfById" parameterType="planzjqf">
+		update plan_zjqf set nf=#{nf},xzqhdm=#{xzqhdm},zjqf=#{zjqf}
+		where id=#{id}
+	</update>
+	<select id="queryZjqfByXzqh" parameterType="planzjqf" resultType="planzjqf">
+		select * from plan_zjqf where nf=#{nf} and xzqhdm=#{xzqhdm}
+	</select>
+	<select id="queryChildXzqh" parameterType="treenode" resultType="treenode">
+		select * from XTGL_XZQH where id like #{id} order by id desc
+	</select>
+	<select id="queryXzqhById" parameterType="treenode" resultType="treenode">
+		select * from XTGL_XZQH 
+		<if test="id!=null and id!=''">
+			where id=#{id}
+		</if>
+	</select>
+</mapper>

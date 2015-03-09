@@ -144,7 +144,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		hm.put("jsdj", wqgz.getJsdj());
 		hm.put("akjfl", wqgz.getAkjfl());
 		hm.put("bzls", wqgz.getBzls());
-		return queryOne("selectWqgzShCount",hm);
+		return queryOne("selectSckWqgzShCount",hm);
 	}
 
 	@Override

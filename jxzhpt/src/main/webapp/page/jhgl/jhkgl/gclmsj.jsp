@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>工程路面改建路面升级项目</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -25,7 +25,8 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			var jh={jhnf:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
+			var jh={jhnf:null,sbzt:null,spzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
+			queryGcsjSum(jh,lx);
 			sbnf("sbnf");
 			gclmsjxm(jh,lx);
 			querySumMessage();
@@ -177,7 +178,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【 <span id="lblCount"></span> 】个路面升级项目，总里程共
+        			共有【 <span id="lblCount" style="font-weight: bold; color: #FF0000">0</span> 】个路面升级项目，总里程共
         			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】

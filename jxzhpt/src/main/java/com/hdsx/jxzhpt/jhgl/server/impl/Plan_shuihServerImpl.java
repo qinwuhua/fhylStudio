@@ -84,8 +84,11 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	}
 
 	@Override
-	public Plan_shuih querySumShuih() {
-		return queryOne("querySumShuih", null);
+	public Plan_shuih querySumShuih(Plan_shuih jh,Plan_lx_shuih lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryOne("querySumShuih", param);
 	}
 
 	@Override

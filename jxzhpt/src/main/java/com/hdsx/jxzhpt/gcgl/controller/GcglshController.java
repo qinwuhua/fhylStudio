@@ -63,7 +63,14 @@ public class GcglshController extends BaseActionSupport{
 	private String jgzt;
 	private String yhtype;
 	private Integer sfsj;
+	private String ybzt;
 	
+	public String getYbzt() {
+		return ybzt;
+	}
+	public void setYbzt(String ybzt) {
+		this.ybzt = ybzt;
+	}
 	public Integer getSfsj() {
 		return sfsj;
 	}
@@ -150,6 +157,9 @@ public class GcglshController extends BaseActionSupport{
 		}
 		if("市级".equals(yhtype)){
 			gcglsh.setSfsj(9);
+		}
+		if("省级".equals(yhtype)){
+			gcglsh.setSfsj(7);
 		}
 		Boolean bl=gcglshServer.insertshYb(gcglsh);
 		if(bl){
@@ -390,6 +400,16 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
+		gcglsh.setShzt(ybzt);
+		if(sfsj==7){
+			gcglsh.setTiaojian("sjsh");
+		}
+		if(sfsj==9){
+			gcglsh.setTiaojian("sjzt");
+		}
+		if(sfsj==11){
+			gcglsh.setTiaojian("xjzt");
+		}
 		int count=gcglshServer.selectWqgzjhListCount(gcglsh);
 		List<Gcglsh> list=gcglshServer.selectWqgzjhList(gcglsh);
 		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();

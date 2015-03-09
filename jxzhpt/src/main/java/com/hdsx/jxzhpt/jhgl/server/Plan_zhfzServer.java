@@ -21,7 +21,7 @@ public interface Plan_zhfzServer {
 	 * 查询总计信息
 	 * @return
 	 */
-	Plan_zhfz querySumZhfz();
+	Plan_zhfz querySumZhfz(Plan_zhfz jh,Jckzhfz lx);
 	/**
 	 * 查询灾害防治列表
 	 * @param page
@@ -84,4 +84,6 @@ public interface Plan_zhfzServer {
 	boolean updateGkbg(Plan_zhfz jh);
 	boolean updateSjsgt(Plan_zhfz jh);
 	Plan_zhfz queryZhfzFjById(String id);
+	boolean editZhfzSckBysckid(Plan_zhfz jh);
+	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
 }

@@ -31,6 +31,18 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 		}
 		gcglgcgzsj.setShzt("未审核");
 		if(insert("insertgcgzsjYb", gcglgcgzsj)>0){
+			if(gcglgcgzsj.getSfsj()==9){
+				gcglgcgzsj.setSjzt("未上报");
+				update("updateSjZT", gcglgcgzsj);
+			}
+			if(gcglgcgzsj.getSfsj()==11){
+				gcglgcgzsj.setXjzt("未上报");
+				update("updateXjZT", gcglgcgzsj);
+			}
+			if(gcglgcgzsj.getSfsj()==7){
+				gcglgcgzsj.setSjsh("未审核");
+				update("updateSJSH", gcglgcgzsj);
+			}
 			return true;
 		}else{
 			return false;
@@ -85,6 +97,15 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	@Override
 	public Boolean shgcgzsjyb(Gcglgcgzsj gcglgcgzsj) {
 		if(update("shgcgzsjyb", gcglgcgzsj)>0){
+			gcglgcgzsj.setYhtype("7");
+			int num3=queryOne("selectnumbyyh", gcglgcgzsj);
+			if(num3>0){
+				gcglgcgzsj.setSjsh("未审核");
+				update("updateSJSH", gcglgcgzsj);
+			}else{
+				gcglgcgzsj.setSjsh("已审核");
+				update("updateSJSH", gcglgcgzsj);
+			}
 		return true;
 		}else{
 			return false;
@@ -220,6 +241,29 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	@Override
 	public Boolean sbWqgzYb(Gcglgcgzsj gcglabgc) {
 		if(update("sbWqgzYb", gcglabgc)>0){
+			int num1=queryOne("selectnumbyyh", gcglabgc);
+			if(num1>0){
+				gcglabgc.setXjzt("未上报");
+				update("updateXjZT", gcglabgc);
+			}else{
+				gcglabgc.setXjzt("已上报");
+				update("updateXjZT", gcglabgc);
+			}
+			gcglabgc.setYhtype("9");
+			int num2=queryOne("selectnumbyyh", gcglabgc);
+			if(num2>0){
+				gcglabgc.setSjzt("未上报");
+				update("updateSjZT", gcglabgc);
+			}else{
+				gcglabgc.setSjzt("已上报");
+				update("updateSjZT", gcglabgc);
+			}
+			gcglabgc.setYhtype("7");
+			int num3=queryOne("selectnumbyyh", gcglabgc);
+			if(num3>0){
+				gcglabgc.setSjsh("未审核");
+				update("updateSJSH", gcglabgc);
+			}
 			return true;
 		}else{
 			return false;

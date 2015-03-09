@@ -38,7 +38,7 @@
 			and lxbm like #{lxbm}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by sbzt2
+		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
 	</select>
 	<select id="selectAbgcCount" parameterType="hashmap" resultType="int">
 		select count(*) from xmk_abgc where 1=1
@@ -102,7 +102,7 @@
 	<select id="selectJckRoad" parameterType="hashmap" resultType="jckabgc">
 		select
 		id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
-		from xmk_abgc where shzt='已审核' and sbzt='已上报' and lxbm like #{lxbm}||'%'
+		from xmk_abgc where shzt='已审核' and lxbm like #{lxbm}||'%'
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
@@ -124,7 +124,7 @@
 
 	<select id="selectJckShabgc" parameterType="hashmap" resultType="jckabgc">
 		select * from (
-		select rownum num ,t.* from xmk_abgc t where sbzt='已上报' and sbthcd=7
+		select rownum num ,t.* from xmk_abgc t where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
@@ -157,7 +157,7 @@
 	</select>
 	<select id="selectAbgcShCount" parameterType="hashmap"
 		resultType="int">
-		select count(*) from xmk_abgc where sbzt='已上报' and sbthcd=7
+		select count(*) from xmk_abgc where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
@@ -289,6 +289,36 @@
 		</if>
 		<if test="sbzt!='' and sbzt!= null ">
 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="lxjsdj!='' and lxjsdj!= null ">
+			and lxjsdj like '%'||(#{lxjsdj})||'%'
+		</if>
+		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like #{lxbm}||'%'
+		</if>
+	</select>
+	
+	<select id="selAbgcShCount" parameterType="hashmap" resultType="jckabgc">
+		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where sbthcd=7
+			and sbthcd>=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+		</if>
+		<if test="xzqhmc!='' and xzqhmc!= null ">
+			and xzqhdm in(select id from xtgl_xzqh
+ 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and shzt like '%'||(#{shzt})||'%'
 		</if>
 		<if test="lxjsdj!='' and lxjsdj!= null ">
 			and lxjsdj like '%'||(#{lxjsdj})||'%'

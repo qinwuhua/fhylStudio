@@ -62,6 +62,10 @@ function delJckabgc(){
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
+	if($.cookie("unit2")=='______36'){
+		alert("对不起，您无法上报！");
+		return;
+	}
 	if($.cookie("unit2").length==7){
 		alert("该项目已上报到省级单位，请勿重复操作！");
 		return ;
@@ -100,6 +104,10 @@ function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
+	if($.cookie("unit2")=='______36'){
+		alert("对不起，无法退回！");
+		return;
+	}
 	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
 		alert("对不起，无法退回！");
 		return;
@@ -239,9 +247,9 @@ text-decoration:none;
 					</tr>
 			<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">3</span>&nbsp;】个安保工程项目，
-        					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">53.456</span>&nbsp;】公里，
-        					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">15.100</span>&nbsp;】公里。</td>
+        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000"></span>&nbsp;】个安保工程项目，
+        					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000"></span>&nbsp;】公里，
+        					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000"></span>&nbsp;】公里。</td>
        	 	</tr>
         	<!-- <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">

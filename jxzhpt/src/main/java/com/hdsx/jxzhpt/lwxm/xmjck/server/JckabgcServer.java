@@ -26,4 +26,5 @@ public interface JckabgcServer {
 	boolean onceAbgc(Jckabgc abgc);
 	String yanZhen(List<Map<String,String>> data,String tbbmbm);
 	Jckabgc selAbgcCount(Jckabgc abgc);
+	Jckabgc selAbgcShCount(Jckabgc abgc);
 }

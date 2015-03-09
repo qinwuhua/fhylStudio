@@ -13,6 +13,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_zhfz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
@@ -20,15 +24,19 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			querySumZhfz();
+			sbnf("sbnf");
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
-			sbnf("sbnf");
-			zhfzxm_sh(jh,lx);
+			if(roleName()=="省级"){
+				querySumZhfz(jh,lx);
+				zhfzxm_sh(jh,lx);
+			}else{
+				alert("只有省级用户才能查看审核中的计划信息");
+			}
 		});
 		function searchZhfz(){
 			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,lxjsdj:null,lxbm:null
 			};
@@ -153,12 +161,12 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】个灾害防治项目，
-        			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">6.895</span>&nbsp;】公里，
-        			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">2.000</span>&nbsp;】公里，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">22</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">12</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">10</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个灾害防治项目，
+        			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
+        			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
+        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

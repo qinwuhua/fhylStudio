@@ -14,9 +14,11 @@ public interface Plan_yhdzxServer {
 	boolean dropYhdzxLxByJhid(String id);
 	/**
 	 * 总计信息查询
+	 * @param lx 路线参数信息
+	 * @param jh 计划参数信息
 	 * @return
 	 */
-	Plan_yhdzx querySumYhdzx();
+	Plan_yhdzx querySumYhdzx(Plan_yhdzx jh, Plan_lx_yhdzx lx);
 	/**
 	 * 养护大中修列表查询
 	 * @param jh

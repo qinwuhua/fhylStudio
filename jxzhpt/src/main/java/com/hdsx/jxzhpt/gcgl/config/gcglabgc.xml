@@ -168,6 +168,9 @@ where t1.spzt='1'
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
 	order by t1.jhnf
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
@@ -189,8 +192,24 @@ where t1.spzt='1'
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where SCKID=#{jhid}
+	 </select>
+	 <update id="updateSjZT" parameterType="gcglabgc" >
+	 update PLAN_ABGC set sjzt=#{sjzt} where sckid=#{jhid}
+	 </update>
+	 <update id="updateXjZT" parameterType="gcglabgc" >
+	 update PLAN_ABGC set xjzt=#{xjzt} where sckid=#{jhid}
+	 </update>
+	 <update id="updateSJSH" parameterType="gcglabgc" >
+	 update PLAN_ABGC set sjsh=#{sjsh} where sckid=#{jhid}
+	 </update>
+	 <select id="selectnumbyyh" parameterType="gcglabgc" resultType="int">
+	 	select count(*) from GCGL_ABGC 
+		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
 </mapper>

@@ -7,20 +7,6 @@
 	<title>灾害防治详细</title>
 </head>
 <body>
-	<script type="text/javascript">
-		if(bz=="xx" || bz=="sb"){
-			var tr = $("tr[id^='trSY']");
-			tr.each(function(){
-				  $(this).hide();
-			});
-		}
-		if(bz=="sh" || bz=="zjxd"){
-			var tr = $("tr[id^='trSY']");
-			tr.each(function(){
-				$(this).show();
-			});
-		}
-	</script>
 	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:100%;">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
@@ -169,21 +155,22 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SCQDZH"></span> &nbsp;
+					<input id="SCQDZH" type="text"/> &nbsp;
+					<input id="sckid" type="hidden"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">止点桩号
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SCZDZH"></span> &nbsp;
+					<input id="SCZDZH" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">总里程
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="SCZLC"></span>公里 &nbsp;
+					<input id="SCZLC" type="text"/>公里 &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -192,7 +179,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="SCYHLC"></span>公里 &nbsp;
+					<input id="SCYHLC" type="text"/>公里 &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -201,21 +188,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="FAPGDW"></span> &nbsp;
+					<input id="FAPGDW" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">方案审查单位
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="FASCDW"></span> &nbsp;
+					<input id="FASCDW" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">方案审批时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="FASPSJ"></span> &nbsp;
+					<input id="FASPSJ" type="text" class="easyui-datebox"/> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -224,21 +211,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="SPWH"></span> &nbsp;
+					<input id="SPWH" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">投资估算
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="TZGS"></span> 万元
+					<input id="TZGS" type="text"/> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建设性质
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="JSXZ"></span> &nbsp;
+					<input id="JSXZ" type="text"/> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -247,7 +234,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="JSNR"></span> &nbsp;
+					<textarea id="JSNR" style="width: 600px;height: 40px;"></textarea> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -256,7 +243,7 @@
 					注</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="scbz"></span> &nbsp;
+					<textarea id="scbz" style="width: 600px;height: 40px;"></textarea> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -598,18 +585,19 @@
 						$('#zhnr').html(jcAndSc.zhnr);
 						$('#bz').html(jcAndSc.bz);
 						//审查库
-						$('#SCQDZH').html(jcAndSc.scqdzh);
-						$('#SCZDZH').html(jcAndSc.sczdzh);
-						$('#SCZLC').html(jcAndSc.sczlc);
-						$('#SCYHLC').html(jcAndSc.scyhlc);
-						$('#FAPGDW').html(jcAndSc.fapgdw);
-						$('#FASCDW').html(jcAndSc.fascdw);
-						$('#FASPSJ').html(jcAndSc.faspsj);
-						$('#SPWH').html(jcAndSc.spwh);
-						$('#TZGS').html(jcAndSc.tzgs);
-						$('#JSXZ').html(jcAndSc.jsxz);
-						$('#JSNR').html(jcAndSc.jsnr);
-						$('#scbz').html(jcAndSc.scbz);
+						$('#sckid').val(jcAndSc.sckid);
+						$('#SCQDZH').val(jcAndSc.scqdzh);
+						$('#SCZDZH').val(jcAndSc.sczdzh);
+						$('#SCZLC').val(jcAndSc.sczlc);
+						$('#SCYHLC').val(jcAndSc.scyhlc);
+						$('#FAPGDW').val(jcAndSc.fapgdw);
+						$('#FASCDW').val(jcAndSc.fascdw);
+						$('#FASPSJ').datebox('setValue',jcAndSc.faspsj);
+						$('#SPWH').val(jcAndSc.spwh);
+						$('#TZGS').val(jcAndSc.tzgs);
+						$('#JSXZ').val(jcAndSc.jsxz);
+						$('#JSNR').val(jcAndSc.jsnr);
+						$('#scbz').val(jcAndSc.scbz);
 					}
 				}
 			});
@@ -620,7 +608,7 @@
 			document.getElementById("ablbzwh").disabled=true;
 		}
 		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#SCYHLC").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
 			if(ztz*1000000000000000>=bzzj*1000000000000000){
 				ts=bzzj.toFixed(3);
@@ -640,7 +628,7 @@
 			return;
 		}
 		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#SCYHLC").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
 			ts=bzzj.toFixed(3);
 			$("#bbz").val(bzzj.toFixed(3));
