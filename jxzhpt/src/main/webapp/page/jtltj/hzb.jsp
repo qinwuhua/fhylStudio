@@ -24,7 +24,7 @@ var obj;
 function openJsUpdate(_id){
 	obj=$("#tt").tabs("add",{
 		id:_id,
-		 title:"公路交通情况调查汇总表",
+		 title:"交通情况汇总表",
 		 href :"hzb_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',

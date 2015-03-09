@@ -117,4 +117,60 @@
 	<delete id="deletejtl1" parameterType="jtlhz" >
 		delete from JTLHZ where id=#{id}
 	</delete>
+	
+	<insert id="insertJtlhzgd" parameterType="jtlhzgd">
+		insert into JTLHZGD(id,tbdw,tbnf,dwfzr,tjfzr,tbr,lxdh,rq)
+		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{tjfzr},#{tbr},#{lxdh},#{rq})
+	</insert>
+	<insert id="insertJtlhzgddata" parameterType="hashMap">
+		insert into JTLHZGD_DATA(id,hzb_id,lxbh,lxmc,gclc,jdls,jzrs,qdls,qzrs,xhc,zhc,dhc,thc,jzxc,zxkc,dkc,mtc,tdls,tzrs,xsl,jtl,yjd)
+		values(#{id},#{hzb_id},#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19})
+	</insert>
+	<select id="selectJtlgdList" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZGD where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	<select id="getJtlgdDataList" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZGD_DATA  where hzb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getJtlgdDataList1" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZGD where id=#{id}
+	</select>
+	<delete id="deletejtlgd" parameterType="jtlhzgd" >
+		delete from JTLHZGD_DATA  where hzb_id=#{id}
+	</delete>
+	<delete id="deletejtlgd1" parameterType="jtlhzgd" >
+		delete from JTLHZGD where id=#{id}
+	</delete>
+	
+	<insert id="insertJtlhzsd" parameterType="jtlhzgd">
+		insert into JTLHZSD(id,tbdw,tbnf,dwfzr,tjfzr,tbr,lxdh,rq)
+		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{tjfzr},#{tbr},#{lxdh},#{rq})
+	</insert>
+	<insert id="insertJtlhzsddata" parameterType="hashMap">
+		insert into JTLHZSD_DATA(id,hzb_id,lxbh,lxmc,gclc,jdls,jzrs,qdls,qzrs,xhc,zhc,dhc,thc,jzxc,zxkc,dkc,mtc,tdls,tzrs,xsl,jtl,yjd)
+		values(#{id},#{hzb_id},#{0},#{1},#{2},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19})
+	</insert>
+	<select id="selectJtlsdList" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZSD where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	<select id="getJtlsdDataList" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZSD_DATA  where hzb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getJtlsdDataList1" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from JTLHZSD where id=#{id}
+	</select>
+	<delete id="deletejtlsd" parameterType="jtlhzgd" >
+		delete from JTLHZSD_DATA  where hzb_id=#{id}
+	</delete>
+	<delete id="deletejtlsd1" parameterType="jtlhzgd" >
+		delete from JTLHZSD where id=#{id}
+	</delete>
 </mapper>

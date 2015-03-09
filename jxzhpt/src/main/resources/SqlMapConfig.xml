@@ -27,6 +27,7 @@
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lkmxb" alias="lkmxb"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lktjb" alias="lktjb"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Jtlhz" alias="jtlhz"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd" alias="jtlhzgd"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
