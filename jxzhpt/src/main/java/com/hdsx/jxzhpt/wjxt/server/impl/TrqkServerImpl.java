@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 
@@ -79,6 +80,39 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public boolean insertLktjb(Lktjb lktjb1) {
+		if(insert("insertLktjb", lktjb1)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertLktjbData(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertLktjbData", data)==data.size();
+	}
+
+	@Override
+	public List<Lktjb> selectTjbList(Lktjb lktjb) {
+		// TODO Auto-generated method stub
+		return queryList("selectTjbList", lktjb);
+	}
+
+	@Override
+	public List<Lktjb> getTjbDataList(Lktjb lktjb) {
+		// TODO Auto-generated method stub
+		return queryList("getTjbDataList",lktjb);
+	}
+
+	@Override
+	public Lktjb getTjbDataList1(Lktjb lktjb) {
+		// TODO Auto-generated method stub
+		return queryOne("getTjbDataList1", lktjb);
 	}
 
 	

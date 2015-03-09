@@ -14,13 +14,18 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="./js/lkpd.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
+var obj;
 function openJsUpdate(_id){
-	$("#tt").tabs("add",{
+	obj= $("#tt").tabs("add",{
+		id:_id,
 		 title:"公路技术状况统计表",
-		 href :"mxb_add.jsp",
+		 href :"tjb_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',
 		 closable:true,
@@ -51,16 +56,15 @@ function deleteJs(_id){
 	});
 }
 
-$(function(){
+function showTjbAll(){
 	$("#jsgl_table").datagrid({
 		border : true,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'../../wjxt/selectTjbList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			'lktjb.tbnf' : $('#unit').val()
 		},
 		striped : true,
 		singleSelect : false,
@@ -68,37 +72,24 @@ $(function(){
 		{
 			field : 'bj',
 			title : '操作',
-			width : 80,
+			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+
-				'<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
+				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+"&nbsp;&nbsp;&nbsp;"+
+				'<input onclick=Deletemxb("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
 			}
-		},{
-			field : 'rolename',
-			title : '年份',
-			width : 300,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '2013';
-			}
-		},{
-			field : 'description',
-			title : '填报单位',
-			width : 300,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '江西省公路管理局';
-			}
-		}
+		},
+		{field : 'tbnf',title : '年份',width : 200,align : 'center'},
+		{field : 'tbdw',title : '填报单位',width : 300,align : 'center'}
 		]]
 	});
-});
+}
 $(function(){
 	var year=new Date().getFullYear();
 	for(var i=year;i>=2000;i--){
-		$("#unit").append("<option value="+'i'+">"+i+"年</option>");
+		$("#unit").append("<option>"+i+"年</option>");
 	}
+	showTjbAll();
 });
 </script>
 <div style="width:100%;">
@@ -115,16 +106,16 @@ $(function(){
  					<p style="margin: 5px;">
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
- 							<option>全部</option>
+ 							<option value="">全部</option>
  						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showTjbAll()">查　询</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="inserttjbData('tjb')">导入数据</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
     </div>
-    <div id="tt" border="false" class="easyui-tabs"  style="height:500px;">
+    <div id="tt" border="false" class="easyui-tabs"  style="height:430px;">
 	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 	    	<table id="jsgl_table" style="height:100%;" ></table>
 	    </div>

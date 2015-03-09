@@ -61,4 +61,26 @@
 	<delete id="deletemxb1" parameterType="lkmxb" >
 		delete from LKPD_MXB where id=#{id}
 	</delete>
+	
+	<insert id="insertLktjb" parameterType="lktjb">
+		insert into LKPD_TJB(id,tbdw,tbnf,dwfzr,fzr,tbr,tbrq)
+		values(#{id},#{tbdw},#{tbnf},#{dwfzr},#{fzr},#{tbr},#{tbrq})
+	</insert>
+	<insert id="insertLktjbData" parameterType="hashMap">
+		insert into LKPD_TJB_DATA(id,tjb_id,biaoti,xm,bh,hj,ydl,ldl,zdl,cdl,cadl,yllv,pdjg)
+		values(#{id},#{tjb_id},#{0},#{1},#{bh},#{3},#{4},#{5},#{6},#{7},#{8},#{9},#{10})
+	</insert>
+	<select id="selectTjbList" parameterType="lktjb" resultType="lktjb">
+		select * from LKPD_TJB where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		order by tbnf desc
+	</select>
+	<select id="getTjbDataList" parameterType="lktjb" resultType="lktjb">
+		select * from LKPD_TJB_DATA  where tjb_id=#{id} order by to_number(id)
+	</select>
+	<select id="getTjbDataList1" parameterType="lktjb" resultType="lktjb">
+		select * from LKPD_TJB where id=#{id}
+	</select>
 </mapper>

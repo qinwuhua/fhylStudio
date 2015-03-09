@@ -36,6 +36,7 @@ import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
@@ -56,7 +57,7 @@ public class LkpdController extends BaseActionSupport{
 	private File fileupload;
 	private String fileuploadFileName;
 	private String id;
-	
+	private Lktjb lktjb=new Lktjb();
 	
 	public String getId() {
 		return id;
@@ -129,6 +130,14 @@ public class LkpdController extends BaseActionSupport{
 
 	public void setFileuploadFileName(String fileuploadFileName) {
 		this.fileuploadFileName = fileuploadFileName;
+	}
+
+	public Lktjb getLktjb() {
+		return lktjb;
+	}
+
+	public void setLktjb(Lktjb lktjb) {
+		this.lktjb = lktjb;
 	}
 
 	public void insertLkpdData(){
@@ -219,6 +228,90 @@ public class LkpdController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void insertLkpdtjData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(2,11,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			String s = UUID.randomUUID().toString(); 
+			String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+			Lktjb lktjb1=new Lktjb();
+			lktjb1.setId(s1);
+			lktjb1.setTbdw(data.get(0).get("1").toString());
+			lktjb1.setTbnf(data.get(0).get("4").toString());
+			System.out.println(data.get(data.size()-1).get("0").toString());
+			lktjb1.setDwfzr(data.get(data.size()-1).get("0").toString().split("：")[1]);
+			lktjb1.setFzr(data.get(data.size()-1).get("2").toString().split("：")[1]);
+			lktjb1.setTbr(data.get(data.size()-1).get("5").toString().split("：")[1]);
+			lktjb1.setTbrq(data.get(data.size()-1).get("8").toString().split("：")[1]);
+			System.out.println(lktjb1);
+			boolean booltb=false,booldata=false;
+			booltb=trqkServer.insertLktjb(lktjb1);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(0);
+			data.remove(data.size()-1);
+			int i=1;
+			for (Map map : data) {
+				map.put("id", i);
+				map.put("bh", i);
+				i++;
+				map.put("tjb_id", s1);
+			}
+			booldata=trqkServer.insertLktjbData(data);
+			if(booltb && booldata)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void selectTjbList(){
+		List<Lktjb> list = trqkServer.selectTjbList(lktjb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void getTjbDataList(){
+		System.out.println("开始"+id);
+		lktjb.setId(id);
+		List<Lktjb> list = trqkServer.getTjbDataList(lktjb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void getTjbDataList1(){
+		lktjb.setId(id);
+		Lktjb lkmxb1 = trqkServer.getTjbDataList1(lktjb);
+		try {
+			JsonUtils.write(lkmxb1, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

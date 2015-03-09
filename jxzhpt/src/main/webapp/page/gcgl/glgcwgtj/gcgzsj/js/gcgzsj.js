@@ -101,9 +101,32 @@ function showYBlist(){
 	    ]
 	});
 }
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downGcgzsjFile.do?type="+str+"&jhid="+parent.obj1.id;
-	}
-	else return;
+function jiazai(ooo){
+//	alert(ooo);
+	var data=ooo;
+
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectGcgzsjjhFile.do',
+		data:data,
+		dataType:'json',
+		async:false,
+		success:function(msg){
+			if(msg.sgxkwj!=''){
+				$("#xz_sgxkwj").text(msg.sgxkwj);
+				$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgtcwj!=''){
+				$("#xz_jgtcwj").text(msg.jgtcwj);
+				$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgyswj!=''){
+				$("#xz_jgyswj").text(msg.jgyswj);
+				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+			}
+			}
+	});	
 }
