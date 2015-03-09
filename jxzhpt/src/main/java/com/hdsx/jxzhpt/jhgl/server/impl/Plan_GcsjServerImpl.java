@@ -128,4 +128,12 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return queryOne("queryTsdqByXzqh",xzqhdm);
 	}
 
+	@Override
+	public Plan_gcsj queryGcsjSum(Plan_gcsj jh, Plan_lx_gcsj lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryOne("queryGcsjSum", params);
+	}
+
 }

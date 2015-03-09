@@ -35,6 +35,7 @@
 			}
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			querySumYhdzx(jh,lx);
 			yhdzxxm_sb(jh,lx);
 		});
 		function searchYhdzx(){

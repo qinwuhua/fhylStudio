@@ -120,4 +120,6 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	String queryTsdqByXzqh(String xzqhdm);
+	
+	Plan_gcsj queryGcsjSum(Plan_gcsj jh, Plan_lx_gcsj lx);
 }

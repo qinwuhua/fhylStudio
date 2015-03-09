@@ -25,9 +25,11 @@ public interface Plan_abgcServer {
 	boolean updateLrztBySckid(String sckId);
 	/**
 	 * 查询总计信息
+	 * @param lx 路线参数信息 
+	 * @param jh 计划参数信息
 	 * @return
 	 */
-	Plan_abgc querySumAbgc();
+	Plan_abgc querySumAbgc(Plan_abgc jh, Jckabgc lx );
 	
 	/**
 	 * 查询列表
@@ -90,4 +92,8 @@ public interface Plan_abgcServer {
 	Plan_upload queryFjById(String id);
 	List<Plan_upload> queryFjByParentId(Plan_upload uploads);
 	boolean deleteFile(Plan_upload uploads);
+
+	boolean editAbgcSckBysckid(Plan_abgc jh);
+
+	List<Plan_abgc> queryAbgcListByStatus(Plan_abgc jh, Jckabgc lx);
 }

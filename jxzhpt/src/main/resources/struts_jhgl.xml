@@ -25,8 +25,10 @@
 		<action name="importGcsj_jh" class="plan_gcsjController" method="importGcsj_jh"/>
 		<action name="uploadGcsjFile" class="plan_gcsjController" method="uploadGcsjFile"/>
 		<action name="queryWjById" class="plan_gcsjController" method="queryWjById"/>
+		<action name="queryGcsjSum" class="plan_gcsjController" method="queryGcsjSum"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
+		<action name="queryAbgcListByStatus" class="plan_abgcController" method="queryAbgcListByStatus"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
 		<action name="queryAbgcNfs" class="plan_abgcController" method="queryAbgcNfs"/>
 		<action name="dropAbgcById" class="plan_abgcController" method="dropAbgcById"/>
@@ -43,6 +45,7 @@
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
 		<action name="queryZhfzList" class="plan_zhfzController" method="queryZhfzList"/>
+		<action name="queryZhfzByStatus" class="plan_zhfzController" method="queryZhfzByStatus"/>
 		<action name="dropZhfzById" class="plan_zhfzController" method="dropZhfzById"/>
 		<action name="editZhfzById" class="plan_zhfzController" method="editZhfzById"/>
 		<action name="editZhfzStatus" class="plan_zhfzController" method="editZhfzStatus"/>
@@ -53,6 +56,7 @@
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
 		<action name="queryWqgzList" class="plan_wqgzController" method="queryWqgzList"/>
+		<action name="queryWqgzByStatus" class="plan_wqgzController" method="queryWqgzByStatus"/>
 		<action name="dropWqgzById" class="plan_wqgzController" method="dropWqgzById"/>
 		<action name="editWqgzById" class="plan_wqgzController" method="editWqgzById"/>
 		<action name="editWqgzStatus" class="plan_wqgzController" method="editWqgzStatus"/>
@@ -108,5 +112,8 @@
 		<action name="importZhfz_jh" class="plan_zhfzController" method="importZhfz_jh"/>
 		<action name="queryTsdq" class="plan_abgcController" method="queryTsdq"/>
 		
+		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
+		<action name="saveZjqf" class="plan_zjqfController" method="saveZjqf"></action>
+		<action name="queryZjqfByXzqh" class="plan_zjqfController" method="queryZjqfByXzqh"></action>
 	 </package>
 </struts>

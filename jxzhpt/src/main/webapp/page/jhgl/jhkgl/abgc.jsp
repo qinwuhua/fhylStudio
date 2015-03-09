@@ -32,9 +32,9 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			querySumAbgc();
 			var jh={jhnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			querySumAbgc(jh,lx);
 			sbnf("sbnf");
 			abgcxm(jh,lx);
 		});

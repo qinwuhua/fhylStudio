@@ -118,8 +118,11 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public Plan_zhfz querySumZhfz() {
-		return queryOne("querySumZhfz", null);
+	public Plan_zhfz querySumZhfz(Plan_zhfz jh,Jckzhfz lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("p", jh);
+		param.put("x", lx);
+		return queryOne("querySumZhfz", param);
 	}
 
 	@Override
@@ -144,6 +147,19 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	@Override
 	public Plan_zhfz queryZhfzFjById(String id) {
 		return queryOne("queryZhfzFjById", id);
+	}
+
+	@Override
+	public boolean editZhfzSckBysckid(Plan_zhfz jh) {
+		return update("editZhfzSckBysckid",jh)>0;
+	}
+
+	@Override
+	public List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryList("queryZhfzByStatus",param);
 	}
 
 }

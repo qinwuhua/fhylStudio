@@ -26,9 +26,9 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			querySumGcgj();
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			querySumGcgj(jh,lx);
 			sbnf("sbnf");
 			gclmgjxm_sh(jh,lx);
 		});

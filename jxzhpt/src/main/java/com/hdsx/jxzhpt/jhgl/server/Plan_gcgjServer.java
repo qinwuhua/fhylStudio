@@ -67,9 +67,11 @@ public interface Plan_gcgjServer {
 	int queryJlBylx(Plan_lx_gcgj lx);
 	/**
 	 * 信息总计
+	 * @param lx 路线信息参数
+	 * @param jh 计划信息参数
 	 * @return
 	 */
-	Plan_gcgj querySumGcgj();
+	Plan_gcgj querySumGcgj(Plan_gcgj jh, Plan_lx_gcgj lx);
 	/**
 	 * 分页查询
 	 * @param page

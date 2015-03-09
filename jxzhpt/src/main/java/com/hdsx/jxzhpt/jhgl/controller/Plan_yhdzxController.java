@@ -50,7 +50,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void querySumYhdzx(){
 		try {
-			JsonUtils.write(yhdzxServer.querySumYhdzx(), getresponse().getWriter());
+			JsonUtils.write(yhdzxServer.querySumYhdzx(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

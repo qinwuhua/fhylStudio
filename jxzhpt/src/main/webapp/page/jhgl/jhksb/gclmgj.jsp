@@ -32,12 +32,12 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			querySumGcgj();
 			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
 			if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
 				jh.jh_sbthcd=2;
 			}
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			querySumGcgj(jh,lx);
 			sbnf("sbnf");
 			gclmgjxm_sb(jh,lx);
 		});

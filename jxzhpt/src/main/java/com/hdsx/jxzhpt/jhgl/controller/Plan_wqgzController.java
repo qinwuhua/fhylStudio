@@ -49,9 +49,17 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
+	public void queryWqgzByStatus(){
+		try {
+			JsonUtils.write(wqgzServer.queryWqgzByStatus(jh,lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void querySumWqgz(){
 		try {
-			JsonUtils.write(wqgzServer.querySumWqgz(), getresponse().getWriter());
+			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -167,6 +175,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void editWqgzById(){
 		try {
 			JsonUtils.write(wqgzServer.editWqgzById(jh), getresponse().getWriter());
+			wqgzServer.editWqgzSckxx(jh);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

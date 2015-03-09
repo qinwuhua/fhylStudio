@@ -5,11 +5,11 @@ function uploadFile(){
 	$("#uploadGk").uploadifyUpload();
 }
 function querySumGcgj(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var params={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumGcgj.do',
-		data:param,
+		data:params,
 		dataType:'json',
 		success:function(data){
 			$('#lblCount').html(data.id);
@@ -51,16 +51,8 @@ function gclmgjxm(jh,lx){
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','./jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		var id="'"+row.id+"'";
-		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-			    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
-		    		}else{
-		    			result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
-			        	result+='<a style="text-decoration:none;color:black;">移除</a>';
-		    		}
 		    		return result;
 		    	}
 		    },

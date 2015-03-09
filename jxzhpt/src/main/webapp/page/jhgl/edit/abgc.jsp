@@ -168,21 +168,22 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="scqdzh"></span> &nbsp;
+					<input id="scqdzh" type="text"/> &nbsp;
+					<input id="sckid" type="hidden"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">止点桩号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="sczdzh"></span>
+					<input id="sczdzh" type="text"/>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">总里程
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="sczlc"></span>公里 &nbsp;
+					<input id="sczlc" type="text"/>公里 &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -191,7 +192,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="scyhlc"></span>公里 &nbsp;
+					<input id="scyhlc" type="text"/>公里 &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -200,21 +201,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fapgdw"></span> &nbsp;
+					<input id="fapgdw" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">方案审查单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="fascdw"></span> &nbsp;
+					<input id="fascdw" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">方案审批时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="faspsj"></span> &nbsp;
+					<input id="faspsj" type="text" class="easyui-datebox"/> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -223,21 +224,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="spwh"></span> &nbsp;
+					<input id="spwh" type="text"/> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">投资估算</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="tzgs"></span> 万元
+					<input id="tzgs" type="text"/> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建设性质
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="jsxz"></span> &nbsp;
+					<input id="jsxz" type="text"/> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -246,7 +247,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="jsnr"></span> &nbsp;
+					<textarea id="jsnr" rows="" cols="" style="width: 600px;height: 40px;"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -255,7 +256,7 @@
 					注</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="remarks"></span> &nbsp;
+					<textarea id="remarks" rows="" cols="" style="width: 600px;height: 40px;"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -629,18 +630,19 @@
 						$('#yhnr').html(sck.yhnr);
 						$('#bz').html(sck.bz);
 						//审查
-						$('#scqdzh').html(sck.scqdzh);
-						$('#sczdzh').html(sck.sczdzh);
-						$('#sczlc').html(sck.sczdzh);
-						$('#scyhlc').html(sck.sczdzh);
-						$('#fapgdw').html(sck.fapgdw);
-						$('#fascdw').html(sck.fascdw);
-						$('#faspsj').html(sck.faspsj);
-						$('#spwh').html(sck.spwh);
-						$('#tzgs').html(sck.tzgs);
-						$('#jsxz').html(sck.jsxz);
-						$('#jsnr').html(sck.jsnr);
-						$('#remarks').html(sck.remarks);
+						$('#scqdzh').val(sck.scqdzh);
+						$('#sczdzh').val(sck.sczdzh);
+						$('#sczlc').val(sck.sczdzh);
+						$('#scyhlc').val(sck.sczdzh);
+						$('#fapgdw').val(sck.fapgdw);
+						$('#fascdw').val(sck.fascdw);
+						$('#faspsj').datebox('setValue',sck.faspsj);
+						$('#spwh').val(sck.spwh);
+						$('#tzgs').val(sck.tzgs);
+						$('#jsxz').val(sck.jsxz);
+						$('#jsnr').val(sck.jsnr);
+						$('#remarks').val(sck.scbz);
+						$('#sckid').val(data.sckid);
 					}
 				}
 			});
@@ -651,7 +653,7 @@
 			document.getElementById("ABLBZWH").disabled=true;
 		}
 		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
 			if(ztz*1000000000000000>=bzzj*1000000000000000){
 				ts=bzzj.toFixed(3);
@@ -671,7 +673,7 @@
 			return;
 		}
 		ztz=(parseFloat($("#JHZTZ").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#scyhlc").html())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#scyhlc").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
 		if(ztz*1000000000000000>=bzzj*1000000000000000){
 			ts=bzzj.toFixed(3);
 			$("#bbz").val(bzzj.toFixed(3));
