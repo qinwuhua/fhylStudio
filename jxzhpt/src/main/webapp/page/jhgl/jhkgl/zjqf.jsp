@@ -42,14 +42,13 @@
 		});
 		function loadZjqfByIdAndXzqh(){
 			//首先查询是否有上级的资金分配
-			var xzqhfather;
+			var xzqhfather=null;
 			if(roleName()=="县级"){
 				xzqhfather=$.cookie("unit").substring(5).substring(0,4)+"00";
 			}else if(roleName()=="市级"){
 				xzqhfather="360000";
 			}
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
-			alert(xzqhfather);
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryZjqfByXzqh.do',
