@@ -35,5 +35,11 @@
 	<action name="getJtlsdDataList" class="jtlController" method="getJtlsdDataList"/>
 	<action name="getJtlsdDataList1" class="jtlController" method="getJtlsdDataList1"/>
 	<action name="deletejtlsd" class="jtlController" method="deletejtlsd"/>
+	
+	<!--  -->
+	<action name="insertzhqk" class="zhqkController" method="insertzhqk"/>
+	<action name="selectZhqkList" class="zhqkController" method="selectZhqkList"/>
+	<action name="deletezhqk" class="zhqkController" method="deletezhqk"/>
+	<action name="updatezhqk" class="zhqkController" method="updatezhqk"/>
  </package>
 </struts>
