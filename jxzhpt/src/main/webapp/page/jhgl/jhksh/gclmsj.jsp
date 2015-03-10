@@ -22,7 +22,7 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4},
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4},
 			lx={lxmc:null,gydwdm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
 				queryGcsjSum(jh,lx);

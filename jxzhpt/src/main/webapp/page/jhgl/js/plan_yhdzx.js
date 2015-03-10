@@ -2,25 +2,38 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function querySumYhdzx(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwdm':lx.gydwdm,'jh.sbnf':jh.sbnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumYhdzx.do',
 		data:param,
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.plan_lx_yhdzxs[0].qzlc);
-			$('#lblHDLC').html(data.plan_lx_yhdzxs[0].hdlc);
-			$('#lblZTZ').html(data.totalinvest);
-			$('#lblZBZZJ').html(data.totalsubsidyfund);
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				$('#lblZLC').html(data.plan_lx_yhdzxs[0].qzlc);
+				$('#lblHDLC').html(data.plan_lx_yhdzxs[0].hdlc);
+				$('#lblZTZ').html(data.totalinvest);
+				$('#lblZBZZJ').html(data.totalsubsidyfund);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
+				$('#lblXMLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
+			}
+			
 		}
 	});
 }
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -28,6 +41,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 function yhdzxxm(jh,lx){
 	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,

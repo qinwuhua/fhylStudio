@@ -199,7 +199,10 @@
 			from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			where 1=1
 			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			</if>
+			<if test="jh.jhnf!=null and jh.jhnf!=''">
+				and jh.jhnf=#{jh.jhnf}
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}

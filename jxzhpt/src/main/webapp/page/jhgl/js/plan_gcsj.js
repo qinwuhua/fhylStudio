@@ -2,26 +2,31 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function queryGcsjSum(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwdm':lx.gydwdm,'jh.jhnf':jh.jhnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryGcsjSum.do',
 		data:param,
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.plan_lx_gcsjs[0].qzlc);
-			$('#lblXMLC').html(data.plan_lx_gcsjs[0].xmlc);
-			$('#lblZTZ').html(data.pftz);
-			$('#lblBTZ').html(data.jhsybbzje);
-			$('#lblDFTZ').html(data.jhsydfzczj);
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				$('#lblZLC').html(data.plan_lx_gcsjs[0].qzlc);
+				$('#lblXMLC').html(data.plan_lx_gcsjs[0].xmlc);
+				$('#lblZTZ').html(data.pftz);
+				$('#lblBTZ').html(data.jhsybbzje);
+				$('#lblDFTZ').html(data.jhsydfzczj);
+			}
 		}
 	});
 }
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -29,6 +34,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 //工程路面升级
 function gclmsjxm(jh,lx){

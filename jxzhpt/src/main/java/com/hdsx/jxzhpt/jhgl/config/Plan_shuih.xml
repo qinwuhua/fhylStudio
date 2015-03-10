@@ -149,7 +149,10 @@
 				and lx.gydwdm like #{lx.gydwdm}
 			</if>
 			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf=#{jh.sbnf}
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}

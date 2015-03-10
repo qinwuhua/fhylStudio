@@ -5,7 +5,7 @@ function uploadFile(){
 	$("#uploadGk").uploadifyUpload();
 }
 function querySumGcgj(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwdm':lx.gydwdm,'jh.sbnf':jh.sbnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumGcgj.do',
@@ -24,7 +24,10 @@ function querySumGcgj(jh,lx){
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -32,6 +35,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 /**
  * 工程路面改建列表信息

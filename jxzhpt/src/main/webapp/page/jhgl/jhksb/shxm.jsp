@@ -27,13 +27,13 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			sbnf("sbnf");
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
 			querySumShuih(jh,lx);
-			sbnf("sbnf");
 			shxm_sb(jh,lx);
 		});
 		function searchShuih(){
@@ -65,6 +65,7 @@
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combobox('getValue');
 			}
+			querySumShuih(jh,lx);
 			shxm_sb(jh,lx);
 		}
 		function sbList(){

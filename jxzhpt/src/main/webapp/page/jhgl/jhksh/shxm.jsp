@@ -22,7 +22,7 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(roleName()=="省级"){
 				querySumShuih(jh,lx);
@@ -57,6 +57,7 @@
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combobox('getValue');
 			}
+			querySumShuih(jh,lx);
 			shxm_sh(jh,lx);
 		}
 		function sp(id,jh_sbthcd){
