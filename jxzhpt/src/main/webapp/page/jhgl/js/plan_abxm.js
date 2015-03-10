@@ -163,7 +163,6 @@ function abgcxm_sb(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -247,7 +246,6 @@ function abgcxm_sh(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>  ';
@@ -335,7 +333,6 @@ function abgcxm_zjxd(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';

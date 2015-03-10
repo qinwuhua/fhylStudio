@@ -189,4 +189,15 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		param.put("lx", lx);
 		return queryList("queryAbgcListByStatus",param);
 	}
+	@Override
+	public List<Plan_abgc> queryAbgcByStatus(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("jh", jh);
+		param.put("lx", lx);
+		return queryList("queryAbgcListByStatus",param);
+	}
+	@Override
+	public boolean updateStatusBatch(List<Plan_abgc> splist) {
+		return updateBatch("editStatus", splist)==splist.size();
+	}
 }

@@ -222,14 +222,14 @@
 	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">
 		update plan_zhfz set 
-			<if test="sbbm!=null">sbbm=#{sbbm},</if>
-			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
-			<if test="sbsj!=null">sbsj=#{sbsj},</if>
-			<if test="sbzt!=null">sbzt=#{sbzt},</if>
-			<if test="spbm!=null">spbm=#{spbm},</if>
-			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
-			<if test="spsj!=null">spsj=#{spsj},</if>
-			<if test="spzt!=null">spzt=#{spzt},</if>
+			<if test="sbbm!=null and sbbm!=''">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null and sbbmdm!=''">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null and sbsj!=''">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null and sbzt!=''">sbzt=#{sbzt},</if>
+			<if test="spbm!=null and spbm!=''">spbm=#{spbm},</if>
+			<if test="spbmdm!=null and spbmdm!=''">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null and spsj!=''">spsj=#{spsj},</if>
+			<if test="spzt!=null and spzt!=''">spzt=#{spzt},</if>
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>

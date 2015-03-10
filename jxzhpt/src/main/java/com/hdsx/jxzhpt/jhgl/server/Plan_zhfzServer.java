@@ -86,4 +86,5 @@ public interface Plan_zhfzServer {
 	Plan_zhfz queryZhfzFjById(String id);
 	boolean editZhfzSckBysckid(Plan_zhfz jh);
 	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
+	boolean updateStatusBatch(List<Plan_zhfz> splist);
 }
