@@ -100,28 +100,28 @@
                             </td>
                         </tr>
                         <tr style="text-align: center; color: #0076C8; background-color: #F4FAFF; font-weight: bold">
-                            <td align="center"  colspan="2">
+                            <td align="center"  colspan="2" style="width: 8%">
                                 合计
                             </td>
-                            <td align="center"  colspan="2">
+                            <td align="center"  colspan="2" style="width: 8%">
                                 国省干线
                             </td>
-                            <td align="center"  colspan="2">
+                            <td align="center"  colspan="2" style="width: 8%">
                                 &nbsp;合计
                             </td>
-                            <td align="center"  colspan="2">
+                            <td align="center"  colspan="2" style="width: 8%">
                                 国省干线
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 8%">
                                 合计
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 8%">
                                 国省干线
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 8%">
                                 &nbsp;合计
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 8%">
                                 国省干线
                             </td>
                         </tr>

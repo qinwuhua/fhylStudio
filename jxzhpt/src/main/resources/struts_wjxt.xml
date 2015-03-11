@@ -43,5 +43,10 @@
 	<action name="selectZhqkList" class="zhqkController" method="selectZhqkList"/>
 	<action name="deletezhqk" class="zhqkController" method="deletezhqk"/>
 	<action name="updatezhqk" class="zhqkController" method="updatezhqk"/>
+	
+	<action name="insertzdxx" class="zdxxController" method="insertzdxx"/>
+	<action name="selectZdxxList" class="zdxxController" method="selectZdxxList"/>
+	<action name="updatezdxx" class="zdxxController" method="updatezdxx"/>
+	<action name="deletezdxx" class="zdxxController" method="deletezdxx"/>
  </package>
 </struts>

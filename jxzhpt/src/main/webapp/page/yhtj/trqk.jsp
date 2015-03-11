@@ -71,7 +71,7 @@ $(function(){
         				<select name="ddlYear" id="ddlYear" style="width: 60px;">
 						</select>
 						<span>上报月份：</span>
-						<select name="ddlMonth" id="ddlMonth">
+						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
 							<option id="yf1" value="01">01</option>
 							<option id="yf2" value="02">02</option>
 							<option id="yf3" value="03">03</option>
