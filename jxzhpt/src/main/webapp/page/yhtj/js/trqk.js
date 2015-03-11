@@ -1,10 +1,43 @@
-
+var obj=new Object();
 function trqkadd(){
 	YMLib.UI.createWindow('trqk_add','添加信息','trqk_add.jsp','trqk_add',970,450);
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
+function trqkxx(index){
+	var data=$("#trqk_table").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('trqk_xx','详细信息','trqk_xx.jsp','trqk_xx',970,450);
+}
+function trqkbj(index){
+	var data=$("#trqk_table").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('trqk_bj','编辑信息','trqk_bj.jsp','trqk_bj',970,450);
+}
+function trqksc(index){
+	var data1=$("#trqk_table").datagrid('getRows')[index];
+	if(!confirm("您确认执行删除操作吗？")){
+		return;
+	}
+	var data="trqk.id="+data1.id;
+	$.ajax({
+		type:"post",
+		url:"/jxzhpt/wjxt/deletetrqk.do",
+		dataType:'json',
+		data:data,
+		success:function(msg){
+			if(msg){
+				alert("删除成功！");
+				$("#trqk_table").datagrid('reload');
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
+
+
 function addtrqk(){
 	var data="trqk.gydw="+$("#gydw").combobox("getValue")+"&trqk.gydwmc="+$("#gydw").combobox("getText")
 	+"&trqk.qxrs="+$("#qxrs").val()+"&trqk.trqxjf="+$("#trqxjf").val()
@@ -14,7 +47,6 @@ function addtrqk(){
 	+"&trqk.cstb="+$("#cstb").val()+"&trqk.sbtbxj="+$("#sbtbxj").val()
 	+"&trqk.tbdw="+$("#tbdw").combobox("getValue")+"&trqk.tbdwmc="+$("#tbdw").combobox("getText")
 	+"&trqk.tjr="+$("#tjr").val()+"&trqk.shry="+$("#shr").val()+"&trqk.tbsj="+$("#tbsj").datebox("getValue");
-	alert(data);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/wjxt/insertTrqk.do',
@@ -53,8 +85,8 @@ function showAll(){
 	    	tiaojian:tiaojian
 		},
 		columns:[[
-				    {field:'c',title:'操作',width:100,rowspan:2,align:'center',formatter:function(value,row,index){
-				    		return "编辑     删除";
+				    {field:'c',title:'操作',width:150,rowspan:2,align:'center',formatter:function(value,row,index){
+				    		return '<a style="text-decoration:none;color:#3399CC; href="#" onclick="trqkxx('+index+')">详细</a>   &nbsp;    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="trqkbj('+index+')">编辑</a>    &nbsp;   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="trqksc('+index+')">删除</a>    ';
 				    	}
 				    },
 					{field:'gydwmc',title:'单位',width:150,rowspan:2,align:'center'},

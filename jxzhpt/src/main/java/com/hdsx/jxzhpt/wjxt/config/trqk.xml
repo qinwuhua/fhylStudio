@@ -173,4 +173,12 @@
 	<delete id="deletejtlsd1" parameterType="jtlhzgd" >
 		delete from JTLHZSD where id=#{id}
 	</delete>
+	<update id="updateTrqk" parameterType="trqk">
+		update WJXT_TRQK set
+		gydw=#{gydw},qxrs=#{qxrs},trqxjf=#{trqxjf},lq=#{lq},sn=#{sn},ss=#{ss},bzd=#{bzd},gyy=#{gyy},lqlbl=#{lqlbl},wjj=#{wjj},zzj=#{zzj},zxqc=#{zxqc},cstb=#{cstb},sbtbxj=#{sbtbxj},tbdw=#{tbdw},tjr=#{tjr},shry=#{shry},tbsj=#{tbsj},gydwmc=#{gydwmc},tbdwmc=#{tbdwmc}
+		where id=#{id}
+	</update>
+	<delete id="deletetrqk" parameterType="trqk">
+	delete from WJXT_TRQK where id=#{id}
+	</delete>
 </mapper>

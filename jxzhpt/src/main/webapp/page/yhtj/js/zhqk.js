@@ -30,7 +30,6 @@ function zhqksc(index){
 			if(msg){
 				alert("删除成功！");
 				$("#zhqk_table").datagrid('reload');
-				closes('zhqk_bj');
 			}else{
 				alert("删除失败！");
 			}

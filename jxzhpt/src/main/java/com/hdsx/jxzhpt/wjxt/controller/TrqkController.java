@@ -116,5 +116,20 @@ public class TrqkController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-	
+	public void updateTrqk(){
+		boolean bl=trqkServer.updateTrqk(trqk);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void deletetrqk(){
+		boolean bl=trqkServer.deletetrqk(trqk);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }

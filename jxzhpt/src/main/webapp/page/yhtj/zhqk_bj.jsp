@@ -82,7 +82,6 @@
     	if(!confirm("您确认保存该信息吗？")){
     		return;
     	}
-    	alert(data);
     	 $.ajax({
     			type:"post",
     			url:"/jxzhpt/wjxt/updatezhqk.do",

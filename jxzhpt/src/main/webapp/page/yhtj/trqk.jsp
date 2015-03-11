@@ -15,6 +15,23 @@
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="./js/trqk.js"></script>
+<style type="text/css">
+<!--
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+ cursor: pointer;
+}
+a:active {
+ text-decoration: none;
+}
+-->
+</style>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
