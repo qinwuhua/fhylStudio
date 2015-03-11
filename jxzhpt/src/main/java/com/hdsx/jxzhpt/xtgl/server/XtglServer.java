@@ -81,7 +81,7 @@ public interface XtglServer {
 
 	List<Unit> selectXzqhList(Unit unit);
 
-	String createGsAnyChartXml(Param param);
+	String createGsAnyChartXml(List<Param> l);
 
 	List<Unit> checkXzqhCfById(Unit unit);
 
@@ -144,4 +144,6 @@ public interface XtglServer {
 	List<Unit> selectLxQlDataList(String id);
 
 	List<TreeNode> loadBmbmList(Unit unit);
+
+	List<Param> selSqlStrByLxid(Param param);
 }

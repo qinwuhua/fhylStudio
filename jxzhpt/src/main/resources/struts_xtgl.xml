@@ -64,6 +64,8 @@
 	<action name="getBmbmTreeByName2" class="loadBmbmController" method="getBmbmTreeByName2"></action>
 	
 	<action name="xmlxCountTj" class="dzdtController" method="xmlxCountTj"></action>
+	<action name="selAnyChartXml" class="xtglController" method="selAnyChartXml"></action>
+	
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>

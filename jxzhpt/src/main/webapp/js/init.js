@@ -14,7 +14,7 @@ $(function(){
 	selSes();
 	$("#index_user").html($.cookie("truename"));
 	menuQx();
-
+	
 	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
 		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
 		$("#" + this.id).addClass('now');
