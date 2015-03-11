@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,9 +50,20 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
-	public void queryWqgzByStatus(){
+	public void editWqgzStatusBatch(){
 		try {
-			JsonUtils.write(wqgzServer.queryWqgzByStatus(jh,lx), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			List<Plan_wqgz> splist = wqgzServer.queryWqgzByStatus(jh,lx);
+			for (Plan_wqgz item : splist) {
+				System.out.println(item.getId());
+				item.setJh_sbthcd(""+(Integer.parseInt(item.getJh_sbthcd())+2));
+				item.setSpzt("1");
+				item.setSpsj(new Date());
+				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+			}
+			result.put("result", new Boolean(wqgzServer.updateStatusBatch(splist)).toString());
+			System.out.println("结果："+result.get("result"));
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

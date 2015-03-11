@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
@@ -48,9 +50,18 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private File uploadSjt;
 	private String uploadSjtFileName;
 	
-	public void queryZhfzByStatus(){
+	public void editZhfzStatusBatch(){
 		try {
-			JsonUtils.write(zhfzServer.queryZhfzByStatus(jh,lx), getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			List<Plan_zhfz> splist = zhfzServer.queryZhfzByStatus(jh,lx);
+			for (Plan_zhfz item : splist) {
+				item.setJh_sbthcd((item.getJh_sbthcd()+2));
+				item.setSpzt("1");
+				item.setSpsj(new Date());
+				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+			}
+			result.put("result", new Boolean(zhfzServer.updateStatusBatch(splist)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

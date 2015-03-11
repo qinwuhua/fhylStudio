@@ -25,9 +25,10 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
+				queryZjqf($('#sbnf').combobox("getValue"));
 				querySumWqgz(jh,lx);
 				wqxm_sh(jh,lx);
 			}else{
@@ -65,6 +66,28 @@
 				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
 			}
 			wqxm_sh(jh,lx);
+		}
+		function spBatch(){
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:filterGydwdm($('#gydw').combobox('getValue')),
+					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
+					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
+			};
+			var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
+					"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,'jh.jh_sbthcd':jh.jh_sbthcd};
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../../jhgl/editWqgzStatusBatch.do',
+				data:params,
+				dataType:'json',
+				success:function(data){
+					if(data.result){
+						alert("全部审批成功！");
+						searchWqgz();
+					}
+				}
+			});
 		}
 		function sp(id,jh_sbthcd){
 			var date=new Date();
@@ -165,6 +188,7 @@
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>
+        						<img name="shenPi" id="shenPi" onclick="spBatch()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 							</p>
         				</div>
@@ -173,6 +197,7 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
+        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
         			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，

@@ -96,4 +96,8 @@ public interface Plan_abgcServer {
 	boolean editAbgcSckBysckid(Plan_abgc jh);
 
 	List<Plan_abgc> queryAbgcListByStatus(Plan_abgc jh, Jckabgc lx);
+
+	List<Plan_abgc> queryAbgcByStatus(Plan_abgc jh, Jckabgc lx);
+
+	boolean updateStatusBatch(List<Plan_abgc> splist);
 }

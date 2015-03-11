@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
+import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
@@ -53,5 +54,33 @@ public interface TrqkServer {
 	Jtlhz getJtlDataList1(Jtlhz jtlhz);
 
 	Boolean deletejtl(Jtlhz jtlhz);
+
+	boolean insertJtlhzgd(Jtlhzgd jtlhz1);
+
+	boolean insertJtlhzgddata(List<Map> data);
+
+	List<Jtlhzgd> selectJtlgdList(Jtlhzgd jtlhzgd);
+
+	List<Jtlhzgd> getJtlgdDataList(Jtlhzgd jtlhzgd);
+
+	Jtlhzgd getJtlgdDataList1(Jtlhzgd jtlhzgd);
+
+	Boolean deletejtlgd(Jtlhzgd jtlhzgd);
+
+	boolean insertJtlhzsd(Jtlhzgd jtlhz1);
+
+	boolean insertJtlhzsddata(List<Map> data);
+
+	List<Jtlhzgd> selectJtlsdList(Jtlhzgd jtlhzgd);
+
+	List<Jtlhzgd> getJtlsdDataList(Jtlhzgd jtlhzgd);
+
+	Jtlhzgd getJtlsdDataList1(Jtlhzgd jtlhzgd);
+
+	Boolean deletejtlsd(Jtlhzgd jtlhzgd);
+
+	boolean updateTrqk(Trqk trqk);
+
+	boolean deletetrqk(Trqk trqk);
 
 }

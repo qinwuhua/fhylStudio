@@ -162,4 +162,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return queryList("queryZhfzByStatus",param);
 	}
 
+	@Override
+	public boolean updateStatusBatch(List<Plan_zhfz> splist) {
+		return updateBatch("editZhfzStatus", splist)==splist.size();
+	}
+
 }

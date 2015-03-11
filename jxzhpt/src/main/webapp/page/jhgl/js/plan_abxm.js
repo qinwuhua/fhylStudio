@@ -1,6 +1,31 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+/**
+ * 查询资金切分
+ * @param nf 年份
+ */
+function queryZjqf(nf){
+	//查询切分资金
+	var xzqhdm="360000";
+	if(roleName()=="县级"){
+		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+	}
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../../../jhgl/queryZjqfByXzqh.do',
+		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		dataType:'json',
+		success:function(data){
+			$.each(JSON.parse(data.zjqf),function(index,item){
+				if(item.id==$.cookie("unit").substring(5)){
+					$('#lblQfzj').html(item.abgc);
+				}
+			});
+		}
+	});
+}
 function querySumAbgc(jh,lx){
 	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
@@ -9,17 +34,19 @@ function querySumAbgc(jh,lx){
 		data:param,
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			if(data.jckabgc.qzlc!=null && data.jckabgc.qzlc!="")
-				$('#lblZLC').html(data.jckabgc.qzlc);
-			if(data.jckabgc.yhlc!=null && data.jckabgc.yhlc!="")
-				$('#lblYHLC').html(data.jckabgc.yhlc);
-			if(data.pfztz!=null && data.pfztz!="")
-				$('#lblZTZ').html(data.pfztz);
-			if(data.jhsybbzje!=null && data.jhsybbzje!="")
-				$('#lblBTZ').html(data.jhsybbzje);
-			if(data.jhsydfzczj!=null && data.jhsydfzczj!="")
-				$('#lblDFTZ').html(data.jhsydfzczj);
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				if(data.jckabgc.qzlc!=null && data.jckabgc.qzlc!="")
+					$('#lblZLC').html(data.jckabgc.qzlc);
+				if(data.jckabgc.yhlc!=null && data.jckabgc.yhlc!="")
+					$('#lblYHLC').html(data.jckabgc.yhlc);
+				if(data.pfztz!=null && data.pfztz!="")
+					$('#lblZTZ').html(data.pfztz);
+				if(data.jhsybbzje!=null && data.jhsybbzje!="")
+					$('#lblBTZ').html(data.jhsybbzje);
+				if(data.jhsydfzczj!=null && data.jhsydfzczj!="")
+					$('#lblDFTZ').html(data.jhsydfzczj);
+			}
 		}
 	});
 }
@@ -136,7 +163,6 @@ function abgcxm_sb(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -152,9 +178,10 @@ function abgcxm_sb(jh,lx){
 	        	var result="";
 				var id="'"+row.id+"'";
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">未上报</a>';
-					if(roleName()=="市级")
-						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+//					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">未上报</a>';
+//					if(roleName()=="市级")
+//						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+					result="未上报";
 				}else{
 					result='<a style="text-decoration:none;color:black;">已上报</a>';
 				}
@@ -219,7 +246,6 @@ function abgcxm_sh(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>  ';
@@ -307,7 +333,6 @@ function abgcxm_zjxd(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
 	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -387,7 +412,10 @@ function abgcxm_zjxd(jh,lx){
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -395,6 +423,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 function queryAbgc(id){
 	$.ajax({

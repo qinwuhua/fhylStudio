@@ -88,4 +88,5 @@ public interface Plan_wqgzServer {
 	Plan_wqgz queryWqgzFjById(String id);
 	boolean editWqgzSckxx(Plan_wqgz jh);
 	List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx);
+	boolean updateStatusBatch(List<Plan_wqgz> splist);
 }

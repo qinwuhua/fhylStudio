@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
+import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
@@ -167,5 +168,105 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		}
 	}
 
-	
+	@Override
+	public boolean insertJtlhzgd(Jtlhzgd jtlhz1) {
+		if(insert("insertJtlhzgd", jtlhz1)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertJtlhzgddata(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertJtlhzgddata", data)==data.size();
+	}
+
+	@Override
+	public List<Jtlhzgd> selectJtlgdList(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryList("selectJtlgdList", jtlhzgd);
+	}
+
+	@Override
+	public List<Jtlhzgd> getJtlgdDataList(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryList("getJtlgdDataList",jtlhzgd);
+	}
+
+	@Override
+	public Jtlhzgd getJtlgdDataList1(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryOne("getJtlgdDataList1", jtlhzgd);
+	}
+
+	@Override
+	public Boolean deletejtlgd(Jtlhzgd jtlhzgd) {
+		if(delete("deletejtlgd", jtlhzgd)>0 && delete("deletejtlgd1", jtlhzgd)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertJtlhzsd(Jtlhzgd jtlhz1) {
+		if(insert("insertJtlhzsd", jtlhz1)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean insertJtlhzsddata(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertJtlhzsddata", data)==data.size();
+	}
+
+	@Override
+	public List<Jtlhzgd> selectJtlsdList(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryList("selectJtlsdList", jtlhzgd);
+	}
+
+	@Override
+	public List<Jtlhzgd> getJtlsdDataList(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryList("getJtlsdDataList",jtlhzgd);
+	}
+
+	@Override
+	public Jtlhzgd getJtlsdDataList1(Jtlhzgd jtlhzgd) {
+		// TODO Auto-generated method stub
+		return queryOne("getJtlsdDataList1", jtlhzgd);
+	}
+
+	@Override
+	public Boolean deletejtlsd(Jtlhzgd jtlhzgd) {
+		if(delete("deletejtlsd", jtlhzgd)>0 && delete("deletejtlsd1", jtlhzgd)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updateTrqk(Trqk trqk) {
+		if(update("updateTrqk", trqk)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deletetrqk(Trqk trqk) {
+		if(delete("deletetrqk", trqk)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

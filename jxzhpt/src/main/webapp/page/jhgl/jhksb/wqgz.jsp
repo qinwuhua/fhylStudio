@@ -30,37 +30,14 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			sbnf("sbnf");
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			//查询分到的资金
-			var zjqf={'zjqf.xzqhdm':'','zjqf.nf':''};
-			var xzqhdm="";
-			if(roleName()=="县级"){
-				xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
-			}else if(roleName()=="市级"){
-				xzqhdm="360000";
-			}
-			zjqf['zjqf.xzqhdm']=xzqhdm;
-			zjqf['zjqf.nf']=new Date().getFullYear();
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:zjqf,
-				dataType:'json',
-				success:function(data){
-					$.each(JSON.parse(data.zjqf),function(index,item){
-						if(item.id==$.cookie("unit").substring(5)){
-							$('#lblQfzj').html(item.wqgz);
-						}
-					});
-				}
-			});
+			queryZjqf($('#sbnf').combobox("getValue"));
 			querySumWqgz(jh,lx);
-			sbnf("sbnf");
 			wqxm_sb(jh,lx);
 		});
 		function searchWqgz(){
@@ -235,7 +212,7 @@
         					</p>
 							<p style="margin:8px 0px 8px 20px;">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
-        						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/shangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 							</p>
         				</div>

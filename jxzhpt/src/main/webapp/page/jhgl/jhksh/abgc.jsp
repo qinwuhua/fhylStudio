@@ -22,9 +22,10 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
+				queryZjqf($('#sbnf').combobox("getValue"));
 				querySumAbgc(jh,lx);
 				abgcxm_sh(jh,lx);
 			}else{
@@ -57,7 +58,28 @@
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
 			}
+			querySumAbgc(jh,lx);
 			abgcxm_sh(jh,lx);
+		}
+		function batchSp(){
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit")),
+					xzqhdm:$.cookie("unit")};
+			var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,
+					"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,'jh.jh_sbthcd':jh.jh_sbthcd};
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../../jhgl/editAbgcStatusBatch.do',
+				data:params,
+				dataType:'json',
+				success:function(data){
+					if(data.result=="true"){
+						alert("全部审批成功！");
+						searchAbgc();
+					}
+				}
+			});
 		}
 		function sp(id,jh_sbthcd){
 			var date=new Date();
@@ -167,6 +189,7 @@
         						<tr>
         							<td>
         								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
+        								<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
         								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                 	</td>
                                 </tr>
@@ -177,6 +200,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，

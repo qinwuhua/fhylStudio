@@ -34,19 +34,53 @@ text-decoration:none;
 		loadUnit("tbdw",$.cookie("unit"));
 		$("#tbsj").datebox({    
 		    
-		});  
-		var date = new Date();
-		var y = date.getFullYear();
-		var m = date.getMonth()+1;
-		var d = date.getDate();
-		if(m<=9){
-			m='0'+m;
-		}
-		if(d<=9){
-			d='0'+d;
-		}
-		$('#tbsj').datebox('setValue', y+"-"+m+"-"+d);
+		});
+		var data=parent.obj;
+		$("#qxrs").val(data.qxrs);
+		$("#trqxjf").val(data.trqxjf);
+		$("#lq").val(data.lq);
+		$("#sn").val(data.sn);
+		$("#ss").val(data.ss);
+		$("#bzd").val(data.bzd);
+		$("#gyy").val(data.gyy);
+		$("#lqlbl").val(data.lqlbl);
+		$("#wjj").val(data.wjj);
+		$("#zzj").val(data.zzj);
+		$("#zxqc").val(data.zxqc);
+		$("#cstb").val(data.cstb);
+		$("#sbtbxj").val(data.sbtbxj);
+		$("#tjr").val(data.tjr);
+		$("#shr").val(data.shry);
+		$("#tbsj").datebox("setValue",data.tbsj);
+		$("#gydw").combobox("setValue",data.gydw);
+		$("#tbdw").combobox("setValue",data.tbdw);
 	});
+
+	function updatetrqk(){
+		var data="trqk.gydw="+$("#gydw").combobox("getValue")+"&trqk.gydwmc="+$("#gydw").combobox("getText")
+		+"&trqk.qxrs="+$("#qxrs").val()+"&trqk.trqxjf="+$("#trqxjf").val()
+		+"&trqk.lq="+$("#lq").val()+"&trqk.sn="+$("#sn").val()+"&trqk.ss="+$("#ss").val()
+		+"&trqk.bzd="+$("#bzd").val()+"&trqk.gyy="+$("#gyy").val()+"&trqk.lqlbl="+$("#lqlbl").val()
+		+"&trqk.wjj="+$("#wjj").val()+"&trqk.zzj="+$("#zzj").val()+"&trqk.zxqc="+$("#zxqc").val()
+		+"&trqk.cstb="+$("#cstb").val()+"&trqk.sbtbxj="+$("#sbtbxj").val()
+		+"&trqk.tbdw="+$("#tbdw").combobox("getValue")+"&trqk.tbdwmc="+$("#tbdw").combobox("getText")
+		+"&trqk.tjr="+$("#tjr").val()+"&trqk.shry="+$("#shr").val()+"&trqk.tbsj="+$("#tbsj").datebox("getValue")+"&trqk.id="+parent.obj.id;
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/wjxt/updateTrqk.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(Boolean(msg)){
+					alert('保存成功！');
+					parent.$("#trqk_table").datagrid('reload');
+					closes('trqk_bj');
+				}else{
+					alert('保存失败！');
+				}
+			}
+		});	
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -140,8 +174,8 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
-				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="addtrqk()">保存</a>
-				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel" onclick="closes('trqk_add')">取消</a></td>
+				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="updatetrqk()">保存</a>
+				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel" onclick="closes('trqk_bj')">取消</a></td>
 			</tr>
 			</table>
 </body>

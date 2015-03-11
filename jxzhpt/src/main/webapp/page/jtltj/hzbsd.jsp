@@ -14,53 +14,60 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="./js/jtl.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
+var obj;
 function openJsUpdate(_id){
-	$("#tt").tabs("add",{
-		 title:"公路交通情况调查汇总表",
-		 href :"hzb_add.jsp",
+	obj=$("#tt").tabs("add",{
+		id:_id,
+		 title:"交通情况汇总表(省道)",
+		 href :"hzbsd_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',
 		 closable:true,
 		 selected:true
 	});
 }
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
+function Deletemxb(_id){
+	var data="jtlhzgd.id="+_id;
+	if(!confirm("确认删除吗？")){
+		return;
+	}
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/wjxt/deletejtlsd.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert('删除成功！');
+				$("#jsgl_table").datagrid('reload');
+			}else{
+				alert('删除失败！');
+			}
 		}
-	});
+	});	
 }
-
 $(function(){
+	var year=new Date().getFullYear();
+	for(var i=year;i>=2000;i--){
+		$("#unit").append("<option>"+i+"年</option>");
+	}
+	showMxbAll();
+});
+function showMxbAll(){
 	$("#jsgl_table").datagrid({
 		border : true,
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'../../wjxt/selectJtlsdList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			'jtlhzgd.tbnf' : $('#unit').val()
 		},
 		striped : true,
 		singleSelect : false,
@@ -68,38 +75,18 @@ $(function(){
 		{
 			field : 'bj',
 			title : '操作',
-			width : 80,
+			width : 200,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+
-				'<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
+				return '<input onclick=openJsUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=详细 />'+"&nbsp;&nbsp;&nbsp;"+
+				'<input onclick=Deletemxb("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
 			}
-		},{
-			field : 'rolename',
-			title : '年份',
-			width : 300,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '2013';
-			}
-		},{
-			field : 'description',
-			title : '填报单位',
-			width : 300,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '江西省公路管理局';
-			}
-		}
+		},
+		{field : 'tbnf',title : '年份',width : 200,align : 'center'},
+		{field : 'tbdw',title : '填报单位',width : 300,align : 'center'}
 		]]
 	});
-});
-$(function(){
-	var year=new Date().getFullYear();
-	for(var i=year;i>=2000;i--){
-		$("#unit").append("<option value="+'i'+">"+i+"年</option>");
-	}
-});
+}
 </script>
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
@@ -115,16 +102,16 @@ $(function(){
  					<p style="margin: 5px;">
  						<span>年份：</span>
  						<select id="unit" style="width:150px;">
- 							<option>全部</option>
+ 							<option value="">全部</option>
  						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导入数据</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showMxbAll()">查　询</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="inserttsdData('hzbsd')">导入数据</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
     </div>
-    <div id="tt" border="false" class="easyui-tabs"  style="height:500px;">
+    <div id="tt" border="false" class="easyui-tabs"  style="height:430px;">
 	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 	    	<table id="jsgl_table" style="height:100%;" ></table>
 	    </div>

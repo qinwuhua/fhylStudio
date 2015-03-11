@@ -1,6 +1,27 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
+function queryZjqf(nf){
+	//查询分到的资金
+	var xzqhdm="360000";
+	if(roleName()=="县级"){
+		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+	}
+	$.ajax({
+		type:'post',
+		async:false,
+		url:'../../../jhgl/queryZjqfByXzqh.do',
+		data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		dataType:'json',
+		success:function(data){
+			$.each(JSON.parse(data.zjqf),function(index,item){
+				if(item.id==$.cookie("unit").substring(5)){
+					$('#lblQfzj').html(item.wqgz);
+				}
+			});
+		}
+	});
+}
 function querySumWqgz(jh,lx){
 	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
@@ -22,7 +43,10 @@ function querySumWqgz(jh,lx){
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -30,6 +54,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
@@ -127,7 +152,6 @@ function wqxm_sb(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 		    columns:[[
-		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
@@ -140,9 +164,10 @@ function wqxm_sb(jh,lx){
 		        {field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result;
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2)){
-		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-		        		if(roleName()=="市级")
-		        			result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+//		        		result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+//		        		if(roleName()=="市级")
+//		        			result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+		        		result="未上报";
 		        	}else{
 		        		result='<a style="text-decoration:none;color:black;">已上报</a>';
 		        	}
@@ -201,7 +226,6 @@ function wqxm_sh(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 		    columns:[[
-		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
@@ -274,7 +298,6 @@ function wqxm_zjxd(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
 		    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
 		    columns:[[
-		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';

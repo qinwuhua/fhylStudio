@@ -161,4 +161,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		param.put("lx", lx);
 		return queryList("queryWqgzByStatus",param);
 	}
+
+	@Override
+	public boolean updateStatusBatch(List<Plan_wqgz> splist) {
+		return updateBatch("editWqgzStatus", splist)==splist.size();
+	}
 }

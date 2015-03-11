@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
+import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -139,6 +141,22 @@ public class Plan_abgcController extends BaseActionSupport{
 		jsonMap.put("rows",abgcServer.queryAbgcList(page, rows, jh, lx));
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void editAbgcStatusBatch(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
+			for (Plan_abgc item : splist) {
+				item.setJh_sbthcd((item.getJh_sbthcd()+2));
+				item.setSpzt("1");
+				item.setSpsj(new Date());
+				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
+			}
+			result.put("result", new Boolean(abgcServer.updateStatusBatch(splist)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

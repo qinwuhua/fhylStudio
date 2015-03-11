@@ -20,10 +20,32 @@ function querySumZhfz(jh,lx){
 		}
 	});
 }
+function queryZjqf(nf){
+	//查询切分资金
+	var xzqhdm="360000";
+	if(roleName()=="县级"){
+		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+	}
+	$.ajax({
+		type:'post',async:false,dataType:'json',
+		url:'../../../jhgl/queryZjqfByXzqh.do',
+		data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		success:function(data){
+			$.each(JSON.parse(data.zjqf),function(index,item){
+				if(item.id==$.cookie("unit").substring(5)){
+					$('#lblQfzj').html(item.zhfz);
+				}
+			});
+		}
+	});
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];
+	var first;
 	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
 	$('#'+id).combobox({    
@@ -31,6 +53,7 @@ function sbnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
+	$('#'+id).combobox("setValue",first);
 }
 function zhfzxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
@@ -133,7 +156,6 @@ function zhfzxm_sb(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:325,width:1000,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -147,9 +169,10 @@ function zhfzxm_sb(jh,lx){
 	        {field:'c4',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<4)){
-					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					if(roleName()=="市级")
-						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+//					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
+//					if(roleName()=="市级")
+//						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
+	        		result="未上报";
 				}else{
 					result='<a style="text-decoration:none;color:black;">已上报</a>';
 				}
@@ -213,7 +236,6 @@ function zhfzxm_sh(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:325,width:1000,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
@@ -300,7 +322,6 @@ function zhfzxm_zjxd(jh,lx){
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:325,width:1000,queryParams:params,
 	    columns:[[
-	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
 	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';

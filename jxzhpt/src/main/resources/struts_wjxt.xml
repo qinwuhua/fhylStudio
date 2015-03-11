@@ -5,6 +5,8 @@
 <package name="wjxt" extends="struts-default" namespace="/wjxt">
 	<action name="insertTrqk" class="trqkController" method="insertTrqk"/>
 	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
+	<action name="deletetrqk" class="trqkController" method="deletetrqk"/>
+	<action name="updateTrqk" class="trqkController" method="updateTrqk"/>
 	<!--  -->
 	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
 	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
@@ -24,5 +26,22 @@
 	<action name="getJtlDataList1" class="jtlController" method="getJtlDataList1"/>
 	<action name="deletejtl" class="jtlController" method="deletejtl"/>
 	
+	<action name="insertJtlhzgdData" class="jtlController" method="insertJtlhzgdData"/>
+	<action name="selectJtlgdList" class="jtlController" method="selectJtlgdList"/>
+	<action name="getJtlgdDataList" class="jtlController" method="getJtlgdDataList"/>
+	<action name="getJtlgdDataList1" class="jtlController" method="getJtlgdDataList1"/>
+	<action name="deletejtlgd" class="jtlController" method="deletejtlgd"/>
+	
+	<action name="insertJtlhzsdData" class="jtlController" method="insertJtlhzsdData"/>
+	<action name="selectJtlsdList" class="jtlController" method="selectJtlsdList"/>
+	<action name="getJtlsdDataList" class="jtlController" method="getJtlsdDataList"/>
+	<action name="getJtlsdDataList1" class="jtlController" method="getJtlsdDataList1"/>
+	<action name="deletejtlsd" class="jtlController" method="deletejtlsd"/>
+	
+	<!--  -->
+	<action name="insertzhqk" class="zhqkController" method="insertzhqk"/>
+	<action name="selectZhqkList" class="zhqkController" method="selectZhqkList"/>
+	<action name="deletezhqk" class="zhqkController" method="deletezhqk"/>
+	<action name="updatezhqk" class="zhqkController" method="updatezhqk"/>
  </package>
 </struts>

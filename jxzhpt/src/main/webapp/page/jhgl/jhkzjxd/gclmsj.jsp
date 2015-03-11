@@ -127,8 +127,8 @@
         	</tr>
         	<tr>
         		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">2</span>&nbsp;】个路面升级项目，
-        			下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">6</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个路面升级项目，
+        			下发资金共【&nbsp;<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>
