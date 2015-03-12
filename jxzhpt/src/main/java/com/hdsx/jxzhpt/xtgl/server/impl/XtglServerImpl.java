@@ -500,4 +500,24 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 			return queryList("selSqlStrByLxid_xian", param);
 		}
 	}
+
+	@Override
+	public boolean addYhdzxcs(Yhdzxcs yhdzxcs) {
+		return insert("addYhdzxcs", yhdzxcs)>0;
+	}
+
+	@Override
+	public Yhdzxcs queryYhdzxcsById(String id) {
+		return queryOne("queryYhdzxcsById", id);
+	}
+
+	@Override
+	public boolean updateYhdzxcs(Yhdzxcs yhdzxcs) {
+		return update("updateYhdzxcs", yhdzxcs)>0;
+	}
+
+	@Override
+	public List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs) {
+		return queryList("queryYhdzxcsByLx",yhdzxcs);
+	}
 }

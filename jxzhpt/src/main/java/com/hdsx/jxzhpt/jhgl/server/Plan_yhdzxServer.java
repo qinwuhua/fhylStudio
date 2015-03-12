@@ -12,6 +12,7 @@ public interface Plan_yhdzxServer {
 	 * 根据计划ID删除路线信息
 	 */
 	boolean dropYhdzxLxByJhid(String id);
+	
 	/**
 	 * 总计信息查询
 	 * @param lx 路线参数信息
@@ -74,4 +75,5 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	Plan_yhdzx queryYhdzxById(String id);
+	boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx);
 }

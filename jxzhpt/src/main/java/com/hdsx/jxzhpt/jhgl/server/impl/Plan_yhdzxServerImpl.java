@@ -96,4 +96,11 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 		}
 		return deleteBatch("dropYhdzxLxByJhid", list)==list.size();
 	}
+
+	@Override
+	public boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("lx", lx);
+		return update("editYhdzxLxByid", params)>0;
+	}
 }

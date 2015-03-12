@@ -146,4 +146,12 @@ public interface XtglServer {
 	List<TreeNode> loadBmbmList(Unit unit);
 
 	List<Param> selSqlStrByLxid(Param param);
+	
+	boolean addYhdzxcs(Yhdzxcs yhdzxcs);
+
+	Yhdzxcs queryYhdzxcsById(String id);
+	
+	boolean updateYhdzxcs(Yhdzxcs yhdzxcs);
+
+	List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs);
 }

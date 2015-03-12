@@ -3,28 +3,63 @@ package com.hdsx.jxzhpt.jhgl.bean;
 import java.util.Date;
 
 public class Plan_lx_yhdzx {
-	private String id;//路线ID
-	private String lxmc;//路线名称
-	private String lxbm;//路线编码
-	private String qdzh;//起点桩号
-	private String zdzh;//止点桩号
-	private String qzlc;//起止里程
-	private String hdlc;//核对里程
-	private String ylmlx;//原路面类型
-	private String ylmkd;//原路面宽度
-	private String ylmjg;//原路面结构
-	private String ylmhd;//原路面厚度
-	private String yjsdj;//原技术等级
-	private String xzqhdm;//行政区划代码
-	private String xzqhmc;//行政区划名称
-	private String gydwmc;//管养单位名称
-	private String gydwdm;//管养单位代码
-	private String tbbm;//填报部门
-	private String tbbmdm;//填报部门代码
-	private Date tbsj;//填报时间
-	private String jhid;//计划ID
-	private String tsdq;//特殊地区
+	private String lxid;//璺嚎ID
+	private String lxmc;//璺嚎鍚嶇О
+	private String lxbm;//璺嚎缂栫爜
+	private String qdzh;//璧风偣妗╁彿
+	private String zdzh;//姝㈢偣妗╁彿
+	private String qzlc;//璧锋閲岀▼
+	private String hdlc;//鏍稿閲岀▼
+	private String ylmlx;//鍘熻矾闈㈢被鍨�
+	private String ylmkd;//鍘熻矾闈㈠搴�
+	private String ylmjg;//鍘熻矾闈㈢粨鏋�
+	private String ylmhd;//鍘熻矾闈㈠帤搴�
+	private String yjsdj;//鍘熸妧鏈瓑绾�
+	private String xzqhdm;//琛屾斂鍖哄垝浠ｇ爜
+	private String xzqhmc;//琛屾斂鍖哄垝鍚嶇О
+	private String gydwmc;//绠″吇鍗曚綅鍚嶇О
+	private String gydwdm;//绠″吇鍗曚綅浠ｇ爜
+	private String tbbm;//濉姤閮ㄩ棬
+	private String tbbmdm;//濉姤閮ㄩ棬浠ｇ爜
+	private Date tbsj;//濉姤鏃堕棿
+	private String jhid;//璁″垝ID
+	private String tsdq;//鐗规畩鍦板尯
 	private String bhnr;
+	private double dzxkd;//澶т腑淇搴�
+	private String lmjg;//璺潰缁撴瀯鏁版嵁淇℃伅锛屽瓨鍌ㄧ殑涓簀son瀛楃涓�
+	private String aym;//鎸夊欢绫虫暟鎹俊鎭�
+	private String asl;//鎸夋暟閲忔暟鎹俊鎭�
+	private String glf;//绠＄悊璐规暟鎹俊鎭�
+	public String getLmjg() {
+		return lmjg;
+	}
+	public void setLmjg(String lmjg) {
+		this.lmjg = lmjg;
+	}
+	public String getAym() {
+		return aym;
+	}
+	public void setAym(String aym) {
+		this.aym = aym;
+	}
+	public String getAsl() {
+		return asl;
+	}
+	public void setAsl(String asl) {
+		this.asl = asl;
+	}
+	public String getGlf() {
+		return glf;
+	}
+	public void setGlf(String glf) {
+		this.glf = glf;
+	}
+	public double getDzxkd() {
+		return dzxkd;
+	}
+	public void setDzxkd(double dzxkd) {
+		this.dzxkd = dzxkd;
+	}
 	public String getBhnr() {
 		return bhnr;
 	}
@@ -37,11 +72,11 @@ public class Plan_lx_yhdzx {
 	public void setTsdq(String tsdq) {
 		this.tsdq = tsdq;
 	}
-	public String getId() {
-		return id;
+	public String getLxid() {
+		return lxid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setLxid(String lxid) {
+		this.lxid = lxid;
 	}
 	public String getLxmc() {
 		return lxmc;
