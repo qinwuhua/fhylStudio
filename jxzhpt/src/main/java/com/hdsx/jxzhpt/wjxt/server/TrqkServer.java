@@ -79,4 +79,8 @@ public interface TrqkServer {
 
 	Boolean deletejtlsd(Jtlhzgd jtlhzgd);
 
+	boolean updateTrqk(Trqk trqk);
+
+	boolean deletetrqk(Trqk trqk);
+
 }

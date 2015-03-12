@@ -29,7 +29,9 @@ import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
+import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
+import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -41,73 +43,78 @@ import com.hdsx.webutil.struts.BaseActionSupport;
  */
 @Scope("prototype")
 @Controller
-public class TrqkController extends BaseActionSupport{
+public class ZhqkController extends BaseActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	private int page = 1;
 	private int rows = 10;
-	@Resource(name = "trqkServerImpl")
-	private TrqkServer trqkServer;
+	@Resource(name = "zhqkServerImpl")
+	private ZhqkServer zhqkServer;
 	private String gydw;
 	private String tiaojian;
-	private Trqk trqk=new Trqk();
-
-	public String getGydw() {
-		return gydw;
-	}
-
-	public void setGydw(String gydw) {
-		this.gydw = gydw;
-	}
-
-	public String getTiaojian() {
-		return tiaojian;
-	}
-
-	public void setTiaojian(String tiaojian) {
-		this.tiaojian = tiaojian;
-	}
-
+	private String kssj;
+	private String jssj;
+	private Zhqk zhqk=new Zhqk();
 	public int getPage() {
 		return page;
 	}
-
 	public void setPage(int page) {
 		this.page = page;
 	}
-
 	public int getRows() {
 		return rows;
 	}
-
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-
-	public Trqk getTrqk() {
-		return trqk;
+	public String getGydw() {
+		return gydw;
 	}
-
-	public void setTrqk(Trqk trqk) {
-		this.trqk = trqk;
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getTiaojian() {
+		return tiaojian;
+	}
+	public void setTiaojian(String tiaojian) {
+		this.tiaojian = tiaojian;
+	}
+	public String getKssj() {
+		return kssj;
+	}
+	public void setKssj(String kssj) {
+		this.kssj = kssj;
+	}
+	public String getJssj() {
+		return jssj;
+	}
+	public void setJssj(String jssj) {
+		this.jssj = jssj;
+	}
+	public Zhqk getZhqk() {
+		return zhqk;
+	}
+	public void setZhqk(Zhqk zhqk) {
+		this.zhqk = zhqk;
 	}
 	
-	public void insertTrqk(){
-		Boolean bl=trqkServer.insertTrqk(trqk);
+	public void insertzhqk(){
+		boolean bl=zhqkServer.insertzhqk(zhqk);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void selectTrqkList(){
-		trqk.setPage(page);
-		trqk.setRows(rows);
-		trqk.setGydw(gydw);
-		trqk.setTiaojian(tiaojian);
-		int count=trqkServer.selectTrqkListCount(trqk);
-		List<Trqk> list=trqkServer.selectTrqkList(trqk);
-		EasyUIPage<Trqk> e=new EasyUIPage<Trqk>();
+	public void selectZhqkList(){
+		zhqk.setPage(page);
+		zhqk.setRows(rows);
+		zhqk.setGydw(gydw);
+		zhqk.setKssj(kssj);
+		zhqk.setJssj(jssj);
+		int count=zhqkServer.selectZhqkListCount(zhqk);
+		List<Zhqk> list=zhqkServer.selectZhqkList(zhqk);
+		EasyUIPage<Zhqk> e=new EasyUIPage<Zhqk>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -116,16 +123,16 @@ public class TrqkController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-	public void updateTrqk(){
-		boolean bl=trqkServer.updateTrqk(trqk);
+	public void deletezhqk(){
+		boolean bl=zhqkServer.deletezhqk(zhqk);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void deletetrqk(){
-		boolean bl=trqkServer.deletetrqk(trqk);
+	public void updatezhqk(){
+		boolean bl=zhqkServer.updatezhqk(zhqk);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{

@@ -15,6 +15,23 @@
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="./js/trqk.js"></script>
+<style type="text/css">
+<!--
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+ cursor: pointer;
+}
+a:active {
+ text-decoration: none;
+}
+-->
+</style>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
@@ -41,7 +58,7 @@ $(function(){
 		</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+						<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -54,7 +71,7 @@ $(function(){
         				<select name="ddlYear" id="ddlYear" style="width: 60px;">
 						</select>
 						<span>上报月份：</span>
-						<select name="ddlMonth" id="ddlMonth">
+						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
 							<option id="yf1" value="01">01</option>
 							<option id="yf2" value="02">02</option>
 							<option id="yf3" value="03">03</option>

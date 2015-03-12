@@ -14,105 +14,93 @@
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/zdxx.js"></script>
+<style type="text/css">
+<!--
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+ cursor: pointer;
+}
+a:active {
+ text-decoration: none;
+}
+-->
+</style>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
 
 $(function(){
-	$("#jsgl_table").datagrid({
-		border : true,
-		fit : true,
-		//fitColumns : true,
-		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
-		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
-		},
-		striped : true,
-		singleSelect : false,
-		columns:[[
-			{title:'操作',width:100,align:'center'},
-			{title:'序号',width:100,align:'center'},
-			{title:'路线编号',width:100,align:'center'},
-			{title:'路段名称',width:100,align:'center'},
-			{title:'管养单位',width:100,align:'center'},
-			{title:'阻断时间',width:100,align:'center'},
-			{title:'起止桩号 	',width:100,align:'center'},
-			{title:'灾害类别',width:100,align:'center'},
-			{title:'抢通措施',width:100,align:'center'},
-			{title:'是否恢复',width:100,align:'center'},
-			{title:'预计恢复时间',width:100,align:'center'},
-			{title:'填报时间 	',width:100,align:'center'},
-			{title:'填报单位',width:100,align:'center'},
-			{title:'统计人',width:100,align:'center'},
-			{title:'审核人',width:100,align:'center'}
-		]]
-	});
+	loadUnit("gydw",'36');
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+	showAll();
 });
 </script>
-<div style="width:100%;">
-    <div  style="height:104px;" border="false">
+<div style="text-align: left; font-size: 12px; margin: 0px;">
+		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+			<tr>
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;灾毁情况统计>&nbsp;公路交通阻断信息表</div>
 		</div>
-		<div  style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
- 				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
- 					
- 				</legend>
- 				<div>
- 					<p style="margin: 5px;">
+		</tr>
+        	<tr>
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+						<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+        					<font style="color: #0866A0; font-weight: bold"></font>
+        				</legend>
+        				<div>
+        				<p style="margin: 1% 0% 1% 2%;">
  						<span>管养单位：</span>
- 						<select id="unit" style="width:150px;">
+ 						<select id="gydw" style="width:150px;">
  						</select>
- 						<span>上报年月：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>2014-12</option>
-	 						<option>2014-11</option>
-	 						<option>2014-10</option>
-	 						<option>2014-9</option>
-	 						<option>2014-8</option>
- 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">添加</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-excel">导出Excel</a>
+ 						<span>上报年份：</span>
+        				<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
+						<span>上报月份：</span>
+						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="01">01</option>
+							<option id="yf2" value="02">02</option>
+							<option id="yf3" value="03">03</option>
+							<option id="yf4" value="04">04</option>
+							<option id="yf5" value="05">05</option>
+							<option id="yf6" value="06">06</option>
+							<option id="yf7" value="07">07</option>
+							<option id="yf8" value="08">08</option>
+							<option id="yf9" value="09">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-search" onclick="showAll()">查询</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-add" onclick="zdxxadd()">添加</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="false" >导出Excel</a>
  					</p>
- 				</div>
  			</fieldset>
-        </div>
-    </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
-    </div>
-</div>
+      </td>
+   </tr>
+	       <tr>
+	            <td width="100%" style="padding-top: 1%;padding-left:10px;">
+	                 <div>
+    					<table id="zdxx_table" ></table>
+   					</div>
+				</td>
+			</tr>	
+		</table>
+	</div>
 </body>
 </html>

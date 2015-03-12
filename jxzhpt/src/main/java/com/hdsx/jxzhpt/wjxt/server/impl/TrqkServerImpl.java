@@ -251,4 +251,22 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 			return false;
 		}
 	}
+
+	@Override
+	public boolean updateTrqk(Trqk trqk) {
+		if(update("updateTrqk", trqk)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deletetrqk(Trqk trqk) {
+		if(delete("deletetrqk", trqk)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

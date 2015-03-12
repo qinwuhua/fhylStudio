@@ -55,6 +55,7 @@ public class XtglController extends BaseActionSupport{
 	private Yhdzxcs yhdzxcs;
 	//用户实体
 	private Master master;
+	private String anyXml;
 	private String yhm;
 	private String yhzt;
 	private String yhdw;
@@ -626,10 +627,43 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
+	public void selAnyChartXml(){
+		List<Param> l=xtglServer.selSqlStrByLxid(param);
+		List<Param> l_total=new ArrayList<Param>();
+		Param temp=l.get(0);
+		int flag_temp=Integer.parseInt(l.get(0).getId());
+		for(int i=1;i<l.size();i++){
+			if(temp.getParent().equals(l.get(i).getParent())&&i!=l.size()-1){
+				flag_temp+=Integer.parseInt(l.get(i).getId());
+			}else if(!temp.getParent().equals(l.get(i).getParent())&&i!=l.size()-1){
+				temp.setId(flag_temp+"");
+				l_total.add(temp);
+				temp=l.get(i);
+				flag_temp=Integer.parseInt(l.get(i).getId());
+			}else{
+				temp.setId(flag_temp+"");
+				l_total.add(temp);
+			}
+		}
+		HashMap<String, List<Param>> hm1=new HashMap<String, List<Param>>();
+		HashMap<String, String> hm2=new HashMap<String, String>();
+		HashMap<String, HashMap> hm=new HashMap<String, HashMap>();
+		String sanyXml= xtglServer.createGsAnyChartXml(l_total);
+		hm1.put("list", l);
+		hm1.put("list2", l_total);
+		hm2.put("xml", sanyXml);
+		hm.put("hm1", hm1);
+		hm.put("hm2", hm2);
+		try {
+			JsonUtils.write(hm, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public void createAnyChartXml(){
-		String anyChartXml = xtglServer.createGsAnyChartXml(param);
-		//System.out.println("++++++"+anyChartXml);
-		ResponseUtils.write(getresponse(), anyChartXml);
+		System.out.println(anyXml);
+		ResponseUtils.write(getresponse(), anyXml);
 	}
 	
 	public void checkXzqhCfById(){
@@ -990,4 +1024,11 @@ public class XtglController extends BaseActionSupport{
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getAnyXml() {
+		return anyXml;
+	}
+	public void setAnyXml(String anyXml) {
+		this.anyXml = anyXml;
+	}
+	
 }

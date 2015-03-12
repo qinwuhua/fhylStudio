@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<link rel='stylesheet' href='http://js.arcgis.com/3.12/esri/css/esri.css'>
+<link rel='stylesheet' href='http://js.arcgis.com/3.12/esri/css/esri.css' />
 <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
@@ -20,7 +20,7 @@
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="js/Menu.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
-<script rel='stylesheet' src='http://js.arcgis.com/3.12/init.js'></script>
+<script type="text/javascript" src='http://js.arcgis.com/3.12/init.js'></script>
 <script type="text/javascript">
 var map;
 $(function(){
@@ -28,56 +28,22 @@ $(function(){
 	$('#tab01').css('height', LeftHeight-39);
 	loadDataunit();
 	$(".datagrid-header").css("display","none");
-	createAnyChartXml();
 	dojo.addOnLoad(init);
 	xmlxTj();
 });
-
-function createAnyChartXml(){
-	//var right=window.document.getElementById("anychart_div"); //获取右侧frame对象
-	//var height=$(window).height();
-    barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
-    barChart_1.width =350;
-    barChart_1.height =300;
-    barChart_1.padding =0;
-    barChart_1.wMode="transparent";
-    barChart_1.write("anychart_div");
-    $.ajax({
-		type:"post",
-		url:"../../xtgl/createAnyChartXml.do",
-		dataType:'text',
-		success:function(msg){
-			//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
-			barChart_1.setData(msg);
-		}
-	});
-}
-function xmlxTj(){
-	$.ajax({
-		type:"post",
-		url:"../../xtgl/xmlxCountTj.do",
-		dataType:'json',
-		data:'param.id='+$.cookie("qx4"),
-		success:function(msg){
-			if(msg!=null){
-				var htmlStr="";
-				for(var i=0;i<msg.length;i++){
-					if(msg[i].desr!=""){
-						htmlStr+="<tr><td height='25' width='120px' bgcolor='#FfFfFf' align='center' rowspan="+msg[i].desr+"><span>"+msg[i].parent+"（<span style='font-weight:700; color:#b80f0f;'>5</span>）</span></td>"+
-					    "<td width='250px' bgcolor='#FFFFFF' style='font-size: 12px' align='center'>"+msg[i].name+"</td>"+
-					    "<td bgcolor='#FFFFFF' align='center'><a href='#' onclick=turnTo('"+msg[i].parent+"','"+msg[i].name+"') style='font-size: 12px;font-weight:700; color:#b80f0f;' >"+msg[i].bz+"</a></td></tr>";
-					}else{
-						htmlStr+="<tr><td width='250px' bgcolor='#FFFFFF' style='font-size: 12px' align='center'>"+msg[i].name+"</td>"+
-					    "<td bgcolor='#FFFFFF' align='center'><a href='#' onclick=turnTo('"+msg[i].parent+"','"+msg[i].name+"') style='font-size: 12px;font-weight:700; color:#b80f0f;'>"+msg[i].bz+"</a></td></tr>";
-					}
-				}
-				$("#xmlxTj_table").html(htmlStr);
-			}
-		}
-	});
-}
-function turnTo(_parent,_name){
-	//alert(_parent);
+function turnTo(_id,_parent,_name){
+	//alert(_id);
+	var url="";
+	switch(_id.substr(0,8)){
+		case "01010201": url="page/dzdt/Menu.jsp";break;
+		case "01010203": url="page/lwxm/Menu.jsp";break;
+		case "01010301": url="page/jhgl/Menu.jsp";break;
+		case "01010402": url="page/gcgl/Menu.jsp";break;
+	}
+	parent.$("#c1f").attr("src","page/dzdt/Menu.jsp");
+	parent.$("#Menu_1").removeClass('now');
+	parent.$("#Menu_2").addClass('now');
+	
 }
 </script>
 </head>

@@ -240,20 +240,8 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	}
 
 	@Override
-	public String createGsAnyChartXml(Param param) {
-		
-		Map<String,Object> parameter=new HashMap<String,Object>();
-		List<HashMap<String, String>> l=new ArrayList<HashMap<String,String>>();
-		//l=queryList("createGsAnyChartXml", param);
-		
-		String[] arr={"安保","水毁","工程改造"};
-		int[] arr2={10,23,45};
-		for(int i=0;i<3;i++){
-			HashMap<String, String> hm=new HashMap<String, String>();
-			hm.put("name", arr[i]);
-			hm.put("size", arr2[i]+"");
-			l.add(hm);
-		}
+	public String createGsAnyChartXml(List<Param> l) {
+		Map<String,Object> parameter=new HashMap<String,Object>();		
 		parameter.put("chart_title", "项目数量统计");//title
 		String yName="里程";//y单位
 		int precision=0;//小数的位数
@@ -496,5 +484,20 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<TreeNode> loadBmbmList(Unit unit) {
 		return queryList("loadBmbmList",unit);
+	}
+
+	@Override
+	public List<Param> selSqlStrByLxid(Param param) {System.out.println(param.getSourceid());
+		if(param.getSourceid().length()==7){//shengji
+			System.out.println("sheng");
+			if("_____36".equals(param.getSourceid())) param.setSourceid("");
+			return queryList("selSqlStrByLxid_sheng", param);
+		}else if(param.getSourceid().length()==9){//shi
+			System.out.println("shi");
+			return queryList("selSqlStrByLxid_shi", param);
+		}else{
+			System.out.println("xian");
+			return queryList("selSqlStrByLxid_xian", param);
+		}
 	}
 }

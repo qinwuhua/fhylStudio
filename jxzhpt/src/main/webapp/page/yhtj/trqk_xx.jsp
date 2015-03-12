@@ -30,22 +30,25 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 	$(function(){
-		loadUnit("gydw",'36');
-		loadUnit("tbdw",$.cookie("unit"));
-		$("#tbsj").datebox({    
-		    
-		});  
-		var date = new Date();
-		var y = date.getFullYear();
-		var m = date.getMonth()+1;
-		var d = date.getDate();
-		if(m<=9){
-			m='0'+m;
-		}
-		if(d<=9){
-			d='0'+d;
-		}
-		$('#tbsj').datebox('setValue', y+"-"+m+"-"+d);
+		var data=parent.obj;
+		$("#gydw").text(data.gydwmc);
+		$("#qxrs").text(data.qxrs);
+		$("#trqxjf").text(data.trqxjf);
+		$("#lq").text(data.lq);
+		$("#sn").text(data.sn);
+		$("#ss").text(data.ss);
+		$("#bzd").text(data.bzd);
+		$("#gyy").text(data.gyy);
+		$("#lqlbl").text(data.lqlbl);
+		$("#wjj").text(data.wjj);
+		$("#zzj").text(data.zzj);
+		$("#zxqc").text(data.zxqc);
+		$("#cstb").text(data.cstb);
+		$("#sbtbxj").text(data.sbtbxj);
+		$("#tbdw").text(data.tbdwmc);
+		$("#tjr").text(data.tjr);
+		$("#shr").text(data.shry);
+		$("#tbsj").text(data.tbsj);
 	});
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
@@ -58,13 +61,13 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="gydw" style="width: 156px" /></td>
+					<span id="gydw" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">抢修人数(工日)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="qxrs" style="width: 156px" /></td>
+					<span id="qxrs" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投入抢修经费(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="trqxjf" /></td>
+					<span id="trqxjf" /></td>
 			</tr>
 			<tr>
 				<td colspan="6" style="background-color: #F1F8FF;color: #007DB3; height: 20px;" align="left">
@@ -74,24 +77,24 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沥青(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="lq" style="width: 156px" /></td>
+					<span id="lq" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">水泥(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="sn" style="width: 156px" /></td>
+					<span id="sn" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沙石(立方)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="ss" /></td>
+					<span id="ss" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编织袋(个)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="bzd" style="width: 156px" /></td>
+					<span id="bzd" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工业盐(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="gyy" style="width: 156px" /></td>
+					<span id="gyy" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沥青冷补料：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="lqlbl" /></td>
+					<span id="lqlbl" /></td>
 			</tr>
 			<tr>
 				<td colspan="6" style="background-color: #F1F8FF;color: #007DB3; height: 20px;" align="left">
@@ -101,21 +104,21 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">挖掘机 ：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="wjj" style="width: 156px" /></td>
+					<span id="wjj" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">装载机：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="zzj" style="width: 156px" /></td>
+					<span id="zzj" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">自卸汽车：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="zxqc" /></td>
+					<span id="zxqc" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">抽水台班：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="cstb" style="width: 156px" /></td>
+					<span id="cstb" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设备台班小计：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="sbtbxj" style="width: 156px" /></td>
+					<span id="sbtbxj" style="width: 156px" /></td>
 			</tr>			
 			<tr>
 				<td colspan="6" style="background-color: #F1F8FF;color: #007DB3; height: 20px;" align="left">
@@ -125,23 +128,22 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">填报单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="tbdw" style="width: 156px" /></td>
+					<span id="tbdw" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">统计人：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="tjr" style="width: 156px" /></td>
+					<span id="tjr" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审核人：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="shr" /></td>
+					<span id="shr" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">填报时间：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="tbsj" style="width: 156px" /></td>
+					<span id="tbsj" style="width: 156px" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
-				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save" onclick="addtrqk()">保存</a>
-				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel" onclick="closes('trqk_add')">取消</a></td>
+				<a href="javascript:void(0)" id="qx_window" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel" onclick="closes('trqk_xx')">返回</a></td>
 			</tr>
 			</table>
 </body>
