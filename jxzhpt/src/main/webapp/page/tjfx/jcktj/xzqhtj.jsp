@@ -12,10 +12,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			jckxzqhtj();
+			queryBar();
 		});
 	</script>
 </head>
@@ -43,7 +47,18 @@
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
 	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xzqhtj.jpg" width="900" height="300" align="">
+	        				<div align="left" style="text-align: left;margin-left: 10px;margin-top: 10px;">
+	        					<select id="selxmlx" onchange="queryBar()" style="text-align: left;">
+		        					<option value="abgc" selected="selected">安保工程</option>
+		        					<option value="wqgz">危桥改造</option>
+		        					<option value="zhfz">灾害防治</option>
+	        					</select>
+	        				</div>
+	        				<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
+								<div>
+									<param name="wmode" value="transparent" />
+								</div>
+							</div>
 	        			</div>
 	        		</div>
         		</td>

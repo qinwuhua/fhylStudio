@@ -1,0 +1,9 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+	<package name="tjfx" extends="struts-default" namespace="/tjfx">
+		<action name="queryJcktj" class="tjfxController" method="queryJcktj"/>
+		<action name="queryJcktj1" class="tjfxController" method="queryJcktj1"/>
+	</package>
+</struts>

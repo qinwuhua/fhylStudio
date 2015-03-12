@@ -87,4 +87,6 @@ public interface Plan_zhfzServer {
 	boolean editZhfzSckBysckid(Plan_zhfz jh);
 	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
 	boolean updateStatusBatch(List<Plan_zhfz> splist);
+	List<TreeNode> queryJcktj();
+	List<TreeNode> queryJcktj1();
 }

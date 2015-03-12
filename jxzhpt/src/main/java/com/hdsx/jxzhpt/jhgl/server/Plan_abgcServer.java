@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -100,4 +101,8 @@ public interface Plan_abgcServer {
 	List<Plan_abgc> queryAbgcByStatus(Plan_abgc jh, Jckabgc lx);
 
 	boolean updateStatusBatch(List<Plan_abgc> splist);
+
+	List<TreeNode> queryJcktj();
+
+	List<TreeNode> queryJcktj1();
 }

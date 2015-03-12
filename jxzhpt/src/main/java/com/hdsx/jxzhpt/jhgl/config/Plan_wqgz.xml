@@ -297,4 +297,27 @@
  	<select id="queryWqgzFjById" parameterType="string" resultType="plan_wqgz">
 		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
 	</select>
+	<select id="queryJcktj" resultType="treenode">
+		select t1.*,xz.name from (
+			select t.parent as id,<![CDATA[count(t.parent)-1]]> as text,NVL(sum(t.qlqc),0) as parent
+			from (
+			      select distinct xt.parent,jck.xzqhdm,jck.qlqc 
+			      from xmk_wqgz jck right join xtgl_xzqh xt on (jck.xzqhdm=xt.id) 
+			      order by xt.parent
+			) t where t.parent is not null group by t.parent order by t.parent
+		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
+	</select>
+	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
+		select t.parent as id,xz.name as name,sum(t.sl) as text,NVL(sum(t.je),0) as parent from (
+			select distinct xt.parent,jh.sbnf,jhsybzje,
+      		(select jhsybzje from plan_wqgz ab1 left join sck_wqgz sc1 on 
+      		(ab1.sckid=sc1.sckid) left join xmk_wqgz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as je,
+      		(select count(jhsybzje) from plan_wqgz ab1 left join sck_wqgz sc1 on 
+			(ab1.sckid=sc1.sckid) left join xmk_wqgz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as sl
+			from plan_wqgz jh left join sck_wqgz sc on 
+			(jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id) right join xtgl_xzqh xt on (lx.xzqhdm=xt.id)
+			where xt.parent is not null
+		) t join xtgl_xzqh xz on (t.parent=xz.id)
+		group by t.parent,xz.name order by t.parent
+	</select>
 </mapper>

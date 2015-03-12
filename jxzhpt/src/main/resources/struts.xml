@@ -28,4 +28,5 @@
 <include file="struts_jhgl.xml"></include>
 <include file="struts_gcbb.xml"></include>
 <include file="struts_wjxt.xml"></include>
+<include file="struts_tjfx.xml"></include>
 </struts>

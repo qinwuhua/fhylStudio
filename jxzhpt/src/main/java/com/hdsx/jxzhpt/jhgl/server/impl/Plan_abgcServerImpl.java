@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -199,5 +200,13 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public boolean updateStatusBatch(List<Plan_abgc> splist) {
 		return updateBatch("editStatus", splist)==splist.size();
+	}
+	@Override
+	public List<TreeNode> queryJcktj() {
+		return queryList("queryJcktj",null);
+	}
+	@Override
+	public List<TreeNode> queryJcktj1() {
+		return queryList("queryJcktj1",null);
 	}
 }

@@ -99,7 +99,6 @@ function turnTo(_parent,_name){
 					<param name="wmode" value="transparent" />
 				</div>
 			</div>
-			
 			</div>
 	    </div>
 	</div>

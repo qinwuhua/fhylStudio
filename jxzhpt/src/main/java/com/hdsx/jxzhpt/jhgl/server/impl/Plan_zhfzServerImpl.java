@@ -167,4 +167,14 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return updateBatch("editZhfzStatus", splist)==splist.size();
 	}
 
+	@Override
+	public List<TreeNode> queryJcktj() {
+		return queryList("queryJcktj",null);
+	}
+
+	@Override
+	public List<TreeNode> queryJcktj1() {
+		return queryList("queryJcktj1",null);
+	}
+
 }

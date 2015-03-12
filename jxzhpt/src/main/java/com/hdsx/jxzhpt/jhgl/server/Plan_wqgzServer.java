@@ -89,4 +89,6 @@ public interface Plan_wqgzServer {
 	boolean editWqgzSckxx(Plan_wqgz jh);
 	List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx);
 	boolean updateStatusBatch(List<Plan_wqgz> splist);
+	List<TreeNode> queryJcktj();
+	List<TreeNode> queryJcktj1();
 }

@@ -320,7 +320,6 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
 	// get set
 	public int getPage() {
 		return page;

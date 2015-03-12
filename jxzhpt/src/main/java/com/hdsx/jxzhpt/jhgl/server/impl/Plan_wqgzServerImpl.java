@@ -166,4 +166,14 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public boolean updateStatusBatch(List<Plan_wqgz> splist) {
 		return updateBatch("editWqgzStatus", splist)==splist.size();
 	}
+
+	@Override
+	public List<TreeNode> queryJcktj() {
+		return queryList("queryJcktj",null);
+	}
+
+	@Override
+	public List<TreeNode> queryJcktj1() {
+		return queryList("queryJcktj1",null);
+	}
 }
