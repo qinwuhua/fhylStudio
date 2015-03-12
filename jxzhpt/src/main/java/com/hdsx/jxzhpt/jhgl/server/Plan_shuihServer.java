@@ -119,4 +119,6 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	Plan_flwbzbz queryBzzj(Plan_flwbzbz flw);
+	
+	List<TreeNode> queryJhktj(String nf);
 }

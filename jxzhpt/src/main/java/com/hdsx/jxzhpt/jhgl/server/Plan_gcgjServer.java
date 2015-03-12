@@ -136,4 +136,6 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	int queryGPSBylxbm1(Plan_lx_gcgj lx);
+
+	List<TreeNode> queryJhktj(String nf);
 }

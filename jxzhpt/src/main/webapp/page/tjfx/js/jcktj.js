@@ -62,7 +62,71 @@ function queryBar(){
 		}
 	});
 }
-
+function jhkxzqhtj(){
+	$.ajax({
+		type:'post',
+		url:'../../../tjfx/queryJhktj.do?nf='+$('#startYear').val(),
+		async:false,
+		dataType:'json',
+		success:function(data){
+			var jsonData=new Array();
+			for(var i=0;i<data.gcsj.length;i++){
+				var t={'xzqh':null,'ztz':null,'sl':null,'lmsjztz':null,'lmsjsl':null,
+						'lmgjztz':null,'lmgjsl':null,'shztz':null,'shsl':null,
+						'yhdzxztz':null,'yhdzxsl':null,'wqgzztz':null,'wqgzsl':null,
+						'abgcztz':null,'abgcsl':null,'zhfzztz':null,'zhfzsl':null};
+				t.xzqh=data.gcsj[i].name;
+				t.ztz=parseFloat(data.gcsj[i].text)+parseFloat(data.gcgj[i].text)+
+						parseFloat(data.shuih[i].text)+parseFloat(data.yhdzx[i].text)+
+						parseFloat(data.abgc[i].text)+parseFloat(data.wqgz[i].text)+
+						parseFloat(data.zhfz[i].text);
+				t.sl=parseInt(data.gcsj[i].parent)+parseInt(data.gcgj[i].parent)+
+						parseInt(data.shuih[i].parent)+parseInt(data.yhdzx[i].parent)+
+						parseInt(data.abgc[i].parent)+parseInt(data.wqgz[i].parent)+
+						parseInt(data.zhfz[i].parent);
+				jsonData.push(t);
+			}
+			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+					pageNumber:1,pageSize:20,height:373,width:970,
+				    columns:[
+					    [
+					     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
+					     	{title:'合计',colspan:2},
+					     	{title:'路面升级',colspan:2},
+					     	{title:'路面改建',colspan:2},
+					     	{title:'水毁项目',colspan:2},
+					     	{title:'养护大中修',colspan:2},
+					     	{title:'危桥改造',colspan:2},
+					     	{title:'安保工程',colspan:2},
+					     	{title:'灾害防治',colspan:2}
+					    ],
+					    [
+					     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'sl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'lmsjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'lmsjsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'lmgjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'lmgjsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'shztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'shsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'yhdzxztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'yhdzxsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'wqgzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'wqgzsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'abgcztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'abgcsl',title:'数量',width:60,align:'center',rowspan:1},
+					     	{field:'zhfzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'zhfzsl',title:'数量',width:60,align:'center',rowspan:1},
+					    ]
+				    ],
+				    onSelect:function(){
+				    	window.location.href='../jhktj/xmlxtj.jsp';
+				    }
+				};
+			gridBind(grid);
+		}
+	});
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

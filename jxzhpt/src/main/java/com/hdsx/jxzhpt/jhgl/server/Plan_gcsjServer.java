@@ -3,6 +3,8 @@ package com.hdsx.jxzhpt.jhgl.server;
 import java.util.List;
 import java.util.Map;
 
+import jsx3.gui.Tree;
+
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
@@ -122,4 +124,6 @@ public interface Plan_gcsjServer {
 	String queryTsdqByXzqh(String xzqhdm);
 	
 	Plan_gcsj queryGcsjSum(Plan_gcsj jh, Plan_lx_gcsj lx);
+	
+	List<TreeNode> queryJhktj(String nf);
 }

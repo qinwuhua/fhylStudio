@@ -130,4 +130,11 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public Plan_flwbzbz queryBzzj(Plan_flwbzbz flw) {
 		return queryOne("queryBzzj", flw);
 	}
+	
+	@Override
+	public List<TreeNode> queryJhktj(String nf) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("nf", nf);
+		return queryList("queryTjJeAndSl",param);
+	}
 }

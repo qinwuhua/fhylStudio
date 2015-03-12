@@ -21,7 +21,11 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_yhdzxServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
@@ -48,7 +52,16 @@ public class TjfxController extends BaseActionSupport{
 	private Plan_wqgzServer wqgzServer;
 	@Resource(name = "plan_zhfzServerImpl")
 	private Plan_zhfzServer zhfzServer;
+	@Resource(name = "plan_yhdzxServerImpl")
+	private Plan_yhdzxServer yhdzxServer;
+	@Resource(name = "gcgjServerImpl")
+	private Plan_gcgjServer gcgjServer;//工程改建
+	@Resource(name = "plan_GcsjServerImpl")
+	private Plan_gcsjServer gcsjServer;
+	@Resource(name="plan_shuihServerImpl")
+	private Plan_shuihServer shuihServer;
 	private String xmlx;
+	private String nf;
 	
 	public void queryJcktj(){
 		try {	
@@ -125,10 +138,39 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 
+	public void queryJhktj(){
+		try {
+			Map<String, Object> result=new HashMap<String, Object>();
+			List<TreeNode> gcsj = gcsjServer.queryJhktj(nf);
+			result.put("gcsj", gcsj);
+			List<TreeNode> gcgj = gcgjServer.queryJhktj(nf);
+			result.put("gcgj", gcgj);
+			List<TreeNode> shuih = shuihServer.queryJhktj(nf);
+			result.put("shuih", shuih);
+			List<TreeNode> yhdzx = yhdzxServer.queryJhktj(nf);
+			result.put("yhdzx", yhdzx);
+			List<TreeNode> abgc = abgcServer.queryJcktj();
+			result.put("abgc", abgc);
+			List<TreeNode> wqgz= wqgzServer.queryJcktj();
+			result.put("wqgz", wqgz);
+			List<TreeNode> zhfz= zhfzServer.queryJcktj();
+			result.put("zhfz", zhfz);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}
 	public void setXmlx(String xmlx) {
 		this.xmlx = xmlx;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
 	}
 }

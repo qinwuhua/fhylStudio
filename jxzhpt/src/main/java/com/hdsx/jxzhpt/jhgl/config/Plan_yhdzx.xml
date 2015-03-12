@@ -222,4 +222,13 @@
 	<select id="dropYhdzxLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_yhdzx where jhid=#{String}
 	</select>
+	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">
+		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(sl) as parent from (
+          select distinct xt.parent,lx.xzqhdm,lx.xzqhmc,jh.sbnf,jh.id,
+            (select sum(jh1.newfee) from plan_yhdzx jh1 left join plan_lx_yhdzx lx1 on (jh1.id=lx1.jhid) right join xtgl_xzqh xt1 on (lx1.xzqhdm=xt1.id) 
+            where jh1.sbnf=#{nf} and jh1.id=jh.id group by jh1.id) as je,
+            (select count(jh1.id) from plan_yhdzx jh1 where jh1.sbnf=#{nf} and jh1.id=jh.id) as sl
+          from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) right join xtgl_xzqh xt on (lx.xzqhdm=xt.id) order by xt.parent
+      ) t join xtgl_xzqh xz on(t.parent=xz.id) group by t.parent,xz.name order by t.parent
+	</select>
 </mapper>

@@ -140,4 +140,11 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean insertPlan_lx_Gcgj(Plan_lx_gcgj lx) {
 		return insert("insertPlan_lx_Gcgj", lx)>0;
 	}
+	
+	@Override
+	public List<TreeNode> queryJhktj(String nf) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("nf", nf);
+		return queryList("queryTjJeAndSl",param);
+	}
 }

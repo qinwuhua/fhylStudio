@@ -136,4 +136,10 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		return queryOne("queryGcsjSum", params);
 	}
 
+	@Override
+	public List<TreeNode> queryJhktj(String nf) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("nf", nf);
+		return queryList("queryTjJeAndSl",param);
+	}
 }

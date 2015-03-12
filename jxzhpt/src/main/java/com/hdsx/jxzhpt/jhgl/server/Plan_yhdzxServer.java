@@ -75,5 +75,8 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	Plan_yhdzx queryYhdzxById(String id);
+	
 	boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx);
+
+	List<TreeNode> queryJhktj(String nf);
 }
