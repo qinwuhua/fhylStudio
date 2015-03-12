@@ -32,6 +32,7 @@
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Zdxx" alias="zdxx"/>
      <!-- qwh end -->
      <!-- lhp -->
+     <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc" alias="jckabgc"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz" alias="jckwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz" alias="jckzhfz"/>
@@ -104,6 +105,7 @@
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/zdxx.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/zdycx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckabgc.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckwqgz.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckzhfz.xml"/>

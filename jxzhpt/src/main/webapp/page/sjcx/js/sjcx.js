@@ -1,7 +1,9 @@
 var checkValues;
-function cxzd(jsp,w,h){
+var gydw=parent.YMLib.Var.gydw;
+/*function cxzd(jsp,w,h){
 	YMLib.UI.createWindow('zd_xz','项目字段选择列表',jsp,'zd_xz',w,h);
-}
+}*/
+
 //路网项目JS
 //基础库安保工程
 function ckJckabgc(ck_id){
