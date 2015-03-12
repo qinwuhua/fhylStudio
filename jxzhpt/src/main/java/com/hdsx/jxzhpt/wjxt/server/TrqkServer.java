@@ -83,4 +83,6 @@ public interface TrqkServer {
 
 	boolean deletetrqk(Trqk trqk);
 
+	List<Trqk> selectTrqkList1(Trqk trqk);
+
 }

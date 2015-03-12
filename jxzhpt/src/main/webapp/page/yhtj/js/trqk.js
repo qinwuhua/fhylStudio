@@ -113,3 +113,13 @@ function showAll(){
 				]]    
 	}); 
 }
+function exportTrqk(){
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
+		gydw='';
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var tiaojian=nf+"-"+yf;
+	var data="gydw="+gydw+"&tiaojian="+tiaojian;
+	window.location.href="/jxzhpt/wjxt/exportExcel_trqk.do?"+data;
+}

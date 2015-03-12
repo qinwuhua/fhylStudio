@@ -269,4 +269,10 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 			return false;
 		}
 	}
+
+	@Override
+	public List<Trqk> selectTrqkList1(Trqk trqk) {
+		// TODO Auto-generated method stub
+		return queryList("selectTrqkList1", trqk);
+	}
 }

@@ -25,4 +25,6 @@ public interface ZdxxServer {
 
 	boolean deletezdxx(Zdxx zdxx);
 
+	List<Zdxx> selectZdxxList1(Zdxx zdxx);
+
 }

@@ -7,6 +7,7 @@
 	<action name="selectTrqkList" class="trqkController" method="selectTrqkList"/>
 	<action name="deletetrqk" class="trqkController" method="deletetrqk"/>
 	<action name="updateTrqk" class="trqkController" method="updateTrqk"/>
+	<action name="exportExcel_trqk" class="trqkController" method="exportExcel_trqk"/>
 	<!--  -->
 	<action name="insertLkpdData" class="lkpdController" method="insertLkpdData"/>
 	<action name="selectMxbList" class="lkpdController" method="selectMxbList"/>
@@ -48,5 +49,6 @@
 	<action name="selectZdxxList" class="zdxxController" method="selectZdxxList"/>
 	<action name="updatezdxx" class="zdxxController" method="updatezdxx"/>
 	<action name="deletezdxx" class="zdxxController" method="deletezdxx"/>
+	<action name="exportExcel_zdxx" class="zdxxController" method="exportExcel_zdxx"/>
  </package>
 </struts>

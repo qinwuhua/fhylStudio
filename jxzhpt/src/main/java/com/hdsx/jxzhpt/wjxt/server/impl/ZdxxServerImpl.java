@@ -61,5 +61,11 @@ public class ZdxxServerImpl extends BaseOperate implements ZdxxServer {
 			return false;
 	}
 
+	@Override
+	public List<Zdxx> selectZdxxList1(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("selectZdxxList1", zdxx);
+	}
+
 	
 }
