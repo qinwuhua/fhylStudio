@@ -4,12 +4,9 @@
     	<chart plot_type="CategorizedVertical">
       		<data_plot_settings default_series_type="Bar">
         		<bar_series>
-          			<tooltip_settings>
+          			<tooltip_settings enabled="false">
             			<font bold="False" />
-            			<format>Manager: {%CategoryName}
-							Sales: {%YValue}
-							Period: {%SeriesName}
-							Percent: {%YPercentOfSeries}{numDecimals:2}%
+            			<format>{%name}计划金额：{%y}
 						</format>
           			</tooltip_settings>
           			<label_settings enabled="True" rotation="90">
@@ -27,14 +24,13 @@
 			<data>
 				<series name="计划数量">
 					<#list list as l >
-						<point name="${l.name}" y="${l.count}"/>        
+						<point name="${l.name}" y="${l.je}">
+							<tooltip enabled="true">
+								<format>{%Name}计划金额：{%Value}{numDecimals:3}</format>
+							</tooltip>
+						</point>        
 					</#list>
 				</series>
-        		<series name="总长度">
-        			<#list list as l >
-						<point name="${l.name}" y="${l.length}"/>        
-					</#list>
-        		</series>
 			</data>
       		<chart_settings>
         		<title enabled="False" />

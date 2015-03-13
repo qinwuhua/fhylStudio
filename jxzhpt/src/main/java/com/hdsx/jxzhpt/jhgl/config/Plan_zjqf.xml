@@ -12,7 +12,7 @@
 		select * from plan_zjqf where nf=#{nf} and xzqhdm=#{xzqhdm}
 	</select>
 	<select id="queryChildXzqh" parameterType="treenode" resultType="treenode">
-		select * from XTGL_XZQH where id like #{id} order by id desc
+		select * from XTGL_XZQH where id like #{id} order by id
 	</select>
 	<select id="queryXzqhById" parameterType="treenode" resultType="treenode">
 		select * from XTGL_XZQH 

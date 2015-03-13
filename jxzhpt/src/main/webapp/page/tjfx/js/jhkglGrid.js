@@ -112,27 +112,7 @@ function xmlxtj(){
 }
 //------------------------项目趋势统计
 function xzqhtjqsfx(){
-	var colYears =[],colZj=[];
-	for (var i=$('#startYear').val();i<=$('#endYear').val();i++){
-		var year ={title:i+'年',width:160,align:'center',colspan:2};
-		var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
-		colZj.push(lczj);
-		var xmzj={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
-		colZj.push(xmzj);
-		colYears.push(year);
-	}
-	var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:800};
-	var grid={id:'grid',url:'../js/qstj.json',fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:380,width:970,
-		    columns:[
-			    [
-			     	{field:'xzqh',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true},
-			     	zjtitle
-			    ],
-			    colYears,colZj
-		    ]
-	};
-	gridBind(grid);
+	
 }
 
 function jhklxQsSearch(){

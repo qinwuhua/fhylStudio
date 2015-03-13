@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>按行政区划统计</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
@@ -19,7 +19,12 @@
 	<script type="text/javascript">
 		$(function(){
 			jhkxzqhtj();
+			queryjhkBar();
 		});
+		function search(){
+			jhkxzqhtj();
+			queryjhkBar();
+		}
 	</script>
 </head>
 <body>
@@ -48,7 +53,7 @@
         							<option value="2014">2014年</option>
         							<option value="2015" selected="selected">2015年</option>
         						</select>
-        						<img onclick="jhklxQsSearch()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -68,7 +73,11 @@
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
 	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/xzqhtj.jpg" width="900" height="300" align="">
+	        				<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
+								<div>
+									<param name="wmode" value="transparent" />
+								</div>
+							</div>
 	        			</div>
 	        		</div>
         		</td>

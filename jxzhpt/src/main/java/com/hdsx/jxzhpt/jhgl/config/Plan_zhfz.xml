@@ -285,12 +285,12 @@
 		) t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
-		select t.parent as id,xz.name as name,sum(t.sl) as text,NVL(sum(t.je),0) as parent from (
+		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (
 			select distinct xt.parent,jh.sbnf,
       		(select ab1.jhsybzje from plan_zhfz ab1 left join sck_zhfz sc1 on 
-      		(ab1.sckid=sc1.sckid) left join xmk_zhfz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf='2015' and ab1.id=jh.id) as je,
+      		(ab1.sckid=sc1.sckid) left join xmk_zhfz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as je,
       		(select count(jhsybzje) from plan_zhfz ab1 left join sck_zhfz sc1 on 
-			(ab1.sckid=sc1.sckid) left join xmk_zhfz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf='2015' and ab1.id=jh.id) as sl
+			(ab1.sckid=sc1.sckid) left join xmk_zhfz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as sl
 			from plan_zhfz jh left join sck_zhfz sc on 
 			(jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id) right join xtgl_xzqh xt on (lx.xzqhdm=xt.id)
 			where xt.parent is not null

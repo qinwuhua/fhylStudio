@@ -117,8 +117,8 @@ public class TjfxController extends BaseActionSupport{
 					Map<String, String> t=new HashMap<String, String>();
 					String name=zhfz.get(i).getName();
 					t.put("name", name);
-					t.put("count", zhfz.get(i).getText());
-					t.put("length", zhfz.get(i).getParent());
+					t.put("count", zhfz.get(i).getParent());
+					t.put("length", zhfz.get(i).getText());
 					list.add(t);
 				}
 			}
@@ -149,16 +149,52 @@ public class TjfxController extends BaseActionSupport{
 			result.put("shuih", shuih);
 			List<TreeNode> yhdzx = yhdzxServer.queryJhktj(nf);
 			result.put("yhdzx", yhdzx);
-			List<TreeNode> abgc = abgcServer.queryJcktj();
+			List<TreeNode> abgc = abgcServer.queryJcktj1(nf);
 			result.put("abgc", abgc);
-			List<TreeNode> wqgz= wqgzServer.queryJcktj();
+			List<TreeNode> wqgz= wqgzServer.queryJcktj1(nf);
 			result.put("wqgz", wqgz);
-			List<TreeNode> zhfz= zhfzServer.queryJcktj();
+			List<TreeNode> zhfz= zhfzServer.queryJcktj1(nf);
 			result.put("zhfz", zhfz);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void queryJhktjt(){
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		Map<String,Object> parameter=new HashMap<String,Object>();
+		parameter.put("chart_title", "行政区划");//title
+		String yName="金额";//y单位
+		int precision=3;//小数的位数
+		parameter.put("chart_title_y", yName);
+		parameter.put("precision",precision);
+		String chartType = "jhkbar.ftl";
+		List<TreeNode> gcsj = gcsjServer.queryJhktj(nf);
+		List<TreeNode> gcgj = gcgjServer.queryJhktj(nf);
+		List<TreeNode> shuih = shuihServer.queryJhktj(nf);
+		List<TreeNode> yhdzx = yhdzxServer.queryJhktj(nf);
+		List<TreeNode> abgc = abgcServer.queryJcktj1(nf);
+		List<TreeNode> wqgz= wqgzServer.queryJcktj1(nf);
+		List<TreeNode> zhfz= zhfzServer.queryJcktj1(nf);
+		for(int i=0;i<gcsj.size();i++){
+			Map<String, String> param=new HashMap<String, String>();
+			param.put("name", gcsj.get(i).getName());
+			double je= new Double(gcsj.get(i).getText()).doubleValue()+
+					new Double(gcgj.get(i).getText()).doubleValue()+
+					new Double(shuih.get(i).getText()).doubleValue()+
+					new Double(yhdzx.get(i).getText()).doubleValue()+
+					new Double(abgc.get(i).getText()).doubleValue()+
+					new Double(wqgz.get(i).getText()).doubleValue()+
+					new Double(zhfz.get(i).getText()).doubleValue();
+			param.put("je", new Double(je).toString());
+			list.add(param);
+		}
+		parameter.put("list",list);
+		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+		Map<String, String> result=new HashMap<String, String>();
+		result.put("bar", anyChartXml);
+		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
 	public String getXmlx() {

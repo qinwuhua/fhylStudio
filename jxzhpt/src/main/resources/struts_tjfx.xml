@@ -6,5 +6,6 @@
 		<action name="queryJcktj" class="tjfxController" method="queryJcktj"/>
 		<action name="queryJcktj1" class="tjfxController" method="queryJcktj1"/>
 		<action name="queryJhktj" class="tjfxController" method="queryJhktj"/>
+		<action name="queryJhktjt" class="tjfxController" method="queryJhktjt"/>
 	</package>
 </struts>

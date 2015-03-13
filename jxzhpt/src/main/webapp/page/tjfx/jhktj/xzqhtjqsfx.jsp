@@ -12,11 +12,62 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			xzqhtjqsfx();
+			load();
 		});
+		function search(){
+			$('#grid').datagrid('loadData', { total: 0, rows: [] });
+			load();
+		}
+		function load(){
+			var colYears =[],colZj=[];
+			var col=[];
+			var trJson='{"xzqh":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
+			for (var i=$('#startYear').val();i<=$('#endYear').val();i++){
+				trJson+=',"'+i+'xmzj":0,"'+i+'je":0';
+				var year ={title:i+'年',width:160,align:'center',colspan:2};
+				colYears.push(year);
+				var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
+				colZj.push(lczj);
+				var xmgs={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
+				colZj.push(xmgs);
+				col[i+'je']=i;
+				col[i+'xmzj']=i+"万元";
+			}
+			trJson+='}';
+			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:800};
+			var grid={id:'grid',data:null,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+					pageNumber:1,pageSize:20,height:380,width:970,
+				    columns:[
+					    [
+					     	{field:'xzqh',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true},
+					     	zjtitle
+					    ],
+					    colYears,colZj
+				    ]
+			};
+			gridBind(grid);
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryChildXzqh.do',
+				data:'xzqh.id=36__00',
+				dataType:'json',
+				success:function(data){
+					$.each(data,function(index,item){
+						var a=JSON.parse(trJson);
+						a['xzqh']=item.name;
+						//alert(a[2012+'xmzj']);
+						$('#grid').datagrid('appendRow',a);
+					});
+				}
+			});
+		}
+		
 	</script>
 </head>
 <body>
@@ -53,7 +104,7 @@
         							<option value="2014">2014年</option>
         							<option value="2015" selected="selected">2015年</option>
         						</select>
-        						<img onclick="jhklxQsSearch()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

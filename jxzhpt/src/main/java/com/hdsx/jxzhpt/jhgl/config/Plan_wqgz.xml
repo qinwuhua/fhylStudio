@@ -308,7 +308,7 @@
 		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
-		select t.parent as id,xz.name as name,sum(t.sl) as text,NVL(sum(t.je),0) as parent from (
+		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (
 			select distinct xt.parent,jh.sbnf,jhsybzje,
       		(select jhsybzje from plan_wqgz ab1 left join sck_wqgz sc1 on 
       		(ab1.sckid=sc1.sckid) left join xmk_wqgz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as je,

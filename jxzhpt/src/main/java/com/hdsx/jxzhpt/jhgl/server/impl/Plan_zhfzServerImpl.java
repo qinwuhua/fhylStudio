@@ -173,8 +173,10 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public List<TreeNode> queryJcktj1() {
-		return queryList("queryJcktj1",null);
+	public List<TreeNode> queryJcktj1(String nf) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("nf", nf);
+		return queryList("queryJcktj1",param);
 	}
 
 }

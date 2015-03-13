@@ -88,5 +88,5 @@ public interface Plan_zhfzServer {
 	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
 	boolean updateStatusBatch(List<Plan_zhfz> splist);
 	List<TreeNode> queryJcktj();
-	List<TreeNode> queryJcktj1();
+	List<TreeNode> queryJcktj1(String nf);
 }

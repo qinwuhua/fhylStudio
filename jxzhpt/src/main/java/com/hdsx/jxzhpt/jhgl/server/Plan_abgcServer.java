@@ -104,5 +104,5 @@ public interface Plan_abgcServer {
 
 	List<TreeNode> queryJcktj();
 
-	List<TreeNode> queryJcktj1();
+	List<TreeNode> queryJcktj1(String nf);
 }

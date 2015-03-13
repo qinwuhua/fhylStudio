@@ -84,10 +84,24 @@ function jhkxzqhtj(){
 						parseInt(data.shuih[i].parent)+parseInt(data.yhdzx[i].parent)+
 						parseInt(data.abgc[i].parent)+parseInt(data.wqgz[i].parent)+
 						parseInt(data.zhfz[i].parent);
+				t.lmsjztz=data.gcsj[i].text;
+				t.lmsjsl=data.gcsj[i].parent;
+				t.lmgjztz=data.gcgj[i].text;
+				t.lmgjsl=data.gcgj[i].parent;
+				t.shztz=data.shuih[i].text;
+				t.shsl=data.shuih[i].parent;
+				t.yhdzxztz=data.yhdzx[i].text;
+				t.yhdzxsl=data.yhdzx[i].parent;
+				t.wqgzztz=data.wqgz[i].text;
+				t.wqgzsl=data.wqgz[i].parent;
+				t.abgcztz=data.abgc[i].text;
+				t.abgcsl=data.abgc[i].parent;
+				t.zhfzztz=data.zhfz[i].text;
+				t.zhfzsl=data.zhfz[i].parent;
 				jsonData.push(t);
 			}
 			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:373,width:970,
+					pageNumber:1,pageSize:20,height:373,width:980,
 				    columns:[
 					    [
 					     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -127,6 +141,24 @@ function jhkxzqhtj(){
 		}
 	});
 }
+function queryjhkBar(){
+	barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+    barChart_1.width =980;
+    barChart_1.height =300;
+    barChart_1.padding =0;
+    barChart_1.wMode="transparent";
+    barChart_1.write("anychart_div");
+    $.ajax({
+		type:"post",
+		url:"../../../tjfx/queryJhktjt.do?nf="+$('#startYear').val(),
+		dataType:'text',
+		success:function(msg){
+			//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
+			barChart_1.setData(msg);
+		}
+	});
+}
+
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象
