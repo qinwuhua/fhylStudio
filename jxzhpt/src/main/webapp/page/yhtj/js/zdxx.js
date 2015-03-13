@@ -68,7 +68,7 @@ function showAll(){
 					{field:'gydwmc',title:'管养单位',width:100,align:'center'},
 					{field:'zdsj',title:'阻断时间',width:100,align:'center'},
 					{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-					{field:'zdzh',title:'起点桩号 ',width:100,align:'center'},
+					{field:'zdzh',title:'止点桩号 ',width:100,align:'center'},
 					{field:'zhlb',title:'灾害类别',width:100,align:'center'},
 					{field:'qtcs',title:'抢通措施',width:100,align:'center'},
 					{field:'sfhf',title:'是否恢复',width:100,align:'center'},
@@ -79,4 +79,14 @@ function showAll(){
 					{field:'shry',title:'审核人',width:100,align:'center'}
 				]]    
 	}); 
+}
+function exportZdxx(){
+	var gydw=$("#gydw").combobox("getValue");
+	if(gydw=='36')
+		gydw='';
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var tiaojian=nf+"-"+yf;
+	var data="gydw="+gydw+"&tiaojian="+tiaojian;
+	window.location.href="/jxzhpt/wjxt/exportExcel_zdxx.do?"+data;
 }

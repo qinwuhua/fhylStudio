@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.zdxx">
-
+<select id="selectZdxxList1" parameterType="zdxx" resultType="zdxx">
+		
+			select * from ZDXXB
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+			and gydw like '%'||#{gydw}||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+			and tbsj like #{tiaojian}||'%'
+		</if>
+		order by tbsj desc
+		
+	</select>
 	<select id="selectZdxxList" parameterType="zdxx" resultType="zdxx">
 		select * from (
 		select m.*,rownum rn from (

@@ -10,7 +10,7 @@
 				 	'gydw':function(){
 				 		if("36"==$('#gydw').combobox("getValue")){
 				 			return "";
-				 		}else return $.cookie("unit2");
+				 		}else return $('#gydw').combobox("getValue");
 				 	},
 				 	'xzqhmc':function(){
 				 		if("360000"==$('#xzqhmc').combobox("getValue")){

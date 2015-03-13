@@ -115,4 +115,7 @@
 	<action name="selSckZhfzCount" class="sckzhfzController" method="selSckZhfzCount"/>
 	<action name="selSckZhfzShCount" class="sckzhfzController" method="selSckZhfzShCount"/>
  </package>
+ <package name="zdycx" extends="struts-default" namespace="/zdycx">
+ <action name="selZdy" class="zdycxController" method="selZdy"/>
+ </package>
 </struts>

@@ -54,15 +54,15 @@ function showAll(){
 	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
-	        {field:'qlbm',title:'桥梁编码',width:120,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
 	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
 	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
-	        {field:'qlqk',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
 	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
 	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
 	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
-	        {field:'gjnf',title:'改建/修建年度',width:100,align:'center'}
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
 }

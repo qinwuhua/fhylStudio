@@ -54,6 +54,7 @@ public class Gcglabgc implements Serializable {
 	private String xmtype;  //项目状态
 	private String bz;
 	private String tsdq;
+	private String tbbmbm;
 	//审查库
 	private String tzgs;
 	private String spwh;
@@ -681,6 +682,12 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setJgyswjfile(byte[] jgyswjfile) {
 		this.jgyswjfile = jgyswjfile;
+	}
+	public String getTbbmbm() {
+		return tbbmbm;
+	}
+	public void setTbbmbm(String tbbmbm) {
+		this.tbbmbm = tbbmbm;
 	}
 	
 }
