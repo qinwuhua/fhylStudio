@@ -31,6 +31,7 @@ text-decoration:none;
 <script type="text/javascript">
 	$(function(){
 		loadUnit("gydw",'36');
+	//	setGydw1("gydw",'36');
 		loadUnit("tbdw",$.cookie("unit"));
 		$("#tbsj").datebox({    
 		    
@@ -47,6 +48,17 @@ text-decoration:none;
 		}
 		$('#tbsj').datebox('setValue', y+"-"+m+"-"+d);
 	});
+	
+	function setGydw1(id, dwbm){
+		$('#' + id).combotree(
+		{
+			url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
+			valueField:'id',    
+		    textField:'text'   
+		});
+	$('#' + id).combotree('setValue', '11101360000');
+
+}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">

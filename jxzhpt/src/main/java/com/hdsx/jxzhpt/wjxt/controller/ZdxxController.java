@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -305,5 +306,26 @@ public class ZdxxController extends BaseActionSupport{
                 cell.setCellStyle(cs);  
            }  
        }  
-   }  
+   } 
+	public void exportExcel_zdxx1() throws Exception{
+		ExcelData el=new ExcelData();//创建一个类
+		el.setTitleName("公路交通阻断信息表");//设置第一行
+		el.setSheetName("阻断信息");//设置sheeet名
+		el.setFileName("公路交通阻断信息表");//设置文件名
+		Excel_list els=new Excel_list();//显示内容的实体需要放入list里面
+		els.setV_0("张三---------------");els.setV_1("男");els.setV_2("93");
+		List<Excel_list> eli=new ArrayList<Excel_list>();
+		eli.add(els);
+		el.setEl(eli);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("基本信息",1,1,0,1));//设置表头的信息，改行代表从第一行到第一行，从第0列到第一列，名字叫做‘基本信息’，下面也是一样  除去以一行，所以从第二行开始，因为excel的下表是从0开始的，所以，这里的参数第二行就是1
+		et.add(new Excel_tilte("成绩",1,2,2,2));//从第一行到第二行，从第二列到第二列
+		et.add(new Excel_tilte("姓名",2,2,0,0));//从第2行到第2行，从第0列到第0列
+		et.add(new Excel_tilte("性别",2,2,1,1));
+		el.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		Excel_export.excel_export(el,response);//将类和参数HttpServletResponse传入即可实现导出excel
+
+	}
 }
+
