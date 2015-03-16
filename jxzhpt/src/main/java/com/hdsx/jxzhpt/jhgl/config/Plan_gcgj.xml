@@ -337,4 +337,11 @@
 		select distinct jh.id,jh.sbnf,jh.jhsybzje from PLAN_GCGJ jh left join plan_lx_gcgj lx on jh.id=lx.jhid
 		where jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) s group by s.sbnf
 	</select>
+	<select id="queryGcktj" resultType="treenode" parameterType="java.util.Map">
+		select (t.kgzt+t.jgzt) as id,count(t.jhsybzje),sum(t.jhsybzje),nvl(sum(t.xdzj),0) as xdzj from (
+		select jh.id,jh.kgzt,jh.jgzt,sum(jh.jhsybzje) as jhsybzje,sum(zj.xdzj) as xdzj
+		from plan_gcgj jh left join plan_zjxd zj on (jh.id=zj.xmid)
+		where jh.spzt='1' and jh.jh_sbthcd='6' group by jh.id,jh.kgzt,jh.jgzt
+		)t group by t.kgzt,t.jgzt order by t.kgzt,t.jgzt
+	</select>
 </mapper>

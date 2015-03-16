@@ -331,6 +331,12 @@ public class TjfxController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
+	public void queryGcktj(){
+		Map<String, Object> result=new HashMap<String, Object>();
+		List<TreeNode> gcgj = gcgjServer.queryGcktj();
+		result.put("gcgj", gcgj);
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}

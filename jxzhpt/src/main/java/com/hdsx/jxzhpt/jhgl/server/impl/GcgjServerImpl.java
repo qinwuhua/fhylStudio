@@ -174,4 +174,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 		param.put("end", end);
 		return queryList("queryJhktjt3",param);
 	}
+
+	@Override
+	public List<TreeNode> queryGcktj() {
+		return queryList("queryGcktj");
+	}
 }
