@@ -55,13 +55,15 @@
  
     <center>
     <form action="" id="trqkdata" method="post">
-        <table align="center" width="97%" cellpadding="0" cellspacing="0" border="1"  bordercolor="#ffffff" style="margin-top: 10px">
+        <table align="center" width="97%" cellpadding="0" cellspacing="0" border="0"  bordercolor="#ffffff" style="margin-top: 10px">
        
             <tr style="border: 0">
                 <td align="center"  colspan="16" align="center" style="padding-top: 10px; padding-bottom: 10px; border: 0px ">
                     <span style="font-size: 20px; font-weight: bold" >公路灾毁损失情况统计表</span>
                 </td>
             </tr>
+          </table>
+         <table align="center" width="97%" cellpadding="0" cellspacing="0" border="1"  bordercolor="#ffffff" style="margin-top: 10px">
             <tr>
 							<td align="center"  colspan="3" style="text-align: right">
                                 管养单位：

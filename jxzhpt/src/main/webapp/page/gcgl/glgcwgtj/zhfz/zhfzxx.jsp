@@ -31,14 +31,21 @@ $(function(){
 	$("#gys").text(data.gys);$("#htje").text(data.htje);$("#sjwgsj").text(data.sjwgsj);$("#jhbz").text(data.jhbz);	
 	$("#sjwgsj").text(data.sjwgsj);
 	if(data.gkbgmc!=''){
-		$("#xz_gkbg").text("下载附件");
+		$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
 	}
 	if(data.sjsgtmc!=''){
-		$("#xz_sjsgt").text("下载附件");
+		$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
 	}
+	
 	var data1="jhid="+data.jhid;
 	jiazai(data1);
 });
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+parent.obj1.jhid;
+}
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+parent.obj1.jhid;
+}
 </script>
 <style type="text/css">
 a {

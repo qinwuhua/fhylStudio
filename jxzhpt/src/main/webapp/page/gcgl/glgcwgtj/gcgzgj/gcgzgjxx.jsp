@@ -34,14 +34,23 @@ $(function(){
 	$("#gsztz").text(data.gsztz);$("#scbz").text(data.scbz);$("#jhbz").text(data.jhbz);
 	$("#sjwgsj").text(data.sjwgsj);
 	if(data.gkbgmc!=''){
-		$("#xz_gkbg").text("下载附件");
+		var mc="'"+data.gkbgmc+"'";
+		$('#xz_gkbg').html('<a style="color: #2C7ED1;" href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
 	}
 	if(data.sjsgtmc!=''){
-		$("#xz_sjsgt").text("下载附件");
+		var mc="'"+data.sjsgtmc+"'";
+		$('#xz_sjsgt').html('<a style="color: #2C7ED1;" href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
 	}
+	
 	var data1="jhid="+data.id;
 	jiazai(data1);
 	});
+function downGkwj(file){
+	window.location.href="/jxzhpt/jhgl/queryWjById.do?jh.id="+parent.obj1.id+"&jh.gkbgmc="+file;
+}
+function downSjt(file){
+	window.location.href="/jxzhpt/jhgl/queryWjById.do?jh.id="+parent.obj1.id+"&jh.sjsgtmc="+file;
+}
 </script>
 <style type="text/css">
 a {
