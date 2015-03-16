@@ -126,4 +126,13 @@ public interface Plan_gcsjServer {
 	Plan_gcsj queryGcsjSum(Plan_gcsj jh, Plan_lx_gcsj lx);
 	
 	List<TreeNode> queryJhktj(String nf);
+	
+	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
+	/**
+	 * 根据行政区划和年份查询总资金
+	 * @param xzqhdm
+	 * @param year
+	 * @return
+	 */
+	double queryJhktj2(String xzqhdm, String year);
 }

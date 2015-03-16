@@ -211,4 +211,20 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		param.put("nf", nf);
 		return queryList("queryJcktj1",param);
 	}
+	@Override
+	public List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("xzqhdm", xzqhdm);
+		param.put("start", nf);
+		param.put("end", end);
+		return queryList("queryJhktj2",param);
+	}
+	@Override
+	public double queryJhktj2(String xzqhdm, String year) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("xzqhdm", xzqhdm);
+		param.put("nf", year);
+		String result = queryOne("queryJhktjt2",param);
+		return result==null ? 0 : new Double(queryOne("queryJhktjt2",param).toString()).doubleValue();
+	}
 }

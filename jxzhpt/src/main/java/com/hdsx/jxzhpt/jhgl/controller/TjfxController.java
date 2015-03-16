@@ -14,6 +14,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.ezmorph.array.IntArrayMorpher;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_yhdzxServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
@@ -60,8 +63,13 @@ public class TjfxController extends BaseActionSupport{
 	private Plan_gcsjServer gcsjServer;
 	@Resource(name="plan_shuihServerImpl")
 	private Plan_shuihServer shuihServer;
+	@Resource(name = "plan_zjqfServerImpl")
+	private Plan_zjqfServer zjqfServer;
+	
 	private String xmlx;
-	private String nf;
+	private String nf;//年份，开始年份
+	private String end;//结束年份
+	private String xzqhdm;//行政区划代码
 	
 	public void queryJcktj(){
 		try {	
@@ -197,6 +205,65 @@ public class TjfxController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
+	public void queryJhktj2(){
+		try {
+			Map<String, Object> result=new HashMap<String, Object>();
+			result.put("gcgj", gcgjServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("gcsj", gcsjServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("shuih", shuihServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("yhdzx", yhdzxServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("abgc", abgcServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("wqgz", wqgzServer.queryJhktj2(xzqhdm,nf,end));
+			result.put("zhfz", zhfzServer.queryJhktj2(xzqhdm,nf,end));
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryJhktjt2(){
+		try {
+			Map<String, Object> result=new HashMap<String, Object>();
+			//设置AnyChart信息
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title", "区划金额趋势图");
+			String yName="总金额";//y单位
+			int precision=3;//小数的位数
+			parameter.put("yName", yName);
+			parameter.put("precision",precision);
+			parameter.put("legend_title", "行政区划");
+			String chartType = "jhkline.ftl";
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId(xzqhdm);
+			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+			for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
+				Map<String, String> one=new HashMap<String, String>();
+				one.put("year", new Integer(i).toString());
+				for (TreeNode item : xzqhlist){
+					xzqhdm=item.getId().substring(0,4)+"__";
+					double sumJe=
+							gcgjServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							gcsjServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							shuihServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							yhdzxServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							abgcServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							wqgzServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
+							zhfzServer.queryJhktj2(xzqhdm,new Integer(i).toString());
+					one.put("je"+item.getId(), new Double(sumJe).toString());
+				}
+				list.add(one);
+			}
+			parameter.put("list",list);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}
@@ -208,5 +275,17 @@ public class TjfxController extends BaseActionSupport{
 	}
 	public void setNf(String nf) {
 		this.nf = nf;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
 	}
 }

@@ -121,4 +121,13 @@ public interface Plan_shuihServer {
 	Plan_flwbzbz queryBzzj(Plan_flwbzbz flw);
 	
 	List<TreeNode> queryJhktj(String nf);
+	
+	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
+	/**
+	 * 根据行政区划和年份查询总资金
+	 * @param xzqhdm
+	 * @param string
+	 * @return
+	 */
+	double queryJhktj2(String xzqhdm, String string);
 }

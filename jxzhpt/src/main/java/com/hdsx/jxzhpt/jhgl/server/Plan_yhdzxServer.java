@@ -79,4 +79,13 @@ public interface Plan_yhdzxServer {
 	boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx);
 
 	List<TreeNode> queryJhktj(String nf);
+
+	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
+	/**
+	 * 根据行政区划和年份查询总资金
+	 * @param xzqhdm
+	 * @param string
+	 * @return
+	 */
+	double queryJhktj2(String xzqhdm, String string);
 }

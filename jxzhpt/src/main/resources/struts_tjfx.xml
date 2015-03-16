@@ -7,5 +7,7 @@
 		<action name="queryJcktj1" class="tjfxController" method="queryJcktj1"/>
 		<action name="queryJhktj" class="tjfxController" method="queryJhktj"/>
 		<action name="queryJhktjt" class="tjfxController" method="queryJhktjt"/>
+		<action name="queryJhktj2" class="tjfxController" method="queryJhktj2"/>
+		<action name="queryJhktjt2" class="tjfxController" method="queryJhktjt2"/>
 	</package>
 </struts>

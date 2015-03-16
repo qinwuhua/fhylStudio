@@ -138,4 +138,13 @@ public interface Plan_gcgjServer {
 	int queryGPSBylxbm1(Plan_lx_gcgj lx);
 
 	List<TreeNode> queryJhktj(String nf);
+
+	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
+	/**
+	 * 根据行政区划和年份查询资金总金额
+	 * @param xzqhdm 行政区划代码
+	 * @param year 年份
+	 * @return
+	 */
+	double queryJhktj2(String xzqhdm, String year);
 }

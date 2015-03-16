@@ -19,10 +19,11 @@
 	<script type="text/javascript">
 		$(function(){
 			load();
+			queryTjt2();
 		});
 		function search(){
-			$('#grid').datagrid('loadData', { total: 0, rows: [] });
 			load();
+			queryTjt2();
 		}
 		function load(){
 			var colYears =[],colZj=[];
@@ -40,9 +41,25 @@
 				col[i+'xmzj']=i+"万元";
 			}
 			trJson+='}';
-			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:800};
-			var grid={id:'grid',data:null,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:380,width:970,
+			var dataJson=new Array();
+			$.ajax({
+				type:'post',
+				async : false,
+				url:'../../../jhgl/queryChildXzqh.do',
+				data:'xzqh.id=36__00',
+				dataType:'json',
+				success:function(data){
+					$.each(data,function(index,item){
+						var a=JSON.parse(trJson);
+						a['xzqh']=item.name;
+						queryMessage($('#startYear').val(),$('#endYear').val(),item.id.substring(0,4)+"__",a);
+						dataJson.push(a);
+					});
+				}
+			});
+			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:900};
+			var grid={id:'grid',data:dataJson,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+					pageNumber:1,pageSize:20,height:380,width:$('#grid').width(),
 				    columns:[
 					    [
 					     	{field:'xzqh',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true},
@@ -52,22 +69,63 @@
 				    ]
 			};
 			gridBind(grid);
+		}
+		function queryMessage(start,end,xzqhdm,a){
 			$.ajax({
 				type:'post',
-				url:'../../../jhgl/queryChildXzqh.do',
-				data:'xzqh.id=36__00',
+				url:'../../../tjfx/queryJhktj2.do',
+				async : false,
+				data:'xzqhdm='+xzqhdm+'&nf='+start+'&end='+end,
 				dataType:'json',
 				success:function(data){
-					$.each(data,function(index,item){
-						var a=JSON.parse(trJson);
-						a['xzqh']=item.name;
-						//alert(a[2012+'xmzj']);
-						$('#grid').datagrid('appendRow',a);
+					$.each(data.gcgj,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.gcsj,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.shuih,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.yhdzx,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.abgc,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.wqgz,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+					});
+					$.each(data.zhfz,function(index,item){
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
 					});
 				}
 			});
 		}
-		
+		function queryTjt2(){
+			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+		    barChart_1.width =980;
+		    barChart_1.height =300;
+		    barChart_1.padding =0;
+		    barChart_1.wMode="transparent";
+		    barChart_1.write("anychart_div");
+		    $.ajax({
+				type:"post",
+				url:"../../../tjfx/queryJhktjt2.do?xzqhdm=36__00&nf="+$('#startYear').val()+"&&end="+$('#endYear').val(),
+				dataType:'text',
+				success:function(msg){
+					//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
+					barChart_1.setData(msg);
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -112,7 +170,7 @@
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
+            		<div style="width:97%;">
             			<table id="grid" width="100%"></table>
             		</div>
             	</td>
@@ -123,8 +181,12 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
-	        				<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/tjqs.jpg" width="900" height="300" align="">
+	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;width:98%;">
+	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
+								<div>
+									<param name="wmode" value="transparent" />
+								</div>
+							</div>
 	        			</div>
 	        		</div>
         		</td>

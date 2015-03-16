@@ -320,4 +320,16 @@
 			from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid) right join xtgl_xzqh xt on (lx.xzqhdm=xt.id) order by xt.parent
 		) t join xtgl_xzqh xz on(t.parent=xz.id) group by t.parent,xz.name order by t.parent
 	</select>
+	<select id="queryJhktj2" resultType="treenode" parameterType="java.util.Map">
+		select t.sbnf as id,sum(t.jhsybzje) as text,count(t.jhsybzje) as name from (
+       		select distinct jh.id,lx.xzqhdm,jh.sbnf,jh.jhsybzje 
+       		from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid) where lx.xzqhdm like #{xzqhdm}) t
+		where t.sbnf>=#{start} and <![CDATA[t.sbnf<=#{end}]]> group by t.sbnf
+	</select>
+	<select id="queryJhktjt2" resultType="string" parameterType="java.util.Map">
+		select NVL(sum(t.jhsybzje),0) from (
+       		select distinct jh.id,lx.xzqhdm,jh.sbnf,jh.jhsybzje 
+       		from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid) 
+       		where lx.xzqhdm like #{xzqhdm} and sbnf=#{nf}) t group by t.sbnf
+	</select>
 </mapper>

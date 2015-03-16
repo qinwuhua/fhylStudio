@@ -91,4 +91,12 @@ public interface Plan_wqgzServer {
 	boolean updateStatusBatch(List<Plan_wqgz> splist);
 	List<TreeNode> queryJcktj();
 	List<TreeNode> queryJcktj1(String nf);
+	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
+	/**
+	 * 根据行政区划和年份查询总资金
+	 * @param xzqhdm
+	 * @param year
+	 * @return
+	 */
+	double queryJhktj2(String xzqhdm, String year);
 }

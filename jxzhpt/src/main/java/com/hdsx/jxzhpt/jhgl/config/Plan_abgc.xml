@@ -346,4 +346,20 @@
     	) t join xtgl_xzqh xz on (t.parent=xz.id)
     	group by t.parent,xz.name order by t.parent
 	</select>
+	<select id="queryJhktj2" resultType="treenode" parameterType="java.util.Map">
+		select t.jhnf as id,sum(t.jhsybbzje) as text,count(t.jhsybbzje) as name from (
+			select distinct jh.id,jh.jhnf,jh.jhsybbzje from 
+			plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+			left join xmk_abgc lx on (sc.xmkid=lx.id) 
+			where lx.xzqhdm like #{xzqhdm} and jh.jhnf>=#{start} and <![CDATA[jh.jhnf<=#{end}]]>) t
+		group by t.jhnf
+	</select>
+	<select id="queryJhktjt2" resultType="string" parameterType="java.util.Map">
+		select NVL(sum(t.jhsybbzje),0) from (
+			select distinct jh.id,jh.jhnf,jh.jhsybbzje from 
+			plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+			left join xmk_abgc lx on (sc.xmkid=lx.id) 
+			where lx.xzqhdm like #{xzqhdm} and jh.jhnf=#{nf}) t
+		group by t.jhnf
+	</select>
 </mapper>
