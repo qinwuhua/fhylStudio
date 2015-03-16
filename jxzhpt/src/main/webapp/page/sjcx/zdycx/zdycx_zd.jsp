@@ -33,11 +33,25 @@
 			colValue= new Array();
 			tableValue=new Array();
 			tableCol=new Array();
-			var checkboxes = document.getElementsByName("checkbox");
-			for(var i=0;i<checkboxes.length;i++){
-			    if(checkboxes[i].checked){
-			    	colValue.push(checkboxes[i].value);
-			    	nameValue.push(checkboxes[i].nextSibling.nodeValue);
+			var checkboxes1 = document.getElementsByName("checkbox1");
+			for(var i=0;i<checkboxes1.length;i++){
+			    if(checkboxes1[i].checked){
+			    	colValue.push(checkboxes1[i].value);
+			    	nameValue.push(checkboxes1[i].nextSibling.nodeValue);
+			    }
+			}
+			var checkboxes2 = document.getElementsByName("checkbox2");
+			for(var i=0;i<checkboxes2.length;i++){
+			    if(checkboxes2[i].checked){
+			    	colValue.push(checkboxes2[i].value);
+			    	nameValue.push(checkboxes2[i].nextSibling.nodeValue);
+			    }
+			}
+			var checkboxes3 = document.getElementsByName("checkbox3");
+			for(var i=0;i<checkboxes3.length;i++){
+			    if(checkboxes3[i].checked){
+			    	colValue.push(checkboxes3[i].value);
+			    	nameValue.push(checkboxes3[i].nextSibling.nodeValue);
 			    }
 			}
 			parent.$("#grid").datagrid({    
@@ -99,17 +113,27 @@
 	
 		// 全选
 		$("#qx").bind("click", function () {
-            $("[name = checkbox]:checkbox").attr("checked", true);
+            $("[name = checkbox1]:checkbox").attr("checked", true);
+            $("[name = checkbox2]:checkbox").attr("checked", true);
+            $("[name = checkbox3]:checkbox").attr("checked", true);
         }); 
 
         // 全不选
         $("#bx").bind("click", function () {
-            $("[name = checkbox]:checkbox").attr("checked", false);
+            $("[name = checkbox1]:checkbox").attr("checked", false);
+            $("[name = checkbox2]:checkbox").attr("checked", false);
+            $("[name = checkbox3]:checkbox").attr("checked", false);
         });
 
         // 反选
         $("#fx").bind("click", function () {
-            $("[name = checkbox]:checkbox").each(function () {
+            $("[name = checkbox1]:checkbox").each(function () {
+                $(this).attr("checked", !$(this).attr("checked"));
+            });
+            $("[name = checkbox2]:checkbox").each(function () {
+                $(this).attr("checked", !$(this).attr("checked"));
+            });
+            $("[name = checkbox3]:checkbox").each(function () {
                 $(this).attr("checked", !$(this).attr("checked"));
             });
         });
@@ -191,81 +215,81 @@ text-decoration:none;
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="lxmc" name="checkbox" class="part1"/>路线名称</td>
+					<input  type="checkbox" value="lxmc" name="checkbox1" class="part1"/>路线名称</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="lxbm" name="checkbox" class="part1"/>路线编码</td>
+					<input  type="checkbox" value="lxbm" name="checkbox1" class="part1"/>路线编码</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="sjdw" name="checkbox" class="part2"/>设计单位</td>
+					<input  type="checkbox" value="sjdw" name="checkbox2" class="part2"/>设计单位</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="sjpfdw" name="checkbox" class="part2"/>设计批复单位</td>
+					<input  type="checkbox" value="sjpfdw" name="checkbox2" class="part2"/>设计批复单位</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="xdsj" name="checkbox" class="part3"/>计划下达时间</td>
+					<input  type="checkbox" value="xdsj" name="checkbox3" class="part3"/>计划下达时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="sjkgsj" name="checkbox" class="part3"/>实际开工时间</td>
+					<input  type="checkbox" value="sjkgsj" name="checkbox3" class="part3"/>实际开工时间</td>
 					
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="gydw" name="checkbox" class="part1"/>管养单位</td>
+					<input  type="checkbox" value="gydw" name="checkbox1" class="part1"/>管养单位</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="xzqhmc" name="checkbox" class="part1"/>行政区划</td>
+					<input  type="checkbox" value="xzqhmc" name="checkbox1" class="part1"/>行政区划</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="pfwh" name="checkbox" class="part2"/>批复文号</td>
+					<input  type="checkbox" value="pfwh" name="checkbox2" class="part2"/>批复文号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="pfsj" name="checkbox" class="part2"/>批复时间</td>
+					<input  type="checkbox" value="pfsj" name="checkbox2" class="part2"/>批复时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="yjwgsj" name="checkbox" class="part3"/>预计完工时间</td>
+					<input  type="checkbox" value="yjwgsj" name="checkbox3" class="part3"/>预计完工时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="sgdw" name="checkbox" class="part3"/>施工单位</td>			
+					<input  type="checkbox" value="sgdw" name="checkbox3" class="part3"/>施工单位</td>			
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="qdzh" name="checkbox" class="part1"/>起点桩号</td>
+					<input  type="checkbox" value="qdzh" name="checkbox1" class="part1"/>起点桩号</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="zdzh" name="checkbox" class="part1"/>止点桩号</td>
+					<input  type="checkbox" value="zdzh" name="checkbox1" class="part1"/>止点桩号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="pfztz" name="checkbox" class="part2"/>批复总投资</td>
+					<input  type="checkbox" value="pfztz" name="checkbox2" class="part2"/>批复总投资</td>
 				<td style="background-color: #ffffff;width:11%" align="left">
-					<input  type="checkbox" value="jhsybzje" name="checkbox" class="part2"/>计划使用部补助金额</td>
+					<input  type="checkbox" value="jhsybzje" name="checkbox2" class="part2"/>计划使用部补助金额</td>
 					<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="jldw" name="checkbox" class="part3"/>监理单位</td>
+					<input  type="checkbox" value="jldw" name="checkbox3" class="part3"/>监理单位</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="jsdw" name="checkbox" class="part3"/>建设单位</td>
+					<input  type="checkbox" value="jsdw" name="checkbox3" class="part3"/>建设单位</td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="qzlc" name="checkbox" class="part1"/>总里程</td>
+					<input  type="checkbox" value="qzlc" name="checkbox1" class="part1"/>总里程</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="yhlc" name="checkbox" class="part1"/>隐患里程</td>
+					<input  type="checkbox" value="yhlc" name="checkbox1" class="part1"/>隐患里程</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="jhsydfzcje" name="checkbox" class="part2"/>计划使用地方自筹资金</td>
+					<input  type="checkbox" value="jhsydfzcje" name="checkbox2" class="part2"/>计划使用地方自筹资金</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="sfsqablbz" name="checkbox" class="part2"/>是否申请按比例补助</td>
+					<input  type="checkbox" value="sfsqablbz" name="checkbox2" class="part2"/>是否申请按比例补助</td>
 					<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="htje" name="checkbox" class="part3"/>合同金额(万元)</td>
+					<input  type="checkbox" value="htje" name="checkbox3" class="part3"/>合同金额(万元)</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="gys" name="checkbox" class="part3"/>概预算(万元)</td>
+					<input  type="checkbox" value="gys" name="checkbox3" class="part3"/>概预算(万元)</td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="lxjsdj" name="checkbox" class="part1"/>路线技术等级</td>
+					<input  type="checkbox" value="lxjsdj" name="checkbox1" class="part1"/>路线技术等级</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="faspsj" name="checkbox" class="part1"/>方案审批时间</td>
+					<input  type="checkbox" value="faspsj" name="checkbox1" class="part1"/>方案审批时间</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="ablbzsqwh" name="checkbox" class="part2"/>按比例补助申请文号</td>
+					<input  type="checkbox" value="ablbzsqwh" name="checkbox2" class="part2"/>按比例补助申请文号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="sbnf" name="checkbox" class="part2"/>上报年份</td>
+					<input  type="checkbox" value="sbnf" name="checkbox2" class="part2"/>上报年份</td>
 					<td colspan="2"style="background-color: #ffffff;width:10%" align="left"></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="xmnf" name="checkbox" class="part1"/>项目年份</td>
+					<input  type="checkbox" value="xmnf" name="checkbox1" class="part1"/>项目年份</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="jsxz" name="checkbox" class="part1"/>建设性质</td>
+					<input  type="checkbox" value="jsxz" name="checkbox1" class="part1"/>建设性质</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="jhkgsj" name="checkbox" class="part2"/>计划开工时间</td>
+					<input  type="checkbox" value="jhkgsj" name="checkbox2" class="part2"/>计划开工时间</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
-					<input  type="checkbox" value="jhwgsj" name="checkbox" class="part2"/>计划完工时间</td>
+					<input  type="checkbox" value="jhwgsj" name="checkbox2" class="part2"/>计划完工时间</td>
 				<td colspan="2"style="background-color: #ffffff;width:10%" align="left"></td>	
 			</tr>
 			<tr>
