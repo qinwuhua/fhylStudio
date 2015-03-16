@@ -244,4 +244,9 @@
        		where lx.xzqhdm like #{xzqhdm} and sbnf=#{nf}) t
 		group by t.sbnf
 	</select>
+	<select id="queryJhktjt3" resultType="treenode" parameterType="java.util.Map">
+		select sbnf as name,sum(totalsubsidyfund) as text from (
+		select distinct jh.id,jh.sbnf,jh.totalsubsidyfund from plan_yhdzx jh left join plan_lx_yhdzx lx on jh.id=lx.jhid
+		where jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) s group by s.sbnf
+	</select>
 </mapper>

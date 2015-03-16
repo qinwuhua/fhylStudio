@@ -12,18 +12,46 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jhkglGrid.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
-			xmlxqstj();
+			search();
 		});
+		function search(){
+			var xzqhdm=$('#xzqh').combotree("getValue");
+			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
+				xzqhdm=xzqhdm;
+			}else if(new RegExp("^36[0-9][1-9][0-9]{2}$").test(xzqhdm) || new RegExp("^36[1-9][0-9][0-9]{2}$").test(xzqhdm)){
+				xzqhdm=xzqhdm.substring(0,4)+"__";
+			}else if(new RegExp("^360000$").test(xzqhdm)){
+				xzqhdm=xzqhdm.replace(/0000/,"____");
+			}
+			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+		    barChart_1.width =980;
+		    barChart_1.height =450;
+		    barChart_1.padding =0;
+		    barChart_1.wMode="transparent";
+		    barChart_1.write("anychart_div");
+			$.ajax({
+				type:'post',
+				url:"../../../tjfx/queryJhktjt3.do?xzqhdm="+xzqhdm+"&nf="+$('#startYear').val()+"&end="+$('#endYear').val(),
+				dataType:'text',
+				success:function(data){
+					barChart_1.setData(data);
+				}
+			});
+		}
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<div style="text-align:left;font-size:12px;margin:0px;">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 				<td colspan="2">
 	                <div id="righttop">
@@ -57,7 +85,7 @@
         							<option value="2014">2014年</option>
         							<option value="2015" selected="selected">2015年</option>
         						</select>
-        						<img onclick="xmlxQsSearch()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -71,8 +99,12 @@
             	</td>
         	</tr>
         	<tr>
-        		<td style="text-align: center;vertical-align:middle;padding-top: 10px;">
-        			<img alt="" src="${pageContext.request.contextPath}/page/tjfx/img/tjqs.jpg" width="980" style="style="text-align: center;vertical-align:middle;"">
+        		<td style="text-align: center;vertical-align:middle;">
+        			<div id="anychart_div" style="width:97%;height:300px;"> 
+						<div>
+							<param name="wmode" value="transparent" />
+						</div>
+					</div>
         		</td>
         	</tr>
 		</table>

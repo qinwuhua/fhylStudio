@@ -97,4 +97,6 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	double queryJhktj2(String xzqhdm, String year);
+	
+	List<TreeNode> queryJhktjt3(String xzqhdm, String nf, String end);
 }

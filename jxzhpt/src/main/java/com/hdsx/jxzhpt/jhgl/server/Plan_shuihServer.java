@@ -130,4 +130,6 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	double queryJhktj2(String xzqhdm, String string);
+	
+	List<TreeNode> queryJhktjt3(String xzqhdm, String nf, String end);
 }

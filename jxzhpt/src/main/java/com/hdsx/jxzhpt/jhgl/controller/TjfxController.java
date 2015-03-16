@@ -264,6 +264,73 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	
+	public void queryJhktjt3(){
+		Map<String, Object> result=new HashMap<String, Object>();
+		//设置AnyChart信息
+		Map<String,Object> parameter=new HashMap<String,Object>();
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		parameter.put("xName", "年份");//title
+		parameter.put("chart_title", "区划金额趋势图");
+		String yName="总金额";//y单位
+		int precision=3;//小数的位数
+		parameter.put("yName", yName);
+		parameter.put("precision",precision);
+		parameter.put("legend_title", "行政区划");
+		String chartType = "jhkline2.ftl";
+		List<TreeNode> gcgj = gcgjServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> gcsj=gcsjServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> shuih=shuihServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> yhdzx=yhdzxServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> wqgz=wqgzServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> abgc=abgcServer.queryJhktjt3(xzqhdm,nf,end);
+		List<TreeNode> zhfz=zhfzServer.queryJhktjt3(xzqhdm,nf,end);
+		for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
+			Map<String, String> one=new HashMap<String, String>();
+			String year = new Integer(i).toString();
+			one.put("year",year);
+			one.put("gcgj", "0");
+			one.put("gcsj", "0");
+			one.put("shuih", "0");
+			one.put("yhdzx", "0");
+			one.put("wqgz", "0");
+			one.put("abgc", "0");
+			one.put("zhfz", "0");
+			for (TreeNode item : gcgj) {
+				if(item.getName().equals(year)){
+					one.put("gcgj", item.getText());
+				}
+			}
+			for (TreeNode item : gcsj) {
+				if(item.getName().equals(year))
+					one.put("gcsj", item.getText());
+			}
+			for (TreeNode item : shuih) {
+				if(item.getName().equals(year))
+					one.put("shuih", item.getText());
+			}
+			for (TreeNode item : yhdzx) {
+				if(item.getName().equals(year))
+					one.put("yhdzx", item.getText());
+			}
+			for (TreeNode item : wqgz) {
+				if(item.getName().equals(year))
+					one.put("wqgz", item.getText());
+			}
+			for (TreeNode item : abgc) {
+				if(item.getName().equals(year))
+					one.put("abgc", item.getText());
+			}
+			for (TreeNode item : zhfz) {
+				if(item.getName().equals(year))
+					one.put("zhfz", item.getText());
+			}
+			list.add(one);
+		}
+		parameter.put("list",list);
+		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+		ResponseUtils.write(getresponse(), anyChartXml);
+	}
+	
 	public String getXmlx() {
 		return xmlx;
 	}

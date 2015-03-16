@@ -155,4 +155,13 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		String result = queryOne("queryJhktjt2",param);
 		return result==null ? 0 : new Double(queryOne("queryJhktjt2",param).toString()).doubleValue();
 	}
+
+	@Override
+	public List<TreeNode> queryJhktjt3(String xzqhdm, String nf, String end) {
+		Map<String, String> param=new HashMap<String, String>();
+		param.put("xzqhdm", xzqhdm);
+		param.put("start", nf);
+		param.put("end", end);
+		return queryList("queryJhktjt3",param);
+	}
 }

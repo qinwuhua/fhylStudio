@@ -349,4 +349,9 @@
        		where lx.xzqhdm like #{xzqhdm} and jhnf=#{nf}) t
 		group by t.jhnf
 	</select>
+	<select id="queryJhktjt3" resultType="treenode" parameterType="java.util.Map">
+		select jhnf as name,sum(jhsybbzje) as text from (
+		select distinct jh.id,jh.jhnf,jh.jhsybbzje from Plan_Gcsj jh left join plan_lx_gcsj lx on jh.id=lx.jhid
+		where jh.jhnf>=#{start} and <![CDATA[jh.jhnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) s group by s.jhnf
+	</select>
 </mapper>
