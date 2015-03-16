@@ -91,6 +91,10 @@ function tjgcgzsjyb(){
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
 	}
+	if($("#tj_qlwcqk_z").val()==''||$("#tj_qlwcqk_ym").val()==''||$("#tj_sdwcqk_z").val()==''||$("#tj_sdwcqk_ym").val()==''||$("#tj_hdwcqk_m").val()==''||$("#tj_ljtsfwcqk").val()==''||$("#tj_dcwcqk").val()==''||$("#tj_jcwcqk").val()==''||$("#tj_bywcmc").val()==''||$("#tj_lqlmwcqk").val()==''||$("#tj_snlmwcqk").val()==''||$("#tj_bywctze").val()==''||$("#tj_bywcgzl").val()==''||$("#tj_kgdl").val()==''){
+		alert("页面信息未填写完整，请您检查漏填项");
+		return;
+	}
 	var data = "gcglgcgzsj.qlwcqk_z="+$("#tj_qlwcqk_z").val()+"&gcglgcgzsj.qlwcqk_ym="+$("#tj_qlwcqk_ym").val()+"&gcglgcgzsj.sdwcqk_z="+$("#tj_sdwcqk_z").val()+"&gcglgcgzsj.sdwcqk_ym="+$("#tj_sdwcqk_ym").val()+"&gcglgcgzsj.hdwcqk_m="+$("#tj_hdwcqk_m").val()
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#tj_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#tj_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#tj_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#tj_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#tj_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
@@ -116,6 +120,10 @@ function tjgcgzsjyb(){
 //修改
 function xggcgzsjyb(){
 	//alert("xx");
+	if($("#xg_qlwcqk_z").val()==''||$("#xg_qlwcqk_ym").val()==''||$("#xg_sdwcqk_z").val()==''||$("#xg_sdwcqk_ym").val()==''||$("#xg_hdwcqk_m").val()==''||$("#xg_ljtsfwcqk").val()==''||$("#xg_dcwcqk").val()==''||$("#xg_jcwcqk").val()==''||$("#xg_bywcmc").val()==''||$("#xg_lqlmwcqk").val()==''||$("#xg_snlmwcqk").val()==''||$("#xg_bywctze").val()==''||$("#xg_bywcgzl").val()==''||$("#xg_kgdl").val()==''){
+		alert("页面信息未填写完整，请您检查漏填项");
+		return;
+	}
 	var data = "gcglgcgzsj.qlwcqk_z="+$("#xg_qlwcqk_z").val()+"&gcglgcgzsj.qlwcqk_ym="+$("#xg_qlwcqk_ym").val()+"&gcglgcgzsj.sdwcqk_z="+$("#xg_sdwcqk_z").val()+"&gcglgcgzsj.sdwcqk_ym="+$("#xg_sdwcqk_ym").val()+"&gcglgcgzsj.hdwcqk_m="+$("#xg_hdwcqk_m").val()
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#xg_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#xg_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#xg_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#xg_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#xg_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#xg_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#xg_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#xg_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#xg_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#xg_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#xg_qtzj").val()
@@ -140,6 +148,26 @@ function xggcgzsjyb(){
 }
 //开工
 function tjwqgzkg(){
+	if($("#tj_sgdw").val()==''){
+		alert("请您输入施工单位");
+		return;
+	}
+	if($("#tj_jldw").val()==''){
+		alert("请您输入监理单位");
+		return;
+	}
+	if($("#tj_jsdw").val()==''){
+		alert("请您输入建设单位");
+		return;
+	}
+	if($("#tj_htje").val()==''){
+		alert("请您输入合同金额");
+		return;
+	}
+	if($("#tj_gys").val()==''){
+		alert("请您输入概预算");
+		return;
+	}
 	var data="gcglgcgzsj.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglgcgzsj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzsj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglgcgzsj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzsj.jldw="+$("#tj_jldw").val()+"&gcglgcgzsj.jsdw="+$("#tj_jsdw").val()
 	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+$("#tj_gys").val()+"&gcglgcgzsj.jhid="+parent.obj1.id;
@@ -162,6 +190,9 @@ function tjwqgzkg(){
 }
 //完工
 function tjwqgzwg(){
+	if(!confirm("确认完工吗？")){
+		return;
+	}
 	var data="gcglgcgzsj.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglgcgzsj.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -182,6 +213,10 @@ function tjwqgzwg(){
 }
 //未完工
 function tjwqgzwwg(){
+	if($("#tj_wjgyy").val()==''){
+		alert("请您填写未完工原因");
+		return;
+	}
 	var data="gcglgcgzsj.wjgyy="+$("#tj_wjgyy").val()+"&gcglgcgzsj.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({

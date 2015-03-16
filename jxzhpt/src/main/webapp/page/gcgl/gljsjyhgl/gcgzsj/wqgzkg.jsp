@@ -45,9 +45,13 @@
 			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);
 			$('#tj_yjjgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
-		
-		
-		
+	function checkZJ1(aa){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	    if( !g.test(aa.value)){
+	    	alert("请输入正确的金额");
+	    	$(aa).val('');
+	    }
+	}
 	</script>
 	<style type="text/css">
 <!--
@@ -144,7 +148,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 100px" type="text" id="tj_htje" />
+                                <input style="width: 100px" type="text" id="tj_htje" onblur="checkZJ1(this)"/>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -153,7 +157,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 100px" type="text" id="tj_gys" />
+                                <input style="width: 100px" type="text" id="tj_gys"  onblur="checkZJ1(this)"/>
                             </td>
                         </tr>
                     </table>

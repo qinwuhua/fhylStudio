@@ -90,6 +90,10 @@ function tjhslyyb(){
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
 	}
+	if($("#tj_bywcdc").val()==''||$("#tj_bywcjc").val()==''||$("#tj_bywcmc").val()==''||$("#tj_kgdl").val()==''){
+		alert("页面信息未填写完整，请您检查漏填项");
+		return;
+	}
 	var data = "gcglhsly.bywcdc="+$("#tj_bywcdc").val()+"&gcglhsly.bywcjc="+$("#tj_bywcjc").val()+"&gcglhsly.bywcmc="+$("#tj_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
 	+"&gcglhsly.qksm="+$("#tj_qksm").val()+"&gcglhsly.bfzj="+$("#tj_bfzj").val()
 	+"&gcglhsly.sbsj="+sbsj+"&gcglhsly.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglhsly.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
@@ -113,6 +117,10 @@ function tjhslyyb(){
 //修改
 function xghslyyb(){
 	//alert("xx");
+	if($("#xg_bywcdc").val()==''||$("#xg_bywcjc").val()==''||$("#xg_bywcmc").val()==''||$("#xg_kgdl").val()==''){
+		alert("页面信息未填写完整，请您检查漏填项");
+		return;
+	}
 	var data = "gcglhsly.bywcdc="+$("#xg_bywcdc").val()+"&gcglhsly.bywcjc="+$("#xg_bywcjc").val()+"&gcglhsly.bywcmc="+$("#xg_bywcmc").val()+"&gcglhsly.kgdl="+$("#xg_kgdl").val()
 	+"&gcglhsly.qksm="+$("#xg_qksm").val()+"&gcglhsly.bfzj="+$("#xg_bfzj").val()+"&gcglhsly.sbyf="+$("#xg_sbyf").find("option:selected").text()
 	+"&gcglhsly.jhid="+parent.obj.jhid+"&gcglhsly.id="+parent.obj.id;
@@ -135,6 +143,26 @@ function xghslyyb(){
 }
 //开工
 function tjwqgzkg(){
+	if($("#tj_sgdw").val()==''){
+		alert("请您输入施工单位");
+		return;
+	}
+	if($("#tj_jldw").val()==''){
+		alert("请您输入监理单位");
+		return;
+	}
+	if($("#tj_jsdw").val()==''){
+		alert("请您输入建设单位");
+		return;
+	}
+	if($("#tj_htje").val()==''){
+		alert("请您输入合同金额");
+		return;
+	}
+	if($("#tj_gys").val()==''){
+		alert("请您输入概预算");
+		return;
+	}
 	var data="gcglhsly.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglhsly.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglhsly.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglhsly.sgdw="+$("#tj_sgdw").val()+"&gcglhsly.jldw="+$("#tj_jldw").val()+"&gcglhsly.jsdw="+$("#tj_jsdw").val()
 	+"&gcglhsly.htje="+$("#tj_htje").val()+"&gcglhsly.gsztz="+$("#tj_gys").val()+"&gcglhsly.jhid="+parent.obj1.id;
@@ -157,6 +185,9 @@ function tjwqgzkg(){
 }
 //完工
 function tjwqgzwg(){
+	if(!confirm("确认完工吗？")){
+		return;
+	}
 	var data="gcglhsly.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglhsly.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -177,6 +208,10 @@ function tjwqgzwg(){
 }
 //未完工
 function tjwqgzwwg(){
+	if($("#tj_wjgyy").val()==''){
+		alert("请您填写未完工原因");
+		return;
+	}
 	var data="gcglhsly.wjgyy="+$("#tj_wjgyy").val()+"&gcglhsly.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
