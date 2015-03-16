@@ -90,11 +90,11 @@
 			tableCol.push(tableValue);
 			options.columns = tableCol;
 			parent.$('#grid').datagrid(options); 
-			parent.$('#zd_xz').window('destroy');
+			parent.$('#zd_wqgz').window('destroy');
 		});
 		
 		$("#qx_window").click(function(){
-			parent.$('#zd_xz').window('destroy');
+			parent.$('#zd_wqgz').window('destroy');
 		});	
 	
 		// 全选
@@ -176,15 +176,15 @@ text-decoration:none;
 				<td colspan="3"  style="background-color: #ffffff;" align="center">施工进展</td>
 			</tr>
 			<tr  style="height: 30px;">
-				<td colspan="2" style="background-color: #ffffff;width:25%" align="center">
+				<td colspan="2" style="background-color: #ffffff;" align="center">
 					<input  type="radio" value="qx" name="radio1" id="qx1"/>全选
 					<input  type="radio" value="fx" name="radio1" id="fx1"/>反选
 					<input  type="radio" value="bx" name="radio1" id="bx1"/>不选</td>
-				<td colspan="2" style="background-color: #ffffff;width:35%" align="center">
+				<td colspan="2" style="background-color: #ffffff;" align="center">
 					<input  type="radio" value="qx" name="radio2" id="qx2"/>全选
 					<input  type="radio" value="fx" name="radio2" id="fx2"/>反选
 					<input  type="radio" value="bx" name="radio2" id="bx2"/>不选</td>
-				<td colspan="3" style="background-color: #ffffff;width:35%" align="center">
+				<td colspan="3" style="background-color: #ffffff;" align="center">
 					<input  type="radio" value="qx" name="radio3" id="qx3"/>全选
 					<input  type="radio" value="fx" name="radio3" id="fx3"/>反选
 					<input  type="radio" value="bx" name="radio3" id="bx3"/>不选</td>
@@ -220,12 +220,12 @@ text-decoration:none;
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="qdzh" name="checkbox" class="part1"/>起点桩号</td>
+					<input  type="checkbox" value="qlmc" name="checkbox" class="part1"/>桥梁名称</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="zdzh" name="checkbox" class="part1"/>止点桩号</td>
+					<input  type="checkbox" value="qlbh" name="checkbox" class="part1"/>桥梁编号</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="pfztz" name="checkbox" class="part2"/>批复总投资</td>
-				<td style="background-color: #ffffff;width:11%" align="left">
+				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="jhsybzje" name="checkbox" class="part2"/>计划使用部补助金额</td>
 					<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="jldw" name="checkbox" class="part3"/>监理单位</td>
@@ -234,9 +234,9 @@ text-decoration:none;
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="qzlc" name="checkbox" class="part1"/>总里程</td>
+					<input  type="checkbox" value="qlzxzh" name="checkbox" class="part1"/>桥梁中心桩号</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="yhlc" name="checkbox" class="part1"/>隐患里程</td>
+					<input  type="checkbox" value="qlkd" name="checkbox" class="part1"/>桥梁宽度</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="jhsydfzcje" name="checkbox" class="part2"/>计划使用地方自筹资金</td>
 				<td style="background-color: #ffffff;width:12%" align="left">
@@ -248,7 +248,7 @@ text-decoration:none;
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="lxjsdj" name="checkbox" class="part1"/>路线技术等级</td>
+					<input  type="checkbox" value="qlqc" name="checkbox" class="part1"/>桥梁全长</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="faspsj" name="checkbox" class="part1"/>方案审批时间</td>
 				<td style="background-color: #ffffff;width:12%" align="left">

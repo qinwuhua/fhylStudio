@@ -1,9 +1,11 @@
 var checkValues;
 var gydw=parent.YMLib.Var.gydw;
-/*function cxzd(jsp,w,h){
-	YMLib.UI.createWindow('zd_xz','项目字段选择列表',jsp,'zd_xz',w,h);
-}*/
-
+function cxzd(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_zd.jsp','zd_xz','900','380');
+}
+function Wqgz(){
+	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgz.jsp','zd_wqgz','900','380');
+}
 //路网项目JS
 //基础库安保工程
 function ckJckabgc(ck_id){
@@ -35,7 +37,7 @@ function ckSckzhfz(ck_id){
 	rowid=ck_id;
 	YMLib.UI.createWindow('sck_ck','查看项目详情','zhfz_sck_ck.jsp','sck_ck',900,500);
 }
-//基础库管理
+/*//基础库管理
 function zdy(){
 	$("#grid").datagrid({    
 		 url:"../js/lwxm1.json",
@@ -47,5 +49,5 @@ function zdy(){
 		    height:325,
 		    width:1100,
 	});  
-}
+}*/
 

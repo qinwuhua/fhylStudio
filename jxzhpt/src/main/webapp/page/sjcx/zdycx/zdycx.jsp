@@ -28,13 +28,13 @@
 			YMLib.Var.kgzt=$("#kgzt").combobox("getValue");
 			YMLib.Var.lxmc=$("#lxmc").val();
 			YMLib.Var.xmlx=$("#xmlx").combobox("getValue");
-
-			cxzd();
+			if($("#xmlx").combobox("getValue")=='wqgz'){
+				Wqgz();
+			} else{
+			 	cxzd();	
+			}
 		});
 	});
-	function cxzd(){
-		YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_zd.jsp','zd_xz','980','380');
-	}
 </script>
 <style type="text/css">
 TD {
@@ -78,7 +78,6 @@ text-decoration:none;
 						<option value="lmgj">工程改造路面改建</option>
 						<option value="yhdzx">养护大中修</option>
 						<option value="shxm">水毁项目</option>
-						<option value="hsly">红色旅游</option>
 					</select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -97,7 +96,7 @@ text-decoration:none;
 			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="cxzd('zdycx_zd.jsp','980','380');" style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
+						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
 			</table><br/>
