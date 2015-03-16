@@ -53,6 +53,14 @@
 		else if(mystr2.substr(5,1)<sj2){$("#"+mystr2).remove();}
 		$("#xg_tbyf").val(data.tbyf);
 	});
+	function checkZJ(){
+		var str=$("#xg_cgsdwzj").val();
+		var g = /^\d+(?=\.{0,1}\d+$|$)/;
+	    if( !g.test(str)){
+	    	alert("请输入正确的金额");
+	    	$("#tj_cgsdwzj").val('');
+	    }
+	}
 </script>
 <style type="text/css">
 <!--
@@ -91,7 +99,7 @@ text-decoration: none;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="txtCGSZJDW" type="text" id="xg_cgsdwzj"  style="width: 50px"/>万元
+                                <input onblur="checkZJ()" name="txtCGSZJDW" type="text" id="xg_cgsdwzj"  style="width: 50px"/>万元
                             </td>
                         </tr>
                         <tr style="height: 35px;">

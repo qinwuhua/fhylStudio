@@ -61,6 +61,10 @@ function tjshcgs(){
 }
 //修改车购税
 function xgshcgs(){
+	if($("#xg_cgsdwzj").val()==''){
+		alert("请您填入本月资金");
+		return;
+	}
 	var data="gcglsh.cgsdwzj="+$("#xg_cgsdwzj").val()
 	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.tbyf="+$("#xg_tbyf").val();
 	//alert(data);
