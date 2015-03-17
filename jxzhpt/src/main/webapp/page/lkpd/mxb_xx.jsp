@@ -21,15 +21,15 @@
 <body style="margin: 0px; overflow: auto;">
 	<script type="text/javascript">
 		var id= obj.tabs('getSelected').panel('options').id;
-		var data="id"+id;
+		var data="id="+id.substr(0,32);
 		$.ajax({
-			url:"/jxzhpt/wjxt/getMxbDataList.do?id="+id,
+			url:"/jxzhpt/wjxt/getMxbDataList.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
 				if (msg != null) {
-					var tbody = $("#mxbdata");
+					var tbody = $("#"+id+" #mxbdata");
 					tbody.empty();
 					for ( var i = 0; i < msg.length; i++) {
 						tbody.append( "<tr style='background-color: #FFFFFF; height: 15px;'><td>"
@@ -55,17 +55,17 @@
 			}
 		});
 		$.ajax({
-			url:"/jxzhpt/wjxt/getMxbDataList1.do?id="+id,
+			url:"/jxzhpt/wjxt/getMxbDataList1.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
-				$("#tbdw").text(msg.tbdw);
-				$("#tbnf").text(msg.tbnf);
-				$("#dwfzr").text(msg.dwfzr);
-				$("#tjfzr").text(msg.tjfzr);
-				$("#tjf").text(msg.tjf);
-				$("#tbrq").text(msg.tbrq);
+				$("#"+id+" #tbdw").text(msg.tbdw);
+				$("#"+id+" #tbnf").text(msg.tbnf);
+				$("#"+id+" #dwfzr").text(msg.dwfzr);
+				$("#"+id+" #tjfzr").text(msg.tjfzr);
+				$("#"+id+" #tjf").text(msg.tjf);
+				$("#"+id+" #tbrq").text(msg.tbrq);
 			}
 			});
 		
