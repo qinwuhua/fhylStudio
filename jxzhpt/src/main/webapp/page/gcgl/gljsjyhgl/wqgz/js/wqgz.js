@@ -104,10 +104,6 @@ function tjwqgzyb(){
 		alert("请您填入截至开工段落");
 		return;
 	}
-	if($("#tj_sbyf").val()==''||$("#tj_sbyf").val()==null){
-		alert("请您等待上级拨付车购税再上报");
-		return;
-	}
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -125,7 +121,10 @@ function tjwqgzyb(){
 	if(yhjb.length<8&&yhjb.length>2){
 		yhtype='省级';
 	}
-	
+	if($("#tj_sbyf").find("option:selected").text()==''){
+		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
+		return;
+	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()

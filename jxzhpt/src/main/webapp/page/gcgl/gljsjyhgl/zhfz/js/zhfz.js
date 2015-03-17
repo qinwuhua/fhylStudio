@@ -101,6 +101,10 @@ function tjzhfzyb(){
 		alert("请填入本月完成公里");
 		return;
 	}
+	if($("#tj_sbyf").find("option:selected").text()==''){
+		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
+		return;
+	}
 	var data = "gcglzhfz.wc_btz="+$("#tj_wc_btz").val()+"&gcglzhfz.wc_stz="+$("#tj_wc_stz").val()+"&gcglzhfz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglzhfz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglzhfz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglzhfz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglzhfz.bywcgl="+$("#tj_bywcgl").val()+"&gcglzhfz.kgdl="+$("#tj_kgdl").val()+"&gcglzhfz.qksm="+$("#tj_qksm").val()
