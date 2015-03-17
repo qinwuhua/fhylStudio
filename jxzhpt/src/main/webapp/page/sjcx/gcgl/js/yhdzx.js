@@ -87,15 +87,33 @@ function tjyhdzxyb(){
 	}
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
-		alert("省级用户您好，您不用为添加月报负责");
+	}
+	if($("#tj_wc_btz").val()==''){
+		alert("请填入本月完成部投资");
+		return;
+	}
+	if($("#tj_bywcdc").val()==''){
+		alert("请填入本月完成垫层");
+		return;
+	}
+	if($("#tj_bywcjc").val()==''){
+		alert("请填入本月完成基层");
+		return;
+	}
+	if($("#tj_bywcmc").val()==''){
+		alert("请填入本月完成面层");
+		return;
+	}
+	if($("#tj_wcqk").val()==''){
+		alert("请填入本月完成情况");
 		return;
 	}
 	var data = "gcglyhdzx.wc_btz="+$("#tj_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#tj_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#tj_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#tj_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#tj_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#tj_kgdl").val()
 	+"&gcglyhdzx.qksm="+$("#tj_qksm").val()+"&gcglyhdzx.wcqk="+$("#tj_wcqk").val()
-	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").val()+"&gcglyhdzx.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
-	//alert(data);
+	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglyhdzx.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertYhdzxYb.do',
@@ -114,11 +132,31 @@ function tjyhdzxyb(){
 }
 //修改
 function xgyhdzxyb(){
+	if($("#xg_wc_btz").val()==''){
+		alert("请填入本月完成部投资");
+		return;
+	}
+	if($("#xg_bywcdc").val()==''){
+		alert("请填入本月完成垫层");
+		return;
+	}
+	if($("#xg_bywcjc").val()==''){
+		alert("请填入本月完成基层");
+		return;
+	}
+	if($("#xg_bywcmc").val()==''){
+		alert("请填入本月完成面层");
+		return;
+	}
+	if($("#xg_wcqk").val()==''){
+		alert("请填入本月完成情况");
+		return;
+	}
 	var data = "gcglyhdzx.wc_btz="+$("#xg_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#xg_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#xg_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#xg_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#xg_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#xg_kgdl").val()
 	+"&gcglyhdzx.qksm="+$("#xg_qksm").val()+"&gcglyhdzx.wcqk="+$("#xg_wcqk").val()
-	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").val();
+	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").find("option:selected").text();
 //	alert(data);
 	$.ajax({
 		type:'post',
@@ -138,6 +176,26 @@ function xgyhdzxyb(){
 }
 //开工
 function tjwqgzkg(){
+	if($("#tj_sgdw").val()==''){
+		alert("请您输入施工单位");
+		return;
+	}
+	if($("#tj_jldw").val()==''){
+		alert("请您输入监理单位");
+		return;
+	}
+	if($("#tj_jsdw").val()==''){
+		alert("请您输入建设单位");
+		return;
+	}
+	if($("#tj_htje").val()==''){
+		alert("请您输入合同金额");
+		return;
+	}
+	if($("#tj_gys").val()==''){
+		alert("请您输入概预算");
+		return;
+	}
 	var data="gcglyhdzx.jhxdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglyhdzx.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglyhdzx.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglyhdzx.sgdw="+$("#tj_sgdw").val()+"&gcglyhdzx.jldw="+$("#tj_jldw").val()+"&gcglyhdzx.jsdw="+$("#tj_jsdw").val()
 	+"&gcglyhdzx.htje="+$("#tj_htje").val()+"&gcglyhdzx.gys="+$("#tj_gys").val()+"&gcglyhdzx.jhid="+parent.obj1.id;
@@ -160,6 +218,9 @@ function tjwqgzkg(){
 }
 //完工
 function tjwqgzwg(){
+	if(!confirm("确认完工吗？")){
+		return;
+	}
 	var data="gcglyhdzx.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglyhdzx.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -180,6 +241,10 @@ function tjwqgzwg(){
 }
 //未完工
 function tjwqgzwwg(){
+	if($("#tj_wjgyy").val()==''){
+		alert("请您填写未完工原因");
+		return;
+	}
 	var data="gcglyhdzx.wjgyy="+$("#tj_wjgyy").val()+"&gcglyhdzx.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -206,6 +271,21 @@ function showAll(){
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
+	var yhjb=$.cookie("unit2");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/gcgl/selectYhdzxjhList.do',
 	    striped:true,
@@ -219,14 +299,16 @@ function showAll(){
 	    	gydw: gydw,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
-	    	lxmc:lxmc
+	    	lxmc:lxmc,
+	    	ybzt:ybzt,
+	    	sfsj:sfsj
 		},
 	    columns:[[
               {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
   	        	if(row.kgzt=='1'){
-  	        		return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
+  	        		return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
   	        	}else
-  	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
+  	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'未开工  ';
   	        }},
 	        {field:'gydw',title:'管养单位',width:130,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -263,7 +345,7 @@ function showYBlist(){
 		sfsj=7;
 	}
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectYhdzxYbByJhid.do',
+	    url:'/jxzhpt/gcgl/selectYhdzxYbByJhid.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -281,20 +363,20 @@ function showYBlist(){
 	              		
 	              		if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==11)
-    			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'未审核    ';
+    			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'未上报    '+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=11)
-		    			    return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    '+'未审核    ';
+		    			    return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'未审核    ';
 	              			if(row.shzt=='已审核')
-	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'已审核    ';
+	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'已审核    ';
 
 	              		}
 	              		if(yhtype=='市级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==9)
-	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'未审核    ';
+	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'未上报    '+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=9)
-	    	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    '+'退回    '+'未审核    ';
+	    	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'未审核    ';
 	              			if(row.shzt=='已审核')
-	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'退回    '+'已审核    ';
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'已审核    ';
 	              		}
 	              		if(yhtype=='省级'){
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
@@ -346,13 +428,16 @@ function uploadFile(str){
 	return false;
 }
 
-function downFile(str){
-	if($("#xz_"+str).text()=='下载附件'){
-		parent.window.location.href="../../../../gcgl/downYhdzxFile.do?type="+str+"&jhid="+parent.obj1.id;
-	}
-	else return;
-}
+//function downFile(str){
+//	if($("#xz_"+str).text()=='下载附件'){
+//		parent.window.location.href="../../../../gcgl/downYhdzxFile.do?type="+str+"&jhid="+parent.obj1.id;
+//	}
+//	else return;
+//}
 function deleteFile(str){
+	if($("#xz_"+str).text()=='暂无附件'){
+		return;
+	}
 	if(confirm("确认删除吗？")){
 	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
@@ -382,15 +467,21 @@ function jiazai(ooo){
 		dataType:'json',
 		async:false,
 		success:function(msg){
-				if(msg.sgxkwj!=''){
-					$("#xz_sgxkwj").text("下载附件");
-				}
-				if(msg.jgtcwj!=''){
-					$("#xz_jgtcwj").text("下载附件");
-				}
-				if(msg.jgyswj!=''){
-					$("#xz_jgyswj").text("下载附件");
-				}
+			if(msg.sgxkwj!=''){
+				$("#xz_sgxkwj").text(msg.sgxkwj);
+				$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=sgxkwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgtcwj!=''){
+				$("#xz_jgtcwj").text(msg.jgtcwj);
+				$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgtcwj'+"&jhid="+parent.obj1.id);
+			}
+			if(msg.jgyswj!=''){
+				$("#xz_jgyswj").text(msg.jgyswj);
+				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
+				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+			}
 			}
 	});	
 }
@@ -399,10 +490,10 @@ function sbsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
 	var data='';
 	if(yhjb.length==11){
-		data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=9";
+		data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=9"+"&gcglyhdzx.yhtype=11"+"&gcglyhdzx.jhid="+data1.jhid;
 	}
 	if(yhjb.length==9||yhjb.length==8||yhjb.length==2){
-		data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=7";
+		data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=7"+"&gcglyhdzx.yhtype=9"+"&gcglyhdzx.jhid="+data1.jhid;
 	}
 	if(confirm("确认上报吗？")){
 		$.ajax({
@@ -423,7 +514,7 @@ function sbsjyb(index){
 }
 function thsjyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=11";
+	var data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.sfsj=11"+"&gcglyhdzx.yhtype=9"+"&gcglyhdzx.jhid="+data1.jhid;
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
