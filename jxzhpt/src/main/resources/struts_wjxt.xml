@@ -52,5 +52,7 @@
 	<action name="exportExcel_zdxx" class="zdxxController" method="exportExcel_zdxx"/>
  	<action name="selectYbbList" class="dbyhController" method="selectYbbList"/>
  	<action name="export_ybb" class="dbyhController" method="export_ybb"/>
+ 	<action name="selectXhbList" class="dbyhController" method="selectXhbList"/>
+ 	<action name="export_xhb" class="dbyhController" method="export_xhb"/>
  </package>
 </struts>

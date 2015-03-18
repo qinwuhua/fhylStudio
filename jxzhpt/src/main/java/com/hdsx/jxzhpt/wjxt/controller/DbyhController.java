@@ -571,9 +571,6 @@ public class DbyhController extends BaseActionSupport{
 		}
 		try {
 			JsonUtils.write(list6, getresponse().getWriter());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1117,6 +1114,764 @@ public class DbyhController extends BaseActionSupport{
 		et.add(new Excel_tilte("m3/道", 2, 2, 38, 38));
 		et.add(new Excel_tilte("工日", 2, 2, 39, 39));
 		et.add(new Excel_tilte("工日", 2, 2, 40, 40));
+
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
+
+	}
+	
+	public void selectXhbList(){
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectxhbList1();
+		List<Map<String, Object>> list2=dbyhServer.selectList2(zdxx);
+		
+		List<Zdxx> list3=dbyhServer.selectList3(zdxx);
+		String str="";
+		for (int i = 0; i < list3.size(); i++) {
+			if(i!=list3.size()-1){
+				str=str+"'"+list3.get(i).getId()+"',";
+			}
+			else{
+				str=str+"'"+list3.get(i).getId()+"'";
+			}
+		}
+		zdxx.setTiaojian("iOrgID in("+str+")");
+		List<Map<String, Object>> list4=dbyhServer.selectxhbList4(zdxx);
+		
+		List<Map<String, Object>> list5=dbyhServer.selectxhbList5(zdxx);
+		
+		List<Excel_list> list6=new ArrayList<Excel_list>();
+		
+		if(list5.size()>0){
+			Excel_list el=new Excel_list();
+			el.setV_0("合计");
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			for (Map<String, Object> map : list5) {
+				
+				if("0302".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_1(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0303".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_2(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0304".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_3(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0305".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_4(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0306".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_5(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0307".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_6(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0308".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_7(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0309".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_8(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0310".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_9(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0311".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_10(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0312".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_11(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0314".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_12(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0315".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_13(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0326".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_14(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0327".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_15(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0302".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_16(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0303".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_17(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0304".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_18(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0305".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_19(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0306".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_20(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0307".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_21(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0308".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_22(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0309".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_23(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0310".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_24(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0311".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_25(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0312".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_26(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0314".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_27(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0315".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_28(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0326".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_29(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0327".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_30(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+
+			}
+			list6.add(el);
+		}
+		else{
+			Excel_list el=new Excel_list();
+			el.setV_0("合计");
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			list6.add(el);
+		}
+		for (Map<String, Object> map : list2) {
+			Excel_list el=new Excel_list();
+			el.setV_0(map.get("sOrgName").toString());
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			if(list4.size()==0){
+				el.setV_1("0");
+				el.setV_1("0");
+				el.setV_2("0");
+				el.setV_3("0");
+				el.setV_4("0");
+				el.setV_5("0");
+				el.setV_6("0");
+				el.setV_7("0");
+				el.setV_8("0");
+				el.setV_9("0");
+				el.setV_10("0");
+				el.setV_11("0");
+				el.setV_12("0");
+				el.setV_13("0");
+				el.setV_14("0");
+				el.setV_15("0");
+				el.setV_16("0");
+				el.setV_17("0");
+				el.setV_18("0");
+				el.setV_19("0");
+				el.setV_20("0");
+				el.setV_21("0");
+				el.setV_22("0");
+				el.setV_23("0");
+				el.setV_24("0");
+				el.setV_25("0");
+				el.setV_26("0");
+				el.setV_27("0");
+				el.setV_28("0");
+				el.setV_29("0");
+				el.setV_30("0");
+			}
+			else{
+				for (int i = 0; i < list4.size(); i++) {
+					
+					if(map.get("iOrgID").toString().equals(list4.get(i).get("iOrgID").toString())){
+						
+						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_1(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_2(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_3(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_4(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_5(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_6(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_7(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_8(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_9(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_10(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_11(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_12(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_13(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_14(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_15(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_16(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_17(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_18(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_19(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_20(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_21(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_22(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_23(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_24(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_25(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_26(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_27(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_28(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_29(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_30(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+
+					}
+				}
+			}
+			list6.add(el);
+		}
+		try {
+			JsonUtils.write(list6, getresponse().getWriter());
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void export_xhb() throws Exception{
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectxhbList1();
+		List<Map<String, Object>> list2=dbyhServer.selectList2(zdxx);
+		
+		List<Zdxx> list3=dbyhServer.selectList3(zdxx);
+		String str="";
+		for (int i = 0; i < list3.size(); i++) {
+			if(i!=list3.size()-1){
+				str=str+"'"+list3.get(i).getId()+"',";
+			}
+			else{
+				str=str+"'"+list3.get(i).getId()+"'";
+			}
+		}
+		zdxx.setTiaojian("iOrgID in("+str+")");
+		List<Map<String, Object>> list4=dbyhServer.selectxhbList4(zdxx);
+		
+		List<Map<String, Object>> list5=dbyhServer.selectxhbList5(zdxx);
+		
+		List<Excel_list> list6=new ArrayList<Excel_list>();
+		
+		if(list5.size()>0){
+			Excel_list el=new Excel_list();
+			el.setV_0("合计");
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			for (Map<String, Object> map : list5) {
+				
+				if("0302".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_1(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0303".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_2(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0304".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_3(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0305".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_4(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0306".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_5(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0307".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_6(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0308".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_7(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0309".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_8(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0310".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_9(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0311".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_10(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0312".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_11(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0314".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_12(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0315".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_13(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0326".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_14(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0327".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
+					el.setV_15(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0302".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_16(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0303".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_17(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0304".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_18(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0305".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_19(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0306".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_20(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0307".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_21(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0308".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_22(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0309".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_23(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0310".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_24(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0311".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_25(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0312".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_26(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0314".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_27(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0315".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_28(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0326".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_29(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+				
+				if("0327".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
+					el.setV_30(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
+
+			}
+			list6.add(el);
+		}
+		else{
+			Excel_list el=new Excel_list();
+			el.setV_0("合计");
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			list6.add(el);
+		}
+		for (Map<String, Object> map : list2) {
+			Excel_list el=new Excel_list();
+			el.setV_0(map.get("sOrgName").toString());
+			el.setV_1("0");
+			el.setV_2("0");
+			el.setV_3("0");
+			el.setV_4("0");
+			el.setV_5("0");
+			el.setV_6("0");
+			el.setV_7("0");
+			el.setV_8("0");
+			el.setV_9("0");
+			el.setV_10("0");
+			el.setV_11("0");
+			el.setV_12("0");
+			el.setV_13("0");
+			el.setV_14("0");
+			el.setV_15("0");
+			el.setV_16("0");
+			el.setV_17("0");
+			el.setV_18("0");
+			el.setV_19("0");
+			el.setV_20("0");
+			el.setV_21("0");
+			el.setV_22("0");
+			el.setV_23("0");
+			el.setV_24("0");
+			el.setV_25("0");
+			el.setV_26("0");
+			el.setV_27("0");
+			el.setV_28("0");
+			el.setV_29("0");
+			el.setV_30("0");
+			if(list4.size()==0){
+				el.setV_1("0");
+				el.setV_1("0");
+				el.setV_2("0");
+				el.setV_3("0");
+				el.setV_4("0");
+				el.setV_5("0");
+				el.setV_6("0");
+				el.setV_7("0");
+				el.setV_8("0");
+				el.setV_9("0");
+				el.setV_10("0");
+				el.setV_11("0");
+				el.setV_12("0");
+				el.setV_13("0");
+				el.setV_14("0");
+				el.setV_15("0");
+				el.setV_16("0");
+				el.setV_17("0");
+				el.setV_18("0");
+				el.setV_19("0");
+				el.setV_20("0");
+				el.setV_21("0");
+				el.setV_22("0");
+				el.setV_23("0");
+				el.setV_24("0");
+				el.setV_25("0");
+				el.setV_26("0");
+				el.setV_27("0");
+				el.setV_28("0");
+				el.setV_29("0");
+				el.setV_30("0");
+			}
+			else{
+				for (int i = 0; i < list4.size(); i++) {
+					
+					if(map.get("iOrgID").toString().equals(list4.get(i).get("iOrgID").toString())){
+						
+						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_1(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_2(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_3(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_4(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_5(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_6(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_7(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_8(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_9(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_10(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_11(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_12(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_13(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_14(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
+							el.setV_15(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_16(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_17(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_18(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_19(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_20(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_21(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_22(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_23(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_24(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_25(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_26(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_27(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_28(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_29(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+						
+						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
+							el.setV_30(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
+
+					}
+				}
+			}
+			list6.add(el);
+		}
+		
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路养护小修保养机械材料消耗表");//设置第一行
+		eldata.setSheetName("消耗表");//设置sheeet名
+		eldata.setFileName(nian+"年"+yue+"月"+"公路养护小修保养机械材料消耗表");//设置文件名
+		eldata.setEl(list6);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("分局(道班名称)",1,2,0,0));
+		et.add(new Excel_tilte("备料",1,1,1,15));
+		et.add(new Excel_tilte("材料、燃料消耗",1,1,16,30));	
+		et.add(new Excel_tilte("砂(立方米)", 2, 2, 1, 1));
+		et.add(new Excel_tilte("石(立方米)", 2, 2, 2, 2));
+		et.add(new Excel_tilte("(黄土)包括天然料(立方米)", 2, 2, 3, 3));
+		et.add(new Excel_tilte("沥青(吨)", 2, 2, 4, 4));
+		et.add(new Excel_tilte("乳化沥青(吨)", 2, 2, 5, 5));
+		et.add(new Excel_tilte("水泥(吨)", 2, 2, 6, 6));
+		et.add(new Excel_tilte("嵌缝料(吨)", 2, 2, 7, 7));
+		et.add(new Excel_tilte("柴油(升)", 2, 2, 8, 8));
+		et.add(new Excel_tilte("汽油(升)", 2, 2, 9, 9));
+		et.add(new Excel_tilte("石灰(吨)", 2, 2, 10, 10));
+		et.add(new Excel_tilte("柴火(吨)", 2, 2, 11, 11));
+		et.add(new Excel_tilte("工业盐(吨)", 2, 2, 12, 12));
+		et.add(new Excel_tilte("草袋(只)", 2, 2, 13, 13));
+		et.add(new Excel_tilte("橡胶水(公斤)", 2, 2, 14, 14));
+		et.add(new Excel_tilte("冷补料", 2, 2, 15, 15));
+		et.add(new Excel_tilte("砂(立方米)", 2, 2, 16, 16));
+		et.add(new Excel_tilte("石(立方米)", 2, 2, 17, 17));
+		et.add(new Excel_tilte("(黄土)包括天然料(立方米)", 2, 2, 18, 18));
+		et.add(new Excel_tilte("沥青(吨)", 2, 2, 19, 19));
+		et.add(new Excel_tilte("乳化沥青(吨)", 2, 2, 20, 20));
+		et.add(new Excel_tilte("水泥(吨)", 2, 2, 21, 21));
+		et.add(new Excel_tilte("嵌缝料(吨)", 2, 2, 22, 22));
+		et.add(new Excel_tilte("柴油(升)", 2, 2, 23, 23));
+		et.add(new Excel_tilte("汽油(升)", 2, 2, 24, 24));
+		et.add(new Excel_tilte("石灰(吨)", 2, 2, 25, 28));
+		et.add(new Excel_tilte("橡胶水(公斤)", 2, 2, 29, 29));
+		et.add(new Excel_tilte("冷补料", 2, 2, 30, 30));		
 
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse

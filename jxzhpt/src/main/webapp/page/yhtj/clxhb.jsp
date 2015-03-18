@@ -17,95 +17,82 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
-
 $(function(){
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+	showAll();
+});
+function showAll(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	$("#jsgl_table").datagrid({
 		border : true,
-		fit : true,
-		//fitColumns : true,
+		fit:true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'/jxzhpt/wjxt/selectXhbList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			gydw:gydw,
+	    	nian:nf,
+	    	yue:yf
 		},
 		striped : true,
 		singleSelect : false,
 		columns:[[
-		    {title:'分局(道班)名称',width:200,rowspan:2,align:'center'},
-			{title:'备 料',width:800,colspan:8,align:'center'},
-			{title:'材料、燃料消耗',width:600,colspan:11,align:'center'},
-			{title:'养路机械',width:600,colspan:3,align:'center'},
-			{title:'使用小修经费(万元)',width:400,colspan:8,align:'center'}
-		],[
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'黄土(立方米)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
-			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
-			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'砂(立方米)',width:100,align:'center'},
-			{title:'石(立方米)',width:100,align:'center'},
-			{title:'柴火(吨)',width:100,align:'center'},
-			{title:'黄土(包括天然料) (立方米)',width:100,align:'center'},
-			{title:'沥青(吨)',width:100,align:'center'},
-			{title:'嵌缝料(吨)',width:100,align:'center'},
-			
-			{title:'石灰(吨)',width:100,align:'center'},
-			{title:'乳化沥青(吨)',width:100,align:'center'},
-			
-			{title:'水泥(吨)',width:100,align:'center'},
-			{title:'汽油(升)',width:100,align:'center'},
-			{title:'柴油(升)',width:100,align:'center'},
-			{title:'本月MQI',width:100,align:'center'},
-			{title:'台数',width:100,align:'center'},
-			{title:'出车车日',width:100,align:'center'},
-			{title:'出车率(%)',width:100,align:'center'},
-			{title:'固定工工资',width:100,align:'center'},
-			{title:'上月优良路率%',width:100,align:'center'},
-			{title:'材料费',width:100,align:'center'},
-			{title:'机械费',width:100,align:'center'},
-			{title:'其他直接费',width:100,align:'center'},
-			{title:'间接费',width:100,align:'center'},
-			{title:'本月使用',width:100,align:'center'},
-			{title:'累计使用',width:100,align:'center'}
-			
-		]]
+				    {field:'v_0',title:'分局(道班名称)',width:200,rowspan:2,align:'center'},
+					{title:'备料',width:1830,colspan:15,align:'center'},
+					{title:'材料、燃料消耗',width:1830,colspan:15,align:'center'},
+					
+				],[
+					{field:'v_1',title:'砂(立方米)',width:120,align:'center'},
+					{field:'v_2',title:'石(立方米)',width:120,align:'center'},
+					{field:'v_3',title:'(黄土)包括天然料(立方米)',width:150,align:'center'},
+					{field:'v_4',title:'沥青(吨)',width:120,align:'center'},
+					{field:'v_5',title:'乳化沥青(吨)',width:120,align:'center'},
+					{field:'v_6',title:'水泥(吨)',width:120,align:'center'},
+					{field:'v_7',title:'嵌缝料(吨)',width:120,align:'center'},
+					{field:'v_8',title:'柴油(升)',width:120,align:'center'},
+					{field:'v_9',title:'汽油(升)',width:120,align:'center'},
+					{field:'v_10',title:'石灰(吨)',width:120,align:'center'},
+					{field:'v_11',title:'柴火(吨)',width:120,align:'center'},
+					{field:'v_12',title:'工业盐(吨)',width:120,align:'center'},
+					{field:'v_13',title:'草袋(只)',width:120,align:'center'},
+					{field:'v_14',title:'橡胶水(公斤)',width:120,align:'center'},
+					{field:'v_15',title:'冷补料',width:120,align:'center'},
+					{field:'v_16',title:'砂(立方米)',width:120,align:'center'},
+					{field:'v_17',title:'石(立方米)',width:120,align:'center'},
+					{field:'v_18',title:'(黄土)包括天然料(立方米)',width:150,align:'center'},
+					{field:'v_19',title:'沥青(吨)',width:120,align:'center'},
+					{field:'v_20',title:'乳化沥青(吨)',width:120,align:'center'},
+					{field:'v_21',title:'水泥(吨)',width:120,align:'center'},
+					{field:'v_22',title:'嵌缝料(吨)',width:120,align:'center'},
+					{field:'v_23',title:'柴油(升)',width:120,align:'center'},
+					{field:'v_24',title:'汽油(升)',width:120,align:'center'},
+					{field:'v_25',title:'石灰(吨)',width:120,align:'center'},
+					{field:'v_26',title:'柴火(吨)',width:120,align:'center'},
+					{field:'v_27',title:'工业盐(吨)',width:120,align:'center'},
+					{field:'v_28',title:'草袋(只)',width:120,align:'center'},
+					{field:'v_29',title:'橡胶水(公斤)',width:120,align:'center'},
+					{field:'v_30',title:'冷补料',width:120,align:'center'}
+				]]
 	});
-});
+}
+function export_xhb(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var data="gydw="+gydw+"&nian="+nf+"&yue="+yf;
+	window.location.href="/jxzhpt/wjxt/export_xhb.do?"+data;
+}
 </script>
 <div style="width:100%;">
-    <div  style="height:104px;" border="false">
+    <div  style="height:84px;" border="false">
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路养护小修保养机械材料消耗表</div>
 		</div>
@@ -117,31 +104,31 @@ $(function(){
  				<div>
  					<p style="margin: 5px;">
  						<span>年份：</span>
- 						<select id="unit" style="width:150px;">
- 							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
- 						</select>
+ 						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
  						<span>月份：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>12</option>
-	 						<option>11</option>
-	 						<option>10</option>
-	 						<option>9</option>
-	 						<option>8</option>
- 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="export_xhb()">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
-        <div><font style="font-size: 12px;">公路养护小修保养月报表(2014年 12 月份)</font></div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:430px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>

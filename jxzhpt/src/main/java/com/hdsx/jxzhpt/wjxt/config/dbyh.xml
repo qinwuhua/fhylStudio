@@ -25,4 +25,18 @@ where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by wkWorkReal.sI
 	where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by wkWorkReal.sItemCode
 
 </select>
+<select id="selectxhbList1" statementType="CALLABLE" resultType="hashmap">  
+    {call getRepStuffMx()}  
+  </select> 
+   <select id="selectxhbList4" parameterType="zdxx" resultType="hashmap">
+	select DepID iOrgID,ISNULL(SUM(mNums),0) as mNums,sItemCode,iType from (select W.*,case when D.sPCode=#{gydw} then W.iOrgID else F.iOrgID end DepID
+from wkStuffWork W left join smOrg D on W.iOrgID=D.iOrgID
+left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by DepID,iType,sItemCode
+
+</select>
+  <select id="selectxhbList5" parameterType="zdxx" resultType="hashmap">
+	select ISNULL(SUM(mNums),0) as mNums,sItemCode,iType from wkStuffWork 
+	where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by sItemCode,iType
+
+</select>
 </mapper>

@@ -25,4 +25,10 @@ public interface DbyhServer {
 
 	List<Map<String, Object>> selectList5(Zdxx zdxx);
 
+	List<Map<String, Object>> selectxhbList1();
+
+	List<Map<String, Object>> selectxhbList4(Zdxx zdxx);
+
+	List<Map<String, Object>> selectxhbList5(Zdxx zdxx);
+
 }

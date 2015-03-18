@@ -55,5 +55,23 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 		// TODO Auto-generated method stub
 		return queryList("selectList5",zdxx);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectxhbList1() {
+		// TODO Auto-generated method stub
+		return queryList("selectxhbList1");
+	}
+
+	@Override
+	public List<Map<String, Object>> selectxhbList4(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("selectxhbList4",zdxx);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectxhbList5(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("selectxhbList5",zdxx);
+	}
 	
 }
