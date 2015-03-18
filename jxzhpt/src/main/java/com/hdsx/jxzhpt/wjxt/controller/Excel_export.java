@@ -9,6 +9,7 @@ import javax.xml.ws.Response;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -38,6 +39,7 @@ public class Excel_export {
 		HSSFRow row = sheet.createRow((int) 0); 
 		HSSFCellStyle style = wb.createCellStyle();
 		HSSFCellStyle style1 = wb.createCellStyle();
+		HSSFCellStyle style2 = wb.createCellStyle();
 		style.setBorderTop(HSSFCellStyle.BORDER_THIN);
 	    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
@@ -46,16 +48,31 @@ public class Excel_export {
 	    style1.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 	    style1.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 	    style1.setBorderRight(HSSFCellStyle.BORDER_THIN);
+	    style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
+	    style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+	    style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+	    style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		style1.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style1.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		style1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		style1.setFillPattern(CellStyle.SOLID_FOREGROUND);
+		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		HSSFCell cell = row.createCell((short) 0);
-		row.setHeightInPoints(25f);
+		row.setHeightInPoints(30f);
+		HSSFFont font= wb.createFont();
+		HSSFFont font1= wb.createFont();
+		font.setFontName("楷体");
+        font.setFontHeightInPoints((short) 18);// 设置字体大小
+		font1.setFontName("宋体");
+        font1.setFontHeightInPoints((short) 10);// 设置字体大小
+        style.setFont(font1);
+        style2.setFont(font);
 		cell.setCellValue(el.getTitleName());
-		cell.setCellStyle(style); 
+		cell.setCellStyle(style2); 
+
 		List<Excel_tilte> et = el.getEt();
 		int maxy=0;
 		int maxx=0;
@@ -93,9 +110,7 @@ public class Excel_export {
 			int x2=excel_tilte.getX2();
 			int y1=excel_tilte.getY1();
 			int y2=excel_tilte.getY2();
-			System.out.println(x1+"-"+x2+"-"+y1+"-"+y2);
 			if(x1!=x2||y1!=y2){
-				System.out.println(x1+"-"+x2+"-"+y1+"-"+y2+"已合并");
 				CellRangeAddress range = new CellRangeAddress(x1,x2,y1,y2);
 				sheet.addMergedRegion(range);
 				setRegionStyle(style1,range,sheet);
@@ -103,7 +118,9 @@ public class Excel_export {
 		}
 		CellRangeAddress range = new CellRangeAddress(0,0,0,maxy);
 		sheet.addMergedRegion(range);
-		setRegionStyle(style,range,sheet);
+		setRegionStyle(style2,range,sheet);
+
+
 		List<Excel_list> el2 = el.getEl();
 		for (int i = 0; i < el2.size(); i++)  
         {  
@@ -513,10 +530,9 @@ public class Excel_export {
                     cell.setCellStyle(style);
             	}
 			}
-            wb.write(out);
-    		out.close();
-          
         }  
+		wb.write(out);
+ 		out.close();
 	}
 	/**
 	  * 设置合并单元格格式

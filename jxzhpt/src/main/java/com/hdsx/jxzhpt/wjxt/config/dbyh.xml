@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.dbyh">
+
+
+ <select id="selectList1" statementType="CALLABLE" resultType="hashmap">  
+    {call getRepItemMx()}  
+  </select>  
+  <select id="selectList2" parameterType="zdxx" resultType="hashmap">
+	select * from smOrg where sPcode = #{gydw} order by sOrgCode
+</select>
+<select id="selectList3" parameterType="zdxx" resultType="zdxx">
+	select distinct D.iOrgID id from smOrg D inner join smOrg F on D.sPCode = F.sOrgCode where F.sPcode=#{gydw} or D.sPcode=#{gydw}
+</select>
+  <select id="selectList4" parameterType="zdxx" resultType="hashmap">
+	select DepID iOrgID,ISNULL(SUM(mWorkNum),0) as mWorkNum,sItemCode from 
+(select W.*,case when D.sPCode=#{gydw} then W.iOrgID else F.iOrgID end DepID
+from wkWorkReal W left join smOrg D on W.iOrgID=D.iOrgID
+left join smOrg F on D.sPcode=F.sOrgCode) wkWorkReal
+where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by wkWorkReal.sItemCode,DepID
+
+</select>
+  <select id="selectList5" parameterType="zdxx" resultType="hashmap">
+	select ISNULL(SUM(mWorkNum),0) as mWorkNum,sItemCode from wkWorkReal 
+	where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by wkWorkReal.sItemCode
+
+</select>
+</mapper>

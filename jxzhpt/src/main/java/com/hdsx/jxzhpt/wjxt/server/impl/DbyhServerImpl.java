@@ -14,56 +14,46 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
 import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 
 @Service
-public class ZdxxServerImpl extends BaseOperate implements ZdxxServer {
+public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 
-	public ZdxxServerImpl() {
-		super("zdxx", "jdbc");
-	}
-	@Override
-	public boolean insertzdxx(Zdxx zdxx) {
-		if(insert("insertzdxx", zdxx)>0){
-			return true;
-		}else
-			return false;
+	public DbyhServerImpl() {
+		super("dbyh", "odbc");
 	}
 
 	@Override
-	public int selectZdxxListCount(Zdxx zdxx) {
+	public List<Map<String, Object>> selectList1() {
 		// TODO Auto-generated method stub
-		return queryOne("selectZdxxListCount", zdxx);
+		return queryList("selectList1");
 	}
 
 	@Override
-	public List<Zdxx> selectZdxxList(Zdxx zdxx) {
+	public List<Map<String, Object>> selectList2(Zdxx zdxx) {
 		// TODO Auto-generated method stub
-		return queryList("selectZdxxList", zdxx);
+		return queryList("selectList2",zdxx);
 	}
 
 	@Override
-	public boolean updatezdxx(Zdxx zdxx) {
-		if(insert("updatezdxx", zdxx)>0){
-			return true;
-		}else
-			return false;
-	}
-
-	@Override
-	public boolean deletezdxx(Zdxx zdxx) {
-		if(insert("deletezdxx", zdxx)>0){
-			return true;
-		}else
-			return false;
-	}
-
-	@Override
-	public List<Zdxx> selectZdxxList1(Zdxx zdxx) {
+	public List<Zdxx> selectList3(Zdxx zdxx) {
 		// TODO Auto-generated method stub
-		return queryList("selectZdxxList1", zdxx);
+		return queryList("selectList3",zdxx);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectList4(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("selectList4",zdxx);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectList5(Zdxx zdxx) {
+		// TODO Auto-generated method stub
+		return queryList("selectList5",zdxx);
 	}
 	
 }

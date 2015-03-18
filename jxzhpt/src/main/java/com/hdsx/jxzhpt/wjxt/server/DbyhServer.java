@@ -13,19 +13,16 @@ import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
 
-public interface ZdxxServer {
+public interface DbyhServer {
 
-	boolean insertzdxx(Zdxx zdxx);
+	List<Map<String, Object>> selectList1();
 
-	int selectZdxxListCount(Zdxx zdxx);
+	List<Map<String, Object>> selectList2(Zdxx zdxx);
 
-	List<Zdxx> selectZdxxList(Zdxx zdxx);
+	List<Zdxx> selectList3(Zdxx zdxx);
 
-	boolean updatezdxx(Zdxx zdxx);
+	List<Map<String, Object>> selectList4(Zdxx zdxx);
 
-	boolean deletezdxx(Zdxx zdxx);
-
-	List<Zdxx> selectZdxxList1(Zdxx zdxx);
-
+	List<Map<String, Object>> selectList5(Zdxx zdxx);
 
 }

@@ -53,6 +53,8 @@ $(function(){
 		//fitColumns : true,
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectJsList.do',
+		height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
 		queryParams : {
 			'param.name' : $('#jsgl_name').val(),
 			'param.descr' : $("#jsgl_descr").val()
@@ -83,47 +85,64 @@ $(function(){
 		]]
 	});
 });
+$(function(){
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+});
 </script>
-<div style="width:100%;">
-    <div  style="height:104px;" border="false">
+<div style="text-align: left; font-size: 12px; margin: 0px;">
+		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+			<tr>
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路管理月报分析表</div>
 		</div>
-		<div  style="padding-left: 10px; padding-right: 10px;">
-			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
- 				<legend style="padding: 3px 0 3px 0; font-weight: bold; color: Gray; font-size: 12px;">
- 					
- 				</legend>
- 				<div>
- 					<p style="margin: 5px;">
+		</tr>
+        	<tr>
+        		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+						<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 1% 0px 0px 0px;">
+        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+        					<font style="color: #0866A0; font-weight: bold"></font>
+        				</legend>
+        				<div>
+        				<p style="margin: 1% 0% 1% 2%;">
  						<span>年份：</span>
- 						<select id="unit" style="width:150px;">
- 							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
- 						</select>
+ 						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
  						<span>月份：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>12</option>
-	 						<option>11</option>
-	 						<option>10</option>
-	 						<option>9</option>
-	 						<option>8</option>
- 						</select>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="01">01</option>
+							<option id="yf2" value="02">02</option>
+							<option id="yf3" value="03">03</option>
+							<option id="yf4" value="04">04</option>
+							<option id="yf5" value="05">05</option>
+							<option id="yf6" value="06">06</option>
+							<option id="yf7" value="07">07</option>
+							<option id="yf8" value="08">08</option>
+							<option id="yf9" value="09">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
 	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
- 					</p>
- 				</div>
+ 					 </p>
  			</fieldset>
-        </div>
-        <div><font style="font-size: 12px;">2014年 12 月份公路管理局月报分析</font></div>
-    </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
-    	<table id="jsgl_table" style="height:100%;" ></table>
-    </div>
-</div>
+      </td>
+   </tr>
+	       <tr>
+	            <td width="100%" style="padding-top: 1%;padding-left:10px;">
+	                 <div> 
+	                    	<table id="jsgl_table"  ></table>
+    				</div>
+				</td>
+			</tr>	
+		</table>
+	</div>
 </body>
 </html>

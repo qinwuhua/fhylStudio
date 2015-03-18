@@ -54,4 +54,5 @@
 	gydw=#{gydw},gydwmc=#{gydwmc},lxbm=#{lxbm},lxmc=#{lxmc},qdzh=#{qdzh},zdzh=#{zdzh},zdsj=#{zdsj},zhlb=#{zhlb},qtcs=#{qtcs},yjhfsj=#{yjhfsj},tbdw=#{tbdw},tbdwmc=#{tbdwmc},tjr=#{tjr},shry=#{shry},tbsj=#{tbsj},sfhf=#{sfhf}
 	where id=#{id}
 	</update>
+
 </mapper>

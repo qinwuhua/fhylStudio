@@ -27,6 +27,10 @@ public class Zdxx implements Serializable {
 	private String tbsj;
 	private String sfhf;
 	private String tiaojian;
+	private String nian;
+	private String yue;
+	private String sItemCode;
+	private String sItemName;
 	
 	private int page;
 	private int rows;
@@ -149,6 +153,30 @@ public class Zdxx implements Serializable {
 	}
 	public void setSfhf(String sfhf) {
 		this.sfhf = sfhf;
+	}
+	public String getNian() {
+		return nian;
+	}
+	public void setNian(String nian) {
+		this.nian = nian;
+	}
+	public String getYue() {
+		return yue;
+	}
+	public void setYue(String yue) {
+		this.yue = yue;
+	}
+	public String getsItemCode() {
+		return sItemCode;
+	}
+	public void setsItemCode(String sItemCode) {
+		this.sItemCode = sItemCode;
+	}
+	public String getsItemName() {
+		return sItemName;
+	}
+	public void setsItemName(String sItemName) {
+		this.sItemName = sItemName;
 	}
 	
 }
