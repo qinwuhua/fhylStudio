@@ -319,4 +319,32 @@
 			where lx.xzqhdm like #{xzqhdm} and jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]>) 
 			group by sbnf
 	</select>
+	<select id="queryGcktj" resultType="treenode" parameterType="java.util.Map">
+		select (r.kgzt+r.jgzt) as id,count(r.kgzt+r.jgzt) as name,sum(r.jhsybzje) as text,sum(r.btz+r.qttz) as parent from (
+			select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz from gcgl_zhfz gcgl 
+				right join (select jh.id,jh.kgzt,jh.jgzt,jh.jhsybzje from  plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
+		    	left join xmk_zhfz lx on (sc.xmkid=lx.id) where lx.xzqhdm like #{xzqhdm} and jh.sbnf=#{nf} and jh.spzt='1' and jh.jh_sbthcd='6') jh_lx on gcgl.jhid=jh_lx.id
+	    group by jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje) r group by r.kgzt,r.jgzt order by r.kgzt,r.jgzt
+	</select>
+	<select id="queryGcktjt" resultType="treenode" parameterType="java.util.Map">
+		select nvl(sum(r.jhsybzje),0) as text,nvl(sum(r.btz+r.qttz),0) as parent from (
+			select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz from gcgl_zhfz gcgl 
+				right join (select jh.id,jh.kgzt,jh.jgzt,jh.jhsybzje from  plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
+		    	left join xmk_zhfz lx on (sc.xmkid=lx.id) where jh.spzt='1' and jh.jh_sbthcd='6'
+		    	<if test="xzqhdm!=null and xzqhdm!=''">
+		    		and lx.xzqhdm like #{xzqhdm}
+		    	</if>
+		    	) jh_lx on gcgl.jhid=jh_lx.id
+	    group by jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje) r
+	</select>
+	<select id="queryGcktj2" resultType="treenode" parameterType="java.util.Map">
+		select nvl(sum(r.bn),0) as id,count(r.bn) as name,nvl(sum(r.fbn),0) as text,count(r.fbn) as parent from (
+			select jh.id,jh.kgzt,jh.jgzt,
+				(select a.jhsybzje from plan_zhfz a where a.sbnf=#{nf} and a.id=jh.id) as bn,
+				(select a.jhsybzje from plan_zhfz a where #{nf}>a.sbnf and a.id=jh.id) as fbn 
+			from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
+			left join xmk_zhfz lx on (sc.xmkid=lx.id) 
+			where jh.spzt='1' and jh.jh_sbthcd='6'
+		and lx.xzqhdm like #{xzqhdm}) r
+	</select>
 </mapper>

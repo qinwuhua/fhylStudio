@@ -1,27 +1,12 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-
-import net.sf.ezmorph.array.IntArrayMorpher;
-
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
-import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
@@ -30,21 +15,11 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_yhdzxServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
-import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
-import com.hdsx.jxzhpt.utile.ExcelReader;
-import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.utile.SheetBean;
-import com.hdsx.jxzhpt.utile.SjbbMessage;
-import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
-import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
-import com.ibm.icu.math.BigDecimal;
 
 @Scope("prototype")
 @Controller
@@ -70,6 +45,7 @@ public class TjfxController extends BaseActionSupport{
 	private String nf;//年份，开始年份
 	private String end;//结束年份
 	private String xzqhdm;//行政区划代码
+	private String ftlName;
 	
 	public void queryJcktj(){
 		try {	
@@ -265,7 +241,6 @@ public class TjfxController extends BaseActionSupport{
 	}
 	
 	public void queryJhktjt3(){
-		Map<String, Object> result=new HashMap<String, Object>();
 		//设置AnyChart信息
 		Map<String,Object> parameter=new HashMap<String,Object>();
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
@@ -332,9 +307,163 @@ public class TjfxController extends BaseActionSupport{
 	}
 	
 	public void queryGcktj(){
-		Map<String, Object> result=new HashMap<String, Object>();
-		List<TreeNode> gcgj = gcgjServer.queryGcktj();
-		result.put("gcgj", gcgj);
+		try {
+			Map<String, Object> result=new HashMap<String, Object>();
+			List<TreeNode> gcgj = gcgjServer.queryGcktj(xzqhdm,nf);
+			result.put("gcgj", gcgj);
+			List<TreeNode> gcsj = gcsjServer.queryGcktj(xzqhdm,nf);
+			result.put("gcsj", gcsj);
+			List<TreeNode> shuih = shuihServer.queryGcktj(xzqhdm,nf);
+			result.put("shuih", shuih);
+			List<TreeNode> yhdzx=yhdzxServer.queryGcktj(xzqhdm,nf);
+			result.put("yhdzx", yhdzx);
+			List<TreeNode> wqgz=wqgzServer.queryGcktj(xzqhdm,nf);
+			result.put("wqgz", wqgz);
+			List<TreeNode> abgc=abgcServer.queryGcktj(xzqhdm,nf);
+			result.put("abgc", abgc);
+			List<TreeNode> zhfz=zhfzServer.queryGcktj(xzqhdm,nf);
+			result.put("zhfz", zhfz);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryGcktjt(){
+		try {
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			int precision=3;//小数的位数
+			parameter.put("yName", yName);
+			parameter.put("precision",precision);
+			parameter.put("chart_title", "行政区划统计图");
+			String chartType = "gckbar.ftl";
+			TreeNode treenode=new TreeNode();
+			treenode.setId(xzqhdm);
+			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+			for (TreeNode xzqh : xzqhlist) {
+				xzqh.setId(xzqh.getId().substring(0, 4)+"__");
+				Map<String, String> one=new HashMap<String, String>();
+				one.put("name", xzqh.getName());
+				TreeNode gcgj = gcgjServer.queryGcktjt(xzqh.getId());
+				TreeNode gcsj = gcsjServer.queryGcktjt(xzqh.getId());
+				TreeNode shuih = shuihServer.queryGcktjt(xzqh.getId());
+				TreeNode yhdzx=yhdzxServer.queryGcktjt(xzqh.getId());
+				TreeNode wqgz=wqgzServer.queryGcktjt(xzqh.getId());
+				TreeNode abgc=abgcServer.queryGcktjt(xzqh.getId());
+				TreeNode zhfz=zhfzServer.queryGcktjt(xzqh.getId());
+				double gjztz=new Double(gcgj.getText()).doubleValue();
+				double sjztz=new Double(gcsj.getText()).doubleValue();
+				double shuihztz=new Double(shuih.getText()).doubleValue();
+				double yhdzxztz=new Double(yhdzx.getText()).doubleValue();
+				double wqgzztz=new Double(wqgz.getText()).doubleValue();
+				double abgcztz=new Double(abgc.getText()).doubleValue();
+				double zhfzztz=new Double(zhfz.getText()).doubleValue();
+				double ztz=(gjztz+sjztz+shuihztz+yhdzxztz+wqgzztz+abgcztz+zhfzztz);
+				one.put("ztz", new Double(ztz).toString());
+				double wg=(new Double(gcgj.getParent()).doubleValue()+
+						new Double(gcsj.getParent()).doubleValue()+
+						new Double(shuih.getParent()).doubleValue()+
+						new Double(yhdzx.getParent()).doubleValue()+
+						new Double(wqgz.getParent()).doubleValue()+
+						new Double(abgc.getParent()).doubleValue()+
+						new Double(zhfz.getParent()).doubleValue());
+				one.put("wg", new Double(wg).toString());
+				list.add(one);
+			}
+			parameter.put("list",list);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryGcktj2(){
+		try{
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			int precision=3;//小数的位数
+			parameter.put("yName", yName);
+			parameter.put("precision",precision);
+			parameter.put("chart_title", "行政区划统计图");
+			String chartType = ftlName;
+			list.add(getMap(gcgjServer.queryGcktj2(xzqhdm,nf), "路面改建"));
+			list.add(getMap(gcsjServer.queryGcktj2(xzqhdm,nf), "路面升级"));
+			list.add(getMap(shuihServer.queryGcktj2(xzqhdm,nf), "水毁项目"));
+			list.add(getMap(yhdzxServer.queryGcktj2(xzqhdm,nf), "养护大中修"));
+			list.add(getMap(abgcServer.queryGcktj2(xzqhdm,nf), "安保工程"));
+			list.add(getMap(wqgzServer.queryGcktj2(xzqhdm,nf), "危桥改造"));
+			list.add(getMap(zhfzServer.queryGcktj2(xzqhdm,nf), "灾害防治"));
+			parameter.put("list",list);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+	
+	public Map<String, String> getMap(TreeNode item,String name){
+		Map<String, String> result=new HashMap<String, String>();
+		result.put("name", name);
+		result.put("dntz", item.getId());
+		result.put("dnsl", item.getName());
+		result.put("lstz", item.getText());
+		result.put("lssl", item.getParent());
+		return result;
+	}
+	
+	public void queryXmlxTj(){
+		Map<String,Object> parameter=new HashMap<String,Object>();
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		parameter.put("xName", "年份");//title
+		parameter.put("chart_title_y", "金额");
+		String yName="总金额";//y单位
+		int precision=3;//小数的位数
+		parameter.put("yName", yName);
+		parameter.put("precision",precision);
+		parameter.put("chart_title", "行政区划统计图");
+		String chartType = "gckxmlxbar.ftl";
+		List<TreeNode> data=null;
+		System.out.println("项目类型："+xmlx);
+		if(xmlx.equals("1"))
+			data = gcgjServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("2"))
+			data = gcsjServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("3"))
+			data=shuihServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("4"))
+			data=yhdzxServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("5"))
+			data=abgcServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("6"))
+			data=wqgzServer.queryGcktj(xzqhdm,nf);
+		else if(xmlx.equals("7"))
+			data=zhfzServer.queryGcktj(xzqhdm,nf);
+		for(TreeNode item :data){
+			Map<String, String> one=new HashMap<String, String>();
+			if(item.getId().equals("0")){
+				one.put("name", "未开工");
+			}else if(item.getId().equals("1")){
+				one.put("name", "在建");
+			}else if(item.getId().equals("2")){
+				one.put("name", "竣工");
+			}
+			if(ftlName.equals("ztz"))
+				one.put("value", item.getText());
+			else if(ftlName.equals("sl"))
+				one.put("value", item.getName());
+			list.add(one);
+		}
+		parameter.put("list",list);
+		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
 	public String getXmlx() {
@@ -360,5 +489,11 @@ public class TjfxController extends BaseActionSupport{
 	}
 	public void setXzqhdm(String xzqhdm) {
 		this.xzqhdm = xzqhdm;
+	}
+	public String getFtlName() {
+		return ftlName;
+	}
+	public void setFtlName(String ftlName) {
+		this.ftlName = ftlName;
 	}
 }

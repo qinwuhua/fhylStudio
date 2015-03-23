@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 				<td>
 	                <div id="righttop">
@@ -61,7 +61,7 @@
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
+            		<div style="width:97%;">
             			<table id="grid" width="100%"></table>
             		</div>
             	</td>
@@ -72,7 +72,7 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        			<div style="height:300px;border: 1px #C0C0C0 solid;text-align: center;">
 	        				<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />

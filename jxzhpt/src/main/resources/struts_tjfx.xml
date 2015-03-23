@@ -10,5 +10,9 @@
 		<action name="queryJhktj2" class="tjfxController" method="queryJhktj2"/>
 		<action name="queryJhktjt2" class="tjfxController" method="queryJhktjt2"/>
 		<action name="queryJhktjt3" class="tjfxController" method="queryJhktjt3"/>
+		<action name="queryGcktj" class="tjfxController" method="queryGcktj"/>
+		<action name="queryGcktjt" class="tjfxController" method="queryGcktjt"/>
+		<action name="queryGcktj2" class="tjfxController" method="queryGcktj2"/>
+		<action name="queryXmlxTj" class="tjfxController" method="queryXmlxTj"/>
 	</package>
 </struts>

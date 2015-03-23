@@ -150,5 +150,9 @@ public interface Plan_gcgjServer {
 
 	List<TreeNode> queryJhktjt3(String xzqhdm, String nf, String end);
 
-	List<TreeNode> queryGcktj();
+	List<TreeNode> queryGcktj(String xzqhdm,String nf);
+
+	TreeNode queryGcktjt(String xzqhdm);
+
+	TreeNode queryGcktj2(String xzqhdm, String nf);
 }

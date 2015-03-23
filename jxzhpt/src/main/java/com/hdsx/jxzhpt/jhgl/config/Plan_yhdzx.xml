@@ -249,4 +249,34 @@
 		select distinct jh.id,jh.sbnf,jh.totalsubsidyfund from plan_yhdzx jh left join plan_lx_yhdzx lx on jh.id=lx.jhid
 		where jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) s group by s.sbnf
 	</select>
+	<select id="queryGcktj" resultType="treenode" parameterType="java.util.Map">
+		select (r.kgzt+r.jgzt) as id,count(r.kgzt+r.jgzt) as name,sum(r.totalsubsidyfund) as text,sum(btz+qttz) as parent from (
+       		select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.totalsubsidyfund,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz
+       			from gcgl_gcgzgj gcgl right join (
+            		select distinct jh.id,jh.kgzt,jh.jgzt,jh.totalsubsidyfund from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
+                where lx.xzqhdm like #{xzqhdm} and jh.sbnf=#{nf} and jh.spzt='1' and jh.jh_sbthcd='6')
+       		jh_lx on (gcgl.jhid=jh_lx.id) group by jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.totalsubsidyfund
+		) r group by r.kgzt,r.jgzt order by r.kgzt,r.jgzt
+	</select>
+	<select id="queryGcktjt" resultType="treenode" parameterType="java.util.Map">
+		select nvl(sum(r.totalsubsidyfund),0) as text,nvl(sum(btz+qttz),0) as parent from (
+       		select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.totalsubsidyfund,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz
+       			from gcgl_gcgzgj gcgl right join (
+            		select distinct jh.id,jh.kgzt,jh.jgzt,jh.totalsubsidyfund from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
+                where jh.spzt='1' and jh.jh_sbthcd='6'
+                <if test="xzqhdm!=null and xzqhdm!=''">
+                	and lx.xzqhdm like #{xzqhdm}
+                </if>
+                )
+       		jh_lx on (gcgl.jhid=jh_lx.id) group by jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.totalsubsidyfund
+		) r
+	</select>
+	<select id="queryGcktj2" resultType="treenode" parameterType="java.util.Map">
+		select nvl(sum(r.bn),0) as id,nvl(count(r.bn),0) as name,nvl(sum(r.fbn),0) as text,nvl(count(r.fbn),0) as parent from (
+		   	select distinct jh.id,jh.kgzt,jh.jgzt,
+		   	(select y.totalsubsidyfund from plan_yhdzx y where y.sbnf=#{nf} and y.id=jh.id) as bn,
+		   	(select y.totalsubsidyfund from plan_yhdzx y where #{nf}>y.sbnf and y.id=jh.id) as fbn 
+		   	from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
+		where jh.spzt='1' and jh.jh_sbthcd='6'and lx.xzqhdm like #{xzqhdm} order by jh.id) r
+	</select>
 </mapper>

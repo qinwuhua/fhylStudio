@@ -37,8 +37,8 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 @Scope("prototype")
 @Controller
 public class Plan_zhfzController  extends BaseActionSupport{
-	private int page;
-	private int rows;
+	private int page=1;
+	private int rows=10;
 	@Resource(name = "plan_zhfzServerImpl")
 	private Plan_zhfzServer zhfzServer;
 	private Plan_zhfz jh;
