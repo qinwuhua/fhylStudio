@@ -54,5 +54,7 @@
  	<action name="export_ybb" class="dbyhController" method="export_ybb"/>
  	<action name="selectXhbList" class="dbyhController" method="selectXhbList"/>
  	<action name="export_xhb" class="dbyhController" method="export_xhb"/>
+ 	<action name="selectFxbList" class="dbyhController" method="selectFxbList"/>
+ 	<action name="export_fxb" class="dbyhController" method="export_fxb"/>
  </package>
 </struts>

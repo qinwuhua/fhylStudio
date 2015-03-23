@@ -39,4 +39,7 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
 	where ${tiaojian} and iYear = #{nian} and iMonth = #{yue} group by sItemCode,iType
 
 </select>
+ <select id="selectfxbList1" statementType="CALLABLE" resultType="hashmap">  
+    {call MonthRepNew(#{nian},#{yue})}  
+  </select>  
 </mapper>

@@ -1878,6 +1878,164 @@ public class DbyhController extends BaseActionSupport{
 		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
 
 	}
+	public void selectFxbList(){
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectfxbList1(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("0.00");
+			eli.setV_1("0.00");
+			eli.setV_2("0.00");
+			eli.setV_3("0.00");
+			eli.setV_4("0.00");
+			eli.setV_5("0.00");
+			eli.setV_6("0.00");
+			eli.setV_7("0.00");
+			eli.setV_8("0.00");
+			eli.setV_9("0.00");
+			eli.setV_10("0.00");
+			eli.setV_11("0.00");
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_0(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("mSpace")!=null){
+				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("LastGoodRate")!=null){
+				eli.setV_2(list1.get(i).get("LastGoodRate").toString().toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("GoodRate")!=null){
+				eli.setV_3(list1.get(i).get("GoodRate").toString().toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("CompGoodRate")!=null){
+				eli.setV_4(list1.get(i).get("CompGoodRate").toString().toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("LastMQI")!=null){
+				eli.setV_5(list1.get(i).get("LastMQI").toString().toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("MQI")!=null){
+				eli.setV_6(list1.get(i).get("MQI").toString().toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
+			}
+			if(list1.get(i).get("CompMQI")!=null){
+				eli.setV_7(list1.get(i).get("CompMQI").toString().toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("LastYlGoodRate")!=null){
+				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("YlGoodRate")!=null){
+				eli.setV_9(list1.get(i).get("YlGoodRate").toString().toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("LastSnGoodRate")!=null){
+				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("SnGoodRate")!=null){
+				eli.setV_11(list1.get(i).get("SnGoodRate").toString().toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
+			}
+			list2.add(eli);
+		}
+		JsonUtils.write(list2, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void export_fxb() throws Exception{
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectfxbList1(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("0.00");
+			eli.setV_1("0.00");
+			eli.setV_2("0.00");
+			eli.setV_3("0.00");
+			eli.setV_4("0.00");
+			eli.setV_5("0.00");
+			eli.setV_6("0.00");
+			eli.setV_7("0.00");
+			eli.setV_8("0.00");
+			eli.setV_9("0.00");
+			eli.setV_10("0.00");
+			eli.setV_11("0.00");
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_0(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("mSpace")!=null){
+				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("LastGoodRate")!=null){
+				eli.setV_2(list1.get(i).get("LastGoodRate").toString().toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("GoodRate")!=null){
+				eli.setV_3(list1.get(i).get("GoodRate").toString().toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("CompGoodRate")!=null){
+				eli.setV_4(list1.get(i).get("CompGoodRate").toString().toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("LastMQI")!=null){
+				eli.setV_5(list1.get(i).get("LastMQI").toString().toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("MQI")!=null){
+				eli.setV_6(list1.get(i).get("MQI").toString().toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
+			}
+			if(list1.get(i).get("CompMQI")!=null){
+				eli.setV_7(list1.get(i).get("CompMQI").toString().toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("LastYlGoodRate")!=null){
+				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("YlGoodRate")!=null){
+				eli.setV_9(list1.get(i).get("YlGoodRate").toString().toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("LastSnGoodRate")!=null){
+				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("SnGoodRate")!=null){
+				eli.setV_11(list1.get(i).get("SnGoodRate").toString().toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
+			}
+			list2.add(eli);
+		}
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路管理月报分析表");//设置第一行
+		eldata.setSheetName("分析表");//设置sheeet名
+		eldata.setFileName(nian+"年"+yue+"月"+"公路管理月报分析表");//设置文件名
+		eldata.setEl(list2);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("分局(道班名称)",1,3,0,0));
+		et.add(new Excel_tilte("实际评定养护里程Km",1,3,1,1));
+		et.add(new Excel_tilte("本 月 路 况",1,1,2,7));	
+		et.add(new Excel_tilte("其 中", 1, 1, 8, 11));
+		et.add(new Excel_tilte("优良路率 %", 2, 2, 2, 4));
+		et.add(new Excel_tilte("MQI", 2, 2, 5, 7));
+		et.add(new Excel_tilte("油 路", 2, 2, 8, 9));
+		et.add(new Excel_tilte("水 泥 路", 2, 2, 10, 11));
+		et.add(new Excel_tilte("上月优良路率%", 3, 3, 2, 2));
+		et.add(new Excel_tilte("本月优良路率%", 3, 3, 3, 3));
+		et.add(new Excel_tilte("优良路率比上月↑↓", 3, 3, 4, 4));
+		et.add(new Excel_tilte("上月MQI", 3, 3, 5, 5));
+		et.add(new Excel_tilte("本月MQI", 3, 3, 6, 6));
+		et.add(new Excel_tilte("MQI比上月↑↓", 3, 3, 7, 7));
+		et.add(new Excel_tilte("上月优良路率%", 3, 3, 8, 8));
+		et.add(new Excel_tilte("本月优良路率%", 3, 3, 9, 9));
+		et.add(new Excel_tilte("上月优良路率%", 3, 3, 10, 10));
+		et.add(new Excel_tilte("本月优良路率%", 3, 3, 11, 11));
+
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
 
