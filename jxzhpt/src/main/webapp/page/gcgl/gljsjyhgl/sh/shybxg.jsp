@@ -55,6 +55,30 @@
 		$("#tjbtz").text($("#xg_sbyf").val());
 	
 	}
+	function check(str){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	    if( !g.test(str.value)){
+	    	alert("请输入正确的金额");
+	    	$(str).val('');
+	    	return;
+	    }
+	    if($("#xg_sbyf").val()==null){
+	    	alert("尚未拨付车购税");
+	    	$(str).val('');
+	    }else{
+	    	if(parseFloat($("#xg_sbyf").val())<parseFloat(str.value)){
+	    		alert("完成资金不能超过到位资金");
+	    		$(str).val('');
+	    	}
+	    }
+	}
+	function check1(aa){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	    if( !g.test(aa.value)){
+	    	alert("请输入正确的金额");
+	    	$(aa).val('');
+	    }
+	}
 </script>
 <style type="text/css">
 <!--
@@ -91,9 +115,9 @@ text-decoration: none;
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input type="text" id="xg_wc_btz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                部投资：<input onblur="check(this)" type="text" id="xg_wc_btz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 <!--                                 省投资：<input type="text" id="xg_wc_stz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;  -->
-                                其他投资：<input type="text" id="xg_wc_qttz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                其他投资：<input onblur="check1(this)" type="text" id="xg_wc_qttz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -108,7 +132,7 @@ text-decoration: none;
                                 <span style="width: 50px" id="tjbtz"></span>
                                 <input style="width: 50px" name="ZJ_BTZ" type="hidden" id="xg_zjdw_btz" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input name="ZJ_STZ" type="text" id="xg_zjdw_stz"  style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;  -->
-                                其他投资：<input type="text" id="xg_zjdw_qttz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                其他投资：<input onblur="check1(this)" type="text" id="xg_zjdw_qttz" style="width: 50px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                           <tr style="height: 35px;">

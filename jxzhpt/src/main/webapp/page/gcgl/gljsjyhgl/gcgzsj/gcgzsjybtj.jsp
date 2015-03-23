@@ -47,6 +47,30 @@
 			$("#tj_zycgs").val($("#tj_sbyf").val());
 			$("#tjbtz").text($("#tj_sbyf").val());
 		}
+		function check(str){
+			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+		    if( !g.test(str.value)){
+		    	alert("请输入正确的金额");
+		    	$(str).val('');
+		    	return;
+		    }
+		    if($("#tj_sbyf").val()==null){
+		    	alert("尚未拨付车购税");
+		    	$(str).val('');
+		    }else{
+		    	if(parseFloat($("#tj_sbyf").val())<parseFloat(str.value)){
+		    		alert("完成资金不能超过到位资金");
+		    		$(str).val('');
+		    	}
+		    }
+		}
+		function check1(aa){
+			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+		    if( !g.test(aa.value)){
+		    	alert("请输入正确的金额");
+		    	$(aa).val('');
+		    }
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -176,7 +200,7 @@ a:active {
                                 中央车购税：
                            <span style="width: 50px" id="tjbtz"></span>万元
                            <input name="ZYCGS" type="hidden" id="tj_zycgs"  style="width: 30px;"/>&nbsp;
-                                地方补助：<input name="DFBZ" type="text" id="tj_dfbz"  style="width: 30px;"/>万元&nbsp;&nbsp; 银行贷款：<input name="YHDK" type="text" id="tj_yhdk"  style="width: 30px;"/>万元&nbsp;&nbsp;省厅贴息：<input name="STTX" type="text" id="tj_sttxdk"  style="width: 30px;"/>万元&nbsp;&nbsp; 其他投资：<input name="QTTZ" type="text" id="tj_qtzj"  style="width: 30px;"/>万元
+                                地方补助：<input onblur="check1(this)" name="DFBZ" type="text" id="tj_dfbz"  style="width: 30px;"/>万元&nbsp;&nbsp; 银行贷款：<input onblur="check1(this)" name="YHDK" type="text" id="tj_yhdk"  style="width: 30px;"/>万元&nbsp;&nbsp;省厅贴息：<input onblur="check1(this)" name="STTX" type="text" id="tj_sttxdk"  style="width: 30px;"/>万元&nbsp;&nbsp; 其他投资：<input onblur="check1(this)" name="QTTZ" type="text" id="tj_qtzj"  style="width: 30px;"/>万元
                             </td>
                         </tr>
                        
@@ -188,7 +212,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                 <input name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元
+                                 <input onblur="check(this)" name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元
                             </td>
                          <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                             color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

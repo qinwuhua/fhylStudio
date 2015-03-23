@@ -15,16 +15,38 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/wqgz.js"></script>
 	<script type="text/javascript">
-	var data;	
 	$(function(){
-			
 			showYBlist();
-			setTimeout("shezhi()",1000);
 			
+			$("#nf").text(new Date().getFullYear());
+			shezhi();
 		});
 		function shezhi(){
-			data=$("#ybgrid").datagrid('getRows')[0];
-			//alert(data.cgsdwzj);
+			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear();
+			$.ajax({
+				type:'post',
+				url:'../../../../gcgl/selectWqgzbzzj.do',
+				data:data,
+				dataType:'json',
+				success:function(msg){
+					if(msg.zbfzj=='')
+						$("#zbfzj").text('0');
+					else
+						$("#zbfzj").text(msg.zbfzj);
+					if(msg.nbfzj=='')
+						$("#nbfzj").text('0');
+					else
+						$("#nbfzj").text(msg.nbfzj);
+					if(msg.nxdzj=='')
+						$("#nxdzj").text('0');
+					else
+						$("#nxdzj").text(msg.nxdzj);
+					if(msg.zxdzj=='')
+						$("#jhxdzj").text('0');
+					else
+						$("#jhxdzj").text(msg.zxdzj);
+				}
+			});	
 		}
 	</script>
 	<style type="text/css">
@@ -50,10 +72,10 @@ a:active {
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">         
             <tr>
                 <td height="30" align="left" style="font-size: 12px;">
-                    项目计划下达资金共【<span id="lblXDZJ" style="color: Red; font-weight: bold;">1</span>】万元，
-                    累计拨付资金共【<span id="lblBFZJ" style="color: Red; font-weight: bold;">0</span>】万元。
-                    其中，2014年计划下达资金【<span id="lblBNXDZJ" style="color: Red; font-weight: bold;">0</span>】万元，
-                    已拨付【<span id="lblBNBFZJ" style="color: Red; font-weight: bold;">0</span>】万元。
+                    项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
+                    累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
+                    其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
+                    已拨付【<span id="nbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                 </td>
             </tr>
             <tr>
@@ -70,9 +92,7 @@ a:active {
                 <td align="center">
                     <table>
                         <tr>
-                            <td>
-                                <img id="imgAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'" onclick="AddInfo()" src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width:0px;cursor: hand;" />
-                            </td>
+                         
                             <td>
                                 <a href="javascript:void(0)" >
                                     <img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"

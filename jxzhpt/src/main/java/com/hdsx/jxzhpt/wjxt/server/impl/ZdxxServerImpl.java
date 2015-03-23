@@ -24,7 +24,6 @@ public class ZdxxServerImpl extends BaseOperate implements ZdxxServer {
 	public ZdxxServerImpl() {
 		super("zdxx", "jdbc");
 	}
-
 	@Override
 	public boolean insertzdxx(Zdxx zdxx) {
 		if(insert("insertzdxx", zdxx)>0){
@@ -66,6 +65,5 @@ public class ZdxxServerImpl extends BaseOperate implements ZdxxServer {
 		// TODO Auto-generated method stub
 		return queryList("selectZdxxList1", zdxx);
 	}
-
 	
 }

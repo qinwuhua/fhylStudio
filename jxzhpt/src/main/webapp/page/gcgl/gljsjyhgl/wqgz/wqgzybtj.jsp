@@ -73,7 +73,22 @@
 		$("#tjbtz").text($("#tj_sbyf").val());
 		chaxun();
 	}
-	
+	function check(str){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	    if( !g.test(str.value)){
+	    	alert("请输入正确的金额");
+	    	$(str).val('');
+	    }
+	    if($("#tj_sbyf").val()==null){
+	    	alert("尚未拨付车购税");
+	    	$(str).val('');
+	    }else{
+	    	if(parseFloat($("#tj_sbyf").val())<parseFloat(str.value)){
+	    		alert("完成资金不能超过到位资金");
+	    		$(str).val('');
+	    	}
+	    }
+	}
 	function checkZJ1(aa){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
 	    if( !g.test(aa.value)){
@@ -155,7 +170,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='checkZJ1(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" />&nbsp;&nbsp;&nbsp;&nbsp; -->
                                  其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='checkZJ1(this)' />&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>

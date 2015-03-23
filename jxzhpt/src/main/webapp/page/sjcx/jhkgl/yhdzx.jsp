@@ -17,16 +17,16 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/sjcx/jhkgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			querySumYhdzx();
 			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		});
 		function searchYhdzx(){
@@ -47,7 +47,7 @@
 			if($('#tsdq').combobox('getValue')!=''){
 				lx.tsdq=$('#tsdq').combobox('getValue');
 			}
-			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!='全部'){
+			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!="全部"){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
 				var xian=true;
@@ -119,7 +119,7 @@
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" id="txtRoad" style="width:80px;"  type="text"/>
         						<span>&nbsp;计划状态：</span>
-        						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
+        						<select id="jhzt" class="easyui-combobox" name="jhzt" style="width: 70px;">
 									<option value="全部">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
@@ -161,7 +161,10 @@
 								</select>
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">
-        						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>	
+        						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img alt="导出模版" onclick="exportYh('Plan_Yhdzx')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
+								<img alt="导入" onclick="importData_jh('yhdzx_jh')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+				                <img alt="删除"  onclick="dropYhdzxs()" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('zhfz')"/>
         					</p>
         				</div>

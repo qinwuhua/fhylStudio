@@ -5,16 +5,17 @@
 </title><link href="../Css/page.css" rel="stylesheet" type="text/css" /></head>
 <body style="margin: 0px; overflow: auto;">
 	<script type="text/javascript">
+	$(function(){
 		var id= obj.tabs('getSelected').panel('options').id;
-		var data="id"+id;
+		var data="id="+id.substr(0,32);
 		$.ajax({
-			url:"/jxzhpt/wjxt/getTjbDataList.do?id="+id,
+			url:"/jxzhpt/wjxt/getTjbDataList.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
 				if (msg != null) {
-					var tbody = $("#tjbdata");
+					var tbody = $("#"+id+" #tjbdata");
 					tbody.empty();
 					for ( var i = 0; i < msg.length; i++) {
 						if(msg[i].biaoti!=''){
@@ -50,20 +51,20 @@
 			}
 		});
 		$.ajax({
-			url:"/jxzhpt/wjxt/getTjbDataList1.do?id="+id,
+			url:"/jxzhpt/wjxt/getTjbDataList1.do",
 			data:data,
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
-				$("#tbdw").text(msg.tbdw);
-				$("#tbnf").text(msg.tbnf);
-				$("#dwfzr").text(msg.dwfzr);
-				$("#fzr").text(msg.fzr);
-				$("#tbr").text(msg.tbr);
-				$("#tbrq").text(msg.tbrq);
+				$("#"+id+" #tbdw").text(msg.tbdw);
+				$("#"+id+" #tbnf").text(msg.tbnf);
+				$("#"+id+" #dwfzr").text(msg.dwfzr);
+				$("#"+id+" #fzr").text(msg.fzr);
+				$("#"+id+" #tbr").text(msg.tbr);
+				$("#"+id+" #tbrq").text(msg.tbrq);
 			}
 			});
-		
+	});
 	</script>
     <div style="text-align: left; vertical-align: top; margin: 0px; height: 50%;width: 99.9%;">
         <table border="0" style="margin-top: 1px; margin-left: 1px; width: 99.9%;" cellspacing="0"

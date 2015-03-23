@@ -22,8 +22,9 @@
 <script type="text/javascript">
 var obj;
 function openJsUpdate(_id){
-	obj=$("#tt").tabs("add",{
-		id:_id,
+	var str=new Date().getTime();
+	obj= $("#tt").tabs("add",{
+		id:_id+str,
 		 title:"交通情况汇总表(国道)",
 		 href :"hzbgd_xx.jsp",
 		 fit:true,

@@ -22,8 +22,9 @@
 <script type="text/javascript">
 var obj;
 function openJsUpdate(_id){
+	var str=new Date().getTime();
 	obj= $("#tt").tabs("add",{
-		id:_id,
+		id:_id+str,
 		 title:"公路技术状况统计表",
 		 href :"tjb_xx.jsp",
 		 fit:true,

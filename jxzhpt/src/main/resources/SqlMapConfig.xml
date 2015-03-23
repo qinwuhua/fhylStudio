@@ -86,6 +86,29 @@
 <!--              <property name = "data_source" value= "${data_source}"/> -->
 <!--         </dataSource> -->
      </environment>
+     
+     <environment id="odbc">
+       <transactionManager type="JDBC"/>
+       <!-- BONECP连接池，推荐在开发时使用 -->
+       <dataSource type="BONECP">
+			<property name="driverClass" value="${driverClass_sql}" />
+			<property name="jdbcUrl" value="${jdbcUrl_sql}" />
+			<property name="username" value="${username_sql}" />
+			<property name="password" value="${password_sql}" />
+			<property name="idleConnectionTestPeriod" value="60" />
+			<property name="idleMaxAge" value="30" />
+			<property name="maxConnectionsPerPartition" value="30" />
+			<property name="minConnectionsPerPartition" value="10" />
+			<property name="partitionCount" value="3" />
+			<property name="acquireIncrement" value="5" />
+			<property name="statementsCacheSize" value="100" />
+			<property name="releaseHelperThreads" value="3" />
+	    </dataSource>     
+<!-- JNDI连接池，推荐在正式发布时使用 -->
+<!--         <dataSource type="JNDI"> -->
+<!--              <property name = "data_source" value= "${data_source}"/> -->
+<!--         </dataSource> -->
+     </environment>
   </environments>
 	<mappers>
      <mapper resource="com/hdsx/jxzhpt/xtgl/config/xtgl.xml"/>
@@ -103,6 +126,7 @@
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/trqk.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/zhqk.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/zdxx.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/wjxt/config/dbyh.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/zdycx.xml"/>

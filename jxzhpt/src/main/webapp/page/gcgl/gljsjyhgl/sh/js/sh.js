@@ -112,6 +112,10 @@ function tjshyb(){
 		alert("请填入本月完成情况");
 		return;
 	}
+	if($("#tj_sbyf").find("option:selected").text()==''){
+		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
+		return;
+	}
 	var data = "gcglsh.wc_btz="+$("#tj_wc_btz").val()+"&gcglsh.wc_stz="+$("#tj_wc_stz").val()+"&gcglsh.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglsh.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglsh.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglsh.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglsh.bywcdc="+$("#tj_bywcdc").val()+"&gcglsh.bywcjc="+$("#tj_bywcjc").val()+"&gcglsh.bywcmc="+$("#tj_bywcmc").val()+"&gcglsh.kgdl="+$("#tj_kgdl").val()

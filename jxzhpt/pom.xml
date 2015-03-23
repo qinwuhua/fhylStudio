@@ -150,5 +150,10 @@
 			<artifactId>poi</artifactId>
 			<version>3.8</version>
 		</dependency> 
+		<dependency>
+			<groupId>sqljdbc_3</groupId>
+			<artifactId>chs</artifactId>
+			<version>1</version>
+		</dependency>
   </dependencies>
 </project>
