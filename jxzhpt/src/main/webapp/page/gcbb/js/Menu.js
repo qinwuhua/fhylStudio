@@ -1,5 +1,43 @@
 $(function() {
-
+	var qx=parent.$.cookie("qx3").split(",");
+    var j=1;
+    for(var i=0;i<qx.length;i++){
+		if(qx[i]=='01010501'){
+			$('#aa').accordion('add', {
+				id:"left_menu1",
+				title: '计划统计报表',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010502'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '工程项目月报表',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010503'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '项目进展报表',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010504'){
+			$('#aa').accordion('add', {
+				id:"left_menu4",
+				title: '对部报表',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}
+		
+	}
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101050101',
 		title:'交通部固定资产投资建设计划',

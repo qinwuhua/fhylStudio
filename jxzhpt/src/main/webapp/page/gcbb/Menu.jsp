@@ -23,7 +23,7 @@ $(function(){
 <body id="index_layout" class="easyui-layout">
     <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:205px;overflow:hidden">
 		<div id="aa" fit="true" class="easyui-accordion" style="width:205px;">  
-		    <div id="left_menu1" title="计划统计报表" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
+		  <!--   <div id="left_menu1" title="计划统计报表" data-options="iconCls:'icon-note',selected:true" style="overflow:auto;">
 		    
 		    </div>
 		    <div id="left_menu2" title="工程项目月报表" data-options="iconCls:'icon-note'" style="overflow:auto;">
@@ -34,7 +34,7 @@ $(function(){
 		    </div>
 		     <div id="left_menu4" title="对部报表" data-options="iconCls:'icon-note'" style="overflow:auto;">
 		     
-		    </div>
+		    </div> -->
 <!-- 		    <div id="left_menu5" title="安全应急管理" data-options="iconCls:'icon-reload'" style="overflow:auto;"> -->
 		     
 <!-- 		    </div> -->

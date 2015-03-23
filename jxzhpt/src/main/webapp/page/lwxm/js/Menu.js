@@ -1,5 +1,38 @@
 $(function() {
-
+	var qx=parent.$.cookie("qx3").split(",");
+    var j=1;
+    for(var i=0;i<qx.length;i++){
+		if(qx[i]=='01010201'){
+			$('#aa').accordion('add', {
+				id:"left_menu1",
+				title: '项目基础库管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010202'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '项目基础库审核',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010203'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '项目审查库管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010204'){
+			$('#aa').accordion('add', {
+				id:"left_menu4",
+				title: '项目审查库审核',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}
+		j++;
+	}
 	createMenu('LeftMenu',{
 		id:'menu_0101020101',
 		title:'危桥改造项目',

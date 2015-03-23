@@ -37,9 +37,6 @@ function deleteJs(_id){
 					 }else{
 						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
 					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 				 }
 			});
 		}

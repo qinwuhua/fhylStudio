@@ -1,5 +1,47 @@
 $(function() {
 
+	var qx=parent.$.cookie("qx3").split(",");
+    var j=1;
+    for(var i=0;i<qx.length;i++){
+		if(qx[i]=='01010301'){
+			$('#aa').accordion('add', {
+				id:"left_menu1",
+				title: '项目计划库管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010302'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '项目计划库上报',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010303'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '项目计划库审核',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010304'){
+			$('#aa').accordion('add', {
+				id:"left_menu4",
+				title: '项目计划资金下达',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010305'){
+			$('#aa').accordion('add', {
+				id:"left_menu5",
+				title: '计划查询',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}
+		j++;
+	}
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101030101',
 		title:'危桥改造项目',

@@ -1,5 +1,50 @@
 $(function() {
-
+	
+	var qx=parent.$.cookie("qx3").split(",");
+    var j=1;
+    for(var i=0;i<qx.length;i++){
+		if(qx[i]=='01010401'){
+			$('#aa').accordion('add', {
+				id:"left_menu1",
+				title: '公路建设及养护管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010402'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '月报进度审核管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010403'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '车购税资金拨付情况',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+		}else if(qx[i]=='01010404'){
+			$('#aa').accordion('add', {
+				id:"left_menu4",
+				title: '公路工程完工统计',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010405'){
+			$('#aa').accordion('add', {
+				id:"left_menu5",
+				title: '安全应急管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}
+	}
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101040101',
 		title:'危桥改造施工过程管理',
