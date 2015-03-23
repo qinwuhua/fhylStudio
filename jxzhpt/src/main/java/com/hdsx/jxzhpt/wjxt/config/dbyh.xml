@@ -42,4 +42,10 @@ left join smOrg F on D.sPcode=F.sOrgCode)wkStuffWork where ${tiaojian} and iYear
  <select id="selectfxbList1" statementType="CALLABLE" resultType="hashmap">  
     {call MonthRepNew(#{nian},#{yue})}  
   </select>  
+   <select id="selectPdbList" statementType="CALLABLE" resultType="hashmap">  
+    {call RepStd1New(#{nian},#{yue})}  
+  </select>  
+  <select id="selectYlbList" statementType="CALLABLE" resultType="hashmap">  
+    {call AllLineRep(#{nian},#{yue})}  
+  </select>  
 </mapper>

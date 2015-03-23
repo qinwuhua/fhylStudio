@@ -1906,34 +1906,34 @@ public class DbyhController extends BaseActionSupport{
 				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
 			}
 			if(list1.get(i).get("LastGoodRate")!=null){
-				eli.setV_2(list1.get(i).get("LastGoodRate").toString().toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
+				eli.setV_2(list1.get(i).get("LastGoodRate").toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("GoodRate")!=null){
-				eli.setV_3(list1.get(i).get("GoodRate").toString().toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+				eli.setV_3(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("CompGoodRate")!=null){
-				eli.setV_4(list1.get(i).get("CompGoodRate").toString().toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
+				eli.setV_4(list1.get(i).get("CompGoodRate").toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("LastMQI")!=null){
-				eli.setV_5(list1.get(i).get("LastMQI").toString().toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
+				eli.setV_5(list1.get(i).get("LastMQI").toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
 			}
 			if(list1.get(i).get("MQI")!=null){
-				eli.setV_6(list1.get(i).get("MQI").toString().toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
+				eli.setV_6(list1.get(i).get("MQI").toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
 			}
 			if(list1.get(i).get("CompMQI")!=null){
-				eli.setV_7(list1.get(i).get("CompMQI").toString().toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
+				eli.setV_7(list1.get(i).get("CompMQI").toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
 			}
 			if(list1.get(i).get("LastYlGoodRate")!=null){
-				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
+				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("YlGoodRate")!=null){
-				eli.setV_9(list1.get(i).get("YlGoodRate").toString().toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
+				eli.setV_9(list1.get(i).get("YlGoodRate").toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("LastSnGoodRate")!=null){
-				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
+				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("SnGoodRate")!=null){
-				eli.setV_11(list1.get(i).get("SnGoodRate").toString().toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
+				eli.setV_11(list1.get(i).get("SnGoodRate").toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
 			}
 			list2.add(eli);
 		}
@@ -1971,34 +1971,34 @@ public class DbyhController extends BaseActionSupport{
 				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
 			}
 			if(list1.get(i).get("LastGoodRate")!=null){
-				eli.setV_2(list1.get(i).get("LastGoodRate").toString().toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
+				eli.setV_2(list1.get(i).get("LastGoodRate").toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("GoodRate")!=null){
-				eli.setV_3(list1.get(i).get("GoodRate").toString().toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+				eli.setV_3(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("CompGoodRate")!=null){
-				eli.setV_4(list1.get(i).get("CompGoodRate").toString().toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
+				eli.setV_4(list1.get(i).get("CompGoodRate").toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("LastMQI")!=null){
-				eli.setV_5(list1.get(i).get("LastMQI").toString().toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
+				eli.setV_5(list1.get(i).get("LastMQI").toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
 			}
 			if(list1.get(i).get("MQI")!=null){
-				eli.setV_6(list1.get(i).get("MQI").toString().toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
+				eli.setV_6(list1.get(i).get("MQI").toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
 			}
 			if(list1.get(i).get("CompMQI")!=null){
-				eli.setV_7(list1.get(i).get("CompMQI").toString().toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
+				eli.setV_7(list1.get(i).get("CompMQI").toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
 			}
 			if(list1.get(i).get("LastYlGoodRate")!=null){
-				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
+				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("YlGoodRate")!=null){
-				eli.setV_9(list1.get(i).get("YlGoodRate").toString().toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
+				eli.setV_9(list1.get(i).get("YlGoodRate").toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("LastSnGoodRate")!=null){
-				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
+				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
 			}
 			if(list1.get(i).get("SnGoodRate")!=null){
-				eli.setV_11(list1.get(i).get("SnGoodRate").toString().toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
+				eli.setV_11(list1.get(i).get("SnGoodRate").toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
 			}
 			list2.add(eli);
 		}
@@ -2027,6 +2027,478 @@ public class DbyhController extends BaseActionSupport{
 		et.add(new Excel_tilte("上月优良路率%", 3, 3, 10, 10));
 		et.add(new Excel_tilte("本月优良路率%", 3, 3, 11, 11));
 
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectPdbList(){
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectPdbList(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("0.00");
+			eli.setV_1("0.00");
+			eli.setV_2("0.00");
+			eli.setV_3("0.00");
+			eli.setV_4("0.00");
+			eli.setV_5("0.00");
+			eli.setV_6("0.00");
+			eli.setV_7("0.00");
+			eli.setV_8("0.00");
+			eli.setV_9("0.00");
+			eli.setV_10("0.00");
+			eli.setV_11("0.00");
+			eli.setV_12("0.00");
+			eli.setV_13("0.00");
+			eli.setV_14("0.00");
+			eli.setV_15("0.00");
+			eli.setV_16("0.00");
+			eli.setV_17("0.00");
+			eli.setV_18("0.00");
+			eli.setV_19("0.00");
+			eli.setV_20("0.00");
+			eli.setV_21("0.00");
+			eli.setV_22("0.00");
+			eli.setV_23("0.00");
+			eli.setV_24("0.00");
+			eli.setV_25("0.00");
+			eli.setV_26("0.00");
+			eli.setV_27("0.00");
+			eli.setV_28("0.00");
+			eli.setV_29("0.00");
+			eli.setV_30("0.00");
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_0(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("YLSpace")!=null){
+				eli.setV_9(list1.get(i).get("YLSpace").toString().substring(0,list1.get(i).get("YLSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace1")!=null){
+				eli.setV_10(list1.get(i).get("YLSpace1").toString().substring(0,list1.get(i).get("YLSpace1").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace2")!=null){
+				eli.setV_11(list1.get(i).get("YLSpace2").toString().substring(0,list1.get(i).get("YLSpace2").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace3")!=null){
+				eli.setV_12(list1.get(i).get("YLSpace3").toString().substring(0,list1.get(i).get("YLSpace3").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace4")!=null){
+				eli.setV_13(list1.get(i).get("YLSpace4").toString().substring(0,list1.get(i).get("YLSpace4").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace5")!=null){
+				eli.setV_14(list1.get(i).get("YLSpace5").toString().substring(0,list1.get(i).get("YLSpace5").toString().length()-2));
+			}
+			if(list1.get(i).get("YLMQI")!=null){
+				eli.setV_15(list1.get(i).get("YLMQI").toString().substring(0,list1.get(i).get("YLMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("YLGoodRate")!=null){
+				eli.setV_16(list1.get(i).get("YLGoodRate").toString().substring(0,list1.get(i).get("YLGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace")!=null){
+				eli.setV_17(list1.get(i).get("SNSpace").toString().substring(0,list1.get(i).get("SNSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace1")!=null){
+				eli.setV_18(list1.get(i).get("SNSpace1").toString().substring(0,list1.get(i).get("SNSpace1").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace2")!=null){
+				eli.setV_19(list1.get(i).get("SNSpace2").toString().substring(0,list1.get(i).get("SNSpace2").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace3")!=null){
+				eli.setV_20(list1.get(i).get("SNSpace3").toString().substring(0,list1.get(i).get("SNSpace3").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace4")!=null){
+				eli.setV_21(list1.get(i).get("SNSpace4").toString().substring(0,list1.get(i).get("SNSpace4").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace5")!=null){
+				eli.setV_22(list1.get(i).get("SNSpace5").toString().substring(0,list1.get(i).get("SNSpace5").toString().length()-2));
+			}
+			if(list1.get(i).get("SNMQI")!=null){
+				eli.setV_23(list1.get(i).get("SNMQI").toString().substring(0,list1.get(i).get("SNMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("snGoodRate")!=null){
+				eli.setV_24(list1.get(i).get("snGoodRate").toString().substring(0,list1.get(i).get("snGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkManZz")!=null){
+				eli.setV_25(list1.get(i).get("WorkManZz").toString().substring(0,list1.get(i).get("WorkManZz").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkManLs")!=null){
+				eli.setV_26(list1.get(i).get("WorkManLs").toString().substring(0,list1.get(i).get("WorkManLs").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkDay")!=null){
+				eli.setV_27(list1.get(i).get("WorkDay").toString().substring(0,list1.get(i).get("WorkDay").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkDayRate")!=null){
+				eli.setV_28(list1.get(i).get("WorkDayRate").toString().substring(0,list1.get(i).get("WorkDayRate").toString().length()-2));
+			}
+			if(list1.get(i).get("TimeDay")!=null){
+				eli.setV_29(list1.get(i).get("TimeDay").toString().substring(0,list1.get(i).get("TimeDay").toString().length()-2));
+			}
+			if(list1.get(i).get("TimeDayRate")!=null){
+				eli.setV_30(list1.get(i).get("TimeDayRate").toString().substring(0,list1.get(i).get("TimeDayRate").toString().length()-2));
+			}
+			eli.setV_1(new   BigDecimal(Double.parseDouble(eli.getV_9())+Double.parseDouble(eli.getV_17())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_2(new   BigDecimal(Double.parseDouble(eli.getV_10())+Double.parseDouble(eli.getV_18())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_3(new   BigDecimal(Double.parseDouble(eli.getV_11())+Double.parseDouble(eli.getV_19())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_4(new   BigDecimal(Double.parseDouble(eli.getV_12())+Double.parseDouble(eli.getV_20())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_5(new   BigDecimal(Double.parseDouble(eli.getV_13())+Double.parseDouble(eli.getV_21())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_6(new   BigDecimal(Double.parseDouble(eli.getV_14())+Double.parseDouble(eli.getV_22())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_7(new   BigDecimal(Double.parseDouble(eli.getV_15())+Double.parseDouble(eli.getV_23())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_8(new   BigDecimal(Double.parseDouble(eli.getV_16())+Double.parseDouble(eli.getV_24())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			list2.add(eli);
+		}
+		JsonUtils.write(list2, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void export_pdb() throws Exception{
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectPdbList(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("0.00");
+			eli.setV_1("0.00");
+			eli.setV_2("0.00");
+			eli.setV_3("0.00");
+			eli.setV_4("0.00");
+			eli.setV_5("0.00");
+			eli.setV_6("0.00");
+			eli.setV_7("0.00");
+			eli.setV_8("0.00");
+			eli.setV_9("0.00");
+			eli.setV_10("0.00");
+			eli.setV_11("0.00");
+			eli.setV_12("0.00");
+			eli.setV_13("0.00");
+			eli.setV_14("0.00");
+			eli.setV_15("0.00");
+			eli.setV_16("0.00");
+			eli.setV_17("0.00");
+			eli.setV_18("0.00");
+			eli.setV_19("0.00");
+			eli.setV_20("0.00");
+			eli.setV_21("0.00");
+			eli.setV_22("0.00");
+			eli.setV_23("0.00");
+			eli.setV_24("0.00");
+			eli.setV_25("0.00");
+			eli.setV_26("0.00");
+			eli.setV_27("0.00");
+			eli.setV_28("0.00");
+			eli.setV_29("0.00");
+			eli.setV_30("0.00");
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_0(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("YLSpace")!=null){
+				eli.setV_9(list1.get(i).get("YLSpace").toString().substring(0,list1.get(i).get("YLSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace1")!=null){
+				eli.setV_10(list1.get(i).get("YLSpace1").toString().substring(0,list1.get(i).get("YLSpace1").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace2")!=null){
+				eli.setV_11(list1.get(i).get("YLSpace2").toString().substring(0,list1.get(i).get("YLSpace2").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace3")!=null){
+				eli.setV_12(list1.get(i).get("YLSpace3").toString().substring(0,list1.get(i).get("YLSpace3").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace4")!=null){
+				eli.setV_13(list1.get(i).get("YLSpace4").toString().substring(0,list1.get(i).get("YLSpace4").toString().length()-2));
+			}
+			if(list1.get(i).get("YLSpace5")!=null){
+				eli.setV_14(list1.get(i).get("YLSpace5").toString().substring(0,list1.get(i).get("YLSpace5").toString().length()-2));
+			}
+			if(list1.get(i).get("YLMQI")!=null){
+				eli.setV_15(list1.get(i).get("YLMQI").toString().substring(0,list1.get(i).get("YLMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("YLGoodRate")!=null){
+				eli.setV_16(list1.get(i).get("YLGoodRate").toString().substring(0,list1.get(i).get("YLGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace")!=null){
+				eli.setV_17(list1.get(i).get("SNSpace").toString().substring(0,list1.get(i).get("SNSpace").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace1")!=null){
+				eli.setV_18(list1.get(i).get("SNSpace1").toString().substring(0,list1.get(i).get("SNSpace1").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace2")!=null){
+				eli.setV_19(list1.get(i).get("SNSpace2").toString().substring(0,list1.get(i).get("SNSpace2").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace3")!=null){
+				eli.setV_20(list1.get(i).get("SNSpace3").toString().substring(0,list1.get(i).get("SNSpace3").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace4")!=null){
+				eli.setV_21(list1.get(i).get("SNSpace4").toString().substring(0,list1.get(i).get("SNSpace4").toString().length()-2));
+			}
+			if(list1.get(i).get("SNSpace5")!=null){
+				eli.setV_22(list1.get(i).get("SNSpace5").toString().substring(0,list1.get(i).get("SNSpace5").toString().length()-2));
+			}
+			if(list1.get(i).get("SNMQI")!=null){
+				eli.setV_23(list1.get(i).get("SNMQI").toString().substring(0,list1.get(i).get("SNMQI").toString().length()-2));
+			}
+			if(list1.get(i).get("snGoodRate")!=null){
+				eli.setV_24(list1.get(i).get("snGoodRate").toString().substring(0,list1.get(i).get("snGoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkManZz")!=null){
+				eli.setV_25(list1.get(i).get("WorkManZz").toString().substring(0,list1.get(i).get("WorkManZz").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkManLs")!=null){
+				eli.setV_26(list1.get(i).get("WorkManLs").toString().substring(0,list1.get(i).get("WorkManLs").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkDay")!=null){
+				eli.setV_27(list1.get(i).get("WorkDay").toString().substring(0,list1.get(i).get("WorkDay").toString().length()-2));
+			}
+			if(list1.get(i).get("WorkDayRate")!=null){
+				eli.setV_28(list1.get(i).get("WorkDayRate").toString().substring(0,list1.get(i).get("WorkDayRate").toString().length()-2));
+			}
+			if(list1.get(i).get("TimeDay")!=null){
+				eli.setV_29(list1.get(i).get("TimeDay").toString().substring(0,list1.get(i).get("TimeDay").toString().length()-2));
+			}
+			if(list1.get(i).get("TimeDayRate")!=null){
+				eli.setV_30(list1.get(i).get("TimeDayRate").toString().substring(0,list1.get(i).get("TimeDayRate").toString().length()-2));
+			}
+			eli.setV_1(new   BigDecimal(Double.parseDouble(eli.getV_9())+Double.parseDouble(eli.getV_17())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_2(new   BigDecimal(Double.parseDouble(eli.getV_10())+Double.parseDouble(eli.getV_18())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_3(new   BigDecimal(Double.parseDouble(eli.getV_11())+Double.parseDouble(eli.getV_19())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_4(new   BigDecimal(Double.parseDouble(eli.getV_12())+Double.parseDouble(eli.getV_20())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_5(new   BigDecimal(Double.parseDouble(eli.getV_13())+Double.parseDouble(eli.getV_21())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_6(new   BigDecimal(Double.parseDouble(eli.getV_14())+Double.parseDouble(eli.getV_22())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_7(new   BigDecimal(Double.parseDouble(eli.getV_15())+Double.parseDouble(eli.getV_23())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			eli.setV_8(new   BigDecimal(Double.parseDouble(eli.getV_16())+Double.parseDouble(eli.getV_24())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
+			list2.add(eli);
+		}
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路路况评定表");//设置第一行
+		eldata.setSheetName("评定表");//设置sheeet名
+		eldata.setFileName(nian+"年"+yue+"月"+"公路路况评定表");//设置文件名
+		eldata.setEl(list2);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("分局(道班名称)",1,3,0,0));
+		et.add(new Excel_tilte("养护里程(公里)",1,3,1,1));
+		et.add(new Excel_tilte("路况等级(公里)",1,1,2,6));	
+		et.add(new Excel_tilte("MQI", 1, 3, 7, 7));
+		et.add(new Excel_tilte("优良路率(%)", 1, 3, 8, 8));
+		et.add(new Excel_tilte("其　　　　中", 1, 1, 9, 24));
+		et.add(new Excel_tilte("养路工人出勤情况", 1, 1, 25, 30));
+		et.add(new Excel_tilte("优", 2, 3, 2, 2));
+		et.add(new Excel_tilte("良", 2, 3, 3, 3));
+		et.add(new Excel_tilte("中", 2, 3, 4, 4));
+		et.add(new Excel_tilte("次", 2, 3, 5, 5));
+		et.add(new Excel_tilte("差", 2, 3, 6, 6));
+		et.add(new Excel_tilte("油　路 (公里)", 2, 2, 9, 14));
+		et.add(new Excel_tilte("MQI", 2, 3, 15, 15));
+		et.add(new Excel_tilte("优良路率(%)", 2, 3, 16, 16));
+		et.add(new Excel_tilte("水　泥　路(公里)", 2, 2, 17, 22));
+		et.add(new Excel_tilte("MQI", 2, 3, 23, 23));
+		et.add(new Excel_tilte("优良路率(%)", 2, 3, 24, 24));
+		et.add(new Excel_tilte("工人数 (人)", 2, 2, 25, 26));
+		et.add(new Excel_tilte("出 工 率", 2, 2, 27, 28));
+		et.add(new Excel_tilte("出 勤 率", 2, 2, 29, 30));
+		et.add(new Excel_tilte("总里程", 3, 3, 9, 9));
+		et.add(new Excel_tilte("优", 3, 3, 10, 10));
+		et.add(new Excel_tilte("良", 3, 3, 11, 11));
+		et.add(new Excel_tilte("中", 3, 3, 12, 12));
+		et.add(new Excel_tilte("次", 3, 3, 13, 13));
+		et.add(new Excel_tilte("差", 3, 3, 14, 14));
+		et.add(new Excel_tilte("总里程", 3, 3, 17, 17));
+		et.add(new Excel_tilte("优", 3, 3, 18, 18));
+		et.add(new Excel_tilte("良", 3, 3, 19, 19));
+		et.add(new Excel_tilte("中", 3, 3, 20, 20));
+		et.add(new Excel_tilte("次", 3, 3, 21, 21));
+		et.add(new Excel_tilte("差", 3, 3, 22, 22));
+		et.add(new Excel_tilte("在册", 3, 3, 25, 25));
+		et.add(new Excel_tilte("临时", 3, 3, 26, 26));
+		et.add(new Excel_tilte("直接生产工日", 3, 3, 27, 27));
+		et.add(new Excel_tilte("出工率(%)", 3, 3, 28, 28));
+		et.add(new Excel_tilte("直接间接生产工日", 3, 3, 29, 29));
+		et.add(new Excel_tilte("出勤率(%)", 3, 3, 30, 30));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void selectYlbList(){
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectYlbList(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("");
+			eli.setV_1("");
+			eli.setV_2("");
+			eli.setV_3("");
+			eli.setV_4("");
+			eli.setV_5("");
+			eli.setV_6("");
+			eli.setV_7("");
+			eli.setV_8("");
+			eli.setV_9("");
+			eli.setV_10("");
+			eli.setV_11("");
+			eli.setV_12("");
+			eli.setV_13("");
+			
+			if(list1.get(i).get("LineCode")!=null){
+				eli.setV_0(list1.get(i).get("LineCode").toString());
+			}
+			if(list1.get(i).get("LineName")!=null){
+				eli.setV_1(list1.get(i).get("LineName").toString());
+			}
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_2(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("StartSpace")!=null){
+				eli.setV_3(list1.get(i).get("StartSpace").toString());
+			}
+			if(list1.get(i).get("EndSpace")!=null){
+				eli.setV_4(list1.get(i).get("EndSpace").toString());
+			}
+			if(list1.get(i).get("RoadTotal")!=null){
+				eli.setV_5(list1.get(i).get("RoadTotal").toString().substring(0,list1.get(i).get("RoadTotal").toString().length()-2));
+			}
+			if(list1.get(i).get("Space1")!=null){
+				eli.setV_6(list1.get(i).get("Space1").toString().substring(0,list1.get(i).get("Space1").toString().length()-2));
+			}
+			if(list1.get(i).get("Space2")!=null){
+				eli.setV_7(list1.get(i).get("Space2").toString().substring(0,list1.get(i).get("Space2").toString().length()-2));
+			}
+			if(list1.get(i).get("Space3")!=null){
+				eli.setV_8(list1.get(i).get("Space3").toString().substring(0,list1.get(i).get("Space3").toString().length()-2));
+			}
+			if(list1.get(i).get("Space4")!=null){
+				eli.setV_9(list1.get(i).get("Space4").toString().substring(0,list1.get(i).get("Space4").toString().length()-2));
+			}
+			if(list1.get(i).get("Space5")!=null){
+				eli.setV_10(list1.get(i).get("Space5").toString().substring(0,list1.get(i).get("Space5").toString().length()-2));
+			}
+			if(list1.get(i).get("GoodRate")!=null){
+				eli.setV_11(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("MQITotal")!=null){
+				eli.setV_12(list1.get(i).get("MQITotal").toString().substring(0,list1.get(i).get("MQITotal").toString().length()-2));
+			}
+			if(list1.get(i).get("LineIndex")!=null){
+				eli.setV_13(list1.get(i).get("LineIndex").toString().substring(0,list1.get(i).get("LineIndex").toString().length()-2));
+			}
+			list2.add(eli);
+		}
+		JsonUtils.write(list2, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void export_ylb() throws Exception{
+		zdxx.setGydw(gydw);
+		zdxx.setNian(nian);
+		zdxx.setYue(yue);
+		List<Map<String, Object>> list1=dbyhServer.selectYlbList(zdxx);
+		List<Excel_list> list2=new ArrayList<Excel_list>();
+		try{
+		for (int i = 0; i < list1.size(); i++) {
+			Excel_list eli=new Excel_list();
+			eli.setV_0("");
+			eli.setV_1("");
+			eli.setV_2("");
+			eli.setV_3("");
+			eli.setV_4("");
+			eli.setV_5("");
+			eli.setV_6("");
+			eli.setV_7("");
+			eli.setV_8("");
+			eli.setV_9("");
+			eli.setV_10("");
+			eli.setV_11("");
+			eli.setV_12("");
+			eli.setV_13("");
+			
+			if(list1.get(i).get("LineCode")!=null){
+				eli.setV_0(list1.get(i).get("LineCode").toString());
+			}
+			if(list1.get(i).get("LineName")!=null){
+				eli.setV_1(list1.get(i).get("LineName").toString());
+			}
+			if(list1.get(i).get("OrgName")!=null){
+				eli.setV_2(list1.get(i).get("OrgName").toString());
+			}
+			if(list1.get(i).get("StartSpace")!=null){
+				eli.setV_3(list1.get(i).get("StartSpace").toString());
+			}
+			if(list1.get(i).get("EndSpace")!=null){
+				eli.setV_4(list1.get(i).get("EndSpace").toString());
+			}
+			if(list1.get(i).get("RoadTotal")!=null){
+				eli.setV_5(list1.get(i).get("RoadTotal").toString().substring(0,list1.get(i).get("RoadTotal").toString().length()-2));
+			}
+			if(list1.get(i).get("Space1")!=null){
+				eli.setV_6(list1.get(i).get("Space1").toString().substring(0,list1.get(i).get("Space1").toString().length()-2));
+			}
+			if(list1.get(i).get("Space2")!=null){
+				eli.setV_7(list1.get(i).get("Space2").toString().substring(0,list1.get(i).get("Space2").toString().length()-2));
+			}
+			if(list1.get(i).get("Space3")!=null){
+				eli.setV_8(list1.get(i).get("Space3").toString().substring(0,list1.get(i).get("Space3").toString().length()-2));
+			}
+			if(list1.get(i).get("Space4")!=null){
+				eli.setV_9(list1.get(i).get("Space4").toString().substring(0,list1.get(i).get("Space4").toString().length()-2));
+			}
+			if(list1.get(i).get("Space5")!=null){
+				eli.setV_10(list1.get(i).get("Space5").toString().substring(0,list1.get(i).get("Space5").toString().length()-2));
+			}
+			if(list1.get(i).get("GoodRate")!=null){
+				eli.setV_11(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
+			}
+			if(list1.get(i).get("MQITotal")!=null){
+				eli.setV_12(list1.get(i).get("MQITotal").toString().substring(0,list1.get(i).get("MQITotal").toString().length()-2));
+			}
+			if(list1.get(i).get("LineIndex")!=null){
+				eli.setV_13(list1.get(i).get("LineIndex").toString().substring(0,list1.get(i).get("LineIndex").toString().length()-2));
+			}
+			list2.add(eli);
+		}
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("公路路线技术状况一览表");//设置第一行
+		eldata.setSheetName("一览表");//设置sheeet名
+		eldata.setFileName(nian+"年"+yue+"月"+"公路路线技术状况一览表");//设置文件名
+		eldata.setEl(list2);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("路线编号",1,2,0,0));
+		et.add(new Excel_tilte("路线名称",1,2,1,1));
+		et.add(new Excel_tilte("养护单位",1,2,2,2));	
+		et.add(new Excel_tilte("起点桩号", 1, 2, 3, 3));
+		et.add(new Excel_tilte("终点桩号", 1, 2, 4, 4));
+		et.add(new Excel_tilte("评定里程（公里）", 1, 2, 5, 5));
+		et.add(new Excel_tilte("评定结果（公里）", 1, 1, 6, 10));
+		et.add(new Excel_tilte("优良路率（%）", 1, 2, 11, 11));
+		et.add(new Excel_tilte("MQI", 1, 2, 12, 12));
+		et.add(new Excel_tilte("备 注", 1, 2, 13, 13));
+		et.add(new Excel_tilte("优等路", 2, 2, 6, 6));
+		et.add(new Excel_tilte("良等路", 2, 2, 7, 7));
+		et.add(new Excel_tilte("中等路", 2, 2, 8, 8));
+		et.add(new Excel_tilte("次等路", 2, 2, 9, 9));
+		et.add(new Excel_tilte("差等路", 2, 2, 10, 10));
+		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
