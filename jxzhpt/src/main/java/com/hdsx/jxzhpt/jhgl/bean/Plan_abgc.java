@@ -66,6 +66,18 @@ public class Plan_abgc {
 	private Sckabgc jckabgc;
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
+	
+	private String gydw;
+	private String xzqhdm;
+	private String xzqhmc;
+	private String lxbm;
+	private String lxmc;
+	private String qdzh;
+	private String zdzh;
+	private String qzlc;
+	private String yhlc;
+	private String gjxjnd;
+	
 	public String getSfylsjl() {
 		return sfylsjl;
 	}
@@ -414,4 +426,65 @@ public class Plan_abgc {
 	public void setSjsgtdata(byte[] sjsgtdata) {
 		this.sjsgtdata = sjsgtdata;
 	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getQdzh() {
+		return qdzh;
+	}
+	public void setQdzh(String qdzh) {
+		this.qdzh = qdzh;
+	}
+	public String getZdzh() {
+		return zdzh;
+	}
+	public void setZdzh(String zdzh) {
+		this.zdzh = zdzh;
+	}
+	public String getQzlc() {
+		return qzlc;
+	}
+	public void setQzlc(String qzlc) {
+		this.qzlc = qzlc;
+	}
+	public String getYhlc() {
+		return yhlc;
+	}
+	public void setYhlc(String yhlc) {
+		this.yhlc = yhlc;
+	}
+	public String getGjxjnd() {
+		return gjxjnd;
+	}
+	public void setGjxjnd(String gjxjnd) {
+		this.gjxjnd = gjxjnd;
+	}
+	
 }

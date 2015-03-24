@@ -9,6 +9,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010202'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
@@ -16,6 +17,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010203'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
@@ -23,6 +25,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010204'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
@@ -30,8 +33,8 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}
-		j++;
 	}
 	createMenu('LeftMenu',{
 		id:'menu_0101020101',
@@ -121,13 +124,24 @@ $(function() {
 		href:'./scksh/zhfz.jsp'
 	});
 	menuQx();
-	//alert(getParam("id"));
-	//alert(getParam("id").substr(0,8));
-	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)==""){
-		
+	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010201"){
+		if(getParam("sj")=="0"){
+			$('#aa').accordion("select","项目基础库管理");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"01"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		}else{
+			$('#aa').accordion("select","项目基础库审核");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"02"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		}
 	}
-	
-	//$('#aa').accordion("select","项目基础库审核");
+	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010203"){
+		if(getParam("sj")=="0"){
+			$('#aa').accordion("select","项目审查库管理");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"03"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		}else{
+			$('#aa').accordion("select","项目审查库审核");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"04"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		};
+	}
 });
 function menuQx(){
 	var qx=parent.$.cookie("qx4").split(",");

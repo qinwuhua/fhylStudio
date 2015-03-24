@@ -2,7 +2,6 @@ package com.hdsx.jxzhpt.jhgl.bean;
 
 import java.util.Date;
 
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 
 public class Plan_wqgz {
@@ -65,6 +64,17 @@ public class Plan_wqgz {
 	private String qlkd;
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
+	
+	private String gydw;
+	private String xzqhdm;
+	private String xzqhmc;
+	private String lxbm;
+	private String lxmc;
+	private String qlbh;
+	private String qlmc;
+	private String qlzxzh;
+	private String xjgjnd;
+	
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
@@ -419,4 +429,59 @@ public class Plan_wqgz {
 	public void setSjsgtdata(byte[] sjsgtdata) {
 		this.sjsgtdata = sjsgtdata;
 	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getQlbh() {
+		return qlbh;
+	}
+	public void setQlbh(String qlbh) {
+		this.qlbh = qlbh;
+	}
+	public String getQlmc() {
+		return qlmc;
+	}
+	public void setQlmc(String qlmc) {
+		this.qlmc = qlmc;
+	}
+	public String getQlzxzh() {
+		return qlzxzh;
+	}
+	public void setQlzxzh(String qlzxzh) {
+		this.qlzxzh = qlzxzh;
+	}
+	public String getXjgjnd() {
+		return xjgjnd;
+	}
+	public void setXjgjnd(String xjgjnd) {
+		this.xjgjnd = xjgjnd;
+	}
+	
 }

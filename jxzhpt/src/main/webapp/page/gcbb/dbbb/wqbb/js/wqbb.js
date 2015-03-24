@@ -175,23 +175,48 @@ function showAlljh(){
 		width:$(window).width()-25,
 
 	    columns:[[
-	        {field:'gydw',title:'管养单位',width:100,align:'center'},
-	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
-	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:100,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qlbh',title:'桥梁编码',width:100,align:'center'},
-	        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
-	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
+	        {field:'gydw',title:'管养单位',width:100,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.gydw;
+				}	
+	        },
+	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center',
+	        	formatter : function(value, row, index) {
+					return row.xzqhdm;
+				}	},
+	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
+		        	formatter : function(value, row, index) {
+						return row.xzqhmc;
+					}	},
+	        {field:'lxbm',title:'路线编码',width:100,align:'center',
+			        	formatter : function(value, row, index) {
+							return row.lxbm;
+						}	},
+	        {field:'lxmc',title:'路线名称',width:100,align:'center',
+				        	formatter : function(value, row, index) {
+								return row.lxmc;
+							}	},
+	        {field:'qlbh',title:'桥梁编码',width:100,align:'center',
+					        	formatter : function(value, row, index) {
+									return row.qlbh;
+								}	},
+	        {field:'qlmc',title:'桥梁名称',width:100,align:'center',
+						        	formatter : function(value, row, index) {
+										return row.qlmc;
+									}	},
+	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center',
+							        	formatter : function(value, row, index) {
+											return row.qlzxzh;
+										}	},
 	        {field:'xjgjnd',title:'修建/改建年度',width:100,align:'center'},
 	        {field:'sjdw',title:'设计单位',width:100,align:'center'},
 	        {field:'sjpfdw',title:'设计批复单位',width:100,align:'center'},
 	        {field:'pfwh',title:'批复文号',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资（万元）',width:150,align:'center'},
-	        {field:'dkzdkj',title:'计划使用部补助金额（万元）',width:170,align:'center'},
-	        {field:'kjfl',title:'计划使用地方自筹资金（万元）',width:170,align:'center'},
-	        {field:'sbjgxs',title:'是否申请按比例补助',width:150,align:'center'},
-	        {field:'pddj',title:'按比例补助申请文号',width:150,align:'center'}
+	        {field:'jhsybzje',title:'计划使用部补助金额（万元）',width:170,align:'center'},
+	        {field:'jhsydfzcje',title:'计划使用地方自筹资金（万元）',width:170,align:'center'},
+	        {field:'sfsqablbz',title:'是否申请按比例补助',width:150,align:'center'},
+	        {field:'ablbzsqwh',title:'按比例补助申请文号',width:150,align:'center'}
 	    ]]    
 	}); 
 }

@@ -351,6 +351,15 @@ $(function() {
 //		href:'../sjcx/jhkgl/zbgl.jsp'
 //	});
 	menuQx();
+	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)=="01010301"){
+		if(getParam("sj")=="0"){
+			$('#aa').accordion("select","项目计划库上报");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"02"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		}else{
+			$('#aa').accordion("select","项目计划库审核");
+			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"03"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
+		}
+	}
 });
 function menuQx(){
 	var qx=parent.$.cookie("qx4").split(",");

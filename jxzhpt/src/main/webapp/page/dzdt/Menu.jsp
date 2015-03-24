@@ -50,13 +50,14 @@ function init2() {
 function turnTo(_id,_parent,_name){
 	var url="";
 	var menuId="";
+	var sj=$.cookie("dist2")=="36"?"1":"0";
 	switch(_id.substr(0,8)){
 		case "01010201": url="page/lwxm/Menu.jsp";menuId="Menu_2";break;
 		case "01010203": url="page/lwxm/Menu.jsp";menuId="Menu_2";break;
 		case "01010301": url="page/jhgl/Menu.jsp";menuId="Menu_3";break;
 		case "01010402": url="page/gcgl/Menu.jsp";menuId="Menu_4";break;
 	}
-	url=url+"?id="+_id+"&sj=0";
+	url=url+"?id="+_id+"&sj="+sj;
 	parent.$("#c1f").attr("src",url);
 	parent.$("#Menu_1").removeClass('now');
 	parent.$("#"+menuId).addClass('now');

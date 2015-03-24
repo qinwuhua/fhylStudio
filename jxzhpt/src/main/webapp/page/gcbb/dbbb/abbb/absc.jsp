@@ -24,7 +24,8 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
-			getYearList();
+			xmnf('xmnf');
+			showAllsc();
 		});
 	</script>
 	<style type="text/css">
@@ -41,7 +42,6 @@ a:hover {
 a:active {
  text-decoration: none;
 }
-
 table {
 	border-collapse:collapse;
 }
@@ -65,7 +65,7 @@ table thead tr td {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:100%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -74,14 +74,14 @@ table thead tr td {
         						<span>单位名称：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>年份：</span>
-        						<select id="year" style="width:80px;">
+        						<select id="xmnf" style="width:80px;">
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAllsc()"/>
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel_absc()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
@@ -89,14 +89,12 @@ table thead tr td {
         	</tr>
 
             <tr>
-            	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:150px">
-                		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="2000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"><!-- 省统筹养护大中修工程项目进展情况表  --></caption>
-								<thead>
+               <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+               	<p align="center" style="font-size:x-large;font-weight: bolder;">安保基础库报表</p><br/>
+							<table id="datagrid" width="100%" >
+								<!-- <thead>
 									<tr>
+										<td>管养单位 </td>
 										<td>行政区划代码 </td>
 										<td>行政区划名称</td>
 										<td>路线编码</td>
@@ -106,24 +104,15 @@ table thead tr td {
 										<td>总里程</td>
 										<td>隐患里程</td>
 										<td>修建/改建年度</td>
-										<td>方案评估单位 </td>
-										<td>方案审查单位</td>
-										<td>方案审批时间</td>
-										<td>审批文号 </td>
-										<td>投资估算（万元）</td>
-										<td>建设性质 </td>
-										<td>建设内容 </td>
-										<td>备注 </td>
-								</thead>
-								<tbody>
+										<td>隐患内容 </td>
+										<td>备注</td>
+								</thead> -->
+								<!-- <tbody >
 								
-								</tbody>
+								</tbody> -->
 							</table>
-							</div>
-						</div>
-					</div>
 				</td>
-            </tr>
+				</tr>
 		</table>
 	</div>
 </body>
