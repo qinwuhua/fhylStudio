@@ -30,4 +30,5 @@
 <include file="struts_wjxt.xml"></include>
 <include file="struts_tjfx.xml"></include>
 <include file="struts_dbbb.xml"></include>
+<include file="struts_gcybb.xml"></include>
 </struts>

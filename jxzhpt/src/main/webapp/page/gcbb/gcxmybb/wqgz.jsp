@@ -23,7 +23,25 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
+			$("#yf"+m).attr("selected","selected");
+			showAll();
 		});
+		function showAll(){
+			var nf=$("#ddlYear").val();
+			var yf=$("#ddlMonth").val();
+			var gydw=$("#gydw").combobox("getValue");
+			var xzqh=$("#xzqh").combobox("getValue");
+			var xzdj=$("#xzdj").val();
+			var lxmc=$("#lxmc").val();
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+			alert(data);
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -70,14 +88,29 @@ table thead tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>起始年月：</span>
-        						<input type="text" id="kssj" class="easyui-datebox" style="width:150px;">
-        						<span>截止年月：</span>
-        						<input type="text" id="jssj" class="easyui-datebox" style="width:150px;">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+        						<span>年&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+ 						<select name="ddlYear" id="ddlYear" style="width: 80px;">
+						</select>
+ 						<span>月&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+        						
+<!--         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
+<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
 <%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" /> --%>
         					</p>
@@ -85,21 +118,21 @@ table thead tr td {
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>行政等级：</span>
-        						<select style="width:150px;">
-        							<option>全部</option>
-        							<option>国道</option>
-        							<option>省道</option>
-        							<option>县道</option>
-        							<option>乡道</option>
-        							<option>村道</option>
-        							<option>专道</option>
+        						<select id="xzdj" style="width:80px;">
+        							<option value="">全部</option>
+        							<option value="G">国道</option>
+        							<option value="S">省道</option>
+        							<option value="X">县道</option>
+        							<option value="Y">乡道</option>
+        							<option value="C">村道</option>
+        							<option value="Z">专道</option>
         						</select>
-        						<span>路&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
-        						<input type="text"  style="width: 145px">
+        						<span>路线名称：</span>
+        						<input id="lxmc" type="text"  style="width: 100px">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
-<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
+									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>         					
