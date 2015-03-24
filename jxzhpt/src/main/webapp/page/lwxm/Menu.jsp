@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,10 +15,8 @@
 <script type="text/javascript" src="./js/Menu.js"></script>
 <script type="text/javascript">
 $(function(){
-	
-    $("#rightContent").attr("src", "../../welcome.jsp");
+    if(getParam("id")=="") $("#rightContent").attr("src", "../../welcome.jsp");
 });
-
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
