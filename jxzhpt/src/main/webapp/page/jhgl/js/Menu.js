@@ -10,6 +10,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010302'){
 			$('#aa').accordion('add', {
 				id:"left_menu2",
@@ -17,6 +18,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010303'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
@@ -24,6 +26,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010304'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
@@ -31,6 +34,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010305'){
 			$('#aa').accordion('add', {
 				id:"left_menu5",
@@ -38,8 +42,9 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}
-		j++;
+		
 	}
 	
 	createMenux('LeftMenu',{

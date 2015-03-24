@@ -10,8 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-<!-- <link rel='stylesheet' href='http://js.arcgis.com/3.12/esri/css/esri.css' />
- --><script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
+ <script type="text/javascript" src="../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../easyui/jscharts.js"></script>
@@ -20,31 +19,47 @@
 <script type="text/javascript" src="../../js/YMLib.js"></script>
 <script type="text/javascript" src="js/Menu.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
-<!-- <script type="text/javascript" src='http://js.arcgis.com/3.12/init.js'></script>
- --><script type="text/javascript">
-var map;
+<script type="text/javascript" src="../../2.x/lib/OpenLayers.js"></script>
+ <script type="text/javascript">
+ var lon = 115.94040;  //经度
+ var lat = 27.55343;//纬度
+ var zoom =7;   //地图缩放级别
+ var map, layer;
 $(function(){
 	var LeftHeight = $(window).height();
 	$('#tab01').css('height', LeftHeight-39);
 	loadDataunit();
 	$(".datagrid-header").css("display","none");
-	//dojo.addOnLoad(init);
 	xmlxTj();
+	init2();
 });
+
+function init2() {
+	OpenLayers.ProxyHost = location.origin + "/jxzhpt/cgi/proxy.cgi?url=";
+    map = new OpenLayers.Map('map');
+    layer = new OpenLayers.Layer.WMS("layer",
+            "http://211.101.37.234:8080/hdmapserver/wms",
+            {
+                layers: 'jiangxi_map'
+            });
+    map.addLayer(layer);
+
+    map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+}
+
 function turnTo(_id,_parent,_name){
-	//alert(_id);
 	var url="";
+	var menuId="";
 	switch(_id.substr(0,8)){
-		case "01010201": url="page/dzdt/Menu.jsp";break;
-		case "01010203": url="page/lwxm/Menu.jsp";break;
-		case "01010301": url="page/jhgl/Menu.jsp";break;
-		case "01010402": url="page/gcgl/Menu.jsp";break;
+		case "01010201": url="page/lwxm/Menu.jsp";menuId="Menu_2";break;
+		case "01010203": url="page/lwxm/Menu.jsp";menuId="Menu_2";break;
+		case "01010301": url="page/jhgl/Menu.jsp";menuId="Menu_3";break;
+		case "01010402": url="page/gcgl/Menu.jsp";menuId="Menu_4";break;
 	}
+	url=url+"?id="+_id+"&sj=0";
 	parent.$("#c1f").attr("src",url);
 	parent.$("#Menu_1").removeClass('now');
-	parent.$("#Menu_2").addClass('now');
-	parent.$("#rightContent").attr("src","page/lwxm/jckgl/abgc.jsp");
-	
+	parent.$("#"+menuId).addClass('now');
 }
 </script>
 </head>
@@ -77,7 +92,7 @@ function turnTo(_id,_parent,_name){
 		    <div region="center" style="padding:0px;" border="false">
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 					
-					 <div title="地图" style="overflow: hidden;" href="" iconCls="icon-note">
+					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
 				</div>

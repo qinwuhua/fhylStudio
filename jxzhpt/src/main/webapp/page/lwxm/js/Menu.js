@@ -121,6 +121,13 @@ $(function() {
 		href:'./scksh/zhfz.jsp'
 	});
 	menuQx();
+	alert(getParam("id"));
+	alert(getParam("id").substr(0,8));
+	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)==""){
+		
+	}
+	
+	//$('#aa').accordion("select","项目基础库审核");
 });
 function menuQx(){
 	var qx=parent.$.cookie("qx4").split(",");

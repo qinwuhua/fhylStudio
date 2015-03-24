@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="../lib/OpenLayers.js"></script>
+    <script src="../../framework/jquery-1.8.0.min.js"></script>
+
+    <script type="text/javascript">
+        var lon = 115.94040;  //经度
+        var lat = 27.55343;//纬度
+        var zoom = 8;   //地图缩放级别
+        var map, layer;
+
+        //按照给定的坐标，设置地图的中心点
+        function init() {
+            OpenLayers.ProxyHost = location.origin + "/arcgisproxy/cgi/proxy.cgi?url=";
+            map = new OpenLayers.Map('map');
+            layer = new OpenLayers.Layer.WMS("layer",
+                    "http://211.101.37.234:8080/hdmapserver/wms",
+                    {
+                        layers: 'jiangxi_map'
+                    });
+            map.addLayer(layer);
+
+            map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+        }
+    </script>
+</head>
+<body onload="init()">
+<h1 id="title">按照给定的坐标，设置地图的中心点</h1>
+
+<div id="map" class="smallmap"></div>
+</body>
+</html>

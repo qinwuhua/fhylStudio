@@ -16,6 +16,7 @@
 <script type="text/javascript" src="./js/Menu.js"></script>
 <script type="text/javascript">
 $(function(){
+	
     $("#rightContent").attr("src", "../../welcome.jsp");
 });
 

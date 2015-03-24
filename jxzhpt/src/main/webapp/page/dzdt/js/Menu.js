@@ -105,15 +105,7 @@ function addLine(){
         map.graphics.add(graphic);
     }); 
 }
-function init() {
-    //创建地图对象
-    require(["esri/map","esri/layers/ArcGISDynamicMapServiceLayer", "dojo/domReady!"], function(Map,ArcGISDynamicMapServiceLayer) {
-        map = new Map("map");
-        //叠加图层
-        var layer = new ArcGISDynamicMapServiceLayer("http://211.101.37.251:6080/arcgis/rest/services/SXGXPTMAP/MapServer");
-        map.addLayer(layer);
-    });
-}
+
 function selAnyChartXml(){
 	$.ajax({
 		type:"post",
