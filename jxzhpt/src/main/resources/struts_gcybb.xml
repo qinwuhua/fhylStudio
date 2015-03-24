@@ -3,7 +3,7 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="gcybb" extends="struts-default" namespace="/gcybb">
-<!-- 	<action name="insertTrqk" class="trqkController" method="insertTrqk"/> -->
+	<action name="getWqgzybb" class="gcybbController" method="getWqgzybb"/>
 	
  </package>
 </struts>

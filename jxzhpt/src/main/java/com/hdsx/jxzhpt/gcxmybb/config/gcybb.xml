@@ -1,5 +1,200 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcybb">
-
+	<select id="getWqgzybb" parameterType="gcglwqgz" resultType="hashmap">
+		select  t3.qlmc v_0,t3.qlbh v_1,t3.qlzxzh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.jsdj v_5,t3.qlqc v_6,t3.kjzc v_7,
+		t3.dkzdkj v_8,t3.qlkd v_9,t3.sbjgxs v_10,t3.akjfl,t3.xjgjnd v_13,t3.pddj,t1.pfztz v_16,t1.jhsybzje v_17,
+		t1.jhsydfzcje v_18,t4.wc_btz+t4.wc_qttz v_19,t4.wc_btz v_20,t4.wc_qttz v_21,(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_22 ,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_23,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_24,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_25,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_26,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_27,
+		t2.jsxz v_34,to_char(t1.jhkgsj,'YYYY') v_35,to_char(t1.jhwgsj,'YYYY') v_36,t2.jsnr v_37,t3.xzqhmc,t3.xmnf
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			order by t3.xzqhmc,t3.xmnf desc
+	</select>
+	
+	<select id="getWqgzxzqh" parameterType="gcglwqgz" resultType="hashmap">
+		select distinct(substr(t3.xzqhdm,0,4)) xzqhdm,substr(t3.xzqhmc,0,3) xzqhmc
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	<select id="getWqgznf" parameterType="gcglwqgz" resultType="hashmap">
+		select t3.xmnf
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhmc != null and  xzqhmc != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			group by t3.xmnf
+			order by t3.xmnf 
+	</select>
+		<select id="getwqgzlist1" parameterType="gcglwqgz" resultType="elist">
+		select sum(t5.v_6) v_6,sum(t5.v_7) v_7,sum(t5.v_8) v_8,sum(t5.v_9) v_9,sum(t5.v_16) v_16,sum(t5.v_17) v_17,sum(t5.v_18) v_18,sum(t5.v_19) v_19,sum(t5.v_20) v_20,sum(t5.v_21) v_21,sum(t5.v_22) v_22,sum(t5.v_23) v_23,sum(t5.v_24) v_24,sum(t5.v_25) v_25,sum(t5.v_26) v_26,sum(t5.v_27) v_27
+		from(
+		select  t3.qlmc v_0,t3.qlbh v_1,t3.qlzxzh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.jsdj v_5,t3.qlqc v_6,t3.kjzc v_7,
+		t3.dkzdkj v_8,t3.qlkd v_9,t3.sbjgxs v_10,t3.akjfl,t3.xjgjnd v_13,t3.pddj,t1.pfztz v_16,t1.jhsybzje v_17,
+		t1.jhsydfzcje v_18,t4.wc_btz+t4.wc_qttz v_19,t4.wc_btz v_20,t4.wc_qttz v_21,(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_22 ,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_23,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_24,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_25,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_26,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_27,
+		t2.jsxz v_34,to_char(t1.jhkgsj,'YYYY') v_35,to_char(t1.jhwgsj,'YYYY') v_36,t2.jsnr v_37,t3.xzqhmc,t3.xmnf
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="xzqhmc != null and  xzqhmc != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhmc})||'%'
+			</if>
+			order by t3.xzqhmc,t3.xmnf
+			) t5
+			where 1=1
+			<if test="xmnf != null and  xmnf != ''">
+					and t5.xmnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			
+	</select>
+	
+	<select id="getwqgzlist3" parameterType="gcglwqgz" resultType="elist">
+		select sum(t5.v_6) v_6,sum(t5.v_7) v_7,sum(t5.v_8) v_8,sum(t5.v_9) v_9,sum(t5.v_16) v_16,sum(t5.v_17) v_17,sum(t5.v_18) v_18,sum(t5.v_19) v_19,sum(t5.v_20) v_20,sum(t5.v_21) v_21,sum(t5.v_22) v_22,sum(t5.v_23) v_23,sum(t5.v_24) v_24,sum(t5.v_25) v_25,sum(t5.v_26) v_26,sum(t5.v_27) v_27
+		from(
+		select  t3.qlmc v_0,t3.qlbh v_1,t3.qlzxzh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.jsdj v_5,t3.qlqc v_6,t3.kjzc v_7,
+		t3.dkzdkj v_8,t3.qlkd v_9,t3.sbjgxs v_10,t3.akjfl,t3.xjgjnd v_13,t3.pddj,t1.pfztz v_16,t1.jhsybzje v_17,
+		t1.jhsydfzcje v_18,t4.wc_btz+t4.wc_qttz v_19,t4.wc_btz v_20,t4.wc_qttz v_21,(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_22 ,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_23,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_24,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_25,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_26,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_27,
+		t2.jsxz v_34,to_char(t1.jhkgsj,'YYYY') v_35,to_char(t1.jhwgsj,'YYYY') v_36,t2.jsnr v_37,t3.xzqhmc,t3.xmnf
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhmc != null and  xzqhmc != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			order by t3.xzqhmc,t3.xmnf
+			) t5
+			where 1=1
+			
+			
+	</select>
+	<select id="getwqgzlist4" parameterType="gcglwqgz" resultType="elist">
+		select  t3.qlmc v_0,t3.qlbh v_1,t3.qlzxzh v_2,t3.lxbm v_3,t3.lxmc v_4,t3.jsdj v_5,t3.qlqc v_6,t3.kjzc v_7,
+		t3.dkzdkj v_8,t3.qlkd v_9,t3.sbjgxs v_10,(case when t3.akjfl='大桥' then '大桥' else '' end) v_11,(case when t3.akjfl='小桥' then '小桥' else '' end) v_12,t3.xjgjnd v_13,(case when t3.pddj='四类' then '四类' else '' end) v_14,(case when t3.pddj='五类' then '五类' else '' end) v_15,t1.pfztz v_16,t1.jhsybzje v_17,
+		t1.jhsydfzcje v_18,t4.wc_btz+t4.wc_qttz v_19,t4.wc_btz v_20,t4.wc_qttz v_21,(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_22 ,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_23,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &gt;= substr(#{sbyf},0,4)||'-1' and sbyf &lt;= #{sbyf} ) v_24,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} )+(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_25,
+		(select sum(wc_btz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_26,
+		(select sum(wc_qttz) from gcgl_wqgz where jhid=t1.sckid and sbyf &lt;= #{sbyf} ) v_27,
+		t2.jsxz v_34,to_char(t1.jhkgsj,'YYYY') v_35,to_char(t1.jhwgsj,'YYYY') v_36,t2.jsnr v_37,t3.xzqhmc,t3.xmnf
+				from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+				left join GCGL_WQGZ t4 on t4.jhid=t1.SCKID
+					where  
+					t1.SCKID in (select jhid from gcgl_wqgz where sbyf=#{sbyf})
+			<if test="sbyf != null and  sbyf != ''">
+					and t4.sbyf like '%'||trim(#{sbyf})||'%'
+			</if>
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="xzqhdm != null and  xzqhdm != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.lxbm like trim(#{tiaojian})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and t3.xmnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="xzqhmc != null and  xzqhmc != ''">
+					and t3.xzqhdm like '%'||trim(#{xzqhmc})||'%'
+			</if>
+			order by t3.xzqhmc
+	</select>
+	
 </mapper>

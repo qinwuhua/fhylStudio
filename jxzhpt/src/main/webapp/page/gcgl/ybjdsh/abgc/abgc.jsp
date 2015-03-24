@@ -23,6 +23,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			
 			showAll();
 		});
 	</script>
