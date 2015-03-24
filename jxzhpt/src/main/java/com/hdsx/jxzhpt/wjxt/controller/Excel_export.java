@@ -31,8 +31,9 @@ import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 public class Excel_export {
 	
 	public static void excel_export(ExcelData el,HttpServletResponse response) throws Exception{
+		try{
 		response.setContentType("octets/stream");
-		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().getBytes("gb2312"), "ISO-8859-1")+ ".xls");
+		response.addHeader("Content-Disposition", "attachment;filename="+ new String(el.getFileName().trim().getBytes("gb2312"), "ISO-8859-1")+ ".xls");
 		OutputStream out = response.getOutputStream();
 		HSSFWorkbook wb = new HSSFWorkbook();  
 		HSSFSheet sheet = wb.createSheet(el.getSheetName());
@@ -533,6 +534,9 @@ public class Excel_export {
         }  
 		wb.write(out);
  		out.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/**
 	  * 设置合并单元格格式

@@ -144,66 +144,8 @@ function xmlxQsSearch(){
 	xmlxqstj();
 }
 //--------------------------------工程库
-function gckxzqhtj(){
-	var grid={id:'grid',url:'../js/gckxzqhtj.json',fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:372,width:970,
-		    columns:[
-			    [
-			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
-			     	{title:'合计',colspan:3},
-			     	{title:'未开工项目',colspan:3},
-			     	{title:'在建项目',colspan:3},
-			     	{title:'竣工项目',colspan:3}
-			    ],
-			    [
-			     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'wctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'sl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'wkgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'wkgwctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'wkgsl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'zjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'zjwctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'zjsl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'jgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'jgwctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'jgsl',title:'数量',width:100,align:'center',rowspan:1}
-			    ]
-		    ],
-		    onSelect:function(){
-		    	window.location.href='../gcktj/xmlxtj.jsp';
-		    }
-		};
-	gridBind(grid);
-}
-function gckxmlxtj(){
-	var grid={id:'grid',url:'../js/xmlxtj.json',fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,width:970,
-		    columns:[
-			    [
-			     	{field:'xmlx',title:'项目类型',width:100,align:'center',rowspan:2},
-			     	{title:'合计',colspan:2},
-			     	{title:'未开工项目合计',colspan:2},
-			     	{title:'在建项目合计',colspan:2},
-			     	{title:'竣工项目合计',colspan:2}
-			    ],
-			    [
-			     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'sl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'wkgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'wkgsl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'zjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'zjsl',title:'数量',width:100,align:'center',rowspan:1},
-			     	{field:'jgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-			     	{field:'jgsl',title:'数量',width:100,align:'center',rowspan:1}
-			    ]
-		    ],
-		    onSelect:function(){
-		    	window.location.href='../gcktj/xmxxlb.jsp';
-		    }
-		};
-	gridBind(grid);
-}
+
+
 
 //-------------------------
 function xmxxlb(type){

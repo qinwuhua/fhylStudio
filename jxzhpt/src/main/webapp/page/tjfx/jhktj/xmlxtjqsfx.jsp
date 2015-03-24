@@ -16,13 +16,81 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jhkglGrid.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
+			sbnf("startYear");
+			$('#startYear').combobox("setValue",$('#endYear').val()-10);
+			sbnf("endYear");
+			$('#endYear').combobox("setValue",$('#endYear').val());
+			loadData();
 			search();
 		});
+		function loadData(){
+			//设置动态列
+			var colYears =[],colZj=[];
+			var trJson='{"xmlx":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox("getValue");i++){
+				trJson+=',"'+i+'xmzj":0,"'+i+'je":0';
+				var year ={title:i+'年',width:160,align:'center',colspan:2};
+				colYears.push(year);
+				var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
+				colZj.push(lczj);
+				var xmgs={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
+				colZj.push(xmgs);
+			}
+			trJson+='}';
+			//处理行政区划编码
+			var xzqhdm=$('#xzqh').combotree("getValue");
+			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
+				xzqhdm=xzqhdm;
+			}else if(new RegExp("^36[0-9][1-9][0-9]{2}$").test(xzqhdm) || new RegExp("^36[1-9][0-9][0-9]{2}$").test(xzqhdm)){
+				xzqhdm=xzqhdm.substring(0,4)+"__";
+			}else if(new RegExp("^360000$").test(xzqhdm)){
+				xzqhdm=xzqhdm.replace(/0000/,"____");
+			}
+			//处理数据
+			var jsonData=new Array();
+			$.ajax({
+				type:'post',
+				async : false,
+				url:'../../../tjfx/queryJhktj2.do',
+				data:'xzqhdm='+xzqhdm+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val(),
+				dataType:'json',
+				success:function(data){
+					var l=["gcgj","gcsj","shuih","yhdzx","abgc","wqgz","zhfz"];
+					var lname=["工程改建","工程升级","水毁项目","养护大中修","安保工程","危桥改造","灾害防治"];
+					for(var i=0;i<l.length;i++){
+						var td=JSON.parse(trJson);
+						td['xmlx']=lname[i];
+						for (var j=$('#startYear').combobox("getValue");j<=$('#endYear').combobox("getValue");j++){
+							$.each(data[l[i]],function(index,item){
+								if(item.id==j){
+									td[item.id+"je"]=item.text;
+									td[item.id+"xmzj"]=item.name;
+								}
+							});
+						}
+						jsonData.push(td);
+					}
+				}
+			});
+			//绑定数据
+			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:900};
+			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+					pageNumber:1,pageSize:20,height:275,width:$('#grid').width(),
+				    columns:[
+					    [
+					     	{field:'xmlx',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true},
+					     	zjtitle
+					    ],
+					    colYears,colZj
+				    ]
+			};
+			gridBind(grid);
+		}
 		function search(){
 			var xzqhdm=$('#xzqh').combotree("getValue");
 			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
@@ -40,12 +108,28 @@
 		    barChart_1.write("anychart_div");
 			$.ajax({
 				type:'post',
-				url:"../../../tjfx/queryJhktjt3.do?xzqhdm="+xzqhdm+"&nf="+$('#startYear').val()+"&end="+$('#endYear').val(),
+				url:"../../../tjfx/queryJhktjt3.do?xzqhdm="+xzqhdm+"&nf="+$('#startYear').combobox("getValue")+"&end="+$('#endYear').combobox("getValue"),
 				dataType:'text',
 				success:function(data){
 					barChart_1.setData(data);
 				}
 			});
+		}
+		function sbnf(id){
+			var myDate = new Date();
+			var years=[];
+			var first;
+			for(var i=0;i<=10;i++){
+				if(i==0)
+					first=myDate.getFullYear()-i;
+				years.push({text:(myDate.getFullYear()-i)});
+			}
+			$('#'+id).combobox({    
+			    data:years,
+			    valueField:'text',    
+			    textField:'text'   
+			});
+			$('#'+id).combobox("setValue",first);
 		}
 	</script>
 </head>
@@ -93,8 +177,8 @@
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div>
-            			<table id="grid"></table>
+            		<div style="width: 97%;">
+            			<table id="grid" width="100%"></table>
             		</div>
             	</td>
         	</tr>

@@ -17,88 +17,65 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
-
 $(function(){
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+	showAll();
+});
+function showAll(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	$("#jsgl_table").datagrid({
 		border : true,
-		fit : true,
-		//fitColumns : true,
+		fit:true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'/jxzhpt/wjxt/selectYlbList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			gydw:gydw,
+	    	nian:nf,
+	    	yue:yf
 		},
 		striped : true,
 		singleSelect : false,
 		columns:[[
-		    {title:'路线编号',width:200,rowspan:2,align:'center'},
-			{title:'路线名称',width:300,rowspan:2,align:'center'},
-			{title:'养护单位',width:200,rowspan:2,align:'center'},
-			{title:'起点桩号',width:200,rowspan:2,align:'center'},
-			{title:'终点桩号',width:200,rowspan:2,align:'center'},
-			{title:'评定里程（公里）',width:200,rowspan:2,align:'center'},
-			{title:'评定结果（公里）',width:600,colspan:5,align:'center'},
-			{title:'优良路率（%）',width:200,rowspan:2,align:'center'},
-			{title:'MQI	',width:200,rowspan:2,align:'center'},
-			{title:'备 注',width:200,rowspan:2,align:'center'}
-		],[
-			{title:'优等路',width:100,align:'center'},
-			{title:'良等路',width:100,align:'center'},
-			{title:'中等路',width:100,align:'center'},
-			{title:'次等路',width:100,align:'center'},
-			{title:'差等路',width:100,align:'center'}
-		],[
-			{title:'1',width:100,align:'center'},
-			{title:'2',width:100,align:'center'},
-			{title:' ',width:100,align:'center'},
-			{title:'3',width:100,align:'center'},
-			{title:'4',width:100,align:'center'},
-			{title:'5',width:100,align:'center'},
-			{title:'6',width:100,align:'center'},
-			{title:'7',width:100,align:'center'},
-			{title:'8',width:100,align:'center'},
-			{title:'9',width:100,align:'center'},
-			{title:'10',width:100,align:'center'},
-			{title:'11',width:100,align:'center'},
-			{title:'12',width:100,align:'center'},
-			{title:'13',width:100,align:'center'}		
-		]]
+				    {field:'v_0',title:'路线编号',width:150,rowspan:2,align:'center'},
+					{field:'v_1',title:'路线名称',width:150,rowspan:2,align:'center'},
+					{field:'v_2',title:'养护单位',width:150,rowspan:2,align:'center'},
+					{field:'v_3',title:'起点桩号',width:100,rowspan:2,align:'center'},
+					{field:'v_4',title:'终点桩号',width:100,rowspan:2,align:'center'},
+					{field:'v_5',title:'评定里程（公里）',width:150,rowspan:2,align:'center'},
+					{title:'评定结果（公里）',width:500,colspan:5,align:'center'},
+					{field:'v_11',title:'优良路率（%）',width:150,rowspan:2,align:'center'},
+					{field:'v_12',title:'MQI',width:100,rowspan:2,align:'center'},
+					{field:'v_13',title:'备 注',width:200,rowspan:2,align:'center'}
+				],[
+				    {field:'v_6',title:'优等路',width:100,rowspan:2,align:'center'},
+					{field:'v_7',title:'良等路',width:100,rowspan:2,align:'center'},
+					{field:'v_8',title:'中等路',width:100,rowspan:2,align:'center'},
+					{field:'v_9',title:'次等路',width:100,rowspan:2,align:'center'},
+					{field:'v_10',title:'差等路',width:100,rowspan:2,align:'center'}
+				]]
 	});
-});
+}
+function export_ylb(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var data="gydw="+gydw+"&nian="+nf+"&yue="+yf;
+	window.location.href="/jxzhpt/wjxt/export_ylb.do?"+data;
+}
 </script>
 <div style="width:100%;">
-    <div  style="height:104px;" border="false">
+    <div  style="height:84px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路路线技术状况一览表</div>
+			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路路线技术状况一览表 </div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
 			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
@@ -108,31 +85,31 @@ $(function(){
  				<div>
  					<p style="margin: 5px;">
  						<span>年份：</span>
- 						<select id="unit" style="width:150px;">
- 							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
- 						</select>
+ 						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
  						<span>月份：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>12</option>
-	 						<option>11</option>
-	 						<option>10</option>
-	 						<option>9</option>
-	 						<option>8</option>
- 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="export_ylb()">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
-        <div><font style="font-size: 12px;">公路路线技术状况一览表</font></div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:430px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>

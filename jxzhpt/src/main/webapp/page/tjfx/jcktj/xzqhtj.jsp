@@ -46,7 +46,7 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        			<div style="height: 350px;border: 1px #C0C0C0 solid;text-align: center;">
 	        				<div align="left" style="text-align: left;margin-left: 10px;margin-top: 10px;">
 	        					<select id="selxmlx" onchange="queryBar()" style="text-align: left;">
 		        					<option value="abgc" selected="selected">安保工程</option>
@@ -54,7 +54,7 @@
 		        					<option value="zhfz">灾害防治</option>
 	        					</select>
 	        				</div>
-	        				<div id="anychart_div" style="width:900px;height:300px;margin:10px;"> 
+	        				<div id="anychart_div" style="width:900px;height:300px;margin:0px;"> 
 								<div>
 									<param name="wmode" value="transparent" />
 								</div>

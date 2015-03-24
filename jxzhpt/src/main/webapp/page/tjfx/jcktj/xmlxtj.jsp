@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			xzqhComboxTree("xzqh");
+			//xzqhComboxTree("xzqh");
 			jckxmlxtj();
 		});
 	</script>

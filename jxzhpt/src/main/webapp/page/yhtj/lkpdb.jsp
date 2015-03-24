@@ -17,96 +17,88 @@
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
-function openJsUpdate(_id){
-	$("#jsgl_table").datagrid('unselectAll');
-	YMLib.Var.ID = _id;
-	YMLib.UI.createWindow('jsgl_update_win','编辑角色','./jsgl_update.jsp','xmgl_03',630,330);
-}
-function deleteJs(_id){
-	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
-		if (r){
-			$.ajax({
-				 type : "POST",
-				 url : "../../xtgl/deleteJsById.do",
-				 dataType : 'json',
-				 data : 'param.id=' +_id,
-				 success : function(msg){
-					 if(msg){
-						 YMLib.Tools.Show('删除成功！',3000);
-						 $("#jsgl_table").datagrid('reload');
-					 }else{
-						 YMLib.Tools.Show('删除失败,请确认没有用户属于此角色',3000);
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-		}
-	});
-}
-
 $(function(){
+	$("#ddlYear").val();
+	var myDate = new Date();
+	var y = myDate.getFullYear();
+	var m = myDate.getMonth()+1; 
+	for(var x=y;x>=2010;x--){
+		$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+	}
+	$("#yf"+m).attr("selected","selected");
+	showAll();
+});
+function showAll(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	$("#jsgl_table").datagrid({
 		border : true,
-		fit : true,
-		//fitColumns : true,
+		fit:true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectJsList.do',
+		url:'/jxzhpt/wjxt/selectPdbList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			gydw:gydw,
+	    	nian:nf,
+	    	yue:yf
 		},
 		striped : true,
 		singleSelect : false,
 		columns:[[
-		    {title:'分局',width:200,rowspan:3,align:'center'},
-			{title:'养护里程(公里)',width:300,rowspan:3,align:'center'},
-			{title:'路况等级(公里)',width:600,colspan:5,align:'center'},
-			{title:'MQI',width:200,rowspan:3,align:'center'},
-			{title:'优良路率(%)',width:300,rowspan:3,align:'center'},
-			{title:'其 中',width:400,colspan:16,align:'center'},
-			{title:'养路工人出勤情况',width:400,colspan:6,align:'center'}
-		],[
-			{title:'优',width:200,rowspan:2,align:'center'},
-			{title:'良',width:200,rowspan:2,align:'center'},
-			{title:'中',width:200,rowspan:2,align:'center'},
-			{title:'次',width:200,rowspan:2,align:'center'},
-			{title:'差',width:200,rowspan:2,align:'center'},
-			{title:'油　路 (公里)',colspan:6,width:300,align:'center'},
-			{title:'MQI',width:200,rowspan:2,align:'center'},
-			{title:'优良路率(%)',width:300,rowspan:2,align:'center'},
-			{title:'水　泥　路　(公里)',colspan:6,width:300,align:'center'},
-			{title:'MQI',width:200,rowspan:2,align:'center'},
-			{title:'优良路率(%)',width:300,rowspan:2,align:'center'},
-			{title:'工人数 (人)',colspan:2,width:200,align:'center'},
-			{title:'出 工 率',colspan:2,width:200,align:'center'},
-			{title:'出 勤 率',colspan:2,width:200,align:'center'}
-		],[
-			{title:'总里程',width:100,align:'center'},
-			{title:'优',width:200,align:'center'},
-			{title:'良',width:200,align:'center'},
-			{title:'中',width:200,align:'center'},
-			{title:'次',width:200,align:'center'},
-			{title:'差',width:200,align:'center'},
-			{title:'总里程',width:100,align:'center'},
-			{title:'优',width:200,align:'center'},
-			{title:'良',width:200,align:'center'},
-			{title:'中',width:200,align:'center'},
-			{title:'次',width:200,align:'center'},
-			{title:'差',width:200,align:'center'},
-			{title:'在册',width:100,align:'center'},
-			{title:'临时',width:100,align:'center'},
-			{title:'直接生产工日',width:100,align:'center'},
-			{title:'出工率(%)',width:100,align:'center'},
-			{title:'直接间接生产工日',width:100,align:'center'},
-			{title:'出勤率(%)',width:100,align:'center'}
-		]]
+				    {field:'v_0',title:'分局(道班名称)',width:200,rowspan:3,align:'center'},
+					{field:'v_1',title:'养护里程(公里)',width:120,rowspan:3,align:'center'},
+					{title:'路况等级(公里)',width:500,colspan:5,align:'center'},
+					{field:'v_7',title:'MQI',width:100,rowspan:3,align:'center'},
+					{field:'v_8',title:'优良路率(%)',width:100,rowspan:3,align:'center'},
+					{title:'其　　　　中',width:1800,colspan:16,align:'center'},
+					{title:'养路工人出勤情况',width:900,colspan:6,align:'center'}
+				],[
+				    {field:'v_2',title:'优',width:100,rowspan:2,align:'center'},
+					{field:'v_3',title:'良',width:100,rowspan:2,align:'center'},
+					{field:'v_4',title:'中',width:100,rowspan:2,align:'center'},
+					{field:'v_5',title:'次',width:100,rowspan:2,align:'center'},
+					{field:'v_6',title:'差',width:100,rowspan:2,align:'center'},
+					{title:'油　路 (公里)',width:600,colspan:6,align:'center'},
+					{field:'v_15',title:'MQI',width:150,rowspan:2,align:'center'},
+					{field:'v_16',title:'优良路率(%)',width:150,rowspan:2,align:'center'},
+					{title:'水　泥　路　(公里)',width:600,colspan:6,align:'center'},
+					{field:'v_23',title:'MQI',width:150,rowspan:2,align:'center'},
+					{field:'v_24',title:'优良路率(%)',width:150,rowspan:2,align:'center'},
+					{title:'工人数 (人)',width:300,colspan:2,align:'center'},
+					{title:'出    工    率',width:300,colspan:2,align:'center'},
+					{title:'出    勤    率',width:300,colspan:2,align:'center'}
+				],[
+					{field:'v_9',title:'总里程',width:100,align:'center'},
+					{field:'v_10',title:'优',width:100,align:'center'},
+					{field:'v_11',title:'良',width:100,align:'center'},
+					{field:'v_12',title:'中',width:100,align:'center'},
+					{field:'v_13',title:'次',width:100,align:'center'},
+					{field:'v_14',title:'差',width:100,align:'center'},
+					{field:'v_17',title:'总里程',width:100,align:'center'},
+					{field:'v_18',title:'优',width:100,align:'center'},
+					{field:'v_19',title:'良',width:100,align:'center'},
+					{field:'v_20',title:'中',width:100,align:'center'},
+					{field:'v_21',title:'次',width:100,align:'center'},
+					{field:'v_22',title:'差',width:100,align:'center'},
+					{field:'v_25',title:'在册',width:150,align:'center'},
+					{field:'v_26',title:'临时',width:150,align:'center'},
+					{field:'v_27',title:'直接生产工日',width:150,align:'center'},
+					{field:'v_28',title:'出工率(%)',width:150,align:'center'},
+					{field:'v_29',title:'直接间接生产工日',width:150,align:'center'},
+					{field:'v_30',title:'出勤率(%)',width:150,align:'center'}
+				]]
 	});
-});
+}
+function export_pdb(){
+	var gydw=$.cookie("unit");
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var data="gydw="+gydw+"&nian="+nf+"&yue="+yf;
+	window.location.href="/jxzhpt/wjxt/export_pdb.do?"+data;
+}
 </script>
 <div style="width:100%;">
-    <div  style="height:104px;" border="false">
+    <div  style="height:84px;" border="false">
 	    <div id="righttop">
 			<div id="p_top">当前位置>&nbsp;道班养护>&nbsp;公路路况评定表</div>
 		</div>
@@ -118,31 +110,31 @@ $(function(){
  				<div>
  					<p style="margin: 5px;">
  						<span>年份：</span>
- 						<select id="unit" style="width:150px;">
- 							<option>全部</option>
-	 						<option>2014</option>
-	 						<option>2013</option>
-	 						<option>2012</option>
-	 						<option>2011</option>
-	 						<option>2010</option>
- 						</select>
+ 						<select name="ddlYear" id="ddlYear" style="width: 60px;">
+						</select>
  						<span>月份：</span>
- 						<select id="unit" style="width:150px;">
-	 						<option>12</option>
-	 						<option>11</option>
-	 						<option>10</option>
-	 						<option>9</option>
-	 						<option>8</option>
- 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add">导出Excel</a>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="export_pdb()">导出Excel</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
-        <div><font style="font-size: 12px;">公路养护小修保养月报 （2014年 12月份）</font></div>
     </div>
-    <div style="height:500px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div style="height:430px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
 </div>

@@ -25,6 +25,7 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			getYearList();
+			showAlljc();
 		});
 	</script>
 	<style type="text/css">
@@ -92,9 +93,9 @@ table thead tr td {
                 	<div style="width:100%;height:150px">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="2000px" >
+							<table id="datagrid" width="2000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><!-- 省统筹养护大中修工程项目进展情况表  --></caption>
-								<thead>
+								<!-- <thead>
 									<tr>
 										<td>行政区划代码 </td>
 										<td>行政区划名称</td>
@@ -107,10 +108,10 @@ table thead tr td {
 										<td>修建/改建年度</td>
 										<td>隐患内容 </td>
 										<td>备注</td>
-								</thead>
-								<tbody>
+								</thead> -->
+								<!-- <tbody >
 								
-								</tbody>
+								</tbody> -->
 							</table>
 							</div>
 						</div>

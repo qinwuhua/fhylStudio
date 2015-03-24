@@ -38,7 +38,7 @@ function jckxzqhtj(){
 					    ]
 				    ],
 				    onSelect:function(){
-				    	window.location.href='../jcktj/xmlxtj.jsp';
+				    	//window.location.href='../jcktj/xmlxtj.jsp';
 				    }
 				};
 			gridBind(grid);
@@ -71,11 +71,12 @@ function jhkxzqhtj(){
 		success:function(data){
 			var jsonData=new Array();
 			for(var i=0;i<data.gcsj.length;i++){
-				var t={'xzqh':null,'ztz':null,'sl':null,'lmsjztz':null,'lmsjsl':null,
+				var t={'xzqh':null,'xzqhdm':null,'ztz':null,'sl':null,'lmsjztz':null,'lmsjsl':null,
 						'lmgjztz':null,'lmgjsl':null,'shztz':null,'shsl':null,
 						'yhdzxztz':null,'yhdzxsl':null,'wqgzztz':null,'wqgzsl':null,
 						'abgcztz':null,'abgcsl':null,'zhfzztz':null,'zhfzsl':null};
 				t.xzqh=data.gcsj[i].name;
+				t.xzqhdm=data.gcsj[i].id;
 				t.ztz=parseFloat(data.gcsj[i].text)+parseFloat(data.gcgj[i].text)+
 						parseFloat(data.shuih[i].text)+parseFloat(data.yhdzx[i].text)+
 						parseFloat(data.abgc[i].text)+parseFloat(data.wqgz[i].text)+
@@ -101,7 +102,7 @@ function jhkxzqhtj(){
 				jsonData.push(t);
 			}
 			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:373,width:980,
+					pageNumber:1,pageSize:20,height:373,width:$('#grid').width(),
 				    columns:[
 					    [
 					     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
@@ -133,8 +134,8 @@ function jhkxzqhtj(){
 					     	{field:'zhfzsl',title:'数量',width:60,align:'center',rowspan:1},
 					    ]
 				    ],
-				    onSelect:function(){
-				    	window.location.href='../jhktj/xmlxtj.jsp';
+				    onSelect:function(rowIndex,rowData){
+				    	//window.location.href='../jhktj/xmlxtj.jsp?xzqhdm='+rowData.xzqhdm+'&xzqh='+rowData.xzqh;
 				    }
 				};
 			gridBind(grid);
@@ -158,7 +159,80 @@ function queryjhkBar(){
 		}
 	});
 }
-
+function gckxzqhtj(data){
+	var grid={id:'grid',data:data,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+			pageNumber:1,pageSize:20,height:372,width:$('#grid').width(),
+		    columns:[
+			    [
+			     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
+			     	{title:'合计',colspan:3},
+			     	{title:'未开工项目',colspan:2},
+			     	{title:'在建项目',colspan:3},
+			     	{title:'竣工项目',colspan:3}
+			    ],
+			    [
+			     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'wctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'sl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'wkgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'wkgsl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'zjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'zjwctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'zjsl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'jgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'jgwctz',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'jgsl',title:'数量',width:100,align:'center',rowspan:1}
+			    ]
+		    ],
+		    onSelect:function(){
+		    	window.location.href='../gcktj/xmlxtj.jsp';
+		    }
+		};
+	gridBind(grid);
+}
+function gckxmlxtj(data){
+	var grid={id:'grid',data:data,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
+			pageNumber:1,pageSize:20,height:255,width:970,
+		    columns:[
+			    [
+			     	{field:'xmlx',title:'项目类型',width:100,align:'center',rowspan:2},
+			     	{title:'合计',colspan:2},
+			     	{title:'未开工项目合计',colspan:2},
+			     	{title:'在建项目合计',colspan:2},
+			     	{title:'竣工项目合计',colspan:2}
+			    ],
+			    [
+			     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'sl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'wkgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'wkgsl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'zjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'zjsl',title:'数量',width:100,align:'center',rowspan:1},
+			     	{field:'jgztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			     	{field:'jgsl',title:'数量',width:100,align:'center',rowspan:1}
+			    ]
+		    ],
+		    onSelect:function(rowIndex, rowData){
+		    	window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex;
+		    }
+		};
+	gridBind(grid);
+}
+function xmxxlist(url,columns){
+	var xzqhdm=$.cookie("unit").substring(5);
+	if(xzqhdm=="360000")
+		xzqhdm=xzqhdm.substring(0,2)+"____";
+	else
+		xzqhdm=xzqhdm.substring(0,4)+"__";
+	queryParams={"jh.sbzt":'1',"jh.spzt":'1',
+			"jh.jh_sbthcd":6,"lx.xzqhdm":xzqhdm};
+	var grid={id:'grid',url:url,fitColumns:false,singleSelect:true,pagination:true,rownumbers:false,
+			pageNumber:1,pageSize:10,height:255,width:565,queryParams:queryParams,
+		    columns:columns,
+		    onSelect:null
+		};
+	gridBind(grid);
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象
@@ -178,6 +252,7 @@ function gridBind(grid){
 	$('#'+grid.id).datagrid({
 	    url:grid.url,
 	    data:grid.data,
+	    queryParams:grid.queryParams,
 	    fitColumns:grid.fitColumns,
 	    singleSelect:grid.singleSelect,
 	    striped:grid.striped,
