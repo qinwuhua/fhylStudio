@@ -21,7 +21,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadDist("xzqhdm","360000");
+			loadDist("xzqhdm",$.cookie("dist"));
 			showAll();
 		});
 	</script>

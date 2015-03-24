@@ -22,7 +22,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadDist("xzqhdm","360000");
+			loadDist("xzqhdm",$.cookie("dist"));
 			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
