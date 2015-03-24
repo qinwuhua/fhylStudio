@@ -121,8 +121,8 @@ $(function() {
 		href:'./scksh/zhfz.jsp'
 	});
 	menuQx();
-	alert(getParam("id"));
-	alert(getParam("id").substr(0,8));
+	//alert(getParam("id"));
+	//alert(getParam("id").substr(0,8));
 	if(getParam("id").substr(0,8)!=""&&getParam("id").substr(0,8)==""){
 		
 	}
