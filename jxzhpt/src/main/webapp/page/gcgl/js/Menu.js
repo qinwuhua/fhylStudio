@@ -129,56 +129,56 @@ $(function() {
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/wqgz/wqgz.jsp'
+		href:'./ybjdsh/wqgz/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040202',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/abgc/abgc.jsp'
+		href:'./ybjdsh/abgc/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040203',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/zhfz/zhfz.jsp'
+		href:'./ybjdsh/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040204',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/yhdzx/yhdzx.jsp'
+		href:'./ybjdsh/yhdzx/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040205',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/sh/sh.jsp'
+		href:'./ybjdsh/sh/sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040206',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
+		href:'./ybjdsh/gcgzgj/gcgzgj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040207',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
+		href:'./ybjdsh/gcgzsj/gcgzsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040208',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu2',
-		href:'./cgszjdw/hsly/hsly.jsp'
+		href:'./ybjdsh/hsly/hsly.jsp'
 	});
 //	createMenux('LeftMenu',{
 //		id:'menu9',
@@ -208,56 +208,56 @@ $(function() {
 		title:'危桥改造施工过程管理',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/wqgz/wqgz.jsp'
+		href:'./cgszjdw/wqgz/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040302',
 		title:'安保工程施工过程管理',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/abgc/abgc.jsp'
+		href:'./cgszjdw/abgc/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040303',
 		title:'灾害防治施工过程管理',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/zhfz/zhfz.jsp'
+		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040304',
 		title:'养护大中修施工过程管理',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/yhdzx/yhdzx.jsp'
+		href:'./cgszjdw/yhdzx/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040305',
 		title:'水毁施工过程管理',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/sh/sh.jsp'
+		href:'./cgszjdw/sh/sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040306',
 		title:'工程改造路面改建施工过程管理',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/gcgzgj/gcgzgj.jsp'
+		href:'./cgszjdw/gcgzgj/gcgzgj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040307',
 		title:'工程改造路面升级项目施工过程管理',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/gcgzsj/gcgzsj.jsp'
+		href:'./cgszjdw/gcgzsj/gcgzsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040308',
 		title:'红色旅游施工过程管理',
 		imgSrc:'../../images/hs_s.png',
 		renderTo:'left_menu3',
-		href:'./ybjdsh/hsly/hsly.jsp'
+		href:'./cgszjdw/hsly/hsly.jsp'
 	});
 //	createMenux('LeftMenu',{
 //		id:'menu9',

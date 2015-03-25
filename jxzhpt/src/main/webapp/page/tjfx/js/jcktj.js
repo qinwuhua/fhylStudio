@@ -213,12 +213,12 @@ function gckxmlxtj(data){
 			    ]
 		    ],
 		    onSelect:function(rowIndex, rowData){
-		    	window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex;
+		    	window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex+'&nf='+$('#searchYear').combo('getValue');
 		    }
 		};
 	gridBind(grid);
 }
-function xmxxlist(url,columns){
+function xmxxlist(url,columns,nf){
 	var xzqhdm=$.cookie("unit").substring(5);
 	if(xzqhdm=="360000")
 		xzqhdm=xzqhdm.substring(0,2)+"____";
@@ -226,10 +226,18 @@ function xmxxlist(url,columns){
 		xzqhdm=xzqhdm.substring(0,4)+"__";
 	queryParams={"jh.sbzt":'1',"jh.spzt":'1',
 			"jh.jh_sbthcd":6,"lx.xzqhdm":xzqhdm};
+	if(xmlx=="2" || xmlx=="5"){
+		queryParams["jh.jhnf"]=nf;
+	}else{
+		queryParams["jh.sbnf"]=nf;
+	}
 	var grid={id:'grid',url:url,fitColumns:false,singleSelect:true,pagination:true,rownumbers:false,
 			pageNumber:1,pageSize:10,height:255,width:565,queryParams:queryParams,
 		    columns:columns,
-		    onSelect:null
+		    onSelect:null,
+		    onLoadSuccess:function(data){
+		    	$('#xmcount').html(data.total);
+		    }
 		};
 	gridBind(grid);
 }
@@ -263,6 +271,21 @@ function gridBind(grid){
 	    height:grid.height,
 	    width:grid.width,
 	    columns:grid.columns,
-	    onSelect:grid.onSelect
+	    onSelect:grid.onSelect,
+	    onLoadSuccess:grid.onLoadSuccess
 	});
+}
+function openDialog(id,title,href,jhid){
+	bz=id.substring(id.indexOf('_')+1);
+	xxId=jhid;
+	$('#'+id).dialog({
+		iconCls : 'icon-edit',
+		href:href,
+		width : 1000,
+		height : 500,
+		closed : true,
+		cache : false,
+		maximizable:true,
+		modal : true,
+	}).dialog("setTitle",title).dialog("open");
 }

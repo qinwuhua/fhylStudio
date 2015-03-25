@@ -18,8 +18,11 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			load();
-			queryTjt2();
+			sbnf('endYear');
+			$('#endYear').combobox("setValue",new Date().getFullYear());
+			sbnf('startYear');
+			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-10);
+			search();
 		});
 		function search(){
 			load();
@@ -29,7 +32,7 @@
 			var colYears =[],colZj=[];
 			var col=[];
 			var trJson='{"xzqh":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
-			for (var i=$('#startYear').val();i<=$('#endYear').val();i++){
+			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
 				trJson+=',"'+i+'xmzj":0,"'+i+'je":0';
 				var year ={title:i+'年',width:160,align:'center',colspan:2};
 				colYears.push(year);
@@ -52,7 +55,7 @@
 					$.each(data,function(index,item){
 						var a=JSON.parse(trJson);
 						a['xzqh']=item.name;
-						queryMessage($('#startYear').val(),$('#endYear').val(),item.id.substring(0,4)+"__",a);
+						queryMessage($('#startYear').combobox('getValue'),$('#endYear').combobox('getValue'),item.id,a);
 						dataJson.push(a);
 					});
 				}
@@ -112,13 +115,13 @@
 		function queryTjt2(){
 			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
 		    barChart_1.width =980;
-		    barChart_1.height =300;
+		    barChart_1.height =500;
 		    barChart_1.padding =0;
 		    barChart_1.wMode="transparent";
 		    barChart_1.write("anychart_div");
 		    $.ajax({
 				type:"post",
-				url:"../../../tjfx/queryJhktjt2.do?xzqhdm=36__00&nf="+$('#startYear').val()+"&&end="+$('#endYear').val(),
+				url:"../../../tjfx/queryJhktjt2.do?xzqhdm=36__00&nf="+$('#startYear').combobox('getValue')+"&end="+$('#endYear').combobox('getValue'),
 				dataType:'text',
 				success:function(msg){
 					//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
@@ -126,11 +129,27 @@
 				}
 			});
 		}
+		function sbnf(id){
+			var myDate = new Date();
+			var years=[];
+			var first;
+			for(var i=0;i<=10;i++){
+				if(i==0)
+					first=myDate.getFullYear()-i;
+				years.push({text:(myDate.getFullYear()-i)});
+			}
+			$('#'+id).combobox({    
+			    data:years,
+			    valueField:'text',    
+			    textField:'text'   
+			});
+			$('#'+id).combobox("setValue",first);
+		}
 	</script>
 </head>
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 				<td>
 	                <div id="righttop">
@@ -170,7 +189,7 @@
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
-            		<div style="width:97%;">
+            		<div style="width:99%;">
             			<table id="grid" width="100%"></table>
             		</div>
             	</td>
@@ -181,7 +200,7 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;width:98%;">
+	        			<div style="height: 500px;border: 1px #C0C0C0 solid;text-align: center;width:98%;">
 	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />

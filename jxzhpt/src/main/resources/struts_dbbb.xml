@@ -9,5 +9,11 @@
 	<action name="exportExcel_wqsc" class="dbbbController" method="exportExcel_wqsc"/>
 	<action name="selectWqjh" class="dbbbController" method="selectWqjh"/>
 	<action name="exportExcel_wqjh" class="dbbbController" method="exportExcel_wqjh"/>
+	
+	<action name="selectAbjc" class="dbbbController" method="selectAbjc"/>
+	<action name="exportExcel_abjc" class="dbbbController" method="exportExcel_abjc"/>
+	<action name="selectAbsc" class="dbbbController" method="selectAbsc"/>
+	<action name="exportExcel_absc" class="dbbbController" method="exportExcel_absc"/>
+	<action name="selectAbjh" class="dbbbController" method="selectAbjh"/>
 </package>
 </struts>

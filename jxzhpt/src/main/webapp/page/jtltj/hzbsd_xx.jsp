@@ -13,9 +13,10 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				var tbody = $("#"+id+" #jtlgddata");
+				tbody.empty();
 				if (msg != null) {
-					var tbody = $("#"+id+" #jtlgddata");
-					tbody.empty();
+					
 					for ( var i = 0; i < msg.length; i++) {
 						if(msg[i].lxbh=='合计'){
 							tbody.append("<tr style='background-color: #FFFFFF; height: 15px;'><td colspan='2'>"

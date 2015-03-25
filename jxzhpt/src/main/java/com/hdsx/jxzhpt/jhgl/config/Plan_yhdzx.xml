@@ -234,7 +234,7 @@
 	<select id="queryJhktj2" resultType="treenode" parameterType="java.util.Map">
 		select t.sbnf as id,sum(t.totalsubsidyfund) as text,count(t.totalsubsidyfund) as name from (
        		select distinct jh.id,lx.xzqhdm,jh.sbnf,jh.totalsubsidyfund
-       		from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) where lx.xzqhdm like #{xzqhdm}) t
+       		from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%') t
 		where t.sbnf>=#{start} and <![CDATA[t.sbnf<=#{end}]]> group by t.sbnf
 	</select>
 	<select id="queryJhktjt2" resultType="string" parameterType="java.util.Map">

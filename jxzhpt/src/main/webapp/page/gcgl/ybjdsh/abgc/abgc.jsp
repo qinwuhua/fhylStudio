@@ -23,6 +23,10 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			if(getParam("t")=='1'){
+				$("#ybzt").val('未审核');
+			}
+			
 			showAll();
 		});
 	</script>

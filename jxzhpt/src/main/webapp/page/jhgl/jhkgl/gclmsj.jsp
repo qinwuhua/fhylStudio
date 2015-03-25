@@ -29,7 +29,7 @@
 			queryGcsjSum(jh,lx);
 			sbnf("sbnf");
 			gclmsjxm(jh,lx);
-			querySumMessage();
+			queryGcsjSum(jh,lx);
 		});
 		function searchGcsj(){
 			var jh={jhnf:null,sbzt:null,spzt:null};

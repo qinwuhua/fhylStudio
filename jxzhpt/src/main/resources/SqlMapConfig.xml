@@ -30,6 +30,7 @@
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd" alias="jtlhzgd"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Zhqk" alias="zhqk"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Zdxx" alias="zdxx"/>
+      <typeAlias type="com.hdsx.jxzhpt.wjxt.controller.Excel_list" alias="elist"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>

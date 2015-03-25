@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.dbbb">
+<!--危桥  -->
 <select id="selectWqjc" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where 1=1
@@ -118,4 +119,122 @@
  		</if>
 		order by jh.sbnf desc
 	</select>
+	<!--安保  -->
+	<select id="selectAbjc" parameterType="jckwqgz" resultType="jckabgc">
+ 	select * from (
+ 		select rownum num ,t.* from xmk_abgc t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
+ </select>
+  <select id="selectAbjcCount" parameterType="jckwqgz" resultType="int">
+ 		select count(*) from xmk_abgc t where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ </select>
+ <select id="exportExcel_abjc" parameterType="jckwqgz"	resultType="sjbb">
+		select
+		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,yhnr v_10,bz v_11 
+			from xmk_abgc where 1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
+	</select>
+	
+	<select id="selectAbsc" parameterType="jckwqgz" resultType="sckabgc">
+		select * from (
+		select rownum num ,t.* from
+			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
+			where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by decode(sck_sbthcd,#{sbthcd},'未上报',sck_sbzt),sck_shzt desc
+	</select>
+	<select id="selectAbscCount" parameterType="jckwqgz" resultType="int">
+		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+			where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+	</select>
+	<select id="exportExcel_absc" parameterType="jckwqgz"	resultType="sjbb">
+		select
+		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,qdzh v_5,zdzh v_6,qzlc v_7,yhlc v_8,gjxjnd v_9,fapgdw v_10,
+		fascdw v_11,faspsj v_12,spwh v_13,tzgs v_14,jsxz v_15,jsnr v_16,bz v_17
+		from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+		where  1=1
+ 		<if test="gydw!='' and gydw!= null "  >
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+	</select>
+	
+	<select id="selectAbjh" parameterType="jckwqgz" resultType="plan_abgc">
+		select * from 
+			(
+				select rownum as num,t.* from
+				(
+					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
+				<if test="gydw!='' and gydw!= null ">
+					and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+				</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and xmnf like '%'||(#{xmnf})||'%'
+				</if>
+	 				order by jh.sbzt,jh.spzt
+	 			) t
+ 			)
+ 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+ 		</select>
+ 		
+ 		<select id="selectAbjhCount"  parameterType="jckwqgz"  resultType="int">
+			select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+			left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1
+		 		<if test="gydw!='' and gydw!= null ">
+					and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+				</if>
+				<if test="xmnf!='' and xmnf!= null ">
+					and xmnf like '%'||(#{xmnf})||'%'
+				</if>
+	</select>
+	<select id="exportExcel_abjh" parameterType="jckwqgz" resultType="sjbb">
+		select lx.gydw v_0,lx.xzqhdm v_1,lx.xzqhmc v_2,lx.lxbm v_3,lx.lxmc v_4,lx.qlbh v_5,lx.qlmc v_6,lx.qlzxzh v_7,lx.xjgjnd v_8,
+		jh.sjdw v_9,jh.sjpfdw v_10,jh.pfwh v_11,jh.pfztz v_12,jh.jhsybzje v_13,jh.jhsydfzcje v_14,jh.sfsqablbz v_15,jh.ablbzsqwh v_16
+		from plan_abgc jh
+		left join sck_abgc sc on (jh.sckid = sc.sckid)
+		left join xmk_abgc lx on (sc.xmkid = lx.id) where 1=1
+		<if test="gydw!='' and gydw!= null "  >
+ 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+		order by jh.sbzt,jh.spzt
+	</select>
+	
 </mapper>

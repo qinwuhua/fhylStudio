@@ -118,63 +118,7 @@ function shxm(jh,lx){
 }
 
 function queryShuihById(id){
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryShuihById.do',
-		dataType:'json',
-		data:"jh.id="+id,
-		success:function(data){
-			//基础
-			$('#lxmc').html(data.shuihs[0].lxmc);
-			$('#lxbm').html(data.shuihs[0].lxbm);
-			$('#jsdd').html(data.shuihs[0].jsdd);
-			$('#qdzh').html(data.shuihs[0].qdzh);
-			$('#zdzh').html(data.shuihs[0].zdzh);
-			$('#qzlc').html(data.shuihs[0].qzlc);
-			$('#gydwxx').html(data.shuihs[0].gydw);
-			$('#xzqhdm').html(data.shuihs[0].xzqhdm);
-			$('#xzqhmc').html(data.shuihs[0].xzqhmc);
-			$('#yjsdj').html(data.shuihs[0].yjsdj);
-			$('#ylmlx').html(data.shuihs[0].ylmlx);
-			$('#yhlc').html(data.shuihs[0].yhlc);
-			$('#bhnr').html(data.shuihs[0].bhnr);
-			
-			//计划
-			$('#jhnf').html(data.sbnf);
-			$('#jhkgsj').html(data.jhkgsj);
-			$('#jhwgsj').html(data.jhwgsj);
-			$('#jhxdsj').html(data.xdsj);
-			$('#xmmc').html(data.xmmc);
-			$('#yhlb').html(data.yhlb);
-			$('#sjdw').html(data.sjdw);
-			$('#sjpfdw').html(data.sjpfdw);
-			$('#dc').html(data.dc);
-			$('#jc').html(data.jc);
-			$('#mc').html(data.mc);
-			$('#lmkd').html(data.lmkd);
-			$('#pfwh').html(data.pfwh);
-			$('#pfsj').html(data.pfsj);
-			$('#pfztz').html(data.pfztz);
-			$('#bbz').html(data.jhsybzje);
-			$('#dfzc').html(data.jhsydfzcje);
-			$('#lblSFSQABLBZ').html(data.sfsqablbz);
-			$('#lblABLBZWH').html(data.ablbzsqwh);
-			$('#sftqss').html(data.sftqss);
-			$('#jhxdwh').html(data.jhxdwh);
-			$('#gkpfwh').html(data.gksjwh);
-			$('#sjpfwh').html(data.sjpfwh);
-			$('#sfgydbm').html(data.sfgydbm);
-			$('#lblJHRemarks').html(data.jhbz);
-			if(data.gkbgmc!=null){
-				var mc="'"+data.gkbgmc+"'";
-				$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
-			}
-			if(data.sjsgtmc!=null){
-				var mc="'"+data.sjsgtmc+"'";
-				$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
-			}
-		}
-	});
+	
 }
 
 /**

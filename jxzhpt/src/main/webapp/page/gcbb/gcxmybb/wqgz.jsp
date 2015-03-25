@@ -40,8 +40,77 @@
 			var xzdj=$("#xzdj").val();
 			var lxmc=$("#lxmc").val();
 			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
-			alert(data);
+			//alert(data);
+			$.ajax({
+				url:"/jxzhpt/gcybb/getWqgzybb.do",
+				data:data,
+				type:"post",
+				dataType:"JSON",
+				success:function(msg){
+					var tbody = $("#wqgzlist");
+					tbody.empty();
+					$("#nian").text($("#ddlYear").val());
+					$("#yue").text($("#ddlMonth").val());
+					if (msg != null) {
+						for ( var i = 0; i < msg.length; i++) {
+							if(msg[i].v_1==''){
+								tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
+										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+										+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+										+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+										+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+										+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td></tr>"
+								);
+							}else{
+								tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
+										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+										+msg[i].v_30+"</td><td>"+msg[i].v_31+"</td><td>"
+										+msg[i].v_32+"</td><td>"+msg[i].v_33+"</td><td>"
+										+msg[i].v_34+"</td><td>"+msg[i].v_35+"</td><td>"
+										+msg[i].v_36+"</td><td>"+msg[i].v_37+"</td></tr>"
+								);
+							}
+						}
+					}
+				}
+			});
 		}
+	function exportWqgzyb(){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var gydw=$("#gydw").combobox("getValue");
+		var xzqh=$("#xzqh").combobox("getValue");
+		var xzdj=$("#xzdj").val();
+		var lxmc=$("#lxmc").val();
+		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+		window.location.href="/jxzhpt/gcybb/exportWqgzyb.do?"+data;
+	}	
 	</script>
 	<style type="text/css">
 <!--
@@ -61,6 +130,13 @@ table {
 	border-collapse:collapse;
 }
 table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+table tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
@@ -134,7 +210,7 @@ table thead tr td {
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
         					</p>         					
         				</div>
         			</fieldset>
@@ -143,11 +219,11 @@ table thead tr td {
 
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px">
+                	<div style="width:100%;height:400px;" >
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省2015年公路路网结构改造工程统计月报表（一）   危桥工程 </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（一）   危桥工程（<span id="yue" style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
 										<td rowspan="3">桥梁名称</td>
@@ -211,9 +287,10 @@ table thead tr td {
 										<td>百分比（%）</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="wqgzlist">
 								
 								</tbody>
+								
 							</table>
 							</div>
 						</div>

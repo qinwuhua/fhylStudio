@@ -32,7 +32,7 @@
 			xzqhComboxTree("xzqh");
 			sbnf("sbnf");
 			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
-			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			var lx={gydw:null,gydwbm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}

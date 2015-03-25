@@ -13,9 +13,10 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				var tbody = $("#"+id+" #hzbdata");
+				tbody.empty();
 				if (msg != null) {
-					var tbody = $("#"+id+" #hzbdata");
-					tbody.empty();
+					
 					for ( var i = 0; i < msg.length; i++) {
 							tbody.append("<tr style='background-color: #FFFFFF; height: 15px;'><td>"
 									+msg[i].gljgmc+"</td><td>"

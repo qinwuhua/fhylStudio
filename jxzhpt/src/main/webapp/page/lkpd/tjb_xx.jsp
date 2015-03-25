@@ -14,9 +14,9 @@
 			type:"post",
 			dataType:"JSON",
 			success:function(msg){
+				var tbody = $("#"+id+" #tjbdata");
+				tbody.empty();
 				if (msg != null) {
-					var tbody = $("#"+id+" #tjbdata");
-					tbody.empty();
 					for ( var i = 0; i < msg.length; i++) {
 						if(msg[i].biaoti!=''){
 							tbody.append("<tr style='background-color: #FFFFFF; height: 15px;'><td  rowspan='5'>"

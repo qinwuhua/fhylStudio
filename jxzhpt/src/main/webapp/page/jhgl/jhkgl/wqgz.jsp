@@ -25,18 +25,20 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
+			alert($('#gydw').combobox('getValue'));
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
 			querySumWqgz(jh,lx);
 			sbnf("sbnf");
+			querySumWqgz(jh,lx);
 			wqxm(jh,lx);
 		});
 		function searchWqgz(){
 			var jh={jhnf:null,sbzt:null,spzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
-					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
-			};
+					gydwbm:$('#gydw').combobox('getValue'),xzqhmc:$('#xzqh').combobox('getText'),
+					xzqhdm:$('#xzqh').combobox('getValue'),lxmc:null,lxjsdj:null,
+					lxbm:null,qlmc:null,akjfl:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.gydwdm=null;
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
@@ -100,6 +102,7 @@
 				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
 			}
 			wqxm(jh,lx);
+			querySumWqgz(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -195,10 +198,10 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000"></span>&nbsp;】个危桥改造项目，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
+        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

@@ -22,6 +22,9 @@
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
+	if(getParam("t")=='1') {
+		$('#sbzt').val('未上报');
+	}
 	sckglAbgc();
 });
 
