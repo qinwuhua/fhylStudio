@@ -4,67 +4,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="../js/common.js"></script>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<style>
-		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
-		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
-	</style>
-	<script type="text/javascript">
-		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
-			getYearList();
-		});
-	</script>
-	<style type="text/css">
-<!--
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-table {
-	border-collapse:collapse;
-}
-table thead tr td {
-	text-align:center; 	
-	font-size:1em;
-	font-weight:bold;
-  	border:1px solid black;
-  	padding:3px 7px 2px 7px;
-}
--->
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="../../../js/YMLib.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<style>
+#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
+#righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+table {border-collapse:collapse;}
+table thead tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
+<script type="text/javascript">
+$(function(){
+	loadUnit("gydw",$.cookie("unit"));
+	loadDist("xzqh",$.cookie("dist"));
+	getYearList();
+});
+function startSearch(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcbb/getYearList.do',
+		success:function(data){
+			var msg=$.parseJSON(data);
+			if(msg!=null){
+				var str='';
+				for(var i=0;i<msg.length;i++){
+					str+='<option value='+msg[i]+'>'+msg[i]+'</option>';
+				}
+				$('#year').html(str);
+			}
+		}
+	});
+}
+</script>
 </head>
-<body style="padding-right:1px">
-	<div>
+<body  style="padding-right:1px">
+	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表</div>
-					</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表</div>
+			</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:100%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -79,12 +74,11 @@ table thead tr td {
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
-									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
-        					
         				</div>
         			</fieldset>
         		</td>
@@ -95,7 +89,7 @@ table thead tr td {
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" >
 							<table width="1200px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路路网结构改造工程进展情况汇总表(截止12月底) </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
 										<td width="150px;"></td>
@@ -108,9 +102,7 @@ table thead tr td {
 										<td width="150px;">总投资(万元)</td>
 									</tr>
 								</thead>
-								<tbody>
-								
-								</tbody>
+								<tbody id="2"></tbody>
 							</table>
 							</div>
 						</div>

@@ -286,55 +286,54 @@ $(function() {
 //		renderTo:'left_menu4',
 //		href:'./jhkzjxd/zbgl.jsp'
 //	});
-	
 	createMenux('LeftMenu',{
 		id:'menu_0101030501',
-		title:'工程改造路面升级项目',
-		imgSrc:'../../images/sj_s.png',
-		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/gclmsj.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101030502',
-		title:'工程改造路面改建项目',
-		imgSrc:'../../images/gj_s.png',
-		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/gclmgj.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101030503',
-		title:'养护大中修项目',
-		imgSrc:'../../images/yh_s.png',
-		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/yhdzx.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101030504',
-		title:'水毁项目',
-		imgSrc:'../../images/sh_s.png',
-		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/shxm.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101030505',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu5',
 		href:'../sjcx/jhkgl/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030506',
+		id:'menu_0101030502',
 		title:'安保工程项目',
 		imgSrc:'../../images/ab_s.png',
 		renderTo:'left_menu5',
 		href:'../sjcx/jhkgl/abgc.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030507',
+		id:'menu_0101030503',
 		title:'灾害防治项目',
 		imgSrc:'../../images/zh_s.png',
 		renderTo:'left_menu5',
 		href:'../sjcx/jhkgl/zhfz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030504',
+		title:'工程改造路面升级项目',
+		imgSrc:'../../images/sj_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/gclmsj.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030505',
+		title:'工程改造路面改建项目',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/gclmgj.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030506',
+		title:'养护大中修项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/yhdzx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030507',
+		title:'水毁项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu5',
+		href:'../sjcx/jhkgl/shxm.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030508',
