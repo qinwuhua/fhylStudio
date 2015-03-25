@@ -101,6 +101,16 @@
 				}
 			});
 		}
+	function exportWqgzyb(){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var gydw=$("#gydw").combobox("getValue");
+		var xzqh=$("#xzqh").combobox("getValue");
+		var xzdj=$("#xzdj").val();
+		var lxmc=$("#lxmc").val();
+		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+		window.location.href="/jxzhpt/gcybb/exportWqgzyb.do?"+data;
+	}	
 	</script>
 	<style type="text/css">
 <!--
@@ -200,7 +210,7 @@ table tbody tr td {
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
         					</p>         					
         				</div>
         			</fieldset>

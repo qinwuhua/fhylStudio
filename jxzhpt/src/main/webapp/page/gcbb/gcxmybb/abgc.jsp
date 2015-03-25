@@ -23,7 +23,88 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
+			$("#yf"+m).attr("selected","selected");
+			showAll();
 		});
+		function showAll(){
+			var nf=$("#ddlYear").val();
+			var yf=$("#ddlMonth").val();
+			var gydw=$("#gydw").combobox("getValue");
+			var xzqh=$("#xzqh").combobox("getValue");
+			var xzdj=$("#xzdj").val();
+			var lxmc=$("#lxmc").val();
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+			//alert(data);
+			$.ajax({
+				url:"/jxzhpt/gcybb/getAbgcybb.do",
+				data:data,
+				type:"post",
+				dataType:"JSON",
+				success:function(msg){
+					var tbody = $("#abgclist");
+					tbody.empty();
+					$("#nian").text($("#ddlYear").val());
+					$("#yue").text($("#ddlMonth").val());
+					if (msg != null) {
+						for ( var i = 0; i < msg.length; i++) {
+							if(msg[i].v_1==''){
+								tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
+										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+										+msg[i].v_30+"</td></tr>"
+								);
+							}else{
+								tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
+										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
+										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
+										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
+										+msg[i].v_30+"</td></tr>"
+								);
+							}
+						}
+					}
+				}
+			});
+		}
+	function exportAbgcyb(){
+		var nf=$("#ddlYear").val();
+		var yf=$("#ddlMonth").val();
+		var gydw=$("#gydw").combobox("getValue");
+		var xzqh=$("#xzqh").combobox("getValue");
+		var xzdj=$("#xzdj").val();
+		var lxmc=$("#lxmc").val();
+		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+		window.location.href="/jxzhpt/gcybb/exportAbgcyb.do?"+data;
+	}	
 	</script>
 	<style type="text/css">
 <!--
@@ -43,6 +124,13 @@ table {
 	border-collapse:collapse;
 }
 table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+table tbody tr td {
 	text-align:center; 	
 	font-size:1em;
 	font-weight:bold;
@@ -70,55 +158,63 @@ table thead tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>起始年月：</span>
-        						<input type="text" id="kssj"  class="easyui-datebox"  style="width:150px;">
-        						<span>截止年月：</span>
-        						<input type="text" id="jssj"  class="easyui-datebox"  style="width:150px;">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
-<%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
-<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" /> --%>
-        					</p>
-        					<p style="margin: 8px 0px 8px 20px;">
+        						<span>年&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+ 						<select name="ddlYear" id="ddlYear" style="width: 80px;">
+						</select>
+ 						<span>月&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+							<option id="yf1" value="1">01</option>
+							<option id="yf2" value="2">02</option>
+							<option id="yf3" value="3">03</option>
+							<option id="yf4" value="4">04</option>
+							<option id="yf5" value="5">05</option>
+							<option id="yf6" value="6">06</option>
+							<option id="yf7" value="7">07</option>
+							<option id="yf8" value="8">08</option>
+							<option id="yf9" value="9">09</option>
+							<option id="yf10" value="10">10</option>
+							<option id="yf11" value="11">11</option>
+							<option id="yf12" value="12">12</option> 
+						</select>      						
+        			</p>
+        			<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>行政等级：</span>
-        						<select style="width:150px;">
-        							<option>全部</option>
-        							<option>国道</option>
-        							<option>省道</option>
-        							<option>县道</option>
-        							<option>乡道</option>
-        							<option>村道</option>
-        							<option>专道</option>
+        						<select id="xzdj" style="width:80px;">
+        							<option value="">全部</option>
+        							<option value="G">国道</option>
+        							<option value="S">省道</option>
+        							<option value="X">县道</option>
+        							<option value="Y">乡道</option>
+        							<option value="C">村道</option>
+        							<option value="Z">专道</option>
         						</select>
-        						<span>路&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线：</span>
-        						<input type="text"  style="width: 145px">
+        						<span>路线名称：</span>
+        						<input id="lxmc" type="text"  style="width: 100px">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
-<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
+									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
-        					</p>        					
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportAbgcyb()" style="vertical-align: -50%;" />
+        					</p> 				
         				</div>
         			</fieldset>
         		</td>
         	</tr>
 
-            <tr>
+           <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px">
+                	<div style="width:100%;height:400px;" >
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省2015年公路路网结构改造工程统计月报表（二）   安保工程 </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id='nian' style="font-size: large;"></span>年公路路网结构改造工程统计月报表（二）   安保工程（<span id='yue' style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
-										<td rowspan="3">路线编码</td>
-										<td rowspan="3">路线名称</td>
+										<td rowspan="2">路线编码</td>
+										<td rowspan="2">路线名称</td>
 										<td colspan="4">基本情况</td>
 										<td colspan="3">本年计划投资(万元)</td>
 										<td rowspan="2">隐患类型</td>
@@ -162,7 +258,7 @@ table thead tr td {
 										<td>省投资</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id='abgclist'>
 								
 								</tbody>
 							</table>

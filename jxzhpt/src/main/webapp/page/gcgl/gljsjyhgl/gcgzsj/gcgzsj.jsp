@@ -24,6 +24,9 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadBmbm("kgzt","开工状态");
+			if(getParam("t")=='1'){
+				$("#ybzt").val('未上报');
+			}
 			showAll();
 		});
 	</script>

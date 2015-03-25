@@ -23,7 +23,9 @@
 	<script type="text/javascript">
 		$(function(){
 			loadDist("xzqhdm",$.cookie("dist"));
-			loadBmbm("kgzt","开工状态");
+			if(getParam("t")=='1'){
+				$("#ybzt").val('未审核');
+			}
 			showAll();
 		});
 	</script>
@@ -65,8 +67,6 @@ a:active {
         						<span>行政区划：</span>
         						<input id="xzqhdm" style="width: 200px;">
         						
-        						<span>开工状态：</span>
-        						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>
         							<input type="text" id="lxmc" >
         						<span>月报状态：</span>

@@ -28,4 +28,18 @@ public interface GcybbServer {
 
 	List<Excel_list> getwqgzlist4(Gcglwqgz gcglwqgz);
 
+	List<Map<String, Object>> getabgcybb(Gcglabgc gcglabgc);
+
+	Excel_list getabgclist1(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getAbgcxzqh(Gcglabgc gcglabgc);
+
+	Excel_list getabgclist3(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getAbgcnf(Gcglabgc gcglabgc);
+
+	Excel_list getabgclist2(Gcglabgc gcglabgc);
+
+	List<Excel_list> getabgclist4(Gcglabgc gcglabgc);
+
 }

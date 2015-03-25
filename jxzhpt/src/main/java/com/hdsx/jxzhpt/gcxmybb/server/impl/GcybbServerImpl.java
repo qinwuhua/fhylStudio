@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
@@ -64,6 +65,48 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getwqgzlist4(Gcglwqgz gcglwqgz) {
 		// TODO Auto-generated method stub
 		return queryList("getwqgzlist4", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getabgcybb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgcybb", gcglabgc);
+	}
+
+	@Override
+	public Excel_list getabgclist1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("getabgclist1", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getAbgcxzqh(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getAbgcxzqh", gcglabgc);
+	}
+
+	@Override
+	public Excel_list getabgclist3(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("getabgclist1", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getAbgcnf(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getAbgcnf", gcglabgc);
+	}
+
+	@Override
+	public Excel_list getabgclist2(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("getabgclist1", gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> getabgclist4(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgclist4", gcglabgc);
 	}
 	
 
