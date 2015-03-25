@@ -397,7 +397,126 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-		queryGcgjXx(xxId);
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryGcgjById.do',
+			data:"jh.id="+xxId,
+			dataType:'json',
+			success:function(data){
+				$('#fapgdw').html(data.fapgdw);
+				$('#fascdw').html(data.fascdw);
+				$('#faspsj').html(data.faspsj);
+				$('#spwh').html(data.spwh);
+				$('#tzgs').html(data.tzgs);
+				$('#jsxz').html(data.jsxz);
+				$('#jsnr').html(data.jsnr);
+				$('#sbnfxx').html(data.sbnf);
+				$('#jhkgsj').html(data.jhkgsj);
+				$('#jhwgsj').html(data.jhwgsj);
+				$('#xdsj').html(data.xdsj);
+				$('#xmmc').html(data.xmmc);
+				$('#yhlb').html(data.yhlb);
+				$('#sjdw').html(data.sjdw);
+				$('#xmmc').html(data.xmmc);
+				$('#yhlb').html(data.yhlb);
+				$('#sjdw').html(data.sjdw);
+				$('#sjpfdw').html(data.sjpfdw);
+				$('#sjlmlx').html(data.sjlmlx);
+				$('#dc').html(data.dc);
+				$('#jc').html(data.jc);
+				$('#mc').html(data.mc);
+				$('#lmkd').html(data.lmkd);
+				$('#pfwh').html(data.pfwh);
+				$('#pfsj').html(data.pfsj);
+				$('#pfztz').html(data.pfztz);
+				$('#jhsybzje').html(data.jhsybzje);
+				$('#jhsydfzcje').html(data.jhsydfzcje);
+				$('#sfsqablbz').html(data.sfsqablbz);
+				$('#sftqss').html(data.sftqss);
+				$('#jhxdwh').html(data.jhxdwh);
+				$('#gksjwh').html(data.gksjwh);
+				$('#sjpfwh').html(data.sjpfwh);
+				$('#sfgyhbm').html(data.sfgyhbm);
+				$('#gksjwh').html(data.gksjwh);
+				$('#bz').html(data.bz);
+				if(data.gkbgmc!=null){
+					var mc="'"+data.gkbgmc+"'";
+					$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
+				}
+				if(data.sjsgtmc!=null){
+					var mc="'"+data.sjsgtmc+"'";
+					$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
+				}
+				var title='<tr style="height: 25px;"><td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">工程改造路面改建项目基本信息</td></tr>';
+				$('#tr_scxx').before(title);
+				$.each(data.plan_lx_gcgjs,function(index,item){
+					var tr1='<tr style="height: 30px;">'+
+								'<td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">'+
+								'路线名称</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="lxmc'+index+'">'+item.lxmc+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+								'路线编码</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="lxbm'+index+'">'+item.lxbm+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+								'建设地点</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">'+
+									'<span id="jsdd'+index+'">'+item.jsdd+'</span></td></tr>';
+					var tr2='<tr style="height: 30px;">'+
+								'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+									'起点桩号</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="qdzh'+index+'">'+item.qdzh+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+									'止点桩号</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="zdzh'+index+'">'+item.zdzh+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+									'起止里程</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">'+
+									'<span id="qzlc'+index+'">'+item.qzlc+'</span>公里</td></tr>';
+					var tr3='<tr style="height: 30px;">'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+									'管养单位</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="gydwxx'+index+'">'+item.gydw+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+									'行政区划代码</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">'+
+									'<span id="xzqhdm'+index+'">'+item.xzqhdm+'</span></td>'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+									'行政区划</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">'+
+									'<span id="xzqhmc'+index+'">'+item.xzqhmc+'</span></td></tr>';
+					var tr4='<tr style="height: 30px;">'+
+								'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">'+
+									'原技术等级</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">'+
+									'<span id="yjsdjxx'+index+'">'+item.yjsdj+'</span></td>'+
+								'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+									'原路面类型</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="ylmlx'+index+'">'+item.ylmlx+'</span>&nbsp;</td>'+
+								'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+									'隐患里程</td>'+
+								'<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+
+									'<span id="yhlc'+index+'">'+item.yhlc+'</span>公里</td></tr>';
+					var tr5_6=	'<tr style="height: 50px;">'+
+									'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+										'特殊地区</td>'+
+									'<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">'+
+										'<span id="lblTSDQ'+index+'"></span> &nbsp;</td></tr>'+
+								'<tr style="height: 50px;">'+
+									'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">'+
+										'病害内容</td>'+
+									'<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">'+
+										'<span id="bhnr'+index+'">'+item.bhnr+'</span> &nbsp;</td></tr>';
+					$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5_6);
+				});
+				
+			}
+		}); 
 	</script>
 </body>
 </html>

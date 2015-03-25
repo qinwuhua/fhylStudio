@@ -302,7 +302,7 @@
 		select distinct jh.id,jh.sbnf,jh.jhsybzje from 
 		plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) 
-		where lx.xzqhdm like #{xzqhdm} and jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]>) t
+		where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%' and jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]>) t
 		group by t.sbnf
 	</select>
 	<select id="queryJhktjt2" resultType="treenode" parameterType="java.util.Map">

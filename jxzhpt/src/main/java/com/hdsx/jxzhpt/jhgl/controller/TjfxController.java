@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -191,6 +194,14 @@ public class TjfxController extends BaseActionSupport{
 			result.put("abgc", abgcServer.queryJhktj2(xzqhdm,nf,end));
 			result.put("wqgz", wqgzServer.queryJhktj2(xzqhdm,nf,end));
 			result.put("zhfz", zhfzServer.queryJhktj2(xzqhdm,nf,end));
+			Map<String,Map<String,Object>> attribute=null;
+			if(getRequest().getSession().getAttribute("jhktj2")==null){
+				attribute=new HashMap<String, Map<String,Object>>();
+			}else{
+				attribute=(HashMap<String,Map<String,Object>>)getRequest().getSession().getAttribute("jhktj2");
+			}
+			attribute.put(xzqhdm, result);
+			getRequest().getSession().setAttribute("jhktj2", attribute);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -215,29 +226,45 @@ public class TjfxController extends BaseActionSupport{
 			TreeNode treenode=new TreeNode();
 			treenode.setId(xzqhdm);
 			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+			Map<String,Object> attribute = (HashMap<String, Object>)getRequest().getSession().getAttribute("jhktj2");
 			for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
 				Map<String, String> one=new HashMap<String, String>();
 				one.put("year", new Integer(i).toString());
 				for (TreeNode item : xzqhlist){
-					xzqhdm=item.getId().substring(0,4)+"__";
-					double sumJe=
-							gcgjServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							gcsjServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							shuihServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							yhdzxServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							abgcServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							wqgzServer.queryJhktj2(xzqhdm,new Integer(i).toString())+
-							zhfzServer.queryJhktj2(xzqhdm,new Integer(i).toString());
+					double sumJe=0;
+					Map<String,Object> jhMap=(Map<String, Object>) attribute.get(item.getId());
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("gcgj"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("gcsj"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("shuih"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("yhdzx"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("abgc"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("wqgz"), sumJe);
+					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("zhfz"), sumJe);
 					one.put("je"+item.getId(), new Double(sumJe).toString());
 				}
 				list.add(one);
 			}
+			getRequest().getSession().removeAttribute("jhktj2");
 			parameter.put("list",list);
 			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 			ResponseUtils.write(getresponse(), anyChartXml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * 遍历集合获取对应年份的金额
+	 * @param year
+	 * @param list
+	 * @param sumJe
+	 * @return
+	 */
+	private double getJeFromList(int year, List<TreeNode> list, double sumJe) {
+		for (TreeNode node : list) {
+			if(node.getId().equals(new Integer(year).toString()))
+				sumJe=sumJe+new Double(node.getText()).doubleValue();
+		}
+		return sumJe;
 	}
 	
 	public void queryJhktjt3(){

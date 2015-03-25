@@ -24,33 +24,48 @@
 			xmlx=getQueryString("xmlx");
 			if(getQueryString("xmlx")==1){
 				url="../../../jhgl/queryGcgjList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==2){
 				url="../../../jhgl/queryGcsjList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxbm;}},{field:'pftz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxbm;}},{field:'pftz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==3){
 				url="../../../jhgl/queryShuihList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.shuihs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.shuihs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==4){
 				url="../../../jhgl/queryYhdzxList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].gydwmc;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxbm;}},{field:'totalsubsidyfund',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].gydwmc;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxbm;}},{field:'totalsubsidyfund',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==5){
 				url="../../../jhgl/queryAbgcList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckabgc.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckabgc.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckabgc.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckabgc.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckabgc.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckabgc.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==6){
 				url="../../../jhgl/queryWqgzList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckwqgz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckwqgz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}else if(getQueryString("xmlx")==7){
 				$('#xmlx').html("灾害防治");
 				url="../../../jhgl/queryZhfzList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckzhfz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center'}]];
+				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckzhfz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}
-			xmxxlist(url, columns);
+			xmxxlist(url, columns,getQueryString("nf"));
 			getBarChart();
-			var d = $('#grid').datagrid('getData');
-			$('#xmcount').html(d.total);
 		});
-
+		function openWin(id){
+			var url="/jxzhpt/page/jhgl/jhkxx/";
+			if(xmlx=="1")
+				url+="gclmgj.jsp";
+			else if(xmlx=="2")
+				url+="gclmsj.jsp";
+			else if(xmlx=="3")
+				url+="shxm.jsp";
+			else if(xmlx=="4")
+				url+="yhdzx.jsp";
+			else if(xmlx=="5")
+				url+="abgc.jsp";
+			else if(xmlx=="6")
+				url+="wqgz.jsp";
+			else if(xmlx=="7")
+				url+="zhfz.jsp";
+			openDialog('xmxx_xx','工程改造路面改建项目计划详情',url,id);
+		}
 		function getQueryString(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
 			var r = window.location.search.substr(1).match(reg);
@@ -74,7 +89,7 @@
 				type:'post',
 				async : false,
 				url:'../../../tjfx/queryXmlxTj.do',
-				data:'xzqhdm='+xzqhdm+'&xmlx='+xmlx+'&ftlName='+$("input[name='radioTj']:checked").val(),
+				data:'xzqhdm='+xzqhdm+'&xmlx='+xmlx+'&ftlName='+$("input[name='radioTj']:checked").val()+'&nf='+getQueryString("nf"),
 				dataType:'text',
 				success:function(data){
 					barChart_1.setData(data);
@@ -98,7 +113,7 @@
         			<div>
         				<div>
         					<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">
-        					江西省—<span id="xmlx"></span>项目【<span id="xmcount"></span>】个
+        					江西省—<span id="xmlx"></span>项目包含路线【<span id="xmcount"></span>】个
         				</div>
         				<div style="padding-top: 5px;">
         					<table id="grid"></table>

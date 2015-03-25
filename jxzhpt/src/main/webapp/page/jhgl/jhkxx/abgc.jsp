@@ -428,7 +428,79 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-		queryAbgc(xxId);
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryAbgcById.do',
+		data:"jh.id="+xxId,
+		dataType:'json',
+		success:function(data){
+			//审查库
+			$.ajax({
+				type:'post',
+				url:'../../../xmsck/selectSckabgcById.do',
+				dataType:'json',
+				data:'sckid='+data.sckid,
+				success:function(data){
+					if(data!=null){
+						//基础
+						$('#lxmc').html(data.lxmc);
+						$('#lxbm').html(data.lxbm);
+						$('#gydwxx').html(data.gydw);
+						$('#qdzh').html(data.qdzh);
+						$('#zdzh').html(data.zdzh);
+						$('#qzlc').html(data.qzlc);
+						$('#xzqhdm').html(data.xzqhdm);
+						$('#xzqhmc').html(data.xzqhmc);
+						$('#xjgjnd').html(data.gjxjnd);
+						$('#jsdjxx').html(data.lxjsdj);
+						$('#yhlc').html(data.yhlc);
+						$('#tsdq').html(data.tsdq);
+						$('#xmnf').html(data.xmnf);
+						$('#xmzt').html(data.xmzt);
+						$('#yhnr').html(data.yhnr);
+						$('#bz').html(data.bz);
+						//审查
+						$('#scqdzh').html(data.scqdzh);
+						$('#sczdzh').html(data.sczdzh);
+						$('#sczlc').html(data.sczdzh);
+						$('#scyhlc').html(data.sczdzh);
+						$('#fapgdw').html(data.fapgdw);
+						$('#fascdw').html(data.fascdw);
+						$('#faspsj').html(data.faspsj);
+						$('#spwh').html(data.spwh);
+						$('#tzgs').html(data.tzgs);
+						$('#jsxz').html(data.jsxz);
+						$('#jsnr').html(data.jsnr);
+						$('#remarks').html(data.remarks);
+					}
+				}
+			});
+			//计划
+			$('#jhid').val(data.id);
+			$('#jhnfxx').html(data.jhnf);
+			$('#JHKGSJ').html(data.jhkgsj);
+			$('#JHWGSJ').html(data.jhwgsj);
+			$('#JHXDSJ').html(data.xdsj);
+			$('#JHWC_C').html(data.jhwc_c);
+			$('#SJDW').html(data.sjdw);
+			$('#SJPFDW').html(data.sjpfdw);
+			$('#PFWH').html(data.pfwh);
+			$('#PFSJ').html(data.pfsj);
+			$('#JHZTZ').html(data.pfztz);
+			$('#bbz').html(data.jhsybbzje);
+			$('#DFZC').html(data.jhsydfzczj);
+			$('#JHXDWH').html(data.jhxdwh);
+			$('#SFSQABLBZ').html(data.sfsqablbz);
+			$('#ABLBZWH').html(data.ablbzsqwh);
+			$('#JHRemarks').html(data.remarks);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
+		}
+	}); 
 	</script>
 </body>
 </html>

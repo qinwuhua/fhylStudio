@@ -443,7 +443,77 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-		queryZhfzById(xxId);
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryZhfzById.do',
+		dataType:'json',
+		data:'jh.id='+xxId,
+		success:function(data){
+			$.ajax({
+				type : 'post',
+				url : '../../../xmsck/selectSckzhfzById.do',
+				data :"sckid="+data.sckid,
+				dataType:'json',
+				success:function(jcAndSc){
+					if(jcAndSc!=null){
+						//基础库
+						$('#lxmc').html(jcAndSc.lxmc);
+						$('#lxbm').html(jcAndSc.lxbm);
+						$('#gydwxx').html(jcAndSc.gydw);
+						$('#qdzh').html(jcAndSc.qdzh);
+						$('#zdzh').html(jcAndSc.zdzh);
+						$('#zlc').html(jcAndSc.zlc);
+						$('#xzqhdm').html(jcAndSc.xzqhdm);
+						$('#xzqhmc').html(jcAndSc.xzqhmc);
+						$('#xjnd').html(jcAndSc.gjxjnd);
+						$('#lxjsdjxx').html(jcAndSc.lxjsdj);
+						$('#yhlc').html(jcAndSc.yhlc);
+						$('#tsdq').html(jcAndSc.tsdq);
+						$('#xmnf').html(jcAndSc.xmnf);
+						$('#xmzt').html(jcAndSc.xmzt);
+						$('#zhnr').html(jcAndSc.zhnr);
+						$('#bz').html(jcAndSc.bz);
+						//审查库
+						$('#SCQDZH').html(jcAndSc.scqdzh);
+						$('#SCZDZH').html(jcAndSc.sczdzh);
+						$('#SCZLC').html(jcAndSc.sczlc);
+						$('#SCYHLC').html(jcAndSc.scyhlc);
+						$('#FAPGDW').html(jcAndSc.fapgdw);
+						$('#FASCDW').html(jcAndSc.fascdw);
+						$('#FASPSJ').html(jcAndSc.faspsj);
+						$('#SPWH').html(jcAndSc.spwh);
+						$('#TZGS').html(jcAndSc.tzgs);
+						$('#JSXZ').html(jcAndSc.jsxz);
+						$('#JSNR').html(jcAndSc.jsnr);
+						$('#scbz').html(jcAndSc.scbz);
+					}
+				}
+			});
+			//计划信息
+			$("#jhid").val(data.id);
+			$('#jhnf').html(data.sbnf);
+			$('#jhkgsj').html(data.jhkgsj);
+			$('#jhwgsj').html(data.jhwgsj);
+			$('#jhxdsj').html(data.xdsj);
+			$('#jhxdwh').html(data.jhxdwh);
+			$('#sjdw').html(data.sjdw);
+			$('#sjpfdw').html(data.sjpfdw);
+			$('#pfwh').html(data.pfwh);
+			$('#pfsj').html(data.pfsj);
+			$('#jhztz').html(data.pfztz);
+			$('#bbz').html(data.jhsybzje);
+			$('#dfzc').html(data.jhsydfzcje);
+			$('#sfsqablbz').html(data.sfsqablbz);
+			$('#ablbzwh').html(data.ablbzsqwh);
+			$('#jhbz').html(data.bz);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
+		}
+	});
 	</script>
 </body>
 </html>

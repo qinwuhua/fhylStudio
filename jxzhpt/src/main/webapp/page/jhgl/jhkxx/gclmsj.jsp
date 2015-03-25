@@ -406,7 +406,78 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-		queryGcsjXx(xxId);
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryGcsjById.do',
+			data:"jh.id="+xxId,
+			dataType:'json',
+			success:function(data){
+				$('#lxmc').html(data.plan_lx_gcsjs[0].lxmc);
+				$('#lxbm').html(data.plan_lx_gcsjs[0].lxbm);
+				$('#jsdd').html(data.plan_lx_gcsjs[0].yjsdj);
+				$('#qdzh').html(data.plan_lx_gcsjs[0].qdzh);
+				$('#zdzh').html(data.plan_lx_gcsjs[0].zdzh);
+				$('#qzlc').html(data.plan_lx_gcsjs[0].qzlc);
+				$('#gydwxx').html(data.plan_lx_gcsjs[0].gydw);
+				$('#xzqhdm').html(data.plan_lx_gcsjs[0].xzqhdm);
+				$('#xzqhmc').html(data.plan_lx_gcsjs[0].xzqhmc);
+				$('#yjsdjxx').html(data.plan_lx_gcsjs[0].yjsdj);
+				$('#ylmlx').html(data.plan_lx_gcsjs[0].ylmlx);
+				$('#yhlc').html(data.plan_lx_gcsjs[0].yhlc);
+				$('#bhnr').html(data.plan_lx_gcsjs[0].bhnr);
+				$('#fapgdw').html(data.fapgdw);
+				$('#fascdw').html(data.fascdw);
+				$('#faspsj').html(data.faspsj);
+				$('#spwh').html(data.spwh);
+				$('#tzgs').html(data.tzgs);
+				$('#jsxz').html(data.jsxz);
+				$('#jsnr').html(data.jsnr);
+				$('#jhnf').html(data.jhnf);
+				$('#jhkgsj').html(data.jhkgsj);
+				$('#jhwgsj').html(data.jhwgsj);
+				$('#xdsj').html(data.xdsj);
+				$('#xmmc').html(data.xmmc);
+				$('#yhlb').html(data.yhlb);
+				$('#sjdw').html(data.sjdw);
+				$('#xmmc').html(data.xmmc);
+				$('#yhlb').html(data.yhlb);
+				$('#sjdw').html(data.sjdw);
+				$('#sjpfdw').html(data.sjpfdw);
+				$('#jsjsbz').html(data.jsjsbz);
+				$('#ql').html(data.ql);
+				$('#ql_m').html(data.ql_m);
+				$('#sd').html(data.sd);
+				$('#sd_m').html(data.sd_m);
+				$('#hd').html(data.hd);
+				$('#ljtsf').html(data.ljtsf);
+				$('#dc').html(data.dc);
+				$('#jc').html(data.jc);
+				$('#lqlm').html(data.lqlm);
+				$('#snlm').html(data.snlm);
+				$('#gjhjsdj').html(data.gjhjsdj);
+				$('#pfwh').html(data.pfwh);
+				$('#pfsj').html(data.pfsj);
+				$('#jhtz').html(data.pftz);
+				$('#jhsybbzje').html(data.jhsybbzje);
+				$('#jhsysbzje').html(data.jhsysbzje);
+				$('#sfsqablbz').html(data.sfsqablbz);
+				$('#sftqss').html(data.sftqss);
+				$('#jhxdwh').html(data.jhxdwh);
+				$('#gksjwh').html(data.gksjwh);
+				$('#sjpfwh').html(data.sjpfwh);
+				$('#sfgyhbm').html(data.sfgyhbm);
+				$('#gksjwh').html(data.gksjwh);
+				$('#remarks').html(data.remarks);
+				if(data.gkbgmc!=null){
+					var mc="'"+data.gkbgmc+"'";
+					$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
+				}
+				if(data.sjsgtmc!=null){
+					var mc="'"+data.sjsgtmc+"'";
+					$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
+				}
+			}
+		});
 	</script>
 </body>
 </html>

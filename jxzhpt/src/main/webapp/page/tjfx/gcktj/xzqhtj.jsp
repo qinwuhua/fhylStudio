@@ -166,7 +166,7 @@
 	        			<div style="">
 	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
 	        			</div>
-	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
+	        			<div style="height: 500px;border: 1px #C0C0C0 solid;text-align: center;">
 	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />

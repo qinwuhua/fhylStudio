@@ -351,7 +351,7 @@
 			select distinct jh.id,jh.jhnf,jh.jhsybbzje from 
 			plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 			left join xmk_abgc lx on (sc.xmkid=lx.id) 
-			where lx.xzqhdm like #{xzqhdm} and jh.jhnf>=#{start} and <![CDATA[jh.jhnf<=#{end}]]>) t
+			where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%' and jh.jhnf>=#{start} and <![CDATA[jh.jhnf<=#{end}]]>) t
 		group by t.jhnf
 	</select>
 	<select id="queryJhktjt2" resultType="string" parameterType="java.util.Map">

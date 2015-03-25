@@ -158,15 +158,6 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 
 	@Override
-	public double queryJhktj2(String xzqhdm, String year) {
-		Map<String, String> param=new HashMap<String, String>();
-		param.put("xzqhdm", xzqhdm);
-		param.put("nf", year);
-		String result = queryOne("queryJhktjt2",param);
-		return result==null ? 0 : new Double(queryOne("queryJhktjt2",param).toString()).doubleValue();
-	}
-
-	@Override
 	public List<TreeNode> queryJhktjt3(String xzqhdm, String nf, String end) {
 		Map<String, String> param=new HashMap<String, String>();
 		param.put("xzqhdm", xzqhdm);

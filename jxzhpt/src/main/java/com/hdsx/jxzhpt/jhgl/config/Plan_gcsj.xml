@@ -339,7 +339,7 @@
 	<select id="queryJhktj2"  resultType="treenode" parameterType="java.util.Map">
 		select t.jhnf as id,sum(t.jhsybbzje) as text,count(t.jhsybbzje) as name from (
        		select distinct jh.id,lx.xzqhdm,jh.jhnf,jh.jhsybbzje 
-       		from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid) where lx.xzqhdm like #{xzqhdm}) t
+       		from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid) where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%') t
 		where t.jhnf>=#{start} and <![CDATA[t.jhnf<=#{end}]]> group by t.jhnf
 	</select>
 	<select id="queryJhktjt2" resultType="string" parameterType="java.util.Map">

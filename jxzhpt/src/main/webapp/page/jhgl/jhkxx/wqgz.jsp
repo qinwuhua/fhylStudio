@@ -428,7 +428,77 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-		queryWqgzById(xxId);
+	$.ajax({
+		url:'../../../jhgl/queryWqgzById.do',
+		data:"jh.id="+xxId,
+		dataType:'json',
+		success:function(data){
+			//计划
+			$("#jhid").val(data.id);
+			$('#jhnf').html(data.jhnf);
+			$('#jhkgsj').html(data.jhkgsj);
+			$('#jhwgsj').html(data.jhwgsj);
+			$('#jhxdsj').html(data.xdsj);
+			$('#jhxdwh').html(data.jhxdwh);
+			$('#sjdw').html(data.sjdw);
+			$('#sjpfdw').html(data.sjpfdw);
+			$('#pfwh').html(data.pfwh);
+			$('#pfsj').html(data.pfsj);
+			$('#jhztz').html(data.pfztz);
+			$('#bbz').html(data.jhsybzje);
+			$('#zfzc').html(data.jhsydfzcje);
+			$('#sfsqablbz').html(data.sfsqablbz);
+			$('#ablbzwh').html(data.ablbzsqwh);
+			$('#JHRemarks').html(data.bz);
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
+			//基础和审查
+			$.ajax({
+				url:'../../../xmsck/selectSckwqgzById.do',
+				data:"sckid="+data.sckid,
+				dataType:'json',
+				success:function(jcAndSc){
+					if(jcAndSc!=null){
+						$('#qlmc').html(jcAndSc.qlmc);
+						$('#qlbm').html(jcAndSc.qlbh);
+						$('#qlzxzh').html(jcAndSc.qlzxzh);
+						$('#gydwxx').html(jcAndSc.gydw);
+						$('#xzqhdm').html(jcAndSc.xzqhdm);
+						$('#xzqhmc').html(jcAndSc.xzqhmc);
+						$('#lxmc').html(jcAndSc.lxmc);
+						$('#lxbm').html(jcAndSc.lxbm);
+						$('#kjzc').html(jcAndSc.kjzc);
+						$('#qlqc').html(jcAndSc.qlqc);
+						$('#qlqk').html(jcAndSc.qlqk);
+						$('#dkzdkj').html(jcAndSc.dkzdkj);
+						$('#jsdjxx').html(jcAndSc.jsdj);
+						$('#pddj').html(jcAndSc.pddj);
+						$('#xjnd').html(jcAndSc.xjgjnd);
+						$('#akjfl').html(jcAndSc.akjfl);
+						$('#sbjgxs').html(jcAndSc.sbjgxs);
+						$('#tsdq').html(jcAndSc.tsdq);
+						$('#xmnf').html(jcAndSc.xmnf);
+						$('#xmtype').html(jcAndSc.xmtype);
+						$('#bhnr').html(jcAndSc.bhnr);
+						$('#bz').html(jcAndSc.bz);
+						//审查库信息
+						$('#fapgdw').html(jcAndSc.fapgdw);
+						$('#fascdw').htmll(jcAndSc.fascdw);
+						$('#faspsj').html(jcAndSc.faspsj);
+						$('#spwh').html(jcAndSc.spwh);
+						$('#tzgs').html(jcAndSc.tzgs);
+						$('#jsxz').html(jcAndSc.jsxz);
+						$('#jsnr').html(jcAndSc.jsnr);
+						$('#scbz').html(jcAndSc.scbz);
+					}
+				}
+			});
+		}
+	});
 	</script>
 </body>
 </html>

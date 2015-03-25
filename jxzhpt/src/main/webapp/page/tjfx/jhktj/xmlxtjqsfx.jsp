@@ -21,10 +21,10 @@
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
-			sbnf("startYear");
-			$('#startYear').combobox("setValue",$('#endYear').val()-10);
 			sbnf("endYear");
-			$('#endYear').combobox("setValue",$('#endYear').val());
+			$('#endYear').combobox("setValue",new Date().getFullYear());
+			sbnf("startYear");
+			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-10);
 			loadData();
 			search();
 		});
