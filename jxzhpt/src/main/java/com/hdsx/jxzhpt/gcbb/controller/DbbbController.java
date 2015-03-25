@@ -12,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -275,7 +278,254 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			e.printStackTrace();
 		}
 	}
-	
+	public void exportExcel_abjh(){
+		try {
+			//先得到导出的数据集
+			List <SjbbMessage> list=dbServer.exportExcel_abjh(jckwqgz);
+			System.out.println("------------"+list.size()+"--------------");
+			//导出设置
+			String excelHtml="<tr><td>管养单位 </td><td>行政区划代码 </td><td>行政区划名称</td><td>路线编码</td>" +
+					"<td>路线名称 </td><td>起点桩号</td><td>止点桩号 </td><td>总里程</td><td>隐患里程</td>" +
+					"<td>修建/改建年度</td><td>设计单位</td><td>设计批复单位</td><td>批复文号 </td><td>批复总投资（万元）</td>" +
+					"<td>计划使用部补助金额（万元） </td><td>计划使用地方自筹资金（万元）</td><td>是否申请按比例补助</td>" +
+					"<td>按比例补助申请文号</td>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName("安保计划库报表");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName("安保");
+			sheetb.setList(list);
+			sheetb.setColnum((short)18);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName="安保计划库报表";//excel 文件的名字
+			//导出excel
+			ExportExcel_new <Plan_abgc> ee = new ExportExcel_new<Plan_abgc>();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			throw new RuntimeException();
+		}
+	}
+	//灾害
+		public void selectZhjc(){
+			List<Jckzhfz> selectZhjc = dbServer.selectZhjc(jckwqgz);
+			int count = dbServer.selectWqjcCount(jckwqgz);
+			EasyUIPage<Jckzhfz> eui =new EasyUIPage<Jckzhfz>();
+			eui.setRows(selectZhjc);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_zhjc(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_zhjc(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位 </td><td>行政区划代码 </td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称 </td><td>起点桩号</td><td>止点桩号 </td><td>总里程</td><td>隐患里程</td>" +
+						"<td>修建/改建年度</td><td>隐患内容 </td><td>备注</td></tr>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("灾害基础库报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("灾害");
+				sheetb.setList(list);
+				sheetb.setColnum((short)12);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="灾害基础库报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Jckzhfz> ee = new ExportExcel_new<Jckzhfz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectZhsc(){
+			List<Sckzhfz> selectZhsc = dbServer.selectZhsc(jckwqgz);
+			int count = dbServer.selectWqjcCount(jckwqgz);
+			EasyUIPage<Sckzhfz> eui =new EasyUIPage<Sckzhfz>();
+			eui.setRows(selectZhsc);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_zhsc(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_zhsc(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位 </td><td>行政区划代码 </td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称 </td><td>起点桩号</td><td>止点桩号 </td><td>总里程</td><td>隐患里程</td>" +
+						"<td>修建/改建年度</td><td>方案评估单位 </td><td>方案审查单位</td><td>方案审批时间</td>" +
+						"<td>审批文号 </td><td>投资估算（万元）</td><td>建设性质 </td><td>建设内容 </td><td>备注 </td></tr>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("灾害审查库报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("灾害");
+				sheetb.setList(list);
+				sheetb.setColnum((short)18);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="灾害审查库报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Sckzhfz> ee = new ExportExcel_new<Sckzhfz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectZhjh(){
+			List<Plan_zhfz> selectZhjh = dbServer.selectZhjh(jckwqgz);
+			int count = dbServer.selectWqjcCount(jckwqgz);
+			EasyUIPage<Plan_zhfz> eui =new EasyUIPage<Plan_zhfz>();
+			eui.setRows(selectZhjh);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_zhjh(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_zhjh(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位 </td><td>行政区划代码 </td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称 </td><td>起点桩号</td><td>止点桩号 </td><td>总里程</td><td>隐患里程</td>" +
+						"<td>修建/改建年度</td><td>设计单位</td><td>设计批复单位</td><td>批复文号 </td><td>批复总投资（万元）</td>" +
+						"<td>计划使用部补助金额（万元） </td><td>计划使用地方自筹资金（万元）</td><td>是否申请按比例补助</td>" +
+						"<td>按比例补助申请文号</td>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("灾害计划库报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("灾害");
+				sheetb.setList(list);
+				sheetb.setColnum((short)18);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="灾害计划库报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Plan_zhfz> ee = new ExportExcel_new<Plan_zhfz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectWqkg(){
+			List<Plan_wqgz> selectWqkg = dbServer.selectWqkg(jckwqgz);
+			int count = dbServer.selectWqkgCount(jckwqgz);
+			EasyUIPage<Plan_wqgz> eui =new EasyUIPage<Plan_wqgz>();
+			eui.setRows(selectWqkg);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_wqkg(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_wqkg(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位</td><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>桥梁编号</td><td>桥梁名称</td><td>桥梁中心桩号</td>+" +
+						"<td>计划下达时间</td><td>计划开工时间 </td><td>计划完工时间</td><td>实际开工时间</td>" +
+						"<td>施工单位</td><td>监理单位</td><td>合同金额</td></tr>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("危桥进度库开工信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("危桥进度库开工信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)15);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="危桥进度库开工信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Plan_wqgz> ee = new ExportExcel_new<Plan_wqgz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectAbkg(){
+			List<Plan_abgc> selectAbkg = dbServer.selectAbkg(jckwqgz);
+			int count = dbServer.selectAbkgCount(jckwqgz);
+			EasyUIPage<Plan_abgc> eui =new EasyUIPage<Plan_abgc>();
+			eui.setRows(selectAbkg);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_abkg(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_abkg(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位</td><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>隐患里程</td>+" +
+						"<td>计划下达时间</td><td>计划开工时间 </td><td>计划完工时间</td><td>实际开工时间</td>" +
+						"<td>施工单位</td><td>监理单位</td><td>合同金额</td></tr>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("安保进度库开工信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("安保安保进度库开工信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)15);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="安保进度库开工信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Plan_abgc> ee = new ExportExcel_new<Plan_abgc>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
 	
 	
 	public Jckwqgz getJckwqgz() {

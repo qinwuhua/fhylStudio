@@ -195,3 +195,22 @@ function showAlljh(){
 	    ]]    
 	}); 
 }
+function exportExcel_abjh(){
+	var sbthcd;
+ 		if($.cookie("unit2")=='______36') sbthcd=7;
+ 		else  sbthcd=$.cookie("unit2").length;
+ 	var gydw=	$("#gydw").combotree('getValue');
+ 		if(gydw=='36'){
+ 		gydw='';
+ 		}else{
+ 			if(gydw.substr(gydw.length-2,2)=='00'){
+ 	 			gydw=gydw.substr(0,gydw.length-2);
+ 				if(gydw.substr(gydw.length-2,2)=='00'){
+ 					gydw=gydw.substr(0,gydw.length-2);
+ 				}
+ 			}
+ 		}
+	var param='sbthcd='+sbthcd+'&gydw='+gydw+
+ 	'&xmnf='+$('#xmnf').combobox('getValue');
+	window.location.href="/jxzhpt/dbbb/exportExcel_abjh.do?"+param;
+}

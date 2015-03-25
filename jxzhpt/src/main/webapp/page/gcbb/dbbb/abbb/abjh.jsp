@@ -81,7 +81,7 @@ table thead tr td {
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAlljh()"/>
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel_abjh()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
@@ -101,12 +101,12 @@ table thead tr td {
 										<td>路线名称 </td>
 										<td>起点桩号</td>
 										<td>止点桩号 </td>
+										<td>总里程 </td>
 										<td>隐患里程</td>
 										<td>改建/修建年度</td>
 										<td>设计单位</td>
 										<td>设计批复单位</td>
 										<td>批复文号 </td>
-										<td>计划使用部补助金额（万元）</td>
 										<td>批复总投资（万元）</td>
 										<td>计划使用部补助金额（万元） </td>
 										<td>计划使用地方自筹资金（万元）</td>

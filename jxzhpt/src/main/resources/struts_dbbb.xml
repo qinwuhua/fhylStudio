@@ -15,5 +15,19 @@
 	<action name="selectAbsc" class="dbbbController" method="selectAbsc"/>
 	<action name="exportExcel_absc" class="dbbbController" method="exportExcel_absc"/>
 	<action name="selectAbjh" class="dbbbController" method="selectAbjh"/>
+	<action name="exportExcel_abjh" class="dbbbController" method="exportExcel_abjh"/>
+	
+	<action name="selectZhjc" class="dbbbController" method="selectZhjc"/>
+	<action name="exportExcel_zhjc" class="dbbbController" method="exportExcel_zhjc"/>
+	<action name="selectZhsc" class="dbbbController" method="selectZhsc"/>
+	<action name="exportExcel_zhsc" class="dbbbController" method="exportExcel_zhsc"/>
+	<action name="selectZhjh" class="dbbbController" method="selectZhjh"/>
+	<action name="exportExcel_zhjh" class="dbbbController" method="exportExcel_zhjh"/>
+	
+	<action name="selectWqkg" class="dbbbController" method="selectWqkg"/>
+	<action name="exportExcel_wqkg" class="dbbbController" method="exportExcel_wqkg"/>
+	
+	<action name="selectAbkg" class="dbbbController" method="selectAbkg"/>
+	<action name="exportExcel_abkg" class="dbbbController" method="exportExcel_abkg"/>
 </package>
 </struts>
