@@ -189,16 +189,16 @@
 		</if>
 	</select>
 <select id="bzAbgc" parameterType="sckabgc" resultType="int">
-		select count(*) from sck_abgc where lrjh='已列入'
-		<if test="lxbm!='' and lxbm!= null ">
-			and sck_lxbm=#{lxbm}
-		</if>
-		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(sczdzh)>=to_number(#{qdzh})
-		</if>
-		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(scqdzh) &lt;=to_number(#{zdzh})
-		</if>
+		SELECT C1.CON1+C2.CON2 FROM
+(select count(*) CON1 from sck_abgc where lrjh='已列入' 
+and sck_lxbm=#{lxbm}
+and to_number(sczdzh)>=to_number(#{qdzh})
+and to_number(scqdzh) &lt;=to_number(#{zdzh})
+)C1,
+(select count(*) CON2 from sck_abgc SC,
+(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and XQDZH &lt;=to_number(#{zdzh}) and XZDZH>=to_number(#{qdzh})) k
+where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and SC.sczdzh>k.YQDZH
+)C2
 	</select>
 	<select id="daoRuabgcsh" parameterType="sckabgc" resultType="sckabgc">
  		select * from xmk_abgc where shzt='已审核'

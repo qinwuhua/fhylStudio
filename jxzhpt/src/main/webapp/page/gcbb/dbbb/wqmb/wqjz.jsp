@@ -23,6 +23,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			showAlljz();
 		});
 	</script>
 	<style type="text/css">
@@ -71,24 +72,24 @@ table thead tr td {
         						<span>单位名称：</span>
         						<select id="gydw" style="width:150px;"></select>
         						<span>截止到本年：</span>
-        						<select id="" style="width:80px;">
-        							<option>1月</option>
-        							<option>2月</option>
-        							<option>3月</option>
-        							<option>4月</option>
-        							<option>5月</option>
-        							<option>6月</option>
-        							<option>7月</option>
-        							<option>8月</option>
-        							<option>9月</option>
-        							<option>10月</option>
-        							<option>11月</option>
-        							<option>12月</option>
+        						<select id="xmnf" style="width:80px;">
+        							 <option value="1">1月</option>
+        							<option value="2">2月</option>
+        							<option value="3">3月</option>
+        							<option value="4">4月</option>
+        							<option value="5">5月</option>
+        							<option value="6">6月</option>
+        							<option value="7">7月</option>
+        							<option value="8">8月</option>
+        							<option value="9">9月</option>
+        							<option value="10">10月</option>
+        							<option value="11">11月</option>
+        							<option value="12">12月</option> 
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"onclick="showAlljz()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
@@ -99,12 +100,9 @@ table thead tr td {
 
             <tr>
             <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:150px">
-                		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="1500px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"><!-- 省统筹养护大中修工程项目进展情况表  --></caption>
-								<thead>
+					<p align="center" style="font-size:x-large;font-weight: bolder;">危桥进度库开工信息模板</p><br/>
+							<table id="datagrid"  width="100%" >
+								<!-- <thead>
 									<tr>
 										<td>行政区划代码</td>
 										<td>行政区划名称 </td>
@@ -121,11 +119,8 @@ table thead tr td {
 								</thead>
 								<tbody>
 								
-								</tbody>
+								</tbody> -->
 							</table>
-							</div>
-						</div>
-					</div>
 				</td>
 				</tr>
 		</table>

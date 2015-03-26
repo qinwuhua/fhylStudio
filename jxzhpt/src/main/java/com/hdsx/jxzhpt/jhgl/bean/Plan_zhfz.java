@@ -69,10 +69,10 @@ public class Plan_zhfz {
 	private String xzqhmc;
 	private String lxbm;
 	private String lxmc;
-	private String qdzh;
-	private String zdzh;
-	private String qzlc;
-	private String yhlc;
+	private String scqdzh;
+	private String sczdzh;
+	private String sczlc;
+	private String scyhlc;
 	private String gjxjnd;
 	public Sckzhfz getJckzhfz() {
 		return jckzhfz;
@@ -446,29 +446,29 @@ public class Plan_zhfz {
 	public void setLxmc(String lxmc) {
 		this.lxmc = lxmc;
 	}
-	public String getQdzh() {
-		return qdzh;
+	public String getScqdzh() {
+		return scqdzh;
 	}
-	public void setQdzh(String qdzh) {
-		this.qdzh = qdzh;
+	public void setScqdzh(String scqdzh) {
+		this.scqdzh = scqdzh;
 	}
-	public String getZdzh() {
-		return zdzh;
+	public String getSczdzh() {
+		return sczdzh;
 	}
-	public void setZdzh(String zdzh) {
-		this.zdzh = zdzh;
+	public void setSczdzh(String sczdzh) {
+		this.sczdzh = sczdzh;
 	}
-	public String getQzlc() {
-		return qzlc;
+	public String getSczlc() {
+		return sczlc;
 	}
-	public void setQzlc(String qzlc) {
-		this.qzlc = qzlc;
+	public void setSczlc(String sczlc) {
+		this.sczlc = sczlc;
 	}
-	public String getYhlc() {
-		return yhlc;
+	public String getScyhlc() {
+		return scyhlc;
 	}
-	public void setYhlc(String yhlc) {
-		this.yhlc = yhlc;
+	public void setScyhlc(String scyhlc) {
+		this.scyhlc = scyhlc;
 	}
 	public String getGjxjnd() {
 		return gjxjnd;

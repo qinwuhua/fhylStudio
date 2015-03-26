@@ -1,4 +1,4 @@
-
+var gydw;
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
@@ -37,20 +37,17 @@ function showAllkg(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$("#xmnf").val(),
 		},
 	    striped:true,
@@ -67,10 +64,10 @@ function showAllkg(){
 			{field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 			{field:'lxbm',title:'路线编码',width:100,align:'center'},
 			{field:'lxmc',title:'路线名称',width:100,align:'center'},
-			{field:'qdzh',title:'起点桩号',width:100,align:'center'},
-			{field:'zdzh',title:'止点桩号',width:100,align:'center'},
-			{field:'qzlc',title:'起止里程',width:100,align:'center'},
-			{field:'yhlc',title:'隐患里程',width:100,align:'center'},
+			{field:'scqdzh',title:'起点桩号',width:100,align:'center'},
+			{field:'sczdzh',title:'止点桩号',width:100,align:'center'},
+			{field:'sczlc',title:'起止里程',width:100,align:'center'},
+			{field:'scyhlc',title:'隐患里程',width:100,align:'center'},
 	        {field:'xdsj',title:'计划下达时间',width:100,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -85,17 +82,14 @@ function exportExcel_abkg(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').val();
 	window.location.href="/jxzhpt/dbbb/exportExcel_abkg.do?"+param;

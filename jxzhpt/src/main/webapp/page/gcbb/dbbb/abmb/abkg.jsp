@@ -102,27 +102,6 @@ table thead tr td {
                 <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<p align="center" style="font-size:x-large;font-weight: bolder;">安保进度库开工信息模板</p><br/>
 							<table id="datagrid"  width="100%" >
-								<!-- <thead>
-									<tr>
-										<td>管养单位</td>
-										<td>行政区划代码</td>
-										<td>行政区划名称 </td>
-										<td>路线编码</td>
-										<td>路线名称</td>
-										<td>桥梁编码</td>
-										<td>桥梁名称</td>
-										<td>桥梁中心桩号</td>
-										<td>计划下达时间</td>
-										<td>计划开工时间</td>
-										<td>计划完成时间</td>
-										<td>实际开工时间</td>
-										<td>施工单位</td>
-										<td>监理单位</td>
-										<td>合同金额</td>
-								</thead>
-								<tbody>
-								
-								</tbody> -->
 							</table>
 				</td>    
 				</tr>

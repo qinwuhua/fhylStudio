@@ -1,4 +1,4 @@
-
+var gydw;
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
@@ -10,20 +10,17 @@ function showAlljc(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -53,17 +50,14 @@ function exportExcel_abjc(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_abjc.do?"+param;
@@ -76,20 +70,17 @@ function showAllsc(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -105,10 +96,10 @@ function showAllsc(){
 	  	        {field:'xzqhmc',title:'行政区划名称',width:110,align:'center'},
 	  	        {field:'lxbm',title:'路线编码',width:110,align:'center'},
 	  	        {field:'lxmc',title:'路线名称',width:110,align:'center'},
-	  	        {field:'qdzh',title:'起点桩号',width:110,align:'center'},
-	  	        {field:'zdzh',title:'止点桩号',width:110,align:'center'},
-	  	        {field:'qzlc',title:'总里程',width:110,align:'center'},
-	  	        {field:'yhlc',title:'隐患里程',width:110,align:'center'},
+	  	        {field:'scqdzh',title:'起点桩号',width:110,align:'center'},
+	  	        {field:'sczdzh',title:'止点桩号',width:110,align:'center'},
+	  	        {field:'sczlc',title:'总里程',width:110,align:'center'},
+	  	        {field:'scyhlc',title:'隐患里程',width:110,align:'center'},
 	  	        {field:'gjxjnd',title:'修建/改建年度',width:110,align:'center'},
 	  	        {field:'fapgdw',title:'方案评估单位',width:100,align:'center'},
 		        {field:'fascdw',title:'方案审查单位',width:100,align:'center'},
@@ -125,17 +116,14 @@ function exportExcel_absc(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_absc.do?"+param;
@@ -149,20 +137,17 @@ function showAlljh(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -178,10 +163,10 @@ function showAlljh(){
 			{field:'xzqhmc',title:'行政区划名称',width:110,align:'center'},
 			{field:'lxbm',title:'路线编码',width:110,align:'center'},
 			{field:'lxmc',title:'路线名称',width:110,align:'center'},
-			{field:'qdzh',title:'起点桩号',width:110,align:'center'},
-			{field:'zdzh',title:'止点桩号',width:110,align:'center'},
-			{field:'qzlc',title:'总里程',width:110,align:'center'},
-			{field:'yhlc',title:'隐患里程',width:110,align:'center'},
+			{field:'scqdzh',title:'起点桩号',width:110,align:'center'},
+			{field:'sczdzh',title:'止点桩号',width:110,align:'center'},
+			{field:'sczlc',title:'总里程',width:110,align:'center'},
+			{field:'scyhlc',title:'隐患里程',width:110,align:'center'},
 			{field:'gjxjnd',title:'改建/修建年度',width:110,align:'center'},
 	        {field:'sjdw',title:'设计单位',width:100,align:'center'},
 	        {field:'sjpfdw',title:'设计批复单位',width:100,align:'center'},
@@ -199,17 +184,14 @@ function exportExcel_abjh(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_abjh.do?"+param;
