@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -183,7 +186,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	//安保
 	public void selectAbjc(){
 		List<Jckabgc> selectAbjc = dbServer.selectAbjc(jckwqgz);
-		int count = dbServer.selectWqjcCount(jckwqgz);
+		int count = dbServer.selectAbjcCount(jckwqgz);
 		EasyUIPage<Jckabgc> eui =new EasyUIPage<Jckabgc>();
 		eui.setRows(selectAbjc);
 		eui.setTotal(count);
@@ -225,7 +228,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	public void selectAbsc(){
 		List<Sckabgc> selectAbsc = dbServer.selectAbsc(jckwqgz);
-		int count = dbServer.selectWqjcCount(jckwqgz);
+		int count = dbServer.selectAbscCount(jckwqgz);
 		EasyUIPage<Sckabgc> eui =new EasyUIPage<Sckabgc>();
 		eui.setRows(selectAbsc);
 		eui.setTotal(count);
@@ -268,7 +271,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	public void selectAbjh(){
 		List<Plan_abgc> selectAbjh = dbServer.selectAbjh(jckwqgz);
-		int count = dbServer.selectWqjcCount(jckwqgz);
+		int count = dbServer.selectAbjhCount(jckwqgz);
 		EasyUIPage<Plan_abgc> eui =new EasyUIPage<Plan_abgc>();
 		eui.setRows(selectAbjh);
 		eui.setTotal(count);
@@ -313,7 +316,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	//灾害
 		public void selectZhjc(){
 			List<Jckzhfz> selectZhjc = dbServer.selectZhjc(jckwqgz);
-			int count = dbServer.selectWqjcCount(jckwqgz);
+			int count = dbServer.selectZhjcCount(jckwqgz);
 			EasyUIPage<Jckzhfz> eui =new EasyUIPage<Jckzhfz>();
 			eui.setRows(selectZhjc);
 			eui.setTotal(count);
@@ -355,7 +358,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 		public void selectZhsc(){
 			List<Sckzhfz> selectZhsc = dbServer.selectZhsc(jckwqgz);
-			int count = dbServer.selectWqjcCount(jckwqgz);
+			int count = dbServer.selectZhscCount(jckwqgz);
 			EasyUIPage<Sckzhfz> eui =new EasyUIPage<Sckzhfz>();
 			eui.setRows(selectZhsc);
 			eui.setTotal(count);
@@ -398,7 +401,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 		public void selectZhjh(){
 			List<Plan_zhfz> selectZhjh = dbServer.selectZhjh(jckwqgz);
-			int count = dbServer.selectWqjcCount(jckwqgz);
+			int count = dbServer.selectZhjhCount(jckwqgz);
 			EasyUIPage<Plan_zhfz> eui =new EasyUIPage<Plan_zhfz>();
 			eui.setRows(selectZhjh);
 			eui.setTotal(count);
@@ -518,6 +521,177 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				String tableName="安保进度库开工信息报表";//excel 文件的名字
 				//导出excel
 				ExportExcel_new <Plan_abgc> ee = new ExportExcel_new<Plan_abgc>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectZhkg(){
+			List<Plan_zhfz> selectZhkg = dbServer.selectZhkg(jckwqgz);
+			int count = dbServer.selectZhkgCount(jckwqgz);
+			EasyUIPage<Plan_zhfz> eui =new EasyUIPage<Plan_zhfz>();
+			eui.setRows(selectZhkg);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_zhkg(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_zhkg(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>管养单位</td><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>起止里程</td><td>隐患里程</td>+" +
+						"<td>计划下达时间</td><td>计划开工时间 </td><td>计划完工时间</td><td>实际开工时间</td>" +
+						"<td>施工单位</td><td>监理单位</td><td>合同金额</td></tr>";
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("灾害进度库开工信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("灾害进度库开工信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)15);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="灾害进度库开工信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Plan_zhfz> ee = new ExportExcel_new<Plan_zhfz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		public void selectWqjz(){
+			List<Gcglwqgz> selectWqjd = dbServer.selectWqjz(jckwqgz);
+			int count = dbServer.selectWqjzCount(jckwqgz);
+			EasyUIPage<Gcglwqgz> eui =new EasyUIPage<Gcglwqgz>();
+			eui.setRows(selectWqjd);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_wqjz(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_wqjz(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>桥梁编码</td><td>桥梁名称</td><td>上报时间</td><td>预计竣工时间</td>+" +
+						"<td>完成中央投资(万元)</td><td>完成地方自筹(万元)</td><td>工程竣工时间</td><td>备注</td>" ;
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("危桥进度库进展信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("危桥进度库进展信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)12);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="危桥进度库进展信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Gcglwqgz> ee = new ExportExcel_new<Gcglwqgz>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		
+		public void selectAbjz(){
+			List<Gcglabgc> selectWqjd = dbServer.selectAbjz(jckwqgz);
+			int count = dbServer.selectAbjzCount(jckwqgz);
+			EasyUIPage<Gcglabgc> eui =new EasyUIPage<Gcglabgc>();
+			eui.setRows(selectWqjd);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_abjz(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_abjz(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>上报时间</td><td>预计竣工时间</td>+" +
+						"<td>完成中央投资(万元)</td><td>完成地方自筹(万元)</td><td>工程竣工时间</td><td>备注</td>" ;
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("安保进度库进展信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("安保进度库进展信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)12);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="安保进度库进展信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Gcglabgc> ee = new ExportExcel_new<Gcglabgc>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		
+		public void selectZhjz(){
+			List<Gcglzhfz> selectWqjd = dbServer.selectZhjz(jckwqgz);
+			int count = dbServer.selectZhjzCount(jckwqgz);
+			EasyUIPage<Gcglzhfz> eui =new EasyUIPage<Gcglzhfz>();
+			eui.setRows(selectWqjd);
+			eui.setTotal(count);
+			try {
+				JsonUtils.write(eui, getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		public void exportExcel_zhjz(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.exportExcel_zhjz(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td>行政区划代码</td><td>行政区划名称</td><td>路线编码</td>" +
+						"<td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>上报时间</td><td>预计竣工时间</td>+" +
+						"<td>完成中央投资(万元)</td><td>完成地方自筹(万元)</td><td>工程竣工时间</td><td>备注</td>" ;
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("灾害进度库进展信息报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("灾害进度库进展信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)12);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="灾害进度库进展信息报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <Gcglzhfz> ee = new ExportExcel_new<Gcglzhfz>();
 				ee.initStyle(ee.workbook, stylefileName);
 				HttpServletResponse response= getresponse();
 				ee.makeExcel(tableName, sheetBeans, response);

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -186,6 +189,66 @@ public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 	@Override
 	public List<SjbbMessage> exportExcel_abkg(Jckwqgz wqgz) {
 		return queryList("exportExcel_abkg",wqgz);
+	}
+
+	@Override
+	public List<Plan_zhfz> selectZhkg(Jckwqgz wqgz) {
+		return queryList("selectZhkg",wqgz);
+	}
+
+	@Override
+	public int selectZhkgCount(Jckwqgz wqgz) {
+		return queryOne("selectZhkgCount",wqgz);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_zhkg(Jckwqgz wqgz) {
+		return queryList("exportExcel_zhkg",wqgz);
+	}
+
+	@Override
+	public List<Gcglwqgz> selectWqjz(Jckwqgz wqgz) {
+		return queryList("selectWqjz",wqgz);
+	}
+
+	@Override
+	public int selectWqjzCount(Jckwqgz wqgz) {
+		return queryOne("selectWqjzCount",wqgz);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_wqjz(Jckwqgz wqgz) {
+		return queryList("exportExcel_wqjz",wqgz);
+	}
+
+	@Override
+	public List<Gcglabgc> selectAbjz(Jckwqgz wqgz) {
+		return queryList("selectAbjz",wqgz);
+	}
+
+	@Override
+	public int selectAbjzCount(Jckwqgz wqgz) {
+		return queryOne("selectAbjzCount",wqgz);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_abjz(Jckwqgz wqgz) {
+		return queryList("exportExcel_abjz",wqgz);
+	}
+
+	@Override
+	public List<Gcglzhfz> selectZhjz(Jckwqgz wqgz) {
+		return queryList("selectZhjz",wqgz);
+	}
+
+	@Override
+	public int selectZhjzCount(Jckwqgz wqgz) {
+		return queryOne("selectZhjzCount",wqgz);
+	}
+
+	@Override
+	public List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz) {
+		return queryList("exportExcel_zhjz",wqgz);
 	}
 
 }

@@ -2,6 +2,9 @@ package com.hdsx.jxzhpt.gcbb.server;
 
 import java.util.List;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -52,4 +55,20 @@ public interface DbbbServer {
 	List<Plan_abgc> selectAbkg(Jckwqgz wqgz);
 	int selectAbkgCount(Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_abkg(Jckwqgz wqgz);
+	//灾害开工
+	List<Plan_zhfz> selectZhkg(Jckwqgz wqgz);
+	int selectZhkgCount(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_zhkg(Jckwqgz wqgz);
+	//危桥进展
+	List<Gcglwqgz> selectWqjz(Jckwqgz wqgz);
+	int selectWqjzCount(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_wqjz(Jckwqgz wqgz);
+	//安保进展
+	List<Gcglabgc> selectAbjz(Jckwqgz wqgz);
+	int selectAbjzCount(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_abjz(Jckwqgz wqgz);
+	//灾害进展
+	List<Gcglzhfz> selectZhjz(Jckwqgz wqgz);
+	int selectZhjzCount(Jckwqgz wqgz);
+	List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz);
 }
