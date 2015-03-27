@@ -39,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
@@ -83,7 +84,16 @@ public class GcybbController extends BaseActionSupport{
 	private Gcglwqgz gcglwqgz=new Gcglwqgz();
 	private Gcglabgc gcglabgc=new Gcglabgc();
 	private Gcglzhfz gcglzhfz=new Gcglzhfz();
+	private Gcglsh gcglsh=new Gcglsh();
 	
+	public Gcglsh getGcglsh() {
+		return gcglsh;
+	}
+
+	public void setGcglsh(Gcglsh gcglsh) {
+		this.gcglsh = gcglsh;
+	}
+
 	public Gcglzhfz getGcglzhfz() {
 		return gcglzhfz;
 	}
@@ -743,5 +753,25 @@ public class GcybbController extends BaseActionSupport{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}//将类和参数HttpServletResponse传入即可实现导出excel
+	}
+	
+	/**
+	 * 水毁
+	 */
+	public void getShybb(){
+		List<Excel_list> exl = new ArrayList<Excel_list>();
+		List<Excel_list> exl1 = new ArrayList<Excel_list>();
+		String shijian=nf+"-"+yf;
+		gcglsh.setSbyf(shijian);
+		if("36".equals(gydw)){
+			gcglsh.setGydw("");
+		}
+		else gcglsh.setGydw(gydw.replaceAll("0*$",""));
+		gcglsh.setLxmc(lxmc);
+		gcglsh.setTiaojian(xzdj);
+		gcglsh.setXzqhdm(xzqh.replaceAll("0*$",""));
+		//List<Map<String, Object>> lsit=gcybbServer.getShybb(gcglsh);
+		
+		
 	}
 }

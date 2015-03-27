@@ -11,5 +11,8 @@
 	
 	<action name="getZhfzybb" class="gcybbController" method="getZhfzybb"/>
 	<action name="exportZhfzyb" class="gcybbController" method="exportZhfzyb"/>
+	
+	<action name="getShybb" class="gcybbController" method="getShybb"/>
+	<action name="exportShyb" class="gcybbController" method="exportShyb"/>
  </package>
 </struts>

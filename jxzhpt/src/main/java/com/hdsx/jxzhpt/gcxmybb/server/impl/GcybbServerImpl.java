@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
@@ -138,6 +139,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 	public List<Excel_list> getzhfzlist2(Gcglzhfz gcglzhfz) {
 		// TODO Auto-generated method stub
 		return queryList("getzhfzlist2", gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getShybb(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("getShybb", gcglsh);
 	}
 	
 	
