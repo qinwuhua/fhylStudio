@@ -28,19 +28,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 
 	@Override
 	public List<Jckabgc> selectAbgcList(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("page", abgc.getPage());
-		hm.put("rows", abgc.getRows());
-		return queryList("selectJckabgc",hm);
+		return queryList("selectJckabgc",abgc);
 	}
 
 	@Override
@@ -111,49 +99,17 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 
 	@Override
 	public int selectAbgcCount(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		return queryOne("selectAbgcCount", hm);
+		return queryOne("selectAbgcCount", abgc);
 	}
 
 	@Override
 	public List<Jckabgc> selectJckShabgc(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("page", abgc.getPage());
-		hm.put("rows", abgc.getRows());
-		return queryList("selectJckShabgc",hm);
+		return queryList("selectJckShabgc",abgc);
 	}
 
 	@Override
 	public int selectAbgcShCount(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		return queryOne("selectAbgcShCount",hm);
+		return queryOne("selectAbgcShCount",abgc);
 	}
 
 	@Override
