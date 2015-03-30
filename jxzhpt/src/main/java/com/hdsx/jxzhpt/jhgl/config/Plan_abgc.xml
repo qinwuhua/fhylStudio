@@ -48,7 +48,10 @@
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
-				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
@@ -89,7 +92,10 @@
 		<if test="jh.jhnf!=null and jh.jhnf!=''">
 			and jh.jhnf=#{jh.jhnf}
 		</if>
-		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=1">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+		<if test="(jh.sbzt==null and jh.spzt==null) or (jh.sbzt=='' and jh.spzt=='') and jh.jh_sbthcd!=1">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
 		<if test="jh.sbzt!=null and jh.sbzt!=''">
@@ -105,7 +111,10 @@
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
-				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				    <if test="(jh.jh_sbthcd!=null and jh.jh_sbthcd!='') and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
@@ -277,8 +286,11 @@
 			<if test="x.gydwbm!=null and x.gydwbm!=''">
 				and x.gydwbm like #{x.gydwbm}
 			</if>
-			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='')">
-				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
+			<if test="(p.jh_sbthcd!=null and p.jh_sbthcd!='') and (p.sbzt==null or p.sbzt=='') and (p.spzt==null or p.spzt=='')">
+				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			</if>
+		    <if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='') and p.jh_sbthcd!=null and p.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="p.sbzt!=null and p.sbzt!=''">
 				and p.sbzt=#{p.sbzt}

@@ -26,7 +26,6 @@
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
 			var jh={jhnf:null,sbzt:null,spzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
-			queryGcsjSum(jh,lx);
 			sbnf("sbnf");
 			gclmsjxm(jh,lx);
 			queryGcsjSum(jh,lx);
@@ -38,7 +37,7 @@
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
-				jh.sbnf=$("#sbnf").combo("getValue");
+				jh.jhnf=$("#sbnf").combo("getValue");
 			}
 			if($('#txtlxmc').val()!=""){
 				lx.lxmc=$('#txtlxmc').val();
@@ -61,37 +60,23 @@
 				}
 				if($('#jhzt').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
-				}
-				if($('#jhzt').combo("getValue")=="已上报"){
+				}else if($('#jhzt').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
-				}
-				if($('#jhzt').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				}else if($('#jhzt').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
-				}
-				if($('#jhzt').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				}else if($('#jhzt').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
 			}
+			queryGcsjSum(jh,lx);
 			gclmsjxm(jh,lx);
 		}
 		$(window).resize(function () { 

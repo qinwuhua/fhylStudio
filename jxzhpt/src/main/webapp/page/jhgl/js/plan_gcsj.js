@@ -65,12 +65,15 @@ function gclmsjxm(jh,lx){
 					result="未上报";
 				}
 				else if(row.sbzt=="0" && row.jh_sbthcd==2){
-					result="已上报";
-				}
-				else if(row.sbzt=="1" && row.spzt=="0"){
+					if(roleName()=="县级"){
+						result="已上报";
+					}else{
+						result="未上报";
+					}
+				}else if(row.sbzt=="1" && row.spzt=="0" && row.jh_sbthcd==4){
 					result="未审批";
 				}
-				else if(row.sbzt=="1" && row.spzt=="1"){
+				else if(row.sbzt=="1" && row.spzt=="1" && row.jh_sbthcd==6){
 					result="已审批";
 				}
 				return result;

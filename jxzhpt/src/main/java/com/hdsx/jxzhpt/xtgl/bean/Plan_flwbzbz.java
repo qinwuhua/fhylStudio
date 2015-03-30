@@ -7,6 +7,7 @@ public class Plan_flwbzbz {
 	private String tsdq;
 	private String bzzj;
 	private String jsdj;
+	private String fdbz;
 	public String getJsdj() {
 		return jsdj;
 	}
@@ -42,5 +43,11 @@ public class Plan_flwbzbz {
 	}
 	public void setBzzj(String bzzj) {
 		this.bzzj = bzzj;
+	}
+	public String getFdbz() {
+		return fdbz;
+	}
+	public void setFdbz(String fdbz) {
+		this.fdbz = fdbz;
 	}
 }

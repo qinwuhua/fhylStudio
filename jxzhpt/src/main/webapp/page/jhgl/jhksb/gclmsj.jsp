@@ -28,16 +28,24 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:$('#sbnf').combobox("getValue"),spzt:'0',sbzt:null,jh_sbthcd:0},
+			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0},
 			lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
+			}
+			if(getParam("t")=='1'){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+				jh.spzt=null;
 			}
 			queryGcsjSum(jh,lx);
 			gclmsjxm_sb(jh,lx);
 		});
 		function searchGcsj(){
-			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0};
+			var jh={jhnf:null,spzt:null,sbzt:null,jh_sbthcd:0};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -46,7 +54,7 @@
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
-				jh.sbnf=$("#sbnf").combo("getValue");
+				jh.jhnf=$("#sbnf").combo("getValue");
 			}
 			if($('#txtlxmc').val()!=""){
 				lx.lxmc=$('#txtlxmc').val();
@@ -59,6 +67,26 @@
 			}
 			if($("#ddlTSDQ").combo("getValue")!=""){
 				lx.tsdqbm=$("#ddlTSDQ").combo("getValue");
+			}
+			if($('#ddlSHZT').combo("getValue")=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#ddlSHZT').combo("getValue")=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
 			}
 			gclmsjxm_sb(jh,lx);
 		}

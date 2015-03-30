@@ -250,7 +250,7 @@
 		update lwbzbz set bz=#{bz},bl=#{bl},fd=#{fd} where id=#{id}
 	</update>
 	<select id="queryFlwbzbz" resultType="flwbzbz">
-		select * from plan_flwbzbz
+		select * from plan_flwbzbz order by xmlx,gldj,jsdj,bzzj
 	</select>
 	<insert id="addFlwbzbz" parameterType="flwbzbz">
 		insert into plan_flwbzbz (xmlx,gldj,tsdq ,bzzj,jsdj) 
@@ -299,5 +299,11 @@
 	<update id="updateYhdzxcs" parameterType="yhdzxcs">
 		update xtgl_yhdzxcs set cslx=#{cslx},clmc=#{clmc},lfmdj=#{lfmdj},sddj=#{sddj}
 		where id=#{id}
+	</update>
+	<select id="queryFlwxmFdfw" resultType="flwbzbz">
+		select distinct f.xmlx,f.fdbz from plan_flwbzbz f order by f.xmlx
+	</select>
+	<update id="updateFdbzByXmlx" parameterType="flwbzbz">
+		update plan_flwbzbz f set f.fdbz=#{fdbz} where f.xmlx=#{xmlx}
 	</update>
 </mapper>

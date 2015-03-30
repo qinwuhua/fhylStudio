@@ -520,4 +520,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs) {
 		return queryList("queryYhdzxcsByLx",yhdzxcs);
 	}
+
+	@Override
+	public List<Plan_flwbzbz> queryFlwxmFdfw() {
+		return queryList("queryFlwxmFdfw");
+	}
+
+	@Override
+	public boolean updateFdbzByXmlx(Plan_flwbzbz flwbzbz) {
+		return update("updateFdbzByXmlx", flwbzbz)>0;
+	}
 }

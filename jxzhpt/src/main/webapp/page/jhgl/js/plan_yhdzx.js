@@ -18,10 +18,9 @@ function querySumYhdzx(jh,lx){
 			}else{
 				$('#lblCount').html("0");
 				$('#lblZLC').html("0");
-				$('#lblXMLC').html("0");
+				$('#lblHDLC').html("0");
 				$('#lblZTZ').html("0");
-				$('#lblBTZ').html("0");
-				$('#lblDFTZ').html("0");
+				$('#lblZBZZJ').html("0");
 			}
 			
 		}

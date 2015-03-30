@@ -25,7 +25,6 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			alert($('#gydw').combobox('getValue'));
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
 			querySumWqgz(jh,lx);
@@ -61,34 +60,22 @@
 				}
 				if($('#ddlSHZT').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
 				}
 				if($('#ddlSHZT').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
 				}
-				if($('#ddlSHZT').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				if($('#ddlSHZT').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
 				}
-				if($('#ddlSHZT').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				if($('#ddlSHZT').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
 			}

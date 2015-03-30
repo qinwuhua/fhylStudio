@@ -36,7 +36,7 @@
 			gclmsjxm_zjxd(jh,lx);
 		});
 		function searchGcsj(){
-			var jh={jhnf:null,sbzt:"1",spzt:"1",jh_sbthcd:6};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:6};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,
 					xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);

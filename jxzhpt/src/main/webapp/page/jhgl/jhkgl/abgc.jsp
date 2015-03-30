@@ -32,14 +32,14 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
-			var jh={jhnf:null,sbzt:null,spzt:null};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			querySumAbgc(jh,lx);
 			sbnf("sbnf");
 			abgcxm(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:null,sbzt:null,spzt:null};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -55,10 +55,6 @@
 			if($('#sbnf').combobox('getText')!=""){
 				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
-			}
-			
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
 				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
 				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
@@ -68,36 +64,28 @@
 				}
 				if($('#ddlSHZT').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
 				}
 				if($('#ddlSHZT').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
 				}
-				if($('#ddlSHZT').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				if($('#ddlSHZT').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
 				}
-				if($('#ddlSHZT').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				if($('#ddlSHZT').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
+			}else{
+				jh.jh_sbthcd=null;
+				jh.sbzt=null;
+				jh.spzt=null;
 			}
 			
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
@@ -140,11 +128,6 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span style="vertical-align:middle;">&nbsp;项目状态：</span>
         						<select name="ddlXMtype" id="ddlXMtype" style="width:104px;vertical-align:middle;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="待上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="已入库">已入库</option>
-									<option value="已下达">已下达</option>
 								</select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />

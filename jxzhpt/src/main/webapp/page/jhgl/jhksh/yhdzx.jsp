@@ -24,9 +24,13 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf('sbnf');
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
+				if(getParam("t")=='1'){
+					jh.jh_sbthcd=4;
+					jh.sbzt=null;
+				}
 				querySumYhdzx(jh,lx);
 				yhdzxxm_sp(jh,lx);
 			}else{
@@ -34,7 +38,7 @@
 			}
 		});
 		function searchYhdzx(){
-			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -50,6 +54,14 @@
 			}
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			}
+			if($('#jhzt').combobox('getValue')=='未审核'){
+				jh.jh_sbthcd=4;
+			}else if($('#jhzt').combobox('getValue')=='已审核'){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.jh_sbthcd=4;
+				jh.sbzt='1';
 			}
 			querySumYhdzx(jh,lx);
 			yhdzxxm_sp(jh,lx);
@@ -104,8 +116,6 @@
         						<span>&nbsp;计划状态：</span>
         						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
 									<option value="全部">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
 								</select>

@@ -23,14 +23,14 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
 			sbnf('sbnf');
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		});
 		function searchYhdzx(){
-			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -47,46 +47,30 @@
 			if($('#tsdq').combobox('getValue')!=''){
 				lx.tsdq=$('#tsdq').combobox('getValue');
 			}
-			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!="全部"){
-				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-				var xian=true;
-				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
-					xian=false;
+			var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
+			var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+			var xian=true;
+			if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
+				xian=false;
+			}
+			if($('#jhzt').combo("getValue")=="未上报"){
+				if(xian){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
 				}
-				if($('#jhzt').combo("getValue")=="未上报"){
-					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
-						jh.jh_sbthcd=0;
-					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
-						jh.jh_sbthcd=2;
-					}
-				}
-				if($('#jhzt').combo("getValue")=="已上报"){
-					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
-						jh.jh_sbthcd=2;
-					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
-						jh.jh_sbthcd=4;
-					}
-				}
-				if($('#jhzt').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+			}else if($('#jhzt').combo("getValue")=="已上报"){
+				if(xian){
+					jh.jh_sbthcd=2;
+				}else{
 					jh.jh_sbthcd=4;
 				}
-				if($('#jhzt').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
-					jh.jh_sbthcd=6;
-				}
+			}else if($('#jhzt').combo("getValue")=="未审核"){
+					jh.jh_sbthcd=4;
+			}else if($('#jhzt').combo("getValue")=="已审核"){
+				jh.jh_sbthcd=6;
 			}
+			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		}
 		$(window).resize(function () { 

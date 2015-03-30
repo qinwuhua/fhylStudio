@@ -60,7 +60,7 @@
                 	起止里程
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-                    <span id="zdlc"></span>（公里）
+                    <span id="qzlc"></span>（公里）
                 </td>
             </tr>
 			<tr style="height: 30px;">
@@ -418,12 +418,12 @@
 				$('#qdzh').html(data.plan_lx_gcsjs[0].qdzh);
 				$('#zdzh').html(data.plan_lx_gcsjs[0].zdzh);
 				$('#qzlc').html(data.plan_lx_gcsjs[0].qzlc);
+				$('#xmlc').html(data.plan_lx_gcsjs[0].xmlc);
 				$('#gydwxx').html(data.plan_lx_gcsjs[0].gydw);
 				$('#xzqhdm').html(data.plan_lx_gcsjs[0].xzqhdm);
 				$('#xzqhmc').html(data.plan_lx_gcsjs[0].xzqhmc);
 				$('#yjsdjxx').html(data.plan_lx_gcsjs[0].yjsdj);
 				$('#ylmlx').html(data.plan_lx_gcsjs[0].ylmlx);
-				$('#yhlc').html(data.plan_lx_gcsjs[0].yhlc);
 				$('#bhnr').html(data.plan_lx_gcsjs[0].bhnr);
 				$('#fapgdw').html(data.fapgdw);
 				$('#fascdw').html(data.fascdw);
@@ -439,7 +439,6 @@
 				$('#xmmc').html(data.xmmc);
 				$('#yhlb').html(data.yhlb);
 				$('#sjdw').html(data.sjdw);
-				$('#xmmc').html(data.xmmc);
 				$('#yhlb').html(data.yhlb);
 				$('#sjdw').html(data.sjdw);
 				$('#sjpfdw').html(data.sjpfdw);

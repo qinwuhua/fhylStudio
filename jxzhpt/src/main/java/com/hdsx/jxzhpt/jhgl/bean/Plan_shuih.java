@@ -70,7 +70,7 @@ public class Plan_shuih {
 	private String jhbz;//备注
 	private String scBz;//审查备注
 	private String wjgyy;//未竣工原因
-	private String jh_sbthcd;
+	private String jh_sbthcd;//为上报长度标示
 	private String sbbmdm;
 	private String spbmdm;
 	private String sfylsjl;//最近年份是否有历史记录

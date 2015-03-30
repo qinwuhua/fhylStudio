@@ -28,16 +28,24 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
+			}
+			if(getParam("t")=='1'){
+				jh.spzt=null;
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
 			}
 			querySumShuih(jh,lx);
 			shxm_sb(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:1};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -53,9 +61,6 @@
 			if($('#sbnf').combobox('getText')!=""){
 				jh.sbnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.spzt=$('#ddlSHZT').combobox('getValue');
-			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
@@ -64,6 +69,26 @@
 			}
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combobox('getValue');
+			}
+			if($('#ddlSHZT').combo("getValue")=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#ddlSHZT').combo("getValue")=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
 			}
 			querySumShuih(jh,lx);
 			shxm_sb(jh,lx);
@@ -150,8 +175,8 @@
         						<span>&nbsp;上报状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未上报</option>
-									<option value="1">已上报</option>
+									<option value="未上报">未上报</option>
+									<option value="已上报">已上报</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">

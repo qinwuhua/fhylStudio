@@ -26,13 +26,15 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			gydwComboxTree("add_gydwxx");
+			loadBmbm('yjsdj','技术等级');
+			loadBmbm('add_yjsdjxx','技术等级');
 			xzqhComboxTree("xzqh");
 			xzqhComboxTree("add_xzqh");
 			tsdq('tsdq');
+			sbnf("sbnf");
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			querySumGcgj(jh,lx);
-			sbnf("sbnf");
 			gclmgjxm(jh,lx);
 		});
 		function searchGcgj(){
@@ -66,37 +68,23 @@
 				}
 				if($('#jhzt').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
-				}
-				if($('#jhzt').combo("getValue")=="已上报"){
+				}else if($('#jhzt').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
-				}
-				if($('#jhzt').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				}else if($('#jhzt').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
-				}
-				if($('#jhzt').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				}else if($('#jhzt').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
 			}
+			querySumGcgj(jh,lx);
 			gclmgjxm(jh,lx);
 		}
 		$(window).resize(function () { 
@@ -104,22 +92,26 @@
 		});
 		function addlx(){
 			var row=gridObj.datagrid('getSelected');
-			alert(row.id);
 			var lx={'lx.lxmc':$('#add_lxmc').val(),'lx.lxbm':$('#add_lxbm').val(),
 					'lx.xzqhdm':$('#add_xzqh').combo("getValue"),'lx.xzqhmc':$('#add_xzqh').combo("getText"),
 					'lx.jsdd':$('#add_jsdd').val(),'lx.gydw':$('#add_gydwxx').combo("getText"),
 					'lx.gydwdm':$('#add_gydwxx').combo("getValue"),'lx.bhnr':$('#add_bhnr').val(),
 					'lx.qdzh':$('#add_qdzh').val(),'lx.zdzh':$('#add_zdzh').val(),
 					'lx.qzlc':$('#add_qzlc').val(),'lx.yhlc':$('#add_yhlc').val(),
-					'lx.ylmlx':$('#add_ylmlx').val(),'lx.yjsdj':$('#add_yjsdjxx').val(),
-					'lx.jhid':row.id,'lx.tbbmbh':$.cookie("unit")};
+					'lx.ylmlx':$('#add_ylmlx').val(),'lx.yjsdj':$('#add_yjsdjxx').combo('getValue'),
+					'lx.jhid':row.id,'lx.tbbmbh':$.cookie("unit"),'jh.sbnf':row.sbnf};
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/insertGcgjLx.do',
 				data:lx,
 				dataType:'json',
 				success:function(data){
-					
+					if(data.result=="true"){
+						alert("路线添加成功！");
+						location.replace(location.href);
+					}else{
+						alert(data.msg);
+					}
 				}
 			});
 		}
@@ -173,12 +165,6 @@
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;">
-									<option selected="selected" value="">全部</option>
-									<option value="一级公路">一级公路</option>
-									<option value="二级公路">二级公路</option>
-									<option value="三级公路">三级公路</option>
-									<option value="四级公路">四级公路</option>
-									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="gldj" id="gldj" class="easyui-combobox" style="width:104px;">

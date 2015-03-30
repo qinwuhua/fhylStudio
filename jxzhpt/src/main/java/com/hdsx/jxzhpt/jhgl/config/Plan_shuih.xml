@@ -61,7 +61,10 @@
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 				where 1=1
-				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 				</if>
 				<if test="jh.sbnf!=null and jh.sbnf!=''">
@@ -91,14 +94,17 @@
 				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
 					and l.xzqhdm in (select B.XZQHDM from BT_XZQHTSDQ b WHERE B.AREACODE=#{l.tsdqbm})
 				</if>
-				order by jh.sbnf desc,jh.sbzt asc,jh.spzt asc,jh.jh_sbthcd asc
+				order by jh.jh_sbthcd,jh.sbnf desc
 				) t
 			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryShuihCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from PLAN_shuih jh where 1=1
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+	 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
@@ -148,11 +154,14 @@
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 				and lx.gydwdm like #{lx.gydwdm}
 			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf=#{jh.sbnf}
+				and jh.sbnf =#{jh.sbnf}
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
@@ -227,11 +236,19 @@
 	<select id="queryGPSBylxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
 		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj from JXJCK_2013.GPSROAD t where 
-		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
+		t.roadcode=#{lxbm} and <![CDATA[t.roadstart<=#{qdzh}]]> and t.roadends>=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_shuih" resultType="int">
-		select count(jh.id) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<=#{zdzh}) and jh.sbnf<#{jhid}]]>
+		SELECT C1.CON1+C2.CON2 FROM
+		(select count(jh.id) CON1 from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
+		    where <![CDATA[lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]>
+		)C1,
+		<![CDATA[(select count(*) CON2 from
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_shuih lx, plan_shuih jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) C2]]>
+		<!-- select count(jh.id) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]> -->
 	</select>
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}
@@ -257,7 +274,8 @@
 	</select>
 	<select id="queryJhExist" parameterType="plan_lx_shuih" resultType="int">
 		select count(*) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
-		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
+		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh} 
+		and jh.sbnf=#{jhid}
 	</select>
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
 		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}

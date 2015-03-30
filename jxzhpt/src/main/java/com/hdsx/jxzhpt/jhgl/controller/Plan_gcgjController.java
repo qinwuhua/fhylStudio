@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -52,8 +53,26 @@ public class Plan_gcgjController extends BaseActionSupport{
 	public void insertGcgjLx(){
 		lx.setTbsj(new Date());
 		try {
+			String strResult="false";
 			Map<String, String> result=new HashMap<String, String>();
-			result.put("result", new Boolean(gcgjServer.insertPlan_lx_Gcgj(lx)).toString());
+			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
+			gcgj.setLxbm(lx.getLxbm());
+			gcgj.setQdzh(lx.getQdzh());
+			gcgj.setZdzh(lx.getZdzh());
+			//此处的Jhid存储的是 “上报年份”，因为路线表中无年份字段，为了省去计划对象的参数
+			gcgj.setJhid(jh.getSbnf());
+			gcgj.setGydwdm(lx.getGydwdm());
+			if(gcgjServer.queryJhExist(gcgj)==0){
+				if(gcgjServer.queryGPSBylxbm(gcgj)!=null){
+					strResult="true";
+					gcgjServer.insertPlan_lx_Gcgj(lx);
+				}else{
+					result.put("msg", "项目库中不包含此路线信息");
+				}
+			}else{
+				result.put("msg", "此计划中已经包含有此路线信息");
+			}
+			result.put("result", strResult);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -131,6 +150,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	 */
 	public void queryGcgjList(){
 		try {
+			System.out.println("状态："+jh.getJh_sbthcd()+"上报："+jh.getSbzt()+"审核："+jh.getSpzt());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
 			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
@@ -190,12 +210,44 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 	
+	public void verifyLx(){
+		Map<String, Object> result=new HashMap<String, Object>();
+		boolean boolResult=false;
+		try {
+			lx.setTsdqbm(gcgjServer.queryTsdqByXzqh(lx.getXzqhdm()));
+			Plan_flwbzbz flw=new Plan_flwbzbz();
+			flw.setXmlx("工程改造路面改建");//建设项目类型
+			System.out.println(lx.getLxbm()+"   "+lx.getYjsdj()+"    "+lx.getTsdqbm());
+			flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
+			flw.setJsdj(lx.getYjsdj());//技术等级
+			flw.setTsdq(lx.getTsdqbm());
+			Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
+			Integer bzzj=null;
+			if(flwResult==null){
+				flw.setXmlx(null);
+				flw.setGldj(null);
+				flw.setJsdj(null);
+				flw.setTsdq(null);
+				flwResult=gcgjServer.queryBzzj(flw);
+			}
+			bzzj = new Integer(flwResult.getBzzj());
+			//计算金额
+			Double yhlc=new Double(lx.getYhlc());
+			double je=new Double(yhlc.doubleValue()*bzzj.doubleValue()).doubleValue();
+			je=new Double(new DecimalFormat("#.000").format(je));
+			result.put("je", je);
+			result.put("fdbz", flwResult.getFdbz());
+			JsonUtils.write(result,getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void editGcgjStatus(){
 		try {
-			System.out.println("进入");
-			Map<String, String> result=new HashMap<String, String>();
-			result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
-			JsonUtils.write(result, getresponse().getWriter());
+				Map<String, String> result=new HashMap<String, String>();
+				result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
+				JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -204,7 +256,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	
 	public void importGcgj_jh(){
-		System.out.println(" 管养单位代码："+gydwdm);
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -226,6 +277,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 			String strVerify="";
 			boolean boolJh=false,boolLx=false;
 			System.out.println(data);
+			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
@@ -242,17 +294,27 @@ public class Plan_gcgjController extends BaseActionSupport{
 				gcgj.setLxbm(map.get("3").toString());//路线编码
 				gcgj.setQdzh(map.get("8").toString());//起点桩号
 				gcgj.setZdzh(map.get("9").toString());//止点桩号
-				gcgj.setQzlc(map.get("10").toString());//起止里程
+				gcgj.setQzlc(map.get("10").toString());//隐患里程
 				gcgj.setGydwdm(map.get("gydwdm").toString());//管养单位代码
-				gcgj.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				gcgj.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”，因为路线表中无年份字段，为了省去计划对象的参数
 				if(gcgjServer.queryJhExist(gcgj)==0){
 					strVerify+= ImportVerify.gcgjVerify(map);
 					Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
-					map.put("yjsdj",queryGPSBylxbm.getYjsdj());
-					gcgj.setYjsdj(queryGPSBylxbm.getYjsdj());//技术等级
 					if(queryGPSBylxbm==null){
 						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
+						map.put("yjsdj",queryGPSBylxbm.getYjsdj());
+						gcgj.setYjsdj(queryGPSBylxbm.getYjsdj());//技术等级
+						//验证是否与计划相符
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
+						}
+//						else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+//							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
+//						}
+						else{
+							map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
+						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						gcgj.setTsdqbm(gcgjServer.queryTsdqByXzqh(gcgj.getXzqhdm()));
 						//设置非路网项目的查询条件
@@ -262,34 +324,22 @@ public class Plan_gcgjController extends BaseActionSupport{
 						flw.setJsdj(gcgj.getYjsdj());//技术等级
 						flw.setTsdq(gcgj.getTsdqbm());
 						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
-						if(flwResult==null){
-							String gldj=null;
-							if(flw.getGldj().equals("X"))
-								gldj="县道";
-							if(flw.getGldj().equals("S"))
-								gldj="省道";
-							if(flw.getGldj().equals("G"))
-								gldj="国道";
-							strVerify+="请先添加【"+gldj+"】技术等级【"+flw.getJsdj()+"】"+
-									(flw.getTsdq()==null ? "" : "特殊地区为【"+flw.getTsdq()+"】")
-									+"【"+flw.getXmlx()+"】项目的补助标准;";
-						}else{
-							//验证金额
-							Integer bzzj=new Integer(flwResult.getBzzj());
-							Double yhlc=new Double(map.get("11").toString());
-							int je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).intValue();
-							Integer pfztz=new Integer(map.get("34").toString());
-							if(je!=pfztz.intValue()){
-								strVerify+="<br/>批复总投资与计算结果不符<br/>";
-							}
+						Integer bzzj=null;
+						if(flwResult==null && defaultFlwje==null){
+							flw.setXmlx(null);
+							flw.setGldj(null);
+							flw.setJsdj(null);
+							flw.setTsdq(null);
+							flwResult=gcgjServer.queryBzzj(flw);
 						}
-						//验证是否与计划相符
-						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
-						}else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
-							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
-						}else{
-							map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
+						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+						//验证金额
+						Double yhlc=new Double(map.get("11").toString());
+						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+						Integer pfztz=new Integer(map.get("34").toString());
+						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
 						}
 					}
 				}else{
