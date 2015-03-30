@@ -6,19 +6,35 @@ function jckxzqhtj(){
 		async:false,
 		dataType:'json',
 		success:function(data){
+			var jxwqlczj=0,jxwqxmzj=0,jxablczj=0,jxabxmzj=0,jxzhlczj=0,jxzhxmzj=0;
 			for(var i=0;i<data.abgc.length;i++){
 				var tr={xzqhdm:null,xzqhmc:null,wqlczj:null,wqxmzj:null,ablczj:null,
 						abxmzj:null,zhlczj:null,zhxmzj:null};
 				tr.xzqhdm=data.abgc[i].id;
 				tr.xzqhmc=data.abgc[i].name;
+				
 				tr.wqlczj=data.wqgz[i].parent;
+				jxwqlczj=Number(jxwqlczj)+Number(tr.wqlczj);
 				tr.wqxmzj=data.wqgz[i].text;
+				jxwqxmzj=Number(jxwqxmzj)+Number(tr.wqxmzj);
+				
 				tr.ablczj=data.abgc[i].parent;
+				jxablczj=Number(jxablczj)+Number(tr.ablczj);
 				tr.abxmzj=data.abgc[i].text;
+				jxabxmzj=Number(jxabxmzj)+Number(tr.abxmzj);
+				
 				tr.zhlczj=data.zhfz[i].parent;
+				jxzhlczj=Number(jxzhlczj)+Number(tr.zhlczj);
 				tr.zhxmzj=data.zhfz[i].text;
+				jxzhxmzj=Number(jxzhxmzj)+Number(tr.zhxmzj);
 				jsonDate.push(tr);
 			}
+			jsonDate[0].wqlczj=jxwqlczj;
+			jsonDate[0].wqxmzj=jxwqxmzj;
+			jsonDate[0].ablczj=jxablczj;
+			jsonDate[0].abxmzj=jxabxmzj;
+			jsonDate[0].zhlczj=jxzhlczj;
+			jsonDate[0].zhxmzj=jxzhxmzj;
 			var grid={id:'grid',data:jsonDate,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
 					pageNumber:1,pageSize:20,height:355,width:970,
 				    columns:[
@@ -192,7 +208,7 @@ function gckxzqhtj(data){
 }
 function gckxmlxtj(data){
 	var grid={id:'grid',data:data,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-			pageNumber:1,pageSize:20,height:255,width:970,
+			pageNumber:1,pageSize:20,height:255,width:$('#searchDiv').width(),
 		    columns:[
 			    [
 			     	{field:'xmlx',title:'项目类型',width:100,align:'center',rowspan:2},

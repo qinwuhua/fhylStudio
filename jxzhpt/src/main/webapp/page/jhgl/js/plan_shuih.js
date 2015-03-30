@@ -147,7 +147,7 @@ function shxm_sb(jh,lx){
 	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	}else{
 	        		result+="编辑";
 	        	}
@@ -227,7 +227,7 @@ function shxm_sh(jh,lx){
 	        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=="0")
-	        		result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	return result;

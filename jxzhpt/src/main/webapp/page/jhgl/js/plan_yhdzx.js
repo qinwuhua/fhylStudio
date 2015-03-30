@@ -266,9 +266,9 @@ function yhdzxxm_sp(jh,lx){
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	  result+='<a href="javascript:openDialog('+"'yhdzx_sh','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	  if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=='0')
-		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        		  result+='<a href="javascript:openDialog('+"'yhdzx_sh','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	  else
 		        		  result+='编辑';
 		        	  return result;

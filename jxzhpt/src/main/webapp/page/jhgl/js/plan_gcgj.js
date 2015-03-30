@@ -19,6 +19,13 @@ function querySumGcgj(jh,lx){
 				$('#lblZTZ').html(data.pfztz);
 				$('#lblBTZ').html(data.jhsybzje);
 				$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
+				$('#lblYHLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
 			}
 		}
 	});
@@ -223,7 +230,7 @@ function gclmgjxm_sh(jh,lx){
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		    		result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=="0")
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return  result;
