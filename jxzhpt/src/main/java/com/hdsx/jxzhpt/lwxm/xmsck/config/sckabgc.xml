@@ -13,7 +13,7 @@
 	update sck_abgc set lrjh='已列入'  where sckid=#{String}
 </insert>
  
- <select id="selectSckabgc" parameterType="hashmap" resultType="sckabgc">
+ <select id="selectSckabgc" parameterType="sckabgc" resultType="sckabgc">
  	select * from (
  		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from 
  			(select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
@@ -46,10 +46,13 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
  </select>
-  <select id="selectSckAbgcCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckAbgcCount" parameterType="sckabgc" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -80,6 +83,9 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  </select>
  <select id="selectSckabgcById" parameterType="sckabgc" resultType="sckabgc">
  	select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id where sckid=#{sckid}
@@ -107,7 +113,7 @@
 	update sck_abgc set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 </update>
  
-  <select id="selectSckShabgc" parameterType="hashmap" resultType="sckabgc">
+  <select id="selectSckShabgc" parameterType="sckabgc" resultType="sckabgc">
  	select * from (
  		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
  		where sck_sbthcd=7
@@ -140,10 +146,13 @@
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
-  <select id="selectSckAbgcShCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckAbgcShCount" parameterType="sckabgc" resultType="int">
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -174,6 +183,9 @@
  		</if>
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
  		</if>
  </select>
  <select id="onceSckAbgc" parameterType="sckabgc" resultType="int">

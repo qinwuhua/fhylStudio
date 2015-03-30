@@ -32,4 +32,5 @@
 <include file="struts_dbbb.xml"></include>
 <include file="struts_gcybb.xml"></include>
 <include file="struts_sjbb.xml"></include>
+<include file="struts_xmjzbb.xml"></include>
 </struts>

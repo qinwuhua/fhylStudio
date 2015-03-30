@@ -21,9 +21,17 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+// 			loadUnit("gydw",$.cookie("unit"));
+// 			loadDist("xzqh",$.cookie("dist"));
+			setjhxdnf();
 		});
+		function setjhxdnf(){
+			alert("xx");
+			$("#jhxdnf").combotree({    
+			    url: '/jxzhpt/xmjzbb/setjhxdnf.do',    
+			    required: true   
+			})
+		}
 	</script>
 	<style type="text/css">
 <!--
@@ -76,7 +84,7 @@ table thead tr td {
         						<select id="xzqh" style="width:179px;"></select>
         						&nbsp;&nbsp;
         						<span>资金下达年份：</span>
-        						<input type="text" id="jssj" >
+        						<input type="text" id="jhxdnf" >
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"

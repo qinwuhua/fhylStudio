@@ -10,7 +10,7 @@
 		sysdate,'未上报','未审核',#{sbthcd})
 </insert>
 
- <select id="selectJckwqgz" parameterType="hashmap" resultType="jckwqgz">
+ <select id="selectJckwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
@@ -42,10 +42,16 @@
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
-  <select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+  <select id="selectWqgzCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -75,6 +81,12 @@
  		</if>
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
  </select>
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
@@ -125,7 +137,7 @@
  	order by qlbh
  </select>
  
-  <select id="selectJckShwqgz" parameterType="hashmap" resultType="jckwqgz">
+  <select id="selectJckShwqgz" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
@@ -157,10 +169,16 @@
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
-  <select id="selectWqgzShCount" parameterType="hashmap" resultType="int">
+  <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -190,6 +208,12 @@
  		</if>
  		<if test="akjfl!='' and akjfl!= null ">
  			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
  </select>
 

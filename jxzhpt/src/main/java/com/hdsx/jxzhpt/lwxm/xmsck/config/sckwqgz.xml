@@ -51,6 +51,12 @@
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
@@ -89,6 +95,12 @@
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 	</select>
 
 	<update id="updateSckwqgz" parameterType="sckwqgz">
@@ -156,6 +168,12 @@
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_shzt desc,lrjh desc
@@ -197,6 +215,12 @@
 		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
 	</select>
 		<select id="onceSckWqgz" parameterType="sckwqgz" resultType="int">
  		select count(*) from sck_wqgz where lrjh='未列入'

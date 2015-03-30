@@ -28,36 +28,12 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public List<Sckabgc> selectSckabgc(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		hm.put("page", abgc.getPage());
-		hm.put("rows", abgc.getRows());
-		return queryList("selectSckabgc", hm);
+		return queryList("selectSckabgc", abgc);
 	}
 
 	@Override
 	public int selectAbgcCount(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		return queryOne("selectSckAbgcCount", hm);
+		return queryOne("selectSckAbgcCount", abgc);
 	}
 
 	@Override
@@ -96,36 +72,12 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public List<Sckabgc> selectSckShabgc(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		hm.put("page", abgc.getPage());
-		hm.put("rows", abgc.getRows());
-		return queryList("selectSckShabgc", hm);
+		return queryList("selectSckShabgc", abgc);
 	}
 
 	@Override
 	public int selectAbgcShCount(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		return queryOne("selectSckAbgcShCount", hm);
+		return queryOne("selectSckAbgcShCount", abgc);
 	}
 
 	@Override
