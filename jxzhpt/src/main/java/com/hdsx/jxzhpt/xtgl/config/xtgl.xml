@@ -86,8 +86,8 @@
 		<if test="idcard != null and  idcard != ''">
 			 ,idcard=#{idcard} 
 		</if>
-		<if test="role != null and  role != ''">
-			 ,role=#{role} 
+		<if test="roleid != null and  roleid != ''">
+			 ,roleid=#{roleid}
 		</if>
 		<if test="unit != null and  unit != ''">
 			 ,unit=#{unit} 
@@ -270,7 +270,7 @@
 		select * from xtgl_yhdzxcs
 	</select>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
-		select name id,#{roadcode}||#{xzqh} parent ,name,'lx' bmid from (
+		select name id,#{roadcode}||#{xzqh} parent ,name,#{roadcode} bmid from (
 		select 
 		    distinct roadcode name
 		    from JXJCK_2013.gpsroad 
@@ -282,7 +282,7 @@
     	select t.*,(select name from xtgl_bmbm where id=t.parent) text from xtgl_bmbm t order by id 
 	</select>
 	<select id="selectQlDataList" parameterType="hashmap" resultType="unit">
-		select roadbm id,f002 name,#{roadcode} parent,'ql' bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
+		select roadbm id,f002 name,#{roadcode} parent,f010 bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
 	</select>
 	<select id="createGsAnyChartXml" parameterType="param" resultType="hashmap">
 		select * from xmk_abgc

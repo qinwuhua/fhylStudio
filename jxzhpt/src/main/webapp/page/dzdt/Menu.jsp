@@ -23,11 +23,11 @@
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
  <script type="text/javascript">
 $(function(){
-	var LeftHeight = $(window).height();
-	$('#tab01').css('height', LeftHeight-39);
-	loadDataunit();
-	$(".datagrid-header").css("display","none");
 	xmlxTj();
+	var LeftHeight = $(window).height();
+	loadDataunit();
+	$('#tab01').css('height', LeftHeight-39);
+	$(".datagrid-header").css("display","none");
 	OpenLayers.ProxyHost = "../../proxy.jsp?";
 	initDefaultStyle();
 	initMap();
@@ -79,26 +79,12 @@ function loadDataunit(){
 				$("#dataunit_tree").treegrid("getChildren",row.id);
 			}
 		},onDblClickRow:function(row){
-			//wfsAttrQuery("", "Roadcode", row.roadcode)
-			
+			if(row.bmid!="") attrQuery(row.id,row.bmid);
 		},onClickRow:function(row){
-			//wfsAttrQuery(layerName, keyCol, keyValue)
+			if(row.bmid!="") attrQuery(row.id,row.bmid);
 		}
 	});
 }
-function init2() {
-	OpenLayers.ProxyHost = location.origin + "/jxzhpt/cgi/proxy.cgi?url=";
-    map = new OpenLayers.Map('map');
-    layer = new OpenLayers.Layer.WMS("layer",
-            "http://127.0.0.1:8989/hdmapserver/wms",
-            {
-                layers: 'jiangxi_map'
-            });
-    map.addLayer(layer);
-
-    map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
-}
-
 /**
  * 初始化地图
  */
@@ -189,10 +175,39 @@ function initDefaultStyle() {
 /**
  * 属性查询示例
  */
-function attrQuery() {
-	YMLib.Var.bm="X457360721";
-    wfsAttrQuery("jx_xianxiangtedaqiao", "ROADCODE", "X457360721");
-}
+ function attrQuery(_roadcode,_lx) {
+		YMLib.Var.bm=_roadcode;
+		var signFlag=_roadcode.substr(0,1);
+		var signName=_roadcode.length>11?"桥梁图层":"路线图层";
+		$.ajax({
+			type:"post",
+			url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
+				+ encodeURI(encodeURI(signName)),
+			dataType:'json',
+			success:function(msg){
+				var showLayer="";
+				var lx="";
+				if(msg.length==4){
+					if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
+					if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
+					if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
+					if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
+					lx="ROADBM";
+				}else if(msg.length==6){
+					if(_lx=="G") showLayer=msg[0].bmid;
+					if(_lx=="S") showLayer=msg[1].bmid;
+					if(_lx=="X") showLayer=msg[2].bmid;
+					if(_lx=="Y") showLayer=msg[3].bmid;
+					if(_lx=="Z") showLayer=msg[4].bmid;
+					if(_lx=="C") showLayer=msg[5].bmid;
+					lx="ROADCODE";
+				}
+				wfsAttrQuery(showLayer, lx, _roadcode);
+				//wfsAttrQuery("jx_guodao", "ROADCODE", "G6001");
+			}
+		});
+		
+	}
 /**
  * I查询
  * */
@@ -209,12 +224,10 @@ function IQuery() {
         drillDown: true,
         maxFeatures: 50//最大返回要素数目50个
     });
-    //console.info(infoControl);
     infoControl.events.register("getfeatureinfo", this, showInfo);
     infoControl.events.register("nogetfeatureinfo", this, notGetInfo);
     map.addControl(infoControl);
     infoControl.activate();
-    //console.info(infoControl);
 }
 /**
  * I查询查询到数据后的处理方法
@@ -291,6 +304,7 @@ function wfsAttrQuery(layerName, keyCol, keyValue) {
             var gmlParse = new OpenLayers.Format.GML();
             var features = gmlParse.read(req.priv.responseText);
             resultLayer.addFeatures(features);
+            //map.setCenter();
             if (resultLayer.features && resultLayer.features.length > 0) {
                 map.zoomToExtent(resultLayer.getDataExtent());
             }
@@ -303,30 +317,13 @@ function wfsAttrQuery(layerName, keyCol, keyValue) {
  * I查询没有查询到数据的处理方法
  */
 function notGetInfo() {
-
+	//alert("暂无数据");
 }
 //构造弹出窗口的函数
 var selectedFeature = null;
 function onFeatureSelect(feature) {
-	YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_lx.jsp','app_add',630,330);
-	/*
-    selectedFeature = feature;
-    var html = [];
-    for (var o in feature.attributes) {
-        //此处可过滤需要显示的属性字段，并且翻译字段名称等
-        html.push("<b>" + o + "</b>：" + feature.attributes[o]);
-    }
-    popup = new OpenLayers.Popup.FramedCloud("chicken",
-            feature.geometry.getBounds().getCenterLonLat(),
-            null,
-            "<div style='font-size:.8em'>" + html.join("<br/>") + "</div>",
-            null,
-            true,
-            onPopupClose);
-    popup.autoSize = true;
-    feature.popup = popup;
-    map.addPopup(popup);
-    */
+	if(YMLib.Var.bm.length>10) YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_ql.jsp','app_add',630,330);
+	else YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_lx.jsp','app_add',630,330);
 }
 //销毁弹出窗口的函数
 function onFeatureUnselect(feature) {
@@ -371,8 +368,8 @@ function onPopupClose(evt) {
 					
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
 						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
-							<button onclick="attrQuery()">桥梁属性查询</button>
-							<button onclick="IQuery()">I查询</button>
+							<!-- <button onclick="attrQuery()">桥梁属性查询</button> -->
+							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
 						</div>
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>

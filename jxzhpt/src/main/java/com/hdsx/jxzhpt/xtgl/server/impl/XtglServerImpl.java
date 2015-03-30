@@ -343,6 +343,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		List<HashMap<String, String>> nl=new ArrayList<HashMap<String,String>>();
 		String[] arr=param.getXzqhdm().split(",");
 		String[] arr2=param.getXzqh().split(",");
+		System.out.println(param.getId());
 		for(int i=0;i<arr.length;i++){
 			HashMap<String, String> hm=new HashMap<String, String>();
 			hm.put("parent", param.getId());
@@ -443,6 +444,7 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 		}else{
 			//桥梁
 			hm.put("roadcode",id);
+			
 			return queryList("selectQlDataList", hm);
 		}
 	}

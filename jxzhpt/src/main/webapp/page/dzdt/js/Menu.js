@@ -17,6 +17,7 @@ function turnTo(_id,_parent,_name){
 function selAnyChartXml(){
 	$.ajax({
 		type:"post",
+		async:false,
 		url:"../../xtgl/selAnyChartXml.do",
 		dataType:'json',
 		data:"param.sourceid="+$.cookie("unit2")+"&param.xzqh="+$.cookie("dist"),
@@ -45,6 +46,7 @@ function createAnyChartXml(_xml){
 function xmlxTj(){
 	$.ajax({
 		type:"post",
+		async:false,
 		url:"../../xtgl/xmlxCountTj.do",
 		dataType:'json',
 		data:'param.id='+$.cookie("qx4"),

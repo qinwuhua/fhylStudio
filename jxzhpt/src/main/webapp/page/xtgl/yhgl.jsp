@@ -19,7 +19,7 @@
 <script type="text/javascript">
 function openYhUpdate(_id){
 	YMLib.Var.ID=_id;
-	YMLib.UI.createWindow('yhgl_add_win','编辑用户','./yhgl_update.jsp','xmgl_03',470,375);
+	YMLib.UI.createWindow('yhgl_add_win','编辑用户','./yhgl_update.jsp','xmgl_03',470,380);
 }
 function deleteYh(_id){
 	$.messager.confirm('确认', '是否确认删除所选数据？', function(r){
@@ -123,7 +123,7 @@ $(function(){
 	loadUnit("unit",$.cookie("unit"));
 	startSearch();
 	$("#yhgl_btn_add").click(function(){
-		YMLib.UI.createWindow('yhgl_add_win','添加用户','./yhgl_add.jsp','app_add',470,375);
+		YMLib.UI.createWindow('yhgl_add_win','添加用户','./yhgl_add.jsp','app_add',470,380);
 	});
 	$("#yhgl_btn_search").click(function(){
 		startSearch();

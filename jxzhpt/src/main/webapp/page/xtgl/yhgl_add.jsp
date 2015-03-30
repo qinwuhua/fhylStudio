@@ -82,6 +82,10 @@ function save(){
 		alert("联系电话的格式不正确！");
 		return false;
 	} */
+	if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($("#idcard").val())){
+	    alert("请输入正确的身份证号码！");
+	    return  false;
+	}
     checkNameVal($("#truename").val());
 }
 $(function(){

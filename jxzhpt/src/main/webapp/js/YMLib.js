@@ -1217,20 +1217,19 @@ function loadDist(id, dwbm) {
  * 加载特殊地区
  */
 function loadDist2(id, dwbm) {
-	$('#' + id)
-			.combotree(
-					{
-						checkbox : false,
-						multiple : true,
-						url : '/jxzhpt/xtgl/selAllXzqh.do?yhdw=' + dwbm,
-						onBeforeExpand : function(node, param) {
-							$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
-									+ node.id;
-						},
-						onSelect : function(node) {
-							YMLib.Var.DistName = node.text
-						}
-					});
+	$('#' + id).combotree({
+		checkbox : false,
+		multiple : true,
+		panelHeight:100,
+		url : '/jxzhpt/xtgl/selAllXzqh.do?yhdw=' + dwbm,
+		onBeforeExpand : function(node, param) {
+			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
+					+ node.id;
+		},
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text
+		}
+	});
 	// $('#'+id).combotree('setValue',dwbm);
 }
 
@@ -1238,19 +1237,17 @@ function loadDist2(id, dwbm) {
  * 加载部门树
  */
 function loadUnit(id, dwbm) {
-	$('#' + id)
-			.combotree(
-					{
-						checkbox : false,
-						url : '/jxzhpt/xtgl/selAllBm.do?yhdw=' + dwbm,
-						onBeforeExpand : function(node, param) {
-							$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
-									+ node.id;
-						},
-						onSelect : function(node) {
-							YMLib.Var.DistName = node.text
-						}
-					});
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/xtgl/selAllBm.do?yhdw=' + dwbm,
+		onBeforeExpand : function(node, param) {
+			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
+					+ node.id;
+		},
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text
+		}
+	});
 	$('#' + id).combotree('setValue', dwbm);
 }
 
@@ -1258,15 +1255,14 @@ function loadUnit(id, dwbm) {
  * 加载行政区划
  */
 function loadBmbm(id, name) {
-	$('#' + id).combobox(
-			{
-				url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
-						+ encodeURI(encodeURI(name)),
-				valueField : 'bmid',
-				textField : 'name',
-				panelHeight:'auto',
-				multiple:true
-			});
+	$('#' + id).combobox({
+		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
+				+ encodeURI(encodeURI(name)),
+		valueField : 'bmid',
+		textField : 'name',
+		panelHeight:'auto',
+		multiple:true
+	});
 }
 // 获取url中参数
 function getParam(paras) {

@@ -156,14 +156,14 @@ $(function() {
 		href:'./jhksb/gclmgj.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030207',
+		id:'menu_0101030206',
 		title:'养护大中修项目',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu2',
 		href:'./jhksb/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030206',
+		id:'menu_0101030207',
 		title:'水毁项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
@@ -207,14 +207,14 @@ $(function() {
 		href:'./jhksh/gclmgj.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030307',
+		id:'menu_0101030306',
 		title:'养护大中修项目',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu3',
 		href:'./jhksh/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030306',
+		id:'menu_0101030307',
 		title:'水毁项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',

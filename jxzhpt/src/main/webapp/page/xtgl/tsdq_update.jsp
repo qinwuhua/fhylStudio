@@ -35,12 +35,10 @@ function save(){
 				alert('保存成功！');
 				parent.$("#jsgl_table").datagrid("reload");
 				parent.$("#jsgl_add_win").window('destroy');
-			}else{
-				YMLib.Tools.Show('保存失败！',3000);
 			}
 		},
 		error : function(){
-			YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			YMLib.Tools.Show('保存失败！',3000);
 		}
 	});
 }

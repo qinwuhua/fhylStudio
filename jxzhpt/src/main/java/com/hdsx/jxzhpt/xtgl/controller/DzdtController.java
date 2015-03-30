@@ -32,24 +32,20 @@ public class DzdtController extends BaseActionSupport{
 		System.out.println(param.getId());
 		
 	}
-	
+	/*
+	 * 旧版地图定位 
+	 */
 	public void selLines(){
 		HashMap<String, Object> hm=new HashMap<String, Object>();
-		//System.out.println(ldxx.getRoadends());
-		//ldxx.setRoadstart(0.0);
-		//ldxx.setRoadends(53.466);
 		List<Dzdt> rl=dzdtServer.selLines(dzdt);
 		List<HashMap<String,String>> xyHashMapList = new ArrayList<HashMap<String,String>>();
 		for(int i=0;i<rl.size();i++){
 			Dzdt tempmb = rl.get(i);
 			DealShape2<Dzdt> dealShape = new DealShape2<Dzdt>();
-			System.out.println("--------");
 			xyHashMapList =dealShape.getXyHashMapList("G6001",tempmb.getShape(),0.007,40.996);
-			System.out.println("++++++++++++"+xyHashMapList);
+			//System.out.println("++++++++++++"+xyHashMapList);
 			tempmb.setXyHashMapList(xyHashMapList);
 		}
-		
-		
 		try {
 			JsonUtils.write(rl, getresponse().getWriter());
 		} catch (Exception e1) {
