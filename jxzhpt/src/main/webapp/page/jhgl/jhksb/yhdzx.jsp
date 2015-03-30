@@ -32,14 +32,24 @@
 			sbnf('sbnf');
 			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
-			if(!xian){
+			if(roleName()=="市级"){
 				jh.jh_sbthcd=2;
+			}else if(roleName()=="省级"){
+				jh.jh_sbthcd=2;
+			}
+			if(getParam("t")=='1'){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+				jh.spzt=null;
 			}
 			querySumYhdzx(jh,lx);
 			yhdzxxm_sb(jh,lx);
 		});
 		function searchYhdzx(){
-			var jh={sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:0};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if(!xian){
 				jh.jh_sbthcd=2;
@@ -58,6 +68,26 @@
 			}
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			}
+			if($('#jhzt').combobox('getValue')=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#jhzt').combobox('getValue')=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
 			}
 			querySumYhdzx(jh,lx);
 			yhdzxxm_sb(jh,lx);
@@ -117,8 +147,6 @@
 									<option value="全部">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">

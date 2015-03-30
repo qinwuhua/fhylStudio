@@ -37,11 +37,19 @@
 				jh.jh_sbthcd=2;
 			}
 			queryZjqf($('#sbnf').combobox("getValue"));
+			if(getParam("t")=='1'){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+				jh.spzt=null;
+			}
 			querySumZhfz(jh,lx);
 			zhfzxm_sb(jh,lx);
 		});
 		function searchZhfz(){
-			var jh={jhnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -57,14 +65,31 @@
 			if($('#sbnf').combobox('getText')!=""){
 				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
-			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getValue')=="未上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
+			}else if($('#ddlSHZT').combobox('getValue')=="已上报"){
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=2;
+				}else{
+					jh.jh_sbthcd=4;
+				}
+			}else{
+				jh.spzt='0';
+				if(roleName()=="县级"){
+					jh.jh_sbthcd=0;
+				}else{
+					jh.jh_sbthcd=2;
+				}
 			}
 			querySumZhfz(jh,lx);
 			zhfzxm_sb(jh,lx);
@@ -160,8 +185,8 @@
         						<span>&nbsp;上报状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未上报</option>
-									<option value="1">已上报</option>
+									<option value="未上报">未上报</option>
+									<option value="已上报">已上报</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">

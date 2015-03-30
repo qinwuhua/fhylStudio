@@ -56,7 +56,7 @@ public class Plan_zhfz {
 	private String  wjzt;//台账完结状态
 	private String wjsj;//台账完结时间
 	private String gys;//概预算
-	private int jh_sbthcd;//上报退回状态的长度标示
+	private String jh_sbthcd;//上报退回状态的长度标示
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private Sckzhfz jckzhfz;
@@ -86,10 +86,10 @@ public class Plan_zhfz {
 	public void setSfylsjl(String sfylsjl) {
 		this.sfylsjl = sfylsjl;
 	}
-	public int getJh_sbthcd() {
+	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
-	public void setJh_sbthcd(int jh_sbthcd) {
+	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
 	}
 	public String getSbbmdm() {

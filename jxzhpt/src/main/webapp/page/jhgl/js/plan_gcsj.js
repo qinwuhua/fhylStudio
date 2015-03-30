@@ -16,6 +16,13 @@ function queryGcsjSum(jh,lx){
 				$('#lblZTZ').html(data.pftz);
 				$('#lblBTZ').html(data.jhsybbzje);
 				$('#lblDFTZ').html(data.jhsydfzczj);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
+				$('#lblXMLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
 			}
 		}
 	});
@@ -65,12 +72,15 @@ function gclmsjxm(jh,lx){
 					result="未上报";
 				}
 				else if(row.sbzt=="0" && row.jh_sbthcd==2){
-					result="已上报";
-				}
-				else if(row.sbzt=="1" && row.spzt=="0"){
+					if(roleName()=="县级"){
+						result="已上报";
+					}else{
+						result="未上报";
+					}
+				}else if(row.sbzt=="1" && row.spzt=="0" && row.jh_sbthcd==4){
 					result="未审批";
 				}
-				else if(row.sbzt=="1" && row.spzt=="1"){
+				else if(row.sbzt=="1" && row.spzt=="1" && row.jh_sbthcd==6){
 					result="已审批";
 				}
 				return result;
@@ -222,7 +232,7 @@ function gclmsjxm_sh(jh,lx){
 				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>   ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if(roleName()=="省级" && row.jh_sbthcd==4)
-					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+					result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 				else
 					result+='编辑';
 				return result;

@@ -36,8 +36,8 @@
 			}
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:4};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:filterGydwdm($('#gydw').combobox('getValue')),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
@@ -50,11 +50,16 @@
 			if($('#txtBridge').val()!=''){
 				lx.qlmc=$('#txtBridge').val();
 			}
-			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+			if($('#sbnf').combobox('getValue')!=""){
+				jh.sbnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+			if($('#ddlSHZT').combobox('getValue')=="未审核"){
+				jh.jh_sbthcd=4;
+			}else if($('#ddlSHZT').combobox('getValue')=="已审核"){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.jh_sbthcd=4;
+				jh.sbzt='1';
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
@@ -68,12 +73,12 @@
 			wqxm_sh(jh,lx);
 		}
 		function spBatch(){
-			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:filterGydwdm($('#gydw').combobox('getValue')),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
-			var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,
+			var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,
 					"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,'jh.jh_sbthcd':jh.jh_sbthcd};
 			$.ajax({
 				type:'post',
@@ -145,8 +150,8 @@
         						<span>&nbsp;上报状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未上报</option>
-									<option value="1">已上报</option>
+									<option value="未审核">未审核</option>
+									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">

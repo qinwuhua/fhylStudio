@@ -946,6 +946,18 @@ public class XtglController extends BaseActionSupport{
 		xtglServer.updateYhdzxcs(yhdzxcs);
 	}
 	
+	public void queryFlwxmFdfw(){
+		try {
+			JsonUtils.write(xtglServer.queryFlwxmFdfw(), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateFdbzByXmlx(){
+		ResponseUtils.write(getresponse(), new Boolean(xtglServer.updateFdbzByXmlx(flwbzbz)).toString());
+	}
+	
 	public String getYhdw() {
 		return yhdw;
 	}

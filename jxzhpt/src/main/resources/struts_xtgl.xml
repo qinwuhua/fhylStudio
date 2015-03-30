@@ -84,5 +84,7 @@
 	<action name="addYhdzxcs" class="xtglController" method="addYhdzxcs"></action>
 	<action name="updateYhdzxcs" class="xtglController" method="updateYhdzxcs"></action>
 	<action name="queryYhdzxcsByLx" class="xtglController" method="queryYhdzxcsByLx"></action>
+	<action name="queryFlwxmFdfw" class="xtglController" method="queryFlwxmFdfw"></action>
+	<action name="updateFdbzByXmlx" class="xtglController" method="updateFdbzByXmlx"></action>
  </package>
 </struts>

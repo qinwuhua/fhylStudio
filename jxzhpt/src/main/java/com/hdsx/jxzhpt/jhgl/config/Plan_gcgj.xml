@@ -71,17 +71,20 @@
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
 			</if>
-			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf =#{jh.sbnf}
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
 			</if>
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
+			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
 			</if>
 				and jh.id in (
 					select l.jhid from PLAN_lx_GCGJ l 
@@ -114,17 +117,20 @@
 	</select>
 	<select id="queryGcgjCount" resultType="int" parameterType="java.util.Map">
 		select count(*) from PLAN_GCGJ jh where 1=1
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
 			</if>
-			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf =#{jh.sbnf}
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
 			</if>
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
+			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
 			</if>
 				and jh.id in (
 					select l.jhid from PLAN_lx_GCGJ l
@@ -231,13 +237,13 @@
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from JXJCK_2013.GPSROAD t 
-		where t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh}
+		where t.roadcode=#{lxbm} and <![CDATA[t.roadstart<=#{qdzh}]]> and t.roadends>=#{zdzh}
 	</select>
 	<select id="queryGPSBylxbm2" parameterType="plan_lx_gcgj" resultType="plan_lx_gcgj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
 		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj
-		 from JXJCK_2013.GPSROAD t where 
-		t.roadcode=#{lxbm} and t.roadstart=#{qdzh} and t.roadends=#{zdzh} and t.f044=#{gydwdm}
+		from JXJCK_2013.GPSROAD t where 
+		t.roadcode=#{lxbm} and <![CDATA[t.roadstart<=#{qdzh}]]> and t.roadends>=#{zdzh} and t.f044=#{gydwdm}
 	</select>
 	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
 		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje
@@ -248,11 +254,11 @@
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 				and lx.gydwdm like #{lx.gydwdm}
 			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
 			</if>
-			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf=#{jh.sbnf}
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 				and jh.sbzt=#{jh.sbzt}
@@ -260,11 +266,22 @@
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
 			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
 			group by jh.id)
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
-		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh>=#{qdzh} or lx.zdzh<#{zdzh}) and jh.sbnf<#{jhid}]]>
+		SELECT C1.CON1+C2.CON2 FROM
+		(select count(jh.id) CON1 from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		    where <![CDATA[lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]>
+		)C1,
+		<![CDATA[(select count(*) CON2 from
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcgj lx, plan_gcgj jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) C2]]>
+		<!-- select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]> -->
 	</select>
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
@@ -290,7 +307,8 @@
 	</select>
 	<select id="queryJhExist" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
-		where lx.lxbm=#{lxbm} and lx.qdzh=#{qdzh} and lx.zdzh=#{zdzh} and jh.sbnf=#{jhid}
+		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh}
+		 and jh.sbnf=#{jhid}
 	</select>
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
 		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}
@@ -302,7 +320,7 @@
 			and f.tsdq is null
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
-			and f.tsqd =#{tsdq}
+			and f.tsdq =#{tsdq}
 		</if>
 	</select>
 	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">

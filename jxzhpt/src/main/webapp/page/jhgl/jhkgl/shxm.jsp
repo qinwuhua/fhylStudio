@@ -25,15 +25,15 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			tsdq('tsdq');
-			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwdm:null};
-			querySumShuih(jh,lx);
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
+			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
+			querySumShuih(jh,lx);
 			shxm(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
+			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:filterGydwdm($("#gydw").combo("getValue")),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null
 			};
@@ -44,9 +44,6 @@
 			}
 			if($('#sbnf').combobox('getText')!=""){
 				jh.sbnf=$('#sbnf').combobox('getValue');
-			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.spzt=$('#ddlSHZT').combobox('getValue');
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
@@ -66,37 +63,23 @@
 				}
 				if($('#ddlSHZT').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
-				}
-				if($('#ddlSHZT').combo("getValue")=="已上报"){
+				}else if($('#ddlSHZT').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
-				}
-				if($('#ddlSHZT').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				}else if($('#ddlSHZT').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
-				}
-				if($('#ddlSHZT').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				}else if($('#ddlSHZT').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
 			}
+			querySumShuih(jh,lx);
 			shxm(jh,lx);
 		}
 		$(window).resize(function () { 
@@ -110,8 +93,7 @@
 			<tr>
 	            <td>
 	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;
-</div>
+						<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;水毁项目管理</div>
 					</div>
 	            </td>
         	</tr>

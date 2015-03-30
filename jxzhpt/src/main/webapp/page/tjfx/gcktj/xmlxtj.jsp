@@ -159,7 +159,7 @@
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
-        				<div>
+        				<div id="searchDiv">
         					<p style="margin:8px 0px 8px 20px;">
         						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;vertical-align:middle;"></select>

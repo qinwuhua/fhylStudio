@@ -154,4 +154,8 @@ public interface XtglServer {
 	boolean updateYhdzxcs(Yhdzxcs yhdzxcs);
 
 	List<Yhdzxcs> queryYhdzxcsByLx(Yhdzxcs yhdzxcs);
+	
+	List<Plan_flwbzbz> queryFlwxmFdfw();
+	
+	boolean updateFdbzByXmlx(Plan_flwbzbz flwbzbz);
 }

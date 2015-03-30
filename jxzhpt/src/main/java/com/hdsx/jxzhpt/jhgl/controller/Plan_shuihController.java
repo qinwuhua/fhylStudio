@@ -112,7 +112,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
-			System.out.println("特殊地区："+lx.getTsdqbm());
+			System.out.println("上报状态："+jh.getSbzt()+"   审核状态："+jh.getSpzt()+"   长度："+jh.getJh_sbthcd());
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
 			jsonMap.put("rows",shuihServer.queryShuihList(page, rows, jh, lx));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
@@ -197,6 +197,7 @@ public class Plan_shuihController extends BaseActionSupport {
 			String strVerify="";
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
@@ -218,10 +219,21 @@ public class Plan_shuihController extends BaseActionSupport {
 				if(shuihServer.queryJhExist(shuih)==0){
 					strVerify=ImportVerify.shuihVerify(map);
 					Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
-					map.put("yjsdj", queryGPSBylxbm.getYjsdj());
 					if(queryGPSBylxbm==null){
 						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
+						map.put("yjsdj", queryGPSBylxbm.getYjsdj());
+						//验证路线名称、起止里程是否相符
+						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
+							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
+						}
+//						else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
+//							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
+//						}
+						else{
+							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+						}
+						
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						shuih.setTsdqbm(shuihServer.queryTsdqByXzqh(shuih.getXzqhdm()));
 						shuih.setYjsdj(queryGPSBylxbm.getYjsdj());
@@ -232,34 +244,28 @@ public class Plan_shuihController extends BaseActionSupport {
 						flw.setJsdj(shuih.getYjsdj());//技术等级
 						flw.setTsdq(shuih.getTsdqbm());
 						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
-						if(flwResult==null){
-							String gldj=null;
-							if(flw.getGldj().equals("X"))
-								gldj="县道";
-							if(flw.getGldj().equals("S"))
-								gldj="省道";
-							if(flw.getGldj().equals("G"))
-								gldj="国道";
-							strVerify+="请先添加【"+gldj+"】技术等级【"+flw.getJsdj()+"】"+
-									(flw.getTsdq()==null ? "" : "特殊地区为【"+flw.getTsdq()+"】")
-									+"【"+flw.getXmlx()+"】项目的补助标准;";
-						}else{
-							//验证金额
+						Integer bzzj=null;//对应补助标准金额
+						if(flwResult==null && defaultFlwje==null){
+							flw.setXmlx(null);
+							flw.setGldj(null);
+							flw.setJsdj(null);
+							flw.setTsdq(null);
+							flwResult=shuihServer.queryBzzj(flw);
 						}
-						
-						//验证信息是否相符
-						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
-							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
-						}else if(!map.get("10").toString().equals(queryGPSBylxbm.getQzlc())){
-							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
-						}else{
-							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+						//验证金额
+						Double yhlc=new Double(map.get("11").toString());
+						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+						Integer pfztz=new Integer(map.get("34").toString());
+						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+						System.out.println("总投资"+pfztz.intValue()+"   计算"+je+"   浮动"+fdbz+"  标准："+bzzj.intValue());
+						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
 						}
 					}
 				}else{
 					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已存在计划！";
 				}
-				
 				if(!strVerify.equals("")){
 					break;
 				}

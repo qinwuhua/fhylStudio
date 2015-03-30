@@ -12,6 +12,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_shuih.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
@@ -22,9 +26,13 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			if(roleName()=="省级"){
+				if(getParam("t")=='1'){
+					jh.jh_sbthcd=4;
+					jh.sbzt=null;
+				}
 				querySumShuih(jh,lx);
 				shxm_sh(jh,lx);
 			}else{
@@ -32,7 +40,7 @@
 			}
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:4};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
 				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 				lxmc:null,yjsdj:null,lxbm:null
@@ -45,9 +53,6 @@
 			if($('#sbnf').combobox('getText')!=""){
 				jh.sbnf=$('#sbnf').combobox('getValue');
 			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
-			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.yjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
@@ -56,6 +61,14 @@
 			}
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combobox('getValue');
+			}
+			if($('#ddlSHZT').combobox('getText')=="未审核"){
+				jh.jh_sbthcd=4;
+			}else if($('#ddlSHZT').combobox('getText')=="已审核"){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.sbzt='1';
+				jh.jh_sbthcd=4;
 			}
 			querySumShuih(jh,lx);
 			shxm_sh(jh,lx);
@@ -111,11 +124,11 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>上报年份：</span>
         						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;审批状态：</span>
+        						<span>&nbsp;审核状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
+									<option value="未审核">未审核</option>
+									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">

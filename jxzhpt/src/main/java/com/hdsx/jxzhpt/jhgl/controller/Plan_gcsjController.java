@@ -114,6 +114,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void queryGcsjList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
+		System.out.println("上报状态："+jh.getSbzt()+"  审批状态："+jh.getSpzt()+" 长度状态："+jh.getJh_sbthcd());
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
 		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
 		try {
@@ -207,7 +208,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			String strVerify=null;
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			System.out.println(data);
+			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
 				map.put("jhid", jhId.toString().replace("-", ""));
@@ -242,9 +243,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 						}
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
 							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
-						}else if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
-							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
-						}else{
+						}
+//						else if(!map.get("9").toString().equals(queryGPSBylxbm.getQzlc())){
+//							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
+//						}
+						else{
 							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
 						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
@@ -256,19 +259,22 @@ public class Plan_gcsjController extends BaseActionSupport{
 						flw.setJsdj(lx.getYjsdj());//技术等级
 						flw.setTsdq(lx.getTsdqbm());
 						Plan_flwbzbz flwResult=gcsjServer.queryBzzj(flw);
-						if(flwResult==null){
-							String gldj=null;
-							if(flw.getGldj().equals("X"))
-								gldj="县道";
-							if(flw.getGldj().equals("S"))
-								gldj="省道";
-							if(flw.getGldj().equals("G"))
-								gldj="国道";
-							strVerify+="请先添加【"+gldj+"】技术等级【"+flw.getJsdj()+"】"+
-									(flw.getTsdq()==null ? "" : "特殊地区为【"+flw.getTsdq()+"】")
-									+"【"+flw.getXmlx()+"】项目的补助标准;";
-						}else{
-							//对金额进行技术验证
+						Integer bzzj=null;//对应补助标准金额
+						if(flwResult==null && defaultFlwje==null){
+							flw.setXmlx(null);
+							flw.setGldj(null);
+							flw.setJsdj(null);
+							flw.setTsdq(null);
+							flwResult=gcsjServer.queryBzzj(flw);
+						}
+						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+						//验证金额
+						Double xmlc=new Double(map.get("10").toString());
+						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
+						Integer pfztz=new Integer(map.get("40").toString());
+						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
 						}
 					}
 				}else{

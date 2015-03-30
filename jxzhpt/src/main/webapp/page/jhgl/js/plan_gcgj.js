@@ -12,12 +12,21 @@ function querySumGcgj(jh,lx){
 		data:param,
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			$('#lblZLC').html(data.plan_lx_gcgjs[0].qzlc);
-			$('#lblYHLC').html(data.plan_lx_gcgjs[0].yhlc);
-			$('#lblZTZ').html(data.pfztz);
-			$('#lblBTZ').html(data.jhsybzje);
-			$('#lblDFTZ').html(data.jhsydfzcje);
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				$('#lblZLC').html(data.plan_lx_gcgjs[0].qzlc);
+				$('#lblYHLC').html(data.plan_lx_gcgjs[0].yhlc);
+				$('#lblZTZ').html(data.pfztz);
+				$('#lblBTZ').html(data.jhsybzje);
+				$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
+				$('#lblYHLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
+			}
 		}
 	});
 }
@@ -56,8 +65,6 @@ function gclmgjxm(jh,lx){
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-		    		var id="'"+row.id+"'";
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
@@ -75,7 +82,11 @@ function gclmgjxm(jh,lx){
 						result="未上报";
 					}
 					else if(row.sbzt=="0" && row.jh_sbthcd==2){
-						result="已上报";
+						if(roleName()=="县级"){
+							result="未上报";
+						}else{
+							result="已上报";
+						}
 					}
 					else if(row.sbzt=="1" && row.spzt=="0"){
 						result="未审批";
@@ -219,7 +230,7 @@ function gclmgjxm_sh(jh,lx){
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		    		result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=="0")
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return  result;
@@ -402,32 +413,61 @@ function dropGcgjs(){
 	}
 }
 function editGcgj(){
-	var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
-			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
-			'jh.xdsj':$('#xdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
-			'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
-			'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
-			'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
-			'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
-			'jh.jhsybzje':$('#jhsybzje').val(),'jh.jhsydfzcje':$('#jhsydfzcje').val(),
-			'jh.sfsqablbz':$('#sfsqablbz').val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),
-			'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
-			'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-			'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.bz':$('#bz').val(),
-			'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),
-			'jh.faspsj':$('#faspsj').datebox('getValue'),'jh.spwh':$('#spwh').val(),
-			'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),'jh.jsnr':$('#jsnr').val()
-		};
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/editGcgjById.do',
-		dataType:'text',
-		data:jh,
-		success:function(data){
-			alert("修改成功！");
-			$('#gclmgj_xx').dialog('close');
-		}
-	});
+	if(lxztz()){
+		var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
+				'jh.xdsj':$('#xdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
+				'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
+				'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),'jh.jhsybzje':$('#jhsybzje').val(),'jh.jhsydfzcje':$('#jhsydfzcje').val(),
+				'jh.sfsqablbz':$('#sfsqablbz').val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.bz':$('#bz').val(),
+				'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),'jh.faspsj':$('#faspsj').datebox('getValue'),'jh.spwh':$('#spwh').val(),'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),'jh.jsnr':$('#jsnr').val()
+			};
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/editGcgjById.do',
+			dataType:'text',
+			data:jh,
+			success:function(data){
+				alert("修改成功！");
+				$('#gclmgj_xx').dialog('close');
+			}
+		});
+	}else{
+		alert("总投资计算有误");
+	}
+}
+/**
+ * 对每一条路线的总投资进行验证
+ */
+function lxztz(){
+	var lxCount = ($('#tr_scxx').index()-1)/6;
+	var result=false,fdbz=0,ztz=0.0;//result：是否符合标准;fdbz：投资金额的浮动标准;ztz：总投资金额，每条路线累计相加
+	for(var i=0;i<lxCount;i++){
+		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
+				'lx.gydwdm':$.cookie("unit"),'lx.yhlc':$('#yhlc'+i).html(),'lx.qzlc':$('#qzlc'+i).html(),
+				'lx.jhid':$('#editsbnf').combobox('getValue'),'lx.xzqhdm':$('#xzqhdm'+i).html(),
+				'lx.yjsdj':$('#yjsdjxx'+i).html()};
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/verifyLx.do',
+			async:false,
+			data:lx,
+			dataType:'json',
+			success:function(data){
+				ztz=ztz+data.je;
+				fdbz=data.fdbz;
+			}
+		});
+	}
+	if($('#pfztz').val()>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
+		result=true;
+	}
+	if($('#pfztz').val()==Number($('#jhsybzje').val())+Number($('#jhsydfzcje').val())){
+		result=true;
+	}else{
+		result=false;
+	}
+	return result;
 }
 /**
  * dataGrid绑定数据方法

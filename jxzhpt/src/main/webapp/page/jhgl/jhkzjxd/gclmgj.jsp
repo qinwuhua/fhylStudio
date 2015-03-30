@@ -31,8 +31,10 @@
 				url:'../../../jhgl/querySumGcgj.do',
 				dataType:'json',
 				success:function(data){
-					$('#lblCount').html(data.id);
-					$('#lblXDZJ').html(data.jhsybzje);
+					if(data>0){
+						$('#lblCount').html(data.id);
+						$('#lblXDZJ').html(data.jhsybzje);
+					}
 				}
 			});
 			var jh={sbnf:null,sbzt:"1",spzt:"1",jh_sbthcd:6};
@@ -51,11 +53,11 @@
 			if($('#txtlxmc').val()!=""){
 				lx.lxmc=$('#txtlxmc').val();
 			}
-			if($("#yjsdj").combo("getValue")!=""){
-				lx.yjsdj= $("#yjsdj").combo("getValue");
+			if($("#ddlPDDJ").combo("getValue")!=""){
+				lx.yjsdj= $("#ddlPDDJ").combo("getValue");
 			}
-			if($("#gldj").combo("getValue")!=""){
-				lx.lxbm=$("#gldj").combo("getValue");
+			if($("#ddlGldj").combo("getValue")!=""){
+				lx.lxbm=$("#ddlGldj").combo("getValue");
 			}
 			if($('#ddlTSDQ').combo("getValue")!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combo("getValue");
@@ -106,14 +108,14 @@
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;建设状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;vertical-align:middle;">
+        						<select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未开工</option>
 									<option value="已上报">在建</option>
 									<option value="未审核">竣工</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
+								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>
@@ -122,7 +124,7 @@
 									<option value="等外公路">等外公路</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;vertical-align:middle;">
+								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>

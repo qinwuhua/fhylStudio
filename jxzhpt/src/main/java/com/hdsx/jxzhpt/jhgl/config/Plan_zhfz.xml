@@ -34,7 +34,10 @@
 				select rownum as num,t.* from (
 					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-				 	<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+				 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+					<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
@@ -69,9 +72,12 @@
 	<select id="queryZhfzByStatus" parameterType="java.util.Map" resultType="plan_zhfz">
 		select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
-			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=1">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+					<if test="(jh.sbzt==null and jh.spzt==null) or (jh.sbzt=='' and jh.spzt=='') and jh.jh_sbthcd!=1">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
 	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 		and jh.sbzt=#{jh.sbzt}
 	 	</if>
@@ -85,7 +91,10 @@
 	<select id="queryZhfzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
@@ -252,7 +261,10 @@
 			<if test="x.gydwbm!=null and x.gydwbm!=''">
 				and x.gydwbm like #{x.gydwbm}
 			</if>
-			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='')">
+			<if test="p.jh_sbthcd!=null and p.jh_sbthcd!='' and (p.sbzt==null or p.sbzt=='') and (p.spzt==null or p.spzt=='')">
+				and p.jh_sbthcd=#{p.jh_sbthcd}
+			</if>
+			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='') and p.jh_sbthcd!=null and p.jh_sbthcd!=''">
 				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
 			</if>
 			<if test="p.sbzt!=null and p.sbzt!=''">

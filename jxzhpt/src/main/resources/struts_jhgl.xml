@@ -14,6 +14,7 @@
 		<action name="uploadGkbg" class="plan_gcgjController" method="uploadGkbg"/>
 		<action name="queryGjwjById" class="plan_gcgjController" method="queryGjwjById"/>
 		<action name="insertGcgjLx" class="plan_gcgjController" method="insertGcgjLx"/>
+		<action name="verifyLx" class="plan_gcgjController" method="verifyLx"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>

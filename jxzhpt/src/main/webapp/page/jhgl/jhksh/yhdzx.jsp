@@ -13,6 +13,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
@@ -24,9 +26,13 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf('sbnf');
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if(roleName()=="省级"){
+				if(getParam("t")=='1'){
+					jh.jh_sbthcd=4;
+					jh.sbzt=null;
+				}
 				querySumYhdzx(jh,lx);
 				yhdzxxm_sp(jh,lx);
 			}else{
@@ -34,7 +40,7 @@
 			}
 		});
 		function searchYhdzx(){
-			var jh={sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:4};
 			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -50,6 +56,14 @@
 			}
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
+			}
+			if($('#jhzt').combobox('getValue')=='未审核'){
+				jh.jh_sbthcd=4;
+			}else if($('#jhzt').combobox('getValue')=='已审核'){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.jh_sbthcd=4;
+				jh.sbzt='1';
 			}
 			querySumYhdzx(jh,lx);
 			yhdzxxm_sp(jh,lx);
@@ -104,8 +118,6 @@
         						<span>&nbsp;计划状态：</span>
         						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
 									<option value="全部">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
 								</select>
@@ -170,6 +182,6 @@
 		</table>
 	</div>
 	
-	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="yhdzx_sh" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

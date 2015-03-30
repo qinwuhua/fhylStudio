@@ -27,9 +27,13 @@
 			xzqhComboxTree("xzqh");
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
 			if(roleName()=="省级"){
+				if(getParam("t")=='1'){
+					jh.jh_sbthcd=4;
+					jh.sbzt=null;
+				}
 				querySumGcgj(jh,lx);
 				gclmgjxm_sh(jh,lx);
 			}else{
@@ -37,7 +41,7 @@
 			}
 		});
 		function searchGcgj(){
-			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:4};
 			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
@@ -56,6 +60,15 @@
 			if($('#ddlTSDQ').combo("getValue")!=''){
 				lx.tsdqbm=$('#ddlTSDQ').combo("getValue");
 			}
+			if($('#ddlSHZT').combo("getValue")=="未审核"){
+				jh.jh_sbthcd=4;
+			}else if($('#ddlSHZT').combo("getValue")=="已审核"){
+				jh.jh_sbthcd=6;
+			}else{
+				jh.sbzt='1';
+				jh.jh_sbthcd=4;
+			}
+			querySumGcgj(jh,lx);
 			gclmgjxm_sh(jh,lx);
 		}
 		var id1,jh_sbthcd1;
@@ -119,8 +132,8 @@
         						<span>&nbsp;审批状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
+									<option value="未审核">未审核</option>
+									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">

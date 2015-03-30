@@ -39,6 +39,7 @@ function sbnf(id){
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
+	alert(jh.sbzt);
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
@@ -58,12 +59,15 @@ function gclmsjxm(jh,lx){
 					result="未上报";
 				}
 				else if(row.sbzt=="0" && row.jh_sbthcd==2){
-					result="已上报";
-				}
-				else if(row.sbzt=="1" && row.spzt=="0"){
+					if(roleName()=="县级"){
+						result="已上报";
+					}else{
+						result="未上报";
+					}
+				}else if(row.sbzt=="1" && row.spzt=="0" && row.jh_sbthcd==4){
 					result="未审批";
 				}
-				else if(row.sbzt=="1" && row.spzt=="1"){
+				else if(row.sbzt=="1" && row.spzt=="1" && row.jh_sbthcd==6){
 					result="已审批";
 				}
 				return result;

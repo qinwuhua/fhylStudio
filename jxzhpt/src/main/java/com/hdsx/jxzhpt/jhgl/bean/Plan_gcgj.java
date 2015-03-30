@@ -70,7 +70,7 @@ public class Plan_gcgj {
 	private String jsxz;//建设性质
 	private String jsnr;//建设内容
 	private String scBz;//审查库备注
-	private int jh_sbthcd;//上报退回状态的长度标示
+	private String jh_sbthcd;//上报退回状态的长度标示
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
@@ -94,10 +94,10 @@ public class Plan_gcgj {
 	public void setSfylsjl(String sfylsjl) {
 		this.sfylsjl = sfylsjl;
 	}
-	public int getJh_sbthcd() {
+	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}
-	public void setJh_sbthcd(int jh_sbthcd) {
+	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
 	}
 	public String getSbbmdm() {
