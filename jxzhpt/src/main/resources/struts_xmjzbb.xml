@@ -1,0 +1,11 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+<package name="xmjzbb" extends="struts-default" namespace="/xmjzbb">
+	<action name="setjhxdnf" class="xmbbController" method="setjhxdnf"/>
+	<action name="getPtgxbb" class="xmbbController" method="getPtgxbb"/>
+	<action name="exportPtgx" class="xmbbController" method="exportPtgx"/>
+	
+ </package>
+</struts>
