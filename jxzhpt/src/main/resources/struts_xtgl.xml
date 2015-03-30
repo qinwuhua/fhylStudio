@@ -65,7 +65,8 @@
 	
 	<action name="xmlxCountTj" class="dzdtController" method="xmlxCountTj"></action>
 	<action name="selAnyChartXml" class="xtglController" method="selAnyChartXml"></action>
-	
+	<action name="selectExistLxProgramList" class="dzdtController" method="selectExistLxProgramList"></action>
+	<action name="selectExistQlProgramList" class="dzdtController" method="selectExistQlProgramList"></action>
 	
 	<!-- chc -->
 	<action name="getModule" class="excelModule" method="getModule"/>

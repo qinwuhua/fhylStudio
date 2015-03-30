@@ -12,6 +12,7 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Param" alias="param"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Bzbz" alias="bzbz"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Dzdt" alias="dzdt"/>
+     <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.ProgBean" alias="pb"/>
      <!-- qwh begin -->
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz" alias="gcglwqgz"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglabgc" alias="gcglabgc"/>

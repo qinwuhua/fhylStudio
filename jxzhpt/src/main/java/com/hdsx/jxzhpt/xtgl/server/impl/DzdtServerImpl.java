@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.xtgl.bean.Dzdt;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.ProgBean;
 import com.hdsx.jxzhpt.xtgl.server.DzdtServer;
 @Service
 public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
@@ -22,6 +23,26 @@ public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
 	@Override
 	public List<Param> xmlxCountTj(Param param) {
 		return queryList("xmlxCountTj", param);
+	}
+
+	@Override
+	public List<ProgBean> selectExistLxProgramList(Param param) {
+		return queryList("selectExistLxProgramList", param);
+	}
+
+	@Override
+	public List<ProgBean> selectExistQlProgramList(Param param) {
+		return queryList("selectExistQlProgramList", param);
+	}
+
+	@Override
+	public int selectExistLxProgramListCount(Param param) {
+		return queryOne("selectExistLxProgramListCount", param);
+	}
+
+	@Override
+	public int selectExistQlProgramListCount(Param param) {
+		return queryOne("selectExistQlProgramListCount", param);
 	}
 	
 }

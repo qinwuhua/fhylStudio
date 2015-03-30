@@ -10,9 +10,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.utile.DealShape2;
+import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Dzdt;
 import com.hdsx.jxzhpt.xtgl.bean.Param;
+import com.hdsx.jxzhpt.xtgl.bean.ProgBean;
+import com.hdsx.jxzhpt.xtgl.bean.Unit;
 import com.hdsx.jxzhpt.xtgl.server.DzdtServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -27,11 +30,7 @@ public class DzdtController extends BaseActionSupport{
 	private DzdtServer dzdtServer;
 	private Dzdt dzdt;
 	private Param param;
-	
-	public void selExistProgramByRoadcode(){
-		System.out.println(param.getId());
-		
-	}
+	private ProgBean pb;
 	/*
 	 * 旧版地图定位 
 	 */
@@ -52,7 +51,10 @@ public class DzdtController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-
+	
+	/*
+	 * 右侧项目类型统计表
+	 */
 	public void xmlxCountTj(){
 		String[] arr=param.getId().split(",");
 		param.setId(null);
@@ -67,7 +69,6 @@ public class DzdtController extends BaseActionSupport{
 				}
 			}
 		}
-		
 		//循环设置合并单元格
 		Param temp=rl_n.get(0);
 		int flag=1;
@@ -87,6 +88,38 @@ public class DzdtController extends BaseActionSupport{
 			}
 		try {
 			JsonUtils.write(rl_n, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 路线弹出框
+	 * */
+	public void selectExistLxProgramList(){
+		List<ProgBean> list=dzdtServer.selectExistLxProgramList(param);
+		int count=dzdtServer.selectExistLxProgramListCount(param);
+		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
+		ep.setTotal(count);
+		ep.setRows(list);
+		try {
+			JsonUtils.write(ep, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 桥梁弹出框
+	 * */
+	public void selectExistQlProgramList(){
+		List<ProgBean> list=dzdtServer.selectExistQlProgramList(param);
+		int count=dzdtServer.selectExistQlProgramListCount(param);
+		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
+		ep.setTotal(count);
+		ep.setRows(list);
+		try {
+			JsonUtils.write(ep, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

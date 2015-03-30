@@ -371,4 +371,16 @@
        union all
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
 	</select>
+	<select id="selectExistQlProgramList" parameterType="param" resultType="pb">
+		
+	</select>
+	<select id="selectExistQlProgramListCount" parameterType="param" resultType="pb">
+		
+	</select>
+	<select id="selectExistLxProgramList" parameterType="param" resultType="int">
+		
+	</select>
+	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
+		
+	</select>
 </mapper>

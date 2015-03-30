@@ -52,9 +52,9 @@ $(function(){
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectTsdqList.do',
+		url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
-			"roadcode":parent.YMLib.Var.bm
+			"param.id":parent.YMLib.Var.bm
 		},
 		striped : true,
 		singleSelect : false,
