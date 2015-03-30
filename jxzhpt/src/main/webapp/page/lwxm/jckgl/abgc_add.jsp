@@ -103,7 +103,7 @@ text-decoration:none;
 				function(e, item) {
 
 					if(item==undefined) return ;
-					$("#lxmc,#xzqhdm,#xzqhmc#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm,#qd,#zd").attr("value",'');
+					$("#xzqhdm,#xzqhmc#qdzh,#zdzh,#zlc,#xjnd,#lxjsdj,#gydw,#gydwbm,#qd,#zd").attr("value",'');
 					$("#lxmc").html(item.lxmc);
 					$("#xzqhdm").html(item.xzqhdm);
 					$("#xzqhmc").html(item.xzqhmc);

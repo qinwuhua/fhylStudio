@@ -30,6 +30,7 @@ $(function(){
 
 function delSckwqgz(){
 	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) alert("请选择要删除项目！"); return;
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_sbzt2=='已上报'){
@@ -63,6 +64,7 @@ function delSckwqgz(){
 
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) alert("请选择要上报项目！"); return;
 	var sckid=rows[0].sckid;
 	if($.cookie("unit2")=='______36'){
 		alert("对不起，您无法上报！");
@@ -104,6 +106,7 @@ function shangB(){
 }
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
+	if(rows.length==0) alert("请选择要退回项目！"); return;
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if($.cookie("unit2")=='______36'){
@@ -175,9 +178,12 @@ text-decoration:none;
                               	<select id="xzqhmc" style="width:218px">
                               	</select>
                                <span>&nbsp;路线名称：</span>
-        						<input type="text" id="lxmc" style="width:95px;" />
+        						<input type="text" id="lxmc" style="width:70px;" />
+        						 <span>&nbsp;路线编码：</span>
+        						<input type="text" id="lxbm" style="width:70px;" />
                               <span>&nbsp;桥梁名称：</span>
-                              	<input id="qlmc" type="text" style="width:95px"/>
+                              	<input id="qlmc" type="text" style="width:70px"/>
+                              	
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
@@ -221,7 +227,7 @@ text-decoration:none;
 									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
-                              	<select id="akjfl" style="width:87px">
+                              	<select id="akjfl" style="width:65px">
                               		<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
@@ -229,11 +235,13 @@ text-decoration:none;
 									<option value="小桥">小桥</option>
                               	</select>
                               	<span>&nbsp;补助历史：</span>
-                              	<select id="bzls" style="width:100px">
+                              	<select id="bzls" style="width:80px">
                               		<option selected="selected" value="">全部</option>
 									<option value="无">无补助历史</option>
 									<option value="有">有补助历史</option>
                               	</select>
+                              	 <span>&nbsp;桥梁编号：</span>
+        						<input type="text" id="qlbh" style="width:70px;" />
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />

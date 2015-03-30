@@ -495,7 +495,7 @@
 			(
 				select rownum as num,t.* from
 				(
-					select * from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_wqgz sc on
  			 		(gc.jhid=sc.sckid)  left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
@@ -509,7 +509,7 @@
  		</select>
  		
  		<select id="selectWqjzCount"  parameterType="jckwqgz"  resultType="int">
-			select count(*) from (select count(wc_btz),count(wc_qttz),max(sbsj) sbsj,jhid
+			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_wqgz sc on
  			 		(gc.jhid=sc.sckid) left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz jc on sc.xmkid=jc.id
@@ -521,7 +521,7 @@
 	<select id="exportExcel_wqjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,lx.qlbh v_4,lx.qlmc v_5,gc.sbsj v_6,jh.yjjgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,jh.bz v_11
-		 		from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_wqgz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_wqgz sc on
  			 		(gc.jhid=sc.sckid) left join plan_wqgz jh on (sc.sckid=jh.sckid) left join xmk_wqgz lx on sc.xmkid=lx.id
@@ -537,7 +537,7 @@
 			(
 				select rownum as num,t.* from
 				(
-					select * from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_abgc sc on
  			 		(gc.jhid=sc.sckid)  left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
@@ -551,7 +551,7 @@
  		</select>
  		
  		<select id="selectAbjzCount"  parameterType="jckwqgz"  resultType="int">
-			select count(*) from (select count(wc_btz),count(wc_qttz),max(sbsj) sbsj,jhid
+			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid)gc left join sck_abgc sc on
  			 		(gc.jhid=sc.sckid) left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc jc on sc.xmkid=jc.id
@@ -563,7 +563,7 @@
 	<select id="exportExcel_abjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,gc.sbsj v_6,jh.yjwgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
-		 		from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_abgc where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_abgc sc on
  			 		(gc.jhid=sc.sckid) left join plan_abgc jh on (sc.sckid=jh.sckid) left join xmk_abgc lx on sc.xmkid=lx.id
@@ -579,7 +579,7 @@
 			(
 				select rownum as num,t.* from
 				(
-					select * from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+					select * from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_zhfz sc on
  			 		(gc.jhid=sc.sckid)  left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
@@ -593,7 +593,7 @@
  		</select>
  		
  		<select id="selectZhjzCount"  parameterType="jckwqgz"  resultType="int">
-			select count(*) from (select count(wc_btz),count(wc_qttz),max(sbsj) sbsj,jhid
+			select count(*) from (select sum(wc_btz),sum(wc_qttz),max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid)gc left join sck_zhfz sc on
  			 		(gc.jhid=sc.sckid) left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz jc on sc.xmkid=jc.id
@@ -605,7 +605,7 @@
 	<select id="exportExcel_zhjz" parameterType="jckwqgz" resultType="sjbb">
 		select lx.xzqhdm v_0,lx.xzqhmc v_1,lx.lxbm v_2,lx.lxmc v_3,sc.scqdzh v_4,sc.sczdzh v_5,gc.sbsj v_6,jh.yjwgsj v_7,gc.wc_btz v_8,
 			gc.wc_qttz v_9,jh.sjwgsj v_10,lx.bz v_11 
-		 		from (select count(wc_btz) wc_btz,count(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
+		 		from (select sum(wc_btz) wc_btz,sum(wc_qttz) wc_qttz,max(sbsj) sbsj,jhid
  					from gcgl_zhfz where substr(sbyf,6,length(sbyf)-5) &lt;=to_number(#{xmnf})
  					 group by jhid )gc left join sck_zhfz sc on
  			 		(gc.jhid=sc.sckid) left join plan_zhfz jh on (sc.sckid=jh.sckid) left join xmk_zhfz lx on sc.xmkid=lx.id

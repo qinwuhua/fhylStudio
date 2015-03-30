@@ -28,20 +28,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 
 	@Override
 	public List<Jckwqgz> selectWqgzList(Jckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", wqgz.getSbthcd());
-		hm.put("gydw", wqgz.getGydw());
-		hm.put("xzqhmc", wqgz.getXzqhmc());
-		hm.put("lxmc", wqgz.getLxmc());
-		hm.put("qlmc", wqgz.getQlmc());
-		hm.put("xmnf", wqgz.getXmnf());
-		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("sbzt", wqgz.getSbzt());
-		hm.put("jsdj", wqgz.getJsdj());
-		hm.put("akjfl", wqgz.getAkjfl());
-		hm.put("page", wqgz.getPage());
-		hm.put("rows", wqgz.getRows());
-		return queryList("selectJckwqgz",hm);
+		return queryList("selectJckwqgz",wqgz);
 	}
 
 	@Override
@@ -112,18 +99,7 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 
 	@Override
 	public int selectWqgzCount(Jckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", wqgz.getSbthcd());
-		hm.put("gydw", wqgz.getGydw());
-		hm.put("xzqhmc", wqgz.getXzqhmc());
-		hm.put("lxmc", wqgz.getLxmc());
-		hm.put("qlmc", wqgz.getQlmc());
-		hm.put("xmnf", wqgz.getXmnf());
-		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("sbzt", wqgz.getSbzt());
-		hm.put("jsdj", wqgz.getJsdj());
-		hm.put("akjfl", wqgz.getAkjfl());
-		return queryOne("selectWqgzCount", hm);
+		return queryOne("selectWqgzCount", wqgz);
 	}
 
 	@Override
@@ -159,36 +135,12 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	
 	@Override
 	public List<Jckwqgz> selectJckShwqgz(Jckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", wqgz.getSbthcd());
-		hm.put("gydw", wqgz.getGydw());
-		hm.put("xzqhmc", wqgz.getXzqhmc());
-		hm.put("lxmc", wqgz.getLxmc());
-		hm.put("qlmc", wqgz.getQlmc());
-		hm.put("xmnf", wqgz.getXmnf());
-		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("shzt", wqgz.getShzt());
-		hm.put("jsdj", wqgz.getJsdj());
-		hm.put("akjfl", wqgz.getAkjfl());
-		hm.put("page", wqgz.getPage());
-		hm.put("rows", wqgz.getRows());
-		return queryList("selectJckShwqgz",hm);
+		return queryList("selectJckShwqgz",wqgz);
 	}
 
 	@Override
 	public int selectWqgzShCount(Jckwqgz wqgz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", wqgz.getSbthcd());
-		hm.put("gydw", wqgz.getGydw());
-		hm.put("xzqhmc", wqgz.getXzqhmc());
-		hm.put("lxmc", wqgz.getLxmc());
-		hm.put("qlmc", wqgz.getQlmc());
-		hm.put("xmnf", wqgz.getXmnf());
-		hm.put("xmtype", wqgz.getXmtype());
-		hm.put("shzt", wqgz.getShzt());
-		hm.put("jsdj", wqgz.getJsdj());
-		hm.put("akjfl", wqgz.getAkjfl());
-		return queryOne("selectWqgzShCount",hm);
+		return queryOne("selectWqgzShCount",wqgz);
 	}
 
 	@Override

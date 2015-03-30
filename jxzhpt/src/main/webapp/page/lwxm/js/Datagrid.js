@@ -30,7 +30,9 @@ var gydw;
 				 	'xmtype':$("#xmtype").val(),
 				 	'sbzt':$('#sbzt').val(),
 				 	'jsdj':$("#jsdj").val(),
-				 	'akjfl':$("#akjfl").val()
+				 	'akjfl':$("#akjfl").val(),
+				 	'lxbm':$("#lxbm").val(),
+				 	'qlbh':$("#qlbh").val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -99,7 +101,8 @@ var gydw;
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-	 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+$("#akjfl").val();
+	 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+
+	 	"&akjfl="+$("#akjfl").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selectWqgzCount.do",
@@ -140,7 +143,8 @@ var gydw;
 				 	'xmtype':$("#xmtype").val(),
 				 	'sbzt':$('#sbzt').val(),
 				 	'lxjsdj':$("#lxjsdj").val(),
-				 	'lxbm':$("#lxbm").val()
+				 	'lxbm':$("#lxbm").val(),
+				 	'bz':$("#bz").val()
 				},
 				striped:true,
 				pagination:true,
@@ -210,7 +214,8 @@ var gydw;
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
-	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+	 	"&bz="+$("#bz").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selAbgcCount.do",
@@ -257,7 +262,8 @@ var gydw;
 				 	'xmtype':$("#xmtype").val(),
 				 	'sbzt':$('#sbzt').val(),
 				 	'lxjsdj':$("#lxjsdj").val(),
-				 	'lxbm':$("#lxbm").val()
+				 	'lxbm':$("#lxbm").val(),
+				 	'bz':$("#bz").val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -327,7 +333,8 @@ var gydw;
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
-	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+	 	"&bz="+$("#bz").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selZhfzCount.do",
@@ -376,7 +383,9 @@ function jckshWqgz(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val()
+			 	'akjfl':$("#akjfl").val(),
+			 	'lxbm':$("#lxbm").val(),
+			 	'qlbh':$("#qlbh").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -428,7 +437,8 @@ function jckshWqgz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+$("#akjfl").val();
+ 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').val()+"&jsdj="+$("#jsdj").val()+
+ 	"&akjfl="+$("#akjfl").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selectWqgzShCount.do",
@@ -468,7 +478,8 @@ function jckshAbgc(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -526,7 +537,8 @@ function jckshAbgc(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bz="+$("#bz").val();
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selAbgcShCount.do",
@@ -572,7 +584,8 @@ function jckshZhfz(){
 			 	'xmtype':$("#xmtype").val(),
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
-			 	'lxbm':$("#lxbm").val()
+			 	'lxbm':$("#lxbm").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -630,7 +643,8 @@ function jckshZhfz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val();
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bz="+$("#bz").val();
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selZhfzShCount.do",
@@ -680,7 +694,9 @@ function sckglWqgz(){
 			 	'sbzt':$('#sbzt').val(),
 			 	'jsdj':$("#jsdj").val(),
 			 	'akjfl':$("#akjfl").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'lxbm': $('#lxbm').val(),
+			 	'qlbh':$("#qlbh").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -752,7 +768,7 @@ function sckglWqgz(){
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+
- 	$("#akjfl").val()+"&bzls="+$("#bzls").val();
+ 	$("#akjfl").val()+"&bzls="+$("#bzls").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selectWqgzCount.do",
@@ -794,7 +810,8 @@ function sckglAbgc(){
 			 	'sbzt':$('#sbzt').val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -866,7 +883,8 @@ function sckglAbgc(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckAbgcCount.do",
@@ -913,7 +931,8 @@ function sckglZhfz(){
 			 	'sbzt':$('#sbzt').val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -985,7 +1004,8 @@ function sckglZhfz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckZhfzCount.do",
@@ -1034,7 +1054,9 @@ function sckshWqgz(){
 			 	'shzt':$("#shzt").val(),
 			 	'jsdj':$("#jsdj").val(),
 			 	'akjfl':$("#akjfl").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'lxbm': $('#lxbm').val(),
+			 	'qlbh':$("#qlbh").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -1095,7 +1117,7 @@ function sckshWqgz(){
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+
- 	$("#akjfl").val()+"&bzls="+$("#bzls").val();
+ 	$("#akjfl").val()+"&bzls="+$("#bzls").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selectWqgzShCount.do",
@@ -1136,7 +1158,8 @@ function sckshAbgc(){
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -1192,7 +1215,8 @@ function sckshAbgc(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckAbgcShCount.do",
@@ -1239,7 +1263,8 @@ function sckshZhfz(){
 			 	'shzt':$("#shzt").val(),
 			 	'lxjsdj':$("#lxjsdj").val(),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val()
+			 	'bzls':$("#bzls").val(),
+			 	'bz':$("#bz").val()
 			},
 		    striped:true,
 		    pagination:true,
@@ -1295,7 +1320,8 @@ function sckshZhfz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").val();
+ 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
+ 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckZhfzShCount.do",
