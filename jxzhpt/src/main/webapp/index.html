@@ -39,6 +39,7 @@ html, body {
 <script src="framework/jquery-1.8.0.min.js"></script>
 <script src="framework/jquery.tabletojson.js"></script>
 <script src="http://js.arcgis.com/3.12"></script>
+<script src="2.x/OpenLayers.js"></script>
 <script>
 	var map, basmapUrl, geoSerUrl;
 	require(
@@ -160,10 +161,67 @@ html, body {
 					}
 				});
 			});
+	/**
+	属性查询
+	**/
+	function attrQuery() {
+		OpenLayers.ProxyHost="./proxy.jsp?";
+		/* var searchstr="测试数据";
+		var filter=new OpenLayers.Filter.Comparison({  
+            type : OpenLayers.Filter.Comparison.LIKE,  
+            property : "NAME",  
+            value : "*" + searchstr + "*"  
+        }); */
+       // alert(filter.toString());
+        var wfsProtocol=new OpenLayers.Protocol.WFS({  
+            url : "http://127.0.0.1:8989/hdmapserver/wfs",  
+            featureType : "network",
+            featureNS : "http://127.0.0.1:8989/hdmapserver/sxyhmap",
+            /* filter : new OpenLayers.Filter.Comparison({
+				type : OpenLayers.Filter.Comparison.EQUAL_TO,
+				property : encodeURIComponent("区县编码"),
+				value : "140222"
+			}), */
+			maxFeatures:500,
+			outputFormat:'GML2',
+            callback:function(req){
+            	console.info(req);
+            	var gmlParse = new OpenLayers.Format.GML();
+            	console.info(req.priv.responseText);
+                var features = gmlParse.read(req.priv.responseText);
+                console.info(features); 
+                for (var feat in features) {
+                   var  feature = features[feat];   
+                   var polygon = feature.geometry.components[0].clone();
+
+                   var vec = new OpenLayers.Feature.Vector(polygon);
+                   var gjsonObj=OpenLayers.Format.GeoJSON.prototype.parseGeometry(vec);
+                   //var string = OpenLayers.Format.GeoJSON.prototype.write(vec);
+                   console.info(gjsonObj);
+                }
+            }
+        });
+        wfsProtocol.read();
+        
+		/*var wfsProtocol=new OpenLayers.Protocol.WFS({  
+            url : "http://211.101.37.234:8080/hdmapserver/wfs",  
+            featureType : "jx_guancezhanguosheng",
+            featureNS : "http://211.101.37.234:8080/hdmapserver/jiangximap",
+            callback:function(scope,response){
+            	console.info(scope);
+            	console.info(response);
+            }
+        });
+        wfsProtocol.read();*/
+        
+	}
 </script>
 </head>
 
 <body>
+<div style="position: absolute;right: 1opx;top: 10px;z-index: 999">
+	<button onclick="attrQuery()">属性查询</button>
+</div>
 	<div id="map"></div>
 </body>
 </html>

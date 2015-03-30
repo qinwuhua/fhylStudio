@@ -31,4 +31,5 @@
 <include file="struts_tjfx.xml"></include>
 <include file="struts_dbbb.xml"></include>
 <include file="struts_gcybb.xml"></include>
+<include file="struts_sjbb.xml"></include>
 </struts>

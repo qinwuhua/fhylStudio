@@ -30,19 +30,36 @@ $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
 	getYearList();
+	startSearch();
 });
 function startSearch(){
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getYearList.do',
+		url:'/jxzhpt/gcbb/getLwjgjsgzb.do',
+		dataType:"json",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
 		success:function(data){
-			var msg=$.parseJSON(data);
+			var str="";
+			$("#tbody_sj").html("");
 			if(msg!=null){
-				var str='';
 				for(var i=0;i<msg.length;i++){
-					str+='<option value='+msg[i]+'>'+msg[i]+'</option>';
+					str+="<tr align='center'>";
+					str+="<td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+					+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
+					+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
+					+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
+					+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>"
+					+"<td>"+msg[i].v_20+"</td>"+"<td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+"<td>"+msg[i].v_23+"</td>"
+					+"<td>"+msg[i].v_24+"</td>"+"<td>"+msg[i].v_25+"</td>"+"<td>"+msg[i].v_26+"</td>"+"<td>"+msg[i].v_27+"</td>"
+					+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"+"<td>"+msg[i].v_30+"</td>"+"<td>"+msg[i].v_31+"</td>"
+					+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"
+					+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_37+"</td>"+"<td>"+msg[i].v_38+"</td>"+"<td>"+msg[i].v_39+"</td>"
+					+"<td>"+msg[i].v_40+"</td>";
+					str+="</tr>";
 				}
-				$('#year').html(str);
+				$("#tbody_sj").html(str);
+			}else{
+				str+="<tr><td colspan='41'>暂无数据</td></tr>";
 			}
 		}
 	});

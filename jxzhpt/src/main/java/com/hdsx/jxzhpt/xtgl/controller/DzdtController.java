@@ -27,9 +27,13 @@ public class DzdtController extends BaseActionSupport{
 	private DzdtServer dzdtServer;
 	private Dzdt dzdt;
 	private Param param;
+	
+	public void selExistProgramByRoadcode(){
+		System.out.println(param.getId());
+		
+	}
+	
 	public void selLines(){
-		
-		
 		HashMap<String, Object> hm=new HashMap<String, Object>();
 		//System.out.println(ldxx.getRoadends());
 		//ldxx.setRoadstart(0.0);

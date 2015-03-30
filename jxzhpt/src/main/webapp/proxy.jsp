@@ -154,6 +154,8 @@ private HttpURLConnection doHTTPRequest(String uri, String method) throws IOExce
 }
 
 private HttpURLConnection doHTTPRequest(String uri, byte[] bytes, String method, String referer, String contentType) throws IOException{
+	//uri="http://211.101.37.234:8080/hdmapserver/wfs";
+	uri=URLDecoder.decode(uri,"utf-8");
     URL url = new URL(uri);
     HttpURLConnection con = (HttpURLConnection)url.openConnection();
 

@@ -156,5 +156,6 @@
 	<!-- chc -->
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/gcbb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcbb/config/dbbb.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcbb/config/sjbb.xml"/>
   </mappers>
 </configuration>
