@@ -23,6 +23,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			showAllkg();
 		});
 	</script>
 	<style type="text/css">
@@ -70,27 +71,27 @@ table thead tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>单位名称：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						        						<span>截止到本年：</span>
-        						<select id="" style="width:80px;">
-        							<option>1月</option>
-        							<option>2月</option>
-        							<option>3月</option>
-        							<option>4月</option>
-        							<option>5月</option>
-        							<option>6月</option>
-        							<option>7月</option>
-        							<option>8月</option>
-        							<option>9月</option>
-        							<option>10月</option>
-        							<option>11月</option>
-        							<option>12月</option>
+        						 <span>截止到本年：</span>
+        						<select id="xmnf" style="width:80px;">
+        							<option value="1">1月</option>
+        							<option value="2">2月</option>
+        							<option value="3">3月</option>
+        							<option value="4">4月</option>
+        							<option value="5">5月</option>
+        							<option value="6">6月</option>
+        							<option value="7">7月</option>
+        							<option value="8">8月</option>
+        							<option value="9">9月</option>
+        							<option value="10">10月</option>
+        							<option value="11">11月</option>
+        							<option value="12">12月</option> 
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;"onclick="showAllkg()" />
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel_zhkg()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
@@ -98,12 +99,11 @@ table thead tr td {
         	</tr>
 
             <tr>
-                <td style="padding-top: 10px;padding-left:10px;">
-                    <div>
-				<table id="datagrid" width="100%">
-				</table>
-				</div>
-				</td>
+                <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
+                	<p align="center" style="font-size:x-large;font-weight: bolder;">灾害进度库开工信息模板</p><br/>
+							<table id="datagrid"  width="100%" >
+							</table>
+				</td>    
 				</tr>
 		</table>
 	</div>

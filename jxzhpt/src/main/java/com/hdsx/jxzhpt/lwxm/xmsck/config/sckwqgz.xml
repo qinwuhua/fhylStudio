@@ -206,11 +206,17 @@
  		</if>
  </select>
 	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
- 		select count(*) from sck_wqgz where lrjh='已列入'
- 		<if test="qlbh!='' and qlbh!= null "  >
- 			and (sck_qlbh=#{qlbh}
- 			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
- 		</if>
+ 		SELECT C1.CON1+C2.CON2 FROM
+(select count(*) CON1 from sck_wqgz where lrjh='已列入' 
+and (sck_qlbh=#{qlbh}
+or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
+)C1,
+(select count(*) CON2 from sck_wqgz SC,
+(select YQLBH,YLXBM,YQLZXZH from XTGL_QLSJ where (xqlbh=#{qlbh}
+or (xlxbm=#{lxbm} and xqlzxzh=to_number(#{qlzxzh})))) k
+where SC.lrjh='已列入' AND (SC.sck_qlbh=k.YQLBH
+or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
+)C2
  </select>
 
    <select id="daoRuwqgzsh" parameterType="sckwqgz" resultType="sckwqgz">

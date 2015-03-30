@@ -228,20 +228,20 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqjz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	/*createMenu2('LeftMenu',{
 		id:'menu14',
 		title:'危桥进度库完成信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqwc.jsp'
-	});
-	createMenu2('LeftMenu',{
+	});*/
+/*	createMenu2('LeftMenu',{
 		id:'menu13',
 		title:'危桥进度库跨年信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/wqmb/wqkn.jsp'
-	});
+	});*/
 	createMenu2('LeftMenu',{
 		id:'menu16',
 		title:'安保进度库开工信息模板',
@@ -256,20 +256,20 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abjz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	/*createMenu2('LeftMenu',{
 		id:'menu18',
 		title:'安保进度库完成信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abwc.jsp'
-	});
-	createMenu2('LeftMenu',{
+	});*/
+	/*createMenu2('LeftMenu',{
 		id:'menu17',
 		title:'安保进度库跨年信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/abmb/abkn.jsp'
-	});
+	});*/
 	createMenu2('LeftMenu',{
 		id:'menu20',
 		title:'灾害进度库开工信息模板',
@@ -284,20 +284,20 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhjz.jsp'
 	});
-	createMenu2('LeftMenu',{
+	/*createMenu2('LeftMenu',{
 		id:'menu22',
 		title:'灾害进度库完成信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhwc.jsp'
-	});
-	createMenu2('LeftMenu',{
+	});*/
+/*	createMenu2('LeftMenu',{
 		id:'menu21',
 		title:'灾害进度库跨年信息模板',
 		imgSrc:'../../images/menubutton/left_kj.png',
 		renderTo:'left_menu4',
 		href:'./dbbb/zhmb/zhkn.jsp'
-	});
+	});*/
 	menuQx();
 });
 function menuQx(){

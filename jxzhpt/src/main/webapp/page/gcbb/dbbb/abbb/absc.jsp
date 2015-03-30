@@ -92,24 +92,6 @@ table thead tr td {
                <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                	<p align="center" style="font-size:x-large;font-weight: bolder;">安保基础库报表</p><br/>
 							<table id="datagrid" width="100%" >
-								<!-- <thead>
-									<tr>
-										<td>管养单位 </td>
-										<td>行政区划代码 </td>
-										<td>行政区划名称</td>
-										<td>路线编码</td>
-										<td>路线名称 </td>
-										<td>起点桩号</td>
-										<td>止点桩号 </td>
-										<td>总里程</td>
-										<td>隐患里程</td>
-										<td>修建/改建年度</td>
-										<td>隐患内容 </td>
-										<td>备注</td>
-								</thead> -->
-								<!-- <tbody >
-								
-								</tbody> -->
 							</table>
 				</td>
 				</tr>

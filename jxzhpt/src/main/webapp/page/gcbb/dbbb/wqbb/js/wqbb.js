@@ -1,4 +1,4 @@
-
+var gydw;
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
@@ -10,20 +10,17 @@ function showAlljc(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -60,17 +57,14 @@ function exportExcel_wqjc(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_wqjc.do?"+param;
@@ -83,20 +77,17 @@ function showAllsc(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -127,17 +118,14 @@ function exportExcel_wqsc(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_wqsc.do?"+param;
@@ -150,20 +138,17 @@ function showAlljh(){
 		 		if($.cookie("unit2")=='______36') return 7;
 		 		else return $.cookie("unit2").length;
 		 	},
-		 	'gydw':function(){
-		 		var gydw=	$("#gydw").combotree('getValue');
-		 		if(gydw=='36'){
-		 		return '';
-		 		}else{
-		 			if(gydw.substr(gydw.length-2,2)=='00'){
-		 	 			gydw=gydw.substr(0,gydw.length-2);
-		 				if(gydw.substr(gydw.length-2,2)=='00'){
-		 					gydw=gydw.substr(0,gydw.length-2);
-		 				}
-		 			}
-		 			return gydw;
-		 		}
-		 	},
+		 	gydw: function(){
+		 		gydw=$('#gydw').combobox("getValue");
+		 		if(gydw=='36') gydw='';
+	    		if(gydw.substr(gydw.length-2,2)=='00'){
+	    			gydw=gydw.substr(0,gydw.length-2);
+	    			if(gydw.substr(gydw.length-2,2)=='00'){
+	    				gydw=gydw.substr(0,gydw.length-2);
+	    			}
+	    		}
+	    		return gydw;
+	    	},
 		 	'xmnf':$('#xmnf').combobox('getValue')
 		},
 	    striped:true,
@@ -175,39 +160,14 @@ function showAlljh(){
 		width:$(window).width()-25,
 
 	    columns:[[
-	        {field:'gydw',title:'管养单位',width:100,align:'center',
-	        	formatter : function(value, row, index) {
-					return row.gydw;
-				}	
-	        },
-	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center',
-	        	formatter : function(value, row, index) {
-					return row.xzqhdm;
-				}	},
-	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		        	formatter : function(value, row, index) {
-						return row.xzqhmc;
-					}	},
-	        {field:'lxbm',title:'路线编码',width:100,align:'center',
-			        	formatter : function(value, row, index) {
-							return row.lxbm;
-						}	},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center',
-				        	formatter : function(value, row, index) {
-								return row.lxmc;
-							}	},
-	        {field:'qlbh',title:'桥梁编码',width:100,align:'center',
-					        	formatter : function(value, row, index) {
-									return row.qlbh;
-								}	},
-	        {field:'qlmc',title:'桥梁名称',width:100,align:'center',
-						        	formatter : function(value, row, index) {
-										return row.qlmc;
-									}	},
-	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center',
-							        	formatter : function(value, row, index) {
-											return row.qlzxzh;
-										}	},
+	        {field:'gydw',title:'管养单位',width:100,align:'center'},
+	        {field:'xzqhdm',title:'行政区划代码',width:100,align:'center'},
+	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+	        {field:'lxbm',title:'路线编码',width:100,align:'center'},
+	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:100,align:'center'},
+	        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
+	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
 	        {field:'xjgjnd',title:'修建/改建年度',width:100,align:'center'},
 	        {field:'sjdw',title:'设计单位',width:100,align:'center'},
 	        {field:'sjpfdw',title:'设计批复单位',width:100,align:'center'},
@@ -224,17 +184,14 @@ function exportExcel_wqjh(){
 	var sbthcd;
  		if($.cookie("unit2")=='______36') sbthcd=7;
  		else  sbthcd=$.cookie("unit2").length;
- 	var gydw=	$("#gydw").combotree('getValue');
- 		if(gydw=='36'){
- 		gydw='';
- 		}else{
- 			if(gydw.substr(gydw.length-2,2)=='00'){
- 	 			gydw=gydw.substr(0,gydw.length-2);
- 				if(gydw.substr(gydw.length-2,2)=='00'){
- 					gydw=gydw.substr(0,gydw.length-2);
- 				}
- 			}
- 		}
+ 		gydw=$('#gydw').combobox("getValue");
+ 		if(gydw=='36') gydw='';
+		if(gydw.substr(gydw.length-2,2)=='00'){
+			gydw=gydw.substr(0,gydw.length-2);
+			if(gydw.substr(gydw.length-2,2)=='00'){
+				gydw=gydw.substr(0,gydw.length-2);
+			}
+		}
 	var param='sbthcd='+sbthcd+'&gydw='+gydw+
  	'&xmnf='+$('#xmnf').combobox('getValue');
 	window.location.href="/jxzhpt/dbbb/exportExcel_wqjh.do?"+param;

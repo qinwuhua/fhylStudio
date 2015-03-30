@@ -133,7 +133,7 @@ table thead tr td {
 table tbody tr td {
 	text-align:center; 	
 	font-size:1em;
-	font-weight:bold;
+/* 	font-weight:bold; */
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }

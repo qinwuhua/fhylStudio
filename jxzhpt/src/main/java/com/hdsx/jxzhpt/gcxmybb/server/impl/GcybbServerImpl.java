@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
@@ -108,7 +110,43 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		// TODO Auto-generated method stub
 		return queryList("getabgclist4", gcglabgc);
 	}
-	
 
+	@Override
+	public List<Map<String, Object>> getzhfzybb(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzybb", gcglzhfz);
+	}
+
+	@Override
+	public Excel_list getzhfzlist1(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryOne("getzhfzlist1", gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getZhfzxzqh(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getZhfzxzqh", gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getZhfznf(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getZhfznf", gcglzhfz);
+	}
+
+	@Override
+	public List<Excel_list> getzhfzlist2(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzlist2", gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getShybb(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("getShybb", gcglsh);
+	}
+	
+	
 	
 }

@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -41,5 +43,17 @@ public interface GcybbServer {
 	Excel_list getabgclist2(Gcglabgc gcglabgc);
 
 	List<Excel_list> getabgclist4(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getzhfzybb(Gcglzhfz gcglzhfz);
+
+	Excel_list getzhfzlist1(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getZhfzxzqh(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getZhfznf(Gcglzhfz gcglzhfz);
+
+	List<Excel_list> getzhfzlist2(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getShybb(Gcglsh gcglsh);
 
 }

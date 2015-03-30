@@ -39,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
@@ -83,7 +84,16 @@ public class GcybbController extends BaseActionSupport{
 	private Gcglwqgz gcglwqgz=new Gcglwqgz();
 	private Gcglabgc gcglabgc=new Gcglabgc();
 	private Gcglzhfz gcglzhfz=new Gcglzhfz();
+	private Gcglsh gcglsh=new Gcglsh();
 	
+	public Gcglsh getGcglsh() {
+		return gcglsh;
+	}
+
+	public void setGcglsh(Gcglsh gcglsh) {
+		this.gcglsh = gcglsh;
+	}
+
 	public Gcglzhfz getGcglzhfz() {
 		return gcglzhfz;
 	}
@@ -577,27 +587,27 @@ public class GcybbController extends BaseActionSupport{
 		List<Excel_list> exl = new ArrayList<Excel_list>();
 		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
-		gcglabgc.setSbyf(shijian);
+		gcglzhfz.setSbyf(shijian);
 		if("36".equals(gydw)){
-			gcglabgc.setGydw("");
+			gcglzhfz.setGydw("");
 		}
-		else gcglabgc.setGydw(gydw.replaceAll("0*$",""));
-		gcglabgc.setLxmc(lxmc);
-		gcglabgc.setTiaojian(xzdj);
-		gcglabgc.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getabgcybb(gcglabgc);
-		Excel_list e1=gcybbServer.getabgclist1(gcglabgc);
+		else gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		gcglzhfz.setLxmc(lxmc);
+		gcglzhfz.setTiaojian(xzdj);
+		gcglzhfz.setXzqhdm(xzqh.replaceAll("0*$",""));
+		//List<Map<String, Object>> lsit=gcybbServer.getzhfzybb(gcglzhfz);
+		Excel_list e1=gcybbServer.getzhfzlist1(gcglzhfz);
 		if(e1!=null){
 			e1.setV_0("总计");
 			exl.add(e1);
 		}
 		int maxnian=0;
 		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getAbgcxzqh(gcglabgc);//查行政区划
+		List<Map<String, Object>> lsit1=gcybbServer.getZhfzxzqh(gcglzhfz);//查行政区划
 		if(lsit1.size()!=0)
 		for (Map<String, Object> map : lsit1) {
-			gcglabgc.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getabgclist3(gcglabgc);
+			gcglzhfz.setXzqhmc(map.get("XZQHDM").toString());
+			Excel_list e3=gcybbServer.getzhfzlist1(gcglzhfz);
 			if(e3!=null){
 				if("景德镇".equals(map.get("XZQHMC").toString())){
 					e3.setV_0(map.get("XZQHMC").toString()+"市");
@@ -605,7 +615,7 @@ public class GcybbController extends BaseActionSupport{
 				else e3.setV_0(map.get("XZQHMC").toString());
 				exl1.add(e3);
 			}
-			List<Map<String, Object>> lsit2=gcybbServer.getAbgcnf(gcglabgc);//查年份
+			List<Map<String, Object>> lsit2=gcybbServer.getZhfznf(gcglzhfz);//查年份
 			if(lsit2.size()!=0)
 			for (Map<String, Object> map2 : lsit2) {
 				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
@@ -614,20 +624,20 @@ public class GcybbController extends BaseActionSupport{
 				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
 					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
 				}
-				gcglabgc.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
+				gcglzhfz.setXmnf(map2.get("XMNF").toString());
+				Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
 				e2.setV_0(map2.get("XMNF").toString()+"项目");
 				if(e2!=null)
 				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getabgclist4(gcglabgc);
+				List<Excel_list> exl2=gcybbServer.getzhfzlist2(gcglzhfz);
 				if(exl2.size()!=0)
 				exl1.addAll(exl2);
 			}
 		}
 		for (int i = minnian; i <= maxnian; i++) {
-			gcglabgc.setXzqhmc("");
-			gcglabgc.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
+			gcglzhfz.setXzqhmc("");
+			gcglzhfz.setXmnf(i+"年");
+			Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
 			if(e2!=null){
 				e2.setV_0(i+"年项目");
 				exl.add(e2);
@@ -639,5 +649,129 @@ public class GcybbController extends BaseActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void exportZhfzyb(){
+		List<Excel_list> exl = new ArrayList<Excel_list>();
+		List<Excel_list> exl1 = new ArrayList<Excel_list>();
+		String shijian=nf+"-"+yf;
+		gcglzhfz.setSbyf(shijian);
+		if("36".equals(gydw)){
+			gcglzhfz.setGydw("");
+		}
+		else gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		gcglzhfz.setLxmc(lxmc);
+		gcglzhfz.setTiaojian(xzdj);
+		gcglzhfz.setXzqhdm(xzqh.replaceAll("0*$",""));
+		//List<Map<String, Object>> lsit=gcybbServer.getzhfzybb(gcglzhfz);
+		Excel_list e1=gcybbServer.getzhfzlist1(gcglzhfz);
+		if(e1!=null){
+			e1.setV_0("总计");
+			exl.add(e1);
+		}
+		int maxnian=0;
+		int minnian=Integer.parseInt(nf);
+		List<Map<String, Object>> lsit1=gcybbServer.getZhfzxzqh(gcglzhfz);//查行政区划
+		if(lsit1.size()!=0)
+		for (Map<String, Object> map : lsit1) {
+			gcglzhfz.setXzqhmc(map.get("XZQHDM").toString());
+			Excel_list e3=gcybbServer.getzhfzlist1(gcglzhfz);
+			if(e3!=null){
+				if("景德镇".equals(map.get("XZQHMC").toString())){
+					e3.setV_0(map.get("XZQHMC").toString()+"市");
+				}
+				else e3.setV_0(map.get("XZQHMC").toString());
+				exl1.add(e3);
+			}
+			List<Map<String, Object>> lsit2=gcybbServer.getZhfznf(gcglzhfz);//查年份
+			if(lsit2.size()!=0)
+			for (Map<String, Object> map2 : lsit2) {
+				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
+					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
+				}
+				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
+					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
+				}
+				gcglzhfz.setXmnf(map2.get("XMNF").toString());
+				Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
+				e2.setV_0(map2.get("XMNF").toString()+"项目");
+				if(e2!=null)
+				exl1.add(e2);
+				List<Excel_list> exl2=gcybbServer.getzhfzlist2(gcglzhfz);
+				if(exl2.size()!=0)
+				exl1.addAll(exl2);
+			}
+		}
+		for (int i = minnian; i <= maxnian; i++) {
+			gcglzhfz.setXzqhmc("");
+			gcglzhfz.setXmnf(i+"年");
+			Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
+			if(e2!=null){
+				e2.setV_0(i+"年项目");
+				exl.add(e2);
+			}
+		}
+		exl.addAll(exl1);
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("江西省"+nf+"年公路路网结构改造工程统计月报表（三） 灾害防治（"+yf+"月）");//设置第一行
+		eldata.setSheetName("统计月报表");//设置sheeet名
+		eldata.setFileName("江西省"+nf+"年"+yf+"月公路路网结构改造工程统计月报表（三）");//设置文件名
+		eldata.setEl(exl);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("路线编码",1,2,0,0));
+		et.add(new Excel_tilte("路线名称",1,2,1,1));
+		et.add(new Excel_tilte("基本情况",1,1,2,5));	
+		et.add(new Excel_tilte("计划投资(万元)", 1, 1, 6, 8));
+		et.add(new Excel_tilte("本月完成工程量（公里）", 1, 2, 9, 9));
+		et.add(new Excel_tilte("自元月至本月底完成工程量（公里）", 1, 2, 10, 10));
+		et.add(new Excel_tilte("开工至本月底完成工程量（公里）", 1, 2, 11, 11));
+		et.add(new Excel_tilte("本月完成投资(万元)", 1, 1, 12, 14));
+		et.add(new Excel_tilte("自元月至本月底完成投资（万元）", 1, 1, 15, 17));
+		et.add(new Excel_tilte("开工至本月底累计完成投资(万元)", 1, 1, 18, 20));
+		et.add(new Excel_tilte("主要建设内容", 1, 2, 21, 21));
+		et.add(new Excel_tilte("起点桩号", 2, 2, 2, 2));
+		et.add(new Excel_tilte("止点桩号", 2, 2, 3, 3));
+		et.add(new Excel_tilte("技术等级", 2, 2, 4, 4));
+		et.add(new Excel_tilte("公路修建/改建年度", 2, 2, 5, 5));
+		et.add(new Excel_tilte("总投资", 2, 2, 6, 6));
+		et.add(new Excel_tilte("部投资", 2, 2, 7, 7));
+		et.add(new Excel_tilte("省投资", 2, 2, 8, 8));
+		et.add(new Excel_tilte("总投资", 2, 2, 12, 12));
+		et.add(new Excel_tilte("部投资", 2, 2, 13, 13));
+		et.add(new Excel_tilte("省投资", 2, 2, 14, 14));
+		et.add(new Excel_tilte("总投资", 2, 2, 15, 15));
+		et.add(new Excel_tilte("部投资", 2, 2, 16, 16));
+		et.add(new Excel_tilte("省投资", 2, 2, 17, 17));
+		et.add(new Excel_tilte("总投资", 2, 2, 18, 18));
+		et.add(new Excel_tilte("部投资", 2, 2, 19, 19));
+		et.add(new Excel_tilte("省投资", 2, 2, 20, 20));		
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export1(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel
+	}
+	
+	/**
+	 * 水毁
+	 */
+	public void getShybb(){
+		List<Excel_list> exl = new ArrayList<Excel_list>();
+		List<Excel_list> exl1 = new ArrayList<Excel_list>();
+		String shijian=nf+"-"+yf;
+		gcglsh.setSbyf(shijian);
+		if("36".equals(gydw)){
+			gcglsh.setGydw("");
+		}
+		else gcglsh.setGydw(gydw.replaceAll("0*$",""));
+		gcglsh.setLxmc(lxmc);
+		gcglsh.setTiaojian(xzdj);
+		gcglsh.setXzqhdm(xzqh.replaceAll("0*$",""));
+		//List<Map<String, Object>> lsit=gcybbServer.getShybb(gcglsh);
+		
+		
 	}
 }

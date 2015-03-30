@@ -64,12 +64,7 @@
 										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>"
 								);
 							}else{
 								tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
@@ -82,12 +77,7 @@
 										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
 										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>"
 								);
 							}
 						}
@@ -133,7 +123,7 @@ table thead tr td {
 table tbody tr td {
 	text-align:center; 	
 	font-size:1em;
-	font-weight:bold;
+/* 	font-weight:bold; */
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
@@ -210,7 +200,7 @@ table tbody tr td {
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="2500px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表（三）    灾害防治 </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（三）    灾害防治（<span id="yue" style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
 										<td rowspan="2">路线编码</td>

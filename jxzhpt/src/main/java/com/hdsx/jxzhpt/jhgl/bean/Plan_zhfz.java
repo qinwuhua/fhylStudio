@@ -63,6 +63,17 @@ public class Plan_zhfz {
 	private String sfylsjl;//最近年份是否有历史记录
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
+	
+	private String gydw;
+	private String xzqhdm;
+	private String xzqhmc;
+	private String lxbm;
+	private String lxmc;
+	private String scqdzh;
+	private String sczdzh;
+	private String sczlc;
+	private String scyhlc;
+	private String gjxjnd;
 	public Sckzhfz getJckzhfz() {
 		return jckzhfz;
 	}
@@ -405,4 +416,65 @@ public class Plan_zhfz {
 	public void setSjsgtdata(byte[] sjsgtdata) {
 		this.sjsgtdata = sjsgtdata;
 	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqhdm() {
+		return xzqhdm;
+	}
+	public void setXzqhdm(String xzqhdm) {
+		this.xzqhdm = xzqhdm;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getScqdzh() {
+		return scqdzh;
+	}
+	public void setScqdzh(String scqdzh) {
+		this.scqdzh = scqdzh;
+	}
+	public String getSczdzh() {
+		return sczdzh;
+	}
+	public void setSczdzh(String sczdzh) {
+		this.sczdzh = sczdzh;
+	}
+	public String getSczlc() {
+		return sczlc;
+	}
+	public void setSczlc(String sczlc) {
+		this.sczlc = sczlc;
+	}
+	public String getScyhlc() {
+		return scyhlc;
+	}
+	public void setScyhlc(String scyhlc) {
+		this.scyhlc = scyhlc;
+	}
+	public String getGjxjnd() {
+		return gjxjnd;
+	}
+	public void setGjxjnd(String gjxjnd) {
+		this.gjxjnd = gjxjnd;
+	}
+	
 }
