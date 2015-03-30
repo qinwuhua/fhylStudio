@@ -69,12 +69,11 @@ public class SjbbMessage   implements Serializable {
 	private String v_56="";
 	private String v_57="";
 	private String v_58="";
-	private String gcid;
-	private String lcid;
-	private String lczbm;
-	private String xmlx;
+	private String id;
+	private String dist;
+	private String unit;
+	private String nf;
 	private String sbdw;
-	private String lcmc;
 	
     public String toString(){
     	return "SjbbMessage:"+
@@ -705,43 +704,45 @@ public class SjbbMessage   implements Serializable {
 	public void setV_57(String v_57) {
 		this.v_57 = v_57;
 	}
-	public String getGcid() {
-		return gcid;
+
+	public String getId() {
+		return id;
 	}
-	public void setGcid(String gcid) {
-		this.gcid = gcid;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getLcid() {
-		return lcid;
+
+	public String getDist() {
+		return dist;
 	}
-	public void setLcid(String lcid) {
-		this.lcid = lcid;
+
+	public void setDist(String dist) {
+		this.dist = dist;
 	}
-	public String getLczbm() {
-		return lczbm;
+
+	public String getUnit() {
+		return unit;
 	}
-	public void setLczbm(String lczbm) {
-		this.lczbm = lczbm;
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
-	public String getXmlx() {
-		return xmlx;
+
+	public String getNf() {
+		return nf;
 	}
-	public void setXmlx(String xmlx) {
-		this.xmlx = xmlx;
+
+	public void setNf(String nf) {
+		this.nf = nf;
 	}
+
 	public String getSbdw() {
 		return sbdw;
 	}
+
 	public void setSbdw(String sbdw) {
 		this.sbdw = sbdw;
-	}
-
-	public String getLcmc() {
-		return lcmc;
-	}
-
-	public void setLcmc(String lcmc) {
-		this.lcmc = lcmc;
 	}
 	
 	 

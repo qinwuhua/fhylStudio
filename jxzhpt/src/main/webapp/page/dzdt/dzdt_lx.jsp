@@ -54,8 +54,7 @@ $(function(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectTsdqList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			"roadcode":parent.YMLib.Var.bm
 		},
 		striped : true,
 		singleSelect : false,
