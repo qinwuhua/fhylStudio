@@ -462,4 +462,209 @@ public class XmbbController extends BaseActionSupport{
 			e.printStackTrace();
 		}		
 	}
+	public void getYhbb(){
+		List<Excel_list> exl = new ArrayList<Excel_list>();
+		List<Excel_list> exl1 = new ArrayList<Excel_list>();
+		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
+		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+		if(xmbb.getJhxdnf().equals("")){
+			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
+		}
+		if("未开工".equals(xmbb.getJszt())){
+			xmbb.setKgzt("0");
+			xmbb.setJgzt("");
+		}
+		if("在建".equals(xmbb.getJszt())){
+			xmbb.setKgzt("1");
+			xmbb.setJgzt("0");
+		}
+		if("竣工".equals(xmbb.getJszt())){
+			xmbb.setKgzt("");
+			xmbb.setJgzt("1");
+		}
+		//先查询行政区划
+		List<Map<String, Object>> list1=xmbbServer.getYhxzqh(xmbb);
+		//查合计
+		Excel_list zheji = xmbbServer.getYhHj(xmbb);
+		if(zheji!=null){
+			zheji.setV_0("合并");
+			zheji.setV_1("全省合计");
+			exl1.add(zheji);
+		}
+		String flag="一";
+		if(list1.size()>0){
+			for (Map<String, Object> map : list1) {
+				xmbb.setXzqh(map.get("XZQHDM").toString());
+				Excel_list sheji = xmbbServer.getYhHj(xmbb);
+				if(sheji!=null){
+					sheji.setV_0(flag);
+					if(flag.equals("一")){flag="二";}if(flag.equals("二")){flag="三";}if(flag.equals("三")){flag="四";}if(flag.equals("四")){flag="五";}if(flag.equals("五")){flag="六";}if(flag.equals("六")){flag="七";}if(flag.equals("七")){flag="八";}if(flag.equals("八")){flag="九";}if(flag.equals("九")){flag="十";}
+					sheji.setV_1(map.get("XZQHMC").toString()+"合计");
+					exl1.add(sheji);
+				}
+				//查国道
+				xmbb.setTiaojian("G");
+				Excel_list gdheji = xmbbServer.getYhHj(xmbb);
+				if(gdheji!=null){
+					gdheji.setV_0("1");
+					gdheji.setV_1("国道");
+					exl1.add(gdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+				//查省道
+				xmbb.setTiaojian("S");
+				Excel_list sdheji = xmbbServer.getYhHj(xmbb);
+				if(sdheji!=null){
+					sdheji.setV_0("2");
+					sdheji.setV_1("省道");
+					exl1.add(sdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+				//县乡道
+				Excel_list xdheji = xmbbServer.getYhHj1(xmbb);
+				if(xdheji!=null){
+					xdheji.setV_0("3");
+					xdheji.setV_1("县乡道");
+					exl1.add(xdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist1(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+			}
+		}
+		try {
+			JsonUtils.write(exl1, getresponse().getWriter());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void exportYh(){
+		List<Excel_list> exl1 = new ArrayList<Excel_list>();
+		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
+		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+		if(xmbb.getJhxdnf().equals("")){
+			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
+		}
+		if("未开工".equals(xmbb.getJszt())){
+			xmbb.setKgzt("0");
+			xmbb.setJgzt("");
+		}
+		if("在建".equals(xmbb.getJszt())){
+			xmbb.setKgzt("1");
+			xmbb.setJgzt("0");
+		}
+		if("竣工".equals(xmbb.getJszt())){
+			xmbb.setKgzt("");
+			xmbb.setJgzt("1");
+		}
+		//先查询行政区划
+		List<Map<String, Object>> list1=xmbbServer.getYhxzqh(xmbb);
+		//查合计
+		Excel_list zheji = xmbbServer.getYhHj(xmbb);
+		if(zheji!=null){
+			zheji.setV_0("合并");
+			zheji.setV_1("全省合计");
+			exl1.add(zheji);
+		}
+		String flag="一";
+		if(list1.size()>0){
+			for (Map<String, Object> map : list1) {
+				xmbb.setXzqh(map.get("XZQHDM").toString());
+				Excel_list sheji = xmbbServer.getYhHj(xmbb);
+				if(sheji!=null){
+					sheji.setV_0(flag);
+					if(flag.equals("一")){flag="二";}if(flag.equals("二")){flag="三";}if(flag.equals("三")){flag="四";}if(flag.equals("四")){flag="五";}if(flag.equals("五")){flag="六";}if(flag.equals("六")){flag="七";}if(flag.equals("七")){flag="八";}if(flag.equals("八")){flag="九";}if(flag.equals("九")){flag="十";}
+					sheji.setV_1(map.get("XZQHMC").toString()+"合计");
+					exl1.add(sheji);
+				}
+				//查国道
+				xmbb.setTiaojian("G");
+				Excel_list gdheji = xmbbServer.getYhHj(xmbb);
+				if(gdheji!=null){
+					gdheji.setV_0("1");
+					gdheji.setV_1("国道");
+					exl1.add(gdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+				//查省道
+				xmbb.setTiaojian("S");
+				Excel_list sdheji = xmbbServer.getYhHj(xmbb);
+				if(sdheji!=null){
+					sdheji.setV_0("2");
+					sdheji.setV_1("省道");
+					exl1.add(sdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+				//县乡道
+				Excel_list xdheji = xmbbServer.getYhHj1(xmbb);
+				if(xdheji!=null){
+					xdheji.setV_0("3");
+					xdheji.setV_1("县乡道");
+					exl1.add(xdheji);
+					List<Excel_list> e1=xmbbServer.getyhlist1(xmbb);
+					if(e1.size()>0){
+						exl1.addAll(e1);
+					}
+				}
+			}
+		}
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("省统筹养护大中修工程项目进展情况表");//设置第一行
+		eldata.setSheetName("项目进展情况表");//设置sheeet名
+		eldata.setFileName("省统筹养护大中修工程项目进展情况表");//设置文件名
+		eldata.setEl(exl1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("序号",1,2,0,0));
+		et.add(new Excel_tilte("所在地市",1,2,1,1));
+		et.add(new Excel_tilte("特殊区域",1,2,2,2));
+		et.add(new Excel_tilte("项目名称",1,2,3,3));
+		et.add(new Excel_tilte("工程分类",1,2,4,4));
+		et.add(new Excel_tilte("计划下达年度",1,2,5,5));
+		et.add(new Excel_tilte("项目段落",1,1,6,7));
+		et.add(new Excel_tilte("计划里程（公里）",1,2,8,8));
+		et.add(new Excel_tilte("概算总投资(万元)",1,2,9,9));
+		et.add(new Excel_tilte("计划下达资金(万元)",1,2,10,10));
+		et.add(new Excel_tilte("已拨付资金（万元）",1,2,11,11));
+		et.add(new Excel_tilte("本次拨付资金（万元）",1,2,12,12));
+		et.add(new Excel_tilte("累计拨付资金（万元）",1,2,13,13));
+		et.add(new Excel_tilte("未拨付资金（万元）",1,2,14,14));
+		et.add(new Excel_tilte("建设状态",1,2,15,15));
+		et.add(new Excel_tilte("垫层（m³）",1,2,16,16));
+		et.add(new Excel_tilte("基层（m³）",1,2,17,17));
+		et.add(new Excel_tilte("开工日期",1,2,18,18));
+		et.add(new Excel_tilte("完工日期",1,2,19,19));
+		et.add(new Excel_tilte("开工段落",1,2,20,20));
+		et.add(new Excel_tilte("完工里程（公里）",1,2,21,21));
+		et.add(new Excel_tilte("情况说明",1,2,22,22));
+		et.add(new Excel_tilte("计划下达文号",1,2,23,23));
+		et.add(new Excel_tilte("相关处室意见",1,2,24,24));
+		et.add(new Excel_tilte("财审处意见",1,2,25,25));
+		et.add(new Excel_tilte("起点桩号",2,2,6,6));
+		et.add(new Excel_tilte("迄点桩号 ",2,2,7,7));
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export2(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+	} 
 }

@@ -21,16 +21,100 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-// 			loadUnit("gydw",$.cookie("unit"));
-// 			loadDist("xzqh",$.cookie("dist"));
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqh",$.cookie("dist"));
 			setjhxdnf();
 		});
 		function setjhxdnf(){
-			alert("xx");
 			$("#jhxdnf").combotree({    
+				checkbox: true,
 			    url: '/jxzhpt/xmjzbb/setjhxdnf.do',    
-			    required: true   
+			    required: false,
+			    multiple:true
 			})
+		}
+		function showAll(){
+			var gydw=$("#gydw").combobox("getValue");
+			var xzqh=$("#xzqh").combobox("getValue");
+			var jhxdnf=$("#jhxdnf").combotree("getValues");
+			var jszt=$("#jszt").val();
+			var ljbf=$("#ljbf").val();
+			var wbf=$("#wbf").val();
+			var xmmc=$("#xmmc").val();
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
+			//alert(data);
+			$.ajax({
+				url:"/jxzhpt/xmjzbb/exportLw.do",
+				data:data,
+				type:"post",
+				dataType:"JSON",
+				success:function(msg){
+					var tbody = $("#yhlist");
+					tbody.empty();
+					if (msg != null) {
+						for ( var i = 0; i < msg.length; i++) {
+							if(msg[i].v_0=='合并'){
+								tbody.append("<tr><td colspan='3'>"+msg[i].v_1+"</td><td>"
+										+msg[i].v_3+"</td><td>"
+										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+										);
+							}else{
+								if(msg[i].v_0==''){
+									tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
+											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+											);
+								}else{
+									tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='2'>"+msg[i].v_1+"</td><td>"
+											+msg[i].v_3+"</td><td>"
+											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
+											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
+											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
+											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
+											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
+											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
+											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
+											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
+											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
+											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+											);
+								}
+							}
+						}
+					}
+				}
+			});
+		}
+		function exportLw(){
+			var gydw=$("#gydw").combobox("getValue");
+			var xzqh=$("#xzqh").combobox("getValue");
+			var jhxdnf=$("#jhxdnf").combotree("getValues");
+			var jszt=$("#jszt").val();
+			var ljbf=$("#ljbf").val();
+			var wbf=$("#wbf").val();
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
+			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
 		}
 	</script>
 	<style type="text/css">
@@ -58,6 +142,13 @@ table thead tr td {
   	border:1px solid black;
   	padding:3px 7px 2px 7px;
 }
+table tbody tr td {
+	text-align:center; 	
+	font-size:1em;
+/* 	font-weight:bold; */
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
 -->
 </style>
 </head>
@@ -71,7 +162,7 @@ table thead tr td {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:1050px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -79,7 +170,7 @@ table thead tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:168px;"></select>
-        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						&nbsp;&nbsp;&nbsp;
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:179px;"></select>
         						&nbsp;&nbsp;
@@ -88,7 +179,7 @@ table thead tr td {
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
 <%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" /> --%>
         					</p>
@@ -101,36 +192,32 @@ table thead tr td {
         						</select>
         						<span>建设状态：</span>
         						<select id="jszt" style="width:50px;">
-        						<option>全部</option>
-        						<option>全部</option>
+        						<option value="">全部</option>
         						<option>未开工</option>
         						<option>在建</option>
         						<option>竣工</option>
         						</select>
-
-        						&nbsp;&nbsp;
         						<span>累计拨付资金：</span>
-        						<select style="width:50px;">
-        							<option>全部</option>
-        							<option>零</option>
-        							<option>非零</option>
+        						<select id="ljbf" style="width:50px;">
+        							<option value="">全部</option>
+        							<option value="=0">零</option>
+        							<option value="!=0">非零</option>
         						</select>
-        						
         						<span>未拨付资金：</span>
-        						<select style="width:50px;">
-        							<option>全部</option>
-        							<option>零</option>
-        							<option>非零</option>
+        						<select id="wbf" style="width:50px;">
+        							<option value="">全部</option>
+        							<option value="=0">零</option>
+        							<option value="!=0">非零</option>
         						</select>
-        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						&nbsp;&nbsp;&nbsp;&nbsp;
         						<span>项目名称：</span>
-        						<input type="text"  style="width:128px;">
+        						<input id="xmmc" type="text"  style="width:128px;">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportLw()" style="vertical-align: -50%;" />
         					</p>        					
         				</div>
         			</fieldset>
@@ -139,9 +226,9 @@ table thead tr td {
 
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:150px">
+                	<div style="width:100%;height:390px;" >
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">路网结构改造工程项目资金拔付情况表</caption>
 								<thead>
