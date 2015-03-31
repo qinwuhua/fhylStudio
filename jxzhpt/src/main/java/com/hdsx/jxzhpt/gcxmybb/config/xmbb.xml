@@ -226,4 +226,194 @@
 			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
 	</if>
 	</select>
+	<!-- yh -->
+	<select id="getYhxzqh" parameterType="xmbb" resultType="hashmap">
+	select distinct(substr(t1.xzqhdm,0,4)) xzqhdm,substr(t1.xzqhmc,0,3) xzqhmc
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	where 1=1  and t3.sfzj='0'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqh != null and  xzqh != ''">
+			and t1.xzqhdm like '%'||trim(#{xzqh})||'%'
+	</if>
+	<if test="jhxdnf != null and  jhxdnf != ''">
+			and t3.xdnf in (${jhxdnf})
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt  like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt  like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="ljbf != null and  ljbf != ''">
+			and (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) ${ljbf}
+	</if>
+	<if test="wbf != null and  wbf != ''">
+			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
+	</if>
+	</select>
+	<select id="getYhHj" parameterType="xmbb" resultType="elist">
+	select sum(t5.v_10) v_10,sum(t5.v_11) v_11,sum(t5.v_12) v_12,sum(t5.v_13) v_13,sum(t5.v_14) v_14,
+	sum(t5.v_16) v_16,sum(t5.v_17) v_17,sum(t5.v_21) v_21
+	from(
+	select 
+	t1.xzqhmc v_1,t1.lxbm||t1.lxmc||'('||t1.qdzh||'-'||t1.zdzh||')' v_3,t2.classify v_4,
+	t2.sbnf v_5,t1.qdzh v_6,t1.zdzh v_7,t1.hdlc v_8,t2.gys v_9,t2.totalinvest v_10,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_11,'0' v_12,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
+	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
+	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
+	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	t2.PLANDOWNNUMBER v_23
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	where 1=1  and t3.sfzj='0'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqh != null and  xzqh != ''">
+			and t1.xzqhdm like '%'||trim(#{xzqh})||'%'
+	</if>
+	<if test="jhxdnf != null and  jhxdnf != ''">
+			and t3.xdnf in (${jhxdnf})
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt  like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt  like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="tiaojian != null and  tiaojian != ''">
+			and t1.lxbm  like (#{tiaojian})||'%'
+	</if>
+	<if test="ljbf != null and  ljbf != ''">
+			and (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) ${ljbf}
+	</if>
+	<if test="wbf != null and  wbf != ''">
+			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
+	</if>
+	) t5
+	</select>
+	<select id="getyhlist" parameterType="xmbb" resultType="elist">
+	select 
+	t1.xzqhmc v_1,t1.lxbm||t1.lxmc||'('||t1.qdzh||'-'||t1.zdzh||')' v_3,t2.classify v_4,
+	t2.sbnf v_5,t1.qdzh v_6,t1.zdzh v_7,t1.hdlc v_8,t2.gys v_9,t2.totalinvest v_10,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_11,'0' v_12,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
+	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
+	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
+	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	t2.PLANDOWNNUMBER v_23
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	where 1=1  and t3.sfzj='0'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqh != null and  xzqh != ''">
+			and t1.xzqhdm like '%'||trim(#{xzqh})||'%'
+	</if>
+	<if test="jhxdnf != null and  jhxdnf != ''">
+			and t3.xdnf in (${jhxdnf})
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt  like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt  like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="tiaojian != null and  tiaojian != ''">
+			and t1.lxbm  like (#{tiaojian})||'%'
+	</if>
+	<if test="ljbf != null and  ljbf != ''">
+			and (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) ${ljbf}
+	</if>
+	<if test="wbf != null and  wbf != ''">
+			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
+	</if>
+	</select>
+	
+	<select id="getYhHj1" parameterType="xmbb" resultType="elist">
+	select sum(t5.v_10) v_10,sum(t5.v_11) v_11,sum(t5.v_12) v_12,sum(t5.v_13) v_13,sum(t5.v_14) v_14,
+	sum(t5.v_16) v_16,sum(t5.v_17) v_17,sum(t5.v_21) v_21
+	from(
+	select 
+	t1.xzqhmc v_1,t1.lxbm||t1.lxmc||'('||t1.qdzh||'-'||t1.zdzh||')' v_3,t2.classify v_4,
+	t2.sbnf v_5,t1.qdzh v_6,t1.zdzh v_7,t1.hdlc v_8,t2.gys v_9,t2.totalinvest v_10,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_11,'0' v_12,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
+	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
+	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
+	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	t2.PLANDOWNNUMBER v_23
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqh != null and  xzqh != ''">
+			and t1.xzqhdm like '%'||trim(#{xzqh})||'%'
+	</if>
+	<if test="jhxdnf != null and  jhxdnf != ''">
+			and t3.xdnf in (${jhxdnf})
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt  like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt  like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="ljbf != null and  ljbf != ''">
+			and (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) ${ljbf}
+	</if>
+	<if test="wbf != null and  wbf != ''">
+			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
+	</if>
+	) t5
+	</select>
+	<select id="getyhlist1" parameterType="xmbb" resultType="elist">
+	select 
+	t1.xzqhmc v_1,t1.lxbm||t1.lxmc||'('||t1.qdzh||'-'||t1.zdzh||')' v_3,t2.classify v_4,
+	t2.sbnf v_5,t1.qdzh v_6,t1.zdzh v_7,t1.hdlc v_8,t2.gys v_9,t2.totalinvest v_10,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_11,'0' v_12,
+	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
+	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
+	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
+	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	t2.PLANDOWNNUMBER v_23
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqh != null and  xzqh != ''">
+			and t1.xzqhdm like '%'||trim(#{xzqh})||'%'
+	</if>
+	<if test="jhxdnf != null and  jhxdnf != ''">
+			and t3.xdnf in (${jhxdnf})
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt  like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt  like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="ljbf != null and  ljbf != ''">
+			and (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) ${ljbf}
+	</if>
+	<if test="wbf != null and  wbf != ''">
+			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
+	</if>
+	</select>
 </mapper>

@@ -65,5 +65,35 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 		return queryList("selectelist2",xmbb);
 	}
 
+	@Override
+	public List<Map<String, Object>> getYhxzqh(Xmbb xmbb) {
+		
+		return queryList("getYhxzqh", xmbb);
+	}
+
+	@Override
+	public Excel_list getYhHj(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryOne("getYhHj", xmbb);
+	}
+
+	@Override
+	public List<Excel_list> getyhlist(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhlist", xmbb);
+	}
+
+	@Override
+	public Excel_list getYhHj1(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryOne("getYhHj1", xmbb);
+	}
+
+	@Override
+	public List<Excel_list> getyhlist1(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhlist1", xmbb);
+	}
+
 	
 }

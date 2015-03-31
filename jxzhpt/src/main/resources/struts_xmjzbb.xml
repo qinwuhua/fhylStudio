@@ -7,5 +7,7 @@
 	<action name="getPtgxbb" class="xmbbController" method="getPtgxbb"/>
 	<action name="exportPtgx" class="xmbbController" method="exportPtgx"/>
 	
+	<action name="getYhbb" class="xmbbController" method="getYhbb"/>
+	<action name="exportYh" class="xmbbController" method="exportYh"/>
  </package>
 </struts>

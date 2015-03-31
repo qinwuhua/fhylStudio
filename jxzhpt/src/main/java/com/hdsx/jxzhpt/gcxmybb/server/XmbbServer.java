@@ -29,5 +29,15 @@ public interface XmbbServer {
 
 	List<Excel_list> selectelist2(Xmbb xmbb);
 
+	List<Map<String, Object>> getYhxzqh(Xmbb xmbb);
+
+	Excel_list getYhHj(Xmbb xmbb);
+
+	List<Excel_list> getyhlist(Xmbb xmbb);
+
+	Excel_list getYhHj1(Xmbb xmbb);
+
+	List<Excel_list> getyhlist1(Xmbb xmbb);
+
 
 }
