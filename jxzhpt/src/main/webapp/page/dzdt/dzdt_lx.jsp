@@ -56,8 +56,12 @@ $(function(){
 		queryParams : {
 			"param.id":parent.YMLib.Var.bm
 		},
-		striped : true,
 		singleSelect : false,
+		striped : true,
+		pagination : true,
+		rownumbers : true,
+		pageNumber : 1,
+		pageSize : 10,
 		columns : [[
 		{
 			field : 'mx',

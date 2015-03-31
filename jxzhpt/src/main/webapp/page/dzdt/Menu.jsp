@@ -126,8 +126,8 @@ function initMap() {
         position: new OpenLayers.Pixel(2, 15)
     }));
 }
-var mapServerUrl = "http://localhost:8989/hdmapserver";
-var nameSpace = "http://localhost:8989/hdmapserver/jiangximap";
+var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
+var nameSpace = "http://192.168.1.108:8989/hdmapserver/jiangximap";
 var map, baseLayers;
 var format = 'image/png';
 var bounds = new OpenLayers.Bounds(
@@ -176,38 +176,37 @@ function initDefaultStyle() {
  * 属性查询示例
  */
  function attrQuery(_roadcode,_lx) {
-		YMLib.Var.bm=_roadcode;
-		var signFlag=_roadcode.substr(0,1);
-		var signName=_roadcode.length>11?"桥梁图层":"路线图层";
-		$.ajax({
-			type:"post",
-			url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
-				+ encodeURI(encodeURI(signName)),
-			dataType:'json',
-			success:function(msg){
-				var showLayer="";
-				var lx="";
-				if(msg.length==4){
-					if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
-					if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
-					if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
-					if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
-					lx="ROADBM";
-				}else if(msg.length==6){
-					if(_lx=="G") showLayer=msg[0].bmid;
-					if(_lx=="S") showLayer=msg[1].bmid;
-					if(_lx=="X") showLayer=msg[2].bmid;
-					if(_lx=="Y") showLayer=msg[3].bmid;
-					if(_lx=="Z") showLayer=msg[4].bmid;
-					if(_lx=="C") showLayer=msg[5].bmid;
-					lx="ROADCODE";
-				}
-				wfsAttrQuery(showLayer, lx, _roadcode);
-				//wfsAttrQuery("jx_guodao", "ROADCODE", "G6001");
+	YMLib.Var.bm=_roadcode;
+	var signFlag=_roadcode.substr(0,1);
+	var signName=_roadcode.length>11?"桥梁图层":"路线图层";
+	$.ajax({
+		type:"post",
+		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
+			+ encodeURI(encodeURI(signName)),
+		dataType:'json',
+		success:function(msg){
+			var showLayer="";
+			var lx="";
+			if(msg.length==4){
+				if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
+				if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
+				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
+				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
+				lx="ROADBM";
+			}else if(msg.length==6){
+				if(_lx=="G") showLayer=msg[0].bmid;
+				if(_lx=="S") showLayer=msg[1].bmid;
+				if(_lx=="X") showLayer=msg[2].bmid;
+				if(_lx=="Y") showLayer=msg[3].bmid;
+				if(_lx=="Z") showLayer=msg[4].bmid;
+				if(_lx=="C") showLayer=msg[5].bmid;
+				lx="ROADCODE";
 			}
-		});
-		
-	}
+			wfsAttrQuery(showLayer, lx, _roadcode);
+			//wfsAttrQuery("jx_guodao", "ROADCODE", "G6001");
+		}
+	});
+}
 /**
  * I查询
  * */
@@ -322,8 +321,9 @@ function notGetInfo() {
 //构造弹出窗口的函数
 var selectedFeature = null;
 function onFeatureSelect(feature) {
-	if(YMLib.Var.bm.length>10) YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_ql.jsp','app_add',630,330);
-	else YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_lx.jsp','app_add',630,330);
+	//if(YMLib.Var.bm.length>10) 
+		YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_ql.jsp','app_add',630,330);
+	//else YMLib.UI.createWindow('qllx_add','项目查询','./dzdt_lx.jsp','app_add',630,330);
 }
 //销毁弹出窗口的函数
 function onFeatureUnselect(feature) {
