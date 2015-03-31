@@ -131,8 +131,8 @@ var nameSpace = "http://192.168.1.108:8989/hdmapserver/jiangximap";
 var map, baseLayers;
 var format = 'image/png';
 var bounds = new OpenLayers.Bounds(
-        113.573, 24.488,
-        125.482, 30.079
+		113.573, 24.488,
+        118.482, 30.079
 );
 /**
  * 初始化默认点、线、面样式
@@ -303,10 +303,12 @@ function wfsAttrQuery(layerName, keyCol, keyValue) {
             var gmlParse = new OpenLayers.Format.GML();
             var features = gmlParse.read(req.priv.responseText);
             resultLayer.addFeatures(features);
-            //map.setCenter();
             if (resultLayer.features && resultLayer.features.length > 0) {
-                map.zoomToExtent(resultLayer.getDataExtent());
+            	//map.zoomToExtent(bounds);
+            	map.setCenter(bounds);
+               map.zoomToExtent(resultLayer.getDataExtent());
             }
+            alert(resultLayer.getDataExtent());
 
         }
     });
@@ -348,9 +350,10 @@ function onPopupClose(evt) {
 	
 	<div region="east" iconCls="icon-table"  split="true" style="width:420px;">
 		<div border="false" class="easyui-tabs">
-	    	<div title="提醒信息">您当前共有 10 条信息需要处理， 共有 0 条通知。
-	    	<table id="xmlxTj_table" width="398" border="0" align="center" cellpadding="0" cellspacing="1" class="ll" bgcolor="#b8bdc1" style="font-size:12px;"></table>
-	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;"> 
+	    	<div title="提醒信息">
+	    	<table id="xmlxTj_table" width="398" border="0" align="center" cellpadding="0" cellspacing="1" class="ll" bgcolor="#b8bdc1" style="font-size:12px;">
+	    	</table>
+	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
 				<div>
 					<param name="wmode" value="transparent" />
 				</div>
@@ -367,11 +370,10 @@ function onPopupClose(evt) {
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 					
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
-						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
-							<!-- <button onclick="attrQuery()">桥梁属性查询</button> -->
+						 <!-- <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
-						</div>
-						<div id="map" style="width:100%;height:100%;"></div>
+						</div> -->
+						<div id="map"></div>
 					</div>
 				</div>
 		    </div>
