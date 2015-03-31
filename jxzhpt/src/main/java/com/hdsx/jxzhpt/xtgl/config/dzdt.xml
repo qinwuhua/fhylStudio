@@ -372,7 +372,10 @@
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
 	</select>
 	<select id="selectExistQlProgramList" parameterType="param" resultType="pb">
-		
+		select qlmc xmmc,qlzxzh roadstart,qlbh roadbm,gydw unit,sbnf nf,gydwbm,xzqhdm
+    from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+    where  
+    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
 	</select>
 	<select id="selectExistQlProgramListCount" parameterType="param" resultType="pb">
 		
