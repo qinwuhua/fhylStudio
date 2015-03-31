@@ -1264,6 +1264,16 @@ function loadBmbm(id, name) {
 		multiple:true
 	});
 }
+function loadBmbm2(id, name) {
+	$('#' + id).combobox({
+		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
+				+ encodeURI(encodeURI(name)),
+		valueField : 'bmid',
+		textField : 'name',
+		panelHeight:'auto',
+		multiple:false
+	});
+}
 // 获取url中参数
 function getParam(paras) {
 
