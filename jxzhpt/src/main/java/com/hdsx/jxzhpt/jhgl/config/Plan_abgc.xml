@@ -54,6 +54,12 @@
 				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
+					<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
 				 		and jh.jhnf=#{jh.jhnf}
 				 	</if>
@@ -120,6 +126,12 @@
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
 				 		and jh.jhnf=#{jh.jhnf}
 				 	</if>
+				 	<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
 				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
 				 		and jh.sbzt=#{jh.sbzt}
 				 	</if>
@@ -287,10 +299,19 @@
 				and x.gydwbm like #{x.gydwbm}
 			</if>
 			<if test="(p.jh_sbthcd!=null and p.jh_sbthcd!='') and (p.sbzt==null or p.sbzt=='') and (p.spzt==null or p.spzt=='')">
-				and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				and p.jh_sbthcd=#{p.jh_sbthcd}
 			</if>
+			<if test="p.jhnf!=null and p.jhnf!=''">
+				and p.jhnf=#{p.jhnf}
+			</if>
+			<if test="p.kgzt!=null and p.kgzt!=''">
+	 			and p.kgzt=#{p.kgzt}
+	 		</if>
+	 		<if test="p.jgzt!=null and p.jgzt!=''">
+	 			and p.jgzt=#{p.jgzt}
+	 		</if>
 		    <if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='') and p.jh_sbthcd!=null and p.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
 			</if>
 			<if test="p.sbzt!=null and p.sbzt!=''">
 				and p.sbzt=#{p.sbzt}

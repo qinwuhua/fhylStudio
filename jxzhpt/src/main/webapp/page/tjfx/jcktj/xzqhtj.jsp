@@ -24,19 +24,14 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;基础库统计分析>&nbsp;行政区划统计</div>
-					</div>
-	            </td>
-        	</tr>
+	<div id="righttop">
+		<div id="p_top">统计分析>&nbsp;基础库统计分析>&nbsp;行政区划统计</div>
+	</div>
+		<table id="table_message" width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grid" width="100%"></table>
+            			<table id="grid"></table>
             		</div>
             	</td>
         	</tr>
@@ -64,6 +59,5 @@
         		</td>
         	</tr>
 		</table>
-	</div>
 </body>
 </html>

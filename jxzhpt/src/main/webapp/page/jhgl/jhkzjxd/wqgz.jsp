@@ -19,22 +19,16 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			$.ajax({
-				type:'post',
-				url:'../../../jhgl/querySumWqgz.do',
-				dataType:'json',
-				success:function(data){
-					$('#lblCount').html(data.id);
-					$('#lblXDZJ').html(data.jhsybzje);
-				}
-			});
+			loadBmbm('ddlPDDJ','技术等级');
+			tsdq('ddlTSDQ');
+			sbnf("sbnf");
 			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
-			sbnf("sbnf");
+			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6};
+			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
@@ -45,44 +39,64 @@
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
+			if($('#ddlSHZT').combobox('getValue')=="未开工"){
+				jh.kgzt="0";
+				jh.jgzt="0";
+			}else if($('#ddlSHZT').combobox('getValue')=="在建"){
+				jh.kgzt="1";
+				jh.jgzt="0";
+			}else if($('#ddlSHZT').combobox('getValue')=="竣工"){
+				jh.kgzt="1";
+				jh.jgzt="1";
+			}
+			
 			if($('#txtBridge').val()!=''){
 				lx.qlmc=$('#txtBridge').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
-			}
-			if($('#ddlSHZT').combobox('getText')!="全部"){
-				jh.sbzt=$('#ddlSHZT').combobox('getValue');
+				jh.sbnf=$('#sbnf').combobox('getValue');
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
 			}
-			if($('#ddlGldj').combobox('getText')!='全部'){
-				lx.lxbm=$('#ddlGldj').combobox('getValue');
-			}
 			if($('#ddlAKJFL').combobox('getText')!="全部"){
 				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
 			}
+			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
+		function queryMessage(jh,lx){
+			var param={'lx.gydwbm':lx.gydwbm,'lx.akjfl':lx.akjfl,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,
+					'jh.jh_sbthcd':jh.jh_sbthcd,'jh.sbnf':jh.sbnf,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt};
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/querySumWqgz.do',
+				data:param,
+				dataType:'json',
+				success:function(data){
+					if(data.id>0){
+						$('#lblCount').html(data.id);
+						$('#lblXDZJ').html(data.jhsybzje);
+					}else{
+						$('#lblCount').html("0");
+						$('#lblXDZJ').html("0");
+					}
+				}
+			});
+		}
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;危桥改造项目</div>
-					</div>
-	            </td>
-        	</tr>
+	<div id="righttop">
+		<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;危桥改造项目</div>
+	</div>
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 8px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -95,7 +109,7 @@
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
         						<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:60px;">
+        						<select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:60px;">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
@@ -109,32 +123,19 @@
         						<span style="vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
         						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;vertical-align:middle;">
+        						<select name="ddlSHZT" id="ddlSHZT" class="easyui-combobox" style="width:70px;vertical-align:middle;">
 									<option selected="selected" value="">全部</option>
-									<option value="已上报">未开工</option>
-									<option value="未审核">在建</option>
-									<option value="已审核">竣工</option>
+									<option value="未开工">未开工</option>
+									<option value="在建">在建</option>
+									<option value="竣工">竣工</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;vertical-align:middle;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
-									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
 								</select>
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -149,12 +150,11 @@
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grid" width="100%" height="320px"></table>
+            			<table id="grid"></table>
             		</div>
             	</td>
         	</tr>
 		</table>
-	</div>
 	<div id="zjxd_wqgz" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

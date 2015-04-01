@@ -49,6 +49,12 @@
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
+	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 					and lx.gydwbm like #{lx.gydwbm}
 	 				</if>
@@ -105,6 +111,12 @@
 	 	</if>
 	 	<if test="jh.spzt!=null and jh.spzt!=''">
 	 		and jh.spzt=#{jh.spzt}
+	 	</if>
+	 	<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 		and jh.kgzt=#{jh.kgzt}
+	 	</if>
+		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
 	 	</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 		and lx.gydwbm like #{lx.gydwbm}
@@ -267,12 +279,21 @@
 			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='') and p.jh_sbthcd!=null and p.jh_sbthcd!=''">
 				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
 			</if>
+			<if test="p.sbnf!=null and p.sbnf!=''">
+				and p.sbnf=#{p.sbnf}
+			</if>
 			<if test="p.sbzt!=null and p.sbzt!=''">
 				and p.sbzt=#{p.sbzt}
 			</if>
 			<if test="p.spzt!=null and p.spzt!=''">
 				and p.spzt=#{p.spzt}
-			</if> group by p.id)
+			</if>
+			<if test="p.kgzt!=null and p.kgzt!=''">
+	 			and p.kgzt=#{p.kgzt}
+	 		</if>
+	 		<if test="p.jgzt!=null and p.jgzt!=''">
+	 			and p.jgzt=#{p.jgzt}
+	 		</if> group by p.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_zhfz set lrjh='未列入'  where sckid=#{String}

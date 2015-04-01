@@ -150,7 +150,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	 */
 	public void queryGcgjList(){
 		try {
-			System.out.println("状态："+jh.getJh_sbthcd()+"上报："+jh.getSbzt()+"审核："+jh.getSpzt());
+			System.out.println("状态："+jh.getJh_sbthcd()+"开工："+jh.getKgzt()+"竣工："+jh.getJgzt());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
 			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
