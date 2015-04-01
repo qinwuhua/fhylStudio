@@ -1,7 +1,8 @@
 var obj=new Object();
 var obj1=new Object();
-function dingwei(){
-	alert("在地图上定位");
+function dingwei(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	locationXm(data.lxbm,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -51,7 +52,7 @@ function showAll(){
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '定位    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:130,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
