@@ -28,19 +28,7 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 
 	@Override
 	public List<Jckzhfz> selectZhfzList(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("sbzt", zhfz.getSbzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("page", zhfz.getPage());
-		hm.put("rows", zhfz.getRows());
-		return queryList("selectJckzhfz",hm);
+		return queryList("selectJckzhfz",zhfz);
 	}
 
 	@Override
@@ -111,49 +99,17 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 
 	@Override
 	public int selectZhfzCount(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("sbzt", zhfz.getSbzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		return queryOne("selectZhfzCount", hm);
+		return queryOne("selectZhfzCount", zhfz);
 	}
 
 	@Override
 	public List<Jckzhfz> selectJckShzhfz(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("page", zhfz.getPage());
-		hm.put("rows", zhfz.getRows());
-		return queryList("selectJckShzhfz",hm);
+		return queryList("selectJckShzhfz",zhfz);
 	}
 
 	@Override
 	public int selectZhfzShCount(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		return queryOne("selectZhfzShCount",hm);
+		return queryOne("selectZhfzShCount",zhfz);
 	}
 
 	@Override
@@ -228,32 +184,12 @@ public class JckzhfzServerImpl extends BaseOperate implements JckzhfzServer {
 
 	@Override
 	public Jckzhfz selZhfzCount(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("sbzt", zhfz.getSbzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		return queryOne("selZhfzCount", hm);
+		return queryOne("selZhfzCount", zhfz);
 	}
 
 	@Override
 	public Jckzhfz selZhfzShCount(Jckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", zhfz.getSbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("sbzt", zhfz.getSbzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		return queryOne("selZhfzShCount", hm);
+		return queryOne("selZhfzShCount", zhfz);
 	}
 
 }

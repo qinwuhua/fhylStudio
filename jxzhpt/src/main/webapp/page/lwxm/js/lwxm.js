@@ -1,4 +1,21 @@
 var rowid;
+//年份
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	/*years.push({text:'全部'});*/
+	for(var i=0;i<=10;i++){
+		if(i==0) first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text'   
+	});
+	$('#'+id).combobox("setValue",first);
+}
 function addJck(jsp,w,h){
 //	var unit=$.cookie("unit");
 //	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
