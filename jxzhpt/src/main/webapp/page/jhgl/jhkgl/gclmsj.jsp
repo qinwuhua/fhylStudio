@@ -24,6 +24,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			loadBmbm('yjsdj','技术等级');
+			loadBmbm('gldj','公路等级');
 			tsdq('tsdq');
 			var jh={jhnf:null,sbzt:null,spzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
@@ -85,18 +87,13 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;工程改造路面升级项目</div>
-					</div>
-	            </td>
-        	</tr>
+	<div id="righttop">
+		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;工程改造路面升级项目</div>
+	</div>
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px;padding-right: 10px; padding-top: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+        		<td align="left" style="padding-left:10px;padding-right: 10px; padding-top: 10px;">
+        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -132,22 +129,9 @@
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;">
-									<option selected="selected" value="">全部</option>
-									<option value="一级公路">一级公路</option>
-									<option value="二级公路">二级公路</option>
-									<option value="三级公路">三级公路</option>
-									<option value="四级公路">四级公路</option>
-									<option value="等外公路">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" id="gldj" class="easyui-combobox" style="width:104px;">
-									<option selected="selected" value="">全部</option>
-									<option value="G">国道</option>
-									<option value="S">省道</option>
-									<option value="X">县道</option>
-									<option value="Y">乡道</option>
-									<option value="C">村道</option>
-									<option value="Z">专道</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
@@ -162,7 +146,7 @@
         		</td>
         	</tr>
         	<tr>
-        		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
         			共有【 <span id="lblCount" style="font-weight: bold; color: #FF0000">0</span> 】个路面升级项目，总里程共
         			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
@@ -174,12 +158,11 @@
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grdab" width="100%" height="320px"></table>
+            			<table id="grdab"></table>
             		</div>
             	</td>
         	</tr>
 		</table>
-	</div>
 	
 	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>

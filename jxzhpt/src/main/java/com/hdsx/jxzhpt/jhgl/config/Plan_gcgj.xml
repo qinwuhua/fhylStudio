@@ -86,6 +86,15 @@
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
+			<if test="jh.kgzt==null or jh.kgzt==''">
+	 					and 2=2
+	 				</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 			and jh.kgzt=#{jh.kgzt}
+	 		</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
 				and jh.id in (
 					select l.jhid from PLAN_lx_GCGJ l 
 					where 1=1 
@@ -132,6 +141,12 @@
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 			and jh.kgzt=#{jh.kgzt}
+	 		</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
 				and jh.id in (
 					select l.jhid from PLAN_lx_GCGJ l
 					where 1=1 
@@ -269,6 +284,12 @@
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 			and jh.kgzt=#{jh.kgzt}
+	 		</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
 			group by jh.id)
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">

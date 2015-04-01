@@ -60,9 +60,8 @@ function abgcxm(jh,lx){
 	queryParams='&jh.sbzt='+jh.sbzt+'&jh.spzt='+jh.spzt+'&jh.sbnf='+jh.sbnf+'&jh.jhkgsj='+jh.jhkgsj+
 		'&jh.jhwgsj='+jh.jhwgsj+'&jh.pfztz='+jh.pfztz+
 		'&lx.gydw='+lx.gydw+'&lx.gydwdm='+lx.gydwdm+'&lx.xzqhmc='+lx.xzqhmc+'&lx.xzqhdm='+lx.xzqhdm+'&lx.lxmc='+lx.lxmc;
-	
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,width:1000,queryParams:params,
+	    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -161,7 +160,7 @@ function abgcxm_sb(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
 			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
+	    pageNumber:1,pageSize:10,height:$(window).height()-188,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
@@ -244,7 +243,7 @@ function abgcxm_sh(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
 			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
+	    pageNumber:1,pageSize:10,height:$(window).height()-188,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
@@ -326,12 +325,13 @@ function abgcxm_sh(jh,lx){
 	gridBind(grid);
 }
 function abgcxm_zjxd(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
-			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,
-			"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.tsdq':lx.tsdq};
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,
+			"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
+			"jh.jh_sbthcd":jh.jh_sbthcd,"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,
+			"lx.gydwbm":lx.gydwbm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,
+			"lx.lxmc":lx.lxmc,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryAbgcList.do',pagination:true,rownumbers:false,
-	    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
+	    pageNumber:1,pageSize:10,height:$(window).height()-158,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";

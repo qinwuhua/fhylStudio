@@ -35,7 +35,7 @@ $(function(){
 function startSearch(){
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getLwjgjsgzb.do',
+		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
 		dataType:"json",
 		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
 		success:function(data){
@@ -71,7 +71,7 @@ function startSearch(){
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建设计划汇总表</div>
 			</div>
         	</tr>
         	<tr>

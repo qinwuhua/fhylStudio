@@ -280,7 +280,7 @@
 			and max(roadends) >=to_number(#{zdzh})
 		</if>
 	</select>
-	<select id="selAbgcCount" parameterType="hashmap" resultType="jckabgc">
+	<select id="selAbgcCount" parameterType="jckabgc" resultType="jckabgc">
 		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -308,9 +308,12 @@
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
+		<if test="bz!='' and bz!= null ">
+ 			and lxbm like #{bz}||'%'
+ 		</if>
 	</select>
 	
-	<select id="selAbgcShCount" parameterType="hashmap" resultType="jckabgc">
+	<select id="selAbgcShCount" parameterType="jckabgc" resultType="jckabgc">
 		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -338,5 +341,8 @@
 		<if test="lxbm!='' and lxbm!= null ">
 			and lxbm like #{lxbm}||'%'
 		</if>
+		<if test="bz!='' and bz!= null ">
+ 			and lxbm like #{bz}||'%'
+ 		</if>
 	</select>
 </mapper>

@@ -57,8 +57,8 @@ function gclmgjxm(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
-	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,width:1070,
+	var grid = {id:'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,pagination : true,rownumbers:false,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -149,7 +149,7 @@ function gclmgjxm_sb(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -220,8 +220,8 @@ function gclmgjxm_sh(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
-	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
+	var grid = {id:'grid',url:'../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -291,11 +291,11 @@ function gclmgjxm_sh(jh,lx){
 	gridBind(grid);
 }
 function gclmgjxm_zjxd(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,
-		pageNumber : 1,pageSize : 10,height : 325,width:1070,queryParams:params,
+		pageNumber : 1,pageSize : 10,height:$(window).height()-150,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',

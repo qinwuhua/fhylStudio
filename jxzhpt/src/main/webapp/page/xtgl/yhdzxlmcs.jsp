@@ -25,12 +25,13 @@
 			
 			$('#xtgl_flwbzbz_table').datagrid({
 				url:'../../xtgl/queryYhdzxcs.do',
-				pagination:true,
+				pagination:false,
 				rownumbers:true,
 			    pageNumber:1,
+			    fitColumns:true,
 			    pageSize:10,
-			    height:325,
-			    width:1000,
+			    height:455,
+			    //width:1000,
 				columns:[[
 					{field:'id',title:'操作',width:80,align:'center',
 						formatter : function(value, row, index){
@@ -111,7 +112,7 @@
 				<option value="原路">原路</option>
 			</select>
 		</div>
-		<div region="center" border="false" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;height:700px;" onselectstart="return false">
+		<div region="center" border="false" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 			<table id="xtgl_flwbzbz_table"></table>
 		</div>
 	</div>

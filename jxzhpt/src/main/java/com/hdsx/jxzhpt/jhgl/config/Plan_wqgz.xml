@@ -43,6 +43,12 @@
 	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 					and jh.sbzt=#{jh.sbzt}
 	 				</if>
+	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 					and jh.kgzt=#{jh.kgzt}
+	 				</if>
+	 				<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 					and jh.jgzt=#{jh.jgzt}
+	 				</if>
 	 				<if test="jh.spzt!=null and jh.spzt!=''">
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
@@ -109,8 +115,17 @@
 	 	<if test="jh.spzt!=null and jh.spzt!=''">
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
+	 	<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 		and jh.kgzt=#{jh.kgzt}
+	 	</if>
+	 	<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
+	 	</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 		and lx.gydwbm like #{lx.gydwbm}
+	 	</if>
+	 	<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 		and lx.akjfl like #{lx.akjfl}||'%'
 	 	</if>
 	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
 	 		and lx.xzqhdm like #{lx.xzqhdm}
@@ -126,9 +141,6 @@
 	 	</if>
 	 	<if test="lx.qlmc!=null and lx.qlmc!=''">
 	 		and lx.qlmc like '%'||#{lx.qlmc}||'%'
-	 	</if>
-	 	<if test="lx.akjfl!=null and lx.akjfl!=''">
-	 		and lx.akjfl like #{lx.akjfl}||'%'
 	 	</if>
 	</select>
 	<select id="queryWqgzNfs"  resultType="treenode">
@@ -278,18 +290,30 @@
 			<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 				and lx.gydwbm like #{lx.gydwbm}
 			</if>
+			<if test="lx.akjfl!=null and lx.akjfl!=''">
+	 			and lx.akjfl like #{lx.akjfl}||'%'
+	 		</if>
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 				and jh.jh_sbthcd=#{jh.jh_sbthcd}
 			</if>
 			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+		 		and jh.sbnf=#{jh.sbnf}
+		 	</if>
 			<if test="jh.sbzt!=null and jh.sbzt!=''">
 		 		and jh.sbzt=#{jh.sbzt}
 		 	</if>
 		 	<if test="jh.spzt!=null and jh.spzt!=''">
 		 		and jh.spzt=#{jh.spzt}
-		 	</if> group by jh.id)
+		 	</if>
+		 	<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 			and jh.kgzt=#{jh.kgzt}
+	 		</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if> group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_wqgz set lrjh='未列入'  where sckid=#{String}

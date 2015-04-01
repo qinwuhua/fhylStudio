@@ -42,5 +42,7 @@
 	<action name="selectZhjz" class="dbbbController" method="selectZhjz"/>
 	<action name="exportExcel_zhjz" class="dbbbController" method="exportExcel_zhjz"/>
 	
+	<action name="jhtjBb" class="dbbbController" method="jhtjBb"/>
+	
 </package>
 </struts>

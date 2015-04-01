@@ -28,6 +28,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
+			loadBmbm('ddlPDDJ','技术等级');
+			loadBmbm('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf('sbnf');
 			var jh={sbnf:null,sbzt:null,spzt:'0',jh_sbthcd:0};
@@ -119,18 +121,13 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                 <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库上报>&nbsp;养护大中修项目</div>
-					</div>
-	            </td>
-        	</tr>
+	<div id="righttop">
+		<div id="p_top">计划管理>&nbsp;项目计划库上报>&nbsp;养护大中修项目</div>
+	</div>
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -154,32 +151,12 @@
         						<select id="sbnf" class="easyui-combobox" style="width: 80px;"></select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:170px;">
-									<option selected="selected" value="">全部</option>
-									<option value="G">国道</option>
-									<option value="S">省道</option>
-									<option value="X">县道</option>
-									<option value="Y">乡道</option>
-									<option value="C">村道</option>
-									<option value="Z">专道</option>
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:84px;">
-									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
 								</select>
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">
@@ -192,7 +169,7 @@
         		</td>
         	</tr>
         	<tr>
-        		<td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 30px; font-size: 12px;">
+        		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">105</span>&nbsp;】个养护大中修项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">535.028</span>&nbsp;】公里，
         			核对里程共【&nbsp;<span id="lblHDLC" style="font-weight: bold; color: #FF0000">469.878</span>&nbsp;】公里；
@@ -203,12 +180,11 @@
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grid" width="100%" height="320px"></table>
+            			<table id="grid"></table>
             		</div>
             	</td>
         	</tr>
 		</table>
-	</div>
 	
 	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>

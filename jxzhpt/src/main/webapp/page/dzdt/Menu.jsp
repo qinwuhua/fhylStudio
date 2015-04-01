@@ -60,7 +60,7 @@ $(function(){
     </div>
 	
 	<div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
-	    	<table id="xmlxTj_table" width="398" border="0" align="center" cellpadding="0" cellspacing="1" class="ll" bgcolor="#b8bdc1" style="font-size:12px;">
+	    	<table id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" style="background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1;">
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
 				<div>

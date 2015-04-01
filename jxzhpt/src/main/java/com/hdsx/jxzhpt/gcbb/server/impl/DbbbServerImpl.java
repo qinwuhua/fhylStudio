@@ -19,6 +19,7 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 
@@ -249,6 +250,36 @@ public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 	@Override
 	public List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz) {
 		return queryList("exportExcel_zhjz",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjWqgzGlj(Jckwqgz wqgz) {
+		return queryList("jhtjWqgzGlj",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjWqgzJtj(Jckwqgz wqgz) {
+		return queryList("jhtjWqgzJtj",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjAbgcGlj(Jckwqgz wqgz) {
+		return queryList("jhtjAbgcGlj",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjAbgczJtj(Jckwqgz wqgz) {
+		return queryList("jhtjAbgczJtj",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjZhfzGlj(Jckwqgz wqgz) {
+		return queryList("jhtjZhfzGlj",wqgz);
+	}
+
+	@Override
+	public List<TreeNode> jhtjZhfzJtj(Jckwqgz wqgz) {
+		return queryList("jhtjZhfzJtj",wqgz);
 	}
 
 }
