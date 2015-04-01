@@ -50,21 +50,21 @@ $(function() {
 		title:'路网结构改造建设计划汇总表',
 		imgSrc:'../../images/menubutton/lwjggzjyjhb.png',
 		renderTo:'left_menu1',
-		href:'./jhtjbb/lwgzjh.jsp'
+		href:'./jhtjbb/jsjhhzb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050103',
 		title:'路网结构改造工程进展情况',
 		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
 		renderTo:'left_menu1',
-		href:'./jhtjbb/lwgzjz.jsp'
+		href:'./jhtjbb/gcjz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050104',
 		title:'公路建设下达计划',
 		imgSrc:'../../images/menubutton/gljsxdjh.png',
 		renderTo:'left_menu1',
-		href:'./jhtjbb/gljsjh.jsp'
+		href:'./jhtjbb/xdjh.jsp'
 	});
 	
 	

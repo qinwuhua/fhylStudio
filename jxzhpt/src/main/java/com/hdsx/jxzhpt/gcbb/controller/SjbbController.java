@@ -29,7 +29,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 	private SjbbServer sjbbServer;
 	private String flag;
 	
-	public void getLwjgjsgzb(){
+	public void getLwjgjshzb(){
 		try {
 			List<SjbbMessage> list = sjbbServer.getLwjgjsgzb(sjbb);
 			if("flag".equals(flag)){

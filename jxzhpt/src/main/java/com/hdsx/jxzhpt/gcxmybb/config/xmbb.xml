@@ -3,7 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.xmbb">
 	<select id="getptgxXzqh1" parameterType="xmbb" resultType="hashmap">
 	select distinct(substr(t1.xzqhdm,0,4)) xzqhdm,substr(t1.xzqhmc,0,3) xzqhmc
-	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%') and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -32,7 +32,7 @@
 	</select>
 	<select id="getptgxXzqh2" parameterType="xmbb" resultType="hashmap">
 	select distinct(substr(t1.xzqhdm,0,4)) xzqhdm,substr(t1.xzqhmc,0,3) xzqhmc
-	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%') and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -75,7 +75,7 @@
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,t2.sjwgsj v_22,
 			t2.yjwgsj v_23,t2.bz v_24,t2.jhxdwh v_25
 				
-	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%')  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -115,7 +115,7 @@
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,to_char(t2.sjwgsj,'yyyy-mm-dd') v_22,
 			to_char(t2.yjwgsj,'yyyy-mm-dd') v_23,t2.bz v_24,t2.jhxdwh v_25
 				
-	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%')  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -158,7 +158,7 @@
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,t2.sjwgsj v_22,
 			t2.yjwgsj v_23,t1.bz v_24,t2.jhxdwh v_25
 				
-	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%')  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -199,7 +199,7 @@
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,to_char(t2.sjwgsj,'yyyy-mm-dd') v_22,
 			to_char(t2.yjwgsj,'yyyy-mm-dd') v_23,t1.bz v_24,t2.jhxdwh v_25
 				
-	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1 and (t1.lxbm like 'G%' or t1.lxbm like 'S%')  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -229,7 +229,7 @@
 	<!-- yh -->
 	<select id="getYhxzqh" parameterType="xmbb" resultType="hashmap">
 	select distinct(substr(t1.xzqhdm,0,4)) xzqhdm,substr(t1.xzqhmc,0,3) xzqhmc
-	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -269,7 +269,7 @@
 	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
 	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
-	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -310,7 +310,7 @@
 	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
 	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
-	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0'
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -354,7 +354,7 @@
 	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
 	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
-	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -392,7 +392,7 @@
 	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
 	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
-	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid left join gcgl_cgs t4 on t2.id=t4.jhid
+	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
 	<if test="gydw != null and  gydw != ''">
 			and t1.gydwdm like '%'||trim(#{gydw})||'%'
@@ -415,5 +415,243 @@
 	<if test="wbf != null and  wbf != ''">
 			and ((select sum(xdzj) from plan_zjxd where xmid=t2.id) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id)) ${wbf}
 	</if>
+	</select>
+	<select id="getlwwq" parameterType="xmbb" resultType="elist">
+		select sum(t6.v_9) v_9,sum(t6.v_10) v_10,sum(t6.v_11) v_11,sum(t6.v_12) v_12,sum(t6.v_13) v_13,sum(t6.v_14) v_14,sum(t6.v_16) v_16
+		from(
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.lxbm||t3.lxmc v_3,t2.jsxz v_4,t3.qlzxzh v_5,t3.kjzc v_7,
+			t1.sbnf v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.qlqc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJJGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>) t6
+	</select>
+	<select id="getlwwqlist" parameterType="xmbb" resultType="elist">
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.qlbh||t3.qlmc v_3,t2.jsxz v_4,t3.qlzxzh v_5,t3.kjzc v_7,
+			t1.sbnf v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.qlqc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJJGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>
+	</select>
+	<select id="getlwab" parameterType="xmbb" resultType="elist">
+		select sum(t6.v_9) v_9,sum(t6.v_10) v_10,sum(t6.v_11) v_11,sum(t6.v_12) v_12,sum(t6.v_13) v_13,sum(t6.v_14) v_14,sum(t6.v_16) v_16
+		from(
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.lxbm||t3.lxmc v_3,t2.jsxz v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,
+			t1.jhnf v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.yhlc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJWGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id  left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>) t6
+	</select>
+	<select id="getlwablist" parameterType="xmbb" resultType="elist">
+
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.lxbm||t3.lxmc v_3,t2.jsxz v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,
+			t1.jhnf v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.yhlc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJWGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id  left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>
+	</select>
+	
+	<select id="getlwzh" parameterType="xmbb" resultType="elist">
+		select sum(t6.v_9) v_9,sum(t6.v_10) v_10,sum(t6.v_11) v_11,sum(t6.v_12) v_12,sum(t6.v_13) v_13,sum(t6.v_14) v_14,sum(t6.v_16) v_16
+		from(
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.lxbm||t3.lxmc v_3,t2.jsxz v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,
+			t1.SBNF v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.yhlc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJWGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id  left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>) t6
+	</select>
+	
+	<select id="getlwzhlist" parameterType="xmbb" resultType="elist">
+		
+		select 
+			substr(t3.xzqhmc,0,3) v_1,t3.tsdq v_2,t3.lxbm||t3.lxmc v_3,t2.jsxz v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,
+			t1.SBNF v_8,t1.pfztz v_9,t1.gys v_10,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_11,'0' v_12,
+			(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_13,
+			t1.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) v_14,
+			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
+			t3.yhlc v_16,to_char(t1.SJKGSJ,'yyyy-mm-dd') v_17,to_char(t1.SJWGSJ,'yyyy-mm-dd') v_18,
+			to_char(t1.YJWGSJ,'yyyy-mm-dd') v_19,
+			t1.pfwh v_21
+		from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id  left join plan_zjxd t4 on t1.id=t4.xmid 
+		where 1=1  and t4.sfzj='0'
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and t4.xdnf in (${jhxdnf})
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t1.kgzt  like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t1.jgzt  like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid) ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and ((select sum(xdzj) from plan_zjxd where xmid=t1.sckid) - (select sum(cgsdwzj) from gcgl_cgs where jhid=t1.sckid)) ${wbf}
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
+		</if>
 	</select>
 </mapper>

@@ -36,7 +36,7 @@ function jckxzqhtj(){
 			jsonDate[0].zhlczj=jxzhlczj;
 			jsonDate[0].zhxmzj=jxzhxmzj;
 			var grid={id:'grid',data:jsonDate,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:355,width:970,
+					pageNumber:1,pageSize:20,height:355,width:1030,
 				    columns:[
 					    [
 					     	{field:'xzqhmc',title:'行政区划',width:100,align:'center',rowspan:2},

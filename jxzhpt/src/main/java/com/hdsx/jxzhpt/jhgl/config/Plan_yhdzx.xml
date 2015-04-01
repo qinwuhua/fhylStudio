@@ -29,6 +29,8 @@
 		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="sbzt" column="sbzt"/>
 		<result property="spzt" column="spzt"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
 		<result property="remarks" column="remarks"/>
 		<result property="qtbz" column="qtbz"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
@@ -78,6 +80,12 @@
 				<if test="jh.spzt!=null and jh.spzt!=''">
 					and jh.spzt=#{jh.spzt}
 				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+					and jh.kgzt=#{jh.kgzt}
+	 			</if>
+	 			<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 				and jh.jgzt=#{jh.jgzt}
+	 			</if>
 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 					and lx.gydwdm like #{lx.gydwdm}
 				</if>
@@ -118,6 +126,12 @@
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
 			</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+				and jh.kgzt=#{jh.kgzt}
+			</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 				and lx.gydwdm like #{lx.gydwdm}
 			</if>
@@ -218,15 +232,21 @@
 			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 			</if>
-				<if test="jh.sbnf!=null and jh.sbnf!=''">
-					and jh.sbnf =#{jh.sbnf}
-				</if>
-				<if test="jh.sbzt!=null and jh.sbzt!=''">
-					and jh.sbzt=#{jh.sbzt}
-				</if>
-				<if test="jh.spzt!=null and jh.spzt!=''">
-					and jh.spzt=#{jh.spzt}
-				</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+				and jh.kgzt=#{jh.kgzt}
+			</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
 			group by jh.id)
 	</select>
 	<select id="dropYhdzxLxByJhid" parameterType="java.util.List">

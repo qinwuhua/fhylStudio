@@ -1291,3 +1291,9 @@ function getParam(paras) {
 		return returnValue;
 	}
 }
+//项目定位
+function locationXm(_roadcode,_roadType){
+	YMLib.Var.bm=_roadcode;
+	YMLib.Var.type=_roadType;
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+}

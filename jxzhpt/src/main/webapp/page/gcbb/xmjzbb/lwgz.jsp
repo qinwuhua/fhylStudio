@@ -21,9 +21,10 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
+			setjhxdnf();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
-			setjhxdnf();
+			showAll();
 		});
 		function setjhxdnf(){
 			$("#jhxdnf").combotree({    
@@ -41,20 +42,20 @@
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc;
 			//alert(data);
 			$.ajax({
-				url:"/jxzhpt/xmjzbb/exportLw.do",
+				url:"/jxzhpt/xmjzbb/getLwbb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#yhlist");
+					var tbody = $("#lwlist");
 					tbody.empty();
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].v_0=='合并'){
-								tbody.append("<tr><td colspan='3'>"+msg[i].v_1+"</td><td>"
+							if(!msg[i].v_0==''){
+								tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='3'>"
 										+msg[i].v_3+"</td><td>"
 										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
 										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
@@ -65,11 +66,10 @@
 										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
 										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td></tr>"
+										
 										);
 							}else{
-								if(msg[i].v_0==''){
 									tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
 											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
 											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
@@ -81,25 +81,8 @@
 											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
 											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
 											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
-											);
-								}else{
-									tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='2'>"+msg[i].v_1+"</td><td>"
-											+msg[i].v_3+"</td><td>"
-											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
-											);
-								}
+											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td></tr>"
+									);
 							}
 						}
 					}
@@ -113,7 +96,8 @@
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
+			var xmmc=$("#xmmc").val();
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc;
 			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
 		}
 	</script>
@@ -239,7 +223,6 @@ table tbody tr td {
 										<td rowspan="2">项目名称</td>
 										<td rowspan="2">建设性质</td>
 										<td colspan="3">项目段落</td>
-										<td rowspan="2">工程分类</td>
 										<td rowspan="2">计划下达年度</td>
 										<td rowspan="2">计划下达资金（万元）</td>
 										<td rowspan="2">概预算（万元）</td>
@@ -263,7 +246,7 @@ table tbody tr td {
 										<td>桥长或隐<br>患里程（延米）</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="lwlist">
 								
 								</tbody>
 							</table>
