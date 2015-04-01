@@ -39,5 +39,17 @@ public interface XmbbServer {
 
 	List<Excel_list> getyhlist1(Xmbb xmbb);
 
+	Excel_list getlwwq(Xmbb xmbb);
+
+	List<Excel_list> getlwwqlist(Xmbb xmbb);
+
+	Excel_list getlwab(Xmbb xmbb);
+
+	List<Excel_list> getlwablist(Xmbb xmbb);
+
+	Excel_list getlwzh(Xmbb xmbb);
+
+	List<Excel_list> getlwzhlist(Xmbb xmbb);
+
 
 }
