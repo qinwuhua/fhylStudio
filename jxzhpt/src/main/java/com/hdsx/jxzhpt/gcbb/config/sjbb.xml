@@ -2,25 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcbb">
 	<select id="getLwjgjsgzb" parameterType="sjbb" resultType="sjbb">
-		select '危桥改造' v_0,decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') v_1,count(lxbm) v_2,
-		sum(qlqc) v_3,0 v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE))  v_5,0 v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
-		XMK_WQGZ lx left join sck_wqgz sc on lx.id=sc.xmkid 
-		left join plan_wqgz jh on sc.sckid=jh.sckid
-		where lx.gydwbm like #{unit}||'%' and lx.XZQHDM like #{dist}||'%' and SBNF=#{nf}
-		group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')
-		union all
-		select '安保工程' v_0,decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') v_1,count(lxbm) v_2,
-		0 v_3,sum(yhlc) v_4,sum(decode(JHSYBBZJE,null,0,JHSYBBZJE)) v_5,0 v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
-		Xmk_Abgc lx left join sck_abgc sc on lx.id=sc.xmkid 
-		left join plan_abgc jh on sc.sckid=jh.sckid
-		where lx.gydwbm like #{unit}||'%' and lx.XZQHDM like #{dist}||'%' and jhnf=#{nf}
-		group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')
-		union all
-		select '灾害防治' v_0,'国省道小计' v_1,count(lxbm) v_2,
-		0 v_3,sum(yhlc) v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE)) v_5,0  v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
-		Xmk_Zhfz lx left join sck_zhfz sc on lx.id=sc.xmkid 
-		left join plan_zhfz jh on sc.sckid=jh.sckid
-		where lx.gydwbm like #{unit}||'%' and lx.XZQHDM like #{dist}||'%' and SBNF=#{nf}
-
+		select b.v_0,b.v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
+		decode(a.v_6,null,0,a.v_6) v_6,decode(a.v_7,null,0,a.v_7) v_7 from 
+		(select decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') c,count(lxbm) v_2,
+		    sum(qlqc) v_3,0 v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE))  v_5,0 v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		    XMK_WQGZ lx left join sck_wqgz sc on lx.id=sc.xmkid 
+		    left join plan_wqgz jh on sc.sckid=jh.sckid
+		    where lx.gydwbm like '%'||#{unit}||'%' and lx.XZQHDM like rtrim(#{dist},'0')||'%' and SBNF=#{nf}
+		    group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')) a,
+		    (select '国省道小计' v_1,'危桥改造' v_0 from dual union all select '县乡道（含专道）小计' v_1,'危桥改造' v_0 from dual) b
+		    where b.v_1=a.c(+)
+		    union all
+		    select b.v_0,b.v_1,decode(a.v_2,null,0,a.v_2) v_2,decode(a.v_3,null,0,a.v_3) v_3,decode(a.v_4,null,0,a.v_4) v_4,decode(a.v_5,null,0,a.v_5) v_5,
+		    decode(a.v_6,null,0,a.v_6) v_6,decode(a.v_7,null,0,a.v_7) v_7 from 
+		    (select  decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计') c,count(lxbm) v_2,
+		    0 v_3,sum(yhlc) v_4,sum(decode(JHSYBBZJE,null,0,JHSYBBZJE)) v_5,0 v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		    Xmk_Abgc lx left join sck_abgc sc on lx.id=sc.xmkid 
+		    left join plan_abgc jh on sc.sckid=jh.sckid
+		    where lx.gydwbm like '%'||#{unit}||'%' and lx.XZQHDM like rtrim(#{dist},'0')||'%' and jhnf=#{nf}
+		    group by decode(substr(lxbm,0,1),'G','国省道小计','S','国省道小计','县乡道（含专道）小计')) a,
+		    (select '国省道小计' v_1,'安保工程' v_0 from dual union all select '县乡道（含专道）小计' v_1,'安保工程' v_0 from dual) b
+		    where b.v_1=a.c(+)
+		    union all
+		    select '灾害防治' v_0,'国省道小计' v_1,count(lxbm) v_2,
+		    0 v_3,sum(yhlc) v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE)) v_5,0  v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		    Xmk_Zhfz lx left join sck_zhfz sc on lx.id=sc.xmkid 
+		    left join plan_zhfz jh on sc.sckid=jh.sckid
+		    where lx.gydwbm like '%'||#{unit}||'%' and lx.XZQHDM like rtrim(#{dist},'0')||'%' and SBNF=#{nf}
+		    
+		    order by v_0,v_1
 	 </select>
 </mapper>
