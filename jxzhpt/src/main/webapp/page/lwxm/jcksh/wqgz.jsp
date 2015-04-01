@@ -20,8 +20,9 @@
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
+	xmnf("xmnf"); 
 	if(getParam("t")=='1') {
-		$('#shzt').val('未审核');
+		$('#shzt').combobox("setValue",'未审核');
 	}
 	jckshWqgz();
 });
@@ -157,7 +158,7 @@ text-decoration:none;
 									<option value="已审核">已下达</option>
                               	</select>
                                <span>&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px">
+                              	<select id="shzt" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
@@ -171,7 +172,7 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="jsdj" style="width:70px">
+                              	<select id="jsdj" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>
@@ -180,7 +181,7 @@ text-decoration:none;
 									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
-                              	<select id="akjfl" style="width:60px">
+                              	<select id="akjfl" style="width:60px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>

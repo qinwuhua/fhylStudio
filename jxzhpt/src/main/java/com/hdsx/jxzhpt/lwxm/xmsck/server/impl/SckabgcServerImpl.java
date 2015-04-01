@@ -207,34 +207,12 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public Sckabgc selSckAbgcCount(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		return queryOne("selSckAbgcCount", hm);
+		return queryOne("selSckAbgcCount", abgc);
 	}
 
 	@Override
 	public Sckabgc selSckAbgcShCount(Sckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", abgc.getSck_sbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("shzt", abgc.getShzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		hm.put("bzls", abgc.getBzls());
-		return queryOne("selSckAbgcShCount", hm);
+		return queryOne("selSckAbgcShCount", abgc);
 	}
 
 }

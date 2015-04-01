@@ -15,7 +15,7 @@
 		update sck_wqgz set lrjh='已列入'  where sckid=#{String}
 	</insert>
 
-	<select id="selectSckwqgz" parameterType="hashmap" resultType="sckwqgz">
+	<select id="selectSckwqgz" parameterType="sckwqgz" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t where 
@@ -61,7 +61,7 @@
 		t1.num>(#{page}-1)*#{rows}
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
-	<select id="selectWqgzCount" parameterType="hashmap" resultType="int">
+	<select id="selectWqgzCount" parameterType="sckwqgz" resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
 			where sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -131,7 +131,7 @@
 		update sck_wqgz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 	</update>
 
-	<select id="selectSckShwqgz" parameterType="hashmap" resultType="sckwqgz">
+	<select id="selectSckShwqgz" parameterType="sckwqgz" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id) t
@@ -178,7 +178,7 @@
 		t1.num>(#{page}-1)*#{rows}
 		order by sck_shzt desc,lrjh desc
 	</select>
-	<select id="selectSckWqgzShCount" parameterType="hashmap"
+	<select id="selectSckWqgzShCount" parameterType="sckwqgz"
 		resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id)

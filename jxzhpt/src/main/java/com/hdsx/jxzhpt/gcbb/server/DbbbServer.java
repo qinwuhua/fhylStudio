@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface DbbbServer {
 	//危桥
@@ -71,4 +72,11 @@ public interface DbbbServer {
 	List<Gcglzhfz> selectZhjz(Jckwqgz wqgz);
 	int selectZhjzCount(Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz);
+	//计划统计报表
+	List<TreeNode> jhtjWqgzGlj(Jckwqgz wqgz);
+	List<TreeNode> jhtjWqgzJtj(Jckwqgz wqgz);
+	List<TreeNode> jhtjAbgcGlj(Jckwqgz wqgz);
+	List<TreeNode> jhtjAbgczJtj(Jckwqgz wqgz);
+	List<TreeNode> jhtjZhfzGlj(Jckwqgz wqgz);
+	List<TreeNode> jhtjZhfzJtj(Jckwqgz wqgz);
 }

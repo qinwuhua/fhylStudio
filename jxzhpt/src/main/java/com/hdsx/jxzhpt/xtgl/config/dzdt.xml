@@ -10,7 +10,7 @@
 		order by id
 	</select>
 	<select id="selSqlStrByLxid_sheng" parameterType="param" resultType="param">
-		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 1=1 
+		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 1=1
 		         <if test="sourceid != null and  sourceid != ''">
 					and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
 				</if>
