@@ -4,5 +4,7 @@
 <struts>
 	<package name="sjbb" extends="struts-default" namespace="/gcbb">
 		<action name="getLwjgjshzb" class="sjbbController" method="getLwjgjshzb"/>
+		<action name="getGzgcjz" class="sjbbController" method="getGzgcjz"/>
+		
 	</package>
 </struts>

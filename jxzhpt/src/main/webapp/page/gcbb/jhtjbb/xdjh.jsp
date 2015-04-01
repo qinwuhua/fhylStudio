@@ -18,35 +18,52 @@
 <style>
 #p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
 #righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-table {
-	border-collapse:collapse;
-}
-table thead tr td {
-	text-align:center; 	
-	font-size:1em;
-	font-weight:bold;
-  	border:1px solid black;
-  	padding:3px 7px 2px 7px;
-}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+table {border-collapse:collapse;}
+.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
 	getYearList();
+	startSearch();
 });
+function startSearch(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
+		dataType:"json",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
+		success:function(msg){
+			var str="";
+			$("#table_tbody").html("");
+			if(msg!=null){
+				for(var i=0;i<msg.length;i++){
+					
+					if(i!=6){
+						if(i==0||i==3){
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}else{
+							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}
+					}else{
+						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+					}
+				}
+			}else{
+				str+="<tr align='center'><td colspan='8'>暂无数据</td></tr>";
+			}
+			$("#table_tbody").html(str);
+		}
+	});
+}
 </script>
 </head>
 <body  style="padding-right:1px">

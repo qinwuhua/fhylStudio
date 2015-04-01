@@ -48,5 +48,11 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 		l_n.add(l.get(4));
 		return l_n;
 	}
+
+	@Override
+	public List<SjbbMessage> getGzgcjz(SjbbMessage sjbb) throws Exception {
+		System.out.println(sjbb.getNf());
+		return queryList("getGzgcjz",sjbb);
+	}
 	
 }

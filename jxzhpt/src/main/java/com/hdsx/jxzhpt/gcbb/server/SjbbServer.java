@@ -8,4 +8,6 @@ public interface SjbbServer {
 
 	List<SjbbMessage> getLwjgjsgzb(SjbbMessage sjbb) throws Exception;
 
+	List<SjbbMessage> getGzgcjz(SjbbMessage sjbb) throws Exception;
+
 }

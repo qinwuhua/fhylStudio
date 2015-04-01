@@ -27,9 +27,9 @@ table {border-collapse:collapse;}
 </style>
 <script type="text/javascript">
 $(function(){
+	getYearList();
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
 	startSearch();
 });
 function startSearch(){
@@ -37,7 +37,7 @@ function startSearch(){
 		type:'post',
 		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").val(),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");

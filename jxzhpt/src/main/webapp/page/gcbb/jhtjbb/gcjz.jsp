@@ -18,35 +18,53 @@
 <style>
 #p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
 #righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-table {
-	border-collapse:collapse;
-}
-table thead tr td {
-	text-align:center; 	
-	font-size:1em;
-	font-weight:bold;
-  	border:1px solid black;
-  	padding:3px 7px 2px 7px;
-}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+table {border-collapse:collapse;}
+.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
+	getYearList();
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
+	startSearch();
 });
+function startSearch(){
+	alert($("#year").val());
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcbb/getGzgcjz.do',
+		dataType:"json",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").val(),
+		success:function(msg){
+			var str="";
+			$("#table_tbody").html("");
+			if(msg!=null){
+				for(var i=0;i<msg.length;i++){
+					
+					if(i!=6){
+						if(i==0||i==3){
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}else{
+							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}
+					}else{
+						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+					}
+				}
+			}else{
+				str+="<tr align='center'><td colspan='18'>暂无数据</td></tr>";
+			}
+			$("#table_tbody").html(str);
+		}
+	});
+}
 </script>
 </head>
 <body  style="padding-right:1px">
@@ -76,7 +94,7 @@ $(function(){
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
                                         onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
@@ -87,14 +105,14 @@ $(function(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px;">
+                	<div style="width:100%;height:500px;">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="2000px" >
+							<table width="2000px" class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
-										<td rowspan="3">项目</td>
+										<td rowspan="3" colspan="2">项目</td>
 										<td colspan="5">计划下达</td>
 										<td colspan="5">实际完成</td>
 										<td colspan="6"></td>
@@ -129,10 +147,27 @@ $(function(){
 										<td>比例</td>
 										<td>到位比例</td>
 									</tr>
+									<tr>
+										<td colspan="2">甲</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8 </td>
+										<td>9</td>
+										<td>10</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
 								</thead>
-								<tbody>
-								
-								</tbody>
+								<tbody id="table_tbody"></tbody>
 							</table>
 							</div>
 						</div>
