@@ -95,39 +95,40 @@
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
     from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040202' name,'01010402' parent ,'月报进度' bz
     from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join xmk_abgc lx on (sc.xmkid=lx.id) 
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and 
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040203' name,'01010402' parent ,'月报进度' bz
     from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id)  
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%' 
        union all
-    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
-    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
-    where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
-    where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
+       select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
     from plan_yhdzx jh left join plan_lx_yhdzx lx on(jh.id=lx.jhid) 
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%' 
+       union all
+   select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
+    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%' 
+       union all
+    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
+    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
+    where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
+   	and sjsh='未审核' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_shi" parameterType="param" resultType="param">
 		          select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 1=1 
@@ -215,41 +216,40 @@
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
     from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040202' name,'01010402' parent ,'月报进度' bz
     from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join xmk_abgc lx on (sc.xmkid=lx.id) 
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and 
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040203' name,'01010402' parent ,'月报进度' bz
     from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id)  
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
-    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
-    where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
-    where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
     from plan_yhdzx jh left join plan_lx_yhdzx lx on(jh.id=lx.jhid) 
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%'
+       union all
+    select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
+    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%'
+       union all
+    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
+    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
+    where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
-        
- 
+    and  sjzt='未上报' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_xian" parameterType="param" resultType="param">
 		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 1=1 
@@ -337,39 +337,40 @@
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
     from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040202' name,'01010402' parent ,'月报进度' bz
     from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join xmk_abgc lx on (sc.xmkid=lx.id) 
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and 
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040203' name,'01010402' parent ,'月报进度' bz
     from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id)  
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
-    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
-    where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
-       union all
-    select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
-    where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwbm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
     from plan_yhdzx jh left join plan_lx_yhdzx lx on(jh.id=lx.jhid) 
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+    gydwdm like #{sourceid}||'%' 
+       union all
+    select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
+    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%' 
+       union all
+    select count(*) id,'0101040204' name,'01010402' parent ,'月报进度' bz
+    from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
+    where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
+    gydwdm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
+	and xjzt='未上报' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selectExistQlProgramList" parameterType="param" resultType="pb">
 		select qlmc xmmc,qlzxzh roadstart,qlbh roadbm,gydw unit,sbnf nf,gydwbm,xzqhdm
