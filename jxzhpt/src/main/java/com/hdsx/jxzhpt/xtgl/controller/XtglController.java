@@ -636,12 +636,12 @@ public class XtglController extends BaseActionSupport{
 			if(temp.getParent().equals(l.get(i).getParent())&&i!=l.size()-1){
 				flag_temp+=Integer.parseInt(l.get(i).getId());
 			}else if(!temp.getParent().equals(l.get(i).getParent())&&i!=l.size()-1){
-				temp.setId(flag_temp+"");
+				temp.setDescr(flag_temp+"");
 				l_total.add(temp);
 				temp=l.get(i);
 				flag_temp=Integer.parseInt(l.get(i).getId());
 			}else{
-				temp.setId(flag_temp+"");
+				temp.setDescr(flag_temp+"");
 				l_total.add(temp);
 			}
 		}

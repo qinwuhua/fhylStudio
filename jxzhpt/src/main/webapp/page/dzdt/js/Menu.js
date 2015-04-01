@@ -314,7 +314,7 @@ function selAnyChartXml(){
 			}
 			var list2=msg.hm1.list2;
 			for(var i=0;i<list2.length;i++){
-				$("#ip_"+list2[i].parent).html(list2[i].id);
+				$("#ip_"+list2[i].parent).html(list2[i].descr);
 			}
 		}
 	});
