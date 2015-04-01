@@ -21,6 +21,10 @@
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../2.x/OpenLayers.js"></script>
 <script type="text/javascript" src="../../framework/jquery.tabletojson.js"></script>
+<style>
+.table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
+.table_11 td{border:1px solid #bedaf5; text-align:center;}
+</style>
  <script type="text/javascript">
  var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
  var nameSpace = "http://192.168.1.108:8989/hdmapserver/jiangximap";
@@ -60,7 +64,7 @@ $(function(){
     </div>
 	
 	<div id="lay_east" data-options="region:'east',title:'提醒信息',split:true, iconCls: 'icon-west'"  style="width:420px;">
-	    	<table id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" style="background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1;">
+	    	<table class="table_11"  id="xmlxTj_table" width="398" border="1" align="center" cellpadding="0" cellspacing="0" >
 	    	</table>
 	    	<div id="anychart_div" style="width:350px;height:300px;margin:10px;">
 				<div>
