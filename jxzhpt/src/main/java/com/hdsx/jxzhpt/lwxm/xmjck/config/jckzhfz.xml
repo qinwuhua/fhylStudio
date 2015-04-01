@@ -7,7 +7,7 @@
 		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
 </insert>
  
- <select id="selectJckzhfz" parameterType="hashmap" resultType="jckzhfz">
+ <select id="selectJckzhfz" parameterType="jckzhfz" resultType="jckzhfz">
  	select * from (
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_zhfz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
@@ -42,7 +42,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
  </select>
- <select id="selectZhfzCount" parameterType="hashmap" resultType="int">
+ <select id="selectZhfzCount" parameterType="jckzhfz" resultType="int">
 	select count(*) from xmk_zhfz where 1=1
 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -122,7 +122,7 @@
  	order by lxbm
  </select>
  
-  <select id="selectJckShzhfz" parameterType="hashmap" resultType="jckzhfz">
+  <select id="selectJckShzhfz" parameterType="jckzhfz" resultType="jckzhfz">
  	select * from (
  		select rownum num ,t.* from xmk_zhfz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
@@ -157,7 +157,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
- <select id="selectZhfzShCount" parameterType="hashmap" resultType="int">
+ <select id="selectZhfzShCount" parameterType="jckzhfz" resultType="int">
 	select count(*) from xmk_zhfz where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -270,7 +270,7 @@
 		</if>
 	</select>
 	
-	<select id="selZhfzCount" parameterType="hashmap" resultType="jckzhfz">
+	<select id="selZhfzCount" parameterType="jckabgc" resultType="jckzhfz">
 	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where 1=1
 			and  sbthcd &lt;=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -298,8 +298,11 @@
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and lxbm like #{bz}||'%'
+ 		</if>
  </select>
- <select id="selZhfzShCount" parameterType="hashmap" resultType="jckzhfz">
+ <select id="selZhfzShCount" parameterType="jckabgc" resultType="jckzhfz">
 	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbthcd=7
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -326,6 +329,9 @@
  		</if>
  		<if test="lxbm!='' and lxbm!= null ">
  			and lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and lxbm like #{bz}||'%'
  		</if>
  </select>
 </mapper>

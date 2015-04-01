@@ -185,32 +185,12 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 
 	@Override
 	public Jckabgc selAbgcCount(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		return queryOne("selAbgcCount", hm);
+		return queryOne("selAbgcCount", abgc);
 	}
 
 	@Override
 	public Jckabgc selAbgcShCount(Jckabgc abgc) {
-		hm=new HashMap<String, Object>();
-		hm.put("sbthcd", abgc.getSbthcd());
-		hm.put("gydw", abgc.getGydw());
-		hm.put("xzqhmc", abgc.getXzqhmc());
-		hm.put("lxmc", abgc.getLxmc());
-		hm.put("xmnf", abgc.getXmnf());
-		hm.put("xmtype", abgc.getXmtype());
-		hm.put("sbzt", abgc.getSbzt());
-		hm.put("lxjsdj", abgc.getLxjsdj());
-		hm.put("lxbm", abgc.getLxbm());
-		return queryOne("selAbgcShCount", hm);
+		return queryOne("selAbgcShCount", abgc);
 	}
 	
 }

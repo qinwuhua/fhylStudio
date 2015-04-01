@@ -306,7 +306,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 
  </insert>
  
- <select id="selSckAbgcCount" parameterType="hashmap" resultType="sckabgc">
+ <select id="selSckAbgcCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -337,8 +337,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  </select>
- <select id="selSckAbgcShCount" parameterType="hashmap" resultType="sckabgc">
+ <select id="selSckAbgcShCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -369,6 +372,9 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		</if>
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
  		</if>
  </select>
 </mapper>
