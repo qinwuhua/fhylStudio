@@ -2,7 +2,8 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function querySumYhdzx(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbnf':jh.sbnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwdm':lx.gydwdm,'jh.sbnf':jh.sbnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,
+			'jh.jh_sbthcd':jh.jh_sbthcd,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumYhdzx.do',
@@ -48,7 +49,7 @@ function yhdzxxm(jh,lx){
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -149,7 +150,7 @@ function yhdzxxm_sb(jh,lx){
 			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -261,7 +262,7 @@ function yhdzxxm_sp(jh,lx){
 			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -370,11 +371,11 @@ function yhdzxxm_sp(jh,lx){
 	gridBind(grid);
 }
 function yhdzxxm_zjxd(jh,lx){
-	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
 			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-150,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -385,6 +386,20 @@ function yhdzxxm_zjxd(jh,lx){
 			      {field:'zjxf',title:'资金下发',width:60,align:'center',
 			    	  formatter:function(value,row,index){
 				    	return '<a href="javascript:openDialog('+"'zjxd_yhdzx','养护大中修项目资金下达','../zjxd/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+			    	  }
+			      },
+			      {field:'sbnf',title:'上报年份',width:60,align:'center'},
+			      {field:'kgzt',title:'建设状态',width:60,align:'center',
+			    	  formatter:function(value,row,index){
+			    		  var result="";
+			    		  if(row.kgzt=="0" && row.jgzt=="0"){
+			    			  result="未开工";
+			    		  }else if(row.kgzt=="1" && row.jgzt=="0"){
+			    			  result="在建";
+			    		  }else if(row.kgzt=="1" && row.jgzt=="1"){
+			    			  result="竣工";
+			    		  }
+			    		  return result;
 			    	  }
 			      },
 			      {field:'lxbm',title:'路线编码',width:80,align:'center',

@@ -76,6 +76,12 @@
 				<if test="jh.spzt!=null and jh.spzt!=''">
 					and jh.spzt=#{jh.spzt}
 				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+					and jh.kgzt=#{jh.kgzt}
+	 			</if>
+	 			<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 				and jh.jgzt=#{jh.jgzt}
+	 			</if>
 				<if test="l.gydwdm!=null and l.gydwdm!=''">
 					and l.gydwdm like #{l.gydwdm}
 				</if>
@@ -116,6 +122,12 @@
 		<if test="jh.spzt!=null and jh.spzt!=''">
 			and jh.spzt=#{jh.spzt}
 		</if>
+		<if test="jh.kgzt!=null and jh.kgzt!=''">
+			and jh.kgzt=#{jh.kgzt}
+	 	</if>
+	 	<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
+	 	</if>
 		and jh.id in (
 			select l.jhid from PLAN_lx_shuih l
 			where 1=1 
@@ -169,6 +181,12 @@
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
 			</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+				and jh.kgzt=#{jh.kgzt}
+			</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
 			group by jh.id)
 	</select>
 	<select id="queryShuihById" parameterType="string" resultMap="shuih_jh">

@@ -9,5 +9,8 @@
 	
 	<action name="getYhbb" class="xmbbController" method="getYhbb"/>
 	<action name="exportYh" class="xmbbController" method="exportYh"/>
+	
+	<action name="getLwbb" class="xmbbController" method="getLwbb"/>
+	<action name="exportLw" class="xmbbController" method="exportLw"/>
  </package>
 </struts>

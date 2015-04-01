@@ -21,8 +21,11 @@
 	<script type="text/javascript">
 		$(function(){
 			var xzqh=$.cookie("unit").substring(5);
-			var reg=new RegExp(/00/);
-			xzqh=xzqh.replace(reg,"__");
+			if(roleName()=="市级"){
+				xzqh=xzqh.substring(0,4)+"__";
+			}else if(roleName()=="省级"){
+				xzqh="36__00";
+			}
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryChildXzqh.do',
@@ -30,7 +33,7 @@
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(index,item){
-						$('#zjqf_table_tbody').after('<tr id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td></tr>');
+						$('#zjqf_table_tbody').append('<tr id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td></tr>');
 					});
 				}
 			});
@@ -51,6 +54,7 @@
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
 			$.ajax({
 				type:'post',
+				async:false,
 				url:'../../../jhgl/queryZjqfByXzqh.do',
 				data:father,
 				dataType:'json',
@@ -85,6 +89,7 @@
 			var zjqf={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':$.cookie("unit").substring(5)};
 			$.ajax({
 				type:'post',
+				async:false,
 				url:'../../../jhgl/queryZjqfByXzqh.do',
 				data:zjqf,
 				dataType:'json',
