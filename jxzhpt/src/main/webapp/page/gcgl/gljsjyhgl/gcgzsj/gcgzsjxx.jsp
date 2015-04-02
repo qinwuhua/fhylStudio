@@ -29,7 +29,7 @@ $(function(){
 	$("#gjhjsdj").text(data.gjhjsdj);$("#pfwh").text(data.pfwh);$("#pfsj").text(data.pfsj);$("#pfztz").text(data.pfztz);$("#jhsybbzje").text(data.jhsybbzje);
 	$("#jhsydfzczj").text(data.jhsydfzczj);$("#sfsqablbz").text(data.sfsqablbz);$("#ablbzsqwh").text(data.ablbzsqwh);$("#gkbgmc").text(data.gkbgmc);$("#gkbglj").text(data.gkbglj);
 	$("#sjsgtmc").text(data.sjsgtmc);$("#sjsgtlj").text(data.sjsgtlj);$("#remarks").text(data.remarks);$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);
-	$("#sjwgsj").text(data.sjwgsj);$("#yjwgsj").text(data.yjwgsj);$("#sfqxkg").text(data.sfqxkg);$("#jsdw").text(data.jsdw);$("#sgdw").text(data.sgdw);
+	$("#sjwgsj").text(data.sjwgsj);$("#yjjgsj").text(data.yjwgsj);$("#sfqxkg").text(data.sfqxkg);$("#jsdw").text(data.jsdw);$("#sgdw").text(data.sgdw);
 	$("#jldw").text(data.jldw);$("#htje").text(data.htje);$("#sgxkwj").text(data.sgxkwj);$("#jgtcwj").text(data.jgtcwj);$("#jgyswj").text(data.jgyswj);
 	$("#gsztz").text(data.gsztz);$("#wjgyy").text(data.wjgyy);
 	if(data.gkbgmc!=''){

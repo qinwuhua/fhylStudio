@@ -20,7 +20,7 @@
 			shezhi();
 		});
 		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear();
+			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
 			$.ajax({
 				type:'post',
 				url:'../../../../gcgl/selectWqgzbzzj.do',
