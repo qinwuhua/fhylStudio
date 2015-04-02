@@ -215,4 +215,14 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 		return queryOne("selSckAbgcShCount", abgc);
 	}
 
+	@Override
+	public List<Sckabgc> lrjhAbgc(Sckabgc abgc) {
+		return queryList("lrjhAbgc",abgc);
+	}
+
+	@Override
+	public int lrjhAbgcCount(Sckabgc abgc) {
+		return queryOne("lrjhAbgcCount",abgc);
+	}
+
 }

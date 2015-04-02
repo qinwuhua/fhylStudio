@@ -371,4 +371,24 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and bzls like #{bzls}||'%'
  		</if>
  </select>
+ 
+ 	<!--  列入计划-->
+ 
+ <select id="lrjhZhfz" parameterType="sckzhfz" resultType="sckzhfz">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
+ 		where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+  			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_shzt desc,lrjh desc
+ </select>
+  <select id="lrjhZhfzCount" parameterType="sckzhfz" resultType="int">
+ 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+ 		 where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+ 			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ </select>
 </mapper>

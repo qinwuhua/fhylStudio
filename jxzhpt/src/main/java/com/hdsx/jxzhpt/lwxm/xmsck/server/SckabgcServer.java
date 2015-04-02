@@ -29,4 +29,6 @@ public interface SckabgcServer {
 		String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1);
 		Sckabgc selSckAbgcCount(Sckabgc abgc);
 		Sckabgc selSckAbgcShCount(Sckabgc abgc);
+		List<Sckabgc> lrjhAbgc(Sckabgc abgc);
+		int lrjhAbgcCount(Sckabgc abgc);
 }

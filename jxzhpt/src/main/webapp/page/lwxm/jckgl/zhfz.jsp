@@ -34,7 +34,10 @@ $(function(){
 
 function delJckzhfz(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要删除项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要删除项目！");
+		return;
+	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sbzt2=='已上报'){
@@ -67,7 +70,10 @@ function delJckzhfz(){
 }
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要上报项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要上报项目！");
+		return;
+	}
 	var id=rows[0].id;
 	if($.cookie("unit2")=='______36'){
 		alert("对不起，您无法上报！");
@@ -109,7 +115,10 @@ function shangB(){
 } 
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要退回项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
 	if($.cookie("unit2")=='______36'){
