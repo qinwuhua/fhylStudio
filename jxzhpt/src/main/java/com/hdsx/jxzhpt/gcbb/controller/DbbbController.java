@@ -704,20 +704,49 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				throw new RuntimeException();
 			}
 		}
-		public void jhtjBb(){
+		public void gljsxdList(){
+				List<SjbbMessage> list = dbServer.gljsxdList(jckwqgz);
 			try {
-				Map<String, Object> result=new HashMap<String, Object>();
-				result.put("wqGlj", dbServer.jhtjWqgzGlj(jckwqgz));
-				result.put("wqJtj", dbServer.jhtjWqgzJtj(jckwqgz));
-				result.put("abGlj", dbServer.jhtjAbgcGlj(jckwqgz));
-				result.put("abJtj", dbServer.jhtjAbgcGlj(jckwqgz));
-				result.put("zhGlj", dbServer.jhtjZhfzGlj(jckwqgz));
-				result.put("zhJtj", dbServer.jhtjZhfzGlj(jckwqgz));
-				JsonUtils.write(result, getresponse().getWriter());
-			}  catch (Exception e) {
+				JsonUtils.write(list, getresponse().getWriter());
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		public void exportExcel_gljsxd(){
+			try {
+				//先得到导出的数据集
+				List <SjbbMessage> list=dbServer.gljsxdList(jckwqgz);
+				System.out.println("------------"+list.size()+"--------------");
+				//导出设置
+				String excelHtml="<tr><td rowspan='2'>备注</td><td rowspan='2'>项目名称</td><td rowspan='2'>" +
+						"行政等级</td><td rowspan='2'>起点桩号</td><td rowspan='2'>终点桩号</td><td rowspan='2'>" +
+							"路线编码</td><td colspan='3'></td><td rowspan='2'>建设性质</td><td colspan='7'>" +
+							"建 设 规 模（ 公 里 ） / （ 延 米 ）</td><td rowspan='2'>路面宽度</td><td rowspan='2'>" +
+							"技术方案</td><td rowspan='2'>总投资（万元）</td><td rowspan='2'>中央投资（万元）" +
+							"</td></tr>	<tr><td>特殊地区 </td><td>市</td><td>县</td><td>合计</td><td>一级公路" +
+							"</td><td>二级公路</td><td>三级公路</td><td>四级公路</td><td>大桥</td><td>隧道</td></tr>" ;
+				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+				SheetBean sheetb = new SheetBean();
+				sheetb.setTableName("公路建设下达计划报表");
+				sheetb.setFooter(null);
+				sheetb.setHeader(excelHtml);
+				sheetb.setSheetName("公路建设下达计划信息");
+				sheetb.setList(list);
+				sheetb.setColnum((short)21);
+				sheetBeans.add(sheetb);
+				String stylefileName="module.xls";
+				String tableName="公路建设下达计划报表";//excel 文件的名字
+				//导出excel
+				ExportExcel_new <SjbbMessage> ee = new ExportExcel_new<SjbbMessage>();
+				ee.initStyle(ee.workbook, stylefileName);
+				HttpServletResponse response= getresponse();
+				ee.makeExcel(tableName, sheetBeans, response);
+			} catch (Exception e) {
+				System.out.println("---------------------导出有误-----------------------");
+				throw new RuntimeException();
+			}
+		}
+		
 	
 	
 	public Jckwqgz getJckwqgz() {

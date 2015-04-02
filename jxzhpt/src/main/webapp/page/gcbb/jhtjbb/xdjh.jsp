@@ -29,36 +29,32 @@ table {border-collapse:collapse;}
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
+	xmnf('year');
 	startSearch();
 });
 function startSearch(){
+	var gydw=$("#gydw").combotree("getValue");
+	if(gydw='36'){
+		gydw="";
+	}
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
+		url:'/jxzhpt/dbbb/gljsxdList.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
+		data:"xzqhdm="+$("#xzqh").combotree("getValue")+"&gydw="+gydw+"&xmnf="+$("#year").combobox("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
-			if(msg!=null){
+			if(msg.length!=0){
 				for(var i=0;i<msg.length;i++){
-					
-					if(i!=6){
-						if(i==0||i==3){
-							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
-						}else{
-							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
-						}
-					}else{
-						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
-					}
+							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"+"<td>"+msg[i].v_4+"</td>"
+							+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"
+							+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td>"
+							+"<td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td>"
+							+"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>";
 				}
 			}else{
-				str+="<tr align='center'><td colspan='8'>暂无数据</td></tr>";
+				str+="<tr align='center'><td colspan='21'>暂无数据</td></tr>";
 			}
 			$("#table_tbody").html(str);
 		}
@@ -92,9 +88,9 @@ function startSearch(){
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel_gljsxd()" style="vertical-align: -50%;" />
         					</p>
         					
         				</div>
@@ -103,10 +99,10 @@ function startSearch(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px">
+                	<div style="width:100%;height:300px">
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" >
-							<table width="2000px" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="2000px"  class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
@@ -137,7 +133,7 @@ function startSearch(){
 										<td>隧道</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id='table_tbody'>
 								
 								</tbody>
 							</table>

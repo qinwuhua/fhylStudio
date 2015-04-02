@@ -23,9 +23,9 @@ $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
-	/* loadBmbm2("sbzt", "上报状态"); */
-/* 	loadBmbm2("jsdj", "技术等级");
-	loadBmbm2("akjfl", "跨径分类"); */
+	loadBmbm2("sbzt", "上报状态");
+	loadBmbm2("jsdj", "技术等级");
+	loadBmbm2("akjfl", "跨径分类");
 	if(getParam("t")=='1') {
 		$('#sbzt').combobox("setValue",'未上报');
 	}
@@ -200,27 +200,12 @@ text-decoration:none;
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
                               	<select id="xmnf"  style="width:70px">
-                              		<option selected="selected" value="">全部</option>
-                              		<option value="2015年">2015年</option>
-									<option value="2014年">2014年</option>
-									<option value="2013年">2013年</option>
-									<option value="2012年">2012年</option>
-									<option value="2011年">2011年</option>
-									<option value="2010年">2010年</option>
                               	</select>
                               <span style="display: none;">&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
-                              		<option selected="selected" value="">全部</option>
-									<option value="未上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">已入库</option>
-									<option value="已审核">已下达</option>
                               	</select>
                                <span>&nbsp;上报状态：</span>
                               	<select id="sbzt" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="ss4" style="width:70px"class="easyui-combobox">
@@ -232,20 +217,9 @@ text-decoration:none;
                               	</select>
                               <span>&nbsp;技术等级：</span>
                               	<select id="jsdj" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="一级公路">一级公路</option>
-									<option value="二级公路">二级公路</option>
-									<option value="三级公路">三级公路</option>
-									<option value="四级公路">四级公路</option>
-									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
                               	<select id="akjfl" style="width:60px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="特大桥">特大桥</option>
-									<option value="大桥">大桥</option>
-									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option>
                               	</select>
                               	<span>&nbsp;桥梁编号：</span>
                               	<input type="text" id="qlbh"style="width:70px"/>

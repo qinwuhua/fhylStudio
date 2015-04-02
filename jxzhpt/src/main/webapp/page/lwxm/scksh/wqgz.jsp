@@ -21,6 +21,10 @@ $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
+	loadBmbm2("shzt", "审核状态");
+	loadBmbm2("jsdj", "技术等级");
+	loadBmbm2("akjfl", "跨径分类");
+	loadBmbm2("bzls", "补助历史");
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
@@ -180,36 +184,22 @@ text-decoration:none;
                              	<span>&nbsp;行政区划：</span>
                               	<select id="xzqhmc" style="width:218px">
                               	</select>
-                               <span>&nbsp;路线名称：</span>
-        						<input type="text" id="lxmc" style="width:70px;" />
-        						 <span>&nbsp;路线编码：</span>
+                               <span>&nbsp;桥梁编号：</span>
+        						<input type="text" id="qlbh" style="width:72px;" />
+                              	<span>&nbsp;桥梁名称：</span>
+                              	<input id="qlmc" type="text" style="width:76px"/>
+                              	<span>&nbsp;路线编码：</span>
         						<input type="text" id="lxbm" style="width:70px;" />
-                              <span>&nbsp;桥梁名称：</span>
-                              	<input id="qlmc" type="text" style="width:70px"/>
 						</p>
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
-                              		<option selected="selected" value="">全部</option>
-                              		<option value="2015年">2015年</option>
-									<option value="2014年">2014年</option>
-									<option value="2013年">2013年</option>
-									<option value="2012年">2012年</option>
-									<option value="2011年">2011年</option>
                               	</select>
                               <span style="display: none;">&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
-                              		<option selected="selected" value="">全部</option>
-									<option value="未上报">待上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">已入库</option>
-									<option value="已审核">已下达</option>
                               	</select>
                                <span>&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="tsdq" style="width:70px"class="easyui-combobox">
@@ -221,29 +211,15 @@ text-decoration:none;
                               	</select>
                               <span>&nbsp;技术等级：</span>
                               	<select id="jsdj" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="一级公路">一级公路</option>
-									<option value="二级公路">二级公路</option>
-									<option value="三级公路">三级公路</option>
-									<option value="四级公路">四级公路</option>
-									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
                               	<select id="akjfl" style="width:65px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="特大桥">特大桥</option>
-									<option value="大桥">大桥</option>
-									<option value="中桥">中桥</option>
-									<option value="小桥">小桥</option>
                               	</select>
                               	<span>&nbsp;补助历史：</span>
                               	<select id="bzls" style="width:80px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="无">无补助历史</option>
-									<option value="有">有补助历史</option>
                               	</select>
-                              	 <span>&nbsp;桥梁编号：</span>
-        						<input type="text" id="qlbh" style="width:70px;" />
+                              	<span>&nbsp;路线名称：</span>
+        						<input type="text" id="lxmc" style="width:70px;" />
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckshWqgz();"style="border-width:0px;cursor: hand;" />
