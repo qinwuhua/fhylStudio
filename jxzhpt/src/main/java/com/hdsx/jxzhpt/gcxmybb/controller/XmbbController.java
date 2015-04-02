@@ -60,6 +60,7 @@ import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -78,7 +79,14 @@ public class XmbbController extends BaseActionSupport{
 	@Resource(name = "xmbbServerImpl")
 	private XmbbServer xmbbServer;
 	private Xmbb xmbb=new Xmbb();
+	private String xzqh;
 	
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
 	public int getPage() {
 		return page;
 	}
@@ -120,6 +128,22 @@ public class XmbbController extends BaseActionSupport{
 		}
 		
 	}
+	public void settsdq(){
+		List<TreeNode> list=xmbbServer.gettsdq(xzqh.replaceAll("0*$",""));
+		int i=1;
+		for (TreeNode treeNode : list) {
+			treeNode.setId(i+"");
+			treeNode.setIconCls("icon-none");
+			i++;
+		}
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void getPtgxbb(){
 		List<Excel_list> exl = new ArrayList<Excel_list>();
 		
