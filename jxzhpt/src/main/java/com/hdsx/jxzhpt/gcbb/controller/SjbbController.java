@@ -48,7 +48,22 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 		try {
 			List<SjbbMessage> list = sjbbServer.getGzgcjz(sjbb);
 			if("flag".equals(flag)){
-				String tableName="（一）收费公路项目一览表";
+				String tableName="";
+				String excelHtml="";
+				
+			}else{
+				JsonUtils.write(list, getresponse().getWriter());
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getGdzctzjs(){
+		try {
+			List<SjbbMessage> list = sjbbServer.getGdzctzjs(sjbb);
+			if("flag".equals(flag)){
+				String tableName="";
 				String excelHtml="";
 				
 			}else{

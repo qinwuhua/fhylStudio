@@ -18,52 +18,44 @@
 <style>
 #p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
 #righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-table {
-	border-collapse:collapse;
-}
-table thead tr td {
-	text-align:center; 	
-	font-size:1em;
-	font-weight:bold;
-  	border:1px solid black;
-  	padding:3px 7px 2px 7px;
-}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+table {border-collapse:collapse;}
+.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
+	getYearList();
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	xmnf('xmnf');
-	jhtjBb();
+	startSearch();
 });
-function jhtjBb(){
+function startSearch(){
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/dbbb/jhtjBb.do',
-		data:'',
-		async:false,
-		dataType:'json',
-		success:function(data){
-			$("#tjbb").empty();
-			var tbody="";
-			for(var i=0;i<data.wqGlj.length;i++){
-				tbody+= "";
+		url:'/jxzhpt/gcbb/getGdzctzjs.do',
+		dataType:"json",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
+		success:function(msg){
+			var str="";
+			$("#table_tbody").html("");
+			if(msg!=null){
+				for(var i=0;i<msg.length;i++){
+					str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
+						+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
+						+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
+						+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>"
+						+"<td>"+msg[i].v_20+"</td>"+"<td>"+msg[i].v_21+"</td></tr>";
+				}
+			}else{
+				str+="<tr align='center'><td colspan='22'>暂无数据</td></tr>";
 			}
-			$("#tjbb").append(tbody);
-			}
-		});
+			$("#table_tbody").html(str);
+		}
+	});
 }
 </script>
 </head>
@@ -94,7 +86,7 @@ function jhtjBb(){
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
                                         onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
@@ -105,10 +97,10 @@ function jhtjBb(){
         	</tr>
 			<tr>
                 <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px">
+                	<div style="width:100%;height:500px">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="2000px" >
+							<table class="table_body" width="2000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2014年交通固定资产投资建设计划(路网结构改造)</caption>
 								<thead>
 									<tr>
@@ -156,9 +148,7 @@ function jhtjBb(){
 										<td>补助资金(万元)</td>
 									</tr>
 								</thead>
-								<tbody id="tjbb">
-								
-								</tbody>
+								<tbody id="table_tbody"></tbody>
 							</table>
 							</div>
 						</div>

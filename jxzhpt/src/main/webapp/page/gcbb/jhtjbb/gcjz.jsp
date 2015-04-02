@@ -33,7 +33,6 @@ $(function(){
 	startSearch();
 });
 function startSearch(){
-	alert($("#year").val());
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getGzgcjz.do',

@@ -43,7 +43,7 @@ $(function() {
 		title:'交通部固定资产投资建设计划',
 		imgSrc:'../../images/menubutton/jtbgdzc.png',
 		renderTo:'left_menu1',
-		href:'./jhtjbb/jtbgdzc.jsp'
+		href:'./jhtjbb/gdzctzjs.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050102',

@@ -10,4 +10,6 @@ public interface SjbbServer {
 
 	List<SjbbMessage> getGzgcjz(SjbbMessage sjbb) throws Exception;
 
+	List<SjbbMessage> getGdzctzjs(SjbbMessage sjbb) throws Exception;
+
 }
