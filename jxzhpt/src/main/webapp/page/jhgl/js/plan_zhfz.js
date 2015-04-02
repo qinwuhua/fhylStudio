@@ -66,7 +66,7 @@ function zhfzxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 	        		result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
@@ -158,7 +158,7 @@ function zhfzxm_sb(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<4))
 	        		result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -238,7 +238,7 @@ function zhfzxm_sh(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zhfz_sh','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
 	        		result+='<a href="javascript:openDialog('+"'zhfz_sh','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -324,7 +324,7 @@ function zhfzxm_zjxd(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zjxd_zhfz','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},

@@ -372,17 +372,40 @@
     select count(*) id,'0101040208' name,'01010402' parent,'月报进度' bz from plan_hsly where xzqhdm like #{xzqh} 
 	and xjzt='未上报' and kgzt='1' and jgzt='0' 
 	</select>
-	<select id="selectExistQlProgramList" parameterType="param" resultType="pb">
-		select qlmc xmmc,qlzxzh roadstart,qlbh roadbm,gydw unit,sbnf nf,gydwbm,xzqhdm
-    from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
-    where  
-    gydwbm like #{sourceid}||'%' and xzqhdm like #{xzqh}
+	<select id="selectExistQlProgramList" parameterType="param" resultType="param">
+		select jh.id,lx.qlmc as rolename,lx.qlzxzh as source,lx.gydw as name,jh.sbnf as desr
+		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
+		where lx.qlbh=#{sourceid}
 	</select>
 	<select id="selectExistQlProgramListCount" parameterType="param" resultType="pb">
 		
 	</select>
-	<select id="selectExistLxProgramList" parameterType="param" resultType="int">
-		
+	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
+		select sj.id,sj.xmmc as roadname,sjlx.qdzh as roadstart,sjlx.zdzh as roadends,sjlx.gydw,sjlx.xzqhmc,
+		to_char(sj.jhnf) as nf ,'路面升级' as unit
+		from plan_lx_gcsj sjlx right join plan_gcsj sj on sjlx.jhid=sj.id where sjlx.lxbm=#{roadcode}
+		union all
+		select gj.id,gj.xmmc as roadname,gjlx.qdzh as roadstart,gjlx.zdzh as roadends,gjlx.gydw,gjlx.xzqhmc,
+		to_char(gj.sbnf) as nf,'路面改建' as unit
+		from plan_lx_gcgj gjlx right join plan_gcgj gj on gjlx.jhid=gj.id where gjlx.lxbm=#{roadcode}
+		union all
+		select sh.id,sh.xmmc as roadname,shlx.qdzh as roadstart,shlx.zdzh as roadends,shlx.gydw,shlx.xzqhmc,
+		to_char(sh.sbnf) as nf,'水毁项目' as unit
+		from plan_lx_shuih shlx right join plan_shuih sh on shlx.jhid=sh.id where shlx.lxbm=#{roadcode}
+		union all
+		select abjh.id,ablx.lxmc as roadname,ablx.qdzh as roadstart,ablx.zdzh as roadends,ablx.gydw,ablx.xzqhmc,
+		to_char(abjh.jhnf) as nf,'安保工程' as unit
+		from xmk_abgc ablx right join sck_abgc absc on ablx.id=absc.xmkid right join plan_abgc abjh 
+		on absc.sckid=abjh.sckid where ablx.lxbm=#{roadcode}
+		union all
+		select zhjh.id,zhlx.lxmc as roadname,zhlx.qdzh as roadstart,zhlx.zdzh as roadends,zhlx.gydw,zhlx.xzqhmc,
+		to_char(zhjh.sbnf) as nf,'灾害防治' as unit
+		from xmk_zhfz zhlx right join sck_zhfz zhsc on zhlx.id=zhsc.xmkid right join plan_zhfz zhjh 
+		on zhsc.sckid=zhjh.sckid where zhlx.lxbm=#{roadcode}
+		union all
+		select yhjh.id,yhlx.lxmc as roadname,yhlx.qdzh as roadstart,yhlx.zdzh as roadends,yhlx.gydwmc as gydw,yhlx.xzqhmc,
+		to_char(yhjh.sbnf),'养护大中修' as unit
+		from plan_lx_yhdzx yhlx right join plan_yhdzx yhjh on yhlx.jhid=yhjh.id where yhlx.lxbm=#{roadcode}
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
 		

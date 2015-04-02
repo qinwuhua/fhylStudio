@@ -5,6 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>养护大中修详细</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 </head>
 <body>
 	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -587,6 +595,9 @@
 		$('#txt'+cs+'hd').html(date[cslx].hd);
 		$('#txt'+cs+'dj').html(date[cslx].dj);
 		$('#txt'+cs+'sddj').html(date[cslx].sddj);
+	}
+	if(parent.YMLib.Var.jhbm!=null){
+		xxId=parent.YMLib.Var.jhbm;
 	}
 	$.ajax({
 		type:'post',

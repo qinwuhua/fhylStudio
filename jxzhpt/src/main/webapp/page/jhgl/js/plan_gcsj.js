@@ -55,7 +55,7 @@ function gclmsjxm(jh,lx){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 					var id="'"+row.id+"'";
@@ -150,7 +150,7 @@ function gclmsjxm_sb(jh,lx){
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result="";
-				result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+				result+='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sb','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
 					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -229,7 +229,7 @@ function gclmsjxm_sh(jh,lx){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>   ';
+				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>   ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if(roleName()=="省级" && row.jh_sbthcd==4)
 					result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -310,7 +310,7 @@ function gclmsjxm_zjxd(jh,lx){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'zjxd_gclmsj','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 				return result;
 			}},

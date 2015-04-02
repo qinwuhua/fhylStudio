@@ -65,7 +65,7 @@ function wqxm(jh,lx){
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
@@ -152,7 +152,7 @@ function wqxm_sb(jh,lx){
 		    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -226,7 +226,7 @@ function wqxm_sh(jh,lx){
 		    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	if((roleName()=="省级" && row.jh_sbthcd<=4))
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -298,7 +298,7 @@ function wqxm_zjxd(jh,lx){
 		    pageNumber:1,pageSize:10,height:$(window).height()-158,width:$('#searchField').width(),queryParams:params,
 		    columns:[[
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
-		        	var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'zjxd_wqgz','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	return result;
 		        }},

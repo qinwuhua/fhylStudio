@@ -12,9 +12,9 @@ public interface DzdtServer {
 
 	List<Param> xmlxCountTj(Param param);
 
-	List<ProgBean> selectExistLxProgramList(Param param);
+	List<ProgBean> selectExistLxProgramList(ProgBean param);
 
-	List<ProgBean> selectExistQlProgramList(Param param);
+	List<Param> selectExistQlProgramList(Param param);
 
 	int selectExistLxProgramListCount(Param param);
 

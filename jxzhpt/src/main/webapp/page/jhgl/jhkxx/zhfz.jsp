@@ -5,22 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>灾害防治详细</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 </head>
 <body>
-	<script type="text/javascript">
-		if(bz=="xx" || bz=="sb"){
-			var tr = $("tr[id^='trSY']");
-			tr.each(function(){
-				  $(this).hide();
-			});
-		}
-		if(bz=="sh" || bz=="zjxd"){
-			var tr = $("tr[id^='trSY']");
-			tr.each(function(){
-				$(this).show();
-			});
-		}
-	</script>
 	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:100%;">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
@@ -443,6 +430,24 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	if(parent.YMLib.Var.bz!=null){
+		bz=parent.YMLib.Var.bz;
+	}
+	if(parent.YMLib.Var.jhbm!=null){
+		xxId=parent.YMLib.Var.jhbm;
+	}
+	if(bz=="xx" || bz=="sb"){
+		var tr = $("tr[id^='trSY']");
+		tr.each(function(){
+			  $(this).hide();
+		});
+	}
+	if(bz=="sh" || bz=="zjxd"){
+		var tr = $("tr[id^='trSY']");
+		tr.each(function(){
+			$(this).show();
+		});
+	}
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryZhfzById.do',
