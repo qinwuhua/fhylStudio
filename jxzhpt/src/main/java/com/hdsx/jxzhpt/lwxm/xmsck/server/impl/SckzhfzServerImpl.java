@@ -211,34 +211,22 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 
 	@Override
 	public Sckzhfz selSckZhfzCount(Sckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("sbzt", zhfz.getSbzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("bzls", zhfz.getBzls());
-		return queryOne("selSckZhfzCount", hm);
+		return queryOne("selSckZhfzCount", zhfz);
 	}
 
 	@Override
 	public Sckzhfz selSckZhfzShCount(Sckzhfz zhfz) {
-		hm=new HashMap<String, Object>();
-		hm.put("sck_sbthcd", zhfz.getSck_sbthcd());
-		hm.put("gydw", zhfz.getGydw());
-		hm.put("xzqhmc", zhfz.getXzqhmc());
-		hm.put("lxmc", zhfz.getLxmc());
-		hm.put("xmnf", zhfz.getXmnf());
-		hm.put("xmtype", zhfz.getXmtype());
-		hm.put("shzt", zhfz.getShzt());
-		hm.put("lxjsdj", zhfz.getLxjsdj());
-		hm.put("lxbm", zhfz.getLxbm());
-		hm.put("bzls", zhfz.getBzls());
-		return queryOne("selSckZhfzShCount", hm);
+		return queryOne("selSckZhfzShCount", zhfz);
+	}
+
+	@Override
+	public List<Sckzhfz> lrjhZhfz(Sckzhfz zhfz) {
+		return queryList("lrjhZhfz",zhfz);
+	}
+
+	@Override
+	public int lrjhZhfzCount(Sckzhfz zhfz) {
+		return queryOne("lrjhZhfzCount",zhfz);
 	}
 
 

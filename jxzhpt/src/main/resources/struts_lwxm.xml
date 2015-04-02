@@ -78,6 +78,7 @@
 	<action name="lrjhSckwqgz" class="sckwqgzController" method="lrjhSckwqgz"/>
 	<action name="selectWqgzCount" class="sckwqgzController" method="selectWqgzCount"/>
 	<action name="selectWqgzShCount" class="sckwqgzController" method="selectWqgzShCount"/>
+	<action name="lrjhWqgz" class="sckwqgzController" method="lrjhWqgz"/>
 	<!-- 安保工程 -->
 	<action name="insertSckabgc" class="sckabgcController" method="insertSckabgc"/>
 	<action name="selectSckabgc" class="sckabgcController" method="selectSckabgc"/>
@@ -96,6 +97,7 @@
 	<action name="lrjhSckabgc" class="sckabgcController" method="lrjhSckabgc"/>
 	<action name="selSckAbgcCount" class="sckabgcController" method="selSckAbgcCount"/>
 	<action name="selSckAbgcShCount" class="sckabgcController" method="selSckAbgcShCount"/>
+	<action name="lrjhAbgc" class="sckabgcController" method="lrjhAbgc"/>
 	<!-- 灾害防治 -->
 	<action name="insertSckzhfz" class="sckzhfzController" method="insertSckzhfz"/>
 	<action name="selectSckzhfz" class="sckzhfzController" method="selectSckzhfz"/>
@@ -114,6 +116,7 @@
 	<action name="lrjhSckzhfz" class="sckzhfzController" method="lrjhSckzhfz"/>
 	<action name="selSckZhfzCount" class="sckzhfzController" method="selSckZhfzCount"/>
 	<action name="selSckZhfzShCount" class="sckzhfzController" method="selSckZhfzShCount"/>
+	<action name="lrjhZhfz" class="sckzhfzController" method="lrjhZhfz"/>
  </package>
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
  <action name="selZdy" class="zdycxController" method="selZdy"/>

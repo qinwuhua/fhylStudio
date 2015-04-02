@@ -22,15 +22,19 @@
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
+	xmnf("xmnf"); 
 	if(getParam("t")=='1') {
-		$('#sbzt').val('未上报');
+		$('#sbzt').combobox("setValue",'未上报');
 	}
 	sckglAbgc();
 });
 
 function delSckabgc(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要删除项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要删除项目！");
+		return;
+	}
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_sbzt2=='已上报'){
@@ -64,7 +68,10 @@ function delSckabgc(){
 
 function shangB(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要上报项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要上报项目！");
+		return;
+	}
 	var sckid=rows[0].sckid;
 	if($.cookie("unit2")=='______36'){
 		alert("对不起，您无法上报！");
@@ -106,7 +113,10 @@ function shangB(){
 }
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要退回项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
 	var sckid=rows[0].sckid;
 	for(var i=0;i<rows.length;i++){
 		if($.cookie("unit2")=='______36'){
@@ -201,13 +211,13 @@ text-decoration:none;
 									<option value="已审核">已下达</option>
                               	</select>
                                <span>&nbsp;上报状态：</span>
-                              	<select id="sbzt" style="width:70px">
+                              	<select id="sbzt" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
-                              	<select id="ss4"  style="width:70px">
+                              	<select id="ss4"  style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -215,7 +225,7 @@ text-decoration:none;
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
                               	</select>
                               <span>&nbsp;技术等级：</span>
-                              	<select id="lxjsdj" style="width:70px">
+                              	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="一级公路">一级公路</option>
 									<option value="二级公路">二级公路</option>
@@ -224,7 +234,7 @@ text-decoration:none;
 									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;公路等级：</span>
-                              	<select id="bz" style="width:70px">
+                              	<select id="bz" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="G">国道</option>
 									<option value="S">省道</option>
@@ -234,7 +244,7 @@ text-decoration:none;
 									<option value="Z">专道</option>
                               	</select>
                               	<span>&nbsp;补助历史：</span>
-                              	<select id="bzls" style="width:70px">
+                              	<select id="bzls" style="width:70px"class="easyui-combobox">
                               		<option selected="selected" value="">全部</option>
 									<option value="无">无补助历史</option>
 									<option value="有">有补助历史</option>

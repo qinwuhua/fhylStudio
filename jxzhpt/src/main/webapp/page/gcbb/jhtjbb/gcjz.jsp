@@ -23,44 +23,45 @@ a:visited {text-decoration: none;}
 a:hover {text-decoration: none;}
 a:active {text-decoration: none;}
 table {border-collapse:collapse;}
-table thead tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
+.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
+	getYearList();
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
 	startSearch();
 });
 function startSearch(){
+	alert($("#year").val());
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/gcbb/getLwjgjsgzb.do',
+		url:'/jxzhpt/gcbb/getGzgcjz.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
-		success:function(data){
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").val(),
+		success:function(msg){
 			var str="";
-			$("#tbody_sj").html("");
+			$("#table_tbody").html("");
 			if(msg!=null){
 				for(var i=0;i<msg.length;i++){
-					str+="<tr align='center'>";
-					str+="<td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-					+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
-					+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
-					+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
-					+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td>"+"<td>"+msg[i].v_18+"</td>"+"<td>"+msg[i].v_19+"</td>"
-					+"<td>"+msg[i].v_20+"</td>"+"<td>"+msg[i].v_21+"</td>"+"<td>"+msg[i].v_22+"</td>"+"<td>"+msg[i].v_23+"</td>"
-					+"<td>"+msg[i].v_24+"</td>"+"<td>"+msg[i].v_25+"</td>"+"<td>"+msg[i].v_26+"</td>"+"<td>"+msg[i].v_27+"</td>"
-					+"<td>"+msg[i].v_28+"</td>"+"<td>"+msg[i].v_29+"</td>"+"<td>"+msg[i].v_30+"</td>"+"<td>"+msg[i].v_31+"</td>"
-					+"<td>"+msg[i].v_32+"</td>"+"<td>"+msg[i].v_33+"</td>"+"<td>"+msg[i].v_34+"</td>"+"<td>"+msg[i].v_35+"</td>"
-					+"<td>"+msg[i].v_36+"</td>"+"<td>"+msg[i].v_37+"</td>"+"<td>"+msg[i].v_38+"</td>"+"<td>"+msg[i].v_39+"</td>"
-					+"<td>"+msg[i].v_40+"</td>";
-					str+="</tr>";
+					
+					if(i!=6){
+						if(i==0||i==3){
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}else{
+							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}
+					}else{
+						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+					}
 				}
-				$("#tbody_sj").html(str);
 			}else{
-				str+="<tr><td colspan='41'>暂无数据</td></tr>";
+				str+="<tr align='center'><td colspan='18'>暂无数据</td></tr>";
 			}
+			$("#table_tbody").html(str);
 		}
 	});
 }
@@ -71,8 +72,9 @@ function startSearch(){
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建议计划汇总表（分国省）</div>
 			</div>
+			
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
@@ -92,34 +94,80 @@ function startSearch(){
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
                                         onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
+        					
         				</div>
         			</fieldset>
         		</td>
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px;">
+                	<div style="width:100%;height:500px;">
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" >
-							<table width="1200px" >
+							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<table width="2000px" class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
-										<td width="150px;"></td>
-										<td width="150px;"></td>
-										<td width="150px;">座/项目数</td>
-										<td width="150px;">延米</td>
-										<td width="150px;">处治里程</td>
-										<td width="150px;">补助资金(万元)</td>
-										<td width="150px;">部安排资金</td>
-										<td width="150px;">总投资(万元)</td>
+										<td rowspan="3" colspan="2">项目</td>
+										<td colspan="5">计划下达</td>
+										<td colspan="5">实际完成</td>
+										<td colspan="6"></td>
+									</tr>	
+									<tr>
+										<td colspan="2">工程量</td>
+										<td colspan="3">投资</td>
+										<td colspan="2">工程量</td>
+										<td colspan="3">投资</td>
+										<td>已拨付资金</td>
+										<td>拨付比例</td>
+										<td>完成工程量</td>
+										<td>完成总投资</td>
+										<td>完成中央投资</td>
+										<td>地方配套资金</td>
+									</tr>
+									<tr>
+										<td>单位1</td>
+										<td>单位2</td>
+										<td>总投资(万元)</td>
+										<td>中央投资(万元)</td>
+										<td>地方自筹(万元)</td>
+										<td>单位1</td>
+										<td>单位2</td>
+										<td>总投资(万元)</td>
+										<td>中央投资(万元) </td>
+										<td>地方自筹(万元)</td>
+										<td>(万元)</td>
+										<td>(%)</td>
+										<td>比例</td>
+										<td>比例</td>
+										<td>比例</td>
+										<td>到位比例</td>
+									</tr>
+									<tr>
+										<td colspan="2">甲</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8 </td>
+										<td>9</td>
+										<td>10</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
 									</tr>
 								</thead>
-								<tbody id="2"></tbody>
+								<tbody id="table_tbody"></tbody>
 							</table>
 							</div>
 						</div>

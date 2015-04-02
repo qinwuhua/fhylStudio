@@ -18,35 +18,52 @@
 <style>
 #p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
 #righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {
- text-decoration: none;
-}
-a:visited {
- text-decoration: none;
-}
-a:hover {
- text-decoration: none;
-}
-a:active {
- text-decoration: none;
-}
-table {
-	border-collapse:collapse;
-}
-table thead tr td {
-	text-align:center; 	
-	font-size:1em;
-	font-weight:bold;
-  	border:1px solid black;
-  	padding:3px 7px 2px 7px;
-}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {text-decoration: none;}
+table {border-collapse:collapse;}
+.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
 </style>
 <script type="text/javascript">
 $(function(){
+	getYearList();
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
+	startSearch();
 });
+function startSearch(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
+		dataType:"json",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").val(),
+		success:function(msg){
+			var str="";
+			$("#table_tbody").html("");
+			if(msg!=null){
+				for(var i=0;i<msg.length;i++){
+					
+					if(i!=6){
+						if(i==0||i==3){
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}else{
+							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+						}
+					}else{
+						str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+						+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
+					}
+				}
+			}else{
+				str+="<tr align='center'><td colspan='8'>暂无数据</td></tr>";
+			}
+			$("#table_tbody").html(str);
+		}
+	});
+}
 </script>
 </head>
 <body  style="padding-right:1px">
@@ -54,7 +71,7 @@ $(function(){
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路建设下达计划</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;路网结构改造建设计划汇总表</div>
 			</div>
         	</tr>
         	<tr>
@@ -75,54 +92,34 @@ $(function(){
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
-                                        onmouseout="this.src='../../../images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()"  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
                                         onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
         					</p>
-        					
         				</div>
         			</fieldset>
         		</td>
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:126px">
+                	<div style="width:100%;height:500px;">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" >
-							<table width="2000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
+							<table width="1200px" class="table_body">
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
-										<td rowspan="2">备注</td>
-										<td rowspan="2">项目名称</td>
-										<td rowspan="2">行政等级</td>
-										<td rowspan="2">起点桩号</td>
-										<td rowspan="2">终点桩号</td>
-										<td rowspan="2">路线编码</td>
-										<td colspan="3"></td>
-										<td rowspan="2">建设性质</td>
-										<td colspan="7">建 设 规 模（ 公 里 ） / （ 延 米 ）</td>
-										<td rowspan="2">路面宽度</td>
-										<td rowspan="2">技术方案</td>
-										<td rowspan="2">总投资（万元）</td>
-										<td rowspan="2">中央投资（万元）</td>
-									</tr>	
-									<tr>
-										<td>特殊地区 </td>
-										<td>市</td>
-										<td>县</td>
-										<td>合计</td>
-										<td>一级公路</td>
-										<td>二级公路</td>
-										<td>三级公路</td>
-										<td>四级公路</td>
-										<td>大桥</td>
-										<td>隧道</td>
+										<td width="150px;"></td>
+										<td width="150px;"></td>
+										<td width="150px;">座/项目数</td>
+										<td width="150px;">延米</td>
+										<td width="150px;">处治里程</td>
+										<td width="150px;">补助资金(万元)</td>
+										<td width="150px;">部安排资金</td>
+										<td width="150px;">总投资(万元)</td>
 									</tr>
 								</thead>
-								<tbody>
-								
-								</tbody>
+								<tbody id="table_tbody"></tbody>
 							</table>
 							</div>
 						</div>

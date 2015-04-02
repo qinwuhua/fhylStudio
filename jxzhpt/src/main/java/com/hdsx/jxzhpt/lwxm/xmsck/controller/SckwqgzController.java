@@ -240,6 +240,19 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void lrjhWqgz(){
+		List<Sckwqgz> list = wqgzServer.lrjhWqgz(sckwqgz);
+		int count = wqgzServer.lrjhWqgzCount(sckwqgz);
+		EasyUIPage<Sckwqgz> eui = new EasyUIPage<Sckwqgz>();
+		eui.setRows(list);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 
 	public Sckwqgz getSckwqgz() {

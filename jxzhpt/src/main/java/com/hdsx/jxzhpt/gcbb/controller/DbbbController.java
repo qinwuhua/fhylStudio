@@ -1,8 +1,11 @@
 package com.hdsx.jxzhpt.gcbb.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +30,7 @@ import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Controller
@@ -698,6 +702,20 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			} catch (Exception e) {
 				System.out.println("---------------------导出有误-----------------------");
 				throw new RuntimeException();
+			}
+		}
+		public void jhtjBb(){
+			try {
+				Map<String, Object> result=new HashMap<String, Object>();
+				result.put("wqGlj", dbServer.jhtjWqgzGlj(jckwqgz));
+				result.put("wqJtj", dbServer.jhtjWqgzJtj(jckwqgz));
+				result.put("abGlj", dbServer.jhtjAbgcGlj(jckwqgz));
+				result.put("abJtj", dbServer.jhtjAbgcGlj(jckwqgz));
+				result.put("zhGlj", dbServer.jhtjZhfzGlj(jckwqgz));
+				result.put("zhJtj", dbServer.jhtjZhfzGlj(jckwqgz));
+				JsonUtils.write(result, getresponse().getWriter());
+			}  catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	

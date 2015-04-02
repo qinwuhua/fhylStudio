@@ -13,7 +13,7 @@
 		update sck_zhfz set lrjh='已列入'  where sckid=#{String}
 </insert>
  
- <select id="selectSckzhfz" parameterType="hashmap" resultType="sckzhfz">
+ <select id="selectSckzhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
  		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from 
  			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t where
@@ -52,7 +52,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
  </select>
-  <select id="selectSckZhfzCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckZhfzCount" parameterType="sckzhfz" resultType="int">
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -113,7 +113,7 @@
 	update sck_zhfz set sck_sbthcd=(sck_sbthcd+2) where sckid =#{String}
 </update>
  
-  <select id="selectSckShzhfz" parameterType="hashmap" resultType="sckzhfz">
+  <select id="selectSckShzhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
  		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
  		where sck_sbthcd=7
@@ -152,7 +152,7 @@
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
-  <select id="selectSckZhfzShCount" parameterType="hashmap" resultType="int">
+  <select id="selectSckZhfzShCount" parameterType="sckzhfz" resultType="int">
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -306,7 +306,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 	values(sys_guid(),(select ID from XMK_Zhfz where lxbm=trim(#{2}) and lxmc=trim(#{3})),
 	#{2},#{3},#{9},#{10},to_number(#{10})-to_number(#{9}),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},'未上报','未审核',#{scbmbm},#{sck_sbthcd},'未列入','无')
  </insert>
- <select id="selSckZhfzCount" parameterType="hashmap" resultType="sckzhfz">
+ <select id="selSckZhfzCount" parameterType="sckzhfz" resultType="sckzhfz">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -338,7 +338,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			and bzls like #{bzls}||'%'
  		</if>
  </select>
-   <select id="selSckZhfzShCount" parameterType="hashmap" resultType="sckzhfz">
+   <select id="selSckZhfzShCount" parameterType="sckzhfz" resultType="sckzhfz">
  	select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -370,5 +370,25 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ </select>
+ 
+ 	<!--  列入计划-->
+ 
+ <select id="lrjhZhfz" parameterType="sckzhfz" resultType="sckzhfz">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
+ 		where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+  			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_shzt desc,lrjh desc
+ </select>
+  <select id="lrjhZhfzCount" parameterType="sckzhfz" resultType="int">
+ 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+ 		 where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+ 			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
  </select>
 </mapper>

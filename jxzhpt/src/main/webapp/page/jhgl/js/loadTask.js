@@ -295,3 +295,13 @@ function filterXzqhdm(xzqhdm){
 	
 	return result;
 }
+//列入计划
+function showLrjh(jsp,w,h){
+	var cd=$.cookie("unit2").length;
+	if(cd>7) {
+		alert("对不起，非省级单位无法列入！");
+		return;
+	}
+	YMLib.UI.createWindow('lw_lr','路网项目列入计划',jsp,'lw_lr',w,h);
+}
+

@@ -244,6 +244,22 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void lrjhAbgc(){
+		List<Sckabgc> list = abgcServer.lrjhAbgc(sckabgc);
+		int count = abgcServer.lrjhAbgcCount(sckabgc);
+		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
+		eui.setRows(list);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
 	
 	public Sckabgc getSckabgc() {
 		return sckabgc;

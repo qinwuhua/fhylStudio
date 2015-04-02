@@ -26,11 +26,11 @@ var gydw;
 				 	},
 				 	'lxmc' : $('#lxmc').val(),
 				 	'qlmc':$("#qlmc").val(),
-				 	'xmnf':$("#xmnf").val(),
+				 	'xmnf':$("#xmnf").combobox("getValue"),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':$('#sbzt').val(),
-				 	'jsdj':$("#jsdj").val(),
-				 	'akjfl':$("#akjfl").val(),
+				 	'sbzt':$('#sbzt').combobox("getValue"),
+				 	'jsdj':$("#jsdj").combobox("getValue"),
+				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
 				 	'qlbh':$("#qlbh").val()
 				},
@@ -45,17 +45,17 @@ var gydw;
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}if(row.sbzt2=="未上报" && row.sbthcd==7 && row.shzt=="未审核"){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<span style="color:grey;">编辑</span>  '+
 						'<span style="color:grey;">删除</span>';
@@ -101,8 +101,8 @@ var gydw;
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
 	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
-	 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+
-	 	"&akjfl="+$("#akjfl").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+	 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').combobox("getValue")+
+	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selectWqgzCount.do",
@@ -139,12 +139,12 @@ var gydw;
 				 		}else return $('#xzqhmc').combobox("getValue");
 				 	},
 				 	'lxmc' : $('#lxmc').val(),
-				 	'xmnf':$("#xmnf").val(),
+				 	'xmnf':$("#xmnf").combobox("getValue"),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':$('#sbzt').val(),
-				 	'lxjsdj':$("#lxjsdj").val(),
+				 	'sbzt':$('#sbzt').combobox("getValue"),
+				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
-				 	'bz':$("#bz").val()
+				 	'bz':$("#bz").combobox("getValue"),
 				},
 				striped:true,
 				pagination:true,
@@ -157,17 +157,17 @@ var gydw;
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckabgc() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}if(row.sbzt2=="未上报" && row.sbthcd==7 && row.shzt=="未审核"){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckabgc() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<span style="color:grey;">编辑</span>  '+
 						'<span style="color:grey;">删除</span>';
@@ -213,9 +213,9 @@ var gydw;
 	 		if("360000"==$('#xzqhmc').combobox("getValue")){
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
-	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
-	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
-	 	"&bz="+$("#bz").val();
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+
+	 	$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").combobox("getValue")+
+	 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&bz="+$("#bz").combobox("getValue");
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selAbgcCount.do",
@@ -258,12 +258,12 @@ var gydw;
 				 		}else return $('#xzqhmc').combobox("getValue");
 				 	},
 				 	'lxmc' : $('#lxmc').val(),
-				 	'xmnf':$("#xmnf").val(),
+				 	'xmnf':$("#xmnf").combobox("getValue"),
 				 	'xmtype':$("#xmtype").val(),
-				 	'sbzt':$('#sbzt').val(),
-				 	'lxjsdj':$("#lxjsdj").val(),
+				 	'sbzt':$('#sbzt').combobox("getValue"),
+				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
+				 	'bz':$("#bz").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
-				 	'bz':$("#bz").val()
 				},
 			    striped:true,
 			    pagination:true,
@@ -276,17 +276,17 @@ var gydw;
 				{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}if(row.sbzt2=="未上报" && row.sbthcd==7 && row.shzt=="未审核"){
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<a href=javascript:xgJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 						'<a href=javascript:delJckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
-						return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+						return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 						'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<span style="color:grey;">编辑</span>  '+
 						'<span style="color:grey;">删除</span>';
@@ -332,9 +332,9 @@ var gydw;
 	 		if("360000"==$('#xzqhmc').combobox("getValue")){
 	 			xzqhmc="";
 	 		}else xzqhmc=$('#xzqhmc').combobox("getValue");
-	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
-	 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
-	 	"&bz="+$("#bz").val();
+	 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+
+	 	$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").combobox("getValue")+
+	 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&bz="+$("#bz").combobox("getValue");
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/xmjck/selZhfzCount.do",
@@ -379,13 +379,13 @@ function jckshWqgz(){
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'jsdj':$("#jsdj").combobox("getValue"),
+			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'qlbh':$("#qlbh").val()
+			 	'qlbh':$("#qlbh").val(),
 			},
 		    striped:true,
 		    pagination:true,
@@ -397,7 +397,7 @@ function jckshWqgz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
 			{field:'shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
@@ -437,8 +437,9 @@ function jckshWqgz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').val()+"&jsdj="+$("#jsdj").val()+
- 	"&akjfl="+$("#akjfl").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+
+ 	"&qlbh="+$("#qlbh").val();
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selectWqgzShCount.do",
@@ -474,12 +475,12 @@ function jckshAbgc(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bz':$("#bz").val()
+			 	'bz':$("#bz").combobox("getValue"),
 			},
 		    striped:true,
 		    pagination:true,
@@ -492,10 +493,10 @@ function jckshAbgc(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckabgc("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}
 			}},    
@@ -536,9 +537,9 @@ function jckshAbgc(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bz="+$("#bz").val();
+ 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").combobox("getValue")+
+ 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").combobox("getValue")+"&lxjsdj="+$("#lxjsdj").combobox("getValue")+
+ 	"&lxbm="+$("#lxbm").val()+"&bz="+$("#bz").combobox("getValue");
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selAbgcShCount.do",
@@ -580,12 +581,12 @@ function jckshZhfz(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bz':$("#bz").val()
+			 	'bz':$("#bz").combobox("getValue")
 			},
 		    striped:true,
 		    pagination:true,
@@ -598,10 +599,10 @@ function jckshZhfz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckJckzhfz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}
 			}},    
@@ -642,9 +643,9 @@ function jckshZhfz(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bz="+$("#bz").val();
+ 	var data="sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").combobox("getValue")+
+ 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").combobox("getValue")+"&lxjsdj="+$("#lxjsdj").combobox("getValue")+
+ 	"&lxbm="+$("#lxbm").val()+"&bz="+$("#bz").combobox("getValue");
 $.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmjck/selZhfzShCount.do",
@@ -689,12 +690,12 @@ function sckglWqgz(){
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':$('#sbzt').val(),
-			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val(),
-			 	'bzls':$("#bzls").val(),
+			 	'sbzt':$('#sbzt').combobox("getValue"),
+			 	'jsdj':$("#jsdj").combobox("getValue"),
+			 	'akjfl':$("#akjfl").combobox("getValue"),
+			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val()
 			},
@@ -709,17 +710,17 @@ function sckglWqgz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7 && row.sck_shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
@@ -767,8 +768,9 @@ function sckglWqgz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+
- 	$("#akjfl").val()+"&bzls="+$("#bzls").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$('#sbzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
+ 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selectWqgzCount.do",
@@ -805,13 +807,13 @@ function sckglAbgc(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':$('#sbzt').val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'sbzt':$('#sbzt').combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val(),
-			 	'bz':$("#bz").val()
+			 	'bzls':$("#bzls").combobox("getValue"),
+			 	'bz':$("#bz").combobox("getValue"),
 			},
 		    striped:true,
 		    pagination:true,
@@ -824,17 +826,17 @@ function sckglAbgc(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckabgc() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7 && row.sck_shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckabgc() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
@@ -882,9 +884,10 @@ function sckglAbgc(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").combobox("getValue")+
+ 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").combobox("getValue")+
+ 	"&bz="+$("#bz").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckAbgcCount.do",
@@ -926,13 +929,13 @@ function sckglZhfz(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'sbzt':$('#sbzt').val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'sbzt':$('#sbzt').combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val(),
-			 	'bz':$("#bz").val()
+			 	'bzls':$("#bzls").combobox("getValue"),
+			 	'bz':$("#bz").combobox("getValue"),
 			},
 		    striped:true,
 		    pagination:true,
@@ -945,17 +948,17 @@ function sckglZhfz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7 && row.sck_shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<a href=javascript:xgSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
 					'<a href=javascript:delSckzhfz() style="text-decoration:none;color:#3399CC; ">删除</a>';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 					'<span style="color:grey;">编辑</span>  '+
 					'<span style="color:grey;">删除</span>';
@@ -1003,9 +1006,10 @@ function sckglZhfz(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&sbzt="+$("#sbzt").combobox("getValue")+
+ 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").combobox("getValue")+
+ 	"&bz="+$("#bz").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckZhfzCount.do",
@@ -1049,12 +1053,12 @@ function sckshWqgz(){
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'jsdj':$("#jsdj").val(),
-			 	'akjfl':$("#akjfl").val(),
-			 	'bzls':$("#bzls").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'jsdj':$("#jsdj").combobox("getValue"),
+			 	'akjfl':$("#akjfl").combobox("getValue"),
+			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val()
 			},
@@ -1069,10 +1073,10 @@ function sckshWqgz(){
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 				if(row.sck_shzt=="未审核"){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}else{
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.qlbh+'","'+row.akjfl+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}
 			}},    
@@ -1116,8 +1120,9 @@ function sckshWqgz(){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
  	var data="sck_sbthcd="+sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").val()+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').val()+"&jsdj="+$("#jsdj").val()+"&akjfl="+
- 	$("#akjfl").val()+"&bzls="+$("#bzls").val()+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&shzt="+$('#shzt').combobox("getValue")+
+ 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+
+ 	$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selectWqgzShCount.do",
@@ -1153,13 +1158,13 @@ function sckshAbgc(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val(),
-			 	'bz':$("#bz").val()
+			 	'bzls':$("#bzls").combobox("getValue"),
+			 	'bz':$("#bz").combobox("getValue"),
 			},
 		    striped:true,
 		    pagination:true,
@@ -1171,7 +1176,7 @@ function sckshAbgc(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
@@ -1214,9 +1219,10 @@ function sckshAbgc(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").combobox("getValue")+
+ 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&bzls="+$("#bzls").combobox("getValue")+
+ 	"&bz="+$("#bz").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckAbgcShCount.do",
@@ -1258,13 +1264,13 @@ function sckshZhfz(){
 			 		}else return $('#xzqhmc').combobox("getValue");
 			 	},
 			 	'lxmc' : $('#lxmc').val(),
-			 	'xmnf':$("#xmnf").val(),
+			 	'xmnf':$("#xmnf").combobox("getValue"),
 			 	'xmtype':$("#xmtype").val(),
-			 	'shzt':$("#shzt").val(),
-			 	'lxjsdj':$("#lxjsdj").val(),
+			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bzls':$("#bzls").val(),
-			 	'bz':$("#bz").val()
+			 	'bzls':$("#bzls").combobox("getValue"),
+			 	'bz':$("#bz").combobox("getValue"),
 			},
 		    striped:true,
 		    pagination:true,
@@ -1276,7 +1282,7 @@ function sckshZhfz(){
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-					return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+					return '<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 					'<a href=javascript:ckSckzhfz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 			}},    
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
@@ -1319,9 +1325,10 @@ function sckshZhfz(){
  		if("360000"==$('#xzqhmc').combobox("getValue")){
  			xzqhmc="";
  		}else xzqhmc=$('#xzqhmc').combobox("getValue");
- 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+"&xmnf="+$("#xmnf").val()+
- 	"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").val()+"&lxjsdj="+$("#lxjsdj").val()+"&lxbm="+$("#lxbm").val()+
- 	"&bzls="+$("#bzls").val()+"&bz="+$("#bz").val();
+ 	var data="sck_sbthcd="+sck_sbthcd+"&gydw="+gydw+"&xzqhmc"+xzqhmc+"&lxmc="+$('#lxmc').val()+
+ 	"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmtype").val()+"&shzt="+$("#shzt").combobox("getValue")+
+ 	"&lxjsdj="+$("#lxjsdj").combobox("getValue")+"&lxbm="+$("#lxbm").val()+
+ 	"&bzls="+$("#bzls").combobox("getValue")+"&bz="+$("#bz").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/xmsck/selSckZhfzShCount.do",

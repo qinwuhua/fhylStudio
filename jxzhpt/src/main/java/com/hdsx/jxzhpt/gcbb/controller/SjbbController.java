@@ -29,7 +29,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 	private SjbbServer sjbbServer;
 	private String flag;
 	
-	public void getLwjgjsgzb(){
+	public void getLwjgjshzb(){
 		try {
 			List<SjbbMessage> list = sjbbServer.getLwjgjsgzb(sjbb);
 			if("flag".equals(flag)){
@@ -43,7 +43,22 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void getGzgcjz(){
+		try {
+			List<SjbbMessage> list = sjbbServer.getGzgcjz(sjbb);
+			if("flag".equals(flag)){
+				String tableName="（一）收费公路项目一览表";
+				String excelHtml="";
+				
+			}else{
+				JsonUtils.write(list, getresponse().getWriter());
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getFlag() {
 		return flag;
 	}

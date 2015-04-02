@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 		$(function(){
 			setjhxdnf();
+			settsdq();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 			showAll();
@@ -34,15 +35,24 @@
 			    multiple:true
 			})
 		}
+		function settsdq(){
+			$("#tsdq").combotree({    
+				checkbox: true,
+			    url: '/jxzhpt/xmjzbb/settsdq.do?xzqh='+$.cookie("dist"),    
+			    required: false,
+			   // multiple:true
+			})
+		}
 		function showAll(){
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
+			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getLwbb.do",
@@ -93,11 +103,12 @@
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
+			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
 			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
 		}
 	</script>
@@ -153,7 +164,7 @@ table tbody tr td {
         				<div>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
-        						<select id="gydw" style="width:168px;"></select>
+        						<select id="gydw" style="width:172px;"></select>
         						&nbsp;&nbsp;&nbsp;
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:179px;"></select>
@@ -169,11 +180,7 @@ table tbody tr td {
         					</p>
         					<p style="margin: 8px 0px 8px 20px;"> 						
         						<span>特殊地区：</span>
-        						<select style="width:50px;">
-        							<option>全部</option>
-        							<option>丘陵</option>
-        							<option>河流</option>
-        						</select>
+        						<input type="text" id="tsdq"  style="width:50px;">
         						<span>建设状态：</span>
         						<select id="jszt" style="width:50px;">
         						<option value="">全部</option>

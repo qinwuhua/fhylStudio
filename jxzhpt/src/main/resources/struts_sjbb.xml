@@ -3,6 +3,8 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 	<package name="sjbb" extends="struts-default" namespace="/gcbb">
-		<action name="getLwjgjsgzb" class="sjbbController" method="getLwjgjsgzb"/>
+		<action name="getLwjgjshzb" class="sjbbController" method="getLwjgjshzb"/>
+		<action name="getGzgcjz" class="sjbbController" method="getGzgcjz"/>
+		
 	</package>
 </struts>

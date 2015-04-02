@@ -45,8 +45,26 @@ table thead tr td {
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
-	getYearList();
+	xmnf('xmnf');
+	jhtjBb();
 });
+function jhtjBb(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/dbbb/jhtjBb.do',
+		data:'',
+		async:false,
+		dataType:'json',
+		success:function(data){
+			$("#tjbb").empty();
+			var tbody="";
+			for(var i=0;i<data.wqGlj.length;i++){
+				tbody+= "";
+			}
+			$("#tjbb").append(tbody);
+			}
+		});
+}
 </script>
 </head>
 <body  style="padding-right:1px">
@@ -71,7 +89,7 @@ $(function(){
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>上报年份：</span>
-        						<select id="year" style="width:80px;">
+        						<select id="xmnf" style="width:80px;">
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -138,7 +156,7 @@ $(function(){
 										<td>补助资金(万元)</td>
 									</tr>
 								</thead>
-								<tbody id="">
+								<tbody id="tjbb">
 								
 								</tbody>
 							</table>

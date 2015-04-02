@@ -306,7 +306,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 
  </insert>
  
- <select id="selSckAbgcCount" parameterType="hashmap" resultType="sckabgc">
+ <select id="selSckAbgcCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where 1=1
  			and  sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null "  >
@@ -337,8 +337,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  </select>
- <select id="selSckAbgcShCount" parameterType="hashmap" resultType="sckabgc">
+ <select id="selSckAbgcShCount" parameterType="sckabgc" resultType="sckabgc">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
@@ -370,5 +373,27 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		<if test="bzls!='' and bzls!= null ">
  			and bzls like #{bzls}||'%'
  		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
+ </select>
+ <!--  列入计划-->
+ 
+ <select id="lrjhAbgc" parameterType="sckabgc" resultType="sckabgc">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
+ 		where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+  			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_shzt desc,lrjh desc
+ </select>
+  <select id="lrjhAbgcCount" parameterType="sckabgc" resultType="int">
+ 		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+ 		 where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+ 			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
  </select>
 </mapper>
