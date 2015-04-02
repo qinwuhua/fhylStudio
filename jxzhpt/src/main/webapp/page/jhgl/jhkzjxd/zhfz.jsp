@@ -21,8 +21,8 @@
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
 			sbnf("sbnf");
-			loadBmbm('ddlPDDJ','技术等级');
-			loadBmbm('ddlGldj','公路等级');
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};

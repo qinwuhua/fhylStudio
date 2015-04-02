@@ -26,12 +26,12 @@ public class DzdtServerImpl extends BaseOperate  implements DzdtServer{
 	}
 
 	@Override
-	public List<ProgBean> selectExistLxProgramList(Param param) {
+	public List<ProgBean> selectExistLxProgramList(ProgBean param) {
 		return queryList("selectExistLxProgramList", param);
 	}
 
 	@Override
-	public List<ProgBean> selectExistQlProgramList(Param param) {
+	public List<Param> selectExistQlProgramList(Param param) {
 		return queryList("selectExistQlProgramList", param);
 	}
 

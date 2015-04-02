@@ -23,6 +23,7 @@
 		<result property="lxmc" column="lxmc"/>
 		<result property="qlmc" column="qlmc"/>
 		<result property="qlbh" column="qlbh"/>
+		<result property="akjfl" column="akjfl"/>
 	</resultMap>
 	<select id="queryWqgzList" parameterType="java.util.Map" resultMap="wqgz_jh">
 		select * from 

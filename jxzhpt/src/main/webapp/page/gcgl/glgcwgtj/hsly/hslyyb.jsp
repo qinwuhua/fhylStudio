@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="js/hsly.js"></script>
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -20,7 +21,7 @@
 			shezhi();
 		});
 		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear();
+			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.jhid;
 			$.ajax({
 				type:'post',
 				url:'../../../../gcgl/selectWqgzbzzj.do',

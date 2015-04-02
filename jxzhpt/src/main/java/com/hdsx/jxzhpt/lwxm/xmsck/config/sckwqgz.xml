@@ -342,4 +342,23 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		values(sys_guid(),(select ID from XMK_WQGZ where qlbh=trim(#{0}) and
 		qlmc=trim(#{1})),#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},'未上报','未审核',#{0},#{2},#{3},#{scbmbm},#{sck_sbthcd},'未列入','无')
 	</insert>
+	<!--  列入计划-->
+ 
+ <select id="lrjhWqgz" parameterType="sckwqgz" resultType="sckwqgz">
+ 	select * from (
+ 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t 
+ 		where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+  			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by sck_shzt desc,lrjh desc
+ </select>
+  <select id="lrjhWqgzCount" parameterType="sckwqgz" resultType="int">
+ 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
+ 		 where sck_shzt='已审核' and lrjh='未列入'
+			and sck_sbthcd>=#{sck_sbthcd}
+ 			and  scbmbm  like #{gydw}||'%' 
+			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+ </select>
 </mapper>

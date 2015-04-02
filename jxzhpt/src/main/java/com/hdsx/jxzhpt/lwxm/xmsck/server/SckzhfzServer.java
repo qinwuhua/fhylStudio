@@ -29,4 +29,6 @@ public interface SckzhfzServer {
 		boolean onceSckZhfz(Sckzhfz zhfz);
 		Sckzhfz selSckZhfzCount(Sckzhfz zhfz);
 		Sckzhfz selSckZhfzShCount(Sckzhfz zhfz);
+		List<Sckzhfz> lrjhZhfz(Sckzhfz zhfz);
+		int lrjhZhfzCount(Sckzhfz zhfz);
 }

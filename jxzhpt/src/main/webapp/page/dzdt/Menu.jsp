@@ -89,6 +89,6 @@ $(function(){
 		    </div>
 		    <!-- 地图区域结束 -->
 		</div> 
-    </div>  
+    </div>
 </body>
 </html>

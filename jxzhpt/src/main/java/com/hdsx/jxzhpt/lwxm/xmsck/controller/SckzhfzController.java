@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -237,6 +238,18 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	public void selSckZhfzShCount(){
 		try {
 			JsonUtils.write(zhfzServer.selSckZhfzShCount(sckzhfz),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void lrjhZhfz(){
+		List<Sckzhfz> list = zhfzServer.lrjhZhfz(sckzhfz);
+		int count = zhfzServer.lrjhZhfzCount(sckzhfz);
+		EasyUIPage<Sckzhfz> eui = new EasyUIPage<Sckzhfz>();
+		eui.setRows(list);
+		eui.setTotal(count);
+		try {
+			JsonUtils.write(eui, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

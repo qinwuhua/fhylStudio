@@ -21,6 +21,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 @Service
 public class XmbbServerImpl extends BaseOperate implements XmbbServer {
@@ -129,6 +130,12 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 	public List<Excel_list> getlwzhlist(Xmbb xmbb) {
 		// TODO Auto-generated method stub
 		return queryList("getlwzhlist", xmbb);
+	}
+
+	@Override
+	public List<TreeNode> gettsdq(String xzqh) {
+		// TODO Auto-generated method stub
+		return queryList("gettsdq", xzqh);
 	}
 
 	

@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface XmbbServer {
 
@@ -50,6 +51,8 @@ public interface XmbbServer {
 	Excel_list getlwzh(Xmbb xmbb);
 
 	List<Excel_list> getlwzhlist(Xmbb xmbb);
+
+	List<TreeNode> gettsdq(String xzqh);
 
 
 }

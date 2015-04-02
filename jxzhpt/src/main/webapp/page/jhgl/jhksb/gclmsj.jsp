@@ -30,8 +30,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			loadBmbm('ddlPDDJ','技术等级');
-			loadBmbm('gldj','公路等级');
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
 			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0},
@@ -109,7 +109,7 @@
 					var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-							'jh.jh_sbthcd':item.jh_sbthcd+2};
+							'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
 					if(xian){
 						jh['jh.sbzt']='0';
 					}
@@ -126,7 +126,7 @@
 			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-					'jh.jh_sbthcd':jh_sbthcd+2};
+					'jh.jh_sbthcd':Number(jh_sbthcd)+2};
 			if(xian){
 				jh['jh.sbzt']='0';
 			}

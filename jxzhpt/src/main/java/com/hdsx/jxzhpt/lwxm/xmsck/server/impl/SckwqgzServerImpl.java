@@ -210,5 +210,15 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 		else return false;
 	}
 
+	@Override
+	public List<Sckwqgz> lrjhWqgz(Sckwqgz wqgz) {
+		return queryList("lrjhWqgz",wqgz);
+	}
+
+	@Override
+	public int lrjhWqgzCount(Sckwqgz wqgz) {
+		return queryOne("lrjhWqgzCount",wqgz);
+	}
+
 
 }

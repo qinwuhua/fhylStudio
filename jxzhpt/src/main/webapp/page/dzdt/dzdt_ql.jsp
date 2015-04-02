@@ -23,10 +23,9 @@ $(function(){
 		fit : true,
 		fitColumns : true,
 		loadMsg : '正在加载请稍候...',
-		url:'../../xtgl/selectTsdqList.do',
+		url:'../../xtgl/selectExistQlProgramList.do',
 		queryParams : {
-			'param.name' : $('#jsgl_name').val(),
-			'param.descr' : $("#jsgl_descr").val()
+			'param.sourceid' : parent.YMLib.Var.bm
 		},
 		striped : true,
 		singleSelect : false,
@@ -37,44 +36,37 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input style="width:60px;border:1px #8db2e3 solid;" type="button" value="查看明细"/>';
+				return '<input onclick="onclickXx('+"'"+rec.id+"'"+')" style="width:60px;border:1px #8db2e3 solid;" type="button" value="查看明细"/>';
 			}
 		},{
 			field : 'rolename',
 			title : '项目名称',
 			width : 100,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '广福罗汉桥';
-			}
+			align : 'center'
 		},{
-			field : 'qzd',
-			title : '起止点桩号',
+			field : 'source',
+			title : '桥梁中心桩号',
 			width : 100,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '8.88';
-			}
+			align : 'center'
 		},{
-			field : 'unit',
+			field : 'name',
 			title : '所属单位',
 			width : 200,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '南昌市南昌县交通局';
-			}
+			align : 'center'
 		},{
-			field : 'nf',
+			field : 'desr',
 			title : '年份',
 			width : 50,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '2014';
-			}
-		}
-		]]
+			align : 'center'
+		}]]
 	});
 });
+function onclickXx(id){
+	url="/jxzhpt/page/jhgl/jhkxx/wqgz.jsp";
+	parent.YMLib.Var.jhbm=id;
+	parent.YMLib.Var.bz="xx";
+	parent.YMLib.UI.createWindow('xmxx_xx','项目信息',url,'xmxx',1000,500);
+}
 </script>
 <div style="width:100%;">
     <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">

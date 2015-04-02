@@ -31,8 +31,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			loadBmbm('ddlPDDJ','技术等级');
-			loadBmbm('ddlGldj','公路等级');
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
@@ -156,7 +156,8 @@
 								<img onclick="searchAbgc()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;">
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"  onclick="exportExcel('abgc')"/>
-        					</p>
+				                <img alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"  onclick="showLrjh('lrjh_ab.jsp','900','400');"/>
+				              </p>
         				</div>
         			</fieldset>
         		</td>

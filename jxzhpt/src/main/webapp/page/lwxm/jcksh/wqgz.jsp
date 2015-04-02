@@ -28,7 +28,10 @@ $(function(){
 });
 function xgShzt(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要审核项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要审核项目！");
+		return;
+	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].shzt=='已审核'){
@@ -61,7 +64,10 @@ function xgShzt(){
 }
 function tuiHui(){
 	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) alert("请选择要退回项目！"); return;
+	if(rows.length==0) {
+		alert("请选择要退回项目！");
+		return;
+	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
 	if($.cookie("unit2")=='______36'){

@@ -19,8 +19,22 @@ public class ProgBean implements Serializable {
 	private String zdmc;
 	private String unit;
 	private String nf;
+	private String gydw;
+	private String xzqhmc;
 	private int page;
 	private int rows;
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqhmc() {
+		return xzqhmc;
+	}
+	public void setXzqhmc(String xzqhmc) {
+		this.xzqhmc = xzqhmc;
+	}
 	public String getXmmc() {
 		return xmmc;
 	}

@@ -97,10 +97,11 @@ public class DzdtController extends BaseActionSupport{
 	 * 路线弹出框
 	 * */
 	public void selectExistLxProgramList(){
-		List<ProgBean> list=dzdtServer.selectExistLxProgramList(param);
-		int count=dzdtServer.selectExistLxProgramListCount(param);
+		System.out.println("路线编码："+pb.getRoadcode());
+		List<ProgBean> list=dzdtServer.selectExistLxProgramList(pb);
+		//int count=dzdtServer.selectExistLxProgramListCount(param);
 		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
-		ep.setTotal(count);
+		//ep.setTotal(count);
 		ep.setRows(list);
 		try {
 			JsonUtils.write(ep, getresponse().getWriter());
@@ -113,10 +114,8 @@ public class DzdtController extends BaseActionSupport{
 	 * 桥梁弹出框
 	 * */
 	public void selectExistQlProgramList(){
-		List<ProgBean> list=dzdtServer.selectExistQlProgramList(param);
-		int count=dzdtServer.selectExistQlProgramListCount(param);
-		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
-		ep.setTotal(count);
+		List<Param> list=dzdtServer.selectExistQlProgramList(param);
+		EasyUIPage<Param> ep = new EasyUIPage<Param>();
 		ep.setRows(list);
 		try {
 			JsonUtils.write(ep, getresponse().getWriter());
@@ -139,6 +138,14 @@ public class DzdtController extends BaseActionSupport{
 
 	public void setParam(Param param) {
 		this.param = param;
+	}
+
+	public ProgBean getPb() {
+		return pb;
+	}
+
+	public void setPb(ProgBean pb) {
+		this.pb = pb;
 	}
 	
 	

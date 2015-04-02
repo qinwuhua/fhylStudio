@@ -431,6 +431,9 @@
 			t1.pfwh v_21
 		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join plan_zjxd t4 on t1.id=t4.xmid 
 		where 1=1  and t4.sfzj='0'
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 		</if>
@@ -472,6 +475,9 @@
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		<if test="xzqh != null and  xzqh != ''">
 				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
 		</if>
@@ -512,6 +518,9 @@
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		<if test="xzqh != null and  xzqh != ''">
 				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
 		</if>
@@ -550,6 +559,9 @@
 		where 1=1  and t4.sfzj='0'
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
 				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
@@ -592,6 +604,9 @@
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		<if test="xzqh != null and  xzqh != ''">
 				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
 		</if>
@@ -632,6 +647,9 @@
 		<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 		</if>
+		<if test="tsdq != null and  tsdq != ''">
+			and t3.tsdq like '%'||trim(#{tsdq})||'%'
+		</if>
 		<if test="xzqh != null and  xzqh != ''">
 				and t3.xzqhdm like '%'||trim(#{xzqh})||'%'
 		</if>
@@ -653,5 +671,12 @@
 		<if test="xmmc != null and  xmmc != ''">
 				and (t3.lxbm  like '%'||trim(#{jgzt})||'%' or t3.lxmc  like '%'||trim(#{jgzt})||'%')
 		</if>
+	</select>
+	<select id="gettsdq" resultType="treenode" parameterType="String">
+		select 
+		 distinct(t3.name) id,t3.name text
+		from XTGL_XZQH t1 right join XTGL_XZQHTSDQ t2 on t1.id=t2.xzqhdm right join XTGL_TSDQ t3 on t2.parent=t3.id
+		where t1.id like '%'||#{xzqh}||'%'
+		and t3.state not like '禁用'
 	</select>
 </mapper>

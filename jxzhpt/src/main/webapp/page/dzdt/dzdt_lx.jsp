@@ -54,7 +54,7 @@ $(function(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
-			"param.id":parent.YMLib.Var.bm
+			"pb.roadcode":parent.YMLib.Var.bm
 		},
 		singleSelect : false,
 		striped : true,
@@ -69,44 +69,59 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input style="width:60px;border:1px #8db2e3 solid;" type="button" value="查看明细"/>';
+				return '<input onclick="onclickXx('+"'"+rec.unit+"',"+"'"+rec.id+"'"+')" style="width:60px;border:1px #8db2e3 solid;" type="button" value="查看明细"/>';
 			}
 		},{
-			field : 'rolename',
+			field : 'roadname',
 			title : '项目名称',
 			width : 100,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '南昌-万年';
-			}
+			align : 'center'
 		},{
-			field : 'qzd',
+			field : 'unit',
+			title : '项目类型',
+			width : 100,
+			align : 'center'
+		},{
+			field : 'roadstart',
 			title : '起止点桩号',
 			width : 100,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '0-2.375';
+				return rec.roadstart+'-'+rec.roadends;
 			}
 		},{
-			field : 'unit',
+			field : 'gydw',
 			title : '所属单位',
 			width : 200,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '南昌市交通运输局';
-			}
+			align : 'center'
 		},{
 			field : 'nf',
 			title : '年份',
 			width : 50,
-			align : 'center',
-			formatter : function(value,rec,index){
-				return '2014';
-			}
+			align : 'center'
 		}
 		]]
 	});
 });
+function onclickXx(xmlx,id){
+	var url="/jxzhpt/page/jhgl/jhkxx/";
+	if(xmlx=="路面改建")
+		url+="gclmgj.jsp";
+	else if(xmlx=="路面升级")
+		url+="gclmsj.jsp";
+	else if(xmlx=="水毁项目")
+		url+="shxm.jsp";
+	else if(xmlx=="养护大中修")
+		url+="yhdzx.jsp";
+	else if(xmlx=="安保工程")
+		url+="abgc.jsp";
+	else if(xmlx=="灾害防治")
+		url+="zhfz.jsp";
+	parent.YMLib.Var.jhbm=id;
+	parent.YMLib.Var.bz="xx";
+	parent.YMLib.UI.createWindow('xmxx_xx','项目信息',url,'xmxx',1000,500);
+}
+
 </script>
 <div style="width:100%;">
     <div style="height:500px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">

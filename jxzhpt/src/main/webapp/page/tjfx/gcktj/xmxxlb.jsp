@@ -64,7 +64,7 @@
 				url+="wqgz.jsp";
 			else if(xmlx=="7")
 				url+="zhfz.jsp";
-			openDialog('xmxx_xx','工程改造路面改建项目计划详情',url,id);
+			openDialog('xmxx_xx','项目计划详情',url,id);
 		}
 		function getQueryString(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");

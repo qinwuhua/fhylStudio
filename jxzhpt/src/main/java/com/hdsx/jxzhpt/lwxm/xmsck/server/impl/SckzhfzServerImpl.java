@@ -219,5 +219,15 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 		return queryOne("selSckZhfzShCount", zhfz);
 	}
 
+	@Override
+	public List<Sckzhfz> lrjhZhfz(Sckzhfz zhfz) {
+		return queryList("lrjhZhfz",zhfz);
+	}
+
+	@Override
+	public int lrjhZhfzCount(Sckzhfz zhfz) {
+		return queryOne("lrjhZhfzCount",zhfz);
+	}
+
 
 }
