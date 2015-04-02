@@ -24,8 +24,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			loadBmbm('ddlPDDJ','技术等级');
-			loadBmbm('ddlGldj','公路等级');
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
 			var jh={sbnf:null,sbzt:null,spzt:null};
 			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};

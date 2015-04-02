@@ -24,8 +24,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			loadBmbm('yjsdj','技术等级');
-			loadBmbm('gldj','公路等级');
+			loadBmbm2('yjsdj','技术等级');
+			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
 			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:4},

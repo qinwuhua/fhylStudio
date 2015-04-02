@@ -30,8 +30,8 @@
 		$(function(){
 			gydwComboxTree("gydw");
 			xzqhComboxTree("xzqh");
-			loadBmbm('ddlPDDJ','技术等级');
-			loadBmbm('gldj','公路等级');
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
 			var jh={jhnf:null,spzt:'0',sbzt:null,jh_sbthcd:0},
