@@ -212,4 +212,161 @@ where t1.spzt='1'
 	 	select count(*) from GCGL_ABGC 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
+	 
+	 
+	 <select id="exportAbyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+			where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			order by t1.jhnf
+	</select>
+	
+	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
+			where t2.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t2.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t2.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t1.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	 <select id="exportsjyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
+			where t2.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t2.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t2.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t1.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	 <select id="exporthsyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_HSLY
+			where 1=1
+			<if test="gydw != null and  gydw != ''">
+					and xzqhdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and xmmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	<select id="exportshyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
+			where t2.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t2.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t2.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t1.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	<select id="exportyhyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t2.id v_0,t1.gydwmc v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
+			where t2.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t2.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t2.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t1.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	<select id="exportzhyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+			where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+	</select>
+	
+	<select id="exportwqyb" parameterType="gcglabgc" resultType="elist">
+			select 
+			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
+			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
+			where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+					and t3.qlmc like '%'||trim(#{tiaojian})||'%'
+			</if>
+	</select>
 </mapper>

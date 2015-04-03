@@ -136,7 +136,7 @@ function showAll(){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 			}},
 			{field:'gydw',title:'管养单位',width:150,align:'center'},
-	        {field:'xzqh',title:'行政区划',width:120,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
 	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},

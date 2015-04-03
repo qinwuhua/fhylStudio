@@ -9,6 +9,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 @Service
 public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
@@ -262,6 +263,56 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public List<Excel_list> exportAbyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportAbyb", gcglabgc);
+	}
+
+	@Override
+	public Gcglabgc queryCGSByYf(Gcglabgc gcglabgc) {
+		return queryOne("queryCGSByYf", gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> exportgjyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportgjyb", gcglabgc);
+	}
+	@Override
+	public List<Excel_list> exportsjyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportsjyb", gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> exporthsyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exporthsyb", gcglabgc);
+	}
+	
+	@Override
+	public List<Excel_list> exportshyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportshyb", gcglabgc);
+	}
+
+	@Override
+	public List<Excel_list> exportyhyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportyhyb", gcglabgc);
+	}
+	@Override
+	public List<Excel_list> exportzhyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportzhyb", gcglabgc);
+	}
+	@Override
+	public List<Excel_list> exportwqyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportwqyb", gcglabgc);
 	}
 
 }

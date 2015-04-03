@@ -9,8 +9,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -25,9 +28,16 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
+import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -61,7 +71,21 @@ public class GcglabgcController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String sbyf;
+	private String tbr;
 	
+	public String getTbr() {
+		return tbr;
+	}
+	public void setTbr(String tbr) {
+		this.tbr = tbr;
+	}
+	public String getSbyf() {
+		return sbyf;
+	}
+	public void setSbyf(String sbyf) {
+		this.sbyf = sbyf;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -487,5 +511,438 @@ public class GcglabgcController extends BaseActionSupport{
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
+	}
+
+	public void exportAbyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportAbyb(gcglabgc);
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("安保工程车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("安保工程车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	
+	//
+	public void insertCGS(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(2,11,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			if(data.size()<1){
+				response.getWriter().print("文件中没有可导入数据");
+			}
+			String flag1="";
+			boolean booltb=false,booldata=false;
+			for (Map map : data) {
+				System.out.println(map);
+				try {
+					Double.parseDouble(map.get("7").toString());
+				} catch (Exception e) {
+					flag1=flag1+map.get("0").toString()+"  ";
+					break;
+				}
+				gcglabgc.setJhid(map.get("0").toString());
+				gcglabgc.setCgsdwzj(map.get("7").toString());
+				gcglabgc.setTbsj(map.get("9").toString());
+				gcglabgc.setTbyf(map.get("8").toString());
+				gcglabgc.setTbr(map.get("10").toString());
+				Boolean bl=gcglabgcServer.insertAbgcCgs(gcglabgc);
+				if(!bl){
+					flag1=flag1+map.get("0").toString()+"  ";
+					booltb=true;
+				};
+			}
+			if(booltb==false){
+				booldata=true;
+			}
+			if(booltb){
+				response.getWriter().print("计划编码为"+flag1+"导入失败，其他导入成功");
+			}
+			if(booldata){
+				response.getWriter().print("全部数据导入成功");
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	//改建
+	public void exportgjyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportgjyb(gcglabgc);
+		
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("工程改造路面改建车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("工程改造路面改建车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	//升级
+	public void exportsjyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportsjyb(gcglabgc);
+		
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("工程改造路面升级车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("工程改造路面升级车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	//红色
+	public void exporthsyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exporthsyb(gcglabgc);
+		
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("红色旅游车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("红色旅游车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("新政区划",1,1,1,1));
+		et.add(new Excel_tilte("计划年份",1,1,2,2));
+		et.add(new Excel_tilte("项目名称",1,1,3,3));
+		et.add(new Excel_tilte("建设性质",1,1,4,4));
+		et.add(new Excel_tilte("开工年",1,1,5,5));
+		et.add(new Excel_tilte("完工年",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	//水毁
+	public void exportshyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportshyb(gcglabgc);
+		
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("水毁车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("水毁车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	//水毁
+	public void exportyhyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportyhyb(gcglabgc);
+		
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("养护大中修车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("养护大中修车购税拨付信息导入表");//设置文件名 
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	public void exportzhyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportzhyb(gcglabgc);
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("灾害防治车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("灾害防治车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("路线编号",1,1,3,3));
+		et.add(new Excel_tilte("路线名称",1,1,4,4));
+		et.add(new Excel_tilte("起点桩号",1,1,5,5));
+		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
+	}
+	
+	public void exportwqyb(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(sbyf);
+		gcglabgc.setTbr(tbr);
+		gcglabgc.setTiaojian(qlmc);
+		List<Excel_list> list=gcglabgcServer.exportwqyb(gcglabgc);
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		for (Excel_list excel_list : list) {
+			gcglabgc.setJhid(excel_list.getV_0());
+			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+			if(gcglabgc1==null)
+			list1.add(excel_list);
+		}
+		//到报表
+		ExcelData eldata=new ExcelData();//创建一个类
+		eldata.setTitleName("危桥改造车购税拨付信息导入表");//设置第一行
+		eldata.setSheetName("车购税拨付");//设置sheeet名
+		eldata.setFileName("危桥改造车购税拨付信息导入表");//设置文件名
+		eldata.setEl(list1);//将实体list放入类中
+		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("管养单位",1,1,1,1));
+		et.add(new Excel_tilte("行政区划",1,1,2,2));
+		et.add(new Excel_tilte("桥梁编号",1,1,3,3));
+		et.add(new Excel_tilte("桥梁名称",1,1,4,4));
+		et.add(new Excel_tilte("技术等级",1,1,5,5));
+		et.add(new Excel_tilte("桥梁中心桩号",1,1,6,6));
+		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("填报月份",1,1,8,8));
+		et.add(new Excel_tilte("填报时间",1,1,9,9));
+		et.add(new Excel_tilte("填报人",1,1,10,10));
+		
+		eldata.setEt(et);//将表头内容设置到类里面
+		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+		try {
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace();
+		}//将类和参数HttpServletResponse传入即可实现导出excel		
+		
 	}
 }

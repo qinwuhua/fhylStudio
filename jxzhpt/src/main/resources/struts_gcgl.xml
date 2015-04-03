@@ -37,6 +37,15 @@
 	<action name="deleteabgcCgs" class="gcglabgcController" method="deleteabgcCgs"/>
 	<action name="updateAbgcCgs" class="gcglabgcController" method="updateAbgcCgs"/>
 	<action name="insertAbgcCgs" class="gcglabgcController" method="insertAbgcCgs"/>
+	<action name="exportAbyb" class="gcglabgcController" method="exportAbyb"/>
+	<action name="insertCGS" class="gcglabgcController" method="insertCGS"/>
+	<action name="exportgjyb" class="gcglabgcController" method="exportgjyb"/>
+	<action name="exportsjyb" class="gcglabgcController" method="exportsjyb"/>
+	<action name="exporthsyb" class="gcglabgcController" method="exporthsyb"/>
+	<action name="exportshyb" class="gcglabgcController" method="exportshyb"/>
+	<action name="exportwqyb" class="gcglabgcController" method="exportwqyb"/>
+	<action name="exportyhyb" class="gcglabgcController" method="exportyhyb"/>
+	<action name="exportzhyb" class="gcglabgcController" method="exportzhyb"/>
 	
 	<action name="uploadAbgcFile" class="gcglabgcController" method="uploadAbgcFile"/>
 	<action name="downAbgcFile" class="gcglabgcController" method="downAbgcFile"/>
