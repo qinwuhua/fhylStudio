@@ -28,6 +28,14 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 		params.put("lx", lx);
 		return queryList("queryGcsjList",params);
 	}
+	
+	@Override
+	public List<Plan_gcsj> queryGcsjList(Plan_gcsj jh, Plan_lx_gcsj lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryGcsjList2",params);
+	}
 
 	@Override
 	public int queryGcsjCount(Plan_gcsj jh, Plan_lx_gcsj lx) {

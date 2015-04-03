@@ -27,6 +27,14 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 		params.put("lx", lx);
 		return queryList("queryYhdzxList",params);
 	}
+	
+	@Override
+	public List<Plan_yhdzx> queryYhdzxList(Plan_yhdzx jh, Plan_lx_yhdzx lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryYhdzxList2",params);
+	}
 
 	@Override
 	public int queryYhdzxCount(Plan_yhdzx jh, Plan_lx_yhdzx lx) {

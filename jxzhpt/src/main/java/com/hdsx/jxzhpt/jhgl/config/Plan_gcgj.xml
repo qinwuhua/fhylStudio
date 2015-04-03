@@ -119,7 +119,7 @@
 					     	WHERE and B.AREACODE=#{l.tsdqbm}
 					     	 )
 					     </if>
-					     ) order by jh.sbzt,jh.spzt,jh.sbnf desc
+					     ) order by jh.jh_sbthcd,jh.sbnf
 					) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -336,7 +336,24 @@
 	</select>
 	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
 		select * from plan_flwbzbz f where 
-		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="xmlx==null or xmlx==''">
+			f.xmlx is null
+		</if>
+		<if test="xmlx!=null and xmlx!=''">
+			f.xmlx=#{xmlx}
+		</if>
+		<if test="gldj==null or gldj==''">
+			and f.gldj is null
+		</if>
+		<if test="gldj!=null and gldj!=''">
+			and f.gldj=#{gldj}
+		</if>
+		<if test="jsdj==null or jsdj==''">
+			and f.jsdj is null
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and f.jsdj=#{jsdj}
+		</if>
 		<if test="tsdq==null or tsdq==''">
 			and f.tsdq is null
 		</if>

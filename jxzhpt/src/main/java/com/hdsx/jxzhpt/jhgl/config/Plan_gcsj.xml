@@ -149,15 +149,65 @@
 								and lx.lxbm like 'S'||#{lx.lxbm}
 							</if>
 							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-						    and lx.xzqhdm in (
-						    	select b.XZQHDM from BT_XZQHTSDQ b 
-						    	WHERE b.AREACODE=#{lx.tsdqbm}
-						    	)
+						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 						    </if>
 						    ) order by jh.jhnf,jh.jh_sbthcd
 				) t
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryGcsjList2" parameterType="java.util.Map" resultMap="gcsj_jh">
+		select * from (
+			select rownum as num,t.* from (
+				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
+				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc,lx.qzlc
+			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+			 	where 1=1
+			 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+		 			and jh.kgzt=#{jh.kgzt}
+		 		</if>
+		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+		 			and jh.jgzt=#{jh.jgzt}
+		 		</if>
+				and jh.id in (
+						select lx.jhid from PLAN_lx_GCSJ lx 
+						where 1=1 
+							<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+								and lx.gydwdm like #{lx.gydwdm}
+							</if>
+							<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+								and lx.xzqhdm like #{lx.xzqhdm}
+							</if>
+							<if test="lx.lxmc!=null and lx.lxmc!=''">
+								and lx.lxmc like '%'||#{lx.lxmc}||'%'
+							</if>
+							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+								and lx.yjsdj=#{lx.yjsdj}
+							</if>
+							<if test="lx.lxbm!=null and lx.lxbm!=''">
+								and lx.lxbm like 'S'||#{lx.lxbm}
+							</if>
+							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+						    </if>
+						    ) order by jh.jhnf,jh.jh_sbthcd
+				) t
+		 )
 	</select>
 	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
 		select count(jh.id) from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
@@ -202,10 +252,7 @@
 							and lx.lxbm like 'S'||#{lx.lxbm}
 						</if>
 						<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					    and lx.xzqhdm in (
-					    	select B.XZQHDM from BT_XZQHTSDQ b 
-					    	WHERE B.AREACODE=#{lx.tsdqbm}
-					    	)
+					    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 					    </if>
 					    )
 	</select>
@@ -239,6 +286,9 @@
 	 		</if>
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 				and lx.gydwdm like #{lx.gydwdm}
+			</if>
+			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 			</if>
 			group by jh.id)
 	</select>
@@ -354,12 +404,29 @@
 	</select>
 	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
 		select * from plan_flwbzbz f where 
-		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="xmlx==null or xmlx==''">
+			f.xmlx is null
+		</if>
+		<if test="xmlx!=null and xmlx!=''">
+			f.xmlx=#{xmlx}
+		</if>
+		<if test="gldj==null or gldj==''">
+			and f.gldj is null
+		</if>
+		<if test="gldj!=null and gldj!=''">
+			and f.gldj=#{gldj}
+		</if>
+		<if test="jsdj==null or jsdj==''">
+			and f.jsdj is null
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and f.jsdj=#{jsdj}
+		</if>
 		<if test="tsdq==null or tsdq==''">
 			and f.tsdq is null
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
-			and f.tsqd =#{tsdq}
+			and f.tsdq =#{tsdq}
 		</if>
 	</select>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">

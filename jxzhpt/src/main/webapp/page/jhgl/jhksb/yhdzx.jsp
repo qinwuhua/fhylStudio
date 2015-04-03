@@ -99,7 +99,7 @@
 			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 				" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 			var jh={'jh.id':id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
-					'jh.jh_sbthcd':jh_sbthcd+2};
+					'jh.jh_sbthcd':Number(jh_sbthcd)+2};
 			if(xian){
 				jh['jh.sbzt']='0';
 			}
@@ -109,7 +109,7 @@
 			}
 		}
 		function tuihui(id,jh_sbthcd){
-			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd-2};
+			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':Number(jh_sbthcd)-2};
 			if(editStatus(jh)){
 				alert("成功将计划退回！");
 				searchYhdzx();

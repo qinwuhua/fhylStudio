@@ -136,4 +136,5 @@ public interface Plan_shuihServer {
 	List<TreeNode> queryGcktj(String xzqhdm,String nf);
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+	List<Plan_shuih> queryShuihList(Plan_shuih jh, Plan_lx_shuih lx);
 }

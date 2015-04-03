@@ -120,6 +120,36 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		}
 	}
 	
+	public void exportExcel_yhdzx(){
+		List<Plan_yhdzx> queryYhdzxList = yhdzxServer.queryYhdzxList(jh,lx);
+		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
+		for (Plan_yhdzx item : queryYhdzxList) {
+			List<Plan_lx_yhdzx> lxlist = item.getPlan_lx_yhdzxs();
+			for (Plan_lx_yhdzx itemlx : lxlist) {
+				Map<String, String> lxmap=new HashMap<String, String>();
+				lxmap.put("0", itemlx.getGydwmc());
+				lxmap.put("1", itemlx.getXzqhmc());
+				lxmap.put("2", itemlx.getLxbm());
+				lxmap.put("3", itemlx.getLxmc());
+				lxmap.put("4", itemlx.getQdzh());
+				lxmap.put("5", itemlx.getZdzh());
+				lxmap.put("6", itemlx.getQzlc());
+				excelData.add(lxmap);
+			}
+		}
+		List<String> excelTitle=new ArrayList<String>();
+		excelTitle.add("管养单位");
+		excelTitle.add("行政区划");
+		excelTitle.add("路线编码");
+		excelTitle.add("路线名称");
+		excelTitle.add("起点桩号");
+		excelTitle.add("止点桩号");
+		excelTitle.add("隐患里程");
+		String tableName="养护大中修项目";
+		HttpServletResponse response= getresponse();
+		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
+	}
+	
 	public void importYhdzx_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);

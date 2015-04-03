@@ -85,7 +85,7 @@
 				 		and lx.lxjsdj = #{lx.lxjsjd}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
-				 		and lx.xzqhdm in (select t.xzqhdm from BT_XZQHTSDQ t where t.areacode=#{lx.tsdq})
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				 	</if>
 	    			order by jh.sbzt,jh.spzt,jh.jhnf desc
 	    		) t
@@ -154,7 +154,7 @@
 				 		and lx.lxjsdj = #{lx.lxjsjd}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
-				 		and lx.xzqhdm in (select t.xzqhdm from BT_XZQHTSDQ t where t.areacode=#{lx.tsdq})
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				 	</if>
 	</select>
 	<select id="queryAbgcById"  parameterType="string"  resultType="plan_abgc">
@@ -354,7 +354,7 @@
 		delete from plan_upload where id=#{id}
 	</delete>
 	<select id="queryTsdq" resultType="treenode">
-		select t.areacode as id,t.areaname as text from BT_SPECIALAREA t
+		select t.id,t.name as text from xtgl_tsdq t
 	</select>
 	<select id="queryJcktj" resultType="treenode">
 		select t1.*,xz.name from (

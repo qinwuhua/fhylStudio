@@ -96,4 +96,6 @@ public interface Plan_yhdzxServer {
 	TreeNode queryGcktjt(String xzqhdm);
 
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+
+	List<Plan_yhdzx> queryYhdzxList(Plan_yhdzx jh, Plan_lx_yhdzx lx);
 }

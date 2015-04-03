@@ -338,8 +338,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
 						Integer pfztz=new Integer(map.get("34").toString());
 						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+						System.out.println("计算金额"+je+"  隐患里程："+yhlc+"  补助金额："+bzzj);
 						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
+							strVerify+="<br/>"+gcgj.getLxbm()+"批复总投资不在计算结果的范围内<br/>";
 						}
 					}
 				}else{

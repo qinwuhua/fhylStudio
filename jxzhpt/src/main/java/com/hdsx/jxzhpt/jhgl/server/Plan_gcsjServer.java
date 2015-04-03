@@ -49,6 +49,8 @@ public interface Plan_gcsjServer {
 	 */
 	List<Plan_gcsj> queryGcsjList(int page,int rows,Plan_gcsj jh,Plan_lx_gcsj lx);
 	
+	List<Plan_gcsj> queryGcsjList(Plan_gcsj jh,Plan_lx_gcsj lx);
+	
 	/**
 	 * 工程升级项目数量查询
 	 * @param jh
