@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface GcglabgcServer {
 
@@ -54,6 +55,24 @@ public interface GcglabgcServer {
 	List<Gcglabgc> selectAbgcYbByJhid1(Gcglabgc gcglabgc);
 
 	Boolean sbWqgzYb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportAbyb(Gcglabgc gcglabgc);
+
+	Gcglabgc queryCGSByYf(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportgjyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportsjyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exporthsyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportshyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportyhyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportzhyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportwqyb(Gcglabgc gcglabgc);
 
 	
 

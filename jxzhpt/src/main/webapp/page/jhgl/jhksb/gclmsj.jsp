@@ -136,7 +136,7 @@
 			}
 		}
 		function tuihui(id,jh_sbthcd){
-			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':jh_sbthcd-2};
+			var jh={'jh.id':id,'jh.sbzt':'0','jh.jh_sbthcd':Number(jh_sbthcd)-2};
 			if(editStatus(jh)){
 				alert("成功将计划退回！");
 				searchGcsj();

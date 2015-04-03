@@ -98,12 +98,61 @@
 					and l.lxbm like #{l.lxbm}
 				</if>
 				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-					and l.xzqhdm in (select B.XZQHDM from BT_XZQHTSDQ b WHERE B.AREACODE=#{l.tsdqbm})
+					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
 				order by jh.jh_sbthcd,jh.sbnf desc
 				) t
 			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryShuihList2"  parameterType="java.util.Map" resultMap="shuih_jh">
+		select * from (
+			select rownum as num,t.* from (	
+				select jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc,l.qzlc
+	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
+				where 1=1
+				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+				<if test="jh.sbnf!=null and jh.sbnf!=''">
+					and jh.sbnf =#{jh.sbnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+					and jh.kgzt=#{jh.kgzt}
+	 			</if>
+	 			<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 				and jh.jgzt=#{jh.jgzt}
+	 			</if>
+				<if test="l.gydwdm!=null and l.gydwdm!=''">
+					and l.gydwdm like #{l.gydwdm}
+				</if>
+				<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+					and l.xzqhdm like #{l.xzqhdm}
+				</if>
+				<if test="l.lxmc!=null and l.lxmc!=''">
+					and l.lxmc like '%'||#{l.lxmc}||'%'
+				</if>
+				<if test="l.yjsdj!=null and l.yjsdj!=''">
+					and l.yjsdj=#{l.yjsdj}
+				</if>
+				<if test="l.lxbm!=null and l.lxbm!=''">
+					and l.lxbm like #{l.lxbm}
+				</if>
+				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				</if>
+				order by jh.jh_sbthcd,jh.sbnf desc
+				) t)
 	</select>
 	<select id="queryShuihCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from PLAN_shuih jh where 1=1
@@ -146,12 +195,9 @@
 			<if test="l.lxbm!=null and l.lxbm!=''">
 				and l.lxbm like #{l.lxbm}
 			</if>
-			and l.xzqhdm in (
-				select B.XZQHDM from BT_XZQHTSDQ b WHERE 1=1 
-				<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-					and B.AREACODE=#{l.tsdqbm}
-				</if>
-			))
+			<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+			</if>)
 	</select>
 	<select id="queryShuihNfs"  resultType="treenode">
 		select distinct t.jhnf as text from PLAN_abgc t order by t.jhnf
@@ -187,6 +233,9 @@
 	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
+	 		<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+				and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+			</if>
 			group by jh.id)
 	</select>
 	<select id="queryShuihById" parameterType="string" resultMap="shuih_jh">
@@ -300,12 +349,29 @@
 	</select>
 	<select id="queryBzzj" resultType="flwbzbz" parameterType="flwbzbz">
 		select * from plan_flwbzbz f where 
-		f.xmlx=#{xmlx} and f.gldj=#{gldj} and f.jsdj=#{jsdj} 
+		<if test="xmlx==null or xmlx==''">
+			f.xmlx is null
+		</if>
+		<if test="xmlx!=null and xmlx!=''">
+			f.xmlx=#{xmlx}
+		</if>
+		<if test="gldj==null or gldj==''">
+			and f.gldj is null
+		</if>
+		<if test="gldj!=null and gldj!=''">
+			and f.gldj=#{gldj}
+		</if>
+		<if test="jsdj==null or jsdj==''">
+			and f.jsdj is null
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and f.jsdj=#{jsdj}
+		</if>
 		<if test="tsdq==null or tsdq==''">
 			and f.tsdq is null
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
-			and f.tsqd =#{tsdq}
+			and f.tsdq =#{tsdq}
 		</if>
 	</select>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">

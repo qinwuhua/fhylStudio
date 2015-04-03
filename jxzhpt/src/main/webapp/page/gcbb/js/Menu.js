@@ -35,7 +35,6 @@ $(function() {
 			});
 			j++;
 		}
-		
 	}
 	
 	createMenux('LeftMenu',{

@@ -29,6 +29,14 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		params.put("l", lx);
 		return queryList("queryShuihList",params);
 	}
+	
+	@Override
+	public List<Plan_shuih> queryShuihList(Plan_shuih jh,Plan_lx_shuih lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("l", lx);
+		return queryList("queryShuihList2",params);
+	}
 
 	@Override
 	public Plan_shuih queryShuihById(String id) {

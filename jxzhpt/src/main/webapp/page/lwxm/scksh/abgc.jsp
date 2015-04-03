@@ -21,6 +21,10 @@ $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
+	loadBmbm2("shzt", "审核状态");
+	loadBmbm2("lxjsdj", "技术等级");
+	loadBmbm2("bz", "公路等级");
+	loadBmbm2("bzls", "补助历史");
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
@@ -189,12 +193,6 @@ text-decoration:none;
                         <p style="margin:8px 0px 4px 20px;">
 							  <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
-                              		<option selected="selected" value="">全部</option>
-                              		<option value="2015年">2015年</option>
-									<option value="2014年">2014年</option>
-									<option value="2013年">2013年</option>
-									<option value="2012年">2012年</option>
-									<option value="2011年">2011年</option>
                               	</select>
                               <span style="display: none;">&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
@@ -206,9 +204,6 @@ text-decoration:none;
                               	</select>
                                <span>&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="ss4"  style="width:70px"class="easyui-combobox">
@@ -220,28 +215,12 @@ text-decoration:none;
                               	</select>
                               <span>&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="一级公路">一级公路</option>
-									<option value="二级公路">二级公路</option>
-									<option value="三级公路">三级公路</option>
-									<option value="四级公路">四级公路</option>
-									<option value="等外公路">等外公路</option>
                               	</select>
                               	<span>&nbsp;公路等级：</span>
-                              	<select id="bz" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="G">国道</option>
-									<option value="S">省道</option>
-									<option value="X">县道</option>
-									<option value="Y">乡道</option>
-									<option value="C">村道</option>
-									<option value="Z">专道</option>
+                              	<select id="bz" style="width:104px"class="easyui-combobox">
                               	</select>
                               	<span>&nbsp;补助历史：</span>
-                              	<select id="bzls" style="width:70px"class="easyui-combobox">
-                              		<option selected="selected" value="">全部</option>
-									<option value="无">无补助历史</option>
-									<option value="有">有补助历史</option>
+                              	<select id="bzls" style="width:104px"class="easyui-combobox">
                               	</select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">

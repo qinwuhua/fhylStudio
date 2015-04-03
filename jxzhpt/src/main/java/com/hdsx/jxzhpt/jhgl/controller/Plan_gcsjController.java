@@ -5,17 +5,26 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.tree.TreeNode;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -26,6 +35,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -114,7 +124,6 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void queryGcsjList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
-		System.out.println("上报状态："+jh.getSbzt()+"  审批状态："+jh.getSpzt()+" 长度状态："+jh.getJh_sbthcd());
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
 		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
 		try {
@@ -186,6 +195,39 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportExcel_gcsj(){
+		List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
+		List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
+		for(Plan_gcsj item : queryGcsjList){
+			List<Plan_lx_gcsj> lxlist = item.getPlan_lx_gcsjs();
+			for(Plan_lx_gcsj itemlx : lxlist){
+				Map<String, String> lxmap=new HashMap<String, String>();
+				lxmap.put("0", itemlx.getGydw());
+				lxmap.put("1", itemlx.getXzqhmc());
+				lxmap.put("2", itemlx.getLxbm());
+				lxmap.put("3", itemlx.getLxmc());
+				lxmap.put("4", itemlx.getQdzh());
+				lxmap.put("5", itemlx.getZdzh());
+				lxmap.put("6", itemlx.getQzlc());
+				lxmap.put("7", itemlx.getXmlc());
+				exceData.add(lxmap);
+			}
+		}
+		List<String> excelTitle=new ArrayList<String>();
+		excelTitle.add("管养单位");
+		excelTitle.add("行政区划");
+		excelTitle.add("路线编码");
+		excelTitle.add("路线名称");
+		excelTitle.add("起点桩号");
+		excelTitle.add("止点桩号");
+		excelTitle.add("起止里程");
+		excelTitle.add("项目里程");
+		String tableName="工程改建路面升级";
+		HttpServletResponse response= getresponse();
+		ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
+	}
+
 	
 	public void importGcsj_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
@@ -272,6 +314,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 						Double xmlc=new Double(map.get("10").toString());
 						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
 						Integer pfztz=new Integer(map.get("40").toString());
+						System.out.println("计算结果："+je+"  项目里程："+xmlc+"   补助金额："+bzzj);
 						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
 						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
 							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";

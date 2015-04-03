@@ -253,33 +253,8 @@ public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 	}
 
 	@Override
-	public List<TreeNode> jhtjWqgzGlj(Jckwqgz wqgz) {
-		return queryList("jhtjWqgzGlj",wqgz);
-	}
-
-	@Override
-	public List<TreeNode> jhtjWqgzJtj(Jckwqgz wqgz) {
-		return queryList("jhtjWqgzJtj",wqgz);
-	}
-
-	@Override
-	public List<TreeNode> jhtjAbgcGlj(Jckwqgz wqgz) {
-		return queryList("jhtjAbgcGlj",wqgz);
-	}
-
-	@Override
-	public List<TreeNode> jhtjAbgczJtj(Jckwqgz wqgz) {
-		return queryList("jhtjAbgczJtj",wqgz);
-	}
-
-	@Override
-	public List<TreeNode> jhtjZhfzGlj(Jckwqgz wqgz) {
-		return queryList("jhtjZhfzGlj",wqgz);
-	}
-
-	@Override
-	public List<TreeNode> jhtjZhfzJtj(Jckwqgz wqgz) {
-		return queryList("jhtjZhfzJtj",wqgz);
+	public List<SjbbMessage> gljsxdList(Jckwqgz wqgz) {
+		return queryList("gljsxdList",wqgz);
 	}
 
 }

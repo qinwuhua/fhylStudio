@@ -73,10 +73,5 @@ public interface DbbbServer {
 	int selectZhjzCount(Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz);
 	//计划统计报表
-	List<TreeNode> jhtjWqgzGlj(Jckwqgz wqgz);
-	List<TreeNode> jhtjWqgzJtj(Jckwqgz wqgz);
-	List<TreeNode> jhtjAbgcGlj(Jckwqgz wqgz);
-	List<TreeNode> jhtjAbgczJtj(Jckwqgz wqgz);
-	List<TreeNode> jhtjZhfzGlj(Jckwqgz wqgz);
-	List<TreeNode> jhtjZhfzJtj(Jckwqgz wqgz);
+	List<SjbbMessage> gljsxdList(Jckwqgz wqgz);
 }

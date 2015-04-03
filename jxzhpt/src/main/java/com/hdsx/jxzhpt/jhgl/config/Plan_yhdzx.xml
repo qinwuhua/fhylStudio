@@ -102,11 +102,56 @@
 					and lx.yjsdj=#{lx.yjsdj}
 				</if>
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
-					and lx.xzqhdm in (
-						select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
 	       		order by jh.jh_sbthcd,jh.sbnf) t)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryYhdzxList2" parameterType="java.util.Map" resultMap="yhdzx_jh">
+		select * from (
+			select rownum as num,t.* from (
+	    		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
+	       		where 1=1 
+	       		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+				<if test="jh.sbnf!=null and jh.sbnf!=''">
+					and jh.sbnf =#{jh.sbnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+					and jh.kgzt=#{jh.kgzt}
+	 			</if>
+	 			<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 				and jh.jgzt=#{jh.jgzt}
+	 			</if>
+				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and lx.gydwdm like #{lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and lx.xzqhdm like #{lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.tsdq!=null and lx.tsdq!=''">
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				</if>
+	       		order by jh.jh_sbthcd,jh.sbnf) t)
 	</select>
 	<select id="queryYhdzxCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from plan_yhdzx jh left join plan_lx_yhdzx lx 
@@ -148,8 +193,7 @@
 				and lx.yjsdj=#{lx.yjsdj}
 			</if>
 			<if test="lx.tsdq!=null and lx.tsdq!=''">
-				and lx.xzqhdm in (
-					select B.XZQHDM from BT_XZQHTSDQ b where B.AREACODE=#{lx.tsdq})
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 			</if> 
 	</select>
 	<select id="queryYhdzxById" parameterType="string" resultMap="yhdzx_jh">
@@ -247,6 +291,9 @@
 			<if test="jh.spzt!=null and jh.spzt!=''">
 				and jh.spzt=#{jh.spzt}
 			</if>
+			<if test="lx.tsdq!=null and lx.tsdq!=''">
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+			</if> 
 			group by jh.id)
 	</select>
 	<select id="dropYhdzxLxByJhid" parameterType="java.util.List">

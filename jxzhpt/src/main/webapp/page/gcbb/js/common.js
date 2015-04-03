@@ -31,6 +31,15 @@ function getYearList(){
 	});
 }
 
+function exportExcel_gljsxd(){
+	var gydw=$("#gydw").combotree("getValue");
+	if(gydw='36'){
+		gydw="";
+	}
+	var param="xzqhdm="+$("#xzqh").combotree("getValue")+"&gydw="+gydw+"&xmnf="+$("#year").combobox("getValue");
+	window.location.href="/jxzhpt/dbbb/exportExcel_gljsxd.do?"+param;
+}
+
 function getMonthList(){
 	
 }

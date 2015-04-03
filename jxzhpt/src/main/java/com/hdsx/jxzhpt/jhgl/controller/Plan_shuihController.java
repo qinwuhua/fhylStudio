@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -174,6 +175,38 @@ public class Plan_shuihController extends BaseActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void exportExcel_shuih(){
+		List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
+		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
+		for (Plan_shuih item : queryShuihList) {
+			List<Plan_lx_shuih> shuihs = item.getShuihs();
+			for (Plan_lx_shuih itemlx: shuihs) {
+				Map<String, String> lxmap=new HashMap<String, String>();
+				lxmap.put("0", itemlx.getGydw());
+				lxmap.put("1", itemlx.getXzqhmc());
+				lxmap.put("2", itemlx.getLxbm());
+				lxmap.put("3", itemlx.getLxmc());
+				lxmap.put("4", itemlx.getQdzh());
+				lxmap.put("5", itemlx.getZdzh());
+				lxmap.put("6", itemlx.getQzlc());
+				lxmap.put("7", itemlx.getYhlc());
+				excelData.add(lxmap);
+			}
+		}
+		List<String> excelTitle=new ArrayList<String>();
+		excelTitle.add("管养单位");
+		excelTitle.add("行政区划");
+		excelTitle.add("路线编码");
+		excelTitle.add("路线名称");
+		excelTitle.add("起点桩号");
+		excelTitle.add("止点桩号");
+		excelTitle.add("起止里程");
+		excelTitle.add("项目里程");
+		String tableName="水毁项目";
+		HttpServletResponse response= getresponse();
+		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 	}
 	
 	public void importShuih_jh(){
