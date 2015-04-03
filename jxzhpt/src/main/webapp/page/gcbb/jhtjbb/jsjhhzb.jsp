@@ -27,17 +27,18 @@ table {border-collapse:collapse;}
 </style>
 <script type="text/javascript">
 $(function(){
-	getYearList();
+	selYearList("year");
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
 	startSearch();
 });
 function startSearch(){
+	$("#titleYear").html($("#year").combotree("getValue"));
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").val(),
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -63,6 +64,9 @@ function startSearch(){
 			$("#table_tbody").html(str);
 		}
 	});
+}
+function exportExcel(){
+	window.location.href = "/jxzhpt/gcbb/getLwjgjshzb.do?flag=flag&dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue");
 }
 </script>
 </head>
@@ -94,7 +98,7 @@ function startSearch(){
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()"  style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
@@ -106,7 +110,7 @@ function startSearch(){
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" >
 							<table width="1200px" class="table_body">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路网结构改造建议计划汇总表</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年路网结构改造建议计划汇总表</caption>
 								<thead>
 									<tr>
 										<td width="150px;"></td>

@@ -30,6 +30,20 @@ function getYearList(){
 		}
 	});
 }
+
 function getMonthList(){
 	
+}
+
+function selYearList(_id){
+	$('#'+_id).combotree({
+        multiple:false,
+        panelHeight:100,  
+        panelWidth:80,
+        url: '/jxzhpt/gcbb/selYearList.do',
+        onCheck: function(node){
+        	$("#"+_id).val($('#'+_id).combotree('getValues'));
+    	}
+	});
+	$('#'+_id).combotree("setValue","2015");
 }

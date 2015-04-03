@@ -36,12 +36,27 @@ public class GcbbController extends BaseActionSupport{
 		List<String> list= new ArrayList<String>();
 		Calendar calendar =Calendar.getInstance();
 		int temp=calendar.get(Calendar.YEAR);
-		System.out.println(temp);
 		for(int i=temp;i>temp-10;i--){
 			list.add(i+"");
 		}
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
 		}catch (Exception e) {}
+	}
+	
+	public void selYearList(){
+		String l=null;
+		Calendar calendar =Calendar.getInstance();
+		int nf=calendar.get(Calendar.YEAR);
+		l="[{'id':'"+nf+"','text':'"+nf+"','iconCls':'icon-none'}";
+		for(int i=1;i<10;i++){
+			l+=",{'id':'"+(nf-i)+"','text':'"+(nf-i)+"','iconCls':'icon-none'}";
+		}
+		l+="]";
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

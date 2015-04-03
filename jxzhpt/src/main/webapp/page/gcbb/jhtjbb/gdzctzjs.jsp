@@ -27,17 +27,18 @@ table {border-collapse:collapse;}
 </style>
 <script type="text/javascript">
 $(function(){
-	getYearList();
+	selYearList("year");
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
 	startSearch();
 });
 function startSearch(){
+	$("#titleYear").html($("#year").combotree("getValue"));
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getGdzctzjs.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf=2014",
+		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -56,6 +57,9 @@ function startSearch(){
 			$("#table_tbody").html(str);
 		}
 	});
+}
+function exportExcel(){
+	window.location.href = "/jxzhpt/gcbb/getGdzctzjs.do?flag=flag&dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue");
 }
 </script>
 </head>
@@ -81,14 +85,13 @@ function startSearch(){
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>上报年份：</span>
-        						<select id="xmnf" style="width:80px;">
-        						</select>
+        						<input id="year" style="width:80px;"/>
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
         					</p>
         					
         				</div>
@@ -101,7 +104,7 @@ function startSearch(){
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
 							<table class="table_body" width="2000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2014年交通固定资产投资建设计划(路网结构改造)</caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年交通固定资产投资建设计划(路网结构改造)</caption>
 								<thead>
 									<tr>
 										<td rowspan="3">项目所在地区</td>

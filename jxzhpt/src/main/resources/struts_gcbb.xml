@@ -3,6 +3,8 @@
     "/xsd/struts-2.1.7.dtd">
 <struts>
 <package name="gcbb" extends="struts-default" namespace="/gcbb">
-	<action name="getYearList" class="gcbbController" method="getYearList"/>
+	<action name="getYearList" class="gcbbController" method="getYearList" />
+	<action name="selYearList" class="gcbbController" method="selYearList" />
+	
 </package>
 </struts>
