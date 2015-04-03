@@ -66,7 +66,7 @@ function zhfzxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';	        	
 	        	return result;
 	        }},

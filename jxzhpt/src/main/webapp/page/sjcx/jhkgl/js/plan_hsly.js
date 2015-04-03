@@ -41,7 +41,7 @@ function hslyglxm(hsly){
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
-	        	var result='';
+	        	var result='<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	return result;
 	        }},

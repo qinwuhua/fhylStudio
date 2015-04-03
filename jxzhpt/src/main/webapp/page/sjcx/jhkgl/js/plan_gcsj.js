@@ -39,7 +39,6 @@ function sbnf(id){
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
-	alert(jh.sbzt);
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
@@ -49,7 +48,7 @@ function gclmsjxm(jh,lx){
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
-				var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
+				var result='<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC;">定位</a>    ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';	
 				return result;
 			}},

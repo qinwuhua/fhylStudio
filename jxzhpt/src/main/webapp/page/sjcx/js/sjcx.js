@@ -37,6 +37,24 @@ function ckSckzhfz(ck_id){
 	rowid=ck_id;
 	YMLib.UI.createWindow('sck_ck','查看项目详情','zhfz_sck_ck.jsp','sck_ck',900,500);
 }
+
+//年份
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	/*years.push({text:'全部'});*/
+	for(var i=0;i<=10;i++){
+		if(i==0) first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text'   
+	});
+	$('#'+id).combobox("setValue",first);
+}
 /*//基础库管理
 function zdy(){
 	$("#grid").datagrid({    

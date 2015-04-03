@@ -116,6 +116,7 @@ public class Gcglgcgzgj implements Serializable {
 	private String jhbz;	
 	private Integer sfsj;
 	private String sfth;
+	private String lxjsdj;
 	
 	private int page;
 	private int rows;
@@ -770,6 +771,12 @@ public class Gcglgcgzgj implements Serializable {
 	}
 	public void setJgyswjfile(byte[] jgyswjfile) {
 		this.jgyswjfile = jgyswjfile;
+	}
+	public String getLxjsdj() {
+		return lxjsdj;
+	}
+	public void setLxjsdj(String lxjsdj) {
+		this.lxjsdj = lxjsdj;
 	}
 
 	

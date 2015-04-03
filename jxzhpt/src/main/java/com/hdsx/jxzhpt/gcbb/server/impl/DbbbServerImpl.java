@@ -19,6 +19,7 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class DbbbServerImpl extends BaseOperate implements DbbbServer{
@@ -253,7 +254,16 @@ public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 	}
 
 	@Override
-	public List<SjbbMessage> gljsxdList(Jckwqgz wqgz) {
+	public List<Excel_list> gljsxdList(Jckwqgz wqgz) {
+		List<Excel_list> list = queryList("gljsxdList",wqgz);
+		for (Excel_list e : list) {
+//			System.out.println("@##@@@#@@#="+e.getV_10()+"-------"+e.getV_10().substring(0,1));
+			if(".".equals(e.getV_10().substring(0,1))){
+//				e.setV_10(Double.parseDouble(e.getV_11())+Double.parseDouble(e.getV_12())+Double.parseDouble(e.getV_13())+Double.parseDouble(e.getV_14())+"");
+				e.setV_10("0"+e.getV_10());
+//				System.out.println(e.getV_10());
+			}
+		}
 		return queryList("gljsxdList",wqgz);
 	}
 

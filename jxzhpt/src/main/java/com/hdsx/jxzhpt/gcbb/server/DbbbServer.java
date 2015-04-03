@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface DbbbServer {
@@ -73,5 +74,5 @@ public interface DbbbServer {
 	int selectZhjzCount(Jckwqgz wqgz);
 	List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz);
 	//计划统计报表
-	List<SjbbMessage> gljsxdList(Jckwqgz wqgz);
+	List<Excel_list> gljsxdList(Jckwqgz wqgz);
 }

@@ -616,38 +616,40 @@
 	</select>
 	
 	<!--计划统计报表4  -->
-	<select id="gljsxdList" parameterType="jckwqgz" resultType="sjbb">	
-		select ''v_1,lxmc v_2, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_3 ,qdzh v_4,zdzh v_5,lxbm v_6,'' v_7,
- substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_8,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_9,
-to_char(CLASSIFY) v_10,(decode(yjsdj,'一级公路',hdlc,0)+decode(yjsdj,'二级公路',hdlc,0)+decode(yjsdj,'三级公路',hdlc,0)+decode(yjsdj,'四级公路',hdlc,0)+decode(yjsdj,'大桥',hdlc,0)) v_11,
-decode(yjsdj,'一级公路',hdlc,'') v_12,decode(yjsdj,'二级公路',hdlc,'') v_13,decode(yjsdj,'三级公路',hdlc,'') v_14,
-decode(yjsdj,'四级公路',hdlc,'') v_15,decode(yjsdj,'大桥',hdlc,'') v_16,decode(yjsdj,'隧道',hdlc,'') v_17,
-to_char(ylmkd) v_18,to_char(DESCRIPTION) v_19,to_char(TOTALINVEST) v_20,TOTALSUBSIDYFUND v_21 from PLAN_LX_YHDZX lx
+	<select id="gljsxdList" parameterType="jckwqgz" resultType="elist">	
+	select v_0,v_1,v_2,v_3,v_4,v_5,v_6,v_7,v_8,v_9,v_10,v_11,v_12,v_13,v_14,v_15,v_16,v_17,v_18,v_19,v_20 from
+		(select ''v_0,lxmc v_1, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_2 ,qdzh v_3,zdzh v_4,lxbm v_5,'' v_6,
+ substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_7,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_8,
+to_char(CLASSIFY) v_9,to_char(decode(yjsdj,'一级公路',hdlc,0)+decode(yjsdj,'二级公路',hdlc,0)+decode(yjsdj,'三级公路',hdlc,0)+decode(yjsdj,'四级公路',hdlc,0),'FM999999.999999999') v_10,
+decode(yjsdj,'一级公路',hdlc,'0') v_11,decode(yjsdj,'二级公路',hdlc,'0') v_12,decode(yjsdj,'三级公路',hdlc,'0') v_13,
+decode(yjsdj,'四级公路',hdlc,'0') v_14,to_char(decode(yjsdj,'大桥',hdlc,'0')) v_15,to_char(decode(yjsdj,'隧道',hdlc,'0')) v_16,
+to_char(ylmkd) v_17,to_char(ylmhd) v_18,to_char(TOTALINVEST) v_19,TOTALSUBSIDYFUND v_20 from PLAN_LX_YHDZX lx
  left join PLAN_YHDZX t2 on lx.jhid=t2.id left join gcgl_yhdzx gc on lx.jhid=gc.jhid where
 	 		gydwdm like rtrim(#{gydw},0)||'%'
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			and sbnf like #{xmnf}||'%'
  union all
- 		select t2.bz v_1,lxmc v_2, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_3 ,qdzh v_4,zdzh v_5,lxbm v_6,'' v_7,
- substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_8,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_9,
- to_char(jsxz) v_10,(decode(yjsdj,'一级公路',yhlc,0)+decode(yjsdj,'二级公路',yhlc,0)+decode(yjsdj,'三级公路',yhlc,0)+decode(yjsdj,'四级公路',yhlc,0)+decode(yjsdj,'大桥',yhlc,0)) v_11,
- decode(yjsdj,'一级公路',yhlc,'') v_12,decode(yjsdj,'二级公路',yhlc,'') v_13,decode(yjsdj,'三级公路',yhlc,'') v_14,
-decode(yjsdj,'四级公路',yhlc,'') v_15,decode(yjsdj,'大桥',yhlc,'') v_16,decode(yjsdj,'隧道',yhlc,'') v_17,
-'路面宽度' v_18,'计划方案' v_19,to_char(PFZTZ) v_20,JHSYBZJE v_21 from PLAN_LX_GCGJ lx
+ 		select t2.bz v_0,lxmc v_1, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_2 ,qdzh v_3,zdzh v_4,lxbm v_5,'' v_6,
+ substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_7,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_8,
+ to_char(jsxz) v_9,to_char(decode(yjsdj,'一级公路',yhlc,0)+decode(yjsdj,'二级公路',yhlc,0)+decode(yjsdj,'三级公路',yhlc,0)+decode(yjsdj,'四级公路',yhlc,0),'FM999999.999999999') v_10,
+ decode(yjsdj,'一级公路',yhlc,'0') v_11,decode(yjsdj,'二级公路',yhlc,'0') v_12,decode(yjsdj,'三级公路',yhlc,'0') v_13,
+decode(yjsdj,'四级公路',yhlc,'0') v_14,to_char(decode(yjsdj,'大桥',yhlc,'0')) v_15,to_char(decode(yjsdj,'隧道',yhlc,'0')) v_16,
+to_char(lmkd) v_17,to_char(SJLMLX) v_18,to_char(PFZTZ) v_19,JHSYBZJE v_20 from PLAN_LX_GCGJ lx
  left join PLAN_GCGJ t2 on lx.jhid=t2.id left join gcgl_gcgzgj gc on lx.jhid=gc.jhid where
   			gydwdm like rtrim(#{gydw},0)||'%'
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			and sbnf like #{xmnf}||'%'
  union all
- 		select t2.REMARKS v_1,lxmc v_2, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_3 ,qdzh v_4,zdzh v_5,lxbm v_6,'' v_7,
- substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_8,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_9,
- to_char(jsxz) v_10,(decode(yjsdj,'一级公路',xmlc,0)+decode(yjsdj,'二级公路',xmlc,0)+decode(yjsdj,'三级公路',xmlc,0)+decode(yjsdj,'四级公路',xmlc,0)+decode(yjsdj,'大桥',xmlc,0)) v_11,
- decode(yjsdj,'一级公路',xmlc,'') v_12,decode(yjsdj,'二级公路',xmlc,'') v_13,decode(yjsdj,'三级公路',xmlc,'') v_14,
-decode(yjsdj,'四级公路',xmlc,'') v_15,decode(yjsdj,'大桥',xmlc,'') v_16,decode(yjsdj,'隧道',xmlc,'') v_17,
-'路面宽度' v_18,'计划方案' v_19,to_char(PFTZ) v_20,JHSYBBZJE v_21 from PLAN_LX_GCSJ lx
+ 		select t2.REMARKS v_0,lxmc v_1, decode(substr(lxbm,0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','转道') v_2 ,qdzh v_3,zdzh v_4,lxbm v_5,'' v_6,
+ substr(xzqhmc,0,INSTR(xzqhmc,'市')) v_7,substr(xzqhmc,INSTR(xzqhmc,'市')+1,length(xzqhmc)-INSTR(xzqhmc,'市')) v_8,
+ to_char(jsxz) v_9,to_char((decode(yjsdj,'一级公路',xmlc,0)+decode(yjsdj,'二级公路',xmlc,0)+decode(yjsdj,'三级公路',xmlc,0)+decode(yjsdj,'四级公路',xmlc,0)),'FM999999.999999999') v_10,
+ decode(yjsdj,'一级公路',xmlc,'0') v_11,decode(yjsdj,'二级公路',xmlc,'0') v_12,decode(yjsdj,'三级公路',xmlc,'0') v_13,
+decode(yjsdj,'四级公路',xmlc,'0') v_14,to_char(decode(ql_m,null,'0','0.0','0',ql_m)) v_15,to_char(decode(sd_m,null,'0','0.0','0',sd_m)) v_16,
+to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 from PLAN_LX_GCSJ lx
  left join PLAN_GCSJ t2 on lx.jhid=t2.id left join gcgl_gcgzsj gc on lx.jhid=gc.jhid where
 	 		 gydwdm like rtrim(#{gydw},0)||'%'
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
-			and jhnf like #{xmnf}||'%'
+			and jhnf like #{xmnf}||'%')
+			order by v_2,v_5,v_3
 	</select>
 </mapper>
