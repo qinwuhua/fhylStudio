@@ -32,7 +32,7 @@
  var format = 'image/png';
  var bounds = new OpenLayers.Bounds(
 		112.573, 24.488,
-		121.482, 30.079
+		124.482, 30.079
  );
  var styleMap = null;
  var selectedFeature = null;
@@ -40,7 +40,7 @@
  var layersConfig = [];
  var resultLayer = null;
 $(function(){
-	$(".layout-button-right").click(); 
+	//$(".layout-button-right").click(); 
 	xmlxTj();
 	var LeftHeight = $(window).height();
 	loadDataunit();
@@ -78,7 +78,7 @@ $(function(){
 			<!-- 地图区域开始 -->
 		    <div region="center" style="padding:0px;" border="false">
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
-					
+
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
 						 <!-- <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
