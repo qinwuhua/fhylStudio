@@ -28,7 +28,7 @@
       <data>
       <series name="Series 1" palette="Default">
 				     <#list list as l >
-				          <point name="${l.bz}" y="${l.id}"/>        
+				          <point name="${l.bz}" y="${l.descr}"/>        
                       </#list>
 	  </series>
       </data>
