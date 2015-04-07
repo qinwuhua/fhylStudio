@@ -256,12 +256,51 @@
 	<if test="akjfl!='' and akjfl!= null ">
 		and akjfl like '%'||(#{akjfl})||'%'
 	</if>
+	<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
  </sql>
  <select id="exportExcel_wqgz" parameterType="jckwqgz" resultType="sjbb">
  	select
 	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
  	from xmk_wqgz where 1=1
- 	<include refid="wqgz_commonsql"/>
+ 	and  sbthcd &lt;=#{sbthcd}
+ 	<if test="gydw!='' and gydw!= null "  >
+		and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
+	</if>
+	<if test="xzqhmc!='' and xzqhmc!= null "  >
+		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
+	</if>
+	<if test="lxmc!='' and lxmc!= null ">
+		and lxmc like '%'||(#{lxmc})||'%'
+	</if>
+	<if test="qlmc!='' and qlmc!= null ">
+		and qlmc like '%'||(#{qlmc})||'%'
+	</if>
+	<if test="xmnf!='' and xmnf!= null ">
+		and xmnf like '%'||(#{xmnf})||'%'
+	</if>
+	<if test="xmtype!='' and xmtype!= null ">
+		and xmtype like '%'||(#{xmtype})||'%'
+	</if>
+	<if test="shzt!='' and shzt!= null ">
+		and shzt  like '%'||(#{sbzt})||'%'
+	</if>
+	<if test="jsdj!='' and jsdj!= null ">
+		and jsdj like '%'||(#{jsdj})||'%'
+	</if>
+	<if test="akjfl!='' and akjfl!= null ">
+		and akjfl like '%'||(#{akjfl})||'%'
+	</if>
+	<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
