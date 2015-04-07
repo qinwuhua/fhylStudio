@@ -20,4 +20,7 @@
 			where id=#{id}
 		</if>
 	</select>
+	<select id="queryChildGydw"  parameterType="treenode" resultType="treenode">
+		select * from XTGL_DEPARTMENT t where t.parent=#{id} or t.id=#{id} order by t.id
+	</select>
 </mapper>

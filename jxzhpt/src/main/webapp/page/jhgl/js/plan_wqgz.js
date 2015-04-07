@@ -2,10 +2,12 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function queryZjqf(nf){
-	//查询分到的资金
-	var xzqhdm="360000";
+	//查询切分资金
+	var xzqhdm=$.cookie("unit");
 	if(roleName()=="县级"){
-		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+		xzqhdm=$.cookie("unit").substring(0,9)+"00";
+	}else if(roleName()=="市级"){
+		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
 	}
 	$.ajax({
 		type:'post',
@@ -15,7 +17,7 @@ function queryZjqf(nf){
 		dataType:'json',
 		success:function(data){
 			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit").substring(5)){
+				if(item.id==$.cookie("unit")){
 					$('#lblQfzj').html(item.wqgz);
 				}
 			});

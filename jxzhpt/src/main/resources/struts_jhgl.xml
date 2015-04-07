@@ -120,5 +120,6 @@
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
 		<action name="saveZjqf" class="plan_zjqfController" method="saveZjqf"></action>
 		<action name="queryZjqfByXzqh" class="plan_zjqfController" method="queryZjqfByXzqh"></action>
+		<action name="queryChildGydw" class="plan_zjqfController" method="queryChildGydw"></action>
 	 </package>
 </struts>

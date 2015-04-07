@@ -38,4 +38,11 @@ public interface Plan_zjqfServer {
 	 * @return
 	 */
 	List<TreeNode> queryChildXzqh(TreeNode xzqh);
+
+	/**
+	 * 查询夏季管养单位
+	 * @param xzqh
+	 * @return
+	 */
+	List<TreeNode> queryChildGydw(TreeNode xzqh);
 }
