@@ -24,6 +24,7 @@ $(function(){
 	loadBmbm2("shzt", "审核状态");
 	loadBmbm2("lxjsdj", "技术等级");
 	loadBmbm2("bz", "公路等级");
+	tsdq("tsdq");
 	if(getParam("t")=='1') {
 		$('#shzt').combobox("setValue",'未审核');
 	}
@@ -158,12 +159,7 @@ text-decoration:none;
                               	<select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select>
                               <span>&nbsp;特殊地区：</span>
-                              	<select id="ss4" class="easyui-combobox" style="width:70px">
-                              		<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
+                              	<select id="tsdq" class="easyui-combobox" style="width:70px">
                               	</select>
                               <span>&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">

@@ -16,6 +16,13 @@ function xmnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function tsdq(id){
+	$('#'+id).combobox({    
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}
 function addJck(jsp,w,h){
 //	var unit=$.cookie("unit");
 //	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {

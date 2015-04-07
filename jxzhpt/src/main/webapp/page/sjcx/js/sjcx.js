@@ -6,6 +6,13 @@ function cxzd(){
 function Wqgz(){
 	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgz.jsp','zd_wqgz','900','380');
 }
+function tsdq(id){
+	$('#'+id).combobox({    
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}
 //路网项目JS
 //基础库安保工程
 function ckJckabgc(ck_id){
