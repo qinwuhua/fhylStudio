@@ -131,7 +131,7 @@ function saveWqgz(){
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
-				parent.$("#grid").datagrid('reload');
+				parent.sckglWqgz();
 				alert("保存成功！");
 				parent.$('#sck_add').window('destroy');
 				

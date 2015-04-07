@@ -47,11 +47,11 @@ function startSearch(){
 			$("#table_tbody").html("");
 			if(msg.length!=0){
 				for(var i=0;i<msg.length;i++){
-							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"+"<td>"+msg[i].v_4+"</td>"
-							+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td>"
-							+"<td>"+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"+msg[i].v_14+"</td>"
-							+"<td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td>"
-							+"<td>"+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td></tr>";
+							str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td>"
+							+"<td>"+msg[i].v_9+"</td><td>"+(parseFloat(msg[i].v_11)*1000+parseFloat(msg[i].v_12)*1000+parseFloat(msg[i].v_13)*1000+parseFloat(msg[i].v_14)*1000)/1000+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"
+							+"<td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td>"
+							+"<td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td></tr>";
 				}
 			}else{
 				str+="<tr align='center'><td colspan='21'>暂无数据</td></tr>";
@@ -99,7 +99,7 @@ function startSearch(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:300px">
+                	<div style="width:100%;height:410px">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
 							<table width="2000px"  class="table_body">

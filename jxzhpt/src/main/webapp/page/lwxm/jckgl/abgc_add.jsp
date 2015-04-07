@@ -153,7 +153,7 @@ text-decoration:none;
 			dataType:'json',
 			success:function(msg){
 				if(Boolean(msg)){
-					parent.$("#grid").datagrid('reload');
+					parent.jckglAbgc();
 					alert("保存成功！");
 					parent.$('#jck_add').window('destroy');
 					

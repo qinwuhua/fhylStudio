@@ -16,6 +16,13 @@ function xmnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function tsdq(id){
+	$('#'+id).combobox({    
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}
 function addJck(jsp,w,h){
 //	var unit=$.cookie("unit");
 //	if(unit=='21101360000' || unit=='11101360000' || unit=='36') {
@@ -169,11 +176,11 @@ function exportExcel_wqgz(){
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+$("#akjfl").combobox("getValue")+'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_wqgz.do?"+param;
@@ -183,11 +190,11 @@ function exportExcel_abgc(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_abgc.do?"+param;
@@ -197,11 +204,11 @@ function exportExcel_zhfz(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz.do?"+param;
@@ -212,11 +219,11 @@ function exportExcel_wqgz_sh(){
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+$("#akjfl").combobox("getValue")+'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_wqgz_sh.do?"+param;
@@ -226,11 +233,11 @@ function exportExcel_abgc_sh(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_abgc_sh.do?"+param;
@@ -240,11 +247,11 @@ function exportExcel_zhfz_sh(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
  	'&sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmjck/exportExcel_zhfz_sh.do?"+param;
@@ -255,11 +262,13 @@ function exportExcel_wqgz_scgl(){
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+$("#akjfl").combobox("getValue")+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scgl.do?"+param;
@@ -269,11 +278,12 @@ function exportExcel_abgc_scgl(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_abgc_scgl.do?"+param;
@@ -283,11 +293,12 @@ function exportExcel_zhfz_scgl(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&sbzt='+$("#sbzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_zhfz_scgl.do?"+param;
@@ -298,11 +309,13 @@ function exportExcel_wqgz_scsh(){
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&jsdj='+$("#jsdj").val()+
- 	'&akjfl='+$("#akjfl").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&jsdj='+$("#jsdj").combobox("getValue")+
+ 	'&akjfl='+$("#akjfl").combobox("getValue")+
+ 	'&lxbm='+$("#lxbm").val()+
+ 	'&qlbh='+$("#qlbh").val()+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_wqgz_scsh.do?"+param;
@@ -312,11 +325,12 @@ function exportExcel_abgc_scsh(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_abgc_scsh.do?"+param;
@@ -326,11 +340,12 @@ function exportExcel_zhfz_scsh(){
 	var param='gydw='+$("#gydw").combotree('getValue')+
  	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
  	'&lxmc='+$('#lxmc').val()+
- 	'&xmnf='+$("#xmnf").val()+
- 	'&xmtype='+$("#xmtype").val()+
- 	'&shzt='+$("#shzt").val()+
- 	'&lxjsdj='+$("#lxjsdj").val()+
+ 	'&xmnf='+$("#xmnf").combobox("getValue")+
+ 	'&shzt='+$("#shzt").combobox("getValue")+
+ 	'&lxjsdj='+$("#lxjsdj").combobox("getValue")+
  	'&lxbm='+$("#lxbm").val()+
+ 	'&bz='+$("#bz").combobox("getValue")+
+ 	'&bzls='+$("#bzls").combobox("getValue")+
  	'&sck_sbthcd='+cd;
 	//特殊地区 条件	
 	window.location.href="/jxzhpt/xmsck/exportExcel_zhfz_scsh.do?"+param;

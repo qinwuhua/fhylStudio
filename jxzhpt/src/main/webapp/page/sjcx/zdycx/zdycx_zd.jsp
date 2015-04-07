@@ -27,6 +27,7 @@
 		var xzqhdm=parent.YMLib.Var.xzqhdm;
 		var kgzt=parent.YMLib.Var.kgzt;
 		var lxmc=parent.YMLib.Var.lxmc;
+		var lxbm=parent.YMLib.Var.lxbm;
 		var xmlx=parent.YMLib.Var.xmlx;
 		$("#save_button").click(function(){
 			nameValue=new Array();
@@ -73,6 +74,7 @@
 						 	},
 					    	kgzt: kgzt,
 					    	lxmc:lxmc,
+					    	lxbm:lxbm,
 					    	xmlx:xmlx
 						},
 					striped:true,

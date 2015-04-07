@@ -72,9 +72,9 @@ function gclmsjxm(jh,lx){
 					result="未上报";
 				}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
 					result="已上报";
-				}else if((roleName()=="省级" && row.jh_sbthcd==4)){
+				}else if((row.jh_sbthcd==4)){
 					result="未审核";
-				}else if((roleName()=="省级" && row.jh_sbthcd==6)){
+				}else if((row.jh_sbthcd==6)){
 					result="已审核";
 				}else if((roleName()=="市级" && row.jh_sbthcd==0)){
 					result="待上报";

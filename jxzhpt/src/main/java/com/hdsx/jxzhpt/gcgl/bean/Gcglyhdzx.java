@@ -49,6 +49,7 @@ public class Gcglyhdzx implements Serializable {
 	private String qdzh;
 	private String zdzh;
 	private String qzlc;
+	private String yhlc;
 	private String hdhlc;
 	private String xzqhdm;
 	private String xzqhmc;
@@ -100,6 +101,25 @@ public class Gcglyhdzx implements Serializable {
 	private String tiaojian;
 	private Integer sfsj;
 	private String sfth;
+	
+	private String lxjsdj;
+	private String faspsj;
+	private String xmnf;
+	private String jsxz;
+	private String sjdw;
+	private String sjpfdw;
+	private String pfwh;
+	private String pfsj;
+	private String pfztz;
+	private String jhsybzje;
+	private String jhsydfzcje;
+	private String sfsqablbz;
+	private String ablbzsqwh;
+	private String jhkgsj;
+	private String jhwgsj;
+	private String xdsj;
+	
+
 	
 	private String xjzt;
 	private String sjzt;
@@ -675,6 +695,108 @@ public class Gcglyhdzx implements Serializable {
 	}
 	public void setJgyswjfile(byte[] jgyswjfile) {
 		this.jgyswjfile = jgyswjfile;
+	}
+	public String getYhlc() {
+		return yhlc;
+	}
+	public void setYhlc(String yhlc) {
+		this.yhlc = yhlc;
+	}
+	public String getLxjsdj() {
+		return lxjsdj;
+	}
+	public void setLxjsdj(String lxjsdj) {
+		this.lxjsdj = lxjsdj;
+	}
+	public String getFaspsj() {
+		return faspsj;
+	}
+	public void setFaspsj(String faspsj) {
+		this.faspsj = faspsj;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getJsxz() {
+		return jsxz;
+	}
+	public void setJsxz(String jsxz) {
+		this.jsxz = jsxz;
+	}
+	public String getSjdw() {
+		return sjdw;
+	}
+	public void setSjdw(String sjdw) {
+		this.sjdw = sjdw;
+	}
+	public String getSjpfdw() {
+		return sjpfdw;
+	}
+	public void setSjpfdw(String sjpfdw) {
+		this.sjpfdw = sjpfdw;
+	}
+	public String getPfwh() {
+		return pfwh;
+	}
+	public void setPfwh(String pfwh) {
+		this.pfwh = pfwh;
+	}
+	public String getPfsj() {
+		return pfsj;
+	}
+	public void setPfsj(String pfsj) {
+		this.pfsj = pfsj;
+	}
+	public String getPfztz() {
+		return pfztz;
+	}
+	public void setPfztz(String pfztz) {
+		this.pfztz = pfztz;
+	}
+	public String getJhsybzje() {
+		return jhsybzje;
+	}
+	public void setJhsybzje(String jhsybzje) {
+		this.jhsybzje = jhsybzje;
+	}
+	public String getJhsydfzcje() {
+		return jhsydfzcje;
+	}
+	public void setJhsydfzcje(String jhsydfzcje) {
+		this.jhsydfzcje = jhsydfzcje;
+	}
+	public String getSfsqablbz() {
+		return sfsqablbz;
+	}
+	public void setSfsqablbz(String sfsqablbz) {
+		this.sfsqablbz = sfsqablbz;
+	}
+	public String getAblbzsqwh() {
+		return ablbzsqwh;
+	}
+	public void setAblbzsqwh(String ablbzsqwh) {
+		this.ablbzsqwh = ablbzsqwh;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
 	}
 
 	

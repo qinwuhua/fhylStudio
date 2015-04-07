@@ -59,6 +59,7 @@ public class Gcglgcgzsj implements Serializable {
 	private String xmlc;
 	private String bhnr;
 	private String lxbz;
+	private String xmnf;
 	//审查
 	private String fapgdw;
 	private String fascdw;
@@ -101,6 +102,9 @@ public class Gcglgcgzsj implements Serializable {
 	private String sjsgtmc;
 	private String sjsgtlj;
 	private String remarks;
+	private String lxjsdj;
+	private String jhsybzje;
+	private String jhsydfzcje;
 	
 	private Date xdsj;
 	private Date sjkgsj;
@@ -825,6 +829,30 @@ public class Gcglgcgzsj implements Serializable {
 	}
 	public void setJgyswjfile(byte[] jgyswjfile) {
 		this.jgyswjfile = jgyswjfile;
+	}
+	public String getLxjsdj() {
+		return lxjsdj;
+	}
+	public void setLxjsdj(String lxjsdj) {
+		this.lxjsdj = lxjsdj;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getJhsybzje() {
+		return jhsybzje;
+	}
+	public void setJhsybzje(String jhsybzje) {
+		this.jhsybzje = jhsybzje;
+	}
+	public String getJhsydfzcje() {
+		return jhsydfzcje;
+	}
+	public void setJhsydfzcje(String jhsydfzcje) {
+		this.jhsydfzcje = jhsydfzcje;
 	}
 
 }

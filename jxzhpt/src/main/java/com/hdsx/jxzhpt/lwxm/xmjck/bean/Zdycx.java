@@ -8,6 +8,7 @@ public class Zdycx {
 		private String gydw;
 		private String xzqhdm;
 		private String lxmc;
+		private String lxbm;
 		private String kgzt;
 		private int page;
 		private int rows;
@@ -15,7 +16,6 @@ public class Zdycx {
 		//项目库
 		private String xzqhmc;
 		private String lxjsdj;
-		private String lxbm;
 		private String qdzh;
 		private String zdzh;
 		private String qzlc;
@@ -100,6 +100,12 @@ public class Zdycx {
 		}
 		public void setLxmc(String lxmc) {
 			this.lxmc = lxmc;
+		}
+		public String getLxbm() {
+			return lxbm;
+		}
+		public void setLxbm(String lxbm) {
+			this.lxbm = lxbm;
 		}
 		public String getKgzt() {
 			return kgzt;

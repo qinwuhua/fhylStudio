@@ -30,6 +30,10 @@ import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -705,7 +709,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void gljsxdList(){
-				List<SjbbMessage> list = dbServer.gljsxdList(jckwqgz);
+				List<Excel_list> list = dbServer.gljsxdList(jckwqgz);
 			try {
 				JsonUtils.write(list, getresponse().getWriter());
 			} catch (Exception e) {
@@ -713,38 +717,46 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			}
 		}
 		public void exportExcel_gljsxd(){
-			try {
 				//先得到导出的数据集
-				List <SjbbMessage> list=dbServer.gljsxdList(jckwqgz);
-				System.out.println("------------"+list.size()+"--------------");
-				//导出设置
-				String excelHtml="<tr><td rowspan='2'>备注</td><td rowspan='2'>项目名称</td><td rowspan='2'>" +
-						"行政等级</td><td rowspan='2'>起点桩号</td><td rowspan='2'>终点桩号</td><td rowspan='2'>" +
-							"路线编码</td><td colspan='3'></td><td rowspan='2'>建设性质</td><td colspan='7'>" +
-							"建 设 规 模（ 公 里 ） / （ 延 米 ）</td><td rowspan='2'>路面宽度</td><td rowspan='2'>" +
-							"技术方案</td><td rowspan='2'>总投资（万元）</td><td rowspan='2'>中央投资（万元）" +
-							"</td></tr>	<tr><td>特殊地区 </td><td>市</td><td>县</td><td>合计</td><td>一级公路" +
-							"</td><td>二级公路</td><td>三级公路</td><td>四级公路</td><td>大桥</td><td>隧道</td></tr>" ;
-				List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
-				SheetBean sheetb = new SheetBean();
-				sheetb.setTableName("公路建设下达计划报表");
-				sheetb.setFooter(null);
-				sheetb.setHeader(excelHtml);
-				sheetb.setSheetName("公路建设下达计划信息");
-				sheetb.setList(list);
-				sheetb.setColnum((short)21);
-				sheetBeans.add(sheetb);
-				String stylefileName="module.xls";
-				String tableName="公路建设下达计划报表";//excel 文件的名字
-				//导出excel
-				ExportExcel_new <SjbbMessage> ee = new ExportExcel_new<SjbbMessage>();
-				ee.initStyle(ee.workbook, stylefileName);
-				HttpServletResponse response= getresponse();
-				ee.makeExcel(tableName, sheetBeans, response);
-			} catch (Exception e) {
-				System.out.println("---------------------导出有误-----------------------");
-				throw new RuntimeException();
-			}
+				List <Excel_list> list=dbServer.gljsxdList(jckwqgz);
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路建设下达计划（国省道改造项目）");//设置第一行
+				eldata.setSheetName("公路建设下达计划表");//设置sheeet名
+				eldata.setFileName("公路建设下达计划表");//设置文件名
+				eldata.setEl(list);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("备注",1,2,0,0));
+				et.add(new Excel_tilte("项目名称",1,2,1,1));
+				et.add(new Excel_tilte("行政等级",1,2,2,2));
+				et.add(new Excel_tilte("起点桩号",1,2,3,3));
+				et.add(new Excel_tilte("终点桩号",1,2,4,4));
+				et.add(new Excel_tilte("路线编码",1,2,5,5));
+				et.add(new Excel_tilte("",1,1,6,8));
+				et.add(new Excel_tilte("建设性质",1,2,9,9));
+				et.add(new Excel_tilte("建 设 规 模（ 公 里 ） / （ 延 米 ）",1,1,10,16));
+				et.add(new Excel_tilte("路面宽度",1,2,17,17));
+				et.add(new Excel_tilte("技术方案",1,2,18,18));
+				et.add(new Excel_tilte("总投资（万元）",1,2,19,19));
+				et.add(new Excel_tilte("中央投资（万元）",1,2,20,20));
+				//第二行
+				et.add(new Excel_tilte("特殊地区",2,2,6,6));
+				et.add(new Excel_tilte("市",2,2,7,7));
+				et.add(new Excel_tilte("县",2,2,8,8));
+				et.add(new Excel_tilte("合计",2,2,10,10));
+				et.add(new Excel_tilte("一级公路",2,2,11,11));
+				et.add(new Excel_tilte("二级公路",2,2,12,12));
+				et.add(new Excel_tilte("三级公路",2,2,13,13));
+				et.add(new Excel_tilte("四级公路",2,2,14,14));
+				et.add(new Excel_tilte("大桥",2,2,15,15));
+				et.add(new Excel_tilte("隧道",2,2,16,16));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				try {
+					Excel_export.excel_export(eldata,response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}//将类和参数HttpServletResponse传入即可实现导出excel		
 		}
 		
 	

@@ -7,9 +7,11 @@ var selRow=new Array();//已选择的行号
  */
 function queryZjqf(nf){
 	//查询切分资金
-	var xzqhdm="360000";
+	var xzqhdm=$.cookie("unit");
 	if(roleName()=="县级"){
-		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
+		xzqhdm=$.cookie("unit").substring(0,9)+"00";
+	}else if(roleName()=="市级"){
+		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
 	}
 	$.ajax({
 		type:'post',
@@ -19,7 +21,7 @@ function queryZjqf(nf){
 		dataType:'json',
 		success:function(data){
 			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit").substring(5)){
+				if(item.id==$.cookie("unit")){
 					$('#lblQfzj').html(item.abgc);
 				}
 			});
@@ -79,20 +81,19 @@ function abgcxm(jh,lx){
 	        	return result;
 	        }},
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
-	        	var result;
-	        	if(row.sbzt=="0" && row.jh_sbthcd==0){
+	        	var result="";
+				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
 					result="未上报";
-				}
-				else if(row.sbzt=="0" && row.jh_sbthcd==2){
+				}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
 					result="已上报";
+				}else if((row.jh_sbthcd==4)){
+					result="未审核";
+				}else if((row.jh_sbthcd==6)){
+					result="已审核";
+				}else if((roleName()=="市级" && row.jh_sbthcd==0)){
+					result="待上报";
 				}
-				else if(row.sbzt=="1" && row.spzt=="0"){
-					result="未审批";
-				}
-				else if(row.sbzt=="1" && row.spzt=="1"){
-					result="已审批";
-				}
-	        	return result;
+				return result;
 	        }},
 //	        {field:'c5',title:'资金追加',width:80,align:'center',
 //	        	formatter:function(value,row,index){

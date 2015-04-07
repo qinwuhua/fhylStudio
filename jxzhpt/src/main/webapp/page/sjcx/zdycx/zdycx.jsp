@@ -21,12 +21,13 @@
 	$(function(){
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
-		loadBmbm("kgzt","开工状态");
+		loadBmbm2("kgzt","开工状态");
 		$("#btnSelect").click(function(){
 			YMLib.Var.gydw=$("#gydw").combobox("getValue");
 			YMLib.Var.xzqhdm=$("#xzqhmc").combobox("getValue");
 			YMLib.Var.kgzt=$("#kgzt").combobox("getValue");
 			YMLib.Var.lxmc=$("#lxmc").val();
+			YMLib.Var.lxbm=$("#lxbm").val();
 			YMLib.Var.xmlx=$("#xmlx").combobox("getValue");
 			if($("#xmlx").combobox("getValue")=='wqgz'){
 				Wqgz();
@@ -65,7 +66,7 @@ text-decoration:none;
 					<select id="xzqhmc" style="width:160px"></select></td>
 				<td style="background-color: #ffffff;width:15%" align="right">路线名称：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<input type="text" id="pid" style="width: 145px"/></td>
+					<input type="text" id="lxmc" style="width: 145px"/></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color: #ffffff;width:15%" align="right">项目类型：</td>
@@ -79,7 +80,7 @@ text-decoration:none;
 						<option value="yhdzx">养护大中修</option>
 						<option value="shxm">水毁项目</option>
 					</select></td>
-				<td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
+				<!-- <td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select  id="cc" style="width: 160px" class="easyui-combobox" >
 							<option selected="selected" value="">全部</option>
@@ -88,11 +89,14 @@ text-decoration:none;
 									<option value="三级公路">三级公路</option>
 									<option value="四级公路">四级公路</option>
 									<option value="等外公路">等外公路</option>
-									</select></td>
+									</select></td> -->
 					<td style="background-color: #ffffff;width:15%" align="right">开工状态：</td>
 				<td style="background-color: #ffffff;" align="left">
-					<select  id="kgzt" style="width: 151px">
+					<select  id="kgzt" style="width: 160px">
 					</select></td>
+				<td style="background-color: #ffffff;width:15%" align="right">路线编码：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<input type="text" id="lxbm" style="width: 145px"/></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
