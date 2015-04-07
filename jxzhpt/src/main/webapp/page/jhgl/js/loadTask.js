@@ -298,7 +298,7 @@ function filterXzqhdm(xzqhdm){
 //列入计划
 function showLrjh(jsp,w,h){
 	var cd=$.cookie("unit2").length;
-	if(cd>7) {
+	if(cd>8) {
 		alert("对不起，非省级单位无法列入！");
 		return;
 	}

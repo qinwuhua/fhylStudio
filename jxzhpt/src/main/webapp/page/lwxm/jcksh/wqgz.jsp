@@ -183,7 +183,7 @@ text-decoration:none;
 		</tr>
 		<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000"></span>&nbsp;】个危桥改造项目。</td>
+        					共有【&nbsp;<span id="wqgz1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目。</td>
         </tr>
         <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">

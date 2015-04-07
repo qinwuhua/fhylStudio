@@ -47,8 +47,8 @@ var bzls;
 				alert("对不起，起点桩号不能大于止点桩号！");
 				return false;
 			}
-			if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#sczlc").html())*1000){
-				alert("对不起，隐患里程不能大于总里程！");
+			if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#yhlc").html())*1000){
+				alert("对不起，隐患里程不能大于"+$("#yhlc").html()+"！");
 				return false;
 			}
 			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
