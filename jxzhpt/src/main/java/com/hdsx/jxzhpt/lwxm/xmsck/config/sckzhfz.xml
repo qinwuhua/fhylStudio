@@ -305,9 +305,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
  	select 
  	gydw v_0,xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,qzlc v_6,yhlc v_7,gjxjnd v_8
- 	from xmk_zhfz where 1=1 and sbthcd=7
+ 	from xmk_zhfz where shzt='已审核'
  	and id not in (select xmkid from sck_zhfz)
-	and sbthcd &lt;=#{sck_sbthcd}  
 	<if test="tbdw!=null and tbdw!=''">
 		and tbbmbm like #{tbdw}||'%'
 	</if>
