@@ -123,9 +123,9 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 				map.put("1", map.get("1").substring(0,6));
 			}
 			if(map.get("8").length()!=4){
-				map.put("8", map.get("8").substring(0, 4)+"年");
+				map.put("8", map.get("8").substring(0, 4));
 			}else{
-				map.put("8", map.get("8")+"年");
+				map.put("8", map.get("8"));
 			}
 			map.put("tbbmbm", tbbmbm);
 			map.put("sbthcd", sbthcd);

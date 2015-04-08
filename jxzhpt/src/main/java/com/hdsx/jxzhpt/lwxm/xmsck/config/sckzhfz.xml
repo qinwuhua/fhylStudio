@@ -410,4 +410,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
  </select>
+ <update id="xgZhfzXmnf" parameterType="sckzhfz" >
+ 		update xmk_zhfz set xmnf=#{xmnf} where id=#{xmkid}
+ </update>
 </mapper>

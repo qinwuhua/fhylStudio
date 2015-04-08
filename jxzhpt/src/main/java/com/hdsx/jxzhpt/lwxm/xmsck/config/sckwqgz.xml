@@ -386,4 +386,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
  </select>
+ <update id="xgWqgzXmnf" parameterType="sckwqgz" >
+ 		update xmk_wqgz set xmnf=#{xmnf} where id=#{xmkid}
+ </update>
 </mapper>

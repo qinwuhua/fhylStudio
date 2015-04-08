@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 
 <style type="text/css">
 TD {
@@ -32,6 +33,7 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
+		xmnf("xmnf");
 		$("#save_button").click(function(){
 			if($("#lxbm").val()!="" && $("#lxbm").val()!=null){
 				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
@@ -226,12 +228,6 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						<option selected value="2015年">2015年</option>
-						<option value="2014年">2014年</option>
-						<option value="2013年">2013年</option>
-						<option value="2012年">2012年</option>
-						<option value="2011年">2011年</option>
-						<option value="2010年">2010年</option>
 					</select>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>

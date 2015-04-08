@@ -50,7 +50,7 @@ function xmnf(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
-	/*years.push({text:'全部'});*/
+	years.push({text:""});
 	for(var i=0;i<=10;i++){
 		if(i==0) first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
@@ -60,7 +60,7 @@ function xmnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
-	$('#'+id).combobox("setValue",first);
+	$('#'+id).combobox("setValue","");
 }
 /*//基础库管理
 function zdy(){

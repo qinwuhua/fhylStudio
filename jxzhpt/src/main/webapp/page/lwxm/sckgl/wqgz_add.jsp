@@ -17,12 +17,13 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 var xmkid;
 var bzls;
 $(function(){
+	xmnf("xmnf");
 	autoCompleteQLBH();
-
 	$("#save_button").click(function(){
 		var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
 		$.ajax({
@@ -108,7 +109,8 @@ function autoCompleteQLBH(){
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#sbjgxs").html(item.sbjgxs);
-				$("#xmnf").html(item.xmnf);
+				/* $("#xmnf").html(item.xmnf); */
+				$("#xmnf").combobox("setValue",item.xmnf);
 				$("#xmtype").html(item.xmtype);
 				$("#bhnr").html(item.bhnr);
 				$("#bz").html(item.bz);
@@ -123,7 +125,7 @@ function saveWqgz(){
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
 	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
 	"&scbmbm="+$.cookie("unit")+"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+
-	"&sck_sbthcd="+sbthcd+"&bzls="+bzls;
+	"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&xmnf="+$("#xmnf").combobox("getValue");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/insertSckwqgz.do',
@@ -249,7 +251,8 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmnf"></span></td>
+					<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="xmtype"></span></td>

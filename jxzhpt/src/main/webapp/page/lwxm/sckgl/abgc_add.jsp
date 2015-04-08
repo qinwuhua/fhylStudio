@@ -24,8 +24,8 @@ var qdStr;
 var zdStr;
 var bzls;
 	$(function(){
+		xmnf("xmnf");
 		autoCompleteLXBM();
-
 		$("#save_button").click(function(){
 			if($("#scqdzh").val()==null || $("#scqdzh").val()==''){
 				alert("对不起，起点桩号不能为空！");
@@ -129,7 +129,8 @@ var bzls;
 					$("#lxjsdj").html(item.lxjsdj);
 					$("#qzlc").html(item.qzlc);
 					$("#yhlc").html(item.yhlc);
-					$("#xmnf").html(item.xmnf);
+					/* $("#xmnf").html(item.xmnf); */
+					$("#xmnf").combobox("setValue",item.xmnf);
 					$("#xmtype").html(item.xmtype);
 					$("#yhnr").html(item.yhnr);
 					$("#bz").html(item.bz);
@@ -147,7 +148,7 @@ var bzls;
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
-		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls;
+		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&xmnf="+$("#xmnf").combobox("getValue");
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckabgc.do',
@@ -256,7 +257,8 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; " align="left">
-					<span id="xmnf"></span></td>
+				<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xmtype"></span></td>

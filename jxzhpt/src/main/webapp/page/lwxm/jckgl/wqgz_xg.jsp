@@ -27,6 +27,7 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 $(function(){
+	xmnf("xmnf");
 	wqgzById();
 	$("#save_button").click(function(){
 		var data ="id="+parent.rowid+"&qlbh="+$("#qlbh").html()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydw="+$("#gydw").html()
@@ -165,12 +166,6 @@ function wqgzById(){
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
-									<option selected value="2015年">2015年</option>
-									<option value="2014年">2014年</option>
-									<option value="2013年">2013年</option>
-									<option value="2012年">2012年</option>
-									<option value="2011年">2011年</option>
-									<option value="2010年">2010年</option>
                               	</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff;" align="left">

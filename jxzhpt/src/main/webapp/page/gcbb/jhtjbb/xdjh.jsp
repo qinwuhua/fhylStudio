@@ -33,9 +33,9 @@ $(function(){
 	startSearch();
 });
 function startSearch(){
-	var gydw=$("#gydw").combotree("getValue");
-	if(gydw='36'){
-		gydw="";
+	var gydw="";
+	if($("#gydw").combobox("getValue")!='36'){
+		gydw=$("#gydw").combobox("getValue");
 	}
 	$.ajax({
 		type:'post',
@@ -99,10 +99,10 @@ function startSearch(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:410px">
+                	<div style="width:100%;height:1200px">
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="2000px"  class="table_body">
+							<table width="1600px"  class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
