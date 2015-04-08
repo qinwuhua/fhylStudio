@@ -70,10 +70,11 @@ function openAdd(id,title,href){
 		modal : true
 	}).dialog("setTitle",title).dialog("open");
 }
+var zjxddiv;
 function openZjxd(id,title,href,width,height,zjid){
 	zjId=zjid;
 	bz=id;
-	$('#'+id).dialog({
+	zjxddiv = $('<div></div>').dialog({
 		iconCls : 'icon-edit',
 		href:href,
 		width : width,
@@ -83,7 +84,7 @@ function openZjxd(id,title,href,width,height,zjid){
 		maximizable:true,
 		modal : true,
 		onClose:function(){
-			//$('#'+id).dialog('destroy',false);
+			$(this).dialog('destroy',false);
 		}
 	}).dialog("setTitle",title).dialog("open");
 }
@@ -99,7 +100,8 @@ function addZjxd(){
 		data:zjxd,
 		success:function(data){
 			alert("添加成功！");
-			closeWindow("zjxd");
+			closezjxd();
+			//closeWindow("zjxd");
 			queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 		}
 	});
@@ -170,11 +172,9 @@ function importData_jh(flag){
 	weatherDlg.ShowDialog();
 	return false;
 }
-
-
-
-
-
+function closezjxd(){
+	$(zjxddiv).dialog('destroy',false);
+}
 function closeWindow(id){
 	$('#'+id).dialog("close");
 }
@@ -244,7 +244,7 @@ function editZjxd(){
 		success:function(data){
 			if(data.result=="true"){
 				alert("修改成功！");
-				closeWindow('zjxd');
+				closezjxd();
 				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
 			}else{
 				alert("修改失败！");
