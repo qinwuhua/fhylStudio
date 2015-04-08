@@ -277,6 +277,7 @@
 	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
 	<script type="text/javascript">
 		queryYhdzxById(xxId);
+		queryZjxdSumByXmid();
 		queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 	</script>
 </body>

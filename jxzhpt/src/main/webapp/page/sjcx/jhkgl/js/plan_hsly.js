@@ -6,16 +6,18 @@ function querySumHsly(){
 		url:'../../../jhgl/querySumHsly.do',
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			$('#lblGMHJ').html(data.jsgmhj);
-			$('#lblYJGL').html(data.jsgmy);
-			$('#lblEJGL').html(data.jsgme);
-			$('#lblSJGL').html(data.jsgms);
-			$('#lblSIJGL').html(data.jsgmf);
-			$('#lblDLDQ').html(data.jsgmdldq);
-			$('#lblDLDQ').html(data.jsgmdldq);
-			$('#lblZTZ').html(data.ztz);
-			$('#lblZYTZ').html(data.zytz);
+			if(data!=null){
+				$('#lblCount').html(data.id);
+				$('#lblGMHJ').html(data.jsgmhj);
+				$('#lblYJGL').html(data.jsgmy);
+				$('#lblEJGL').html(data.jsgme);
+				$('#lblSJGL').html(data.jsgms);
+				$('#lblSIJGL').html(data.jsgmf);
+				$('#lblDLDQ').html(data.jsgmdldq);
+				$('#lblDLDQ').html(data.jsgmdldq);
+				$('#lblZTZ').html(data.ztz);
+				$('#lblZYTZ').html(data.zytz);
+			}
 		}
 	});
 }

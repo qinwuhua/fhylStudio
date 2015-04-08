@@ -21,9 +21,9 @@
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
-			querySumHsly();
 			var params={xzqhdm:null,xmmc:null,jhnf:null};
 			sbnf("ddlSHZT");
+			querySumHsly();
 			hslyglxm(params);
 		});
 		function searchHsly(){

@@ -178,6 +178,20 @@ function closezjxd(){
 function closeWindow(id){
 	$('#'+id).dialog("close");
 }
+function queryZjxdSumByXmid(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryZjxdSumByXmid.do',
+		data:'zjxd.xmid='+xxId,
+		dataType:'json',
+		success:function(data){
+			if(data!=null){
+				$('#lblTzCount').html(data.xmid);
+				$('#lblxfzjzj').html(data.xdzj);
+			}
+		}
+	});
+}
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
 	$('#zjxdList').datagrid({
@@ -256,7 +270,7 @@ function roleName(){
 	var sheng = new RegExp("^[0-9]{7}0000$");
 	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
 	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-	if(sheng.test($.cookie("unit"))){
+	if(sheng.test($.cookie("unit")) || $.cookie("unit")=="36"){
 		return "省级";
 	}else if(shi1.test($.cookie("unit")) || shi2.test($.cookie("unit"))){
 		return "市级";

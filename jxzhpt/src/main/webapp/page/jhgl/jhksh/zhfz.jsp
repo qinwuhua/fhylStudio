@@ -71,6 +71,8 @@
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
 			}
+			queryZjqf($('#sbnf').combobox("getValue"));
+			querySumZhfz(jh,lx);
 			zhfzxm_sh(jh,lx);
 		}
 		function spBatch(){

@@ -12,7 +12,10 @@ function queryZjqf(nf){
 		xzqhdm=$.cookie("unit").substring(0,9)+"00";
 	}else if(roleName()=="市级"){
 		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
+	}else if(roleName()=="省级"){
+		xzqhdm="11101360000";
 	}
+	var y=true;
 	$.ajax({
 		type:'post',
 		async:false,
@@ -24,14 +27,22 @@ function queryZjqf(nf){
 				$.each(JSON.parse(data.zjqf),function(index,item){
 					if(item.id==$.cookie("unit")){
 						$('#lblQfzj').html(item.abgc);
+						y=false;
+					}else if(roleName()=="省级" && item.id==xzqhdm){
+						$('#lblQfzj').html(item.abgc);
+						y=false;
 					}
 				});
+			}
+			if(y){
+				$('#lblQfzj').html("0");
 			}
 		}
 	});
 }
 function querySumAbgc(jh,lx){
-	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,
+			'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd,"jh.jhnf":jh.jhnf};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumAbgc.do',

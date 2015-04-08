@@ -64,6 +64,8 @@
 				xzqhfather=gydwbm.substring(0,9)+"00";
 			}else if(roleName()=="市级"){
 				xzqhfather=gydwbm.substring(0,7)+"0000";
+			}else if(roleName()=="省级"){
+				xzqhfather=gydwbm;
 			}
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
 			$.ajax({
@@ -87,8 +89,7 @@
 								}
 							}
 						});
-					}
-					/*else{
+					}else{
 						$(trsum[0]).val("");
 						$(trsum[1]).val("");
 						$(trsum[2]).val("");
@@ -97,7 +98,7 @@
 							$(trsum[1]).attr("disabled",true);
 							$(trsum[2]).attr("disabled",true);
 						}
-					}*/
+					}
 				}
 			});
 			//查询本单位的资金切分情况
@@ -122,13 +123,12 @@
 							$(tds[1]).val(item.abgc);
 							$(tds[2]).val(item.zhfz);
 						});
-					}
-					/*else{
+					}else{
 						var text= $("#zjqf_table input:gt(3)");
 						$.each(text,function(index,item){
 							$(item).val("");
 						});
-					}*/
+					}
 				}
 			});
 		}
