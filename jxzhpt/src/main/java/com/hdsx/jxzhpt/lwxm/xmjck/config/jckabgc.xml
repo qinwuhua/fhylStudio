@@ -280,10 +280,10 @@
 			and lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(zdzh)>=to_number(#{qdzh})
+			and to_number(zdzh)>to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(qdzh) &lt;=to_number(#{zdzh})
+			and to_number(qdzh) &lt;to_number(#{zdzh})
 		</if>
 	</select>
 	
