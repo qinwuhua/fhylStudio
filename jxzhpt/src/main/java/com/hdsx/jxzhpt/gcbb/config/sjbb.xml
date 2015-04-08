@@ -25,7 +25,7 @@
 		    where b.v_1=a.c(+)
 		    union all
 		    select '灾害防治' v_0,'国省道小计' v_1,count(lxbm) v_2,
-		    0 v_3,sum(yhlc) v_4,sum(decode(JHSYBZJE,null,0,JHSYBZJE)) v_5,0  v_6,sum(decode(PFZTZ,null,0,PFZTZ)) v_7 from 
+		    0 v_3,decode(sum(yhlc),null,0,sum(yhlc)) v_4,decode(sum(JHSYBZJE),null,0,sum(JHSYBZJE)) v_5,0  v_6,decode(sum(PFZTZ),null,0,sum(PFZTZ)) v_7 from 
 		    Xmk_Zhfz lx left join sck_zhfz sc on lx.id=sc.xmkid 
 		    left join plan_zhfz jh on sc.sckid=jh.sckid
 		    where lx.gydwbm like '%'||#{unit}||'%' and lx.XZQHDM like rtrim(#{dist},'0')||'%' and SBNF=#{nf}
