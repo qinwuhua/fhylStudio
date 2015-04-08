@@ -20,11 +20,13 @@ function queryZjqf(nf){
 		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
 		dataType:'json',
 		success:function(data){
-			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit")){
-					$('#lblQfzj').html(item.abgc);
-				}
-			});
+			if(data!=null){
+				$.each(JSON.parse(data.zjqf),function(index,item){
+					if(item.id==$.cookie("unit")){
+						$('#lblQfzj').html(item.abgc);
+					}
+				});
+			}
 		}
 	});
 }
@@ -250,7 +252,7 @@ function abgcxm_sh(jh,lx){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>  ';
 	        	result+='<a href="javascript:openDialog('+"'abgc_sh','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	if((roleName()=="省级" && row.jh_sbthcd<=4))
+	        	if(($.cookie("unit")=="36" && row.jh_sbthcd<=4))
 	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
