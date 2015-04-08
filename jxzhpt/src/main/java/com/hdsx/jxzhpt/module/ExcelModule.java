@@ -107,8 +107,6 @@ public class ExcelModule extends BaseActionSupport {
 			List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 			String descr="";
 			Map map = new HashMap();
-			map.put("sbdw", sbdw);
-			map.put("sck_sbthcd", sck_sbthcd);
 			map.put("tbdw", tbdw);
 			if ("SCK_Security".equals(moduleName)) { // 安保的数据
 				list = abgcServer.insertToSheet(map);

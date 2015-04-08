@@ -77,7 +77,10 @@
 						 if($.cookie("unit2")=='______36') return 7;
 					 		else return $.cookie("unit2").length;
 					 	},
-					 	gydw: $.cookie("unit2"),
+					 	'gydw': function(){
+							 if($.cookie("unit2")=='______36') return "";
+						 		else return $.cookie("unit2");
+						 	},
 					 	'xzqhdm':function(){
 					 		if("360000"==$.cookie("dist")){
 					 			return "";

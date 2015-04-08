@@ -8,19 +8,31 @@ function queryZjqf(nf){
 		xzqhdm=$.cookie("unit").substring(0,9)+"00";
 	}else if(roleName()=="市级"){
 		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
+	}else if(roleName()=="省级"){
+		xzqhdm="11101360000";
 	}
+	var y=true;
 	$.ajax({
 		type:'post',
 		async:false,
 		url:'../../../jhgl/queryZjqfByXzqh.do',
-		data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
 		dataType:'json',
 		success:function(data){
-			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit")){
-					$('#lblQfzj').html(item.wqgz);
-				}
-			});
+			if(data!=null){
+				$.each(JSON.parse(data.zjqf),function(index,item){
+					if(item.id==$.cookie("unit")){
+						$('#lblQfzj').html(item.wqgz);
+						y=false;
+					}else if(roleName()=="省级" && item.id==xzqhdm){
+						$('#lblQfzj').html(item.wqgz);
+						y=false;
+					}
+				});
+			}
+			if(y){
+				$('#lblQfzj').html("0");
+			}
 		}
 	});
 }
@@ -229,7 +241,7 @@ function wqxm_sh(jh,lx){
 		        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	var result='<a href="javascript:locationXm('+"'"+row.jckwqgz.qlbh+"',"+"'"+row.jckwqgz.akjfl+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 		        	result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../jhkxx/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-		        	if((roleName()=="省级" && row.jh_sbthcd<=4))
+		        	if(($.cookie("unit")=="36" && row.jh_sbthcd<=4))
 		        		result+='<a href="javascript:openDialog('+"'wqgz_xx','危桥改造项目计划详情','../edit/wqgz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		        	else
 		        		result+='<a style="text-decoration:none;color:black;">编辑</a>';

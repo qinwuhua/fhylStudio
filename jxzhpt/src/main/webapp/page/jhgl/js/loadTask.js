@@ -70,10 +70,11 @@ function openAdd(id,title,href){
 		modal : true
 	}).dialog("setTitle",title).dialog("open");
 }
+var zjxddiv;
 function openZjxd(id,title,href,width,height,zjid){
 	zjId=zjid;
 	bz=id;
-	$('#'+id).dialog({
+	zjxddiv = $('<div></div>').dialog({
 		iconCls : 'icon-edit',
 		href:href,
 		width : width,
@@ -83,7 +84,7 @@ function openZjxd(id,title,href,width,height,zjid){
 		maximizable:true,
 		modal : true,
 		onClose:function(){
-			//$('#'+id).dialog('destroy',false);
+			$(this).dialog('destroy',false);
 		}
 	}).dialog("setTitle",title).dialog("open");
 }
@@ -99,7 +100,8 @@ function addZjxd(){
 		data:zjxd,
 		success:function(data){
 			alert("添加成功！");
-			closeWindow("zjxd");
+			closezjxd();
+			//closeWindow("zjxd");
 			queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 		}
 	});
@@ -170,13 +172,25 @@ function importData_jh(flag){
 	weatherDlg.ShowDialog();
 	return false;
 }
-
-
-
-
-
+function closezjxd(){
+	$(zjxddiv).dialog('destroy',false);
+}
 function closeWindow(id){
 	$('#'+id).dialog("close");
+}
+function queryZjxdSumByXmid(){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryZjxdSumByXmid.do',
+		data:'zjxd.xmid='+xxId,
+		dataType:'json',
+		success:function(data){
+			if(data!=null){
+				$('#lblTzCount').html(data.xmid);
+				$('#lblxfzjzj').html(data.xdzj);
+			}
+		}
+	});
 }
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
@@ -244,7 +258,7 @@ function editZjxd(){
 		success:function(data){
 			if(data.result=="true"){
 				alert("修改成功！");
-				closeWindow('zjxd');
+				closezjxd();
 				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
 			}else{
 				alert("修改失败！");
@@ -256,7 +270,7 @@ function roleName(){
 	var sheng = new RegExp("^[0-9]{7}0000$");
 	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
 	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-	if(sheng.test($.cookie("unit"))){
+	if(sheng.test($.cookie("unit")) || $.cookie("unit")=="36"){
 		return "省级";
 	}else if(shi1.test($.cookie("unit")) || shi2.test($.cookie("unit"))){
 		return "市级";
@@ -298,7 +312,7 @@ function filterXzqhdm(xzqhdm){
 //列入计划
 function showLrjh(jsp,w,h){
 	var cd=$.cookie("unit2").length;
-	if(cd>7) {
+	if(cd>8) {
 		alert("对不起，非省级单位无法列入！");
 		return;
 	}

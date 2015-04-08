@@ -4,6 +4,10 @@
 	<select id="queryZjxdByXmId" parameterType="string" resultType="plan_zjxd">
 		select * from plan_zjxd where xmid=#{id} order by xdnf
 	</select>
+	<select id="queryZjxdSumByXmid" parameterType="string" resultType="plan_zjxd">
+		select count(z.xmid) as xmid,sum(z.xdzj) as xdzj from plan_zjxd z 
+		where z.xmid=#{id} group by z.xmid
+	</select>
 	<select id="queryZjxdCount" parameterType="string" resultType="int">
 		select count(*) from plan_zjxd where xmid=#{id}
 	</select>

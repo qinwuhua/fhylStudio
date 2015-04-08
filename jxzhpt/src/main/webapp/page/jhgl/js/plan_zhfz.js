@@ -27,17 +27,31 @@ function queryZjqf(nf){
 		xzqhdm=$.cookie("unit").substring(0,9)+"00";
 	}else if(roleName()=="市级"){
 		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
+	}else if(roleName()=="省级"){
+		xzqhdm="11101360000";
 	}
+	var y=true;
 	$.ajax({
-		type:'post',async:false,dataType:'json',
+		type:'post',
+		async:false,
 		url:'../../../jhgl/queryZjqfByXzqh.do',
-		data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		dataType:'json',
 		success:function(data){
-			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit")){
-					$('#lblQfzj').html(item.zhfz);
-				}
-			});
+			if(data!=null){
+				$.each(JSON.parse(data.zjqf),function(index,item){
+					if(item.id==$.cookie("unit")){
+						$('#lblQfzj').html(item.zhfz);
+						y=false;
+					}else if(roleName()=="省级" && item.id==xzqhdm){
+						$('#lblQfzj').html(item.zhfz);
+						y=false;
+					}
+				});
+			}
+			if(y){
+				$('#lblQfzj').html("0");
+			}
 		}
 	});
 }
@@ -50,7 +64,7 @@ function sbnf(id){
 			first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
 	}
-	$('#'+id).combobox({    
+	$('#'+id).combobox({
 	    data:years,
 	    valueField:'text',    
 	    textField:'text'   
@@ -249,13 +263,13 @@ function zhfzxm_sh(jh,lx){
 	        }},
 	        {field:'c4',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result;
-	        	if(roleName()=="省级" && row.jh_sbthcd<=4){
+	        	if($.cookie("unit")=="36" && row.jh_sbthcd<=4){
 	        		result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
 	        		result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 	        	}else if(row.spzt=="1"){
 	        		result="已审批";
 	        	}else{
-	        		result="审批";
+	        		result="审批   |  退回";
 	        	}
 	        	return result;
 	        }},

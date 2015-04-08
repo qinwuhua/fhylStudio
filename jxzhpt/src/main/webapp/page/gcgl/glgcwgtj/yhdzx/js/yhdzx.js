@@ -22,7 +22,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','养护大中修月报列表','yhdzxyb.jsp','wqxx',1059,450);
+	YMLib.UI.createWindow('wqxx1','养护大中修月报列表','yhdzxyb.jsp','wqxx1',1059,450);
 	//window.open("wqgzyb.jsp");
 }
 
@@ -91,16 +91,16 @@ function showYBlist(){
 			        {field:'bywcjc',title:'本月完成基层（m³）',width:120,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:3},
-			        {title:'本月资金到位（万元）',colspan:3},
+			        {title:'本月完成投资（万元）',colspan:2},
+			        {title:'本月资金到位（万元）',colspan:2},
 			        {field:'qksm',title:'情况说明',width:150,align:'center',rowspan:2}
 	             ],
 	             [
 			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+//			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
 			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
 			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+//			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
 			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]

@@ -19,33 +19,7 @@
 			$("#nf").text(new Date().getFullYear());
 			shezhi();
 		});
-		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
-			$.ajax({
-				type:'post',
-				url:'../../../../gcgl/selectWqgzbzzj.do',
-				data:data,
-				dataType:'json',
-				success:function(msg){
-					if(msg.zbfzj=='')
-						$("#zbfzj").text('0');
-					else
-						$("#zbfzj").text(msg.zbfzj);
-					if(msg.nbfzj=='')
-						$("#nbfzj").text('0');
-					else
-						$("#nbfzj").text(msg.nbfzj);
-					if(msg.nxdzj=='')
-						$("#nxdzj").text('0');
-					else
-						$("#nxdzj").text(msg.nxdzj);
-					if(msg.zxdzj=='')
-						$("#jhxdzj").text('0');
-					else
-						$("#jhxdzj").text(msg.zxdzj);
-				}
-			});	
-		}
+		
 	</script>
 	<style type="text/css">
 <!--
@@ -100,12 +74,12 @@ a:active {
 								onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'"
 								src="${pageContext.request.contextPath}/images/Button/tianj1.gif"
 								style="border-width: 0px; cursor: hand;" /></td>
-							<td><a href="javascript:void(0)" >
+							<td>
 									<img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回"
 									onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
 									onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
 									style="border: 0" />
-							</a></td>
+							</td>
 						</tr>
 					</table>
 				</td>

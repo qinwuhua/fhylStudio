@@ -117,46 +117,6 @@ function tuiHui(){
 	}
 }
 
-function insertJhk(){
-	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) {
-		alert("请选择要列入计划项目！");
-		return;
-	}
-	var sckid= rows[0].sckid;
-	for(var i=0;i<rows.length;i++){
-		if(rows[i].sck_shzt=='未审核'){
-			alert("对不起，该项目未审核！");
-			return;
-		} 
-	 	if(rows[0].lrjh=='已列入'){
-			alert("该项目已列入计划，请勿重复操作！");
-			return;
-		}
-	}
- 	for(var i=1;i<rows.length;i++){
-		sckid+=","+rows[i].sckid ;
-	}
-	if(confirm('您确定将该项目列入计划？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
-				 dataType : 'json',
-				 data : 'delstr=' +sckid,
-				 success : function(msg){
-					 if(msg){
-						 alert('列入计划成功！');
-						 $("#grid").datagrid('reload');
-					 }else{
-						 alert('列入计划失败！');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-				 }
-			});
-	}
-}
 </script>
 <style type="text/css">
 TD {
@@ -218,7 +178,6 @@ text-decoration:none;
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_zhfz_scsh();" style="border-width:0px;cursor: hand;" />
-							 	<img name="lrjh" id="lrjh" src="../../../images/Button/lrjh_1.png" onmouseover="this.src='../../../images/Button/lrjh_2.png'" onmouseout="this.src='../../../images/Button/lrjh_1.png'   " src=""  onclick="insertJhk();" style="border-width:0px;" />
 							 </p>
 						</div>
 				</fieldset>
@@ -226,9 +185,9 @@ text-decoration:none;
 		</tr>
 		<tr>
                    <td style="text-align: left; padding-left: 20px; padding-top: 5px; height: 25px; font-size: 12px;" >
-        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000"></span>&nbsp;】个安保工程项目，
-        					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000"></span>&nbsp;】公里，
-        					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000"></span>&nbsp;】公里。</td>
+        					共有【&nbsp;<span id="abgc1" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
+        					总里程共【&nbsp;<span id="abgc2" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
+        					隐患里程共【&nbsp;<span id="abgc3" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里。</td>
         </tr>
          <tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">

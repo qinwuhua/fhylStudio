@@ -214,7 +214,7 @@
 				<td style="text-align: left; padding-left: 20px; font-size: 12px;">
 					共有【&nbsp;
 					<span id="lblTzCount" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】个下发信息，下发资金共【&nbsp;
-					<span id="lblXDZJ" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】万元。
+					<span id="lblxfzjzj" style="font-weight: bold; color: #FF0000">1</span>&nbsp;】万元。
 				</td>
 			</tr>
 			<tr>
@@ -255,6 +255,7 @@
 	<div id="zjxd" style="font-size: 12px; width: 80%;"></div>
 	<script type="text/javascript">
 		queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
+		queryZjxdSumByXmid();
 		$.ajax({
 			url:'../../../jhgl/queryWqgzById.do',
 			data:"jh.id="+xxId,

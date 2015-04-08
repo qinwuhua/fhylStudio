@@ -24,7 +24,7 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 
 	@Override
 	public boolean insertSckwqgz(Sckwqgz wqgz) {
-		if(insert("insertSckwqgz", wqgz)>0) return true;
+		if(insert("insertSckwqgz", wqgz)>0 && update("xgWqgzXmnf", wqgz)>0) return true;
 		else return false;
 	}
 

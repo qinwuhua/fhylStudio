@@ -133,9 +133,9 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 				map.put("9", map.get("9").substring(0, 4));
 			}
 			if(map.get("12").length()!=4){
-				map.put("12", map.get("12").substring(0, 4)+"年");
+				map.put("12", map.get("12").substring(0, 4));
 			}else{
-				map.put("12", map.get("12")+"年");
+				map.put("12", map.get("12"));
 			}
 			map.put("tbbmbm", tbbmbm);
 			map.put("sbthcd", sbthcd);

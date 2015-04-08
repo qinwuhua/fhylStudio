@@ -34,9 +34,9 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
-			if(roleName()=="市" || roleName()=="省"){
+			if(roleName()=="市级" || roleName()=="省级"){
 				jh.jh_sbthcd=2;
 			}
 			queryZjqf($('#sbnf').combobox("getValue"));
@@ -52,7 +52,7 @@
 			abgcxm_sb(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:null};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -97,12 +97,13 @@
 					jh.jh_sbthcd=2;
 				}
 			}
+			queryZjqf($('#sbnf').combobox('getValue'));
 			querySumAbgc(jh,lx);
 			abgcxm_sb(jh,lx);
 		}
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			if($('#lblQfzj').html()==$('#lblBTZ').html){
+			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;
@@ -207,9 +208,7 @@
 									<option value="已上报">已上报</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
+								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
 								</select>

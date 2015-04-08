@@ -227,7 +227,7 @@ function gclmsjxm_sh(jh,lx){
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>   ';
 				result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-				if(roleName()=="省级" && row.jh_sbthcd==4)
+				if($.cookie("unit")=="36" && row.jh_sbthcd==4)
 					result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 				else
 					result+='编辑';
@@ -235,10 +235,10 @@ function gclmsjxm_sh(jh,lx){
 			}},
 			{field:'c1',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
 				var result="";
-				if(roleName()=="省级" && row.jh_sbthcd==4 && row.spzt=="0"){
+				if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=="0"){
 					result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
 					result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
-				}else if(roleName()!="省级" && row.jh_sbthcd==4 && row.spzt=="0"){
+				}else if($.cookie("unit")!="36" && row.jh_sbthcd==4 && row.spzt=="0"){
 					result="审批      |    退回";
 				}else if(row.spzt=="1"){
 					result="已审批";

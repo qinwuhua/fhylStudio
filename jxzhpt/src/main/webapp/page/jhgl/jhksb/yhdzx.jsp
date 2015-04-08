@@ -94,6 +94,31 @@
 			querySumYhdzx(jh,lx);
 			yhdzxxm_sb(jh,lx);
 		}
+		function sbList(){
+			var isOk=true;
+			var selList=gridObj.datagrid('getSelections');
+			$.each(selList,function(index,item){
+				if(item.jh_sbthcd>4)
+					isOk=false;
+			});
+			if(isOk){
+				$.each(selList,function(index,item){
+					var date=new Date();
+					var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+						" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+					var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbm':$.cookie("unit"),'jh.sbzt':'1',
+						'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
+					if(xian1.test($.cookie("unit")) || xian2.test($.cookie("unit"))){
+						jh['jh.sbzt']='0';
+					}
+					editStatus(jh);
+				});
+				alert("上报成功！");
+				searchYhdzx();
+			}else{
+				alert("请检查选中的数据，只能上报未上报过的计划！");
+			}
+		}
 		function sb(id,jh_sbthcd){
 			var date=new Date();
 			var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+

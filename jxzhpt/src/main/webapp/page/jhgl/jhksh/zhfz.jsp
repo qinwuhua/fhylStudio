@@ -30,7 +30,7 @@
 			sbnf("sbnf");
 			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
-			if(roleName()=="省级"){
+			//if(roleName()=="省级"){
 				queryZjqf($('#sbnf').combobox("getValue"));
 				if(getParam("t")=='1'){
 					jh.jh_sbthcd=4;
@@ -38,9 +38,9 @@
 				}
 				querySumZhfz(jh,lx);
 				zhfzxm_sh(jh,lx);
-			}else{
+			/*}else{
 				alert("只有省级用户才能查看审核中的计划信息");
-			}
+			}*/
 		});
 		function searchZhfz(){
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:4};
@@ -71,6 +71,8 @@
 			if($('#ddlGldj').combobox('getText')!='全部'){
 				lx.lxbm=$('#ddlGldj').combobox('getValue');
 			}
+			queryZjqf($('#sbnf').combobox("getValue"));
+			querySumZhfz(jh,lx);
 			zhfzxm_sh(jh,lx);
 		}
 		function spBatch(){

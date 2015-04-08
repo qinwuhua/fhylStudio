@@ -4,7 +4,7 @@ function xmnf(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
-	/*years.push({text:'全部'});*/
+	years.push({text:""});
 	for(var i=0;i<=10;i++){
 		if(i==0) first=myDate.getFullYear()-i;
 		years.push({text:(myDate.getFullYear()-i)});
@@ -14,7 +14,7 @@ function xmnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
-	$('#'+id).combobox("setValue",first);
+	$('#'+id).combobox("setValue","");
 }
 function tsdq(id){
 	$('#'+id).combobox({    
@@ -165,9 +165,12 @@ function exportModule(filename){
 	window.location.href="/jxzhpt/xtgl/getModule.do?moduleName="+filename;
 }
 //审查库模板导出
+var tbdw;
 function exportModule_sc(filename){
-	YMLib.UI.createWindow('exportChooseDw','按单位导出模板','/jxzhpt/page/chooseDw.jsp?filename='+filename,'exportChooseDw',400,300);
-	//window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename;
+		 if($.cookie("unit2")=='______36') tbdw= "";
+	 		else tbdw= $.cookie("unit2");
+//	YMLib.UI.createWindow('exportChooseDw','按单位导出模板','/jxzhpt/page/chooseDw.jsp?filename='+filename,'exportChooseDw',400,300);
+	window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&tbdw="+tbdw;
 }
 //危桥改造导出excel 
 var cd=$.cookie("unit2").length==2?7:$.cookie("unit2").length;

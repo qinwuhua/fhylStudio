@@ -25,7 +25,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
-			loadBmbm("kgzt","开工状态");
+			loadBmbm2("kgzt","开工状态");
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}

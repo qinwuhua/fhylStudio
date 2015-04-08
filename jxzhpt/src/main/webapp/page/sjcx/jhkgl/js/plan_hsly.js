@@ -6,6 +6,7 @@ function querySumHsly(){
 		url:'../../../jhgl/querySumHsly.do',
 		dataType:'json',
 		success:function(data){
+			if(data.id>0){
 			$('#lblCount').html(data.id);
 			$('#lblGMHJ').html(data.jsgmhj);
 			$('#lblYJGL').html(data.jsgmy);
@@ -16,6 +17,19 @@ function querySumHsly(){
 			$('#lblDLDQ').html(data.jsgmdldq);
 			$('#lblZTZ').html(data.ztz);
 			$('#lblZYTZ').html(data.zytz);
+		}
+			if(data!=null){
+				$('#lblCount').html(data.id);
+				$('#lblGMHJ').html(data.jsgmhj);
+				$('#lblYJGL').html(data.jsgmy);
+				$('#lblEJGL').html(data.jsgme);
+				$('#lblSJGL').html(data.jsgms);
+				$('#lblSIJGL').html(data.jsgmf);
+				$('#lblDLDQ').html(data.jsgmdldq);
+				$('#lblDLDQ').html(data.jsgmdldq);
+				$('#lblZTZ').html(data.ztz);
+				$('#lblZYTZ').html(data.zytz);
+			}
 		}
 	});
 }
@@ -37,7 +51,7 @@ function sbnf(id){
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$(window).width()-10,queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){

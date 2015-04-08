@@ -86,8 +86,8 @@ function showYBlist(){
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
 			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:3},
-			        {title:'本月资金到位（万元）',colspan:3},
+			        {title:'本月完成投资（万元）',colspan:2},
+			        {title:'本月资金到位（万元）',colspan:2},
 			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
 	             ],
 	             [

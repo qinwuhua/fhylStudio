@@ -35,6 +35,13 @@ public class Plan_zjxdController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void queryZjxdSumByXmid(){
+		try {
+			JsonUtils.write(zjxdServer.queryZjxdSumByXmid(zjxd.getXmid()), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void queryZjxdById(){
 		try {
 			JsonUtils.write(zjxdServer.queryZjxdById(zjxd.getId()), getresponse().getWriter());

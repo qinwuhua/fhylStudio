@@ -36,7 +36,7 @@
 		function loadChildGydw(gydw){
 			$.ajax({
 				type:'post',
-				anync:false,
+				async:false,
 				url:'../../../jhgl/queryChildGydw.do',
 				data:'xzqh.id='+gydw,
 				dataType:'json',
@@ -49,7 +49,6 @@
 		}
 		function loadMessageByGydw(){
 			var gydw=$.cookie("unit");
-			alert(gydw);
 			if(gydw=="36"){
 				loadZjqfByIdAndXzqh("21101360000");
 				loadZjqfByIdAndXzqh("11101360000");
@@ -65,6 +64,8 @@
 				xzqhfather=gydwbm.substring(0,9)+"00";
 			}else if(roleName()=="市级"){
 				xzqhfather=gydwbm.substring(0,7)+"0000";
+			}else if(roleName()=="省级"){
+				xzqhfather=gydwbm;
 			}
 			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
 			$.ajax({
@@ -88,8 +89,7 @@
 								}
 							}
 						});
-					}
-					/*else{
+					}else{
 						$(trsum[0]).val("");
 						$(trsum[1]).val("");
 						$(trsum[2]).val("");
@@ -98,7 +98,7 @@
 							$(trsum[1]).attr("disabled",true);
 							$(trsum[2]).attr("disabled",true);
 						}
-					}*/
+					}
 				}
 			});
 			//查询本单位的资金切分情况
@@ -123,13 +123,12 @@
 							$(tds[1]).val(item.abgc);
 							$(tds[2]).val(item.zhfz);
 						});
-					}
-					/*else{
+					}else{
 						var text= $("#zjqf_table input:gt(3)");
 						$.each(text,function(index,item){
 							$(item).val("");
 						});
-					}*/
+					}
 				}
 			});
 		}
@@ -187,11 +186,11 @@
 						}
 					}
 				});	
-			}else if(parseInt($(trsum[0]).val(),10)>=wqsum){
+			}else if(parseInt($(trsum[0]).val(),10)<wqsum){
 				alert("危桥改造的资金切分不正确");
-			}else if(parseInt($(trsum[1]).val(),10)>=absum){
+			}else if(parseInt($(trsum[1]).val(),10)<absum){
 				alert("安保工程的资金切分不正确");
-			}else if(parseInt($(trsum[2]).val(),10)>=zhsum){
+			}else if(parseInt($(trsum[2]).val(),10)<zhsum){
 				alert("灾害防治的资金切分不正确");
 			}
 		}
@@ -201,16 +200,46 @@
 			var zjqfJson=new Array();
 			$.each($("tr[name='"+gydw+"']"),function(index,item){
 				var tds = $('#'+item.id+' input');
+				var wq=0,ab=0,zh=0;
 				if(item.id!=gydw){
-					wqsum+=parseInt($(tds[0]).val(),10);
-					absum+=parseInt($(tds[1]).val(),10);
-					zhsum+=parseInt($(tds[2]).val(),10);
+					if($(tds[0]).val()!=""){
+						wqsum+=parseInt($(tds[0]).val(),10);
+						wq=$(tds[0]).val();
+					}
+					if($(tds[1]).val()!=""){
+						absum+=parseInt($(tds[1]).val(),10);
+						ab=$(tds[1]).val();
+					}
+					if($(tds[2]).val()!=""){
+						zhsum+=parseInt($(tds[2]).val(),10);
+						zh=$(tds[2]).val();
+					}
+				}else{
+					if($(tds[0]).val()!=""){
+						wq=$(tds[0]).val();
+					}
+					if($(tds[1]).val()!=""){
+						ab=$(tds[1]).val();
+					}
+					if($(tds[2]).val()!=""){
+						zh=$(tds[2]).val();
+					}
 				}
-				var dq={id:item.id,wqgz:$(tds[0]).val(),abgc:$(tds[1]).val(),zhfz:$(tds[2]).val()};
+				var dq={id:item.id,wqgz:wq,abgc:ab,zhfz:zh};
 				zjqfJson.push(dq);
 			});
 			var trsum = $("#"+gydw+" input");
-			if(parseInt($(trsum[0]).val(),10)>=wqsum && parseInt($(trsum[1]).val(),10)>=absum && parseInt($(trsum[2]).val(),10)>=zhsum){
+			var wqinput=0,abinput=0,zhinput=0;
+			if($(trsum[0]).val()!=""){
+				wqinput=$(trsum[0]).val();
+			}
+			if($(trsum[1]).val()!=""){
+				abinput=$(trsum[1]).val();
+			}
+			if($(trsum[2]).val()!=""){
+				zhinput=$(trsum[2]).val();
+			}
+			if(parseInt(wqinput,10)>=wqsum && parseInt(abinput,10)>=absum && parseInt(zhinput,10)>=zhsum){
 				var zjqf={'zjqf.id':zjqfid,'zjqf.nf':$('#selnf').val(),
 						'zjqf.xzqhdm':gydw,'zjqf.zjqf':JSON.stringify(zjqfJson)};
 				$.ajax({
@@ -225,6 +254,12 @@
 						}
 					}
 				});	
+			}else if(parseInt($(trsum[0]).val(),10)<wqsum){
+				alert("危桥改造的资金切分不正确");
+			}else if(parseInt($(trsum[1]).val(),10)<absum){
+				alert("安保工程的资金切分不正确");
+			}else if(parseInt($(trsum[2]).val(),10)<zhsum){
+				alert("灾害防治的资金切分不正确");
 			}
 			return result;
 		}

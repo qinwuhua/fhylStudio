@@ -12,7 +12,10 @@ function queryZjqf(nf){
 		xzqhdm=$.cookie("unit").substring(0,9)+"00";
 	}else if(roleName()=="市级"){
 		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
+	}else if(roleName()=="省级"){
+		xzqhdm="11101360000";
 	}
+	var y=true;
 	$.ajax({
 		type:'post',
 		async:false,
@@ -20,16 +23,26 @@ function queryZjqf(nf){
 		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
 		dataType:'json',
 		success:function(data){
-			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit")){
-					$('#lblQfzj').html(item.abgc);
-				}
-			});
+			if(data!=null){
+				$.each(JSON.parse(data.zjqf),function(index,item){
+					if(item.id==$.cookie("unit")){
+						$('#lblQfzj').html(item.abgc);
+						y=false;
+					}else if(roleName()=="省级" && item.id==xzqhdm){
+						$('#lblQfzj').html(item.abgc);
+						y=false;
+					}
+				});
+			}
+			if(y){
+				$('#lblQfzj').html("0");
+			}
 		}
 	});
 }
 function querySumAbgc(jh,lx){
-	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,
+			'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd,"jh.jhnf":jh.jhnf};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumAbgc.do',
@@ -250,7 +263,7 @@ function abgcxm_sh(jh,lx){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>  ';
 	        	result+='<a href="javascript:openDialog('+"'abgc_sh','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	if((roleName()=="省级" && row.jh_sbthcd<=4))
+	        	if(($.cookie("unit")=="36" && row.jh_sbthcd<=4))
 	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';

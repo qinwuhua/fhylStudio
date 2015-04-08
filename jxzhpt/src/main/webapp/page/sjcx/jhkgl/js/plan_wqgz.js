@@ -30,6 +30,7 @@ function querySumWqgz(jh,lx){
 		data:param,
 		dataType:'json',
 		success:function(data){
+			if(data.id>0){
 			$('#lblCount').html(data.id);
 			if(data.pfztz!=null && data.pfztz!="")
 				$('#lblZTZ').html(data.pfztz);
@@ -37,6 +38,7 @@ function querySumWqgz(jh,lx){
 				$('#lblBTZ').html(data.jhsybzje);
 			if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
 				$('#lblDFTZ').html(data.jhsydfzcje);
+		}
 		}
 	});
 }
@@ -62,7 +64,7 @@ function wqxm(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 			"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
-		    pageNumber:1,pageSize:10,height:325,width:1070,queryParams:params,
+		    pageNumber:1,pageSize:10,height:$(window).height()-180,width:$(window).width()-10,queryParams:params,
 		    columns:[[
 		        {field:'ck',checkbox:true},
 		        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){

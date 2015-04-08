@@ -52,6 +52,7 @@ function tjyhdzxcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
+				shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -78,6 +79,7 @@ function xgyhdzxcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
+				shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -99,6 +101,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
+					shezhi();
 				}else{
 					alert('删除失败！');
 				}
@@ -260,5 +263,33 @@ function jiazai(ooo){
 				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
+	});	
+}
+
+function shezhi(){
+	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.jhid;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectWqgzbzzj.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg.zbfzj=='')
+				$("#zbfzj").text('0');
+			else
+				$("#zbfzj").text(msg.zbfzj);
+			if(msg.nbfzj=='')
+				$("#nbfzj").text('0');
+			else
+				$("#nbfzj").text(msg.nbfzj);
+			if(msg.nxdzj=='')
+				$("#nxdzj").text('0');
+			else
+				$("#nxdzj").text(msg.nxdzj);
+			if(msg.zxdzj=='')
+				$("#jhxdzj").text('0');
+			else
+				$("#jhxdzj").text(msg.zxdzj);
+		}
 	});	
 }

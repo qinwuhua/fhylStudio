@@ -69,8 +69,8 @@
 			(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_12,
 			t2.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_14,
-			t2.dc v_15,t2.jc v_16,(select (max(bywcdc)+max(bywcjc)+max(bywcmc))/3 from gcgl_gcgzgj where jhid=t2.id) v_17,
-			(t1.yhlc-(select (max(bywcdc)+max(bywcjc)+max(bywcmc))/3 from gcgl_gcgzgj where jhid=t2.id)) v_18,
+			(select sum(bywcdc) from gcgl_gcgzgj where jhid=t2.id)  v_15,(select sum(bywcjc) from gcgl_gcgzgj where jhid=t2.id)  v_16,(select sum(bywcmc) from gcgl_gcgzgj where jhid=t2.id) v_17,
+			(t1.yhlc-(select sum(bywcmc) from gcgl_gcgzgj where jhid=t2.id)) v_18,
 			to_char(t2.sjkgsj,'yyyy-mm-dd')v_19,t2.sfqxkg v_20,
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,t2.sjwgsj v_22,
 			t2.yjwgsj v_23,t2.bz v_24,t2.jhxdwh v_25
@@ -109,8 +109,8 @@
 			(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_12,
 			t2.pfztz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_14,
-			t2.dc v_15,t2.jc v_16,(select (max(bywcdc)+max(bywcjc)+max(bywcmc))/3 from gcgl_gcgzgj where jhid=t2.id) v_17,
-			(t1.yhlc-(select (max(bywcdc)+max(bywcjc)+max(bywcmc))/3 from gcgl_gcgzgj where jhid=t2.id)) v_18,
+			(select sum(bywcdc) from gcgl_gcgzgj where jhid=t2.id)  v_15,(select sum(bywcjc) from gcgl_gcgzgj where jhid=t2.id)  v_16,(select sum(bywcmc) from gcgl_gcgzgj where jhid=t2.id) v_17,
+			(t1.yhlc-(select sum(bywcmc) from gcgl_gcgzgj where jhid=t2.id)) v_18,
 			to_char(t2.sjkgsj,'yyyy-mm-dd')v_19,t2.sfqxkg v_20,
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,to_char(t2.sjwgsj,'yyyy-mm-dd') v_22,
 			to_char(t2.yjwgsj,'yyyy-mm-dd') v_23,t2.bz v_24,t2.jhxdwh v_25
@@ -152,8 +152,8 @@
 			(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_12,
 			t2.pftz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_14,
-			t2.dc v_15,t2.jc v_16,(select (max(dcwcqk)+max(jcwcqk))/2 from gcgl_gcgzsj where jhid=t2.id) v_17,
-			(t1.xmlc-(select (max(dcwcqk)+max(jcwcqk))/2 from gcgl_gcgzsj where jhid=t2.id)) v_18,
+			(select sum(dcwcqk) from gcgl_gcgzsj where jhid=t2.id) v_15,(select sum(jcwcqk) from gcgl_gcgzsj where jhid=t2.id) v_16,(select sum(LQLMWCQK)+sum(SNLMWCQK) from gcgl_gcgzsj where jhid=t2.id) v_17,
+			(t1.xmlc-(select sum(LQLMWCQK)+sum(SNLMWCQK) from gcgl_gcgzsj where jhid=t2.id)) v_18,
 			to_char(t2.sjkgsj,'yyyy-mm-dd')v_19,t2.sfqxkg v_20,
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,t2.sjwgsj v_22,
 			t2.yjwgsj v_23,t1.bz v_24,t2.jhxdwh v_25
@@ -193,8 +193,8 @@
 			(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_12,
 			t2.pftz-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 			(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_14,
-			t2.dc v_15,t2.jc v_16,(select (max(dcwcqk)+max(jcwcqk))/2 from gcgl_gcgzsj where jhid=t2.id) v_17,
-			(t1.xmlc-(select (max(dcwcqk)+max(jcwcqk))/2 from gcgl_gcgzsj where jhid=t2.id)) v_18,
+			(select sum(dcwcqk) from gcgl_gcgzsj where jhid=t2.id) v_15,(select sum(jcwcqk) from gcgl_gcgzsj where jhid=t2.id) v_16,(select sum(LQLMWCQK)+sum(SNLMWCQK) from gcgl_gcgzsj where jhid=t2.id) v_17,
+			(t1.xmlc-(select sum(LQLMWCQK)+sum(SNLMWCQK) from gcgl_gcgzsj where jhid=t2.id)) v_18,
 			to_char(t2.sjkgsj,'yyyy-mm-dd')v_19,t2.sfqxkg v_20,
 			(select max(kgdl) from gcgl_gcgzgj where jhid=t2.id) v_21,to_char(t2.sjwgsj,'yyyy-mm-dd') v_22,
 			to_char(t2.yjwgsj,'yyyy-mm-dd') v_23,t1.bz v_24,t2.jhxdwh v_25
@@ -264,10 +264,10 @@
 	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
 	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
-	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	(select sum(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_16,(select sum(bywcjc) from gcgl_yhdzx where jhid=t2.id) v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
 	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
-	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
-	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	(select sum(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select sum(bywcmc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
 	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0'
@@ -305,10 +305,10 @@
 	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
 	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
-	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	(select sum(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_16,(select sum(bywcjc) from gcgl_yhdzx where jhid=t2.id) v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
 	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
-	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
-	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	(select sum(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select sum(bywcmc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
 	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0'
@@ -349,10 +349,10 @@
 	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
 	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
-	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	(select sum(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_16,(select sum(bywcjc) from gcgl_yhdzx where jhid=t2.id) v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
 	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
-	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
-	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	(select sum(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select sum(bywcmc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
 	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
@@ -387,10 +387,10 @@
 	(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_13,
 	t2.totalinvest-(select sum(cgsdwzj) from gcgl_cgs where jhid=t2.id) v_14,
 	(case when kgzt='0' then '未开工' when kgzt='1' and jgzt='0' then '在建' when jgzt='1' then '竣工' end) v_15,
-	t2.dianceng v_16,t2.jiceng v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
+	(select sum(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_16,(select sum(bywcjc) from gcgl_yhdzx where jhid=t2.id) v_17,to_char(t2.SJKGSJ,'yyyy-mm-dd') v_18,
 	to_char(t2.SJWGSJ,'yyyy-mm-dd') v_19,
-	(select max(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
-	(select max(bywcdc) from gcgl_yhdzx where jhid=t2.id) v_21,
+	(select sum(kgdl) from gcgl_yhdzx where jhid=t2.id) v_20,
+	(select sum(bywcmc) from gcgl_yhdzx where jhid=t2.id) v_21,
 	t2.PLANDOWNNUMBER v_23
 	from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id left join plan_zjxd t3 on t2.id=t3.xmid 
 	where 1=1  and t3.sfzj='0' and (t1.lxbm like 'X%' or t1.lxbm like 'Y%')
