@@ -49,7 +49,7 @@ function yhdzxxm(jh,lx){
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$(window).width()-10,queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){

@@ -396,6 +396,24 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
   			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
+			<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
@@ -409,6 +427,24 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
   			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
+			<if test="lxmc!='' and lxmc!= null ">
+ 			and sck_lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="lxjsdj!='' and lxjsdj!= null ">
+ 			and lxjsdj like '%'||(#{lxjsdj})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and sck_lxbm like #{lxbm}||'%'
+ 		</if>
+ 		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="bz!='' and bz!= null ">
+ 			and sck_lxbm like #{bz}||'%'
+ 		</if>
  </select>
  <update id="xgZhfzXmnf" parameterType="sckzhfz" >
  		update xmk_zhfz set xmnf=#{xmnf} where id=#{xmkid}

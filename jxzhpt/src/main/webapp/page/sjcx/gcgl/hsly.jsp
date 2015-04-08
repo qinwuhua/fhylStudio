@@ -22,7 +22,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadDist("xzqhdm","360000");
+			loadUnit("gydw",$.cookie("unit"));
 			loadBmbm("kgzt","开工状态");
 			showAll();
 		});
@@ -62,9 +62,8 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>行政区划：</span>
-        						<input id="xzqhdm" style="width: 200px;">
-        						
+        						<span>管养单位：</span>
+        						<input id="gydw" style="width: 200px;">
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>

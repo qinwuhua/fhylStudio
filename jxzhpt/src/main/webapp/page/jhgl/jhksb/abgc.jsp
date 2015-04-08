@@ -103,7 +103,7 @@
 		}
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			if($('#lblQfzj').html()==$('#lblBTZ').html){
+			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;

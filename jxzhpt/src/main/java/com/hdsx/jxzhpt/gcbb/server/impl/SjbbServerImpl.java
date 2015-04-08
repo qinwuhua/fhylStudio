@@ -22,7 +22,7 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 		List<SjbbMessage> l_n=new ArrayList<SjbbMessage>();
 		SjbbMessage temp=new SjbbMessage();
 		DecimalFormat fnum = new DecimalFormat("##0.000");
-		temp.setV_0("危桥改造");
+		temp.setV_0("安保工程");
 		temp.setV_1("合计");
 		for(int j=2;j<=7;j++){
 			String methodGetName = "getV_"+j;
@@ -34,7 +34,7 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 		l_n.add(l.get(0));
 		l_n.add(l.get(1));
 		temp=new SjbbMessage();
-		temp.setV_0("安保工程");
+		temp.setV_0("危桥改造");
 		temp.setV_1("合计");
 		for(int j=2;j<=7;j++){
 			String methodGetName = "getV_"+j;
