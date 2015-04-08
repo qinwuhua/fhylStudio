@@ -134,6 +134,8 @@
 	<action name="updateGcgzgjCgs" class="gcglgcgzgjController" method="updateGcgzgjCgs"/>
 	<action name="deleteGcgzgjCgs" class="gcglgcgzgjController" method="deleteGcgzgjCgs"/>
 	<action name="selectGcgzgjCgsList" class="gcglgcgzgjController" method="selectGcgzgjCgsList"/>
+	<action name="selectGcgzgjjhList1" class="gcglgcgzgjController" method="selectGcgzgjjhList1"/>
+	
 	
 	<action name="uploadGcgzgjFile" class="gcglgcgzgjController" method="uploadGcgzgjFile"/>
 	<action name="downGcgzgjFile" class="gcglgcgzgjController" method="downGcgzgjFile"/>

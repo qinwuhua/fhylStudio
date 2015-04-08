@@ -270,4 +270,16 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 			return false;
 		}
 	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhListid1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhListid1", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList12", gcglgcgzgj);
+	}
 }

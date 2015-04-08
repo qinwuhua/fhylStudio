@@ -59,4 +59,8 @@ public interface GcglgcgzgjServer {
 
 	Boolean sbWqgzYb(Gcglgcgzgj gcglgcgzgj);
 
+	List<Gcglgcgzgj> selectWqgzjhListid1(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj);
+
 }
