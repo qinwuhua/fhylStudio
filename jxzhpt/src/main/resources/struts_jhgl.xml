@@ -86,6 +86,7 @@
 		<action name="queryZjxdById" class="plan_zjxdController" method="queryZjxdById"/>
 		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
 		<action name="insertZjzj" class="plan_zjxdController" method="insertZjzj"/>
+		<action name="queryZjxdSumByXmid" class="plan_zjxdController" method="queryZjxdSumByXmid"/>
 		
 		<action name="importYhdzx_jh" class="plan_yhdzxController" method="importYhdzx_jh"/>
 		<action name="queryYhdzxList" class="plan_yhdzxController" method="queryYhdzxList"/>
@@ -121,5 +122,6 @@
 		<action name="saveZjqf" class="plan_zjqfController" method="saveZjqf"></action>
 		<action name="queryZjqfByXzqh" class="plan_zjqfController" method="queryZjqfByXzqh"></action>
 		<action name="queryChildGydw" class="plan_zjqfController" method="queryChildGydw"></action>
+		
 	 </package>
 </struts>

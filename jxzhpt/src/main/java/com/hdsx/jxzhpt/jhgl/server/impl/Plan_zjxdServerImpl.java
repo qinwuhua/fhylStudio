@@ -57,4 +57,9 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public boolean insertZjzj(Plan_lwxm_zjzj zjzj) {
 		return insert("insertZjzj", zjzj)>0;
 	}
+
+	@Override
+	public Plan_zjxd queryZjxdSumByXmid(String id) {
+		return queryOne("queryZjxdSumByXmid", id);
+	}
 }

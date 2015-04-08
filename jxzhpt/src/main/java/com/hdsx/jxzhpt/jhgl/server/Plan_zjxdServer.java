@@ -53,4 +53,6 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	boolean insertZjzj(Plan_lwxm_zjzj zjzj);
+	
+	Plan_zjxd queryZjxdSumByXmid(String xmid);
 }

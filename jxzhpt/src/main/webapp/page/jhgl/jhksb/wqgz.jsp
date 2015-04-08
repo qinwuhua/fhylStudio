@@ -101,6 +101,7 @@
 					jh.jh_sbthcd=2;
 				}
 			}
+			queryZjqf($('#sbnf').combobox("getValue"));
 			querySumWqgz(jh,lx);
 			wqxm_sb(jh,lx);
 		}

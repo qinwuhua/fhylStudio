@@ -140,7 +140,7 @@
 			<td style="text-align: left; padding-left: 20px; font-size: 12px;">
 				共有【&nbsp;<span id="lblTzCount"
 				style="font-weight: bold; color: #FF0000">2</span>&nbsp;】个下发信息，下发资金共【&nbsp;<span
-				id="lblXDZJ" style="font-weight: bold; color: #FF0000">30</span>&nbsp;】万元。
+				id="lblxfzjzj" style="font-weight: bold; color: #FF0000">30</span>&nbsp;】万元。
 			</td>
 		</tr>
 		<tr>
@@ -204,6 +204,7 @@
 		}
 	});
 	queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
+	queryZjxdSumByXmid();
 	</script>
 </body>
 </html>
