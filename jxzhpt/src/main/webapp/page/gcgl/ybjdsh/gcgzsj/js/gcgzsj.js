@@ -145,7 +145,7 @@ function showAll(){
 
 function showYBlist(){
 	$('#ybgrid').datagrid({    
-	    url:'../../../../gcgl/selectgcgzsjYbByJhid.do?jhid='+parent.obj1.id,
+	    url:'../../../../gcgl/selectgcgzsjYbByJhid1.do?jhid='+parent.obj1.id,
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
