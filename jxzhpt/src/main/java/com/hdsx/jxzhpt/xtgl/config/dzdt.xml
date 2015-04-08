@@ -113,7 +113,7 @@ union all
     gydwdm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
+    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.jhid)
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
@@ -240,7 +240,7 @@ union all
     gydwdm like #{sourceid}||'%'
        union all
     select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
+    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.jhid)
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%'
        union all
@@ -366,7 +366,7 @@ union all
     gydwdm like #{sourceid}||'%' 
        union all
     select count(*) id,'0101040205' name,'01010402' parent ,'月报进度' bz
-    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.id)
+    from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.jhid)
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
