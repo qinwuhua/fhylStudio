@@ -214,6 +214,10 @@
 						zhsum+=parseInt($(tds[2]).val(),10);
 						zh=$(tds[2]).val();
 					}
+					if(item.id=="11101360100"){
+						alert(item.id);
+						queryChildZjqf(item.id,wq,ab,zh);
+					}
 				}else{
 					if($(tds[0]).val()!=""){
 						wq=$(tds[0]).val();
@@ -253,7 +257,7 @@
 							result=true;
 						}
 					}
-				});	
+				});
 			}else if(parseInt($(trsum[0]).val(),10)<wqsum){
 				alert("危桥改造的资金切分不正确");
 			}else if(parseInt($(trsum[1]).val(),10)<absum){
@@ -262,6 +266,42 @@
 				alert("灾害防治的资金切分不正确");
 			}
 			return result;
+		}
+		function queryChildZjqf(gydwdm,wq,ab,zh){
+			var zjqf={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':gydwdm};
+			var child=null;
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../../jhgl/queryZjqfByXzqh.do',
+				data:zjqf,
+				dataType:'json',
+				success:function(data){
+					if(data!=null){
+						var newData= JSON.parse(data.zjqf);
+						$.each(newData,function(index,item){
+							if(item.id==gydwdm){
+								item.abgc=ab;
+								item.wqgz=wq;
+								item.zhfz=zh;
+								var newZjqf={'zjqf.id':data.id,'zjqf.nf':$('#selnf').val(),
+										'zjqf.xzqhdm':gydwdm,'zjqf.zjqf':JSON.stringify(newData)};
+								child=newZjqf;
+							}
+						});
+						alert(child['zjqf.id']);
+					}
+				}
+			});
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../../jhgl/updateZjqf.do',
+				data:child,
+				dataType:'json',
+				success:function(data){
+				}
+			});
 		}
 	</script>
 </head>

@@ -72,12 +72,11 @@ public class Plan_zjqfController extends BaseActionSupport{
 	}
 	
 	public void updateZjqf(){
-		System.out.println("资金切分年份："+zjqf2.getNf());
-//		try {
-//			JsonUtils.write(zjqfServer.updateZjqf(zjqf2), getresponse().getWriter());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			JsonUtils.write(zjqfServer.updateZjqf(zjqf), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	//get set
 	public PlanZjqf getZjqf() {
