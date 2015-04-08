@@ -85,8 +85,8 @@ function showYBlist(){
 			        {field:'bywc_c',title:'本月完成（处）',width:100,align:'center',rowspan:2},
 			        {field:'bywc_gl',title:'本月完成（公里）',width:100,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:3},
-			        {title:'本月资金到位（万元）',colspan:3},
+			        {title:'本月完成投资（万元）',colspan:2},
+			        {title:'本月资金到位（万元）',colspan:2},
 			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
 	             ],
 	             [
