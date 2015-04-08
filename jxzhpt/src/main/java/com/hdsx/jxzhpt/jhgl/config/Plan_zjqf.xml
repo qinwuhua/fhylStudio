@@ -21,6 +21,7 @@
 		</if>
 	</select>
 	<select id="queryChildGydw"  parameterType="treenode" resultType="treenode">
-		select * from XTGL_DEPARTMENT t where t.parent=#{id} or t.id=#{id} order by t.id
+		<!-- select * from XTGL_DEPARTMENT t where t.parent=#{id} or t.id=#{id} order by t.id -->
+		select * from XTGL_DEPARTMENT t where (t.parent=#{id} or t.id=#{id}) and (t.id not like '%000_' or t.id  like '%0000')  order by t.id
 	</select>
 </mapper>

@@ -110,6 +110,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void editYhdzxById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
+			System.out.println(""+lx.getAym());
+			System.out.println("路面结构："+lx.getLmjg());
 			result.put("result", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
 			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
