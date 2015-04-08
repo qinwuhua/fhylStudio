@@ -194,10 +194,10 @@
 			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(sczdzh)>=to_number(#{qdzh})
+			and to_number(sczdzh)>to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(scqdzh) &lt;=to_number(#{zdzh})
+			and to_number(scqdzh) &lt;to_number(#{zdzh})
 		</if>
 	</select>
  <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
