@@ -233,8 +233,8 @@
 	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
-	 		<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-				and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+	 		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 			</if>
 			group by jh.id)
 	</select>
