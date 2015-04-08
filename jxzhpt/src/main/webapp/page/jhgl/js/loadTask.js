@@ -320,4 +320,26 @@ function showLrjh(jsp,w,h){
 	}
 	YMLib.UI.createWindow('lw_lr','路网项目列入计划',jsp,'lw_lr',w,h);
 }
-
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:""});
+	for(var i=0;i<=10;i++){
+		if(i==0) first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text'   
+	});
+	$('#'+id).combobox("setValue","");
+}
+function loadTsdq(id){
+	$('#'+id).combobox({    
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}

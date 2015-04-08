@@ -190,7 +190,7 @@ function tjwqgzkg(){
 		alert("请您输入概预算");
 		return;
 	}
-	var data="gcglabgc.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglabgc.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglabgc.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
+	var data="gcglabgc.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglabgc.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglabgc.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglabgc.sgdw="+$("#tj_sgdw").val()+"&gcglabgc.jldw="+$("#tj_jldw").val()+"&gcglabgc.jsdw="+$("#tj_jsdw").val()
 	+"&gcglabgc.htje="+$("#tj_htje").val()+"&gcglabgc.gys="+$("#tj_gys").val()+"&gcglabgc.jhid="+parent.obj1.jhid;
 	//alert(data);
