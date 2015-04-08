@@ -194,6 +194,7 @@ function queryZjxdSumByXmid(){
 }
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
+	queryZjxdSumByXmid();
 	$('#zjxdList').datagrid({
 		url : url,
 		queryParams : params,
@@ -239,6 +240,7 @@ function dropZjxdById(id){
 		success:function(data){
 			if(data.result=="true"){
 				alert("删除成功！");
+				queryZjxdSumByXmid();
 				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
 			}else{
 				alert("删除失败！");

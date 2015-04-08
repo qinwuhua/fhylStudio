@@ -36,4 +36,9 @@ public class Plan_zjqfServerImpl extends BaseOperate implements Plan_zjqfServer 
 	public List<TreeNode> queryChildGydw(TreeNode xzqh) {
 		return queryList("queryChildGydw",xzqh);
 	}
+
+	@Override
+	public boolean updateZjqf(PlanZjqf zjqf) {
+		return update("updateZjqf", zjqf)>0;
+	}
 }

@@ -21,6 +21,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 @Controller
 public class Plan_zjqfController extends BaseActionSupport{
 	private PlanZjqf zjqf;
+	private PlanZjqf zjqf2;
 	@Resource(name = "plan_zjqfServerImpl")
 	private Plan_zjqfServer zjqfServer;
 	private TreeNode xzqh;
@@ -70,6 +71,14 @@ public class Plan_zjqfController extends BaseActionSupport{
 		}
 	}
 	
+	public void updateZjqf(){
+		System.out.println("资金切分年份："+zjqf2.getNf());
+//		try {
+//			JsonUtils.write(zjqfServer.updateZjqf(zjqf2), getresponse().getWriter());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+	}
 	//get set
 	public PlanZjqf getZjqf() {
 		return zjqf;
@@ -89,5 +98,13 @@ public class Plan_zjqfController extends BaseActionSupport{
 	}
 	public void setXzqh(TreeNode xzqh) {
 		this.xzqh = xzqh;
+	}
+
+	public PlanZjqf getZjqf2() {
+		return zjqf2;
+	}
+
+	public void setZjqf2(PlanZjqf zjqf2) {
+		this.zjqf2 = zjqf2;
 	}
 }

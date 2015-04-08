@@ -87,6 +87,7 @@
 		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
 		<action name="insertZjzj" class="plan_zjxdController" method="insertZjzj"/>
 		<action name="queryZjxdSumByXmid" class="plan_zjxdController" method="queryZjxdSumByXmid"/>
+		<action name="updateZjqf" class="plan_zjxdController" method="updateZjqf"/>
 		
 		<action name="importYhdzx_jh" class="plan_yhdzxController" method="importYhdzx_jh"/>
 		<action name="queryYhdzxList" class="plan_yhdzxController" method="queryYhdzxList"/>

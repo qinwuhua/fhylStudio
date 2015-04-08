@@ -45,4 +45,6 @@ public interface Plan_zjqfServer {
 	 * @return
 	 */
 	List<TreeNode> queryChildGydw(TreeNode xzqh);
+
+	boolean updateZjqf(PlanZjqf zjqf);
 }

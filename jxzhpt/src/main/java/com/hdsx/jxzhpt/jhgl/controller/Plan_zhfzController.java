@@ -55,7 +55,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			Map<String, String> result=new HashMap<String, String>();
 			List<Plan_zhfz> splist = zhfzServer.queryZhfzByStatus(jh,lx);
 			for (Plan_zhfz item : splist) {
-				item.setJh_sbthcd((item.getJh_sbthcd()+2));
+				item.setJh_sbthcd(""+(new Integer(item.getJh_sbthcd())+2));
 				item.setSpzt("1");
 				item.setSpsj(new Date());
 				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码

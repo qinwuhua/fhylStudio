@@ -150,7 +150,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			Map<String, String> result=new HashMap<String, String>();
 			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
 			for (Plan_abgc item : splist) {
-				item.setJh_sbthcd((item.getJh_sbthcd()+2));
+				item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());
 				item.setSpzt("1");
 				item.setSpsj(new Date());
 				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
