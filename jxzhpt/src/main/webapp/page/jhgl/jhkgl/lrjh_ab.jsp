@@ -176,7 +176,7 @@
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshAbgc();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
-								<%-- <img onclick="lrjh();"alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand; /> --%>
+								<img onclick="lrjh();"alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand; />
 							 </p>
 						</div>
 				</fieldset>
