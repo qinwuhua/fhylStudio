@@ -97,7 +97,6 @@ public class DzdtController extends BaseActionSupport{
 	 * 路线弹出框
 	 * */
 	public void selectExistLxProgramList(){
-		System.out.println("路线编码："+pb.getRoadcode());
 		List<ProgBean> list=dzdtServer.selectExistLxProgramList(pb);
 		//int count=dzdtServer.selectExistLxProgramListCount(param);
 		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();

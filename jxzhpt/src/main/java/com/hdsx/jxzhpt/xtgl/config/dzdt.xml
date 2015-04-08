@@ -56,41 +56,40 @@ union all
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
 		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-    	gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030102' name,'01010301' parent ,'项目计划库' bz
 		from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join xmk_abgc lx on (sc.xmkid=lx.id) 
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030103' name,'01010301' parent ,'项目计划库' bz
 		from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030104' name,'01010301' parent ,'项目计划库' bz
 		from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(id) id, '0101030105' name,'01010301' parent ,'项目计划库' bz
 		from (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwdm like rtrim(#{sourceid},0)||'%' and xzqhdm like rtrim(#{xzqh},0)||'%')
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0'
+		<!-- and gydwdm like rtrim(#{sourceid},0)||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->)
 		   union all
 		select count(*) id,'0101030106' name,'01010301' parent ,'项目计划库' bz
 		from plan_yhdzx jh left join plan_lx_yhdzx lx on(jh.id=lx.jhid) 
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and sbzt='1' and spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and sbzt='1' and spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030107' name,'01010301' parent ,'项目计划库' bz
 		from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.jhid)
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and sbzt='1' and spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and sbzt='1' and spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030108' name,'01010301' parent,'项目计划库' bz from plan_hsly where xzqhdm like #{xzqh} 
-		
      	union all
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
     from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
