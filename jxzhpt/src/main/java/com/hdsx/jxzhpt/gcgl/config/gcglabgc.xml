@@ -143,7 +143,7 @@
 		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where SCKID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglabgc">
-		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCKID=#{jhid}
+		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCKID=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglabgc" resultType="gcglabgc">
