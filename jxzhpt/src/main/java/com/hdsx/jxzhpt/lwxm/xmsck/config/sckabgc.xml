@@ -194,10 +194,10 @@
 			and sck_lxbm=#{lxbm}
 		</if>
 		<if test="qdzh!='' and qdzh!= null ">
-			and to_number(sczdzh)>=to_number(#{qdzh})
+			and to_number(sczdzh)>to_number(#{qdzh})
 		</if>
 		<if test="zdzh!='' and zdzh!= null ">
-			and to_number(scqdzh) &lt;=to_number(#{zdzh})
+			and to_number(scqdzh) &lt;to_number(#{zdzh})
 		</if>
 	</select>
 <select id="bzAbgc" parameterType="sckabgc" resultType="int">
@@ -303,9 +303,8 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
   <select id="insertToSheet" resultType="sjbb" parameterType="hashMap">
  	select 
  	xzqhdm v_0,xzqhmc v_1,lxbm v_2,lxmc v_3,qdzh v_4,zdzh v_5,qzlc v_6,yhlc v_7,gjxjnd v_8
- 	from xmk_abgc where sck_sbthcd=7
+ 	from xmk_abgc where shzt='已审核'
  	and id not in (select xmkid from sck_abgc)
-	and sbthcd &lt;=#{sck_sbthcd}  
 	<if test="tbdw!=null and tbdw!=''">
 		and tbbmbm like #{tbdw}||'%'
 	</if>
@@ -416,4 +415,7 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
  </select>
+ <update id="xgAbgcXmnf" parameterType="sckabgc" >
+ 		update xmk_abgc set xmnf=#{xmnf} where id=#{xmkid}
+ </update>
 </mapper>

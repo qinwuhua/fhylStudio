@@ -17,6 +17,7 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 
 <style type="text/css">
 TD {
@@ -32,6 +33,7 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
+		xmnf("xmnf");
 		$("#save_button").click(function(){
 			if($("#lxbm").val()!="" && $("#lxbm").val()!=null){
 				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
@@ -61,7 +63,7 @@ text-decoration:none;
 		var url = "/jxzhpt/xmjck/abgcGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
-			minChars :2,
+			minChars :1,
 			multipleSeparator : ' ',
 			mustMatch: true,
 	  		cacheLength : 0,

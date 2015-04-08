@@ -23,7 +23,7 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 
 	@Override
 	public boolean insertSckzhfz(Sckzhfz zhfz) {
-		if(insert("insertSckzhfz", zhfz)>0) return  true;
+		if(insert("insertSckzhfz", zhfz)>0 && update("xgZhfzXmnf", zhfz)>0) return  true;
 		else return false;
 	}
 
