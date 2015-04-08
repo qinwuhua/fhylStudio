@@ -217,7 +217,7 @@ table tbody tr td {
 
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:390px;" >
+                	<div style="width:100%;height:399px;" >
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >
