@@ -396,8 +396,12 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		select rownum num ,t.* from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t 
  		where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
+  			<if test="gydw!='' and gydw!= null ">
   			and  scbmbm  like #{gydw}||'%' 
+  			</if>
+  			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+			</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
@@ -405,7 +409,11 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		select count(*) from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
  		 where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
- 			and  scbmbm  like #{gydw}||'%' 
+ 			<if test="gydw!='' and gydw!= null ">
+  			and  scbmbm  like #{gydw}||'%' 
+  			</if>
+  			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
+			</if>
  </select>
 </mapper>

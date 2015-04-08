@@ -11,47 +11,47 @@
 	</select>
 	<select id="selSqlStrByLxid_sheng" parameterType="param" resultType="param">
 		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where shzt='未审核'
-		         <if test="sourceid != null and  sourceid != ''">
-					and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
-				</if>and  
-			tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
-          union all
-          select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where shzt='未审核'
-          <if test="sourceid != null and  sourceid != ''">
-					and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
-				</if> and  
-            tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+		     <if test="sourceid != null and  sourceid != ''">
+				and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
+			</if>
+				and  tbbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
+union all
+        select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where shzt='未审核'
+          	<if test="sourceid != null and  sourceid != ''">
+				and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
+			</if> 
+				and  tbbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
 
  union all
           select count(*) id,'0101020103' name,'01010201' parent,'项目基础库' bz from xmk_zhfz where shzt='未审核'
           <if test="sourceid != null and  sourceid != ''">
-					and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
-				</if> and  
-            tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+				and sbthcd=7 and <![CDATA[sbthcd>=length(#{sourceid})]]>
+		  </if>
+				and   tbbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_shzt='未审核' 
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where sck_shzt='未审核' 
           <if test="sourceid != null and  sourceid != ''">
-					and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
-				</if> and  
-       		scbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+				and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
+		  </if> 
+		  		and  scbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
           select count(*) id,'0101020302' name,'01010203' parent,'项目审查库' bz from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_shzt='未审核'
           <if test="sourceid != null and  sourceid != ''">
-					and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
-				</if> and  
-            scbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+				and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
+		  </if>
+				and  scbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
      union all
-          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_shzt='未审核'
-         <if test="sourceid != null and  sourceid != ''">
-					and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
-				</if> and  
-            scbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t  where sck_shzt='未审核'
+         	<if test="sourceid != null and  sourceid != ''">
+				and sck_sbthcd=7 and <![CDATA[sck_sbthcd>=length(#{sourceid})]]>
+			</if> 
+				and  scbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
 
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
@@ -131,48 +131,54 @@
    	and sjsh='未审核' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_shi" parameterType="param" resultType="param">
-		          select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where sbzt='未上报'
-		         <if test="sourceid != null and  sourceid != ''">
+		     select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 
+		         decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
+		        <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
-				</if>and  
-			tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+				</if>
+					and  tbbmbm  like #{sourceid}||'%' 
+					and  xzqhdm like rtrim(#{xzqh},0)||'%'
           union all
-          select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where sbzt='未上报'
-          <if test="sourceid != null and  sourceid != ''">
-					and <![CDATA[sbthcd<=length(#{sourceid})]]>
-				</if> and  
-           tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+          select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where 
+				decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
+          	<if test="sourceid != null and  sourceid != ''">
+				and <![CDATA[sbthcd<=length(#{sourceid})]]>
+		 	</if>
+		  		and  tbbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
 
  union all
-          select count(*) id,'0101020103' name,'01010201' parent,'项目基础库' bz from xmk_zhfz where sbzt='未上报'
-          <if test="sourceid != null and  sourceid != ''">
-					and <![CDATA[sbthcd<=length(#{sourceid})]]>
-				</if> and  
-            tbbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+          select count(*) id,'0101020103' name,'01010201' parent,'项目基础库' bz from xmk_zhfz where 
+				decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
+          	<if test="sourceid != null and  sourceid != ''">
+				and <![CDATA[sbthcd<=length(#{sourceid})]]>
+			</if> 
+				and  tbbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_sbzt='未上报' 
-          <if test="sourceid != null and  sourceid != ''">
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where 
+          		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报'
+          	<if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
-				</if> and  
-        	scbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+			</if> 
+				and  scbmbm  like #{sourceid}||'%' 
+				and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020302' name,'01010203' parent,'项目审查库' bz from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_sbzt='未上报'
-          <if test="sourceid != null and  sourceid != ''">
+          select count(*) id,'0101020302' name,'01010203' parent,'项目审查库' bz from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t  where
+          		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报'
+          	<if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
-				</if> and  
-            scbmbm  like #{sourceid}||'%' 
+			</if> 
+			and  scbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
      union all
-          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_sbzt='未上报'
-         <if test="sourceid != null and  sourceid != ''">
+          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t  where
+				decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报'	
+         	<if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
-				</if> and  
-            scbmbm  like #{sourceid}||'%' 
-			and  xzqhdm like rtrim(#{xzqh},0)||'%'
+			</if>
+			  and  scbmbm  like #{sourceid}||'%' 
+			  and  xzqhdm like rtrim(#{xzqh},0)||'%'
 
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
@@ -252,14 +258,16 @@
     and  sjzt='未上报' and kgzt='1' and jgzt='0' 
 	</select>
 	<select id="selSqlStrByLxid_xian" parameterType="param" resultType="param">
-		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where sbzt='未上报'
+		select count(*) id,'0101020101' name,'01010201' parent,'项目基础库' bz from xmk_wqgz where 
+					decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
 		       <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
 				</if>and  
 			tbbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
           union all
-          select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where sbzt='未上报'
+          select count(*) id,'0101020102' name,'01010201' parent,'项目基础库' bz from xmk_abgc where
+          			decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
           <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
 				</if>and  
@@ -267,28 +275,32 @@
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
 
  union all
-          select count(*) id,'0101020103' name,'01010201' parent,'项目基础库' bz from xmk_zhfz where sbzt='未上报'
+          select count(*) id,'0101020103' name,'01010201' parent,'项目基础库' bz from xmk_zhfz where
+          			decode(sbthcd,length(#{sourceid}),'未上报',sbzt) ='未上报'
           <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sbthcd<=length(#{sourceid})]]>
 				</if>and  
 			tbbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_sbzt='未上报' 
+          select count(*) id,'0101020301' name,'01010203' parent,'项目审查库' bz from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t  where
+          		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报' 
           <if test="sourceid != null and  sourceid != ''">
-					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
+				and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
 				</if> and  
         	scbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
  union all
-          select count(*) id,'0101020302' name,'01010203' parent,'项目审查库' bz from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where sck_sbzt='未上报' 
-          <if test="sourceid != null and  sourceid != ''">
+          select count(*) id,'0101020302' name,'01010203' parent,'项目审查库' bz from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id) t where
+          		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报'
+          	<if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
 				</if> and  
         	scbmbm  like #{sourceid}||'%' 
 			and  xzqhdm like rtrim(#{xzqh},0)||'%'
      union all
-          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_abgc on xmkid=xmk_abgc.id) t  where sck_sbzt='未上报' 
+          select count(*) id,'0101020303' name,'01010203' parent,'项目审查库' bz from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t  where
+          		decode(sck_sbthcd,length(#{sourceid}),'未上报',sck_sbzt) ='未上报' 
           <if test="sourceid != null and  sourceid != ''">
 					and <![CDATA[sck_sbthcd<=length(#{sourceid})]]>
 				</if> and  
