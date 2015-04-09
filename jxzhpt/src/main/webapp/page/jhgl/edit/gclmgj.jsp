@@ -489,7 +489,6 @@
 									'<span id="bhnr'+index+'">'+item.bhnr+'</span> &nbsp;</td></tr>';
 				$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5_6);
 			});
-			
 		}
 	});
 	</script>

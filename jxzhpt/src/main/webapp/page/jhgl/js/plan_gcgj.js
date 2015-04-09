@@ -425,6 +425,7 @@ function editGcgj(){
 			success:function(data){
 				alert("修改成功！");
 				$('#gclmgj_xx').dialog('close');
+				searchGcgj();
 			}
 		});
 	}else{
@@ -449,13 +450,16 @@ function lxztz(){
 			data:lx,
 			dataType:'json',
 			success:function(data){
-				ztz=ztz+data.je;
+				ztz=Number(ztz)+Number(data.je);
 				fdbz=data.fdbz;
 			}
 		});
 	}
 	if($('#pfztz').val()>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
 		result=true;
+	}else{
+		result=false;
+		return result;
 	}
 	if($('#pfztz').val()==Number($('#jhsybzje').val())+Number($('#jhsydfzcje').val())){
 		result=true;
