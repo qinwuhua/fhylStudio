@@ -287,7 +287,8 @@
 			</tr>
 			<tr style="height: 30px;" align="center">
 				<td colspan="6" align="center" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: center; padding-left: 10px;">
-					<input onclick="addlx()" type="button" value="添    加" style="width: 80px;text-align: center;" />
+					<img onclick="addlx()" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
+					<!-- <input onclick="addlx()" type="button" value="添    加" style="width: 80px;text-align: center;" /> -->
 				</td>
 			</tr>
 		</table>

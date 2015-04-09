@@ -66,6 +66,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 				if(gcgjServer.queryGPSBylxbm(gcgj)!=null){
 					strResult="true";
 					gcgjServer.insertPlan_lx_Gcgj(lx);
+					
 				}else{
 					result.put("msg", "项目库中不包含此路线信息");
 				}
@@ -221,8 +222,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 			flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
 			flw.setJsdj(lx.getYjsdj());//技术等级
 			flw.setTsdq(lx.getTsdqbm());
-			Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
 			Integer bzzj=null;
+			Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
 			if(flwResult==null){
 				flw.setXmlx(null);
 				flw.setGldj(null);

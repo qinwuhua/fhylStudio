@@ -263,8 +263,9 @@
 	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
 		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje
 			,sum(qzlc) as qzlc,sum(yhlc) as yhlc from(
-			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,sum(jh.pfztz) as pfztz,
-			sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
+			select jh.id as id,jh.pfztz as pfztz,jh.jhsybzje as jhsybzje,jh.jhsydfzcje as jhsydfzcje,
+			sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc
+			from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
 			where 1=1
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
 				and lx.gydwdm like #{lx.gydwdm}
@@ -290,7 +291,7 @@
 	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
-			group by jh.id)
+			group by jh.id,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje)
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM

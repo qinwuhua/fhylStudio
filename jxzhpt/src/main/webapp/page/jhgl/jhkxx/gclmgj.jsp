@@ -371,12 +371,13 @@
 				</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<div id="divPlan">
-						<a style="color: #0066CB;" href='javascript:void(0)'
+						<!-- <a style="color: #0066CB;" href='javascript:void(0)'
 							onclick="showInfo('FE6F2C88CE99C888E040007F01003776','FE5F250E8E8E0E15E040007F01006DFD','Plan_Security_PlanDetail.aspx','Y852','1.5450','44','')"><img
 							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排安保工程项目计划信息；</a><a
 							style="color: #0066CB;" href='javascript:void(0)'
 							onclick="showInfo('FEAB63F77D2B9C50E040007F01007F4C','978cb626-a84d-46f1-8b6e-62482375e854','Plan_Engineering_PlanDetail.aspx','Y852','1.5450','44','')"><img
 							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排工程改造路面升级项目计划信息；</a><br />
+							 -->
 					</div>
 				</td>
 			</tr>
