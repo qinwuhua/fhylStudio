@@ -324,10 +324,10 @@ function showAll(){
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a href="#" onclick="Showybxx()">否</a>    ';
 	        }},
-	        {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
+	        {field:'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
-		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
-		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
+		    {field : 'jhkgsj',title : '计划开工时间',width : 150,align : 'center'},
+		    {field : 'jhwgsj',title : '计划完工时间',width : 150,align : 'center'},
 		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
 		    {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
 		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}
