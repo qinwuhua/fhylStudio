@@ -116,10 +116,10 @@ union all
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
-   select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+   select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct(jh.id) from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' 
+    gydwdm like #{sourceid}||'%' )
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
@@ -243,10 +243,10 @@ union all
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%'
        union all
-    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%'
+    gydwdm like #{sourceid}||'%')
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
@@ -369,10 +369,10 @@ union all
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
-    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' 
+    gydwdm like #{sourceid}||'%' )
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
