@@ -24,31 +24,47 @@ var qdStr;
 var zdStr;
 var bzls;
 	$(function(){
-		xmnf("xmnf");
+		xmnf1("scxmnf");
 		autoCompleteLXBM();
 		$("#save_button").click(function(){
-			if($("#scqdzh").val()==null || $("#scqdzh").val()==''){
-				alert("对不起，起点桩号不能为空！");
+			if($("#lxbm").val()==null || $("#lxbm").val()==''){
+				alert("请填写路线编码！");
+				$("#lxbm").focus();
+				return false;
+			}
+			if($("#scqdzh").val()==null || $("#scqdzh").val()=='' || isNaN($("#scqdzh").val()) || parseFloat($("#scqdzh").val())<0){
+				alert("请填写正确的起点桩号！");
+				$("#scqdzh").focus();
+				return false;
+			}
+			if($("#sczdzh").val()==null || $("#sczdzh").val()=='' || isNaN($("#sczdzh").val()) || parseFloat($("#sczdzh").val())<0){
+				alert("请填写正确的止点桩号！");
+				$("#sczdzh").focus();
 				return false;
 			}
 			if(parseFloat($("#scqdzh").val())*1000<qdStr*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				return false;
-			}
-			if($("#sczdzh").val()==null || $("#sczdzh").val()==''){
-				alert("对不起，止点桩号不能为空！");
+				$("#scqdzh").focus();
 				return false;
 			}
 			if(parseFloat($("#sczdzh").val())*1000>zdStr*1000){
 				alert("对不起，止点桩号不能大于"+zdStr+"！");
+				$("#sczdzh").focus();
 				return false;
 			}
 			if(parseFloat($("#scqdzh").val())*1000>parseFloat($("#sczdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
+				$("#scqdzh").focus();
 				return false;
 			}
 			if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#yhlc").html())*1000){
 				alert("对不起，隐患里程不能大于"+$("#yhlc").html()+"！");
+				$("#scyhlc").focus();
+				return false;
+			}
+			if(isNaN($("#tzgs").val()) || parseFloat($("#tzgs").val())<=0){
+				alert("请填写正确的投资估算金额！");
+				$("#tzgs").focus();
 				return false;
 			}
 			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
@@ -129,8 +145,7 @@ var bzls;
 					$("#lxjsdj").html(item.lxjsdj);
 					$("#qzlc").html(item.qzlc);
 					$("#yhlc").html(item.yhlc);
-					/* $("#xmnf").html(item.xmnf); */
-					$("#xmnf").combobox("setValue",item.xmnf);
+					$("#xmnf").html(item.xmnf);
 					$("#xmtype").html(item.xmtype);
 					$("#yhnr").html(item.yhnr);
 					$("#bz").html(item.bz);
@@ -148,7 +163,7 @@ var bzls;
 		var data ="xmkid="+xmkid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").html()+"&scyhlc="+$("#scyhlc").val()
 		+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+
 		$("#tzgs").val()+"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()
-		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&xmnf="+$("#xmnf").combobox("getValue");
+		+"&scbmbm="+$.cookie("unit")+"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&scxmnf="+$("#scxmnf").combobox("getValue");
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/insertSckabgc.do',
@@ -257,8 +272,7 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; " align="left">
-				<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-					</select></td>
+				<span id="xmnf"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; " align="left">
 					<span id="xmtype"></span></td>
@@ -296,8 +310,12 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select id="scxmnf" style="width: 154px"></select>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
-				<td colspan="5" style="background-color: #ffffff;" align="left">
+				<td colspan="3" style="background-color: #ffffff;" align="left">
 					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
 			</tr>

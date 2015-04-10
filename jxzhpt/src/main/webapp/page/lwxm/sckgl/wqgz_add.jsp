@@ -22,9 +22,29 @@
 var xmkid;
 var bzls;
 $(function(){
-	xmnf("xmnf");
+	xmnf1("scxmnf");
 	autoCompleteQLBH();
 	$("#save_button").click(function(){
+		if($("#qlbh").val()==null || $("#qlbh").val()==''){
+			alert("请填写桥梁编码！");
+			$("#qlbh").focus();
+			return false;
+		}
+		if($("#scqlqc").val()==null || $("#scqlqc").val()=='' || isNaN($("#scqlqc").val()) || parseFloat($("#scqlqc").val())<=0){
+			alert("请填写正确的桥梁全长！");
+			$("#scqlqc").focus();
+			return false;
+		}
+		if($("#scqlqk").val()==null || $("#scqlqk").val()=='' || isNaN($("#scqlqk").val()) || parseFloat($("#scqlqk").val())<=0){
+			alert("请填写正确的桥梁全宽！");
+			$("#scqlqk").focus();
+			return false;
+		}
+		if(isNaN($("#tzgs").val()) || parseFloat($("#tzgs").val())<=0){
+			alert("请填写正确的投资估算金额！");
+			$("#tzgs").focus();
+			return false;
+		}
 		var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
 		$.ajax({
 			type:'post',
@@ -109,8 +129,7 @@ function autoCompleteQLBH(){
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
 				$("#sbjgxs").html(item.sbjgxs);
-				/* $("#xmnf").html(item.xmnf); */
-				$("#xmnf").combobox("setValue",item.xmnf);
+				$("#xmnf").html(item.xmnf);
 				$("#xmtype").html(item.xmtype);
 				$("#bhnr").html(item.bhnr);
 				$("#bz").html(item.bz);
@@ -125,7 +144,7 @@ function saveWqgz(){
 	"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
 	"&jsxz="+$("#jsxz").combobox("getValue")+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+
 	"&scbmbm="+$.cookie("unit")+"&qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+
-	"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&xmnf="+$("#xmnf").combobox("getValue");
+	"&sck_sbthcd="+sbthcd+"&bzls="+bzls+"&scxmnf="+$("#scxmnf").combobox("getValue")+"&scqlqc="+$("#scqlqc").val()+"&scqlqk="+$("#scqlqk").val();
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/insertSckwqgz.do',
@@ -251,8 +270,8 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf"style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-					</select></td>
+					<span id="xmnf"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目状态：</td>
 				<td style="background-color: #ffffff; height: 20px;width:15%" align="left">
 					<span id="xmtype"></span></td>
@@ -276,6 +295,18 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="scxmnf" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="fapgdw" id="fapgdw" style="width: 150px" /></td>
@@ -293,7 +324,7 @@ text-decoration:none;
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="tzgs"id="tzgs" style="width: 150px" /></td>
+					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'">

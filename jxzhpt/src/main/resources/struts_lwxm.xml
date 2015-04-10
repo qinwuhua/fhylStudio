@@ -120,5 +120,6 @@
  </package>
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
  <action name="selZdy" class="zdycxController" method="selZdy"/>
+  <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>
  </package>
 </struts>

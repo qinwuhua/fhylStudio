@@ -33,9 +33,43 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
-		xmnf("xmnf");
+		xmnf1("xmnf");
 		$("#save_button").click(function(){
-			if($("#lxbm").val()!="" && $("#lxbm").val()!=null){
+			if($("#lxbm").val()=="" && $("#lxbm").val()==null){
+				alert("请填写路线编码！");
+				$("#lxbm").focus();
+				return false;
+			}
+			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
+				alert("请填写正确的起点桩号！");
+				$("#qdzh").focus();
+				return false;
+			}
+			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
+				alert("请填写正确的止点桩号！");
+				$("#zdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
+				alert("对不起，起点桩号不能小于"+qdStr+"！");
+				$("#qdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
+				alert("对不起，止点桩号不能大于"+zdStr+"！");
+				$("#zdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
+				alert("对不起，起点桩号不能大于止点桩号！");
+				$("#qdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#yhlc").val())*1000>parseFloat($("#zlc").html())*1000){
+				alert("对不起，隐患里程不能大于总里程！");
+				$("#yhlc").focus();
+				return false;
+			}
 				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
 				$.ajax({
 					type:'post',
@@ -50,9 +84,6 @@ text-decoration:none;
 						}
 					}
 				});	
-			}else {
-				alert("请填写路线编码！");
-			}
 		});
 		$("#qx_window").click(function(){
 			parent.$('#jck_add').window('destroy');
@@ -124,22 +155,6 @@ text-decoration:none;
 				});
 	}
 	function saveZhfz(){
-		if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
-			alert("对不起，起点桩号不能小于"+qdStr+"！");
-			return false;
-		}
-		if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
-			alert("对不起，止点桩号不能大于"+zdStr+"！");
-			return false;
-		}
-		if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
-			alert("对不起，起点桩号不能大于止点桩号！");
-			return false;
-		}
-		if(parseFloat($("#yhlc").val())*1000>parseFloat($("#zlc").html())*1000){
-			alert("对不起，隐患里程不能大于总里程！");
-			return false;
-		}
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
@@ -167,10 +182,6 @@ text-decoration:none;
 	}
 	function changeZlc(){
 		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
-		if(isNaN(zlc)){
-			alert("起止桩号：请输入数字"); 
-			return;
-		}
 		$("#zlc").html(zlc);
 	}
 </script>

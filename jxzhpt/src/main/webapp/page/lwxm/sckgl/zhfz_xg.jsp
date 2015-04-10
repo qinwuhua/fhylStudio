@@ -14,13 +14,52 @@
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
+<script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
+var qdStr;
+var zdStr;
 	$(function(){
+		xmnf1("scxmnf");
 		selZhfzById();
 		$("#save_button").click(function(){
+			if($("#scqdzh").val()==null || $("#scqdzh").val()=='' || isNaN($("#scqdzh").val()) || parseFloat($("#scqdzh").val())<0){
+				alert("请填写正确的起点桩号！");
+				$("#scqdzh").focus();
+				return false;
+			}
+			if($("#sczdzh").val()==null || $("#sczdzh").val()=='' || isNaN($("#sczdzh").val()) || parseFloat($("#sczdzh").val())<0){
+				alert("请填写正确的止点桩号！");
+				$("#sczdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#scqdzh").val())*1000<qdStr*1000){
+				alert("对不起，起点桩号不能小于"+qdStr+"！");
+				$("#scqdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#sczdzh").val())*1000>zdStr*1000){
+				alert("对不起，止点桩号不能大于"+zdStr+"！");
+				$("#sczdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#scqdzh").val())*1000>parseFloat($("#sczdzh").val())*1000){
+				alert("对不起，起点桩号不能大于止点桩号！");
+				$("#scqdzh").focus();
+				return false;
+			}
+			if(parseFloat($("#scyhlc").val())*1000>parseFloat($("#yhlc").html())*1000){
+				alert("对不起，隐患里程不能大于"+$("#yhlc").html()+"！");
+				$("#scyhlc").focus();
+				return false;
+			}
+			if(isNaN($("#tzgs").val()) || parseFloat($("#tzgs").val())<=0){
+				alert("请填写正确的投资估算金额！");
+				$("#tzgs").focus();
+				return false;
+			}
 			var data ="sckid="+parent.rowid+"&scqdzh="+$("#scqdzh").val()+"&sczdzh="+$("#sczdzh").val()+"&sczlc="+$("#sczlc").val()+"&scyhlc="+$("#scyhlc").val()
 			+"&fapgdw="+$("#fapgdw").val()+"&fascdw="+$("#fascdw").val()+"&faspsj="+$("#faspsj").datebox('getValue')+"&spwh="+$("#spwh").val()+"&tzgs="+$("#tzgs").val()+
-			"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val();
+			"&jsxz="+$("#jsxz").val()+"&jsnr="+$("#jsnr").val()+"&scbz="+$("#scbz").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmsck/updateSckZhfz.do',
@@ -55,6 +94,10 @@
 			$("#gydw").html(msg.gydw);
 			$("#qdzh").html(msg.qdzh);
 			$("#zdzh").html(msg.zdzh);
+			qdStr=parseFloat(msg.qdzh);
+			zdStr=parseFloat(msg.zdzh);
+			$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
+			$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			$("#qzlc").html(msg.qzlc);
 			$("#xzqhdm").html(msg.xzqhdm);
 			$("#xzqhmc").html(msg.xzqhmc);
@@ -70,6 +113,7 @@
 			$("#sczdzh").val(msg.sczdzh);
 			$("#sczlc").val(msg.sczlc);
 			$("#scyhlc").val(msg.scyhlc);
+			$("#scxmnf").combobox('setValue',msg.scxmnf);
 			$("#fapgdw").val(msg.fapgdw);
 			$("#fascdw").val(msg.fascdw);
 			$("#faspsj").datebox('setValue',msg.faspsj);
@@ -81,6 +125,10 @@
 			}
 		});
 	}		
+	function changeZlc(){
+		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
+		$("#sczlc").html(zlc);
+	}
 </script>
 <style type="text/css">
 TD {
@@ -171,21 +219,27 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px"/></td>
+					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px"onblur="changeZlc()"/>
+					<br/><span id="qd"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px"/></td>
+					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px"onblur="changeZlc()"/>
+					<br/><span id="zd"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="sczlc"id="sczlc" style="width: 110px"/>&nbsp;公里
+					<span id="sczlc">0</span>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+			 <td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select id="scxmnf" style="width: 154px"></select>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="scyhlc" style="width: 150px"/>&nbsp;公里
+				<td colspan="3" style="background-color: #ffffff;" align="left">
+					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -209,7 +263,7 @@ text-decoration:none;
 					<input type="text" name="tzgs"id="tzgs" style="width: 115px"/>&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsxz">
+					<select id="jsxz" style="width: 150px">
 						<option value="中修"selected>中修</option>
 						<option value="大修">大修</option>
 						<option value="改建">改建</option>

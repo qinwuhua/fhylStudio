@@ -22,7 +22,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public boolean insertSckabgc(Sckabgc abgc) {
-		if(insert("insertSckabgc", abgc)>0 && update("xgAbgcXmnf", abgc)>0) return  true;
+		if(insert("insertSckabgc", abgc)>0) return  true;
 		else return false;
 	}
 
