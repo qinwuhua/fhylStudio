@@ -81,15 +81,15 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" style="width: 20%">
+                                        <td align="center" style="width: 30%">
                                             &nbsp;
                                         </td>
-                                        <td align="center" style="width: 50%; font-size: 14px;vertical-align:top;padding-top:10px;padding-left:30px;">
+                                        <td align="center" style="width: 50%; font-size: 14px;vertical-align:top;padding-top:10px;padding-left:10%;">
                                             <span id="lblFBT">—县道、乡道、村道、专用公路</span>
                                         </td>
-                                        <td rowspan="2" align="right" style="width: 30%; margin: 0px; padding: 0px;">
-										<textarea name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:80px;width:200px;overflow: hidden;">
-表        号：交  公  路  29-2 表 
+                                        <td rowspan="2" align="right" style="width: 30%; margin: 0px; padding: 0px;padding-right: 0px;">
+										<textarea name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:80px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">
+表&nbsp;&nbsp;&nbsp;&nbsp;号：交  公  路  29-2 表 
 制表机关：交   通   运   输   部
 备案机关：国   家   统   计   局
 批准文号：国统制(2012)131号  
@@ -113,13 +113,13 @@
                                 <table border="1" cellpadding="1" cellspacing="1" style="width:99.9%;vertical-align: middle; text-align: center;
                                     background-color: #4B4B4B" >
                                     <tr style="background-color: #999999; height: 12px;">
-                                        <td rowspan="2" colspan="2" style="width: 220px;">
+                                        <td rowspan="2" colspan="2" style="width: 20%;">
                                             项目
                                         </td>
                                         <td rowspan="2" style="width: 30px;">
                                             编号
                                         </td>
-                                        <td colspan="6" style="width: 540px;">
+                                        <td colspan="6" style="width: 55%;">
                                             实&nbsp; 际&nbsp; 评&nbsp; 级&nbsp; 里&nbsp; 程 （公里）
                                         </td>
                                         <td rowspan="2" style="width: 80px;">

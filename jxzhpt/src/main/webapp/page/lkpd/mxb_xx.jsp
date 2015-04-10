@@ -85,14 +85,14 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" style="width: 20%">
+                                        <td align="center" style="width: 30%">
                                             &nbsp;
                                         </td>
                                         <td align="center" style="width: 50%; font-size: 14px; padding-left: 240px;">
                                             <span id="lblFBT">——高速公路、普通国道级省道</span>
                                         </td>
                                         <td rowspan="2" align="right" style="width: 20%; margin: 0px; padding: 0px;">
-                                            <textarea name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:175px;overflow: hidden;">表    号：交  公  路 29-1 表
+                                            <textarea name="txtReport" rows="2" cols="20" readonly="readonly" id="txtReport" style="border-style:None;font-size:11px;height:90px;width:100%;overflow: hidden;font-size: x-small;background-color: #ffffff;">表    号：交  公  路 29-1 表
 制表机关：交  通  运  输  部
 备案机关：国  家  统  计  局
 批准文号：国统制（2012）131号
@@ -115,10 +115,10 @@
                                 <table cellpadding="1" cellspacing="1" style="vertical-align: middle; text-align: center;
                                     background-color: #4B4B4B" border="1">
                                     <tr style="background-color: #999999; height: 12px;">
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 130px;">
                                             路线编码
                                         </td>
-                                        <td rowspan="2" style="width: 90px;">
+                                        <td rowspan="2" style="width: 150px;">
                                             路线名称
                                         </td>
                                         <td rowspan="2" style="width: 90px;">
