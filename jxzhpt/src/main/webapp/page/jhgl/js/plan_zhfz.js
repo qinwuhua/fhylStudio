@@ -21,35 +21,16 @@ function querySumZhfz(jh,lx){
 	});
 }
 function queryZjqf(nf){
-	//查询切分资金
-	var xzqhdm=$.cookie("unit");
-	if(roleName()=="县级"){
-		xzqhdm=$.cookie("unit").substring(0,9)+"00";
-	}else if(roleName()=="市级"){
-		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
-	}else if(roleName()=="省级"){
-		xzqhdm="11101360000";
-	}
-	var y=true;
 	$.ajax({
 		type:'post',
 		async:false,
-		url:'../../../jhgl/queryZjqfByXzqh.do',
-		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		url:'../../../jhgl/queryZjqfByZjqf.do',
+		data:zjqf={'zjqf.gydwbm':$.cookie("unit"),'zjqf.nf':nf},
 		dataType:'json',
 		success:function(data){
 			if(data!=null){
-				$.each(JSON.parse(data.zjqf),function(index,item){
-					if(item.id==$.cookie("unit")){
-						$('#lblQfzj').html(item.zhfz);
-						y=false;
-					}else if(roleName()=="省级" && item.id==xzqhdm){
-						$('#lblQfzj').html(item.zhfz);
-						y=false;
-					}
-				});
-			}
-			if(y){
+				$('#lblQfzj').html(data.zhfz);
+			}else{
 				$('#lblQfzj').html("0");
 			}
 		}
