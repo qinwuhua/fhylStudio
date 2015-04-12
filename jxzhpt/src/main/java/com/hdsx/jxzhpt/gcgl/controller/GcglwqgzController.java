@@ -297,7 +297,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			String tiaojian=fileuploadFileName;
 			gcglwqgz.setTiaojian(tiaojian);
 			gcglwqgz.setJhid(jhid1);
-			
+			System.out.println(tiaojian+"------"+jhid1);
 			 InputStream inputStream = new FileInputStream(fileupload);
 			boolean bl = false;
 			if("sgxkwj".equals(type1)){

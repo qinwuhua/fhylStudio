@@ -124,7 +124,7 @@
 		where SCKID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglwqgz">
-		update PLAN_WQGZ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
+		update PLAN_WQGZ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where SCKID=#{jhid}
 	</update>
 	<!-- 下载 -->
