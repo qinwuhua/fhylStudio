@@ -18,4 +18,7 @@
 		update plan_zjqf set wqgz=#{wqgz},abgc=#{abgc},zhfz=#{zhfz}
 		where nf=#{nf} and gydwbm=#{gydwbm}
 	</update>
+	<select id="queryChildXzqh" parameterType="treenode" resultType="treenode">
+		select * from xtgl_xzqh xt where xt.id like #{id}  order by xt.id
+	</select>
 </mapper>

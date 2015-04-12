@@ -31,4 +31,8 @@ public class Plan_zjqfServerImpl extends BaseOperate implements Plan_zjqfServer 
 	public boolean updateZjqfBatch(List<PlanZjqf> update) {
 		return updateBatch("updateZjqfBatch", update)==update.size();
 	}
+	@Override
+	public List<TreeNode> queryChildXzqh(TreeNode treenode) {
+		return queryList("queryChildXzqh",treenode);
+	}
 }

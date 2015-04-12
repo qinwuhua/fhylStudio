@@ -22,4 +22,6 @@ public interface Plan_zjqfServer {
 	boolean insertZjqfBatch(List<PlanZjqf> zjqf);
 
 	boolean updateZjqfBatch(List<PlanZjqf> update);
+
+	List<TreeNode> queryChildXzqh(TreeNode treenode);
 }

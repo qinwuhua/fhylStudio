@@ -83,6 +83,17 @@ public class Plan_zjqfController extends BaseActionSupport{
 		}
 	}
 	
+	public void queryChildXzqh(){
+		TreeNode treenode=new TreeNode();
+		treenode.setId(xzqh.getId());
+		List<TreeNode> queryChildXzqh = zjqfServer.queryChildXzqh(treenode);
+		try {
+			JsonUtils.write(queryChildXzqh, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//get set
 	public PlanZjqf getZjqf() {
 		return zjqf;
