@@ -41,7 +41,7 @@
 				d='0'+d;
 			}
 			var data=parent.obj1;
-			$('#tj_xdsj').datebox('setValue', data.xdsj);
+			$('#tj_xdsj').datebox('setValue', data.jhxdsj);
 			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);
 			$('#tj_yjjgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
