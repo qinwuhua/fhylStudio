@@ -466,7 +466,7 @@ function showYBlist(){
 					if(msg.jgyswj!=''){
 						$("#xz_jgyswj").text(msg.jgyswj);
 						$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+						$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 					}
 				}
 		});	

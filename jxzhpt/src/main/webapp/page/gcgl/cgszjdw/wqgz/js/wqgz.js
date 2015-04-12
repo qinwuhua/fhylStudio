@@ -113,7 +113,7 @@ function showAll(){
 	if(gydw=='36')
 		gydw='';
 	var jgzt='0';
-	var kgzt='0';
+	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 //	var yhjb=$.cookie("unit2");
@@ -271,7 +271,7 @@ function jiazaifujian(data1){
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 				}
 			}
 	});	

@@ -125,7 +125,7 @@
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglhsly">
-		update PLAN_HSLY set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
+		update PLAN_HSLY set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
