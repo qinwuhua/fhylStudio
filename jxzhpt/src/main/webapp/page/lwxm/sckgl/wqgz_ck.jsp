@@ -51,6 +51,9 @@ function selWqgzById(){
 		$("#bhnr").html(msg.bhnr);
 		$("#bz").html(msg.bz);
 		
+		$("#scqlqc").html(msg.scqlqc);
+		$("#scqlqk").html(msg.scqlqk);
+		$("#scxmnf").html(msg.scxmnf);
 		$("#fapgdw").html(msg.fapgdw);
 		$("#fascdw").html(msg.fascdw);
 		$("#faspsj").html(msg.faspsj);
@@ -174,6 +177,17 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="scqlqc"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="scqlqk"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="scxmnf"></span></td>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">方案评估单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="fapgdw"></span></td>
@@ -190,7 +204,7 @@ text-decoration:none;
 					<span id="spwh"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="tzgs"></span></td>
+					<span id="tzgs"></span>&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jsxz"></span>

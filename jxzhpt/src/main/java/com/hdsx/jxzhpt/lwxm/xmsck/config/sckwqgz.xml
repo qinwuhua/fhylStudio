@@ -3,9 +3,10 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd,lrjh,bzls)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,
+		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls})
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk})
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="java.util.List">
@@ -106,7 +107,7 @@
 	<update id="updateSckwqgz" parameterType="sckwqgz">
 		update sck_wqgz set
 		tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
-		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
+		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk}
 		where sckid=#{sckid}
 	</update>
 	<select id="selectSckwqgzById" parameterType="sckwqgz"

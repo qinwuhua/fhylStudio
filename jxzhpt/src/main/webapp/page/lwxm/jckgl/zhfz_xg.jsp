@@ -29,9 +29,19 @@ text-decoration:none;
 var qdStr;
 var zdStr;
 	$(function(){
-		xmnf("xmnf");
+		xmnf1("xmnf");
 		selZhfzById();
 		$("#save_button").click(function(){
+			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
+				alert("请填写正确的起点桩号！");
+				$("#qdzh").focus();
+				return false;
+			}
+			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
+				alert("请填写正确的止点桩号！");
+				$("#zdzh").focus();
+				return false;
+			}
 			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
 				alert("对不起，起点桩号不能小于"+qdStr+"！");
 				return false;

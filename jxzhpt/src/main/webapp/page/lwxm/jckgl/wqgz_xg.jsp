@@ -27,7 +27,7 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 $(function(){
-	xmnf("xmnf");
+	xmnf1("xmnf");
 	wqgzById();
 	$("#save_button").click(function(){
 		var data ="id="+parent.rowid+"&qlbh="+$("#qlbh").html()+"&qlmc="+$("#qlmc").html()+"&qlzxzh="+$("#qlzxzh").html()+"&gydw="+$("#gydw").html()
