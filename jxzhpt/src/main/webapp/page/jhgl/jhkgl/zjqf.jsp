@@ -133,6 +133,9 @@
 			});
 		}
 		function save(){
+			if($('#zjqfidglj').val()==""){
+				return;
+			}
 			if($.cookie("unit")=="36"){
 				var glj = save2($('#zjqfidglj').val(),"21101360000");
 				var jtj = save2($('#zjqfidjtj').val(),"11101360000");
