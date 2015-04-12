@@ -113,7 +113,7 @@ function showAll(){
 	if(gydw=='36')
 		gydw='';
 	var jgzt='0';
-	var kgzt='1';
+	var kgzt='0';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
 //	var yhjb=$.cookie("unit2");
