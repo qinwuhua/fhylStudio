@@ -124,6 +124,8 @@
 							$(tds[2]).val(item.zhfz);
 						});
 					}else{
+						$('#zjqfidglj').val("");
+						$('#zjqfidjtj').val("");
 						var text= $("#zjqf_table input:gt(3)");
 						$.each(text,function(index,item){
 							$(item).val("");
@@ -140,6 +142,8 @@
 			if($.cookie("unit")=="36"){
 				var glj = save2($('#zjqfidglj').val(),"21101360000");
 				var jtj = save2($('#zjqfidjtj').val(),"11101360000");
+				$('#zjqfidglj').val("");
+				$('#zjqfidjtj').val("");
 				if(glj && jtj){
 					alert("保存成功！");
 				}
@@ -210,6 +214,7 @@
 		}
 		function save2(zjqfid,gydw){
 			var result=false;
+			alert(zjqfid);
 			var wqsum=0,absum=0,zhsum=0;
 			var zjqfJson=new Array();
 			$.each($("tr[name='"+gydw+"']"),function(index,item){
@@ -302,7 +307,6 @@
 								child=newZjqf;
 							}
 						});
-						alert(child['zjqf.id']);
 					}
 				}
 			});
