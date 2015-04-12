@@ -133,7 +133,8 @@
 			});
 		}
 		function save(){
-			if($('#zjqfidglj').val()==""){
+			if($('#selnf').val()==""){
+				alert("请选择年份！");
 				return;
 			}
 			if($.cookie("unit")=="36"){
@@ -157,21 +158,31 @@
 					return;
 				}
 			});
-			if(isnum){
+			/*if(isnum){
 				alert("所有分配金额不能为空！");
 				return;
-			}
+			}*/
 			var tr = $('#zjqf_table tr :gt(1)');
 			var zjqfJson=new Array();
 			var wqsum=0,absum=0,zhsum=0;
 			$.each(tr,function(index,item){
 				var tds = $('#'+item.id+' input');
+				var wq=0,ab=0,zh=0;
 				if(index>0){
-					wqsum+=parseInt($(tds[0]).val(),10);
-					absum+=parseInt($(tds[1]).val(),10);
-					zhsum+=parseInt($(tds[2]).val(),10);
+					if($(tds[0]).val()!=""){
+						wqsum+=parseInt($(tds[0]).val(),10);
+						wq=$(tds[0]).val();
+					}
+					if($(tds[1]).val()!=""){
+						absum+=parseInt($(tds[1]).val(),10);
+						ab=$(tds[1]).val();
+					}
+					if($(tds[2]).val()!=""){
+						zhsum+=parseInt($(tds[2]).val(),10);
+						zh=$(tds[2]).val();
+					}
 				}
-				var dq={id:item.id,wqgz:$(tds[0]).val(),abgc:$(tds[1]).val(),zhfz:$(tds[2]).val()};
+				var dq={id:item.id,wqgz:wq,abgc:ab,zhfz:zh};
 				zjqfJson.push(dq);
 			});
 			var trsum = $('#zjqf_table tr:eq(2) input');
@@ -218,7 +229,6 @@
 						zh=$(tds[2]).val();
 					}
 					if(item.id=="11101360100"){
-						alert(item.id);
 						queryChildZjqf(item.id,wq,ab,zh);
 					}
 				}else{
