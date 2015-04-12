@@ -78,12 +78,12 @@
 	<select id="queryZhfzByStatus" parameterType="java.util.Map" resultType="plan_zhfz">
 		select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=1">
-						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-					</if>
-					<if test="(jh.sbzt==null and jh.spzt==null) or (jh.sbzt=='' and jh.spzt=='') and jh.jh_sbthcd!=1">
-						and jh.jh_sbthcd=#{jh.jh_sbthcd}
-					</if>
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
 	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
 	 		and jh.sbzt=#{jh.sbzt}
 	 	</if>

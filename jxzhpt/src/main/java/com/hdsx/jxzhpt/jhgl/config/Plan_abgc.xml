@@ -98,11 +98,11 @@
 		<if test="jh.jhnf!=null and jh.jhnf!=''">
 			and jh.jhnf=#{jh.jhnf}
 		</if>
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=1">
-			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-		</if>
-		<if test="(jh.sbzt==null and jh.spzt==null) or (jh.sbzt=='' and jh.spzt=='') and jh.jh_sbthcd!=1">
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
 		<if test="jh.sbzt!=null and jh.sbzt!=''">
 			and jh.sbzt=#{jh.sbzt}

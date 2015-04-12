@@ -108,7 +108,7 @@
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
 			if($('#lblQfzj').html()==$('#lblBTZ').html()){
-				var param={'jh.sbnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,
+				var param={'jh.sbnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,
 						'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;
@@ -120,20 +120,23 @@
 					data:param,
 					dataType:'json',
 					success:function(data){
-						$.each(data,function(index,item){
-							var date=new Date();
-							alert(item.id);
-							var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-								" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-							var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-									'jh.jh_sbthcd':parseInt(item.jh_sbthcd,10)+2};
-							if(xian){
-								jh['jh.sbzt']='0';
-							}
-							editStatus(jh);
-						});
-						alert("上报成功！");
-						searchWqgz();
+						if(data.length>0){
+							$.each(data,function(index,item){
+								var date=new Date();
+								var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+									" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+								var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+										'jh.jh_sbthcd':parseInt(item.jh_sbthcd,10)+2};
+								if(xian){
+									jh['jh.sbzt']='0';
+								}
+								editStatus(jh);
+							});
+							alert("上报成功！");
+							searchWqgz();
+						}else{
+							alert("无需要上报的计划！");
+						}
 					}
 				});
 			}else{

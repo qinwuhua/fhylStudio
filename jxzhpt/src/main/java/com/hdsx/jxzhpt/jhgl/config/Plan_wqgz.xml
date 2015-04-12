@@ -82,8 +82,11 @@
 	<select id="queryWqgzByStatus" parameterType="java.util.Map" resultType="plan_wqgz">
 		select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
-		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>
 		<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 		and jh.sbnf=#{jh.sbnf}
