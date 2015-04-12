@@ -113,7 +113,7 @@ function delCgs(index){
 function showAll(){
 	var xzqhdm=$("#xzqhdm").combobox("getValue");
 	var jgzt='0';
-	var kgzt='0';
+	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectHslyjhList.do',

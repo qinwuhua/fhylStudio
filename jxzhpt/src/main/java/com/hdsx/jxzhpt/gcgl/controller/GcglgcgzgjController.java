@@ -490,7 +490,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		List<Gcglgcgzgj> list1=gcglgcgzgjServer.selectWqgzjhListid1(gcglgcgzgj);
 		String tiaojian="";
 		for (Gcglgcgzgj gcglgcgzgj2 : list1) {
-			tiaojian="'"+gcglgcgzgj2.getId()+"'"+",";
+			tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
 		}
 		System.out.println(tiaojian.substring(0, tiaojian.length()-1));
 		gcglgcgzgj.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));

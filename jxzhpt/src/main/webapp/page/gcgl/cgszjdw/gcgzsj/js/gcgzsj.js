@@ -115,7 +115,7 @@ function showAll(){
 	if(gydw=='36')
 		gydw='';
 	var jgzt='0';
-	var kgzt='0';
+	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectGcgzsjjhList.do',
