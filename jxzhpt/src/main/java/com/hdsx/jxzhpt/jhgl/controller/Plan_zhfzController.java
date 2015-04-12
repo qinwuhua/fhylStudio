@@ -67,6 +67,14 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		}
 	}
 	
+	public void queryZhfzByStatus(){
+		try {
+			JsonUtils.write(zhfzServer.queryZhfzByStatus(jh, lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void querySumZhfz(){
 		try {
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());

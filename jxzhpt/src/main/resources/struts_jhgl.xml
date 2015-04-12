@@ -55,6 +55,7 @@
 		<action name="querySumZhfz" class="plan_zhfzController" method="querySumZhfz"/>
 		<action name="uploadZhfzFile" class="plan_zhfzController" method="uploadZhfzFile"/>
 		<action name="downZhfzFile" class="plan_zhfzController" method="downZhfzFile"/>
+		<action name="queryZhfzByStatus" class="plan_zhfzController" method="queryZhfzByStatus"/>
 		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
@@ -66,6 +67,7 @@
 		<action name="querySumWqgz" class="plan_wqgzController" method="querySumWqgz"/>
 		<action name="uploadWqgzFile" class="plan_wqgzController" method="uploadWqgzFile"/>
 		<action name="downWqgzFile" class="plan_wqgzController" method="downWqgzFile"/>
+		<action name="queryWqgzByStatus" class="plan_wqgzController" method="queryWqgzByStatus"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>

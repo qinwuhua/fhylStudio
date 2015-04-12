@@ -602,7 +602,12 @@ function downFile1(){
 function downFile2(){
 	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
 }
-
+function openXx(){
+	YMLib.UI.createWindow('ql_add','桥梁项目查询','./dzdt_ql.jsp','app_add',630,330);
+}
+function openEdit(){
+	
+}
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

@@ -69,6 +69,14 @@ public class Plan_wqgzController extends BaseActionSupport {
 		}
 	}
 	
+	public void queryWqgzByStatus(){
+		try {
+			JsonUtils.write(wqgzServer.queryWqgzByStatus(jh, lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void querySumWqgz(){
 		try {
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
