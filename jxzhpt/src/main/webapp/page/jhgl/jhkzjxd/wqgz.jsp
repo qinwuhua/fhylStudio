@@ -33,8 +33,7 @@
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.gydwdm=null;
+			lx.gydwbm=filterGydwdm(lx.gydwbm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
