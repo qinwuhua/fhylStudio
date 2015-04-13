@@ -95,7 +95,7 @@ function showAll(){
 	var jgzt='0';
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
-	var yhjb=$.cookie("unit2");
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
 	var sfsj='';
 	if(yhjb.length==11){
 		yhtype='县级';

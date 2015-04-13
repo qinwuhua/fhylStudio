@@ -460,6 +460,7 @@ public class GcglabgcController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglabgc.setTiaojian("xjzt");
 			}
+			System.out.println(gcglabgc.getTiaojian());
 			int count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);
 			List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList(gcglabgc);
 			EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();

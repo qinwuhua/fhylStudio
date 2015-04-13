@@ -484,6 +484,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	
 	//查询jihua
 	public void selectGcgzgjjhList1(){
+		try {
 		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
@@ -507,15 +508,20 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		for (Gcglgcgzgj gcglgcgzgj2 : list1) {
 			tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
 		}
+		if(tiaojian.equals("")){
+			gcglgcgzgj.setTiaojian("'1'");
+		}else
 		gcglgcgzgj.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));
 		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);
 		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
-//		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);
-//		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
+
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
+		for (Gcglgcgzgj gcglgcgzgj2 : list) {
+			System.out.println(gcglgcgzgj2);
+		}
 		e.setRows(list);
 		e.setTotal(count);
-		try {
+		
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -548,6 +554,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			for (Gcglgcgzgj gcglgcgzgj2 : list1) {
 				tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
 			}
+			if(tiaojian.equals("")){
+				gcglgcgzgj.setTiaojian("'1'");
+			}else
 			gcglgcgzgj.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));
 			List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
 			List<Gcglgcgzgj> list2=new ArrayList<Gcglgcgzgj>();

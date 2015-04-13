@@ -101,11 +101,11 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<input id="gydw" style="width: 120px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc" >
+        							<input type="text" id="lxmc" style="width: 80px;">
         						<span>桥梁名称：</span>
-        							<input type="text" id="qlmc" >
+        							<input type="text" id="qlmc" style="width: 80px;">
         						<span>年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 80px;">
         						</select>

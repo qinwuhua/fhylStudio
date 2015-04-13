@@ -99,7 +99,7 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<input id="gydw" style="width: 150px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
         						<span>年份：</span> 
