@@ -45,12 +45,6 @@
 		$("#tj_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
 		$("#tj_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
 		$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-		var sj1=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(0,4);
-		var sj2=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(5,2).replace(/\b(0+)/gi,"");
-		if(mystr1.substr(0,4)<sj1){$("#"+mystr1).remove();}
-		else if(mystr1.substr(5,1)<sj2){$("#"+mystr1).remove();}
-		if(mystr2.substr(0,4)<sj1){$("#"+mystr2).remove();}
-		else if(mystr2.substr(5,1)<sj2){$("#"+mystr2).remove();}
 
 	});
 function checkZJ(){

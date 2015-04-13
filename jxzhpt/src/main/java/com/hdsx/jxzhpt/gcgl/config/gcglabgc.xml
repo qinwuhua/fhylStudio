@@ -369,4 +369,37 @@ where t1.spzt='1'
 					and t3.qlmc like '%'||trim(#{tiaojian})||'%'
 			</if>
 	</select>
+	<!--  -->
+	 <select id="exportAbyb1" parameterType="gcglabgc" resultType="elist">
+	select * from (
+		select m.*,rownum rn from (
+			select 
+			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,t3.yhlc v_8,t3.gjxjnd v_9,t1.id v_10
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+			where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			)m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selectabgcxx" parameterType="gcglabgc" resultType="gcglabgc">
+	select t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
+	t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+	t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
+	t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+	from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+	where t1.sckid=#{jhid}
+	</select>
 </mapper>

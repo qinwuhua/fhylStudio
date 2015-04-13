@@ -56,7 +56,8 @@
 	<action name="selectAbgcjhFile" class="gcglabgcController" method="selectAbgcjhFile"/>
 	<action name="deleteAbgcFile" class="gcglabgcController" method="deleteAbgcFile"/>
 	<action name="sbAbgcYb" class="gcglabgcController" method="sbAbgcYb"/>
-	
+	<action name="selectAbgcjhList1" class="gcglabgcController" method="selectAbgcjhList1"/>
+	<action name="selectabgcxx" class="gcglabgcController" method="selectabgcxx"/>
 	<!-- zhfz -->
 	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>
 	<action name="selectZhfzYbByJhid" class="gcglzhfzController" method="selectZhfzYbByJhid"/>

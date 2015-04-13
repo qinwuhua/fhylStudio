@@ -73,7 +73,21 @@ public class GcglabgcController extends BaseActionSupport{
 	private String ybzt;
 	private String sbyf;
 	private String tbr;
+	private String bfzt;
+	private String bfyf;
 	
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
 	public String getTbr() {
 		return tbr;
 	}
@@ -944,5 +958,74 @@ public class GcglabgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}//将类和参数HttpServletResponse传入即可实现导出excel		
 		
+	}
+	public void selectAbgcjhList1(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setPage(page);
+		gcglabgc.setRows(rows);
+//		gcglabgc.setJhid(jhid);
+//		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+//		gcglabgc.setKgzt(kgzt);
+//		gcglabgc.setLxmc(lxmc);
+//		gcglabgc.setJgzt(jgzt);
+//		gcglabgc.setShzt(ybzt);
+//		if(sfsj==7){
+//			gcglabgc.setTiaojian("sjsh");
+//		}
+//		if(sfsj==9){
+//			gcglabgc.setTiaojian("sjzt");
+//		}
+//		if(sfsj==11){
+//			gcglabgc.setTiaojian("xjzt");
+//		}
+		try {
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setTbr(tbr);
+		List<Excel_list> list=gcglabgcServer.exportAbyb1(gcglabgc);
+		List<Excel_list> list1=new ArrayList<Excel_list>();
+		System.out.println(bfzt);
+		if("未拨付".equals(bfzt)){
+			for (Excel_list excel_list : list) {
+				gcglabgc.setJhid(excel_list.getV_0());
+				Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+				if(gcglabgc1==null)
+				list1.add(excel_list);
+			}
+		}
+		else if("已拨付".equals(bfzt)){
+			list1.addAll(list);
+			for (Excel_list excel_list : list) {
+				gcglabgc.setJhid(excel_list.getV_0());
+				Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
+				if(gcglabgc1==null)
+				list1.remove(excel_list);
+			}
+		}else{
+			list1.addAll(list);
+		}
+		
+		int count=list1.size();
+
+		EasyUIPage<Excel_list> e=new EasyUIPage<Excel_list>();
+		e.setRows(list1);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void selectabgcxx(){
+		gcglabgc.setJhid(jhid);
+		Gcglabgc gcglabgc1=gcglabgcServer.selectabgcxx(gcglabgc);
+		try {
+			JsonUtils.write(gcglabgc1, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

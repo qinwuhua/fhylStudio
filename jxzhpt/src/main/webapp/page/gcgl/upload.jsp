@@ -102,8 +102,7 @@
 	function fanhui() {
 		var flag=request('flag');
 		var type=request('type');
-			parent.window.location = '/jxzhpt/page/gcgl/'+flag+'.jsp';
-		
+			parent.window.location = '/jxzhpt/page/gcgl/'+flag+'.jsp?'+"sf=1";
  		dg.cancel();
 	}
 </script>

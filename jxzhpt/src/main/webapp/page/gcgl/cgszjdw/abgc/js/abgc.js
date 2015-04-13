@@ -2,7 +2,7 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.lxbm,"");
+	locationXm(data.v_3,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -40,7 +40,7 @@ function tjabgccgs(){
 		return;
 	}
 	var data="gcglabgc.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglabgc.tbr="+$.cookie("truename")+"&gcglabgc.tbsj="+tbsj+"&gcglabgc.tbyf="+$("#tj_tbyf").val()
-	+"&gcglabgc.jhid="+parent.parent.obj1.jhid;
+	+"&gcglabgc.jhid="+parent.parent.obj1.v_0;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -118,9 +118,11 @@ function showAll(){
 		gydw='';
 	var jgzt='0';
 	var kgzt='';
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectAbgcjhList.do',
+	    url:'../../../../gcgl/selectAbgcjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -134,28 +136,30 @@ function showAll(){
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	bfyf:nf+"-"+yf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>      '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 	        }},
-	  	   {field:'gydw',title:'管养单位',width:150,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:120,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:100,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:80,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'yhlc',title:'隐患里程',width:60,align:'center'},
-	        {field:'gjxjnd',title:'改建/修建年度',width:100,align:'center'}
+	  	   {field:'v_1',title:'管养单位',width:150,align:'center'},
+	        {field:'v_2',title:'行政区划',width:120,align:'center'},
+	        {field:'v_3',title:'路线编码',width:120,align:'center'},
+	        {field:'v_4',title:'路线名称',width:120,align:'center'},
+	        {field:'v_5',title:'起点桩号',width:100,align:'center'},
+	        {field:'v_6',title:'止点桩号',width:80,align:'center'},
+	        {field:'v_7',title:'总里程',width:80,align:'center'},
+	        {field:'v_8',title:'隐患里程',width:60,align:'center'},
+	        {field:'v_9',title:'改建/修建年度',width:100,align:'center'}
 	    ]]    
 	}); 
 }
 
 
 function showAllZJ(){
-	var jhid=parent.obj1.jhid;
+	var jhid=parent.obj1.v_0;
 	$('#zjgrid').datagrid({    
 	    url:'../../../../gcgl/selectAbgcCgsList.do',
 	    striped:true,
@@ -193,7 +197,7 @@ function uploadFile(str){
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : title,
-		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadAbgcFile.do"+'&flag='+'gljsjyhgl%2fabgc%2fabgcxx'+'&type='+str+'&jhid='+parent.obj1.jhid,
+		page : '../../upload.jsp?url='+"/jxzhpt/gcgl/uploadAbgcFile.do"+'&flag='+'gljsjyhgl%2fabgc%2fabgcxx'+'&type='+str+'&jhid='+parent.obj1.v_0,
 		width : 450,
 		height : 400,
 		top : 0,
@@ -216,7 +220,7 @@ function deleteFile(str){
 		return;
 	}
 	if(confirm("确认删除吗？")){
-	var data="jhid="+parent.obj1.jhid+"&type="+str;
+	var data="jhid="+parent.obj1.v_0+"&type="+str;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/deleteAbgcFile.do',
@@ -247,24 +251,24 @@ function jiazai(ooo){
 				if(msg.sgxkwj!=''){
 					$("#xz_sgxkwj").text(msg.sgxkwj);
 					$("#xz_sgxkwj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=sgxkwj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_sgxkwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=sgxkwj'+"&jhid="+parent.obj1.v_0);
 				}
 				if(msg.jgtcwj!=''){
 					$("#xz_jgtcwj").text(msg.jgtcwj);
 					$("#xz_jgtcwj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgtcwj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgtcwj'+"&jhid="+parent.obj1.v_0);
 				}
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.v_0);
 				}
 			}
 	});	
 }
 
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
+	var data="gcglwqgz.jhid="+parent.obj1.v_0+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.v_10;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',
