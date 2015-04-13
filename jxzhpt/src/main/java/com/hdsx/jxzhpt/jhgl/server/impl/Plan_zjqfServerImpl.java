@@ -11,34 +11,28 @@ public class Plan_zjqfServerImpl extends BaseOperate implements Plan_zjqfServer 
 	public Plan_zjqfServerImpl() {
 		super("plan_zjqf", "jdbc");
 	}
-
-	@Override
-	public PlanZjqf queryZjqfByXzqh(PlanZjqf zjqf) {
-		return queryOne("queryZjqfByXzqh", zjqf);
-	}
-
-	@Override
-	public boolean editZjqfById(PlanZjqf zjqf) {
-		return update("editZjqfById", zjqf)>0;
-	}
-
-	@Override
-	public boolean addZjqf(PlanZjqf zjqf) {
-		return insert("addZjqf", zjqf)>0;
-	}
-
-	@Override
-	public List<TreeNode> queryChildXzqh(TreeNode xzqh) {
-		return queryList("queryChildXzqh",xzqh);
-	}
-
 	@Override
 	public List<TreeNode> queryChildGydw(TreeNode xzqh) {
 		return queryList("queryChildGydw",xzqh);
 	}
-
 	@Override
-	public boolean updateZjqf(PlanZjqf zjqf) {
-		return update("updateZjqf", zjqf)>0;
+	public List<PlanZjqf> queryZjqfByGydwbm(PlanZjqf zjqf) {
+		return queryList("queryZjqfByGydwbm",zjqf);
+	}
+	@Override
+	public PlanZjqf queryZjqfByZjqf(PlanZjqf zjqf) {
+		return queryOne("queryZjqfByZjqf", zjqf);
+	}
+	@Override
+	public boolean insertZjqfBatch(List<PlanZjqf> list) {
+		return insertBatch("insertZjqfBatch", list)==list.size();
+	}
+	@Override
+	public boolean updateZjqfBatch(List<PlanZjqf> update) {
+		return updateBatch("updateZjqfBatch", update)==update.size();
+	}
+	@Override
+	public List<TreeNode> queryChildXzqh(TreeNode treenode) {
+		return queryList("queryChildXzqh",treenode);
 	}
 }

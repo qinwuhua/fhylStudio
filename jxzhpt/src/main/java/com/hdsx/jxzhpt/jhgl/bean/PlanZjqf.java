@@ -4,22 +4,41 @@ public class PlanZjqf {
 	public PlanZjqf(){
 		super();
 	}
-	public PlanZjqf(String id, String nf, String xzqhdm, String zjqf) {
+	public PlanZjqf(String id, String gydwbm, String parent, String nf,
+			String wqgz, String abgc, String zhfz) {
 		super();
 		this.id = id;
+		this.gydwbm = gydwbm;
+		this.parent = parent;
 		this.nf = nf;
-		this.xzqhdm = xzqhdm;
-		this.zjqf = zjqf;
+		this.wqgz = wqgz;
+		this.abgc = abgc;
+		this.zhfz = zhfz;
 	}
-	private String id;//唯一ID
-	private String nf;//年份
-	private String xzqhdm;//行政区划
-	private String zjqf;//此行政区划下级的资金切分情况
+	private String id;
+	private String gydwbm;
+	private String parent;
+	private String nf;
+	private String wqgz;
+	private String abgc;
+	private String zhfz;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getGydwbm() {
+		return gydwbm;
+	}
+	public void setGydwbm(String gydwbm) {
+		this.gydwbm = gydwbm;
+	}
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 	public String getNf() {
 		return nf;
@@ -27,16 +46,22 @@ public class PlanZjqf {
 	public void setNf(String nf) {
 		this.nf = nf;
 	}
-	public String getXzqhdm() {
-		return xzqhdm;
+	public String getWqgz() {
+		return wqgz;
 	}
-	public void setXzqhdm(String xzqhdm) {
-		this.xzqhdm = xzqhdm;
+	public void setWqgz(String wqgz) {
+		this.wqgz = wqgz;
 	}
-	public String getZjqf() {
-		return zjqf;
+	public String getAbgc() {
+		return abgc;
 	}
-	public void setZjqf(String zjqf) {
-		this.zjqf = zjqf;
+	public void setAbgc(String abgc) {
+		this.abgc = abgc;
+	}
+	public String getZhfz() {
+		return zhfz;
+	}
+	public void setZhfz(String zhfz) {
+		this.zhfz = zhfz;
 	}
 }
