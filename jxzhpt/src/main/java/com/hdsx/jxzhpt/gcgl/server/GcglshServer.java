@@ -58,6 +58,10 @@ public interface GcglshServer {
 
 	Boolean sbWqgzYb(Gcglsh gcglsh);
 
+	List<Gcglsh> exportAbyb1(Gcglsh gcglsh);
+
+	Gcglsh queryCGSByYf(Gcglsh gcglsh);
+
 
 	
 }

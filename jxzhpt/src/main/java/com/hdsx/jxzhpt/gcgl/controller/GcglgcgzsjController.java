@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,21 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfyf;
+	private String bfzt;
 	
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -476,6 +491,7 @@ public class GcglgcgzsjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+
 	private byte [] inputStreamToByte(InputStream is) throws IOException { 
 	    ByteArrayOutputStream bAOutputStream = new ByteArrayOutputStream(); 
 	    byte [] arr = new byte[1024*10];
@@ -486,5 +502,51 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
+	}
+
+	public void selectGcgzsjjhList1(){
+		
+		gcglgcgzsj.setPage(page);
+		gcglgcgzsj.setRows(rows);
+		try {
+		gcglgcgzsj.setGydw(gydw.replaceAll("0*$",""));
+		gcglgcgzsj.setKgzt(kgzt);
+		gcglgcgzsj.setLxmc(lxmc);
+		gcglgcgzsj.setJgzt(jgzt);
+		gcglgcgzsj.setTbyf(bfyf);
+
+		List<Gcglgcgzsj> list=gcglgcgzsjServer.exportAbyb1(gcglgcgzsj);
+		List<Gcglgcgzsj> list1=new ArrayList<Gcglgcgzsj>();
+		System.out.println(bfzt);
+		if("未拨付".equals(bfzt)){
+			for (Gcglgcgzsj excel_list : list) {
+				gcglgcgzsj.setJhid(excel_list.getId());
+				Gcglgcgzsj gcglgcgzsj1 = gcglgcgzsjServer.queryCGSByYf(gcglgcgzsj);
+				if(gcglgcgzsj1==null)
+				list1.add(excel_list);
+			}
+		}
+		else if("已拨付".equals(bfzt)){
+			list1.addAll(list);
+			for (Gcglgcgzsj excel_list : list) {
+				gcglgcgzsj.setJhid(excel_list.getId());
+				Gcglgcgzsj gcglgcgzsj1 = gcglgcgzsjServer.queryCGSByYf(gcglgcgzsj);
+				if(gcglgcgzsj1==null)
+				list1.remove(excel_list);
+			}
+		}else{
+			list1.addAll(list);
+		}
+		
+		int count=list1.size();
+
+		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
+		e.setRows(list1);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 }

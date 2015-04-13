@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
@@ -324,6 +325,12 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public Gcglabgc selectabgcxx(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryOne("selectabgcxx", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhListid1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhListid1", gcglabgc);
 	}
 
 }

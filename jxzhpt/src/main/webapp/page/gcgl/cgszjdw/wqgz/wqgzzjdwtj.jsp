@@ -28,29 +28,46 @@
 			var mystr='';
 			var mystr1='';
 			var mystr2='';
+			var mystr3='';
+			var mystr4='';
 			if(m==1){
 				mystr=y+'-'+m;
 				mystr1=(y-1)+'-'+11;
 				mystr2=(y-1)+'-'+12;
+				mystr3=(y-1)+'-'+10;
+				mystr4=(y-1)+'-'+9;
 			}
 			else if(m==2){
 				mystr=y+'-'+m;
 				mystr1=(y-1)+'-'+12;
 				mystr2=y+'-'+1;
+				mystr3=(y-1)+'-'+11;
+				mystr4=(y-1)+'-'+10;
+			}else if(m==3){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+1;
+				mystr2=y+'-'+2;
+				mystr3=(y-1)+'-'+12;
+				mystr4=(y-1)+'-'+11;
+			}else if(m==4){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+2;
+				mystr2=y+'-'+3;
+				mystr3=y+'-'+1;
+				mystr4=(y-1)+'-'+12;
 			}else{
 				mystr=y+'-'+m;
 				mystr1=y+'-'+(m-2);
 				mystr2=y+'-'+(m-1);
+				mystr3=y+'-'+(m-3);
+				mystr4=y+'-'+(m-4);
 			}
-			$("#tj_tbyf").append("<option value="+mystr+" selected='selected'>"+mystr+"</option>");
-			$("#tj_tbyf").append("<option value="+mystr2+">"+mystr2+"</option>");
-			$("#tj_tbyf").append("<option value="+mystr1+">"+mystr1+"</option>");
-			var sj1=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(0,4);
-			var sj2=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(5,2).replace(/\b(0+)/gi,"");
-			if(mystr1.substr(0,4)<sj1){$("#"+mystr1).remove();}
-			else if(mystr1.substr(5,1)<sj2){$("#"+mystr1).remove();}
-			if(mystr2.substr(0,4)<sj1){$("#"+mystr2).remove();}
-			else if(mystr2.substr(5,1)<sj2){$("#"+mystr2).remove();}
+
+			$("#tj_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
+			$("#tj_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
+			$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
+			$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
+			$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		});
 		function checkZJ(){
 			var str=$("#tj_cgsdwzj").val();

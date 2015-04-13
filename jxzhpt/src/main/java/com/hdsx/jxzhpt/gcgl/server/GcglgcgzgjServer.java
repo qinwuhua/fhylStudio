@@ -63,4 +63,6 @@ public interface GcglgcgzgjServer {
 
 	List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj);
 
+	Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj);
+
 }

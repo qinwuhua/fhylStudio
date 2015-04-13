@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -54,7 +56,21 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfzt;
+	private String bfyf;
 	
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -513,6 +529,51 @@ public class GcglwqgzController extends BaseActionSupport{
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
+	}
+	public void selectWqgzjhList1(){
+		gcglwqgz.setPage(page);
+		gcglwqgz.setRows(rows);
+		try {
+		gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
+		gcglwqgz.setKgzt(kgzt);
+		gcglwqgz.setQlmc(qlmc);
+		gcglwqgz.setLxmc(lxmc);
+		gcglwqgz.setJgzt(jgzt);
+		gcglwqgz.setTbyf(bfyf);
+
+		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList(gcglwqgz);
+		List<Gcglwqgz> list1=new ArrayList<Gcglwqgz>();
+		System.out.println(bfzt);
+		if("未拨付".equals(bfzt)){
+			for (Gcglwqgz excel_list : list) {
+				gcglwqgz.setJhid(excel_list.getJhid());
+				Gcglwqgz gcglwqgz1 = gcglwqgzServer.queryCGSByYf(gcglwqgz);
+				if(gcglwqgz1==null)
+				list1.add(excel_list);
+			}
+		}
+		else if("已拨付".equals(bfzt)){
+			list1.addAll(list);
+			for (Gcglwqgz excel_list : list) {
+				gcglwqgz.setJhid(excel_list.getJhid());
+				Gcglwqgz gcglwqgz1 = gcglwqgzServer.queryCGSByYf(gcglwqgz);
+				if(gcglwqgz1==null)
+				list1.remove(excel_list);
+			}
+		}else{
+			list1.addAll(list);
+		}
+		
+		int count=list1.size();
+
+		EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
+		e.setRows(list1);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 }
 	

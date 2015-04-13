@@ -52,7 +52,7 @@ function tjgcgzgjcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				 shezhi();
+				 parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -79,7 +79,7 @@ function xggcgzgjcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -101,7 +101,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					shezhi();
+					parent.shezhi();
 				}else{
 					alert('删除失败！');
 				}
@@ -117,8 +117,10 @@ function showAll(){
 	var jgzt='0';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectGcgzgjjhList1.do',
+	    url:'../../../../gcgl/selectGcgzgjjhList2.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -132,7 +134,9 @@ function showAll(){
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	bfyf:nf+"-"+yf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:320,align:'center',formatter:function(value,row,index){

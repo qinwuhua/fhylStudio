@@ -51,7 +51,7 @@ function tjwqgzcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -78,7 +78,7 @@ function xgwqgzcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -100,7 +100,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					shezhi();
+					parent.shezhi();
 				}else{
 					alert('删除失败！');
 				}
@@ -114,24 +114,12 @@ function showAll(){
 		gydw='';
 	var jgzt='0';
 	var kgzt='';
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
-//	var yhjb=$.cookie("unit2");
-//	var sfsj='';
-//	if(yhjb.length==11){
-//		yhtype='县级';
-//		sfsj=11;
-//	}
-//	if(yhjb.length==9||yhjb.length==8){
-//		yhtype='市级';
-//		sfsj=9;
-//	}
-//	if(yhjb.length<8&&yhjb.length>=2){
-//		yhtype='省级';
-//		sfsj=7;
-//	}
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectWqgzjhList.do',
+	    url:'../../../../gcgl/selectWqgzjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -146,7 +134,9 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	bfyf:nf+"-"+yf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

@@ -282,4 +282,10 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzjhList12", gcglgcgzgj);
 	}
+
+	@Override
+	public Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglgcgzgj);
+	}
 }

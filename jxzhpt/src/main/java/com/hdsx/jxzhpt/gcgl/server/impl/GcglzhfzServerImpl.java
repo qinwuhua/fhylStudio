@@ -265,4 +265,10 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 			return false;
 		}
 	}
+
+	@Override
+	public Gcglzhfz queryCGSByYf(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglzhfz);
+	}
 }

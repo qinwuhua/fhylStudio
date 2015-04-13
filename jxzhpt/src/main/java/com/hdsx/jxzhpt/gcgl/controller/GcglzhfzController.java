@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,21 @@ public class GcglzhfzController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfyf;
+	private String bfzt;
 	
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -483,4 +498,49 @@ public class GcglzhfzController extends BaseActionSupport{
 	    bAOutputStream.close(); 
 	    return data; 
 	}
+	public void selectZhfzjhList1(){
+		gcglzhfz.setPage(page);
+		gcglzhfz.setRows(rows);
+		try {
+		gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		gcglzhfz.setKgzt(kgzt);
+		gcglzhfz.setLxmc(lxmc);
+		gcglzhfz.setJgzt(jgzt);
+		gcglzhfz.setTbyf(bfyf);
+
+		List<Gcglzhfz> list=gcglzhfzServer.selectWqgzjhList(gcglzhfz);
+		List<Gcglzhfz> list1=new ArrayList<Gcglzhfz>();
+		System.out.println(bfzt);
+		if("未拨付".equals(bfzt)){
+			for (Gcglzhfz excel_list : list) {
+				gcglzhfz.setJhid(excel_list.getJhid());
+				Gcglzhfz gcglzhfz1 = gcglzhfzServer.queryCGSByYf(gcglzhfz);
+				if(gcglzhfz1==null)
+				list1.add(excel_list);
+			}
+		}
+		else if("已拨付".equals(bfzt)){
+			list1.addAll(list);
+			for (Gcglzhfz excel_list : list) {
+				gcglzhfz.setJhid(excel_list.getJhid());
+				Gcglzhfz gcglzhfz1 = gcglzhfzServer.queryCGSByYf(gcglzhfz);
+				if(gcglzhfz1==null)
+				list1.remove(excel_list);
+			}
+		}else{
+			list1.addAll(list);
+		}
+		
+		int count=list1.size();
+
+		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
+		e.setRows(list1);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }
+

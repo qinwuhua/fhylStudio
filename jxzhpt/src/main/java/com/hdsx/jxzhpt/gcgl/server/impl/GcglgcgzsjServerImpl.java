@@ -269,4 +269,16 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 			return false;
 		}
 	}
+
+	@Override
+	public List<Gcglgcgzsj> exportAbyb1(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("exportAbyb1", gcglgcgzsj);
+	}
+
+	@Override
+	public Gcglgcgzsj queryCGSByYf(Gcglgcgzsj gcglgcgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglgcgzsj);
+	}
 }

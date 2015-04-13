@@ -56,4 +56,6 @@ public interface GcglzhfzServer {
 
 	Boolean sbWqgzYb(Gcglzhfz gcglzhfz);
 
+	Gcglzhfz queryCGSByYf(Gcglzhfz gcglzhfz);
+
 }

@@ -51,7 +51,7 @@ function tjabgccgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -78,7 +78,7 @@ function xgabgccgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -99,7 +99,7 @@ function delCgs(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
-					shezhi();
+					parent.shezhi();
 					$("#zjgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');

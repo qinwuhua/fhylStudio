@@ -25,6 +25,13 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
+			$("#yf"+m).attr("selected","selected");
 			showAll();
 		});
 		function exportAbyb(){
@@ -35,8 +42,8 @@
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+			var y=$("#ddlYear").val();
+			var m=$("#ddlMonth").val();        //获取当前月份(0-11,0代表1月)
 			var sbyf=y+"-"+m;
 			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename");
 			window.location.href="/jxzhpt/gcgl/exportzhyb.do?"+data;
@@ -95,9 +102,29 @@ a:active {
         						<input id="gydw" style="width: 200px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							<span></span>
+        						<span>年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 80px;">
+        						</select>
+        						<span>月份：</span> <select name="ddlMonth"
+									id="ddlMonth" style="width: 43px;">
+									<option id="yf1" value="1">01</option>
+									<option id="yf2" value="2">02</option>
+									<option id="yf3" value="3">03</option>
+									<option id="yf4" value="4">04</option>
+									<option id="yf5" value="5">05</option>
+									<option id="yf6" value="6">06</option>
+									<option id="yf7" value="7">07</option>
+									<option id="yf8" value="8">08</option>
+									<option id="yf9" value="9">09</option>
+									<option id="yf10" value="10">10</option>
+									<option id="yf11" value="11">11</option>
+									<option id="yf12" value="12">12</option>
+								</select> <span>拨付状态：</span> <select id=bfzt
+									style="width: 80px;">
+									<option value="">全部</option>
+									<option>已拨付</option>
+									<option>未拨付</option>
+								</select> 
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -55%;" onclick="showAll()"/>        					
                                <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

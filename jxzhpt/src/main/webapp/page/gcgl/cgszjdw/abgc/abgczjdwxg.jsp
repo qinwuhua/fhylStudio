@@ -27,24 +27,46 @@
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
+		var mystr3='';
+		var mystr4='';
 		if(m==1){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+11;
 			mystr2=(y-1)+'-'+12;
+			mystr3=(y-1)+'-'+10;
+			mystr4=(y-1)+'-'+9;
 		}
 		else if(m==2){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+12;
 			mystr2=y+'-'+1;
+			mystr3=(y-1)+'-'+11;
+			mystr4=(y-1)+'-'+10;
+		}else if(m==3){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+1;
+			mystr2=y+'-'+2;
+			mystr3=(y-1)+'-'+12;
+			mystr4=(y-1)+'-'+11;
+		}else if(m==4){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+2;
+			mystr2=y+'-'+3;
+			mystr3=y+'-'+1;
+			mystr4=(y-1)+'-'+12;
 		}else{
 			mystr=y+'-'+m;
 			mystr1=y+'-'+(m-2);
 			mystr2=y+'-'+(m-1);
+			mystr3=y+'-'+(m-3);
+			mystr4=y+'-'+(m-4);
 		}
 
 		$("#xg_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
 		$("#xg_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
 		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
+		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
+		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		$("#xg_tbyf").val(data.tbyf);
 	});
 	function checkZJ(){
