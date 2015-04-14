@@ -146,7 +146,7 @@
 								and lx.yjsdj=#{lx.yjsdj}
 							</if>
 							<if test="lx.lxbm!=null and lx.lxbm!=''">
-								and lx.lxbm like 'S'||#{lx.lxbm}
+								and lx.lxbm like '%'||#{lx.lxbm}||'%'
 							</if>
 							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -159,7 +159,7 @@
 	<select id="queryGcsjList2" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
 			select rownum as num,t.* from (
-				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
+				select jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
 				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc,lx.qzlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1

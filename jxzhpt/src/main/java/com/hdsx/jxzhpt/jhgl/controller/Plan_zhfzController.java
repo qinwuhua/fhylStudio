@@ -24,7 +24,14 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
@@ -41,6 +48,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private int rows=10;
 	@Resource(name = "plan_zhfzServerImpl")
 	private Plan_zhfzServer zhfzServer;
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
 	private Jckzhfz lx;
 	private String fileuploadFileName;
@@ -49,7 +58,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private String uploadGkFileName;
 	private File uploadSjt;
 	private String uploadSjtFileName;
-	
+	//批量审批
 	public void editZhfzStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -265,6 +274,52 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void exportZhfzZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[9];
+		title[0]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)0), null,50);
+		title[1]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)1), null,15);
+		title[2]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)8), null,20);
+		//设置列与字段对应7
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "lxxx");//路线信息
+		attribute.put("1", "pfztz");//批复总投资
+		attribute.put("2", "tbdw");//填报单位-即导出单位
+		attribute.put("3", "xdnf");//下达年份
+		attribute.put("4", "xdzj");//下达的总投资
+		attribute.put("5", "btzzj");//下达的部投资
+		attribute.put("6", "stz");//省投资
+		attribute.put("7", "jhxdwh");//计划下达文号
+		attribute.put("8", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		//此处遍历查询资金下达模块的所有项目
+		for (Plan_zhfz item : zhfzServer.queryZhfzList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			String strLx=item.getJckzhfz().getLxmc()+"-"+
+					item.getJckzhfz().getLxbm()+"("+
+					item.getJckzhfz().getQdzh()+"-"+
+					item.getJckzhfz().getZdzh()+")";
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPfztz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "安保工程-资金下达", getresponse());
 	}
 	
 	//set get

@@ -15,6 +15,7 @@
 		<action name="queryGjwjById" class="plan_gcgjController" method="queryGjwjById"/>
 		<action name="insertGcgjLx" class="plan_gcgjController" method="insertGcgjLx"/>
 		<action name="verifyLx" class="plan_gcgjController" method="verifyLx"/>
+		<action name="exportGcgjZjxdExcel" class="plan_gcgjController" method="exportGcgjZjxdExcel"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -28,12 +29,12 @@
 		<action name="queryWjById" class="plan_gcsjController" method="queryWjById"/>
 		<action name="queryGcsjSum" class="plan_gcsjController" method="queryGcsjSum"></action>
 		<action name="exportExcel_gcsj" class="plan_gcsjController" method="exportExcel_gcsj"></action>
+		<action name="exportZjxdExcel" class="plan_gcsjController" method="exportZjxdExcel"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>
 		<action name="queryAbgcListByStatus" class="plan_abgcController" method="queryAbgcListByStatus"/>
 		<action name="queryAbgcById" class="plan_abgcController" method="queryAbgcById"/>
-		<action name="queryAbgcNfs" class="plan_abgcController" method="queryAbgcNfs"/>
 		<action name="dropAbgcById" class="plan_abgcController" method="dropAbgcById"/>
 		<action name="editAbgcById" class="plan_abgcController" method="editAbgcById"/>
 		<action name="editStatus" class="plan_abgcController" method="editAbgcStatus"/>
@@ -44,6 +45,7 @@
 		<action name="downAbgcFile" class="plan_abgcController" method="downAbgcFile"/>
 		<action name="queryFjByParentId" class="plan_abgcController" method="queryFjByParentId"/>
 		<action name="deleteFile" class="plan_abgcController" method="deleteFile"/>
+		<action name="exportAbgcZjxdExcel" class="plan_abgcController" method="exportAbgcZjxdExcel"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
@@ -56,6 +58,7 @@
 		<action name="uploadZhfzFile" class="plan_zhfzController" method="uploadZhfzFile"/>
 		<action name="downZhfzFile" class="plan_zhfzController" method="downZhfzFile"/>
 		<action name="queryZhfzByStatus" class="plan_zhfzController" method="queryZhfzByStatus"/>
+		<action name="exportZhfzZjxdExcel" class="plan_zhfzController" method="exportZhfzZjxdExcel"/>
 		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
@@ -68,6 +71,7 @@
 		<action name="uploadWqgzFile" class="plan_wqgzController" method="uploadWqgzFile"/>
 		<action name="downWqgzFile" class="plan_wqgzController" method="downWqgzFile"/>
 		<action name="queryWqgzByStatus" class="plan_wqgzController" method="queryWqgzByStatus"/>
+		<action name="exportWqgzZjxdExcel" class="plan_wqgzController" method="exportWqgzZjxdExcel"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
@@ -80,6 +84,7 @@
 		<action name="uploadShuihFile" class="plan_shuihController" method="uploadShuihFile"/>
 		<action name="queryShuihwjById" class="plan_shuihController" method="queryShuihwjById"/>
 		<action name="exportExcel_shuih" class="plan_shuihController" method="exportExcel_shuih"/>
+		<action name="exportShuihZjxdExcel" class="plan_shuihController" method="exportShuihZjxdExcel"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>
@@ -89,6 +94,14 @@
 		<action name="editZjxdById" class="plan_zjxdController" method="editZjxdById"/>
 		<action name="insertZjzj" class="plan_zjxdController" method="insertZjzj"/>
 		<action name="queryZjxdSumByXmid" class="plan_zjxdController" method="queryZjxdSumByXmid"/>
+		<action name="importZhfz_zjxd" class="plan_zjxdController" method="importZhfz_zjxd"/>
+		<action name="importGcsj_zjxd" class="plan_zjxdController" method="importGcsj_zjxd"></action>
+		<action name="importGcgj_zjxd" class="plan_zjxdController" method="importGcgj_zjxd"/>
+		<action name="importYhdzx_zjxd" class="plan_zjxdController" method="importYhdzx_zjxd"/>
+		<action name="importShuih_zjxd" class="plan_zjxdController" method="importShuih_zjxd"/>
+		<action name="importWqgz_zjxd" class="plan_zjxdController" method="importWqgz_zjxd"/>
+		<action name="importAbgc_zjxd" class="plan_zjxdController" method="importAbgc_zjxd"/>
+		<action name="queryGydwmcById" class="plan_zjxdController" method="queryGydwmcById"/>
 		
 		<action name="importYhdzx_jh" class="plan_yhdzxController" method="importYhdzx_jh"/>
 		<action name="queryYhdzxList" class="plan_yhdzxController" method="queryYhdzxList"/>
@@ -98,6 +111,7 @@
 		<action name="querySumYhdzx" class="plan_yhdzxController" method="querySumYhdzx"/>
 		<action name="editYhdzxById" class="plan_yhdzxController" method="editYhdzxById"/>
 		<action name="exportExcel_yhdzx" class="plan_yhdzxController" method="exportExcel_yhdzx"/>
+		<action name="exportYhdzxZjxdExcel" class="plan_yhdzxController" method="exportYhdzxZjxdExcel"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>

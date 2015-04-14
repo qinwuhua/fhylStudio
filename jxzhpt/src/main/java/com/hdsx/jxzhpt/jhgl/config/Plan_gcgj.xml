@@ -124,6 +124,66 @@
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	<select id="queryGcgjList2"  parameterType="java.util.Map" resultMap="gcgj_lx">
+		select * from (
+			select rownum as num,t.* from(
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
+			where 1=1
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
+			</if>
+			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+			</if>
+			<if test="jh.sbzt!=null and jh.sbzt!=''">
+				and jh.sbzt=#{jh.sbzt}
+			</if>
+			<if test="jh.spzt!=null and jh.spzt!=''">
+				and jh.spzt=#{jh.spzt}
+			</if>
+			<if test="jh.sbnf!=null and jh.sbnf!=''">
+				and jh.sbnf =#{jh.sbnf}
+			</if>
+			<if test="jh.kgzt==null or jh.kgzt==''">
+	 					and 2=2
+	 				</if>
+			<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 			and jh.kgzt=#{jh.kgzt}
+	 		</if>
+	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 			and jh.jgzt=#{jh.jgzt}
+	 		</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l 
+					where 1=1 
+						<if test="l.gydwdm!=null and l.gydwdm!=''">
+							and l.gydwdm like #{l.gydwdm}
+						</if>
+						<if test="l.xzqhdm!=null and l.xzqhdm!=''">
+							and l.xzqhdm like #{l.xzqhdm}
+						</if>
+						<if test="l.lxmc!=null and l.lxmc!=''">
+							and l.lxmc like '%'||#{l.lxmc}||'%'
+						</if>
+						<if test="l.yjsdj!=null and l.yjsdj!=''">
+							and l.yjsdj=#{l.yjsdj}
+						</if>
+						<if test="l.lxbm!=null and l.lxbm!=''">
+							and l.lxbm like #{l.lxbm}
+						</if>
+						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
+					     and l.xzqhdm in (
+					     	select B.XZQHDM from BT_XZQHTSDQ b 
+					     	WHERE and B.AREACODE=#{l.tsdqbm}
+					     	 )
+					     </if>
+					     ) order by jh.jh_sbthcd,jh.sbnf
+					) t
+			)
+	</select>
+	
 	<select id="queryGcgjCount" resultType="int" parameterType="java.util.Map">
 		select count(*) from PLAN_GCGJ jh where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	

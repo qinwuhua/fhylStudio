@@ -2,20 +2,17 @@ package com.hdsx.jxzhpt.jhgl.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
@@ -24,7 +21,14 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -40,6 +44,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private int rows = 10;
 	@Resource(name = "gcgjServerImpl")
 	private Plan_gcgjServer gcgjServer;//工程改建
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_gcgj jh;
 	private Plan_lx_gcgj lx;
 	private String gydwdm;
@@ -151,7 +157,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 	 */
 	public void queryGcgjList(){
 		try {
-			System.out.println("状态："+jh.getJh_sbthcd()+"开工："+jh.getKgzt()+"竣工："+jh.getJgzt());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
 			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
@@ -366,6 +371,61 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportGcgjZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[10];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)1), null,50);
+		title[2]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)8), null,15);
+		title[9]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)9), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//第一列项目名称
+		attribute.put("1", "lxxx");//路线信息
+		attribute.put("2", "pfztz");//批复总投资
+		attribute.put("3", "tbdw");//填报单位-即导出单位
+		attribute.put("4", "xdnf");//下达年份
+		attribute.put("5", "xdzj");//下达的总投资
+		attribute.put("6", "btzzj");//下达的部投资
+		attribute.put("7", "stz");//下达的部投资
+		attribute.put("8", "jhxdwh");//下达的部投资
+		attribute.put("9", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		for (Plan_gcgj item : gcgjServer.queryGcgjList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			zjxd.setXmmc(item.getXmmc());
+			String strLx="";
+			for (int i = 0; i <item.getPlan_lx_gcgjs().size(); i++) {
+				strLx+=item.getPlan_lx_gcgjs().get(i).getLxmc()+"-"+
+						item.getPlan_lx_gcgjs().get(i).getLxbm()+"("+
+						item.getPlan_lx_gcgjs().get(i).getQdzh()+"-"+
+						item.getPlan_lx_gcgjs().get(i).getZdzh()+")";
+				if(i!=item.getPlan_lx_gcgjs().size()-1){
+					strLx+="\r\n";
+				}
+			}
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPfztz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("工程改造路面改建",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "工程改造路面改建-资金下达", getresponse());
+	}
+	
 	//get set
 	public int getPage() {
 		return page;

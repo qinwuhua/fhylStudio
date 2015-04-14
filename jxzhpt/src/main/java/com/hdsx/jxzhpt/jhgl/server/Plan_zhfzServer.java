@@ -102,4 +102,5 @@ public interface Plan_zhfzServer {
 	List<TreeNode> queryGcktj(String xzqhdm,String nf);
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+	List<Plan_zhfz> queryZhfzList(Plan_zhfz jh, Jckzhfz lx);
 }

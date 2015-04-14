@@ -8,6 +8,12 @@ public class Plan_zjxd {
 	private String sfzj;//是否是追加资金
 	private String tbdw;
 	private String tbtime;
+	private String btzzj;//部投资金额
+	private String stz;//省投资
+	private String xmmc;//项目名称
+	private String lxxx;//路线信息
+	private String jhxdwh;
+	private String pfztz;//批复总投资
 	public String getId() {
 		return id;
 	}
@@ -49,5 +55,41 @@ public class Plan_zjxd {
 	}
 	public void setTbtime(String tbtime) {
 		this.tbtime = tbtime;
+	}
+	public String getBtzzj() {
+		return btzzj;
+	}
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getLxxx() {
+		return lxxx;
+	}
+	public void setLxxx(String lxxx) {
+		this.lxxx = lxxx;
+	}
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
+	public String getPfztz() {
+		return pfztz;
+	}
+	public void setPfztz(String pfztz) {
+		this.pfztz = pfztz;
 	}
 }

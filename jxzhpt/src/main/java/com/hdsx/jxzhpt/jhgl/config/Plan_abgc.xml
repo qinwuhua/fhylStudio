@@ -40,7 +40,6 @@
 		<result property="qzlc" column="qzlc"/>
 		<result property="yhlc" column="yhlc"/>
 	</resultMap>
-	
 	<select id="queryAbgcList"  parameterType="java.util.Map"  resultMap="abgc_jh">
 		select * from 
 			(
@@ -87,10 +86,60 @@
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				 	</if>
-	    			order by jh.sbzt,jh.spzt,jh.jhnf desc
+	    			order by jh.jhnf,jh.jh_sbthcd
 	    		) t
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryAbgcList2"  parameterType="java.util.Map"  resultMap="abgc_jh">
+		select * from 
+			(
+				select rownum as num,t.* from 
+				(
+					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
+					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
+					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+					<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+				    <if test="jh.jhnf!=null and jh.jhnf!=''">
+				 		and jh.jhnf=#{jh.jhnf}
+				 	</if>
+				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
+				 		and jh.sbzt=#{jh.sbzt}
+				 	</if>
+				 	<if test="jh.spzt!=null and jh.spzt!=''">
+				 		and jh.spzt=#{jh.spzt}
+				 	</if>
+				 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+				 		and lx.gydwbm like #{lx.gydwbm}
+				 	</if>
+				 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				 		and lx.xzqhdm like #{lx.xzqhdm}
+				 	</if>
+				 	<if test="lx.lxmc!=null and lx.lxmc!=''">
+				 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				 	</if>
+				 	<if test="lx.lxbm!=null and lx.lxbm!=''">
+				 		and lx.lxbm like #{lx.lxbm}||'%'
+				 	</if>
+				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 	</if>
+				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
+	    			order by jh.jhnf,jh.jh_sbthcd
+	    		) t
+    		)
 	</select>
 	<select id="queryAbgcListByStatus" parameterType="java.util.Map" resultType="plan_abgc">
 		select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
@@ -113,6 +162,22 @@
 		<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 			and lx.gydwbm like #{lx.gydwbm}
 		</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+			and lx.xzqhdm like #{lx.xzqhdm}
+		</if>
+		<if test="lx.lxmc!=null and lx.lxmc!=''">
+			and lx.lxmc like '%'||#{lx.lxmc}||'%'
+		</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">
+			and lx.lxbm like #{lx.lxbm}||'%'
+		</if>
+		<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+			and lx.lxjsdj = #{lx.lxjsjd}
+		</if>
+		<if test="lx.tsdq!=null and lx.tsdq!=''">
+			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+		</if>
+	    order by jh.jhnf,jh.jh_sbthcd
 	</select>
 	<select id="queryAbgcCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 

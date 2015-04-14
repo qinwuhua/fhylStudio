@@ -229,4 +229,13 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return queryOne("queryGcktj2",param);
 	}
 
+	@Override
+	public List<Plan_zhfz> queryZhfzList(Plan_zhfz jh, Jckzhfz lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		List<Plan_zhfz> queryList = queryList("queryZhfzList2",params);
+		return queryList;
+	}
+
 }

@@ -86,6 +86,10 @@
 				}
 			});
 		}
+		function exportExcelZjxd(){
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			window.location.href="/jxzhpt/jhgl/exportWqgzZjxdExcel.do?"+param;
+		}
 	</script>
 </head>
 <body>
@@ -102,9 +106,9 @@
         				<div>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
+        						<select id="gydw" style="width:200px;"></select>
         						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
+        						<select id="xzqh" style="width:200px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
         						<span>&nbsp;跨径分类：</span>
@@ -115,10 +119,11 @@
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select>
+								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span style=" vertical-align:middle;">桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:165px;vertical-align:middle;" />
+        						<input name="txtBridge" type="text" id="txtBridge" style="width:120px;vertical-align:middle;" />
         						<span style="vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
         						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
@@ -134,7 +139,8 @@
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
 								</select>
-								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img alt="导入" onclick="importData_jh('wqgz_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

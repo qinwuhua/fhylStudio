@@ -18,24 +18,23 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.tree.TreeNode;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
-import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -46,6 +45,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private int rows = 10;
 	@Resource(name = "plan_GcsjServerImpl")
 	private Plan_gcsjServer gcsjServer;
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
 	private String fileuploadFileName;
@@ -227,7 +228,60 @@ public class Plan_gcsjController extends BaseActionSupport{
 		HttpServletResponse response= getresponse();
 		ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
 	}
-
+	
+	public void exportZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[10];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)1), null,50);
+		title[2]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("下达总投资",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)8), null,15);
+		title[9]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)9), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//第一列项目名称
+		attribute.put("1", "lxxx");//路线信息
+		attribute.put("2", "pfztz");//批复总投资
+		attribute.put("3", "tbdw");//填报单位-即导出单位
+		attribute.put("4", "xdnf");//下达年份
+		attribute.put("5", "xdzj");//下达的总投资
+		attribute.put("6", "btzzj");//下达的部投资
+		attribute.put("7", "stz");//省投资
+		attribute.put("8", "jhxdwh");//省投资
+		attribute.put("9", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		for (Plan_gcsj item : gcsjServer.queryGcsjList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			zjxd.setXmmc(item.getXmmc());
+			String strLx="";
+			for (int i = 0; i <item.getPlan_lx_gcsjs().size(); i++) {
+				strLx+=item.getPlan_lx_gcsjs().get(i).getLxmc()+"-"+
+						item.getPlan_lx_gcsjs().get(i).getLxbm()+"("+
+						item.getPlan_lx_gcsjs().get(i).getQdzh()+"-"+
+						item.getPlan_lx_gcsjs().get(i).getZdzh()+")";
+				if(i!=item.getPlan_lx_gcsjs().size()-1){
+					strLx+="\r\n";
+				}
+			}
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPftz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("工程改造路面升级",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "工程改造路面升级-资金下达", getresponse());
+	}
 	
 	public void importGcsj_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());

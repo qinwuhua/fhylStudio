@@ -79,7 +79,11 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function exportExcel_yhdzx(){
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+filterGydwdm($("#gydw").combo("getValue"));
+			var gydw=filterGydwdm($("#gydw").combo("getValue"));
+			if(gydw==null){
+				gydw="";
+			}
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+gydw;
 			window.location.href="/jxzhpt/jhgl/exportExcel_yhdzx.do?"+param;
 		}
 	</script>

@@ -108,7 +108,7 @@
 	<select id="queryShuihList2"  parameterType="java.util.Map" resultMap="shuih_jh">
 		select * from (
 			select rownum as num,t.* from (	
-				select jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+				select jh.xmmc,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc,l.qzlc
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 				where 1=1

@@ -80,6 +80,7 @@ public interface Plan_gcgjServer {
 	 */
 	List<Plan_gcgj> queryGcgjList(int page,int row,Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj);
 	
+	List<Plan_gcgj> queryGcgjList(Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj);
 	/**
 	 * 查询计划总个数
 	 * @param plan_gcgj 查询条件
