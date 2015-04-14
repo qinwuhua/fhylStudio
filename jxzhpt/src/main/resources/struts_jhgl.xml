@@ -101,6 +101,7 @@
 		<action name="importShuih_zjxd" class="plan_zjxdController" method="importShuih_zjxd"/>
 		<action name="importWqgz_zjxd" class="plan_zjxdController" method="importWqgz_zjxd"/>
 		<action name="importAbgc_zjxd" class="plan_zjxdController" method="importAbgc_zjxd"/>
+		<action name="importHsly_zjxd" class="plan_zjxdController" method="importHsly_zjxd"/>
 		<action name="queryGydwmcById" class="plan_zjxdController" method="queryGydwmcById"/>
 		
 		<action name="importYhdzx_jh" class="plan_yhdzxController" method="importYhdzx_jh"/>
@@ -120,6 +121,7 @@
 		<action name="editHsly" class="plan_hslyController" method="editHsly"/>
 		<action name="dropHslyById" class="plan_hslyController" method="dropHslyById"/>
 		<action name="querySumHsly" class="plan_hslyController" method="querySumHsly"/>
+		<action name="exportExcelHslyZjxd" class="plan_hslyController" method="exportExcelHslyZjxd"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>

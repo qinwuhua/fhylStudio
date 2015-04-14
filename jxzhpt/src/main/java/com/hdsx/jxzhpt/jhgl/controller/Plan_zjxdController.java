@@ -265,6 +265,26 @@ public class Plan_zjxdController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void importHsly_zjxd(){
+		ExcelEntity excel=new ExcelEntity();
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "tbdw");//填报单位-即导出单位
+		attribute.put("2", "xdnf");//下达年份
+		attribute.put("3", "xdzj");//下达的总投资
+		attribute.put("4", "btzzj");//下达的部投资
+		attribute.put("5", "stz");//下达的部投资
+		attribute.put("6", "jhxdwh");//下达的部投资
+		attribute.put("7", "xmid");
+		excel.setAttributes(attribute);
+		try {
+			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);
+			eachPlanZjxdSfzj(readerExcel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 遍历资金下达集合是否追加
 	 * @param readerExcel
@@ -272,6 +292,7 @@ public class Plan_zjxdController extends BaseActionSupport {
 	 */
 	private void eachPlanZjxdSfzj(List<Plan_zjxd> readerExcel) throws IOException {
 		for (Plan_zjxd item : readerExcel) {
+			System.out.println("项目ID："+item.getXmid()+"   计划文号:"+item.getJhxdwh());
 			int sfzj = zjxdServer.queryZjxdExistById(item.getXmid());
 			item.setSfzj(sfzj>0? "1" : "0");
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

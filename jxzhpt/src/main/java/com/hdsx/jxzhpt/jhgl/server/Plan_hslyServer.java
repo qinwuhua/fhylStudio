@@ -52,4 +52,6 @@ public interface Plan_hslyServer {
 	 * @return
 	 */
 	boolean dropHslyById(String id);
+	
+	List<Plan_hsly> queryHslyList(Plan_hsly hsly);
 }
