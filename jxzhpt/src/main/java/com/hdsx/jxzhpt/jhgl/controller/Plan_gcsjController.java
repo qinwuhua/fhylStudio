@@ -296,7 +296,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,48,fs,Plan_gcsj.class);
+				dataMapArray = ExcelReader.readExcelContent(3,53,fs,Plan_gcsj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -304,6 +304,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			String strVerify=null;
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			System.out.println(data);
 			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
@@ -311,18 +312,18 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
-				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
-				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
-				map.put("40", map.get("40").toString().substring(0, map.get("40").toString().indexOf(".")));
-				map.put("41", map.get("41").toString().substring(0, map.get("41").toString().indexOf(".")));
-				map.put("42", map.get("42").toString().substring(0, map.get("42").toString().indexOf(".")));
+				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
+				map.put("27", map.get("27").toString().substring(0, map.get("27").toString().indexOf(".")));
+				map.put("45", map.get("45").toString().substring(0, map.get("45").toString().indexOf(".")));
+				map.put("46", map.get("46").toString().substring(0, map.get("46").toString().indexOf(".")));
+				map.put("47", map.get("47").toString().substring(0, map.get("47").toString().indexOf(".")));
 				Plan_lx_gcsj lx=new Plan_lx_gcsj();
 				lx.setXzqhdm(map.get("1").toString());
 				lx.setLxbm(map.get("3").toString());
 				lx.setQdzh(map.get("7").toString());
-				lx.setZdzh(map.get("8").toString());
+				lx.setZdzh(map.get("9").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
-				lx.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				lx.setJhid(map.get("27").toString());//此处的Jhid存储的是 “上报年份”
 				if(gcsjServer.queryJhExist(lx)==0){
 					//内容验证
 					strVerify=ImportVerify.gcsjVerify(map);
@@ -365,9 +366,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 						}
 						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
 						//验证金额
-						Double xmlc=new Double(map.get("10").toString());
+						Double xmlc=new Double(map.get("12").toString());
 						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("40").toString());
+						Integer pfztz=new Integer(map.get("45").toString());
 						System.out.println("计算结果："+je+"  项目里程："+xmlc+"   补助金额："+bzzj);
 						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
 						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){

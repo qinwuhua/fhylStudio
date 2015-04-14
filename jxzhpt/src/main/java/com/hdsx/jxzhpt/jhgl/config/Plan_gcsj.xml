@@ -340,19 +340,20 @@
 			hd,ljtsf,dc,jc,lqlm,snlm,
 			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
 			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl) 
-		values(#{jhid},#{11},#{12},to_date(#{13},'yyyy-mm-dd'),#{14},#{15},#{16},#{17},
-			#{18},#{19},#{20},#{21},SUBSTR(#{22},0,4),
-			to_date(#{23},'yyyy-mm-dd'),to_date(#{24},'yyyy-mm-dd'),#{25},#{26},#{27},
-			to_date(#{28},'yyyy-mm-dd'),#{29},#{30},#{31},#{32},
-			#{33},#{34},#{35},#{36},#{37},#{38},
-			#{39},#{40},#{41},#{42},#{43},
-			#{44},#{45},#{46},#{47},#{sfylsjl})
+		values(#{jhid},#{16},#{17},to_date(#{18},'yyyy-mm-dd'),#{19},#{20},#{21},#{22},
+			#{23},#{24},#{25},#{26},SUBSTR(#{27},0,4),
+			to_date(#{28},'yyyy-mm-dd'),to_date(#{29},'yyyy-mm-dd'),#{30},#{31},#{32},
+			to_date(#{33},'yyyy-mm-dd'),#{34},#{35},#{36},#{37},
+			#{38},#{39},#{40},#{41},#{42},#{43},
+			#{44},#{45},#{46},#{47},#{48},
+			#{49},#{50},#{51},#{52},#{sfylsjl})
 	</insert>
 	<insert id="insertGcsj_lx" parameterType="hashMap">
 		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,lxmc,
-			yjsdj,bhnr,qdzh,zdzh,qzlc,xmlc,TBSJ,TBBMBH)
+			yjsdj,bhnr,qdzh,qdmc,zdzh,zdmc,qzlc,xmlc,TBSJ,TBBMBH,lyllqk,dlqlbm,dlqlzxzh)
 		values(sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},#{3},#{4},
-			#{5},#{6},#{7},#{8},#{9},#{10},#{tbsj},#{gydwdm})
+			#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{tbsj},#{gydwdm},
+			#{13},#{14},#{15})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select  t.roadcode as lxbm,t.roadname as lxmc,
