@@ -206,8 +206,15 @@
 	 <update id="updateSJSH" parameterType="gcglyhdzx" >
 	 update PLAN_YHDZX set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglyhdzx" >
+	 update PLAN_YHDZX set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglyhdzx" resultType="int">
 	 	select count(*) from GCGL_YHDZX 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	 	select max(sbyf) sbyf from gcgl_yhdzx where jhid=#{jhid}
 	 </select>
 </mapper>
