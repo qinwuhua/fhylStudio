@@ -33,6 +33,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -69,7 +70,14 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	private String ybzt;
 	private String bfzt;
 	private String bfyf;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getBfzt() {
 		return bfzt;
 	}
@@ -503,25 +511,13 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzgj.setTiaojian("xjzt");
 		}
-		List<Gcglgcgzgj> list1=gcglgcgzgjServer.selectWqgzjhListid1(gcglgcgzgj);
-		String tiaojian="";
-		for (Gcglgcgzgj gcglgcgzgj2 : list1) {
-			tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
-		}
-		if(tiaojian.equals("")){
-			gcglgcgzgj.setTiaojian("'1'");
-		}else
-		gcglgcgzgj.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));
-		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
-
-		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
-		for (Gcglgcgzgj gcglgcgzgj2 : list) {
-			System.out.println(gcglgcgzgj2);
-		}
-		e.setRows(list);
-		e.setTotal(count);
+		List<Plan_gcgj> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
 		
+		int count=gcglgcgzgjServer.queryGcgjListCount(gcglgcgzgj);
+		
+		EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+			e.setRows(list);
+			e.setTotal(count);
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -539,50 +535,14 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			gcglgcgzgj.setLxmc(lxmc);
 			gcglgcgzgj.setJgzt(jgzt);
 			gcglgcgzgj.setShzt(ybzt);
-			if(sfsj==7){
-				gcglgcgzgj.setTiaojian("sjsh");
-			}
-			if(sfsj==9){
-				gcglgcgzgj.setTiaojian("sjzt");
-			}
-			if(sfsj==11){
-				gcglgcgzgj.setTiaojian("xjzt");
-			}
-			try {
-			List<Gcglgcgzgj> list1=gcglgcgzgjServer.selectWqgzjhListid1(gcglgcgzgj);
-			String tiaojian="";
-			for (Gcglgcgzgj gcglgcgzgj2 : list1) {
-				tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
-			}
-			if(tiaojian.equals("")){
-				gcglgcgzgj.setTiaojian("'1'");
-			}else
-			gcglgcgzgj.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));
-			List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
-			List<Gcglgcgzgj> list2=new ArrayList<Gcglgcgzgj>();
 			gcglgcgzgj.setTbyf(bfyf);
-			if("未拨付".equals(bfzt)){
-				for (Gcglgcgzgj gcglgcgzgj2 : list) {
-					gcglgcgzgj.setJhid(gcglgcgzgj2.getId());
-					Gcglgcgzgj gcglgcgzgj3=	gcglgcgzgjServer.queryCGSByYf(gcglgcgzgj);
-					if(gcglgcgzgj3==null)
-						list2.add(gcglgcgzgj2);
-				}
-			}
-			else if("已拨付".equals(bfzt)){
-				list2.addAll(list);
-				for (Gcglgcgzgj gcglgcgzgj2 : list) {
-					gcglgcgzgj.setJhid(gcglgcgzgj2.getId());
-					Gcglgcgzgj gcglgcgzgj3=gcglgcgzgjServer.queryCGSByYf(gcglgcgzgj);
-					if(gcglgcgzgj3==null)
-						list2.remove(gcglgcgzgj2);
-				}
-			}else{
-				list2.addAll(list);
-			}	
-			int count=list2.size();
-			EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
-			e.setRows(list2);
+			gcglgcgzgj.setSbnf(xmnf);
+			gcglgcgzgj.setTiaojian(bfzt);
+			try{
+			List<Plan_gcgj> list=gcglgcgzgjServer.selectWqgzjhList2(gcglgcgzgj);
+			int count=gcglgcgzgjServer.selectWqgzjhListcount1(gcglgcgzgj);
+			EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+			e.setRows(list);
 			e.setTotal(count);
 			
 				JsonUtils.write(e, getresponse().getWriter());

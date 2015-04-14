@@ -25,7 +25,7 @@ a {
 <body style="margin: 0 0 0 0">
 <script type="text/javascript"> 
 $(function(){
-	var data1="jhid="+parent.obj1.v_0;
+	var data1="jhid="+parent.obj1.jhid;
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcgl/selectabgcxx.do',

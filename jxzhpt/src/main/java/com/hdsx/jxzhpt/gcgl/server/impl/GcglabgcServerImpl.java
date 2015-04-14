@@ -333,4 +333,16 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		return queryList("selectWqgzjhListid1", gcglabgc);
 	}
 
+	@Override
+	public List<Gcglabgc> selectWqgzjhList1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList1", gcglabgc);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglabgc);
+	}
+
 }

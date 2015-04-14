@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglgcgzgjServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 
 @Service
 public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServer {
@@ -288,4 +289,30 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		// TODO Auto-generated method stub
 		return queryOne("queryCGSByYf", gcglgcgzgj);
 	}
+
+	@Override
+	public List<Plan_gcgj> queryGcgjList(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("queryGcgjList", gcglgcgzgj);
+	}
+
+	@Override
+	public int queryGcgjListCount(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("queryGcgjListCount", gcglgcgzgj);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList2", gcglgcgzgj);
+	}
+
+	
 }

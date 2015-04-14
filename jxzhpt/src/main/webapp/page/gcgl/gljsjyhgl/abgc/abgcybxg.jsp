@@ -61,11 +61,6 @@
 		    if($("#xg_sbyf").val()==null){
 		    	alert("尚未拨付车购税");
 		    	$(str).val('');
-		    }else{
-		    	if(parseFloat($("#xg_sbyf").val())<parseFloat(str.value)){
-		    		alert("完成资金不能超过到位资金");
-		    		$(str).val('');
-		    	}
 		    }
 		}
 		function check1(aa){

@@ -116,8 +116,8 @@ function showAll(){
 		gydw='';
 	var jgzt='0';
 	var kgzt='';
-	var nf=$("#ddlYear").val();
-	var yf=$("#ddlMonth").val();
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectZhfzjhList1.do',
@@ -135,7 +135,8 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	ybzt:'',
 	    	sfsj:7,
-	    	bfyf:nf+"-"+yf,
+	    	xmnf:xmnf,
+	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[

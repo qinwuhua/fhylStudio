@@ -144,19 +144,16 @@ function showAll(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		url:'../../../../gcgl/selectGcgzgjjhList.do',
-	    		 queryParams: {
-	    		    	jhid:row.jhid
-	    		},
-   			columns:[[
-   			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
-   			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
-   			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-   			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
-   			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-   			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-   			    {field:'yhlc',title:'隐患里程',width:60,align:'center'}
-   			]]
+	    		data:row.plan_lx_gcgjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'yhlc',title:'隐患里程',width:60,align:'center'}
+    			]]
 	    	});
 	    }   
 	}); 

@@ -64,7 +64,14 @@ public class GcglzhfzController extends BaseActionSupport{
 	private String ybzt;
 	private String bfyf;
 	private String bfzt;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getBfyf() {
 		return bfyf;
 	}
@@ -507,40 +514,20 @@ public class GcglzhfzController extends BaseActionSupport{
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setJgzt(jgzt);
 		gcglzhfz.setTbyf(bfyf);
-
-		List<Gcglzhfz> list=gcglzhfzServer.selectWqgzjhList(gcglzhfz);
-		List<Gcglzhfz> list1=new ArrayList<Gcglzhfz>();
-		System.out.println(bfzt);
-		if("未拨付".equals(bfzt)){
-			for (Gcglzhfz excel_list : list) {
-				gcglzhfz.setJhid(excel_list.getJhid());
-				Gcglzhfz gcglzhfz1 = gcglzhfzServer.queryCGSByYf(gcglzhfz);
-				if(gcglzhfz1==null)
-				list1.add(excel_list);
-			}
-		}
-		else if("已拨付".equals(bfzt)){
-			list1.addAll(list);
-			for (Gcglzhfz excel_list : list) {
-				gcglzhfz.setJhid(excel_list.getJhid());
-				Gcglzhfz gcglzhfz1 = gcglzhfzServer.queryCGSByYf(gcglzhfz);
-				if(gcglzhfz1==null)
-				list1.remove(excel_list);
-			}
-		}else{
-			list1.addAll(list);
-		}
-		
-		int count=list1.size();
+		gcglzhfz.setTiaojian(bfzt);
+		gcglzhfz.setXmnf(xmnf);
+		List<Gcglzhfz> list=gcglzhfzServer.selectWqgzjhList1(gcglzhfz);
+		int count=gcglzhfzServer.selectWqgzjhListcount1(gcglzhfz);
 
 		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
-		e.setRows(list1);
+		e.setRows(list);
 		e.setTotal(count);
 		
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+
 	}
 }
 

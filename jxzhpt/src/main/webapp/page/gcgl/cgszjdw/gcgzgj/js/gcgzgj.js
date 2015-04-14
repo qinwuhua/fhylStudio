@@ -117,8 +117,8 @@ function showAll(){
 	var jgzt='0';
 	var kgzt='';
 	var lxmc=$("#lxmc").val();
-	var nf=$("#ddlYear").val();
-	var yf=$("#ddlMonth").val();
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectGcgzgjjhList2.do',
 	    striped:true,
@@ -135,7 +135,8 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	ybzt:'',
 	    	sfsj:7,
-	    	bfyf:nf+"-"+yf,
+	    	xmnf:xmnf,
+	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
@@ -156,10 +157,7 @@ function showAll(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		url:'../../../../gcgl/selectGcgzgjjhList.do',
-	    		 queryParams: {
-	    		    	jhid:row.jhid
-	    		},
+	    		data:row.plan_lx_gcgjs,
     			columns:[[
     			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
     			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},

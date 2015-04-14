@@ -271,4 +271,16 @@ public class GcglzhfzServerImpl extends BaseOperate implements GcglzhfzServer {
 		// TODO Auto-generated method stub
 		return queryOne("queryCGSByYf", gcglzhfz);
 	}
+
+	@Override
+	public List<Gcglzhfz> selectWqgzjhList1(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList1",gcglzhfz);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglzhfz);
+	}
 }

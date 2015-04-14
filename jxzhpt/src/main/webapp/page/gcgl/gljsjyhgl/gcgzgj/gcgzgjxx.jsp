@@ -18,7 +18,7 @@
 <script type="text/javascript"> 
 $(function(){
 	var data=parent.obj1;//$("#").text(data.);
-	chaxunlx(data.jhid);
+	chaxunlx(data.id);
 	$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);$("#faspsj").text(data.faspsj);$("#spwh").text(data.spwh);$("#tzgs").text(data.tzgs);
 	$("#jsxz").text(data.jsxz);$("#jsnr").text(data.jsnr);$("#bz").text(data.bz);$("#scbz").text(data.scbz);$("#yjsdj").text(data.yjsdj);
 	$("#sbnf").text(data.sbnf);$("#jhkgsj").text(data.jhkgsj);$("#jhwgsj").text(data.jhwgsj);$("#xmmc").text(data.xmmc);$("#lmkd").text(data.lmkd);

@@ -236,4 +236,190 @@
 	 	select count(*) from GCGL_GCGZGJ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
 	 </select>
+	 
+	 <!-- 新改列表 -->
+	 <resultMap id="gcgj_lx" type="plan_gcgj">
+		<id property="id" column="id" />
+		<result property="fapgdw" column="fapgdw"/>
+		<result property="fascdw" column="fascdw"/>
+		<result property="faspsj" column="faspsj"/>
+		<result property="spwh" column="spwh"/>
+		<result property="tzgs" column="tzgs"/>
+		<result property="jsxz" column="jsxz"/>
+		<result property="jsnr" column="jsnr"/>
+		<result property="sbnf" column="sbnf"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="jhwgsj" column="jhwgsj"/>
+		<result property="xdsj" column="xdsj"/>
+		<result property="xmmc" column="xmmc"/>
+		<result property="yhlb" column="yhlb"/>
+		<result property="sjdw" column="sjdw"/>
+		<result property="sjpfdw" column="sjpfdw"/>
+		<result property="sjlmlx" column="sjlmlx"/>
+		<result property="dc" column="dc"/>
+		<result property="jc" column="jc"/>
+		<result property="mc" column="mc"/>
+		<result property="lmkd" column="lmkd"/>
+		<result property="pfwh" column="pfwh"/>
+		<result property="pfsj" column="pfsj"/>
+		<result property="pfztz" column="pfztz"/>
+		<result property="jhsybzje" column="jhsybzje"/>
+		<result property="jhsydfzcje" column="jhsydfzcje"/>
+		<result property="sfsqablbz" column="sfsqablbz"/>
+		<result property="ablbzsqwh" column="ablbzsqwh"/>
+		<result property="sftqss" column="sftqss"/>
+		<result property="jhxdwh" column="jhxdwh"/>
+		<result property="gksjwh" column="gksjwh"/>
+		<result property="sjpfwh" column="sjpfwh"/>
+		<result property="sfgyhbm" column="sfgyhbm"/>
+		<result property="gkbgmc" column="gkbgmc"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="spzt" column="spzt"/>
+		<result property="bz" column="bz"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
+		<collection property="plan_lx_gcgjs" column="jhid" javaType="ArrayList" ofType="plan_lx_gcgj" resultMap="lx"/>
+	</resultMap>
+	<resultMap id="lx" type="plan_lx_gcgj">
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+		<result property="jsdd" column="jsdd"/>
+		<result property="qzlc" column="qzlc"/>
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhdm" column="xzqhdm"/>
+		<result property="yjsdj" column="yjsdj"/>
+		<result property="ylmlx" column="ylmlx"/>
+		<result property="bhnr" column="bhnr"/>
+		<result property="jhid" column="jhid"/>
+	</resultMap>
+	<select id="queryGcgjList"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
+	select * from (
+			select rownum as num,t.* from(
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
+			where 1=1 and spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and l.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+					) t
+			)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryGcgjListCount" resultType="int" parameterType="gcglgcgzgj">
+		select count(*) from PLAN_GCGJ jh where 1=1 and spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and l.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+	</select>
+	<!-- 拨付列表 -->
+	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
+	select * from (
+			select rownum as num,t.* from(
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+			where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+			<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and l.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+					) t
+			)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzgj">
+		select count(*) from PLAN_GCGJ jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		 where 1=1 and spzt='1' and sbnf=#{sbnf}
+			<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and l.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+	</select>
 </mapper>

@@ -76,7 +76,14 @@ public class GcglabgcController extends BaseActionSupport{
 	private String tbr;
 	private String bfzt;
 	private String bfyf;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getBfzt() {
 		return bfzt;
 	}
@@ -970,21 +977,6 @@ public class GcglabgcController extends BaseActionSupport{
 		Gcglabgc gcglabgc=new Gcglabgc();
 		gcglabgc.setPage(page);
 		gcglabgc.setRows(rows);
-//		gcglabgc.setJhid(jhid);
-//		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
-//		gcglabgc.setKgzt(kgzt);
-//		gcglabgc.setLxmc(lxmc);
-//		gcglabgc.setJgzt(jgzt);
-//		gcglabgc.setShzt(ybzt);
-//		if(sfsj==7){
-//			gcglabgc.setTiaojian("sjsh");
-//		}
-//		if(sfsj==9){
-//			gcglabgc.setTiaojian("sjzt");
-//		}
-//		if(sfsj==11){
-//			gcglabgc.setTiaojian("xjzt");
-//		}
 		try {
 		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
 		gcglabgc.setKgzt(kgzt);
@@ -992,33 +984,12 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setTbyf(bfyf);
 		gcglabgc.setTbr(tbr);
-		List<Excel_list> list=gcglabgcServer.exportAbyb1(gcglabgc);
-		List<Excel_list> list1=new ArrayList<Excel_list>();
-		System.out.println(bfzt);
-		if("未拨付".equals(bfzt)){
-			for (Excel_list excel_list : list) {
-				gcglabgc.setJhid(excel_list.getV_0());
-				Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
-				if(gcglabgc1==null)
-				list1.add(excel_list);
-			}
-		}
-		else if("已拨付".equals(bfzt)){
-			list1.addAll(list);
-			for (Excel_list excel_list : list) {
-				gcglabgc.setJhid(excel_list.getV_0());
-				Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
-				if(gcglabgc1==null)
-				list1.remove(excel_list);
-			}
-		}else{
-			list1.addAll(list);
-		}
-		
-		int count=list1.size();
-
-		EasyUIPage<Excel_list> e=new EasyUIPage<Excel_list>();
-		e.setRows(list1);
+		gcglabgc.setTiaojian(bfzt);
+		gcglabgc.setXmnf(xmnf);
+		List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList1(gcglabgc);
+		int count=gcglabgcServer.selectWqgzjhListcount1(gcglabgc);
+		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
+		e.setRows(list);
 		e.setTotal(count);
 		
 			JsonUtils.write(e, getresponse().getWriter());

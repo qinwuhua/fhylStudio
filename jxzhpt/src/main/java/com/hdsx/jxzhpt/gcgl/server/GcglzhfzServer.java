@@ -58,4 +58,8 @@ public interface GcglzhfzServer {
 
 	Gcglzhfz queryCGSByYf(Gcglzhfz gcglzhfz);
 
+	List<Gcglzhfz> selectWqgzjhList1(Gcglzhfz gcglzhfz);
+
+	int selectWqgzjhListcount1(Gcglzhfz gcglzhfz);
+
 }

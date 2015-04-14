@@ -31,7 +31,49 @@
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
-			$("#yf"+m).attr("selected","selected");
+			var mystr='';
+			var mystr1='';
+			var mystr2='';
+			var mystr3='';
+			var mystr4='';
+			if(m==1){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+11;
+				mystr2=(y-1)+'-'+12;
+				mystr3=(y-1)+'-'+10;
+				mystr4=(y-1)+'-'+9;
+			}
+			else if(m==2){
+				mystr=y+'-'+m;
+				mystr1=(y-1)+'-'+12;
+				mystr2=y+'-'+1;
+				mystr3=(y-1)+'-'+11;
+				mystr4=(y-1)+'-'+10;
+			}else if(m==3){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+1;
+				mystr2=y+'-'+2;
+				mystr3=(y-1)+'-'+12;
+				mystr4=(y-1)+'-'+11;
+			}else if(m==4){
+				mystr=y+'-'+m;
+				mystr1=y+'-'+2;
+				mystr2=y+'-'+3;
+				mystr3=y+'-'+1;
+				mystr4=(y-1)+'-'+12;
+			}else{
+				mystr=y+'-'+m;
+				mystr1=y+'-'+(m-2);
+				mystr2=y+'-'+(m-1);
+				mystr3=y+'-'+(m-3);
+				mystr4=y+'-'+(m-4);
+			}
+			$("#ddlMonth").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
+			$("#ddlMonth").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
+			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
+			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
+			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
+
 			showAll();
 		});
 		function exportAbyb(){
@@ -45,7 +87,7 @@
 			var myDate = new Date();
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();         //获取当前月份(0-11,0代表1月)
-			var sbyf=y+"-"+m;
+			var sbyf=m;
 			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&qlmc="+qlmc;
 			window.location.href="/jxzhpt/gcgl/exportwqyb.do?"+data;
 		}
@@ -101,30 +143,18 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 120px;">
+        						<input id="gydw" style="width: 150px;">
         						<span>路线名称：</span>
-        							<input type="text" id="lxmc" style="width: 80px;">
+        							<input type="text" id="lxmc" style="width: 60px;">
         						<span>桥梁名称：</span>
-        							<input type="text" id="qlmc" style="width: 80px;">
-        						<span>年份：</span> 
-        						<select name="ddlYear" id="ddlYear" style="width: 80px;">
+        							<input type="text" id="qlmc" style="width: 60px;">
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
         						</select>
-        						<span>月份：</span> <select name="ddlMonth"
-									id="ddlMonth" style="width: 43px;">
-									<option id="yf1" value="1">01</option>
-									<option id="yf2" value="2">02</option>
-									<option id="yf3" value="3">03</option>
-									<option id="yf4" value="4">04</option>
-									<option id="yf5" value="5">05</option>
-									<option id="yf6" value="6">06</option>
-									<option id="yf7" value="7">07</option>
-									<option id="yf8" value="8">08</option>
-									<option id="yf9" value="9">09</option>
-									<option id="yf10" value="10">10</option>
-									<option id="yf11" value="11">11</option>
-									<option id="yf12" value="12">12</option>
+        						<span>拨付月份：</span> <select name="ddlMonth"
+									id="ddlMonth" style="width: 60px;">
 								</select> <span>拨付状态：</span> <select id=bfzt
-									style="width: 80px;">
+									style="width: 50px;">
 									<option value="">全部</option>
 									<option>已拨付</option>
 									<option>未拨付</option>

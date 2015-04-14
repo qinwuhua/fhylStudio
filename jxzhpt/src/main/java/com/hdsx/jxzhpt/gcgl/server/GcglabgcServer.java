@@ -81,6 +81,10 @@ public interface GcglabgcServer {
 
 	List<Gcglgcgzgj> selectWqgzjhListid1(Gcglabgc gcglabgc);
 
+	List<Gcglabgc> selectWqgzjhList1(Gcglabgc gcglabgc);
+
+	int selectWqgzjhListcount1(Gcglabgc gcglabgc);
+
 	
 
 }

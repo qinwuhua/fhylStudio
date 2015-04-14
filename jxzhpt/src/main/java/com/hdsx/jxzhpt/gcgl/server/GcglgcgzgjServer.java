@@ -8,6 +8,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 
 public interface GcglgcgzgjServer {
 
@@ -64,5 +65,14 @@ public interface GcglgcgzgjServer {
 	List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj);
 
 	Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj);
+
+	List<Plan_gcgj> queryGcgjList(Gcglgcgzgj gcglgcgzgj);
+
+	int queryGcgjListCount(Gcglgcgzgj gcglgcgzgj);
+
+	int selectWqgzjhListcount1(Gcglgcgzgj gcglgcgzgj);
+
+	List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj);
+
 
 }

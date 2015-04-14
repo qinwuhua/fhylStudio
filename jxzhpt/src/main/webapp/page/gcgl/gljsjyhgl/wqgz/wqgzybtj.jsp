@@ -63,7 +63,7 @@
 				}
 				$("#tj_zjdw_btz").val(msg[0].cgsdwzj);
 				$("#tjbtz").text(msg[0].cgsdwzj);
-				chaxun();
+			//	chaxun();
 			}
 		});	
 		
@@ -73,20 +73,23 @@
 		$("#tjbtz").text($("#tj_sbyf").val());
 		chaxun();
 	}
+	var zj;
+	
 	function check(str){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
 	    if( !g.test(str.value)){
 	    	alert("请输入正确的金额");
 	    	$(str).val('');
+	    	return;
 	    }
 	    if($("#tj_sbyf").val()==null){
 	    	alert("尚未拨付车购税");
 	    	$(str).val('');
 	    }else{
-	    	if(parseFloat($("#tj_sbyf").val())<parseFloat(str.value)){
-	    		alert("完成资金不能超过到位资金");
-	    		$(str).val('');
-	    	}
+	    	var sj1=parseFloat(str.value)/parseFloat(parent.parent.obj1.pfztz)*100;
+	    	$("#tj_wcqk").text("");
+	    	zj=Math.round(sj1*100)/100;
+	    	$("#tj_wcqk").text("资金:"+zj);
 	    }
 	}
 	function checkZJ1(aa){
@@ -170,7 +173,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)' />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!--                                 省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" />&nbsp;&nbsp;&nbsp;&nbsp; -->
                                  其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='checkZJ1(this)' />&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
@@ -179,7 +182,7 @@ a:active {
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <font color="#009ACD" style=" font-size: 12px">本月资金到位（万元）
+                                <font color="#009ACD" style=" font-size: 12px">本月资金到位（万元）</font>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
@@ -198,7 +201,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 50px;" />
+                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 50px;" onclick="checklc(str)"/>
                             </td>
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -207,7 +210,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
-                                <input style="width: 70px" name="WCQK" type="text" id="tj_wcqk"  onfocus="checkwcqk1(this)" onblur="checkWCQK(this)"/>
+                                <span  id="tj_wcqk" >资金：0 里程：0</span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
