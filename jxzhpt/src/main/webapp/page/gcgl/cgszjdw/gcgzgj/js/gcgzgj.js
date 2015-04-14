@@ -20,12 +20,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzgjzjdwtj.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','gcgzgjzjdwtj.jsp','wqxx',550,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzgjzjdwxg.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','gcgzgjzjdwxg.jsp','wqxx',550,250);
 }
 
 //添加车购税
@@ -40,7 +40,7 @@ function tjgcgzgjcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglgcgzgj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzgj.tbr="+$.cookie("truename")+"&gcglgcgzgj.tbsj="+tbsj+"&gcglgcgzgj.tbyf="+$("#tj_tbyf").val()
+	var data="gcglgcgzgj.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglgcgzgj.tbr="+$.cookie("truename")+"&gcglgcgzgj.tbsj="+tbsj+"&gcglgcgzgj.tbyf="+$("#tj_tbyf").val()+"&gcglgcgzgj.cscyj="+$("#tj_cscyj").val()+"&gcglgcgzgj.stz="+$("#tj_stz").val()
 	+"&gcglgcgzgj.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -68,7 +68,7 @@ function xggcgzgjcgs(){
 		return;
 	}
 	var data="gcglgcgzgj.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.tbyf="+$("#xg_tbyf").val();
+	+"&gcglgcgzgj.jhid="+parent.obj.jhid+"&gcglgcgzgj.id="+parent.obj.id+"&gcglgcgzgj.tbyf="+$("#xg_tbyf").val()+"&gcglgcgzgj.cscyj="+$("#xg_cscyj").val()+"&gcglgcgzgj.stz="+$("#xg_stz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -283,7 +283,7 @@ function jiazai(ooo){
 }
 
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.jhid;
+	var data="gcglwqgz.jhid="+parent.obj1.id+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',

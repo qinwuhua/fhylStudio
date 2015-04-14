@@ -112,7 +112,14 @@ public class Gcglzhfz implements Serializable {
 	private int rows;
 	
 	private String yhtype;
+	private String stz;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

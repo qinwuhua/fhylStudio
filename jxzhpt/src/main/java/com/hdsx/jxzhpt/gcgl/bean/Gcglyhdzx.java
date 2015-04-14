@@ -127,7 +127,14 @@ public class Gcglyhdzx implements Serializable {
 	private int page;
 	private int rows;
 	private String yhtype;
+	private String stj;
 	
+	public String getStj() {
+		return stj;
+	}
+	public void setStj(String stj) {
+		this.stj = stj;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

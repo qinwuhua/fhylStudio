@@ -69,12 +69,14 @@
 			$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
 			$("#tj_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		});
-		function checkZJ(){
-			var str=$("#tj_cgsdwzj").val();
+		function checkZJ(str1){
+			var str=str1.value;
 			var g = /^\d+(?=\.{0,1}\d+$|$)/;
+			if(str=='')
+				return;
 		    if( !g.test(str)){
 		    	alert("请输入正确的金额");
-		    	$("#tj_cgsdwzj").val('');
+		    	$(str1).val('');
 		    }
 		}
 	</script>
@@ -109,33 +111,53 @@ a:active {
                             cellpadding="0">
                             <tr style="height: 35px;">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                     padding-right: 5px; vertical-align: middle;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">车购税到位资金 </font></b>
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">车购税： </font>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                    <input onblur="checkZJ()" name="txtCGSZJDW" type="text" id="tj_cgsdwzj"  style="width: 50px"/>万元
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="tj_cgsdwzj"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">省投资： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="tj_stz"  style="width: 50px" value="0"/>万元
+                                </td>
+                            </tr>
+                            <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">财审处意见： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="5">
+                                    <input name="txtCGSZJDW" type="text" id="tj_cscyj"  style="width: 350px" value="同意"/>
                                 </td>
                             </tr>
                             <tr style="height: 35px;">
                                 <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
                                     background-color: #F1F8FF;  padding-right: 5px;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报人：</font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">填报人：</font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                     <span id="tj_tbr"></span>&nbsp;
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                     text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">填报时间：</font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                     <span id="tj_tbsj"></span>&nbsp;
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
                                     text-align: right; background-color: #F1F8FF;  padding-right: 5px;">
-                                    <b><font color="#009ACD" style="cursor: hand; font-size: 12px">月报月份：</font></b>
+                                    <b><font color="#009ACD" style="font-size: 12px">月报月份：</font></b>
                                 </td>
                                 <td style="border-left: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                     <select id="tj_tbyf"></select>&nbsp;
@@ -156,5 +178,6 @@ a:active {
                     </td>
                 </tr>
             </table>
+         </div>
 	</body>
 </html>

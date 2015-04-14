@@ -116,7 +116,7 @@ public class Gcglsh implements Serializable {
 	private Integer sfsj;
 	private String sfth;
 	private String lxjsdj;
-	
+	private String stz;
 	private int page;
 	private int rows;
 	
@@ -125,6 +125,12 @@ public class Gcglsh implements Serializable {
 	private String sjsh;
 	private String yhtype;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}
