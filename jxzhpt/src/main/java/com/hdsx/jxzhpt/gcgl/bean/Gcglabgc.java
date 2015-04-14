@@ -31,7 +31,6 @@ public class Gcglabgc implements Serializable {
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
-	
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;
 	private String tbyf;

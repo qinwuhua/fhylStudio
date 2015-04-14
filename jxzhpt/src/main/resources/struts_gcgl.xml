@@ -26,6 +26,7 @@
 	<action name="selectWqgzwcqk" class="gcglwqgzController" method="selectWqgzwcqk"/>
 	<action name="selectWqgzbzzj" class="gcglwqgzController" method="selectWqgzbzzj"/>
 	<action name="selectWqgzjhList1" class="gcglwqgzController" method="selectWqgzjhList1"/>
+	<action name="selectcgsyf" class="gcglwqgzController" method="selectcgsyf"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>

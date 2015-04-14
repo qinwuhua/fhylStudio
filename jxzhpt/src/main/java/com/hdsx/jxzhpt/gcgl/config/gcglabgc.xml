@@ -49,8 +49,8 @@
 	
 	<!-- 添加月报 -->
 	<insert id="insertAbgcYb" parameterType="gcglabgc">
-		insert into GCGL_ABGC(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywc_c,bywc_gl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywc_c},#{bywc_gl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
+		insert into GCGL_ABGC(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywc_c,bywc_gl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywc_c},#{bywc_gl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{wcqk})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglabgc" resultType="gcglabgc">
 		select * from GCGL_ABGC where sbyf=#{sbyf} and jhid=#{jhid}
@@ -60,7 +60,7 @@
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateAbgcYb" parameterType="gcglabgc">
-		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},wcqk=#{wcqk}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -207,6 +207,9 @@ where t1.spzt='1'
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglabgc" >
 	 update PLAN_ABGC set sjsh=#{sjsh} where sckid=#{jhid}
+	 </update>
+	  <update id="updatezdyf" parameterType="gcglabgc" >
+	 update PLAN_ABGC set zdyf=#{sbyf} where sckid=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from GCGL_ABGC 
@@ -475,5 +478,9 @@ where t1.spzt='1'
 					and c.tbyf is not null
 				</if>
 			</if>
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglabgc" resultType="gcglabgc">
+	 	select max(sbyf) sbyf from gcgl_abgc where jhid=#{jhid}
 	 </select>
 </mapper>

@@ -238,6 +238,9 @@ where  t1.spzt='1'
 	 <update id="updateSJSH" parameterType="gcglwqgz" >
 	 update PLAN_WQGZ set sjsh=#{sjsh} where sckid=#{jhid}
 	 </update>
+	  <update id="updatezdyf" parameterType="gcglwqgz" >
+	 update PLAN_WQGZ set zdyf=#{sbyf} where sckid=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglwqgz" resultType="int">
 	 	select count(*) from GCGL_WQGZ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
@@ -312,5 +315,13 @@ where  t1.spzt='1'
 					and c.tbyf is not null
 			</if>
 		</if>
+	 </select>
+	 <!-- 查询每月的车购税 -->
+	 <select id="selectcgsyf" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select cgsdwzj zjdw_btz,stz zjdw_stz from gcgl_cgs where tbyf=#{tbyf} and jhid=#{jhid}
+	 </select>
+	 <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglwqgz" resultType="gcglwqgz">
+	 	select max(sbyf) sbyf from gcgl_wqgz where jhid=#{jhid}
 	 </select>
 </mapper>

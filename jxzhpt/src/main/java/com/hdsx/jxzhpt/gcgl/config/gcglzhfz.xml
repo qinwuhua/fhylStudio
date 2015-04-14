@@ -48,15 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertZhfzYb" parameterType="gcglzhfz">
-		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcgl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
+		insert into GCGL_ZHFZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcgl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcgl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{wcqk})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglzhfz" resultType="gcglzhfz">
 		select * from GCGL_ZHFZ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateZhfzYb" parameterType="gcglzhfz">
-		update GCGL_ZHFZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcgl=#{bywcgl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf} 
+		update GCGL_ZHFZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcgl=#{bywcgl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},wcqk=#{wcqk} 
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -142,15 +142,15 @@
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglzhfz" resultType="gcglzhfz">
-select * from (
-select m.*,rownum rn from (
-select 
-t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
-t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
-t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
-from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
-where  t1.spzt='1'
+	select * from (
+	select m.*,rownum rn from (
+	select 
+	t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
+	t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+	t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
+	t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+	from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+	where  t1.spzt='1'
 	<if test="gydw != null and  gydw != ''">
 			and t3.gydwbm like '%'||trim(#{gydw})||'%'
 	</if>
@@ -202,6 +202,9 @@ where  t1.spzt='1'
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglzhfz" >
 	 update PLAN_ZHFZ set sjsh=#{sjsh} where sckid=#{jhid}
+	 </update>
+	  <update id="updatezdyf" parameterType="gcglzhfz" >
+	 update PLAN_ZHFZ set zdyf=#{sbyf} where sckid=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglzhfz" resultType="int">
 	 	select count(*) from GCGL_ZHFZ 
@@ -267,5 +270,9 @@ where  t1.spzt='1'
 					and c.tbyf is not null
 				</if>
 			</if>
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglzhfz" resultType="gcglzhfz">
+	 	select max(sbyf) sbyf from gcgl_zhfz where jhid=#{jhid}
 	 </select>
 </mapper>

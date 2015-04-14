@@ -68,5 +68,7 @@ public interface GcglwqgzServer {
 
 	int selectWqgzjhListcount1(Gcglwqgz gcglwqgz);
 
+	Gcglwqgz selectcgsyf(Gcglwqgz gcglwqgz);
+
 
 }

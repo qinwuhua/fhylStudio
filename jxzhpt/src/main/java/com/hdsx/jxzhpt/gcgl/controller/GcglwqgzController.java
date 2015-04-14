@@ -561,5 +561,16 @@ public class GcglwqgzController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	//查询每个月的车购税，添加和编辑月报选择不同月份的下拉框、如果查询为空，返回0
+	public void selectcgsyf(){
+		gcglwqgz.setTbyf(bfyf);
+		gcglwqgz.setJhid(jhid);
+		Gcglwqgz g=gcglwqgzServer.selectcgsyf(gcglwqgz);
+	try{
+		JsonUtils.write(g, getresponse().getWriter());
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+	}
 }
 	
