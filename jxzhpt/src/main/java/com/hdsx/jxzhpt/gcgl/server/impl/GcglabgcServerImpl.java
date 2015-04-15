@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
@@ -28,14 +29,23 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		if(insert("insertAbgcYb", gcglabgc)>0){
 			if(gcglabgc.getSfsj()==9){
 				gcglabgc.setSjzt("未上报");
+				Gcglabgc gcglwqgz3 =queryOne("querymaxybyf", gcglabgc);//查最大月份
+				gcglabgc.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglabgc);
 				update("updateSjZT", gcglabgc);
 			}
 			if(gcglabgc.getSfsj()==11){
 				gcglabgc.setXjzt("未上报");
+				Gcglabgc gcglwqgz3 =queryOne("querymaxybyf", gcglabgc);//查最大月份
+				gcglabgc.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglabgc);
 				update("updateXjZT", gcglabgc);
 			}
 			if(gcglabgc.getSfsj()==7){
 				gcglabgc.setSjsh("未审核");
+				Gcglabgc gcglwqgz3 =queryOne("querymaxybyf", gcglabgc);//查最大月份
+				gcglabgc.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglabgc);
 				update("updateSJSH", gcglabgc);
 			}
 			return true;
@@ -83,6 +93,12 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	@Override
 	public Boolean deleteAbgcYb(Gcglabgc gcglabgc) {
 		if(delete("deleteAbgcYb", gcglabgc)>0){
+			Gcglabgc gcglwqgz3 =queryOne("querymaxybyf", gcglabgc);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglabgc.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglabgc.setSbyf("");
+			update("updatezdyf", gcglabgc);
 		return true;
 		}else{
 			return false;
@@ -270,6 +286,11 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		// TODO Auto-generated method stub
 		return queryList("exportAbyb", gcglabgc);
 	}
+	@Override
+	public List<Excel_list> exportAbyb1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportAbyb1", gcglabgc);
+	}
 
 	@Override
 	public Gcglabgc queryCGSByYf(Gcglabgc gcglabgc) {
@@ -313,6 +334,30 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 	public List<Excel_list> exportwqyb(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryList("exportwqyb", gcglabgc);
+	}
+
+	@Override
+	public Gcglabgc selectabgcxx(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectabgcxx", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhListid1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhListid1", gcglabgc);
+	}
+
+	@Override
+	public List<Gcglabgc> selectWqgzjhList1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList1", gcglabgc);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglabgc);
 	}
 
 }

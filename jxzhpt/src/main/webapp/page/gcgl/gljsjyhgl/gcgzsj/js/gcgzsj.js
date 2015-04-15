@@ -454,7 +454,7 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	

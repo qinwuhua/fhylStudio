@@ -338,10 +338,7 @@ function showAll(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		url:'../../../../gcgl/selectGcgzgjjhList.do',
-	    		 queryParams: {
-	    		    	jhid:row.jhid
-	    		},
+	    		data:row.plan_lx_gcgjs,
     			columns:[[
     			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
     			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
@@ -509,7 +506,7 @@ function jiazai(ooo){
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzgjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downGcgzgjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 				}
 			}
 	});	

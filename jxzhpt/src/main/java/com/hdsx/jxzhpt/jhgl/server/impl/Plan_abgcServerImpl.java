@@ -255,4 +255,11 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
 	}
+	@Override
+	public List<Plan_abgc> queryAbgcList(Plan_abgc jh, Jckabgc lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryAbgcList2",params);
+	}
 }

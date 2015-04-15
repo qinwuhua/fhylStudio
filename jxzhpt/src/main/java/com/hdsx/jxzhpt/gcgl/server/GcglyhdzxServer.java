@@ -57,5 +57,7 @@ public interface GcglyhdzxServer {
 
 	Boolean sbWqgzYb(Gcglyhdzx gcglyhdzx);
 
+	Gcglyhdzx queryCGSByYf(Gcglyhdzx gcglyhdzx);
+
 	
 }

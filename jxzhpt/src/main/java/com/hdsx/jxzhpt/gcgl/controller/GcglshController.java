@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +65,21 @@ public class GcglshController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfyf;
+	private String bfzt;
 	
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -479,4 +494,50 @@ public class GcglshController extends BaseActionSupport{
 	    bAOutputStream.close(); 
 	    return data; 
 	}
+	
+	public void selectShjhList1(){
+		gcglsh.setPage(page);
+		gcglsh.setRows(rows);
+		try {
+		gcglsh.setGydw(gydw.replaceAll("0*$",""));
+		gcglsh.setKgzt(kgzt);
+		gcglsh.setLxmc(lxmc);
+		gcglsh.setJgzt(jgzt);
+		gcglsh.setTbyf(bfyf);
+
+		List<Gcglsh> list=gcglshServer.exportAbyb1(gcglsh);
+		List<Gcglsh> list1=new ArrayList<Gcglsh>();
+		System.out.println(bfzt);
+		if("未拨付".equals(bfzt)){
+			for (Gcglsh excel_list : list) {
+				gcglsh.setJhid(excel_list.getId());
+				Gcglsh gcglsh1 = gcglshServer.queryCGSByYf(gcglsh);
+				if(gcglsh1==null)
+				list1.add(excel_list);
+			}
+		}
+		else if("已拨付".equals(bfzt)){
+			list1.addAll(list);
+			for (Gcglsh excel_list : list) {
+				gcglsh.setJhid(excel_list.getId());
+				Gcglsh gcglsh1 = gcglshServer.queryCGSByYf(gcglsh);
+				if(gcglsh1==null)
+				list1.remove(excel_list);
+			}
+		}else{
+			list1.addAll(list);
+		}
+		
+		int count=list1.size();
+
+		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
+		e.setRows(list1);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }
+

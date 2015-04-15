@@ -268,4 +268,16 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 			return false;
 		}
 	}
+
+	@Override
+	public List<Gcglsh> exportAbyb1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList", gcglsh);
+	}
+
+	@Override
+	public Gcglsh queryCGSByYf(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglsh);
+	}
 }

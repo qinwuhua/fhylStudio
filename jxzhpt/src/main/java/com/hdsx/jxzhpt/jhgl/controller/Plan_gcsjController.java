@@ -18,24 +18,23 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.tree.TreeNode;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
-import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
@@ -46,6 +45,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private int rows = 10;
 	@Resource(name = "plan_GcsjServerImpl")
 	private Plan_gcsjServer gcsjServer;
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
 	private String fileuploadFileName;
@@ -227,7 +228,60 @@ public class Plan_gcsjController extends BaseActionSupport{
 		HttpServletResponse response= getresponse();
 		ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
 	}
-
+	
+	public void exportZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[10];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)1), null,50);
+		title[2]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("下达总投资",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)8), null,15);
+		title[9]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)9), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//第一列项目名称
+		attribute.put("1", "lxxx");//路线信息
+		attribute.put("2", "pfztz");//批复总投资
+		attribute.put("3", "tbdw");//填报单位-即导出单位
+		attribute.put("4", "xdnf");//下达年份
+		attribute.put("5", "xdzj");//下达的总投资
+		attribute.put("6", "btzzj");//下达的部投资
+		attribute.put("7", "stz");//省投资
+		attribute.put("8", "jhxdwh");//省投资
+		attribute.put("9", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		for (Plan_gcsj item : gcsjServer.queryGcsjList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			zjxd.setXmmc(item.getXmmc());
+			String strLx="";
+			for (int i = 0; i <item.getPlan_lx_gcsjs().size(); i++) {
+				strLx+=item.getPlan_lx_gcsjs().get(i).getLxmc()+"-"+
+						item.getPlan_lx_gcsjs().get(i).getLxbm()+"("+
+						item.getPlan_lx_gcsjs().get(i).getQdzh()+"-"+
+						item.getPlan_lx_gcsjs().get(i).getZdzh()+")";
+				if(i!=item.getPlan_lx_gcsjs().size()-1){
+					strLx+="\r\n";
+				}
+			}
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPftz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("工程改造路面升级",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "工程改造路面升级-资金下达", getresponse());
+	}
 	
 	public void importGcsj_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
@@ -242,7 +296,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,48,fs,Plan_gcsj.class);
+				dataMapArray = ExcelReader.readExcelContent(3,53,fs,Plan_gcsj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -250,6 +304,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			String strVerify=null;
 			boolean boolJh=false,boolLx=false;
 			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+			System.out.println(data);
 			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
@@ -257,18 +312,18 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
-				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
-				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
-				map.put("40", map.get("40").toString().substring(0, map.get("40").toString().indexOf(".")));
-				map.put("41", map.get("41").toString().substring(0, map.get("41").toString().indexOf(".")));
-				map.put("42", map.get("42").toString().substring(0, map.get("42").toString().indexOf(".")));
+				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
+				map.put("27", map.get("27").toString().substring(0, map.get("27").toString().indexOf(".")));
+				map.put("45", map.get("45").toString().substring(0, map.get("45").toString().indexOf(".")));
+				map.put("46", map.get("46").toString().substring(0, map.get("46").toString().indexOf(".")));
+				map.put("47", map.get("47").toString().substring(0, map.get("47").toString().indexOf(".")));
 				Plan_lx_gcsj lx=new Plan_lx_gcsj();
 				lx.setXzqhdm(map.get("1").toString());
 				lx.setLxbm(map.get("3").toString());
 				lx.setQdzh(map.get("7").toString());
-				lx.setZdzh(map.get("8").toString());
+				lx.setZdzh(map.get("9").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
-				lx.setJhid(map.get("22").toString());//此处的Jhid存储的是 “上报年份”
+				lx.setJhid(map.get("27").toString());//此处的Jhid存储的是 “上报年份”
 				if(gcsjServer.queryJhExist(lx)==0){
 					//内容验证
 					strVerify=ImportVerify.gcsjVerify(map);
@@ -311,9 +366,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 						}
 						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
 						//验证金额
-						Double xmlc=new Double(map.get("10").toString());
+						Double xmlc=new Double(map.get("12").toString());
 						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("40").toString());
+						Integer pfztz=new Integer(map.get("45").toString());
 						System.out.println("计算结果："+je+"  项目里程："+xmlc+"   补助金额："+bzzj);
 						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
 						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){

@@ -34,11 +34,11 @@ function kaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','安保工程月报信息','abgcyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','安保工程月报信息','abgcyb.jsp','wqxx1',1059,467);
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','安保工程月报添加','abgcybtj.jsp','wqxx',600,360);
+	YMLib.UI.createWindow('wqxx','安保工程月报添加','abgcybtj.jsp','wqxx',650,360);
 	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(index){
@@ -50,12 +50,12 @@ function Showybxx(index){
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','安保工程月报编辑','abgcybxg.jsp','wqxx',600,360);
+	YMLib.UI.createWindow('wqxx','安保工程月报编辑','abgcybxg.jsp','wqxx',650,360);
 	//window.open("wqgzybxg.jsp");
 }
 function Delyb(index){
 	var data12=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglabgc.id="+data12.id;
+	var data="gcglabgc.id="+data12.id+"&gcglabgc.jhid="+data12.jhid;
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
@@ -97,6 +97,10 @@ function tjabgcyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#tj_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
 	if($("#tj_bywc_c").val()==''){
 		alert("请填入本月完成处");
 		return;
@@ -105,14 +109,10 @@ function tjabgcyb(){
 		alert("请填入本月完成公里");
 		return;
 	}
-	if($("#tj_sbyf").find("option:selected").text()==''){
-		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
-		return;
-	}
 	var data = "gcglabgc.wc_btz="+$("#tj_wc_btz").val()+"&gcglabgc.wc_stz="+$("#tj_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglabgc.bywc_c="+$("#tj_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+$("#tj_kgdl").val()+"&gcglabgc.qksm="+$("#tj_qksm").val()
-	+"&gcglabgc.sbsj="+sbsj+"&gcglabgc.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglabgc.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+	+"&gcglabgc.bywc_c="+$("#tj_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#tj_bywc_gl").val()+"&gcglabgc.kgdl="+$("#tj_kgdl").val()+"&gcglabgc.qksm="+$("#tj_qksm").val()+"&gcglabgc.wcqk="+$("#tj_wcqk").text()
+	+"&gcglabgc.sbsj="+sbsj+"&gcglabgc.sbyf="+$("#tj_sbyf").val()+"&gcglabgc.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -147,8 +147,8 @@ function xgabgcyb(){
 	}
 	var data = "gcglabgc.wc_btz="+$("#xg_wc_btz").val()+"&gcglabgc.wc_stz="+$("#xg_wc_stz").val()+"&gcglabgc.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglabgc.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglabgc.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglabgc.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglabgc.bywc_c="+$("#xg_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#xg_bywc_gl").val()+"&gcglabgc.kgdl="+$("#xg_kgdl").val()+"&gcglabgc.qksm="+$("#xg_qksm").val()
-	+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.sbyf="+$("#xg_sbyf").find("option:selected").text();
+	+"&gcglabgc.bywc_c="+$("#xg_bywc_c").val()+"&gcglabgc.bywc_gl="+$("#xg_bywc_gl").val()+"&gcglabgc.kgdl="+$("#xg_kgdl").val()+"&gcglabgc.qksm="+$("#xg_qksm").val()+"&gcglabgc.wcqk="+$("#xg_wcqk").text()
+	+"&gcglabgc.id="+parent.obj.id+"&gcglabgc.jhid="+parent.obj.jhid+"&gcglabgc.sbyf="+$("#xg_sbyf").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -466,7 +466,7 @@ function showYBlist(){
 					if(msg.jgyswj!=''){
 						$("#xz_jgyswj").text(msg.jgyswj);
 						$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-						$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+						$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downAbgcFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 					}
 				}
 		});	

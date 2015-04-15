@@ -24,6 +24,11 @@ public class Plan_lx_gcsj {
 	private String jhid;//计划库ID
 	private String tsdqbm;//特殊地区编码
 	private Plan_gcsj plan_gcsj;//
+	private String qdmc;//起点名称
+	private String zdmc;//止点名称
+	private String lyllqk;//利用老路情况
+	private String dlqlbm;//独立桥梁编码
+	private String dlqlzxzh;//独立桥梁中心桩号
 	public String getTsdqbm() {
 		return tsdqbm;
 	}
@@ -161,5 +166,35 @@ public class Plan_lx_gcsj {
 	}
 	public void setPlan_gcsj(Plan_gcsj plan_gcsj) {
 		this.plan_gcsj = plan_gcsj;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
+	public String getLyllqk() {
+		return lyllqk;
+	}
+	public void setLyllqk(String lyllqk) {
+		this.lyllqk = lyllqk;
+	}
+	public String getDlqlbm() {
+		return dlqlbm;
+	}
+	public void setDlqlbm(String dlqlbm) {
+		this.dlqlbm = dlqlbm;
+	}
+	public String getDlqlzxzh() {
+		return dlqlzxzh;
+	}
+	public void setDlqlzxzh(String dlqlzxzh) {
+		this.dlqlzxzh = dlqlzxzh;
 	}
 }

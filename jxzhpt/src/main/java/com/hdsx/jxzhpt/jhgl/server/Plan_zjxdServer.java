@@ -55,4 +55,6 @@ public interface Plan_zjxdServer {
 	boolean insertZjzj(Plan_lwxm_zjzj zjzj);
 	
 	Plan_zjxd queryZjxdSumByXmid(String xmid);
+	boolean insertBatch(List<Plan_zjxd> readerExcel);
+	String queryGydwmcById(String string);
 }

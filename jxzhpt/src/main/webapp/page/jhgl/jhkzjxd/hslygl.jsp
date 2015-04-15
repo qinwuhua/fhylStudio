@@ -14,6 +14,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_hsly.js"></script>
@@ -21,8 +23,13 @@
 	<script type="text/javascript">
 		$(function(){
 			xzqhComboxTree("xzqh");
+			sbnf('jhnf');
 			hslyglxm_zjxd();
 		});
+		function exportExcelZjxd(){
+			var param="gydwdm="+$.cookie("unit");
+			window.location.href="/jxzhpt/jhgl/exportExcelHslyZjxd.do?"+param;
+		}
 	</script>
 </head>
 <body>
@@ -44,7 +51,7 @@
         				<div>
         					<p style="margin:8px 0px 4px 20px;">
         						<span style="vertical-align:middle;">&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:200px;vertical-align:middle;"></select>
+        						<select id="xzqh" style="width:180px;vertical-align:middle;"></select>
         						<span style=" vertical-align:middle;">计划年份：</span>
         						<select id="jhnf" style="width: 80px; vertical-align:middle;"></select>
         						<span style=" vertical-align:middle;">&nbsp;建设状态：</span>
@@ -55,8 +62,10 @@
 									<option value="已审核">竣工</option>
 								</select>
         						<span style="vertical-align:middle;">&nbsp;项目名称：</span>
-        						<input name="txtName" type="text" id="txtName" style="width:130px;vertical-align:middle;" />
+        						<input name="txtName" type="text" id="txtName" style="width:120px;vertical-align:middle;" />
         						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+        						<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img alt="导入" onclick="importData_jh('hsly_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

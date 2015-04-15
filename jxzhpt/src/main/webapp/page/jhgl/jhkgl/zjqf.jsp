@@ -42,266 +42,166 @@
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(index,item){
-						$('#zjqf_table_tbody').append('<tr name="'+gydw+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td></tr>');
+						$('#zjqf_table_tbody').append('<tr name="'+gydw+'" id="'+item.id+'"><td align="center">'+item.name+'</td><td align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /></td><td  align="center"><input type="number" width="60" /><input type="hidden" value="'+item.parent+'"/></td></tr>');
 					});
 				}
 			});
 		}
-		function loadMessageByGydw(){
-			var gydw=$.cookie("unit");
-			if(gydw=="36"){
-				loadZjqfByIdAndXzqh("21101360000");
-				loadZjqfByIdAndXzqh("11101360000");
-				return;
+		
+		function loadZjqfMessage(){
+			if($.cookie("unit")=="36"){
+				loadZjqf("11101360000");
+				loadZjqf("21101360000");
 			}else{
-				loadZjqfByIdAndXzqh(gydw);
+				loadZjqf($.cookie("unit"));
 			}
 		}
-		function loadZjqfByIdAndXzqh(gydwbm){
-			//首先查询是否有上级的资金分配
-			var xzqhfather=null;
-			if(roleName()=="县级"){
-				xzqhfather=gydwbm.substring(0,9)+"00";
-			}else if(roleName()=="市级"){
-				xzqhfather=gydwbm.substring(0,7)+"0000";
-			}else if(roleName()=="省级"){
-				xzqhfather=gydwbm;
-			}
-			var father={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':xzqhfather};
+		
+		function loadZjqf(gydwbm){
+			var zjqf={'zjqf.gydwbm':gydwbm,'zjqf.nf':$('#selnf').val()};
 			$.ajax({
 				type:'post',
 				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:father,
-				dataType:'json',
-				success:function(data){
-					var trsum = $('#zjqf_table tr:eq(2) input');
-					if(data!=null){
-						$.each(JSON.parse(data.zjqf),function(index,item){
-							if(item.id==$.cookie("unit")){
-								$(trsum[0]).val(item.wqgz);
-								$(trsum[1]).val(item.abgc);
-								$(trsum[2]).val(item.zhfz);
-								if($.cookie("unit").substring(5)!="360000"){
-									$(trsum[0]).attr("disabled",true);
-									$(trsum[1]).attr("disabled",true);
-									$(trsum[2]).attr("disabled",true);
-								}
-							}
-						});
-					}else{
-						$(trsum[0]).val("");
-						$(trsum[1]).val("");
-						$(trsum[2]).val("");
-						if(gydwbm.substring(5)!="360000"){
-							$(trsum[0]).attr("disabled",true);
-							$(trsum[1]).attr("disabled",true);
-							$(trsum[2]).attr("disabled",true);
-						}
-					}
-				}
-			});
-			//查询本单位的资金切分情况
-			var zjqf={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':gydwbm};
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
+				url:'../../../jhgl/queryZjqfByGydwbm.do',
 				data:zjqf,
 				dataType:'json',
 				success:function(data){
-					if(data!=null){
-						if(gydwbm=="21101360000"){
-							$('#zjqfidglj').val(data.id);
-						}else if(gydwbm=="11101360000"){
-							$('#zjqfidjtj').val(data.id);
-						}
-						$('#zjqfid').val(data.id);
-						$.each(JSON.parse(data.zjqf),function(index,item){
-							var tds=$('#'+item.id+' input');
-							$(tds[0]).val(item.wqgz);
-							$(tds[1]).val(item.abgc);
-							$(tds[2]).val(item.zhfz);
+					if(data.length>0){
+						$.each(data,function(index,item){
+							var input=$("#"+item.gydwbm+" input");
+							$(input[0]).val(item.wqgz);
+							$(input[1]).val(item.abgc);
+							$(input[2]).val(item.zhfz);
+							$(input[3]).val(item.parent);
+							if($.cookie("unit")!="36" && $.cookie("unit")==item.gydwbm){
+								$(input[0]).attr("disabled","disabled");
+								$(input[1]).attr("disabled","disabled");
+								$(input[2]).attr("disabled","disabled");
+							}
 						});
 					}else{
-						var text= $("#zjqf_table input:gt(3)");
-						$.each(text,function(index,item){
-							$(item).val("");
+						var tr = $("tr[name='"+gydwbm+"']");
+						$.each(tr,function(index,item){
+							var inputList = $("#"+item.id+" input");
+							$(inputList[0]).val("");
+							$(inputList[1]).val("");
+							$(inputList[2]).val("");
 						});
 					}
 				}
 			});
 		}
+		
 		function save(){
-			if($.cookie("unit")=="36"){
-				var glj = save2($('#zjqfidglj').val(),"21101360000");
-				var jtj = save2($('#zjqfidjtj').val(),"11101360000");
-				if(glj && jtj){
-					alert("保存成功！");
-				}
-				return;
-			}
-			if(roleName()=="县级"){
-				alert("只有省级和市级以上才能进行资金切分");
-				return;
-			}
-			var trsum = $('#zjqf_table tr:eq(2) input');
-			var text= $("#zjqf_table input:gt(0)");
-			var isnum=false;
-			$.each(text,function(index,item){
-				if($(item).val()==""){
-					isnum=true;
-					return;
-				}
-			});
-			if(isnum){
-				alert("所有分配金额不能为空！");
-				return;
-			}
-			var tr = $('#zjqf_table tr :gt(1)');
-			var zjqfJson=new Array();
-			var wqsum=0,absum=0,zhsum=0;
-			$.each(tr,function(index,item){
-				var tds = $('#'+item.id+' input');
-				if(index>0){
-					wqsum+=parseInt($(tds[0]).val(),10);
-					absum+=parseInt($(tds[1]).val(),10);
-					zhsum+=parseInt($(tds[2]).val(),10);
-				}
-				var dq={id:item.id,wqgz:$(tds[0]).val(),abgc:$(tds[1]).val(),zhfz:$(tds[2]).val()};
-				zjqfJson.push(dq);
-			});
-			var trsum = $('#zjqf_table tr:eq(2) input');
-			if(parseInt($(trsum[0]).val(),10)>=wqsum && parseInt($(trsum[1]).val(),10)>=absum && parseInt($(trsum[2]).val(),10)>=zhsum){
-				var zjqf={'zjqf.id':$('#zjqfid').val(),'zjqf.nf':$('#selnf').val(),
-						'zjqf.xzqhdm':$.cookie("unit"),'zjqf.zjqf':JSON.stringify(zjqfJson)};
-				$.ajax({
-					type:'post',
-					url:'../../../jhgl/saveZjqf.do',
-					data:zjqf,
-					dataType:'json',
-					success:function(data){
-						if(data.result){
-							alert("保存成功！");
-						}
-					}
-				});	
-			}else if(parseInt($(trsum[0]).val(),10)<wqsum){
-				alert("危桥改造的资金切分不正确");
-			}else if(parseInt($(trsum[1]).val(),10)<absum){
-				alert("安保工程的资金切分不正确");
-			}else if(parseInt($(trsum[2]).val(),10)<zhsum){
-				alert("灾害防治的资金切分不正确");
-			}
-		}
-		function save2(zjqfid,gydw){
-			var result=false;
-			var wqsum=0,absum=0,zhsum=0;
-			var zjqfJson=new Array();
-			$.each($("tr[name='"+gydw+"']"),function(index,item){
-				var tds = $('#'+item.id+' input');
-				var wq=0,ab=0,zh=0;
-				if(item.id!=gydw){
-					if($(tds[0]).val()!=""){
-						wqsum+=parseInt($(tds[0]).val(),10);
-						wq=$(tds[0]).val();
-					}
-					if($(tds[1]).val()!=""){
-						absum+=parseInt($(tds[1]).val(),10);
-						ab=$(tds[1]).val();
-					}
-					if($(tds[2]).val()!=""){
-						zhsum+=parseInt($(tds[2]).val(),10);
-						zh=$(tds[2]).val();
-					}
-					if(item.id=="11101360100"){
-						alert(item.id);
-						queryChildZjqf(item.id,wq,ab,zh);
+			if($('#selnf').val()!=""){
+				var zjqf={'zjqf.gydwbm':null,'zjqf.parent':null,'zjqf.nf':null,
+						'zjqf.wqgz':null,'zjqf.abgc':null,'zjqf.zhfz':null};
+				if($.cookie("unit")=="36"){
+					if(jisuan("11101360000") && jisuan("21101360000")){
+						var jtj = caiji("11101360000");
+						var glj = caiji("21101360000");
+						zjqf['zjqf.gydwbm']=jtj.gydwbm+"-"+glj.gydwbm;
+						zjqf['zjqf.parent']=jtj.parent+"-"+glj.parent;
+						zjqf['zjqf.nf']=jtj.nf+"-"+glj.nf;
+						zjqf['zjqf.wqgz']=jtj.wqgz+"-"+glj.wqgz;
+						zjqf['zjqf.abgc']=jtj.abgc+"-"+glj.abgc;
+						zjqf['zjqf.zhfz']=jtj.zhfz+"-"+glj.zhfz;
 					}
 				}else{
-					if($(tds[0]).val()!=""){
-						wq=$(tds[0]).val();
-					}
-					if($(tds[1]).val()!=""){
-						ab=$(tds[1]).val();
-					}
-					if($(tds[2]).val()!=""){
-						zh=$(tds[2]).val();
+					if(jisuan($.cookie("unit"))){
+						var data = caiji($.cookie("unit"));
+						zjqf['zjqf.gydwbm']=data.gydwbm;
+						zjqf['zjqf.parent']=data.parent;
+						zjqf['zjqf.nf']=data.nf;
+						zjqf['zjqf.wqgz']=data.wqgz;
+						zjqf['zjqf.abgc']=data.abgc;
+						zjqf['zjqf.zhfz']=data.zhfz;
 					}
 				}
-				var dq={id:item.id,wqgz:wq,abgc:ab,zhfz:zh};
-				zjqfJson.push(dq);
-			});
-			var trsum = $("#"+gydw+" input");
-			var wqinput=0,abinput=0,zhinput=0;
-			if($(trsum[0]).val()!=""){
-				wqinput=$(trsum[0]).val();
-			}
-			if($(trsum[1]).val()!=""){
-				abinput=$(trsum[1]).val();
-			}
-			if($(trsum[2]).val()!=""){
-				zhinput=$(trsum[2]).val();
-			}
-			if(parseInt(wqinput,10)>=wqsum && parseInt(abinput,10)>=absum && parseInt(zhinput,10)>=zhsum){
-				var zjqf={'zjqf.id':zjqfid,'zjqf.nf':$('#selnf').val(),
-						'zjqf.xzqhdm':gydw,'zjqf.zjqf':JSON.stringify(zjqfJson)};
 				$.ajax({
 					type:'post',
-					async:false,
-					url:'../../../jhgl/saveZjqf.do',
+					url:'../../../jhgl/editOrSave.do',
 					data:zjqf,
 					dataType:'json',
 					success:function(data){
-						if(data.result){
-							result=true;
-						}
+						alert("资金切分成功！");
 					}
 				});
-			}else if(parseInt($(trsum[0]).val(),10)<wqsum){
-				alert("危桥改造的资金切分不正确");
-			}else if(parseInt($(trsum[1]).val(),10)<absum){
-				alert("安保工程的资金切分不正确");
-			}else if(parseInt($(trsum[2]).val(),10)<zhsum){
-				alert("灾害防治的资金切分不正确");
+			}else{
+				alert("请选择年份！");
 			}
-			return result;
 		}
-		function queryChildZjqf(gydwdm,wq,ab,zh){
-			var zjqf={'zjqf.nf':$('#selnf').val(),'zjqf.xzqhdm':gydwdm};
-			var child=null;
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/queryZjqfByXzqh.do',
-				data:zjqf,
-				dataType:'json',
-				success:function(data){
-					if(data!=null){
-						var newData= JSON.parse(data.zjqf);
-						$.each(newData,function(index,item){
-							if(item.id==gydwdm){
-								item.abgc=ab;
-								item.wqgz=wq;
-								item.zhfz=zh;
-								var newZjqf={'zjqf.id':data.id,'zjqf.nf':$('#selnf').val(),
-										'zjqf.xzqhdm':gydwdm,'zjqf.zjqf':JSON.stringify(newData)};
-								child=newZjqf;
-							}
-						});
-						alert(child['zjqf.id']);
+		
+		function jisuan(name){
+			var sumwq=0,sumab=0,sumzh=0;
+			var wq=0,ab=0,zh=0;
+			var jtj = $("tr[name='"+name+"']");
+			$.each(jtj,function(index,item){
+				var inputList = $("#"+item.id+" input");
+				if(name!=item.id){
+					if($(inputList[0]).val()!=""){
+						sumwq=Number(sumwq)+Number($(inputList[0]).val());
+					}
+					if($(inputList[1]).val()!=""){
+						sumab=Number(sumab)+Number($(inputList[1]).val());
+					}
+					if($(inputList[2]).val()!=""){
+						sumzh=Number(sumzh)+Number($(inputList[2]).val());
+					}
+				}else{
+					if($(inputList[0]).val()!=""){
+						wq=Number($(inputList[0]).val());
+					}
+					if($(inputList[1]).val()!=""){
+						ab=Number($(inputList[1]).val());
+					}
+					if($(inputList[2]).val()!=""){
+						zh=Number($(inputList[2]).val());
 					}
 				}
 			});
-			$.ajax({
-				type:'post',
-				async:false,
-				url:'../../../jhgl/updateZjqf.do',
-				data:child,
-				dataType:'json',
-				success:function(data){
+			if(sumwq>wq){
+				alert("请检查危桥改造的资金切分！");
+			}
+			if(sumab>ab){
+				alert("请检查安保工程的资金切分！");
+			}
+			if(sumzh>zh){
+				alert("请检查灾害防止的资金切分！");
+			}
+			return (wq>=sumwq && ab>=sumab && zh>=sumzh);
+		}
+		
+		function caiji(name){
+			var zj = {gydwbm:"",parent:"",nf:"",wqgz:"",abgc:"",zhfz:""};
+			var zjqf={'zjqf.gydwbm':null,'zjqf.parent':null,'zjqf.nf':null,'zjqf.wqgz':null,
+					'zjqf.abgc':null,'zjqf.zhfz':null};
+			var tr = $("tr[name='"+name+"']");
+			$.each(tr,function(index,item){
+				var inputList = $("#"+item.id+" input");
+				zjqf['zjqf.gydwbm']=item.id;
+				zjqf['zjqf.parent']=$(inputList[3]).val();
+				zjqf['zjqf.nf']=$('#selnf').val();
+				zjqf['zjqf.wqgz']=$(inputList[0]).val();
+				zjqf['zjqf.abgc']=$(inputList[1]).val();
+				zjqf['zjqf.zhfz']=$(inputList[2]).val();
+				if(index==0){
+					zj.gydwbm+=item.id;
+					zj.parent+=$(inputList[3]).val();
+					zj.nf+=$('#selnf').val();;
+					zj.wqgz+=$(inputList[0]).val();;
+					zj.abgc+=$(inputList[1]).val();
+					zj.zhfz+=$(inputList[2]).val();
+				}else{
+					zj.gydwbm+="-"+item.id;
+					zj.parent+="-"+$(inputList[3]).val();
+					zj.nf+="-"+$('#selnf').val();;
+					zj.wqgz+="- "+$(inputList[0]).val();;
+					zj.abgc+="- "+$(inputList[1]).val();
+					zj.zhfz+="- "+$(inputList[2]).val();
 				}
 			});
+			return zj;
 		}
 	</script>
 </head>
@@ -324,7 +224,7 @@
 							style="margin-left: 10px; margin-top: 10px;">
 							<tr align='center' height="28">
 								<td colspan="4">
-									<select id="selnf" onchange="loadMessageByGydw()">
+									<select id="selnf" onchange="loadZjqfMessage()">
 										<option value="" selected="selected">--请选择---</option>
 									</select>年资金切分情况
 									<input id="zjqfid" type="hidden"/>

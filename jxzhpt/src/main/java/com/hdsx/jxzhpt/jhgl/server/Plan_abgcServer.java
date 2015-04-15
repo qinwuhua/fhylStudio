@@ -122,4 +122,6 @@ public interface Plan_abgcServer {
 	TreeNode queryGcktjt(String xzqhdm);
 
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+
+	List<Plan_abgc> queryAbgcList(Plan_abgc jh, Jckabgc lx);
 }

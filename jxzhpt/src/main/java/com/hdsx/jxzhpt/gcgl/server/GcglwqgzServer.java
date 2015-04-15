@@ -62,5 +62,13 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz selectWqgzbzzj(Gcglwqgz gcglwqgz);
 
+	Gcglwqgz queryCGSByYf(Gcglwqgz gcglwqgz);
+
+	List<Gcglwqgz> selectWqgzjhList1(Gcglwqgz gcglwqgz);
+
+	int selectWqgzjhListcount1(Gcglwqgz gcglwqgz);
+
+	Gcglwqgz selectcgsyf(Gcglwqgz gcglwqgz);
+
 
 }

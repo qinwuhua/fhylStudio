@@ -25,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
@@ -73,7 +74,28 @@ public class GcglabgcController extends BaseActionSupport{
 	private String ybzt;
 	private String sbyf;
 	private String tbr;
+	private String bfzt;
+	private String bfyf;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
 	public String getTbr() {
 		return tbr;
 	}
@@ -445,6 +467,7 @@ public class GcglabgcController extends BaseActionSupport{
 			if(sfsj==11){
 				gcglabgc.setTiaojian("xjzt");
 			}
+			System.out.println(gcglabgc.getTiaojian());
 			int count=gcglabgcServer.selectWqgzjhListCount(gcglabgc);
 			List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList(gcglabgc);
 			EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
@@ -627,29 +650,34 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setJgzt(jgzt);
 		gcglabgc.setTbyf(sbyf);
 		gcglabgc.setTbr(tbr);
+		List<Gcglgcgzgj> list1=gcglabgcServer.selectWqgzjhListid1(gcglabgc);
+		String tiaojian="";
+		for (Gcglgcgzgj gcglgcgzgj2 : list1) {
+			tiaojian=tiaojian+"'"+gcglgcgzgj2.getId()+"'"+",";
+		}
+		gcglabgc.setTiaojian(tiaojian.substring(0, tiaojian.length()-1));
 		List<Excel_list> list=gcglabgcServer.exportgjyb(gcglabgc);
-		
-		List<Excel_list> list1=new ArrayList<Excel_list>();
+		List<Excel_list> list2=new ArrayList<Excel_list>();
 		for (Excel_list excel_list : list) {
 			gcglabgc.setJhid(excel_list.getV_0());
 			Gcglabgc gcglabgc1 = gcglabgcServer.queryCGSByYf(gcglabgc);
 			if(gcglabgc1==null)
-			list1.add(excel_list);
+			list2.add(excel_list);
 		}
 		//到报表
 		ExcelData eldata=new ExcelData();//创建一个类
 		eldata.setTitleName("工程改造路面改建车购税拨付信息导入表");//设置第一行
 		eldata.setSheetName("车购税拨付");//设置sheeet名
 		eldata.setFileName("工程改造路面改建车购税拨付信息导入表");//设置文件名
-		eldata.setEl(list1);//将实体list放入类中
+		eldata.setEl(list2);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 		et.add(new Excel_tilte("计划编码",1,1,0,0));
-		et.add(new Excel_tilte("管养单位",1,1,1,1));
-		et.add(new Excel_tilte("行政区划",1,1,2,2));
-		et.add(new Excel_tilte("路线编号",1,1,3,3));
-		et.add(new Excel_tilte("路线名称",1,1,4,4));
-		et.add(new Excel_tilte("起点桩号",1,1,5,5));
-		et.add(new Excel_tilte("止点桩号",1,1,6,6));
+		et.add(new Excel_tilte("项目名称",1,1,1,1));
+		et.add(new Excel_tilte("计划年份",1,1,2,2));
+		et.add(new Excel_tilte("计划开工时间",1,1,3,3));
+		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
+		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
+		et.add(new Excel_tilte("部补助金额(万元) ",1,1,6,6));
 		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
 		et.add(new Excel_tilte("填报月份",1,1,8,8));
 		et.add(new Excel_tilte("填报时间",1,1,9,9));
@@ -944,5 +972,38 @@ public class GcglabgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}//将类和参数HttpServletResponse传入即可实现导出excel		
 		
+	}
+	public void selectAbgcjhList1(){
+		Gcglabgc gcglabgc=new Gcglabgc();
+		gcglabgc.setPage(page);
+		gcglabgc.setRows(rows);
+		try {
+		gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		gcglabgc.setKgzt(kgzt);
+		gcglabgc.setLxmc(lxmc);
+		gcglabgc.setJgzt(jgzt);
+		gcglabgc.setTbyf(bfyf);
+		gcglabgc.setTbr(tbr);
+		gcglabgc.setTiaojian(bfzt);
+		gcglabgc.setXmnf(xmnf);
+		List<Gcglabgc> list=gcglabgcServer.selectWqgzjhList1(gcglabgc);
+		int count=gcglabgcServer.selectWqgzjhListcount1(gcglabgc);
+		EasyUIPage<Gcglabgc> e=new EasyUIPage<Gcglabgc>();
+		e.setRows(list);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void selectabgcxx(){
+		gcglabgc.setJhid(jhid);
+		Gcglabgc gcglabgc1=gcglabgcServer.selectabgcxx(gcglabgc);
+		try {
+			JsonUtils.write(gcglabgc1, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

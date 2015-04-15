@@ -76,8 +76,8 @@
 	
 			<!-- 添加车购税 -->
 	<insert id="insertGcgzsjCgs" parameterType="gcglgcgzsj">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzsjCgs" parameterType="gcglgcgzsj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->
@@ -124,7 +124,7 @@
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglgcgzsj">
-		update PLAN_GCSJ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
+		update PLAN_GCSJ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
@@ -208,5 +208,38 @@
 	 <select id="selectnumbyyh" parameterType="gcglgcgzsj" resultType="int">
 	 	select count(*) from GCGL_GCGZSJ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	 <select id="exportAbyb1" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
+	 select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.lxmc,t1.lxbm,t1.yjsdj,t1.qdzh,t1.zdzh,t1.qzlc,t1.gydw,t1.gydwbm,t1.xzqhdm,t1.xzqhmc,t1.xmlc,t1.bhnr,t1.bz lxbz,  
+		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.scbz,
+		t2.jhnf sbnf,t2.jhkgsj,t2.jhwgsj,t2.id id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
+		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje,t2.jhsydfzczj,t2.id jhid,
+		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.sjsgtmc,t2.remarks,
+		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
+		from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
+		where t2.spzt='1'
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and t2.jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="shzt != null and  shzt != ''">
+			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
+	order by t2.jhnf
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
 	 </select>
 </mapper>

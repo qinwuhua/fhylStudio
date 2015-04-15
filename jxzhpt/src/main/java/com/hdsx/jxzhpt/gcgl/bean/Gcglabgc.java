@@ -31,7 +31,6 @@ public class Gcglabgc implements Serializable {
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
-	
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;
 	private String tbyf;
@@ -119,7 +118,14 @@ public class Gcglabgc implements Serializable {
 	private String sjzt;
 	private String sjsh;
 	private String yhtype;
+	private String stz;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

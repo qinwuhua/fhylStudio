@@ -58,5 +58,9 @@ public interface GcglgcgzsjServer {
 	List<Gcglgcgzsj> selectgcgzsjYbByJhid1(Gcglgcgzsj gcglgcgzsj);
 
 	Boolean sbWqgzYb(Gcglgcgzsj gcglgcgzsj);
+
+	List<Gcglgcgzsj> exportAbyb1(Gcglgcgzsj gcglgcgzsj);
+
+	Gcglgcgzsj queryCGSByYf(Gcglgcgzsj gcglgcgzsj);
 	
 }

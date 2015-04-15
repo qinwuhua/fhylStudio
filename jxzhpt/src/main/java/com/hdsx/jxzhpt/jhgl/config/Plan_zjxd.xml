@@ -8,6 +8,9 @@
 		select count(z.xmid) as xmid,sum(z.xdzj) as xdzj from plan_zjxd z 
 		where z.xmid=#{id} group by z.xmid
 	</select>
+	<select id="queryGydwmcById" parameterType="string" resultType="string">
+		select name from xtgl_department where id=#{id}
+	</select>
 	<select id="queryZjxdCount" parameterType="string" resultType="int">
 		select count(*) from plan_zjxd where xmid=#{id}
 	</select>
@@ -18,8 +21,12 @@
 		select count(*) from plan_zjxd where xmid=#{id}
 	</select>
 	<insert id="addZjxd" parameterType="plan_zjxd">
-		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime) 
-		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime})
+		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh) 
+		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime},#{btzzj},#{stz},#{jhxdwh})
+	</insert>
+	<insert id="insertBatch" parameterType="plan_zjxd">
+		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh) 
+		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime},#{btzzj},#{stz},#{jhxdwh})
 	</insert>
 	<update id="editZjxd" parameterType="plan_zjxd">
 		update plan_zjxd set 
@@ -28,6 +35,15 @@
 			</if>
 			<if test="xdzj!=null and xdzj!=''">
 				xdzj=#{xdzj},
+			</if>
+			<if test="btzzj!=null and btzzj!=''">
+				btzzj=#{btzzj},
+			</if>
+			<if test="stz!=null and stz!=''">
+				stz=#{stz},
+			</if>
+			<if test="jhxdwh!=null and jhxdwh!=''">
+				jhxdwh=#{jhxdwh},
 			</if>
 			<if test="sfzj!=null and sfzj!=''">
 				sfzj=#{sfzj},

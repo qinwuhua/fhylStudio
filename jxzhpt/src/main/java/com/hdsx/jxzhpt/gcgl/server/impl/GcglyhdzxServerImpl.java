@@ -31,14 +31,23 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 		if(insert("insertYhdzxYb", gcglyhdzx)>0){
 			if(gcglyhdzx.getSfsj()==9){
 				gcglyhdzx.setSjzt("未上报");
+				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
+				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglyhdzx);
 				update("updateSjZT", gcglyhdzx);
 			}
 			if(gcglyhdzx.getSfsj()==11){
 				gcglyhdzx.setXjzt("未上报");
+				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
+				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglyhdzx);
 				update("updateXjZT", gcglyhdzx);
 			}
 			if(gcglyhdzx.getSfsj()==7){
 				gcglyhdzx.setSjsh("未审核");
+				Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
+				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglyhdzx);
 				update("updateSJSH", gcglyhdzx);
 			}
 			return true;
@@ -85,6 +94,12 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 	@Override
 	public Boolean deleteYhdzxYb(Gcglyhdzx gcglyhdzx) {
 		if(delete("deleteYhdzxYb", gcglyhdzx)>0){
+			Gcglyhdzx gcglwqgz3 =queryOne("querymaxybyf", gcglyhdzx);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglyhdzx.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglyhdzx.setSbyf("");
+			update("updatezdyf", gcglyhdzx);
 		return true;
 		}else{
 			return false;
@@ -266,5 +281,11 @@ public class GcglyhdzxServerImpl extends BaseOperate implements GcglyhdzxServer 
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public Gcglyhdzx queryCGSByYf(Gcglyhdzx gcglyhdzx) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglyhdzx);
 	}
 }

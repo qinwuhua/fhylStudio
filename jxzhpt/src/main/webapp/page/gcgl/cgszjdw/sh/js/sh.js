@@ -20,12 +20,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','shzjdwtj.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','shzjdwtj.jsp','wqxx',550,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','shzjdwxg.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','shzjdwxg.jsp','wqxx',550,250);
 }
 
 //添加车购税
@@ -40,7 +40,7 @@ function tjshcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglsh.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglsh.tbr="+$.cookie("truename")+"&gcglsh.tbsj="+tbsj+"&gcglsh.tbyf="+$("#tj_tbyf").val()
+	var data="gcglsh.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglsh.tbr="+$.cookie("truename")+"&gcglsh.tbsj="+tbsj+"&gcglsh.tbyf="+$("#tj_tbyf").val()+"&gcglsh.cscyj="+$("#tj_cscyj").val()+"&gcglsh.stz="+$("#tj_stz").val()
 	+"&gcglsh.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -52,7 +52,7 @@ function tjshcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -68,7 +68,7 @@ function xgshcgs(){
 		return;
 	}
 	var data="gcglsh.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.tbyf="+$("#xg_tbyf").val();
+	+"&gcglsh.jhid="+parent.obj.jhid+"&gcglsh.id="+parent.obj.id+"&gcglsh.tbyf="+$("#xg_tbyf").val()+"&gcglsh.cscyj="+$("#xg_cscyj").val()+"&gcglsh.stz="+$("#xg_stz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -79,7 +79,7 @@ function xgshcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -101,7 +101,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					shezhi();
+					parent.shezhi();
 				}else{
 					alert('删除失败！');
 				}
@@ -115,10 +115,12 @@ function showAll(){
 	if(gydw=='36')
 		gydw='';
 	var jgzt='0';
-	var kgzt='1';
+	var kgzt='';
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectShjhList.do',
+	    url:'../../../../gcgl/selectShjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -132,7 +134,9 @@ function showAll(){
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	bfyf:nf+"-"+yf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
              {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

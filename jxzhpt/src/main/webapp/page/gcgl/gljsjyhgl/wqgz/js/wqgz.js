@@ -37,7 +37,7 @@ function kaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报信息','wqgzyb.jsp','wqxx1',1059,467);
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
@@ -60,7 +60,7 @@ function Edityb(index){
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglwqgz.id="+data1.id;
+	var data="gcglwqgz.id="+data1.id+"&gcglwqgz.jhid="+data1.jhid;
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
@@ -85,6 +85,10 @@ function tjwqgzyb(){
 		alert("请您填入本月完成部投资");
 		return;
 	}
+	if($("#tj_wc_stz").val()==''||$("#tj_wc_stz").val()==null){
+		alert("请您填入本月完成省投资");
+		return;
+	}
 	if($("#tj_wc_qttz").val()==''||$("#tj_wc_qttz").val()==null){
 		alert("请您填入本月完成其他投资");
 		return;
@@ -95,10 +99,6 @@ function tjwqgzyb(){
 	}
 	if($("#tj_bywcmc").val()==''||$("#tj_bywcmc").val()==null){
 		alert("请您填入本月完成面层");
-		return;
-	}
-	if($("#tj_wcqk").val()==''||$("#tj_wcqk").val()==null||$("#tj_wcqk").val().substr(0,1)=='>'){
-		alert("请您填入本月完成情况");
 		return;
 	}
 	if($("#tj_kgdl").val()==''||$("#tj_kgdl").val()==null){
@@ -122,15 +122,11 @@ function tjwqgzyb(){
 	if(yhjb.length<8&&yhjb.length>2){
 		yhtype='省级';
 	}
-	if($("#tj_sbyf").find("option:selected").text()==''){
-		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
-		return;
-	}
 	var data = "gcglwqgz.wc_btz="+$("#tj_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#tj_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#tj_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").val()
-	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
-	//alert(data +"----"+$("#tj_sbyf").val());
+	+"&gcglwqgz.bywcmc="+$("#tj_bywcmc").val()+"&gcglwqgz.kgdl="+$("#tj_kgdl").val()+"&gcglwqgz.qksm="+$("#tj_qksm").val()+"&gcglwqgz.wcqk="+$("#tj_wcqk").text()
+	+"&gcglwqgz.sbsj="+sbsj+"&gcglwqgz.sbyf="+$("#tj_sbyf").val()+"&gcglwqgz.jhid="+parent.parent.obj1.jhid+"&yhtype="+yhtype;
+//	alert(data +"----");
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/insertWqgzYb.do',
@@ -152,6 +148,10 @@ function xgwqgzyb(){
 		alert("请您填入本月完成部投资");
 		return;
 	}
+	if($("#xg_wc_stz").val()==''||$("#xg_wc_stz").val()==null){
+		alert("请您填入本月完成省投资");
+		return;
+	}
 	if($("#xg_wc_qttz").val()==''||$("#xg_wc_qttz").val()==null){
 		alert("请您填入本月完成其他投资");
 		return;
@@ -164,10 +164,6 @@ function xgwqgzyb(){
 		alert("请您填入本月完成面层");
 		return;
 	}
-	if($("#xg_wcqk").val()==''||$("#xg_wcqk").val()==null){
-		alert("请您填入本月完成情况");
-		return;
-	}
 	if($("#xg_kgdl").val()==''||$("#xg_kgdl").val()==null){
 		alert("请您填入截至开工段落");
 		return;
@@ -178,8 +174,8 @@ function xgwqgzyb(){
 	}
 	var data = "gcglwqgz.wc_btz="+$("#xg_wc_btz").val()+"&gcglwqgz.wc_stz="+$("#xg_wc_stz").val()+"&gcglwqgz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglwqgz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglwqgz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglwqgz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
-	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").val()
-	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").find("option:selected").text();
+	+"&gcglwqgz.bywcmc="+$("#xg_bywcmc").val()+"&gcglwqgz.kgdl="+$("#xg_kgdl").val()+"&gcglwqgz.qksm="+$("#xg_qksm").val()+"&gcglwqgz.wcqk="+$("#xg_wcqk").text()
+	+"&gcglwqgz.jhid="+parent.obj.jhid+"&gcglwqgz.id="+parent.obj.id+"&gcglwqgz.sbyf="+$("#xg_sbyf").val();
 //	alert(data);
 	$.ajax({
 		type:'post',
@@ -505,7 +501,7 @@ function jiazaifujian(data1){
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 				}
 			}
 	});	
