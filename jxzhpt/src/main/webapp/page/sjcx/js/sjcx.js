@@ -1,10 +1,25 @@
 var checkValues;
 var gydw=parent.YMLib.Var.gydw;
-function cxzd(){
-	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_zd.jsp','zd_xz','900','380');
-}
 function Wqgz(){
 	YMLib.UI.createWindow('zd_wqgz','危桥项目字段选择列表','zdycx_wqgz.jsp','zd_wqgz','900','380');
+}
+function Abgc(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_abgc.jsp','zd_xz','900','380');
+}
+function Zhfz(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_zhfz.jsp','zd_xz','900','380');
+}
+function Gcgj(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_gcgz.jsp','zd_xz','900','380');
+}
+function Gcsj(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_gcsj.jsp','zd_xz','900','380');
+}
+function Yhdzx(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_yhdzx.jsp','zd_xz','900','380');
+}
+function Sh(){
+	YMLib.UI.createWindow('zd_xz','项目字段选择列表','zdycx_sh.jsp','zd_xz','900','380');
 }
 function tsdq(id){
 	$('#'+id).combobox({    
@@ -62,17 +77,31 @@ function xmnf(id){
 	});
 	$('#'+id).combobox("setValue","");
 }
-/*//基础库管理
-function zdy(){
-	$("#grid").datagrid({    
-		 url:"../js/lwxm1.json",
-		    striped:true,
-		    pagination:true,
-		    rownumbers:true,
-		    pageNumber:1,
-		    pageSize:10,
-		    height:325,
-		    width:1100,
-	});  
-}*/
-
+//自定义导出excel 
+function exportExcel_zdy(){
+	var param="gydw="+YMLib.Var.gydw+
+	"&xzqhdm="+YMLib.Var.xzqhdm+
+	"&kgzt="+YMLib.Var.kgzt+
+	"&lxmc="+YMLib.Var.lxmc+
+	"&lxbm="+YMLib.Var.lxbm+
+	"&xmlx="+YMLib.Var.xmlx+
+	"&xmName="+YMLib.Var.xmName+
+	"&colName="+YMLib.Var.sqlcol+
+	"&tableName="+YMLib.Var.tablecol;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
+}
+/*function exportExcel_zdy(){
+	var param="gydw="+$("#gydw").combobox("getValue")+
+	"&xzqhdm="+$("#xzqhmc").combobox("getValue")+
+	"&kgzt="+$("#kgzt").combobox("getValue")+
+	"&lxmc="+$("#lxmc").val()+
+	"&lxbm="+$("#lxbm").val()+
+	"&xmlx="+$("#xmlx").combobox("getValue")+
+	"&xmName="+$("#xmlx").combobox("getText")+
+	"&colName="+YMLib.Var.sqlcol+
+	"&tableName="+YMLib.Var.tablecol;
+	//特殊地区 条件	
+	window.location.href="/jxzhpt/zdycx/exportExcel_zdy.do?"+param;
+}
+*/

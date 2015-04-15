@@ -5,10 +5,9 @@
 select * from (
 select m.*,rownum rn from (
 select 
-t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
-t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.qlkd,t3.qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,
-t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
+t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.sbnf,
+t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t3.qlkd,t3.qlqc,t3.xjgjnd,t3.xmnf,t2.faspsj,t2.jsxz
 from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
 where  1=1
 	<if test="gydw != null and  gydw != ''">
@@ -27,7 +26,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t1.sbnf
+	order by t3.qlbh
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -58,8 +57,8 @@ where  1=1
 select * from (
 select m.*,rownum rn from (
 select 
-t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
-t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+t1.jhnf ,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybbzje ,t1.jhsydfzczj ,t1.sfsqablbz,t1.ablbzsqwh,t1.xdsj,t1.sjkgsj,
+t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.tbbmbm,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
 t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
@@ -80,7 +79,7 @@ where 1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t1.jhnf
+	order by t3.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -112,7 +111,7 @@ select * from (
 select m.*,rownum rn from (
 select 
 t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,
-t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+t1.yjwgsj ,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,
 t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
@@ -133,7 +132,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t3.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t1.sbnf
+	order by t3.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -163,10 +162,10 @@ where  1=1
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.lxmc,t1.lxbm,t1.yjsdj,t1.qdzh,t1.zdzh,t1.qzlc,t1.gydw,t1.gydwbm,t1.xzqhdm,t1.xzqhmc,t1.xmlc,t1.bhnr,t1.bz lxbz,  
-		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.scbz,
-		t2.jhnf xmnf,t2.jhkgsj,t2.jhwgsj,t2.id id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.ql,t2.ql_m,t2.sd,t2.sd_m,t2.hd,t2.ljtsf,t2.dc,t2.jc,t2.lqlm,t2.snlm,t2.gjhjsdj,t2.
-		pfwh,t2.pfsj,t2.pftz pfztz,t2.jhsybbzje jhsybzje,t2.jhsydfzczj jhsydfzcje,t1.id jhid,t2.gjhjsdj lxjsdj,
+		t1.lxmc,t1.lxbm,t1.yjsdj,t1.qdzh,t1.zdzh,t1.qzlc,t1.gydw,t1.gydwbm,t1.xzqhdm,t1.xzqhmc,t1.xmlc,
+		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.jsxz,
+		t2.jhnf,t2.jhkgsj,t2.jhwgsj,t2.id id,t2.xmmc,t2.sftqss,t2.sjdw,t2.sjpfdw,t2.jsjsbz,t2.gjhjsdj,
+		t2.pfwh,t2.pfsj,t2.pftz,t2.jhsybbzje ,t2.jhsydfzczj ,t1.id jhid,
 		t2.sfsqablbz,t2.ablbzsqwh,t2.gkbgmc,t2.sjsgtmc,t2.remarks,
 		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gsztz,t2.wjgyy
 		from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
@@ -187,7 +186,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t1.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t2.jhnf
+	order by t1.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -218,7 +217,7 @@ where  1=1
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj lxjsdj,
+		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj,
 		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.bz jhbz,t2.id id,t2.wjgyy,t2.scbz,t1.id jhid,
 		t2.sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmmc,t2.lmkd,t2.sftqss,t2.sjdw,t2.yhlb,t2.dc,t2.jc,t2.mc,t2.sjpfdw,t2.pfwh,t2.pfsj,t2.pfztz,t2.jhsybzje,t2.jhsydfzcje,t2.sjlmlx,t2.sfsqablbz,t2.ablbzsqwh,t2.sfgyhbm,t2.gkbgmc,t2.sjsgtmc,t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.wjsczt,t2.gsztz
 		from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
@@ -239,7 +238,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t1.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t2.sbnf
+	order by t1.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -270,11 +269,11 @@ where  1=1
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t2.sbnf,t1.lxmc,t1.lxbm,t1.gydwmc gydw,t1.gydwdm gydwbm,t1.qdzh,t1.zdzh,t1.qzlc,t1.hdlc yhlc,t1.xzqhdm,t1.xzqhmc,t1.yjsdj lxjsdj,t1.ylmkd,t1.ylmlx,t1.ylmhd,
+		t2.sbnf,t1.lxmc,t1.lxbm,t1.gydwmc,t1.gydwdm gydwbm,t1.qdzh,t1.zdzh,t1.qzlc,t1.hdlc,t1.xzqhdm,t1.xzqhmc,t1.yjsdj,t1.ylmkd,t1.ylmlx,t1.ylmhd,t1.ylmjg,
 		t2.description sczmsj,t2.xchsqk,t2.qtbz, t2.jhkgsj,t2.jhwgsj,
-		t2.classify,t2.reportingfee,t2.fee,t2.newfee,t2.totalinvest pfztz,t2.totalplacefund jhsydfzcje,t2.totalsubsidyfund jhsybzje,t2.accumulativesubsidyfund,
+		t2.classify,t2.reportingfee,t2.fee,t2.newfee,t2.totalinvest,t2.totalplacefund,t2.totalsubsidyfund,t2.accumulativesubsidyfund,
 		t2.nowyearsubsidyfund,t2.dianceng,t2.jiceng,t2.surface,t2.pqi,t2.planhistorycompara,t2.aadt,t2.constructnumber,
-		t2.replynumber,t2.devisenumbder pfwh,t2.spsj pfsj,t2.plandownnumber,t2.remarks,t1.jhid,t2.id,
+		t2.replynumber,t2.devisenumbder,t2.spsj,t2.plandownnumber,t2.remarks,t1.jhid,t2.id,
 <!-- 		t2.mark, -->
 		t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.gys,t2.wjgyy
 		from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
@@ -295,7 +294,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t1.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t2.xdsj
+	order by t1.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -326,7 +325,7 @@ where  1=1
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj lxjsdj,t2.id jhid,
+		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj,t2.id jhid,
 		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.jhbz,t2.id id,t2.wjgyy,t2.scbz,
 		t2.sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmmc,t2.lmkd,t2.sftqss,t2.sjdw,t2.yhlb,t2.dc,t2.jc,t2.mc,t2.sjpfdw,t2.pfwh,t2.pfsj,t2.pfztz,t2.jhsybzje,t2.jhsydfzcje,t2.sjlmlx,t2.sfsqablbz,t2.ablbzsqwh,t2.sfgyhbm,t2.gkbgmc,t2.sjsgtmc,t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.wjsczt,t2.gsztz
 		from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
@@ -347,7 +346,7 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t1.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
-	order by t2.sbnf
+	order by t1.lxbm
 	) m
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
@@ -372,5 +371,146 @@ where  1=1
 	<if test="lxbm != null and  lxbm != ''">
 			and t1.lxbm like '%'||trim(#{lxbm})||'%'
 	</if>
+	 </select>
+	 
+	 <select id="selZdyWqgzList" parameterType="zdycx" resultType="sjbb">
+	 select ${colName} from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id
+	 	where 1=1
+	 	<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||rtrim(#{gydw},0)||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+ 			and  t3.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t3.qlbh
+	 </select>
+	 <select id="selZdyAbgcList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+	 	where 1=1 
+		<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||rtrim(#{gydw},0)||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+ 			and  t3.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t3.lxbm
+	 </select>
+	 <select id="selZdyZhfzList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
+		where  1=1
+	<if test="gydw != null and  gydw != ''">
+			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+ 			and  t3.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t1.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t3.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t3.lxbm
+	</select>
+	<select id="selZdyLmsjList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
+		where 1=1
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+ 			and  t1.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t1.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t1.lxbm
+	 </select>
+	  <select id="selZdyLmgjList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
+		where 1=1
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+		and  t1.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t1.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t1.lxbm
+	 </select>
+	 <select id="selZdyYhdzxList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
+		where 1=1
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+		and  t1.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t1.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t1.lxbm
+	</select>
+	<select id="selZdyShxmList" parameterType="zdycx" resultType="sjbb">
+	 	select ${colName} from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
+		where 1=1
+	<if test="gydw != null and  gydw != ''">
+			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+	</if>
+	<if test="xzqhdm != null and  xzqhdm != ''">
+		and  t1.xzqhdm like rtrim(#{xzqhdm},0)||'%'
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and t2.kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="lxmc != null and  lxmc != ''">
+			and t1.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="lxbm != null and  lxbm != ''">
+			and t1.lxbm like '%'||trim(#{lxbm})||'%'
+	</if>
+	order by t1.lxbm
 	 </select>
 </mapper>

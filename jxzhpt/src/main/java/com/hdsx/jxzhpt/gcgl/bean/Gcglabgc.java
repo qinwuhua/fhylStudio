@@ -68,6 +68,9 @@ public class Gcglabgc implements Serializable {
 	private String scbz;
 	//计划库
 	private String sbnf;
+	private String jhnf;
+	private String jhsybbzje;
+	private String jhsydfzczj;
 	private Date jhkgsj;
 	private Date jhwgsj;
 	private String sjdw;
@@ -702,6 +705,24 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setSczdzh(String sczdzh) {
 		this.sczdzh = sczdzh;
+	}
+	public String getJhnf() {
+		return jhnf;
+	}
+	public void setJhnf(String jhnf) {
+		this.jhnf = jhnf;
+	}
+	public String getJhsybbzje() {
+		return jhsybbzje;
+	}
+	public void setJhsybbzje(String jhsybbzje) {
+		this.jhsybbzje = jhsybbzje;
+	}
+	public String getJhsydfzczj() {
+		return jhsydfzczj;
+	}
+	public void setJhsydfzczj(String jhsydfzczj) {
+		this.jhsydfzczj = jhsydfzczj;
 	}
 	
 }

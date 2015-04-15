@@ -189,7 +189,7 @@ text-decoration:none;
 					<span id="spwh"></span>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="tzgs"></span>
+					<span id="tzgs"></span>&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jsxz"></span>

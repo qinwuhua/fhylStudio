@@ -297,7 +297,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void queryTsdq(){
 		try {
-			System.out.println("特殊地区："+abgcServer.queryTsdq().size());
+		    System.out.println("特殊地区："+abgcServer.queryTsdq().size());
 			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

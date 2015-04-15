@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.ZdycxServer;
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 @Service
 public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 	private Map<String, Object> hm;
@@ -42,5 +43,16 @@ public class ZdycxServerImpl extends BaseOperate implements ZdycxServer {
 		else if("yhdzx".equals(xmlx)) return queryOne("selZdyYhdzxCount", zdycx);
 		else if("shxm".equals(xmlx)) return queryOne("selZdyShxmCount", zdycx);
 		else return queryOne("selZdyHslyCount", zdycx);
+	}
+	@Override
+	public List<SjbbMessage> exportExcel_zdy(Zdycx zdycx) {
+		if("wqgz".equals(xmlx)) return queryList("selZdyWqgzList", zdycx);
+		else if("abgc".equals(xmlx)) return queryList("selZdyAbgcList", zdycx);
+		else if("zhfz".equals(xmlx)) return queryList("selZdyZhfzList", zdycx);
+		else if("lmsj".equals(xmlx)) return queryList("selZdyLmsjList", zdycx);
+		else if("lmgj".equals(xmlx)) return queryList("selZdyLmgjList", zdycx);
+		else if("yhdzx".equals(xmlx)) return queryList("selZdyYhdzxList", zdycx);
+		else if("shxm".equals(xmlx)) return queryList("selZdyShxmList", zdycx);
+		else return queryList("selZdyHslyList", zdycx);
 	}
 }

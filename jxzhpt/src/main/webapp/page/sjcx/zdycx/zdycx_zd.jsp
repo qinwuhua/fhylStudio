@@ -35,26 +35,27 @@
 			tableValue=new Array();
 			tableCol=new Array();
 			var checkboxes1 = document.getElementsByName("checkbox1");
-			for(var i=0;i<checkboxes1.length;i++){
+			 for(var i=0;i<checkboxes1.length;i++){
 			    if(checkboxes1[i].checked){
 			    	colValue.push(checkboxes1[i].value);
 			    	nameValue.push(checkboxes1[i].nextSibling.nodeValue);
 			    }
-			}
+			} 
 			var checkboxes2 = document.getElementsByName("checkbox2");
-			for(var i=0;i<checkboxes2.length;i++){
+		 	for(var i=0;i<checkboxes2.length;i++){
 			    if(checkboxes2[i].checked){
 			    	colValue.push(checkboxes2[i].value);
 			    	nameValue.push(checkboxes2[i].nextSibling.nodeValue);
 			    }
-			}
+			} 
 			var checkboxes3 = document.getElementsByName("checkbox3");
-			for(var i=0;i<checkboxes3.length;i++){
+			 for(var i=0;i<checkboxes3.length;i++){
 			    if(checkboxes3[i].checked){
 			    	colValue.push(checkboxes3[i].value);
 			    	nameValue.push(checkboxes3[i].nextSibling.nodeValue);
 			    }
-			}
+			} 
+			
 			parent.$("#grid").datagrid({    
 					 url:'/jxzhpt/zdycx/selZdy.do', 
 					 queryParams: {
