@@ -39,14 +39,14 @@ $(function() {
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050101',
-		title:'交通部固定资产投资建设计划',
+		title:'交通部固定资产投资建设计划(分地市)',
 		imgSrc:'../../images/menubutton/jtbgdzc.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gdzctzjs.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050102',
-		title:'路网结构改造建设计划汇总表',
+		title:'路网结构改造建设计划汇总表(分国省)',
 		imgSrc:'../../images/menubutton/lwjggzjyjhb.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/jsjhhzb.jsp'

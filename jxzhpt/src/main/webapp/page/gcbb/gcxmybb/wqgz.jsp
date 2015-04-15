@@ -28,6 +28,7 @@
 			var m = myDate.getMonth()+1; 
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$("#yf"+m).attr("selected","selected");
 			showAll();
@@ -147,16 +148,16 @@ table tbody tr td {
 </style>
 </head>
 <body style="padding-right:1px">
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<div style="text-align: left; font-size: 12px; margin: 0px;" >
+		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
-			<div id="righttop">
+			<div id="righttop"  style="height: 30px">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;危桥改造统计月报表</div>
 					</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%;height:80px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -164,11 +165,11 @@ table tbody tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>年&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+        						<span>月报年份：</span>
  						<select name="ddlYear" id="ddlYear" style="width: 80px;">
 						</select>
- 						<span>月&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
- 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+ 						<span>月报月份：</span>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 50px;">
 							<option id="yf1" value="1">01</option>
 							<option id="yf2" value="2">02</option>
 							<option id="yf3" value="3">03</option>
@@ -182,7 +183,8 @@ table tbody tr td {
 							<option id="yf11" value="11">11</option>
 							<option id="yf12" value="12">12</option> 
 						</select>
-        						
+        				<span>项目名称：</span>
+        				<input id="xmmc" type="text"  style="width: 100px">		
 <!--         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 <!-- 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
@@ -193,8 +195,10 @@ table tbody tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
+        						<span>项目年份：</span>
+        						<select  id="ddlYear1" style="width: 80px;"></select>
         						<span>行政等级：</span>
-        						<select id="xzdj" style="width:80px;">
+        						<select id="xzdj" style="width:50px;">
         							<option value="">全部</option>
         							<option value="G">国道</option>
         							<option value="S">省道</option>
@@ -219,7 +223,10 @@ table tbody tr td {
 
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:400px;" >
+                	<div id="gddiv" style="width:100%;height:400px" >
+                	<script type="text/javascript">
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px');
+                	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >

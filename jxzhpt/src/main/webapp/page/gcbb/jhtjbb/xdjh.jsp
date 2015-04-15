@@ -15,15 +15,40 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
-<style>
+<style type="text/css">
+<!--
 #p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
 #righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {text-decoration: none;}
-a:visited {text-decoration: none;}
-a:hover {text-decoration: none;}
-a:active {text-decoration: none;}
-table {border-collapse:collapse;}
-.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+}
+a:active {
+ text-decoration: none;
+}
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+table tbody tr td {
+	text-align:center; 	
+	font-size:1em;
+/* 	font-weight:bold; */
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+-->
 </style>
 <script type="text/javascript">
 $(function(){
@@ -63,8 +88,8 @@ function startSearch(){
 </script>
 </head>
 <body  style="padding-right:1px">
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+	<div style="text-align: left; font-size: 12px; margin: 0px;height: 100%" >
+		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
 				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路建设下达计划</div>
@@ -72,7 +97,7 @@ function startSearch(){
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:100%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -99,10 +124,10 @@ function startSearch(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:1200px">
+                	<div style="width:100%;height:40%">
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="1600px"  class="table_body">
+							<div data-options="region:'center',border:false" style="overflow: auto;">
+							<table width="2500px"   class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
@@ -112,6 +137,7 @@ function startSearch(){
 										<td rowspan="2">起点桩号</td>
 										<td rowspan="2">终点桩号</td>
 										<td rowspan="2">路线编码</td>
+										<td rowspan="2">现公路技术等级</td>
 										<td colspan="3"></td>
 										<td rowspan="2">建设性质</td>
 										<td colspan="7">建 设 规 模（ 公 里 ） / （ 延 米 ）</td>
@@ -119,6 +145,11 @@ function startSearch(){
 										<td rowspan="2">技术方案</td>
 										<td rowspan="2">总投资（万元）</td>
 										<td rowspan="2">中央投资（万元）</td>
+										<td rowspan="2">省级补助（万元）</td>
+										<td colspan="2">上年累计完成投资（万元）</td>
+										<td colspan="2">本年建设计划（万元）</td>
+										<td colspan="2">前期工作情况</td>
+										<td rowspan="2">计划下达文号</td>
 									</tr>	
 									<tr>
 										<td>特殊地区 </td>
@@ -131,17 +162,24 @@ function startSearch(){
 										<td>四级公路</td>
 										<td>大桥</td>
 										<td>隧道</td>
+										<td>合计</td>
+										<td>内：中央车购税</td>
+										<td>合计</td>
+										<td>车购税合计</td>
+										<td>工可批复文号</td>
+										<td>设计批复文号</td>
 									</tr>
 								</thead>
 								<tbody id='table_tbody'>
 								
 								</tbody>
 							</table>
-							</div>
-						</div>
-					</div>
-				</td>
-			</tr>
+</div>
+</div>
+</div>
+</td>
+</tr>
+
 		</table>
 	</div>
 </body>
