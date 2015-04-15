@@ -90,12 +90,12 @@ function startSearch(){
 <body  style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;height: 100%" >
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
+			<tr height="20px;">
 			<div id="righttop">
 				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路建设下达计划</div>
 			</div>
         	</tr>
-        	<tr>
+        	<tr style="height: 70px;">
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
         			<fieldset style="width:99.7%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
@@ -124,7 +124,10 @@ function startSearch(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:40%">
+                	<div id="gddiv" style="width:100%;height:400px" >
+                	<script type="text/javascript">
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px');
+                	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
 							<table width="2500px"   class="table_body">

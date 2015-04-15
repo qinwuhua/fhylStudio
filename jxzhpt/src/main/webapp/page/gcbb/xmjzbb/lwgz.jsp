@@ -151,60 +151,56 @@ table tbody tr td {
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-			<div id="righttop">
+			<div id="righttop" style="height: 30px">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;项目进展报表>&nbsp;路网结构改造工程项目进展情况表</div>
 					</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;height: 80px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
-        						<select id="gydw" style="width:172px;"></select>
-        						&nbsp;&nbsp;&nbsp;
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:179px;"></select>
-        						&nbsp;&nbsp;
+        						<select id="gydw" style="width:150px;"></select>
+        						<span>特殊地区：</span>
+        						<input type="text" id="tsdq"  style="width:60px;">
         						<span>资金下达年份：</span>
         						<input type="text" id="jhxdnf" >
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>项目名称：</span>
+        						<input id="xmmc" type="text"  style="width:100px;">
+        							&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
 <%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" /> --%>
         					</p>
-        					<p style="margin: 8px 0px 8px 20px;"> 						
-        						<span>特殊地区：</span>
-        						<input type="text" id="tsdq"  style="width:50px;">
-        						<span>建设状态：</span>
-        						<select id="jszt" style="width:50px;">
+        					<p style="margin: 8px 0px 8px 20px;">
+        					<span>行政区划：</span>
+        						<select id="xzqh" style="width:150px;"></select>
+        					<span>建设状态：</span>
+        						<select id="jszt" style="width:60px;">
         						<option value="">全部</option>
         						<option>未开工</option>
         						<option>在建</option>
         						<option>竣工</option>
-        						</select>
+        						</select> 						
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:50px;">
+        						<select id="ljbf" style="width:132px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
         						</select>
         						<span>未拨付资金：</span>
-        						<select id="wbf" style="width:50px;">
+        						<select id="wbf" style="width:92px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
         						</select>
-        						&nbsp;&nbsp;&nbsp;&nbsp;
-        						<span>项目名称：</span>
-        						<input id="xmmc" type="text"  style="width:128px;">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;
+        						
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
@@ -217,7 +213,10 @@ table tbody tr td {
 
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:399px;" >
+                	<div id="gddiv" style="width:100%;height:400px" >
+                	<script type="text/javascript">
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px');
+                	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >

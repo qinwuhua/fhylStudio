@@ -113,6 +113,9 @@ function showMxbAll(){
         </div>
     </div>
     <div id="tt" border="false" class="easyui-tabs"  style="height:430px;">
+     <script type="text/javascript">
+                	$("#tt").attr('style','height:'+($(window).height()-90)+'px');
+     </script>
 	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 	    	<table id="jsgl_table" style="height:100%;" ></table>
 	    </div>
