@@ -75,8 +75,8 @@
 	</update>
 		<!-- 添加车购税 -->
 	<insert id="insertYhdzxCgs" parameterType="gcglyhdzx">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -110,7 +110,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateYhdzxCgs" parameterType="gcglyhdzx">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 
@@ -206,8 +206,15 @@
 	 <update id="updateSJSH" parameterType="gcglyhdzx" >
 	 update PLAN_YHDZX set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglyhdzx" >
+	 update PLAN_YHDZX set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglyhdzx" resultType="int">
 	 	select count(*) from GCGL_YHDZX 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglyhdzx" resultType="gcglyhdzx">
+	 	select max(sbyf) sbyf from gcgl_yhdzx where jhid=#{jhid}
 	 </select>
 </mapper>

@@ -125,7 +125,14 @@ public class Gcglgcgzgj implements Serializable {
 	private String sjzt;//市级查看月报zt
 	private String sjsh;//省级
 	private String yhtype;
+	private String stz;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

@@ -76,8 +76,8 @@
 	
 		<!-- 添加车购税 -->
 	<insert id="insertGcgzgjCgs" parameterType="gcglgcgzgj">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzgjCgs" parameterType="gcglgcgzgj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->
