@@ -97,6 +97,9 @@ public class DzdtController extends BaseActionSupport{
 	 * 路线弹出框
 	 * */
 	public void selectExistLxProgramList(){
+		if(pb.getRoadcode().length()>6){
+			pb.setRoadcode(pb.getRoadcode().substring(0,pb.getRoadcode().length()-6));
+		}
 		List<ProgBean> list=dzdtServer.selectExistLxProgramList(pb);
 		//int count=dzdtServer.selectExistLxProgramListCount(param);
 		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
@@ -113,6 +116,9 @@ public class DzdtController extends BaseActionSupport{
 	 * 桥梁弹出框
 	 * */
 	public void selectExistQlProgramList(){
+		if(param.getSourceid().length()>8){
+			param.setSourceid(param.getSourceid().substring(0,param.getSourceid().length()-6));
+		}
 		List<Param> list=dzdtServer.selectExistQlProgramList(param);
 		EasyUIPage<Param> ep = new EasyUIPage<Param>();
 		ep.setRows(list);

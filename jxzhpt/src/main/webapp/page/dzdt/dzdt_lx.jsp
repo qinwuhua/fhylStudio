@@ -54,7 +54,8 @@ $(function(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
-			"pb.roadcode":parent.YMLib.Var.bm
+			"pb.roadcode":parent.YMLib.Var.bm,
+			"pb.gydw":$.cookie("unit")
 		},
 		singleSelect : false,
 		striped : true,

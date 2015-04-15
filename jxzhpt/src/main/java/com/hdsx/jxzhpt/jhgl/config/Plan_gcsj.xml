@@ -100,6 +100,12 @@
 		<result property="scbmbm" column="scbmbm"/>
 		<result property="bz" column="bz"/>
 		<result property="jhid" column="jhid"/>
+		
+		<result property="qdmc" column="qdmc"/>
+		<result property="zdmc" column="zdmc"/>
+		<result property="lyllqk" column="lyllqk"/>
+		<result property="dlqlbm" column="dlqlbm"/>
+		<result property="dlqlzxzh" column="dlqlzxzh"/>
 	</resultMap>
 	
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
@@ -294,7 +300,7 @@
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
 		select jh.id,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
-		jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
+		lx.qdmc,lx.zdmc,lx.lyllqk,lx.dlqlbm,lx.dlqlzxzh,jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
 		jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.jhxdwh,jh.xmwybh,jh.xmmc,jh.sjdw,jh.sjpfdw,jh.jsjsbz,jh.ql,jh.ql_m,
 		jh.sd,jh.sd_m,jh.hd,jh.ljtsf,jh.dc,jh.jc,jh.lqlm,jh.snlm,jh.gjhjsdj,jh.sftqss,jh.pfwh,jh.pfsj,jh.pftz,
 		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.sjsgtmc,jh.remarks
