@@ -57,8 +57,9 @@ function gclmgjxm(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
-	var grid = {id:'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,pagination : true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
+	var grid = {id:'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,
+			pagination:true,rownumbers:false,
+			pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
@@ -116,7 +117,7 @@ function gclmgjxm(jh,lx){
 	    	$('#table_lx'+index).datagrid({
 	    		data:row.plan_lx_gcgjs,
     			columns:[[
-    			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},    
     			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
     			    {field:'lxbm',title:'路线编码',width:100,align:'center'},

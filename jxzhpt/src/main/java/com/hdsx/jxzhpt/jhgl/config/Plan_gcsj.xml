@@ -111,7 +111,8 @@
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
 			select rownum as num,t.* from (
-				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pftz,
+				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
+				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
 				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1
@@ -493,4 +494,32 @@
 			where jh.spzt='1' and jh.jh_sbthcd='6'
 		and lx.xzqhdm like #{xzqhdm} order by jh.id) r
 	</select>
+	<insert id="insertGcsj" parameterType="plan_lx_gcsj">
+		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,
+			xzqhdm,xzqhmc,lxbm,lxmc,
+			yjsdj,bhnr,qdzh,qdmc,
+			zdzh,zdmc,qzlc,xmlc,
+			TBSJ,TBBMBH,lyllqk,dlqlbm,dlqlzxzh)
+		values(sys_guid(),#{jhid},#{gydw},(select id from XTGL_DEPARTMENT t where t.name = #{gydw}),
+			#{xzqhdm},#{xzqhmc},#{lxbm},#{lxmc},
+			#{yjsdj},#{bhnr},#{qdzh},#{qdmc},
+			#{zdzh},#{zdmc},#{qzlc},#{xmlc},
+			to_date(#{tbsj},'yyyy-mm-dd'),#{gydwdm},#{lyllqk},#{dlqlbm},#{dlqlzxzh})
+	</insert>
+	<insert id="insertGcsjJh" parameterType="plan_gcsj">
+		insert into plan_gcsj (id,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,
+			xmwybh,xmmc,jsjsbz,sftqss,jhnf,
+			jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh,
+			pfsj,ql,ql_m,sd,sd_m,
+			hd,ljtsf,dc,jc,lqlm,snlm,
+			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
+			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl) 
+		values(#{id},#{fapgdw},#{fascdw},to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
+			#{xmwybh},#{xmmc},#{jsjsbz},#{sftqss},#{jhnf},
+			#{jhkgsj},#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},
+			#{pfsj},#{ql},#{ql_m},#{sd},#{sd_m},
+			#{hd},#{ljtsf},#{dc},#{jc},#{lqlm},#{snlm},
+			#{gjhjsdj},#{pftz},#{jhsybbzje},#{jhsydfzczj},#{sfsqablbz},
+			#{ablbzsqwh},#{gksjwh},#{sjpfwh},#{remarks},#{sfylsjl})
+	</insert>
 </mapper>

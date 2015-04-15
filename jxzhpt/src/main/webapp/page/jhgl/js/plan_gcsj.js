@@ -50,8 +50,8 @@ function gclmsjxm(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
-	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
+	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',pagination:true,queryParams:params,
+		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -66,6 +66,14 @@ function gclmsjxm(jh,lx){
 				}
 				return result;
 			}},
+			{field:'lxtj',title:'添加路线',width:80,align:'center',
+				formatter:function(value,row,index){
+					if(row.jh_sbthcd==0)
+		    			return '<a href="javascript:openAddSjlx()" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		else
+		    			return '<a style="text-decoration:none;">添加路线</a>';
+				}
+			},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 				var result="";
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
@@ -88,43 +96,28 @@ function gclmsjxm(jh,lx){
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		  	{field:'gydw',title:'管养单位',width:150,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].gydw;
-		    	}
-		  	},
-		  	{field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xzqhmc;
-		    	}
-		  	},
-		  	{field:'lxbm',title:'路线编码',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxbm;
-		    	}
-		  	},
-		  	{field:'lxmc',title:'路线名称',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxmc;
-		    	}
-		  	},
-		  	{field:'qdzh',title:'起点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].qdzh;
-		    	}
-		  	},
-		  	{field:'zdzh',title:'止点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].zdzh;
-		    	}
-		  	},
-		  	{field:'xmlc',title:'项目里程',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xmlc;
-		    	}
-		  	},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    },
 		onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
 				gridObj.datagrid("unselectRow",oldIndex);
@@ -135,6 +128,9 @@ function gclmsjxm(jh,lx){
 		}
 	};
 	gridBind(grid);
+}
+function openAddSjlx(){
+	parent.YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addsjlx',1000,500);
 }
 function gclmsjxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
@@ -168,43 +164,28 @@ function gclmsjxm_sb(jh,lx){
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		  	{field:'gydw',title:'管养单位',width:150,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].gydw;
-		    	}
-		  	},
-		  	{field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xzqhmc;
-		    	}
-		  	},
-		  	{field:'lxbm',title:'路线编码',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxbm;
-		    	}
-		  	},
-		  	{field:'lxmc',title:'路线名称',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxmc;
-		    	}
-		  	},
-		  	{field:'qdzh',title:'起点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].qdzh;
-		    	}
-		  	},
-		  	{field:'zdzh',title:'止点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].zdzh;
-		    	}
-		  	},
-		  	{field:'xmlc',title:'项目里程',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xmlc;
-		    	}
-		  	},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    },
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
 				gridObj.datagrid("unselectRow",oldIndex);
@@ -249,43 +230,28 @@ function gclmsjxm_sh(jh,lx){
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		  	{field:'gydw',title:'管养单位',width:150,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].gydw;
-		    	}
-		  	},
-		  	{field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xzqhmc;
-		    	}
-		  	},
-		  	{field:'lxbm',title:'路线编码',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxbm;
-		    	}
-		  	},
-		  	{field:'lxmc',title:'路线名称',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxmc;
-		    	}
-		  	},
-		  	{field:'qdzh',title:'起点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].qdzh;
-		    	}
-		  	},
-		  	{field:'zdzh',title:'止点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].zdzh;
-		    	}
-		  	},
-		  	{field:'xmlc',title:'项目里程',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xmlc;
-		    	}
-		  	},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    },
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
 				gridObj.datagrid("unselectRow",oldIndex);
@@ -327,43 +293,28 @@ function gclmsjxm_zjxd(jh,lx){
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		  	{field:'gydw',title:'管养单位',width:150,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].gydw;
-		    	}
-		  	},
-		  	{field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xzqhmc;
-		    	}
-		  	},
-		  	{field:'lxbm',title:'路线编码',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxbm;
-		    	}
-		  	},
-		  	{field:'lxmc',title:'路线名称',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxmc;
-		    	}
-		  	},
-		  	{field:'qdzh',title:'起点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].qdzh;
-		    	}
-		  	},
-		  	{field:'zdzh',title:'止点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].zdzh;
-		    	}
-		  	},
-		  	{field:'xmlc',title:'项目里程',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xmlc;
-		    	}
-		  	},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    },
 	    onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
 				gridObj.datagrid("unselectRow",oldIndex);
@@ -463,7 +414,10 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:grid.onSelect,
-	    onClickRow:grid.onClickRow
+	    onClickRow:grid.onClickRow,
+	    view:grid.view,
+	    detailFormatter:grid.detailFormatter,
+	    onExpandRow:grid.onExpandRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

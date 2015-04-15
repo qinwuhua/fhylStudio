@@ -143,4 +143,16 @@ public interface Plan_gcsjServer {
 	List<TreeNode> queryGcktj(String xzqhdm,String nf);
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+	/**
+	 * 工程升级
+	 * @param lx 路线
+	 * @return
+	 */
+	boolean insertGcsj_lx(Plan_lx_gcsj lx);
+	/**
+	 * 工程计划
+	 * @param jh 计划实体
+	 * @return
+	 */
+	boolean insertGcsj_Jh(Plan_gcsj jh);
 }

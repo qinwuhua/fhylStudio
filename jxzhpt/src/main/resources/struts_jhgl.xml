@@ -30,6 +30,7 @@
 		<action name="queryGcsjSum" class="plan_gcsjController" method="queryGcsjSum"></action>
 		<action name="exportExcel_gcsj" class="plan_gcsjController" method="exportExcel_gcsj"></action>
 		<action name="exportZjxdExcel" class="plan_gcsjController" method="exportZjxdExcel"></action>
+		<action name="insertGcsj" class="plan_gcsjController" method="insertGcsj"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>

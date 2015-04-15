@@ -396,6 +396,41 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void insertGcsj() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		String strResult="false";
+		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
+		System.out.println("行政区划代码："+lx.getXzqhdm()+"   路线编码："+lx.getLxbm()+
+				"    起点桩号："+lx.getQdzh()+"  止点桩号："+lx.getZdzh()+"   管养单位："+lx.getGydwdm()+
+				"   计划年份："+jh.getJhnf());
+		lx1.setXzqhdm(lx.getXzqhdm());
+		lx1.setLxbm(lx.getLxbm());
+		lx1.setQdzh(lx.getQdzh());
+		lx1.setZdzh(lx.getZdzh());
+		lx1.setGydwdm(lx.getGydwdm());
+		lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
+		//查询是否有此计划
+		if(gcsjServer.queryJhExist(lx1)==0){
+			if(gcsjServer.queryGPSBylxbm(lx1)!=null){
+				UUID jhId = UUID.randomUUID(); 
+				lx.setJhid(jhId.toString());
+				jh.setId(jhId.toString());
+				jh.setSfylsjl("否");
+				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
+				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
+				if(lxresult && jhresult){
+					strResult="true";
+				}
+			}else{
+				strResult="none";
+			}
+		}else{
+			strResult="have";
+		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;
