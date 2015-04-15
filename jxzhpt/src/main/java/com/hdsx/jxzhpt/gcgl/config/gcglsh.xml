@@ -137,7 +137,7 @@
 		update PLAN_SHUIH set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglsh">
-		update PLAN_SHUIH set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
+		update PLAN_SHUIH set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz},sfgk=#{sfgk} where id=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglsh" resultType="gcglsh">

@@ -160,6 +160,21 @@ a:active {
                                 <input style="width: 100px" type="text" id="tj_gys"  onblur="checkZJ1(this)"/>
                             </td>
                         </tr>
+                        <tr style="height: 35px;">
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                width: 23%; padding-right: 5px;">
+                                <b><font color="#009ACD" style=" font-size: 12px">是否归口市局养护部门：</font></b>
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                <select id="sfgk">
+                                	<option>是</option>
+                                	<option>否</option>
+                                </select>
+                            </td>
+                          
+                        </tr>
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

@@ -17,7 +17,7 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','工程改造路面改建开工','wqgzkg.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','工程改造路面改建开工','wqgzkg.jsp','wqxx',700,330);
 	}
 }
 	function wangong(index){
@@ -208,7 +208,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglgcgzgj.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglgcgzgj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzgj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglgcgzgj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzgj.jldw="+$("#tj_jldw").val()+"&gcglgcgzgj.jsdw="+$("#tj_jsdw").val()
+	+"&gcglgcgzgj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzgj.jldw="+$("#tj_jldw").val()+"&gcglgcgzgj.jsdw="+$("#tj_jsdw").val()+"&gcglgcgzgj.sfgk="+$("#sfgk").val()
 	+"&gcglgcgzgj.htje="+$("#tj_htje").val()+"&gcglgcgzgj.gsztz="+$("#tj_gys").val()+"&gcglgcgzgj.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({

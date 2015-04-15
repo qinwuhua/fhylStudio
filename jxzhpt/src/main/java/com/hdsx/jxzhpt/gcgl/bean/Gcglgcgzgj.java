@@ -126,7 +126,21 @@ public class Gcglgcgzgj implements Serializable {
 	private String sjsh;//省级
 	private String yhtype;
 	private String stz;
+	private String zdyf;
+	private String sfgk;
 	
+	public String getZdyf() {
+		return zdyf;
+	}
+	public void setZdyf(String zdyf) {
+		this.zdyf = zdyf;
+	}
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
 	public String getStz() {
 		return stz;
 	}

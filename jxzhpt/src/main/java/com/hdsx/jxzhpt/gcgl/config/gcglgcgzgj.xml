@@ -138,7 +138,7 @@
 		update PLAN_GCGJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
+		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz},sfgk=#{sfgk} where id=#{jhid}
 	</update>
 	<!--  
 	<select id="selectWqgzjhList" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">

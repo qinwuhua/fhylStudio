@@ -17,7 +17,7 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','养护大中修开工','wqgzkg.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','养护大中修开工','wqgzkg.jsp','wqxx',700,330);
 	}
 }
 	function wangong(index){
@@ -193,7 +193,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglyhdzx.jhxdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglyhdzx.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglyhdzx.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglyhdzx.sgdw="+$("#tj_sgdw").val()+"&gcglyhdzx.jldw="+$("#tj_jldw").val()+"&gcglyhdzx.jsdw="+$("#tj_jsdw").val()
+	+"&gcglyhdzx.sgdw="+$("#tj_sgdw").val()+"&gcglyhdzx.jldw="+$("#tj_jldw").val()+"&gcglyhdzx.jsdw="+$("#tj_jsdw").val()+"&gcglyhdzx.sfgk="+$("#sfgk").val()
 	+"&gcglyhdzx.htje="+$("#tj_htje").val()+"&gcglyhdzx.gys="+$("#tj_gys").val()+"&gcglyhdzx.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
