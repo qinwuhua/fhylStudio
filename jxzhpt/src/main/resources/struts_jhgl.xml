@@ -87,6 +87,8 @@
 		<action name="queryShuihwjById" class="plan_shuihController" method="queryShuihwjById"/>
 		<action name="exportExcel_shuih" class="plan_shuihController" method="exportExcel_shuih"/>
 		<action name="exportShuihZjxdExcel" class="plan_shuihController" method="exportShuihZjxdExcel"/>
+		<action name="insertShuih" class="plan_shuihController" method="insertShuih"/>
+		<action name="insertShuihLx" class="plan_shuihController" method="insertShuihLx"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>

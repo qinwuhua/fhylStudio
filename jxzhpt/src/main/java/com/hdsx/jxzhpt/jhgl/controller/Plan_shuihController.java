@@ -380,6 +380,69 @@ public class Plan_shuihController extends BaseActionSupport {
 		ExcelExportUtil.excelWrite(excel, "水毁项目-资金下达", getresponse());
 	}
 	
+	public void insertShuih() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		Plan_lx_shuih shuih=new Plan_lx_shuih();
+		shuih.setXzqhdm(lx.getXzqhdm());
+		shuih.setLxbm(lx.getLxbm());
+		shuih.setQdzh(lx.getQdzh());
+		shuih.setZdzh(lx.getZdzh());
+		shuih.setGydwdm(lx.getGydwdm());
+		shuih.setYjsdj(lx.getYjsdj());
+		shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+		String strResult="false";
+		if(shuihServer.queryJhExist(shuih)==0){
+			Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+			if(queryGPSBylxbm!=null){
+				UUID jhId = UUID.randomUUID(); 
+				lx.setJhid(jhId.toString());
+				jh.setId(jhId.toString());
+				 jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+				boolean lxresult = shuihServer.insertShuihLx(lx);
+				boolean jhresult = shuihServer.insertShuihJh(jh);
+				if(lxresult && jhresult){
+					strResult="true";
+				}
+			}else{
+				strResult="none";
+			}
+		}else{
+			strResult="have";
+		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
+	public void insertShuihLx(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			Plan_lx_shuih shuih=new Plan_lx_shuih();
+			shuih.setXzqhdm(lx.getXzqhdm());
+			shuih.setLxbm(lx.getLxbm());
+			shuih.setQdzh(lx.getQdzh());
+			shuih.setZdzh(lx.getZdzh());
+			shuih.setGydwdm(lx.getGydwdm());
+			shuih.setYjsdj(lx.getYjsdj());
+			shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+			String strResult="false";
+			if(shuihServer.queryJhExist(shuih)==0){
+				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+				if(queryGPSBylxbm!=null){
+					boolean lxresult = shuihServer.insertShuihLx(lx);
+					if(lxresult){
+						strResult="true";
+					}
+				}else{
+					strResult="none";
+				}
+			}else{
+				strResult="have";
+			}
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

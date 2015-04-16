@@ -431,4 +431,28 @@
 	  		from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
 		where jh.spzt='1' and jh.jh_sbthcd='6'and lx.xzqhdm like #{xzqhdm} order by jh.id) r
 	</select>
+	<insert id="insertShuihLx" parameterType="plan_lx_shuih">
+		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,
+			xzqhdm,xzqhmc,lxbm,lxmc,jsdd,bhnr,ylmlx<!-- ,
+			qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj -->) 
+		values(sys_guid(),#{jhid},#{gydw},(select id from XTGL_DEPARTMENT t where t.name = #{gydw}),
+			#{xzqhdm},#{xzqhmc},#{lxbm},#{lxmc},#{jsdd},#{bhnr},#{ylmlx}<!-- ,
+			#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{tbsj},#{tbbmbh},#{yjsdj} -->)
+	</insert>
+	<insert id="insertShuihJh" parameterType="plan_shuih">
+		insert into plan_shuih (id,fapgdw,fascdw,
+			faspsj,spwh,tzgs,jsxz,jsnr,
+			xmmc,lmkd,sftqss,sbnf,jhkgsj,
+			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
+			yhlb,sjlmlx,dc,jc,mc,
+			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
+			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl)
+		values (#{id},#{fapgdw},#{fascdw},
+			to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
+			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
+			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
+			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
+			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
+			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl})
+	</insert>
 </mapper>

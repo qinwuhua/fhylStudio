@@ -195,4 +195,14 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
 	}
+
+	@Override
+	public boolean insertShuihLx(Plan_lx_shuih lx) {
+		return insert("insertShuihLx", lx)>0;
+	}
+
+	@Override
+	public boolean insertShuihJh(Plan_shuih jh) {
+		return insert("insertShuihJh", jh)>0;
+	}
 }

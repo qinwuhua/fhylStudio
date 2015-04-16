@@ -137,4 +137,16 @@ public interface Plan_shuihServer {
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 	List<Plan_shuih> queryShuihList(Plan_shuih jh, Plan_lx_shuih lx);
+	/**
+	 * 单个添加路线
+	 * @param lx
+	 * @return
+	 */
+	boolean insertShuihLx(Plan_lx_shuih lx);
+	/**
+	 * 单个添加计划
+	 * @param jh
+	 * @return
+	 */
+	boolean insertShuihJh(Plan_shuih jh);
 }

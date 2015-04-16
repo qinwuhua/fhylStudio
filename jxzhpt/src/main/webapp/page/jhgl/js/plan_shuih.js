@@ -68,6 +68,15 @@ function shxm(jh,lx){
 //	        	var id="'"+row.id+"'";
 //        		return '<a href="javascript:openZjxd('+"'shxm_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 //	        }},
+	        {field:'tjlx',title:'添加路线',width:80,align:'center',
+	        	formatter:function(value,row,index){
+	        		if(row.jh_sbthcd==0){
+		    			return '<a href="javascript:openAddSjlx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+	        		}
+		    		else
+		    			return '<a style="text-decoration:none;">添加路线</a>';
+	        	}
+	        },
 	        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 	        	var result="";
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
@@ -118,6 +127,11 @@ function shxm(jh,lx){
 		}
 	};
 	gridBind(grid);
+}
+function openAddSjlx(id,nf){
+	parent.YMLib.Var.NF=nf;
+	parent.YMLib.Var.ID=id;
+	parent.YMLib.UI.createWindow('add_shuihlx','添加路线',"/jxzhpt/page/jhgl/add/shuihlxAdd.jsp",'addshuihlx',900,350);
 }
 function shxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
