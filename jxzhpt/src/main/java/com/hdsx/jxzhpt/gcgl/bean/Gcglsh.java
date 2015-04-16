@@ -126,7 +126,28 @@ public class Gcglsh implements Serializable {
 	private String yhtype;
 	private String zdyf;
 	private String sfgk;
+	private String ssdctc;
+	private String bndsslc;
+	private String wkglc;
 	
+	public String getWkglc() {
+		return wkglc;
+	}
+	public void setWkglc(String wkglc) {
+		this.wkglc = wkglc;
+	}
+	public String getBndsslc() {
+		return bndsslc;
+	}
+	public void setBndsslc(String bndsslc) {
+		this.bndsslc = bndsslc;
+	}
+	public String getSsdctc() {
+		return ssdctc;
+	}
+	public void setSsdctc(String ssdctc) {
+		this.ssdctc = ssdctc;
+	}
 	public String getZdyf() {
 		return zdyf;
 	}

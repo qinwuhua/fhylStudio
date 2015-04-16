@@ -33,14 +33,23 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 		if(insert("insertgcgzsjYb", gcglgcgzsj)>0){
 			if(gcglgcgzsj.getSfsj()==9){
 				gcglgcgzsj.setSjzt("未上报");
+				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
+				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzsj);
 				update("updateSjZT", gcglgcgzsj);
 			}
 			if(gcglgcgzsj.getSfsj()==11){
 				gcglgcgzsj.setXjzt("未上报");
+				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
+				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzsj);
 				update("updateXjZT", gcglgcgzsj);
 			}
 			if(gcglgcgzsj.getSfsj()==7){
 				gcglgcgzsj.setSjsh("未审核");
+				Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
+				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzsj);
 				update("updateSJSH", gcglgcgzsj);
 			}
 			return true;
@@ -88,6 +97,12 @@ public class GcglgcgzsjServerImpl extends BaseOperate implements GcglgcgzsjServe
 	@Override
 	public Boolean deletegcgzsjYb(Gcglgcgzsj gcglgcgzsj) {
 		if(delete("deletegcgzsjYb", gcglgcgzsj)>0){
+			Gcglgcgzsj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzsj);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglgcgzsj.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglgcgzsj.setSbyf("");
+			update("updatezdyf", gcglgcgzsj);
 		return true;
 		}else{
 			return false;

@@ -54,5 +54,13 @@ public interface XmbbServer {
 
 	List<TreeNode> gettsdq(String xzqh);
 
+	List<Map<String, Object>> getptgxlist1(Xmbb xmbb);
+
+	List<Map<String, Object>> getptgxlist2(Xmbb xmbb);
+
+	List<Map<String, Object>> getptgxlist3(Xmbb xmbb);
+
+	List<Map<String, Object>> getptgxlist4(Xmbb xmbb);
+
 
 }

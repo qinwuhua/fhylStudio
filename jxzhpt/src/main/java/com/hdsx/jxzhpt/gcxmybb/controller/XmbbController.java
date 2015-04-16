@@ -145,152 +145,32 @@ public class XmbbController extends BaseActionSupport{
 	}
 	
 	public void getPtgxbb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
 		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
 		if(xmbb.getJhxdnf().equals("")){
-			
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
-		if("未开工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("0");
-			xmbb.setJgzt("");
-		}
-		if("在建".equals(xmbb.getJszt())){
-			xmbb.setKgzt("1");
-			xmbb.setJgzt("0");
-		}
-		if("竣工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("");
-			xmbb.setJgzt("1");
-		}
-		//先查询行政区划
-		List<Map<String, Object>> lsit1=xmbbServer.getptgxXzqh1(xmbb);
-		List<Map<String, Object>> lsit2=xmbbServer.getptgxXzqh2(xmbb);
-		Excel_list e1=xmbbServer.selectEx1(xmbb);
-		if(e1!=null){
-			e1.setV_0("(一)");
-			e1.setV_1("路面改造");
-			e1.setV_11("0");
-			exl1.add(e1);
-		}
-		if(lsit1.size()>0)
-		for (Map<String, Object> map : lsit1) {
-			xmbb.setXzqh(map.get("XZQHDM").toString());
-			Excel_list e2=xmbbServer.selectEx1(xmbb);
-			if(e2!=null){
-				e2.setV_1(map.get("XZQHMC").toString()+"小计");
-				exl1.add(e2);
-			}
-			List<Excel_list> elist1=xmbbServer.selectelist1(xmbb);
-			if(elist1.size()>0)
-				exl1.addAll(elist1);
-		}
-		Excel_list e2=xmbbServer.selectEx2(xmbb);
-		if(e2!=null){
-			e2.setV_0("(二)");
-			e2.setV_1("路面升级");
-			e2.setV_11("0");
-			exl1.add(e2);
-		}
-		if(lsit2.size()>0)
-		for (Map<String, Object> map : lsit2) {
-			xmbb.setXzqh(map.get("XZQHDM").toString());
-			Excel_list e3=xmbbServer.selectEx2(xmbb);
-			if(e3!=null){
-				e3.setV_1(map.get("XZQHMC").toString()+"小计");
-				exl1.add(e3);
-			}
-			List<Excel_list> elist1=xmbbServer.selectelist2(xmbb);
-			if(elist1.size()>0)
-				exl1.addAll(elist1);
-		}
-		try {
-			if (e1 != null || e2 != null) {
-				Excel_list e4 = new Excel_list();
-				e4.setV_0("一");
-				e4.setV_1("普通国省道改造建设项目");
-				
-				if(e1!=null){
-					if (e1.getV_9() == "")
-						e1.setV_9("0");
-					if (e1.getV_10() == "")
-						e1.setV_10("0");
-					if (e1.getV_12() == "")
-						e1.setV_12("0");
-					if (e1.getV_13() == "")
-						e1.setV_13("0");
-					if (e1.getV_15() == "")
-						e1.setV_15("0");
-					if (e1.getV_16() == "")
-						e1.setV_16("0");
-					if (e1.getV_17() == "")
-						e1.setV_17("0");
-					if (e1.getV_18() == "")
-						e1.setV_18("0");	
-				}else{
-						e1=new Excel_list();
-						e1.setV_9("0");					
-						e1.setV_10("0");					
-						e1.setV_12("0");					
-						e1.setV_13("0");					
-						e1.setV_15("0");					
-						e1.setV_16("0");					
-						e1.setV_17("0");
-						e1.setV_18("0");	
+		List<Map<String,Object>> list1=xmbbServer.getptgxlist1(xmbb);
+		List<Map<String,Object>> list2=xmbbServer.getptgxlist2(xmbb);
+		List<Map<String,Object>> list3=xmbbServer.getptgxlist3(xmbb);
+		List<Map<String,Object>> list4=xmbbServer.getptgxlist4(xmbb);
+		int m=0;
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				list1.add(map1);
+				for (int i = m; i < list4.size(); i++) {
+					m++;
+					list1.add(list4.get(i));
 				}
-				if(e2!=null){
-					if (e2.getV_9() == "")
-						e2.setV_9("0");
-					if (e2.getV_10() == "")
-						e2.setV_10("0");
-					if (e2.getV_12() == "")
-						e2.setV_12("0");
-					if (e2.getV_13() == "")
-						e2.setV_13("0");
-					if (e2.getV_15() == "")
-						e2.setV_15("0");
-					if (e2.getV_16() == "")
-						e2.setV_16("0");
-					if (e2.getV_17() == "")
-						e2.setV_17("0");
-					if (e2.getV_18() == "")
-						e2.setV_18("0");
-				}else{
-					e2=new Excel_list();
-					e2.setV_9("0");					
-					e2.setV_10("0");					
-					e2.setV_12("0");					
-					e2.setV_13("0");					
-					e2.setV_15("0");					
-					e2.setV_16("0");					
-					e2.setV_17("0");
-					e2.setV_18("0");	
 			}
-				
-				e4.setV_9(Double.parseDouble(e1.getV_9())
-						+ Double.parseDouble(e2.getV_9()) + "");
-				e4.setV_10(Double.parseDouble(e1.getV_10())
-						+ Double.parseDouble(e2.getV_10()) + "");
-				e4.setV_11("0");
-				e4.setV_12(Double.parseDouble(e1.getV_12())
-						+ Double.parseDouble(e2.getV_12()) + "");
-				e4.setV_13(Double.parseDouble(e1.getV_13())
-						+ Double.parseDouble(e2.getV_13()) + "");
-				e4.setV_15(Double.parseDouble(e1.getV_15())
-						+ Double.parseDouble(e2.getV_15()) + "");
-				e4.setV_16(Double.parseDouble(e1.getV_16())
-						+ Double.parseDouble(e2.getV_16()) + "");
-				e4.setV_17(Double.parseDouble(e1.getV_17())
-						+ Double.parseDouble(e2.getV_17()) + "");
-				e4.setV_18(Double.parseDouble(e1.getV_18())
-						+ Double.parseDouble(e2.getV_18()) + "");
-				exl.add(e4);
-				exl.addAll(exl1);
-			}
-			JsonUtils.write(exl, getresponse().getWriter());
+		}
+		for (Map<String, Object> map : list1) {
+			System.out.println(map.toString());
+		}
+		
+		try{
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -34,14 +34,23 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		if(insert("insertgcgzgjYb", gcglgcgzgj)>0){
 			if(gcglgcgzgj.getSfsj()==9){
 				gcglgcgzgj.setSjzt("未上报");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateSjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==11){
 				gcglgcgzgj.setXjzt("未上报");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateXjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==7){
 				gcglgcgzgj.setSjsh("未审核");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateSJSH", gcglgcgzgj);
 			}
 			return true;
@@ -89,6 +98,12 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 	@Override
 	public Boolean deletegcgzgjYb(Gcglgcgzgj gcglgcgzgj) {
 		if(delete("deletegcgzgjYb", gcglgcgzgj)>0){
+			Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglgcgzgj.setSbyf("");
+			update("updatezdyf", gcglgcgzgj);
 		return true;
 		}else{
 			return false;

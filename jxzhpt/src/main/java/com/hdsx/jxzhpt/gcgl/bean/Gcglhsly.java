@@ -86,7 +86,42 @@ public class Gcglhsly implements Serializable {
 	private String sjsh;
 	private String yhtype;
 	private String stz;
+	private String zdyf;
+	private String sfgk;
+	private String ssdctc;
+	private String bndsslc;
+	private String wkglc;
 	
+	public String getZdyf() {
+		return zdyf;
+	}
+	public void setZdyf(String zdyf) {
+		this.zdyf = zdyf;
+	}
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
+	public String getSsdctc() {
+		return ssdctc;
+	}
+	public void setSsdctc(String ssdctc) {
+		this.ssdctc = ssdctc;
+	}
+	public String getBndsslc() {
+		return bndsslc;
+	}
+	public void setBndsslc(String bndsslc) {
+		this.bndsslc = bndsslc;
+	}
+	public String getWkglc() {
+		return wkglc;
+	}
+	public void setWkglc(String wkglc) {
+		this.wkglc = wkglc;
+	}
 	public String getStz() {
 		return stz;
 	}

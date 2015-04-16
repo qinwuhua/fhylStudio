@@ -48,15 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzgjYb" parameterType="gcglgcgzgj">
-		insert into GCGL_GCGZGJ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否')
+		insert into GCGL_GCGZGJ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth,ssdctc,bndsslc,wkglc)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wkglc})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 		select * from GCGL_GCGZGJ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updategcgzgjYb" parameterType="gcglgcgzgj">
-		update GCGL_GCGZGJ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_GCGZGJ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wkglc=#{wkglc}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -232,6 +232,9 @@
 	 <update id="updateSJSH" parameterType="gcglgcgzgj" >
 	 update PLAN_GCGJ set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglgcgzgj" >
+	 update PLAN_GCGJ set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglgcgzgj" resultType="int">
 	 	select count(*) from GCGL_GCGZGJ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
@@ -328,17 +331,11 @@
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglgcgzgj">
 		select count(*) from PLAN_GCGJ jh where 1=1 and spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and l.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
@@ -390,17 +387,11 @@
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzgj">
 		select count(*) from PLAN_GCGJ jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 		 where 1=1 and spzt='1' and sbnf=#{sbnf}
-			<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and l.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -422,4 +413,8 @@
 						
 					     )
 	</select>
+	 <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+	 	select max(sbyf) sbyf from gcgl_gcgzgj where jhid=#{jhid}
+	 </select>
 </mapper>

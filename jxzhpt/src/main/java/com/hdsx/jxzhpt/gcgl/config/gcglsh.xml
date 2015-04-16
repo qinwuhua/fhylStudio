@@ -48,15 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertshYb" parameterType="gcglsh">
-		insert into GCGL_SH(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否')
+		insert into GCGL_SH(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth,ssdctc,bndsslc,wkglc)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wkglc})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglsh" resultType="gcglsh">
 		select * from GCGL_SH where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateshYb" parameterType="gcglsh">
-		update GCGL_SH set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_SH set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wkglc=#{wkglc}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -198,11 +198,18 @@
 	 <update id="updateXjZT" parameterType="gcglsh" >
 	 update PLAN_SHUIH set xjzt=#{xjzt} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglsh" >
+	 update PLAN_SHUIH set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <update id="updateSJSH" parameterType="gcglsh" >
 	 update PLAN_SHUIH set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglsh" resultType="int">
 	 	select count(*) from GCGL_SH 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	   <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglsh" resultType="gcglsh">
+	 	select max(sbyf) sbyf from gcgl_sh where jhid=#{jhid}
 	 </select>
 </mapper>

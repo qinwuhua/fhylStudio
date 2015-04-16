@@ -48,15 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzsjYb" parameterType="gcglgcgzsj">
-		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否')
+		insert into GCGL_GCGZSJ(id,jhid,qlwcqk_z,qlwcqk_ym,sdwcqk_z,sdwcqk_ym,hdwcqk_m,ljtsfwcqk,dcwcqk,jcwcqk,lqlmwcqk,snlmwcqk,zycgs,dfbz,yhdk,sttxdk,qtzj,bywctze,bywcgzl,sbyf,sbsj,bywcmc,kgdl,qksm,shzt,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc)
+		values(sys_guid(),#{jhid},#{qlwcqk_z},#{qlwcqk_ym},#{sdwcqk_z},#{sdwcqk_ym},#{hdwcqk_m},#{ljtsfwcqk},#{dcwcqk},#{jcwcqk},#{lqlmwcqk},#{snlmwcqk},#{zycgs},#{dfbz},#{yhdk},#{sttxdk},#{qtzj},#{bywctze},#{bywcgzl},#{sbyf},#{sbsj},#{bywcmc},#{kgdl},#{qksm},#{shzt},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
 		select * from GCGL_GCGZSJ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updategcgzsjYb" parameterType="gcglgcgzsj">
-		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf} 
+		update GCGL_GCGZSJ set qlwcqk_z=#{qlwcqk_z},qlwcqk_ym=#{qlwcqk_ym},sdwcqk_z=#{sdwcqk_z},sdwcqk_ym=#{sdwcqk_ym},hdwcqk_m=#{hdwcqk_m},ljtsfwcqk=#{ljtsfwcqk},dcwcqk=#{dcwcqk},jcwcqk=#{jcwcqk},lqlmwcqk=#{lqlmwcqk},snlmwcqk=#{snlmwcqk},zycgs=#{zycgs},dfbz=#{dfbz},yhdk=#{yhdk},sttxdk=#{sttxdk},qtzj=#{qtzj},bywctze=#{bywctze},bywcgzl=#{bywcgzl},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wcqk=#{wcqk},wkglc=#{wkglc} 
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -205,6 +205,9 @@
 	 <update id="updateSJSH" parameterType="gcglgcgzsj" >
 	 update PLAN_GCSJ set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	  <update id="updatezdyf" parameterType="gcglgcgzsj" >
+	 update PLAN_GCSJ set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglgcgzsj" resultType="int">
 	 	select count(*) from GCGL_GCGZSJ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
@@ -241,5 +244,9 @@
 			where <![CDATA[rownum<=(#{page} * #{rows})]]>
 		) 
 			where RN>((#{page} - 1) * #{rows})
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglgcgzsj" resultType="gcglgcgzsj">
+	 	select max(sbyf) sbyf from gcgl_gcgzsj where jhid=#{jhid}
 	 </select>
 </mapper>

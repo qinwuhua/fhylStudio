@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 		$(function(){
 			setjhxdnf();
+			settsdq();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 			showAll();
@@ -34,6 +35,14 @@
 			    multiple:true
 			})
 		}
+		function settsdq(){
+			$("#tsdq").combotree({    
+				checkbox: true,
+			    url: '/jxzhpt/xmjzbb/settsdq.do?xzqh='+$.cookie("dist"),    
+			    required: false,
+			   // multiple:true
+			})
+		}
 		function showAll(){
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
@@ -42,7 +51,8 @@
 			var qxkg=$("#qxkg").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg;
+			var tsdq=$("#tsdq").combobox("getValue");
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getPtgxbb.do",
@@ -52,26 +62,42 @@
 				success:function(msg){
 					var tbody = $("#ptgxlist");
 					tbody.empty();
+					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-								tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td></tr>"
-										
-								);
-							
+							if(msg[i].SL==1){
+								tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
+								+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
+								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
+								+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
+								+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
+								+msg[i].BFZJ+"</td><td>"+msg[i].WBFZJ+"</td><td>"
+								+msg[i].JSZT+"</td><td>"+msg[i].DC+"</td><td>"
+								+msg[i].JC+"</td><td>"+msg[i].WGLC+"</td><td>"
+								+msg[i].WKGLC+"</td><td>"+msg[i].SJKGSJ+"</td><td>"
+								+msg[i].SFQXKG+"</td><td>"+msg[i].KGDL+"</td><td>"
+								+msg[i].SJWGSJ+"</td><td>"+msg[i].YJWGSJ+"</td><td>"
+								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
+								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+							}else{
+							//	var j=msg[i].SL;
+							//	tbodystr=tbodystr+"<tr><td rowspan="+j+">"+msg[i].XH+"</td><td>"
+								tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
+								+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
+								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
+								+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
+								+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
+								+msg[i].BFZJ+"</td><td>"+msg[i].WBFZJ+"</td><td>"
+								+msg[i].JSZT+"</td><td>"+msg[i].DC+"</td><td>"
+								+msg[i].JC+"</td><td>"+msg[i].WGLC+"</td><td>"
+								+msg[i].WKGLC+"</td><td>"+msg[i].SJKGSJ+"</td><td>"
+								+msg[i].SFQXKG+"</td><td>"+msg[i].KGDL+"</td><td>"
+								+msg[i].SJWGSJ+"</td><td>"+msg[i].YJWGSJ+"</td><td>"
+								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
+								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+							}
 						}
+						tbody.append(tbodystr);
 					}
 				}
 			});
@@ -150,14 +176,11 @@ table tbody tr td {
         						</select>
         						<span>资金下达年份：</span>
         						<input type="text" id="jhxdnf" >
-        						<span>未拨付资金：</span>
-        						<select id="wbf" style="width:125px;">
-        							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
-        						</select>
-        						
-									
+        						<span>特殊地区：</span>
+        						<input type="text" id="tsdq"  style="width:73px;">
+        						&nbsp;&nbsp;
+        						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         					<span>行政区划：</span>
@@ -174,10 +197,13 @@ table tbody tr td {
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
         						</select>
-        						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
-								&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>未拨付资金：</span>
+        						<select id="wbf" style="width:60px;">
+        							<option value="">全部</option>
+        							<option value="=0">零</option>
+        							<option value="!=0">非零</option>
+        						</select>
+        						&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportPtgx()" style="vertical-align: -50%;" />
         					</p>        					
@@ -208,8 +234,6 @@ table tbody tr td {
 										<td>计划里程（里程）</td>
 										<td>概算总投资(万元)</td>
 										<td>计划下达资金(万元)</td>
-										<td>已拨付资金（万元）</td>
-										<td>本次拨付资金（万元）</td>
 										<td>累计拨付资金（万元）</td>
 										<td>未拨付资金（万元）</td>
 										<td>建设状态</td>

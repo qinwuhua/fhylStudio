@@ -138,5 +138,29 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 		return queryList("gettsdq", xzqh);
 	}
 
+	@Override
+	public List<Map<String, Object>> getptgxlist1(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getptgxlist1", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getptgxlist2(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getptgxlist2", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getptgxlist3(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getptgxlist3", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getptgxlist4(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getptgxlist4", xmbb);
+	}
+
 	
 }
