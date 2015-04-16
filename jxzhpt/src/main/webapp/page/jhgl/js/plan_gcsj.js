@@ -69,7 +69,7 @@ function gclmsjxm(jh,lx){
 			{field:'lxtj',title:'添加路线',width:80,align:'center',
 				formatter:function(value,row,index){
 					if(row.jh_sbthcd==0)
-		    			return '<a href="javascript:openAddSjlx()" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    			return '<a href="javascript:openAddSjlx('+"'"+row.id+"',"+"'"+row.jhnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
 		    		else
 		    			return '<a style="text-decoration:none;">添加路线</a>';
 				}
@@ -129,8 +129,10 @@ function gclmsjxm(jh,lx){
 	};
 	gridBind(grid);
 }
-function openAddSjlx(){
-	parent.YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addsjlx',1000,500);
+function openAddSjlx(id,nf){
+	parent.YMLib.Var.NF=nf;
+	parent.YMLib.Var.ID=id;
+	parent.YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjlxAdd.jsp",'addsjlx',900,380);
 }
 function gclmsjxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
