@@ -199,6 +199,7 @@
 	<action name="selectHslyjhFile" class="gcglhslyController" method="selectHslyjhFile"/>
 	<action name="deleteHslyFile" class="gcglhslyController" method="deleteHslyFile"/>
 	<action name="sbHslyYb" class="gcglhslyController" method="sbHslyYb"/>
+	<action name="selectHslyjhList1" class="gcglhslyController" method="selectHslyjhList1"/>
 	
 	<!-- aqyb -->
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>

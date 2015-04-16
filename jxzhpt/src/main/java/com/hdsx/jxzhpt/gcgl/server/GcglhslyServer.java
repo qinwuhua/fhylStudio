@@ -58,5 +58,9 @@ public interface GcglhslyServer {
 	int selecthslyYbByJhidCount1(Gcglhsly gcglhsly);
 
 	List<Gcglhsly> selecthslyYbByJhid1(Gcglhsly gcglhsly);
+
+	int selectWqgzjhListCount1(Gcglhsly gcglhsly);
+
+	List<Gcglhsly> selectWqgzjhList1(Gcglhsly gcglhsly);
 	
 }

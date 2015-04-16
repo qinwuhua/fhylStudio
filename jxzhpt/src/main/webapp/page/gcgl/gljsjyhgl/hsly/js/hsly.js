@@ -33,24 +33,22 @@ function kaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','红色旅游月报上报','hslyyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','红色旅游月报上报','hslyyb.jsp','wqxx1',1059,500);
 	//window.open("hslyyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','红色旅游月报添加','hslyybtj.jsp','wqxx',650,280);
-	//window.open("hslyybtj.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报添加','hslyybtj.jsp','wqxx',700,380);
+	
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,430);
-	//window.open("hslyybxx.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',710,430);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',650,280);
-	//window.open("hslyybxg.jsp");
+	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',700,380);
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
@@ -74,7 +72,6 @@ function Delyb(index){
 }
 //添加
 function tjhslyyb(){
-	//alert("xx");
 	var myDate = new Date();
 	var y = myDate.getFullYear();
 	var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
@@ -95,13 +92,11 @@ function tjhslyyb(){
 		alert("页面信息未填写完整，请您检查漏填项");
 		return;
 	}
-	if($("#tj_sbyf").find("option:selected").text()==''){
-		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
-		return;
-	}
-	var data = "gcglhsly.bywcdc="+$("#tj_bywcdc").val()+"&gcglhsly.bywcjc="+$("#tj_bywcjc").val()+"&gcglhsly.bywcmc="+$("#tj_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
-	+"&gcglhsly.qksm="+$("#tj_qksm").val()+"&gcglhsly.bfzj="+$("#tj_bfzj").val()
-	+"&gcglhsly.sbsj="+sbsj+"&gcglhsly.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglhsly.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
+	+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglhsly.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+	+"&gcglhsly.bywcdc="+$("#tj_bywcdc").val()+"&gcglhsly.bywcjc="+$("#tj_bywcjc").val()+"&gcglhsly.bywcmc="+$("#tj_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
+	+"&gcglhsly.qksm="+$("#tj_qksm").val()+"&gcglhsly.wcqk="+$("#tj_wcqk").text()+"&gcglhsly.ssdctc="+$("#ssdctc").val()+"&gcglhsly.bndsslc="+$("#bndsslc").val()+"&gcglhsly.wkglc="+$("#wkglc").val()
+	+"&gcglhsly.sbsj="+sbsj+"&gcglhsly.sbyf="+$("#tj_sbyf").val()+"&gcglhsly.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -126,8 +121,10 @@ function xghslyyb(){
 		alert("页面信息未填写完整，请您检查漏填项");
 		return;
 	}
-	var data = "gcglhsly.bywcdc="+$("#xg_bywcdc").val()+"&gcglhsly.bywcjc="+$("#xg_bywcjc").val()+"&gcglhsly.bywcmc="+$("#xg_bywcmc").val()+"&gcglhsly.kgdl="+$("#xg_kgdl").val()
-	+"&gcglhsly.qksm="+$("#xg_qksm").val()+"&gcglhsly.bfzj="+$("#xg_bfzj").val()+"&gcglhsly.sbyf="+$("#xg_sbyf").find("option:selected").text()
+	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
+	+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglhsly.zjdw_qttz="+$("#tj_zjdw_qttz").val()
+		+"&gcglhsly.bywcdc="+$("#xg_bywcdc").val()+"&gcglhsly.bywcjc="+$("#xg_bywcjc").val()+"&gcglhsly.bywcmc="+$("#xg_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()
+	+"&gcglhsly.qksm="+$("#xg_qksm").val()+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.sbyf="+$("#xg_sbyf").val()+"&gcglhsly.wcqk="+$("#tj_wcqk").text()+"&gcglhsly.ssdctc="+$("#ssdctc").val()+"&gcglhsly.bndsslc="+$("#bndsslc").val()+"&gcglhsly.wkglc="+$("#wkglc").val()
 	+"&gcglhsly.jhid="+parent.obj.jhid+"&gcglhsly.id="+parent.obj.id;
 	//alert(data);
 	$.ajax({
@@ -238,7 +235,8 @@ function tjwqgzwwg(){
 
 
 function showAll(){
-	var xzqhdm=$("#xzqhdm").combobox("getValue");
+	var xzqhdm='36';
+	var gydwdm=$("#gydw").combobox("getValue");
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
@@ -272,7 +270,8 @@ function showAll(){
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	gydwdm:gydwdm
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

@@ -390,7 +390,6 @@
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'
 						</if>
-						
 					     )
 	</select>
 </mapper>

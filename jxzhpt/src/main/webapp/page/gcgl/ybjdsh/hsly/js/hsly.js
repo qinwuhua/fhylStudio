@@ -56,7 +56,8 @@ function xghslyyb(){
 }
 
 function showAll(){
-	var xzqhdm=$("#xzqhdm").combobox("getValue");
+	var xzqhdm='36';
+	var gydwdm=$("#gydw").combobox("getValue");
 	var jgzt='0';
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
@@ -90,7 +91,8 @@ function showAll(){
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	gydwdm:gydwdm
 		},
 	    columns:[[
             {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

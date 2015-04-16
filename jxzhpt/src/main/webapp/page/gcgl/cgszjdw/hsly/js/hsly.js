@@ -111,12 +111,15 @@ function delCgs(index){
 }
 
 function showAll(){
-	var xzqhdm=$("#xzqhdm").combobox("getValue");
+	var xzqhdm='36';
+	var gydwdm=$("#gydw").combobox("getValue");
 	var jgzt='0';
 	var kgzt='';
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectHslyjhList.do',
+	    url:'../../../../gcgl/selectHslyjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -130,7 +133,11 @@ function showAll(){
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	xmnf:xmnf,
+	    	gydwdm:gydwdm,
+	    	bfyf:bfyf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
              {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){

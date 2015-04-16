@@ -56,16 +56,31 @@ function showAll(){
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ybsb('+index+')">月报信息</a>   ';
 	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'xmlc',title:'项目里程',width:80,align:'center'},
-	        {field:'yjsdj',title:'技术等级',width:100,align:'center'}
-	    ]]    
+	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
+		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+	    ]] ,
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    }
 	}); 
 }
 

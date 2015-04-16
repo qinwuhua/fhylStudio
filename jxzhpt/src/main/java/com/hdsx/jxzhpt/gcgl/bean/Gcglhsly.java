@@ -91,7 +91,105 @@ public class Gcglhsly implements Serializable {
 	private String ssdctc;
 	private String bndsslc;
 	private String wkglc;
+	private String gydwmc;
+	private String gydwdm;
+	private String wc_btz;
+	private String wc_stz;
+	private String wc_qttz;
+	private String zjdw_btz;
+	private String zjdw_stz;
+	private String zjdw_qttz;
+	private String wcqk;
+	private String wcbtz;
+	private String wcstz;
+	private String wcqttz;
+	private String dwstz;
+	private String dwqttz;
 	
+	public String getWcbtz() {
+		return wcbtz;
+	}
+	public void setWcbtz(String wcbtz) {
+		this.wcbtz = wcbtz;
+	}
+	public String getWcstz() {
+		return wcstz;
+	}
+	public void setWcstz(String wcstz) {
+		this.wcstz = wcstz;
+	}
+	public String getWcqttz() {
+		return wcqttz;
+	}
+	public void setWcqttz(String wcqttz) {
+		this.wcqttz = wcqttz;
+	}
+	public String getDwstz() {
+		return dwstz;
+	}
+	public void setDwstz(String dwstz) {
+		this.dwstz = dwstz;
+	}
+	public String getDwqttz() {
+		return dwqttz;
+	}
+	public void setDwqttz(String dwqttz) {
+		this.dwqttz = dwqttz;
+	}
+	public String getWcqk() {
+		return wcqk;
+	}
+	public void setWcqk(String wcqk) {
+		this.wcqk = wcqk;
+	}
+	public String getWc_btz() {
+		return wc_btz;
+	}
+	public void setWc_btz(String wc_btz) {
+		this.wc_btz = wc_btz;
+	}
+	public String getWc_stz() {
+		return wc_stz;
+	}
+	public void setWc_stz(String wc_stz) {
+		this.wc_stz = wc_stz;
+	}
+	public String getWc_qttz() {
+		return wc_qttz;
+	}
+	public void setWc_qttz(String wc_qttz) {
+		this.wc_qttz = wc_qttz;
+	}
+	public String getZjdw_btz() {
+		return zjdw_btz;
+	}
+	public void setZjdw_btz(String zjdw_btz) {
+		this.zjdw_btz = zjdw_btz;
+	}
+	public String getZjdw_stz() {
+		return zjdw_stz;
+	}
+	public void setZjdw_stz(String zjdw_stz) {
+		this.zjdw_stz = zjdw_stz;
+	}
+	public String getZjdw_qttz() {
+		return zjdw_qttz;
+	}
+	public void setZjdw_qttz(String zjdw_qttz) {
+		this.zjdw_qttz = zjdw_qttz;
+	}
+	public String getGydwmc() {
+		return gydwmc;
+	}
+	public void setGydwmc(String gydwmc) {
+		this.gydwmc = gydwmc;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
 	public String getZdyf() {
 		return zdyf;
 	}

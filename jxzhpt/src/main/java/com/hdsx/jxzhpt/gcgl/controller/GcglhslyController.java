@@ -67,7 +67,35 @@ public class GcglhslyController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String gydwdm;
+	private String bfyf;
+	private String bfzt;
+	private String xmnf;
 	
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -406,6 +434,7 @@ public class GcglhslyController extends BaseActionSupport{
 		gcglhsly.setXmmc(lxmc);
 		gcglhsly.setJgzt(jgzt);
 		gcglhsly.setShzt(ybzt);
+		gcglhsly.setGydwdm(gydwdm.replaceAll("0*$",""));
 		if(sfsj==7){
 			gcglhsly.setTiaojian("sjsh");
 		}
@@ -484,4 +513,31 @@ public class GcglhslyController extends BaseActionSupport{
 	    bAOutputStream.close(); 
 	    return data; 
 	}
+	//查询jihua1
+		public void selectHslyjhList1(){
+			Gcglhsly gcglhsly=new Gcglhsly();
+			gcglhsly.setPage(page);
+			gcglhsly.setRows(rows);
+			gcglhsly.setXzqhdm(xzqhdm.replaceAll("0*$",""));
+			gcglhsly.setKgzt(kgzt);
+			gcglhsly.setXmmc(lxmc);
+			gcglhsly.setJgzt(jgzt);
+			gcglhsly.setShzt(ybzt);
+			gcglhsly.setGydwdm(gydwdm.replaceAll("0*$",""));
+			gcglhsly.setShzt(ybzt);
+			gcglhsly.setTbyf(bfyf);
+			gcglhsly.setJhnf(xmnf);
+			gcglhsly.setTiaojian(bfzt);
+			
+			int count=gcglhslyServer.selectWqgzjhListCount1(gcglhsly);
+			List<Gcglhsly> list=gcglhslyServer.selectWqgzjhList1(gcglhsly);
+			EasyUIPage<Gcglhsly> e=new EasyUIPage<Gcglhsly>();
+			e.setRows(list);
+			e.setTotal(count);
+			try {
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}		
 }

@@ -322,7 +322,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input type="text" id="wkglc" style="width: 350px;" />
+                                <input type="text" id="wkglc" style="width: 50px;" />
                             </td>
                         </tr>
                         <tr style="height: 35px;">

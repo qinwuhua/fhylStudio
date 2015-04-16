@@ -22,6 +22,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
+			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqhdm",$.cookie("dist"));
 			showAll();
 		});
@@ -60,8 +61,10 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0px 1% 2%;">
-        						<span>行政区划：</span>
-        						<select id="xzqhdm" style="width:200px;"></select>
+        						<span>管养单位：</span>
+        						<input id="gydw" style="width: 150px;">
+<!--         						<span>行政区划：</span> -->
+<!--         						<input id="xzqhdm" style="width: 150px;"> -->
         						<span>项目名称：</span>
         							<input type="text" id="lx" >
         							&nbsp;&nbsp;&nbsp;&nbsp;
