@@ -14,6 +14,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 
 @Service
 public class GcglshServerImpl extends BaseOperate implements GcglshServer {
@@ -295,5 +296,29 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	public Gcglsh queryCGSByYf(Gcglsh gcglsh) {
 		// TODO Auto-generated method stub
 		return queryOne("queryCGSByYf", gcglsh);
+	}
+
+	@Override
+	public List<Plan_shuih> queryGcgjList(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("queryGcgjList", gcglsh);
+	}
+
+	@Override
+	public int queryGcgjListCount(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("queryGcgjListCount", gcglsh);
+	}
+
+	@Override
+	public List<Plan_shuih> selectWqgzjhList2(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList2", gcglsh);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglsh);
 	}
 }

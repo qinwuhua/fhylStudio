@@ -310,21 +310,26 @@
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
 			where 1=1 and spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and l.lxmc like '%'||trim(#{lxmc})||'%'
-			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
+			and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
 					) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -360,17 +365,11 @@
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 			where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
-			<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and l.lxmc like '%'||trim(#{lxmc})||'%'
 			</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -379,7 +378,17 @@
 				<if test="tiaojian =='已拨付'">
 					and c.tbyf is not null
 				</if>
-			</if>
+			</if>and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+					and l.gydwdm like '%'||trim(#{gydw})||'%'
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
 					) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}

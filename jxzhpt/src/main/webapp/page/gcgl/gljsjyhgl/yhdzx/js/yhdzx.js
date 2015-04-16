@@ -306,20 +306,31 @@ function showAll(){
   	        	}else
   	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
   	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'hdhlc',title:'核对里程',width:60,align:'center'},
-	        {field:'jsdj',title:'技术等级',width:80,align:'center'},
-	        {field:'ylmkd',title:'原路面宽度',width:80,align:'center'},
-	        {field:'classify',title:'工程分类',width:80,align:'center'},
-	        {field:'totalinvest',title:'总投资',width:60,align:'center'},
-	        {field:'totalsubsidyfund',title:'总补助资金',width:90,align:'center'}
-	    ]]    
+  	      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'totalinvest',title:'批复总投资',width:80,align:'center'},
+	        {field:'totalsubsidyfund',title:'部补助金额(万元)',width:100,align:'center'},
+		    {field:'totalplacefund',title:'地方自筹金额(万元)',width:100,align:'center'}
+	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_yhdzxs,
+  			columns:[[
+  			    {field:'gydwmc',title:'管养单位',width:200,align:'center'},
+  			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+  			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+  			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+  			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+  			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+  			    {field:'hdlc',title:'隐患里程',width:60,align:'center'}
+  			]]
+	    	});
+	    }    
 	}); 
 }
 

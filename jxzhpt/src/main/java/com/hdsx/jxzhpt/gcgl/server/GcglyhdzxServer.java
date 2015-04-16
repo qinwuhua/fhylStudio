@@ -6,6 +6,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx;
 
 public interface GcglyhdzxServer {
 
@@ -58,6 +59,14 @@ public interface GcglyhdzxServer {
 	Boolean sbWqgzYb(Gcglyhdzx gcglyhdzx);
 
 	Gcglyhdzx queryCGSByYf(Gcglyhdzx gcglyhdzx);
+
+	List<Plan_yhdzx> queryGcgjList(Gcglyhdzx gcglyhdzx);
+
+	int queryGcgjListCount(Gcglyhdzx gcglyhdzx);
+
+	List<Plan_yhdzx> selectWqgzjhList2(Gcglyhdzx gcglyhdzx);
+
+	int selectWqgzjhListcount1(Gcglyhdzx gcglyhdzx);
 
 	
 }

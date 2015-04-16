@@ -31,6 +31,9 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -67,7 +70,14 @@ public class GcglshController extends BaseActionSupport{
 	private String ybzt;
 	private String bfyf;
 	private String bfzt;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getBfyf() {
 		return bfyf;
 	}
@@ -425,9 +435,9 @@ public class GcglshController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglsh.setTiaojian("xjzt");
 		}
-		int count=gcglshServer.selectWqgzjhListCount(gcglsh);
-		List<Gcglsh> list=gcglshServer.selectWqgzjhList(gcglsh);
-		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
+		List<Plan_shuih> list=gcglshServer.queryGcgjList(gcglsh);
+		int count=gcglshServer.queryGcgjListCount(gcglsh);
+		EasyUIPage<Plan_shuih> e=new EasyUIPage<Plan_shuih>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -503,35 +513,15 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
+		gcglsh.setShzt(ybzt);
 		gcglsh.setTbyf(bfyf);
-
-		List<Gcglsh> list=gcglshServer.exportAbyb1(gcglsh);
-		List<Gcglsh> list1=new ArrayList<Gcglsh>();
-		System.out.println(bfzt);
-		if("未拨付".equals(bfzt)){
-			for (Gcglsh excel_list : list) {
-				gcglsh.setJhid(excel_list.getId());
-				Gcglsh gcglsh1 = gcglshServer.queryCGSByYf(gcglsh);
-				if(gcglsh1==null)
-				list1.add(excel_list);
-			}
-		}
-		else if("已拨付".equals(bfzt)){
-			list1.addAll(list);
-			for (Gcglsh excel_list : list) {
-				gcglsh.setJhid(excel_list.getId());
-				Gcglsh gcglsh1 = gcglshServer.queryCGSByYf(gcglsh);
-				if(gcglsh1==null)
-				list1.remove(excel_list);
-			}
-		}else{
-			list1.addAll(list);
-		}
+		gcglsh.setSbnf(xmnf);
+		gcglsh.setTiaojian(bfzt);
 		
-		int count=list1.size();
-
-		EasyUIPage<Gcglsh> e=new EasyUIPage<Gcglsh>();
-		e.setRows(list1);
+		List<Plan_shuih> list=gcglshServer.selectWqgzjhList2(gcglsh);
+		int count=gcglshServer.selectWqgzjhListcount1(gcglsh);
+		EasyUIPage<Plan_shuih> e=new EasyUIPage<Plan_shuih>();
+		e.setRows(list);
 		e.setTotal(count);
 		
 			JsonUtils.write(e, getresponse().getWriter());

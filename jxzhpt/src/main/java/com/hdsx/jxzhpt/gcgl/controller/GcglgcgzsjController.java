@@ -34,6 +34,8 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -68,7 +70,14 @@ public class GcglgcgzsjController extends BaseActionSupport{
 	private String ybzt;
 	private String bfyf;
 	private String bfzt;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
 	public String getBfyf() {
 		return bfyf;
 	}
@@ -433,9 +442,9 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzsj.setTiaojian("xjzt");
 		}
-		int count=gcglgcgzsjServer.selectWqgzjhListCount(gcglgcgzsj);
-		List<Gcglgcgzsj> list=gcglgcgzsjServer.selectWqgzjhList(gcglgcgzsj);
-		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
+		List<Plan_gcsj> list=gcglgcgzsjServer.queryGcgjList(gcglgcgzsj);
+		int count=gcglgcgzsjServer.queryGcgjListCount(gcglgcgzsj);
+		EasyUIPage<Plan_gcsj> e=new EasyUIPage<Plan_gcsj>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -513,35 +522,14 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setKgzt(kgzt);
 		gcglgcgzsj.setLxmc(lxmc);
 		gcglgcgzsj.setJgzt(jgzt);
+		gcglgcgzsj.setShzt(ybzt);
 		gcglgcgzsj.setTbyf(bfyf);
-
-		List<Gcglgcgzsj> list=gcglgcgzsjServer.exportAbyb1(gcglgcgzsj);
-		List<Gcglgcgzsj> list1=new ArrayList<Gcglgcgzsj>();
-		System.out.println(bfzt);
-		if("未拨付".equals(bfzt)){
-			for (Gcglgcgzsj excel_list : list) {
-				gcglgcgzsj.setJhid(excel_list.getId());
-				Gcglgcgzsj gcglgcgzsj1 = gcglgcgzsjServer.queryCGSByYf(gcglgcgzsj);
-				if(gcglgcgzsj1==null)
-				list1.add(excel_list);
-			}
-		}
-		else if("已拨付".equals(bfzt)){
-			list1.addAll(list);
-			for (Gcglgcgzsj excel_list : list) {
-				gcglgcgzsj.setJhid(excel_list.getId());
-				Gcglgcgzsj gcglgcgzsj1 = gcglgcgzsjServer.queryCGSByYf(gcglgcgzsj);
-				if(gcglgcgzsj1==null)
-				list1.remove(excel_list);
-			}
-		}else{
-			list1.addAll(list);
-		}
-		
-		int count=list1.size();
-
-		EasyUIPage<Gcglgcgzsj> e=new EasyUIPage<Gcglgcgzsj>();
-		e.setRows(list1);
+		gcglgcgzsj.setSbnf(xmnf);
+		gcglgcgzsj.setTiaojian(bfzt);
+		List<Plan_gcgj> list=gcglgcgzsjServer.selectWqgzjhList2(gcglgcgzsj);
+		int count=gcglgcgzsjServer.selectWqgzjhListcount1(gcglgcgzsj);
+		EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+		e.setRows(list);
 		e.setTotal(count);
 		
 			JsonUtils.write(e, getresponse().getWriter());

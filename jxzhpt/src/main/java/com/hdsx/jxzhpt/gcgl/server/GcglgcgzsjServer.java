@@ -8,6 +8,8 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 
 public interface GcglgcgzsjServer {
 
@@ -62,5 +64,13 @@ public interface GcglgcgzsjServer {
 	List<Gcglgcgzsj> exportAbyb1(Gcglgcgzsj gcglgcgzsj);
 
 	Gcglgcgzsj queryCGSByYf(Gcglgcgzsj gcglgcgzsj);
+
+	List<Plan_gcsj> queryGcgjList(Gcglgcgzsj gcglgcgzsj);
+
+	int queryGcgjListCount(Gcglgcgzsj gcglgcgzsj);
+
+	List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzsj gcglgcgzsj);
+
+	int selectWqgzjhListcount1(Gcglgcgzsj gcglgcgzsj);
 	
 }
