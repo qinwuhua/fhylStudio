@@ -283,7 +283,7 @@ function jiazai(ooo){
 
 
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.jhid;
+	var data="gcglwqgz.jhid="+parent.obj1.id+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',

@@ -78,17 +78,16 @@
 			showAll();
 		});
 		function exportAbyb(){
-			var gydw=$("#xzqhdm").combobox("getValue");
+			var gydw=$("#gydw").combobox("getValue");
 			if(gydw=='36')
 				gydw='';
 			var jgzt='0';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
-			var myDate = new Date();
-			var y = myDate.getFullYear();
-			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
-			var sbyf=y+"-"+m;
-			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename");
+			var y=$("#ddlYear").val();
+			var m=$("#ddlMonth").val();
+			var sbyf=m;
+			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
 			window.location.href="/jxzhpt/gcgl/exporthsyb.do?"+data;
 		}
 		function importData_yb(flag){

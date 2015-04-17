@@ -86,7 +86,7 @@
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();
 			var sbyf=m;
-			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename");
+			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
 			window.location.href="/jxzhpt/gcgl/exportAbyb.do?"+data;
 		}
 		function importData_yb(flag){

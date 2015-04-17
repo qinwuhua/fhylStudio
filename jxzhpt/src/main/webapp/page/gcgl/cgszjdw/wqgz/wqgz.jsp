@@ -84,11 +84,10 @@
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
 			var qlmc=$("#qlmc").val();
-			var myDate = new Date();
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();         //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&qlmc="+qlmc;
+			var data="gydw="+gydw+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&qlmc="+qlmc+"&xmnf="+y;
 			window.location.href="/jxzhpt/gcgl/exportwqyb.do?"+data;
 		}
 		function importData_yb(flag){
