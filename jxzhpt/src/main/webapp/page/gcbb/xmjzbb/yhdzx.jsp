@@ -22,6 +22,7 @@
 	<script type="text/javascript">
 		$(function(){
 			setjhxdnf();
+			settsdq();
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 			showAll();
@@ -34,6 +35,14 @@
 			    multiple:true
 			})
 		}
+		function settsdq(){
+			$("#tsdq").combotree({    
+				checkbox: true,
+			    url: '/jxzhpt/xmjzbb/settsdq.do?xzqh='+$.cookie("dist"),    
+			    required: false,
+			   // multiple:true
+			})
+		}
 		function showAll(){
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
@@ -41,7 +50,8 @@
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
+			var tsdq=$("#tsdq").combobox("getValue");
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getYhbb.do",
@@ -53,51 +63,65 @@
 					tbody.empty();
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].v_0=='合并'){
-								tbody.append("<tr><td colspan='3'>"+msg[i].v_1+"</td><td>"
-										+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+							if(msg[i].HB=='是'){
+								tbody.append("<tr><td colspan='3'>"+msg[i].SZDS+"</td><td>"
+										+msg[i].XMMC+"</td><td>"
+										+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
+										+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+										+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
+										+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
+										+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
+										+msg[i].KGDL+"</td><td>"+msg[i].WGLC+"</td><td>"
+										+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+										+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
+										
 										);
 							}else{
-								if(msg[i].v_0==''){
-									tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
-											);
+								if(msg[i].HB=='是1'){
+									if(msg[i].SZDS=="1（一）国道"){
+										tbody.append("<tr><td>"+' '+"</td><td colspan='2'>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td>"
+												+msg[i].XMMC+"</td><td>"
+												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
+												+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+												+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
+												+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+												+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
+												+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
+												+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
+												+msg[i].KGDL+"</td><td>"+msg[i].WGLC+"</td><td>"
+												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
+												);
+									}else{
+										tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td></td><td>"
+												+msg[i].XMMC+"</td><td>"
+												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
+												+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+												+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
+												+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+												+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
+												+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
+												+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
+												+msg[i].KGDL+"</td><td>"+msg[i].WGLC+"</td><td>"
+												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
+												);
+									}
 								}else{
-									tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='2'>"+msg[i].v_1+"</td><td>"
-											+msg[i].v_3+"</td><td>"
-											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-											+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><tr>"
+									tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
+											+msg[i].XMMC+"</td><td>"
+											+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
+											+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+											+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
+											+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
+											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
+											+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
+											+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
+											+msg[i].KGDL+"</td><td>"+msg[i].WGLC+"</td><td>"
+											+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 											);
 								}
 							}
@@ -171,14 +195,17 @@ table tbody tr td {
         						<select id="gydw" style="width:150px;"></select>
         						<span>资金下达年份：</span>
         						<input type="text" id="jhxdnf" >
-        						<span>未拨付资金：</span>
-        						<select id="wbf" style="width:130px;">
-        							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
+        						
+        						<span>建设状态：</span>
+        						<select id="jszt" style="width:50px;">
+        						<option value="">全部</option>
+        						<option>未开工</option>
+        						<option>在建</option>
+        						<option>竣工</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>特殊地区：</span>
+        						<input type="text" id="tsdq"  style="width:60px;">
+        						&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>
 <%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
@@ -193,15 +220,13 @@ table tbody tr td {
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
         						</select>
-        						<span>建设状态：</span>
-        						<select id="jszt" style="width:142px;">
-        						<option value="">全部</option>
-        						<option>未开工</option>
-        						<option>在建</option>
-        						<option>竣工</option>
+        						<span>未拨付资金：</span>
+        						<select id="wbf" style="width:164px;">
+        							<option value="">全部</option>
+        							<option value="=0">零</option>
+        							<option value="!=0">非零</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        							&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
 <%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
@@ -233,8 +258,6 @@ table tbody tr td {
 										<td rowspan="2">计划里程（公里）</td>
 										<td rowspan="2">概预算（万元）</td>
 										<td rowspan="2">计划下达资金（万元）</td>
-										<td rowspan="2">已拨付资金（万元）</td>
-										<td rowspan="2">本次拨付资金（万元）</td>
 										<td rowspan="2">累计拨付资金（万元）</td>
 										<td rowspan="2">未拨付资金（万元）</td>
 										<td rowspan="2">建设状态</td>

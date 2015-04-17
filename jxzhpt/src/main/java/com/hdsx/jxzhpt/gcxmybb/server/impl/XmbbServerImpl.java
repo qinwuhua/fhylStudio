@@ -162,5 +162,53 @@ public class XmbbServerImpl extends BaseOperate implements XmbbServer {
 		return queryList("getptgxlist4", xmbb);
 	}
 
+	@Override
+	public List<Map<String, Object>> getyhbblist1(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhbblist1", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getyhbblist2(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhbblist2", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getyhbblist3(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhbblist3", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getyhbblist4(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getyhbblist4", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getlwbblist1(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getlwbblist1", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getlwbblist2(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getlwbblist2", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getlwbblist3(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getlwbblist3", xmbb);
+	}
+
+	@Override
+	public List<Map<String, Object>> getlwbblist4(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("getlwbblist4", xmbb);
+	}
+
 	
 }

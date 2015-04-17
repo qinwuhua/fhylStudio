@@ -62,5 +62,21 @@ public interface XmbbServer {
 
 	List<Map<String, Object>> getptgxlist4(Xmbb xmbb);
 
+	List<Map<String, Object>> getyhbblist1(Xmbb xmbb);
+
+	List<Map<String, Object>> getyhbblist2(Xmbb xmbb);
+
+	List<Map<String, Object>> getyhbblist3(Xmbb xmbb);
+
+	List<Map<String, Object>> getyhbblist4(Xmbb xmbb);
+
+	List<Map<String, Object>> getlwbblist1(Xmbb xmbb);
+
+	List<Map<String, Object>> getlwbblist2(Xmbb xmbb);
+
+	List<Map<String, Object>> getlwbblist3(Xmbb xmbb);
+
+	List<Map<String, Object>> getlwbblist4(Xmbb xmbb);
+
 
 }

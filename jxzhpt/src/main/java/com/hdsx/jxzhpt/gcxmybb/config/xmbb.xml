@@ -703,9 +703,6 @@
 		<if test="qxkg != null and  qxkg != ''">
 				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
 		</if>
-		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
-		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
@@ -717,7 +714,7 @@
 		</if>
 	</select>
 	<select id="getptgxlist2" parameterType="xmbb" resultType="hashmap">
-		select ' ' xh,' ' xmlx,min(substr(xmlx,2)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+		select min(xmlx) xmlx,min(substr(xmlx,2)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
 		sum(yhlc) yhlc,sum(pfztz) pfztz,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
     	sum(jc) jc,sum(wglc) wglc,sum(wkglc) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
@@ -733,9 +730,6 @@
 		</if>
 		<if test="jszt != null and  jszt != ''">
 				and jszt  like '%'||trim(#{jszt})||'%'
-		</if>
-		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
 				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
@@ -749,10 +743,10 @@
 		<if test="wbf != null and  wbf != ''">
 				and wbfzj ${wbf}
 		</if>
-		group by xmlx order by substr(xmmc,0,1)
+		group by xmlx order by substr(xmlx,0,1)
 	</select>
 	<select id="getptgxlist3" parameterType="xmbb" resultType="hashmap">
-		select ' ' xh,min(xmlx) xmlx,min(xzqhmc)||'小计' xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+		select ' ' xh,min(xmlx) xmlx,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'小计' xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
 		sum(yhlc) yhlc,sum(pfztz) pfztz,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
     	sum(jc) jc,sum(wglc) wglc,sum(wkglc) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
@@ -768,9 +762,6 @@
 		</if>
 		<if test="jszt != null and  jszt != ''">
 				and jszt  like '%'||trim(#{jszt})||'%'
-		</if>
-		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
 				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
@@ -805,9 +796,6 @@
 		<if test="qxkg != null and  qxkg != ''">
 				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
 		</if>
-		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
-		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
@@ -818,5 +806,174 @@
 				and wbfzj ${wbf}
 		</if>
 		order by substr(xmlx,0,1),substr(xzqhdm,0,4)
+	</select>
+	<!-- 养护大中修重做 -->
+	<select id="getyhbblist1" parameterType="xmbb" resultType="hashmap">
+		select '是' hb,'全省合计' szds,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,sum(jhlc) jhlc,sum(gys) gys,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
+		sum(jc) jc,' ' kgrq,' ' wgrq,' ' kgdl,sum(wglc) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+		from stcyhdzx_gcxmjzb
+		where 1=1
+		<if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+	</select>
+	<select id="getyhbblist2" parameterType="xmbb" resultType="hashmap">
+		select '是' hb,min(xzqhdm) xzqhdm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' szds,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,sum(jhlc) jhlc,sum(gys) gys,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
+		sum(jc) jc,' ' kgrq,' ' wgrq,' ' kgdl,sum(wglc) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+		from stcyhdzx_gcxmjzb
+		where 1=1
+		<if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+		group by substr(xzqhdm,0,4) order by substr(xzqhdm,0,4)
+	</select>
+	<select id="getyhbblist3" parameterType="xmbb" resultType="hashmap">
+		select '是1' hb,min(xzqhdm) xzqhdm,dllx szds,' ' tsdq,' ' xmmc,' ' gcfl,' ' xdnf,' ' qdzh,' ' zdzh,sum(jhlc) jhlc,sum(gys) gys,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
+		sum(jc) jc,' ' kgrq,' ' wgrq,' ' kgdl,sum(wglc) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+		from stcyhdzx_gcxmjzb where 1=1
+		<if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+		group by substr(xzqhdm,0,4),dllx order by substr(xzqhdm,0,4),substr(dllx,0,1)
+	</select>
+	<select id="getyhbblist4" parameterType="xmbb" resultType="hashmap">
+		select *
+		from stcyhdzx_gcxmjzb
+		where 1=1
+		<if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+		order by substr(xzqhdm,0,4),substr(dllx,0,1)
+	</select>
+	
+	<!-- 路网重做 -->
+	<select id="getlwbblist1" parameterType="xmbb" resultType="hashmap">
+		select 
+ 		xmlx,substr(xmlx,0,1) xh1,substr(xmlx,2,2) xh,'是' hb,' ' szds,substr(xmlx,4) tsdq,' ' xmmc,' ' jsxz,' ' qdzh,' ' zdzh,sum(yhlc) yhlc,
+ 		' ' xdnf,sum(xdzj) xdzj,sum(gys) gys,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(wglc) wglc,' ' kgrq,' ' wgrq,
+		 ' ' yjrj, ' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+ 		from lwjggz_gcxmjzb
+ 		where 1=1
+ 		<if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+		 group by xmlx 
+		order by xh1
+	</select>
+	<select id="getlwbblist2" parameterType="xmbb" resultType="hashmap">
+	 select * from lwjggz_gcxmjzb 
+	 where 1=1
+	 <if test="gydw != null and  gydw != ''">
+				and gydw  like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqh != null and  xzqh != ''">
+				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+		</if>
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				and xdnf in (${jhxdnf})
+		</if>
+		<if test="jszt != null and  jszt != ''">
+				and jszt  like '%'||trim(#{jszt})||'%'
+		</if>
+		<if test="tsdq != null and  tsdq != ''">
+				and tsdq  like '%'||trim(#{tsdq})||'%'
+		</if>
+		<if test="ljbf != null and  ljbf != ''">
+				and bfzj  ${ljbf}
+		</if>
+		<if test="wbf != null and  wbf != ''">
+				and wbfzj ${wbf}
+		</if>
+	 order by substr(xzqhdm,0,4),xmlx
 	</select>
 </mapper>

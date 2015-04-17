@@ -64,34 +64,31 @@
 					tbody.empty();
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(!msg[i].v_0==''){
-								tbody.append("<tr><td >"+msg[i].v_0+"</td><td colspan='3'>"
-										+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td></tr>"
-										
+							if(msg[i].HB=='是'){
+								tbody.append("<tr><td >"+msg[i].XH+"</td><td colspan='3'>"
+										+msg[i].TSDQ+"</td><td>"
+										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
+										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
+										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
+										+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
+										+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
+										+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
+										+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
+										+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+										+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 										);
 							}else{
-									tbody.append("<tr><td >"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-											+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-											+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-											+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-											+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-											+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-											+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-											+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-											+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-											+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-											+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-											+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td></tr>"
+									tbody.append("<tr><td >"+msg[i].XH+"</td><td>"+msg[i].SZDS+"</td><td>"
+											+msg[i].TSDQ+"</td><td>"+msg[i].XMMC+"</td><td>"
+											+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
+											+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
+											+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
+											+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
+											+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
+											+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
+											+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
+											+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
+											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 									);
 							}
 						}
@@ -232,8 +229,6 @@ table tbody tr td {
 										<td rowspan="2">计划下达年度</td>
 										<td rowspan="2">计划下达资金（万元）</td>
 										<td rowspan="2">概预算（万元）</td>
-										<td rowspan="2">已拨付资金（万元）</td>
-										<td rowspan="2">本次拨付资金（万元）</td>
 										<td rowspan="2">累计拨付资金（万元）</td>
 										<td rowspan="2">未拨付资金（万元）</td>
 										<td rowspan="2">建设状态</td>
