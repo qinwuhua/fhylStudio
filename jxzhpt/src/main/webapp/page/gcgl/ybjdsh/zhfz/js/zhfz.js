@@ -21,7 +21,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾害防治月报列表','zhfzyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','灾害防治月报列表','zhfzyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
@@ -58,7 +58,7 @@ function xgzhfzyb(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','灾害防治月报审核','zhfzybsh.jsp','wqxx',450,280);
+	YMLib.UI.createWindow('wqxx','灾害防治月报审核','zhfzybsh.jsp','wqxx',450,200);
 }
 function shzhfzyb(){
 	var myDate = new Date();

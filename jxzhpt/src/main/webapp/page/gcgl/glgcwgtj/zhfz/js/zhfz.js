@@ -22,7 +22,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','灾害防治月报列表','zhfzyb.jsp','wqxx',1059,450);
+	YMLib.UI.createWindow('wqxx','灾害防治月报列表','zhfzyb.jsp','wqxx',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){

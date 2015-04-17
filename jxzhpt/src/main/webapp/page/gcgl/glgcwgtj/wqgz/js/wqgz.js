@@ -21,7 +21,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){

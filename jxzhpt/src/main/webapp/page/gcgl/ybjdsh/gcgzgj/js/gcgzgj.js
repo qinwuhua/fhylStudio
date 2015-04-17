@@ -22,7 +22,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','工程改造路面改建月报列表','gcgzgjyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','工程改造路面改建月报列表','gcgzgjyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
@@ -60,7 +60,7 @@ function xggcgzgjyb(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报审核','gcgzgjybsh.jsp','wqxx',450,280);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报审核','gcgzgjybsh.jsp','wqxx',450,200);
 }
 function shgcgzgjyb(){
 	var myDate = new Date();

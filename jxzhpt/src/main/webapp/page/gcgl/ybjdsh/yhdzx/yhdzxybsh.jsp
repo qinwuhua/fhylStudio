@@ -54,30 +54,30 @@ a:active {
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                         cellpadding="0">
-                        <tr style="height: 35px;">
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                width: 30%; padding-right: 5px;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">部投资（万元）</font></b>
-                            </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                              <span id="sh_btz" ></span>
+<!--                         <tr style="height: 35px;"> -->
+<!--                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; -->
+<!-- /*                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; */ -->
+<!--                                 width: 30%; padding-right: 5px;"> -->
+<!--                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">部投资（万元）</font></b> -->
+<!--                             </td> -->
+<!--                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; -->
+<!--                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5"> -->
+<!--                               <span id="sh_btz" ></span> -->
                              
-                            </td>
-                        </tr>
-                        <tr style="height: 35px;">
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
-                                <font color="#009ACD" style="cursor: hand; font-size: 12px">追加资金（万元）
-                            </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                              <input style="width: 50px" type="text" id="tj_zjje"  value="0" onblur="checkZJ(this)"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<!--                             </td> -->
+<!--                         </tr> -->
+<!--                         <tr style="height: 35px;"> -->
+<!--                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; -->
+<!-- /*                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; */ -->
+<!--                                 padding-right: 5px;"> -->
+<!--                                 <font color="#009ACD" style="cursor: hand; font-size: 12px">追加资金（万元） -->
+<!--                             </td> -->
+<!--                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; -->
+<!--                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5"> -->
+<!--                               <input style="width: 50px" type="text" id="tj_zjje"  value="0" onblur="checkZJ(this)"/>&nbsp;&nbsp;&nbsp;&nbsp; -->
                               
-                            </td>
-                        </tr>
+<!--                             </td> -->
+<!--                         </tr> -->
                         <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -89,17 +89,17 @@ a:active {
                                 <input name="BYWCMC" type="text" id="tj_xgcsyj" style="width: 150px;" value="同意"/>
                             </td>
                         </tr>
-                        <tr style="height: 35px;">
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                padding-right: 5px;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">财审处意见：</font></b>
-                            </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input name="JZKGDL" type="text" id="tj_cscyj" style="width: 150px;" value="同意"/>
-                            </td>
-                        </tr>
+<!--                         <tr style="height: 35px;"> -->
+<!--                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; -->
+<!-- /*                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; */ -->
+<!--                                 padding-right: 5px;"> -->
+<!--                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">财审处意见：</font></b> -->
+<!--                             </td> -->
+<!--                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; -->
+<!--                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5"> -->
+<!--                                 <input name="JZKGDL" type="text" id="tj_cscyj" style="width: 150px;" value="同意"/> -->
+<!--                             </td> -->
+<!--                         </tr> -->
                        
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;

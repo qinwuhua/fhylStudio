@@ -22,13 +22,13 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','红色旅游月报列表','hslyyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','红色旅游月报列表','hslyyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',650,280);
+	YMLib.UI.createWindow('wqxx','红色旅游月报编辑','hslyybxg.jsp','wqxx',650,200);
 	//window.open("hslyybxg.jsp");
 }
 //修改
