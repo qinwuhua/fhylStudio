@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Plan_yhdzx {
 	private String id;
+	private String xmmc;
 	private String sbnf;
 	private String classify;//工程分类
 	private String ordernum;
@@ -416,5 +417,11 @@ public class Plan_yhdzx {
 	}
 	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
 	}
 }

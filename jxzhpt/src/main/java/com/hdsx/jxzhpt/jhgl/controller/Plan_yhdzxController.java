@@ -192,7 +192,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
-				map.put("13", map.get("13").toString().substring(0, map.get("13").toString().indexOf(".")));
+				map.put("14", map.get("14").toString().substring(0, map.get("14").toString().indexOf(".")));
 			}
 			System.out.println(data);
 			yhdzxServer.insertYhdzx_lx(data);
@@ -257,7 +257,32 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("养护大中修",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "养护大中修-资金下达", getresponse());
 	}
-	
+	public void insertYhdzx() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		String strResult="false";
+		UUID uuid=UUID.randomUUID();
+		jh.setId(uuid.toString());
+		lx.setJhid(uuid.toString());
+		lx.setTbsj(new Date());
+		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+		boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
+		if(lxresult && jhresult){
+			strResult="true";
+		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
+	public void insertYhdzxLx() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		String strResult="false";
+		lx.setTbsj(new Date());
+		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+		if(lxresult){
+			strResult="true";
+		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;

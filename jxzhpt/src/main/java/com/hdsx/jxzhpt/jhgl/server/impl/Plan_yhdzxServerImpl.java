@@ -168,4 +168,14 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
 	}
+
+	@Override
+	public boolean insertYhdzx_lx(Plan_lx_yhdzx lx) {
+		return insert("insertYhdzxLx", lx)>0;
+	}
+
+	@Override
+	public boolean insertYhdzx_jh(Plan_yhdzx jh) {
+		return insert("insertYhdzxJh", jh)>0;
+	}
 }

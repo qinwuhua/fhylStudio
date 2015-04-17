@@ -98,4 +98,16 @@ public interface Plan_yhdzxServer {
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 
 	List<Plan_yhdzx> queryYhdzxList(Plan_yhdzx jh, Plan_lx_yhdzx lx);
+	/**
+	 * 添加单个路线
+	 * @param lx
+	 * @return
+	 */
+	boolean insertYhdzx_lx(Plan_lx_yhdzx lx);
+	/**
+	 * 添加单个计划
+	 * @param jh
+	 * @return
+	 */
+	boolean insertYhdzx_jh(Plan_yhdzx jh);
 }

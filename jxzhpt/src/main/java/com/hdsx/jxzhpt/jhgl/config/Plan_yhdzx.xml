@@ -5,6 +5,7 @@
 		<id property="id" column="id" />
 		<result property="xdsj" column="xdsj"/>
 		<result property="sbnf" column="sbnf"/>
+		<result property="xmmc" column="xmmc"/>
 		<result property="classify" column="classify"/>
 		<result property="fee" column="fee"/>
 		<result property="newfee" column="newfee"/>
@@ -245,20 +246,20 @@
 		values (
 			sys_guid(),#{jhid},#{0},(select id from XTGL_DEPARTMENT t where t.name = #{0}),#{1},#{2},
 			#{3},#{4},#{5},#{6},#{7},#{8},
-			#{9},#{10},#{11},#{12},#{18},
+			#{9},#{10},#{11},#{12},#{19},
 			(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{gydwdm},#{tbsj})
 	</insert>
 	<insert id="insertYhdzx_jh" parameterType="hashMap">
 		insert into plan_yhdzx (
-	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
+	    	id,xmmc,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
 	    	jiceng,surface,reportingfee,totalinvest,
 	    	mark,constructnumber,replynumber,devisenumbder,
 	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
 		values (
-			#{jhid},#{13},#{14},to_date(#{15},'yyyy-mm-dd'),to_date(#{16},'yyyy-mm-dd'),to_date(#{17},'yyyy-mm-dd'),#{19},
-			#{20},#{21},#{22},#{23},
-			#{24},#{25},#{26},#{27},
-			#{28},#{29},#{30},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
+			#{jhid},#{13},#{14},#{15},to_date(#{16},'yyyy-mm-dd'),to_date(#{17},'yyyy-mm-dd'),to_date(#{18},'yyyy-mm-dd'),#{20},
+			#{21},#{22},#{23},#{24},
+			#{25},#{26},#{27},#{28},
+			#{29},#{30},#{31},(select name from XTGL_DEPARTMENT t where t.id = #{gydwdm}),#{tbsj} <!-- -->)
 	</insert>
 	<select id="querySumYhdzx" resultMap="yhdzx_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(qzlc) as qzlc,sum(hdlc) as hdlc,
@@ -356,4 +357,26 @@
 		   	from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id)
 		where jh.spzt='1' and jh.jh_sbthcd='6'and lx.xzqhdm like #{xzqhdm} order by jh.id) r
 	</select>
+	<insert id="insertYhdzxLx" parameterType="plan_lx_yhdzx">
+		insert into plan_lx_yhdzx (lxid,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
+			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
+			yjsdj,ylmkd,ylmhd,ylmlx,DZXKD,
+			tbbm,tbbmdm,tbsj <!-- -->) 
+		values (sys_guid(),#{jhid},#{gydwmc},#{gydwdm},#{xzqhdm},#{xzqhmc},
+			#{lxmc},#{lxbm},#{qdzh},#{zdzh},#{qzlc},#{hdlc},
+			#{yjsdj},#{ylmkd},#{ylmhd},#{ylmlx},#{dzxkd} ,
+			(select name from XTGL_DEPARTMENT t where t.id = #{tbbmdm}),#{tbbmdm},#{tbsj}<!-- -->)
+	</insert>
+	<insert id="insertYhdzxJh" parameterType="plan_yhdzx">
+		insert into plan_yhdzx (
+	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
+	    	jiceng,surface,reportingfee,totalinvest,
+	    	mark,constructnumber,replynumber,devisenumbder,
+	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
+		values (
+			#{id},#{sbnf},#{classify},#{jhkgsj},#{jhwgsj},#{xdsj},#{dianceng},
+			#{jiceng},#{surface},#{reportingfee},#{totalinvest},
+			#{mark},#{constructnumber},#{replynumber},#{devisenumbder},
+			#{plandownnumber},#{remarks},#{qtbz},(select name from XTGL_DEPARTMENT t where t.id = #{tbbm}),to_date(#{tbsj},'yyyy-mm-dd')  <!---->)
+	</insert>
 </mapper>

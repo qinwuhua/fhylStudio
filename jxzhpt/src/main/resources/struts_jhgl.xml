@@ -117,6 +117,8 @@
 		<action name="editYhdzxById" class="plan_yhdzxController" method="editYhdzxById"/>
 		<action name="exportExcel_yhdzx" class="plan_yhdzxController" method="exportExcel_yhdzx"/>
 		<action name="exportYhdzxZjxdExcel" class="plan_yhdzxController" method="exportYhdzxZjxdExcel"/>
+		<action name="insertYhdzx" class="plan_yhdzxController" method="insertYhdzx"/>
+		<action name="insertYhdzxLx" class="plan_yhdzxController" method="insertYhdzxLx"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>
