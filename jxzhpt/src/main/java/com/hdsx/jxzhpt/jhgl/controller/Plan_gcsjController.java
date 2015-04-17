@@ -49,6 +49,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
+	private String tbbmbm2;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
@@ -317,6 +318,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("45", map.get("45").toString().substring(0, map.get("45").toString().indexOf(".")));
 				map.put("46", map.get("46").toString().substring(0, map.get("46").toString().indexOf(".")));
 				map.put("47", map.get("47").toString().substring(0, map.get("47").toString().indexOf(".")));
+				map.put("tbbm", getTbbmbm2());
 				Plan_lx_gcsj lx=new Plan_lx_gcsj();
 				lx.setXzqhdm(map.get("1").toString());
 				lx.setLxbm(map.get("3").toString());
@@ -509,44 +511,40 @@ public class Plan_gcsjController extends BaseActionSupport{
 	public void setLx(Plan_lx_gcsj lx) {
 		this.lx = lx;
 	}
-
 	public String getGydwdm() {
 		return gydwdm;
 	}
-
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
 	}
-
 	public File getUploadGk() {
 		return uploadGk;
 	}
-
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

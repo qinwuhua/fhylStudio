@@ -95,6 +95,7 @@ function shxm(jh,lx){
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
 	        {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
 		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}
@@ -165,6 +166,7 @@ function shxm_sb(jh,lx){
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
 	        {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
 		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}
@@ -231,6 +233,7 @@ function shxm_sh(jh,lx){
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
 	        {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
 		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}
@@ -294,6 +297,7 @@ function shxm_zjxd(jh,lx){
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
 	        {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
 		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}

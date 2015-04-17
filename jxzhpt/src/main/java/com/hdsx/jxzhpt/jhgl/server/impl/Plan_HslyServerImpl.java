@@ -63,4 +63,8 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 		params.put("hsly", hsly);
 		return queryList("queryHslyList2",params);
 	}
+	@Override
+	public boolean insertHsly2(List<Plan_hsly> list) {
+		return insertBatch("insertHsly2", list)==list.size();
+	}
 }

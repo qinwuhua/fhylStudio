@@ -48,6 +48,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
+	private String tbbmbm2;
 	private File uploadGk;
 	private String uploadGkFileName;
 	private File uploadSjt;
@@ -264,6 +265,7 @@ public class Plan_shuihController extends BaseActionSupport {
 						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
 						map.put("yjsdj", queryGPSBylxbm.getYjsdj());
+						map.put("tbbm", getTbbmbm2());
 						//验证路线名称、起止里程是否相符
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
 							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
@@ -397,7 +399,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				UUID jhId = UUID.randomUUID(); 
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
-				 jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 				boolean lxresult = shuihServer.insertShuihLx(lx);
 				boolean jhresult = shuihServer.insertShuihJh(jh);
 				if(lxresult && jhresult){
@@ -490,44 +492,40 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void setLx(Plan_lx_shuih lx) {
 		this.lx = lx;
 	}
-
 	public String getGydwdm() {
 		return gydwdm;
 	}
-
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
 	}
-
 	public File getUploadGk() {
 		return uploadGk;
 	}
-
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

@@ -24,6 +24,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_hslyServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
@@ -38,6 +39,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	private int rows;
 	private String gydwdm;
 	private String fileuploadFileName;
+	private String tbbmbm2;
 	private File fileupload;
 	private Plan_hsly hsly;
 	@Resource(name = "plan_HslyServerImpl")
@@ -119,49 +121,94 @@ public class Plan_hslyController  extends BaseActionSupport{
 	public void importHsly_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
-		HttpServletResponse response = ServletActionContext.getResponse();
-		try{
-			if(!"xls".equals(fileType)){
-				response.getWriter().print(fileuploadFileName+"不是excel文件");
-				return ;
+		
+		ExcelEntity excel=new ExcelEntity();
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xzqhmc");
+		attribute.put("1", "xmmc");
+		attribute.put("2", "jsxz");
+		attribute.put("3", "gydwmc");
+		attribute.put("4", "gydwdm");
+		attribute.put("5", "jsgmhj");
+		attribute.put("6", "jsgmy");
+		attribute.put("7", "jsgme");
+		attribute.put("8", "jsgms");
+		attribute.put("9", "jsgmf");
+		attribute.put("10", "jsgmdldq");
+		attribute.put("11", "kgn");
+		attribute.put("12", "wgn");
+		attribute.put("13", "jhnf");
+		attribute.put("14", "ztz");
+		attribute.put("15", "zytz");
+		attribute.put("16", "dfta");
+		attribute.put("17", "gndk");
+		attribute.put("18", "lywz");
+		attribute.put("19", "zyjsnr");
+		attribute.put("20", "xzscl");
+		attribute.put("21", "gkpfwh");
+		attribute.put("22", "sgtpfwh");
+		excel.setAttributes(attribute);
+		try {
+			List<Plan_hsly> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_hsly.class, 3, excel);
+			List<Plan_hsly> data=new ArrayList<Plan_hsly>();
+			readerExcel.remove(readerExcel.size()-1);
+			for (int i = 0; i < readerExcel.size(); i++) {
+				if(readerExcel.get(i).getXzqhmc()==null){
+					readerExcel.remove(i);
+				}else{
+					readerExcel.get(i).setTbbm(tbbmbm2);
+					readerExcel.get(i).setTbsj(new Date());
+					data.add(readerExcel.get(i));
+				}
 			}
+			boolean result = hslyServer.insertHsly2(data);
+			HttpServletResponse response = ServletActionContext.getResponse();
 			response.setCharacterEncoding("utf-8"); 
-			FileInputStream fs = new FileInputStream(this.fileupload);
-			List<Map>[] dataMapArray;
-			try{
-				dataMapArray = ExcelReader.readExcelContent(3,23,fs,Plan_gcsj.class);
-			}catch(Exception e){
-				response.getWriter().print(fileuploadFileName+"数据有误");
-				return;
-			}
-			String strVerify=null;
-			boolean boolJh=false,boolLx=false;
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			for (Map map : data) {
-				UUID jhId = UUID.randomUUID(); 
-				map.put("jhid", jhId.toString().replace("-", ""));
-				map.put("gydwdm", getGydwdm());
-				map.put("tbsj", new Date());
-				map.put("tbbm", getGydwdm());
-				map.put("11", map.get("11").toString().substring(0, map.get("11").toString().indexOf(".")));
-				map.put("12", map.get("12").toString().substring(0, map.get("12").toString().indexOf(".")));
-				map.put("13", map.get("13").toString().substring(0, map.get("13").toString().indexOf(".")));
-				map.put("xzqhmc", map.get("0").toString().substring(map.get("0").toString().indexOf("省")+1));
-				//strVerify=ImportVerify.gcsjVerify(map);
-//				if(gcsjServer.queryGPSBylxbm(map.get("3").toString())==0){
-//					strVerify="【"+map.get("3").toString()+"】不存在！";
-//				}
-			}
-			System.out.println(data);
-			boolean result = hslyServer.insertHsly(data);
-			//将数据插入到数据库
 			if(result)
 				response.getWriter().print(fileuploadFileName+"导入成功");
 			else 
-				response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
-		}catch(Exception e){
-			e.printStackTrace();
+				response.getWriter().print(fileuploadFileName+"导入失败");
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
+		
+//		try{
+//			if(!"xls".equals(fileType)){
+//				response.getWriter().print(fileuploadFileName+"不是excel文件");
+//				return ;
+//			}
+			
+//			FileInputStream fs = new FileInputStream(this.fileupload);
+//			List<Map>[] dataMapArray;
+//			try{
+//				dataMapArray = ExcelReader.readExcelContent(3,23,fs,Plan_gcsj.class);
+//			}catch(Exception e){
+//				response.getWriter().print(fileuploadFileName+"数据有误");
+//				return;
+//			}
+//			String strVerify=null;
+//			boolean boolJh=false,boolLx=false;
+//			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+//			for (Map map : data) {
+//				UUID jhId = UUID.randomUUID(); 
+//				map.put("jhid", jhId.toString().replace("-", ""));
+//				map.put("gydwdm", getGydwdm());
+//				map.put("tbsj", new Date());
+//				map.put("tbbm", getGydwdm());
+//				map.put("11", map.get("11").toString().substring(0, map.get("11").toString().indexOf(".")));
+//				map.put("12", map.get("12").toString().substring(0, map.get("12").toString().indexOf(".")));
+//				map.put("13", map.get("13").toString().substring(0, map.get("13").toString().indexOf(".")));
+//				map.put("xzqhmc", map.get("0").toString());
+//				//strVerify=ImportVerify.gcsjVerify(map);
+////				if(gcsjServer.queryGPSBylxbm(map.get("3").toString())==0){
+////					strVerify="【"+map.get("3").toString()+"】不存在！";
+////				}
+//			}
+//			System.out.println(data);
+//			boolean result = hslyServer.insertHsly(data);
+			//将数据插入到数据库
 	}
 	
 	public void exportExcelHslyZjxd(){
@@ -239,5 +286,13 @@ public class Plan_hslyController  extends BaseActionSupport{
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

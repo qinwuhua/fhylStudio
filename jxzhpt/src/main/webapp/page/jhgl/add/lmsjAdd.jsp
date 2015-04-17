@@ -77,7 +77,7 @@
 				'jh.pftz':$('#pftz').val(),'jh.jhsybbzje':$('#jhsybbzje').val(),'jh.jhsydfzczj':$('#jhsysbzje').val(),
 				'jh.jhxdwh':$('#jhxdwh').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']").val(),
 				'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-				'jh.remarks':$('#remarks').val()};
+				'jh.remarks':$('#remarks').val(),'jh.tbbm':$.cookie("unit")};
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/insertGcsj.do',

@@ -58,7 +58,9 @@ public class ExcelImportUtil {
 		Object cellValue = getCellValue(cell);
 		String getMethodName="set"+entry.getValue().substring(0,1).toUpperCase()+entry.getValue().substring(1);
 		Method method = obj.getClass().getMethod(getMethodName,cellValue.getClass());
-		Object invoke = method.invoke(obj, cellValue);
+		if(cellValue!=null && !cellValue.toString().equals("")){
+			Object invoke = method.invoke(obj, cellValue);
+		}
 		return obj;
 	}
 	

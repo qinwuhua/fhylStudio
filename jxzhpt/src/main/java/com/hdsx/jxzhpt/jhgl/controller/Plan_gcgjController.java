@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
@@ -49,6 +50,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_gcgj jh;
 	private Plan_lx_gcgj lx;
 	private String gydwdm;
+	private String tbbmbm2;
 	private String fileuploadFileName;
 	private File fileupload;
 	private File uploadGk;
@@ -295,6 +297,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
 				map.put("35", map.get("35").toString().substring(0, map.get("35").toString().indexOf(".")));
 				map.put("36", map.get("36").toString().substring(0, map.get("36").toString().indexOf(".")));
+				map.put("tbbm", getTbbmbm2());
 				Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
 				gcgj.setXzqhdm(map.get("1").toString());
 				gcgj.setLxbm(map.get("3").toString());//路线编码
@@ -426,6 +429,39 @@ public class Plan_gcgjController extends BaseActionSupport{
 		ExcelExportUtil.excelWrite(excel, "工程改造路面改建-资金下达", getresponse());
 	}
 	
+	public void insertGcgj(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
+			gcgj.setXzqhdm(lx.getXzqhdm());
+			gcgj.setLxbm(lx.getLxbm());//路线编码
+			gcgj.setQdzh(lx.getQdzh());//起点桩号
+			gcgj.setZdzh(lx.getZdzh());//止点桩号
+			gcgj.setQzlc(lx.getQzlc());//隐患里程
+			gcgj.setGydwdm(lx.getGydwdm());//管养单位代码
+			gcgj.setYjsdj(lx.getYjsdj());
+			gcgj.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+			String strResult="false";
+			if(gcgjServer.queryJhExist(gcgj)==0){
+				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
+				if(queryGPSBylxbm!=null){
+					boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
+					boolean jhresult=gcgjServer.insertGcgjJh(jh);
+					if(lxresult && jhresult){
+						strResult="true";
+					}
+				}else{
+					strResult="none";
+				}
+			}else{
+				strResult="have";
+			}
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//get set
 	public int getPage() {
 		return page;
@@ -505,5 +541,13 @@ public class Plan_gcgjController extends BaseActionSupport{
 
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

@@ -197,4 +197,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
 	}
+
+	@Override
+	public boolean insertGcgjJh(Plan_gcgj jh) {
+		return insert("insertGcgjJh", jh)>0;
+	}
 }

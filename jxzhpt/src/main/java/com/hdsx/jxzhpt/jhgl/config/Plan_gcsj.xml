@@ -346,14 +346,14 @@
 			pfsj,ql,ql_m,sd,sd_m,
 			hd,ljtsf,dc,jc,lqlm,snlm,
 			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
-			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl) 
+			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl,tbbm) 
 		values(#{jhid},#{16},#{17},to_date(#{18},'yyyy-mm-dd'),#{19},#{20},#{21},#{22},
 			#{23},#{24},#{25},#{26},SUBSTR(#{27},0,4),
 			to_date(#{28},'yyyy-mm-dd'),to_date(#{29},'yyyy-mm-dd'),#{30},#{31},#{32},
 			to_date(#{33},'yyyy-mm-dd'),#{34},#{35},#{36},#{37},
 			#{38},#{39},#{40},#{41},#{42},#{43},
 			#{44},#{45},#{46},#{47},#{48},
-			#{49},#{50},#{51},#{52},#{sfylsjl})
+			#{49},#{50},#{51},#{52},#{sfylsjl},#{tbbm})
 	</insert>
 	<insert id="insertGcsj_lx" parameterType="hashMap">
 		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,lxmc,

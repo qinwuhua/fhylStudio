@@ -57,7 +57,7 @@
 	<select id="queryShuihList"  parameterType="java.util.Map" resultMap="shuih_jh">
 		select * from (
 			select rownum as num,t.* from (	
-				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+				select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 				where 1=1
@@ -285,14 +285,14 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl)
+			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm)
 		values (#{jhid},#{12},#{13},
 			to_date(#{14},'yyyy-mm-dd'),#{15},#{16},#{17},#{18},
 			#{19},#{20},#{21},#{22},to_date(#{23},'yyyy-mm-dd'),
 			to_date(#{24},'yyyy-mm-dd'),#{25},#{26},#{27},to_date(#{28},'yyyy-mm-dd'),
 			#{29},#{30},#{31},#{32},#{33},
 			#{34},#{35},#{36},#{37},#{38},
-			#{39},#{40},#{41},#{42},#{sfylsjl})
+			#{39},#{40},#{41},#{42},#{sfylsjl},#{tbbm})
 	</insert>
 	<insert id="insertShuih_Lx" parameterType="hashMap">
 		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
@@ -433,11 +433,11 @@
 	</select>
 	<insert id="insertShuihLx" parameterType="plan_lx_shuih">
 		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,
-			xzqhdm,xzqhmc,lxbm,lxmc,jsdd,bhnr,ylmlx<!-- ,
-			qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj -->) 
+			xzqhdm,xzqhmc,lxbm,lxmc,jsdd,bhnr,ylmlx,
+			qdzh,zdzh,qzlc,yhlc,TBSJ,TBBMBH,yjsdj) 
 		values(sys_guid(),#{jhid},#{gydw},(select id from XTGL_DEPARTMENT t where t.name = #{gydw}),
-			#{xzqhdm},#{xzqhmc},#{lxbm},#{lxmc},#{jsdd},#{bhnr},#{ylmlx}<!-- ,
-			#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{tbsj},#{tbbmbh},#{yjsdj} -->)
+			#{xzqhdm},#{xzqhmc},#{lxbm},#{lxmc},#{jsdd},#{bhnr},#{ylmlx},
+			#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{tbsj},#{tbbmbh},#{yjsdj})
 	</insert>
 	<insert id="insertShuihJh" parameterType="plan_shuih">
 		insert into plan_shuih (id,fapgdw,fascdw,
@@ -446,13 +446,13 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl)
+			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm)
 		values (#{id},#{fapgdw},#{fascdw},
 			to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
 			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
 			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
 			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
 			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
-			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl})
+			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl},#{tbbm})
 	</insert>
 </mapper>

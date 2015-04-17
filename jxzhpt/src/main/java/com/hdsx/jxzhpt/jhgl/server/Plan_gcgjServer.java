@@ -149,4 +149,6 @@ public interface Plan_gcgjServer {
 	TreeNode queryGcktjt(String xzqhdm);
 
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+
+	boolean insertGcgjJh(Plan_gcgj jh);
 }
