@@ -19,7 +19,7 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			sbnf("sbnf");
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');

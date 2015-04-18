@@ -29,7 +29,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			loadBmbm2('add_yjsdjxx','技术等级');
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			xzqhComboxTree("add_xzqh");
 			tsdq('tsdq');
 			sbnf("sbnf");

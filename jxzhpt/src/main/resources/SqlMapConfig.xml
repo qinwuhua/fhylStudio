@@ -62,6 +62,7 @@
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz" alias="flwbzbz"/>
      <typeAlias type="com.hdsx.jxzhpt.xtgl.bean.Yhdzxcs" alias="yhdzxcs"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.PlanZjqf" alias="planzjqf"/>
+     <typeAlias type="com.hdsx.jxzhpt.gcbb.bean.GcgjJd" alias="gcgjjd"/>
      <!-- rh -->
      <!-- chc -->
      <typeAlias type="com.hdsx.jxzhpt.utile.SjbbMessage" alias="sjbb"/>

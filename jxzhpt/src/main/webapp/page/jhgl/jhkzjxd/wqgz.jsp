@@ -18,7 +18,7 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");

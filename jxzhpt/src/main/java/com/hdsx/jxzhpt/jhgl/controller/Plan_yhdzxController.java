@@ -50,6 +50,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	private Plan_yhdzx jh;
 	private Plan_lx_yhdzx lx;
 	private String gydwdm;
+	private String tbbmbm2;
 	@Resource(name = "plan_yhdzxServerImpl")
 	private Plan_yhdzxServer yhdzxServer;
 	@Resource(name = "plan_zjxdServerImpl")
@@ -191,6 +192,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
+				map.put("tbbm", tbbmbm2);
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				map.put("14", map.get("14").toString().substring(0, map.get("14").toString().indexOf(".")));
 			}
@@ -331,5 +333,11 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

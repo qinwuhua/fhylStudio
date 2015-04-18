@@ -24,7 +24,7 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');

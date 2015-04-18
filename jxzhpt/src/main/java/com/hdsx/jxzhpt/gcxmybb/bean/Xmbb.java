@@ -24,6 +24,20 @@ public class Xmbb implements Serializable {
 	private String xmmc;
 	private String tsdq;
 	private String tiaojian;
+	private String ybny;//月报年月
+	private String sbnf;//上报年份
+	public String getSbnf() {
+		return sbnf;
+	}
+	public void setSbnf(String sbnf) {
+		this.sbnf = sbnf;
+	}
+	public String getYbny() {
+		return ybny;
+	}
+	public void setYbny(String ybny) {
+		this.ybny = ybny;
+	}
 	public String getId() {
 		return id;
 	}

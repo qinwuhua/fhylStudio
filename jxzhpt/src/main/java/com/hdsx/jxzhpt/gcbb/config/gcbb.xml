@@ -1,5 +1,108 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.gcbb">
-
+	<resultMap id="gjjd" type="gcgjjd">
+		<id property="jhid" column="jhid" />
+		<result property="sfgyhbm" column="sfgyhbm"/>
+		<result property="jsdd" column="jsdd"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+		<result property="yhlb" column="yhlb"/>
+		<result property="sjkgsj" column="sjkgsj"/>
+		<result property="sjwgsj" column="sjwgsj"/>
+		<result property="ylmlx" column="ylmlx"/>
+		<result property="sjlmlx" column="sjlmlx"/>
+		<result property="dc" column="dc"/>
+		<result property="bywcdc" column="bywcdc"/>
+		<result property="bnwcdc" column="bnwcdc"/>
+		<result property="zjwcdc" column="zjwcdc"/>
+		<result property="jc" column="jc"/>
+		<result property="bywcjc" column="bywcjc"/>
+		<result property="bnwcjc" column="bnwcjc"/>
+		<result property="zjwcjc" column="zjwcjc"/>
+		<result property="mc" column="mc"/>
+		<result property="bywcmc" column="bywcmc"/>
+		<result property="bnwcmc" column="bnwcmc"/>
+		<result property="zjwcmc" column="zjwcmc"/>
+		<result property="pfztz" column="pfztz"/>
+		<result property="gys" column="gys"/>
+		<result property="bywcje" column="bywcje"/>
+		<result property="bnwcje" column="bnwcje"/>
+		<result property="zjwcje" column="zjwcje"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="xmmc" column="xmmc"/>
+		<result property="bz" column="bz"/>
+		<collection property="gjjdlx" column="jhid" javaType="ArrayList" ofType="plan_lx_gcgj" resultMap="gjjd_lx"/>
+		<collection property="shjdlx" column="jhid" javaType="ArrayList" ofType="plan_lx_shuih" resultMap="shjd_lx"/>
+	</resultMap>
+	<resultMap id="gjjd_lx" type="plan_lx_gcgj">
+		<result property="jhid" column="jhid"/>
+		<result property="jsdd" column="jsdd"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+		<result property="ylmlx" column="ylmlx"/>
+	</resultMap>
+	<resultMap id="shjd_lx" type="plan_lx_shuih">
+		<result property="jhid" column="jhid"/>
+		<result property="jsdd" column="jsdd"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+		<result property="ylmlx" column="ylmlx"/>
+	</resultMap>
+	<select id="selGcgjJdbb" parameterType="xmbb" resultMap="gjjd">
+		select lx.jsdd as jsdd,lx.lxbm as lxbm,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,lx.ylmlx as ylmlx,gj.id as jhid,
+		gj.sfgyhbm as sfgyhbm,gj.yhlb as yhlb,gj.sjkgsj as sjkgsj,gj.sjwgsj as sjwgsj,gj.sjlmlx as sjlmlx,
+		gj.dc as dc,(select gjgc.bywcdc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.id) bywcdc,
+		(select sum(gjgc.bywcdc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcdc ]]>,
+		(select sum(gjgc.bywcdc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(gj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcdc,
+		gj.jc as jc,(select gjgc.bywcjc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.id) bywcjc,
+		(select sum(gjgc.bywcjc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcjc ]]>,
+		(select sum(gjgc.bywcjc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(gj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcjc,
+		gj.mc as mc,(select gjgc.bywcmc from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.id) bywcmc,
+		(select sum(gjgc.bywcmc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcmc ]]>,
+		(select sum(gjgc.bywcmc) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(gj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcmc,
+		gj.pfztz as pfztz,gj.gsztz as gys,
+		(select gjgc.wc_btz+gjgc.wc_stz+gjgc.wc_qttz from gcgl_gcgzgj gjgc where to_date(gjgc.sbyf,'yyyy-mm') = to_date(#{ybny},'yyyy-mm') and gjgc.jhid=gj.id) as bywcje,
+		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_gcgzgj gjgc where gjgc.jhid=gj.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcje ]]>,
+		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_gcgzgj gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(to_char(gj.sjkgsj,'yyyy-mm'),'yyyy-mm') and gjgc.jhid=gj.id) as zjwcje,
+		gj.kgzt as kgzt,gj.jgzt as jgzt,gj.xmmc as xmmc,gj.bz as bz
+		from plan_gcgj gj,(select * from plan_lx_gcgj) lx
+		where gj.id=lx.jhid and gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
+	</select>
+	<select id="selShuihJdbb" parameterType="xmbb" resultMap="gjjd">
+		select sh.id as jhid,sh.sfgyhbm as sfgyhbm,lx.jsdd as jsdd,lx.lxbm as lxbm,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,
+		sh.yhlb as yhlb,sh.sjkgsj as sjkgsj,sh.sjwgsj as sjwgsj,lx.ylmlx as ylmlx,sh.sjlmlx as sjlmlx,
+		sh.dc as dc,(select gjgc.bywcdc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) bywcdc,
+		(select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcdc ]]>,
+		(select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcdc,
+		sh.jc as jc,(select gjgc.bywcjc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) bywcjc,
+		(select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcjc ]]>,
+		(select sum(gjgc.bywcjc) from gcgl_sh gjgc where gjgc.jhid=sh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcjc,
+		sh.mc as mc,(select gjgc.bywcmc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) bywcmc,
+		(select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcmc ]]>,
+		(select sum(gjgc.bywcmc) from gcgl_sh gjgc where gjgc.jhid=sh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcmc,
+		sh.pfztz as pfztz,sh.gsztz as gys,
+		(select gjgc.wc_btz+gjgc.wc_stz+gjgc.wc_qttz from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm') = to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) as bywcje,
+		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
+		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcje ]]>,
+		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm') and gjgc.jhid=sh.id) as zjwcje,
+		sh.kgzt as kgzt,sh.jgzt as jgzt
+		from plan_shuih sh,(select * from plan_lx_shuih) lx
+		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf}
+	</select>
+	<select id=""></select>
 </mapper>

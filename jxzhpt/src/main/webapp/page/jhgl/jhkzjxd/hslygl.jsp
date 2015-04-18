@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			sbnf('jhnf');
 			hslyglxm_zjxd();
 		});
