@@ -104,5 +104,86 @@
 		from plan_shuih sh,(select * from plan_lx_shuih) lx
 		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf}
 	</select>
-	<select id=""></select>
+	<resultMap type="gcsjjd" id="sjjd">
+		<result property="jhid" column="jhid"/>
+		<result property="jsjsbz" column="jsjsbz"/>
+		<result property="sjkgsj" column="sjkgsj"/>
+		<result property="pftz" column="pftz"/>
+		<result property="ljtsf" column="ljtsf"/>
+		<result property="ql" column="ql"/>
+		<result property="ql_m" column="ql_m"/>
+		<result property="hd" column="hd"/>
+		<result property="sd" column="sd"/>
+		<result property="sd_m" column="sd_m"/>
+		<result property="dc" column="dc"/>
+		<result property="jc" column="jc"/>
+		<result property="lqlm" column="lqlm"/>
+		<result property="snlm" column="snlm"/>
+		<result property="bywcje" column="bywcje"/>
+		<result property="bywcljtsf" column="bywcljtsf"/>
+		<result property="byqlwcqk_z" column="byqlwcqk_z"/>
+		<result property="byqlwcqk_ym" column="byqlwcqk_ym"/>
+		<result property="byhdwcqk_m" column="byhdwcqk_m"/>
+		<result property="bysdwcqk_z" column="bysdwcqk_z"/>
+		<result property="bysdwcqk_ym" column="bysdwcqk_ym"/>
+		<result property="bydcwcqk" column="bydcwcqk"/>
+		<result property="byjcwcqk" column="byjcwcqk"/>
+		<result property="bylqlmwcqk" column="bylqlmwcqk"/>
+		<result property="bysnlmwcqk" column="bysnlmwcqk"/>
+		<result property="bnwcje" column="bnwcje"/>
+		<result property="zjwcje" column="zjwcje"/>
+		<result property="zjwcljtsf" column="zjwcljtsf"/>
+		<result property="zjqlwcqk_z" column="zjqlwcqk_z"/>
+		<result property="zjqlwcqk_ym" column="zjqlwcqk_ym"/>
+		<result property="zjhdwcqk_m" column="zjhdwcqk_m"/>
+		<result property="zjsdwcqk_z" column="zjsdwcqk_z"/>
+		<result property="zjsdwcqk_ym" column="zjsdwcqk_ym"/>
+		<result property="zjdcwcqk" column="zjdcwcqk"/>
+		<result property="zjjcwcqk" column="zjjcwcqk"/>
+		<result property="zjlqlmwcqk" column="zjlqlmwcqk"/>
+		<result property="zjsnlmwcqk" column="zjsnlmwcqk"/>
+		<result property="bz" column="bz"/>
+		<result property="xmmc" column="xmmc"/>
+		<collection property="gcsjlx" column="jhid" javaType="ArrayList" ofType="plan_lx_gcsj" resultMap="sj_lx"/>
+	</resultMap>
+	<resultMap id="sj_lx" type="plan_lx_gcsj">
+		<result property="lxbm" column="lxbm"/>
+		<result property="xmlc" column="xmlc"/>
+		<result property="yjsdj" column="yjsdj"/>
+	</resultMap>
+	<select id="selGcsjJdbb" parameterType="xmbb" resultMap="sjjd">
+		select sj.id as jhid,sj.jsjsbz as jsjsbz,sj.sjkgsj as sjkgsj,
+		sj.pftz as pftz,sj.ljtsf as ljtsf,sj.ql as ql,sj.ql_m as ql_m,sj.hd as hd,sj.sd as sd,
+		sj.sd_m as sd_m,sj.dc as dc,sj.jc as jc,sj.lqlm as lqlm,sj.snlm as snlm,
+		(select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bywcje,
+		(select sum(gcsj.ljtsfwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bywcljtsf,
+		(select sum(gcsj.qlwcqk_z) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as byqlwcqk_z,
+		(select sum(gcsj.qlwcqk_ym) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as byqlwcqk_ym,
+		(select sum(gcsj.hdwcqk_m) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as byhdwcqk_m,
+		(select sum(gcsj.sdwcqk_z) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bysdwcqk_z,
+		(select sum(gcsj.sdwcqk_ym) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bysdwcqk_ym,
+		(select sum(gcsj.dcwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bydcwcqk,
+		(select sum(gcsj.jcwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as byjcwcqk,
+		(select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bylqlmwcqk,
+		(select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bysnlmwcqk,
+		(select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcje,
+		(select sum(gcsj.ljtsfwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjwcljtsf,
+		(select sum(gcsj.qlwcqk_z) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjqlwcqk_z,
+		(select sum(gcsj.qlwcqk_ym) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjqlwcqk_ym,
+		(select sum(gcsj.hdwcqk_m) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjhdwcqk_m,
+		(select sum(gcsj.sdwcqk_z) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjsdwcqk_z,
+		(select sum(gcsj.sdwcqk_ym) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjsdwcqk_ym,
+		(select sum(gcsj.dcwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjdcwcqk,
+		(select sum(gcsj.jcwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjjcwcqk,
+		(select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjlqlmwcqk,
+		(select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')) as zjsnlmwcqk,
+		(select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and 
+		to_date('2015-4','yyyy-mm') >= to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm') and to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')>=to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcje,
+		(select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and 
+		to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm') and to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')>=to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnlqlmwcqk,
+		(select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and 
+		to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm') and to_date(to_char(sj.sjkgsj,'yyyy-mm'),'yyyy-mm')>=to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnsnlmwcqk,
+		sj.remarks as bz,sj.xmmc as xmmc,lx.lxbm,lx.xmlc,lx.yjsdj
+		from plan_gcsj sj left join plan_lx_gcsj lx on sj.id=lx.jhid and sj.jh_sbthcd=6
+	</select>
 </mapper>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
+import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcbb.server.GcbbServer;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
@@ -41,6 +42,10 @@ public class GcbbController extends BaseActionSupport{
 	public void selShuihJdbb() throws IOException, Exception{
 		List<GcgjJd> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
 		JsonUtils.write(selShuihJdbb, getresponse().getWriter());
+	}
+	public void selGcsjJdbb() throws IOException, Exception{
+		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
+		JsonUtils.write(gcsj, getresponse().getWriter());
 	}
 	/***
 	 * 获取年份列表

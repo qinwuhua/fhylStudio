@@ -7,5 +7,6 @@
 	<action name="selYearList" class="gcbbController" method="selYearList" />
 	<action name="selGcgjJdbb" class="gcbbController" method="selGcgjJdbb" />
 	<action name="selShuihJdbb" class="gcbbController" method="selShuihJdbb"></action>
+	<action name="selGcsjJdbb" class="gcbbController" method="selGcsjJdbb"></action>
 </package>
 </struts>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
+import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcbb.server.GcbbServer;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
@@ -26,5 +27,10 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 	@Override
 	public List<GcgjJd> selShuihJdbb(Xmbb xmbb) {
 		return queryList("selShuihJdbb",xmbb);
+	}
+
+	@Override
+	public List<GcsjJd> selGcsjJdbb(Xmbb xmbb) {
+		return queryList("selGcsjJdbb",xmbb);
 	}
 }
