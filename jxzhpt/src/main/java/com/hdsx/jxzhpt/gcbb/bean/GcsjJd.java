@@ -5,6 +5,9 @@ import java.util.List;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 
 public class GcsjJd {
+	public GcsjJd() {
+		super();
+	}
 	public GcsjJd(String jhid, String jsjsbz, String sjkgsj, String pftz,
 			String ljtsf, String ql, String ql_m, String hd, String sd,
 			String sd_m, String dc, String jc, String lqlm, String snlm,
@@ -58,6 +61,7 @@ public class GcsjJd {
 		this.xmmc = xmmc;
 	}
 	private String jhid;
+	private String jhnf;
 	private String jsjsbz;
 	private String sjkgsj;
 	private String pftz;
@@ -94,6 +98,8 @@ public class GcsjJd {
 	private String zjjcwcqk;
 	private String zjlqlmwcqk;
 	private String zjsnlmwcqk;
+	private String bnlqlmwcqk;
+	private String bnsnlmwcqk;
 	private String bz;
 	private String xmmc;
 	private List<Plan_lx_gcsj> gcsjlx;
@@ -336,5 +342,23 @@ public class GcsjJd {
 	}
 	public void setXmmc(String xmmc) {
 		this.xmmc = xmmc;
+	}
+	public String getJhnf() {
+		return jhnf;
+	}
+	public void setJhnf(String jhnf) {
+		this.jhnf = jhnf;
+	}
+	public String getBnlqlmwcqk() {
+		return bnlqlmwcqk;
+	}
+	public void setBnlqlmwcqk(String bnlqlmwcqk) {
+		this.bnlqlmwcqk = bnlqlmwcqk;
+	}
+	public String getBnsnlmwcqk() {
+		return bnsnlmwcqk;
+	}
+	public void setBnsnlmwcqk(String bnsnlmwcqk) {
+		this.bnsnlmwcqk = bnsnlmwcqk;
 	}
 }

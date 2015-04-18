@@ -106,6 +106,7 @@
 	</select>
 	<resultMap type="gcsjjd" id="sjjd">
 		<result property="jhid" column="jhid"/>
+		<result property="jhnf" column="jhnf"/>
 		<result property="jsjsbz" column="jsjsbz"/>
 		<result property="sjkgsj" column="sjkgsj"/>
 		<result property="pftz" column="pftz"/>
@@ -142,6 +143,8 @@
 		<result property="zjjcwcqk" column="zjjcwcqk"/>
 		<result property="zjlqlmwcqk" column="zjlqlmwcqk"/>
 		<result property="zjsnlmwcqk" column="zjsnlmwcqk"/>
+		<result property="bnlqlmwcqk" column="bnlqlmwcqk"/>
+		<result property="bnsnlmwcqk" column="bnsnlmwcqk"/>
 		<result property="bz" column="bz"/>
 		<result property="xmmc" column="xmmc"/>
 		<collection property="gcsjlx" column="jhid" javaType="ArrayList" ofType="plan_lx_gcsj" resultMap="sj_lx"/>
@@ -152,7 +155,7 @@
 		<result property="yjsdj" column="yjsdj"/>
 	</resultMap>
 	<select id="selGcsjJdbb" parameterType="xmbb" resultMap="sjjd">
-		select sj.id as jhid,sj.jsjsbz as jsjsbz,sj.sjkgsj as sjkgsj,
+		select sj.id as jhid,sj.jhnf as jhnf,sj.jsjsbz as jsjsbz,sj.sjkgsj as sjkgsj,
 		sj.pftz as pftz,sj.ljtsf as ljtsf,sj.ql as ql,sj.ql_m as ql_m,sj.hd as hd,sj.sd as sd,
 		sj.sd_m as sd_m,sj.dc as dc,sj.jc as jc,sj.lqlm as lqlm,sj.snlm as snlm,
 		(select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date('2015-4','yyyy-mm')) as bywcje,

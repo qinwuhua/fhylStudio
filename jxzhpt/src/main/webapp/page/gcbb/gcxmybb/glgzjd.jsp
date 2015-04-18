@@ -27,6 +27,7 @@
 		a:active {text-decoration: none;}
 		table {border-collapse:collapse;}
 		table thead tr td {text-align:center;font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
+		table tbody tr td {text-align:center;font-size:1em;border:1px solid black;padding:3px 7px 2px 7px;}
 		-->
 	</style>
 	<script type="text/javascript">
@@ -55,7 +56,68 @@
 				data:xmbb,
 				success:function(data){
 					$.each(data,function(index,item){
-						alert("项目名称："+item.xmmc+"路线有 "+item.gcsjlx.length+"条");
+						var tr="<tr>";
+						tr+="<td>"+(Number(index)+1)+"</td>";
+						var lxbm="",yjsdj="";//路线编码，原技术等级
+						var xmlc=0;//项目里程
+						$.each(item.gcsjlx,function(index,lx){
+							lxbm+=lx.lxbm;
+							yjsdj+=lx.yjsdj;
+							xmlc=Number(xmlc)+Number(lx.xmlc);
+							if(index!=item.gcsjlx.length-1){
+								lxbm+=",";
+							}
+						});
+						tr+="<td>"+lxbm+"</td>";
+						tr+="<td>"+item.xmmc+"</td>";
+						tr+="<td>"+item.jhnf+"</td>";
+						tr+="<td>"+xmlc+"</td>";
+						tr+="<td>"+yjsdj+"</td>";
+						tr+="<td>"+item.jsjsbz+"</td>";
+						tr+="<td>"+item.sjkgsj+"</td>";
+						tr+="<td>"+item.pftz+"</td>";
+						tr+="<td>"+item.ljtsf+"</td>";
+						tr+="<td>"+item.ql_m+"</td>";
+						tr+="<td>"+item.ql+"</td>";
+						tr+="<td>"+item.hd+"</td>";
+						tr+="<td>"+item.sd_m+"</td>";
+						tr+="<td>"+item.sd+"</td>";
+						tr+="<td>"+item.dc+"</td>";
+						tr+="<td>"+item.jc+"</td>";
+						tr+="<td>"+item.lqlm+"</td>";
+						tr+="<td>"+item.snlm+"</td>";
+						tr+="<td>"+item.bywcje+"</td>";
+						tr+="<td>"+Number(Number(item.bywcje)/Number(item.pftz)*100).toFixed(2)+"</td>";
+						tr+="<td>"+item.bywcljtsf+"</td>";
+						tr+="<td>"+item.byqlwcqk_ym+"</td>";
+						tr+="<td>"+item.byqlwcqk_z+"</td>";
+						tr+="<td>"+item.byhdwcqk_m+"</td>";
+						tr+="<td>"+item.bysdwcqk_ym+"</td>";
+						tr+="<td>"+item.bysdwcqk_z+"</td>";
+						tr+="<td>"+item.bydcwcqk+"</td>";
+						tr+="<td>"+item.byjcwcqk+"</td>";
+						tr+="<td>"+item.bylqlmwcqk+"</td>";
+						tr+="<td>"+item.bysnlmwcqk+"</td>";
+						tr+="<td>"+item.zjwcje+"</td>";
+						tr+="<td>"+Number(Number(item.zjwcje)/Number(item.pftz)*100).toFixed(2)+"</td>";
+						tr+="<td>"+item.zjwcljtsf+"</td>";
+						tr+="<td>"+item.zjqlwcqk_ym+"</td>";
+						tr+="<td>"+item.zjqlwcqk_z+"</td>";
+						tr+="<td>"+item.zjhdwcqk_m+"</td>";
+						tr+="<td>"+item.zjsdwcqk_ym+"</td>";
+						tr+="<td>"+item.zjsdwcqk_z+"</td>";
+						tr+="<td>"+item.zjdcwcqk+"</td>";
+						tr+="<td>"+item.zjjcwcqk+"</td>";
+						tr+="<td>"+item.zjlqlmwcqk+"</td>";
+						tr+="<td>"+item.zjsnlmwcqk+"</td>";
+						
+						tr+="<td>"+item.bnwcje+"</td>";
+						tr+="<td>"+Number(Number(item.bnwcje)/Number(item.pftz)*100).toFixed(2)+"</td>";
+						tr+="<td>"+item.bnlqlmwcqk+"</td>";
+						tr+="<td>"+item.bnsnlmwcqk+"</td>";
+						tr+="<td>"+item.bz+"</td>";
+						tr+="</tr>";
+						$('#tbody_gcgj').append(tr);
 					});
 				},
 				error:function(e){
@@ -139,7 +201,7 @@
 										<td rowspan="3">序号</td>
 										<td rowspan="3">路线编码</td>
 										<td rowspan="3">项目名称</td>
-										<td rowspan="3">年度计划</td>
+										<td rowspan="3">计划年度</td>
 										<td rowspan="3">改造公里（公里）</td>
 										<td rowspan="3">原技术等级</td>
 										<td rowspan="3">建设技术标准</td>
@@ -204,7 +266,7 @@
 										<td>水泥路面</td>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tbody_gcgj">
 								
 								</tbody>
 							</table>
