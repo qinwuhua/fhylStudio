@@ -595,7 +595,7 @@
 	<select id="getwqgzbblist1" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			' ' qlmc,'总计' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' 'xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr
 		from
@@ -605,7 +605,7 @@
 			  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
-			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm
+			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
 			(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
 			(select jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_wqgz jz where jz.sbyf=#{sbyf}) jz1,
@@ -624,7 +624,7 @@
 				and lxmc like '%'||trim(#{lxmc})||'%'
 		</if>
 		<if test="qlmc != null and  qlmc != ''">
-				and qlmc like '%'||trim(#{qlmc})||'%'
+				and xmmc like '%'||trim(#{qlmc})||'%'
 		</if>
 		<if test="tiaojian != null and  tiaojian != ''">
 				and lxbm like trim(#{tiaojian})||'%'
@@ -633,7 +633,7 @@
 	<select id="getwqgzbblist2" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			' ' qlmc,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' 'xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from
@@ -643,7 +643,7 @@
 			  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
-			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm
+			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
 			(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
 			(select jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_wqgz jz where jz.sbyf=#{sbyf}) jz1,
@@ -662,7 +662,7 @@
 				and lxmc like '%'||trim(#{lxmc})||'%'
 		</if>
 		<if test="qlmc != null and  qlmc != ''">
-				and qlmc like '%'||trim(#{qlmc})||'%'
+				and xmmc like '%'||trim(#{qlmc})||'%'
 		</if>
 		<if test="tiaojian != null and  tiaojian != ''">
 				and lxbm like trim(#{tiaojian})||'%'
@@ -672,7 +672,7 @@
 	<select id="getwqgzbblist3" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			' ' qlmc,xdnf||'年项目' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' 'xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,xdnf,substr(xzqhdm,0,4) xzqh
 		from
@@ -682,7 +682,7 @@
 			  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
-			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm
+			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
 			(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
 			(select jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_wqgz jz where jz.sbyf=#{sbyf}) jz1,
@@ -701,7 +701,7 @@
 				and lxmc like '%'||trim(#{lxmc})||'%'
 		</if>
 		<if test="qlmc != null and  qlmc != ''">
-				and qlmc like '%'||trim(#{qlmc})||'%'
+				and xmmc like '%'||trim(#{qlmc})||'%'
 		</if>
 		<if test="tiaojian != null and  tiaojian != ''">
 				and lxbm like trim(#{tiaojian})||'%'
@@ -718,7 +718,7 @@
 			  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
 			  decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
-			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm
+			  to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
 			(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
 			(select jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_wqgz jz where jz.sbyf=#{sbyf}) jz1,
@@ -737,7 +737,305 @@
 				and lxmc like '%'||trim(#{lxmc})||'%'
 		</if>
 		<if test="qlmc != null and  qlmc != ''">
-				and qlmc like '%'||trim(#{qlmc})||'%'
+				and xmmc like '%'||trim(#{qlmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		order by substr(xzqhdm,0,4),xdnf
+	</select>
+	<select id="getabgcbblist1" parameterType="gcglabgc" resultType="hashmap">
+		select
+			 ' ' lxbm,'总计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
+			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr
+		from(
+				select
+				  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
+				  to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+				  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+				  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+				from xmk_abgc xm,sck_abgc sc,plan_abgc p,
+				(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+				(select jz.bywc_c bywcc,jz.bywc_gl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_abgc jz where jz.sbyf=#{sbyf}) jz1,
+				(select sum(jz.bywc_c) yywcc,sum(jz.bywc_gl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+				(select sum(jz.bywc_c) kgwcc,sum(jz.bywc_gl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+				(select jhid,sbyf from gcgl_abgc where sbyf='2015-4' group by jhid,sbyf) y
+				where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+			)	
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+	</select>
+	<select id="getabgcbblist2" parameterType="gcglabgc" resultType="hashmap">
+		select
+			 ' ' lxbm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
+			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
+		from(
+				select
+				  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
+				  to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+				  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+				  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+				from xmk_abgc xm,sck_abgc sc,plan_abgc p,
+				(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+				(select jz.bywc_c bywcc,jz.bywc_gl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_abgc jz where jz.sbyf=#{sbyf}) jz1,
+				(select sum(jz.bywc_c) yywcc,sum(jz.bywc_gl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+				(select sum(jz.bywc_c) kgwcc,sum(jz.bywc_gl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+				(select jhid,sbyf from gcgl_abgc where sbyf='2015-4' group by jhid,sbyf) y
+				where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+			)	
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		group by substr(xzqhdm,0,4) order by substr(xzqhdm,0,4)
+	</select>
+	<select id="getabgcbblist3" parameterType="gcglabgc" resultType="hashmap">
+		select
+			 ' ' lxbm,xdnf||'年项目' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
+			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
+		from(
+				select
+				  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
+				  to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+				  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+				  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+				from xmk_abgc xm,sck_abgc sc,plan_abgc p,
+				(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+				(select jz.bywc_c bywcc,jz.bywc_gl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_abgc jz where jz.sbyf=#{sbyf}) jz1,
+				(select sum(jz.bywc_c) yywcc,sum(jz.bywc_gl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+				(select sum(jz.bywc_c) kgwcc,sum(jz.bywc_gl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+				(select jhid,sbyf from gcgl_abgc where sbyf='2015-4' group by jhid,sbyf) y
+				where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+			)	
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		group by substr(xzqhdm,0,4),xdnf order by substr(xzqhdm,0,4),xdnf
+	</select>
+	<select id="getabgcbblist4" parameterType="gcglabgc" resultType="hashmap">
+		select
+			substr(xzqhdm,0,4) xzqh,tt.*
+		from(
+				select
+				  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
+				  to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
+				  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+				  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+				from xmk_abgc xm,sck_abgc sc,plan_abgc p,
+				(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+				(select jz.bywc_c bywcc,jz.bywc_gl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_abgc jz where jz.sbyf=#{sbyf}) jz1,
+				(select sum(jz.bywc_c) yywcc,sum(jz.bywc_gl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+				(select sum(jz.bywc_c) kgwcc,sum(jz.bywc_gl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_abgc jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+				(select jhid,sbyf from gcgl_abgc where sbyf='2015-4' group by jhid,sbyf) y
+				where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+			)	tt
+			where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		order by substr(xzqhdm,0,4),xdnf
+	</select>
+	<select id="getzhfzbblist1" parameterType="gcglzhfz" resultType="hashmap">
+		select
+			' ' lxbm,'总计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
+			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr
+		from(
+			select
+		  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
+		  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+		from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
+		(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+		(select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
+		(select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from  gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+		(select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+		(select jhid,sbyf from gcgl_zhfz where sbyf='2015-4' group by jhid,sbyf) y
+		where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+		)
+		where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+	</select>
+	<select id="getzhfzbblist2" parameterType="gcglzhfz" resultType="hashmap">
+		select
+			' ' lxbm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
+			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
+		from(
+			select
+		  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
+		  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+		from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
+		(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+		(select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
+		(select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+		(select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+		(select jhid,sbyf from gcgl_zhfz where sbyf='2015-4' group by jhid,sbyf) y
+		where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+		)
+		where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		group by substr(xzqhdm,0,4) order by substr(xzqhdm,0,4)
+	</select>
+	<select id="getzhfzbblist3" parameterType="gcglzhfz" resultType="hashmap">
+		select
+			' ' lxbm,xdnf||'年项目' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
+			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
+			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
+		from(
+			select
+		  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
+		  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+		from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
+		(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+		(select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
+		(select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+		(select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+		(select jhid,sbyf from gcgl_zhfz where sbyf='2015-4' group by jhid,sbyf) y
+		where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+		)
+		where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		group by substr(xzqhdm,0,4),xdnf order by substr(xzqhdm,0,4),xdnf
+	</select>
+	<select id="getzhfzbblist4" parameterType="gcglzhfz" resultType="hashmap">
+		select
+			substr(xzqhdm,0,4) xzqh,tt.*
+		from(
+			select
+		  xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
+		  jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+		  xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
+		from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
+		(select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
+		(select jz.bywcgl bywcgl,jz.wc_btz+jz.wc_stz+jz.wc_qttz byhj,jz.wc_btz bybtz,jz.wc_stz bystz,jz.jhid from gcgl_zhfz jz where jz.sbyf=#{sbyf}) jz1,
+		(select sum(jz.bywcgl) yywcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) yyhj,sum(jz.wc_btz) yybtz,sum(jz.wc_stz) yystz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')>=to_date(substr(#{sbyf},0,4)||'-1','yyyy-mm') and to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz2,
+		(select sum(jz.bywcgl) kgwcgl,sum(jz.wc_btz)+sum(jz.wc_stz)+sum(jz.wc_qttz) kghj,sum(jz.wc_btz) kgbtz,sum(jz.wc_stz) kgstz,jz.jhid from gcgl_zhfz jz where to_date(jz.sbyf,'yyyy-mm')&lt;=to_date(#{sbyf},'yyyy-mm') group by jz.jhid) jz3,
+		(select jhid,sbyf from gcgl_zhfz where sbyf='2015-4' group by jhid,sbyf) y
+		where xm.id=sc.xmkid and sc.sckid=p.sckid and p.id=zj1.xmid and p.sckid=jz1.jhid and p.sckid=jz2.jhid and p.sckid=jz3.jhid and y.jhid=p.sckid and y.sbyf is not null
+		) tt
+		where 1=1 
+		<if test="gydw != null and  gydw != ''">
+				and gydw like '%'||trim(#{gydw})||'%'
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="xmmc != null and  xmmc != ''">
+				and xmmc like '%'||trim(#{xmmc})||'%'
 		</if>
 		<if test="tiaojian != null and  tiaojian != ''">
 				and lxbm like trim(#{tiaojian})||'%'

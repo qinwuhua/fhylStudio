@@ -386,8 +386,6 @@ public class GcybbController extends BaseActionSupport{
 	 * 安保工程
 	 */
 	public void getAbgcybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
 		gcglabgc.setSbyf(shijian);
 		if("36".equals(gydw)){
@@ -397,57 +395,31 @@ public class GcybbController extends BaseActionSupport{
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setTiaojian(xzdj);
 		gcglabgc.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getabgcybb(gcglabgc);
-		Excel_list e1=gcybbServer.getabgclist1(gcglabgc);
-		if(e1!=null){
-			e1.setV_0("总计");
-			exl.add(e1);
-		}
-		int maxnian=0;
-		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getAbgcxzqh(gcglabgc);//查行政区划
-		if(lsit1.size()!=0)
-		for (Map<String, Object> map : lsit1) {
-			gcglabgc.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getabgclist3(gcglabgc);
-			if(e3!=null){
-				if("景德镇".equals(map.get("XZQHMC").toString())){
-					e3.setV_0(map.get("XZQHMC").toString()+"市");
-				}
-				else e3.setV_0(map.get("XZQHMC").toString());
-				exl1.add(e3);
-			}
-			List<Map<String, Object>> lsit2=gcybbServer.getAbgcnf(gcglabgc);//查年份
-			if(lsit2.size()!=0)
-			for (Map<String, Object> map2 : lsit2) {
-				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				gcglabgc.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
-				e2.setV_0(map2.get("XMNF").toString()+"项目");
-				if(e2!=null)
-				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getabgclist4(gcglabgc);
-				if(exl2.size()!=0)
-				exl1.addAll(exl2);
-			}
-		}
-		for (int i = minnian; i <= maxnian; i++) {
-			gcglabgc.setXzqhmc("");
-			gcglabgc.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
-			if(e2!=null){
-				e2.setV_0(i+"年项目");
-				exl.add(e2);
-			}
-		}
-		exl.addAll(exl1);
+		gcglabgc.setXmnf(xmnf);
+		gcglabgc.setXmmc(xmmc);
+		//查总合list
 		try {
-			JsonUtils.write(exl, getresponse().getWriter());
+		List<Map<String,Object>> list1=gcybbServer.getabgcbblist1(gcglabgc);
+		//按行政区划查询每个行政区划的合list
+		List<Map<String,Object>> list2=gcybbServer.getabgcbblist2(gcglabgc);
+		//按行政区划和年份查每个行政区划下每个年份的合
+		List<Map<String,Object>> list3=gcybbServer.getabgcbblist3(gcglabgc);
+		//查询所有列表
+		List<Map<String,Object>> list4=gcybbServer.getabgcbblist4(gcglabgc);
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
+					list1.add(map1);
+					for (Map<String, Object> map2 : list4) {
+						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
+							list1.add(map2);
+						}
+					}
+				}
+			}
+		}
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -575,8 +547,6 @@ public class GcybbController extends BaseActionSupport{
 	 * 灾害
 	 */
 	public void getZhfzybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
 		gcglzhfz.setSbyf(shijian);
 		if("36".equals(gydw)){
@@ -586,57 +556,31 @@ public class GcybbController extends BaseActionSupport{
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setTiaojian(xzdj);
 		gcglzhfz.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getzhfzybb(gcglzhfz);
-		Excel_list e1=gcybbServer.getzhfzlist1(gcglzhfz);
-		if(e1!=null){
-			e1.setV_0("总计");
-			exl.add(e1);
-		}
-		int maxnian=0;
-		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getZhfzxzqh(gcglzhfz);//查行政区划
-		if(lsit1.size()!=0)
-		for (Map<String, Object> map : lsit1) {
-			gcglzhfz.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getzhfzlist1(gcglzhfz);
-			if(e3!=null){
-				if("景德镇".equals(map.get("XZQHMC").toString())){
-					e3.setV_0(map.get("XZQHMC").toString()+"市");
-				}
-				else e3.setV_0(map.get("XZQHMC").toString());
-				exl1.add(e3);
-			}
-			List<Map<String, Object>> lsit2=gcybbServer.getZhfznf(gcglzhfz);//查年份
-			if(lsit2.size()!=0)
-			for (Map<String, Object> map2 : lsit2) {
-				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				gcglzhfz.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
-				e2.setV_0(map2.get("XMNF").toString()+"项目");
-				if(e2!=null)
-				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getzhfzlist2(gcglzhfz);
-				if(exl2.size()!=0)
-				exl1.addAll(exl2);
-			}
-		}
-		for (int i = minnian; i <= maxnian; i++) {
-			gcglzhfz.setXzqhmc("");
-			gcglzhfz.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
-			if(e2!=null){
-				e2.setV_0(i+"年项目");
-				exl.add(e2);
-			}
-		}
-		exl.addAll(exl1);
+		gcglzhfz.setXmnf(xmnf);
+		gcglzhfz.setXmmc(xmmc);
+		//查总合list
 		try {
-			JsonUtils.write(exl, getresponse().getWriter());
+		List<Map<String,Object>> list1=gcybbServer.getzhfzbblist1(gcglzhfz);
+		//按行政区划查询每个行政区划的合list
+		List<Map<String,Object>> list2=gcybbServer.getzhfzbblist2(gcglzhfz);
+		//按行政区划和年份查每个行政区划下每个年份的合
+		List<Map<String,Object>> list3=gcybbServer.getzhfzbblist3(gcglzhfz);
+		//查询所有列表
+		List<Map<String,Object>> list4=gcybbServer.getzhfzbblist4(gcglzhfz);
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
+					list1.add(map1);
+					for (Map<String, Object> map2 : list4) {
+						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
+							list1.add(map2);
+						}
+					}
+				}
+			}
+		}
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

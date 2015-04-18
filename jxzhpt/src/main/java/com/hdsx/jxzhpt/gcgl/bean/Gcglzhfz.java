@@ -107,13 +107,19 @@ public class Gcglzhfz implements Serializable {
 	private String xjzt;
 	private String sjzt;
 	private String sjsh;
-	
+	private String xmmc;
 	private int page;
 	private int rows;
 	
 	private String yhtype;
 	private String stz;
 	
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
 	public String getStz() {
 		return stz;
 	}

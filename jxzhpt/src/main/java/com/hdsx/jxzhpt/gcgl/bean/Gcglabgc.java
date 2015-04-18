@@ -119,7 +119,14 @@ public class Gcglabgc implements Serializable {
 	private String sjsh;
 	private String yhtype;
 	private String stz;
+	private String xmmc;
 	
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
 	public String getStz() {
 		return stz;
 	}
