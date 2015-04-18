@@ -805,7 +805,7 @@
 		<if test="wbf != null and  wbf != ''">
 				and wbfzj ${wbf}
 		</if>
-		order by substr(xmlx,0,1),substr(xzqhdm,0,4)
+		order by substr(xmlx,0,1),substr(xzqhdm,0,4),xdnf
 	</select>
 	<!-- 养护大中修重做 -->
 	<select id="getyhbblist1" parameterType="xmbb" resultType="hashmap">

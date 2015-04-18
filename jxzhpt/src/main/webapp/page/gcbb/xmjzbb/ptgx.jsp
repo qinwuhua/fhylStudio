@@ -80,21 +80,18 @@
 								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
 								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
 							}else{
-							//	var j=msg[i].SL;
-							//	tbodystr=tbodystr+"<tr><td rowspan="+j+">"+msg[i].XH+"</td><td>"
-								tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
-								+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
-								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
-								+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
-								+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
-								+msg[i].BFZJ+"</td><td>"+msg[i].WBFZJ+"</td><td>"
-								+msg[i].JSZT+"</td><td>"+msg[i].DC+"</td><td>"
-								+msg[i].JC+"</td><td>"+msg[i].WGLC+"</td><td>"
-								+msg[i].WKGLC+"</td><td>"+msg[i].SJKGSJ+"</td><td>"
-								+msg[i].SFQXKG+"</td><td>"+msg[i].KGDL+"</td><td>"
-								+msg[i].SJWGSJ+"</td><td>"+msg[i].YJWGSJ+"</td><td>"
-								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
-								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+							var j=msg[i].SL;
+							var ybf=0;
+							var wbf=0;
+							var sum=0;
+							for(var k=0;k<j;k++)
+								{
+									if(k==0){
+										if(msg[i].BFZJ>=msg[i].JHXDZJ) {ybf=msg[i].JHXDZJ;wbf=0;sum=msg[i].JHXDZJ;}
+									}
+									
+								tbodystr=tbodystr+"<tr><td rowspan="+j+">"+msg[i].XH+"</td><td>"
+								}	
 							}
 						}
 						tbody.append(tbodystr);

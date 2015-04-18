@@ -23,11 +23,13 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
+			loadBmbm2("xzdj","公路等级");
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$("#yf"+m).attr("selected","selected");
 			showAll();
@@ -35,11 +37,12 @@
 		function showAll(){
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
+			var xmnf=$("#ddlYear1").val();
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
-			var xzdj=$("#xzdj").val();
+			var xzdj=$("#xzdj").combobox("getValue");
 			var lxmc=$("#lxmc").val();
-			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getAbgcybb.do",
@@ -53,41 +56,41 @@
 					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].v_1==''){
-								tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
-										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+							if(msg[i].LXBM==' '){
+								tbody.append("<tr><td colspan='2'>"+msg[i].LXMC+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
+										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
+										+msg[i].BNSTZ+"</td><td>"+msg[i].YHLX+"</td><td>"
+										+msg[i].JSXZ+"</td><td>"+msg[i].JHC+"</td><td>"
+										+msg[i].JHGL+"</td><td>"+msg[i].JHKGN+"</td><td>"
+										+msg[i].JHWGN+"</td><td>"+msg[i].BYWCC+"</td><td>"
+										+msg[i].BYWCGL+"</td><td>"+msg[i].YYWCC+"</td><td>"
+										+msg[i].YYWCGL+"</td><td>"+msg[i].KGWCC+"</td><td>"
+										+msg[i].KGWCGL+"</td><td>"+msg[i].BYHJ+"</td><td>"
+										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
+										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
+										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
+										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
+										+msg[i].JSNR+"</td></tr>"
 								);
 							}else{
-								tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+								tbody.append("<tr><td>"+msg[i].LXBM+"</td><td>"+msg[i].LXMC+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
+										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
+										+msg[i].BNSTZ+"</td><td>"+msg[i].YHLX+"</td><td>"
+										+msg[i].JSXZ+"</td><td>"+msg[i].JHC+"</td><td>"
+										+msg[i].JHGL+"</td><td>"+msg[i].JHKGN+"</td><td>"
+										+msg[i].JHWGN+"</td><td>"+msg[i].BYWCC+"</td><td>"
+										+msg[i].BYWCGL+"</td><td>"+msg[i].YYWCC+"</td><td>"
+										+msg[i].YYWCGL+"</td><td>"+msg[i].KGWCC+"</td><td>"
+										+msg[i].KGWCGL+"</td><td>"+msg[i].BYHJ+"</td><td>"
+										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
+										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
+										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
+										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
+										+msg[i].JSNR+"</td></tr>"
 								);
 							}
 						}
@@ -178,12 +181,9 @@ table tbody tr td {
 						</select>
         				<span>项目名称：</span>
         				<input id="xmmc" type="text"  style="width: 100px">		
-<!--         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<!-- 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-<%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
-<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" /> --%>
-<%-- 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'" --%>
-<%--                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="aqgltj()" style="vertical-align: -50%;" /> --%>
+        				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
         					</p>
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
@@ -191,24 +191,22 @@ table tbody tr td {
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
         						<span>行政等级：</span>
-        						<select id="xzdj" style="width:50px;">
-        							<option value="">全部</option>
-        							<option value="G">国道</option>
-        							<option value="S">省道</option>
-        							<option value="X">县道</option>
-        							<option value="Y">乡道</option>
-        							<option value="C">村道</option>
-        							<option value="Z">专道</option>
-        						</select>
+        						<input type="text" id="xzdj" style="width:50px;">
+<!--         						<select id="xzdj" style="width:50px;"> -->
+<!--         							<option value="">全部</option> -->
+<!--         							<option value="G">国道</option> -->
+<!--         							<option value="S">省道</option> -->
+<!--         							<option value="X">县道</option> -->
+<!--         							<option value="Y">乡道</option> -->
+<!--         							<option value="C">村道</option> -->
+<!--         							<option value="Z">专道</option> -->
+<!--         						</select> -->
         						<span>路线名称：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
-        					</p>			
+        					</p>         		
         				</div>
         			</fieldset>
         		</td>
