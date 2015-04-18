@@ -146,6 +146,30 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		// TODO Auto-generated method stub
 		return queryList("getShybb", gcglsh);
 	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist1(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist1", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist2(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist2", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist3(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist3", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist4(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist4", gcglwqgz);
+	}
 	
 	
 	

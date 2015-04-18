@@ -80,7 +80,7 @@
 										);
 							}else{
 								if(msg[i].HB=='是1'){
-									if(msg[i].SZDS=="1（一）国道"){
+									//if(msg[i].SZDS=="1（一）国道"){
 										tbody.append("<tr><td>"+' '+"</td><td colspan='2'>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td>"
 												+msg[i].XMMC+"</td><td>"
 												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
@@ -94,7 +94,7 @@
 												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
 												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 												);
-									}else{
+								/*	}else{
 										tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td></td><td>"
 												+msg[i].XMMC+"</td><td>"
 												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
@@ -108,7 +108,7 @@
 												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
 												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 												);
-									}
+									}*/
 								}else{
 									tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
 											+msg[i].XMMC+"</td><td>"

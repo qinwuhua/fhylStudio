@@ -56,4 +56,12 @@ public interface GcybbServer {
 
 	List<Map<String, Object>> getShybb(Gcglsh gcglsh);
 
+	List<Map<String, Object>> getwqgzbblist1(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist2(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist3(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist4(Gcglwqgz gcglwqgz);
+
 }
