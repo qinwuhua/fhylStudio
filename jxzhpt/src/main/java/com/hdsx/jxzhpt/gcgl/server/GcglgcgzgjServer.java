@@ -74,5 +74,11 @@ public interface GcglgcgzgjServer {
 
 	List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj);
 
+	boolean updatagjSFQX(Gcglgcgzgj gcglgcgzgj);
+
+	boolean updatasjSFQX(Gcglgcgzgj gcglgcgzgj);
+
+	boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj);
+
 
 }

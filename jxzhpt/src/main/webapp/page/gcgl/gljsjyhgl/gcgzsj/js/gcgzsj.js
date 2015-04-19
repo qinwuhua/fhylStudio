@@ -1,5 +1,27 @@
 var obj=new Object();
 var obj1=new Object();
+function sfqxkg(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var sfqxkg='是';
+	if(data1.sfqxkg=='是')
+		sfqxkg='否';
+	if(data1.sfqxkg=='否')
+		sfqxkg='是';
+	var data="flag="+"gcsj"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.id;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/updataSFQX.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				$("#datagrid").datagrid('reload');
+			}else{
+				alert('失败！');
+			}
+		}
+	});	
+}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationXm(data.lxbm,"");
@@ -289,8 +311,8 @@ function showAll(){
   	        	}else
   	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'未完工   ';
   	        }},
-	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="#" onclick="Showybxx()">否</a>    ';
+  	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.sfqxkg+'</a>    ';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},

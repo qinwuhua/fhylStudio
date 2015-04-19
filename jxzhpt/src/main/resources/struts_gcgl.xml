@@ -153,6 +153,7 @@
 	<action name="selectGcgzgjjhFile" class="gcglgcgzgjController" method="selectGcgzgjjhFile"/>
 	<action name="deleteGcgzgjFile" class="gcglgcgzgjController" method="deleteGcgzgjFile"/>
 	<action name="sbGcgzgjYb" class="gcglgcgzgjController" method="sbGcgzgjYb"/>
+	<action name="updataSFQX" class="gcglgcgzgjController" method="updataSFQX"/>
 	
 	<!-- gcgzsj -->
 	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>

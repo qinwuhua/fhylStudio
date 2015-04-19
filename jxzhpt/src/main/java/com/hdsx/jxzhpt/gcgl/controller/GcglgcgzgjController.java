@@ -71,7 +71,14 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
+	private String flag;
 	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 	public String getXmnf() {
 		return xmnf;
 	}
@@ -549,5 +556,22 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-		}		
+		}
+		public void updataSFQX(){
+			boolean fanhui=false;
+		try{
+			if("gcgj".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatagjSFQX(gcglgcgzgj);
+			}
+			if("gcsj".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatasjSFQX(gcglgcgzgj);		
+			}
+			if("sh".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatashSFQX(gcglgcgzgj);
+			}
+			JsonUtils.write(fanhui, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		}
 }

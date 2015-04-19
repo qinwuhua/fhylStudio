@@ -247,6 +247,7 @@
 		<result property="gkbgmc" column="gkbgmc"/>
 		<result property="sjsgtmc" column="sjsgtmc"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="sfqxkg" column="sfqxkg"/>
 		<collection property="shuihs" ofType="plan_lx_shuih" resultMap="shuih_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_shuih" id="shuih_lx">
@@ -268,7 +269,7 @@
 	<select id="queryGcgjList"  parameterType="gcglsh" resultMap="shuih_jh">
 	select * from (
 			select rownum as num,t.* from (	
-				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,jh.sfqxkg,
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id 
 			where 1=1 and spzt='1'

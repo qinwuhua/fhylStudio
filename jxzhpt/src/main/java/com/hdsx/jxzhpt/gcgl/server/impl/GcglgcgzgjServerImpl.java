@@ -329,5 +329,32 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		return queryList("selectWqgzjhList2", gcglgcgzgj);
 	}
 
+	@Override
+	public boolean updatagjSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatagjSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updatasjSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatasjSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatashSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	
 }

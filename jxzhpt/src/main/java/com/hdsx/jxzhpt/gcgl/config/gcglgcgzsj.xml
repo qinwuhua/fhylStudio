@@ -321,6 +321,7 @@
 		<result property="tzgs" column="tzgs"/>
 		<result property="jsxz" column="jsxz"/>
 		<result property="jsnr" column="jsnr"/>
+		<result property="sfqxkg" column="sfqxkg"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="sfylsjl" column="sfylsjl"/>
 		<collection property="plan_lx_gcsjs" ofType="plan_lx_gcsj" resultMap="gcsj_lx"/>
@@ -360,7 +361,7 @@
 	select * from (
 		select rownum as num,t.* from (
 			select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
-			jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
+			jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,jh.sfqxkg,
 			lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 		 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			where 1=1 and spzt='1'
