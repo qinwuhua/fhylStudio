@@ -65,7 +65,50 @@
 					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].SL==1){
+							if(msg[i].SL>1){
+								var j=msg[i].SL;
+								var ybf=0;
+								var wbf=0;
+								var sum=0;
+								for(var k=0;k<j;k++)
+									{
+										if(msg[i].BFZJ-sum>0 && msg[i].BFZJ-sum>=msg[i+k].JHXDZJ){
+											ybf=msg[i+k].JHXDZJ;
+											wbf=0;
+											sum=sum+msg[i+k].JHXDZJ;
+										}else if(msg[i].BFZJ-sum>0 && msg[i].BFZJ-sum<msg[i+k].JHXDZJ){
+											ybf=msg[i].BFZJ-sum;
+											wbf=msg[i+k].JHXDZJ-(msg[i].BFZJ-sum);
+											sum=sum+msg[i+k].JHXDZJ;
+										}else{
+											ybf=0;
+											wbf=msg[i+k].JHXDZJ;
+											sum=sum+msg[i+k].JHXDZJ;
+										}
+									
+									   if(k==0){
+										   tbodystr=tbodystr+"<tr><td  rowspan="+j+">"+msg[i].XH+"</td><td  rowspan="+j+">"+msg[i].XMMC+"</td><td  rowspan="+j+">"
+											+msg[i].XZQHMC+"</td><td  rowspan="+j+">"+msg[i].TSDQ+"</td><td>"
+											+msg[i].XDNF+"</td><td  rowspan="+j+">"+msg[i].QDZH+"</td><td  rowspan="+j+">"
+											+msg[i].ZDZH+"</td><td  rowspan="+j+">"+msg[i].YHLC+"</td><td  rowspan="+j+">"
+											+msg[i].PFZTZ+"</td><td>"+msg[i].JHXDZJ+"</td><td>"
+											+ybf+"</td><td>"+wbf+"</td><td  rowspan="+j+">"
+											+msg[i].JSZT+"</td><td  rowspan="+j+">"+msg[i].DC+"</td><td  rowspan="+j+">"
+											+msg[i].JC+"</td><td  rowspan="+j+">"+msg[i].WGLC+"</td><td  rowspan="+j+">"
+											+msg[i].WKGLC+"</td><td  rowspan="+j+">"+msg[i].SJKGSJ+"</td><td  rowspan="+j+">"
+											+msg[i].SFQXKG+"</td><td  rowspan="+j+">"+msg[i].KGDL+"</td><td  rowspan="+j+">"
+											+msg[i].SJWGSJ+"</td><td  rowspan="+j+">"+msg[i].YJWGSJ+"</td><td  rowspan="+j+">"
+											+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
+											+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
+										}else{
+											tbodystr=tbodystr+"<tr><td  >"+msg[i+k].XDNF+"</td><td  >"
+											+msg[i+k].JHXDZJ+"</td><td  >"+ybf+"</td><td  >"
+											+wbf+"</td><td  >"+msg[i+k].XDWH+"</td><td  >"
+											+msg[i+k].XGCSYJ+"</td><td  >"+msg[i+k].CSCYJ+"</td></tr>";
+										}
+									}	
+								i=i+j-1;
+							}else{
 								tbodystr=tbodystr+"<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XMMC+"</td><td>"
 								+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
 								+msg[i].XDNF+"</td><td>"+msg[i].QDZH+"</td><td>"
@@ -79,19 +122,6 @@
 								+msg[i].SJWGSJ+"</td><td>"+msg[i].YJWGSJ+"</td><td>"
 								+msg[i].QKSM+"</td><td>"+msg[i].XDWH+"</td><td>"
 								+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>";
-							}else{
-							var j=msg[i].SL;
-							var ybf=0;
-							var wbf=0;
-							var sum=0;
-							for(var k=0;k<j;k++)
-								{
-									if(k==0){
-										if(msg[i].BFZJ>=msg[i].JHXDZJ) {ybf=msg[i].JHXDZJ;wbf=0;sum=msg[i].JHXDZJ;}
-									}
-									
-								tbodystr=tbodystr+"<tr><td rowspan="+j+">"+msg[i].XH+"</td><td>"
-								}	
 							}
 						}
 						tbody.append(tbodystr);

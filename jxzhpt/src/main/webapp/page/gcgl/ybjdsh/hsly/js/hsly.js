@@ -59,7 +59,7 @@ function showAll(){
 	var xzqhdm='36';
 	var gydwdm=$("#gydw").combobox("getValue");
 	var jgzt='0';
-	var kgzt='1';
+	var kgzt='';
 	var lxmc=$("#lxmc").val();
 	var yhjb=$.cookie("unit2").replace(/_/g,"");
 	var sfsj='';

@@ -90,7 +90,7 @@ function showAll(){
 	var gydw=$("#gydw").combobox("getValue");
 	if(gydw=='36'||gydw=='江西省')
 		gydw='';
-	var kgzt='1';
+	var kgzt='';
 	var jgzt='0';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();

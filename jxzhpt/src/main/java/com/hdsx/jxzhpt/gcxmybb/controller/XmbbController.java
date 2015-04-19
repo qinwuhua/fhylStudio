@@ -158,21 +158,26 @@ public class XmbbController extends BaseActionSupport{
 		for (Map<String, Object> map : list2) {
 			System.out.println(map.get("XMLX").toString().substring(0,1));
 			if(map.get("XMLX").toString().substring(0,1).equals(1+"")){
+				map.put("SL", 1);
 				map.put("XH", "(一)");
 			}
 			if(map.get("XMLX").toString().substring(0,1).equals(2+"")){
+				map.put("SL", 1);
 				map.put("XH", "(二)");
 			}
 			if(map.get("XMLX").toString().substring(0,1).equals(3+"")){
+				map.put("SL", 1);
 				map.put("XH", "(三)");
 			}
 			if(map.get("XMLX").toString().substring(0,1).equals(4+"")){
+				map.put("SL", 1);
 				map.put("XH", "二");
 			}
 			list1.add(map);
 			for (Map<String, Object> map1 : list3) {
 				if(map.get("XMLX").toString().equals(map1.get("XMLX").toString())){
-				list1.add(map1);
+					map1.put("SL", 1);
+				    list1.add(map1);
 				for (int i = 0; i < list4.size(); i++) {
 					if(map.get("XMLX").toString().equals(list4.get(i).get("XMLX").toString()))
 					list1.add(list4.get(i));

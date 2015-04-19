@@ -780,7 +780,10 @@
 	</select>
 	<select id="getptgxlist4" parameterType="xmbb" resultType="hashmap">
 		select t.*,' 'xh,m.sl from gljsxdjh_gsdgzxm t,(
-		select id,count(*) sl from gljsxdjh_gsdgzxm group by id) m where t.id=m.id
+		select id,count(*) sl from gljsxdjh_gsdgzxm
+		<if test="jhxdnf != null and  jhxdnf != ''">
+				where xdnf in (${jhxdnf}) 
+		</if>  group by id) m where t.id=m.id
 		<if test="gydw != null and  gydw != ''">
 				and gydw  like '%'||trim(#{gydw})||'%'
 		</if>
