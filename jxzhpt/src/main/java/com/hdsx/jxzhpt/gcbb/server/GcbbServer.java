@@ -25,4 +25,10 @@ public interface GcbbServer {
 	 * @return
 	 */
 	List<GcsjJd> selGcsjJdbb(Xmbb xmbb);
+	/**
+	 * 养护大中修报表
+	 * @param xmbb
+	 * @return
+	 */
+	List<GcsjJd> selYhdzxJdbb(Xmbb xmbb);
 }

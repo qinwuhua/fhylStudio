@@ -155,8 +155,8 @@
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;水毁重建进度报表</div>
-					</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;水毁重建进度报表</div>
+			</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">

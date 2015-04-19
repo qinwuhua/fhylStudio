@@ -64,6 +64,13 @@ public class Plan_yhdzx {
 	private String jh_sbthcd;//计划上报退回长度
 	private String sbbm;//上报部门
 	private String spbm;//审批部门
+	private String sjlmlx;//设计路面类型
+	public String getSjlmlx() {
+		return sjlmlx;
+	}
+	public void setSjlmlx(String sjlmlx) {
+		this.sjlmlx = sjlmlx;
+	}
 	public String getSbbm() {
 		return sbbm;
 	}

@@ -194,7 +194,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("tbsj", new Date());
 				map.put("tbbm", tbbmbm2);
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
-				map.put("14", map.get("14").toString().substring(0, map.get("14").toString().indexOf(".")));
+				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
 			}
 			System.out.println(data);
 			yhdzxServer.insertYhdzx_lx(data);

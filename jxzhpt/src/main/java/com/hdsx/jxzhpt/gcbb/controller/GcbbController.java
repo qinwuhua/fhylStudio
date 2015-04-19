@@ -47,6 +47,10 @@ public class GcbbController extends BaseActionSupport{
 		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
 		JsonUtils.write(gcsj, getresponse().getWriter());
 	}
+	public void selYhdzxJdbb() throws IOException, Exception{
+		List<GcsjJd> yhdzx=gcbbServer.selYhdzxJdbb(xmbb);
+		JsonUtils.write(yhdzx, getresponse().getWriter());
+	}
 	/***
 	 * 获取年份列表
 	 */
