@@ -80,4 +80,7 @@ public interface GcybbServer {
 
 	List<Map<String, Object>> getzhfzbblist4(Gcglzhfz gcglzhfz);
 
+	List<Map<String, Object>> getGjxjmxbsj(String sql);
+
+	
 }

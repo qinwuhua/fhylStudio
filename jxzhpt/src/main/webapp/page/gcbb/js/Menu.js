@@ -118,12 +118,18 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050208',
-		title:'公路改造工程新上、续建工程项目完成情况表',
+		title:'公路改造工程新上、续建工程项目完成情况汇总表',
 		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxj.jsp'
 	});
-
+	createMenux('LeftMenu',{
+		id:'menu_0101050209',
+		title:'公路改造工程新上、续建工程项目完成情况明细表',
+		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/glgzxjmxb.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050301',

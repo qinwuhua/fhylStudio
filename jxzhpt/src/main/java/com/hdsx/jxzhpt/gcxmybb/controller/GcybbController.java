@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -690,23 +691,69 @@ public class GcybbController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel
 	}
 	
-	/**
-	 * 水毁
-	 */
-	public void getShybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
-		String shijian=nf+"-"+yf;
-		gcglsh.setSbyf(shijian);
-		if("36".equals(gydw)){
-			gcglsh.setGydw("");
+	
+	//
+	public void getGjxjmxb(){
+		//System.out.println(gcglwqgz.getTiaojian()+"---"+gcglwqgz.getXmnf());
+		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		String tableName="";
+		try{
+			    if("路面升级".equals(gcglwqgz.getTiaojian()))
+			    	tableName="yb_sj";
+				
+				if("路面改造".equals(gcglwqgz.getTiaojian()))
+					tableName="yb_gj";
+				if("水毁".equals(gcglwqgz.getTiaojian()))
+					tableName="yb_sh";
+				
+				String[] arr=gcglwqgz.getXmnf().split(",");
+				String sql="select xzqhmc";
+				String in="";
+				for(int j=0;j<arr.length;j++){
+					if(j==0)
+					    in=in+"'"+arr[j]+"'";
+					else
+						in=in+",'"+arr[j]+"'";
+					sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',xmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmzj))) xmzj"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wclc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wclc))) wclc"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcxmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcxmzj))) wcxmzj"+arr[j]+"";
+				}
+				sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
+				System.out.println(sql);
+				list=gcybbServer.getGjxjmxbsj(sql);
+				for(int i=0;i<list.size();i++){
+					HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+					double xmsl=0;
+					double xmlc=0;
+					double xmzj=0;
+					double wclc=0;
+					double wcxmzj=0;
+					for(int j=arr.length-1;j>=0;j--){
+						xmsl=xmsl+Double.valueOf(hm.get("XMSL"+arr[j]).toString());
+						xmlc=xmlc+Double.valueOf(hm.get("XMLC"+arr[j]).toString());
+						xmzj=xmzj+Double.valueOf(hm.get("XMZJ"+arr[j]).toString());
+						wclc=wclc+Double.valueOf(hm.get("WCLC"+arr[j]).toString());
+						wcxmzj=wcxmzj+Double.valueOf(hm.get("WCXMZJ"+arr[j]).toString());
+						hm.put("LJWCLC"+arr[j],xmlc);
+					}
+				   hm.put("XMSL",xmsl);
+				   hm.put("XMLC",xmlc);
+				   hm.put("XMZJ",xmzj);
+				   hm.put("WCLC",wclc);
+				   hm.put("WCXMZJ",wcxmzj);
+				   hm.put("LJWCLC",wclc);
+				   hm.put("XH", i);
+				}
+				
+				for (Map<String, Object> map : list) {
+					System.out.println(map);
+				}
+
+				JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		else gcglsh.setGydw(gydw.replaceAll("0*$",""));
-		gcglsh.setLxmc(lxmc);
-		gcglsh.setTiaojian(xzdj);
-		gcglsh.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getShybb(gcglsh);
-		
-		
-	}
+	} 
 }

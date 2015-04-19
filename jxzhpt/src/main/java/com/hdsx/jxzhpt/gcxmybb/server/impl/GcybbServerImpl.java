@@ -219,4 +219,12 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		return queryList("getzhfzbblist4",gcglzhfz);
 	}
 
+	@Override
+	public List<Map<String, Object>> getGjxjmxbsj(String sql) {
+		// TODO Auto-generated method stub
+		return queryList("getGjxjmxbsj", sql);
+	}
+
+	
+
 }

@@ -711,7 +711,6 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		}
 		//公路建设下达计划
 		public void gljsxdList(){
-			System.out.println("111111111111");
 			try {
 			xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
 			xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));

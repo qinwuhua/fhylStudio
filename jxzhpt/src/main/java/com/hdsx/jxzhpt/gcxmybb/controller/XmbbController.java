@@ -128,6 +128,22 @@ public class XmbbController extends BaseActionSupport{
 		}
 		
 	}
+	public void setjhxdnf1(){
+		Calendar a=Calendar.getInstance();
+		int nian=a.get(Calendar.YEAR);
+		String json="";
+		String json1="[";
+		for (int i = nian; i >= 2011; i--) {
+				json=json+"{id:"+i+",text:"+i+"年,iconCls:'icon-none',checked:'true'},";
+		}
+		try {
+			JsonUtils.write(json1+json+"]", getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	public void settsdq(){
 		List<TreeNode> list=xmbbServer.gettsdq(xzqh.replaceAll("0*$",""));
 		int i=1;

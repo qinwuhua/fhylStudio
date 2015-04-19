@@ -4,6 +4,7 @@
 <struts>
 <package name="xmjzbb" extends="struts-default" namespace="/xmjzbb">
 	<action name="setjhxdnf" class="xmbbController" method="setjhxdnf"/>
+	<action name="setjhxdnf1" class="xmbbController" method="setjhxdnf1"/>
 	<action name="settsdq" class="xmbbController" method="settsdq"/>
 	<action name="getPtgxbb" class="xmbbController" method="getPtgxbb"/>
 	<action name="exportPtgx" class="xmbbController" method="exportPtgx"/>

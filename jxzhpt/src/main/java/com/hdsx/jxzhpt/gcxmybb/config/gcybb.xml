@@ -1042,4 +1042,8 @@
 		</if>
 		order by substr(xzqhdm,0,4),xdnf
 	</select>
+	<!--  -->
+	<select id="getGjxjmxbsj" parameterType="string" resultType="hashmap">
+		${value}
+	</select>
 </mapper>
