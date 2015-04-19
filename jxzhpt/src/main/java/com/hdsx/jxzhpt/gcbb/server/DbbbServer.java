@@ -1,10 +1,12 @@
 package com.hdsx.jxzhpt.gcbb.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -75,4 +77,5 @@ public interface DbbbServer {
 	List<SjbbMessage> exportExcel_zhjz(Jckwqgz wqgz);
 	//计划统计报表
 	List<Excel_list> gljsxdList(Jckwqgz wqgz);
+	List<Map<String, Object>> selectgljsxdList(Xmbb xmbb);
 }

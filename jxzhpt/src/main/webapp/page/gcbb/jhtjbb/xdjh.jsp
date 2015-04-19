@@ -54,29 +54,30 @@ table tbody tr td {
 $(function(){
 	loadUnit("gydw",$.cookie("unit"));
 	loadDist("xzqh",$.cookie("dist"));
+	loadBmbm2("xmlx","项目类型1");
 	xmnf('year');
 	startSearch();
 });
 function startSearch(){
-	var gydw="";
-	if($("#gydw").combobox("getValue")!='36'){
-		gydw=$("#gydw").combobox("getValue");
-	}
+	var data="xmbb.xzqh="+$("#xzqh").combobox("getValue")+"&xmbb.gydw="+$("#gydw").combobox("getValue")+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue");
+
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/dbbb/gljsxdList.do',
-		dataType:"json",
-		data:"xzqhdm="+$("#xzqh").combotree("getValue")+"&gydw="+gydw+"&xmnf="+$("#year").combobox("getValue"),
+		dataType:"JSON",
+		data:data,
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
 			if(msg.length!=0){
 				for(var i=0;i<msg.length;i++){
-							str+="<tr align='center'><td>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"+msg[i].v_8+"</td>"
-							+"<td>"+msg[i].v_9+"</td><td>"+(parseFloat(msg[i].v_11)*1000+parseFloat(msg[i].v_12)*1000+parseFloat(msg[i].v_13)*1000+parseFloat(msg[i].v_14)*1000)/1000+"</td><td>"+msg[i].v_11+"</td><td>"+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td>"
-							+"<td>"+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"+msg[i].v_18+"</td>"
-							+"<td>"+msg[i].v_19+"</td><td>"+msg[i].v_20+"</td></tr>";
+							str+="<tr align='center'><td>"+msg[i].BZ+"</td>"+"<td>"+msg[i].XMMC+"</td>"+"<td>"+msg[i].XZDJ+"</td>"+"<td>"+msg[i].QDZH+"</td>"
+							+"<td>"+msg[i].ZDZH+"</td>"+"<td>"+msg[i].LXBH+"</td>"+"<td>"+msg[i].JSDJ+"</td><td>"+msg[i].TSDQ+"</td><td>"+msg[i].SHI+"</td>"
+							+"<td>"+msg[i].XIAN+"</td><td>"+msg[i].JSXZ+"</td><td>"+msg[i].HEJGL+"</td><td>"+msg[i].YIJGL+"</td><td>"+msg[i].ERJGL+"</td>"
+							+"<td>"+msg[i].SANJGL+"</td><td>"+msg[i].SIJGL+"</td><td>"+msg[i].DQIAO+"</td><td>"+msg[i].SDAO+"</td><td>"+msg[i].LMKD+"</td>"
+							+"<td>"+msg[i].JSFA+"</td><td>"+msg[i].ZTZ+"</td><td>"+msg[i].BTZ+"</td><td>"+msg[i].STZ+"</td><td>"+msg[i].SNHJ+"</td>"
+							+"<td>"+msg[i].SNBTZ+"</td><td>"+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"+msg[i].GKPFWH+"</td><td>"+msg[i].SJPFWH+"</td><td>"
+							+msg[i].JHXDWH+"</td></tr>";
 				}
 			}else{
 				str+="<tr align='center'><td colspan='21'>暂无数据</td></tr>";
@@ -110,7 +111,9 @@ function startSearch(){
         						<span>上报年份：</span>
         						<select id="year" style="width:80px;">
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        						<span>项目类型：</span>
+        						<select id="xmlx" style="width:80px;">
+        						</select>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
@@ -130,7 +133,7 @@ function startSearch(){
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table width="2500px"   class="table_body">
+							<table width="2800px"   class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
@@ -177,11 +180,11 @@ function startSearch(){
 								
 								</tbody>
 							</table>
-</div>
-</div>
-</div>
-</td>
-</tr>
+					</div>
+					</div>
+					</div>
+					</td>
+					</tr>
 
 		</table>
 	</div>

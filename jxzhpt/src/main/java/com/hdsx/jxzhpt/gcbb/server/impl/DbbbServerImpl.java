@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcbb.server.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -265,6 +267,12 @@ public class DbbbServerImpl extends BaseOperate implements DbbbServer{
 			}
 		}
 		return queryList("gljsxdList",wqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectgljsxdList(Xmbb xmbb) {
+		// TODO Auto-generated method stub
+		return queryList("selectgljsxdList", xmbb);
 	}
 
 }

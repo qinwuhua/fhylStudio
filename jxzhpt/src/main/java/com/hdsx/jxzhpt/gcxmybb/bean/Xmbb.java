@@ -128,5 +128,14 @@ public class Xmbb implements Serializable {
 	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
+	@Override
+	public String toString() {
+		return "Xmbb [id=" + id + ", kgzt=" + kgzt + ", jgzt=" + jgzt
+				+ ", gydw=" + gydw + ", gydwmc=" + gydwmc + ", xzqh=" + xzqh
+				+ ", xzqhmc=" + xzqhmc + ", jhxdnf=" + jhxdnf + ", jszt="
+				+ jszt + ", qxkg=" + qxkg + ", ljbf=" + ljbf + ", wbf=" + wbf
+				+ ", xmmc=" + xmmc + ", tsdq=" + tsdq + ", tiaojian="
+				+ tiaojian + ", ybny=" + ybny + ", sbnf=" + sbnf + "]";
+	}
 	
 }

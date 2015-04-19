@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -708,9 +709,14 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				throw new RuntimeException();
 			}
 		}
+		//公路建设下达计划
 		public void gljsxdList(){
-				List<Excel_list> list = dbServer.gljsxdList(jckwqgz);
+			System.out.println("111111111111");
 			try {
+			xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
+			xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+			List<Map<String,Object>> list = dbServer.selectgljsxdList(xmbb);
+			
 				JsonUtils.write(list, getresponse().getWriter());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -771,4 +777,40 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public Jckwqgz getModel() {
 		return jckwqgz;
 	}
+	private String xzqh;
+	private String gydw;
+	private String xdnf;
+	private String xmlx;
+	private Xmbb xmbb=new Xmbb();
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public Xmbb getXmbb() {
+		return xmbb;
+	}
+	public void setXmbb(Xmbb xmbb) {
+		this.xmbb = xmbb;
+	}
+	
 }
