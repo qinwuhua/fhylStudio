@@ -16,6 +16,12 @@ function querySumZhfz(jh,lx){
 				$('#lblZTZ').html(data.pfztz);
 				$('#lblBTZ').html(data.jhsybzje);
 				$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblZLC').html("0");
+				$('#lblYHLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
 			}
 		}
 	});

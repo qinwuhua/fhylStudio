@@ -22,13 +22,13 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
@@ -53,7 +53,7 @@
 				lx.qlmc=$('#txtBridge').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.sbnf=$('#sbnf').combobox('getValue');
+				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');

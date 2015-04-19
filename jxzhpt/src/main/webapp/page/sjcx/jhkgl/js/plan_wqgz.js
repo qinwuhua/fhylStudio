@@ -31,14 +31,19 @@ function querySumWqgz(jh,lx){
 		dataType:'json',
 		success:function(data){
 			if(data.id>0){
-			$('#lblCount').html(data.id);
-			if(data.pfztz!=null && data.pfztz!="")
-				$('#lblZTZ').html(data.pfztz);
-			if(data.jhsybzje!=null && data.jhsybzje!="")
-				$('#lblBTZ').html(data.jhsybzje);
-			if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
-				$('#lblDFTZ').html(data.jhsydfzcje);
-		}
+				$('#lblCount').html(data.id);
+				if(data.pfztz!=null && data.pfztz!="")
+					$('#lblZTZ').html(data.pfztz);
+				if(data.jhsybzje!=null && data.jhsybzje!="")
+					$('#lblBTZ').html(data.jhsybzje);
+				if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
+					$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
+			}
 		}
 	});
 }

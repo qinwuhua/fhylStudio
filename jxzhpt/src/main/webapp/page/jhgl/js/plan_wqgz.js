@@ -18,20 +18,27 @@ function queryZjqf(nf){
 	});
 }
 function querySumWqgz(jh,lx){
-	var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={'lx.gydwbm':lx.gydwbm,'jh.sbnf':jh.jhnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumWqgz.do',
 		data:param,
 		dataType:'json',
 		success:function(data){
-			$('#lblCount').html(data.id);
-			if(data.pfztz!=null && data.pfztz!="")
-				$('#lblZTZ').html(data.pfztz);
-			if(data.jhsybzje!=null && data.jhsybzje!="")
-				$('#lblBTZ').html(data.jhsybzje);
-			if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
-				$('#lblDFTZ').html(data.jhsydfzcje);
+			if(data.id>0){
+				$('#lblCount').html(data.id);
+				if(data.pfztz!=null && data.pfztz!="")
+					$('#lblZTZ').html(data.pfztz);
+				if(data.jhsybzje!=null && data.jhsybzje!="")
+					$('#lblBTZ').html(data.jhsybzje);
+				if(data.jhsydfzcje!=null && data.jhsydfzcje!="")
+					$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
+			}
 		}
 	});
 }
@@ -52,7 +59,7 @@ function sbnf(id){
 	$('#'+id).combobox("setValue",first);
 }
 function wqxm(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"lx.gydw":lx.gydw,"lx.gydwbm":lx.gydwbm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
 			"lx.lxbm":lx.lxbm,"lx.qlmc":lx.qlmc,"lx.akjfl":lx.akjfl,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
@@ -139,7 +146,7 @@ function wqxm(jh,lx){
 	gridBind(grid);
 }
 function wqxm_sb(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwbm":lx.gydwbm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
@@ -213,7 +220,7 @@ function wqxm_sb(jh,lx){
 	gridBind(grid);
 }
 function wqxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwbm":lx.gydwbm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,
@@ -285,7 +292,7 @@ function wqxm_sh(jh,lx){
 	gridBind(grid);
 }
 function wqxm_zjxd(jh,lx){
-	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,"jh.jh_sbthcd":jh.jh_sbthcd,'lx.akjfl':lx.akjfl,
 			"lx.gydw":lx.gydw,"lx.gydwbm":lx.gydwbm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc};
 	var grid={id:'grid',url:'../../../jhgl/queryWqgzList.do',pagination:true,rownumbers:false,

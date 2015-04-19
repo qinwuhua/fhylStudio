@@ -99,6 +99,7 @@
 			if($('#ddlTSDQ').combobox('getValue')!=''){
 				lx.tsdq=$('#ddlTSDQ').combobox('getValue');
 			}
+			querySumAbgc(jh,lx);
 			abgcxm(jh,lx);
 		}
 		$(window).resize(function () { 

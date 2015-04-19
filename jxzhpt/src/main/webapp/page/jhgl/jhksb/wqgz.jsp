@@ -34,7 +34,7 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
 			var lx={gydw:null,gydwbm:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			if(!xian){
 				jh.jh_sbthcd=2;

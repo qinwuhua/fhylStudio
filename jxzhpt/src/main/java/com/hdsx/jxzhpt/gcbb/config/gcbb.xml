@@ -81,7 +81,7 @@
 		where gj.id=lx.jhid and gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
 	</select>
 	<select id="selShuihJdbb" parameterType="xmbb" resultMap="gjjd">
-		select sh.id as jhid,sh.sfgyhbm as sfgyhbm,lx.jsdd as jsdd,lx.lxbm as lxbm,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,
+		select sh.xmmc,sh.id as jhid,sh.sfgyhbm as sfgyhbm,lx.jsdd as jsdd,lx.lxbm as lxbm,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,
 		sh.yhlb as yhlb,sh.sjkgsj as sjkgsj,sh.sjwgsj as sjwgsj,lx.ylmlx as ylmlx,sh.sjlmlx as sjlmlx,
 		sh.dc as dc,(select gjgc.bywcdc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) bywcdc,
 		(select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
