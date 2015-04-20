@@ -22,8 +22,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqhdm",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqhdm",$.cookie("dist"));
 			showAll();
 		});
 	</script>

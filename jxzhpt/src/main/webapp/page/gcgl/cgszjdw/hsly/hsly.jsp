@@ -24,8 +24,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqhdm",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist2"));
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -143,8 +143,8 @@ a:active {
         					<p style="margin: 1% 0% 1% 2%;">
         					<span>管养单位：</span>
         						<input id="gydw" style="width: 150px;">
-<!--         						<span>行政区划：</span> -->
-<!--         						<input id="xzqhdm" style="width: 150px;"> -->
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 150px;">
         						<span>项目名称：</span>
         							<input type="text" id="lxmc" >
         						<span>项目年份：</span> 

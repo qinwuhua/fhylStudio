@@ -22,7 +22,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit1("gydw",$.cookie("unit"));
 			showAll();
 		});
 		

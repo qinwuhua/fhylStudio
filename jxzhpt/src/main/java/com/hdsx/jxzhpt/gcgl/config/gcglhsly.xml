@@ -153,10 +153,10 @@
 		from PLAN_HSLY 
 		where 1=1
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
 	</if>
 	<if test="gydwdm != null and  gydwdm != ''">
-			and gydwdm like '%'||trim(#{gydwdm})||'%'
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
@@ -181,10 +181,10 @@
 	 	from PLAN_HSLY 
 		where 1=1
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
 	</if>
 	<if test="gydwdm != null and  gydwdm != ''">
-			and gydwdm like '%'||trim(#{gydwdm})||'%'
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
@@ -234,10 +234,10 @@
 		from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 		where 1=1 and jh.jhnf=#{jhnf}
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
 	</if>
 	<if test="gydwdm != null and  gydwdm != ''">
-			and gydwdm like '%'||trim(#{gydwdm})||'%'
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
@@ -267,10 +267,10 @@
 	 	from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 		where 1=1 and jh.jhnf=#{jhnf}
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
 	</if>
 	<if test="gydwdm != null and  gydwdm != ''">
-			and gydwdm like '%'||trim(#{gydwdm})||'%'
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'

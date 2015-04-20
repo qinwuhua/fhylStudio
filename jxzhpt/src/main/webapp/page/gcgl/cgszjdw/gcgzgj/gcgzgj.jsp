@@ -25,7 +25,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit")); 
+			loadUnit1("gydw",$.cookie("unit")); 
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 

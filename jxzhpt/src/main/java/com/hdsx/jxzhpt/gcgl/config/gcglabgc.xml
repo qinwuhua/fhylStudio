@@ -122,42 +122,42 @@
 	<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglabgc">
 		update PLAN_ABGC set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
-		where SCKID=#{jhid}
+		where ID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglabgc">
 		update PLAN_ABGC set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
-		where SCKID=#{jhid}
+		where ID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglabgc">
 		update PLAN_ABGC set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
-		where SCKID=#{jhid}
+		where ID=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglabgc" resultType="gcglabgc">
-		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_ABGC where SCKID=#{jhid}
+		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_ABGC where ID=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglabgc">
-		update PLAN_ABGC set WJGYY=#{wjgyy} where SCKID=#{jhid}
+		update PLAN_ABGC set WJGYY=#{wjgyy} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglabgc">
-		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where SCKID=#{jhid}
+		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglabgc">
-		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCKID=#{jhid}
+		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where ID=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglabgc" resultType="gcglabgc">
 select * from (
 select m.*,rownum rn from (
 select 
-t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
+t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.id jhid,t1.id,
 t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 where t1.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -181,7 +181,7 @@ where t1.spzt='1'
 	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 	 	where 1=1 and spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -197,19 +197,19 @@ where t1.spzt='1'
 	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">
-	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where SCKID=#{jhid}
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where ID=#{jhid}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglabgc" >
-	 update PLAN_ABGC set sjzt=#{sjzt} where sckid=#{jhid}
+	 update PLAN_ABGC set sjzt=#{sjzt} where id=#{jhid}
 	 </update>
 	 <update id="updateXjZT" parameterType="gcglabgc" >
-	 update PLAN_ABGC set xjzt=#{xjzt} where sckid=#{jhid}
+	 update PLAN_ABGC set xjzt=#{xjzt} where id=#{jhid}
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglabgc" >
-	 update PLAN_ABGC set sjsh=#{sjsh} where sckid=#{jhid}
+	 update PLAN_ABGC set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
 	  <update id="updatezdyf" parameterType="gcglabgc" >
-	 update PLAN_ABGC set zdyf=#{sbyf} where sckid=#{jhid}
+	 update PLAN_ABGC set zdyf=#{sbyf} where id=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from GCGL_ABGC 
@@ -219,11 +219,11 @@ where t1.spzt='1'
 	 
 	 <select id="exportAbyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
-			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.sckid=c.jhid
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and c.tbyf is null and t1.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -244,7 +244,7 @@ where t1.spzt='1'
 		from PLAN_GCGJ t2 left join PLAN_LX_GCGJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
 		<if test="gydw != null and  gydw != ''">
-				and t1.gydwdm like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -264,7 +264,7 @@ where t1.spzt='1'
 		from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
 		where t2.spzt='1'
 		<if test="gydw != null and  gydw != ''">
-				and t1.gydwdm like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -288,7 +288,7 @@ where t1.spzt='1'
 		from PLAN_GCSJ t2 left join PLAN_LX_GCSJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 		where 1=1 and spzt='1' and c.tbyf is null and t2.jhnf=#{jhnf}
 		<if test="gydw != null and  gydw != ''">
-				and t1.gydwdm like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -308,7 +308,7 @@ where t1.spzt='1'
 			from PLAN_HSLY t2 left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 			where 1=1 and c.tbyf is null and t2.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
-					and gydwdm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and kgzt like '%'||trim(#{kgzt})||'%'
@@ -328,7 +328,7 @@ where t1.spzt='1'
 		from PLAN_SHUIH t2 left join PLAN_LX_SHUIH t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
 		<if test="gydw != null and  gydw != ''">
-				and t1.gydwdm like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -349,7 +349,7 @@ where t1.spzt='1'
 		from PLAN_YHDZX t2 left join PLAN_LX_YHDZX t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
 		<if test="gydw != null and  gydw != ''">
-				and t1.gydwdm like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="kgzt != null and  kgzt != ''">
 				and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -365,11 +365,11 @@ where t1.spzt='1'
 	
 	<select id="exportzhyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
-			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.sckid=c.jhid
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -384,11 +384,11 @@ where t1.spzt='1'
 	
 	<select id="exportwqyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
-			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.sckid=c.jhid
+			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -408,11 +408,11 @@ where t1.spzt='1'
 	select * from (
 		select m.*,rownum rn from (
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,t3.yhlc v_8,t3.gjxjnd v_9,t1.id v_10
+			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,t3.yhlc v_8,t3.gjxjnd v_9,t1.id v_10
 			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 			where t1.spzt='1'
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -429,26 +429,26 @@ where t1.spzt='1'
 			where RN>((#{page} - 1) * #{rows})
 	</select>
 	<select id="selectabgcxx" parameterType="gcglabgc" resultType="gcglabgc">
-	select t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
+	select t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
 	t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 	t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 	t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 	from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
-	where t1.sckid=#{jhid}
+	where t1.id=#{jhid}
 	</select>
 	<!-- 拨付情况列表 -->
 	<select id="selectWqgzjhList1" parameterType="gcglabgc" resultType="gcglabgc">
 		select * from (
 		select m.*,rownum rn from (
 		select 
-		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
+		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
 		t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
-		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.sckid=c.jhid
+		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 		where t1.spzt='1' and t1.jhnf=#{xmnf}
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -474,10 +474,10 @@ where t1.spzt='1'
 			where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selectWqgzjhListcount1" parameterType="gcglabgc" resultType="int">
-	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.sckid=c.jhid
+	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 	 	where t1.spzt='1' and t1.jhnf=#{xmnf}
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'

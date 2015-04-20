@@ -285,9 +285,13 @@ function tjwqgzwwg(){
 }
 //显示所有
 function showAll(){
-	var gydw=$("#gydw").combobox("getValue");
-	if(gydw=='36')
-		gydw='';
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
+	//alert(gydw1str);
 	var jgzt='0';
 	var yhjb=$.cookie("unit2");
 	var sfsj='';
@@ -317,7 +321,7 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw,
+	    	gydw: gydw1str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,

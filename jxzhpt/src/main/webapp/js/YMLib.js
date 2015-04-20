@@ -1221,6 +1221,9 @@ function loadDist1(id, dwbm) {
 				url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', dwbm);
+				},
+				onCheck : function (node){
+					$('#' + id).tree('getChecked');
 				}
 		});
 }

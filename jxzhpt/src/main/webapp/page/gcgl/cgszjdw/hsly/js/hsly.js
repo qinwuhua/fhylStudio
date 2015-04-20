@@ -111,8 +111,18 @@ function delCgs(index){
 }
 
 function showAll(){
-	var xzqhdm='36';
-	var gydwdm=$("#gydw").combobox("getValue");
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh11str=$.cookie("dist2");
+	}else{
+		xzqh11str=gydw1.join(',');
+	}
 	var jgzt='0';
 	var kgzt='';
 	var xmnf=$("#ddlYear").val();
@@ -128,14 +138,14 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqhdm,
+	    	xzqhdm: xzqh11str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
 	    	sfsj:7,
 	    	xmnf:xmnf,
-	    	gydwdm:gydwdm,
+	    	gydwdm:gydw1str,
 	    	bfyf:bfyf,
 	    	bfzt:$("#bfzt").val()
 		},

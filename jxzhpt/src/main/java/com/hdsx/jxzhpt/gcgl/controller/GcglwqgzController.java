@@ -59,6 +59,8 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
+	private String gydw1;
+	
 	
 	public String getXmnf() {
 		return xmnf;
@@ -423,10 +425,16 @@ public class GcglwqgzController extends BaseActionSupport{
 		//查询jihua
 		public void selectWqgzjhList(){
 			Gcglwqgz gcglwqgz=new Gcglwqgz();
+			String tiaojian="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+			}else{
+				tiaojian="and t3.gydwbm in ("+gydw+")";
+			}
 			gcglwqgz.setPage(page);
 			gcglwqgz.setRows(rows);
 			gcglwqgz.setJhid(jhid);
-			gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
+			gcglwqgz.setGydw(tiaojian);
 			gcglwqgz.setKgzt(kgzt);
 			gcglwqgz.setQlmc(qlmc);
 			gcglwqgz.setLxmc(lxmc);
@@ -538,9 +546,15 @@ public class GcglwqgzController extends BaseActionSupport{
 	    return data; 
 	}
 	public void selectWqgzjhList1(){
+		String tiaojian="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+		}else{
+			tiaojian="and t3.gydwbm in ("+gydw+")";
+		}
 		gcglwqgz.setPage(page);
 		gcglwqgz.setRows(rows);
-		gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
+		gcglwqgz.setGydw(tiaojian);
 		gcglwqgz.setKgzt(kgzt);
 		gcglwqgz.setQlmc(qlmc);
 		gcglwqgz.setLxmc(lxmc);

@@ -426,15 +426,27 @@ public class GcglhslyController extends BaseActionSupport{
 	//查询jihua
 	public void selectHslyjhList(){
 		Gcglhsly gcglhsly=new Gcglhsly();
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydwdm.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydwdm+")";
+		}
+		if(xzqhdm.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqhdm+")";
+		}
 		gcglhsly.setPage(page);
 		gcglhsly.setRows(rows);
 		gcglhsly.setJhid(jhid);
-		gcglhsly.setXzqhdm(xzqhdm.replaceAll("0*$",""));
+		gcglhsly.setXzqhdm(tiaojian2);
 		gcglhsly.setKgzt(kgzt);
 		gcglhsly.setXmmc(lxmc);
 		gcglhsly.setJgzt(jgzt);
 		gcglhsly.setShzt(ybzt);
-		gcglhsly.setGydwdm(gydwdm.replaceAll("0*$",""));
+		gcglhsly.setGydwdm(tiaojian1);
 		if(sfsj==7){
 			gcglhsly.setTiaojian("sjsh");
 		}
@@ -516,14 +528,26 @@ public class GcglhslyController extends BaseActionSupport{
 	//查询jihua1
 		public void selectHslyjhList1(){
 			Gcglhsly gcglhsly=new Gcglhsly();
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydwdm+")";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			}
 			gcglhsly.setPage(page);
 			gcglhsly.setRows(rows);
-			gcglhsly.setXzqhdm(xzqhdm.replaceAll("0*$",""));
+			gcglhsly.setXzqhdm(tiaojian2);
 			gcglhsly.setKgzt(kgzt);
 			gcglhsly.setXmmc(lxmc);
 			gcglhsly.setJgzt(jgzt);
 			gcglhsly.setShzt(ybzt);
-			gcglhsly.setGydwdm(gydwdm.replaceAll("0*$",""));
+			gcglhsly.setGydwdm(tiaojian1);
 			gcglhsly.setShzt(ybzt);
 			gcglhsly.setTbyf(bfyf);
 			gcglhsly.setJhnf(xmnf);
