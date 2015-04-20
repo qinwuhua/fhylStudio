@@ -317,7 +317,8 @@
 					是否提前实施
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sftqss"/>
+					<input id="sftqss0" name="sftqss" type="radio" value="是"/>是
+					<input id="sftqss1" name="sftqss" type="radio" value="否"/>否
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					批复文号
@@ -363,7 +364,8 @@
 					是否申请按比例补助
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sfsqablbz">
+					<input id="sfsqablbz0" name="sfsqablbz" type="radio" value="是" onchange="ablwhDis('是')"/>是
+					<input id="sfsqablbz1" name="sfsqablbz" type="radio" value="否" onchange="ablwhDis('否')"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号
@@ -448,6 +450,7 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editjhnf");
+	loadBmbm2('gjhjsdj','技术等级');
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
 		'uploader' : '../../../js/uploader/uploadify.swf',
@@ -541,16 +544,18 @@ $("#uploadSjt").uploadify({
 			$('#jc').val(data.jc);
 			$('#lqlm').val(data.lqlm);
 			$('#snlm').val(data.snlm);
-			$('#gjhjsdj').val(data.gjhjsdj);
-			$('#sftqss').val(data.sftqss);
+			$('#gjhjsdj').combobox("setValue",data.gjhjsdj);
+			radioChecked("sftqss",data.sftqss);
 			$('#pfwh').val(data.pfwh);
 			$('#pfsj').datebox('setValue',data.pfsj);
 			$('#pftz').val(data.pftz);
 			$('#jhsybbzje').val(data.jhsybbzje);
 			$('#jhsysbzje').val(data.jhsydfzczj);
 			$('#jhxdwh').val(data.jhxdwh);
-			$('#sfsqablbz').val(data.sfsqablbz);
-			$('#ablbzsqwh').val(data.ablbzsqwh);
+			radioChecked("sfsqablbz",data.sfsqablbz);
+			if(data.sfsqablbz=="否"){
+				$('#ablbzsqwh').attr("disabled",'true');
+			}
 			$('#gksjwh').val(data.gksjwh);
 			$('#sjpfwh').val(data.sjpfwh);
 			$('#sfgyhbm').val(data.sfgyhbm);
@@ -589,6 +594,13 @@ $("#uploadSjt").uploadify({
 			}
 		}
 	});
+	function ablwhDis(value){
+		if(value=="是"){
+			$('#ablbzsqwh').removeAttr("disabled");
+		}else{
+			$('#ablbzsqwh').attr("disabled",'true');
+		}
+	}
 	</script>
 </body>
 </html>

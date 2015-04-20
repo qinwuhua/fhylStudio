@@ -5,6 +5,13 @@
 function gydwComboxTree(id){
 	loadUnit(id,$.cookie("unit"));
 }
+function radioChecked(name,value){
+	$.each($("input[name='"+name+"']"),function(index,item){
+		if($(item).val()==value){
+			$(item).attr('checked','true');
+		}
+	});
+}
 /**
  * 行政区划下拉框
  * @param id
@@ -295,14 +302,11 @@ function editZjxd(){
 	});
 }
 function roleName(){
-	var sheng = new RegExp("^[0-9]{7}0000$");
-	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
-	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-	if(sheng.test($.cookie("unit")) || $.cookie("unit")=="36"){
+	if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 		return "省级";
-	}else if(shi1.test($.cookie("unit")) || shi2.test($.cookie("unit"))){
+	}else if($.cookie("unit2").length==9){
 		return "市级";
-	}else{
+	}else if($.cookie("unit2").length==11){
 		return "县级";
 	}
 }

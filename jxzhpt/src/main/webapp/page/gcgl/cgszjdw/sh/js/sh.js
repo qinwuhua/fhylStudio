@@ -145,6 +145,7 @@ function showAll(){
   			}},
   			{field:'sbnf',title:'上报年份',width:80,align:'center'},
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:200,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 	        {field:'pfztz',title:'批复总投资',width:80,align:'center'},
 	        {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
@@ -190,10 +191,12 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
-				{field:'tbyf',title:'填报月份 ',width:140,align:'center'},
-				{field:'tbsj',title:'填报时间 ',width:140,align:'center'},
-				{field:'tbr',title:'填报人 ',width:140,align:'center'},
-				{field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
+				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
+				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
+				{field:'tbr',title:'填报人 ',width:80,align:'center'},
+				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
+				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }

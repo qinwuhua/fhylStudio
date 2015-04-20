@@ -155,4 +155,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	boolean insertGcsj_Jh(Plan_gcsj jh);
+	/**
+	 * 查询历史修建记录
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx);
 }

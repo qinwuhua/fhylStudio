@@ -9,5 +9,6 @@
 	<action name="selShuihJdbb" class="gcbbController" method="selShuihJdbb"></action>
 	<action name="selGcsjJdbb" class="gcbbController" method="selGcsjJdbb"></action>
 	<action name="selYhdzxJdbb" class="gcbbController" method="selYhdzxJdbb"></action>
+	<action name="selGcbb5" class="gcbbController" method="selGcbb5"></action>
 </package>
 </struts>

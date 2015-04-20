@@ -32,6 +32,7 @@
 		<action name="exportZjxdExcel" class="plan_gcsjController" method="exportZjxdExcel"></action>
 		<action name="insertGcsj" class="plan_gcsjController" method="insertGcsj"></action>
 		<action name="insertGcsjlx" class="plan_gcsjController" method="insertGcsjlx"></action>
+		<action name="queryXjls" class="plan_gcsjController" method="queryXjls"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>

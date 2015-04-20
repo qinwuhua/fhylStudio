@@ -332,7 +332,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 					//从计划中查询是否有此计划
 					Plan_lx_gcsj queryGPSBylxbm = gcsjServer.queryGPSBylxbm(lx);
 					if(queryGPSBylxbm==null){
-						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】不正确或不属于您的管辖内;";
+						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
 						//验证一下信息是否相同
 						if(map.get("5").toString().equals(queryGPSBylxbm.getYjsdj())){
@@ -461,6 +461,14 @@ public class Plan_gcsjController extends BaseActionSupport{
 			result.put("result", strResult);
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void queryXjls(){
+		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
+		try {
+			JsonUtils.write(ls, getresponse().getWriter());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

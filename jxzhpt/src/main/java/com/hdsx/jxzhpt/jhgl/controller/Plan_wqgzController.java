@@ -192,8 +192,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			System.out.println("ID："+jh.getId()+" 审查ID："+jh.getSckid());
-			result.put("drop", new Boolean(wqgzServer.dropWqgzById(jh.getId())).toString());
 			result.put("edit", new Boolean(wqgzServer.updateLrztBySckid(jh.getSckid())).toString());
+			result.put("drop", new Boolean(wqgzServer.dropWqgzById(jh.getId())).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

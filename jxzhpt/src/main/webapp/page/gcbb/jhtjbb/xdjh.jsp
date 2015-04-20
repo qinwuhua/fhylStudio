@@ -91,7 +91,7 @@ function startSearch(){
 <body  style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;height: 100%" >
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr height="20px;">
+			<tr>
 			<div id="righttop">
 				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;计划统计报表>&nbsp;公路建设下达计划</div>
 			</div>
@@ -129,7 +129,7 @@ function startSearch(){
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
                 	<div id="gddiv" style="width:100%;height:400px" >
                 	<script type="text/javascript">
-                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px');
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-125)+'px');
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">

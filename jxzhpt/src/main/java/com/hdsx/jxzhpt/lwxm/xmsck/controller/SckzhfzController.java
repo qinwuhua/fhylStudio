@@ -40,6 +40,7 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	private SckzhfzServer zhfzServer;
 	private Sckzhfz sckzhfz=new Sckzhfz();
 	private String delstr;
+	private String nf;
 	private String tbbmbm1;
 	private String tbbmbm2;
 	private String sbthcd1;
@@ -214,11 +215,15 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void lrjhSckzhfz(){
-		boolean b = zhfzServer.lrjhSckzhfz(delstr);
-		if(b){
-			zhfzServer.xglrjhSckzhfz(delstr);
-			ResponseUtils.write(getresponse(), "true");
-		}else ResponseUtils.write(getresponse(), "false");
+		try{
+			boolean b = zhfzServer.lrjhSckzhfz(delstr,nf);
+			if(b){
+				zhfzServer.xglrjhSckzhfz(delstr);
+				ResponseUtils.write(getresponse(), "true");
+			}else ResponseUtils.write(getresponse(), "false");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void onceSckZhfz(){
 		boolean b = zhfzServer.onceSckZhfz(sckzhfz);
@@ -308,6 +313,12 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setSbthcd1(String sbthcd1) {
 		this.sbthcd1 = sbthcd1;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
 	}
 	
 }

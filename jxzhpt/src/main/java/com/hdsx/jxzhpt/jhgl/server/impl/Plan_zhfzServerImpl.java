@@ -126,11 +126,12 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public boolean updateLrztBySckid(String sckid) {
-		String [] ids=sckid.split(",");
+	public boolean updateLrztBySckid(String id) {
+		String [] ids=id.split(",");
 		List<String> idlist=new ArrayList<String>();
 		for(int i=0;i<ids.length;i++){
 			idlist.add(ids[i]);
+			System.out.println("计划ID："+ids[i]);
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}

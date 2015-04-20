@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckwqgzServer;
@@ -139,13 +140,16 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean lrjhSckwqgz(String delstr) {
+	public boolean lrjhSckwqgz(String delstr,String nf) {
 		String[] strs = delstr.split(",");
-		list = new ArrayList<String>();
+		List<Plan_wqgz> l = new ArrayList<Plan_wqgz>();
 		for (int i = 0; i < strs.length; i++) {
-			list.add(strs[i]);
+			Plan_wqgz item=new Plan_wqgz();
+			item.setSckid(strs[i]);
+			item.setSbnf(nf);
+			l.add(item);
 		}
-		return insertBatch("lrjhSckwqgz", list)==list.size()?true:false;
+		return insertBatch("lrjhSckwqgz", l)==l.size()?true:false;
 	}
 
 	@Override

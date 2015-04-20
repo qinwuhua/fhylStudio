@@ -25,7 +25,8 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqhmc",$.cookie("dist"));
-			xmnf("xmnf"); 
+			xmnf("xmnf");
+			xmnf("lrjhnf");
 			loadBmbm2("lxjsdj", "技术等级");
 			loadBmbm2("bz", "公路等级");
 			loadBmbm2("bzls", "补助历史");
@@ -114,12 +115,16 @@
 	 	for(var i=1;i<rows.length;i++){
 			sckid+=","+rows[i].sckid ;
 		}
+	 	if($('#lrjhnf').combobox("getValue")==""){
+	 		alert("请选择列入计划年份！");
+	 		return;
+	 	}
 		if(confirm('您确定将该项目列入计划？')){
 				$.ajax({
 					 type : "POST",
 					 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
 					 dataType : 'json',
-					 data : 'delstr=' +sckid,
+					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue"),
 					 success : function(msg){
 						 if(msg){
 							 	parent.$("#grid").datagrid('reload');
@@ -171,8 +176,9 @@
                               	<select id="bz" style="width:70px"class="easyui-combobox">
                               	</select>
                               	<span>&nbsp;补助历史：</span>
-                              	<select id="bzls" style="width:104px"class="easyui-combobox">
-                              	</select>
+                              	<select id="bzls" style="width:104px"class="easyui-combobox"></select>
+                              	<span>&nbsp;列入计划年份：</span>
+                              	<select id="lrjhnf" style="width:80px"class="easyui-combobox"></select>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />

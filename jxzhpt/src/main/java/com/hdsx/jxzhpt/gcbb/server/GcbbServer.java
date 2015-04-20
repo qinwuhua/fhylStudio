@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.gcbb.server;
 
 import java.util.List;
 
+import com.hdsx.jxzhpt.gcbb.bean.Gcbb5;
 import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
 import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
@@ -31,4 +32,10 @@ public interface GcbbServer {
 	 * @return
 	 */
 	List<GcsjJd> selYhdzxJdbb(Xmbb xmbb);
+	/**
+	 * 月报非路网项目第5个报表
+	 * @param xmbb
+	 * @return
+	 */
+	List<Gcbb5> selGcbb5(Xmbb xmbb);
 }
