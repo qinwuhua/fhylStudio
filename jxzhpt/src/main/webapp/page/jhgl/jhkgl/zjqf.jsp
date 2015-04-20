@@ -106,6 +106,8 @@
 						zjqf['zjqf.wqgz']=jtj.wqgz+"-"+glj.wqgz;
 						zjqf['zjqf.abgc']=jtj.abgc+"-"+glj.abgc;
 						zjqf['zjqf.zhfz']=jtj.zhfz+"-"+glj.zhfz;
+					}else{
+						return;
 					}
 				}else{
 					if(jisuan($.cookie("unit"))){
@@ -116,6 +118,8 @@
 						zjqf['zjqf.wqgz']=data.wqgz;
 						zjqf['zjqf.abgc']=data.abgc;
 						zjqf['zjqf.zhfz']=data.zhfz;
+					}else{
+						return;
 					}
 				}
 				$.ajax({
@@ -162,11 +166,9 @@
 			});
 			if(sumwq>wq){
 				alert("请检查危桥改造的资金切分！");
-			}
-			if(sumab>ab){
+			}else if(sumab>ab){
 				alert("请检查安保工程的资金切分！");
-			}
-			if(sumzh>zh){
+			}else if(sumzh>zh){
 				alert("请检查灾害防止的资金切分！");
 			}
 			return (wq>=sumwq && ab>=sumab && zh>=sumzh);

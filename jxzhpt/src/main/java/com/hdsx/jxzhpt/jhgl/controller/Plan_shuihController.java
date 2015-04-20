@@ -246,6 +246,12 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
+				String xzqh = map.get("1").toString();
+				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+					map.put("jh_sbthcd", 2);
+				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+					map.put("jh_sbthcd", 0);
+				}
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
