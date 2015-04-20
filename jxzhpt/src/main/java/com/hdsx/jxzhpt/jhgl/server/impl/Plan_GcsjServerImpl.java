@@ -210,4 +210,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	public boolean insertGcsj_Jh(Plan_gcsj jh) {
 		return insert("insertGcsjJh", jh)>0;
 	}
+
+	@Override
+	public List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx) {
+		return queryList("queryXjls",lx);
+	}
 }

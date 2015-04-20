@@ -464,6 +464,14 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void queryXjls(){
+		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
+		try {
+			JsonUtils.write(ls, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;

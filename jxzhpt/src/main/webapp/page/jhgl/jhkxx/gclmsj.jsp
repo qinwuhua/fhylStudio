@@ -437,20 +437,31 @@
 	if(parent.YMLib.Var.jhbm!=null){
 		xxId=parent.YMLib.Var.jhbm;
 	}
-	if(bz=="xx" || bz=="sb"){
+	/*if(bz=="xx" || bz=="sb"){
 		$("#trSY").hide();
 		$("#trSY1").hide();
 	}
 	if(bz=="sh" || bz=="zjxd"){
 		$("#trSY").show();
 		$("#trSY1").show();
-	}
+	}*/
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/queryGcsjById.do',
 			data:"jh.id="+xxId,
 			dataType:'json',
 			success:function(data){
+				var lxls={'lx.lxbm':data.plan_lx_gcsjs[0].lxbm,'lx.zdzh':data.plan_lx_gcsjs[0].zdzh,
+						'lx.qdzh':data.plan_lx_gcsjs[0].qdzh,'lx.jhid':data.jhnf};
+				$.ajax({
+					type:'post',
+					url:'../../../jhgl/queryXjls.do',
+					data:lxls,
+					dataType:'json',
+					sucess:function(data){
+						$('#divPlan').append("sssssssssssss");
+					}
+				});
 				$('#lxmc').html(data.plan_lx_gcsjs[0].lxmc);
 				$('#lxbm').html(data.plan_lx_gcsjs[0].lxbm);
 				$('#jsdd').html(data.plan_lx_gcsjs[0].yjsdj);
