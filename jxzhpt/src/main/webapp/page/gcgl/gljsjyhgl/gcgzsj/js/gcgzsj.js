@@ -315,12 +315,13 @@ function showAll(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.sfqxkg+'</a>    ';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
-	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:200,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'},
+
 	    ]] ,
 	    view: detailview,
 		detailFormatter:function(index,row){   

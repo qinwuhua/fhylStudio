@@ -84,8 +84,6 @@
 				success:function(msg){
 					var tbody = $("#wqgzlist");
 					tbody.empty();
-					$("#nian").text($("#ddlYear").val());
-					$("#yue").text($("#ddlMonth").val());
 					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
@@ -187,7 +185,7 @@ table tbody tr td {
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;height:100%;" cellspacing="0" cellpadding="0" >
 			<tr>
 			<div id="righttop"  style="height: 30px">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;危桥改造统计月报表</div>
+						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;公路改造工程新上、续建工程项目完成情况明细表</div>
 					</div>
         	</tr>
         	<tr>
@@ -227,7 +225,7 @@ table tbody tr td {
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（一）   危桥工程（<span id="yue" style="font-size: large;"></span>月） </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路改造工程新上、续建工程项目完成情况明细表</caption>
 								<thead id="biaotou">
 									<tr>
 										<td rowspan="3">序号</td>
