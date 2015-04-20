@@ -39,6 +39,7 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	private SckwqgzServer wqgzServer;
 	private Sckwqgz sckwqgz=new Sckwqgz();
 	private String delstr;
+	private String nf;
 	private String tbbmbm1;
 	private String tbbmbm2;
 	private String sbthcd1;
@@ -220,11 +221,16 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void lrjhSckwqgz(){
-		boolean b = wqgzServer.lrjhSckwqgz(delstr);
-		if(b){
-			wqgzServer.xglrjhSckwqgz(delstr);
-			ResponseUtils.write(getresponse(), "true");
-		}else ResponseUtils.write(getresponse(), "false");
+		try{
+			boolean b = wqgzServer.lrjhSckwqgz(delstr,nf);
+			if(b){
+				wqgzServer.xglrjhSckwqgz(delstr);
+				ResponseUtils.write(getresponse(), "true");
+			}else ResponseUtils.write(getresponse(), "false");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	public void selectWqgzCount(){
 		try {
@@ -307,6 +313,12 @@ public class SckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setSbthcd1(String sbthcd1) {
 		this.sbthcd1 = sbthcd1;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
 	}
 	
 }

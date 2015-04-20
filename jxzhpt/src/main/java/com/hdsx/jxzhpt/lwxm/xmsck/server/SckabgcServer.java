@@ -24,7 +24,7 @@ public interface SckabgcServer {
 		List<SjbbMessage> exportExcel_abgc_scsh(Sckabgc abgc);
 		List<SjbbMessage> insertToSheet(Map map);
 		boolean importAbgc_sc(List<Map<String,String>> list,String tbbmbm,String sbthcd);
-		boolean lrjhSckabgc(String delstr);
+		boolean lrjhSckabgc(String delstr,String nf);
 		boolean xglrjhSckabgc(String delstr);
 		String yanZhen(List<Map<String, String>> data, String tbbmbm,String tbbmbm2, String sbthcd1);
 		Sckabgc selSckAbgcCount(Sckabgc abgc);

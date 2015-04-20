@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckzhfzServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -138,13 +139,16 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean lrjhSckzhfz(String delstr) {
+	public boolean lrjhSckzhfz(String delstr,String nf) {
 		String[] strs = delstr.split(",");
-		list = new ArrayList<String>();
+		List<Plan_zhfz> l = new ArrayList<Plan_zhfz>();
 		for (int i = 0; i < strs.length; i++) {
-			list.add(strs[i]);
+			Plan_zhfz item =new Plan_zhfz();
+			item.setSckid(strs[i]);
+			item.setSbnf(nf);
+			l.add(item);
 		}
-		return insertBatch("lrjhSckzhfz", list)==list.size()?true:false;
+		return insertBatch("lrjhSckzhfz", l)==l.size()?true:false;
 	}
 
 	@Override

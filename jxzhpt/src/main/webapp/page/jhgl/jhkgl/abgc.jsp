@@ -36,6 +36,9 @@
 			tsdq('ddlTSDQ');
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
 			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
+				$('#imglrjh').show();
+			}
 			querySumAbgc(jh,lx);
 			sbnf("sbnf");
 			abgcxm(jh,lx);
@@ -157,7 +160,7 @@
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/>
 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;">
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"  onclick="exportExcel('abgc')"/>
-				                <img alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"  onclick="showLrjh('lrjh_ab.jsp','1100','500');"/>
+				                <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display:none;"  onclick="showLrjh('lrjh_ab.jsp','1100','500');"/>
 				              </p>
         				</div>
         			</fieldset>

@@ -185,8 +185,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void dropZhfzById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
+			result.put("edit", new Boolean(zhfzServer.updateLrztBySckid(jh.getId())).toString());
 			result.put("drop", new Boolean(zhfzServer.dropZhfzById(jh.getId())).toString());
-			result.put("edit", new Boolean(zhfzServer.updateLrztBySckid(jh.getSckid())).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
