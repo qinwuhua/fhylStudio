@@ -472,6 +472,10 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void sjAutoCompleteLxbm() throws IOException, Exception{
+		List<Plan_lx_gcsj> list=gcsjServer.sjAutoCompleteLxbm(lx);
+		JsonUtils.write(list, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;

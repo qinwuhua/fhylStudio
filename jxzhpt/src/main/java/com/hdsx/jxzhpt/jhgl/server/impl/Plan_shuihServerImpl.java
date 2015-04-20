@@ -205,4 +205,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public boolean insertShuihJh(Plan_shuih jh) {
 		return insert("insertShuihJh", jh)>0;
 	}
+
+	@Override
+	public List<Plan_lx_shuih> shAutoCompleteLxbm(Plan_lx_shuih lx) {
+		return queryList("shAutoCompleteLxbm",lx);
+	}
 }

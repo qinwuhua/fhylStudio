@@ -117,7 +117,7 @@
 			});
 		}
 		function addLmsj(){
-			parent.YMLib.UI.createWindow('add_lmgj','添加路面升级',"/jxzhpt/page/jhgl/add/lmgjAdd.jsp",'addlmgj',980,500);
+			parent.YMLib.UI.createWindow('add_lmgj','添加路面改建',"/jxzhpt/page/jhgl/add/lmgjAdd.jsp",'addlmgj',980,500);
 		}
 	</script>
 </head>

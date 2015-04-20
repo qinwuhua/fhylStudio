@@ -7,9 +7,11 @@
 	<title>安保工程添加</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
@@ -17,10 +19,56 @@
 	$(function(){
 		loadBmbm2('yjsdj','技术等级');
 		gydwComboxTree("gydwxx");
-		loadXzqh("xzqhmc",'360000');
+		loadXzqh("xzqhmc",$.cookie("dist"));
 		sbnf("editjhnf");
+		autoCompleteLXBM();
 	});
-	
+	function autoCompleteLXBM(){
+		var url = "/jxzhpt/jhgl/shAutoCompleteLxbm.do";
+		$("#lxbm").autocomplete(url, {
+			multiple : false,minChars :1,multipleSeparator : ' ',
+			mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+	  		extraParams : {
+	  			'lx.lxbm':function() {
+	  				var d = $("#lxbm").val();
+	  				return d;
+	  			},
+	  			'lx.xzqhdm':function() {
+	  				var d = $.cookie("dist");
+	  				return d;
+	  			}
+	  		},
+	  		dataType:'json',// 返回类型
+	  		// 对返回的json对象进行解析函数，函数返回一个数组
+	  		parse : function(data) {
+	  			var aa = [];
+	  			aa = $.map(eval(data), function(row) {
+	  					return {
+	  					data : row,
+	  					value : row.lxbm.replace(/(\s*$)/g,""),
+	  					result : row.lxbm.replace(/(\s*$)/g,"")
+	  				};
+	  			});
+	  			return aa;
+	  		},
+	  		formatItem : function(row, i, max) {
+	  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  		}
+	  	}).result(
+			function(e, item) {
+				$('#lxmc').val(item.lxmc);
+				$('#qdzh').val(item.qdzh);
+				$('#spqdzh').html(item.qdzh);
+				$('#qdts').show();
+				$('#zdzh').val(item.zdzh);
+				$('#spzdzh').html(item.zdzh);
+				$('#zdts').show();
+				$('#qzlc').val(item.qzlc);
+				$('#yhlc').val(item.qzlc);
+				$('#yjsdj').combobox("setValue",item.yjsdj);
+				$('#ylmlx').val(item.ylmlx);
+		});
+	}
 	function loadXzqh(id,dwbm){
 		$('#'+id).combotree({
 			checkbox:false,
@@ -54,6 +102,18 @@
 	}
 	
 	function insert(){
+		if($('#qdzh').val()<$('#spqdzh').html()){
+			alert("起点桩号要大于或等于"+$('#spqdzh').html());
+			return;
+		}
+		if($('#zdzh').val()>$('#spzdzh').html()){
+			alert("止点桩号要小于或等于"+$('#spzdzh').html());
+			return;
+		}
+		if($('#qzlc').val()>$('#yhlc').val()){
+			alert("核对里程不能大于起止里程！");
+			return;
+		}
 		var myDate = new Date();
 		var tbsj=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
 		var obj={'lx.lxmc':$('#lxmc').val(),'lx.lxbm':$('#lxbm').val(),'lx.jsdd':$('#jsdd').val(),
@@ -69,9 +129,9 @@
 				'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),'jh.sjlmlx':$('#sjlmlx').val(),
 				'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),
 				'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox("getText"),'jh.pfztz':$('#pfztz').val(),
-				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']").val(),
-				'jh.ablbzsqwh':$('#lblABLBZWH').val(),'jh.sftqss':$("input[name='sftqss']").val(),'jh.jhxdwh':$('#jhxdwh').val(),
-				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfdw').val(),'jh.sfgyhbm':$("input[name='sfgyhbm']").val(),
+				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),
+				'jh.ablbzsqwh':$('#lblABLBZWH').val(),'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfdw').val(),'jh.sfgyhbm':$("input[name='sfgyhbm']:checked").val(),
 				'jh.jhbz':$('#remarks').val(),'jh.tbbm':$.cookie("unit")};
 		$.ajax({
 			type:'post',
@@ -93,6 +153,24 @@
 			}
 		});
 	}
+	function jisuanlc(t){
+		if($('#qdzh').val()<$('#spqdzh').html()){
+			alert("起点桩号要大于或等于"+$('#spqdzh').html());
+			return;
+		}
+		if($('#zdzh').val()>$('#spzdzh').html()){
+			alert("起点桩号要小于或等于"+$('#spzdzh').html());
+			return;
+		}
+		var lc = (Number($('#zdzh').val()).toFixed(3)-Number($('#qdzh').val()).toFixed(3)).toFixed(3);
+		if(lc>=0){
+			$('#qzlc').val(lc);
+			$('#yhlc').val(lc);
+		}else{
+			alert("项目里程不能为负数！");
+			$(t).focus();
+		}
+	}
 	</script>
 </head>
 <body style="font-size: 12px;">
@@ -105,17 +183,17 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					路线名称
-				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lxmc" style="width: 150px;" type="text"/>
-				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					路线编码
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="lxbm" style="width:150px;" type="text"/>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					路线名称
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="lxmc" style="width: 150px;" type="text"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设地点
@@ -129,13 +207,15 @@
 					起点桩号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="qdzh" style="width: 150px;" type="text"/>
+					<input id="qdzh" onblur="jisuanlc(this)" style="width: 150px;" type="text"/>
+					<div id="qdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spqdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					止点桩号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="zdzh" style="width: 150px;" type="text"/>
+					<input id="zdzh" onblur="jisuanlc(this)" style="width: 150px;" type="text"/>
+					<div id="zdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spzdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					起止里程

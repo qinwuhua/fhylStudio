@@ -178,4 +178,9 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public boolean insertYhdzx_jh(Plan_yhdzx jh) {
 		return insert("insertYhdzxJh", jh)>0;
 	}
+
+	@Override
+	public List<Plan_lx_yhdzx> yhdzxAutoCompleteLxbm(Plan_lx_yhdzx lx) {
+		return queryList("yhdzxAutoCompleteLxbm",lx);
+	}
 }

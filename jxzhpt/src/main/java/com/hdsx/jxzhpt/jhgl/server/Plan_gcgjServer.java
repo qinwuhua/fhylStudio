@@ -151,4 +151,10 @@ public interface Plan_gcgjServer {
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 
 	boolean insertGcgjJh(Plan_gcgj jh);
+	/**
+	 * 从GPSROAD表中查询对应行政区划中的路线信息
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx);
 }

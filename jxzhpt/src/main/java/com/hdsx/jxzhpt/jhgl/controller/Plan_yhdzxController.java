@@ -285,6 +285,10 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		result.put("result", strResult);
 		JsonUtils.write(result, getresponse().getWriter());
 	}
+	public void yhdzxAutoCompleteLxbm() throws IOException, Exception{
+		List<Plan_lx_yhdzx> list=yhdzxServer.yhdzxAutoCompleteLxbm(lx);
+		JsonUtils.write(list, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;

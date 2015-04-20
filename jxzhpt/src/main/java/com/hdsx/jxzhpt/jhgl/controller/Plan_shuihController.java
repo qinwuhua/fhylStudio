@@ -445,6 +445,10 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	public void shAutoCompleteLxbm() throws IOException, Exception{
+		List<Plan_lx_shuih> list=shuihServer.shAutoCompleteLxbm(lx);
+		JsonUtils.write(list, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;

@@ -149,4 +149,10 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	boolean insertShuihJh(Plan_shuih jh);
+	/**
+	 * GPSROAD查询路线信息
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_shuih> shAutoCompleteLxbm(Plan_lx_shuih lx);
 }

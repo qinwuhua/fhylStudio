@@ -432,6 +432,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 	public void insertGcgj(){
 		try{
 			Map<String, String> result=new HashMap<String, String>();
+			UUID id=UUID.randomUUID();
+			lx.setJhid(id.toString());
+			jh.setId(id.toString());
 			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
 			gcgj.setXzqhdm(lx.getXzqhdm());
 			gcgj.setLxbm(lx.getLxbm());//路线编码
@@ -445,6 +448,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 			if(gcgjServer.queryJhExist(gcgj)==0){
 				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
 				if(queryGPSBylxbm!=null){
+					jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
 					boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
 					boolean jhresult=gcgjServer.insertGcgjJh(jh);
 					if(lxresult && jhresult){
@@ -461,6 +465,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	public void gjAutoCompleteLxbm() throws IOException, Exception{
+		List<Plan_lx_gcgj> list=gcgjServer.gjAutoCompleteLxbm(lx);
+		JsonUtils.write(list, getresponse().getWriter());
 	}
 	//get set
 	public int getPage() {

@@ -14,8 +14,10 @@
 		<action name="uploadGkbg" class="plan_gcgjController" method="uploadGkbg"/>
 		<action name="queryGjwjById" class="plan_gcgjController" method="queryGjwjById"/>
 		<action name="insertGcgjLx" class="plan_gcgjController" method="insertGcgjLx"/>
+		<action name="insertGcgj" class="plan_gcgjController" method="insertGcgj"/>
 		<action name="verifyLx" class="plan_gcgjController" method="verifyLx"/>
 		<action name="exportGcgjZjxdExcel" class="plan_gcgjController" method="exportGcgjZjxdExcel"/>
+		<action name="gjAutoCompleteLxbm" class="plan_gcgjController" method="gjAutoCompleteLxbm"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -33,6 +35,7 @@
 		<action name="insertGcsj" class="plan_gcsjController" method="insertGcsj"></action>
 		<action name="insertGcsjlx" class="plan_gcsjController" method="insertGcsjlx"></action>
 		<action name="queryXjls" class="plan_gcsjController" method="queryXjls"></action>
+		<action name="sjAutoCompleteLxbm" class="plan_gcsjController" method="sjAutoCompleteLxbm"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>
@@ -90,6 +93,7 @@
 		<action name="exportShuihZjxdExcel" class="plan_shuihController" method="exportShuihZjxdExcel"/>
 		<action name="insertShuih" class="plan_shuihController" method="insertShuih"/>
 		<action name="insertShuihLx" class="plan_shuihController" method="insertShuihLx"/>
+		<action name="shAutoCompleteLxbm" class="plan_shuihController" method="shAutoCompleteLxbm"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>
@@ -120,6 +124,7 @@
 		<action name="exportYhdzxZjxdExcel" class="plan_yhdzxController" method="exportYhdzxZjxdExcel"/>
 		<action name="insertYhdzx" class="plan_yhdzxController" method="insertYhdzx"/>
 		<action name="insertYhdzxLx" class="plan_yhdzxController" method="insertYhdzxLx"/>
+		<action name="yhdzxAutoCompleteLxbm" class="plan_yhdzxController" method="yhdzxAutoCompleteLxbm"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>

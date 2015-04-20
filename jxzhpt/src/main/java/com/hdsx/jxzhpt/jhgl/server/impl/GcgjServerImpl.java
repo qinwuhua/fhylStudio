@@ -202,4 +202,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public boolean insertGcgjJh(Plan_gcgj jh) {
 		return insert("insertGcgjJh", jh)>0;
 	}
+
+	@Override
+	public List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx) {
+		return queryList("gjAutoCompleteLxbm",lx);
+	}
 }

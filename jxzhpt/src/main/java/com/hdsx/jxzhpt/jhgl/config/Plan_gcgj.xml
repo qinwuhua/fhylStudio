@@ -424,9 +424,9 @@
 	</select>
 	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">
 		insert into plan_lx_gcgj (id,lxmc,lxbm,xzqhdm,xzqhmc,jsdd,gydw,gydwdm,bhnr,
-		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh)
+		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh <!---->)
 		values(sys_guid(),#{lxmc},#{lxbm},#{xzqhdm},#{xzqhmc},#{jsdd},#{gydw},#{gydwdm},#{bhnr},
-		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid},#{tbsj},#{tbbmbh})
+		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid} ,#{tbsj},#{tbbmbh}<!-- -->)
 	</insert>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">
 		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(sl) as parent from (
@@ -491,13 +491,21 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,bz,sfylsjl,tbbm)
+			sfgyhbm,gksjwh,sjpfwh,bz,sfylsjl,tbbm <!-- -->)
 		values (#{id},#{fapgdw},#{fascdw},
 			#{faspsj},#{spwh},#{tzgs},#{jsxz},#{jsnr},
 			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
 			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
 			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
-			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
-			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{bz},#{sfylsjl},#{tbbm})
+			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh} ,
+			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{bz},#{sfylsjl},#{tbbm}<!-- -->)
 	</insert>
+	<select id="gjAutoCompleteLxbm" parameterType="plan_lx_gcgj" resultType="plan_lx_gcgj">
+		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
+		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
+		from  JXJCK_2013.GPSROAD g
+		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm}||'%'
+		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
+		group by roadname,roadcode,g.f114,g.f116
+	</select>
 </mapper>

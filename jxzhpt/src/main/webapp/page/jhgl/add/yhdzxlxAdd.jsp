@@ -8,19 +8,21 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		var lmjgjson,ymjson,sljson,glfjson;//1、存储路面结构的json字符串   2、存储延米数据的json 3、存储数量的json 4、存储管养费的json
 		$(function(){
-			loadBmbm2('yjsdj','技术等级');
+			loadBmbm2('txtJSDJ','技术等级');
 			gydwComboxTree("txtGYDWMC");
-			loadXzqh("txtXZQHMC",'360000');
+			loadXzqh("txtXZQHMC",$.cookie("dist"));
 			sbnf("lblYear");
 			loadCslx('selsmc','上面层');
 			loadCslx('selzmc','中面层');
@@ -31,13 +33,61 @@
 			loadCslx('selxjc','下基层');
 			loadCslx('seldc','垫层');
 			loadCslx('selyl','原路');
-			var sheng=new RegExp("^[0-9]{5}360000$");
-			if(!sheng.test($.cookie("unit"))){
+			if(roleName()=="省级"){
 				$.each($('td [name=sdtd]'),function(index,item){
 					$(item).hide();
 				});
 			}
+			autoCompleteLXBM();
 		});
+		function autoCompleteLXBM(){
+			var url = "/jxzhpt/jhgl/yhdzxAutoCompleteLxbm.do";
+			$("#txtLXBM").autocomplete(url, {
+				multiple : false,minChars :1,multipleSeparator : ' ',
+				mustMatch: true,cacheLength : 0,delay : 200,max : 50,
+		  		extraParams : {
+		  			'lx.lxbm':function() {
+		  				var d = $("#txtLXBM").val();
+		  				return d;
+		  			},
+		  			'lx.xzqhdm':function() {
+		  				var d = $.cookie("dist");
+		  				return d;
+		  			}
+		  		},
+		  		dataType:'json',// 返回类型
+		  		// 对返回的json对象进行解析函数，函数返回一个数组
+		  		parse : function(data) {
+		  			var aa = [];
+		  			aa = $.map(eval(data), function(row) {
+		  					return {
+		  					data : row,
+		  					value : row.lxbm.replace(/(\s*$)/g,""),
+		  					result : row.lxbm.replace(/(\s*$)/g,"")
+		  				};
+		  			});
+		  			return aa;
+		  		},
+		  		formatItem : function(row, i, max) {
+		  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+		  		}
+		  	}).result(
+				function(e, item) {
+					$('#txtLXMC').val(item.lxmc);
+					$('#txtQDZH').val(item.qdzh);
+					$('#spqdzh').html(item.qdzh);
+					$('#qdts').show();
+					$('#txtZDZH').val(item.zdzh);
+					$('#spzdzh').html(item.zdzh);
+					$('#zdts').show();
+					$('#txtLC').val(item.qzlc);
+					$('#txtHDLC').val(item.qzlc);
+					$('#txtJSDJ').combobox("setValue",item.yjsdj);
+					$('#txtYLMLX').val(item.ylmlx);
+					$('#txtYLMKD').val(item.ylmkd);
+					$('#txtyhdzxkd').val(item.ylmkd);
+			});
+		}
 		function loadCslx(id,cslx){
 			$.ajax({
 				type:'post',
@@ -243,6 +293,18 @@
 			return (kd*(hd/100)*1000)*sddj/10000;
 		}
 		function insert(){
+			if($('#txtQDZH').val()<$('#spqdzh').html()){
+				alert("起点桩号要大于或等于"+$('#spqdzh').html());
+				return;
+			}
+			if($('#txtZDZH').val()>$('#spzdzh').html()){
+				alert("起点桩号要小于或等于"+$('#spzdzh').html());
+				return;
+			}
+			if($('#txtHDLC').val()>$('#txtLC').val()){
+				alert("核对里程不能大于起止里程！");
+				return;
+			}
 			var myDate = new Date();
 			var tbsj=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
 			var params={'lx.lxid':$('#lxid').val(),'lx.lxmc':$('#txtLXMC').val(),'lx.lxbm':$('#txtLXBM').val(),'lx.qdzh':$('#txtQDZH').val(),
@@ -288,16 +350,16 @@
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
 					<input id="txtGYDWMC" type="text"/>
 				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					路线编码</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="txtLXBM" type="text"/>
+				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					路线名称<input id="lxid" type="hidden"/>
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="txtLXMC" type="text"/>
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					路线编码</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLXBM" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -310,11 +372,13 @@
 					起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="txtQDZH" type="text"/>
+					<div id="qdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spqdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
 					<input id="txtZDZH" type="text"/>
+					<div id="zdts" style="color:red;font-size:xx-small;display: none;">止点桩号要<=<span id="spzdzh">0</span></div>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

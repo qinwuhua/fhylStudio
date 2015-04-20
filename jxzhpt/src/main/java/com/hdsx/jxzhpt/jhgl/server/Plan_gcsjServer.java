@@ -161,4 +161,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx);
+	/**
+	 * 查询GPSROAD表中的路线
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx);
 }

@@ -110,4 +110,10 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	boolean insertYhdzx_jh(Plan_yhdzx jh);
+	/**
+	 * GPSROAD查询路线
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_yhdzx> yhdzxAutoCompleteLxbm(Plan_lx_yhdzx lx);
 }
