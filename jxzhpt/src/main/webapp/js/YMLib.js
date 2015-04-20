@@ -1201,7 +1201,7 @@ function loadDist(id, dwbm) {
 	$('#' + id)
 			.combotree(
 					{
-						checkbox : false,
+						checkbox : true,
 						url : '/jxzhpt/xtgl/selAllXzqh.do?yhdw=' + dwbm,
 						onBeforeExpand : function(node, param) {
 							$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
@@ -1212,6 +1212,28 @@ function loadDist(id, dwbm) {
 						}
 					});
 	$('#' + id).combotree('setValue', dwbm);
+}
+function loadDist1(id, dwbm) {
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValue', dwbm);
+				}
+		});
+}
+function loadUnit1(id, dwbm) {
+	$('#' + id).combotree(
+			{
+				checkbox : true,
+				multiple:true,
+				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
+				onLoadSuccess : function (node){
+					$('#' + id).combotree('setValue', dwbm);
+				}
+		});
 }
 /*
  * 加载特殊地区

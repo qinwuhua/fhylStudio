@@ -194,7 +194,7 @@
 				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
-					codes='';
+					var codes='';
 					$('#sendingunitsid').val('');
 					for(var i=0;i<nodes.length;i++){
 						codes+=nodes[i].id+',';

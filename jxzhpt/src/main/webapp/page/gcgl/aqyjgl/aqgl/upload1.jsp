@@ -200,7 +200,7 @@
 				url : '/jxzhpt/gcgl/selAllBm4.do?id=' + parent.obj1.id,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
-					codes='';
+					var codes='';
 					$('#sendingunitsid').val('');
 					for(var i=0;i<nodes.length;i++){
 						codes+=nodes[i].id+',';

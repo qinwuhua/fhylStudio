@@ -81,4 +81,8 @@ public interface GcglaqybServer {
 
 	Gcgltz selectxxtzById(Gcgltz gcgltz);
 
+	List<TreeNode> selAllXzqh1(String yhdw);
+
+	List<TreeNode> selAllUnit1(String replaceAll);
+
 }

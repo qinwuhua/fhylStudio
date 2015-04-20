@@ -209,6 +209,8 @@
 	<action name="insertAqybb1" class="gcglaqybController" method="insertAqybb1"/>
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
 	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
+	<action name="selAllXzqh1" class="gcglaqybController" method="selAllXzqh1"/>
+	<action name="selAllUnit1" class="gcglaqybController" method="selAllUnit1"/>
 	<action name="selAllBm4" class="gcglaqybController" method="selAllBm4"/>
 	<action name="selAllBm5" class="gcglaqybController" method="selAllBm5"/>
 	<action name="deleteAqybb" class="gcglaqybController" method="deleteAqybb"/>
