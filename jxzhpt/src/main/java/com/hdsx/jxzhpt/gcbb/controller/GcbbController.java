@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.gcbb.bean.Gcbb5;
 import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
 import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcbb.server.GcbbServer;
@@ -50,6 +51,14 @@ public class GcbbController extends BaseActionSupport{
 	public void selYhdzxJdbb() throws IOException, Exception{
 		List<GcsjJd> yhdzx=gcbbServer.selYhdzxJdbb(xmbb);
 		JsonUtils.write(yhdzx, getresponse().getWriter());
+	}
+	public void selGcbb5(){
+		try{
+			List<Gcbb5> s=gcbbServer.selGcbb5(xmbb);
+			JsonUtils.write(s, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/***
 	 * 获取年份列表

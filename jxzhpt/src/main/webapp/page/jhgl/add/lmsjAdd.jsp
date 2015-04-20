@@ -16,6 +16,7 @@
 	<script type="text/javascript">
 	$(function(){
 		loadBmbm2('yjsdj','技术等级');
+		loadBmbm2('gjhjsdj','技术等级');
 		gydwComboxTree("gydwxx");
 		loadXzqh("xzqhmc",'360000');
 		sbnf("editjhnf");
@@ -72,8 +73,8 @@
 				'jh.ql':$('#ql').val(),'jh.ql_m':$('#ql_m').val(),
 				'jh.sd':$('#sd').val(),'jh.sd_m':$('#sd_m').val(),'jh.hd':$('#hd').val(),
 				'jh.ljtsf':$('#ljtsf').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
-				'jh.lqlm':$('#lqlm').val(),'jh.snlm':$('#snlm').val(),'jh.gjhjsdj':$('#gjhjsdj').val(),
-				'jh.sftqss':$('#sftqss').val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getText'),
+				'jh.lqlm':$('#lqlm').val(),'jh.snlm':$('#snlm').val(),'jh.gjhjsdj':$('#gjhjsdj').combobox("getValue"),
+				'jh.sftqss':$("input[name='sftqss']").val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getText'),
 				'jh.pftz':$('#pftz').val(),'jh.jhsybbzje':$('#jhsybbzje').val(),'jh.jhsydfzczj':$('#jhsysbzje').val(),
 				'jh.jhxdwh':$('#jhxdwh').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']").val(),
 				'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
@@ -286,13 +287,13 @@
 					计划开工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhkgsj" type="text" class="easyui-datebox"></input>
+					<input id="jhkgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划完工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhwgsj" type="text" class="easyui-datebox"></input>
+					<input id="jhwgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -300,7 +301,7 @@
 					计划下达时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="xdsj" type="text" class="easyui-datebox"></input>
+					<input id="xdsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					工程唯一编码
@@ -400,7 +401,8 @@
 					是否提前实施
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sftqss" style="width: 150px;"/>
+					<input id="sftqss0" name="sftqss" type="radio" value="是"/>是
+					<input id="sftqss1" name="sftqss" type="radio" value="否" checked="checked"/>否
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					批复文号
@@ -412,7 +414,7 @@
 					批复时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="pfsj" type="text" class="easyui-datebox" style="width: 120px;"></input>
+					<input id="pfsj" type="text" class="easyui-datebox" style="width: 100px;"></input>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

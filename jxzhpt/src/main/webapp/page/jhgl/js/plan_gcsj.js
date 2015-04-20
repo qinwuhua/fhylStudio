@@ -371,10 +371,10 @@ function editGcsj(){
 			'jh.sd':$('#sd').val(),'jh.sd_m':$('#sd_m').val(),'jh.hd':$('#hd').val(),
 			'jh.ljtsf':$('#ljtsf').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
 			'jh.lqlm':$('#lqlm').val(),'jh.snlm':$('#snlm').val(),'jh.gjhjsdj':$('#gjhjsdj').val,
-			'jh.sftqss':$('#sftqss').val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getValue'),
+			'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getValue'),
 			'jh.pftz':$('#pftz').val(),'jh.jhsybbzje':$('#jhsybbzje').val(),
 			'jh.jhsydfzczj':$('#jhsysbzje').val(),'jh.jhxdwh':$('#jhxdwh').val(),
-			'jh.sfsqablbz':$('#sfsqablbz').val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),
+			'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),
 			'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),'jh.sfgyhbm':$('#sfgyhbm').val(),
 			'jh.remarks':$('#remarks').val()
 		};

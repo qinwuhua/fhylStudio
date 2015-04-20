@@ -47,7 +47,12 @@
 		});
 		function search(){
 			$('#tbody_gcgj').empty();
-			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val()};
+			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
+					'xmbb.gydw':$('#gydw').combotree('getValue'),'xmbb.xzqh':$('#xzqh').combotree('getValue'),
+					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
+			if($('#xzdj').combotree('getValue')!=""){
+				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
+			}
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/gcbb/selYhdzxJdbb.do',

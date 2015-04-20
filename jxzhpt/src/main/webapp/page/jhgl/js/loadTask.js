@@ -5,6 +5,13 @@
 function gydwComboxTree(id){
 	loadUnit(id,$.cookie("unit"));
 }
+function radioChecked(name,value){
+	$.each($("input[name='"+name+"']"),function(index,item){
+		if($(item).val()==value){
+			$(item).attr('checked','true');
+		}
+	});
+}
 /**
  * 行政区划下拉框
  * @param id
