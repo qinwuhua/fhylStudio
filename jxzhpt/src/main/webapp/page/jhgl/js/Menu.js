@@ -220,7 +220,13 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./jhksh/shxm.jsp'
 	});
-	
+	createMenux('LeftMenu',{
+		id:'menu_0101030308',
+		title:'公路建设下达计划',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu3',
+		href:'./jhksh/xdjh.jsp'
+	});
 	
 	
 	createMenux('LeftMenu',{

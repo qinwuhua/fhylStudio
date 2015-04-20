@@ -58,13 +58,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gcjz.jsp'
 	});
-	createMenux('LeftMenu',{
-		id:'menu_0101050104',
-		title:'公路建设下达计划',
-		imgSrc:'../../images/menubutton/gljsxdjh.png',
-		renderTo:'left_menu1',
-		href:'./jhtjbb/xdjh.jsp'
-	});
+//	createMenux('LeftMenu',{
+//		id:'menu_0101050104',
+//		title:'公路建设下达计划',
+//		imgSrc:'../../images/menubutton/gljsxdjh.png',
+//		renderTo:'left_menu1',
+//		href:'./jhtjbb/xdjh.jsp'
+//	});
 	
 	
 	createMenux('LeftMenu',{
