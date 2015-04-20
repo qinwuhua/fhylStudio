@@ -143,13 +143,16 @@ function showAll(){
 	         {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
   				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>     '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
   			}},
-  			{field:'jhnf',title:'上报年份',width:80,align:'center'},
-  			{field:'xmmc',title:'项目名称',width:200,align:'center'},
-		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
-		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+  			 {field:'jhnf',title:'上报年份',width:80,align:'center'},
+ 	        {field:'xmmc',title:'项目名称',width:200,align:'center'},
+ 	        {field:'c5',title:'管养单位',width:200,align:'center',formatter:function(value,row,index){
+ 		    	return row.plan_lx_gcsjs[0].gydw;
+ 		    }},
+ 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+ 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+ 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+ 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+ 		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]] ,
 	    view: detailview,
 		detailFormatter:function(index,row){   

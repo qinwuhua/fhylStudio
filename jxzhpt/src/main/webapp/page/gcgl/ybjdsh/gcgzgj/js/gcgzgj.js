@@ -131,6 +131,9 @@ function showAll(){
  	        	 return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
  	        }},
  	       {field:'xmmc',title : '项目名称',width : 180,align : 'center'},
+ 	      {field:'c5',title:'管养单位',width:200,align:'center',formatter:function(value,row,index){
+		    	return row.plan_lx_gcgjs[0].gydw;
+		    }},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
 		    {field : 'jhkgsj',title : '计划开工时间',width : 150,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 150,align : 'center'},
