@@ -18,10 +18,6 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 	@Override
 	public Boolean insertWqgzYb(Gcglwqgz gcglwqgz) {
 		gcglwqgz.setTbyf(gcglwqgz.getSbyf());
-		Gcglwqgz gcglwqgz2=queryOne("queryCGSByYf", gcglwqgz);
-		if(gcglwqgz2==null){
-			return false;
-		}
 		Gcglwqgz gcglwqgz1=queryOne("queryYbByYf", gcglwqgz);
 		if(gcglwqgz1!=null){
 			return false;
