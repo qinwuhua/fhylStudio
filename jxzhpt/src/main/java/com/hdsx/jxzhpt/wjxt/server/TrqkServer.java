@@ -85,4 +85,6 @@ public interface TrqkServer {
 
 	List<Trqk> selectTrqkList1(Trqk trqk);
 
+	List<Lkmxb> getPqiList(Lkmxb lkmxb);
+
 }
