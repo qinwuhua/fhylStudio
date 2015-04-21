@@ -37,6 +37,7 @@
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="totalplacefund" column="totalplacefund"/>
 		<result property="devisenumbder" column="devisenumbder"/>
+		<result property="pqi" column="pqi"/>
 		<collection property="plan_lx_yhdzxs" ofType="plan_lx_yhdzx" resultMap="yhdzx_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">

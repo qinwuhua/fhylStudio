@@ -75,6 +75,7 @@ function yhdzxxm(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqi',title:'PQI指标',width:80,align:'center'},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},
