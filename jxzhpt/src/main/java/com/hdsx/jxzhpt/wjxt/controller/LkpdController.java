@@ -338,17 +338,17 @@ public class LkpdController extends BaseActionSupport{
 	public void getPqiList(){
 		String[] qdzh = lkmxb.getQdzh().split(","); 
 		String[] zdzh = lkmxb.getZdzh().split(",");
-		String tiaojian="and ";
+		String tiaojian="and (";
 		if(qdzh.length>1){
 			for (int i = 0; i < qdzh.length; i++) {
 				if(i!=qdzh.length-1)
 				tiaojian=tiaojian+"(to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") or ";
 				else
-					tiaojian=tiaojian+"(to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") ";
+					tiaojian=tiaojian+"(to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") )";
 			}
 		}else{
 			for (int i = 0; i < qdzh.length; i++) {
-				tiaojian=tiaojian+"to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+" ";
+				tiaojian=tiaojian+"to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") ";
 			}
 		}	
 		lkmxb.setTiaojian(tiaojian);
