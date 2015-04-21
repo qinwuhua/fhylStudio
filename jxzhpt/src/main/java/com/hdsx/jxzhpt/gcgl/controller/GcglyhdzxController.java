@@ -422,10 +422,17 @@ public class GcglyhdzxController extends BaseActionSupport{
 	//查询jihua
 	public void selectYhdzxjhList(){
 		Gcglyhdzx gcglyhdzx=new Gcglyhdzx();
+		try {
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="gydwdm in ("+gydw+")";
+			}
 		gcglyhdzx.setPage(page);
 		gcglyhdzx.setRows(rows);
 		gcglyhdzx.setJhid(jhid);
-		gcglyhdzx.setGydw(gydw.replaceAll("0*$",""));
+		gcglyhdzx.setGydw(tiaojian1);
 		gcglyhdzx.setKgzt(kgzt);
 		gcglyhdzx.setLxmc(lxmc);
 		gcglyhdzx.setJgzt(jgzt);
@@ -444,7 +451,6 @@ public class GcglyhdzxController extends BaseActionSupport{
 		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();
 		e.setRows(list);
 		e.setTotal(count);
-		try {
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -512,7 +518,13 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setPage(page);
 		gcglyhdzx.setRows(rows);
 		try {
-		gcglyhdzx.setGydw(gydw.replaceAll("0*$",""));
+				String tiaojian1="";
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="gydwdm like '%"+gydw+"%'";
+				}else{
+					tiaojian1="gydwdm in ("+gydw+")";
+				}
+		gcglyhdzx.setGydw(tiaojian1);
 		gcglyhdzx.setKgzt(kgzt);
 		gcglyhdzx.setLxmc(lxmc);
 		gcglyhdzx.setJgzt(jgzt);

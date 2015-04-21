@@ -418,10 +418,16 @@ public class GcglshController extends BaseActionSupport{
 	//查询jihua
 	public void selectShjhList(){
 		Gcglsh gcglsh=new Gcglsh();
+		String tiaojian1="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="gydwdm in ("+gydw+")";
+		}
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		gcglsh.setJhid(jhid);
-		gcglsh.setGydw(gydw.replaceAll("0*$",""));
+		gcglsh.setGydw(tiaojian1);
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
@@ -509,7 +515,13 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
 		try {
-		gcglsh.setGydw(gydw.replaceAll("0*$",""));
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="gydwdm in ("+gydw+")";
+			}
+		gcglsh.setGydw(tiaojian1);
 		gcglsh.setKgzt(kgzt);
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);

@@ -150,7 +150,7 @@
 		from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
 		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -174,7 +174,7 @@
 	 	select count(*) from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
 		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -286,7 +286,7 @@
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
+								${gydw}
 						</if>
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'
@@ -312,7 +312,7 @@
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
+							${gydw}
 						</if>
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'
@@ -346,7 +346,7 @@
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
+							${gydw}
 						</if>
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'
@@ -379,7 +379,7 @@
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="gydw != null and  gydw != ''">
-					and l.gydwdm like '%'||trim(#{gydw})||'%'
+							${gydw}
 						</if>
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'

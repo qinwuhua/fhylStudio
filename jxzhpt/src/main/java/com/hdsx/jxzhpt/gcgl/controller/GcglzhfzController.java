@@ -419,10 +419,16 @@ public class GcglzhfzController extends BaseActionSupport{
 	//查询jihua
 	public void selectZhfzjhList(){
 		Gcglzhfz gcglzhfz=new Gcglzhfz();
+		String tiaojian1="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="gydwbm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="gydwbm in ("+gydw+")";
+		}
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
 		gcglzhfz.setJhid(jhid);
-		gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setKgzt(kgzt);
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setJgzt(jgzt);
@@ -509,7 +515,13 @@ public class GcglzhfzController extends BaseActionSupport{
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
 		try {
-		gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="gydwbm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="gydwbm in ("+gydw+")";
+			}
+		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setKgzt(kgzt);
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setJgzt(jgzt);

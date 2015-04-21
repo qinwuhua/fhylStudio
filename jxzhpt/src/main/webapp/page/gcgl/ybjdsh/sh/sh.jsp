@@ -23,7 +23,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit1("gydw",$.cookie("unit"));
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}

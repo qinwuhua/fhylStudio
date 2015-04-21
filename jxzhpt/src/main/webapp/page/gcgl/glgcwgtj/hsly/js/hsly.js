@@ -34,7 +34,7 @@ function showAll(){
 	}
 	var xzqh1=$("#xzqh").combotree("getValues");
 	if(xzqh1.length==0){
-		xzqh11str=$.cookie("dist");
+		xzqh11str=$.cookie("dist2");
 	}else{
 		xzqh11str=gydw1.join(',');
 	}

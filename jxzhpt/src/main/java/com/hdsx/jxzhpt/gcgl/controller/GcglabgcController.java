@@ -704,6 +704,7 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 	//升级
 	public void exportsjyb(){
+		try {
 		Gcglabgc gcglabgc=new Gcglabgc();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
@@ -743,7 +744,7 @@ public class GcglabgcController extends BaseActionSupport{
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-		try {
+		
 			Excel_export.excel_export(eldata,response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block 

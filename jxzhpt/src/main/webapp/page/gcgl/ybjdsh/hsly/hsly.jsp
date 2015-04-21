@@ -23,7 +23,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
-			loadDist1("xzqhdm",$.cookie("dist"));
+			loadDist1("xzqh",$.cookie("dist2"));
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
@@ -67,8 +67,8 @@ a:active {
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
         						<input id="gydw" style="width: 150px;">
-<!--         						<span>行政区划：</span> -->
-<!--         						<input id="xzqhdm" style="width: 150px;"> -->
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 150px;">
         						
         						<span>项目名称：</span>
         							<input type="text" id="lxmc" >
