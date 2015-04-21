@@ -145,8 +145,8 @@
 			dataType:'json',
 			success:function(data){
 				if(data.result=="true"){
-					parent.location.replace();
 					alert("添加成功！");
+					parent.$("#grdab").datagrid('reload');
 					$('#add_lmsj').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");

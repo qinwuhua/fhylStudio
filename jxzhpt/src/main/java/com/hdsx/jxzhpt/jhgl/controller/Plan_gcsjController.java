@@ -473,6 +473,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	public void queryXjls(){
 		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
 		try {
+			System.out.println("纪录个数："+ls.size());
 			JsonUtils.write(ls, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -298,17 +298,10 @@
 			</tr>
 			<tr id="trSY1" style="height: 30px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					最近年份历史修建记录
+					历史修建记录
 				</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divPlan">
-						<a style="color: #0066CB;" href='javascript:void(0)'
-							onclick="showInfo('FE6F2C88CE99C888E040007F01003776','FE5F250E8E8E0E15E040007F01006DFD','Plan_Security_PlanDetail.aspx','Y852','1.5450','44','')"><img
-							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排安保工程项目计划信息；</a><a
-							style="color: #0066CB;" href='javascript:void(0)'
-							onclick="showInfo('FEAB63F77D2B9C50E040007F01007F4C','978cb626-a84d-46f1-8b6e-62482375e854','Plan_Engineering_PlanDetail.aspx','Y852','1.5450','44','')"><img
-							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排工程改造路面升级项目计划信息；</a><br />
-					</div>
+					<div id="divPlan"></div>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -319,38 +312,25 @@
 		</table>
 	</div>
 	<script type="text/javascript">
-	if(parent.YMLib.Var.bz!=null){
-		bz=parent.YMLib.Var.bz;
-	}
-	if(parent.YMLib.Var.jhbm!=null){
-		xxId=parent.YMLib.Var.jhbm;
-	}
-	/*if(bz=="xx" || bz=="sb"){
-		$("#trSY").hide();
-		$("#trSY1").hide();
-	}
-	if(bz=="sh" || bz=="zjxd"){
-		$("#trSY").show();
-		$("#trSY1").show();
-	}*/
+		if(parent.YMLib.Var.bz!=null){
+			bz=parent.YMLib.Var.bz;
+		}
+		if(parent.YMLib.Var.jhbm!=null){
+			xxId=parent.YMLib.Var.jhbm;
+		}
+		//记录路线
+		var lxls=new Array();
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/queryGcsjById.do',
+			async:false,
 			data:"jh.id="+xxId,
 			dataType:'json',
 			success:function(data){
-				var lxls={'lx.lxbm':data.plan_lx_gcsjs[0].lxbm,'lx.zdzh':data.plan_lx_gcsjs[0].zdzh,
-						'lx.qdzh':data.plan_lx_gcsjs[0].qdzh,'lx.jhid':data.jhnf};
-				$.ajax({
-					type:'post',
-					url:'../../../jhgl/queryXjls.do',
-					data:lxls,
-					dataType:'json',
-					sucess:function(data){
-						$('#divPlan').append("sssssssssssss");
-					}
-				});
 				$.each(data.plan_lx_gcsjs,function(index,item){
+					var l={'lx.lxbm':item.lxbm,'lx.zdzh':item.zdzh,'lx.xzqhdm':item.xzqhdm,
+							'lx.qdzh':item.qdzh,'lx.jhid':data.jhnf};
+					lxls.push(l);
 					var tr1='<tr style="height: 30px;"><td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">路线名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxmc">'+item.lxmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxbm">'+item.lxbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="yjsdjxx">'+item.yjsdj+'</span></td></tr>';
 					var tr2='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdzh">'+item.qdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdzh">'+item.zdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="qzlc">'+item.qzlc+'</span>（公里）</td></tr>';
 					var tr3='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdmc">'+item.qdmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdmc">'+item.zdmc+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目里程</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="xmlc">'+item.xmlc+'</span>（公里）</td></tr>';
@@ -412,6 +392,30 @@
 					$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
 				}
 			}
+		});
+		$.each(lxls,function(index,item){
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryXjls.do',
+				async:false,
+				data:item,
+				dataType:'json',
+				success:function(data){
+					$.each(data,function(index,jh){
+						var a='<a style="color:#0066CB;font-size:12px;">';
+						a+=jh.jhnf+'年,'+jh.xmmc+'【';
+						$.each(jh.plan_lx_gcsjs,function(index,lx){
+							a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
+						});
+						a+='】';
+						a+='</a>';
+						if(index<data.length-1){
+							a+=";";
+						}
+						$('#divPlan').append(a);
+					});
+				}
+			});
 		});
 	</script>
 </body>

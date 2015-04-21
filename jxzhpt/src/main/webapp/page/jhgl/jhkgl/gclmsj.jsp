@@ -90,7 +90,7 @@
 			$('#grdab').datagrid('resize'); 
 		});
 		function addLmsj(){
-			parent.YMLib.UI.createWindow('add_lmsj','添加路面升级',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addlmsj',980,500);
+			YMLib.UI.createWindow('add_lmsj','添加路面升级',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addlmsj',980,500);
 		}
 	</script>
 </head>

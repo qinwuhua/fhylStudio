@@ -363,10 +363,14 @@
 			#{13},#{14},#{15})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
-		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj 
-		from JXJCK_2013.GPSROAD t where 
-		t.roadcode=#{lxbm} and <![CDATA[t.roadstart<=#{qdzh}]]> and t.roadends>=#{zdzh} and t.f044=#{gydwdm}
+		select * from (
+			select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
+		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
+		    from  JXJCK_2013.GPSROAD g
+		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
+		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
+			group by roadname,roadcode,g.f114,g.f116) g1
+    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM
@@ -404,12 +408,12 @@
 	</select>
 	<select id="queryJhExist" parameterType="plan_lx_gcsj" resultType="int">
 		select count(jh.id) from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh}
+		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
 		and jh.jhnf=#{jhid}
 	</select>
 	<select id="queryXjls" parameterType="plan_lx_gcsj" resultMap="gcsj_jh">
 		select jh.id,jh.xmmc,jh.jhnf,lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-	    where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh}
+	    where lx.lxbm like #{lxbm}||'%' and lx.xzqhdm = #{xzqhdm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh}
 	    and <![CDATA[jh.jhnf<=#{jhid}]]>
 	</select>
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
@@ -531,7 +535,7 @@
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
 		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
 		from  JXJCK_2013.GPSROAD g
-		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm}||'%'
+		where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		group by roadname,roadcode,g.f114,g.f116
 	</select>
