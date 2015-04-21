@@ -546,6 +546,9 @@ public class GcglabgcController extends BaseActionSupport{
 
 	public void exportAbyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
@@ -658,6 +661,9 @@ public class GcglabgcController extends BaseActionSupport{
 	//改建
 	public void exportgjyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t1.gydwdm like '%"+gydw+"%'";
@@ -766,6 +772,9 @@ public class GcglabgcController extends BaseActionSupport{
 	//红色
 	public void exporthsyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t2.gydwdm like '%"+gydw+"%'";
@@ -814,6 +823,9 @@ public class GcglabgcController extends BaseActionSupport{
 	//水毁
 	public void exportshyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t1.gydwdm like '%"+gydw+"%'";
@@ -863,6 +875,9 @@ public class GcglabgcController extends BaseActionSupport{
 	//养护
 	public void exportyhyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t1.gydwdm like '%"+gydw+"%'";
@@ -911,6 +926,9 @@ public class GcglabgcController extends BaseActionSupport{
 	}
 	public void exportzhyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
@@ -960,6 +978,9 @@ public class GcglabgcController extends BaseActionSupport{
 	
 	public void exportwqyb(){
 		Gcglabgc gcglabgc=new Gcglabgc();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
 			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";

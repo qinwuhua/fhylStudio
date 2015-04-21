@@ -91,8 +91,10 @@
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();    //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="gydw="+gydw1str+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
-			window.location.href="/jxzhpt/gcgl/exportgjyb.do?"+data;
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
+			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydw1str} ,function(){
+				window.location.href="/jxzhpt/gcgl/exportgjyb.do?"+data;
+			    });
 		}
 		function importData_yb(flag){
 			var weatherDlg = new J.dialog( {

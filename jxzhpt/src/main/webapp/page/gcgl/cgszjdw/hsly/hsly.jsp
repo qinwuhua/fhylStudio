@@ -90,8 +90,10 @@
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();
 			var sbyf=m;
-			var data="gydw="+gydw1str+"&jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
-			window.location.href="/jxzhpt/gcgl/exporthsyb.do?"+data;
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
+			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydw1str} ,function(){
+				window.location.href="/jxzhpt/gcgl/exporthsyb.do?"+data;
+			    });
 		}
 		function importData_yb(flag){
 			var weatherDlg = new J.dialog( {
