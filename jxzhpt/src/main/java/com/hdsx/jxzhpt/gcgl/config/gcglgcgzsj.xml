@@ -371,6 +371,9 @@
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and jh.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
@@ -396,6 +399,9 @@
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and jh.jhnf like '%'||trim(#{xmnf})||'%'
 			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'

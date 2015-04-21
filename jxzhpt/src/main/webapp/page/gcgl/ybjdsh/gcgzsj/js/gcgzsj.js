@@ -111,6 +111,7 @@ function showAll(){
 		yhtype='省级';
 		sfsj=7;
 	}
+	var xmnf=$("#ddlYear").val();
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectGcgzsjjhList.do',
@@ -127,7 +128,8 @@ function showAll(){
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

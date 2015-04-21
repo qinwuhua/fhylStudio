@@ -27,6 +27,7 @@ function ybsb(index){
 }
 
 function showAll(){
+	var xmnf=$("#ddlYear").val();
 	var gydw1=$("#gydw").combotree("getValues");
 	if(gydw1.length==0){
 		gydw1str=$.cookie("unit2");
@@ -53,7 +54,8 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

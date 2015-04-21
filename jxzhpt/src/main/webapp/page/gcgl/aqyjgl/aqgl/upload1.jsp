@@ -196,6 +196,7 @@
 			$('#' + id).tree(
 			{
 				checkbox : true,
+				cascadeCheck : false, 
 				multiple:true,
 				url : '/jxzhpt/gcgl/selAllBm4.do?id=' + parent.obj1.id,
 				onCheck : function (node){

@@ -24,7 +24,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",'36');
+			loadUnit("gydw",$.cookie("unit"));
 			$("#ddlYear").val();
 			var myDate = new Date();
 			var y = myDate.getFullYear();
@@ -71,7 +71,7 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>上传单位：</span>
+        						<span>接收单位：</span>
         						<select id="gydw" style="width:150px;"></select>
         							&nbsp;&nbsp;
         						<span>文件名称：</span>

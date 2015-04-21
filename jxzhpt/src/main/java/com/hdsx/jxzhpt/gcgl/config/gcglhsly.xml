@@ -161,6 +161,9 @@
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
 	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and jhnf like '%'||trim(#{jhnf})||'%'
+	</if>
 	<if test="jgzt != null and  jgzt != ''">
 			and jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
@@ -188,6 +191,9 @@
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and jhnf like '%'||trim(#{jhnf})||'%'
 	</if>
 	<if test="jgzt != null and  jgzt != ''">
 			and jgzt like '%'||trim(#{jgzt})||'%'

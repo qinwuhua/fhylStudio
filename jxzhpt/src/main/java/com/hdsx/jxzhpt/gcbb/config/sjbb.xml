@@ -147,20 +147,20 @@ from
      select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
      from plan_wqgz jh left join sck_wqgz sc on sc.sckid=jh.sckid
         left join XMK_WQGZ lx   on lx.id=sc.xmkid
-     where  sbnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+     where  sbnf=#{nf} ${unit}  ${dist}
      
      union all
      
      select '安保' a,YHLC xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
      from plan_abgc jh left join sck_abgc sc on  sc.sckid=jh.sckid
 		    left join Xmk_Abgc lx on lx.id=sc.xmkid
-	where  jhnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+	where  jhnf=#{nf} ${unit}  ${dist}
      union all
      
      select '灾害' a,YHLC xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
     	from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
 		left join Xmk_Zhfz lx on lx.id=sc.xmkid 
-	where  sbnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+	where  sbnf=#{nf} ${unit}  ${dist}
      )
      group by dist
     
@@ -202,20 +202,20 @@ select '合计' v_0,count(decode(a,'危桥',decode(unit,'2',xm,null),null)) v_1,
      select '危桥' a,qlmc xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
      from plan_wqgz jh left join sck_wqgz sc on sc.sckid=jh.sckid
         left join XMK_WQGZ lx   on lx.id=sc.xmkid
-     where  sbnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+     where  sbnf=#{nf} ${unit}  ${dist}
      
      union all
      
      select '安保' a,YHLC xm,substr(gydwbm,0,1) unit,decode(JHSYBBZJE,null,0,JHSYBBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
      from plan_abgc jh left join sck_abgc sc on  sc.sckid=jh.sckid
 		    left join Xmk_Abgc lx on lx.id=sc.xmkid
-	where  jhnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+	where  jhnf=#{nf} ${unit}  ${dist}
      union all
      
      select '灾害' a,YHLC xm,substr(gydwbm,0,1) unit,decode(JHSYBZJE,null,0,JHSYBZJE) zj,substr(xzqhdm,0,4)||'00' dist 
     	from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid 
 		left join Xmk_Zhfz lx on lx.id=sc.xmkid 
-	where  sbnf=#{nf} and gydwbm like '%'||rtrim(#{unit}, '0')||'%' and XZQHDM like rtrim(#{dist},'0')||'%'
+	where  sbnf=#{nf} ${unit}  ${dist}
      )
 order by id
 	 </select>

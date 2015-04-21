@@ -446,6 +446,7 @@ public class GcglhslyController extends BaseActionSupport{
 		gcglhsly.setXmmc(lxmc);
 		gcglhsly.setJgzt(jgzt);
 		gcglhsly.setShzt(ybzt);
+		gcglhsly.setJhnf(xmnf);
 		gcglhsly.setGydwdm(tiaojian1);
 		if(sfsj==7){
 			gcglhsly.setTiaojian("sjsh");

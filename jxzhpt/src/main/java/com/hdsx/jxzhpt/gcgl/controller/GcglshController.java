@@ -420,9 +420,9 @@ public class GcglshController extends BaseActionSupport{
 		Gcglsh gcglsh=new Gcglsh();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="gydwdm like '%"+gydw+"%'";
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="gydwdm in ("+gydw+")";
+			tiaojian1="and gydwdm in ("+gydw+")";
 		}
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
@@ -432,6 +432,7 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setLxmc(lxmc);
 		gcglsh.setJgzt(jgzt);
 		gcglsh.setShzt(ybzt);
+		gcglsh.setSbnf(xmnf);
 		if(sfsj==7){
 			gcglsh.setTiaojian("sjsh");
 		}
@@ -517,9 +518,9 @@ public class GcglshController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="gydwdm like '%"+gydw+"%'";
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="gydwdm in ("+gydw+")";
+				tiaojian1="and gydwdm in ("+gydw+")";
 			}
 		gcglsh.setGydw(tiaojian1);
 		gcglsh.setKgzt(kgzt);

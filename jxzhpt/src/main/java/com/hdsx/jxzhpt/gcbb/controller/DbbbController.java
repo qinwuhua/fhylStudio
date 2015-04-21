@@ -726,8 +726,8 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				}else{
 					tiaojian2="and xzqh in ('"+xzqhdm+"')";
 				}
-				System.out.println(tiaojian1);
-				System.out.println(tiaojian2);
+				//System.out.println(tiaojian1);
+				//System.out.println(tiaojian2);
 			xmbb.setGydw(tiaojian1);
 			xmbb.setXzqh(tiaojian2);
 			List<Map<String,Object>> list = dbServer.selectgljsxdList(xmbb);

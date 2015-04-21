@@ -160,6 +160,9 @@
 	<if test="jgzt != null and  jgzt != ''">
 			and t1.jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
+	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
@@ -183,6 +186,9 @@
 	</if>
 	<if test="jgzt != null and  jgzt != ''">
 			and t1.jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
