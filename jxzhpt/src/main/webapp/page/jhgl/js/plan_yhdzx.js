@@ -4,10 +4,8 @@ var selRow=new Array();//已选择的行号
 var object=new Object();
 function ckPQI(index){
 	var data=$("#grid").datagrid('getRows')[index];
-	object=data.plan_lx_yhdzxs;
-	
-	YMLib.UI.createWindow('pqi','PQI详情','pqi.jsp','pqi',1100,450);
-	
+	parent.YMLib.Var.object=data.plan_lx_yhdzxs;
+	parent.YMLib.UI.createWindow('pqi','PQI详情','/jxzhpt/page/jhgl/jhkgl/pqi.jsp','pqi',1100,450);
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');

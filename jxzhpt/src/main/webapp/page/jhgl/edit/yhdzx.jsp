@@ -8,101 +8,13 @@
 </head>
 <body>
 	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:100%;">
-		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
+		<table id="table_lx" width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
             	<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
                 	养护大中修项目路线信息
                 	<input id="jhid" type="hidden"/>
                 </td>
             </tr>
-			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					管养单位</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtGYDWMC" type="text"/>
-				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					路线名称<input id="lxid" type="hidden"/>
-				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLXMC" type="text"/>
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					路线编码</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLXBM" type="text"/>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					行政区划名称</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<select id="txtXZQHMC" style="width:130px;"></select>
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					起点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtQDZH" type="text"/>
-				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					止点桩号</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtZDZH" type="text"/>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					起止里程</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLC" type="text"/>公里
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					核对里程</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtHDLC" type="text"/>公里
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					大中修宽度</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtyhdzxkd" style="width: 80px;" type="text"/>米
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					技术等级</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtJSDJ" type="text"/>
-				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					原路面类型</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtYLMLX" type="text"/>
-				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					原路面宽度</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtYLMKD" type="text"/>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					原路面厚度</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtYLMHD" type="text"/>
-				</td>
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					特殊地区</td>
-				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblTSDQ">罗霄山山脉</span>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					病害内容</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<textarea id="txtBHNR" style="width: 400px;height: 40px;"/>
-				</td>
-			</tr>
 		</table>
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
@@ -502,9 +414,7 @@
 	</div>
 	<script type="text/javascript">
 	var lmjgjson,ymjson,sljson,glfjson;//1、存储路面结构的json字符串   2、存储延米数据的json 3、存储数量的json 4、存储管养费的json
-	xzqhComboxTree("txtXZQHMC");
-	gydwComboxTree("txtGYDWMC");
-	sbnf('lblYear');
+	sbnf("lblYear");
 	var sheng=new RegExp("^[0-9]{5}360000$");
 	if(!sheng.test($.cookie("unit"))){
 		$.each($('td [name=sdtd]'),function(index,item){
@@ -562,20 +472,16 @@
 		dataType:'json',
 		data:'jh.id='+xxId,
 		success:function(data){
+			$.each(data.plan_lx_yhdzxs,function(index,item){
+				var tr1='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">管养单位</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="txtGYDWMC">'+item.gydwmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">路线名称<input id="lxid'+index+'" type="hidden" value='+item.lxid+'></input></td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtLXMC">'+item.lxmc+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtLXBM">'+item.lxbm+'</span></td></tr>';
+				var tr2='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">行政区划名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="txtXZQHMC">'+item.xzqhmc+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtQDZH">'+item.qdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="txtZDZH">'+item.zdzh+'</span></td></tr>';
+				var tr3='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtLC">'+item.qzlc+'</span>公里</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">核对里程</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtHDLC'+index+'">'+item.hdlc+'</span>公里</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">大中修宽度</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtyhdzxkd'+index+'">'+item.dzxkd+'</span>米</td></tr>';
+				var tr4='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">技术等级</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="txtJSDJ">'+item.yjsdj+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原路面类型</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtYLMLX">'+item.ylmlx+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">原路面宽度</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtYLMKD">'+item.ylmkd+'</span></td></tr>';
+				var tr5='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">原路面厚度</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="txtYLMHD">'+item.ylmhd+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">特殊地区</td><td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lblTSDQ"></span></td></tr>';
+				var tr6='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="txtBHNR"></span></td></tr>';
+				$('#table_lx').append(tr1+tr2+tr3+tr4+tr5+tr6);
+			});
 			$('#lblYear').combobox('select',data.sbnf);
-			$('#txtLXMC').val(data.plan_lx_yhdzxs[0].lxmc);
-			$('#txtLXBM').val(data.plan_lx_yhdzxs[0].lxbm);
-			$('#txtGYDWMC').combotree('setValue',data.plan_lx_yhdzxs[0].gydwdm);
-			$('#txtQDZH').val(data.plan_lx_yhdzxs[0].qdzh);
-			$('#txtZDZH').val(data.plan_lx_yhdzxs[0].zdzh);
-			$('#txtLC').val(data.plan_lx_yhdzxs[0].qzlc);
-			$('#txtHDLC').val(data.plan_lx_yhdzxs[0].hdlc);
-			$('#txtyhdzxkd').val(data.plan_lx_yhdzxs[0].dzxkd);
-			$('#txtXZQHMC').combotree('setValue',data.plan_lx_yhdzxs[0].xzqhmc);
-			$('#txtJSDJ').val(data.plan_lx_yhdzxs[0].yjsdj);
-			$('#txtYLMKD').val(data.plan_lx_yhdzxs[0].ylmkd);
-			$('#txtYLMLX').val(data.plan_lx_yhdzxs[0].ylmlx);
-			$('#txtBHNR').val(data.plan_lx_yhdzxs[0].bhnr);
 			$('#txtGCFL').val(data.classify);
 			$('#txtSBJF').val(data.reportingfee);
 			$('#txtBNBZZJ').val(data.nowyearsubsidyfund);
@@ -589,8 +495,7 @@
 			$('#txtGKPFWH').val(data.replynumber);
 			$('#txtSJPFWH').val(data.devisenumber);
 			$('#txtJHXDWH').val(data.plandownnumber);
-			$('#txtYLMHD').val(data.plan_lx_yhdzxs[0].ylmhd);
-			$('#lxid').val(data.plan_lx_yhdzxs[0].lxid);
+			
 			$('#txtJSCZMS').val(data.description);
 			$('#txtXCHSQK').val(data.xchsqk);
 			$('#txtSTCBZ').val(data.remarks);
@@ -645,15 +550,16 @@
 	}
 	function updateYhdzx(){
 		reckonsum();
-		var params={'lx.lxid':$('#lxid').val(),'lx.lxmc':$('#txtLXMC').val(),'lx.lxbm':$('#txtLXBM').val(),'lx.qdzh':$('#txtQDZH').val(),
+		var params={/*'lx.lxid':$('#lxid').val(),'lx.lxmc':$('#txtLXMC').val(),'lx.lxbm':$('#txtLXBM').val(),'lx.qdzh':$('#txtQDZH').val(),
 				'lx.zdzh':$('#txtZDZH').val(),'lx.qzlc':$('#txtLC').val(),'lx.hdlc':$('#txtHDLC').val(),
 				'lx.ylmlx':$('#txtYLMLX').val(),'lx.ylmkd':$('#txtYLMKD').val(),
 				'lx.ylmhd':$('#txtYLMHD').val(),'lx.yjsdj':$('#txtYLMKD').val(),
 				'lx.xzqhdm':$('#txtXZQHMC').combotree('getValue'),'lx.xzqhmc':$('#txtXZQHMC').combotree('getText'),
 				'lx.gydwmc':$('#txtGYDWMC').combotree('getText'),'lx.gydwdm':$('#txtGYDWMC').combotree('getValue'),
-				'lx.bhnr':$('#txtBHNR').val(),'jh.sbnf':$('#lblYear').combotree('getValue'),
-				'lx.dzxkd':$('#txtyhdzxkd').val(),'lx.lmjg':lmjgjson,'lx.aym':JSON.stringify(ymjson),
-				'lx.asl':JSON.stringify(sljson),'lx.glf':JSON.stringify(glfjson),
+				'lx.dzxkd':$('#txtyhdzxkd').val(),'lx.bhnr':$('#txtBHNR').val(),*/
+				'lx.lxid':$('#lxid0').val(),'lx.lmjg':lmjgjson,
+				'lx.aym':JSON.stringify(ymjson),'lx.asl':JSON.stringify(sljson),'lx.glf':JSON.stringify(glfjson),
+				'jh.sbnf':$('#lblYear').combotree('getValue'),
 				'jh.jhkgsj':$('#txtJhkgsj').combo('getValue'),'jh.jhwgsj':$('#txtJhwgsj').combo('getValue'),
 				'jh.classify':$('#txtGCFL').val(),'jh.aadt':$('#lblJTL').val(),
 				'jh.pqi':$('#txtPQI').val(),'jh.dianceng':$('#txtDC').val(),'jh.jiceng':$('#txtJC').val(),
@@ -670,6 +576,8 @@
 		//总投资 'jh.totalinvest':$('#txtZTZ').val(),
 		//地方配套 'jh.totalplacefund':$('#txtDFPTZTZ').val(),
 		//总补助资金  'jh.totalsubsidyfund':$('#txtZBZZJ').val(),
+		alert(params['lx.lxid']);
+		alert(params['lx.lmjg']);
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/editYhdzxById.do',
@@ -707,64 +615,69 @@
 	function reckonsum(){
 		var lmjg=0,ym=0,sl=0,glf=0,zjg=0;
 		lmjgjson="{";//最后将路面结构、按延米、按数量、管理费的数据存储到json格式的字符串中
-		var smc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcdj').val());
-		var sdsmc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcsddj').val());
+		var hdlczj=0,dzxkdzj=0;//核对里程总计、大中修宽度总计
+		for(var i=0;i<$('#table_lx tr:gt(0)').length/6;i++){
+			hdlczj=Number(hdlczj)+Number($('#txtHDLC'+i).html());
+			dzxkdzj=Number(dzxkdzj)+Number($('#txtyhdzxkd'+i).html());
+		}
+		var smc= reckon(dzxkdzj,$('#txtsmchd').val(),$('#txtsmcdj').val());
+		var sdsmc= reckon(dzxkdzj,$('#txtsmchd').val(),$('#txtsmcsddj').val());
 		var smcjson='"上面层":{"clmc":"'+$('#selsmc').combobox("getValue")+
 			'","hd":"'+$('#txtsmchd').val()+'","dj":"'+$('#txtsmcdj').val()+
 			'","sddj":"'+$('#txtsmcsddj').val()+'"}';
 		lmjgjson+=smcjson+",";
 		
-		var zmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcdj').val());
-		var sdzmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcsddj').val());
+		var zmc= reckon(dzxkdzj,$('#txtzmchd').val(),$('#txtzmcdj').val());
+		var sdzmc= reckon(dzxkdzj,$('#txtzmchd').val(),$('#txtzmcsddj').val());
 		var zmcjson='"中面层":{"clmc":"'+$('#selzmc').combobox("getValue")+
 		'","hd":"'+$('#txtzmchd').val()+'","dj":"'+$('#txtzmcdj').val()+
 		'","sddj":"'+$('#txtzmcsddj').val()+'"}';
 		lmjgjson+=zmcjson+",";
 		
-		var xmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcdj').val());
-		var sdxmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcsddj').val());
+		var xmc= reckon(dzxkdzj,$('#txtxmchd').val(),$('#txtxmcdj').val());
+		var sdxmc= reckon(dzxkdzj,$('#txtxmchd').val(),$('#txtxmcsddj').val());
 		var xmcjson='"下面层":{"clmc":"'+$('#selxmc').combobox("getValue")+
 		'","hd":"'+$('#txtxmchd').val()+'","dj":"'+$('#txtxmcdj').val()+
 		'","sddj":"'+$('#txtxmcsddj').val()+'"}';
 		lmjgjson+=xmcjson+",";
 		
-		var fc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcdj').val());
-		var sdfc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcsddj').val());
+		var fc= reckon(dzxkdzj,$('#txtfchd').val(),$('#txtfcdj').val());
+		var sdfc= reckon(dzxkdzj,$('#txtfchd').val(),$('#txtfcsddj').val());
 		var fcjson='"封层":{"clmc":"'+$('#selfc').combobox("getValue")+
 		'","hd":"'+$('#txtfchd').val()+'","dj":"'+$('#txtfcdj').val()+
 		'","sddj":"'+$('#txtfcsddj').val()+'"}';
 		lmjgjson+=fcjson+",";
 		
-		var sjc= reckon($('#txtyhdzxkd').val(),$('#txtsjchd').val(),$('#txtsjcdj').val());
-		var sdsjc= reckon($('#txtyhdzxkd').val(),$('#txtsjchd').val(),$('#txtsjcsddj').val());
+		var sjc= reckon(dzxkdzj,$('#txtsjchd').val(),$('#txtsjcdj').val());
+		var sdsjc= reckon(dzxkdzj,$('#txtsjchd').val(),$('#txtsjcsddj').val());
 		var sjcjson='"上基层":{"clmc":"'+$('#selsjc').combobox("getValue")+
 		'","hd":"'+$('#txtsjchd').val()+'","dj":"'+$('#txtsjcdj').val()+
 		'","sddj":"'+$('#txtsjcsddj').val()+'"}';
 		lmjgjson+=sjcjson+",";
 		
-		var zjc= reckon($('#txtyhdzxkd').val(),$('#txtzjchd').val(),$('#txtzjcdj').val());
-		var sdzjc= reckon($('#txtyhdzxkd').val(),$('#txtzjchd').val(),$('#txtzjcsddj').val());
+		var zjc= reckon(dzxkdzj,$('#txtzjchd').val(),$('#txtzjcdj').val());
+		var sdzjc= reckon(dzxkdzj,$('#txtzjchd').val(),$('#txtzjcsddj').val());
 		var zjcjson='"中基层":{"clmc":"'+$('#selzjc').combobox("getValue")+
 		'","hd":"'+$('#txtzjchd').val()+'","dj":"'+$('#txtzjcdj').val()+
 		'","sddj":"'+$('#txtzjcsddj').val()+'"}';
 		lmjgjson+=zjcjson+",";
 		
-		var xjc= reckon($('#txtyhdzxkd').val(),$('#txtxjchd').val(),$('#txtxjcdj').val());
-		var sdxjc= reckon($('#txtyhdzxkd').val(),$('#txtxjchd').val(),$('#txtxjcsddj').val());
+		var xjc= reckon(dzxkdzj,$('#txtxjchd').val(),$('#txtxjcdj').val());
+		var sdxjc= reckon(dzxkdzj,$('#txtxjchd').val(),$('#txtxjcsddj').val());
 		var xjcjson='"下基层":{"clmc":"'+$('#selxjc').combobox("getValue")+
 		'","hd":"'+$('#txtxjchd').val()+'","dj":"'+$('#txtxjcdj').val()+
 		'","sddj":"'+$('#txtxjcsddj').val()+'"}';
 		lmjgjson+=xjcjson+",";
 		
-		var dc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcdj').val());
-		var sddc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcsddj').val());
+		var dc= reckon(dzxkdzj,$('#txtdchd').val(),$('#txtdcdj').val());
+		var sddc= reckon(dzxkdzj,$('#txtdchd').val(),$('#txtdcsddj').val());
 		var dcjson='"垫层":{"clmc":"'+$('#seldc').combobox("getValue")+
 		'","hd":"'+$('#txtdchd').val()+'","dj":"'+$('#txtdcdj').val()+
 		'","sddj":"'+$('#txtdcsddj').val()+'"}';
 		lmjgjson+=dcjson+",";
 		
-		var yl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtyldj').val());
-		var sdyl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtylsddj').val());
+		var yl= reckon(dzxkdzj,$('#txtylhd').val(),$('#txtyldj').val());
+		var sdyl= reckon(dzxkdzj,$('#txtylhd').val(),$('#txtylsddj').val());
 		var yljson='"原路":{"clmc":"'+$('#selyl').combobox("getValue")+
 		'","hd":"'+$('#txtylhd').val()+'","dj":"'+$('#txtyldj').val()+
 		'","sddj":"'+$('#txtylsddj').val()+'"}';
@@ -804,11 +717,11 @@
 		}
 		pgjg=pgjg.toFixed(3);
 		glfjson={dw:$('#seldw').val(),dj:$('#txtglfdj').val(),ysdj:zjg.toFixed(3),pgdj:pgjg};
-		
 		$('#lblysdj').html(zjg.toFixed(3));
 		$('#lblpgdj').html(pgjg);
-		$('#lxhsjf').html((zjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-		$('#lxspjf').html((pgjg*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
+		var hsjf=(zjg.toFixed(3)*Number(hdlczj)).toFixed(3);
+		$('#lxhsjf').html(hsjf);
+		$('#lxspjf').html((pgjg*(hdlczj)).toFixed(3));
 		$('#dfptztz').html(($('#ztz').html()-$('#lxspjf').html()).toFixed(3));
 		$('#zbzzj').html($('#lxspjf').html());
 	}

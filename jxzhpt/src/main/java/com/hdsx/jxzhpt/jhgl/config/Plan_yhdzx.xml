@@ -43,6 +43,7 @@
 	<resultMap type="plan_lx_yhdzx" id="yhdzx_lx">
 		<id property="lxid" column="lxid" />
 		<result property="lxbm" column="lxbm"/>
+		<result property="bhnr" column="bhnr"/>
 		<result property="lxmc" column="lxmc"/>
 		<result property="gydwmc" column="gydwmc"/>
 		<result property="gydwdm" column="gydwdm"/>
@@ -200,12 +201,10 @@
 	</select>
 	<select id="queryYhdzxById" parameterType="string" resultMap="yhdzx_jh">
 		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid)
-		where jh.id=#{id}
+		where jh.id=#{id} order by lx.lmjg desc
 	</select>
 	<update id="editYhdzxLxByid" parameterType="java.util.Map">
-		update plan_lx_yhdzx lx set lx.lxmc=#{lx.lxmc},lx.lxbm=#{lx.lxbm},
-		lx.qdzh=#{lx.qdzh},lx.zdzh=#{lx.zdzh},lx.qzlc=#{lx.qzlc},lx.hdlc=#{lx.hdlc},
-		lx.dzxkd=#{lx.dzxkd},lx.lmjg=#{lx.lmjg},lx.aym=#{lx.aym},
+		update plan_lx_yhdzx lx set lx.lmjg=#{lx.lmjg},lx.aym=#{lx.aym},
 		lx.asl=#{lx.asl},lx.glf=#{lx.glf}
 		where lx.lxid=#{lx.lxid}
 	</update>

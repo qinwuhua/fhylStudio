@@ -19,7 +19,7 @@
 			selectpqi();
 		});
 		function selectpqi(){
-			var data1=parent.object;
+			var data1=parent.YMLib.Var.object;
 			var lxbm="";
 			var qdzh="";
 			var zdzh="";
