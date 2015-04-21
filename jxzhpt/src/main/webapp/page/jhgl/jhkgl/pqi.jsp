@@ -19,18 +19,18 @@
 			selectpqi();
 		});
 		function selectpqi(){
-			var data1=parent.YMLib.Var.object;
+			var data1=parent.object;
 			var lxbm="";
 			var qdzh="";
 			var zdzh="";
 			for(var i=0;i<data1.length;i++){
 				if(i==0){
-					lxbm=lxbm+data1[i].lxbm.substr(0,4);
+					lxbm=lxbm+"'"+data1[i].lxbm.substr(0,4)+"'";
 					qdzh=qdzh+data1[i].qdzh;
 					zdzh=zdzh+data1[i].zdzh;
 				}
 				else{
-					lxbm=lxbm+","+data1[i].lxbm.substr(0,4);
+					lxbm=lxbm+","+"'"+data1[i].lxbm.substr(0,4)+"'";
 					qdzh=qdzh+","+data1[i].qdzh;
 					zdzh=zdzh+","+data1[i].zdzh;
 				}

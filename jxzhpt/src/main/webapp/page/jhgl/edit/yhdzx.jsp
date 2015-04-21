@@ -415,8 +415,7 @@
 	<script type="text/javascript">
 	var lmjgjson,ymjson,sljson,glfjson;//1、存储路面结构的json字符串   2、存储延米数据的json 3、存储数量的json 4、存储管养费的json
 	sbnf("lblYear");
-	var sheng=new RegExp("^[0-9]{5}360000$");
-	if(!sheng.test($.cookie("unit"))){
+	if(roleName()){
 		$.each($('td [name=sdtd]'),function(index,item){
 			$(item).hide();
 		});
