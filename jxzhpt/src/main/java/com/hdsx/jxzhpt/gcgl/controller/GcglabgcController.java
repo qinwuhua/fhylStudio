@@ -16,7 +16,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -703,8 +705,17 @@ public class GcglabgcController extends BaseActionSupport{
 		
 	}
 	//升级
+	
+	public void exportsjyb_set(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute("gydw", gydw);
+	}
 	public void exportsjyb(){
 		try {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		gydw=(String) session.getAttribute("gydw");	
 		Gcglabgc gcglabgc=new Gcglabgc();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
