@@ -713,10 +713,10 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 		)
 		where 1=1
 			<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 			</if>
 			<if test="xzqh != null and  xzqh != ''">
-				and xzqh like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 			</if>
 			<if test="tiaojian != null and  tiaojian != ''">
 				and xmlx in(#{tiaojian})

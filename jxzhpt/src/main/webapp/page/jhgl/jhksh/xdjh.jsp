@@ -68,15 +68,30 @@ function xmnf(id){
 	$('#'+id).combobox("setValue",first);
 }
 $(function(){
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqh",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqh",$.cookie("dist2"));
 	loadBmbm2("xmlx","项目类型1");
 	xmnf('year');
 	startSearch();
 });
 function startSearch(){
-	var data="xmbb.xzqh="+$("#xzqh").combobox("getValue")+"&xmbb.gydw="+$("#gydw").combobox("getValue")+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue");
-
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydw1str='36';
+		else
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join("','");
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh1str=$.cookie("dist2");
+	}else{
+		xzqh1str=xzqh1.join("','");
+	}
+	var data="xmbb.xzqh="+xzqh1str+"&xmbb.gydw="+gydw1str+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue");
+	
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/dbbb/gljsxdList.do',

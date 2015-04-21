@@ -712,8 +712,24 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 		//公路建设下达计划
 		public void gljsxdList(){
 			try {
-			xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
-			xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+				String tiaojian1="";
+				String tiaojian2="";
+				String gydwdm = xmbb.getGydw();
+				String xzqhdm = xmbb.getXzqh();
+				if(gydwdm.indexOf(",")==-1){
+					tiaojian1="and gydw like '%"+gydwdm+"%'";
+				}else{
+					tiaojian1="and gydw in ('"+gydwdm+"')";
+				}
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2="and xzqh in ('"+xzqhdm+"')";
+				}
+				System.out.println(tiaojian1);
+				System.out.println(tiaojian2);
+			xmbb.setGydw(tiaojian1);
+			xmbb.setXzqh(tiaojian2);
 			List<Map<String,Object>> list = dbServer.selectgljsxdList(xmbb);
 			
 				JsonUtils.write(list, getresponse().getWriter());
