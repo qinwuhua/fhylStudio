@@ -72,4 +72,9 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public String queryGydwmcById(String id) {
 		return queryOne("queryGydwmcById", id);
 	}
+
+	@Override
+	public List<TreeNode> queryTsdqByXzqh(String xzqh) {
+		return queryList("queryTsdqByXzqh",xzqh);
+	}
 }

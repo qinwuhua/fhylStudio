@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface Plan_zjxdServer {
 	/**
@@ -57,4 +58,10 @@ public interface Plan_zjxdServer {
 	Plan_zjxd queryZjxdSumByXmid(String xmid);
 	boolean insertBatch(List<Plan_zjxd> readerExcel);
 	String queryGydwmcById(String string);
+	/**
+	 * 根据行政区划查询所在的特殊地区
+	 * @param xzqh
+	 * @return
+	 */
+	List<TreeNode> queryTsdqByXzqh(String xzqh);
 }

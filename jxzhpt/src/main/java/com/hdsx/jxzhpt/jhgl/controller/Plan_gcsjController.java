@@ -313,6 +313,12 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
+				String xzqh = map.get("1").toString();
+				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+					map.put("jh_sbthcd", 2);
+				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+					map.put("jh_sbthcd", 0);
+				}
 				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
 				map.put("27", map.get("27").toString().substring(0, map.get("27").toString().indexOf(".")));
 				map.put("45", map.get("45").toString().substring(0, map.get("45").toString().indexOf(".")));
