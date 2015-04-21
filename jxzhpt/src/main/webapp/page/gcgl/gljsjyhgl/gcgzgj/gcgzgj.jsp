@@ -28,6 +28,12 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
 			showAll();
 		});
 	</script>
@@ -66,22 +72,22 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
-        						
+        						<input id="gydw" style="width: 150px;">
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						</select>
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select>
-        							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -60%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>

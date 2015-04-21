@@ -25,6 +25,7 @@ function ybsb(index){
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
+	var xmnf=$("#ddlYear").val();
 	var gydw1=$("#gydw").combotree("getValues");
 	if(gydw1.length==0){
 		gydw1str=$.cookie("unit2");
@@ -49,7 +50,8 @@ function showAll(){
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

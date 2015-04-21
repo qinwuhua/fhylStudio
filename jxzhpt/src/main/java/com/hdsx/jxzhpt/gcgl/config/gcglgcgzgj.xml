@@ -314,6 +314,9 @@
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
@@ -342,6 +345,9 @@
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
 					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
 			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'

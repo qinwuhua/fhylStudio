@@ -250,6 +250,7 @@ function showAll(){
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
+	var xmnf=$("#ddlYear").val();
 	var yhjb=$.cookie("unit2");
 	var sfsj='';
 	if(yhjb.length==11){
@@ -281,7 +282,8 @@ function showAll(){
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	gydwdm:gydw1str
+	    	gydwdm:gydw1str,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){

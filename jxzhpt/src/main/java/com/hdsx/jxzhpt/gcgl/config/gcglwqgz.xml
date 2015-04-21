@@ -160,6 +160,9 @@ where  t1.spzt='1'
 	<if test="jgzt != null and  jgzt != ''">
 			and t1.jgzt like '%'||trim(#{jgzt})||'%'
 	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
+	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
 	</if>
@@ -189,6 +192,9 @@ where  t1.spzt='1'
 	</if>
 	<if test="lxmc != null and  lxmc != ''">
 			and t3.lxmc like '%'||trim(#{lxmc})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.sbnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	<if test="qlmc != null and  qlmc != ''">
 			and t3.qlmc like '%'||trim(#{qlmc})||'%'

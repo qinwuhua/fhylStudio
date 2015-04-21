@@ -151,7 +151,7 @@ select * from (
 select m.*,rownum rn from (
 select 
 t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.id jhid,t1.id,
-t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
@@ -170,6 +170,9 @@ where t1.spzt='1'
 	</if>
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	order by t1.jhnf
 	) m
@@ -194,6 +197,9 @@ where t1.spzt='1'
 	</if>
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">
@@ -442,7 +448,7 @@ where t1.spzt='1'
 		select m.*,rownum rn from (
 		select 
 		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
-		t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid

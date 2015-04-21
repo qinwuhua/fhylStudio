@@ -466,6 +466,7 @@ public class GcglabgcController extends BaseActionSupport{
 			gcglabgc.setLxmc(lxmc);
 			gcglabgc.setJgzt(jgzt);
 			gcglabgc.setShzt(ybzt);
+			gcglabgc.setXmnf(xmnf);
 			if(sfsj==7){
 				gcglabgc.setTiaojian("sjsh");
 			}

@@ -28,6 +28,12 @@
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
 			}
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
 			showAll();
 		});
 	</script>
@@ -74,6 +80,9 @@ a:active {
         						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>
         							<input type="text" id="lxmc"  style="width: 100px;">
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						</select>
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 50px;">
         							<option value="">全&nbsp;&nbsp;部</option>

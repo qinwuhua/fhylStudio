@@ -421,9 +421,9 @@ public class GcglzhfzController extends BaseActionSupport{
 		Gcglzhfz gcglzhfz=new Gcglzhfz();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="gydwbm like '%"+gydw+"%'";
+			tiaojian1="and gydwbm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="gydwbm in ("+gydw+")";
+			tiaojian1="and gydwbm in ("+gydw+")";
 		}
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
@@ -433,6 +433,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setJgzt(jgzt);
 		gcglzhfz.setShzt(ybzt);
+		gcglzhfz.setXmnf(xmnf);
 		if(sfsj==7){
 			gcglzhfz.setTiaojian("sjsh");
 		}
@@ -517,9 +518,9 @@ public class GcglzhfzController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="gydwbm like '%"+gydw+"%'";
+				tiaojian1="and gydwbm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="gydwbm in ("+gydw+")";
+				tiaojian1="and gydwbm in ("+gydw+")";
 			}
 		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setKgzt(kgzt);

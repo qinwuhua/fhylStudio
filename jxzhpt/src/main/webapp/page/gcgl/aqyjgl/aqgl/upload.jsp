@@ -190,6 +190,7 @@
 			$('#' + id).tree(
 			{
 				checkbox : true,
+				cascadeCheck : false, 
 				multiple:true,
 				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
 				onCheck : function (node){
