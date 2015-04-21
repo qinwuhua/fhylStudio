@@ -43,6 +43,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('shuih_edit','水毁项目',"/jxzhpt/page/jhgl/edit/shxm.jsp",'shuih_edit',1000,500);
+}
 function shxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
@@ -54,10 +62,10 @@ function shxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm('+"'"+row.shuihs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 	        		var id="'"+row.id+"'";
-	        		result+='<a href="javascript:openDialog('+"'shxm_xx','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	result+='<a href="javascript:dropShuihs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	}else{
 	        		result+="编辑          移除";
@@ -144,9 +152,9 @@ function shxm_sb(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm('+"'"+row.shuihs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		result+='<a href="javascript:openDialog('+"'shxm_sb','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	}else{
 	        		result+="编辑";
 	        	}
@@ -210,9 +218,9 @@ function shxm_sh(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm('+"'"+row.shuihs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=="0")
-	        		result+='<a href="javascript:openDialog('+"'shxm_sh','水毁项目计划详情','../edit/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	return result;
@@ -277,7 +285,7 @@ function shxm_zjxd(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm('+"'"+row.shuihs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zjxd_shxm','水毁项目计划详情','../jhkxx/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){

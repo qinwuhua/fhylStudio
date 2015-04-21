@@ -53,6 +53,14 @@ function querySumAbgc(jh,lx){
 		}
 	});
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/abgc.jsp",'abgc_edit',1000,500);
+}
 function abgcxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pfztz,
@@ -69,9 +77,9 @@ function abgcxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        		var id="'"+row.id+"'";
 	        		if(roleName()=="省级")
 	        			result+='<a href="javascript:dropOne('+id+')" style="text-decoration:none;color:#3399CC;">移除</a>';
@@ -170,9 +178,9 @@ function abgcxm_sb(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_sb','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	}else{
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	}
@@ -253,9 +261,9 @@ function abgcxm_sh(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>  ';
-	        	result+='<a href="javascript:openDialog('+"'abgc_sh','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if(($.cookie("unit")=="36" && row.jh_sbthcd<=4))
-	        		result+='<a href="javascript:openDialog('+"'abgc_xx','安保工程项目计划详情','../edit/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	return result;
@@ -341,7 +349,7 @@ function abgcxm_zjxd(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckabgc.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zjxd_abgc','安保工程项目计划详情','../jhkxx/abgc.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){

@@ -5,6 +5,270 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>灾害防治详细</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_zhfz.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var xxId=parent.YMLib.Var.jhbm;
+			sbnf("editjhnf");
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryZhfzById.do',
+				dataType:'json',
+				data:'jh.id='+xxId,
+				success:function(data){
+					//计划信息
+					$('#jhid').val(data.id);
+					$('#editjhnf').combobox('select',data.sbnf);
+					$('#jhkgsj').datebox('setValue',data.jhkgsj);
+					$('#jhwgsj').datebox('setValue',data.jhkgsj);
+					$('#jhxdsj').datebox('setValue',data.jhkgsj);
+					$('#jhxdwh').val(data.jhxdwh);
+					$('#sjdw').val(data.sjdw);
+					$('#sjpfdw').val(data.sjpfdw);
+					$('#pfwh').val(data.pfwh);
+					$('#pfsj').datebox('setValue',data.pfsj);
+					$('#jhztz').val(data.pfztz);
+					$('#bbz').val(data.jhsybzje);
+					$('#zfzc').html(data.jhsydfzcje);
+					$('#sfsqablbz').html(data.sfsqablbz);
+					$('#ablbzwh').val(data.ablbzsqwh);
+					$('#jhbz').val(data.bz);
+					if(data.gkbgmc!=''){
+						$('#xz_gkbg').html(data.gkbgmc);
+					}
+					if(data.sjsgtmc!=''){
+						$("#xz_sjsgt").html(data.sjsgtmc);
+					}
+					$.ajax({
+						type : 'post',
+						url : '../../../xmsck/selectSckzhfzById.do',
+						data :"sckid="+data.sckid,
+						dataType:'json',
+						success:function(jcAndSc){
+							if(jcAndSc!=null){
+								//基础库
+								$('#lxmc').html(jcAndSc.lxmc);
+								$('#lxbm').html(jcAndSc.lxbm);
+								$.ajax({
+									type:'post',
+									url:'../../../jhgl/lwBzbz.do',
+									data:"bzbz.xmlx="+"灾害",
+									dataType:'json',
+									success:function(data){
+										bz=data.bz;
+										bl=data.bl;
+										fd=data.fd;
+										bzInit();
+									}
+								}); 
+								$('#gydwxx').html(jcAndSc.gydw);
+								$('#qdzh').html(jcAndSc.qdzh);
+								$('#zdzh').html(jcAndSc.zdzh);
+								$('#zlc').html(jcAndSc.zlc);
+								$('#xzqhdm').html(jcAndSc.xzqhdm);
+								$('#xzqhmc').html(jcAndSc.xzqhmc);
+								$('#xjnd').html(jcAndSc.xjnd);
+								$('#lxjsdjxx').html(jcAndSc.lxjsdj);
+								$('#yhlc').html(jcAndSc.yhlc);
+								$('#tsdq').html(jcAndSc.tsdq);
+								$('#xmnf').html(jcAndSc.xmnf);
+								$('#xmzt').html(jcAndSc.xmzt);
+								$('#zhnr').html(jcAndSc.zhnr);
+								$('#bz').html(jcAndSc.bz);
+								//审查库
+								$('#sckid').val(jcAndSc.sckid);
+								$('#SCQDZH').val(jcAndSc.scqdzh);
+								$('#SCZDZH').val(jcAndSc.sczdzh);
+								$('#SCZLC').val(jcAndSc.sczlc);
+								$('#SCYHLC').val(jcAndSc.scyhlc);
+								$('#FAPGDW').val(jcAndSc.fapgdw);
+								$('#FASCDW').val(jcAndSc.fascdw);
+								$('#FASPSJ').datebox('setValue',jcAndSc.faspsj);
+								$('#SPWH').val(jcAndSc.spwh);
+								$('#TZGS').val(jcAndSc.tzgs);
+								$('#JSXZ').val(jcAndSc.jsxz);
+								$('#JSNR').val(jcAndSc.jsnr);
+								$('#scbz').val(jcAndSc.scbz);
+							}
+						}
+					});
+				}
+			});
+			loadUploadify();
+		});
+	var bz;
+	var bl;
+	var fd;
+	var bzzj;
+	var ts;
+	function downFile1(){
+		parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
+	}
+	function downFile2(){
+		parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
+	}
+	function loadUploadify(){
+		$("#uploadGk").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadZhfzFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue',
+			'fileDataName' : 'uploadGk',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/btn_view.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'jh.id':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				$('#xz_gkbg').html(response);
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+
+			}
+		});
+		
+		$("#uploadSjt").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadZhfzFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue1',
+			'fileDataName' : 'uploadSjt',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/btn_view.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'jh.id':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				$('#xz_sjsgt').html(response);
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+
+			}
+		});	
+	}
+	
+	function bzInit(){
+		if($("#sfsqablbz").html()=="否"){
+			document.getElementById("ablbzwh").disabled=true;
+		}
+		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if($("#jhztz").val()!="" || $("#jhztz").val()!=null){
+			if(ztz*1000000000000000>=bzzj*1000000000000000){
+				ts=bzzj.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}else{
+				ts=ztz.toFixed(3);
+				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			}
+		}
+	}
+	
+	function bzSum(){
+		var ztz;
+		if(isNaN($("#jhztz").val())){
+			alert("请输入投资金额！");
+			$("#jhztz").focus();
+			return;
+		}
+		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
+		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+		if(ztz*1000000000000000>=bzzj*1000000000000000){
+			ts=bzzj.toFixed(3);
+			$("#bbz").val(bzzj.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			$("#zfzc").html((parseFloat($("#jhztz").val())-bzzj.toFixed(3)).toFixed(3));
+		}else{
+			ts=ztz.toFixed(3);
+			$("#bbz").val(ztz.toFixed(3));
+			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
+			$("#zfzc").html((parseFloat($("#jhztz").val())-ztz.toFixed(3)).toFixed(3));
+		}
+		if(parseFloat($("#jhztz").val())*100000>=500*100000){
+			$("#sfsqablbz").html("是");
+			document.getElementById("ablbzwh").disabled=false;
+		}else{
+			$("#sfsqablbz").html("否");
+			$("#ablbzwh").val("");
+			document.getElementById("ablbzwh").disabled=true;
+		}
+	}
+	function zjSum(){
+		if($("#bbz").val()*1000>ts*1000){
+			alert("补助金额不能大于"+ts+"万元");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		if(isNaN($("#bbz").val()) || $("#bbz").val()==""){
+			alert("请填写补助金额");
+			$("#bbz").val("");
+			$("#bbz").focus();
+			return;
+		}
+		$("#zfzc").html((parseFloat($("#jhztz").val())-$("#bbz").val()).toFixed(3));
+	}
+	function sbnf(id){
+		var myDate = new Date();
+		var years=[];
+		var first;
+		for(var i=0;i<=10;i++){
+			if(i==0)
+				first=myDate.getFullYear()-i;
+			years.push({text:(myDate.getFullYear()-i)});
+		}
+		$('#'+id).combobox({    
+		    data:years,
+		    valueField:'text',    
+		    textField:'text'   
+		});
+		$('#'+id).combobox("setValue",first);
+	}
+	</script>
 </head>
 <body>
 	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -436,234 +700,5 @@
             </tr>
 		</table>
 	</div>
-	<script type="text/javascript">
-	function downFile1(){
-		parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
-}
-	function downFile2(){
-		parent.window.location.href="/jxzhpt/jhgl/downZhfzFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+$('#jhid').val();
-}
-	
-	$("#uploadGk").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadZhfzFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue',
-		'fileDataName' : 'uploadGk',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'jh.id':xxId,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#xz_gkbg').html(response);
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
-	});
-	
-	$("#uploadSjt").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadZhfzFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue1',
-		'fileDataName' : 'uploadSjt',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'jh.id':xxId,
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#xz_sjsgt').html(response);
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
-	});	
-	
-	
-	var bz;
-	var bl;
-	var fd;
-	var bzzj;
-	var ts;
-	sbnf("editjhnf");
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryZhfzById.do',
-		dataType:'json',
-		data:'jh.id='+xxId,
-		success:function(data){
-			//计划信息
-			$('#jhid').val(data.id);
-			$('#editjhnf').combobox('select',data.sbnf);
-			$('#jhkgsj').datebox('setValue',data.jhkgsj);
-			$('#jhwgsj').datebox('setValue',data.jhkgsj);
-			$('#jhxdsj').datebox('setValue',data.jhkgsj);
-			$('#jhxdwh').val(data.jhxdwh);
-			$('#sjdw').val(data.sjdw);
-			$('#sjpfdw').val(data.sjpfdw);
-			$('#pfwh').val(data.pfwh);
-			$('#pfsj').datebox('setValue',data.pfsj);
-			$('#jhztz').val(data.pfztz);
-			$('#bbz').val(data.jhsybzje);
-			$('#zfzc').html(data.jhsydfzcje);
-			$('#sfsqablbz').html(data.sfsqablbz);
-			$('#ablbzwh').val(data.ablbzsqwh);
-			$('#jhbz').val(data.bz);
-			if(data.gkbgmc!=''){
-				$('#xz_gkbg').html(data.gkbgmc);
-			}
-			if(data.sjsgtmc!=''){
-				$("#xz_sjsgt").html(data.sjsgtmc);
-			}
-			$.ajax({
-				type : 'post',
-				url : '../../../xmsck/selectSckzhfzById.do',
-				data :"sckid="+data.sckid,
-				dataType:'json',
-				success:function(jcAndSc){
-					if(jcAndSc!=null){
-						//基础库
-						$('#lxmc').html(jcAndSc.lxmc);
-						$('#lxbm').html(jcAndSc.lxbm);
-						$.ajax({
-							type:'post',
-							url:'../../../jhgl/lwBzbz.do',
-							data:"bzbz.xmlx="+"灾害",
-							dataType:'json',
-							success:function(data){
-								bz=data.bz;
-								bl=data.bl;
-								fd=data.fd;
-								bzInit();
-							}
-						}); 
-						$('#gydwxx').html(jcAndSc.gydw);
-						$('#qdzh').html(jcAndSc.qdzh);
-						$('#zdzh').html(jcAndSc.zdzh);
-						$('#zlc').html(jcAndSc.zlc);
-						$('#xzqhdm').html(jcAndSc.xzqhdm);
-						$('#xzqhmc').html(jcAndSc.xzqhmc);
-						$('#xjnd').html(jcAndSc.xjnd);
-						$('#lxjsdjxx').html(jcAndSc.lxjsdj);
-						$('#yhlc').html(jcAndSc.yhlc);
-						$('#tsdq').html(jcAndSc.tsdq);
-						$('#xmnf').html(jcAndSc.xmnf);
-						$('#xmzt').html(jcAndSc.xmzt);
-						$('#zhnr').html(jcAndSc.zhnr);
-						$('#bz').html(jcAndSc.bz);
-						//审查库
-						$('#sckid').val(jcAndSc.sckid);
-						$('#SCQDZH').val(jcAndSc.scqdzh);
-						$('#SCZDZH').val(jcAndSc.sczdzh);
-						$('#SCZLC').val(jcAndSc.sczlc);
-						$('#SCYHLC').val(jcAndSc.scyhlc);
-						$('#FAPGDW').val(jcAndSc.fapgdw);
-						$('#FASCDW').val(jcAndSc.fascdw);
-						$('#FASPSJ').datebox('setValue',jcAndSc.faspsj);
-						$('#SPWH').val(jcAndSc.spwh);
-						$('#TZGS').val(jcAndSc.tzgs);
-						$('#JSXZ').val(jcAndSc.jsxz);
-						$('#JSNR').val(jcAndSc.jsnr);
-						$('#scbz').val(jcAndSc.scbz);
-					}
-				}
-			});
-		}
-	});
-	function bzInit(){
-		if($("#sfsqablbz").html()=="否"){
-			document.getElementById("ablbzwh").disabled=true;
-		}
-		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-		if(("#jhztz").val()!="" || ("#jhztz").val()!=null){
-			if(ztz*1000000000000000>=bzzj*1000000000000000){
-				ts=bzzj.toFixed(3);
-				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
-			}else{
-				ts=ztz.toFixed(3);
-				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
-			}
-		}
-	}
-	
-	function bzSum(){
-		var ztz;
-		if(isNaN($("#jhztz").val())){
-			alert("请输入投资金额！");
-			$("#jhztz").focus();
-			return;
-		}
-		ztz=(parseFloat($("#jhztz").val())*bl*1000000000000000+parseFloat(fd)*1000000000000000)/1000000000000000;
-		bzzj=(parseFloat($("#SCYHLC").val())*1000000000000000*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
-		if(ztz*1000000000000000>=bzzj*1000000000000000){
-			ts=bzzj.toFixed(3);
-			$("#bbz").val(bzzj.toFixed(3));
-			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
-			$("#zfzc").html((parseFloat($("#jhztz").val())-bzzj.toFixed(3)).toFixed(3));
-		}else{
-			ts=ztz.toFixed(3);
-			$("#bbz").val(ztz.toFixed(3));
-			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
-			$("#zfzc").html((parseFloat($("#jhztz").val())-ztz.toFixed(3)).toFixed(3));
-		}
-		if(parseFloat($("#jhztz").val())*100000>=500*100000){
-			$("#sfsqablbz").html("是");
-			document.getElementById("ablbzwh").disabled=false;
-		}else{
-			$("#sfsqablbz").html("否");
-			$("#ablbzwh").val("");
-			document.getElementById("ablbzwh").disabled=true;
-		}
-	}
-	function zjSum(){
-		if($("#bbz").val()*1000>ts*1000){
-			alert("补助金额不能大于"+ts+"万元");
-			$("#bbz").val("");
-			$("#bbz").focus();
-			return;
-		}
-		if(isNaN($("#bbz").val()) || $("#bbz").val()==""){
-			alert("请填写补助金额");
-			$("#bbz").val("");
-			$("#bbz").focus();
-			return;
-		}
-		$("#zfzc").html((parseFloat($("#jhztz").val())-$("#bbz").val()).toFixed(3));
-	}
-	</script>
 </body>
 </html>

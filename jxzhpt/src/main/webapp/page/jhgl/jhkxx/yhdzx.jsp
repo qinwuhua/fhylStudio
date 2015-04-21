@@ -435,6 +435,7 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+	var xxId=parent.YMLib.Var.jhbm;
 	function loadCslx(id,cslx){
 		$.ajax({
 			type:'post',

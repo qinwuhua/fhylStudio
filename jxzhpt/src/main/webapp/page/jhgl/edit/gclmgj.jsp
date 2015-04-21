@@ -5,18 +5,24 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>工程改造路面改建项目</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_gcgj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
-	<script type="text/javascript">
-		if(bz=="xx" || bz=="sb"){
-			$("#trSY").hide();
-			$("#trSY1").hide();
-		}
-		if(bz=="sh" || bz=="zjxd"){
-			$("#trSY").show();
-			$("#trSY1").show();
-		}
-	</script>
 	<div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:100%;">
        	<table id="table_gj_xx" width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr id="tr_scxx" style="height: 25px;">
@@ -371,6 +377,7 @@
 
 		}
 	});
+	var xxId=parent.YMLib.Var.jhbm;
 	//加载信息
 	$.ajax({
 		type:'post',

@@ -252,7 +252,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 	<div id="abgc_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

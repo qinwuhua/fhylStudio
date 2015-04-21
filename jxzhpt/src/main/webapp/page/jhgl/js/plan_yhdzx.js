@@ -53,6 +53,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('yhdzx_edit','养护大中修项目计划详情',"/jxzhpt/page/jhgl/edit/yhdzx.jsp",'yhdzx_edit',1000,500);
+}
 function yhdzxxm(jh,lx){
 	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
 			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
@@ -64,9 +72,9 @@ function yhdzxxm(jh,lx){
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a href="javascript:locationXm('+"'"+row.plan_lx_yhdzxs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        		  result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			        	  result+='<a href="javascript:dropYhdzxs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		        	  }else{
 		        		  result+="编辑      移除";
@@ -141,9 +149,9 @@ function yhdzxxm_sb(jh,lx){
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a href="javascript:locationXm('+"'"+row.plan_lx_yhdzxs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
-		        		  result+='<a href="javascript:openDialog('+"'yhdzx_xx','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        		  result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	  else
 		        		  result+='编辑';
 		        	  return result;
@@ -211,9 +219,9 @@ function yhdzxxm_sp(jh,lx){
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a href="javascript:locationXm('+"'"+row.plan_lx_yhdzxs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'yhdzx_sh','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		        	  if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=='0')
-		        		  result+='<a href="javascript:openDialog('+"'yhdzx_sh','养护大中修项目计划详情','../edit/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		        		  result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	  else
 		        		  result+='编辑';
 		        	  return result;
@@ -282,7 +290,7 @@ function yhdzxxm_zjxd(jh,lx){
 		          {field:'ck',checkbox:true},
 		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 		        	  var result='<a href="javascript:locationXm('+"'"+row.plan_lx_yhdzxs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		        	  result+='<a href="javascript:openDialog('+"'zjxd_yhdzx','养护大中修项目计划详情','../jhkxx/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	  return result;
 			      }},
 			      {field:'zjxf',title:'资金下发',width:60,align:'center',

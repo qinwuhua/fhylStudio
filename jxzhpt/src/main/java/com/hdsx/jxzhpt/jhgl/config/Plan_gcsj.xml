@@ -412,9 +412,23 @@
 		and jh.jhnf=#{jhid}
 	</select>
 	<select id="queryXjls" parameterType="plan_lx_gcsj" resultMap="gcsj_jh">
-		select jh.id,jh.xmmc,jh.jhnf,lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-	    where lx.lxbm like #{lxbm}||'%' and lx.xzqhdm = #{xzqhdm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh}
-	    and <![CDATA[jh.jhnf<=#{jhid}]]>
+		select jh.id,jh.jhnf,jh.xmmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
+		where lx.lxbm like #{lxbm}||'%' and lx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[and lx.qdzh<=#{zdzh} and lx.zdzh>=#{qdzh} and jh.jhnf<#{jhid}]]>
+		union all
+		select gj.id,gj.sbnf as jhnf,gj.xmmc,gjlx.lxbm,gjlx.lxmc,gjlx.qdzh,gjlx.zdzh from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id) 
+		where gjlx.lxbm like #{lxbm}||'%' and gjlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and gjlx.qdzh<=#{zdzh} and gjlx.zdzh>=#{qdzh} and gj.sbnf<#{jhid}]]>
+		union all
+		select sh.id,sh.sbnf as jhnf,sh.xmmc,shlx.lxbm,shlx.lxmc,shlx.qdzh,shlx.zdzh from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id) 
+		where shlx.lxbm like #{lxbm}||'%' and shlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and shlx.qdzh<=#{zdzh} and shlx.zdzh>=#{qdzh} and sh.sbnf<#{jhid}]]>
+		union all
+		select yh.id,yh.sbnf as jhnf,yh.xmmc,yhlx.lxbm,yhlx.lxmc,yhlx.qdzh,yhlx.zdzh from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id) 
+		where yhlx.lxbm like #{lxbm}||'%' and yhlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and yhlx.qdzh<=#{zdzh} and yhlx.zdzh>=#{qdzh} and yh.sbnf<#{jhid}]]>
+		union all
+		select a.id,a.jhnf,axm.lxmc as xmmc,axm.lxbm,axm.lxmc,axm.qdzh,axm.zdzh from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
+		where axm.lxbm like #{lxbm}||'%' and axm.xzqhdm like rtrim(#{xzqhdm},0)||'%' and <![CDATA[ axm.qdzh<=#{zdzh} and axm.zdzh>=#{qdzh} and a.jhnf <#{jhid}]]>
+		union all
+		select z.id,z.sbnf as jhnf,zxm.lxmc as xmmc,zxm.lxbm,zxm.lxmc,zxm.qdzh,zxm.zdzh from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
+		where zxm.lxbm like #{lxbm}||'%' and zxm.xzqhdm like rtrim(#{xzqhdm},0)||'%' and <![CDATA[ zxm.qdzh<=#{zdzh} and zxm.zdzh>=#{qdzh} and z.sbnf <#{jhid}]]>
 	</select>
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
 		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}

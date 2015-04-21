@@ -323,7 +323,7 @@
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/queryGcsjById.do',
-			async:false,
+			//async:false,
 			data:"jh.id="+xxId,
 			dataType:'json',
 			success:function(data){
@@ -407,10 +407,9 @@
 						$.each(jh.plan_lx_gcsjs,function(index,lx){
 							a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
 						});
-						a+='】';
-						a+='</a>';
+						a+='】</a>';
 						if(index<data.length-1){
-							a+=";";
+							a+="；";
 						}
 						$('#divPlan').append(a);
 					});

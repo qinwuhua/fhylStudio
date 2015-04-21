@@ -189,7 +189,7 @@
         	</tr>
 		</table>
 	
-	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="zhfz_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 	<div id="zhfz_add" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

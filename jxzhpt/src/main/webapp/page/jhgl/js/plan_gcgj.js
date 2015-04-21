@@ -46,6 +46,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/edit/gclmgj.jsp",'gclmgj_xx',1000,500);
+}
 /**
  * 工程路面改建列表信息
  * @param jh 计划库条件
@@ -65,9 +73,9 @@ function gclmgjxm(jh,lx){
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		    		}else{
 		    			result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
@@ -157,9 +165,9 @@ function gclmgjxm_sb(jh,lx){
 		    	formatter : function(value, row, index) {
 		    		var result="";
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_sb','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>        ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>        ';
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return result;
@@ -229,9 +237,9 @@ function gclmgjxm_sh(jh,lx){
 		    	formatter : function(value, row, index) {
 		    		var result='';
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=="0")
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return  result;
@@ -302,7 +310,7 @@ function gclmgjxm_zjxd(jh,lx){
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		    		result+='<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		    		return result ;
 		    	}
 		    },

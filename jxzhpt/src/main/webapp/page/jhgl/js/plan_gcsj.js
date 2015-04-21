@@ -43,6 +43,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_xx',1000,500);
+}
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
@@ -56,10 +64,10 @@ function gclmsjxm(jh,lx){
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+				result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 					var id="'"+row.id+"'";
-					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+					result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 					result+='<a href="javascript:dropGcsjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 				}else{
 					result+="编辑          移除";
@@ -145,9 +153,9 @@ function gclmsjxm_sb(jh,lx){
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result="";
 				result+='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_sb','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+				result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
-					result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+					result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 				else
 					result+='编辑';
 				return result;
@@ -209,9 +217,9 @@ function gclmsjxm_sh(jh,lx){
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>   ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+				result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				if($.cookie("unit")=="36" && row.jh_sbthcd==4)
-					result+='<a href="javascript:openDialog('+"'gclmsj_sh','工程改造路面升级项目计划详情','../edit/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+					result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 				else
 					result+='编辑';
 				return result;
@@ -275,7 +283,7 @@ function gclmsjxm_zjxd(jh,lx){
 		    {field:'ck',checkbox:true},
 			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-				result+='<a href="javascript:openDialog('+"'zjxd_gclmsj','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+				result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 				return result;
 			}},
 			{field:'c1',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){

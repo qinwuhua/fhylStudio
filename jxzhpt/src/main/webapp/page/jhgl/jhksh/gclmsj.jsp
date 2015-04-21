@@ -161,7 +161,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 	<div id="gclmsj_sh" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

@@ -190,6 +190,6 @@
 			</tr>
 		</table>
 	</div>
-	<div id="gclmgj_sh" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="gclmgj_sh" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>

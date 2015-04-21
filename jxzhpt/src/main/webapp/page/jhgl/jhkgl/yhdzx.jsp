@@ -172,6 +172,6 @@
         	</tr>
 		</table>
 	
-	<div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="yhdzx_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>
