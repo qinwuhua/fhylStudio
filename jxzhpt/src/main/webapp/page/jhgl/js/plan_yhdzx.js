@@ -7,7 +7,6 @@ function ckPQI(index){
 	object=data.plan_lx_yhdzxs;
 	
 	YMLib.UI.createWindow('pqi','PQI详情','pqi.jsp','pqi',1000,450);
-	
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');

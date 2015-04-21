@@ -448,7 +448,7 @@ function lxztz(){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
 				'lx.gydwdm':$.cookie("unit"),'lx.yhlc':$('#yhlc'+i).html(),'lx.qzlc':$('#qzlc'+i).html(),
 				'lx.jhid':$('#editsbnf').combobox('getValue'),'lx.xzqhdm':$('#xzqhdm'+i).html(),
-				'lx.yjsdj':$('#yjsdjxx'+i).html()};
+				'lx.yjsdj':$('#yjsdjxx'+i).html(),'xmlx':'工程改造路面改建'};
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/verifyLx.do',

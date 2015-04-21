@@ -51,6 +51,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_lx_gcgj lx;
 	private String gydwdm;
 	private String tbbmbm2;
+	private String xmlx;
 	private String fileuploadFileName;
 	private File fileupload;
 	private File uploadGk;
@@ -224,7 +225,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 		try {
 			lx.setTsdqbm(gcgjServer.queryTsdqByXzqh(lx.getXzqhdm()));
 			Plan_flwbzbz flw=new Plan_flwbzbz();
-			flw.setXmlx("工程改造路面改建");//建设项目类型
+			flw.setXmlx(xmlx);//建设项目类型
 			System.out.println(lx.getLxbm()+"   "+lx.getYjsdj()+"    "+lx.getTsdqbm());
 			flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
 			flw.setJsdj(lx.getYjsdj());//技术等级
@@ -539,28 +540,28 @@ public class Plan_gcgjController extends BaseActionSupport{
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
 	}
-
 	public String getTbbmbm2() {
 		return tbbmbm2;
 	}
-
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
 	}
 }

@@ -443,29 +443,69 @@ function dropShuihs(){
 	}
 }
 function editShuih(){
-	var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
-			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
-			'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
-			'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
-			'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
-			'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
-			'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
-			'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),
-			'jh.sfsqablbz':$('#lblSFSQABLBZ').val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
-			'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
-			'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-			'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.jhbz':$('#lblJHRemarks').val()
-	};
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/editShuihById.do',
-		dataType:'text',
-		data:jh,
-		success:function(data){
-			alert("修改成功！");
-			$('#shxm_xx').dialog('close');
-		}
-	});
+	if(lxztz()){
+		var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
+				'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
+				'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
+				'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
+				'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
+				'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
+				'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
+				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),
+				'jh.sfsqablbz':$('#lblSFSQABLBZ').val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
+				'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
+				'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.jhbz':$('#lblJHRemarks').val()
+		};
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/editShuihById.do',
+			dataType:'text',
+			data:jh,
+			success:function(data){
+				alert("修改成功！");
+				$('#shxm_xx').dialog('close');
+			}
+		});
+	}else{
+		alert("批复总投资计算不正确！");
+	}
+}
+/**
+ * 对每一条路线的总投资进行验证
+ */
+function lxztz(){
+	var lxCount = ($('#tr_scxx').index()-1)/6;
+	var result=false,fdbz=0,ztz=0.0;//result：是否符合标准;fdbz：投资金额的浮动标准;ztz：总投资金额，每条路线累计相加
+	for(var i=0;i<lxCount;i++){
+		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
+				'lx.gydwdm':$.cookie("unit"),'lx.yhlc':$('#yhlc'+i).html(),'lx.qzlc':$('#qzlc'+i).html(),
+				'lx.jhid':$('#editsbnf').combobox('getValue'),'lx.xzqhdm':$('#xzqhdm'+i).html(),
+				'lx.yjsdj':$('#yjsdjxx'+i).html(),'xmlx':'水毁项目'};
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/verifyLx.do',
+			async:false,
+			data:lx,
+			dataType:'json',
+			success:function(data){
+				ztz=Number(ztz)+Number(data.je);
+				fdbz=data.fdbz;
+			}
+		});
+	}
+	if($('#pfztz').val()>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
+		result=true;
+	}else{
+		result=false;
+		return result;
+	}
+	if($('#pfztz').val()==Number($('#bbz').val())+Number($('#dfzc').val())){
+		result=true;
+	}else{
+		result=false;
+	}
+	return result;
 }
 /**
  * dataGrid绑定数据方法
