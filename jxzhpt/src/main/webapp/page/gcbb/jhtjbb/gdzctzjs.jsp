@@ -52,7 +52,7 @@ table tbody tr td {
 $(function(){
 	selYearList("year");
 	loadUnit1("gydw",$.cookie("unit"));
-	loadDist1("xzqh",$.cookie("dist2"));
+	loadDist1("xzqh",$.cookie("dist"));
 	startSearch();
 });
 function startSearch(){

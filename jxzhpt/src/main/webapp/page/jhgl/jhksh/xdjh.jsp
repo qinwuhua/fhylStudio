@@ -69,7 +69,7 @@ function xmnf(id){
 }
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
-	loadDist1("xzqh",$.cookie("dist2"));
+	loadDist1("xzqh",$.cookie("dist"));
 	loadBmbm2("xmlx","项目类型1");
 	xmnf('year');
 	$("#xmn").text($("#year").combobox("getValue"));

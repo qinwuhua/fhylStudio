@@ -689,10 +689,10 @@
    		from  gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -720,10 +720,10 @@
    		from gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -752,10 +752,10 @@
    		from gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -790,10 +790,10 @@
 				where xdnf in (${jhxdnf}) 
 		</if>  group by id) m where t.id=m.id
 		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -822,10 +822,10 @@
 		from stcyhdzx_gcxmjzb
 		where 1=1
 		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -849,10 +849,10 @@
 		from stcyhdzx_gcxmjzb
 		where 1=1
 		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -876,10 +876,10 @@
 		sum(jc) jc,' ' kgrq,' ' wgrq,' ' kgdl,sum(wglc) wglc,' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
 		from stcyhdzx_gcxmjzb where 1=1
 		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -903,10 +903,10 @@
 		from stcyhdzx_gcxmjzb
 		where 1=1
 		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -935,10 +935,10 @@
  		from lwjggz_gcxmjzb
  		where 1=1
  		<if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})
@@ -961,11 +961,11 @@
 	<select id="getlwbblist2" parameterType="xmbb" resultType="hashmap">
 	 select * from lwjggz_gcxmjzb 
 	 where 1=1
-	 <if test="gydw != null and  gydw != ''">
-				and gydw  like '%'||trim(#{gydw})||'%'
+		 <if test="gydw != null and  gydw != ''">
+				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
-				and xzqhdm  like '%'||trim(#{xzqh})||'%'
+				${xzqh}
 		</if>
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				and xdnf in (${jhxdnf})

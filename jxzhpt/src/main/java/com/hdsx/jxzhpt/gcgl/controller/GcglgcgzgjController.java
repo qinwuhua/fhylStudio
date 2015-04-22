@@ -582,6 +582,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			if("sh".equals(flag)){
 				fanhui = gcglgcgzgjServer.updatashSFQX(gcglgcgzgj);
 			}
+			if("hsly".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatahslySFQX(gcglgcgzgj);
+			}
 			JsonUtils.write(fanhui, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();

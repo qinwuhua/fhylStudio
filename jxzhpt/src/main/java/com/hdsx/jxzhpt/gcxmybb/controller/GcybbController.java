@@ -212,14 +212,23 @@ public class GcybbController extends BaseActionSupport{
 
 	public void getWqgzybb(){		
 		String shijian=nf+"-"+yf;
-		gcglwqgz.setSbyf(shijian);
-		if("36".equals(gydw)){
-			gcglwqgz.setGydw("");
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydw in ("+gydw+")";
 		}
-		else gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqh+")";
+		}
+		gcglwqgz.setSbyf(shijian);
+		gcglwqgz.setGydw(tiaojian1);
 		gcglwqgz.setLxmc(lxmc);
 		gcglwqgz.setTiaojian(xzdj);
-		gcglwqgz.setXzqhdm(xzqh.replaceAll("0*$",""));
+		gcglwqgz.setXzqhdm(tiaojian2);
 		gcglwqgz.setXmnf(xmnf);
 		gcglwqgz.setQlmc(xmmc);
 		//查总合list
@@ -231,11 +240,14 @@ public class GcybbController extends BaseActionSupport{
 		List<Map<String,Object>> list3=gcybbServer.getwqgzbblist3(gcglwqgz);
 		//查询所有列表
 		List<Map<String,Object>> list4=gcybbServer.getwqgzbblist4(gcglwqgz);
+		if(list2.size()>0)
 		for (Map<String, Object> map : list2) {
 			list1.add(map);
+			if(list3.size()>0)
 			for (Map<String, Object> map1 : list3) {
 				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
 					list1.add(map1);
+					if(list4.size()>0)
 					for (Map<String, Object> map2 : list4) {
 						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
 							list1.add(map2);
@@ -243,6 +255,9 @@ public class GcybbController extends BaseActionSupport{
 					}
 				}
 			}
+		}
+		if(list1.size()==1){
+			JsonUtils.write(list1, getresponse().getWriter());
 		}
 			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
@@ -389,13 +404,22 @@ public class GcybbController extends BaseActionSupport{
 	public void getAbgcybb(){
 		String shijian=nf+"-"+yf;
 		gcglabgc.setSbyf(shijian);
-		if("36".equals(gydw)){
-			gcglabgc.setGydw("");
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydw in ("+gydw+")";
 		}
-		else gcglabgc.setGydw(gydw.replaceAll("0*$",""));
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqh+")";
+		}
+		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setTiaojian(xzdj);
-		gcglabgc.setXzqhdm(xzqh.replaceAll("0*$",""));
+		gcglabgc.setXzqhdm(tiaojian2);
 		gcglabgc.setXmnf(xmnf);
 		gcglabgc.setXmmc(xmmc);
 		//查总合list
@@ -407,11 +431,14 @@ public class GcybbController extends BaseActionSupport{
 		List<Map<String,Object>> list3=gcybbServer.getabgcbblist3(gcglabgc);
 		//查询所有列表
 		List<Map<String,Object>> list4=gcybbServer.getabgcbblist4(gcglabgc);
+		if(list2.size()>0)
 		for (Map<String, Object> map : list2) {
 			list1.add(map);
+			if(list3.size()>0)
 			for (Map<String, Object> map1 : list3) {
 				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
 					list1.add(map1);
+					if(list4.size()>0)
 					for (Map<String, Object> map2 : list4) {
 						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
 							list1.add(map2);
@@ -420,6 +447,9 @@ public class GcybbController extends BaseActionSupport{
 				}
 			}
 		}
+			if(list1.size()==1){
+				JsonUtils.write(null, getresponse().getWriter());
+			}else
 			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -550,13 +580,22 @@ public class GcybbController extends BaseActionSupport{
 	public void getZhfzybb(){
 		String shijian=nf+"-"+yf;
 		gcglzhfz.setSbyf(shijian);
-		if("36".equals(gydw)){
-			gcglzhfz.setGydw("");
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydw in ("+gydw+")";
 		}
-		else gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqh+")";
+		}
+		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setTiaojian(xzdj);
-		gcglzhfz.setXzqhdm(xzqh.replaceAll("0*$",""));
+		gcglzhfz.setXzqhdm(tiaojian2);
 		gcglzhfz.setXmnf(xmnf);
 		gcglzhfz.setXmmc(xmmc);
 		//查总合list
@@ -568,11 +607,14 @@ public class GcybbController extends BaseActionSupport{
 		List<Map<String,Object>> list3=gcybbServer.getzhfzbblist3(gcglzhfz);
 		//查询所有列表
 		List<Map<String,Object>> list4=gcybbServer.getzhfzbblist4(gcglzhfz);
+		if(list2.size()>0)
 		for (Map<String, Object> map : list2) {
 			list1.add(map);
+			if(list3.size()>0)
 			for (Map<String, Object> map1 : list3) {
 				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
 					list1.add(map1);
+					if(list4.size()>0)
 					for (Map<String, Object> map2 : list4) {
 						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
 							list1.add(map2);
@@ -581,6 +623,9 @@ public class GcybbController extends BaseActionSupport{
 				}
 			}
 		}
+		if(list1.size()==1){
+			JsonUtils.write(null, getresponse().getWriter());
+		}else
 			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

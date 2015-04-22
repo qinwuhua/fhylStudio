@@ -80,5 +80,7 @@ public interface GcglgcgzgjServer {
 
 	boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj);
 
+	boolean updatahslySFQX(Gcglgcgzgj gcglgcgzgj);
+
 
 }

@@ -25,7 +25,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 

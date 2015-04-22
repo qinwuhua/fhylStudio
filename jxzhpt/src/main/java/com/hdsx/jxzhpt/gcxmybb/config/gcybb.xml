@@ -615,10 +615,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -653,10 +653,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -692,10 +692,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -728,10 +728,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) t
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -767,10 +767,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -805,10 +805,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -844,10 +844,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -879,10 +879,10 @@
       ) 	tt
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -917,10 +917,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -954,10 +954,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -992,10 +992,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -1026,10 +1026,10 @@
 		    ) tt
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'

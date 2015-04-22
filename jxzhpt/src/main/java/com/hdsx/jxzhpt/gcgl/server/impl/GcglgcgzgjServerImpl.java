@@ -356,5 +356,14 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		}
 	}
 
+	@Override
+	public boolean updatahslySFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatahslySFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	
 }

@@ -51,17 +51,32 @@ table tbody tr td {
 <script type="text/javascript">
 $(function(){
 	selYearList("year");
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqh",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqh",$.cookie("dist"));
 	startSearch();
 });
 function startSearch(){
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydw1str='36';
+		else
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(",");
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh1str=$.cookie("dist2");
+	}else{
+		xzqh1str=xzqh1.join(",");
+	}
 	$("#titleYear").html($("#year").combotree("getValue"));
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getGzgcjz.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue"),
+		data:"dist="+xzqh1str+"&unit="+gydw1str+"&nf="+$("#year").combotree("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");

@@ -21,8 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("xzdj","公路等级");
 			var myDate = new Date();
 			var y = myDate.getFullYear();
@@ -38,11 +38,24 @@
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
 			var xmnf=$("#ddlYear1").val();
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw1=$("#gydw").combotree("getValues");
+			if(gydw1.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydw1str='36';
+				else
+				gydw1str=$.cookie("unit2");
+			}else{
+				gydw1str=gydw1.join(",");
+			}
+			var xzqh1=$("#xzqh").combotree("getValues");
+			if(xzqh1.length==0){
+				xzqh1str=$.cookie("dist2");
+			}else{
+				xzqh1str=xzqh1.join(",");
+			}
 			var xzdj=$("#xzdj").combobox("getValue");
 			var lxmc=$("#lxmc").val();
-			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw1str+"&xzqh="+xzqh1str+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getWqgzybb.do",

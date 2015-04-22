@@ -161,8 +161,20 @@ public class XmbbController extends BaseActionSupport{
 	}
 	
 	public void getPtgxbb(){
-		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
-		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+		String tiaojian1="";
+		String tiaojian2="";
+		if(xmbb.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+xmbb.getGydw()+"%'";
+		}else{
+			tiaojian1="and gydw in ("+xmbb.getGydw()+")";
+		}
+		if(xmbb.getXzqh().indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xmbb.getXzqh()+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xmbb.getXzqh()+")";
+		}
+		xmbb.setGydw(tiaojian1);
+		xmbb.setXzqh(tiaojian2);
 		if(xmbb.getJhxdnf().equals("")){
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
@@ -171,8 +183,9 @@ public class XmbbController extends BaseActionSupport{
 		List<Map<String,Object>> list2=xmbbServer.getptgxlist2(xmbb);
 		List<Map<String,Object>> list3=xmbbServer.getptgxlist3(xmbb);
 		List<Map<String,Object>> list4=xmbbServer.getptgxlist4(xmbb);
+		if(list2.size()>0)
 		for (Map<String, Object> map : list2) {
-			System.out.println(map.get("XMLX").toString().substring(0,1));
+			//System.out.println(map.get("XMLX").toString().substring(0,1));
 			if(map.get("XMLX").toString().substring(0,1).equals(1+"")){
 				map.put("SL", 1);
 				map.put("XH", "(一)");
@@ -190,10 +203,12 @@ public class XmbbController extends BaseActionSupport{
 				map.put("XH", "二");
 			}
 			list1.add(map);
+			if(list3.size()>0)
 			for (Map<String, Object> map1 : list3) {
 				if(map.get("XMLX").toString().equals(map1.get("XMLX").toString())){
 					map1.put("SL", 1);
 				    list1.add(map1);
+				    if(list3.size()>0)
 				for (int i = 0; i < list4.size(); i++) {
 					if(map.get("XMLX").toString().equals(list4.get(i).get("XMLX").toString()))
 					list1.add(list4.get(i));
@@ -201,11 +216,10 @@ public class XmbbController extends BaseActionSupport{
 				}
 			}
 		}
-		for (Map<String, Object> map : list1) {
-			System.out.println(map.toString());
-		}
-		
-		
+			if(list1.size()==1){
+				JsonUtils.write(null, getresponse().getWriter());
+			}
+			else
 			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -403,8 +417,20 @@ public class XmbbController extends BaseActionSupport{
 		}		
 	}
 	public void getYhbb(){
-		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
-		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+		String tiaojian1="";
+		String tiaojian2="";
+		if(xmbb.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+xmbb.getGydw()+"%'";
+		}else{
+			tiaojian1="and gydw in ("+xmbb.getGydw()+")";
+		}
+		if(xmbb.getXzqh().indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xmbb.getXzqh()+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xmbb.getXzqh()+")";
+		}
+		xmbb.setGydw(tiaojian1);
+		xmbb.setXzqh(tiaojian2);
 		if(xmbb.getJhxdnf().equals("")){
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
@@ -414,11 +440,14 @@ public class XmbbController extends BaseActionSupport{
 		List<Map<String,Object>> list4=xmbbServer.getyhbblist4(xmbb);
 
 		try {
+			if(list2.size()>0)
 			for (int i = 0; i < list2.size(); i++) {
 				list1.add(list2.get(i));
+				if(list3.size()>0)
 				for (int j = 0; j < list3.size(); j++) {
 					if(list2.get(i).get("XZQHDM").toString().equals(list3.get(j).get("XZQHDM").toString())){
 						list1.add(list3.get(j));
+						if(list4.size()>0)
 						for (int k = 0; k < list4.size(); k++) {
 							if(list2.get(i).get("XZQHDM").toString().equals(list4.get(k).get("XZQHDM").toString())&&list3.get(j).get("SZDS").toString().equals(list4.get(k).get("DLLX").toString()))
 								list1.add(list4.get(k));
@@ -426,7 +455,9 @@ public class XmbbController extends BaseActionSupport{
 					}
 				}
 			}
-			
+			if(list1.size()==1){
+				JsonUtils.write(null, getresponse().getWriter());
+			}else
 			JsonUtils.write(list1, getresponse().getWriter());
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -552,8 +583,20 @@ public class XmbbController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel		
 	}
 	public void getLwbb(){
-		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
-		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
+		String tiaojian1="";
+		String tiaojian2="";
+		if(xmbb.getGydw().indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+xmbb.getGydw()+"%'";
+		}else{
+			tiaojian1="and gydw in ("+xmbb.getGydw()+")";
+		}
+		if(xmbb.getXzqh().indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xmbb.getXzqh()+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xmbb.getXzqh()+")";
+		}
+		xmbb.setGydw(tiaojian1);
+		xmbb.setXzqh(tiaojian2);
 		if(xmbb.getJhxdnf().equals("")){
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
@@ -561,9 +604,11 @@ public class XmbbController extends BaseActionSupport{
 			List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 			List<Map<String,Object>> list1=xmbbServer.getlwbblist1(xmbb);
 			List<Map<String,Object>> list2=xmbbServer.getlwbblist2(xmbb);
+			if(list1.size()>0)
 			for (Map<String, Object> map : list1) {
 				list.add(map);
 				int i=1;
+				if(list2.size()>0)
 				for (Map<String, Object> map1 : list2) {
 					
 					if(map.get("XMLX").toString().equals(map1.get("XMLX").toString())){
@@ -573,6 +618,9 @@ public class XmbbController extends BaseActionSupport{
 					}
 				}
 			}
+			if(list.size()==1){
+				JsonUtils.write(null, getresponse().getWriter());
+			}else
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -449,4 +449,7 @@
 	 <select id="updatashSFQX" parameterType="gcglgcgzgj">
 	 	update plan_shuih set sfqxkg=#{sfqxkg} where id=#{id}
 	 </select>
+	 <select id="updatahslySFQX" parameterType="gcglgcgzgj">
+	 	update plan_hsly set sfqxkg=#{sfqxkg} where id=#{id}
+	 </select>
 </mapper>
