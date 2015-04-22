@@ -360,23 +360,25 @@
 		insert into plan_lx_yhdzx (lxid,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
 			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
 			yjsdj,ylmkd,ylmhd,ylmlx,DZXKD,
-			tbbm,tbbmdm,tbsj <!-- -->) 
+			tbbm,tbbmdm,tbsj,lmjg,aym,asl,glf <!-- -->) 
 		values (sys_guid(),#{jhid},#{gydwmc},#{gydwdm},#{xzqhdm},#{xzqhmc},
 			#{lxmc},#{lxbm},#{qdzh},#{zdzh},#{qzlc},#{hdlc},
 			#{yjsdj},#{ylmkd},#{ylmhd},#{ylmlx},#{dzxkd} ,
-			(select name from XTGL_DEPARTMENT t where t.id = #{tbbmdm}),#{tbbmdm},#{tbsj}<!-- -->)
+			(select name from XTGL_DEPARTMENT t where t.id = #{tbbmdm}),#{tbbmdm},
+			#{tbsj},#{lmjg},#{aym},#{asl},#{glf}<!-- -->)
 	</insert>
 	<insert id="insertYhdzxJh" parameterType="plan_yhdzx">
 		insert into plan_yhdzx (
 	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
 	    	jiceng,surface,reportingfee,totalinvest,
-	    	mark,constructnumber,replynumber,devisenumbder,
-	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
+	    	constructnumber,replynumber,devisenumbder,mark,
+	    	plandownnumber,remarks,qtbz,tbbm,tbsj,xmmc,pqi <!-- -->)
 		values (
 			#{id},#{sbnf},#{classify},#{jhkgsj},#{jhwgsj},#{xdsj},#{dianceng},
 			#{jiceng},#{surface},#{reportingfee},#{totalinvest},
-			#{mark},#{constructnumber},#{replynumber},#{devisenumbder},
-			#{plandownnumber},#{remarks},#{qtbz},(select name from XTGL_DEPARTMENT t where t.id = #{tbbm}),to_date(#{tbsj},'yyyy-mm-dd')  <!---->)
+			#{constructnumber},#{replynumber},#{devisenumbder},#{mark},
+			#{plandownnumber},#{remarks},#{qtbz},(select name from XTGL_DEPARTMENT t where t.id = #{tbbm}),to_date(#{tbsj},'yyyy-mm-dd'),
+			#{xmmc},#{pqi}  <!---->)
 	</insert>
 	<select id="yhdzxAutoCompleteLxbm" parameterType="plan_lx_yhdzx" resultType="plan_lx_yhdzx">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
