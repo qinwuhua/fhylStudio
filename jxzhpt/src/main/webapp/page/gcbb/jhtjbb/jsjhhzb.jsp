@@ -51,8 +51,8 @@ table tbody tr td {
 <script type="text/javascript">
 $(function(){
 	selYearList("year");
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqh",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqh",$.cookie("dist2"));
 	startSearch();
 });
 function startSearch(){

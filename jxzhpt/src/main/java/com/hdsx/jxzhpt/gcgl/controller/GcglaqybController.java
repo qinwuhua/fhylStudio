@@ -347,6 +347,9 @@ public class GcglaqybController extends BaseActionSupport{
 		List<TreeNode> children = root.getChildren();
 		children1.get(0).setId(yhdw.replaceAll("0*$",""));
 		children1.get(0).setChildren(children);
+		for (TreeNode treeNode : children) {
+			System.out.println(treeNode.getId());
+		}
 		try{
 		    String s=JSONArray.fromObject(children1).toString();
             ResponseUtils.write(getresponse(), s);
