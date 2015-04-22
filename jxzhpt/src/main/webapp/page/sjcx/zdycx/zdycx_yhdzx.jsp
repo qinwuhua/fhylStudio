@@ -29,6 +29,8 @@
 		var lxmc=parent.YMLib.Var.lxmc;
 		var lxbm=parent.YMLib.Var.lxbm;
 		var xmlx=parent.YMLib.Var.xmlx;
+		var xmnf=parent.YMLib.Var.xmnf;
+		var jhnf=parent.YMLib.Var.jhnf;
 		$("#save_button").click(function(){
 			nameValue=new Array();
 			colValue= new Array();
@@ -80,14 +82,16 @@
 					    	kgzt: kgzt,
 					    	lxmc:lxmc,
 					    	lxbm:lxbm,
-					    	xmlx:xmlx
+					    	xmlx:xmlx,
+					    	xmnf:xmnf,
+					    	jhnf:jhnf
 						},
 					striped:true,
 				    pagination:true,
 				    rownumbers:true,
 				    pageNumber:1,
 				    pageSize:10,
-				    height:375,
+				    height:345,
 				    width:1154,
 			}); 
  			var this_width;

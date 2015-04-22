@@ -85,6 +85,8 @@ function exportExcel_zdy(){
 	"&lxmc="+YMLib.Var.lxmc+
 	"&lxbm="+YMLib.Var.lxbm+
 	"&xmlx="+YMLib.Var.xmlx+
+	"&xmnf="+YMLib.Var.xmnf+
+	"&jhnf="+YMLib.Var.jhnf+
 	"&xmName="+YMLib.Var.xmName+
 	"&colName="+YMLib.Var.sqlcol+
 	"&tableName="+YMLib.Var.tablecol;

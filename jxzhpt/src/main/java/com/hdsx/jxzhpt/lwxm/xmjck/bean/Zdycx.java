@@ -15,7 +15,8 @@ public class Zdycx {
 		private String xmName;
 		private int page;
 		private int rows;
-		
+		private String xmnf;
+		private String jhnf;
 		//项目库
 		private String xzqhmc;
 		private String lxjsdj;
@@ -24,7 +25,7 @@ public class Zdycx {
 		private String qzlc;
 		private String yhlc;
 		private String gjxjnd;
-		private String xmnf;
+
 		private String xmtype;  //项目状态
 		private String tsdq;
 		private String tbbmbm;
@@ -145,6 +146,18 @@ public class Zdycx {
 		}
 		public void setXmName(String xmName) {
 			this.xmName = xmName;
+		}
+		public String getXmnf() {
+			return xmnf;
+		}
+		public void setXmnf(String xmnf) {
+			this.xmnf = xmnf;
+		}
+		public String getJhnf() {
+			return jhnf;
+		}
+		public void setJhnf(String jhnf) {
+			this.jhnf = jhnf;
 		}
 		
 		
