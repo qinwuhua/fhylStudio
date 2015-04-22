@@ -684,8 +684,8 @@
 	<!-- ptgx -->
 	<select id="getptgxlist1" parameterType="xmbb" resultType="hashmap">
 		select '一' xh,' ' xmlx,'普通国省道改造建设项目' xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		sum(yhlc) yhlc,sum(pfztz) pfztz,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
-    	sum(jc) jc,sum(wglc) wglc,sum(wkglc) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw
+		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
+    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw
    		from  gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
@@ -715,8 +715,8 @@
 	</select>
 	<select id="getptgxlist2" parameterType="xmbb" resultType="hashmap">
 		select min(xmlx) xmlx,min(substr(xmlx,2)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		sum(yhlc) yhlc,sum(pfztz) pfztz,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
-    	sum(jc) jc,sum(wglc) wglc,sum(wkglc) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
+		 decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
+    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
@@ -747,8 +747,8 @@
 	</select>
 	<select id="getptgxlist3" parameterType="xmbb" resultType="hashmap">
 		select ' ' xh,min(xmlx) xmlx,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'小计' xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		sum(yhlc) yhlc,sum(pfztz) pfztz,sum(jhxdzj) jhxdzj,sum(bfzj) bfzj,sum(wbfzj) wbfzj,' ' jszt,sum(dc) dc,
-    	sum(jc) jc,sum(wglc) wglc,sum(wkglc) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
+		 decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
+    	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
    		where 1=1
    		<if test="gydw != null and  gydw != ''">
@@ -779,8 +779,13 @@
 		order by substr(xmlx,0,1),substr(xzqhdm,0,4)
 	</select>
 	<select id="getptgxlist4" parameterType="xmbb" resultType="hashmap">
-		select t.*,' 'xh,m.sl from gljsxdjh_gsdgzxm t,(
-		select id,count(*) sl from gljsxdjh_gsdgzxm
+		select decode(xmlx,null,' ',xmlx) xmlx,decode(xmmc,null,' ',xmmc) xmmc,decode(xzqhmc,null,' ',xzqhmc) xzqhmc,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(tsdq,null,' ',tsdq) tsdq,
+		decode(xdnf,null,' ',xdnf) xdnf,decode(qdzh,null,' ',qdzh) qdzh,decode(zdzh,null,' ',zdzh) zdzh,decode(yhlc,null,' ',yhlc) yhlc,decode(pfztz,null,' ',pfztz) pfztz,
+		decode(jhxdzj,null,' ',jhxdzj) jhxdzj,decode(bfzj,null,' ',bfzj) bfzj,decode(wbfzj,null,' ',wbfzj) wbfzj,decode(jszt,null,' ',jszt) jszt,decode(dc,null,' ',dc) dc,
+		decode(jc,null,' ',jc) jc,decode(wglc,null,' ',wglc) wglc,decode(wkglc,null,' ',wkglc) wkglc,decode(sjkgsj,null,' ',to_char(sjkgsj,'yyyy-mm-dd')) sjkgsj,decode(sfqxkg,null,' ',sfqxkg) sfqxkg,
+		decode(kgdl,null,' ',kgdl) kgdl,decode(sjwgsj,null,' ',to_char(sjwgsj,'yyyy-mm-dd')) sjwgsj,decode(yjwgsj,null,' ',to_char(yjwgsj,'yyyy-mm-dd')) yjwgsj,decode(qksm,null,' ',qksm) qksm,decode(xdwh,null,' ',xdwh) xdwh,
+		decode(xgcsyj,null,' ',xgcsyj) xgcsyj,decode(cscyj,null,' ',cscyj) cscyj,decode(gydw,null,' ',gydw) gydw,decode(t.id,null,' ',t.id) id,' 'xh,m.sl from gljsxdjh_gsdgzxm t,(
+				select id,count(*) sl from gljsxdjh_gsdgzxm
 		<if test="jhxdnf != null and  jhxdnf != ''">
 				where xdnf in (${jhxdnf}) 
 		</if>  group by id) m where t.id=m.id
