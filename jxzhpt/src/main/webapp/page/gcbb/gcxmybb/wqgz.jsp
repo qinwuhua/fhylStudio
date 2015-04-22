@@ -39,7 +39,7 @@
 			var yf=$("#ddlMonth").val();
 			var xmnf=$("#ddlYear1").val();
 			var gydw1=$("#gydw").combotree("getValues");
-			if(gydw1.length==0){
+			if(gydw1.length==0||gydw1.length==1){
 				if($.cookie("unit2")=='_____36')
 					gydw1str='36';
 				else
