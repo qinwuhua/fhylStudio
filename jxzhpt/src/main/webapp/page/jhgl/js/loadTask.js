@@ -12,6 +12,24 @@ function radioChecked(name,value){
 		}
 	});
 }
+function onclickXx(xmlx,id){
+	var url="/jxzhpt/page/jhgl/jhkxx/";
+	if(xmlx=="路面改建")
+		url+="gclmgj.jsp";
+	else if(xmlx=="路面升级")
+		url+="gclmsj.jsp";
+	else if(xmlx=="水毁项目")
+		url+="shxm.jsp";
+	else if(xmlx=="养护大中修")
+		url+="yhdzx.jsp";
+	else if(xmlx=="安保工程")
+		url+="abgc.jsp";
+	else if(xmlx=="灾害防治")
+		url+="zhfz.jsp";
+	parent.YMLib.Var.jhbm=id;
+	parent.YMLib.Var.bz="xx";
+	parent.YMLib.UI.createWindow('xmxx_xx',xmlx,url,'xmxx',1000,500);
+}
 function sbnf(id){
 	var myDate = new Date();
 	var years=[];

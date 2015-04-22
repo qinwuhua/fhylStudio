@@ -48,6 +48,14 @@ function sbnf(id){
 	    textField:'text'   
 	});
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'abgc_edit',1000,500);
+}
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
@@ -56,8 +64,8 @@ function hslyglxm(hsly){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../edit/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
@@ -94,7 +102,7 @@ function hslyglxm_zjxd(){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:80,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a href="javascript:openDialog('+"'zjxd_hslygl','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金下发',width:100,align:'center',formatter:function(value,row,index){

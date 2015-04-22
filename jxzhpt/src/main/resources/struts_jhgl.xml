@@ -36,6 +36,7 @@
 		<action name="insertGcsjlx" class="plan_gcsjController" method="insertGcsjlx"></action>
 		<action name="queryXjls" class="plan_gcsjController" method="queryXjls"></action>
 		<action name="sjAutoCompleteLxbm" class="plan_gcsjController" method="sjAutoCompleteLxbm"></action>
+		<action name="querySjzh" class="plan_gcsjController" method="querySjzh"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>

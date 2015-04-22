@@ -220,4 +220,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	public List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx) {
 		return queryList("sjAutoCompleteLxbm",lx);
 	}
+
+	@Override
+	public List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx) {
+		return queryList("querySjzh",lx);
+	}
 }

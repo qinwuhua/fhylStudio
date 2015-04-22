@@ -5,6 +5,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>红色旅游公路详细信息</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_hsly.js"></script>
 </head>
 <body>
 	<div id="hslygl_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -151,6 +156,7 @@
 		</table>
 	</div>
 	<script type="text/javascript">
+		var xxId=parent.YMLib.Var.jhbm;
 		queryHslyXx(xxId);
 	</script>
 </body>

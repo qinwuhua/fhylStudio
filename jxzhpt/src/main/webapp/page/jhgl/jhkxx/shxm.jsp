@@ -6,6 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>水毁项目明细</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
 	<div id="shxm_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -309,11 +312,6 @@
 					<div id="divPlan"></div>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
-            	<td align="center" colspan="6">
-                	<img onclick="closeWindow('shuih_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
-                </td>
-            </tr>
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -389,7 +387,7 @@
 				dataType:'json',
 				success:function(data){
 					$.each(data,function(index,jh){
-						var a='<a style="color:#0066CB;font-size:12px;">';
+						var a='<a href="javascript:onclickXx('+"'"+jh.remarks+"','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
 						a+=jh.jhnf+'年,'+jh.xmmc+'【';
 						$.each(jh.plan_lx_gcsjs,function(index,lx){
 							a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';

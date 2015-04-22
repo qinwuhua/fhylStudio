@@ -167,4 +167,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx);
+	/**
+	 * 查询升级桩号
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx);
 }

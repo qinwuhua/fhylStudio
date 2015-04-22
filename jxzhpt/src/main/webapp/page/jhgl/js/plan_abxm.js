@@ -55,11 +55,11 @@ function querySumAbgc(jh,lx){
 }
 function openWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
+	YMLib.UI.createWindow('abgc_xx','安保工程',"/jxzhpt/page/jhgl/jhkxx/abgc.jsp",'abgc_xx',1000,500);
 }
 function openEditWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/abgc.jsp",'abgc_edit',1000,500);
+	YMLib.UI.createWindow('abgc_edit','安保工程',"/jxzhpt/page/jhgl/edit/abgc.jsp",'abgc_edit',1000,500);
 }
 function abgcxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
