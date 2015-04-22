@@ -23,12 +23,12 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			//if(roleName()=="省级"){
 				queryZjqf($('#sbnf').combobox("getValue"));
@@ -43,13 +43,12 @@
 			}*/
 		});
 		function searchWqgz(){
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:4};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:null,jh_sbthcd:4};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:filterGydwdm($('#gydw').combobox('getValue')),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.gydwdm=null;
+			lx.gydwbm = filterGydwdm(lx.gydwbm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -58,7 +57,7 @@
 				lx.qlmc=$('#txtBridge').val();
 			}
 			if($('#sbnf').combobox('getValue')!=""){
-				jh.sbnf=$('#sbnf').combobox('getValue');
+				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
 			if($('#ddlSHZT').combobox('getValue')=="未审核"){
 				jh.jh_sbthcd=4;

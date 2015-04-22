@@ -415,15 +415,15 @@
 			</tr>
 			<tr id="trSY1" style="height: 50px;">
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
-					最近年份历史修建记录
+					历史修建记录
 				</td>
 				<td colspan="6" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divPlan">暂无数据！</div>
+					<div id="divPlan"></div>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img onclick="$('#zhfz_xx').dialog('close')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
+                	<img onclick="closeWindow('zhfz_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
                 	<input type="hidden" id="jhid"/>
                 </td>
             </tr>
@@ -436,32 +436,28 @@
 	if(parent.YMLib.Var.jhbm!=null){
 		xxId=parent.YMLib.Var.jhbm;
 	}
-	if(bz=="xx" || bz=="sb"){
-		var tr = $("tr[id^='trSY']");
-		tr.each(function(){
-			  $(this).hide();
-		});
-	}
-	if(bz=="sh" || bz=="zjxd"){
-		var tr = $("tr[id^='trSY']");
-		tr.each(function(){
-			$(this).show();
-		});
-	}
+	var lxls={'lx.lxbm':null,'lx.zdzh':null,'lx.xzqhdm':null,'lx.qdzh':null,'lx.jhid':null};
 	$.ajax({
 		type:'post',
+		async:false,
 		url:'../../../jhgl/queryZhfzById.do',
 		dataType:'json',
 		data:'jh.id='+xxId,
 		success:function(data){
+			lxls['lx.jhid']=data.sbnf;
 			$.ajax({
 				type : 'post',
+				async:false,
 				url : '../../../xmsck/selectSckzhfzById.do',
 				data :"sckid="+data.sckid,
 				dataType:'json',
 				success:function(jcAndSc){
 					if(jcAndSc!=null){
 						//基础库
+						lxls['lx.lxbm']=jcAndSc.lxbm;
+						lxls['lx.zdzh']=jcAndSc.zdzh;
+						lxls['lx.qdzh']=jcAndSc.qdzh;
+						lxls['lx.xzqhdm']=jcAndSc.xzqhdm;
 						$('#lxmc').html(jcAndSc.lxmc);
 						$('#lxbm').html(jcAndSc.lxbm);
 						$('#gydwxx').html(jcAndSc.gydw);
@@ -519,6 +515,34 @@
 			}
 		}
 	});
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryXjls.do',
+		async:false,
+		data:lxls,
+		dataType:'json',
+		success:function(data){
+			if(data.length>0){
+				$.each(data,function(index,jh){
+					var a='<a style="color:#0066CB;font-size:12px;">';
+					a+=jh.jhnf+'年,'+jh.xmmc+'【';
+					$.each(jh.plan_lx_gcsjs,function(index,lx){
+						a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
+					});
+					a+='】</a>';
+					if(index<data.length-1){
+						a+="；";
+					}
+					$('#divPlan').append(a);
+				});
+			}else{
+				$('#divPlan').append("暂无历史记录！");
+			}
+		}
+	});
+	function closeWindow(id){
+		parent.$('#'+id).window('destroy');
+	}
 	</script>
 </body>
 </html>

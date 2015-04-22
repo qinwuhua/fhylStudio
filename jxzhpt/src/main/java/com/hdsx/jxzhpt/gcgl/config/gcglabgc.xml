@@ -49,8 +49,8 @@
 	
 	<!-- 添加月报 -->
 	<insert id="insertAbgcYb" parameterType="gcglabgc">
-		insert into GCGL_ABGC(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywc_c,bywc_gl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywc_c},#{bywc_gl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
+		insert into GCGL_ABGC(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywc_c,bywc_gl,kgdl,qksm,sbsj,sbyf,shzt,sfsj,sfth,wcqk)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywc_c},#{bywc_gl},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{wcqk})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglabgc" resultType="gcglabgc">
 		select * from GCGL_ABGC where sbyf=#{sbyf} and jhid=#{jhid}
@@ -60,7 +60,7 @@
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateAbgcYb" parameterType="gcglabgc">
-		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_ABGC set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywc_c=#{bywc_c},bywc_gl=#{bywc_gl},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},wcqk=#{wcqk}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -80,8 +80,8 @@
 	
 		<!-- 添加车购税 -->
 	<insert id="insertAbgcCgs" parameterType="gcglabgc">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglwqgz" resultType="gcglabgc">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -115,49 +115,49 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateAbgcCgs" parameterType="gcglabgc">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	
 	<!-- 上传 -->
 	<update id="uploadWqgzFilesgxk" parameterType="gcglabgc">
 		update PLAN_ABGC set SGXKWJ=#{tiaojian},SGXKWJFILE=#{sgxkwjfile}
-		where SCKID=#{jhid}
+		where ID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgtc" parameterType="gcglabgc">
 		update PLAN_ABGC set JGTCWJ=#{tiaojian},JGTCWJFILE=#{jgtcwjfile}
-		where SCKID=#{jhid}
+		where ID=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglabgc">
-		update PLAN_ABGC set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
-		where SCKID=#{jhid}
+		update PLAN_ABGC set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
+		where ID=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglabgc" resultType="gcglabgc">
-		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_ABGC where SCKID=#{jhid}
+		select ${tiaojian} tiaojian,${lxmc} sgxkwjfile from PLAN_ABGC where ID=#{jhid}
 	</select>
 	<update id="insertWqgzwwg" parameterType="gcglabgc">
-		update PLAN_ABGC set WJGYY=#{wjgyy} where SCKID=#{jhid}
+		update PLAN_ABGC set WJGYY=#{wjgyy} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglabgc">
-		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where SCKID=#{jhid}
+		update PLAN_ABGC set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where ID=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglabgc">
-		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjjgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where SCKID=#{jhid}
+		update PLAN_ABGC set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys} where ID=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglabgc" resultType="gcglabgc">
 select * from (
 select m.*,rownum rn from (
 select 
-t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.SCKID jhid,t1.id,
-t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t3.qzlc,t3.yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
+t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.id jhid,t1.id,
+t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 where t1.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -170,6 +170,9 @@ where t1.spzt='1'
 	</if>
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
+	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
 	</if>
 	order by t1.jhnf
 	) m
@@ -181,7 +184,7 @@ where t1.spzt='1'
 	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
 	 	where 1=1 and spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t3.gydwbm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -195,18 +198,24 @@ where t1.spzt='1'
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
+	<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
+	</if>
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglabgc" resultType="gcglabgc">
-	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where SCKID=#{jhid}
+	 	select sgxkwj,jgtcwj,jgyswj from PLAN_ABGC where ID=#{jhid}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglabgc" >
-	 update PLAN_ABGC set sjzt=#{sjzt} where sckid=#{jhid}
+	 update PLAN_ABGC set sjzt=#{sjzt} where id=#{jhid}
 	 </update>
 	 <update id="updateXjZT" parameterType="gcglabgc" >
-	 update PLAN_ABGC set xjzt=#{xjzt} where sckid=#{jhid}
+	 update PLAN_ABGC set xjzt=#{xjzt} where id=#{jhid}
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglabgc" >
-	 update PLAN_ABGC set sjsh=#{sjsh} where sckid=#{jhid}
+	 update PLAN_ABGC set sjsh=#{sjsh} where id=#{jhid}
+	 </update>
+	  <update id="updatezdyf" parameterType="gcglabgc" >
+	 update PLAN_ABGC set zdyf=#{sbyf} where id=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from GCGL_ABGC 
@@ -216,11 +225,11 @@ where t1.spzt='1'
 	 
 	 <select id="exportAbyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
-			where t1.spzt='1'
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+			where t1.spzt='1' and c.tbyf is null and t1.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -235,50 +244,77 @@ where t1.spzt='1'
 	</select>
 	
 	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
-			select 
-			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
-			where t2.spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and t1.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and t2.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and t2.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and t1.lxmc like '%'||trim(#{lxmc})||'%'
-			</if>
+		select 
+		t2.id v_0,
+		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_4,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pfztz) v_5,max(t2.jhsybzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from PLAN_GCGJ t2 left join PLAN_LX_GCGJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
+		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		group by t2.id
+	</select>
+	<select id="selectWqgzjhListid1" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+	
+		select 
+			distinct(t2.id) id
+		from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
+		where t2.spzt='1'
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
 	</select>
 	
+	
 	 <select id="exportsjyb" parameterType="gcglabgc" resultType="elist">
-			select 
-			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_LX_GCSJ t1 left join PLAN_GCSJ t2 on t1.jhid=t2.id
-			where t2.spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and t1.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and t2.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and t2.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and t1.lxmc like '%'||trim(#{lxmc})||'%'
-			</if>
+		select 
+		t2.id v_0,
+		max(t2.jhnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pftz) v_5,max(t2.jhsybbzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from PLAN_GCSJ t2 left join PLAN_LX_GCSJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
+		where 1=1 and spzt='1' and c.tbyf is null and t2.jhnf=#{jhnf}
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		group by t2.id
 	</select>
 	
 	 <select id="exporthsyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_HSLY
-			where 1=1
+			t2.id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_HSLY t2 left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
+			where 1=1 and c.tbyf is null and t2.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
-					and xzqhdm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and kgzt like '%'||trim(#{kgzt})||'%'
@@ -292,50 +328,54 @@ where t1.spzt='1'
 	</select>
 	
 	<select id="exportshyb" parameterType="gcglabgc" resultType="elist">
-			select 
-			t2.id v_0,t1.gydw v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_LX_SHUIH t1 left join PLAN_SHUIH t2 on t1.jhid=t2.id
-			where t2.spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and t1.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and t2.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and t2.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and t1.lxmc like '%'||trim(#{lxmc})||'%'
-			</if>
+		select 
+		t2.id v_0,
+		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pfztz) v_5,max(t2.jhsybzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from PLAN_SHUIH t2 left join PLAN_LX_SHUIH t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
+		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		group by t2.id
 	</select>
 	
 	<select id="exportyhyb" parameterType="gcglabgc" resultType="elist">
-			select 
-			t2.id v_0,t1.gydwmc v_1,t1.xzqhmc v_2,t1.lxbm v_3,t1.lxmc v_4,t1.qdzh v_5,t1.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_LX_YHDZX t1 left join PLAN_YHDZX t2 on t1.jhid=t2.id
-			where t2.spzt='1'
-			<if test="gydw != null and  gydw != ''">
-					and t1.gydwdm like '%'||trim(#{gydw})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and t2.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and t2.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="lxmc != null and  lxmc != ''">
-					and t1.lxmc like '%'||trim(#{lxmc})||'%'
-			</if>
+		select 
+		t2.id v_0,
+		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.totalsubsidyfund) v_5,max(t2.totalinvest) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from PLAN_YHDZX t2 left join PLAN_LX_YHDZX t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
+		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="lxmc != null and  lxmc != ''">
+				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		</if>
+		group by t2.id
 	</select>
 	
 	<select id="exportzhyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id 
-			where t1.spzt='1'
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -350,11 +390,11 @@ where t1.spzt='1'
 	
 	<select id="exportwqyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.sckid v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,#{tbyf} v_8,to_char(sysdate,'yyyy-mm-dd') v_9,#{tbr} v_10
-			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
-			where t1.spzt='1'
+			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">
-					and t3.gydwbm like '%'||trim(#{gydw})||'%'
+					${gydw}
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -369,4 +409,102 @@ where t1.spzt='1'
 					and t3.qlmc like '%'||trim(#{tiaojian})||'%'
 			</if>
 	</select>
+	<!--  -->
+	 <select id="exportAbyb1" parameterType="gcglabgc" resultType="elist">
+	select * from (
+		select m.*,rownum rn from (
+			select 
+			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t3.qzlc v_7,t3.yhlc v_8,t3.gjxjnd v_9,t1.id v_10
+			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+			where t1.spzt='1'
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			)m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selectabgcxx" parameterType="gcglabgc" resultType="gcglabgc">
+	select t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
+	t1.yjwgsj yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+	t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
+	t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+	from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id 
+	where t1.id=#{jhid}
+	</select>
+	<!-- 拨付情况列表 -->
+	<select id="selectWqgzjhList1" parameterType="gcglabgc" resultType="gcglabgc">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.jhnf sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.JHSYBBZJE jhsybzje,t1.JHSYDFZCZJ jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.REMARKS jhbz,t1.xdsj,t1.sjkgsj,t1.ID jhid,t1.id,
+		t1.yjwgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
+		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+		where t1.spzt='1' and t1.jhnf=#{xmnf}
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+			order by t1.jhnf
+			) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	 <select id="selectWqgzjhListcount1" parameterType="gcglabgc" resultType="int">
+	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
+	 	where t1.spzt='1' and t1.jhnf=#{xmnf}
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglabgc" resultType="gcglabgc">
+	 	select max(sbyf) sbyf from gcgl_abgc where jhid=#{jhid}
+	 </select>
 </mapper>

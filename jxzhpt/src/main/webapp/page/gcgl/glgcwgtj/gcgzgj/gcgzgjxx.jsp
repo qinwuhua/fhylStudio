@@ -18,9 +18,7 @@
 <script type="text/javascript"> 
 $(function(){
 	var data=parent.obj1;//$("#").text(data.);
-	$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#jsdd").text(data.jsdd);
-	$("#gydw").text(data.gydw);$("#gydwbm").text(data.gydwbm);$("#bhnr").text(data.bhnr);$("#qdzh").text(data.qdzh);$("#zdzh").text(data.zdzh);
-	$("#qzlc").text(data.qzlc);$("#yhlc").text(data.yhlc);$("#ylmlx").text(data.ylmlx);$("#lxbz").text(data.lxbz);
+	chaxunlx(data.jhid);
 	$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);$("#faspsj").text(data.faspsj);$("#spwh").text(data.spwh);$("#tzgs").text(data.tzgs);
 	$("#jsxz").text(data.jsxz);$("#jsnr").text(data.jsnr);$("#bz").text(data.bz);$("#scbz").text(data.scbz);$("#yjsdj").text(data.yjsdj);
 	$("#sbnf").text(data.sbnf);$("#jhkgsj").text(data.jhkgsj);$("#jhwgsj").text(data.jhwgsj);$("#xmmc").text(data.xmmc);$("#lmkd").text(data.lmkd);
@@ -51,6 +49,40 @@ function downGkwj(file){
 function downSjt(file){
 	window.location.href="/jxzhpt/jhgl/queryWjById.do?jh.id="+parent.obj1.id+"&jh.sjsgtmc="+file;
 }
+function chaxunlx(_id){
+	var data="jhid="+_id;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectGcgzgjjhList.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			var tbody = $("#lxxx");
+			tbody.empty();
+			if (msg != null) {
+				for ( var i = 0; i < msg.length; i++){
+					//alert(msg[i].lxmc);
+					tbody.append(
+							"<tr style='height: 30px;'> <td style='border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;text-align: right; background-color: #F1F8FF; padding-right: 5px;'>路线名称</td><td style='border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;'><span >"+msg[i].lxmc+"</span></td>"
+							+'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span >'+msg[i].lxbm+'</span></td>'
+			                +'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">建设地点 </td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;text-align: left; padding-left: 10px;"> <span >'+msg[i].jsdd+'</span></td></tr>'
+							+'<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;text-align: left; padding-left: 10px;"><span>'+msg[i].qdzh+'</span></td>'
+							+'<td style="border-style: none none solid none; border-width: 1px; border-color:#C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span >'+msg[i].zdzh+'</span></td>'
+							+'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;text-align: left; padding-left: 10px;"><span"></span>'+msg[i].qzlc+'（公里）</td></tr>'
+							+'<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">管养单位</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span >'+msg[i].gydw+'</span></td>'
+							+'<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">行政区划代码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span >'+msg[i].xzqhdm+'</span></td>'
+							+'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;text-align: right; background-color: #F1F8FF; padding-right: 5px;">行政区划</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;text-align: left; padding-left: 10px;"><span>'+msg[i].xzqhmc+'</span></td></tr>'
+							+'<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span>'+msg[i].yjsdj+'</span>&nbsp;</td>'
+							+'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;text-align: right; background-color: #F1F8FF; padding-right: 5px;">原路面类型</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;"><span>'+msg[i].ylmlx+'</span>&nbsp;</td>'
+							+'<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;text-align: right; background-color: #F1F8FF; padding-right: 5px;">隐患里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;text-align: left; padding-left: 10px;"><span >'+msg[i].yhlc+'</span>公里</td></tr>'
+							+'<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span >'+msg[i].bhnr+'</span></td></tr>'
+							+'<tr style="height: 50px;"><td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;background-color: #F1F8FF; border-bottom: 1px solid #C0C0C0; padding-right: 5px;"class="style12">备&nbsp;&nbsp;&nbsp; 注</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;text-align: left; padding-left: 10px; border-bottom: 1px solid #C0C0C0;" class="style12"><span>'+msg[i].lxbz+'</span></td></tr>'
+					);
+				}
+			}
+		}
+	});	
+}
 </script>
 <style type="text/css">
 a {
@@ -70,144 +102,7 @@ a {
                     <span id="labname3">工程改造路面改建基本信息</span>
                 </td>
             </tr>
-            <tr style="height: 30px;">
-                <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                    text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-                    路线名称
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="lxmc"></span>
-                </td>
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    路线编码
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="lxbm"></span>
-                </td>
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    建设地点
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
-                     text-align: left; padding-left: 10px;">
-                    <span id="jsdd"></span>
-                </td>
-            </tr>
-            <tr style="height: 30px;">
-                <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                    text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-                    起点桩号
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="qdzh"></span>
-                </td>
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    止点桩号
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="zdzh"></span>
-                </td>
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    起止里程
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
-                     text-align: left; padding-left: 10px;">
-                    <span id="qzlc"></span>（公里）
-                </td>
-            </tr>
-            <tr style="height: 30px;">
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    管养单位
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="gydw"></span>
-                </td>
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    行政区划代码
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="xzqhdm"></span>
-                </td>
-                <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                    text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-                    行政区划
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
-                     text-align: left; padding-left: 10px;">
-                    <span id="xzqhmc"></span>
-                </td>
-            </tr>
-            <tr style="height: 30px;">
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                     padding-right: 5px;">
-                    原技术等级
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="yjsdj"></span>级公路&nbsp;
-                </td>
-                <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                    text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-                    原路面类型
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                    <span id="ylmlx"></span>&nbsp;
-                </td>
-                <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small;
-                    text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-                    隐患里程
-                </td>
-                <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;
-                     text-align: left; padding-left: 10px;">
-                    <span id="yhlc"></span>公里
-                </td>
-            </tr>
-            <tr style="height: 50px;">
-                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
-                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                    padding-right: 5px;">
-                    病害内容
-                </td>
-                <td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                    <span id="bhnr"></span>
-                </td>
-            </tr>
-            <tr style="height: 50px;">
-                <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
-                    background-color: #F1F8FF; border-bottom: 1px solid #C0C0C0; padding-right: 5px;"
-                    class="style12">
-                    备&nbsp;&nbsp;&nbsp; 注
-                </td>
-                <td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                    text-align: left; padding-left: 10px; border-bottom: 1px solid #C0C0C0;" class="style12">
-                    <span id="lxbz"></span>
-                </td>
-            </tr>
+           <tbody id="lxxx"></tbody>
             <tr style="height: 25px;">
                 <td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                     color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF;

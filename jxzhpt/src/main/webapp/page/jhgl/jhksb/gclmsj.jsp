@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
@@ -29,7 +30,7 @@
 		}
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -213,7 +214,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
-	<div id="gclmsj_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<div id="gclmsj_sb" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>

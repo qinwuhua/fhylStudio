@@ -125,7 +125,49 @@ public class Gcglgcgzgj implements Serializable {
 	private String sjzt;//市级查看月报zt
 	private String sjsh;//省级
 	private String yhtype;
+	private String stz;
+	private String zdyf;
+	private String sfgk;
+	private String ssdctc;
+	private String bndsslc;
+	private String wkglc;
 	
+	public String getWkglc() {
+		return wkglc;
+	}
+	public void setWkglc(String wkglc) {
+		this.wkglc = wkglc;
+	}
+	public String getBndsslc() {
+		return bndsslc;
+	}
+	public void setBndsslc(String bndsslc) {
+		this.bndsslc = bndsslc;
+	}
+	public String getSsdctc() {
+		return ssdctc;
+	}
+	public void setSsdctc(String ssdctc) {
+		this.ssdctc = ssdctc;
+	}
+	public String getZdyf() {
+		return zdyf;
+	}
+	public void setZdyf(String zdyf) {
+		this.zdyf = zdyf;
+	}
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

@@ -46,6 +46,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/edit/gclmgj.jsp",'gclmgj_xx',1000,500);
+}
 /**
  * 工程路面改建列表信息
  * @param jh 计划库条件
@@ -57,16 +65,17 @@ function gclmgjxm(jh,lx){
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
-	var grid = {id:'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,pagination : true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
+	var grid = {id:'grid',url : '../../../jhgl/queryGcgjList.do',queryParams:params,
+			pagination:true,rownumbers:false,
+			pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 			    		result+='<a href="javascript:dropGcgjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
 		    		}else{
 		    			result+='<a style="text-decoration:none;color:black;">编辑</a>    ';
@@ -95,7 +104,7 @@ function gclmgjxm(jh,lx){
 		    {field : 'id',title : '添加路线',width : 80,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		if(row.jh_sbthcd==0)
-		    			return '<a href="javascript:$('+"'#add_lx'"+').dialog('+"'open'"+');" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    			return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
 		    		else
 		    			return '<a style="text-decoration:none;">添加路线</a>';
 		    	}
@@ -116,7 +125,7 @@ function gclmgjxm(jh,lx){
 	    	$('#table_lx'+index).datagrid({
 	    		data:row.plan_lx_gcgjs,
     			columns:[[
-    			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},    
     			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
     			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
@@ -139,6 +148,11 @@ function gclmgjxm(jh,lx){
 	};
 	gridBind(grid);
 }
+function openAddLx(id,nf){
+	YMLib.Var.NF=nf;
+	YMLib.Var.ID=id;
+	YMLib.UI.createWindow('add_gjlx','添加路线',"/jxzhpt/page/jhgl/add/lmgjlxAdd.jsp",'addgjlx',900,380);
+}
 function gclmgjxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
@@ -151,9 +165,9 @@ function gclmgjxm_sb(jh,lx){
 		    	formatter : function(value, row, index) {
 		    		var result="";
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_sb','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>        ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>        ';
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_xx','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return result;
@@ -223,9 +237,9 @@ function gclmgjxm_sh(jh,lx){
 		    	formatter : function(value, row, index) {
 		    		var result='';
 		    		result+='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
-		    		result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=="0")
-		    			result+='<a href="javascript:openDialog('+"'gclmgj_sh','工程改造路面改建项目计划详情','../edit/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 		    		else
 		    			result+="编辑";
 		    		return  result;
@@ -296,7 +310,7 @@ function gclmgjxm_zjxd(jh,lx){
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
 		    		var result='<a style="text-decoration:none;color:#3399CC;">定位</a>    ';
-		    		result+='<a href="javascript:openDialog('+"'zjxd_gclmgj','工程改造路面改建项目计划详情','../jhkxx/gclmgj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		    		return result ;
 		    	}
 		    },
@@ -424,7 +438,9 @@ function editGcgj(){
 			data:jh,
 			success:function(data){
 				alert("修改成功！");
-				$('#gclmgj_xx').dialog('close');
+				parent.$('#grid').datagrid('reload');
+				parent.$('#gclmgj_xx').window('destroy');
+				searchGcgj();
 			}
 		});
 	}else{
@@ -441,7 +457,7 @@ function lxztz(){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
 				'lx.gydwdm':$.cookie("unit"),'lx.yhlc':$('#yhlc'+i).html(),'lx.qzlc':$('#qzlc'+i).html(),
 				'lx.jhid':$('#editsbnf').combobox('getValue'),'lx.xzqhdm':$('#xzqhdm'+i).html(),
-				'lx.yjsdj':$('#yjsdjxx'+i).html()};
+				'lx.yjsdj':$('#yjsdjxx'+i).html(),'xmlx':'工程改造路面改建'};
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/verifyLx.do',
@@ -449,13 +465,16 @@ function lxztz(){
 			data:lx,
 			dataType:'json',
 			success:function(data){
-				ztz=ztz+data.je;
+				ztz=Number(ztz)+Number(data.je);
 				fdbz=data.fdbz;
 			}
 		});
 	}
 	if($('#pfztz').val()>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
 		result=true;
+	}else{
+		result=false;
+		return result;
 	}
 	if($('#pfztz').val()==Number($('#jhsybzje').val())+Number($('#jhsydfzcje').val())){
 		result=true;

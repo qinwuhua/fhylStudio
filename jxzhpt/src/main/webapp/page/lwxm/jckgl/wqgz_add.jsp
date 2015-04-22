@@ -30,9 +30,13 @@ text-decoration:none;
 <body>
 <script type="text/javascript">
 $(function(){
-	xmnf("xmnf");
+	xmnf1("xmnf");
 	$("#save_button").click(function(){
-		if($("#qlbh").val()!="" && $("#qlbh").val()!=null){
+		if($("#qlbh").val()=="" && $("#qlbh").val()==null){
+			alert("请填写桥梁编码！");
+			$("#qlbh").focus();
+			return false;
+		}
 			var datas="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
 			$.ajax({
 				type:'post',
@@ -47,9 +51,6 @@ $(function(){
 					}
 				}
 			});
-		}else {
-			alert("请填写桥梁编号！");
-		}
 	});
 	$("#qx_window").click(function(){
 		parent.$('#jck_add').window('destroy');

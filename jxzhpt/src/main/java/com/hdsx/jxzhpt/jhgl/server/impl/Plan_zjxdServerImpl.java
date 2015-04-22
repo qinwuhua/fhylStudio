@@ -62,4 +62,19 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public Plan_zjxd queryZjxdSumByXmid(String id) {
 		return queryOne("queryZjxdSumByXmid", id);
 	}
+
+	@Override
+	public boolean insertBatch(List<Plan_zjxd> readerExcel) {
+		return insertBatch("insertBatch", readerExcel)==readerExcel.size();
+	}
+
+	@Override
+	public String queryGydwmcById(String id) {
+		return queryOne("queryGydwmcById", id);
+	}
+
+	@Override
+	public List<TreeNode> queryTsdqByXzqh(String xzqh) {
+		return queryList("queryTsdqByXzqh",xzqh);
+	}
 }

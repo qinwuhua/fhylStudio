@@ -80,6 +80,7 @@ public interface Plan_gcgjServer {
 	 */
 	List<Plan_gcgj> queryGcgjList(int page,int row,Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj);
 	
+	List<Plan_gcgj> queryGcgjList(Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj);
 	/**
 	 * 查询计划总个数
 	 * @param plan_gcgj 查询条件
@@ -148,4 +149,12 @@ public interface Plan_gcgjServer {
 	TreeNode queryGcktjt(String xzqhdm);
 
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+
+	boolean insertGcgjJh(Plan_gcgj jh);
+	/**
+	 * 从GPSROAD表中查询对应行政区划中的路线信息
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx);
 }

@@ -47,6 +47,7 @@
 				$("#sczdzh").html(msg.sczdzh);
 				$("#sczlc").html(msg.sczlc);
 				$("#scyhlc").html(msg.scyhlc);
+				$("#scxmnf").html(msg.scxmnf);
 				$("#fapgdw").html(msg.fapgdw);
 				$("#fascdw").html(msg.fascdw);
 				$("#faspsj").html(msg.faspsj);
@@ -161,8 +162,12 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="scxmnf"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scyhlc"></span>&nbsp;公里
 				</td>
 			</tr>
@@ -184,7 +189,7 @@ text-decoration:none;
 					<span id="spwh"></span>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="tzgs"></span>
+					<span id="tzgs"></span>&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jsxz"></span>

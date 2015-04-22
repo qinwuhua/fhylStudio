@@ -146,7 +146,85 @@ public class GcybbServerImpl extends BaseOperate implements GcybbServer {
 		// TODO Auto-generated method stub
 		return queryList("getShybb", gcglsh);
 	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist1(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist1", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist2(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist2", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist3(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist3", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getwqgzbblist4(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("getwqgzbblist4", gcglwqgz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getabgcbblist1(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgcbblist1", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getabgcbblist2(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgcbblist2", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getabgcbblist3(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgcbblist3", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getabgcbblist4(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("getabgcbblist4", gcglabgc);
+	}
+
+	@Override
+	public List<Map<String, Object>> getzhfzbblist1(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzbblist1",gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getzhfzbblist2(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzbblist2",gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getzhfzbblist3(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzbblist3",gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getzhfzbblist4(Gcglzhfz gcglzhfz) {
+		// TODO Auto-generated method stub
+		return queryList("getzhfzbblist4",gcglzhfz);
+	}
+
+	@Override
+	public List<Map<String, Object>> getGjxjmxbsj(String sql) {
+		// TODO Auto-generated method stub
+		return queryList("getGjxjmxbsj", sql);
+	}
+
 	
-	
-	
+
 }

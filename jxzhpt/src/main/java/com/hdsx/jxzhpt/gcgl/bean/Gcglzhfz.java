@@ -102,17 +102,30 @@ public class Gcglzhfz implements Serializable {
 	private String sgxkwj;
 	private String jgtcwj;
 	private String jgyswj;
-	
+	private Date yjjgsj;
 	private String tiaojian;
 	private String xjzt;
 	private String sjzt;
 	private String sjsh;
-	
+	private String xmmc;
 	private int page;
 	private int rows;
 	
 	private String yhtype;
+	private String stz;
 	
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}
@@ -686,6 +699,12 @@ public class Gcglzhfz implements Serializable {
 	}
 	public void setSczdzh(String sczdzh) {
 		this.sczdzh = sczdzh;
+	}
+	public Date getYjjgsj() {
+		return yjjgsj;
+	}
+	public void setYjjgsj(Date yjjgsj) {
+		this.yjjgsj = yjjgsj;
 	}
 	
 }

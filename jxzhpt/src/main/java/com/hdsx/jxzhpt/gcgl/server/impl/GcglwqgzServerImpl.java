@@ -18,10 +18,6 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 	@Override
 	public Boolean insertWqgzYb(Gcglwqgz gcglwqgz) {
 		gcglwqgz.setTbyf(gcglwqgz.getSbyf());
-		Gcglwqgz gcglwqgz2=queryOne("queryCGSByYf", gcglwqgz);
-		if(gcglwqgz2==null){
-			return false;
-		}
 		Gcglwqgz gcglwqgz1=queryOne("queryYbByYf", gcglwqgz);
 		if(gcglwqgz1!=null){
 			return false;
@@ -30,14 +26,23 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		if(insert("insertWqgzYb", gcglwqgz)>0){
 			if(gcglwqgz.getSfsj()==9){
 				gcglwqgz.setSjzt("未上报");
+				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
+				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglwqgz);
 				update("updateSjZT", gcglwqgz);
 			}
 			if(gcglwqgz.getSfsj()==11){
 				gcglwqgz.setXjzt("未上报");
+				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
+				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglwqgz);
 				update("updateXjZT", gcglwqgz);
 			}
 			if(gcglwqgz.getSfsj()==7){
 				gcglwqgz.setSjsh("未审核");
+				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
+				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglwqgz);
 				update("updateSJSH", gcglwqgz);
 			}
 			return true;
@@ -87,6 +92,12 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 	public Boolean deleteWqgzYb(Gcglwqgz gcglwqgz) {
 		// TODO Auto-generated method stub
 		if(delete("deleteWqgzYb", gcglwqgz)>0){
+				Gcglwqgz gcglwqgz3 =queryOne("querymaxybyf", gcglwqgz);//查最大月份
+				if(gcglwqgz3!=null)
+				gcglwqgz.setSbyf(gcglwqgz3.getSbyf());
+				else
+					gcglwqgz.setSbyf("");
+				update("updatezdyf", gcglwqgz);
 			return true;
 		}else{
 			return false;
@@ -322,6 +333,36 @@ public class GcglwqgzServerImpl extends BaseOperate implements GcglwqgzServer {
 		if(gcglwqgz4!=null)
 			gcglwqgz.setZxdzj(gcglwqgz4.getZxdzj());
 		return gcglwqgz;
+	}
+
+	@Override
+	public Gcglwqgz queryCGSByYf(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglwqgz);
+	}
+
+	@Override
+	public List<Gcglwqgz> selectWqgzjhList1(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList1", gcglwqgz);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglwqgz gcglwqgz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglwqgz);
+	}
+
+	@Override
+	public Gcglwqgz selectcgsyf(Gcglwqgz gcglwqgz) {
+		Gcglwqgz g=queryOne("selectcgsyf", gcglwqgz);
+		if(g==null){
+			gcglwqgz.setZjdw_btz("0");
+			gcglwqgz.setZjdw_stz("0");
+			return gcglwqgz;
+		}else{
+			return g;
+		}
 	}
 
 }

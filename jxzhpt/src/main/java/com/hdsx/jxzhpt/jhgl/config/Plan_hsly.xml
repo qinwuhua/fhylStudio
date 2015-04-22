@@ -4,12 +4,38 @@
 	<insert id="insertHsly" parameterType="hashMap">
 		insert into Plan_hsly (id,xmmc,jsxz,jsgmhj,jsgmy,jsgme,
 			jsgms,jsgmf,jsgmdldq,kgn,wgn,jhnf,ztz,zytz,dfta,gndk,
-			lywz,zyjsnr,xzscl,gkpfwh,sgtpfwh,TBBM,tbsj,XZQHDM,XZQHmc)
-		values (sys_guid(),#{1},#{2},#{3},#{4},#{5},
-			#{6},#{7},#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},
-			#{16},#{17},#{18},#{19},#{20},#{tbbm},#{tbsj},(select id from XTGL_XZQH where name =#{xzqhmc}),#{xzqhmc})
+			lywz,zyjsnr,xzscl,gkpfwh,sgtpfwh,TBBM,tbsj,XZQHDM,XZQHmc,gydwdm,gydwmc)
+		values (sys_guid(),#{1},#{2},#{5},#{6},#{7},
+			#{8},#{9},#{10},#{11},#{12},#{13},#{14},#{15},#{16},#{17},
+			#{18},#{19},#{20},#{21},#{22},#{tbbm},#{tbsj},(select id from XTGL_XZQH where name =#{xzqhmc}),
+			#{xzqhmc},#{4},#{3})
+	</insert>
+	<insert id="insertHsly2" parameterType="plan_hsly">
+		insert into Plan_hsly (id,xmmc,jsxz,jsgmhj,jsgmy,jsgme,
+			jsgms,jsgmf,jsgmdldq,kgn,wgn,jhnf,ztz,zytz,dfta,gndk,
+			lywz,zyjsnr,xzscl,gkpfwh,sgtpfwh,TBBM,tbsj,XZQHDM,XZQHmc,gydwdm,gydwmc)
+		values (sys_guid(),#{xmmc},#{jsxz},#{jsgmhj},#{jsgmy},#{jsgme},
+			#{jsgms},#{jsgmf},#{jsgmdldq},#{kgn},#{wgn},#{jhnf},#{ztz},#{zytz},#{dfta},#{gndk},
+			#{lywz},#{zyjsnr},#{xzscl},#{gkpfwh},#{sgtpfwh},#{tbbm},#{tbsj},(select id from XTGL_XZQH where name =#{xzqhmc}),
+			#{xzqhmc},#{gydwdm},#{gydwmc})
 	</insert>
 	<select id="queryHslyList" resultType="plan_hsly" parameterType="plan_hsly">
+		select * from (	
+			select rownum as num,t.* from (
+				select * from plan_hsly where 1=1 
+				<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
+					and xzqhdm =#{xzqhdm}
+				</if>
+				<if test="jhnf!=null and jhnf!=''">
+					and jhnf=#{jhnf}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">
+					and xmmc like '%'||#{xmmc}||'%'
+				</if>
+			) t
+		) where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryHslyList2" resultType="plan_hsly" parameterType="plan_hsly">
 		select * from plan_hsly where 1=1 
 		<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
 			and xzqhdm =#{xzqhdm}
@@ -51,9 +77,9 @@
 		delete from plan_hsly where id=#{id}
 	</delete>
 	<select id="querySumHsly" resultType="plan_hsly">
-		select count(jh.id) as id,sum(jh.jsgmhj) as jsgmhj,sum(jh.jsgmy) as jsgmy,
-       	sum(jh.jsgme) as jsgme,sum(jh.jsgms) as jsgms,sum(jh.jsgmf) as jsgmf,
-       	sum(jh.jsgmdldq) as jsgmdldq,sum(jh.ztz) as ztz,sum(jh.zytz) as zytz
+		select count(jh.id) as id,NVL(sum(jh.jsgmhj),0) as jsgmhj,NVL(sum(jh.jsgmy),0) as jsgmy,
+       	NVL(sum(jh.jsgme),0) as jsgme,NVL(sum(jh.jsgms),0) as jsgms,NVL(sum(jh.jsgmf),0) as jsgmf,
+       	NVL(sum(jh.jsgmdldq),0) as jsgmdldq,NVL(sum(jh.ztz),0) as ztz,NVL(sum(jh.zytz),0) as zytz
 		from plan_hsly jh
 	</select>
 </mapper>

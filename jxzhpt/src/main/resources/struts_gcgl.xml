@@ -25,6 +25,8 @@
 	<action name="selectWqgzyf" class="gcglwqgzController" method="selectWqgzyf"/>
 	<action name="selectWqgzwcqk" class="gcglwqgzController" method="selectWqgzwcqk"/>
 	<action name="selectWqgzbzzj" class="gcglwqgzController" method="selectWqgzbzzj"/>
+	<action name="selectWqgzjhList1" class="gcglwqgzController" method="selectWqgzjhList1"/>
+	<action name="selectcgsyf" class="gcglwqgzController" method="selectcgsyf"/>
 	
 	<!-- abgc -->
 	<action name="insertAbgcYb" class="gcglabgcController" method="insertAbgcYb"/>
@@ -41,6 +43,8 @@
 	<action name="insertCGS" class="gcglabgcController" method="insertCGS"/>
 	<action name="exportgjyb" class="gcglabgcController" method="exportgjyb"/>
 	<action name="exportsjyb" class="gcglabgcController" method="exportsjyb"/>
+	<action name="exportsjyb_set" class="gcglabgcController" method="exportsjyb_set"/>
+	
 	<action name="exporthsyb" class="gcglabgcController" method="exporthsyb"/>
 	<action name="exportshyb" class="gcglabgcController" method="exportshyb"/>
 	<action name="exportwqyb" class="gcglabgcController" method="exportwqyb"/>
@@ -56,7 +60,8 @@
 	<action name="selectAbgcjhFile" class="gcglabgcController" method="selectAbgcjhFile"/>
 	<action name="deleteAbgcFile" class="gcglabgcController" method="deleteAbgcFile"/>
 	<action name="sbAbgcYb" class="gcglabgcController" method="sbAbgcYb"/>
-	
+	<action name="selectAbgcjhList1" class="gcglabgcController" method="selectAbgcjhList1"/>
+	<action name="selectabgcxx" class="gcglabgcController" method="selectabgcxx"/>
 	<!-- zhfz -->
 	<action name="insertZhfzYb" class="gcglzhfzController" method="insertZhfzYb"/>
 	<action name="selectZhfzYbByJhid" class="gcglzhfzController" method="selectZhfzYbByJhid"/>
@@ -78,6 +83,7 @@
 	<action name="selectZhfzjhFile" class="gcglzhfzController" method="selectZhfzjhFile"/>
 	<action name="deleteZhfzFile" class="gcglzhfzController" method="deleteZhfzFile"/>
 	<action name="sbZhfzYb" class="gcglzhfzController" method="sbZhfzYb"/>
+	<action name="selectZhfzjhList1" class="gcglzhfzController" method="selectZhfzjhList1"/>
 	
 	<!-- yhdzx -->
 	<action name="insertYhdzxYb" class="gcglyhdzxController" method="insertYhdzxYb"/>
@@ -100,6 +106,7 @@
 	<action name="selectYhdzxjhFile" class="gcglyhdzxController" method="selectYhdzxjhFile"/>
 	<action name="deleteYhdzxFile" class="gcglyhdzxController" method="deleteYhdzxFile"/>
 	<action name="sbYhdzxYb" class="gcglyhdzxController" method="sbYhdzxYb"/>
+	<action name="selectYhdzxjhList1" class="gcglyhdzxController" method="selectYhdzxjhList1"/>
 
 	<!-- sh -->
 	<action name="deleteshYb" class="gcglshController" method="deleteshYb"/>
@@ -122,6 +129,7 @@
 	<action name="selectShjhFile" class="gcglshController" method="selectShjhFile"/>
 	<action name="deleteShFile" class="gcglshController" method="deleteShFile"/>
 	<action name="sbShYb" class="gcglshController" method="sbShYb"/>
+	<action name="selectShjhList1" class="gcglshController" method="selectShjhList1"/>
 	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
@@ -134,6 +142,9 @@
 	<action name="updateGcgzgjCgs" class="gcglgcgzgjController" method="updateGcgzgjCgs"/>
 	<action name="deleteGcgzgjCgs" class="gcglgcgzgjController" method="deleteGcgzgjCgs"/>
 	<action name="selectGcgzgjCgsList" class="gcglgcgzgjController" method="selectGcgzgjCgsList"/>
+	<action name="selectGcgzgjjhList1" class="gcglgcgzgjController" method="selectGcgzgjjhList1"/>
+	<action name="selectGcgzgjjhList2" class="gcglgcgzgjController" method="selectGcgzgjjhList2"/>
+	
 	
 	<action name="uploadGcgzgjFile" class="gcglgcgzgjController" method="uploadGcgzgjFile"/>
 	<action name="downGcgzgjFile" class="gcglgcgzgjController" method="downGcgzgjFile"/>
@@ -144,6 +155,7 @@
 	<action name="selectGcgzgjjhFile" class="gcglgcgzgjController" method="selectGcgzgjjhFile"/>
 	<action name="deleteGcgzgjFile" class="gcglgcgzgjController" method="deleteGcgzgjFile"/>
 	<action name="sbGcgzgjYb" class="gcglgcgzgjController" method="sbGcgzgjYb"/>
+	<action name="updataSFQX" class="gcglgcgzgjController" method="updataSFQX"/>
 	
 	<!-- gcgzsj -->
 	<action name="insertgcgzsjYb" class="gcglgcgzsjController" method="insertgcgzsjYb"/>
@@ -166,6 +178,8 @@
 	<action name="selectGcgzsjjhFile" class="gcglgcgzsjController" method="selectGcgzsjjhFile"/>
 	<action name="deleteGcgzsjFile" class="gcglgcgzsjController" method="deleteGcgzsjFile"/>
 	<action name="sbGcgzsjYb" class="gcglgcgzsjController" method="sbGcgzsjYb"/>
+		<action name="selectGcgzsjjhList1" class="gcglgcgzsjController" method="selectGcgzsjjhList1"/>
+	
 	
 	<!-- hsly -->
 	<action name="inserthslyYb" class="gcglhslyController" method="inserthslyYb"/>
@@ -188,6 +202,7 @@
 	<action name="selectHslyjhFile" class="gcglhslyController" method="selectHslyjhFile"/>
 	<action name="deleteHslyFile" class="gcglhslyController" method="deleteHslyFile"/>
 	<action name="sbHslyYb" class="gcglhslyController" method="sbHslyYb"/>
+	<action name="selectHslyjhList1" class="gcglhslyController" method="selectHslyjhList1"/>
 	
 	<!-- aqyb -->
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
@@ -196,6 +211,8 @@
 	<action name="insertAqybb1" class="gcglaqybController" method="insertAqybb1"/>
 	<action name="selectaqyblist" class="gcglaqybController" method="selectaqyblist"/>
 	<action name="selAllBm3" class="gcglaqybController" method="selAllBm3"/>
+	<action name="selAllXzqh1" class="gcglaqybController" method="selAllXzqh1"/>
+	<action name="selAllUnit1" class="gcglaqybController" method="selAllUnit1"/>
 	<action name="selAllBm4" class="gcglaqybController" method="selAllBm4"/>
 	<action name="selAllBm5" class="gcglaqybController" method="selAllBm5"/>
 	<action name="deleteAqybb" class="gcglaqybController" method="deleteAqybb"/>

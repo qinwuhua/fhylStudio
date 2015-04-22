@@ -23,53 +23,22 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			sckshAbgc();
+			loadUnit("gydw",$.cookie("unit"));
+			loadDist("xzqhmc",$.cookie("dist"));
+			xmnf("xmnf");
+			xmnf("lrjhnf");
+			loadBmbm2("lxjsdj", "技术等级");
+			loadBmbm2("bz", "公路等级");
+			loadBmbm2("bzls", "补助历史");
+			sckshZhfz();
 			$("#qx_window").click(function(){
 				parent.$('#lw_lr').window('destroy');
 			});	
 			$("#insertJhk").click(function(){
-				var rows=$('#grid').datagrid('getSelections');
-				if(rows.length==0) {
-					alert("请选择要列入计划项目！");
-					return;
-				}
-				var sckid= rows[0].sckid;
-				for(var i=0;i<rows.length;i++){
-					if(rows[i].sck_shzt=='未审核'){
-						alert("对不起，该项目未审核！");
-						return;
-					} 
-				 	if(rows[i].lrjh=='已列入'){
-						alert("该项目已列入计划，请勿重复操作！");
-						return;
-					}
-				}
-			 	for(var i=1;i<rows.length;i++){
-					sckid+=","+rows[i].sckid ;
-				}
-				if(confirm('您确定将该项目列入计划？')){
-						$.ajax({
-							 type : "POST",
-							 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
-							 dataType : 'json',
-							 data : 'delstr=' +sckid,
-							 success : function(msg){
-								 if(msg){
-									 	parent.$("#grid").datagrid('reload');
-										alert("列入计划成功！");
-										parent.$('#lw_lr').window('destroy');
-								 }else{
-									 alert('列入计划失败！');
-								 }
-							 },
-							 error : function(){
-								 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
-							 }
-						});
-				}
+				lrjh();
 			});
 		});
-		function sckshAbgc(){
+		function sckshZhfz(){
 			$("#grid").datagrid({    
 				 url:'/jxzhpt/xmsck/lrjhZhfz.do',
 				 queryParams : {
@@ -86,21 +55,26 @@
 					 			return "";
 					 		}else return $.cookie("dist");
 					 	},
+					 	'lxmc' : $('#lxmc').val(),
+					 	'xmnf':$("#xmnf").combobox("getValue"),
+					 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
+					 	'lxbm':$("#lxbm").val(),
+					 	'bzls':$("#bzls").combobox("getValue"),
+					 	'bz':$("#bz").combobox("getValue"),
 					},
 				    striped:true,
 				    pagination:true,
 				    rownumbers:true,
 				    pageNumber:1,
 				    pageSize:10,
-				    height:$(window).height()-30,
-					width:$(window).width(),
+				    height:$(window).height()-150,
+					width:$(window).width()-20,
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:100,align:'center',formatter:function(value,row,index){
 							return '<a href="javascript:()" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href=javascript:ckSckabgc("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 					}}, 
-					{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 					{field:'bzls',title:'补助历史',width:60,align:'center'},
 			        {field:'gydw',title:'管养单位',width:160,align:'center'},
 			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -121,11 +95,109 @@
 		parent.YMLib.rowid=ck_id;
 		parent.YMLib.UI.createWindow('sck_ck','查看项目详情','zhfz_ck.jsp','sck_ck',900,500);
 	}
+	function lrjh(){
+		var rows=$('#grid').datagrid('getSelections');
+		if(rows.length==0) {
+			alert("请选择要列入计划项目！");
+			return;
+		}
+		var sckid= rows[0].sckid;
+		for(var i=0;i<rows.length;i++){
+			if(rows[i].sck_shzt=='未审核'){
+				alert("对不起，该项目未审核！");
+				return;
+			} 
+		 	if(rows[i].lrjh=='已列入'){
+				alert("该项目已列入计划，请勿重复操作！");
+				return;
+			}
+		}
+	 	for(var i=1;i<rows.length;i++){
+			sckid+=","+rows[i].sckid ;
+		}
+	 	if($('#lrjhnf').combobox("getValue")==""){
+	 		alert("请选择列入计划年份！");
+	 		return;
+	 	}
+		if(confirm('您确定将该项目列入计划？')){
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
+					 dataType : 'json',
+					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue"),
+					 success : function(msg){
+						 if(msg){
+							 	parent.$("#grid").datagrid('reload');
+								alert("列入计划成功！");
+								parent.$('#lw_lr').window('destroy');
+						 }else{
+							 alert('列入计划失败！');
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+		}
+	}
 	</script>
 </head>
 <body>
-	<table id="grid" width="100%" ></table>
-	<center><div id="jh" >
+<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td align="left" style="padding-left:10px;padding-top: 10px;">
+			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
+				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
+				</legend>
+					<div>
+					<p style="margin:8px 0px 4px 20px;">
+								<span>管养单位：</span>
+                              	<select id="gydw" style="width:218px">
+                              	</select>
+                             	<span>&nbsp;行政区划：</span>
+                              	<select id="xzqhmc" style="width:218px">
+                              	</select>
+                                <span>&nbsp;路线名称：</span>
+        						<input type="text" id="lxmc" style="width:100px;" />
+        						<span>&nbsp;路线编码：</span>
+        						<input type="text" id="lxbm" style="width:100px;" />
+						</p>
+                        <p style="margin:8px 0px 4px 20px;">
+							  <span>项目年份：</span>
+                              	<select id="xmnf" style="width:70px">
+                              	</select>
+                              <span>&nbsp;特殊地区：</span>
+                              	<select id="tsdq"  style="width:70px"class="easyui-combobox">
+                              	</select>
+                              <span>&nbsp;技术等级：</span>
+                              	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	</select>
+                              	<span>&nbsp;公路等级：</span>
+                              	<select id="bz" style="width:70px"class="easyui-combobox">
+                              	</select>
+                              	<span>&nbsp;补助历史：</span>
+                              	<select id="bzls" style="width:104px"class="easyui-combobox"></select>
+                              	<span>&nbsp;列入计划年份：</span>
+                              	<select id="lrjhnf" style="width:80px"class="easyui-combobox"></select>
+                             </p>
+                             <p style="margin:8px 0px 4px 20px;">
+								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
+								<img onclick="lrjh();"alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand; />
+							 </p>
+						</div>
+				</fieldset>
+			</td>
+		</tr>
+         <tr>
+            	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
+            		<div>
+            			<table id="grid" width="100%" height="320px"></table>
+            		 </div>
+            	</td>
+       		 </tr>
+		</table>
+	<center>
+	<div id="jh" >
 		<a href="javascript:void(0)" id="insertJhk"
 					class="easyui-linkbutton" plain="true" iconCls="icon-save">添加</a> <a
 					href="javascript:void(0)" id="qx_window"

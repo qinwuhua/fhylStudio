@@ -15,6 +15,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglgcgzgjServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 
 @Service
 public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServer {
@@ -33,14 +34,23 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 		if(insert("insertgcgzgjYb", gcglgcgzgj)>0){
 			if(gcglgcgzgj.getSfsj()==9){
 				gcglgcgzgj.setSjzt("未上报");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateSjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==11){
 				gcglgcgzgj.setXjzt("未上报");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateXjZT", gcglgcgzgj);
 			}
 			if(gcglgcgzgj.getSfsj()==7){
 				gcglgcgzgj.setSjsh("未审核");
+				Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglgcgzgj);
 				update("updateSJSH", gcglgcgzgj);
 			}
 			return true;
@@ -88,6 +98,12 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 	@Override
 	public Boolean deletegcgzgjYb(Gcglgcgzgj gcglgcgzgj) {
 		if(delete("deletegcgzgjYb", gcglgcgzgj)>0){
+			Gcglgcgzgj gcglwqgz3 =queryOne("querymaxybyf", gcglgcgzgj);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglgcgzgj.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglgcgzgj.setSbyf("");
+			update("updatezdyf", gcglgcgzgj);
 		return true;
 		}else{
 			return false;
@@ -270,4 +286,75 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 			return false;
 		}
 	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhListid1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhListid1", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList12", gcglgcgzgj);
+	}
+
+	@Override
+	public Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Plan_gcgj> queryGcgjList(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("queryGcgjList", gcglgcgzgj);
+	}
+
+	@Override
+	public int queryGcgjListCount(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("queryGcgjListCount", gcglgcgzgj);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglgcgzgj);
+	}
+
+	@Override
+	public List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList2", gcglgcgzgj);
+	}
+
+	@Override
+	public boolean updatagjSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatagjSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updatasjSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatasjSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj) {
+		if(update("updatashSFQX", gcglgcgzgj)>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	
 }

@@ -143,4 +143,28 @@ public interface Plan_gcsjServer {
 	List<TreeNode> queryGcktj(String xzqhdm,String nf);
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+	/**
+	 * 工程升级
+	 * @param lx 路线
+	 * @return
+	 */
+	boolean insertGcsj_lx(Plan_lx_gcsj lx);
+	/**
+	 * 工程计划
+	 * @param jh 计划实体
+	 * @return
+	 */
+	boolean insertGcsj_Jh(Plan_gcsj jh);
+	/**
+	 * 查询历史修建记录
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx);
+	/**
+	 * 查询GPSROAD表中的路线
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx);
 }

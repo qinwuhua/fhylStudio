@@ -295,5 +295,17 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 		
 		return queryOne("selectxxtzById", gcgltz);
 	}
+
+	@Override
+	public List<TreeNode> selAllXzqh1(String yhdw) {
+		// TODO Auto-generated method stub
+		return queryList("selAllXzqh1", yhdw);
+	}
+
+	@Override
+	public List<TreeNode> selAllUnit1(String yhdw) {
+		// TODO Auto-generated method stub
+		return queryList("selAllUnit1", yhdw);
+	}
 	
 }

@@ -232,4 +232,10 @@
 	<select id="selecttzbytzid" resultType="gcgltz" parameterType="gcgltz">
 		select id,filename,tzid from GCGL_MESSAGETJFILE where tzid=#{tzid}
 	</select>
+	<select id="selAllXzqh1" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
+	</select>	
+	<select id="selAllUnit1" parameterType="String" resultType="treenode">
+	  select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||${value}||'%' order by to_number(id)
+	</select>	
 </mapper>

@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
-import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
@@ -29,6 +29,8 @@ import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -63,7 +65,28 @@ public class GcglyhdzxController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfyf;
+	private String bfzt;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -399,14 +422,22 @@ public class GcglyhdzxController extends BaseActionSupport{
 	//查询jihua
 	public void selectYhdzxjhList(){
 		Gcglyhdzx gcglyhdzx=new Gcglyhdzx();
+		try {
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
 		gcglyhdzx.setPage(page);
 		gcglyhdzx.setRows(rows);
 		gcglyhdzx.setJhid(jhid);
-		gcglyhdzx.setGydw(gydw.replaceAll("0*$",""));
+		gcglyhdzx.setGydw(tiaojian1);
 		gcglyhdzx.setKgzt(kgzt);
 		gcglyhdzx.setLxmc(lxmc);
 		gcglyhdzx.setJgzt(jgzt);
 		gcglyhdzx.setShzt(ybzt);
+		gcglyhdzx.setXmnf(xmnf);
 		if(sfsj==7){
 			gcglyhdzx.setTiaojian("sjsh");
 		}
@@ -416,12 +447,11 @@ public class GcglyhdzxController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglyhdzx.setTiaojian("xjzt");
 		}
-		int count=gcglyhdzxServer.selectWqgzjhListCount(gcglyhdzx);
-		List<Gcglyhdzx> list=gcglyhdzxServer.selectWqgzjhList(gcglyhdzx);
-		EasyUIPage<Gcglyhdzx> e=new EasyUIPage<Gcglyhdzx>();
+		List<Plan_yhdzx> list=gcglyhdzxServer.queryGcgjList(gcglyhdzx);
+		int count=gcglyhdzxServer.queryGcgjListCount(gcglyhdzx);
+		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();
 		e.setRows(list);
 		e.setTotal(count);
-		try {
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -484,5 +514,35 @@ public class GcglyhdzxController extends BaseActionSupport{
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
+	}
+	public void selectYhdzxjhList1(){
+		gcglyhdzx.setPage(page);
+		gcglyhdzx.setRows(rows);
+		try {
+				String tiaojian1="";
+				if(gydw.indexOf(",")==-1){
+					tiaojian1="and gydwdm like '%"+gydw+"%'";
+				}else{
+					tiaojian1="and gydwdm in ("+gydw+")";
+				}
+		gcglyhdzx.setGydw(tiaojian1);
+		gcglyhdzx.setKgzt(kgzt);
+		gcglyhdzx.setLxmc(lxmc);
+		gcglyhdzx.setJgzt(jgzt);
+		gcglyhdzx.setShzt(ybzt);
+		gcglyhdzx.setTbyf(bfyf);
+		gcglyhdzx.setSbnf(xmnf);
+		gcglyhdzx.setTiaojian(bfzt);
+
+		List<Plan_yhdzx> list=gcglyhdzxServer.selectWqgzjhList2(gcglyhdzx);
+		int count=gcglyhdzxServer.selectWqgzjhListcount1(gcglyhdzx);
+		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();
+		e.setRows(list);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 }

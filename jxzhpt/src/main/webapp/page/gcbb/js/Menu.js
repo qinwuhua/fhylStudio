@@ -39,14 +39,14 @@ $(function() {
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050101',
-		title:'交通部固定资产投资建设计划',
+		title:'交通部固定资产投资建设计划(分地市)',
 		imgSrc:'../../images/menubutton/jtbgdzc.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gdzctzjs.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050102',
-		title:'路网结构改造建设计划汇总表',
+		title:'路网结构改造建设计划汇总表(分国省)',
 		imgSrc:'../../images/menubutton/lwjggzjyjhb.png',
 		renderTo:'left_menu1',
 		href:'./jhtjbb/jsjhhzb.jsp'
@@ -58,13 +58,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gcjz.jsp'
 	});
-	createMenux('LeftMenu',{
-		id:'menu_0101050104',
-		title:'公路建设下达计划',
-		imgSrc:'../../images/menubutton/gljsxdjh.png',
-		renderTo:'left_menu1',
-		href:'./jhtjbb/xdjh.jsp'
-	});
+//	createMenux('LeftMenu',{
+//		id:'menu_0101050104',
+//		title:'公路建设下达计划',
+//		imgSrc:'../../images/menubutton/gljsxdjh.png',
+//		renderTo:'left_menu1',
+//		href:'./jhtjbb/xdjh.jsp'
+//	});
 	
 	
 	createMenux('LeftMenu',{
@@ -118,12 +118,18 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050208',
-		title:'公路改造工程新上、续建工程项目完成情况表',
+		title:'公路改造工程新上、续建工程项目完成情况汇总表',
 		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxj.jsp'
 	});
-
+	createMenux('LeftMenu',{
+		id:'menu_0101050209',
+		title:'公路改造工程新上、续建工程项目完成情况明细表',
+		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
+		renderTo:'left_menu2',
+		href:'./gcxmybb/glgzxjmxb.jsp'
+	});
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101050301',

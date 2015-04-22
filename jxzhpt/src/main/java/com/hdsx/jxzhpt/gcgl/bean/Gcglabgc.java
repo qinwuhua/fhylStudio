@@ -6,7 +6,7 @@ import java.util.Date;
 public class Gcglabgc implements Serializable {
 
 	/**
-	 * 
+	 *  
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
@@ -31,7 +31,6 @@ public class Gcglabgc implements Serializable {
 	private String zjje;//追加金额
 	private String xgcsyj;//相关处室意见
 	private String cscyj;//财审处意见
-	
 	//车购税  CGSDWZJ  TBYF  TBSJ  TBR
 	private String cgsdwzj;
 	private String tbyf;
@@ -68,6 +67,9 @@ public class Gcglabgc implements Serializable {
 	private String scbz;
 	//计划库
 	private String sbnf;
+	private String jhnf;
+	private String jhsybbzje;
+	private String jhsydfzczj;
 	private Date jhkgsj;
 	private Date jhwgsj;
 	private String sjdw;
@@ -116,7 +118,21 @@ public class Gcglabgc implements Serializable {
 	private String sjzt;
 	private String sjsh;
 	private String yhtype;
+	private String stz;
+	private String xmmc;
 	
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}
@@ -702,6 +718,24 @@ public class Gcglabgc implements Serializable {
 	}
 	public void setSczdzh(String sczdzh) {
 		this.sczdzh = sczdzh;
+	}
+	public String getJhnf() {
+		return jhnf;
+	}
+	public void setJhnf(String jhnf) {
+		this.jhnf = jhnf;
+	}
+	public String getJhsybbzje() {
+		return jhsybbzje;
+	}
+	public void setJhsybbzje(String jhsybbzje) {
+		this.jhsybbzje = jhsybbzje;
+	}
+	public String getJhsydfzczj() {
+		return jhsydfzczj;
+	}
+	public void setJhsydfzczj(String jhsydfzczj) {
+		this.jhsydfzczj = jhsydfzczj;
 	}
 	
 }

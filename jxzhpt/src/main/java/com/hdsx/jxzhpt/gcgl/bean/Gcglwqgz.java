@@ -127,7 +127,14 @@ public class Gcglwqgz implements Serializable {
 	private String xjzt;
 	private String sjzt;
 	private String sjsh;
+	private String stz;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public byte[] getJgtcwjfile() {
 		return jgtcwjfile;
 	}

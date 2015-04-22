@@ -22,11 +22,23 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','红色旅游月报列表','hslyyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','红色旅游月报列表','hslyyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
-	var xzqhdm=$("#xzqhdm").combobox("getValue");
+	var xmnf=$("#ddlYear").val();
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh11str=$.cookie("dist2");
+	}else{
+		xzqh11str=gydw1.join(',');
+	}
 	var jgzt='1';
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
@@ -40,12 +52,14 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqhdm,
+	    	xzqhdm: xzqh11str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	gydwdm:gydw1str,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -112,7 +126,7 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	

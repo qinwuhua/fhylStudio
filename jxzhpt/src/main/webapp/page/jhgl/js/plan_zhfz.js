@@ -16,40 +16,27 @@ function querySumZhfz(jh,lx){
 				$('#lblZTZ').html(data.pfztz);
 				$('#lblBTZ').html(data.jhsybzje);
 				$('#lblDFTZ').html(data.jhsydfzcje);
+			}else{
+				$('#lblZLC').html("0");
+				$('#lblYHLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
 			}
 		}
 	});
 }
 function queryZjqf(nf){
-	//查询切分资金
-	var xzqhdm=$.cookie("unit");
-	if(roleName()=="县级"){
-		xzqhdm=$.cookie("unit").substring(0,9)+"00";
-	}else if(roleName()=="市级"){
-		xzqhdm=$.cookie("unit").substring(0,7)+"0000";
-	}else if(roleName()=="省级"){
-		xzqhdm="11101360000";
-	}
-	var y=true;
 	$.ajax({
 		type:'post',
 		async:false,
-		url:'../../../jhgl/queryZjqfByXzqh.do',
-		data:zjqf={'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		url:'../../../jhgl/queryZjqfByZjqf.do',
+		data:zjqf={'zjqf.gydwbm':$.cookie("unit"),'zjqf.nf':nf},
 		dataType:'json',
 		success:function(data){
 			if(data!=null){
-				$.each(JSON.parse(data.zjqf),function(index,item){
-					if(item.id==$.cookie("unit")){
-						$('#lblQfzj').html(item.zhfz);
-						y=false;
-					}else if(roleName()=="省级" && item.id==xzqhdm){
-						$('#lblQfzj').html(item.zhfz);
-						y=false;
-					}
-				});
-			}
-			if(y){
+				$('#lblQfzj').html(data.zhfz);
+			}else{
 				$('#lblQfzj').html("0");
 			}
 		}
@@ -71,6 +58,14 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('zhfz_xx','灾害防治',"/jxzhpt/page/jhgl/jhkxx/zhfz.jsp",'zhfz_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('zhfz_edit','灾害防治',"/jxzhpt/page/jhgl/edit/zhfz.jsp",'zhfz_edit',1000,500);
+}
 function zhfzxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			"jh.jhwgsj":jh.jhwgsj,"jh.pfztz":jh.pftz,
@@ -83,11 +78,14 @@ function zhfzxm(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
-	        		result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	var id="'"+row.id+"'";
-		        	result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
+		        	if(roleName()=="省级")
+		        		result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
+	        		else
+	        			result+='<a style="text-decoration:none;color:black;">移除</a>';
 	        	}else{
 	        		result+='<a style="text-decoration:none;">编辑</a>    ';
 		        	result+='<a style="text-decoration:none;">移除</a>';
@@ -174,9 +172,9 @@ function zhfzxm_sb(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<4))
-	        		result+='<a href="javascript:openDialog('+"'zhfz_xx','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	return result;
@@ -254,9 +252,9 @@ function zhfzxm_sh(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zhfz_sh','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
-	        		result+='<a href="javascript:openDialog('+"'zhfz_sh','灾害防治项目计划详情','../edit/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
+	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
 	        	else
 	        		result+='<a style="text-decoration:none;color:black;">编辑</a>';
 	        	return result;
@@ -340,7 +338,7 @@ function zhfzxm_zjxd(jh,lx){
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
 	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'zjxd_zhfz','灾害防治项目计划详情','../jhkxx/zhfz.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
@@ -506,8 +504,8 @@ function editZhfz(){
 		success:function(data){
 			if(data.jh && data.sc){
 				alert("修改成功！");
-				$('#zhfz_xx').dialog('close');
-				searchZhfz();
+				parent.$('#grid').datagrid('reload');
+				parent.$('#zhfz_edit').window('destroy');
 			}
 		}
 	});

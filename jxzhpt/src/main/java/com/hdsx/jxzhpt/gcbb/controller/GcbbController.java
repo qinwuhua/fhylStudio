@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.gcbb.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -9,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.gcbb.bean.Gcbb5;
+import com.hdsx.jxzhpt.gcbb.bean.GcgjJd;
+import com.hdsx.jxzhpt.gcbb.bean.GcsjJd;
 import com.hdsx.jxzhpt.gcbb.server.GcbbServer;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
@@ -27,8 +32,34 @@ public class GcbbController extends BaseActionSupport{
 	 */
 	private static final long serialVersionUID = -8781627913390367320L;
 	@Resource(name="gcbbServerImpl")
-	private GcbbServer wqgzServer;
+	private GcbbServer gcbbServer;
 	private Jckwqgz jckwqgz=new Jckwqgz();
+	private Xmbb xmbb;
+	
+	public void selGcgjJdbb() throws IOException, Exception{
+		List<GcgjJd> selGcgjJdbb = gcbbServer.selGcgjJdbb(xmbb);
+		JsonUtils.write(selGcgjJdbb, getresponse().getWriter());
+	}
+	public void selShuihJdbb() throws IOException, Exception{
+		List<GcgjJd> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
+		JsonUtils.write(selShuihJdbb, getresponse().getWriter());
+	}
+	public void selGcsjJdbb() throws IOException, Exception{
+		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
+		JsonUtils.write(gcsj, getresponse().getWriter());
+	}
+	public void selYhdzxJdbb() throws IOException, Exception{
+		List<GcsjJd> yhdzx=gcbbServer.selYhdzxJdbb(xmbb);
+		JsonUtils.write(yhdzx, getresponse().getWriter());
+	}
+	public void selGcbb5(){
+		try{
+			List<Gcbb5> s=gcbbServer.selGcbb5(xmbb);
+			JsonUtils.write(s, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	/***
 	 * 获取年份列表
 	 */
@@ -58,5 +89,11 @@ public class GcbbController extends BaseActionSupport{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public Xmbb getXmbb() {
+		return xmbb;
+	}
+	public void setXmbb(Xmbb xmbb) {
+		this.xmbb = xmbb;
 	}
 }

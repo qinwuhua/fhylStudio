@@ -14,9 +14,21 @@
 	<script type="text/javascript" src="js/zhfz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript">
+	function checkZJ(str1){
+		var str=str1.value;
+		var g = /^\d+(?=\.{0,1}\d+$|$)/;
+		if(str=='')
+			return;
+	    if( !g.test(str)){
+	    	alert("请输入正确的金额");
+	    	$(str1).val('');
+	    }
+	}
 	$(function(){
 		var data=parent.obj;
 		$("#xg_cgsdwzj").val(data.cgsdwzj);
+		$("#xg_stz").val(data.stz);
+		$("#xg_cscyj").val(data.cscyj);
 		$("#xg_tbr").text(data.tbr);
 		$("#xg_tbsj").text(data.tbsj);
 
@@ -26,30 +38,46 @@
 		var mystr='';
 		var mystr1='';
 		var mystr2='';
+		var mystr3='';
+		var mystr4='';
 		if(m==1){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+11;
 			mystr2=(y-1)+'-'+12;
+			mystr3=(y-1)+'-'+10;
+			mystr4=(y-1)+'-'+9;
 		}
 		else if(m==2){
 			mystr=y+'-'+m;
 			mystr1=(y-1)+'-'+12;
 			mystr2=y+'-'+1;
+			mystr3=(y-1)+'-'+11;
+			mystr4=(y-1)+'-'+10;
+		}else if(m==3){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+1;
+			mystr2=y+'-'+2;
+			mystr3=(y-1)+'-'+12;
+			mystr4=(y-1)+'-'+11;
+		}else if(m==4){
+			mystr=y+'-'+m;
+			mystr1=y+'-'+2;
+			mystr2=y+'-'+3;
+			mystr3=y+'-'+1;
+			mystr4=(y-1)+'-'+12;
 		}else{
 			mystr=y+'-'+m;
 			mystr1=y+'-'+(m-2);
 			mystr2=y+'-'+(m-1);
+			mystr3=y+'-'+(m-3);
+			mystr4=y+'-'+(m-4);
 		}
 
 		$("#xg_tbyf").append("<option id="+mystr+" value="+mystr+" selected='selected'>"+mystr+"</option>");
 		$("#xg_tbyf").append("<option id="+mystr2+" value="+mystr2+">"+mystr2+"</option>");
 		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
-		var sj1=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(0,4);
-		var sj2=parent.parent.$("#datagrid").datagrid('getRows')[0].sjkgsj.substr(5,2).replace(/\b(0+)/gi,"");
-		if(mystr1.substr(0,4)<sj1){$("#"+mystr1).remove();}
-		else if(mystr1.substr(5,1)<sj2){$("#"+mystr1).remove();}
-		if(mystr2.substr(0,4)<sj1){$("#"+mystr2).remove();}
-		else if(mystr2.substr(5,1)<sj2){$("#"+mystr2).remove();}
+		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
+		$("#xg_tbyf").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 		$("#xg_tbyf").val(data.tbyf);
 	});
 	function checkZJ(){
@@ -87,20 +115,40 @@ text-decoration: none;
             <tr>
                 <td>
                     <br />
-                    <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
-                        border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
-                        cellpadding="0">
-                        <tr style="height: 35px;">
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                   <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
+                            border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
+                            cellpadding="0">
+                            <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
-                                 padding-right: 5px; vertical-align: middle;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">车购税到位资金 </font></b>
-                            </td>
-                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="5">
-                                <input onblur="checkZJ()" name="txtCGSZJDW" type="text" id="xg_cgsdwzj"  style="width: 50px"/>万元
-                            </td>
-                        </tr>
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">拨付车购税： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" >
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="xg_cgsdwzj"  style="width: 50px" value="0"/>万元
+                                </td>
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">省投资： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                    <input onblur="checkZJ(this)" name="txtCGSZJDW" type="text" id="xg_stz"  style="width: 50px" value="0"/>万元
+                                </td>
+                            </tr>
+                            <tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                padding-right: 5px;">
+                                    <font color="#009ACD" style="font-size: 12px">财审处意见： </font>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="5">
+                                    <input name="txtCGSZJDW" type="text" id="xg_cscyj"  style="width: 350px" value="同意"/>
+                                </td>
+                            </tr>
                         <tr style="height: 35px;">
                             <td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right;
                                 background-color: #F1F8FF;  padding-right: 5px;">

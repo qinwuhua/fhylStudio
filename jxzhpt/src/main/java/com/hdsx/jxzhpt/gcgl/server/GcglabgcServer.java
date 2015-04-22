@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.gcgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
@@ -73,6 +74,16 @@ public interface GcglabgcServer {
 	List<Excel_list> exportzhyb(Gcglabgc gcglabgc);
 
 	List<Excel_list> exportwqyb(Gcglabgc gcglabgc);
+
+	List<Excel_list> exportAbyb1(Gcglabgc gcglabgc);
+
+	Gcglabgc selectabgcxx(Gcglabgc gcglabgc);
+
+	List<Gcglgcgzgj> selectWqgzjhListid1(Gcglabgc gcglabgc);
+
+	List<Gcglabgc> selectWqgzjhList1(Gcglabgc gcglabgc);
+
+	int selectWqgzjhListcount1(Gcglabgc gcglabgc);
 
 	
 

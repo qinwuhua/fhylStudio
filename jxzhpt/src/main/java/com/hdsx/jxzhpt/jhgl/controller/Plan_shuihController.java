@@ -21,7 +21,14 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
@@ -34,11 +41,14 @@ public class Plan_shuihController extends BaseActionSupport {
 	private int rows=10;
 	@Resource(name="plan_shuihServerImpl")
 	private Plan_shuihServer shuihServer;
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_shuih jh;
 	private Plan_lx_shuih lx;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
+	private String tbbmbm2;
 	private File uploadGk;
 	private String uploadGkFileName;
 	private File uploadSjt;
@@ -113,7 +123,6 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void queryShuihList(){
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
-			System.out.println("上报状态："+jh.getSbzt()+"   审核状态："+jh.getSpzt()+"   长度："+jh.getJh_sbthcd());
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
 			jsonMap.put("rows",shuihServer.queryShuihList(page, rows, jh, lx));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
@@ -237,6 +246,12 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
+				String xzqh = map.get("1").toString();
+				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+					map.put("jh_sbthcd", 2);
+				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+					map.put("jh_sbthcd", 0);
+				}
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
 				map.put("22", map.get("22").toString().substring(0, map.get("22").toString().indexOf(".")));
 				map.put("34", map.get("34").toString().substring(0, map.get("34").toString().indexOf(".")));
@@ -256,6 +271,7 @@ public class Plan_shuihController extends BaseActionSupport {
 						strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
 						map.put("yjsdj", queryGPSBylxbm.getYjsdj());
+						map.put("tbbm", getTbbmbm2());
 						//验证路线名称、起止里程是否相符
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
 							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
@@ -317,6 +333,128 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportShuihZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[10];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)1), null,50);
+		title[2]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)8), null,15);
+		title[9]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)9), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//第一列项目名称
+		attribute.put("1", "lxxx");//路线信息
+		attribute.put("2", "pfztz");//批复总投资
+		attribute.put("3", "tbdw");//填报单位-即导出单位
+		attribute.put("4", "xdnf");//下达年份
+		attribute.put("5", "xdzj");//下达的总投资
+		attribute.put("6", "btzzj");//下达的部投资
+		attribute.put("7", "stz");//省投资
+		attribute.put("8", "jhxdwh");//计划下达文号
+		attribute.put("9", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		for (Plan_shuih item : shuihServer.queryShuihList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			zjxd.setXmmc(item.getXmmc());
+			String strLx="";
+			for (int i = 0; i <item.getShuihs().size(); i++) {
+				strLx+=item.getShuihs().get(i).getLxmc()+"-"+
+						item.getShuihs().get(i).getLxbm()+"("+
+						item.getShuihs().get(i).getQdzh()+"-"+
+						item.getShuihs().get(i).getZdzh()+")";
+				if(i!=item.getShuihs().size()-1){
+					strLx+="\r\n";
+				}
+			}
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPfztz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("水毁项目",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "水毁项目-资金下达", getresponse());
+	}
+	
+	public void insertShuih() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		Plan_lx_shuih shuih=new Plan_lx_shuih();
+		shuih.setXzqhdm(lx.getXzqhdm());
+		shuih.setLxbm(lx.getLxbm());
+		shuih.setQdzh(lx.getQdzh());
+		shuih.setZdzh(lx.getZdzh());
+		shuih.setGydwdm(lx.getGydwdm());
+		shuih.setYjsdj(lx.getYjsdj());
+		shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+		String strResult="false";
+		if(shuihServer.queryJhExist(shuih)==0){
+			Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+			if(queryGPSBylxbm!=null){
+				UUID jhId = UUID.randomUUID(); 
+				lx.setJhid(jhId.toString());
+				jh.setId(jhId.toString());
+				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
+				boolean lxresult = shuihServer.insertShuihLx(lx);
+				boolean jhresult = shuihServer.insertShuihJh(jh);
+				if(lxresult && jhresult){
+					strResult="true";
+				}
+			}else{
+				strResult="none";
+			}
+		}else{
+			strResult="have";
+		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
+	public void insertShuihLx(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			Plan_lx_shuih shuih=new Plan_lx_shuih();
+			shuih.setXzqhdm(lx.getXzqhdm());
+			shuih.setLxbm(lx.getLxbm());
+			shuih.setQdzh(lx.getQdzh());
+			shuih.setZdzh(lx.getZdzh());
+			shuih.setGydwdm(lx.getGydwdm());
+			shuih.setYjsdj(lx.getYjsdj());
+			shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+			String strResult="false";
+			if(shuihServer.queryJhExist(shuih)==0){
+				Plan_lx_shuih queryGPSBylxbm = shuihServer.queryGPSBylxbm(shuih);
+				if(queryGPSBylxbm!=null){
+					boolean lxresult = shuihServer.insertShuihLx(lx);
+					if(lxresult){
+						strResult="true";
+					}
+				}else{
+					strResult="none";
+				}
+			}else{
+				strResult="have";
+			}
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void shAutoCompleteLxbm() throws IOException, Exception{
+		List<Plan_lx_shuih> list=shuihServer.shAutoCompleteLxbm(lx);
+		JsonUtils.write(list, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;
@@ -364,44 +502,40 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void setLx(Plan_lx_shuih lx) {
 		this.lx = lx;
 	}
-
 	public String getGydwdm() {
 		return gydwdm;
 	}
-
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
 	}
-
 	public File getUploadGk() {
 		return uploadGk;
 	}
-
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

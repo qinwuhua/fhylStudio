@@ -17,6 +17,7 @@ public class Sckzhfz implements Serializable{
 		private String sczdzh;
 		private String sczlc;
 		private String scyhlc;
+		private String scxmnf;
 		private String tzgs;
 		private String spwh;
 		private String fapgdw;
@@ -384,18 +385,36 @@ public class Sckzhfz implements Serializable{
 		public void setBzls(String bzls) {
 			this.bzls = bzls;
 		}
+		public String getScxmnf() {
+			return scxmnf;
+		}
+		public void setScxmnf(String scxmnf) {
+			this.scxmnf = scxmnf;
+		}
 		@Override
 		public String toString() {
-			return "Sckabgc [id=" + id + ", xmkid=" + xmkid + ", scqdzh="
-					+ scqdzh + ", sczdzh=" + sczdzh + ", sczlc=" + sczlc
-					+ ", scyhlc=" + scyhlc + ", tzgs=" + tzgs + ", spwh="
-					+ spwh + ", fapgdw=" + fapgdw + ", fascdw=" + fascdw
-					+ ", faspsj=" + faspsj + ", jsxz=" + jsxz + ", jsnr="
-					+ jsnr + ", scbz=" + scbz + ", scbmbm=" + scbmbm
-					+ ", sck_sbzt=" + sck_sbzt + ", sck_sbsj=" + sck_sbsj
-					+ ", sck_sbbm=" + sck_sbbm + ", sck_shzt=" + sck_shzt
-					+ ", sck_shsj=" + sck_shsj + ", sck_shbm=" + sck_shbm
-					+ ", page=" + page + ", rows=" + rows + "]";
+			return "Sckzhfz [sckid=" + sckid + ", id=" + id + ", xmkid="
+					+ xmkid + ", scqdzh=" + scqdzh + ", sczdzh=" + sczdzh
+					+ ", sczlc=" + sczlc + ", scyhlc=" + scyhlc + ", scxmnf="
+					+ scxmnf + ", tzgs=" + tzgs + ", spwh=" + spwh
+					+ ", fapgdw=" + fapgdw + ", fascdw=" + fascdw + ", faspsj="
+					+ faspsj + ", jsxz=" + jsxz + ", jsnr=" + jsnr + ", scbz="
+					+ scbz + ", scbmbm=" + scbmbm + ", sck_sbzt=" + sck_sbzt
+					+ ", sck_sbsj=" + sck_sbsj + ", sck_sbbm=" + sck_sbbm
+					+ ", sck_shzt=" + sck_shzt + ", sck_shsj=" + sck_shsj
+					+ ", sck_shbm=" + sck_shbm + ", page=" + page + ", rows="
+					+ rows + ", sck_sbthcd=" + sck_sbthcd + ", sck_sbzt2="
+					+ sck_sbzt2 + ", lrjh=" + lrjh + ", bzls=" + bzls
+					+ ", gydwdm=" + gydwdm + ", gydwbm=" + gydwbm + ", gydw="
+					+ gydw + ", xzqhdm=" + xzqhdm + ", xzqhmc=" + xzqhmc
+					+ ", lxjsdj=" + lxjsdj + ", lxbm=" + lxbm + ", lxmc="
+					+ lxmc + ", qdzh=" + qdzh + ", zdzh=" + zdzh + ", qzlc="
+					+ qzlc + ", yhlc=" + yhlc + ", gjxjnd=" + gjxjnd
+					+ ", yhnr=" + yhnr + ", tbbmbm=" + tbbmbm + ", tbsj="
+					+ tbsj + ", xmnf=" + xmnf + ", xmtype=" + xmtype
+					+ ", sbzt=" + sbzt + ", sbsj=" + sbsj + ", sbbm=" + sbbm
+					+ ", shzt=" + shzt + ", shsj=" + shsj + ", shbm=" + shbm
+					+ ", bz=" + bz + "]";
 		}
 		
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.lwxm.xmsck.server.SckabgcServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
@@ -22,7 +23,7 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 
 	@Override
 	public boolean insertSckabgc(Sckabgc abgc) {
-		if(insert("insertSckabgc", abgc)>0 && update("xgAbgcXmnf", abgc)>0) return  true;
+		if(insert("insertSckabgc", abgc)>0) return  true;
 		else return false;
 	}
 
@@ -134,13 +135,16 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean lrjhSckabgc(String delstr) {
+	public boolean lrjhSckabgc(String delstr,String nf) {
 		String[] strs = delstr.split(",");
-		list = new ArrayList<String>();
+		List<Plan_abgc> l = new ArrayList<Plan_abgc>();
 		for (int i = 0; i < strs.length; i++) {
-			list.add(strs[i]);
+			Plan_abgc item =new Plan_abgc();
+			item.setSckid(strs[i]);
+			item.setJhnf(nf);
+			l.add(item);
 		}
-		return insertBatch("lrjhSckabgc", list)==list.size()?true:false;
+		return insertBatch("lrjhSckabgc", l)==l.size()?true:false;
 	}
 
 	@Override

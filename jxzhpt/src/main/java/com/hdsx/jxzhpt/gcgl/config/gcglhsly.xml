@@ -49,15 +49,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="inserthslyYb" parameterType="gcglhsly">
-		insert into GCGL_HSLY(id,jhid,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,bfzj,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{bfzj},#{sfsj},'否')
+		insert into GCGL_HSLY(id,jhid,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,bfzj,sfsj,sfth,ssdctc,bndsslc,wcqk,wkglc,wcbtz,wcstz,wcqttz,dwstz,dwqttz)
+		values(sys_guid(),#{jhid},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{bfzj},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wcqk},#{wkglc},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_stz},#{zjdw_qttz})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglhsly" resultType="gcglhsly">
 		select * from GCGL_HSLY where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updatehslyYb" parameterType="gcglhsly">
-		update GCGL_HSLY set bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},bfzj=#{bfzj},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_HSLY set bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},bfzj=#{bfzj},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wcqk=#{wcqk},wkglc=#{wkglc},wcbtz=#{wc_btz},wcstz=#{wc_stz},wcqttz=#{wc_qttz},dwstz=#{zjdw_stz},dwqttz=#{zjdw_qttz} 
 		where id=#{id} and jhid=#{jhid}
 	</update>
 		<!-- 修改月报状态 -->
@@ -76,8 +76,8 @@
 	</update>
 		<!-- 添加车购税 -->
 	<insert id="insertHslyCgs" parameterType="gcglhsly">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglhsly" resultType="gcglhsly">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateHslyCgs" parameterType="gcglhsly">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	
@@ -125,7 +125,7 @@
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglhsly">
-		update PLAN_HSLY set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
+		update PLAN_HSLY set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
@@ -153,10 +153,16 @@
 		from PLAN_HSLY 
 		where 1=1
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
+	</if>
+	<if test="gydwdm != null and  gydwdm != ''">
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and jhnf like '%'||trim(#{jhnf})||'%'
 	</if>
 	<if test="jgzt != null and  jgzt != ''">
 			and jgzt like '%'||trim(#{jgzt})||'%'
@@ -178,10 +184,16 @@
 	 	from PLAN_HSLY 
 		where 1=1
 	<if test="xzqhdm != null and  xzqhdm != ''">
-			and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+			${xzqhdm}
+	</if>
+	<if test="gydwdm != null and  gydwdm != ''">
+			${gydwdm}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jhnf != null and  jhnf != ''">
+			and jhnf like '%'||trim(#{jhnf})||'%'
 	</if>
 	<if test="jgzt != null and  jgzt != ''">
 			and jgzt like '%'||trim(#{jgzt})||'%'
@@ -205,8 +217,83 @@
 	 <update id="updateSJSH" parameterType="gcglhsly" >
 	 update PLAN_HSLY set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglhsly" >
+	 update PLAN_HSLY set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglhsly" resultType="int">
 	 	select count(*) from GCGL_HSLY 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	  <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglhsly" resultType="gcglhsly">
+	 	select max(sbyf) sbyf from gcgl_hsly where jhid=#{jhid}
+	 </select>
+	 
+	 <select id="selectWqgzjhList1" parameterType="gcglhsly" resultType="gcglhsly">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		xmmc,xzqhdm,xzqhmc,jhnf,jsgmhj,jsgmy,jsgme,jsgms,jsgmf,jsgmdldq,kgn,wgn,
+		ztz,zytz,dfta,gndk,lywz,jsxz,gkpfwh,sgtpfwh,zyjsnr,xzscl,
+		xdsj,sjkgsj,yjwgsj,sjwgsj,sgdw,jldw,jsdw,htje,sgxkwj,jgtcwj,jgyswj,
+		wjgyy,gsztz,sfqxkg,kgzt,jgzt,jh.id jhid,jh.id
+		from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		where 1=1 and jh.jhnf=#{jhnf}
+	<if test="xzqhdm != null and  xzqhdm != ''">
+			${xzqhdm}
+	</if>
+	<if test="gydwdm != null and  gydwdm != ''">
+			${gydwdm}
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="xmmc != null and  xmmc != ''">
+			and xmmc like '%'||trim(#{xmmc})||'%'
+	</if>
+	<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+	</if>
+	order by jhnf desc
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	 <select id="selectWqgzjhListCount1" parameterType="gcglhsly" resultType="int">
+	 	select count(*) 	
+	 	from PLAN_HSLY jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		where 1=1 and jh.jhnf=#{jhnf}
+	<if test="xzqhdm != null and  xzqhdm != ''">
+			${xzqhdm}
+	</if>
+	<if test="gydwdm != null and  gydwdm != ''">
+			${gydwdm}
+	</if>
+	<if test="kgzt != null and  kgzt != ''">
+			and kgzt like '%'||trim(#{kgzt})||'%'
+	</if>
+	<if test="jgzt != null and  jgzt != ''">
+			and jgzt like '%'||trim(#{jgzt})||'%'
+	</if>
+	<if test="xmmc != null and  xmmc != ''">
+			and xmmc like '%'||trim(#{xmmc})||'%'
+	</if>
+	<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+	</if>
 	 </select>
 </mapper>

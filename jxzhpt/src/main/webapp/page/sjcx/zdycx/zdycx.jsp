@@ -22,6 +22,7 @@
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
 		loadBmbm2("kgzt","开工状态");
+		
 		$("#btnSelect").click(function(){
 			YMLib.Var.gydw=$("#gydw").combobox("getValue");
 			YMLib.Var.xzqhdm=$("#xzqhmc").combobox("getValue");
@@ -29,11 +30,14 @@
 			YMLib.Var.lxmc=$("#lxmc").val();
 			YMLib.Var.lxbm=$("#lxbm").val();
 			YMLib.Var.xmlx=$("#xmlx").combobox("getValue");
-			if($("#xmlx").combobox("getValue")=='wqgz'){
-				Wqgz();
-			} else{
-			 	cxzd();	
-			}
+			YMLib.Var.xmName=$("#xmlx").combobox("getText");
+			if($("#xmlx").combobox("getValue")=='wqgz') Wqgz();
+			else if($("#xmlx").combobox("getValue")=='abgc') Abgc();	
+			else if($("#xmlx").combobox("getValue")=='zhfz') Zhfz();
+			else if($("#xmlx").combobox("getValue")=='lmgj') Gcgj();
+			else if($("#xmlx").combobox("getValue")=='lmsj')	Gcsj();
+			else if($("#xmlx").combobox("getValue")=='yhdzx') Yhdzx();
+			else Sh();
 		});
 	});
 </script>
@@ -78,7 +82,7 @@ text-decoration:none;
 						<option value="lmsj">工程改造路面升级</option>
 						<option value="lmgj">工程改造路面改建</option>
 						<option value="yhdzx">养护大中修</option>
-						<option value="shxm">水毁项目</option>
+						<option value="shxm">水毁</option>
 					</select></td>
 				<!-- <td style="background-color: #ffffff;width:15%" align="right">技术等级：</td>
 				<td style="background-color: #ffffff;" align="left">
@@ -101,6 +105,7 @@ text-decoration:none;
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  style="border-width:0px;cursor: hand;" />&nbsp;&nbsp;&nbsp;
+						<img  onclick="exportExcel_zdy()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;" />
 				</td>
 			</tr>
 			</table><br/>

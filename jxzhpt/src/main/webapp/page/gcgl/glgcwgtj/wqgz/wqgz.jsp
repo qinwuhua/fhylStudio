@@ -22,7 +22,13 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit1("gydw",$.cookie("unit"));
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
 			showAll();
 		});
 		
@@ -68,6 +74,9 @@ a:active {
         							<input type="text" id="lxmc" >
         						<span>桥梁名称：</span>
         							<input type="text" id="qlmc" >
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>

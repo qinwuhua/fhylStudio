@@ -15,37 +15,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="js/abgc.js"></script>
-<script type="text/javascript"> 
-$(function(){
-	var data=parent.obj1;
-	$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#gydw").text(data.gydw);$("#qdzh").text(data.qdzh);$("#zdzh").text(data.zdzh);$("#qzlc").text(data.qzlc);
-	$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#lxjsdj").text(data.lxjsdj);$("#gjxjnd").text(data.gjxjnd);
-	$("#yhlc").text(data.yhlc);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
-	$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);
-	$("#tzgs").text(data.tzgs);$("#spwh").text(data.spwh);$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);
-	$("#faspsj").text(data.faspsj);$("#jsxz").text(data.jsxz);$("#jsnr").text(data.jsnr);$("#scbz").text(data.scbz);
-	$("#sbnf").text(data.sbnf);$("#jhkgsj").text(data.jhkgsj);$("#jhwgsj").text(data.jhwgsj);$("#sjdw").text(data.sjdw);$("#sjpfdw").text(data.sjpfdw);$("#pfwh").text(data.pfwh);$("#pfsj").text(data.pfsj);$("#pfztz").text(data.pfztz);
-	$("#jhsybzje").text(data.jhsybzje);$("#jhsydfzcje").text(data.jhsydfzcje);$("#sfsqablbz").text(data.sfsqablbz);$("#ablbzsqwh").text(data.ablbzsqwh);
-	$("#jhbz").text(data.jhbz);$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);
-	$("#yjjgsj").text(data.yjjgsj);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#jsdw").text(data.jsdw);
-	$("#gys").text(data.gys);$("#htje").text(data.htje);$("#sjwgsj").text(data.sjwgsj);$("#jhbz").text(data.jhbz);	
-	if(data.gkbgmc!=''){
-		$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
-	}
-	if(data.sjsgtmc!=''){
-		$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
-	}
-	
-	var data1="jhid="+data.jhid;
-	jiazai(data1);
-});
-function downFile1(){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+parent.obj1.jhid;
-}
-function downFile2(){
-	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+parent.obj1.jhid;
-}
-</script>
+
 <style type="text/css">
 a {
 	text-decoration: none;
@@ -53,6 +23,47 @@ a {
 </style>
 </head>
 <body style="margin: 0 0 0 0">
+<script type="text/javascript"> 
+$(function(){
+	var data1="jhid="+parent.obj1.jhid;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/gcgl/selectabgcxx.do',
+		data:data1,
+		dataType:'json',
+		success:function(msg){
+			var data=msg;
+			$("#lxmc").text(data.lxmc);$("#lxbm").text(data.lxbm);$("#gydw").text(data.gydw);$("#qdzh").text(data.qdzh);$("#zdzh").text(data.zdzh);$("#qzlc").text(data.qzlc);
+			$("#xzqhdm").text(data.xzqhdm);$("#xzqhmc").text(data.xzqhmc);$("#lxjsdj").text(data.lxjsdj);$("#gjxjnd").text(data.gjxjnd);
+			$("#yhlc").text(data.yhlc);$("#xmnf").text(data.xmnf);$("#xmtype").text(data.xmtype);
+			$("#bhnr").text(data.bhnr);$("#bz").text(data.bz);$("#tsdq").text(data.tsdq);
+			$("#tzgs").text(data.tzgs);$("#spwh").text(data.spwh);$("#fapgdw").text(data.fapgdw);$("#fascdw").text(data.fascdw);
+			$("#faspsj").text(data.faspsj);$("#jsxz").text(data.jsxz);$("#jsnr").text(data.jsnr);$("#scbz").text(data.scbz);
+			$("#sbnf").text(data.sbnf);$("#jhkgsj").text(data.jhkgsj);$("#jhwgsj").text(data.jhwgsj);$("#sjdw").text(data.sjdw);$("#sjpfdw").text(data.sjpfdw);$("#pfwh").text(data.pfwh);$("#pfsj").text(data.pfsj);$("#pfztz").text(data.pfztz);
+			$("#jhsybzje").text(data.jhsybzje);$("#jhsydfzcje").text(data.jhsydfzcje);$("#sfsqablbz").text(data.sfsqablbz);$("#ablbzsqwh").text(data.ablbzsqwh);
+			$("#jhbz").text(data.jhbz);$("#xdsj").text(data.xdsj);$("#sjkgsj").text(data.sjkgsj);
+			$("#yjjgsj").text(data.yjjgsj);$("#sgdw").text(data.sgdw);$("#jldw").text(data.jldw);$("#jsdw").text(data.jsdw);
+			$("#gys").text(data.gys);$("#htje").text(data.htje);$("#sjwgsj").text(data.sjwgsj);$("#jhbz").text(data.jhbz);	
+			if(data.gkbgmc!=''){
+				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+			}
+			if(data.sjsgtmc!=''){
+				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+			}
+			var data1="jhid="+data.jhid;
+			jiazai(data1);
+		}
+	});	
+	
+	
+});
+function downFile1(){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+parent.obj1.v_10;
+}
+function downFile2(){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?jh.gkbgmc="+'sjsgt'+"&jh.id="+parent.obj1.v_10;
+}
+</script>
 	<div style="text-align: left; font-size: 12px; margin: 5px;">
 		<table width="97%" border="0"
 			style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;"

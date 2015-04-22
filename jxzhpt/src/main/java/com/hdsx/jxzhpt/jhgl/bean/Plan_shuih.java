@@ -75,6 +75,14 @@ public class Plan_shuih {
 	private String spbmdm;
 	private String sfylsjl;//最近年份是否有历史记录
 	private List<Plan_lx_shuih> shuihs;//水毁路段集合
+	private String sfgk;
+	
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
 	public String getScBz() {
 		return scBz;
 	}

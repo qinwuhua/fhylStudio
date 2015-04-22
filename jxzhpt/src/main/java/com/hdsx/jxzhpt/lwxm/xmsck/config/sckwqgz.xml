@@ -3,13 +3,14 @@
 <mapper namespace="com.hdsx.jxzhpt.sckwqgz">
 	<insert id="insertSckwqgz" parameterType="sckwqgz">
 		insert into
-		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,sck_lxbm,sck_sbthcd,lrjh,bzls)
+		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,
+		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk)
 		values(sys_guid(),#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls})
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk})
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="java.util.List">
-		insert into plan_wqgz(id,sckid,xdzt) values(sys_guid(),#{String},'未下达')
+		insert into plan_wqgz(id,sckid,xdzt,sbnf) values(sys_guid(),#{sckid},'未下达',#{sbnf})
 	</insert>
  	<insert id="xglrjhSckwqgz"  parameterType="java.util.List">
 		update sck_wqgz set lrjh='已列入'  where sckid=#{String}
@@ -106,7 +107,7 @@
 	<update id="updateSckwqgz" parameterType="sckwqgz">
 		update sck_wqgz set
 		tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
-		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz}
+		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk}
 		where sckid=#{sckid}
 	</update>
 	<select id="selectSckwqgzById" parameterType="sckwqgz"
@@ -372,6 +373,24 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
   			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by sck_shzt desc,lrjh desc
  </select>
@@ -385,6 +404,24 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
   			<if test="xzqhdm!='' and xzqhdm!= null ">
 			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
 			</if>
+			<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
  </select>
  <update id="xgWqgzXmnf" parameterType="sckwqgz" >
  		update xmk_wqgz set xmnf=#{xmnf} where id=#{xmkid}

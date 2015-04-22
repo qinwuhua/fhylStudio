@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -41,7 +43,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 /**
  * 系统管理Controller层
- * @author qwh
+ * @author qwh 
  *
  */
 @Scope("prototype")
@@ -66,7 +68,35 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfzt;
+	private String bfyf;
+	private String xmnf;
+	private String flag;
 	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -396,30 +426,13 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	//查询jihua
 	public void selectGcgzgjjhList(){
 		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
-		gcglgcgzgj.setPage(page);
-		gcglgcgzgj.setRows(rows);
+
 		gcglgcgzgj.setJhid(jhid);
-		gcglgcgzgj.setGydw(gydw.replaceAll("0*$",""));
-		gcglgcgzgj.setKgzt(kgzt);
-		gcglgcgzgj.setLxmc(lxmc);
-		gcglgcgzgj.setJgzt(jgzt);
-		gcglgcgzgj.setShzt(ybzt);
-		if(sfsj==7){
-			gcglgcgzgj.setTiaojian("sjsh");
-		}
-		if(sfsj==9){
-			gcglgcgzgj.setTiaojian("sjzt");
-		}
-		if(sfsj==11){
-			gcglgcgzgj.setTiaojian("xjzt");
-		}
-		int count=gcglgcgzgjServer.selectWqgzjhListCount(gcglgcgzgj);
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList(gcglgcgzgj);
-		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
-		e.setRows(list);
-		e.setTotal(count);
+
+		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList1(gcglgcgzgj);
+		
 		try {
-			JsonUtils.write(e, getresponse().getWriter());
+			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -482,4 +495,96 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	    bAOutputStream.close(); 
 	    return data; 
 	}
+	
+	
+	//查询jihua
+	public void selectGcgzgjjhList1(){
+		try {
+		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
+		String tiaojian1="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		gcglgcgzgj.setPage(page);
+		gcglgcgzgj.setRows(rows);
+		gcglgcgzgj.setJhid(jhid);
+		gcglgcgzgj.setGydw(tiaojian1);
+		gcglgcgzgj.setKgzt(kgzt);
+		gcglgcgzgj.setLxmc(lxmc);
+		gcglgcgzgj.setJgzt(jgzt);
+		gcglgcgzgj.setShzt(ybzt);
+		gcglgcgzgj.setSbnf(xmnf);
+		if(sfsj==7){
+			gcglgcgzgj.setTiaojian("sjsh");
+		}
+		if(sfsj==9){
+			gcglgcgzgj.setTiaojian("sjzt");
+		}
+		if(sfsj==11){
+			gcglgcgzgj.setTiaojian("xjzt");
+		}
+		List<Plan_gcgj> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
+		
+		int count=gcglgcgzgjServer.queryGcgjListCount(gcglgcgzgj);
+		
+		EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+			e.setRows(list);
+			e.setTotal(count);
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}		
+	
+	//查询jihua2
+		public void selectGcgzgjjhList2(){
+			Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			gcglgcgzgj.setPage(page);
+			gcglgcgzgj.setRows(rows);
+			gcglgcgzgj.setJhid(jhid);
+			gcglgcgzgj.setGydw(tiaojian1);
+			gcglgcgzgj.setKgzt(kgzt);
+			gcglgcgzgj.setLxmc(lxmc);
+			gcglgcgzgj.setJgzt(jgzt);
+			gcglgcgzgj.setShzt(ybzt);
+			gcglgcgzgj.setTbyf(bfyf);
+			gcglgcgzgj.setSbnf(xmnf);
+			gcglgcgzgj.setTiaojian(bfzt);
+			try{
+			List<Plan_gcgj> list=gcglgcgzgjServer.selectWqgzjhList2(gcglgcgzgj);
+			int count=gcglgcgzgjServer.selectWqgzjhListcount1(gcglgcgzgj);
+			EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+			e.setRows(list);
+			e.setTotal(count);
+			
+				JsonUtils.write(e, getresponse().getWriter());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		public void updataSFQX(){
+			boolean fanhui=false;
+		try{
+			if("gcgj".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatagjSFQX(gcglgcgzgj);
+			}
+			if("gcsj".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatasjSFQX(gcglgcgzgj);		
+			}
+			if("sh".equals(flag)){
+				fanhui = gcglgcgzgjServer.updatashSFQX(gcglgcgzgj);
+			}
+			JsonUtils.write(fanhui, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		}
 }

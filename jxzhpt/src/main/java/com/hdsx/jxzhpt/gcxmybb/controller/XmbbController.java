@@ -128,6 +128,22 @@ public class XmbbController extends BaseActionSupport{
 		}
 		
 	}
+	public void setjhxdnf1(){
+		Calendar a=Calendar.getInstance();
+		int nian=a.get(Calendar.YEAR);
+		String json="";
+		String json1="[";
+		for (int i = nian; i >= 2011; i--) {
+				json=json+"{id:"+i+",text:"+i+"年,iconCls:'icon-none',checked:'true'},";
+		}
+		try {
+			JsonUtils.write(json1+json+"]", getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	public void settsdq(){
 		List<TreeNode> list=xmbbServer.gettsdq(xzqh.replaceAll("0*$",""));
 		int i=1;
@@ -145,152 +161,52 @@ public class XmbbController extends BaseActionSupport{
 	}
 	
 	public void getPtgxbb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
 		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
 		if(xmbb.getJhxdnf().equals("")){
-			
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
-		if("未开工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("0");
-			xmbb.setJgzt("");
-		}
-		if("在建".equals(xmbb.getJszt())){
-			xmbb.setKgzt("1");
-			xmbb.setJgzt("0");
-		}
-		if("竣工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("");
-			xmbb.setJgzt("1");
-		}
-		//先查询行政区划
-		List<Map<String, Object>> lsit1=xmbbServer.getptgxXzqh1(xmbb);
-		List<Map<String, Object>> lsit2=xmbbServer.getptgxXzqh2(xmbb);
-		Excel_list e1=xmbbServer.selectEx1(xmbb);
-		if(e1!=null){
-			e1.setV_0("(一)");
-			e1.setV_1("路面改造");
-			e1.setV_11("0");
-			exl1.add(e1);
-		}
-		if(lsit1.size()>0)
-		for (Map<String, Object> map : lsit1) {
-			xmbb.setXzqh(map.get("XZQHDM").toString());
-			Excel_list e2=xmbbServer.selectEx1(xmbb);
-			if(e2!=null){
-				e2.setV_1(map.get("XZQHMC").toString()+"小计");
-				exl1.add(e2);
+		try{
+		List<Map<String,Object>> list1=xmbbServer.getptgxlist1(xmbb);
+		List<Map<String,Object>> list2=xmbbServer.getptgxlist2(xmbb);
+		List<Map<String,Object>> list3=xmbbServer.getptgxlist3(xmbb);
+		List<Map<String,Object>> list4=xmbbServer.getptgxlist4(xmbb);
+		for (Map<String, Object> map : list2) {
+			System.out.println(map.get("XMLX").toString().substring(0,1));
+			if(map.get("XMLX").toString().substring(0,1).equals(1+"")){
+				map.put("SL", 1);
+				map.put("XH", "(一)");
 			}
-			List<Excel_list> elist1=xmbbServer.selectelist1(xmbb);
-			if(elist1.size()>0)
-				exl1.addAll(elist1);
-		}
-		Excel_list e2=xmbbServer.selectEx2(xmbb);
-		if(e2!=null){
-			e2.setV_0("(二)");
-			e2.setV_1("路面升级");
-			e2.setV_11("0");
-			exl1.add(e2);
-		}
-		if(lsit2.size()>0)
-		for (Map<String, Object> map : lsit2) {
-			xmbb.setXzqh(map.get("XZQHDM").toString());
-			Excel_list e3=xmbbServer.selectEx2(xmbb);
-			if(e3!=null){
-				e3.setV_1(map.get("XZQHMC").toString()+"小计");
-				exl1.add(e3);
+			if(map.get("XMLX").toString().substring(0,1).equals(2+"")){
+				map.put("SL", 1);
+				map.put("XH", "(二)");
 			}
-			List<Excel_list> elist1=xmbbServer.selectelist2(xmbb);
-			if(elist1.size()>0)
-				exl1.addAll(elist1);
-		}
-		try {
-			if (e1 != null || e2 != null) {
-				Excel_list e4 = new Excel_list();
-				e4.setV_0("一");
-				e4.setV_1("普通国省道改造建设项目");
-				
-				if(e1!=null){
-					if (e1.getV_9() == "")
-						e1.setV_9("0");
-					if (e1.getV_10() == "")
-						e1.setV_10("0");
-					if (e1.getV_12() == "")
-						e1.setV_12("0");
-					if (e1.getV_13() == "")
-						e1.setV_13("0");
-					if (e1.getV_15() == "")
-						e1.setV_15("0");
-					if (e1.getV_16() == "")
-						e1.setV_16("0");
-					if (e1.getV_17() == "")
-						e1.setV_17("0");
-					if (e1.getV_18() == "")
-						e1.setV_18("0");	
-				}else{
-						e1=new Excel_list();
-						e1.setV_9("0");					
-						e1.setV_10("0");					
-						e1.setV_12("0");					
-						e1.setV_13("0");					
-						e1.setV_15("0");					
-						e1.setV_16("0");					
-						e1.setV_17("0");
-						e1.setV_18("0");	
+			if(map.get("XMLX").toString().substring(0,1).equals(3+"")){
+				map.put("SL", 1);
+				map.put("XH", "(三)");
+			}
+			if(map.get("XMLX").toString().substring(0,1).equals(4+"")){
+				map.put("SL", 1);
+				map.put("XH", "二");
+			}
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XMLX").toString().equals(map1.get("XMLX").toString())){
+					map1.put("SL", 1);
+				    list1.add(map1);
+				for (int i = 0; i < list4.size(); i++) {
+					if(map.get("XMLX").toString().equals(list4.get(i).get("XMLX").toString()))
+					list1.add(list4.get(i));
+					}
 				}
-				if(e2!=null){
-					if (e2.getV_9() == "")
-						e2.setV_9("0");
-					if (e2.getV_10() == "")
-						e2.setV_10("0");
-					if (e2.getV_12() == "")
-						e2.setV_12("0");
-					if (e2.getV_13() == "")
-						e2.setV_13("0");
-					if (e2.getV_15() == "")
-						e2.setV_15("0");
-					if (e2.getV_16() == "")
-						e2.setV_16("0");
-					if (e2.getV_17() == "")
-						e2.setV_17("0");
-					if (e2.getV_18() == "")
-						e2.setV_18("0");
-				}else{
-					e2=new Excel_list();
-					e2.setV_9("0");					
-					e2.setV_10("0");					
-					e2.setV_12("0");					
-					e2.setV_13("0");					
-					e2.setV_15("0");					
-					e2.setV_16("0");					
-					e2.setV_17("0");
-					e2.setV_18("0");	
 			}
-				
-				e4.setV_9(Double.parseDouble(e1.getV_9())
-						+ Double.parseDouble(e2.getV_9()) + "");
-				e4.setV_10(Double.parseDouble(e1.getV_10())
-						+ Double.parseDouble(e2.getV_10()) + "");
-				e4.setV_11("0");
-				e4.setV_12(Double.parseDouble(e1.getV_12())
-						+ Double.parseDouble(e2.getV_12()) + "");
-				e4.setV_13(Double.parseDouble(e1.getV_13())
-						+ Double.parseDouble(e2.getV_13()) + "");
-				e4.setV_15(Double.parseDouble(e1.getV_15())
-						+ Double.parseDouble(e2.getV_15()) + "");
-				e4.setV_16(Double.parseDouble(e1.getV_16())
-						+ Double.parseDouble(e2.getV_16()) + "");
-				e4.setV_17(Double.parseDouble(e1.getV_17())
-						+ Double.parseDouble(e2.getV_17()) + "");
-				e4.setV_18(Double.parseDouble(e1.getV_18())
-						+ Double.parseDouble(e2.getV_18()) + "");
-				exl.add(e4);
-				exl.addAll(exl1);
-			}
-			JsonUtils.write(exl, getresponse().getWriter());
+		}
+		for (Map<String, Object> map : list1) {
+			System.out.println(map.toString());
+		}
+		
+		
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -487,84 +403,31 @@ public class XmbbController extends BaseActionSupport{
 		}		
 	}
 	public void getYhbb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
 		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
 		if(xmbb.getJhxdnf().equals("")){
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
-		if("未开工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("0");
-			xmbb.setJgzt("");
-		}
-		if("在建".equals(xmbb.getJszt())){
-			xmbb.setKgzt("1");
-			xmbb.setJgzt("0");
-		}
-		if("竣工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("");
-			xmbb.setJgzt("1");
-		}
-		//先查询行政区划
-		List<Map<String, Object>> list1=xmbbServer.getYhxzqh(xmbb);
-		//查合计
-		Excel_list zheji = xmbbServer.getYhHj(xmbb);
-		if(zheji!=null){
-			zheji.setV_0("合并");
-			zheji.setV_1("全省合计");
-			exl1.add(zheji);
-		}
-		String flag="一";
-		if(list1.size()>0){
-			for (Map<String, Object> map : list1) {
-				xmbb.setXzqh(map.get("XZQHDM").toString());
-				Excel_list sheji = xmbbServer.getYhHj(xmbb);
-				if(sheji!=null){
-					sheji.setV_0(flag);
-					if(flag.equals("一")){flag="二";}if(flag.equals("二")){flag="三";}if(flag.equals("三")){flag="四";}if(flag.equals("四")){flag="五";}if(flag.equals("五")){flag="六";}if(flag.equals("六")){flag="七";}if(flag.equals("七")){flag="八";}if(flag.equals("八")){flag="九";}if(flag.equals("九")){flag="十";}
-					sheji.setV_1(map.get("XZQHMC").toString()+"合计");
-					exl1.add(sheji);
-				}
-				//查国道
-				xmbb.setTiaojian("G");
-				Excel_list gdheji = xmbbServer.getYhHj(xmbb);
-				if(gdheji!=null){
-					gdheji.setV_0("1");
-					gdheji.setV_1("国道");
-					exl1.add(gdheji);
-					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
-					if(e1.size()>0){
-						exl1.addAll(e1);
-					}
-				}
-				//查省道
-				xmbb.setTiaojian("S");
-				Excel_list sdheji = xmbbServer.getYhHj(xmbb);
-				if(sdheji!=null){
-					sdheji.setV_0("2");
-					sdheji.setV_1("省道");
-					exl1.add(sdheji);
-					List<Excel_list> e1=xmbbServer.getyhlist(xmbb);
-					if(e1.size()>0){
-						exl1.addAll(e1);
-					}
-				}
-				//县乡道
-				Excel_list xdheji = xmbbServer.getYhHj1(xmbb);
-				if(xdheji!=null){
-					xdheji.setV_0("3");
-					xdheji.setV_1("县乡道");
-					exl1.add(xdheji);
-					List<Excel_list> e1=xmbbServer.getyhlist1(xmbb);
-					if(e1.size()>0){
-						exl1.addAll(e1);
+		List<Map<String,Object>> list1=xmbbServer.getyhbblist1(xmbb);
+		List<Map<String,Object>> list2=xmbbServer.getyhbblist2(xmbb);
+		List<Map<String,Object>> list3=xmbbServer.getyhbblist3(xmbb);
+		List<Map<String,Object>> list4=xmbbServer.getyhbblist4(xmbb);
+
+		try {
+			for (int i = 0; i < list2.size(); i++) {
+				list1.add(list2.get(i));
+				for (int j = 0; j < list3.size(); j++) {
+					if(list2.get(i).get("XZQHDM").toString().equals(list3.get(j).get("XZQHDM").toString())){
+						list1.add(list3.get(j));
+						for (int k = 0; k < list4.size(); k++) {
+							if(list2.get(i).get("XZQHDM").toString().equals(list4.get(k).get("XZQHDM").toString())&&list3.get(j).get("SZDS").toString().equals(list4.get(k).get("DLLX").toString()))
+								list1.add(list4.get(k));
+						}
 					}
 				}
 			}
-		}
-		try {
-			JsonUtils.write(exl1, getresponse().getWriter());
+			
+			JsonUtils.write(list1, getresponse().getWriter());
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -689,59 +552,28 @@ public class XmbbController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel		
 	}
 	public void getLwbb(){
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		xmbb.setGydw(xmbb.getGydw().replaceAll("0*$",""));
 		xmbb.setXzqh(xmbb.getXzqh().replaceAll("0*$",""));
 		if(xmbb.getJhxdnf().equals("")){
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
-		if("未开工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("0");
-			xmbb.setJgzt("");
-		}
-		if("在建".equals(xmbb.getJszt())){
-			xmbb.setKgzt("1");
-			xmbb.setJgzt("0");
-		}
-		if("竣工".equals(xmbb.getJszt())){
-			xmbb.setKgzt("");
-			xmbb.setJgzt("1");
-		}
-		//查危桥
-		Excel_list elist1=xmbbServer.getlwwq(xmbb);
-		if(elist1!=null){
-			elist1.setV_0("一");
-			elist1.setV_3("危桥改造");
-			exl1.add(elist1);
-			List<Excel_list> elistwq=xmbbServer.getlwwqlist(xmbb);
-			if(elistwq.size()>0){
-				exl1.addAll(elistwq);
-			}
-		}
-		//查安保
-		Excel_list elist2=xmbbServer.getlwab(xmbb);
-		if(elist2!=null){
-			elist2.setV_0("二");
-			elist2.setV_3("安保工程");
-			exl1.add(elist2);
-			List<Excel_list> elistab=xmbbServer.getlwablist(xmbb);
-			if(elistab.size()>0){
-				exl1.addAll(elistab);
-			}
-		}
-		//查灾害
-		Excel_list elist3=xmbbServer.getlwzh(xmbb);
-		if(elist3!=null){
-			elist3.setV_0("三");
-			elist3.setV_3("灾害防治");
-			exl1.add(elist3);
-			List<Excel_list> elistzh=xmbbServer.getlwzhlist(xmbb);
-			if(elistzh.size()>0){
-				exl1.addAll(elistzh);
-			}
-		}
 		try {
-			JsonUtils.write(exl1, getresponse().getWriter());
+			List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+			List<Map<String,Object>> list1=xmbbServer.getlwbblist1(xmbb);
+			List<Map<String,Object>> list2=xmbbServer.getlwbblist2(xmbb);
+			for (Map<String, Object> map : list1) {
+				list.add(map);
+				int i=1;
+				for (Map<String, Object> map1 : list2) {
+					
+					if(map.get("XMLX").toString().equals(map1.get("XMLX").toString())){
+						map1.put("XH", i+"、");
+						i++;
+						list.add(map1);
+					}
+				}
+			}
+			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

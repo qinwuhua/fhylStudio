@@ -18,6 +18,12 @@ public interface Plan_hslyServer {
 	 */
 	boolean insertHsly(List<Map> list);
 	/**
+	 * 添加
+	 * @param list
+	 * @return
+	 */
+	boolean insertHsly2(List<Plan_hsly> list);
+	/**
 	 * 查询
 	 * @param hsly
 	 * @return
@@ -52,4 +58,6 @@ public interface Plan_hslyServer {
 	 * @return
 	 */
 	boolean dropHslyById(String id);
+	
+	List<Plan_hsly> queryHslyList(Plan_hsly hsly);
 }

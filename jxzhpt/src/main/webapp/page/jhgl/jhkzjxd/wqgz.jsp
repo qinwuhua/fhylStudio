@@ -8,9 +8,14 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/uploader/uploadify.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_wqgz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
@@ -18,23 +23,22 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
+			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
 			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
 			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null};
+			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null};
 			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
 					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
 					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
 			};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.gydwdm=null;
+			lx.gydwbm=filterGydwdm(lx.gydwbm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -54,7 +58,7 @@
 				lx.qlmc=$('#txtBridge').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.sbnf=$('#sbnf').combobox('getValue');
+				jh.jhnf=$('#sbnf').combobox('getValue');
 			}
 			if($('#ddlPDDJ').combobox('getText')!="全部"){
 				lx.lxjsdj=$('#ddlPDDJ').combobox('getValue');
@@ -87,6 +91,10 @@
 				}
 			});
 		}
+		function exportExcelZjxd(){
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			window.location.href="/jxzhpt/jhgl/exportWqgzZjxdExcel.do?"+param;
+		}
 	</script>
 </head>
 <body>
@@ -103,9 +111,9 @@
         				<div>
         					<p style="margin:8px 0px 8px 20px;">
         						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
+        						<select id="gydw" style="width:200px;"></select>
         						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
+        						<select id="xzqh" style="width:200px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
         						<span>&nbsp;跨径分类：</span>
@@ -116,10 +124,11 @@
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
 								</select>
+								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
         						<span style=" vertical-align:middle;">桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:165px;vertical-align:middle;" />
+        						<input name="txtBridge" type="text" id="txtBridge" style="width:120px;vertical-align:middle;" />
         						<span style="vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>
         						<span style="vertical-align:middle;">&nbsp;建设状态：</span>
@@ -135,7 +144,8 @@
 								<span style="vertical-align:middle;">&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;vertical-align:middle;">
 								</select>
-								<img onclick="searchWqgz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img alt="导入" onclick="importData_jh('wqgz_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

@@ -69,7 +69,6 @@ public interface Plan_wqgzServer {
 	 */
 	int editWqgzById(Plan_wqgz jh);
 	
-	
 	boolean importWqgz_jh(List<Map> data);
 	
 	/**
@@ -104,4 +103,11 @@ public interface Plan_wqgzServer {
 	List<TreeNode> queryGcktj(String xzqhdm,String nf);
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
+	List<Plan_wqgz> queryWqgzList(Plan_wqgz jh, Jckwqgz lx);
+	/**
+	 * 查询危桥历史数据
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_wqgz> queryWqLs(Jckwqgz lx);
 }

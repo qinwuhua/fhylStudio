@@ -56,4 +56,31 @@ public interface GcybbServer {
 
 	List<Map<String, Object>> getShybb(Gcglsh gcglsh);
 
+	List<Map<String, Object>> getwqgzbblist1(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist2(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist3(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getwqgzbblist4(Gcglwqgz gcglwqgz);
+
+	List<Map<String, Object>> getabgcbblist1(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getabgcbblist2(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getabgcbblist3(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getabgcbblist4(Gcglabgc gcglabgc);
+
+	List<Map<String, Object>> getzhfzbblist1(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getzhfzbblist2(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getzhfzbblist3(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getzhfzbblist4(Gcglzhfz gcglzhfz);
+
+	List<Map<String, Object>> getGjxjmxbsj(String sql);
+
+	
 }

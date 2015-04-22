@@ -90,8 +90,8 @@ function showMxbAll(){
 }
 </script>
 <div style="width:100%;">
-    <div  style="height:84px;" border="false">
-	    <div id="righttop">
+    <div  style="height:84px;" border="false" >
+	    <div id="righttop" >
 			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;路况评定明细</div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
@@ -113,6 +113,9 @@ function showMxbAll(){
         </div>
     </div>
     <div id="tt" border="false" class="easyui-tabs"  style="height:430px;">
+    <script type="text/javascript">
+                	$("#tt").attr('style','height:'+($(window).height()-90)+'px');
+     </script>
 	    <div title="明细列表" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
 	    	<table id="jsgl_table" style="height:100%;" ></table>
 	    </div>

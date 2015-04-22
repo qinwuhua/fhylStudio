@@ -116,6 +116,40 @@ public class ZdycxController extends BaseActionSupport implements ModelDriven<Zd
 			JsonUtils.write(eui, getresponse().getWriter());
 		}	
 	}
+	public void exportExcel_zdy(){
+		try {
+			//先得到导出的数据集
+			List <SjbbMessage> list=zdycxServer.exportExcel_zdy(zdycx);
+			System.out.println("------------"+list.size()+"--------------");
+			//导出设置
+			String excelHtml="<tr>";
+			String[] col=null;
+			col=zdycx.getTableName().split(",");
+			for(int i=0;i<col.length;i++){
+				excelHtml+="<td>"+col[i]+"</td>";
+			}
+			excelHtml+="</tr>";
+			List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
+			SheetBean sheetb = new SheetBean();
+			sheetb.setTableName(zdycx.getXmName()+"项目自定义导出数据");
+			sheetb.setFooter(null);
+			sheetb.setHeader(excelHtml);
+			sheetb.setSheetName(zdycx.getXmName()+"项目自定义表格");
+			sheetb.setList(list);
+			sheetb.setColnum((short)col.length);
+			sheetBeans.add(sheetb);
+			String stylefileName="module.xls";
+			String tableName=zdycx.getXmName()+"项目自定义导出数据";//excel 文件的名字
+			//导出excel
+			ExportExcel_new ee = new ExportExcel_new();
+			ee.initStyle(ee.workbook, stylefileName);
+			HttpServletResponse response= getresponse();
+			ee.makeExcel(tableName, sheetBeans, response);
+		} catch (Exception e) {
+			System.out.println("---------------------导出有误-----------------------");
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

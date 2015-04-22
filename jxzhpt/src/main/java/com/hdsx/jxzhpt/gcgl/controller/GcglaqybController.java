@@ -337,6 +337,52 @@ public class GcglaqybController extends BaseActionSupport{
 		}
 		return zzjgTree;
 	}
+	//
+	
+	public void selAllXzqh1(){
+		List<TreeNode> l=gcglaqybServer.selAllXzqh1(yhdw.replaceAll("0*$",""));
+		TreeNode root = returnRoot1(l,l.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(l.get(0));
+		List<TreeNode> children = root.getChildren();
+		children1.get(0).setId(yhdw.replaceAll("0*$",""));
+		children1.get(0).setChildren(children);
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selAllUnit1(){
+		List<TreeNode> l=gcglaqybServer.selAllUnit1(yhdw.replaceAll("0*$",""));
+		TreeNode root = returnRoot1(l,l.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(l.get(0));
+		List<TreeNode> children = root.getChildren();
+		children1.get(0).setChildren(children);
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private TreeNode returnRoot1(List<TreeNode> list, TreeNode zzjgTree){
+		for(TreeNode temp : list){
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					zzjgTree.setState("closed");
+					zzjgTree.getChildren().add(temp);
+					returnRoot1(list,temp);
+				}
+			}
+		}
+		return zzjgTree;
+	}
+	//
 	
 	public void selAllBm4(){
 		List<TreeNode> l=gcglaqybServer.selAllBm3(yhdw);

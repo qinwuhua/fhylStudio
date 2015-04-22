@@ -138,6 +138,24 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 	//1
 	public void getGdzctzjs(){
 		try {
+			String tiaojian1="";
+			String tiaojian2="";
+			String gydwdm = sjbb.getUnit();
+			String xzqhdm = sjbb.getDist();
+			if(gydwdm.indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%"+gydwdm+"%'";
+			}else{
+				tiaojian1="and gydwbm in ('"+gydwdm+"')";
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			}else{
+				tiaojian2="and xzqhdm in ('"+xzqhdm+"')";
+			}
+			System.out.println(tiaojian1);
+			System.out.println(tiaojian2);
+			sjbb.setUnit(tiaojian1);
+			sjbb.setDist(tiaojian2);
 			List<SjbbMessage> list = sjbbServer.getGdzctzjs(sjbb);
 			if("flag".equals(flag)){
 				String tableName=sjbb.getNf()+"年交通固定资产投资建设计划(路网结构改造)";

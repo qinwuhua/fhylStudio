@@ -48,15 +48,15 @@
 	</select>
 	<!-- 添加月报 -->
 	<insert id="insertgcgzgjYb" parameterType="gcglgcgzgj">
-		insert into GCGL_GCGZGJ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth)
-		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否')
+		insert into GCGL_GCGZGJ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcdc,bywcjc,bywcmc,kgdl,qksm,sbsj,sbyf,shzt,wcqk,sfsj,sfth,ssdctc,bndsslc,wkglc)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcdc},#{bywcjc},#{bywcmc},#{kgdl},#{qksm},#{sbsj},#{sbyf},#{shzt},#{wcqk},#{sfsj},'否',#{ssdctc},#{bndsslc},#{wkglc})
 	</insert>
 	<select id="queryYbByYf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 		select * from GCGL_GCGZGJ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updategcgzgjYb" parameterType="gcglgcgzgj">
-		update GCGL_GCGZGJ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf}
+		update GCGL_GCGZGJ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcdc=#{bywcdc},bywcjc=#{bywcjc},bywcmc=#{bywcmc},wcqk=#{wcqk},kgdl=#{kgdl},qksm=#{qksm},sbyf=#{sbyf},ssdctc=#{ssdctc},bndsslc=#{bndsslc},wkglc=#{wkglc}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->
@@ -76,8 +76,8 @@
 	
 		<!-- 添加车购税 -->
 	<insert id="insertGcgzgjCgs" parameterType="gcglgcgzgj">
-		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj)
-		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj})
+		insert into GCGL_CGS(id,jhid,cgsdwzj,tbr,tbyf,tbsj,stz,cscyj)
+		values(sys_guid(),#{jhid},#{cgsdwzj},#{tbr},#{tbyf},#{tbsj},#{stz},#{cscyj})
 	</insert>
 	<select id="queryCGSByYf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 		select * from GCGL_CGS where tbyf=#{tbyf} and jhid=#{jhid}
@@ -111,7 +111,7 @@
 	</delete>
 	<!-- 修改cgs -->
 	<update id="updateGcgzgjCgs" parameterType="gcglgcgzgj">
-		update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf}
+			update GCGL_CGS set cgsdwzj=#{cgsdwzj},tbyf=#{tbyf},stz=#{stz},cscyj=#{cscyj}
 		where id=#{id} and jhid=#{jhid}
 	</update>
 <!-- 上传 -->
@@ -124,7 +124,7 @@
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgtcwjfile}
+		update PLAN_GCGJ set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
 		where id=#{jhid}
 	</update>
 	<!-- 下载 -->
@@ -138,9 +138,9 @@
 		update PLAN_GCGJ set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglgcgzgj">
-		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz} where id=#{jhid}
+		update PLAN_GCGJ set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz},sfgk=#{sfgk} where id=#{jhid}
 	</update>
-	
+	<!--  
 	<select id="selectWqgzjhList" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 		select * from (
 		select m.*,rownum rn from (
@@ -171,11 +171,35 @@
 		) 
 			where RN>((#{page} - 1) * #{rows})
 	</select>
-	 <select id="selectWqgzjhListCount" parameterType="gcglgcgzgj" resultType="int">
-	 	select count(*) from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
+	-->
+	<select id="selectWqgzjhList" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t2.fapgdw,t2.fascdw,t2.faspsj,t2.spwh,t2.tzgs,t2.jsxz,t2.jsnr,t2.bz jhbz,t2.id id,t2.wjgyy,t2.scbz,t2.id jhid,
+		t2.sbnf,t2.jhkgsj,t2.jhwgsj,t2.xmmc,t2.lmkd,t2.sftqss,t2.sjdw,t2.yhlb,t2.dc,t2.jc,t2.mc,t2.sjpfdw,t2.pfwh,t2.pfsj,t2.pfztz,t2.jhsybzje,t2.jhsydfzcje,t2.sjlmlx,t2.sfsqablbz,t2.ablbzsqwh,t2.sfgyhbm,t2.gkbgmc,t2.sjsgtmc,t2.xdsj,t2.sjkgsj,t2.sjwgsj,t2.kgzt,t2.jgzt,t2.yjwgsj,t2.sfqxkg,t2.jsdw,t2.sgdw,t2.jldw,t2.htje,t2.sgxkwj,t2.jgtcwj,t2.jgyswj,t2.wjsczt,t2.gsztz
+		from PLAN_GCGJ t2 
+		where 1=1
+		and t2.id in(${tiaojian})
+	) m
+			where <![CDATA[rownum<=(#{page} * #{rows})]]>
+		) 
+			where RN>((#{page} - 1) * #{rows})
+	</select>
+	<select id="selectWqgzjhList12" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+		select 
+		t1.lxmc,t1.lxbm,t1.xzqhdm,t1.xzqhmc,t1.jsdd,t1.gydw,t1.gydwbm,t1.bhnr,t1.qdzh,t1.zdzh,t1.qzlc,t1.yhlc,t1.ylmlx,t1.bz lxbz,t1.yjsdj
+		
+		from PLAN_LX_GCGJ t1  where 1=1 and t1.jhid=#{jhid}
+	</select>
+	<select id="selectWqgzjhListid1" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+	
+		select 
+			distinct(t2.id) id
+		from PLAN_LX_GCGJ t1 left join PLAN_GCGJ t2 on t1.jhid=t2.id
 		where t2.spzt='1'
 	<if test="gydw != null and  gydw != ''">
-			and t1.gydwdm like '%'||trim(#{gydw})||'%'
+			${gydw}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t2.kgzt like '%'||trim(#{kgzt})||'%'
@@ -189,6 +213,12 @@
 	<if test="shzt != null and  shzt != ''">
 			and ${tiaojian} like '%'||trim(#{shzt})||'%'
 	</if>
+
+	</select>
+	 <select id="selectWqgzjhListCount" parameterType="gcglgcgzgj" resultType="int">
+	 	select count(*) from PLAN_GCGJ t2 
+		where 1=1
+		and t2.id in(${tiaojian})
 	 </select>
 	 <select id="selectWqgzjhFile" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCGJ where id=#{jhid}
@@ -202,8 +232,221 @@
 	 <update id="updateSJSH" parameterType="gcglgcgzgj" >
 	 update PLAN_GCGJ set sjsh=#{sjsh} where id=#{jhid}
 	 </update>
+	 <update id="updatezdyf" parameterType="gcglgcgzgj" >
+	 update PLAN_GCGJ set zdyf=#{sbyf} where id=#{jhid}
+	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglgcgzgj" resultType="int">
 	 	select count(*) from GCGL_GCGZGJ 
 		where jhid=#{jhid} and sfsj=#{yhtype} and shzt='未审核'
+	 </select>
+	 
+	 <!-- 新改列表 -->
+	 <resultMap id="gcgj_lx" type="plan_gcgj">
+		<id property="id" column="id" />
+		<result property="fapgdw" column="fapgdw"/>
+		<result property="fascdw" column="fascdw"/>
+		<result property="faspsj" column="faspsj"/>
+		<result property="spwh" column="spwh"/>
+		<result property="tzgs" column="tzgs"/>
+		<result property="jsxz" column="jsxz"/>
+		<result property="jsnr" column="jsnr"/>
+		<result property="sbnf" column="sbnf"/>
+		<result property="jhkgsj" column="jhkgsj"/>
+		<result property="yjwgsj" column="yjwgsj"/>
+		<result property="xdsj" column="xdsj"/>
+		<result property="xmmc" column="xmmc"/>
+		<result property="yhlb" column="yhlb"/>
+		<result property="sjdw" column="sjdw"/>
+		<result property="sjpfdw" column="sjpfdw"/>
+		<result property="sjlmlx" column="sjlmlx"/>
+		<result property="dc" column="dc"/>
+		<result property="jc" column="jc"/>
+		<result property="mc" column="mc"/>
+		<result property="lmkd" column="lmkd"/>
+		<result property="pfwh" column="pfwh"/>
+		<result property="pfsj" column="pfsj"/>
+		<result property="pfztz" column="pfztz"/>
+		<result property="jhsybzje" column="jhsybzje"/>
+		<result property="jhsydfzcje" column="jhsydfzcje"/>
+		<result property="sfsqablbz" column="sfsqablbz"/>
+		<result property="ablbzsqwh" column="ablbzsqwh"/>
+		<result property="sftqss" column="sftqss"/>
+		<result property="jhxdwh" column="jhxdwh"/>
+		<result property="gksjwh" column="gksjwh"/>
+		<result property="sjpfwh" column="sjpfwh"/>
+		<result property="sfgyhbm" column="sfgyhbm"/>
+		<result property="gkbgmc" column="gkbgmc"/>
+		<result property="sjsgtmc" column="sjsgtmc"/>
+		<result property="sbzt" column="sbzt"/>
+		<result property="spzt" column="spzt"/>
+		<result property="bz" column="bz"/>
+		<result property="kgzt" column="kgzt"/>
+		<result property="jgzt" column="jgzt"/>
+		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="sjkgsj" column="sjkgsj"/>
+		<result property="sfqxkg" column="sfqxkg"/>
+		<result property="gsztz" column="gsztz"/>
+		<result property="sgdw" column="sgdw"/>
+		<result property="jldw" column="jldw"/>
+		<result property="jsdw" column="jsdw"/>
+		<result property="htje" column="htje"/>
+		<result property="sfgk" column="sfgk"/>
+		<result property="jh_sbthcd" column="jh_sbthcd"/>
+		<collection property="plan_lx_gcgjs" column="jhid" javaType="ArrayList" ofType="plan_lx_gcgj" resultMap="lx"/>
+	</resultMap>
+	<resultMap id="lx" type="plan_lx_gcgj">
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhmc" column="xzqhmc"/>
+		<result property="lxmc" column="lxmc"/>
+		<result property="lxbm" column="lxbm"/>
+		<result property="qdzh" column="qdzh"/>
+		<result property="zdzh" column="zdzh"/>
+		<result property="yhlc" column="yhlc"/>
+		<result property="jsdd" column="jsdd"/>
+		<result property="qzlc" column="qzlc"/>
+		<result property="gydw" column="gydw"/>
+		<result property="xzqhdm" column="xzqhdm"/>
+		<result property="yjsdj" column="yjsdj"/>
+		<result property="ylmlx" column="ylmlx"/>
+		<result property="bhnr" column="bhnr"/>
+		<result property="jhid" column="jhid"/>
+	</resultMap>
+	<select id="queryGcgjList"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
+	select * from (
+			select rownum as num,t.* from(
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sfqxkg,jh.yjwgsj,jh.sjkgsj,jh.xdsj,jh.sgdw,jh.jldw,jh.jsdw,jh.gsztz,jh.htje,jh.sfgk,
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
+			where 1=1 and spzt='1'
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+								${gydw}
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+					) t
+			)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="queryGcgjListCount" resultType="int" parameterType="gcglgcgzgj">
+		select count(*) from PLAN_GCGJ jh where 1=1 and spzt='1'
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+								${gydw}
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+	</select>
+	<!-- 拨付列表 -->
+	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
+	select * from (
+			select rownum as num,t.* from(
+			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
+			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+			where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+							${gydw}
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+					) t
+			)
+		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	</select>
+	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzgj">
+		select count(*) from PLAN_GCGJ jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		 where 1=1 and spzt='1' and sbnf=#{sbnf}
+			<if test="kgzt != null and  kgzt != ''">
+					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+				and jh.id in (
+					select l.jhid from PLAN_lx_GCGJ l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+								${gydw}
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
+	</select>
+	 <!-- 查询最进展大月份 -->
+	 <select id="querymaxybyf" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
+	 	select max(sbyf) sbyf from gcgl_gcgzgj where jhid=#{jhid}
+	 </select>
+	 <select id="updatagjSFQX" parameterType="gcglgcgzgj">
+	 	update plan_gcgj set sfqxkg=#{sfqxkg} where id=#{id}
+	 </select>
+	 <select id="updatasjSFQX" parameterType="gcglgcgzgj">
+	 	update plan_gcsj set sfqxkg=#{sfqxkg} where id=#{id}
+	 </select>
+	 <select id="updatashSFQX" parameterType="gcglgcgzgj">
+	 	update plan_shuih set sfqxkg=#{sfqxkg} where id=#{id}
 	 </select>
 </mapper>

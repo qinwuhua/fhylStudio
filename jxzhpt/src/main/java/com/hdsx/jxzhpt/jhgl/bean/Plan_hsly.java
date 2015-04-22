@@ -47,6 +47,8 @@ public class Plan_hsly {
 	private String wjgyy;
 	private String gsztz;
 	private String sfqxkg;
+	private String gydwdm;
+	private String gydwmc;
 	public String getId() {
 		return id;
 	}
@@ -310,5 +312,17 @@ public class Plan_hsly {
 	}
 	public void setSfqxkg(String sfqxkg) {
 		this.sfqxkg = sfqxkg;
+	}
+	public String getGydwdm() {
+		return gydwdm;
+	}
+	public void setGydwdm(String gydwdm) {
+		this.gydwdm = gydwdm;
+	}
+	public String getGydwmc() {
+		return gydwmc;
+	}
+	public void setGydwmc(String gydwmc) {
+		this.gydwmc = gydwmc;
 	}
 }

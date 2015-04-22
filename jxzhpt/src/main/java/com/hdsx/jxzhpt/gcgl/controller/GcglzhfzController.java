@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,28 @@ public class GcglzhfzController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfyf;
+	private String bfzt;
+	private String xmnf;
 	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -397,14 +419,21 @@ public class GcglzhfzController extends BaseActionSupport{
 	//查询jihua
 	public void selectZhfzjhList(){
 		Gcglzhfz gcglzhfz=new Gcglzhfz();
+		String tiaojian1="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwbm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwbm in ("+gydw+")";
+		}
 		gcglzhfz.setPage(page);
 		gcglzhfz.setRows(rows);
 		gcglzhfz.setJhid(jhid);
-		gcglzhfz.setGydw(gydw.replaceAll("0*$",""));
+		gcglzhfz.setGydw(tiaojian1);
 		gcglzhfz.setKgzt(kgzt);
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setJgzt(jgzt);
 		gcglzhfz.setShzt(ybzt);
+		gcglzhfz.setXmnf(xmnf);
 		if(sfsj==7){
 			gcglzhfz.setTiaojian("sjsh");
 		}
@@ -483,4 +512,35 @@ public class GcglzhfzController extends BaseActionSupport{
 	    bAOutputStream.close(); 
 	    return data; 
 	}
+	public void selectZhfzjhList1(){
+		gcglzhfz.setPage(page);
+		gcglzhfz.setRows(rows);
+		try {
+			String tiaojian1="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwbm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwbm in ("+gydw+")";
+			}
+		gcglzhfz.setGydw(tiaojian1);
+		gcglzhfz.setKgzt(kgzt);
+		gcglzhfz.setLxmc(lxmc);
+		gcglzhfz.setJgzt(jgzt);
+		gcglzhfz.setTbyf(bfyf);
+		gcglzhfz.setTiaojian(bfzt);
+		gcglzhfz.setXmnf(xmnf);
+		List<Gcglzhfz> list=gcglzhfzServer.selectWqgzjhList1(gcglzhfz);
+		int count=gcglzhfzServer.selectWqgzjhListcount1(gcglzhfz);
+
+		EasyUIPage<Gcglzhfz> e=new EasyUIPage<Gcglzhfz>();
+		e.setRows(list);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+	}
 }
+

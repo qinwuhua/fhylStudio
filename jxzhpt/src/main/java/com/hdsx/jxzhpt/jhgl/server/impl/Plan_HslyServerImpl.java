@@ -57,4 +57,14 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 	public Plan_hsly querySumHsly() {
 		return queryOne("querySumHsly", null);
 	}
+	@Override
+	public List<Plan_hsly> queryHslyList(Plan_hsly hsly) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("hsly", hsly);
+		return queryList("queryHslyList2",params);
+	}
+	@Override
+	public boolean insertHsly2(List<Plan_hsly> list) {
+		return insertBatch("insertHsly2", list)==list.size();
+	}
 }

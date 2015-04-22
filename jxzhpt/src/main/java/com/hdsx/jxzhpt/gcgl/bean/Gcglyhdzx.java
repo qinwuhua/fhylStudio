@@ -45,11 +45,13 @@ public class Gcglyhdzx implements Serializable {
 	private String lxmc;
 	private String lxbm;
 	private String gydw;
+	private String gydwmc;
 	private String gydwbm;
 	private String qdzh;
 	private String zdzh;
 	private String qzlc;
 	private String yhlc;
+	private String hdlc;
 	private String hdhlc;
 	private String xzqhdm;
 	private String xzqhmc;
@@ -58,6 +60,7 @@ public class Gcglyhdzx implements Serializable {
 	private String ylmkd;
 	private String ylmlx;
 	private String ylmhd;
+	private String yjsdj;
 	private String sczmsj;
 	private String xchsqk;
 	private String qtbz;
@@ -104,6 +107,7 @@ public class Gcglyhdzx implements Serializable {
 	
 	private String lxjsdj;
 	private String faspsj;
+	private String spsj;
 	private String xmnf;
 	private String jsxz;
 	private String sjdw;
@@ -127,7 +131,21 @@ public class Gcglyhdzx implements Serializable {
 	private int page;
 	private int rows;
 	private String yhtype;
+	private String stj;
+	private String sfgk;
 	
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
+	public String getStj() {
+		return stj;
+	}
+	public void setStj(String stj) {
+		this.stj = stj;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}
@@ -797,6 +815,30 @@ public class Gcglyhdzx implements Serializable {
 	}
 	public void setXdsj(String xdsj) {
 		this.xdsj = xdsj;
+	}
+	public String getHdlc() {
+		return hdlc;
+	}
+	public void setHdlc(String hdlc) {
+		this.hdlc = hdlc;
+	}
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
+	public String getSpsj() {
+		return spsj;
+	}
+	public void setSpsj(String spsj) {
+		this.spsj = spsj;
+	}
+	public String getGydwmc() {
+		return gydwmc;
+	}
+	public void setGydwmc(String gydwmc) {
+		this.gydwmc = gydwmc;
 	}
 
 	

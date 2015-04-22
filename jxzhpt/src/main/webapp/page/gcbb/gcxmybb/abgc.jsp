@@ -23,11 +23,13 @@
 		$(function(){
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
+			loadBmbm2("xzdj","公路等级");
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
 			$("#yf"+m).attr("selected","selected");
 			showAll();
@@ -35,11 +37,12 @@
 		function showAll(){
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
+			var xmnf=$("#ddlYear1").val();
 			var gydw=$("#gydw").combobox("getValue");
 			var xzqh=$("#xzqh").combobox("getValue");
-			var xzdj=$("#xzdj").val();
+			var xzdj=$("#xzdj").combobox("getValue");
 			var lxmc=$("#lxmc").val();
-			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getAbgcybb.do",
@@ -53,41 +56,41 @@
 					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].v_1==''){
-								tbody.append("<tr><td colspan='2'>"+msg[i].v_0+"</td><td>"
-										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+							if(msg[i].LXBM==' '){
+								tbody.append("<tr><td colspan='2'>"+msg[i].LXMC+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
+										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
+										+msg[i].BNSTZ+"</td><td>"+msg[i].YHLX+"</td><td>"
+										+msg[i].JSXZ+"</td><td>"+msg[i].JHC+"</td><td>"
+										+msg[i].JHGL+"</td><td>"+msg[i].JHKGN+"</td><td>"
+										+msg[i].JHWGN+"</td><td>"+msg[i].BYWCC+"</td><td>"
+										+msg[i].BYWCGL+"</td><td>"+msg[i].YYWCC+"</td><td>"
+										+msg[i].YYWCGL+"</td><td>"+msg[i].KGWCC+"</td><td>"
+										+msg[i].KGWCGL+"</td><td>"+msg[i].BYHJ+"</td><td>"
+										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
+										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
+										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
+										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
+										+msg[i].JSNR+"</td></tr>"
 								);
 							}else{
-								tbody.append("<tr><td>"+msg[i].v_0+"</td><td>"+msg[i].v_1+"</td><td>"
-										+msg[i].v_2+"</td><td>"+msg[i].v_3+"</td><td>"
-										+msg[i].v_4+"</td><td>"+msg[i].v_5+"</td><td>"
-										+msg[i].v_6+"</td><td>"+msg[i].v_7+"</td><td>"
-										+msg[i].v_8+"</td><td>"+msg[i].v_9+"</td><td>"
-										+msg[i].v_10+"</td><td>"+msg[i].v_11+"</td><td>"
-										+msg[i].v_12+"</td><td>"+msg[i].v_13+"</td><td>"
-										+msg[i].v_14+"</td><td>"+msg[i].v_15+"</td><td>"
-										+msg[i].v_16+"</td><td>"+msg[i].v_17+"</td><td>"
-										+msg[i].v_18+"</td><td>"+msg[i].v_19+"</td><td>"
-										+msg[i].v_20+"</td><td>"+msg[i].v_21+"</td><td>"
-										+msg[i].v_22+"</td><td>"+msg[i].v_23+"</td><td>"
-										+msg[i].v_24+"</td><td>"+msg[i].v_25+"</td><td>"
-										+msg[i].v_26+"</td><td>"+msg[i].v_27+"</td><td>"
-										+msg[i].v_28+"</td><td>"+msg[i].v_29+"</td><td>"
-										+msg[i].v_30+"</td></tr>"
+								tbody.append("<tr><td>"+msg[i].LXBM+"</td><td>"+msg[i].LXMC+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
+										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
+										+msg[i].BNSTZ+"</td><td>"+msg[i].YHLX+"</td><td>"
+										+msg[i].JSXZ+"</td><td>"+msg[i].JHC+"</td><td>"
+										+msg[i].JHGL+"</td><td>"+msg[i].JHKGN+"</td><td>"
+										+msg[i].JHWGN+"</td><td>"+msg[i].BYWCC+"</td><td>"
+										+msg[i].BYWCGL+"</td><td>"+msg[i].YYWCC+"</td><td>"
+										+msg[i].YYWCGL+"</td><td>"+msg[i].KGWCC+"</td><td>"
+										+msg[i].KGWCGL+"</td><td>"+msg[i].BYHJ+"</td><td>"
+										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
+										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
+										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
+										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
+										+msg[i].JSNR+"</td></tr>"
 								);
 							}
 						}
@@ -144,13 +147,13 @@ table tbody tr td {
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-			<div id="righttop">
+			<div id="righttop" style="height: 30px">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;安保工程统计月报表</div>
 					</div>
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;height: 80px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -158,11 +161,11 @@ table tbody tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>年&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
+        						<span>月报年份：</span>
  						<select name="ddlYear" id="ddlYear" style="width: 80px;">
 						</select>
- 						<span>月&nbsp;&nbsp;&nbsp;&nbsp;份：</span>
- 						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
+ 						<span>月报月份：</span>
+ 						<select name="ddlMonth" id="ddlMonth" style="width: 50px;">
 							<option id="yf1" value="1">01</option>
 							<option id="yf2" value="2">02</option>
 							<option id="yf3" value="3">03</option>
@@ -175,30 +178,35 @@ table tbody tr td {
 							<option id="yf10" value="10">10</option>
 							<option id="yf11" value="11">11</option>
 							<option id="yf12" value="12">12</option> 
-						</select>      						
-        			</p>
-        			<p style="margin: 8px 0px 8px 20px;">
+						</select>
+        				<span>项目名称：</span>
+        				<input id="xmmc" type="text"  style="width: 100px">		
+        				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+        					</p>
+        					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
+        						<span>项目年份：</span>
+        						<select  id="ddlYear1" style="width: 80px;"></select>
         						<span>行政等级：</span>
-        						<select id="xzdj" style="width:80px;">
-        							<option value="">全部</option>
-        							<option value="G">国道</option>
-        							<option value="S">省道</option>
-        							<option value="X">县道</option>
-        							<option value="Y">乡道</option>
-        							<option value="C">村道</option>
-        							<option value="Z">专道</option>
-        						</select>
+        						<input type="text" id="xzdj" style="width:50px;">
+<!--         						<select id="xzdj" style="width:50px;"> -->
+<!--         							<option value="">全部</option> -->
+<!--         							<option value="G">国道</option> -->
+<!--         							<option value="S">省道</option> -->
+<!--         							<option value="X">县道</option> -->
+<!--         							<option value="Y">乡道</option> -->
+<!--         							<option value="C">村道</option> -->
+<!--         							<option value="Z">专道</option> -->
+<!--         						</select> -->
         						<span>路线名称：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportAbgcyb()" style="vertical-align: -50%;" />
-        					</p> 				
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+        					</p>         		
         				</div>
         			</fieldset>
         		</td>
@@ -206,7 +214,10 @@ table tbody tr td {
 
            <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:400px;" >
+                	<div id="gddiv" style="width:100%;height:400px" >
+                	<script type="text/javascript">
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px');
+                	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="3000px" >

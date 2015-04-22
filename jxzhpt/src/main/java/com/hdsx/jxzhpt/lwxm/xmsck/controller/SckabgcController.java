@@ -42,6 +42,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	private SckabgcServer abgcServer;
 	private Sckabgc sckabgc=new Sckabgc();
 	private String delstr;
+	private String nf;
 	private String tbbmbm1;
 	private String tbbmbm2;
 	private String sbthcd1;
@@ -216,7 +217,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void lrjhSckabgc(){
-			boolean b = abgcServer.lrjhSckabgc(delstr);
+			boolean b = abgcServer.lrjhSckabgc(delstr,nf);
 			if(b){
 				abgcServer.xglrjhSckabgc(delstr);
 				ResponseUtils.write(getresponse(), "true");
@@ -313,6 +314,12 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setSbthcd1(String sbthcd1) {
 		this.sbthcd1 = sbthcd1;
+	}
+	public String getNf() {
+		return nf;
+	}
+	public void setNf(String nf) {
+		this.nf = nf;
 	}
 	
 }

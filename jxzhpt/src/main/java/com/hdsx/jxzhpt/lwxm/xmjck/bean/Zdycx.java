@@ -10,6 +10,9 @@ public class Zdycx {
 		private String lxmc;
 		private String lxbm;
 		private String kgzt;
+		private String colName;
+		private String tableName;
+		private String xmName;
 		private int page;
 		private int rows;
 		
@@ -124,6 +127,24 @@ public class Zdycx {
 		}
 		public void setRows(int rows) {
 			this.rows = rows;
+		}
+		public String getColName() {
+			return colName;
+		}
+		public void setColName(String colName) {
+			this.colName = colName;
+		}
+		public String getTableName() {
+			return tableName;
+		}
+		public void setTableName(String tableName) {
+			this.tableName = tableName;
+		}
+		public String getXmName() {
+			return xmName;
+		}
+		public void setXmName(String xmName) {
+			this.xmName = xmName;
 		}
 		
 		

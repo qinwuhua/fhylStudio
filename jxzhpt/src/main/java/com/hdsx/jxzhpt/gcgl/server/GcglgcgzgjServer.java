@@ -8,6 +8,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 
 public interface GcglgcgzgjServer {
 
@@ -58,5 +59,26 @@ public interface GcglgcgzgjServer {
 	List<Gcglgcgzgj> selectgcgzgjYbByJhid1(Gcglgcgzgj gcglgcgzgj);
 
 	Boolean sbWqgzYb(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selectWqgzjhListid1(Gcglgcgzgj gcglgcgzgj);
+
+	List<Gcglgcgzgj> selectWqgzjhList1(Gcglgcgzgj gcglgcgzgj);
+
+	Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj);
+
+	List<Plan_gcgj> queryGcgjList(Gcglgcgzgj gcglgcgzgj);
+
+	int queryGcgjListCount(Gcglgcgzgj gcglgcgzgj);
+
+	int selectWqgzjhListcount1(Gcglgcgzgj gcglgcgzgj);
+
+	List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj);
+
+	boolean updatagjSFQX(Gcglgcgzgj gcglgcgzgj);
+
+	boolean updatasjSFQX(Gcglgcgzgj gcglgcgzgj);
+
+	boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj);
+
 
 }

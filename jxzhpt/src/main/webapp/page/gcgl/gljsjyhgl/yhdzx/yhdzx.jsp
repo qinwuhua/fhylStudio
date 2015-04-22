@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
@@ -22,10 +23,17 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit1("gydw",$.cookie("unit"));
+			//loadDist1("gydw",$.cookie("dist"));
 			loadBmbm2("kgzt","开工状态");
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');
+			}
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
 			showAll();
 		});
@@ -70,8 +78,11 @@ a:active {
         						
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
-        						<span>路线：</span>
+        						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						</select>	
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
         							<option value="">全&nbsp;&nbsp;部</option>

@@ -1,4 +1,5 @@
 var gridObj;//列表对象
+var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function querySumHsly(){
 	$.ajax({
@@ -17,6 +18,17 @@ function querySumHsly(){
 				$('#lblDLDQ').html(data.jsgmdldq);
 				$('#lblZTZ').html(data.ztz);
 				$('#lblZYTZ').html(data.zytz);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblGMHJ').html("0");
+				$('#lblYJGL').html("0");
+				$('#lblEJGL').html("0");
+				$('#lblSJGL').html("0");
+				$('#lblSIJGL').html("0");
+				$('#lblDLDQ').html("0");
+				$('#lblDLDQ').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblZYTZ').html("0");
 			}
 		}
 	});
@@ -52,13 +64,15 @@ function hslyglxm(hsly){
 //	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
 //	        	return '<a style="text-decoration:none;color:#3399CC;">资金追加</a>';
 //	        }},
-	        {field:'c4',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){
-	        	return '计划年份';
-	        }},
-	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
+	        {field:'jhnf',title:'计划年份',width:80,align:'center'},
+	        {field:'gydwmc',title:'管养单位',width:150,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:300,align:'center'},
 	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 	        {field:'jsxz',title:'建设性质',width:100,align:'center'},
 	        {field:'ztz',title:'总投资',width:82,align:'center'},
+	        {field:'zytz',title:'中央投资车购税',width:82,align:'center'},
+	        {field:'dfta',title:'地方(企业)自筹',width:82,align:'center'},
+	        {field:'gndk',title:'国内贷款',width:82,align:'center'},
 	        {field:'kgn',title:'开工年',width:80,align:'center'},
 	        {field:'wgn',title:'完工年',width:80,align:'center'},
 	    ]],
@@ -86,13 +100,15 @@ function hslyglxm_zjxd(){
 	        {field:'c5',title:'资金下发',width:100,align:'center',formatter:function(value,row,index){
 	        	return '<a href="javascript:openDialog('+"'zjxd_hslygl','红色旅游项目资金下发','../zjxd/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 	        }},
-	        {field:'c4',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){
-	        	return '计划年份';
-	        }},
-	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
+	        {field:'jhnf',title:'计划年份',width:80,align:'center'},
+	        {field:'gydwmc',title:'管养单位',width:150,align:'center'},
+	        {field:'xmmc',title:'项目名称',width:280,align:'center'},
 	        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 	        {field:'jsxz',title:'建设性质',width:100,align:'center'},
 	        {field:'ztz',title:'总投资',width:82,align:'center'},
+	        {field:'zytz',title:'中央投资车购税',width:82,align:'center'},
+	        {field:'dfta',title:'地方(企业)自筹',width:82,align:'center'},
+	        {field:'gndk',title:'国内贷款',width:82,align:'center'},
 	        {field:'kgn',title:'开工年',width:80,align:'center'},
 	        {field:'wgn',title:'完工年',width:80,align:'center'},
 	    ]],

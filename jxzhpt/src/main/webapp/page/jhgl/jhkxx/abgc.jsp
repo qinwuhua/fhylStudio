@@ -4,8 +4,140 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>安保工程项目</title>
+	<title>安保工程项目详细信息</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_abxm.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		if(parent.YMLib.Var.bz!=null){
+			bz=parent.YMLib.Var.bz;
+		}
+		if(parent.YMLib.Var.jhbm!=null){
+			xxId=parent.YMLib.Var.jhbm;
+		}
+		var lxls={'lx.lxbm':null,'lx.zdzh':null,'lx.xzqhdm':null,
+				'lx.qdzh':null,'lx.jhid':null};
+		$.ajax({
+			type:'post',
+			async:false,
+			url:'../../../jhgl/queryAbgcById.do',
+			data:"jh.id="+xxId,
+			dataType:'json',
+			success:function(data){
+				//审查库
+				lxls['lx.jhid']=data.jhnf;
+				$.ajax({
+					type:'post',
+					async:false,
+					url:'../../../xmsck/selectSckabgcById.do',
+					dataType:'json',
+					data:'sckid='+data.sckid,
+					success:function(data){
+						if(data!=null){
+							lxls['lx.lxbm']=data.lxbm;
+							lxls['lx.zdzh']=data.zdzh;
+							lxls['lx.qdzh']=data.qdzh;
+							lxls['lx.xzqhdm']=data.xzqhdm;
+							//基础
+							$('#lxmc').html(data.lxmc);
+							$('#lxbm').html(data.lxbm);
+							$('#gydwxx').html(data.gydw);
+							$('#qdzh').html(data.qdzh);
+							$('#zdzh').html(data.zdzh);
+							$('#qzlc').html(data.qzlc);
+							$('#xzqhdm').html(data.xzqhdm);
+							$('#xzqhmc').html(data.xzqhmc);
+							$('#xjgjnd').html(data.gjxjnd);
+							$('#jsdjxx').html(data.lxjsdj);
+							$('#yhlc').html(data.yhlc);
+							$('#tsdq').html(data.tsdq);
+							$('#xmnf').html(data.xmnf);
+							$('#xmzt').html(data.xmzt);
+							$('#yhnr').html(data.yhnr);
+							$('#bz').html(data.bz);
+							//审查
+							$('#scqdzh').html(data.scqdzh);
+							$('#sczdzh').html(data.sczdzh);
+							$('#sczlc').html(data.sczdzh);
+							$('#scyhlc').html(data.sczdzh);
+							$('#fapgdw').html(data.fapgdw);
+							$('#fascdw').html(data.fascdw);
+							$('#faspsj').html(data.faspsj);
+							$('#spwh').html(data.spwh);
+							$('#tzgs').html(data.tzgs);
+							$('#jsxz').html(data.jsxz);
+							$('#jsnr').html(data.jsnr);
+							$('#remarks').html(data.remarks);
+						}
+					}
+				});
+				//计划
+				$('#jhid').val(data.id);
+				$('#jhnfxx').html(data.jhnf);
+				$('#JHKGSJ').html(data.jhkgsj);
+				$('#JHWGSJ').html(data.jhwgsj);
+				$('#JHXDSJ').html(data.xdsj);
+				$('#JHWC_C').html(data.jhwc_c);
+				$('#SJDW').html(data.sjdw);
+				$('#SJPFDW').html(data.sjpfdw);
+				$('#PFWH').html(data.pfwh);
+				$('#PFSJ').html(data.pfsj);
+				$('#JHZTZ').html(data.pfztz);
+				$('#bbz').html(data.jhsybbzje);
+				$('#DFZC').html(data.jhsydfzczj);
+				$('#JHXDWH').html(data.jhxdwh);
+				$('#SFSQABLBZ').html(data.sfsqablbz);
+				$('#ABLBZWH').html(data.ablbzsqwh);
+				$('#JHRemarks').html(data.remarks);
+				if(data.gkbgmc!=''){
+					$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
+				}
+				if(data.sjsgtmc!=''){
+					$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
+				}
+			}
+		});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryXjls.do',
+			async:false,
+			data:lxls,
+			dataType:'json',
+			success:function(data){
+				if(data.length>0){
+					$.each(data,function(index,jh){
+						var a='<a style="color:#0066CB;font-size:12px;">';
+						a+=jh.jhnf+'年,'+jh.xmmc+'【';
+						$.each(jh.plan_lx_gcsjs,function(index,lx){
+							a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
+						});
+						a+='】</a>';
+						if(index<data.length-1){
+							a+="；";
+						}
+						$('#divPlan').append(a);
+					});
+				}else{
+					$('#divPlan').append("暂无历史记录！");
+				}
+			}
+		});
+	});
+	function closeWindow(id){
+		parent.$('#'+id).window('destroy');
+	}
+	</script>
 </head>
 <body>
 	<div id="abgc_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -401,111 +533,19 @@
 			</tr>
 			<tr id="trSY1" style="height: 50px;">
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
-					最近年份历史修建记录
+					历史修建记录
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divPlan">
-						暂无历史信息！
-					</div>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<div id="divPlan"></div>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img onclick="$('#abgc_xx').dialog('close')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
+                	<img onclick="closeWindow('abgc_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
                		<input type="hidden" id="jhid"/>
                 </td>
             </tr>
 		</table>
 	</div>
-	<script type="text/javascript">
-	if(parent.YMLib.Var.bz!=null){
-		bz=parent.YMLib.Var.bz;
-	}
-	if(parent.YMLib.Var.jhbm!=null){
-		xxId=parent.YMLib.Var.jhbm;
-	}
-	if(bz=="xx" || bz=="sb"){
-		$("#trSY").hide();
-		$("#trSY1").hide();
-	}
-	if(bz=="sh" || bz=="zjxd"){
-		$("#trSY").show();
-		$("#trSY1").show();
-	}
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryAbgcById.do',
-		data:"jh.id="+xxId,
-		dataType:'json',
-		success:function(data){
-			//审查库
-			$.ajax({
-				type:'post',
-				url:'../../../xmsck/selectSckabgcById.do',
-				dataType:'json',
-				data:'sckid='+data.sckid,
-				success:function(data){
-					if(data!=null){
-						//基础
-						$('#lxmc').html(data.lxmc);
-						$('#lxbm').html(data.lxbm);
-						$('#gydwxx').html(data.gydw);
-						$('#qdzh').html(data.qdzh);
-						$('#zdzh').html(data.zdzh);
-						$('#qzlc').html(data.qzlc);
-						$('#xzqhdm').html(data.xzqhdm);
-						$('#xzqhmc').html(data.xzqhmc);
-						$('#xjgjnd').html(data.gjxjnd);
-						$('#jsdjxx').html(data.lxjsdj);
-						$('#yhlc').html(data.yhlc);
-						$('#tsdq').html(data.tsdq);
-						$('#xmnf').html(data.xmnf);
-						$('#xmzt').html(data.xmzt);
-						$('#yhnr').html(data.yhnr);
-						$('#bz').html(data.bz);
-						//审查
-						$('#scqdzh').html(data.scqdzh);
-						$('#sczdzh').html(data.sczdzh);
-						$('#sczlc').html(data.sczdzh);
-						$('#scyhlc').html(data.sczdzh);
-						$('#fapgdw').html(data.fapgdw);
-						$('#fascdw').html(data.fascdw);
-						$('#faspsj').html(data.faspsj);
-						$('#spwh').html(data.spwh);
-						$('#tzgs').html(data.tzgs);
-						$('#jsxz').html(data.jsxz);
-						$('#jsnr').html(data.jsnr);
-						$('#remarks').html(data.remarks);
-					}
-				}
-			});
-			//计划
-			$('#jhid').val(data.id);
-			$('#jhnfxx').html(data.jhnf);
-			$('#JHKGSJ').html(data.jhkgsj);
-			$('#JHWGSJ').html(data.jhwgsj);
-			$('#JHXDSJ').html(data.xdsj);
-			$('#JHWC_C').html(data.jhwc_c);
-			$('#SJDW').html(data.sjdw);
-			$('#SJPFDW').html(data.sjpfdw);
-			$('#PFWH').html(data.pfwh);
-			$('#PFSJ').html(data.pfsj);
-			$('#JHZTZ').html(data.pfztz);
-			$('#bbz').html(data.jhsybbzje);
-			$('#DFZC').html(data.jhsydfzczj);
-			$('#JHXDWH').html(data.jhxdwh);
-			$('#SFSQABLBZ').html(data.sfsqablbz);
-			$('#ABLBZWH').html(data.ablbzsqwh);
-			$('#JHRemarks').html(data.remarks);
-			if(data.gkbgmc!=''){
-				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
-			}
-			if(data.sjsgtmc!=''){
-				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
-			}
-		}
-	}); 
-	</script>
 </body>
 </html>

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,11 +82,30 @@ public class GcybbController extends BaseActionSupport{
 	private String lxmc;
 	private String gydw;
 	private String tiaojian;
+	private String xmmc;
+	private String xmnf;
 	private Gcglwqgz gcglwqgz=new Gcglwqgz();
 	private Gcglabgc gcglabgc=new Gcglabgc();
 	private Gcglzhfz gcglzhfz=new Gcglzhfz();
 	private Gcglsh gcglsh=new Gcglsh();
 	
+	
+	public String getXmnf() {
+		return xmnf;
+	}
+
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+
+	public String getXmmc() {
+		return xmmc;
+	}
+
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+
 	public Gcglsh getGcglsh() {
 		return gcglsh;
 	}
@@ -191,8 +211,6 @@ public class GcybbController extends BaseActionSupport{
 	}
 
 	public void getWqgzybb(){		
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
 		gcglwqgz.setSbyf(shijian);
 		if("36".equals(gydw)){
@@ -202,57 +220,31 @@ public class GcybbController extends BaseActionSupport{
 		gcglwqgz.setLxmc(lxmc);
 		gcglwqgz.setTiaojian(xzdj);
 		gcglwqgz.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getWqgzybb(gcglwqgz);
-		Excel_list e1=gcybbServer.getwqgzlist1(gcglwqgz);
-		if(e1!=null){
-			e1.setV_0("总计");
-			exl.add(e1);
-		}
-		int maxnian=0;
-		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getWqgzxzqh(gcglwqgz);//查行政区划
-		if(lsit1.size()!=0)
-		for (Map<String, Object> map : lsit1) {
-			gcglwqgz.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getwqgzlist3(gcglwqgz);
-			if(e3!=null){
-				if("景德镇".equals(map.get("XZQHMC").toString())){
-					e3.setV_0(map.get("XZQHMC").toString()+"市");
-				}
-				else e3.setV_0(map.get("XZQHMC").toString());
-				exl1.add(e3);
-			}
-			List<Map<String, Object>> lsit2=gcybbServer.getWqgznf(gcglwqgz);//查年份
-			if(lsit2.size()!=0)
-			for (Map<String, Object> map2 : lsit2) {
-				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				gcglwqgz.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getwqgzlist2(gcglwqgz);
-				e2.setV_0(map2.get("XMNF").toString()+"项目");
-				if(e2!=null)
-				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getwqgzlist4(gcglwqgz);
-				if(exl2.size()!=0)
-				exl1.addAll(exl2);
-			}
-		}
-		for (int i = minnian; i <= maxnian; i++) {
-			gcglwqgz.setXzqhmc("");
-			gcglwqgz.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getwqgzlist2(gcglwqgz);
-			if(e2!=null){
-				e2.setV_0(i+"年项目");
-				exl.add(e2);
-			}
-		}
-		exl.addAll(exl1);
+		gcglwqgz.setXmnf(xmnf);
+		gcglwqgz.setQlmc(xmmc);
+		//查总合list
 		try {
-			JsonUtils.write(exl, getresponse().getWriter());
+		List<Map<String,Object>> list1=gcybbServer.getwqgzbblist1(gcglwqgz);
+		//按行政区划查询每个行政区划的合list
+		List<Map<String,Object>> list2=gcybbServer.getwqgzbblist2(gcglwqgz);
+		//按行政区划和年份查每个行政区划下每个年份的合
+		List<Map<String,Object>> list3=gcybbServer.getwqgzbblist3(gcglwqgz);
+		//查询所有列表
+		List<Map<String,Object>> list4=gcybbServer.getwqgzbblist4(gcglwqgz);
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
+					list1.add(map1);
+					for (Map<String, Object> map2 : list4) {
+						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
+							list1.add(map2);
+						}
+					}
+				}
+			}
+		}
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -395,8 +387,6 @@ public class GcybbController extends BaseActionSupport{
 	 * 安保工程
 	 */
 	public void getAbgcybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
 		gcglabgc.setSbyf(shijian);
 		if("36".equals(gydw)){
@@ -406,57 +396,31 @@ public class GcybbController extends BaseActionSupport{
 		gcglabgc.setLxmc(lxmc);
 		gcglabgc.setTiaojian(xzdj);
 		gcglabgc.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getabgcybb(gcglabgc);
-		Excel_list e1=gcybbServer.getabgclist1(gcglabgc);
-		if(e1!=null){
-			e1.setV_0("总计");
-			exl.add(e1);
-		}
-		int maxnian=0;
-		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getAbgcxzqh(gcglabgc);//查行政区划
-		if(lsit1.size()!=0)
-		for (Map<String, Object> map : lsit1) {
-			gcglabgc.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getabgclist3(gcglabgc);
-			if(e3!=null){
-				if("景德镇".equals(map.get("XZQHMC").toString())){
-					e3.setV_0(map.get("XZQHMC").toString()+"市");
-				}
-				else e3.setV_0(map.get("XZQHMC").toString());
-				exl1.add(e3);
-			}
-			List<Map<String, Object>> lsit2=gcybbServer.getAbgcnf(gcglabgc);//查年份
-			if(lsit2.size()!=0)
-			for (Map<String, Object> map2 : lsit2) {
-				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				gcglabgc.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
-				e2.setV_0(map2.get("XMNF").toString()+"项目");
-				if(e2!=null)
-				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getabgclist4(gcglabgc);
-				if(exl2.size()!=0)
-				exl1.addAll(exl2);
-			}
-		}
-		for (int i = minnian; i <= maxnian; i++) {
-			gcglabgc.setXzqhmc("");
-			gcglabgc.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getabgclist2(gcglabgc);
-			if(e2!=null){
-				e2.setV_0(i+"年项目");
-				exl.add(e2);
-			}
-		}
-		exl.addAll(exl1);
+		gcglabgc.setXmnf(xmnf);
+		gcglabgc.setXmmc(xmmc);
+		//查总合list
 		try {
-			JsonUtils.write(exl, getresponse().getWriter());
+		List<Map<String,Object>> list1=gcybbServer.getabgcbblist1(gcglabgc);
+		//按行政区划查询每个行政区划的合list
+		List<Map<String,Object>> list2=gcybbServer.getabgcbblist2(gcglabgc);
+		//按行政区划和年份查每个行政区划下每个年份的合
+		List<Map<String,Object>> list3=gcybbServer.getabgcbblist3(gcglabgc);
+		//查询所有列表
+		List<Map<String,Object>> list4=gcybbServer.getabgcbblist4(gcglabgc);
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
+					list1.add(map1);
+					for (Map<String, Object> map2 : list4) {
+						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
+							list1.add(map2);
+						}
+					}
+				}
+			}
+		}
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -584,8 +548,6 @@ public class GcybbController extends BaseActionSupport{
 	 * 灾害
 	 */
 	public void getZhfzybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
 		String shijian=nf+"-"+yf;
 		gcglzhfz.setSbyf(shijian);
 		if("36".equals(gydw)){
@@ -595,57 +557,31 @@ public class GcybbController extends BaseActionSupport{
 		gcglzhfz.setLxmc(lxmc);
 		gcglzhfz.setTiaojian(xzdj);
 		gcglzhfz.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getzhfzybb(gcglzhfz);
-		Excel_list e1=gcybbServer.getzhfzlist1(gcglzhfz);
-		if(e1!=null){
-			e1.setV_0("总计");
-			exl.add(e1);
-		}
-		int maxnian=0;
-		int minnian=Integer.parseInt(nf);
-		List<Map<String, Object>> lsit1=gcybbServer.getZhfzxzqh(gcglzhfz);//查行政区划
-		if(lsit1.size()!=0)
-		for (Map<String, Object> map : lsit1) {
-			gcglzhfz.setXzqhmc(map.get("XZQHDM").toString());
-			Excel_list e3=gcybbServer.getzhfzlist1(gcglzhfz);
-			if(e3!=null){
-				if("景德镇".equals(map.get("XZQHMC").toString())){
-					e3.setV_0(map.get("XZQHMC").toString()+"市");
-				}
-				else e3.setV_0(map.get("XZQHMC").toString());
-				exl1.add(e3);
-			}
-			List<Map<String, Object>> lsit2=gcybbServer.getZhfznf(gcglzhfz);//查年份
-			if(lsit2.size()!=0)
-			for (Map<String, Object> map2 : lsit2) {
-				if(maxnian<Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					maxnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				if(minnian>Integer.parseInt(map2.get("XMNF").toString().substring(0,4))){
-					minnian=Integer.parseInt(map2.get("XMNF").toString().substring(0,4));
-				}
-				gcglzhfz.setXmnf(map2.get("XMNF").toString());
-				Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
-				e2.setV_0(map2.get("XMNF").toString()+"项目");
-				if(e2!=null)
-				exl1.add(e2);
-				List<Excel_list> exl2=gcybbServer.getzhfzlist2(gcglzhfz);
-				if(exl2.size()!=0)
-				exl1.addAll(exl2);
-			}
-		}
-		for (int i = minnian; i <= maxnian; i++) {
-			gcglzhfz.setXzqhmc("");
-			gcglzhfz.setXmnf(i+"年");
-			Excel_list e2=gcybbServer.getzhfzlist1(gcglzhfz);
-			if(e2!=null){
-				e2.setV_0(i+"年项目");
-				exl.add(e2);
-			}
-		}
-		exl.addAll(exl1);
+		gcglzhfz.setXmnf(xmnf);
+		gcglzhfz.setXmmc(xmmc);
+		//查总合list
 		try {
-			JsonUtils.write(exl, getresponse().getWriter());
+		List<Map<String,Object>> list1=gcybbServer.getzhfzbblist1(gcglzhfz);
+		//按行政区划查询每个行政区划的合list
+		List<Map<String,Object>> list2=gcybbServer.getzhfzbblist2(gcglzhfz);
+		//按行政区划和年份查每个行政区划下每个年份的合
+		List<Map<String,Object>> list3=gcybbServer.getzhfzbblist3(gcglzhfz);
+		//查询所有列表
+		List<Map<String,Object>> list4=gcybbServer.getzhfzbblist4(gcglzhfz);
+		for (Map<String, Object> map : list2) {
+			list1.add(map);
+			for (Map<String, Object> map1 : list3) {
+				if(map.get("XZQH").toString().equals(map1.get("XZQH").toString())){
+					list1.add(map1);
+					for (Map<String, Object> map2 : list4) {
+						if(map.get("XZQH").toString().equals(map2.get("XZQH").toString())&&map1.get("XDNF").toString().equals(map2.get("XDNF").toString())){
+							list1.add(map2);
+						}
+					}
+				}
+			}
+		}
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -755,23 +691,69 @@ public class GcybbController extends BaseActionSupport{
 		}//将类和参数HttpServletResponse传入即可实现导出excel
 	}
 	
-	/**
-	 * 水毁
-	 */
-	public void getShybb(){
-		List<Excel_list> exl = new ArrayList<Excel_list>();
-		List<Excel_list> exl1 = new ArrayList<Excel_list>();
-		String shijian=nf+"-"+yf;
-		gcglsh.setSbyf(shijian);
-		if("36".equals(gydw)){
-			gcglsh.setGydw("");
+	
+	//
+	public void getGjxjmxb(){
+		//System.out.println(gcglwqgz.getTiaojian()+"---"+gcglwqgz.getXmnf());
+		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		String tableName="";
+		try{
+			    if("路面升级".equals(gcglwqgz.getTiaojian()))
+			    	tableName="yb_sj";
+				
+				if("路面改造".equals(gcglwqgz.getTiaojian()))
+					tableName="yb_gj";
+				if("水毁".equals(gcglwqgz.getTiaojian()))
+					tableName="yb_sh";
+				
+				String[] arr=gcglwqgz.getXmnf().split(",");
+				String sql="select xzqhmc";
+				String in="";
+				for(int j=0;j<arr.length;j++){
+					if(j==0)
+					    in=in+"'"+arr[j]+"'";
+					else
+						in=in+",'"+arr[j]+"'";
+					sql=sql+",decode(sum(decode(jhnf,'"+arr[j]+"',xmsl)) ,null,0,sum(decode(jhnf,'"+arr[j]+"',xmsl)) )xmsl"+arr[j]+
+							",decode(sum(decode(jhnf,'"+arr[j]+"',xmlc)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmlc))) xmlc"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',xmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',xmzj))) xmzj"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wclc)),null,0,sum(decode(jhnf,'"+arr[j]+"',wclc))) wclc"+arr[j]+
+				        ",decode(sum(decode(jhnf,'"+arr[j]+"',wcxmzj)),null,0,sum(decode(jhnf,'"+arr[j]+"',wcxmzj))) wcxmzj"+arr[j]+"";
+				}
+				sql=sql+" from "+tableName+"  where jhnf in("+in+")group by xzqhmc,xzqh order by xzqh";		
+				System.out.println(sql);
+				list=gcybbServer.getGjxjmxbsj(sql);
+				for(int i=0;i<list.size();i++){
+					HashMap<String,Object> hm=(HashMap<String, Object>) list.get(i);
+					double xmsl=0;
+					double xmlc=0;
+					double xmzj=0;
+					double wclc=0;
+					double wcxmzj=0;
+					for(int j=arr.length-1;j>=0;j--){
+						xmsl=xmsl+Double.valueOf(hm.get("XMSL"+arr[j]).toString());
+						xmlc=xmlc+Double.valueOf(hm.get("XMLC"+arr[j]).toString());
+						xmzj=xmzj+Double.valueOf(hm.get("XMZJ"+arr[j]).toString());
+						wclc=wclc+Double.valueOf(hm.get("WCLC"+arr[j]).toString());
+						wcxmzj=wcxmzj+Double.valueOf(hm.get("WCXMZJ"+arr[j]).toString());
+						hm.put("LJWCLC"+arr[j],xmlc);
+					}
+				   hm.put("XMSL",xmsl);
+				   hm.put("XMLC",xmlc);
+				   hm.put("XMZJ",xmzj);
+				   hm.put("WCLC",wclc);
+				   hm.put("WCXMZJ",wcxmzj);
+				   hm.put("LJWCLC",wclc);
+				   hm.put("XH", i);
+				}
+				
+				for (Map<String, Object> map : list) {
+					System.out.println(map);
+				}
+
+				JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		else gcglsh.setGydw(gydw.replaceAll("0*$",""));
-		gcglsh.setLxmc(lxmc);
-		gcglsh.setTiaojian(xzdj);
-		gcglsh.setXzqhdm(xzqh.replaceAll("0*$",""));
-		//List<Map<String, Object>> lsit=gcybbServer.getShybb(gcglsh);
-		
-		
-	}
+	} 
 }

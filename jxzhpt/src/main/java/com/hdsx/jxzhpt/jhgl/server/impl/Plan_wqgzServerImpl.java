@@ -228,4 +228,17 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
 	}
+
+	@Override
+	public List<Plan_wqgz> queryWqgzList(Plan_wqgz jh, Jckwqgz lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		return queryList("queryWqgzList2",params);
+	}
+
+	@Override
+	public List<Plan_wqgz> queryWqLs(Jckwqgz lx) {
+		return queryList("queryWqLs",lx);
+	}
 }

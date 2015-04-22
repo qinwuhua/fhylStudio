@@ -7,7 +7,8 @@ function dingwei(index){
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',700,450);
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
 	//window.open("yhdzxxx.jsp");
 }
 function zjdw(index){
@@ -20,12 +21,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','yhdzxzjdwtj.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','yhdzxzjdwtj.jsp','wqxx',550,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','yhdzxzjdwxg.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','yhdzxzjdwxg.jsp','wqxx',550,250);
 }
 
 //添加车购税
@@ -40,7 +41,7 @@ function tjyhdzxcgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglyhdzx.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglyhdzx.tbr="+$.cookie("truename")+"&gcglyhdzx.tbsj="+tbsj+"&gcglyhdzx.tbyf="+$("#tj_tbyf").val()
+	var data="gcglyhdzx.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglyhdzx.tbr="+$.cookie("truename")+"&gcglyhdzx.tbsj="+tbsj+"&gcglyhdzx.tbyf="+$("#tj_tbyf").val()+"&gcglyhdzx.cscyj="+$("#tj_cscyj").val()+"&gcglyhdzx.stz="+$("#tj_stz").val()
 	+"&gcglyhdzx.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -52,7 +53,7 @@ function tjyhdzxcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月车购税可能已存在，保存失败！');
@@ -68,7 +69,7 @@ function xgyhdzxcgs(){
 		return;
 	}
 	var data="gcglyhdzx.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.tbyf="+$("#xg_tbyf").val();
+	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.tbyf="+$("#xg_tbyf").val()+"&gcglyhdzx.cscyj="+$("#xg_cscyj").val()+"&gcglyhdzx.stz="+$("#xg_stz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -79,7 +80,7 @@ function xgyhdzxcgs(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#zjgrid").datagrid('reload');
-				shezhi();
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -101,7 +102,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					shezhi();
+					parent.shezhi();
 				}else{
 					alert('删除失败！');
 				}
@@ -112,14 +113,19 @@ function delCgs(index){
 
 
 function showAll(){
-	var gydw=$("#gydw").combobox("getValue");
-	if(gydw=='36')
-		gydw='';
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
 	var jgzt='0';
-	var kgzt='1';
+	var kgzt='';
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectYhdzxjhList.do',
+	    url:'../../../../gcgl/selectYhdzxjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -128,31 +134,49 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw,
+	    	gydw: gydw1str,
 	    	kgzt: kgzt,
 	    	jgzt:jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	xmnf:xmnf,
+	    	bfyf:bfyf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
 	         {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 			}},
-			{field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'hdhlc',title:'核对里程',width:60,align:'center'},
-	        {field:'jsdj',title:'技术等级',width:80,align:'center'},
-	        {field:'ylmkd',title:'原路面宽度',width:80,align:'center'},
-	        {field:'classify',title:'工程分类',width:80,align:'center'},
-	        {field:'totalinvest',title:'总投资',width:60,align:'center'},
-	        {field:'totalsubsidyfund',title:'总补助资金',width:90,align:'center'}
-	    ]]    
+			{field:'sbnf',title:'上报年份',width:80,align:'center'},
+			{field:'xmmc',title:'项目名称',width:200,align:'center'},
+ 	        {field:'c5',title:'管养单位',width:200,align:'center',formatter:function(value,row,index){
+ 		    	return row.plan_lx_yhdzxs[0].gydwmc;
+ 		    }},
+	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'totalinvest',title:'批复总投资',width:80,align:'center'},
+	        {field:'totalsubsidyfund',title:'部补助金额(万元)',width:100,align:'center'},
+		    {field:'totalplacefund',title:'地方自筹金额(万元)',width:100,align:'center'}
+	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_yhdzxs,
+  			columns:[[
+  			    {field:'gydwmc',title:'管养单位',width:200,align:'center'},
+  			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+  			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+  			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+  			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+  			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+  			    {field:'hdlc',title:'隐患里程',width:60,align:'center'}
+  			]]
+	    	});
+	    }    
 	}); 
 }
 
@@ -176,10 +200,12 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
-				{field:'tbyf',title:'填报月份 ',width:140,align:'center'},
-				{field:'tbsj',title:'填报时间 ',width:140,align:'center'},
-				{field:'tbr',title:'填报人 ',width:140,align:'center'},
-				{field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
+				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
+				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
+				{field:'tbr',title:'填报人 ',width:80,align:'center'},
+				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
+				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -260,14 +286,14 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	
 }
 
 function shezhi(){
-	var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.jhid;
+	var data="gcglwqgz.jhid="+parent.obj1.id+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
 	$.ajax({
 		type:'post',
 		url:'../../../../gcgl/selectWqgzbzzj.do',

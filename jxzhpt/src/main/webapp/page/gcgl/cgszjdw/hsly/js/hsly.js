@@ -20,12 +20,12 @@ function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function addCgs(){
-	YMLib.UI.createWindow('wqxx','车购税资金到位添加','hslyzjdwtj.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位添加','hslyzjdwtj.jsp','wqxx',550,250);
 }
 function editCgs(index){
 	var data=$("#zjgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','hslyzjdwxg.jsp','wqxx',500,220);
+	YMLib.UI.createWindow('wqxx','车购税资金到位编辑','hslyzjdwxg.jsp','wqxx',550,250);
 }
 
 //添加车购税
@@ -40,7 +40,7 @@ function tjhslycgs(){
 		alert("请您填入本月资金");
 		return;
 	}
-	var data="gcglhsly.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglhsly.tbr="+$.cookie("truename")+"&gcglhsly.tbsj="+tbsj+"&gcglhsly.tbyf="+$("#tj_tbyf").val()
+	var data="gcglhsly.cgsdwzj="+$("#tj_cgsdwzj").val()+"&gcglhsly.tbr="+$.cookie("truename")+"&gcglhsly.tbsj="+tbsj+"&gcglhsly.tbyf="+$("#tj_tbyf").val()+"&gcglhsly.cscyj="+$("#tj_cscyj").val()+"&gcglhsly.stz="+$("#tj_stz").val()
 	+"&gcglhsly.jhid="+parent.parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -68,7 +68,7 @@ function xghslycgs(){
 		return;
 	}
 	var data="gcglhsly.cgsdwzj="+$("#xg_cgsdwzj").val()
-	+"&gcglhsly.jhid="+parent.obj.jhid+"&gcglhsly.id="+parent.obj.id+"&gcglhsly.tbyf="+$("#xg_tbyf").val();;
+	+"&gcglhsly.jhid="+parent.obj.jhid+"&gcglhsly.id="+parent.obj.id+"&gcglhsly.tbyf="+$("#xg_tbyf").val()+"&gcglhsly.cscyj="+$("#xg_cscyj").val()+"&gcglhsly.stz="+$("#xg_stz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -111,12 +111,25 @@ function delCgs(index){
 }
 
 function showAll(){
-	var xzqhdm=$("#xzqhdm").combobox("getValue");
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh11str=$.cookie("dist2");
+	}else{
+		xzqh11str=gydw1.join(',');
+	}
 	var jgzt='0';
-	var kgzt='1';
+	var kgzt='';
+	var xmnf=$("#ddlYear").val();
+	var bfyf=$("#ddlMonth").val();
 	var lxmc=$("#lxmc").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectHslyjhList.do',
+	    url:'../../../../gcgl/selectHslyjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -125,12 +138,16 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqhdm,
+	    	xzqhdm: xzqh11str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:'',
-	    	sfsj:7
+	    	sfsj:7,
+	    	xmnf:xmnf,
+	    	gydwdm:gydw1str,
+	    	bfyf:bfyf,
+	    	bfzt:$("#bfzt").val()
 		},
 	    columns:[[
              {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
@@ -167,10 +184,12 @@ function showAllZJ(){
 		        	}
 		        	else return '编辑   '+'删除';
 				}},
-				{field:'tbyf',title:'填报月份 ',width:140,align:'center'},
-				{field:'tbsj',title:'填报时间 ',width:140,align:'center'},
-				{field:'tbr',title:'填报人 ',width:140,align:'center'},
-				{field:'cgsdwzj',title:'车购税到位资金(万元)',width:150,align:'center'}
+				{field:'tbyf',title:'填报月份 ',width:100,align:'center'},
+				{field:'tbsj',title:'填报时间 ',width:120,align:'center'},
+				{field:'tbr',title:'填报人 ',width:80,align:'center'},
+				{field:'cgsdwzj',title:'拨付车购税(万元)',width:100,align:'center'},
+				{field:'stz',title:'省投资(万元)',width:100,align:'center'},
+				{field:'cscyj',title:'财审处意见',width:100,align:'center'}
 	    ]]    
 	}); 
 }
@@ -251,7 +270,7 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downHslyFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	

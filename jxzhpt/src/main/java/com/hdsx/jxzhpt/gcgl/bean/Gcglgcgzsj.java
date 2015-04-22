@@ -137,7 +137,42 @@ public class Gcglgcgzsj implements Serializable {
 	private String sjzt;
 	private String sjsh;
 	private String yhtype;
+	private String stz;
+	private String ssdctc;
+	private String wcqk;
+	private String bndsslc;
+	private String wkglc;
 	
+	public String getWkglc() {
+		return wkglc;
+	}
+	public void setWkglc(String wkglc) {
+		this.wkglc = wkglc;
+	}
+	public String getBndsslc() {
+		return bndsslc;
+	}
+	public void setBndsslc(String bndsslc) {
+		this.bndsslc = bndsslc;
+	}
+	public String getSsdctc() {
+		return ssdctc;
+	}
+	public void setSsdctc(String ssdctc) {
+		this.ssdctc = ssdctc;
+	}
+	public String getWcqk() {
+		return wcqk;
+	}
+	public void setWcqk(String wcqk) {
+		this.wcqk = wcqk;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getYhtype() {
 		return yhtype;
 	}

@@ -34,27 +34,33 @@
 			colValue= new Array();
 			tableValue=new Array();
 			tableCol=new Array();
-			var checkboxes1 = document.getElementsByName("checkbox1");
-			for(var i=0;i<checkboxes1.length;i++){
-			    if(checkboxes1[i].checked){
-			    	colValue.push(checkboxes1[i].value);
-			    	nameValue.push(checkboxes1[i].nextSibling.nodeValue);
-			    }
-			}
+			parent.YMLib.Var.sqlcol="";
+			parent.YMLib.Var.tablecol="";
+				 var checkboxes1 = document.getElementsByName("checkbox1"); 
+				 var v1=parseFloat(checkboxes1.length);
+				$("input[name=checkbox1]:checked").each(function(i,e){	
+					colValue.push(this.value);
+			    	nameValue.push(this.nextSibling.nodeValue);
+			    	parent.YMLib.Var.sqlcol+=this.value+" v_"+i+",";
+			    	parent.YMLib.Var.tablecol+=this.nextSibling.nodeValue+",";
+				});
 			var checkboxes2 = document.getElementsByName("checkbox2");
-			for(var i=0;i<checkboxes2.length;i++){
-			    if(checkboxes2[i].checked){
-			    	colValue.push(checkboxes2[i].value);
-			    	nameValue.push(checkboxes2[i].nextSibling.nodeValue);
-			    }
-			}
-			var checkboxes3 = document.getElementsByName("checkbox3");
-			for(var i=0;i<checkboxes3.length;i++){
-			    if(checkboxes3[i].checked){
-			    	colValue.push(checkboxes3[i].value);
-			    	nameValue.push(checkboxes3[i].nextSibling.nodeValue);
-			    }
-			}
+			var v2=parseFloat(checkboxes2.length);
+			$("input[name=checkbox2]:checked").each(function(i,e){	
+				colValue.push(this.value);
+		    	nameValue.push(this.nextSibling.nodeValue);
+		    	parent.YMLib.Var.sqlcol+=this.value+" v_"+(parseFloat(i)+v1)+",";
+		    	parent.YMLib.Var.tablecol+=this.nextSibling.nodeValue+",";
+			});
+			$("input[name=checkbox3]:checked").each(function(i,e){	
+				colValue.push(this.value);
+		    	nameValue.push(this.nextSibling.nodeValue);
+		    	parent.YMLib.Var.sqlcol+=this.value+" v_"+(parseFloat(i)+v1+v2)+",";
+		    	parent.YMLib.Var.tablecol+=this.nextSibling.nodeValue+",";
+			});
+				parent.YMLib.Var.sqlcol=parent.YMLib.Var.sqlcol.substring(0,parent.YMLib.Var.sqlcol.length-1);
+				parent.YMLib.Var.tablecol=parent.YMLib.Var.tablecol.substring(0,parent.YMLib.Var.tablecol.length-1);
+				
 			parent.$("#grid").datagrid({    
 					 url:'/jxzhpt/zdycx/selZdy.do', 
 					 queryParams: {
@@ -240,7 +246,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:12%" align="left">
 					<input  type="checkbox" value="pfsj" name="checkbox2" class="part2"/>批复时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
-					<input  type="checkbox" value="yjwgsj" name="checkbox3" class="part3"/>预计完工时间</td>
+					<input  type="checkbox" value="yjjgsj" name="checkbox3" class="part3"/>预计完工时间</td>
 				<td style="background-color: #ffffff;width:10%" align="left">
 					<input  type="checkbox" value="sgdw" name="checkbox3" class="part3"/>施工单位</td>			
 			</tr>

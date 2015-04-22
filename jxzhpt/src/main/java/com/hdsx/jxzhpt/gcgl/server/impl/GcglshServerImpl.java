@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
@@ -13,6 +14,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 
 @Service
 public class GcglshServerImpl extends BaseOperate implements GcglshServer {
@@ -31,14 +33,23 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		if(insert("insertshYb", gcglsh)>0){
 			if(gcglsh.getSfsj()==9){
 				gcglsh.setSjzt("未上报");
+				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
+				gcglsh.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglsh);
 				update("updateSjZT", gcglsh);
 			}
 			if(gcglsh.getSfsj()==11){
 				gcglsh.setXjzt("未上报");
+				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
+				gcglsh.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglsh);
 				update("updateXjZT", gcglsh);
 			}
 			if(gcglsh.getSfsj()==7){
 				gcglsh.setSjsh("未审核");
+				Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
+				gcglsh.setSbyf(gcglwqgz3.getSbyf());
+				update("updatezdyf", gcglsh);
 				update("updateSJSH", gcglsh);
 			}
 			return true;
@@ -86,6 +97,12 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	@Override
 	public Boolean deleteshYb(Gcglsh gcglsh) {
 		if(delete("deleteshYb", gcglsh)>0){
+			Gcglsh gcglwqgz3 =queryOne("querymaxybyf", gcglsh);//查最大月份
+			if(gcglwqgz3!=null)
+				gcglsh.setSbyf(gcglwqgz3.getSbyf());
+			else
+				gcglsh.setSbyf("");
+			update("updatezdyf", gcglsh);
 			return true;
 		}else{
 			return false;
@@ -267,5 +284,41 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public List<Gcglsh> exportAbyb1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList", gcglsh);
+	}
+
+	@Override
+	public Gcglsh queryCGSByYf(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("queryCGSByYf", gcglsh);
+	}
+
+	@Override
+	public List<Plan_shuih> queryGcgjList(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("queryGcgjList", gcglsh);
+	}
+
+	@Override
+	public int queryGcgjListCount(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("queryGcgjListCount", gcglsh);
+	}
+
+	@Override
+	public List<Plan_shuih> selectWqgzjhList2(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectWqgzjhList2", gcglsh);
+	}
+
+	@Override
+	public int selectWqgzjhListcount1(Gcglsh gcglsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectWqgzjhListcount1", gcglsh);
 	}
 }

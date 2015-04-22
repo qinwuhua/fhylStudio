@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -54,7 +56,30 @@ public class GcglwqgzController extends BaseActionSupport{
 	private String yhtype;
 	private Integer sfsj;
 	private String ybzt;
+	private String bfzt;
+	private String bfyf;
+	private String xmnf;
+	private String gydw1;
 	
+	
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+	public String getBfzt() {
+		return bfzt;
+	}
+	public void setBfzt(String bfzt) {
+		this.bfzt = bfzt;
+	}
+	public String getBfyf() {
+		return bfyf;
+	}
+	public void setBfyf(String bfyf) {
+		this.bfyf = bfyf;
+	}
 	public String getYbzt() {
 		return ybzt;
 	}
@@ -297,7 +322,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			String tiaojian=fileuploadFileName;
 			gcglwqgz.setTiaojian(tiaojian);
 			gcglwqgz.setJhid(jhid1);
-			
+			System.out.println(tiaojian+"------"+jhid1);
 			 InputStream inputStream = new FileInputStream(fileupload);
 			boolean bl = false;
 			if("sgxkwj".equals(type1)){
@@ -400,15 +425,22 @@ public class GcglwqgzController extends BaseActionSupport{
 		//查询jihua
 		public void selectWqgzjhList(){
 			Gcglwqgz gcglwqgz=new Gcglwqgz();
+			String tiaojian="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+			}else{
+				tiaojian="and t3.gydwbm in ("+gydw+")";
+			}
 			gcglwqgz.setPage(page);
 			gcglwqgz.setRows(rows);
 			gcglwqgz.setJhid(jhid);
-			gcglwqgz.setGydw(gydw.replaceAll("0*$",""));
+			gcglwqgz.setGydw(tiaojian);
 			gcglwqgz.setKgzt(kgzt);
 			gcglwqgz.setQlmc(qlmc);
 			gcglwqgz.setLxmc(lxmc);
 			gcglwqgz.setJgzt(jgzt);
 			gcglwqgz.setShzt(ybzt);
+			gcglwqgz.setXmnf(xmnf);
 			if(sfsj==7){
 				gcglwqgz.setTiaojian("sjsh");
 			}
@@ -513,6 +545,47 @@ public class GcglwqgzController extends BaseActionSupport{
 	    byte data [] =bAOutputStream.toByteArray(); 
 	    bAOutputStream.close(); 
 	    return data; 
+	}
+	public void selectWqgzjhList1(){
+		String tiaojian="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+		}else{
+			tiaojian="and t3.gydwbm in ("+gydw+")";
+		}
+		gcglwqgz.setPage(page);
+		gcglwqgz.setRows(rows);
+		gcglwqgz.setGydw(tiaojian);
+		gcglwqgz.setKgzt(kgzt);
+		gcglwqgz.setQlmc(qlmc);
+		gcglwqgz.setLxmc(lxmc);
+		gcglwqgz.setJgzt(jgzt);
+		gcglwqgz.setTbyf(bfyf);
+		gcglwqgz.setTiaojian(bfzt);
+		gcglwqgz.setXmnf(xmnf);
+		try{
+		List<Gcglwqgz> list=gcglwqgzServer.selectWqgzjhList1(gcglwqgz);
+		int count=gcglwqgzServer.selectWqgzjhListcount1(gcglwqgz);
+
+		EasyUIPage<Gcglwqgz> e=new EasyUIPage<Gcglwqgz>();
+		e.setRows(list);
+		e.setTotal(count);
+		
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	//查询每个月的车购税，添加和编辑月报选择不同月份的下拉框、如果查询为空，返回0
+	public void selectcgsyf(){
+		gcglwqgz.setTbyf(bfyf);
+		gcglwqgz.setJhid(jhid);
+		Gcglwqgz g=gcglwqgzServer.selectcgsyf(gcglwqgz);
+	try{
+		JsonUtils.write(g, getresponse().getWriter());
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
 	}
 }
 	

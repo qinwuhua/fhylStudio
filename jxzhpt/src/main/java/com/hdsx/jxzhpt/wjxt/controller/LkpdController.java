@@ -335,4 +335,30 @@ public class LkpdController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void getPqiList(){
+		String[] lxbh=lkmxb.getLxbh().split(",");
+		String[] qdzh = lkmxb.getQdzh().split(","); 
+		String[] zdzh = lkmxb.getZdzh().split(",");
+		String tiaojian="and (";
+		if(qdzh.length>1){
+			for (int i = 0; i < qdzh.length; i++) {
+				if(i!=qdzh.length-1)
+				tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") or ";
+				else
+					tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") )";
+			}
+		}else{
+			for (int i = 0; i < qdzh.length; i++) {
+				tiaojian=tiaojian+" lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") ";
+			}
+		}	
+		lkmxb.setTiaojian(tiaojian);
+		List<Lkmxb> list = trqkServer.getPqiList(lkmxb);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 }

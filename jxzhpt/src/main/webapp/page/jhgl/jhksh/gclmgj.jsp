@@ -24,7 +24,7 @@
 	<script type="text/javascript">
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -168,7 +168,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="bcapzjdiv" title="本次安排资金比例" class="easyui-dialog" style="width:215px;height:100px"
+	<div id="bcapzjdiv" title="本次安排资金比例" class="easyui-dialog" style="width:300px;height:200px"
 		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 		<table>
 			<tr style="height: 30px;">
@@ -190,6 +190,6 @@
 			</tr>
 		</table>
 	</div>
-	<div id="gclmgj_sh" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="gclmgj_sh" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>

@@ -193,11 +193,12 @@
 			$('#' + id).tree(
 			{
 				checkbox : true,
+				cascadeCheck : false, 
 				multiple:true,
 				url : '/jxzhpt/gcgl/selAllBm5.do?id=' + parent.obj1.id,
 				onCheck : function (node){
 					var nodes=$('#' + id).tree('getChecked');
-					codes='';
+					var codes='';
 					$('#tjdepartmentcode').val('');
 					for(var i=0;i<nodes.length;i++){
 						codes+=nodes[i].id+',';
@@ -205,7 +206,7 @@
 					$('#tjdepartmentcode').val(codes);
 				},onLoadSuccess: function (node){
 				var nodes=$('#' + id).tree('getChecked');
-				codes='';
+				var codes='';
 				$('#tjdepartmentcode').val('');
 				for(var i=0;i<nodes.length;i++){
 					codes+=nodes[i].id+',';

@@ -29,7 +29,7 @@
 		}
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -104,7 +104,7 @@
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
 			if($('#lblQfzj').html()==$('#lblBTZ').html()){
-				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.sbzt':null,'jh.spzt':'0','jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
+				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;
 				}
@@ -112,19 +112,23 @@
 					type:'post',async:false,data:param,dataType:'json',
 					url:'../../../jhgl/queryAbgcListByStatus.do',
 					success:function(data){
-						$.each(data,function(index,item){
-							var date=new Date();
-							var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
-								" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-							var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-									'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
-							if(xian){
-								jh['jh.sbzt']='0';
-							}
-							editStatus(jh);
-						});
-						alert("上报成功！");
-						searchAbgc();
+						if(data.length>0){
+							$.each(data,function(index,item){
+								var date=new Date();
+								var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
+									" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+								var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
+										'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
+								if(xian){
+									jh['jh.sbzt']='0';
+								}
+								editStatus(jh);
+							});
+							alert("上报成功！");
+							searchAbgc();
+						}else{
+							alert("无需要上报的计划！");
+						}
 					}
 				});
 			}else{
@@ -248,7 +252,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="abgc_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 	<div id="abgc_sb" style="text-align: left;font-size: 12px;width:80%;"></div>
 </body>
 </html>

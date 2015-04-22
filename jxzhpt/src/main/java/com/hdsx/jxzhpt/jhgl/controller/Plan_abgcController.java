@@ -19,10 +19,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
+import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
@@ -33,6 +41,7 @@ import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
 @Scope("prototype")
 @Controller
@@ -45,6 +54,8 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_wqgzServer wqgzServer;
 	@Resource(name = "plan_zhfzServerImpl")
 	private Plan_zhfzServer zhfzServer;
+	@Resource(name = "plan_zjxdServerImpl")
+	private Plan_zjxdServer zjxdServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
 	private Plan_upload uploads;
@@ -145,12 +156,13 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	//批量审批用到
 	public void editAbgcStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
 			for (Plan_abgc item : splist) {
-				item.setJh_sbthcd((item.getJh_sbthcd()+2));
+				item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());
 				item.setSpzt("1");
 				item.setSpsj(new Date());
 				item.setSpbmdm(lx.getXzqhdm());//这里行政区划代码保存的是管养单位编码
@@ -297,7 +309,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void queryTsdq(){
 		try {
-			System.out.println("特殊地区："+abgcServer.queryTsdq().size());
+		    System.out.println("特殊地区："+abgcServer.queryTsdq().size());
 			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -320,6 +332,53 @@ public class Plan_abgcController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void exportAbgcZjxdExcel(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[9];
+		title[0]=new ExcelTitleCell("路线信息",false, new ExcelCoordinate(0, (short)0), null,50);
+		title[1]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)1), null,15);
+		title[2]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)2), null,15);
+		title[3]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)3), null,15);
+		title[4]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)4), null,15);
+		title[5]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)5), null,15);
+		title[6]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)6), null,15);
+		title[7]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)7), null,15);
+		title[8]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)8), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "lxxx");//路线信息
+		attribute.put("1", "pfztz");//批复总投资
+		attribute.put("2", "tbdw");//填报单位-即导出单位
+		attribute.put("3", "xdnf");//下达年份
+		attribute.put("4", "xdzj");//下达的总投资
+		attribute.put("5", "btzzj");//下达的部投资
+		attribute.put("6", "stz");//下达的部投资
+		attribute.put("7", "jhxdwh");//下达的部投资
+		attribute.put("8", "xmid");
+		//准备数据
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		List<Object> excelData = new ArrayList<Object>();
+		if(lx.getGydwdm().equals("36")){
+			lx.setGydwdm(null);
+		}
+		//此处遍历查询资金下达模块的所有项目
+		for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
+			Plan_zjxd zjxd=new Plan_zjxd();
+			String strLx=item.getJckabgc().getLxmc()+"-"+
+					item.getJckabgc().getLxbm()+"("+
+					item.getJckabgc().getQdzh()+"-"+
+					item.getJckabgc().getZdzh()+")";
+			zjxd.setLxxx(strLx);
+			zjxd.setPfztz(item.getPfztz());
+			zjxd.setXmid(item.getId());
+			zjxd.setTbdw(gydwmc);
+			excelData.add(zjxd);
+		}
+		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "安保工程-资金下达", getresponse());
+	}
+	
 	// get set
 	public int getPage() {
 		return page;

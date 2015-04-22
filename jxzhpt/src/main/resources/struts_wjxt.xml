@@ -15,6 +15,8 @@
 	<action name="getMxbDataList1" class="lkpdController" method="getMxbDataList1"/>
 	<action name="deletemxb" class="lkpdController" method="deletemxb"/>
 	
+	<action name="getPqiList" class="lkpdController" method="getPqiList"/>
+	
 	<action name="insertLkpdtjData" class="lkpdController" method="insertLkpdtjData"/>
 	<action name="selectTjbList" class="lkpdController" method="selectTjbList"/>
 	<action name="getTjbDataList" class="lkpdController" method="getTjbDataList"/>

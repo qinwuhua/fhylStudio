@@ -5,6 +5,29 @@
 function gydwComboxTree(id){
 	loadUnit(id,$.cookie("unit"));
 }
+function radioChecked(name,value){
+	$.each($("input[name='"+name+"']"),function(index,item){
+		if($(item).val()==value){
+			$(item).attr('checked','true');
+		}
+	});
+}
+function sbnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text'   
+	});
+	$('#'+id).combobox("setValue",first);
+}
 /**
  * 行政区划下拉框
  * @param id
@@ -89,10 +112,9 @@ function openZjxd(id,title,href,width,height,zjid){
 	}).dialog("setTitle",title).dialog("open");
 }
 function addZjxd(){
-	var zjxd={xmid:xxId,xdnf:'',xdzj:'',sfzj:'',tbdw:'',tbdate:''};
 	var zjxd={'zjxd.xmid':xxId,'zjxd.xdnf':$('#zjxdnf').combobox("getValue"),'zjxd.xdzj':$('#xdzj').val(),
-			'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-			'zjxd.tbtime':$('#tbsj').html()};
+			'zjxd.btzzj':$('#btzzj').val(),'zjxd.sfzj':$('#sfzj').val(),'zjxd.tbdw':$('#tbdw').html(),
+			'zjxd.tbtime':$('#tbsj').html(),'zjxd.stz':$('#stz').val(),'zjxd.jhxdwh':$('#jhxdwh').val()};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/addZjxd.do',
@@ -101,7 +123,6 @@ function addZjxd(){
 		success:function(data){
 			alert("添加成功！");
 			closezjxd();
-			//closeWindow("zjxd");
 			queryZjxdList('../../../jhgl/queryZjxdByXmId.do');
 		}
 	});
@@ -157,6 +178,31 @@ function importData_jh(flag){
 	if(flag=='hsly_jh'){
 		url="/jxzhpt/jhgl/importHsly_jh.do?gydwdm="+$.cookie("unit");
 	}
+	if(flag=='gcsj_zjxd'){
+		url="/jxzhpt/jhgl/importGcsj_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="gcgj_zjxd"){
+		url="/jxzhpt/jhgl/importGcgj_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="shuih_zjxd"){
+		url="/jxzhpt/jhgl/importShuih_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="yhdzx_zjxd"){
+		url="/jxzhpt/jhgl/importYhdzx_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="abgc_zjxd"){
+		url="/jxzhpt/jhgl/importAbgc_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="wqgz_zjxd"){
+		url="/jxzhpt/jhgl/importWqgz_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="zhfz_zjxd"){
+		url="/jxzhpt/jhgl/importZhfz_zjxd.do?gydwdm="+$.cookie("unit");
+	}
+	if(flag=="hsly_zjxd"){
+		alert(flag);
+		url="/jxzhpt/jhgl/importHsly_zjxd.do?gydwdm="+$.cookie("unit");
+	}
 	//YMLib.UI.createWindow('wqxx1','车购税资金到位情况','/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,'wqxx1',450,400);
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
@@ -194,6 +240,7 @@ function queryZjxdSumByXmid(){
 }
 function queryZjxdList(url){
 	var params={'zjxd.xmid':xxId};
+	queryZjxdSumByXmid();
 	$('#zjxdList').datagrid({
 		url : url,
 		queryParams : params,
@@ -202,10 +249,10 @@ function queryZjxdList(url){
 		rownumbers : true,
 		pageNumber : 1,
 		pageSize : 3,
-		height : 138,
-		width : 900,
+		height : 140,
+		fitColumns:true,
 		columns : [[
-		{field : 'cz',title : '操作',width : 115,align : 'center',
+		{field : 'cz',title : '操作',width : 120,align : 'center',
 			formatter : function(value, row, index) {
 				var p1="'zjxd',",p2="'资金下达',",p3="'../zjxd/zjxd_edit.jsp',",p4="'800',",
 					p5="'250'",p6=",'"+row.id+"'";
@@ -214,7 +261,7 @@ function queryZjxdList(url){
 				return result;
 			}
 		},
-		{field : 'sfzj',title : '是否追加',width : 150,align : 'center',
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
 			formatter : function(value, row, index) {
 				if (row.sfzj == "0") {
 					return "否";
@@ -223,9 +270,12 @@ function queryZjxdList(url){
 				}
 			}
 		},
-		{field:'xdnf',title : '下达年份',width : 150,align : 'center'}, 
-		{field : 'xdzj',title : '下达资金',width : 150,align : 'center'}, 
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
 		]]
 	});
@@ -239,6 +289,7 @@ function dropZjxdById(id){
 		success:function(data){
 			if(data.result=="true"){
 				alert("删除成功！");
+				queryZjxdSumByXmid();
 				$('#zjxdList').datagrid("reload",{'zjxd.xmid':xxId});
 			}else{
 				alert("删除失败！");
@@ -248,7 +299,7 @@ function dropZjxdById(id){
 }
 function editZjxd(){
 	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),
-			'zjxd.xdzj':$('#xdzj').val(),'zjxd.tbdw':$('#tbdw').html(),
+			'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj').val(),'zjxd.tbdw':$('#tbdw').html(),
 			'zjxd.tbtime':$('#tbsj').html()};
 	$.ajax({
 		type:'post',
@@ -267,14 +318,11 @@ function editZjxd(){
 	});
 }
 function roleName(){
-	var sheng = new RegExp("^[0-9]{7}0000$");
-	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
-	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
-	if(sheng.test($.cookie("unit")) || $.cookie("unit")=="36"){
+	if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 		return "省级";
-	}else if(shi1.test($.cookie("unit")) || shi2.test($.cookie("unit"))){
+	}else if($.cookie("unit2").length==9){
 		return "市级";
-	}else{
+	}else if($.cookie("unit2").length==11){
 		return "县级";
 	}
 }
@@ -284,7 +332,7 @@ function filterGydwdm(gydwdm){
 	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
 	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
 	if(gydwdm=="36"){
-		result=null;
+		result="%36%";
 	}else if(shi1.test(gydwdm) || shi2.test(gydwdm) ){
 		result=gydwdm.substring(0, gydwdm.length-2)+"__";
 	}
@@ -300,7 +348,7 @@ function filterXzqhdm(xzqhdm){
 	var yi2= new RegExp("^36[1-9][0-9]00$");
 	var result=null;
 	if(xzqhdm=="360000"){
-		result=null;
+		result='36%';
 	}else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
 		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
 	}else{
@@ -318,4 +366,26 @@ function showLrjh(jsp,w,h){
 	}
 	YMLib.UI.createWindow('lw_lr','路网项目列入计划',jsp,'lw_lr',w,h);
 }
-
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:""});
+	for(var i=0;i<=10;i++){
+		if(i==0) first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({    
+	    data:years,
+	    valueField:'text',    
+	    textField:'text'   
+	});
+	$('#'+id).combobox("setValue","");
+}
+function loadTsdq(id){
+	$('#'+id).combobox({    
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text'
+	}); 
+}

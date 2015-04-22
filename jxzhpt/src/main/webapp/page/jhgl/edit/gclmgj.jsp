@@ -5,18 +5,24 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>工程改造路面改建项目</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/datagrid-detailview.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_gcgj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
-	<script type="text/javascript">
-		if(bz=="xx" || bz=="sb"){
-			$("#trSY").hide();
-			$("#trSY1").hide();
-		}
-		if(bz=="sh" || bz=="zjxd"){
-			$("#trSY").show();
-			$("#trSY1").show();
-		}
-	</script>
 	<div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:100%;">
        	<table id="table_gj_xx" width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
 			<tr id="tr_scxx" style="height: 25px;">
@@ -274,26 +280,6 @@
 					<textarea id="bz" style="width: 700px;height:40px;"></textarea>
 				</td>
 			</tr>
-			<tr id="trSY" style="height: 25px;">
-				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					最近年份历史修建记录
-				</td>
-			</tr>
-			<tr id="trSY1" style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					最近年份历史修建记录
-				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divPlan">
-						<a style="color: #0066CB;" href='javascript:void(0)'
-							onclick="showInfo('FE6F2C88CE99C888E040007F01003776','FE5F250E8E8E0E15E040007F01006DFD','Plan_Security_PlanDetail.aspx','Y852','1.5450','44','')"><img
-							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排安保工程项目计划信息；</a><a
-							style="color: #0066CB;" href='javascript:void(0)'
-							onclick="showInfo('FEAB63F77D2B9C50E040007F01007F4C','978cb626-a84d-46f1-8b6e-62482375e854','Plan_Engineering_PlanDetail.aspx','Y852','1.5450','44','')"><img
-							alt="" src="../images/page/jt.jpg" style="border: none;" />2014年，Y852（万安大坝至武术）[K1.5450-K44]，已安排工程改造路面升级项目计划信息；</a><br />
-					</div>
-				</td>
-			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
                 	<img onclick="editGcgj()" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' "/>
@@ -304,6 +290,7 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editsbnf");
+	var xxId=parent.YMLib.Var.jhbm;
 	//准备上传工可报告
 	$("#uploadGk").uploadify({
 			/*注意前面需要书写path的代码*/
@@ -489,7 +476,6 @@
 									'<span id="bhnr'+index+'">'+item.bhnr+'</span> &nbsp;</td></tr>';
 				$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5_6);
 			});
-			
 		}
 	});
 	</script>

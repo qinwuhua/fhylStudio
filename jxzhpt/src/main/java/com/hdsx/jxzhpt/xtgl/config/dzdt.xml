@@ -56,41 +56,40 @@ union all
       union all
 		select count(*) id,'0101030101' name,'01010301' parent ,'项目计划库' bz
 		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-    	gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030102' name,'01010301' parent ,'项目计划库' bz
 		from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join xmk_abgc lx on (sc.xmkid=lx.id) 
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030103' name,'01010301' parent ,'项目计划库' bz
 		from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz lx on (sc.xmkid=lx.id)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwbm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030104' name,'01010301' parent ,'项目计划库' bz
 		from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(id) id, '0101030105' name,'01010301' parent ,'项目计划库' bz
 		from (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)  
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and jh.sbzt='1' and jh.spzt='0' and  
-		gydwdm like rtrim(#{sourceid},0)||'%' and xzqhdm like rtrim(#{xzqh},0)||'%')
+		where jh_sbthcd=4 and jh.sbzt='1' and jh.spzt='0'
+		<!-- and gydwdm like rtrim(#{sourceid},0)||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->)
 		   union all
 		select count(*) id,'0101030106' name,'01010301' parent ,'项目计划库' bz
 		from plan_yhdzx jh left join plan_lx_yhdzx lx on(jh.id=lx.jhid) 
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and sbzt='1' and spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and sbzt='1' and spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030107' name,'01010301' parent ,'项目计划库' bz
 		from plan_shuih jh left join plan_lx_shuih lx on (jh.id=lx.jhid)
-		where jh_sbthcd=11-length(rtrim(#{sourceid},0)) and sbzt='1' and spzt='0' and  
-		gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%'
+		where jh_sbthcd=4 and sbzt='1' and spzt='0' 
+		<!-- and gydwdm like #{sourceid}||'%' and xzqhdm like rtrim(#{xzqh},0)||'%' -->
 		   union all
 		select count(*) id,'0101030108' name,'01010301' parent,'项目计划库' bz from plan_hsly where xzqhdm like #{xzqh} 
-		
      	union all
 		select count(*) id,'0101040201' name,'01010402' parent ,'月报进度' bz
     from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id)  
@@ -117,10 +116,10 @@ union all
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
-   select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+   select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct(jh.id) from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where sjsh='未审核' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' 
+    gydwdm like #{sourceid}||'%' )
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
@@ -244,10 +243,10 @@ union all
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%'
        union all
-    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where sjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%'
+    gydwdm like #{sourceid}||'%')
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
@@ -370,10 +369,10 @@ union all
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
     gydwdm like #{sourceid}||'%' 
        union all
-    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz
-    from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
+    select count(*) id,'0101040206' name,'01010402' parent ,'月报进度' bz from
+   (select distinct jh.id from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid)
     where xjzt='未上报' and spzt='1' and kgzt='1' and jgzt='0' and
-    gydwdm like #{sourceid}||'%' 
+    gydwdm like #{sourceid}||'%' )
        union all
     select count(*) id,'0101040207' name,'01010402' parent ,'月报进度' bz
     from plan_gcsj jh left join plan_lx_gcsj lx on (jh.id=lx.jhid)  
@@ -394,35 +393,40 @@ union all
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
 		select sj.id,sj.xmmc as roadname,sjlx.qdzh as roadstart,sjlx.zdzh as roadends,sjlx.gydw,sjlx.xzqhmc,
 		to_char(sj.jhnf) as nf ,'路面升级' as unit
-		from plan_lx_gcsj sjlx right join plan_gcsj sj on sjlx.jhid=sj.id where sjlx.lxbm=#{roadcode}
-		or sjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		from plan_lx_gcsj sjlx right join plan_gcsj sj on sjlx.jhid=sj.id where sjlx.lxbm like #{roadcode}||'%'
+		or sjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%' and sjlx.gydwdm like rtrim(#{gydw},'0')||'%')
 		union all
 		select gj.id,gj.xmmc as roadname,gjlx.qdzh as roadstart,gjlx.zdzh as roadends,gjlx.gydw,gjlx.xzqhmc,
 		to_char(gj.sbnf) as nf,'路面改建' as unit
-		from plan_lx_gcgj gjlx right join plan_gcgj gj on gjlx.jhid=gj.id where gjlx.lxbm=#{roadcode}
-		or gjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		from plan_lx_gcgj gjlx right join plan_gcgj gj on gjlx.jhid=gj.id where (gjlx.lxbm like #{roadcode}||'%'
+		or gjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%') 
+		and gjlx.gydwdm like rtrim(#{gydw},'0')||'%')
 		union all
 		select sh.id,sh.xmmc as roadname,shlx.qdzh as roadstart,shlx.zdzh as roadends,shlx.gydw,shlx.xzqhmc,
 		to_char(sh.sbnf) as nf,'水毁项目' as unit
-		from plan_lx_shuih shlx right join plan_shuih sh on shlx.jhid=sh.id where shlx.lxbm=#{roadcode}
-		or shlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		from plan_lx_shuih shlx right join plan_shuih sh on shlx.jhid=sh.id where (shlx.lxbm like #{roadcode}||'%'
+		or shlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}) 
+		and shlx.gydwdm like rtrim(#{gydw},'0')||'%')
 		union all
 		select abjh.id,ablx.lxmc as roadname,ablx.qdzh as roadstart,ablx.zdzh as roadends,ablx.gydw,ablx.xzqhmc,
 		to_char(abjh.jhnf) as nf,'安保工程' as unit
 		from xmk_abgc ablx right join sck_abgc absc on ablx.id=absc.xmkid right join plan_abgc abjh 
-		on absc.sckid=abjh.sckid where ablx.lxbm=#{roadcode} or
-		ablx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		on absc.sckid=abjh.sckid where (ablx.lxbm like #{roadcode}||'%' or
+		ablx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%') 
+		and ablx.gydwdm like rtrim(#{gydw},'0')||'%')
 		union all
 		select zhjh.id,zhlx.lxmc as roadname,zhlx.qdzh as roadstart,zhlx.zdzh as roadends,zhlx.gydw,zhlx.xzqhmc,
 		to_char(zhjh.sbnf) as nf,'灾害防治' as unit
 		from xmk_zhfz zhlx right join sck_zhfz zhsc on zhlx.id=zhsc.xmkid right join plan_zhfz zhjh 
-		on zhsc.sckid=zhjh.sckid where zhlx.lxbm=#{roadcode} or 
-		zhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		on zhsc.sckid=zhjh.sckid where (zhlx.lxbm like #{roadcode}||'%' or 
+		zhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%') 
+		and zhlx.gydwdm like rtrim(#{gydw},'0')||'%')
 		union all
 		select yhjh.id,yhlx.lxmc as roadname,yhlx.qdzh as roadstart,yhlx.zdzh as roadends,yhlx.gydwmc as gydw,yhlx.xzqhmc,
 		to_char(yhjh.sbnf),'养护大中修' as unit
-		from plan_lx_yhdzx yhlx right join plan_yhdzx yhjh on yhlx.jhid=yhjh.id where yhlx.lxbm=#{roadcode}
-		or yhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm=#{roadcode})
+		from plan_lx_yhdzx yhlx right join plan_yhdzx yhjh on yhlx.jhid=yhjh.id where (yhlx.lxbm like #{roadcode}||'%'
+		or yhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%') 
+		and yhlx.gydwdm like rtrim(#{gydw},'0')||'%')
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
 		

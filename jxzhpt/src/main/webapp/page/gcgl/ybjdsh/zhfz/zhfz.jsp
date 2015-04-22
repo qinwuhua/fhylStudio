@@ -22,9 +22,15 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
+			loadUnit1("gydw",$.cookie("unit"));
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
+			}
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
 			showAll();
 		});
@@ -67,6 +73,9 @@ a:active {
         						<input id="gydw" style="width: 200px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						</select>
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
         							<option value="">全&nbsp;&nbsp;部</option>

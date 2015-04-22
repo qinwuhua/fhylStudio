@@ -15,30 +15,68 @@
 <script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
-<style>
-#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(../../../images/jianjiao.png) 8px 0 no-repeat;}
-#righttop{height:33px;background:url(../../../images/righttopbg.gif) 0 0 repeat-x;}
-a:link {text-decoration: none;}
-a:visited {text-decoration: none;}
-a:hover {text-decoration: none;}
-a:active {text-decoration: none;}
-table {border-collapse:collapse;}
-.table_body tr td {text-align:center; 	font-size:1em;font-weight:bold;border:1px solid black;padding:3px 7px 2px 7px;}
+	<style type="text/css">
+<!--
+a:link {
+ text-decoration: none;
+}
+a:visited {
+ text-decoration: none;
+}
+a:hover {
+ text-decoration: none;
+}
+a:active {
+ text-decoration: none;
+}
+table {
+	border-collapse:collapse;
+}
+table thead tr td {
+	text-align:center; 	
+	font-size:1em;
+	font-weight:bold;
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+table tbody tr td {
+	text-align:center; 	
+	font-size:1em;
+/* 	font-weight:bold; */
+  	border:1px solid black;
+  	padding:3px 7px 2px 7px;
+}
+-->
 </style>
 <script type="text/javascript">
 $(function(){
 	selYearList("year");
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqh",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqh",$.cookie("dist2"));
 	startSearch();
 });
 function startSearch(){
 	$("#titleYear").html($("#year").combotree("getValue"));
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydw1str='36';
+		else
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join("','");
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0){
+		xzqh1str=$.cookie("dist2");
+	}else{
+		xzqh1str=xzqh1.join("','");
+	}
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getGdzctzjs.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue"),
+		data:"dist="+xzqh1str+"&unit="+gydw1str+"&nf="+$("#year").combotree("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -100,7 +138,10 @@ function exportExcel(){
         	</tr>
 			<tr>
                 <td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div style="width:100%;height:400px">
+                	<div id="gddiv" style="width:100%;height:400px" >
+                	<script type="text/javascript">
+                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
+                	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
 							<table class="table_body" width="2000px" >

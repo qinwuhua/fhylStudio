@@ -7,7 +7,8 @@ function dingwei(index){
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -21,7 +22,7 @@ function Showybxx(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
@@ -34,7 +35,7 @@ function Edityb(index){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','危桥改造月报审核','wqgzybsh.jsp','wqxx',450,280);
+	YMLib.UI.createWindow('wqxx','危桥改造月报审核','wqgzybsh.jsp','wqxx',450,200);
 }
 function shwqgzyb(){
 	var myDate = new Date();
@@ -87,14 +88,18 @@ function xgwqgzyb(){
 //显示所有
 var wqData;
 function showAll(){
-	var gydw=$("#gydw").combobox("getValue");
-	if(gydw=='36'||gydw=='江西省')
-		gydw='';
-	var kgzt='1';
+	var xmnf=$("#ddlYear").val();
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
+	var kgzt='';
 	var jgzt='0';
 	var lxmc=$("#lxmc").val();
 	var qlmc=$("#qlmc").val();
-	var yhjb=$.cookie("unit2");
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
 	var sfsj='';
 	if(yhjb.length==11){
 		yhtype='县级';
@@ -119,13 +124,14 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw,
+	    	gydw: gydw1str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	qlmc:qlmc,
 	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	xmnf:xmnf
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -279,7 +285,7 @@ function jiazaifujian(data1){
 				if(msg.jgyswj!=''){
 					$("#xz_jgyswj").text(msg.jgyswj);
 					$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-					$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
+					$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downWqgzFile.do?type=jgyswj'+"&jhid="+parent.obj1.jhid);
 				}
 			}
 	});	

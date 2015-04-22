@@ -30,7 +30,7 @@
 		}
 		$(function(){
 			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -215,7 +215,6 @@
             	</td>
         	</tr>
 		</table>
-	
-	<div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
+	<!-- <div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>

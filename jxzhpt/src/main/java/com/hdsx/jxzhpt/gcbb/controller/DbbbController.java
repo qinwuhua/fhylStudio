@@ -16,6 +16,7 @@ import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
+import com.hdsx.jxzhpt.gcxmybb.bean.Xmbb;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
@@ -708,9 +709,29 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				throw new RuntimeException();
 			}
 		}
+		//公路建设下达计划
 		public void gljsxdList(){
-				List<Excel_list> list = dbServer.gljsxdList(jckwqgz);
 			try {
+				String tiaojian1="";
+				String tiaojian2="";
+				String gydwdm = xmbb.getGydw();
+				String xzqhdm = xmbb.getXzqh();
+				if(gydwdm.indexOf(",")==-1){
+					tiaojian1="and gydw like '%"+gydwdm+"%'";
+				}else{
+					tiaojian1="and gydw in ('"+gydwdm+"')";
+				}
+				if(xzqhdm.indexOf(",")==-1){
+					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
+				}else{
+					tiaojian2="and xzqh in ('"+xzqhdm+"')";
+				}
+				//System.out.println(tiaojian1);
+				//System.out.println(tiaojian2);
+			xmbb.setGydw(tiaojian1);
+			xmbb.setXzqh(tiaojian2);
+			List<Map<String,Object>> list = dbServer.selectgljsxdList(xmbb);
+			
 				JsonUtils.write(list, getresponse().getWriter());
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -771,4 +792,40 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	public Jckwqgz getModel() {
 		return jckwqgz;
 	}
+	private String xzqh;
+	private String gydw;
+	private String xdnf;
+	private String xmlx;
+	private Xmbb xmbb=new Xmbb();
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public Xmbb getXmbb() {
+		return xmbb;
+	}
+	public void setXmbb(Xmbb xmbb) {
+		this.xmbb = xmbb;
+	}
+	
 }

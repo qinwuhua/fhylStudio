@@ -126,11 +126,12 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public boolean updateLrztBySckid(String sckid) {
-		String [] ids=sckid.split(",");
+	public boolean updateLrztBySckid(String id) {
+		String [] ids=id.split(",");
 		List<String> idlist=new ArrayList<String>();
 		for(int i=0;i<ids.length;i++){
 			idlist.add(ids[i]);
+			System.out.println("计划ID："+ids[i]);
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
@@ -227,6 +228,15 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		param.put("xzqhdm", xzqhdm);
 		param.put("nf", nf);
 		return queryOne("queryGcktj2",param);
+	}
+
+	@Override
+	public List<Plan_zhfz> queryZhfzList(Plan_zhfz jh, Jckzhfz lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("jh", jh);
+		params.put("lx", lx);
+		List<Plan_zhfz> queryList = queryList("queryZhfzList2",params);
+		return queryList;
 	}
 
 }

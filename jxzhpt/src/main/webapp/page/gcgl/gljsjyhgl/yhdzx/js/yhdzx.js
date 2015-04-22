@@ -7,7 +7,9 @@ function dingwei(index){
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',740,450);
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
+	//YMLib.UI.createWindow('wqxx','养护大中修开工详情','yhdzxxx.jsp','wqxx',740,450);
 	//window.open("yhdzxxx.jsp");
 }
 function closes(str){
@@ -17,8 +19,13 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','养护大中修开工','wqgzkg.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','养护大中修开工','wqgzkg.jsp','wqxx',700,330);
 	}
+}
+function ykaigong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','养护大中修开工详情','wqgzkg1.jsp','wqxx',700,330);
 }
 	function wangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
@@ -34,7 +41,7 @@ function kaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,500);
 }
 function AddInfo(){
 	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',680,360);
@@ -51,7 +58,7 @@ function Edityb(index){
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglyhdzx.id="+data1.id;
+	var data="gcglyhdzx.id="+data1.id+"&gcglyhdzx.jhid="+data1.id;
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
@@ -61,6 +68,7 @@ function Delyb(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
+					parent.shezhi();
 					$("#ybgrid").datagrid('reload');
 				}else{
 					alert('删除失败！');
@@ -105,19 +113,11 @@ function tjyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-	if($("#tj_wcqk").val()==''){
-		alert("请填入本月完成情况");
-		return;
-	}
-	if($("#tj_sbyf").find("option:selected").text()==''){
-		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
-		return;
-	}
 	var data = "gcglyhdzx.wc_btz="+$("#tj_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#tj_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#tj_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#tj_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#tj_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#tj_kgdl").val()
-	+"&gcglyhdzx.qksm="+$("#tj_qksm").val()+"&gcglyhdzx.wcqk="+$("#tj_wcqk").val()
-	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglyhdzx.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	+"&gcglyhdzx.qksm="+$("#tj_qksm").val()+"&gcglyhdzx.wcqk="+$("#tj_wcqk").text()
+	+"&gcglyhdzx.sbsj="+sbsj+"&gcglyhdzx.sbyf="+$("#tj_sbyf").val()+"&gcglyhdzx.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
 	
 	$.ajax({
 		type:'post',
@@ -128,6 +128,7 @@ function tjyhdzxyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('该月月报可能已存在，保存失败！');
@@ -153,15 +154,11 @@ function xgyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-	if($("#xg_wcqk").val()==''){
-		alert("请填入本月完成情况");
-		return;
-	}
 	var data = "gcglyhdzx.wc_btz="+$("#xg_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#xg_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#xg_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#xg_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#xg_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#xg_kgdl").val()
-	+"&gcglyhdzx.qksm="+$("#xg_qksm").val()+"&gcglyhdzx.wcqk="+$("#xg_wcqk").val()
-	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").find("option:selected").text();
+	+"&gcglyhdzx.qksm="+$("#xg_qksm").val()+"&gcglyhdzx.wcqk="+$("#xg_wcqk").text()
+	+"&gcglyhdzx.jhid="+parent.obj.jhid+"&gcglyhdzx.id="+parent.obj.id+"&gcglyhdzx.sbyf="+$("#xg_sbyf").val();
 //	alert(data);
 	$.ajax({
 		type:'post',
@@ -172,6 +169,7 @@ function xgyhdzxyb(){
 			if(Boolean(msg)){
 				alert('保存成功！');
 				parent.$("#ybgrid").datagrid('reload');
+				parent.shezhi();
 				closes('wqxx');
 			}else{
 				alert('保存失败！');
@@ -202,7 +200,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglyhdzx.jhxdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglyhdzx.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglyhdzx.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglyhdzx.sgdw="+$("#tj_sgdw").val()+"&gcglyhdzx.jldw="+$("#tj_jldw").val()+"&gcglyhdzx.jsdw="+$("#tj_jsdw").val()
+	+"&gcglyhdzx.sgdw="+$("#tj_sgdw").val()+"&gcglyhdzx.jldw="+$("#tj_jldw").val()+"&gcglyhdzx.jsdw="+$("#tj_jsdw").val()+"&gcglyhdzx.sfgk="+$("#sfgk").val()
 	+"&gcglyhdzx.htje="+$("#tj_htje").val()+"&gcglyhdzx.gys="+$("#tj_gys").val()+"&gcglyhdzx.jhid="+parent.obj1.id;
 	//alert(data);
 	$.ajax({
@@ -270,9 +268,12 @@ function tjwqgzwwg(){
 }
 
 function showAll(){
-	var gydw=$("#gydw").combobox("getValue");
-	if(gydw=='36')
-		gydw='';
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0){
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join(',');
+	}
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
@@ -290,6 +291,7 @@ function showAll(){
 		yhtype='省级';
 		sfsj=7;
 	}
+	var xmnf=$("#ddlYear").val();
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
 	    url:'../../../../gcgl/selectYhdzxjhList.do',
@@ -301,34 +303,50 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw,
+	    	gydw: gydw1str,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
-	    	sfsj:sfsj
+	    	sfsj:sfsj,
+	    	xmnf:xmnf
 		},
 	    columns:[[
               {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
   	        	if(row.kgzt=='1'){
-  	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
+  	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
   	        	}else
-  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'月报   '+'完工   '+'未完工   ';
+  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'未完工   ';
   	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'hdhlc',title:'核对里程',width:60,align:'center'},
-	        {field:'jsdj',title:'技术等级',width:80,align:'center'},
-	        {field:'ylmkd',title:'原路面宽度',width:80,align:'center'},
-	        {field:'classify',title:'工程分类',width:80,align:'center'},
-	        {field:'totalinvest',title:'总投资',width:60,align:'center'},
-	        {field:'totalsubsidyfund',title:'总补助资金',width:90,align:'center'}
-	    ]]    
+  	      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+  	    {field:'xmmc',title:'项目名称',width:200,align:'center'},
+	        {field:'c5',title:'管养单位',width:200,align:'center',formatter:function(value,row,index){
+		    	return row.plan_lx_yhdzxs[0].gydwmc;
+		    }},
+	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
+	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
+	        {field:'totalinvest',title:'批复总投资',width:80,align:'center'},
+	        {field:'totalsubsidyfund',title:'部补助金额(万元)',width:100,align:'center'},
+		    {field:'totalplacefund',title:'地方自筹金额(万元)',width:100,align:'center'}
+	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_yhdzxs,
+  			columns:[[
+  			    {field:'gydwmc',title:'管养单位',width:200,align:'center'},
+  			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+  			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+  			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+  			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+  			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+  			    {field:'hdlc',title:'隐患里程',width:60,align:'center'}
+  			]]
+	    	});
+	    }    
 	}); 
 }
 
@@ -485,7 +503,7 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downYhdzxFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	
@@ -536,4 +554,31 @@ function thsjyb(index){
 			}
 		});	
 	}	
+}
+function shezhi(){
+	var data="gcglwqgz.jhid="+parent.obj1.id+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/selectWqgzbzzj.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg.zbfzj=='')
+				$("#zbfzj").text('0');
+			else
+				$("#zbfzj").text(msg.zbfzj);
+			if(msg.nbfzj=='')
+				$("#nbfzj").text('0');
+			else
+				$("#nbfzj").text(msg.nbfzj);
+			if(msg.nxdzj=='')
+				$("#nxdzj").text('0');
+			else
+				$("#nxdzj").text(msg.nxdzj);
+			if(msg.zxdzj=='')
+				$("#jhxdzj").text('0');
+			else
+				$("#jhxdzj").text(msg.zxdzj);
+		}
+	});	
 }

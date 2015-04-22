@@ -192,4 +192,17 @@
 	<delete id="deletetrqk" parameterType="trqk">
 	delete from WJXT_TRQK where id=#{id}
 	</delete>
+	<select id="getPqiList" parameterType="lkmxb" resultType="lkmxb">
+		select * from(
+			select t1.*,t2.tbnf from LKPD_MXB_DATA t1,lkpd_mxb t2 where t1.mxb_id=t2.id(+) and lxbh not like '合计'
+		)
+		where 1=1
+		<if test="tbnf != null and  tbnf != ''">
+			and tbnf = #{tbnf}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+			${tiaojian}
+		</if>
+		
+	</select>
 </mapper>

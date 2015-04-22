@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Plan_yhdzx {
 	private String id;
+	private String xmmc;
 	private String sbnf;
 	private String classify;//工程分类
 	private String ordernum;
@@ -63,6 +64,21 @@ public class Plan_yhdzx {
 	private String jh_sbthcd;//计划上报退回长度
 	private String sbbm;//上报部门
 	private String spbm;//审批部门
+	private String sjlmlx;//设计路面类型
+	private String sfgk;
+	
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
+	public String getSjlmlx() {
+		return sjlmlx;
+	}
+	public void setSjlmlx(String sjlmlx) {
+		this.sjlmlx = sjlmlx;
+	}
 	public String getSbbm() {
 		return sbbm;
 	}
@@ -416,5 +432,11 @@ public class Plan_yhdzx {
 	}
 	public void setJh_sbthcd(String jh_sbthcd) {
 		this.jh_sbthcd = jh_sbthcd;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
 	}
 }

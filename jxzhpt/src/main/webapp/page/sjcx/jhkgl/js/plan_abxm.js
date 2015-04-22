@@ -22,6 +22,13 @@ function querySumAbgc(jh,lx){
 					$('#lblBTZ').html(data.jhsybbzje);
 				if(data.jhsydfzczj!=null && data.jhsydfzczj!="")
 					$('#lblDFTZ').html(data.jhsydfzczj);
+			}else{
+				$('#lblCount').html("0");
+				$('#lblZLC').html("0");
+				$('#lblYHLC').html("0");
+				$('#lblZTZ').html("0");
+				$('#lblBTZ').html("0");
+				$('#lblDFTZ').html("0");
 			}
 		}
 	});
