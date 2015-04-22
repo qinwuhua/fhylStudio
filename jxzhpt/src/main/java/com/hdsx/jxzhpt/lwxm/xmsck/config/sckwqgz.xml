@@ -35,7 +35,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -79,7 +79,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -152,7 +152,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -199,7 +199,7 @@
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -276,7 +276,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -321,7 +321,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
@@ -377,7 +377,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -408,7 +408,7 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
 		<if test="xmnf!='' and xmnf!= null ">
-			and xmnf like '%'||(#{xmnf})||'%'
+			and scxmnf like '%'||(#{xmnf})||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
