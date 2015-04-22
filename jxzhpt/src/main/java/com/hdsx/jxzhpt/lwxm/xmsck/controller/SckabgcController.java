@@ -84,6 +84,16 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void exportExcel_abgc_scgl(){
 		try {
+			if(sckabgc.getGydw().indexOf(",")==-1){
+				sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+			}else{
+				sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+			}
+			if(sckabgc.getXzqhdm().indexOf(",")==-1){
+				sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+			}else{
+				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=abgcServer.exportExcel_abgc_scgl(sckabgc);
 			//导出设置
@@ -106,11 +116,21 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			ee.makeExcel(tableName, sheetBeans, response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 	}
 	public void exportExcel_abgc_scsh(){
 		try {
+			if(sckabgc.getGydw().indexOf(",")==-1){
+				sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+			}else{
+				sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+			}
+			if(sckabgc.getXzqhdm().indexOf(",")==-1){
+				sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+			}else{
+				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=abgcServer.exportExcel_abgc_scsh(sckabgc);
 			//导出设置
@@ -133,7 +153,7 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 			ee.makeExcel(tableName, sheetBeans, response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 	}
 	public void insertSckabgc(){
@@ -142,6 +162,16 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 		else ResponseUtils.write(getresponse(), "false");
 	}
 	public void selectSckabgc(){
+		if(sckabgc.getGydw().indexOf(",")==-1){
+			sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+		}else{
+			sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+		}
+		if(sckabgc.getXzqhdm().indexOf(",")==-1){
+			sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+		}else{
+			sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+		}
 		List<Sckabgc> list = abgcServer.selectSckabgc(sckabgc);
 		int count = abgcServer.selectAbgcCount(sckabgc);
 		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
@@ -183,6 +213,16 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	
 	public void selectSckShabgc(){
+		if(sckabgc.getGydw().indexOf(",")==-1){
+			sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+		}else{
+			sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+		}
+		if(sckabgc.getXzqhdm().indexOf(",")==-1){
+			sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+		}else{
+			sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+		}
 		List<Sckabgc> list = abgcServer.selectSckShabgc(sckabgc);
 		int count = abgcServer.selectAbgcShCount(sckabgc);
 		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();
@@ -233,6 +273,16 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selSckAbgcCount(){
 		try {
+			if(sckabgc.getGydw().indexOf(",")==-1){
+				sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+			}else{
+				sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+			}
+			if(sckabgc.getXzqhdm().indexOf(",")==-1){
+				sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+			}else{
+				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+			}
 			JsonUtils.write(abgcServer.selSckAbgcCount(sckabgc), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -240,12 +290,32 @@ public class SckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selSckAbgcShCount(){
 		try {
+			if(sckabgc.getGydw().indexOf(",")==-1){
+				sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+			}else{
+				sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+			}
+			if(sckabgc.getXzqhdm().indexOf(",")==-1){
+				sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+			}else{
+				sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+			}
 			JsonUtils.write(abgcServer.selSckAbgcShCount(sckabgc), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void lrjhAbgc(){
+		if(sckabgc.getGydw().indexOf(",")==-1){
+			sckabgc.setGydw("and scbmbm like '%"+sckabgc.getGydw()+"%'");
+		}else{
+			sckabgc.setGydw("and scbmbm in ("+sckabgc.getGydw()+")");
+		}
+		if(sckabgc.getXzqhdm().indexOf(",")==-1){
+			sckabgc.setXzqhdm("and xzqhdm like '%"+sckabgc.getXzqhdm()+"%'");
+		}else{
+			sckabgc.setXzqhdm("and xzqhdm in ("+sckabgc.getXzqhdm()+")");
+		}
 		List<Sckabgc> list = abgcServer.lrjhAbgc(sckabgc);
 		int count = abgcServer.lrjhAbgcCount(sckabgc);
 		EasyUIPage<Sckabgc> eui = new EasyUIPage<Sckabgc>();

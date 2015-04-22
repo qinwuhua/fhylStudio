@@ -14,13 +14,12 @@
  	select * from (
  		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
@@ -54,13 +53,12 @@
   <select id="selectWqgzCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where 1=1
  			and  sbthcd &lt;=#{sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
@@ -141,13 +139,12 @@
  	select * from (
  		select rownum num ,t.* from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') 
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
@@ -181,13 +178,12 @@
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
  		select count(*) from xmk_wqgz t where sbthcd=7
 			and sbthcd>=#{sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%') 
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and lxmc like '%'||(#{lxmc})||'%'
  		</if>
@@ -229,12 +225,12 @@
  
  <sql id="wqgz_commonsql">
  	and  sbthcd &lt;=#{sbthcd}
- 	<if test="gydw!='' and gydw!= null "  >
-		and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
-	</if>
+ 	<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'
 	</if>
@@ -268,12 +264,12 @@
 	sbzt v_0,gydw v_1,xzqhmc v_2,qlbh v_3,qlmc v_4,qlzxzh v_5,lxbm v_6,lxmc v_7,pddj v_8,xjgjnd v_9,xmnf v_10
  	from xmk_wqgz where 1=1
  	and  sbthcd &lt;=#{sbthcd}
- 	<if test="gydw!='' and gydw!= null "  >
-		and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
-	</if>
+ 	<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 	<if test="lxmc!='' and lxmc!= null ">
 		and lxmc like '%'||(#{lxmc})||'%'
 	</if>

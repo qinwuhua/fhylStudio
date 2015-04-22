@@ -22,8 +22,15 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadBmbm("kgzt","开工状态");
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
+			loadBmbm2("kgzt","开工状态");
+			var myDate = new Date();
+			var y = myDate.getFullYear();
+			var m = myDate.getMonth()+1; 
+			for(var x=y;x>=2010;x--){
+				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
+			}
 			showAll();
 		});
 	</script>
@@ -50,7 +57,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 				<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;红色旅游施工过程管理</div>
+						<div id="p_top">数据查询>&nbsp;工程管理>&nbsp;红色旅游施工过程管理</div>
 					</div>
 	        
         	</tr>
@@ -63,21 +70,25 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<input id="gydw" style="width: 150px;">
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 150px;">
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
         						<span>项目名称：</span>
-        							<input type="text" id="lxmc" >
+        							<input type="text" id="lxmc"  style="width: 100px;">
+        						<span>项目年份：</span> 
+        						<select name="ddlYear" id="ddlYear" style="width: 70px;">
+        						</select>
         						<span>月报状态：</span>
-        						<select id="ybzt" style="width: 70px;">
+        						<select id="ybzt" style="width: 50px;">
         							<option value="">全&nbsp;&nbsp;部</option>
         							<option value="已上报">已上报</option>
         							<option value="未上报">未上报</option>
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
-        							&nbsp;&nbsp;&nbsp;&nbsp;
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -40%;" onclick="showAll()"/>        					</p>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()"/>        					</p>
         				</div>
         			</fieldset>
         		</td>

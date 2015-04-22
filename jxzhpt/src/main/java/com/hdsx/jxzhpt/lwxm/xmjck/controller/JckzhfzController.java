@@ -82,6 +82,16 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void exportExcel_zhfz(){
 		try {
+			if(jckzhfz.getGydw().indexOf(",")==-1){
+				jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+			}else{
+				jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+			}
+			if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+				jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+			}else{
+				jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz(jckzhfz);
 			System.out.println("------------"+list.size()+"--------------");
@@ -105,11 +115,21 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			ee.makeExcel(tableName, sheetBeans, response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 	}
 	public void exportExcel_zhfz_sh(){
 		try {
+			if(jckzhfz.getGydw().indexOf(",")==-1){
+				jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+			}else{
+				jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+			}
+			if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+				jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+			}else{
+				jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+			}
 			//先得到导出的数据集
 			List <SjbbMessage> list=zhfzServer.exportExcel_zhfz_sh(jckzhfz);
 			System.out.println("------------"+list.size()+"--------------");
@@ -133,7 +153,7 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 			ee.makeExcel(tableName, sheetBeans, response);
 		} catch (Exception e) {
 			System.out.println("---------------------导出有误-----------------------");
-			throw new RuntimeException();
+			e.printStackTrace();
 		}
 	}
 	public void insertZhfz(){
@@ -145,6 +165,16 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void selectZhfz(){
+		if(jckzhfz.getGydw().indexOf(",")==-1){
+			jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+		}else{
+			jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+		}
+		if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+			jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+		}else{
+			jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+		}
 		List<Jckzhfz> zhfzList = zhfzServer.selectZhfzList(jckzhfz);
 		int count = zhfzServer.selectZhfzCount(jckzhfz);
 		EasyUIPage<Jckzhfz> eui = new EasyUIPage<Jckzhfz>();
@@ -207,6 +237,16 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void selectZhfzSh(){
+		if(jckzhfz.getGydw().indexOf(",")==-1){
+			jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+		}else{
+			jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+		}
+		if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+			jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+		}else{
+			jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+		}
 		List<Jckzhfz> zhfzList = zhfzServer.selectJckShzhfz(jckzhfz);
 		int count = zhfzServer.selectZhfzShCount(jckzhfz);
 		EasyUIPage<Jckzhfz> eui = new EasyUIPage<Jckzhfz>();
@@ -235,6 +275,16 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selZhfzCount(){
 		try {
+			if(jckzhfz.getGydw().indexOf(",")==-1){
+				jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+			}else{
+				jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+			}
+			if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+				jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+			}else{
+				jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+			}
 			JsonUtils.write(zhfzServer.selZhfzCount(jckzhfz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -242,6 +292,16 @@ public class JckzhfzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selZhfzShCount(){
 		try {
+			if(jckzhfz.getGydw().indexOf(",")==-1){
+				jckzhfz.setGydw("and tbbmbm like '%"+jckzhfz.getGydw()+"%'");
+			}else{
+				jckzhfz.setGydw("and tbbmbm in ("+jckzhfz.getGydw()+")");
+			}
+			if(jckzhfz.getXzqhdm().indexOf(",")==-1){
+				jckzhfz.setXzqhdm("and xzqhdm like '%"+jckzhfz.getXzqhdm()+"%'");
+			}else{
+				jckzhfz.setXzqhdm("and xzqhdm in ("+jckzhfz.getXzqhdm()+")");
+			}
 			JsonUtils.write(zhfzServer.selZhfzShCount(jckzhfz),getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
