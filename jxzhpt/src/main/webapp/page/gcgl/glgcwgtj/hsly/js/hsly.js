@@ -37,7 +37,7 @@ function showAll(){
 	if(xzqh1.length==0){
 		xzqh11str=$.cookie("dist2");
 	}else{
-		xzqh11str=gydw1.join(',');
+		xzqh11str=xzqh1.join(',');
 	}
 	var jgzt='1';
 	var kgzt='1';
