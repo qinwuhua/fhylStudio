@@ -13,11 +13,10 @@
 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2  from xmk_abgc t where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -47,11 +46,10 @@
 		select count(*) from xmk_abgc where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -133,11 +131,10 @@
 		select rownum num ,t.* from xmk_abgc t where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -169,11 +166,10 @@
 		select count(*) from xmk_abgc where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -200,10 +196,10 @@
 	<sql id="abgc_commonsql">
 		and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -247,10 +243,10 @@
 		from xmk_abgc where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -314,11 +310,10 @@
 		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -347,11 +342,10 @@
 		select count(*) sbthcd,sum(qzlc) qzlc ,sum(yhlc) yhlc from xmk_abgc where sbthcd=7
 			and sbthcd>=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'

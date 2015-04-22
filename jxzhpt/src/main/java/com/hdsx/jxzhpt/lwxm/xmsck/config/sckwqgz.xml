@@ -22,11 +22,10 @@
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id) t where 
 			sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -66,11 +65,10 @@
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id)
 			where sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -139,11 +137,10 @@
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -186,11 +183,10 @@
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
-			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null ">
-			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -263,11 +259,11 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		v_7,pddj v_8,xjgjnd v_9,xmnf v_10,jsxz v_11
 		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
 		and sck_sbthcd &lt;=#{sck_sbthcd}
-		<if test="gydw!='' and gydw!= null "  >
-			and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null "  >
-			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -308,11 +304,11 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
 		from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and
 			sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
-		<if test="gydw!='' and gydw!= null "  >
-			and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
 		</if>
-		<if test="xzqhmc!='' and xzqhmc!= null "  >
-			and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
 		</if>
 		<if test="lxmc!='' and lxmc!= null ">
 			and lxmc like '%'||(#{lxmc})||'%'
@@ -368,11 +364,11 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
  		where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
 			<if test="gydw!='' and gydw!= null ">
-  			and  scbmbm  like #{gydw}||'%' 
-  			</if>
-  			<if test="xzqhdm!='' and xzqhdm!= null ">
-			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
-			</if>
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 		<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
@@ -399,11 +395,11 @@ or (SC.sck_lxbm=k.YLXBM and to_number(SC.sck_qlzxzh)=to_number(k.YQLZXZH)))
  		 where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
 			<if test="gydw!='' and gydw!= null ">
-  			and  scbmbm  like #{gydw}||'%' 
-  			</if>
-  			<if test="xzqhdm!='' and xzqhdm!= null ">
-			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
-			</if>
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 			<if test="qlmc!='' and qlmc!= null ">
 			and qlmc like '%'||(#{qlmc})||'%'
 		</if>
