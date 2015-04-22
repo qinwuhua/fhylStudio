@@ -675,7 +675,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			group by jhid) lx1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) bnhj,sum(z.btzzj) bnbtz,replace(WMSYS.WM_CONCAT(to_char(z.jhxdwh)),',','、') jhxdwh from plan_zjxd z where z.xdnf=#{sbnf} group by z.xmid,z.xdnf) zj1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
-			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+)
+			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+) and zj1.xdnf is not null
 			union all
 			select '路面改造' xmlx,p.bz bz,p.xmmc,lx.xzdj,lx.qdzh,lx.zdzh,lx.lxbh,lx.jsdj,lx.tsdq,lx.shi,lx.xian,'路面改造' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
 			lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,' ' dqiao,' ' sdao,' ' lmkd,' ' jsfa,p.PFZTZ ztz,p.JHSYBZJE btz,p.JHSYDFZCJE stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
@@ -688,7 +688,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			group by jhid) lx1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) bnhj,sum(z.btzzj) bnbtz,replace(WMSYS.WM_CONCAT(to_char(z.jhxdwh)),',','、') jhxdwh from plan_zjxd z where z.xdnf=#{sbnf} group by z.xmid,z.xdnf) zj1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
-			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+)
+			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+) and zj1.xdnf is not null
 			union all
 			select '水毁' xmlx,p.scbz bz,p.xmmc,lx.xzdj,lx.qdzh,lx.zdzh,lx.lxbh,lx.jsdj,lx.tsdq,lx.shi,lx.xian,'水毁' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
 			lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,' ' dqiao,' ' sdao,' ' lmkd,' ' jsfa,p.PFZTZ ztz,p.JHSYBZJE btz,p.JHSYDFZCJE stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
@@ -701,7 +701,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			group by jhid) lx1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) bnhj,sum(z.btzzj) bnbtz,replace(WMSYS.WM_CONCAT(to_char(z.jhxdwh)),',','、') jhxdwh from plan_zjxd z where z.xdnf=#{sbnf} group by z.xmid,z.xdnf) zj1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
-			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+)
+			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+) and zj1.xdnf is not null
 			union all
 			select '养护大中修' xmlx,p.REMARKS bz,p.xmmc,lx.xzdj,lx.qdzh,lx.zdzh,lx.lxbh,lx.jsdj,lx.tsdq,lx.shi,lx.xian,'养护大中修' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
 			lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,' ' dqiao,' ' sdao,lx.lmkd,lx.jsfa,p.TOTALSUBSIDYFUND ztz,p.TOTALSUBSIDYFUND btz,p.TOTALPLACEFUND stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
@@ -715,7 +715,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			group by jhid) lx1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) bnhj,sum(z.btzzj) bnbtz,replace(WMSYS.WM_CONCAT(to_char(z.jhxdwh)),',','、') jhxdwh from plan_zjxd z where z.xdnf=#{sbnf} group by z.xmid,z.xdnf) zj1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
-			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+)
+			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+) and zj1.xdnf is not null
 		)
 		where 1=1
 			<if test="gydw != null and  gydw != ''">
