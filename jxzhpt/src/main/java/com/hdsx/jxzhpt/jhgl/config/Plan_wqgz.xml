@@ -463,4 +463,9 @@
 			where jh.spzt='1' and jh.jh_sbthcd='6'
 		and lx.xzqhdm like #{xzqhdm}) r
 	</select>
+	<select id="queryWqLs" parameterType="jckwqgz" resultMap="wqgz_jh">
+		select jh.id,jh.sbnf,lx.qlmc,lx.qlzxzh from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+    	left join xmk_wqgz lx on (sc.xmkid=lx.id) where lx.qlbh=#{qlbh} or
+    	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})
+	</select>
 </mapper>

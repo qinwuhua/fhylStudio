@@ -399,15 +399,15 @@
 			</tr>
 			<tr id="trSY" style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					危桥改造项目计划部补助资金信息
+					危桥改造项目历史记录
 				</td>
 			</tr>
 			<tr id="trSY1" style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					2014年部补助金额
+				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
+					历史修建记录
 				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					5万元
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<div id="divPlan"></div>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -425,20 +425,17 @@
 	if(parent.YMLib.Var.jhbm!=null){
 		xxId=parent.YMLib.Var.jhbm;
 	}
-	if(bz=="xx" || bz=="sb"){
-		$("#trSY").hide();
-		$("#trSY1").hide();
-	}
-	if(bz=="sh" || bz=="zjxd"){
-		$("#trSY").show();
-		$("#trSY1").show();
-	}
+	//此处ID存入计划年份
+	var lx={'lx.qlbh':null,'lx.lxbm':null,'lx.qlzxzh':null,'lx.id':null};
 	$.ajax({
+		type:'post',
+		async:false,
 		url:'../../../jhgl/queryWqgzById.do',
 		data:"jh.id="+xxId,
 		dataType:'json',
 		success:function(data){
 			//计划
+			lx['lx.id']=data.jhnf;
 			$("#jhid").val(data.id);
 			$('#jhnf').html(data.jhnf);
 			$('#jhkgsj').html(data.jhkgsj);
@@ -463,11 +460,16 @@
 			}
 			//基础和审查
 			$.ajax({
+				type:'post',
+				async:false,
 				url:'../../../xmsck/selectSckwqgzById.do',
 				data:"sckid="+data.sckid,
 				dataType:'json',
 				success:function(jcAndSc){
 					if(jcAndSc!=null){
+						lx['lx.lxbm']=jcAndSc.lxbm;
+						lx['lx.qlbh']=jcAndSc.qlbh;
+						lx['lx.qlzxzh']=jcAndSc.qlzxzh;
 						$('#qlmc').html(jcAndSc.qlmc);
 						$('#qlbm').html(jcAndSc.qlbh);
 						$('#qlzxzh').html(jcAndSc.qlzxzh);
@@ -502,6 +504,29 @@
 					}
 				}
 			});
+		}
+	});
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryWqLs.do',
+		async:false,
+		data:lx,
+		dataType:'json',
+		success:function(data){
+			if(data.length>0){
+				$.each(data,function(index,jh){
+					var a='<a style="color:#0066CB;font-size:12px;">';
+					a+=jh.sbnf+'年,'+lx.qlmc+'【';
+					a+=lx.qlzxzh;
+					a+='】</a>';
+					if(index<data.length-1){
+						a+="；";
+					}
+					$('#divPlan').append(a);
+				});
+			}else{
+				$('#divPlan').append("暂无历史记录！");
+			}
 		}
 	});
 	</script>

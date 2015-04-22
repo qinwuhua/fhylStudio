@@ -325,6 +325,10 @@ public class Plan_wqgzController extends BaseActionSupport {
 		ExcelEntity excel=new ExcelEntity("危桥改造",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "危桥改造-资金下达", getresponse());
 	}
+	public void queryWqLs() throws IOException, Exception{
+		List<Plan_wqgz> ls=wqgzServer.queryWqLs(lx);
+		JsonUtils.write(ls, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;

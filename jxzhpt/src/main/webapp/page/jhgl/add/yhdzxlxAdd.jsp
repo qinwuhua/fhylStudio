@@ -325,7 +325,8 @@
 				success:function(data){
 					if(data.result){
 						alert("添加成功！");
-						parent.$('#add_yhdzxlx').window('destroy');
+						parent.$('#grid').datagrid('reload');
+						$('#add_yhdzxlx').window('destroy');
 					}
 				},
 				error:function(e){

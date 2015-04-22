@@ -72,7 +72,8 @@
 			success:function(data){
 				if(data.result=="true"){
 					alert("添加成功！");
-					parent.$('#add_sjlx').window('destroy');
+					parent.$('#grdab').datagrid('reload');
+					$('#add_sjlx').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){

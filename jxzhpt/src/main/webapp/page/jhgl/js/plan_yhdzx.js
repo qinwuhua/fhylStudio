@@ -135,9 +135,9 @@ function yhdzxxm(jh,lx){
 	gridBind(grid);
 }
 function openAddSjlx(id,nf){
-	parent.YMLib.Var.NF=nf;
-	parent.YMLib.Var.ID=id;
-	parent.YMLib.UI.createWindow('add_yhdzxlx','添加路线',"/jxzhpt/page/jhgl/add/yhdzxlxAdd.jsp",'addyhdzxlx',880,330);
+	YMLib.Var.NF=nf;
+	YMLib.Var.ID=id;
+	YMLib.UI.createWindow('add_yhdzxlx','添加路线',"/jxzhpt/page/jhgl/add/yhdzxlxAdd.jsp",'addyhdzxlx',880,330);
 }
 function yhdzxxm_sb(jh,lx){
 	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,

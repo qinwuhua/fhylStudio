@@ -212,8 +212,8 @@
 				success:function(data){
 					if(data.result){
 						alert("修改成功！");
-						searchYhdzx();
-						$('#yhdzx_xx').dialog('close');
+						parent.$('#grid').datagrid('reload');
+						parent.$('#yhdzx_edit').window('destroy');
 					}
 				}
 			});

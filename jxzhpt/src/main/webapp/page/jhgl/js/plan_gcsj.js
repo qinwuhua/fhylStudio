@@ -49,7 +49,7 @@ function openWindow(id){
 }
 function openEditWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_xx',1000,500);
+	YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
 }
 //工程路面升级
 function gclmsjxm(jh,lx){
@@ -138,9 +138,9 @@ function gclmsjxm(jh,lx){
 	gridBind(grid);
 }
 function openAddSjlx(id,nf){
-	parent.YMLib.Var.NF=nf;
-	parent.YMLib.Var.ID=id;
-	parent.YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjlxAdd.jsp",'addsjlx',900,380);
+	YMLib.Var.NF=nf;
+	YMLib.Var.ID=id;
+	YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjlxAdd.jsp",'addsjlx',900,380);
 }
 function gclmsjxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
@@ -394,7 +394,8 @@ function editGcsj(){
 			data:jh,
 			success:function(data){
 				alert("修改成功！");
-				$('#gclmsj_xx').dialog('close');
+				parent.$('#grdab').datagrid('reload');
+				parent.$('#gclmsj_edit').window('destroy');
 			}
 		});
 	}else{

@@ -142,8 +142,8 @@
 			success:function(data){
 				if(data.result=="true"){
 					alert("添加成功！");
-					parent.$('#add_lmgj').window('destroy');
-					parent.location.replace();
+					parent.$('#grid').datagrid('reload');
+					$('#add_gjlx').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){

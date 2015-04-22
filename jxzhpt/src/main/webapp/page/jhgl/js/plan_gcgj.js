@@ -149,9 +149,9 @@ function gclmgjxm(jh,lx){
 	gridBind(grid);
 }
 function openAddLx(id,nf){
-	parent.YMLib.Var.NF=nf;
-	parent.YMLib.Var.ID=id;
-	parent.YMLib.UI.createWindow('add_gjlx','添加路线',"/jxzhpt/page/jhgl/add/lmgjlxAdd.jsp",'addgjlx',900,380);
+	YMLib.Var.NF=nf;
+	YMLib.Var.ID=id;
+	YMLib.UI.createWindow('add_gjlx','添加路线',"/jxzhpt/page/jhgl/add/lmgjlxAdd.jsp",'addgjlx',900,380);
 }
 function gclmgjxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
@@ -438,7 +438,8 @@ function editGcgj(){
 			data:jh,
 			success:function(data){
 				alert("修改成功！");
-				$('#gclmgj_xx').dialog('close');
+				parent.$('#grid').datagrid('reload');
+				parent.$('#gclmgj_xx').window('destroy');
 				searchGcgj();
 			}
 		});

@@ -138,9 +138,9 @@ function shxm(jh,lx){
 	gridBind(grid);
 }
 function openAddSjlx(id,nf){
-	parent.YMLib.Var.NF=nf;
-	parent.YMLib.Var.ID=id;
-	parent.YMLib.UI.createWindow('add_shuihlx','添加路线',"/jxzhpt/page/jhgl/add/shuihlxAdd.jsp",'addshuihlx',900,350);
+	YMLib.Var.NF=nf;
+	YMLib.Var.ID=id;
+	YMLib.UI.createWindow('add_shuihlx','添加路线',"/jxzhpt/page/jhgl/add/shuihlxAdd.jsp",'addshuihlx',900,350);
 }
 function shxm_sb(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jh_sbthcd":jh.jh_sbthcd,
@@ -472,7 +472,8 @@ function editShuih(){
 			data:jh,
 			success:function(data){
 				alert("修改成功！");
-				$('#shxm_xx').dialog('close');
+				parent.$('#grid').datagrid('reload');
+				parent.$('#shuih_edit').window('destroy');
 			}
 		});
 	}else{

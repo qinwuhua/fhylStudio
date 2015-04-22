@@ -504,8 +504,8 @@ function editZhfz(){
 		success:function(data){
 			if(data.jh && data.sc){
 				alert("修改成功！");
-				$('#zhfz_xx').dialog('close');
-				searchZhfz();
+				parent.$('#grid').datagrid('reload');
+				parent.$('#zhfz_edit').window('destroy');
 			}
 		}
 	});

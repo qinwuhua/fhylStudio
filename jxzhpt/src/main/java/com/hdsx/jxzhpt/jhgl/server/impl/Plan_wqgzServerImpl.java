@@ -236,4 +236,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		params.put("lx", lx);
 		return queryList("queryWqgzList2",params);
 	}
+
+	@Override
+	public List<Plan_wqgz> queryWqLs(Jckwqgz lx) {
+		return queryList("queryWqLs",lx);
+	}
 }

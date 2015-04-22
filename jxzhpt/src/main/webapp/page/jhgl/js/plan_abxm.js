@@ -589,7 +589,8 @@ function editAbgc(){
 		success:function(data){
 			if(data.jh && data.sc){
 				alert("修改成功！");
-				$('#abgc_xx').dialog('close');
+				parent.$('#grid').datagrid('reload');
+				parent.$('#abgc_edit').window('destroy');
 				searchAbgc();
 			}
 		}

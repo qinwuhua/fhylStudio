@@ -520,8 +520,8 @@ function editWqgz(){
 		data:jh,
 		success:function(data){
 			alert("修改成功！");
-			$('#wqgz_xx').dialog('close');
-			searchWqgz();
+			parent.$('#grid').datagrid('reload');
+			parent.$('#wq_edit').window('destroy');
 		}
 	});
 }

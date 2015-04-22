@@ -78,6 +78,7 @@
 		<action name="downWqgzFile" class="plan_wqgzController" method="downWqgzFile"/>
 		<action name="queryWqgzByStatus" class="plan_wqgzController" method="queryWqgzByStatus"/>
 		<action name="exportWqgzZjxdExcel" class="plan_wqgzController" method="exportWqgzZjxdExcel"/>
+		<action name="queryWqLs" class="plan_wqgzController" method="queryWqLs"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
