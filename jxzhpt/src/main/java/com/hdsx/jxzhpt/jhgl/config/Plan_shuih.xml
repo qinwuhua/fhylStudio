@@ -321,9 +321,14 @@
 			#{4},#{5},#{6},#{7},#{8},#{9},#{10},#{11},#{tbsj},#{gydwdm},#{yjsdj})
 	</insert>
 	<select id="queryGPSBylxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
-		select  t.roadcode as lxbm,t.roadname as lxmc,
-		TO_CHAR(t.roadlen,'FM9999999990.099') as qzlc,t.f114 as yjsdj from JXJCK_2013.GPSROAD t where 
-		t.roadcode=#{lxbm} and <![CDATA[t.roadstart<=#{qdzh}]]> and t.roadends>=#{zdzh} and t.f044=#{gydwdm}
+		select * from (
+			select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
+		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
+		    from  JXJCK_2013.GPSROAD g
+		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
+		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
+			group by roadname,roadcode,g.f114,g.f116) g1
+    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_shuih" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM
