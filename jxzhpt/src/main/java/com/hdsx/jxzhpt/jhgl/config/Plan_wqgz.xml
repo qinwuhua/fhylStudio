@@ -55,7 +55,7 @@
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
 	 				<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			 			and jh.sfylsjl=#{jh.sfylsjl}
+			 			and sc.bzls=#{jh.sfylsjl}
 				 	</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 					and ${lx.gydwbm}
@@ -112,7 +112,7 @@
 	 					and jh.spzt=#{jh.spzt}
 	 				</if>
 	 				<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			 			and jh.sfylsjl=#{jh.sfylsjl}
+			 			and sc.bzls=#{jh.sfylsjl}
 				 	</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 					and ${lx.gydwbm}
@@ -186,7 +186,7 @@
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
 	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			and jh.sfylsjl=#{jh.sfylsjl}
+			and sc.bzls=#{jh.sfylsjl}
 		</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 		and ${lx.gydwbm}
@@ -240,7 +240,7 @@
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
 	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			and jh.sfylsjl=#{jh.sfylsjl}
+			and sc.bzls=#{jh.sfylsjl}
 		</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 		and ${lx.gydwbm}
@@ -335,7 +335,7 @@
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
 	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
-			and jh.sfylsjl=#{jh.sfylsjl}
+			and sc.bzls=#{jh.sfylsjl}
 		</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
 	 		and ${lx.gydwbm}
