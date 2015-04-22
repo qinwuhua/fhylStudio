@@ -572,6 +572,23 @@ public class GcglaqybController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectmbgllist1(){
+		gcglaqyb.setReportmonth(ddlyear+"-"+ddlmonth);
+		gcglaqyb.setFilename(wjmc);
+		gcglaqyb.setRows(rows);
+		gcglaqyb.setPage(page);
+		gcglaqyb.setSendingunits(sendingunits);
+		int count=gcglaqybServer.selectmbgllistCount1(gcglaqyb);
+		List<Gcglaqyb> list=gcglaqybServer.selectmbgllist1(gcglaqyb);
+		EasyUIPage<Gcglaqyb> e=new EasyUIPage<Gcglaqyb>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	@RequestMapping("file/download")  
 	public void downMbglFile() {
 		try {

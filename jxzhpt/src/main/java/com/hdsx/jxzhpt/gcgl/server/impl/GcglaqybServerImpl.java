@@ -307,5 +307,17 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 		// TODO Auto-generated method stub
 		return queryList("selAllUnit1", yhdw);
 	}
+
+	@Override
+	public int selectmbgllistCount1(Gcglaqyb gcglaqyb) {
+		// TODO Auto-generated method stub
+		return queryOne("selectmbgllistCount1", gcglaqyb);
+	}
+
+	@Override
+	public List<Gcglaqyb> selectmbgllist1(Gcglaqyb gcglaqyb) {
+		// TODO Auto-generated method stub
+		return queryList("selectmbgllist1", gcglaqyb);
+	}
 	
 }
