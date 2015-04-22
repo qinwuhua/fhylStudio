@@ -6,6 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>危桥改造</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
 	<div id="wqgz_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -412,7 +415,6 @@
 			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img onclick="closeWindow('wq_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
                		<input type="hidden" id="jhid"/>
                 </td>
             </tr>
@@ -494,7 +496,7 @@
 						$('#bz').html(jcAndSc.bz);
 						//审查库信息
 						$('#fapgdw').html(jcAndSc.fapgdw);
-						$('#fascdw').htmll(jcAndSc.fascdw);
+						$('#fascdw').html(jcAndSc.fascdw);
 						$('#faspsj').html(jcAndSc.faspsj);
 						$('#spwh').html(jcAndSc.spwh);
 						$('#tzgs').html(jcAndSc.tzgs);
@@ -515,9 +517,9 @@
 		success:function(data){
 			if(data.length>0){
 				$.each(data,function(index,jh){
-					var a='<a style="color:#0066CB;font-size:12px;">';
-					a+=jh.sbnf+'年,'+lx.qlmc+'【';
-					a+=lx.qlzxzh;
+					var a='<a href="javascript:onclickXx('+"'危桥改造','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
+					a+=jh.sbnf+'年,'+jh.jckwqgz.qlmc+'【';
+					a+=jh.jckwqgz.qlzxzh;
 					a+='】</a>';
 					if(index<data.length-1){
 						a+="；";

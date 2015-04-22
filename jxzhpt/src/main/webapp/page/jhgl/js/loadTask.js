@@ -26,6 +26,9 @@ function onclickXx(xmlx,id){
 		url+="abgc.jsp";
 	else if(xmlx=="灾害防治")
 		url+="zhfz.jsp";
+	else if(xmlx=="危桥改造"){
+		url+="wqgz.jsp";
+	}
 	parent.YMLib.Var.jhbm=id;
 	parent.YMLib.Var.bz="xx";
 	parent.YMLib.UI.createWindow('xmxx_xx',xmlx,url,'xmxx',1000,500);
