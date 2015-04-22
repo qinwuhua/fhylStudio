@@ -1,5 +1,42 @@
 $(function() {
-
+	var qx=parent.$.cookie("qx3").split(",");
+    var j=1;
+    for(var i=0;i<qx.length;i++){
+		if(qx[i]=='01010601'){
+			$('#aa').accordion('add', {
+				id:"left_menu1",
+				title: '路网项目',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010602'){
+			$('#aa').accordion('add', {
+				id:"left_menu2",
+				title: '计划管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010603'){
+			$('#aa').accordion('add', {
+				id:"left_menu3",
+				title: '工程管理',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}else if(qx[i]=='01010604'){
+			$('#aa').accordion('add', {
+				id:"left_menu4",
+				title: '自定义查询',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}
+	}
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101060101',
 		title:'危桥改造项目基础库',
