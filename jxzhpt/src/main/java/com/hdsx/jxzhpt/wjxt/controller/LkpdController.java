@@ -343,13 +343,13 @@ public class LkpdController extends BaseActionSupport{
 		if(qdzh.length>1){
 			for (int i = 0; i < qdzh.length; i++) {
 				if(i!=qdzh.length-1)
-				tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") or ";
+				tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)<="+qdzh[i]+" and to_number(zdzh) >="+zdzh[i]+") or ";
 				else
-					tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") )";
+					tiaojian=tiaojian+"( lxbh="+lxbh[i]+"and to_number(qdzh)<="+qdzh[i]+" and to_number(zdzh) >="+zdzh[i]+") )";
 			}
 		}else{
 			for (int i = 0; i < qdzh.length; i++) {
-				tiaojian=tiaojian+" lxbh="+lxbh[i]+"and to_number(qdzh)>="+qdzh[i]+" and to_number(zdzh) <="+zdzh[i]+") ";
+				tiaojian=tiaojian+" lxbh="+lxbh[i]+"and to_number(qdzh)<="+qdzh[i]+" and to_number(zdzh) >="+zdzh[i]+") ";
 			}
 		}	
 		lkmxb.setTiaojian(tiaojian);
