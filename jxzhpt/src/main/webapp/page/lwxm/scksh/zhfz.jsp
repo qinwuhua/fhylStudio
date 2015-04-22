@@ -18,8 +18,8 @@
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
 $(function(){
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqhmc",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
 	loadBmbm2("shzt", "审核状态");
 	loadBmbm2("lxjsdj", "技术等级");
