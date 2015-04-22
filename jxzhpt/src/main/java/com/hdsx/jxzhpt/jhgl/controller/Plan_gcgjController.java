@@ -147,6 +147,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 	
 	public void querySumGcgj(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(gcgjServer.querySumGcgj(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -160,6 +162,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 	 */
 	public void queryGcgjList(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
 			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
@@ -183,7 +187,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 此方法弃用
+	 */
 	public void queryGcgjNfs(){
 		try {
 			List<TreeNode> queryGcgjNfs = gcgjServer.queryGcgjNfs();
@@ -195,7 +201,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 根据ID删除计划
+	 */
 	public void dropGcgjById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -208,7 +216,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改计划ID
+	 */
 	public void editGcgjById(){
 		try {
 			JsonUtils.write(gcgjServer.editGcgjById(jh), getresponse().getWriter());
@@ -218,7 +228,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 添加计划验证
+	 */
 	public void verifyLx(){
 		Map<String, Object> result=new HashMap<String, Object>();
 		boolean boolResult=false;
@@ -251,19 +263,23 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改状态
+	 */
 	public void editGcgjStatus(){
 		try {
-				Map<String, String> result=new HashMap<String, String>();
-				result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
-				JsonUtils.write(result, getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导入计划
+	 */
 	public void importGcgj_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
@@ -380,7 +396,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出资金下达Excel
+	 */
 	public void exportGcgjZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[10];
@@ -434,7 +452,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("工程改造路面改建",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "工程改造路面改建-资金下达", getresponse());
 	}
-	
+	/**
+	 * 单次添加计划
+	 */
 	public void insertGcgj(){
 		try{
 			Map<String, String> result=new HashMap<String, String>();
@@ -472,9 +492,32 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 单次添加计划时的编码提示
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void gjAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_gcgj> list=gcgjServer.gjAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
 	//get set
 	public int getPage() {

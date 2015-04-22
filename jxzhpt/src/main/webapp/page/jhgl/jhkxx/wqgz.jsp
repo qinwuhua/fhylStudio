@@ -278,21 +278,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="jhnf">2014</span> &nbsp;
+					<span id="jhnf"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">计划开工时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="jhkgsj">2014/12/18</span> &nbsp;
+					<span id="jhkgsj"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划完工时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="jhwgsj">2014/12/31</span> &nbsp;
+					<span id="jhwgsj"></span> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -301,19 +301,19 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="jhxdsj">2001/2/26</span> &nbsp;
+					<span id="jhxdsj"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">&nbsp;计划下达文号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="jhxdwh">123123</span> &nbsp;
+					<span id="jhxdwh"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="sjdw">未知</span> &nbsp;
+					<span id="sjdw"></span> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -322,21 +322,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="sjpfdw">未知</span> &nbsp;
+					<span id="sjpfdw"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">&nbsp;批复文号
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="pfwh">123123</span> &nbsp;
+					<span id="pfwh"></span> &nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;批复时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="pfsj">2015/1/2</span> &nbsp;
+					<span id="pfsj"></span> &nbsp;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -345,21 +345,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="jhztz">6</span> 万元
+					<span id="jhztz"></span> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">计划使用部补助金额
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="bbz">1</span> 万元
+					<span id="bbz"></span> 万元
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划使用地方自筹资金
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="zfzc">5</span> 万元
+					<span id="zfzc"></span> 万元
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -368,7 +368,7 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="sfsqablbz">否</span> &nbsp;
+					<span id="sfsqablbz"></span> &nbsp;
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">按比例补助申请文号
@@ -439,7 +439,7 @@
 			//计划
 			lx['lx.id']=data.jhnf;
 			$("#jhid").val(data.id);
-			$('#jhnf').html(data.jhnf);
+			$('#jhnf').html(data.sbnf);
 			$('#jhkgsj').html(data.jhkgsj);
 			$('#jhwgsj').html(data.jhwgsj);
 			$('#jhxdsj').html(data.xdsj);

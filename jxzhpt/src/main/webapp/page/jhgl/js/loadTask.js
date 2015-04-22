@@ -5,6 +5,26 @@
 function gydwComboxTree(id){
 	loadUnit(id,$.cookie("unit"));
 }
+function getgydw(id){
+	var result="";
+	var gydws = $("#"+id).combotree("getValues");
+	if(gydws.length==0){
+		result=$.cookie("unit2");
+	}else{
+		result=gydws.join(',');
+	}
+	return result;
+}
+function getxzqhdm(id){
+	var result="";
+	var xzqhs = $("#"+id).combotree("getValues");
+	if(xzqhs.length==0){
+		result=$.cookie("dist2");
+	}else{
+		result=xzqhs.join(',');
+	}
+	return result;
+}
 function radioChecked(name,value){
 	$.each($("input[name='"+name+"']"),function(index,item){
 		if($(item).val()==value){

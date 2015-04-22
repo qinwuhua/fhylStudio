@@ -15,11 +15,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.xerces.impl.xpath.regex.Match;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -125,9 +128,12 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void queryGcsjList(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
 		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
+		System.out.println("管养单位："+lx.getGydwdm());
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
@@ -139,6 +145,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void queryGcsjSum(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(gcsjServer.queryGcsjSum(jh,lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -199,6 +207,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void exportExcel_gcsj(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
 		List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
 		for(Plan_gcsj item : queryGcsjList){
@@ -470,6 +480,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 查询路线历史记录
+	 */
 	public void queryXjls(){
 		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
 		try {
@@ -479,13 +492,35 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 路线升级单次添加提醒
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void sjAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_gcsj> list=gcsjServer.sjAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
 	}
+	/**
+	 * 查询路线升降级记录
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void querySjzh() throws IOException, Exception{
 		List<Plan_lx_gcsj> list=gcsjServer.querySjzh(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
 	//set get
 	public int getPage() {

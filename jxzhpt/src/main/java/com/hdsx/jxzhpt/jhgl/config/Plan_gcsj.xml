@@ -137,29 +137,25 @@
 		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 		 			and jh.jgzt=#{jh.jgzt}
 		 		</if>
-				and jh.id in (
-						select lx.jhid from PLAN_lx_GCSJ lx 
-						where 1=1 
-							<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-								and lx.gydwdm like #{lx.gydwdm}
-							</if>
-							<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-								and lx.xzqhdm like #{lx.xzqhdm}
-							</if>
-							<if test="lx.lxmc!=null and lx.lxmc!=''">
-								and lx.lxmc like '%'||#{lx.lxmc}||'%'
-							</if>
-							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-								and lx.yjsdj=#{lx.yjsdj}
-							</if>
-							<if test="lx.lxbm!=null and lx.lxbm!=''">
-								and lx.lxbm like '%'||#{lx.lxbm}||'%'
-							</if>
-							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-						    </if>
-						    ) order by jh.jhnf,jh.jh_sbthcd
-				) t
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				order by jh.jhnf,jh.jh_sbthcd) t
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
@@ -191,77 +187,69 @@
 		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 		 			and jh.jgzt=#{jh.jgzt}
 		 		</if>
-				and jh.id in (
-						select lx.jhid from PLAN_lx_GCSJ lx 
-						where 1=1 
-							<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-								and lx.gydwdm like #{lx.gydwdm}
-							</if>
-							<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-								and lx.xzqhdm like #{lx.xzqhdm}
-							</if>
-							<if test="lx.lxmc!=null and lx.lxmc!=''">
-								and lx.lxmc like '%'||#{lx.lxmc}||'%'
-							</if>
-							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-								and lx.yjsdj=#{lx.yjsdj}
-							</if>
-							<if test="lx.lxbm!=null and lx.lxbm!=''">
-								and lx.lxbm like 'S'||#{lx.lxbm}
-							</if>
-							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-						    </if>
-						    ) order by jh.jhnf,jh.jh_sbthcd
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if> order by jh.jhnf,jh.jh_sbthcd
 				) t
 		 )
 	</select>
 	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
 		select count(jh.id) from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 		 	where 1=1
-		 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
-				and jh.jhnf =#{jh.jhnf}
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-			and jh.id in (
-					select lx.jhid from PLAN_lx_GCSJ l 
-					where 1=1 
-						<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-							and lx.gydwdm like #{lx.gydwdm}
-						</if>
-						<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-							and lx.xzqhdm like #{lx.xzqhdm}
-						</if>
-						<if test="lx.lxmc!=null and lx.lxmc!=''">
-							and lx.lxmc like '%'||#{lx.lxmc}||'%'
-						</if>
-						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-							and lx.yjsdj=#{lx.yjsdj}
-						</if>
-						<if test="lx.lxbm!=null and lx.lxbm!=''">
-							and lx.lxbm like 'S'||#{lx.lxbm}
-						</if>
-						<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-					    </if>
-					    )
+		 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+		 			and jh.kgzt=#{jh.kgzt}
+		 		</if>
+		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+		 			and jh.jgzt=#{jh.jgzt}
+		 		</if>
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
 	</select>
 	<select id="queryGcsjSum" resultMap="gcsj_jh" parameterType="java.util.Map">
 		select count(id) as id, sum(qzlc) as qzlc,sum(xmlc) as xmlc,sum(pftz) as pftz,
@@ -270,33 +258,45 @@
 			sum(jh.pftz) as pftz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj
 			from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			where 1=1
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
-				and jh.jhnf =#{jh.jhnf}
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
-			</if>
-			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-			</if>
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+		 			and jh.kgzt=#{jh.kgzt}
+		 		</if>
+		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+		 			and jh.jgzt=#{jh.jgzt}
+		 		</if>
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
 			group by jh.id)
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">

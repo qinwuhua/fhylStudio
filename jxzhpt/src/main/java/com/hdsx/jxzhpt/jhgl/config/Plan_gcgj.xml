@@ -68,8 +68,8 @@
 		select * from (
 			select rownum as num,t.* from(
 			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
-			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
+			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
+			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -86,41 +86,34 @@
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
-			<if test="jh.kgzt==null or jh.kgzt==''">
-	 					and 2=2
-	 				</if>
 			<if test="jh.kgzt!=null and jh.kgzt!=''">
 	 			and jh.kgzt=#{jh.kgzt}
 	 		</if>
 	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_GCGJ l 
-					where 1=1 
-						<if test="l.gydwdm!=null and l.gydwdm!=''">
-							and l.gydwdm like #{l.gydwdm}
-						</if>
-						<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-							and l.xzqhdm like #{l.xzqhdm}
-						</if>
-						<if test="l.lxmc!=null and l.lxmc!=''">
-							and l.lxmc like '%'||#{l.lxmc}||'%'
-						</if>
-						<if test="l.yjsdj!=null and l.yjsdj!=''">
-							and l.yjsdj=#{l.yjsdj}
-						</if>
-						<if test="l.lxbm!=null and l.lxbm!=''">
-							and l.lxbm like #{l.lxbm}
-						</if>
-						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-					     and l.xzqhdm in (
-					     	select B.XZQHDM from BT_XZQHTSDQ b 
-					     	WHERE and B.AREACODE=#{l.tsdqbm}
-					     	 )
-					     </if>
-					     ) order by jh.jh_sbthcd,jh.sbnf
-					) t
+	 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+	 			and jh.sfylsjl=#{jh.sfylsjl}
+		 	</if>
+	 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and ${lx.gydwdm}
+			</if>
+			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				and ${lx.xzqhdm}
+			</if>
+			<if test="lx.lxmc!=null and lx.lxmc!=''">
+				and lx.lxmc like '%'||#{lx.lxmc}||'%'
+			</if>
+			<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+				and lx.yjsdj=#{lx.yjsdj}
+			</if>
+			<if test="lx.lxbm!=null and lx.lxbm!=''">
+				and lx.lxbm like #{lx.lxbm}
+			</if>
+			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+				lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+			</if>
+			 order by jh.jh_sbthcd,jh.sbnf) t
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
@@ -128,8 +121,8 @@
 		select * from (
 			select rownum as num,t.* from(
 			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
-			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
+			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
+			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -146,93 +139,131 @@
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
 			</if>
-			<if test="jh.kgzt==null or jh.kgzt==''">
-	 					and 2=2
-	 				</if>
 			<if test="jh.kgzt!=null and jh.kgzt!=''">
 	 			and jh.kgzt=#{jh.kgzt}
 	 		</if>
 	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_GCGJ l 
-					where 1=1 
-						<if test="l.gydwdm!=null and l.gydwdm!=''">
-							and l.gydwdm like #{l.gydwdm}
-						</if>
-						<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-							and l.xzqhdm like #{l.xzqhdm}
-						</if>
-						<if test="l.lxmc!=null and l.lxmc!=''">
-							and l.lxmc like '%'||#{l.lxmc}||'%'
-						</if>
-						<if test="l.yjsdj!=null and l.yjsdj!=''">
-							and l.yjsdj=#{l.yjsdj}
-						</if>
-						<if test="l.lxbm!=null and l.lxbm!=''">
-							and l.lxbm like #{l.lxbm}
-						</if>
-						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-					     and l.xzqhdm in (
-					     	select B.XZQHDM from BT_XZQHTSDQ b 
-					     	WHERE and B.AREACODE=#{l.tsdqbm}
-					     	 )
-					     </if>
-					     ) order by jh.jh_sbthcd,jh.sbnf
-					) t
+	 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+	 			and jh.sfylsjl=#{jh.sfylsjl}
+		 	</if>
+	 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+				and ${lx.gydwdm}
+			</if>
+			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				and ${lx.xzqhdm}
+			</if>
+			<if test="lx.lxmc!=null and lx.lxmc!=''">
+				and lx.lxmc like '%'||#{lx.lxmc}||'%'
+			</if>
+			<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+				and lx.yjsdj=#{lx.yjsdj}
+			</if>
+			<if test="lx.lxbm!=null and lx.lxbm!=''">
+				and lx.lxbm like #{lx.lxbm}
+			</if>
+			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+				lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+			</if>
+			order by jh.jh_sbthcd,jh.sbnf) t
 			)
 	</select>
-	
 	<select id="queryGcgjCount" resultType="int" parameterType="java.util.Map">
-		select count(*) from PLAN_GCGJ jh where 1=1
+		select count(*) from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on lx.jhid=jh.id where 1=1
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+		<if test="jh.sbzt!=null and jh.sbzt!=''">
+			and jh.sbzt=#{jh.sbzt}
+		</if>
+		<if test="jh.spzt!=null and jh.spzt!=''">
+			and jh.spzt=#{jh.spzt}
+		</if>
+		<if test="jh.sbnf!=null and jh.sbnf!=''">
+			and jh.sbnf =#{jh.sbnf}
+		</if>
+		<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 		and jh.kgzt=#{jh.kgzt}
+	 	</if>
+		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
+	 	</if>
+	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+	 		and jh.sfylsjl=#{jh.sfylsjl}
+		</if>
+ 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+			and ${lx.gydwdm}
+		</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+			and ${lx.xzqhdm}
+		</if>
+		<if test="lx.lxmc!=null and lx.lxmc!=''">
+			and lx.lxmc like '%'||#{lx.lxmc}||'%'
+		</if>
+		<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+			and lx.yjsdj=#{lx.yjsdj}
+		</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">
+			and lx.lxbm like #{lx.lxbm}
+		</if>
+		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+			lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+		</if>
+	</select>
+	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
+		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje
+			,sum(qzlc) as qzlc,sum(yhlc) as yhlc from(
+			select jh.id as id,jh.pfztz as pfztz,jh.jhsybzje as jhsybzje,jh.jhsydfzcje as jhsydfzcje,
+			sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc
+			from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
+			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf =#{jh.sbnf}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_GCGJ l
-					where 1=1 
-						<if test="l.gydwdm!=null and l.gydwdm!=''">
-							and l.gydwdm like '%'||#{l.gydwdm}||'%'
-						</if>
-						<if test="l.xzqhdm!=null and l.xzqhdm!=''">
-							and l.xzqhdm like #{l.xzqhdm}
-						</if>
-						<if test="l.lxmc!=null and l.lxmc!=''">
-							and l.lxmc like '%'||#{l.lxmc}||'%'
-						</if>
-						<if test="l.yjsdj!=null and l.yjsdj!=''">
-							and l.yjsdj=#{l.yjsdj}
-						</if>
-						<if test="l.lxbm!=null and l.lxbm!=''">
-							and l.lxbm like #{l.lxbm}
-						</if>
-						<if test="l.tsdqbm!=null and l.tsdqbm!=''">
-					     and l.xzqhdm in (
-					     	select B.XZQHDM from BT_XZQHTSDQ b 
-					     	WHERE 1=1 
-								and B.AREACODE=#{l.tsdqbm}
-					     	 )
-					    </if>
-					     )
+			and jh.jh_sbthcd=#{jh.jh_sbthcd}
+		</if>
+		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+		</if>
+		<if test="jh.sbzt!=null and jh.sbzt!=''">
+			and jh.sbzt=#{jh.sbzt}
+		</if>
+		<if test="jh.spzt!=null and jh.spzt!=''">
+			and jh.spzt=#{jh.spzt}
+		</if>
+		<if test="jh.sbnf!=null and jh.sbnf!=''">
+			and jh.sbnf =#{jh.sbnf}
+		</if>
+		<if test="jh.kgzt!=null and jh.kgzt!=''">
+	 		and jh.kgzt=#{jh.kgzt}
+	 	</if>
+		<if test="jh.jgzt!=null and jh.jgzt!=''">
+	 		and jh.jgzt=#{jh.jgzt}
+	 	</if>
+	 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+	 		and jh.sfylsjl=#{jh.sfylsjl}
+		</if>
+ 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+			and ${lx.gydwdm}
+		</if>
+		<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+			and ${lx.xzqhdm}
+		</if>
+		<if test="lx.lxmc!=null and lx.lxmc!=''">
+			and lx.lxmc like '%'||#{lx.lxmc}||'%'
+		</if>
+		<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+			and lx.yjsdj=#{lx.yjsdj}
+		</if>
+		<if test="lx.lxbm!=null and lx.lxbm!=''">
+			and lx.lxbm like #{lx.lxbm}
+		</if>
+		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+			lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+		</if>
+			group by jh.id,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje)
 	</select>
 	<select id="queryGcgjById" resultMap="gcgj_lx" parameterType="string">
 		select jh.id,jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
@@ -240,9 +271,9 @@
        		jh.sjlmlx,jh.dc,jh.jc,jh.mc,jh.lmkd,jh.pfwh,jh.pfsj,jh.pfztz,jh.jhsybzje,
        		jh.jhsydfzcje,jh.sfsqablbz,jh.ablbzsqwh,jh.sftqss,jh.jhxdwh,jh.gksjwh,
        		jh.sjpfwh,jh.sfgyhbm,jh.gkbgmc,jh.sjsgtmc,jh.bz,
-       		l.lxmc,l.lxbm,l.jsdd,l.qdzh,l.zdzh,l.qzlc,l.gydw,l.xzqhdm,l.xzqhmc,
-       		l.yjsdj,l.ylmlx,l.yhlc,l.bhnr
-		from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on l.jhid=jh.id 
+       		lx.lxmc,lx.lxbm,lx.jsdd,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,
+       		lx.yjsdj,lx.ylmlx,lx.yhlc,lx.bhnr
+		from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on lx.jhid=jh.id 
 		where jh.id=#{id}
 	</select>
 	<select id="queryGcgjNfs" resultType="treenode">
@@ -287,7 +318,6 @@
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
-
 	<insert id="insertGcgj_jh" parameterType="hashMap">
 		insert into plan_gcgj (id,fapgdw,fascdw,
 			faspsj,spwh,tzgs,jsxz,jsnr,
@@ -323,39 +353,6 @@
 		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 			group by roadname,roadcode,g.f114,g.f116) g1
     	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh}]]>
-	</select>
-	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
-		select count(id) as id,sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje
-			,sum(qzlc) as qzlc,sum(yhlc) as yhlc from(
-			select jh.id as id,jh.pfztz as pfztz,jh.jhsybzje as jhsybzje,jh.jhsydfzcje as jhsydfzcje,
-			sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc
-			from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
-			where 1=1
-			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
-			</if>
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.sbnf!=null and jh.sbnf!=''">
-				and jh.sbnf =#{jh.sbnf}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-			group by jh.id,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje)
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcgj" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM

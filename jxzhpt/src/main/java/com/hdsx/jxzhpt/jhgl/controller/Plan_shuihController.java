@@ -112,6 +112,8 @@ public class Plan_shuihController extends BaseActionSupport {
 	
 	public void querySumShuih(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(shuihServer.querySumShuih(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -121,6 +123,8 @@ public class Plan_shuihController extends BaseActionSupport {
 	}
 	
 	public void queryShuihList(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
@@ -141,6 +145,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		}
 	}
 	
+	/**
+	 * 此方法弃用
+	 */
 	public void queryShuihNfs(){
 		try {
 			JsonUtils.write(shuihServer.queryShuihNfs(), getresponse().getWriter());
@@ -185,7 +192,9 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出计划Excel
+	 */
 	public void exportExcel_shuih(){
 		List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
 		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
@@ -217,7 +226,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		HttpServletResponse response= getresponse();
 		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 	}
-	
+	/**
+	 * 导入计划Excel
+	 */
 	public void importShuih_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
@@ -333,7 +344,9 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出水毁资金下达Excel
+	 */
 	public void exportShuihZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[10];
@@ -387,7 +400,11 @@ public class Plan_shuihController extends BaseActionSupport {
 		ExcelEntity excel=new ExcelEntity("水毁项目",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "水毁项目-资金下达", getresponse());
 	}
-	
+	/**
+	 * 单次添加水毁计划
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void insertShuih() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		Plan_lx_shuih shuih=new Plan_lx_shuih();
@@ -420,6 +437,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		result.put("result", strResult);
 		JsonUtils.write(result, getresponse().getWriter());
 	}
+	/**
+	 * 单次添加水毁路线
+	 */
 	public void insertShuihLx(){
 		try{
 			Map<String, String> result=new HashMap<String, String>();
@@ -454,6 +474,24 @@ public class Plan_shuihController extends BaseActionSupport {
 	public void shAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_shuih> list=shuihServer.shAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
 	//set get
 	public int getPage() {

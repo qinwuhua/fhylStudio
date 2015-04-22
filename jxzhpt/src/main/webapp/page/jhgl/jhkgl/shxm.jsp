@@ -23,25 +23,20 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist2"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
-			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
-			var lx={gydw:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumShuih(jh,lx);
 			shxm(jh,lx);
 		});
 		function searchShuih(){
-			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:filterGydwdm($("#gydw").combo("getValue")),
-				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-				lxmc:null,yjsdj:null,lxbm:null
-			};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,yjsdj:null,lxbm:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -89,7 +84,7 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function exportExcel_shuih(){
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+filterGydwdm($("#gydw").combo("getValue"));
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+$.cookie("unit");
 			window.location.href="/jxzhpt/jhgl/exportExcel_shuih.do?"+param;
 		}
 		function addShuih(){
@@ -129,20 +124,15 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
+								<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;">
-								</select>
+								<select name="ddlPDDJ" id="ddlPDDJ" class="easyui-combobox" style="width:65px;"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;">
+								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;"></select>
+								<span>&nbsp;是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="否" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">

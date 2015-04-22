@@ -26,7 +26,7 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 		params.put("page", page);
 		params.put("rows", rows);
 		params.put("jh", jh);
-		params.put("l", lx);
+		params.put("lx", lx);
 		return queryList("queryShuihList",params);
 	}
 	
@@ -34,7 +34,7 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public List<Plan_shuih> queryShuihList(Plan_shuih jh,Plan_lx_shuih lx) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", jh);
-		params.put("l", lx);
+		params.put("lx", lx);
 		return queryList("queryShuihList2",params);
 	}
 
@@ -47,7 +47,7 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public int queryShuihCount(Plan_shuih jh, Plan_lx_shuih lx) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", jh);
-		params.put("l", lx);
+		params.put("lx", lx);
 		return queryOne("queryShuihCount", params);
 	}
 

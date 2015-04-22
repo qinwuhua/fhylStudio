@@ -2,7 +2,9 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function queryGcsjSum(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.jhnf':jh.jhnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,
+			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryGcsjSum.do',
@@ -54,10 +56,9 @@ function openEditWindow(id){
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
-			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
-			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhdm":lx.xzqhdm,
+			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',pagination:true,queryParams:params,
 		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
@@ -143,7 +144,7 @@ function openAddSjlx(id,nf){
 	YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjlxAdd.jsp",'addsjlx',900,380);
 }
 function gclmsjxm_sb(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
@@ -208,7 +209,7 @@ function gclmsjxm_sb(jh,lx){
 	gridBind(grid);
 }
 function gclmsjxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
@@ -274,7 +275,8 @@ function gclmsjxm_sh(jh,lx){
 	gridBind(grid);
 }
 function gclmsjxm_zjxd(jh,lx){
-	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,
+			"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.lxbm":lx.lxbm,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
