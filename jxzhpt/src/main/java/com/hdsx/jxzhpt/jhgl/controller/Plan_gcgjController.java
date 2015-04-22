@@ -110,7 +110,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 上传文件到数据库
+	 */
 	public void uploadGkbg(){
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -144,7 +146,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 查询总计信息
+	 */
 	public void querySumGcgj(){
 		try {
 			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
@@ -349,30 +353,30 @@ public class Plan_gcgjController extends BaseActionSupport{
 						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						gcgj.setTsdqbm(gcgjServer.queryTsdqByXzqh(gcgj.getXzqhdm()));
-						//设置非路网项目的查询条件
-						Plan_flwbzbz flw=new Plan_flwbzbz();
-						flw.setXmlx("工程改造路面改建");//建设项目类型
-						flw.setGldj(gcgj.getLxbm().substring(0, 1));//公路等级
-						flw.setJsdj(gcgj.getYjsdj());//技术等级
-						flw.setTsdq(gcgj.getTsdqbm());
-						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
-						Integer bzzj=null;
-						if(flwResult==null && defaultFlwje==null){
-							flw.setXmlx(null);
-							flw.setGldj(null);
-							flw.setJsdj(null);
-							flw.setTsdq(null);
-							flwResult=gcgjServer.queryBzzj(flw);
-						}
-						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
-						//验证金额
-						Double yhlc=new Double(map.get("11").toString());
-						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("34").toString());
-						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
-						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>"+gcgj.getLxbm()+"批复总投资不在计算结果的范围内<br/>";
-						}
+						//设置非路网项目的查询条件，注释，因为没有统一标准
+//						Plan_flwbzbz flw=new Plan_flwbzbz();
+//						flw.setXmlx("工程改造路面改建");//建设项目类型
+//						flw.setGldj(gcgj.getLxbm().substring(0, 1));//公路等级
+//						flw.setJsdj(gcgj.getYjsdj());//技术等级
+//						flw.setTsdq(gcgj.getTsdqbm());
+//						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
+//						Integer bzzj=null;
+//						if(flwResult==null && defaultFlwje==null){
+//							flw.setXmlx(null);
+//							flw.setGldj(null);
+//							flw.setJsdj(null);
+//							flw.setTsdq(null);
+//							flwResult=gcgjServer.queryBzzj(flw);
+//						}
+//						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+//						//验证金额
+//						Double yhlc=new Double(map.get("11").toString());
+//						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+//						Integer pfztz=new Integer(map.get("34").toString());
+//						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+//						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+//							strVerify+="<br/>"+gcgj.getLxbm()+"批复总投资不在计算结果的范围内<br/>";
+//						}
 					}
 				}else{
 					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已经存在计划！";

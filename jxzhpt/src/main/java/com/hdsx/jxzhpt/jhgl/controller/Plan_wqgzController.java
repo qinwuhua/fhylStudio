@@ -59,7 +59,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private String uploadGkFileName;
 	private File uploadSjt;
 	private String uploadSjtFileName;
-	
+	/**
+	 * 修改危桥状态
+	 */
 	public void editWqgzStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -78,17 +80,41 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 根据状态查询危桥列表，在计划上报时用来查询出所有未上报的计划，并修改状态
+	 */
 	public void queryWqgzByStatus(){
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
 			JsonUtils.write(wqgzServer.queryWqgzByStatus(jh, lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 查询危桥列表
+	 */
+	public void queryWqgzList(){
+		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
+			jsonMap.put("rows", wqgzServer.queryWqgzList(page, rows, jh, lx));
+			JsonUtils.write(jsonMap, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 查询危桥总计信息
+	 */
 	public void querySumWqgz(){
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -103,6 +129,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_wqgz(){
+		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		System.out.println("******************");
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -126,6 +154,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 		HttpServletResponse response= getresponse();
 		ee.makeExcel(tableName, sheetBeans, response);
 	}
+	/**
+	 * 导入危桥计划Excel
+	 */
 	public void importWqgz_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -155,6 +186,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 此方法弃用
+	 */
 	public void queryWqgzNfs(){
 		try {
 			JsonUtils.write(wqgzServer.queryWqgzNfs(), getresponse().getWriter());
@@ -164,20 +198,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
-	public void queryWqgzList(){
-		Map<String, Object> jsonMap=new HashMap<String, Object>();
-		jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
-		jsonMap.put("rows", wqgzServer.queryWqgzList(page, rows, jh, lx));
-		try {
-			JsonUtils.write(jsonMap, getresponse().getWriter());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
+	/**
+	 * 根据ID查询危桥信息
+	 */
 	public void queryWqgzById(){
 		try {
 			JsonUtils.write(wqgzServer.queryWqgzById(jh.getId()), getresponse().getWriter());
@@ -187,7 +210,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 删除危桥计划信息
+	 */
 	public void dropWqgzById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -201,7 +226,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改危桥计划信息
+	 */
 	public void editWqgzById(){
 		try {
 			JsonUtils.write(wqgzServer.editWqgzById(jh), getresponse().getWriter());
@@ -212,7 +239,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改危桥状态
+	 */
 	public void editWqgzStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -224,6 +253,10 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 上传文件
+	 * @throws Exception
+	 */
 	public void uploadWqgzFile() throws Exception{
 		FileInputStream fs=null;
 		byte[] data;
@@ -255,6 +288,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			fs.close();
 		}
 	}
+	/**
+	 * 下载危桥的文件
+	 */
 	public void downWqgzFile(){
         try {
         	Plan_wqgz wqgz = wqgzServer.queryWqgzFjById(jh.getId());
@@ -279,7 +315,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出危桥资金下达Excel
+	 */
 	public void exportWqgzZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[9];
@@ -325,9 +363,32 @@ public class Plan_wqgzController extends BaseActionSupport {
 		ExcelEntity excel=new ExcelEntity("危桥改造",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "危桥改造-资金下达", getresponse());
 	}
+	/**
+	 * 查询危桥自己
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void queryWqLs() throws IOException, Exception{
 		List<Plan_wqgz> ls=wqgzServer.queryWqLs(lx);
 		JsonUtils.write(ls, getresponse().getWriter());
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
 	//set get
 	public int getPage() {

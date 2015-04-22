@@ -297,31 +297,31 @@ public class Plan_shuihController extends BaseActionSupport {
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						shuih.setTsdqbm(shuihServer.queryTsdqByXzqh(shuih.getXzqhdm()));
 						shuih.setYjsdj(queryGPSBylxbm.getYjsdj());
-						//设置非路网项目的查询条件
-						Plan_flwbzbz flw=new Plan_flwbzbz();
-						flw.setXmlx("水毁项目");//建设项目类型
-						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
-						flw.setJsdj(shuih.getYjsdj());//技术等级
-						flw.setTsdq(shuih.getTsdqbm());
-						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
-						Integer bzzj=null;//对应补助标准金额
-						if(flwResult==null && defaultFlwje==null){
-							flw.setXmlx(null);
-							flw.setGldj(null);
-							flw.setJsdj(null);
-							flw.setTsdq(null);
-							flwResult=shuihServer.queryBzzj(flw);
-						}
-						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
-						//验证金额
-						Double yhlc=new Double(map.get("11").toString());
-						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("34").toString());
-						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
-						System.out.println("总投资"+pfztz.intValue()+"   计算"+je+"   浮动"+fdbz+"  标准："+bzzj.intValue());
-						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
-						}
+						//设置非路网项目的查询条件，注释：因为没有统一的补助标准
+//						Plan_flwbzbz flw=new Plan_flwbzbz();
+//						flw.setXmlx("水毁项目");//建设项目类型
+//						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
+//						flw.setJsdj(shuih.getYjsdj());//技术等级
+//						flw.setTsdq(shuih.getTsdqbm());
+//						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
+//						Integer bzzj=null;//对应补助标准金额
+//						if(flwResult==null && defaultFlwje==null){
+//							flw.setXmlx(null);
+//							flw.setGldj(null);
+//							flw.setJsdj(null);
+//							flw.setTsdq(null);
+//							flwResult=shuihServer.queryBzzj(flw);
+//						}
+//						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+//						//验证金额
+//						Double yhlc=new Double(map.get("11").toString());
+//						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+//						Integer pfztz=new Integer(map.get("34").toString());
+//						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+//						System.out.println("总投资"+pfztz.intValue()+"   计算"+je+"   浮动"+fdbz+"  标准："+bzzj.intValue());
+//						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+//							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
+//						}
 					}
 				}else{
 					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已存在计划！";

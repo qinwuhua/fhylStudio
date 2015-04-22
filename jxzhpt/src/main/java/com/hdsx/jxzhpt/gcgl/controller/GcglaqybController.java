@@ -287,15 +287,15 @@ public class GcglaqybController extends BaseActionSupport{
 		gcglaqyb.setRows(rows);
 		gcglaqyb.setPage(page);
 		if("全部".equals(type)){
-			tiaojian="and (uploadepartment like '%'||trim("+gydw+")||'%'"+"or sendingunits like '%'||trim("+gydw+")||'%')";
+			tiaojian="and (uploadepartment='"+gydw+"' or sendingunits like'%"+gydw+"%')";
 			gcglaqyb.setSendingunits(tiaojian);
 		}
 		if("上传".equals(type)){
-			tiaojian="and uploadepartment like '%'||trim("+gydw+")||'%'";
+			tiaojian="and uploadepartment='"+gydw+"'";
 			gcglaqyb.setSendingunits(tiaojian);
 			}
 		if("接收".equals(type)){
-			tiaojian="and sendingunits like '%'||trim("+gydw+")||'%'";
+			tiaojian="and sendingunits like'%"+gydw+"%'";
 			gcglaqyb.setSendingunits(tiaojian);
 		}
 		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);

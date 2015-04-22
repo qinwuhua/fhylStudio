@@ -48,7 +48,7 @@
 				gydw1str=gydw1.join(",");
 			}
 			var xzqh1=$("#xzqh").combotree("getValues");
-			if(xzqh1.length==0){
+			if(xzqh1.length==0||xzqh1.length==1){
 				xzqh1str=$.cookie("dist2");
 			}else{
 				xzqh1str=xzqh1.join(",");
