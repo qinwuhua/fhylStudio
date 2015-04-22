@@ -138,7 +138,7 @@
 		update PLAN_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglyhdzx">
-		update PLAN_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where id=#{jhid}
+		update PLAN_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},jhwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where id=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
@@ -247,8 +247,17 @@
 		<result property="spzt" column="spzt"/>
 		<result property="kgzt" column="kgzt"/>
 		<result property="jgzt" column="jgzt"/>
+		<result property="xmmc" column="xmmc"/>
 		<result property="remarks" column="remarks"/>
 		<result property="qtbz" column="qtbz"/>
+		<result property="sjwgsj" column="sjwgsj"/>
+		<result property="sjkgsj" column="sjkgsj"/>
+		<result property="jsdw" column="jsdw"/>
+		<result property="jldw" column="jldw"/>
+		<result property="sgdw" column="sgdw"/>
+		<result property="gys" column="gys"/>
+		<result property="htje" column="htje"/>
+		<result property="sfgk" column="sfgk"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="totalplacefund" column="totalplacefund"/>
 		<result property="devisenumbder" column="devisenumbder"/>

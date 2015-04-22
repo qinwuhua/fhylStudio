@@ -65,6 +65,14 @@ public class Plan_yhdzx {
 	private String sbbm;//上报部门
 	private String spbm;//审批部门
 	private String sjlmlx;//设计路面类型
+	private String sfgk;
+	
+	public String getSfgk() {
+		return sfgk;
+	}
+	public void setSfgk(String sfgk) {
+		this.sfgk = sfgk;
+	}
 	public String getSjlmlx() {
 		return sjlmlx;
 	}

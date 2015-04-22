@@ -107,7 +107,7 @@
 	function addaqyb(response){
 		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()
 		+"&gcglaqyb.id="+response;
-		alert(data);
+		//alert(data);
 		$.ajax({
 				type:'post',
 				url:'../../../../gcgl/insertAqybb1.do',

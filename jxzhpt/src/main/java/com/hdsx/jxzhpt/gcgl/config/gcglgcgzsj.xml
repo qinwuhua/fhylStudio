@@ -360,7 +360,7 @@
 	<select id="queryGcgjList"  parameterType="gcglgcgzsj" resultMap="gcsj_jh">
 	select * from (
 		select rownum as num,t.* from (
-			select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.xmmc,
+			select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,jh.xmmc,jh.yjwgsj,jh.xdsj,jh.sjkgsj,jh.sgdw,jh.jldw,jh.jsdw,jh.gsztz,jh.htje,
 			jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,jh.sfqxkg,
 			lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 		 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
