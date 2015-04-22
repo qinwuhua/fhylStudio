@@ -1218,6 +1218,7 @@ function loadDist1(id, dwbm) {
 			{
 				checkbox : true,
 				multiple:true,
+				async:false,
 				url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', dwbm);
@@ -1232,6 +1233,7 @@ function loadUnit1(id, dwbm) {
 			{
 				checkbox : true,
 				multiple:true,
+				async:false,
 				url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + dwbm,
 				onLoadSuccess : function (node){
 					$('#' + id).combotree('setValue', dwbm);
