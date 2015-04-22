@@ -281,7 +281,7 @@
 			</tr>
 			<tr style="height: 30px;">
             	<td align="center" colspan="6">
-                	<img onclick="$('#gclmgj_xx').dialog('close')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
+                	<img onclick="closeWindow('gclmgj_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
                 </td>
             </tr>
 		</table>
@@ -441,6 +441,9 @@
 				}
 			});
 		});
+		function closeWindow(id){
+			parent.$('#'+id).window('destroy');
+		}
 	</script>
 </body>
 </html>
