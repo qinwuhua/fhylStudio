@@ -95,7 +95,7 @@ function aqmbgl(){
 }
 function showmbAll(){
 	$('#mbgrid').datagrid({    
-	    url:'../../../../gcgl/selectmbgllist.do',
+	    url:'../../../../gcgl/selectmbgllist1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -105,6 +105,7 @@ function showmbAll(){
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
 	    	wjmc:"",
+	    	sendingunits:$.cookie("unit"),
 	    	ddlyear: "",
 	    	ddlmonth: ""
 	    },

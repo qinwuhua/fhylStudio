@@ -103,7 +103,7 @@
 </script>
 <script type="text/javascript">
 	function addaqyb(response){
-		var data= "&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()+"&gcglaqyb.uploadepartment="+$.cookie("unit")
+		var data= "gcglaqyb.sendingunits="+$("#sendingunitsid").val()+"&gcglaqyb.filename="+$("#tj_filename").val()+"&gcglaqyb.wenhao="+$("#tj_wenhao").val()+"&gcglaqyb.reportmonth="+$("#tj_reportmonth").val()+"&gcglaqyb.remark="+$("#tj_remark").val()+"&gcglaqyb.uploadepartment="+$.cookie("unit")
 		+"&gcglaqyb.id="+response+"&gcglaqyb.uploadpeople="+$.cookie("truename")+"&gcglaqyb.uploadpath="+$("#uploadpath").val();
 		$.ajax({
 				type:'post',
@@ -140,6 +140,7 @@
  		dg.cancel();
 	}
 	$(function(){
+		setGydw("tj_sendingunits","36");
 		var data1="yhdw="+$.cookie("unit");
 		var mystr='';
 		var mystr1='';
@@ -185,7 +186,25 @@
 		});	
 		
 	});
+	function setGydw(id, dwbm){
+			$('#' + id).tree(
+			{
+				checkbox : true,
+				cascadeCheck : false, 
+				multiple:true,
+				url : '/jxzhpt/gcgl/selAllBm3.do?yhdw=' + dwbm,
+				onCheck : function (node){
+					var nodes=$('#' + id).tree('getChecked');
+					var codes='';
+					$('#sendingunitsid').val('');
+					for(var i=0;i<nodes.length;i++){
+						codes+=nodes[i].id+',';
+					}
+					$('#sendingunitsid').val(codes);
+				},
+			});
 
+	}
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <title>无标题文档</title>
@@ -197,8 +216,20 @@
 		                <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                             border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0"
                             cellpadding="0">
+							<tr style="height: 35px;">
+                                <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                    color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                    padding-right: 5px; vertical-align: middle;">
+                                    <b><font color="#009ACD" style="font-size: 12px">接收单位 </font></b>
+                                </td>
+                                <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                    border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" colspan="3">
+                               		<ul id="tj_sendingunits"></ul>
+                             	  <input type="hidden" id="uploadpath">
+                                   <input type="hidden" id="sendingunitsid">
+                                </td>
+                            </tr>
                             <tr style="height: 35px;">
-                            	<input type="hidden" id="uploadpath">
                                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                     color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                     padding-right: 5px; vertical-align: middle;">

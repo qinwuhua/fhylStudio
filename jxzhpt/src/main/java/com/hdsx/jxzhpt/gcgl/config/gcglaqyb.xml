@@ -73,7 +73,7 @@
 		where id=#{id}
 	</update>
 	<update id="insertMbgl1" parameterType="gcglaqyb">
-		update GCGL_AQGLMBGL set filename=#{filename},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth}
+		update GCGL_AQGLYBB set sendingunits=#{sendingunits},uploadpeople=#{uploadpeople},uploadtime=#{uploadtime},filename=#{filename},uploadepartment=#{uploadepartment},remark=#{remark},wenhao=#{wenhao},reportmonth=#{reportmonth},uploadpath=#{uploadpath}
 		where id=#{id}
 	</update>
 	<select id="selectmbgllist" parameterType="gcglaqyb" resultType="gcglaqyb">
