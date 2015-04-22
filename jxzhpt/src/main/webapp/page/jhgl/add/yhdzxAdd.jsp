@@ -292,15 +292,15 @@
 			return (kd*(hd/100)*1000)*sddj/10000;
 		}
 		function insert(){
-			if($('#txtQDZH').val()<$('#spqdzh').html()){
+			if(Number($('#txtQDZH').val())<Number($('#spqdzh').html())){
 				alert("起点桩号要大于或等于"+$('#spqdzh').html());
 				return;
 			}
-			if($('#txtZDZH').val()>$('#spzdzh').html()){
+			if(Number($('#txtZDZH').val())>Number($('#spzdzh').html())){
 				alert("起点桩号要小于或等于"+$('#spzdzh').html());
 				return;
 			}
-			if($('#txtHDLC').val()>$('#txtLC').val()){
+			if(Number($('#txtHDLC').val())>Number($('#txtLC').val())){
 				alert("核对里程不能大于起止里程！");
 				return;
 			}
@@ -345,11 +345,11 @@
 			});
 		}
 		function jisuanlc(t){
-			if($('#txtQDZH').val()<$('#spqdzh').html()){
+			if(Number($('#txtQDZH').val())<Number($('#spqdzh').html())){
 				alert("起点桩号要大于或等于"+$('#spqdzh').html());
 				return;
 			}
-			if($('#txtZDZH').val()>$('#spzdzh').html()){
+			if(Number($('#txtZDZH').val())>Number($('#spzdzh').html())){
 				alert("起点桩号要小于或等于"+$('#spzdzh').html());
 				return;
 			}
