@@ -656,7 +656,13 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 	<!-- qwh -->
 	<select id="selectgljsxdList" parameterType="xmbb" resultType="hashmap">
 	select
-		*
+<!-- 		* -->
+  	xmlx,decode(bz,null,' ',bz) bz,decode(xmmc,null,' ',xmmc) xmmc,decode(xzdj,null,' ',xzdj) xzdj,decode(qdzh,null,' ',qdzh) qdzh,decode(zdzh,null,' ',zdzh) zdzh,
+    decode(lxbh,null,' ',lxbh) lxbh,decode(jsdj,null,' ',jsdj) jsdj,decode(tsdq,null,' ',tsdq) tsdq,decode(shi,null,' ',shi) shi,decode(xian,null,' ',xian) xian,
+    decode(jsxz,null,' ',jsxz) jsxz,decode(hejgl,null,' ',hejgl) hejgl,decode(yijgl,null,' ',yijgl) yijgl,decode(erjgl,null,' ',erjgl) erjgl,decode(sanjgl,null,' ',sanjgl) sanjgl,
+    decode(sijgl,null,' ',sijgl) sijgl,decode(dqiao,null,' ',dqiao) dqiao,decode(sdao,null,' ',sdao) sdao,decode(lmkd,null,' ',lmkd) lmkd,decode(jsfa,null,' ',jsfa) jsfa,
+    decode(ztz,null,' ',ztz) ztz,decode(btz,null,' ',btz) btz,decode(stz,null,' ',stz) stz,decode(snhj,null,' ',snhj) snhj,decode(snbtz,null,' ',snbtz) snbtz,
+    decode(bnhj,null,' ',bnhj) bnhj,decode(bnbtz,null,' ',bnbtz) bnbtz,decode(gkpfwh,null,' ',gkpfwh) gkpfwh,decode(sjpfwh,null,' ',sjpfwh) sjpfwh,decode(jhxdwh,null,' ',jhxdwh) jhxdwh
 	from(	
 		select '路面升级' xmlx,p.remarks bz,p.xmmc,lx.xzdj,lx.qdzh,lx.zdzh,lx.lxbh,lx.jsdj,lx.tsdq,lx.shi,lx.xian,'路面升级' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
 			lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,p.ql_m dqiao,p.sd_m sdao,' ' lmkd,' ' jsfa,p.pftz ztz,p.Jhsybbzje btz,p.Jhsydfzczj stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
