@@ -292,6 +292,13 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void insertYhdzx() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
+		if(lx.getXzqhdm().matches("^[0-9]*[1-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(lx.getXzqhdm().matches("^[0-9]*[1-9]0$") || lx.getXzqhdm().matches("^[0-9]*[1-9]$")){
+			jh.setJh_sbthcd("0");
+		}else if(lx.getXzqhdm().matches("^[0-9]*[1-9]0000$")){
+			
+		}
 		UUID uuid=UUID.randomUUID();
 		jh.setId(uuid.toString());
 		lx.setJhid(uuid.toString());
