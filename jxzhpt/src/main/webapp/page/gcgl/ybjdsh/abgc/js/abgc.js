@@ -91,7 +91,7 @@ function shabgcyb(){
 
 function showAll(){
 	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
+	if(gydw1.length==0||gydw1.length==1){
 		gydw1str=$.cookie("unit2");
 	}else{
 		gydw1str=gydw1.join(',');
