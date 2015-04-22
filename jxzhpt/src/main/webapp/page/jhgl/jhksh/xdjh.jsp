@@ -72,9 +72,11 @@ $(function(){
 	loadDist1("xzqh",$.cookie("dist2"));
 	loadBmbm2("xmlx","项目类型1");
 	xmnf('year');
+	$("#xmn").text($("#year").combobox("getValue"));
 	startSearch();
 });
 function startSearch(){
+	$("#xmn").text($("#year").combobox("getValue"));
 	var gydw1=$("#gydw").combotree("getValues");
 	if(gydw1.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -165,7 +167,7 @@ function startSearch(){
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
 							<table width="2800px"   class="table_body">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><font id="xmn"></font>年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
 										<td rowspan="2">备注</td>
