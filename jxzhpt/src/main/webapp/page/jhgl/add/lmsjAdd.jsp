@@ -110,7 +110,7 @@
 			alert("止点桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
-		if(Number($('#qzlc').val())>Number($('#xmlc').val())){
+		if(Number($('#qzlc').val())<Number($('#xmlc').val())){
 			alert("项目里程不能大于起止里程！");
 			return;
 		}

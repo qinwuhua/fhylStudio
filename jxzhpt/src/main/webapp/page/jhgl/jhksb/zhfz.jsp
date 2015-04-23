@@ -34,12 +34,12 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
-			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			queryZjqf($('#sbnf').combobox("getValue"));
+			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			queryZjqf($('#sbnf').combobox("getValue"));
 			if(getParam("t")=='1'){
 				if(roleName()=="县级"){
 					jh.jh_sbthcd=0;
@@ -196,13 +196,15 @@
 									<option value="已上报">已上报</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
-								</select>
+								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
-								</select>
+								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;">
+								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select>
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<table style="margin:8px 0px 8px 20px;">

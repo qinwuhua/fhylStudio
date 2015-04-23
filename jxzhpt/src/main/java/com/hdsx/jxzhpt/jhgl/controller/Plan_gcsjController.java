@@ -324,9 +324,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
@@ -418,6 +418,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 	public void insertGcsj() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
+		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+			jh.setJh_sbthcd("0");
+		}
 		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
 		lx1.setXzqhdm(lx.getXzqhdm());
 		lx1.setLxbm(lx.getLxbm());
@@ -485,10 +490,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	 */
 	public void queryXjls(){
 		try {
-			List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
-			for (Plan_gcsj plan_gcsj : ls) {
-				System.out.println("路线个数："+plan_gcsj.getPlan_lx_gcsjs().size());
-			}
+			List<Plan_lx_gcsj> ls=gcsjServer.queryXjls(lx);
+			System.out.println("个数："+ls.size());
 			JsonUtils.write(ls, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

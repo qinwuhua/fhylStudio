@@ -212,7 +212,7 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	}
 
 	@Override
-	public List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx) {
+	public List<Plan_lx_gcsj> queryXjls(Plan_lx_gcsj lx) {
 		List<HashMap> queryList = queryList("querySjzh",lx);
 		Map<String, Object> param=new HashMap<String, Object>();
 		param.put("lx", lx);

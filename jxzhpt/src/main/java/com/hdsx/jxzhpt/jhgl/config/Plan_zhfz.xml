@@ -55,11 +55,14 @@
 			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 			 			and jh.jgzt=#{jh.jgzt}
 			 		</if>
+			 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 			and sc.bzls=#{jh.sfylsjl}
+				 	</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
-	 					and lx.gydwbm like #{lx.gydwbm}
+	 					and ${lx.gydwbm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm like #{lx.xzqhdm}
+	 					and ${lx.xzqhdm}
 	 				</if>
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -102,11 +105,14 @@
 			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 			 			and jh.jgzt=#{jh.jgzt}
 			 		</if>
+			 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 			and sc.bzls=#{jh.sfylsjl}
+				 	</if>
 	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
-	 					and lx.gydwbm like #{lx.gydwbm}
+	 					and ${lx.gydwbm}
 	 				</if>
 	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 					and lx.xzqhdm like #{lx.xzqhdm}
+	 					and ${lx.xzqhdm}
 	 				</if>
 	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -137,48 +143,51 @@
 	 		and jh.spzt=#{jh.spzt}
 	 	</if>
 	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
-	 		and lx.gydwbm like #{lx.gydwbm}
+	 		and ${lx.gydwbm}
 	 	</if>
 	</select>
 	<select id="queryZhfzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) 
 		left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
-			and jh.jh_sbthcd=#{jh.jh_sbthcd}
-		</if>
-		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-		</if>
-		<if test="jh.sbnf!=null and jh.sbnf!=''">
-	 		and jh.sbnf=#{jh.sbnf}
-	 	</if>
-	 	<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 		and jh.sbzt=#{jh.sbzt}
-	 	</if>
-	 	<if test="jh.spzt!=null and jh.spzt!=''">
-	 		and jh.spzt=#{jh.spzt}
-	 	</if>
-	 	<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 		and jh.kgzt=#{jh.kgzt}
-	 	</if>
-		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 		and jh.jgzt=#{jh.jgzt}
-	 	</if>
-	 	<if test="lx.gydwbm!=null and lx.gydwbm!=''">
-	 		and lx.gydwbm like #{lx.gydwbm}
-	 	</if>
-	 	<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-	 		and lx.xzqhdm like #{lx.xzqhdm}
-	 	</if>
-	 	<if test="lx.lxmc!=null and lx.lxmc!=''">
-	 		and lx.lxmc like '%'||#{lx.lxmc}||'%'
-	 	</if>
-	 	<if test="lx.lxbm!=null and lx.lxbm!=''">
-	 		and lx.lxbm like #{lx.lxbm}||'%'
-	 	</if>
-	 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-	 		and lx.lxjsdj = #{lx.lxjsjd}
-	 	</if>
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+					<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
+	 					and jh.sbnf=#{jh.sbnf}
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+			 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 			and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 					and ${lx.gydwbm}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and ${lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 					and lx.lxjsdj = #{lx.lxjsjd}
+	 				</if>
 	</select>
 	<select id="queryZhfzNfs"  resultType="treenode">
 		select distinct t.sbnf as text from PLAN_zhfz t order by t.sbnf
@@ -235,10 +244,10 @@
 				and jh.spzt=#{jh.spzt}
 			</if>
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
+				and ${lx.gydwdm}
 			</if>
 			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-				and lx.xzqhdm like #{lx.xzqhdm}
+				and ${lx.xzqhdm}
 			</if>
 			<if test="lx.lxmc!=null and lx.lxmc!=''">
 				and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -312,34 +321,49 @@
 	<select id="querySumZhfz" resultMap="zhfz_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(qzlc) as qzlc,sum(yhlc) as yhlc,
 		sum(pfztz) as pfztz,sum(jhsybzje) as jhsybzje,sum(jhsydfzcje) as jhsydfzcje from(
-			select count(p.id) as id,sum(x.qzlc) as qzlc,sum(x.yhlc) as yhlc,
-			sum(p.pfztz) as pfztz,sum(p.jhsybzje) as jhsybzje,sum(p.jhsydfzcje) as jhsydfzcje
-			from xmk_zhfz x right join sck_zhfz s on (x.id=s.xmkid) right join plan_zhfz p on (s.sckid=p.sckid)
+			select count(jh.id) as id,sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc,
+			sum(jh.pfztz) as pfztz,sum(jh.jhsybzje) as jhsybzje,sum(jh.jhsydfzcje) as jhsydfzcje
+			from xmk_zhfz lx right join sck_zhfz sc on (lx.id=sc.xmkid) right join plan_zhfz jh on (sc.sckid=jh.sckid)
 			where 1=1
-			<if test="x.gydwbm!=null and x.gydwbm!=''">
-				and x.gydwbm like #{x.gydwbm}
-			</if>
-			<if test="p.jh_sbthcd!=null and p.jh_sbthcd!='' and (p.sbzt==null or p.sbzt=='') and (p.spzt==null or p.spzt=='')">
-				and p.jh_sbthcd=#{p.jh_sbthcd}
-			</if>
-			<if test="(p.sbzt!=null or p.spzt!=null) and (p.sbzt!='' or p.spzt!='') and p.jh_sbthcd!=null and p.jh_sbthcd!=''">
-				and (p.jh_sbthcd=#{p.jh_sbthcd} or p.jh_sbthcd=#{p.jh_sbthcd}+2)
-			</if>
-			<if test="p.sbnf!=null and p.sbnf!=''">
-				and p.sbnf=#{p.sbnf}
-			</if>
-			<if test="p.sbzt!=null and p.sbzt!=''">
-				and p.sbzt=#{p.sbzt}
-			</if>
-			<if test="p.spzt!=null and p.spzt!=''">
-				and p.spzt=#{p.spzt}
-			</if>
-			<if test="p.kgzt!=null and p.kgzt!=''">
-	 			and p.kgzt=#{p.kgzt}
-	 		</if>
-	 		<if test="p.jgzt!=null and p.jgzt!=''">
-	 			and p.jgzt=#{p.jgzt}
-	 		</if> group by p.id)
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
+					<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+					</if>
+				 	<if test="jh.sbnf!=null and jh.sbnf!=''">
+	 					and jh.sbnf=#{jh.sbnf}
+	 				</if>
+	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
+	 					and jh.sbzt=#{jh.sbzt}
+	 				</if>
+	 				<if test="jh.spzt!=null and jh.spzt!=''">
+	 					and jh.spzt=#{jh.spzt}
+	 				</if>
+	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
+			 			and jh.kgzt=#{jh.kgzt}
+			 		</if>
+			 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+			 			and jh.jgzt=#{jh.jgzt}
+			 		</if>
+			 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+			 			and sc.bzls=#{jh.sfylsjl}
+				 	</if>
+	 				<if test="lx.gydwbm!=null and lx.gydwbm!=''">
+	 					and ${lx.gydwbm}
+	 				</if>
+	 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+	 					and ${lx.xzqhdm}
+	 				</if>
+	 				<if test="lx.lxmc!=null and lx.lxmc!=''">
+	 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+	 				</if>
+	 				<if test="lx.lxbm!=null and lx.lxbm!=''">
+	 					and lx.lxbm like #{lx.lxbm}||'%'
+	 				</if>
+	 				<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
+	 					and lx.lxjsdj = #{lx.lxjsjd}
+	 				</if>group by jh.id)
 	</select>
 	<update id="updateLrztBySckid" parameterType="java.util.List">
  		update sck_zhfz set lrjh='未列入'  where sckid= (select z.sckid from plan_zhfz z where z.id=#{id})

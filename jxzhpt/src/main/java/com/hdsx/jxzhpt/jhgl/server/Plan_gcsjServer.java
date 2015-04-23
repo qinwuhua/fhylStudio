@@ -160,7 +160,7 @@ public interface Plan_gcsjServer {
 	 * @param lx
 	 * @return
 	 */
-	List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx);
+	List<Plan_lx_gcsj> queryXjls(Plan_lx_gcsj lx);
 	/**
 	 * 查询GPSROAD表中的路线
 	 * @param lx

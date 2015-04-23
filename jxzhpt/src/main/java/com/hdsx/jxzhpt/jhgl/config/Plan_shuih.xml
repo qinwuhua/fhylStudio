@@ -305,14 +305,14 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm)
+			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm,jh_sbthcd)
 		values (#{jhid},#{12},#{13},
 			to_date(#{14},'yyyy-mm-dd'),#{15},#{16},#{17},#{18},
 			#{19},#{20},#{21},#{22},to_date(#{23},'yyyy-mm-dd'),
 			to_date(#{24},'yyyy-mm-dd'),#{25},#{26},#{27},to_date(#{28},'yyyy-mm-dd'),
 			#{29},#{30},#{31},#{32},#{33},
 			#{34},#{35},#{36},#{37},#{38},
-			#{39},#{40},#{41},#{42},#{sfylsjl},#{tbbm})
+			#{39},#{40},#{41},#{42},#{sfylsjl},#{tbbm},#{jh_sbthcd})
 	</insert>
 	<insert id="insertShuih_Lx" parameterType="hashMap">
 		insert into plan_lx_shuih (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,
@@ -471,14 +471,14 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm)
+			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm,jh_sbthcd)
 		values (#{id},#{fapgdw},#{fascdw},
 			to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
 			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
 			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
 			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
 			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
-			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl},#{tbbm})
+			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl},#{tbbm},#{jh_sbthcd})
 	</insert>
 	<select id="shAutoCompleteLxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
