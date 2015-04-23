@@ -24,7 +24,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -43,8 +43,8 @@
 			if($("#sbnf").combo("getValue")!=""){
 				jh.sbnf=$("#sbnf").combo("getValue");
 			}
-			if($('#txtlxmc').val()!=""){
-				lx.lxmc=$('#txtlxmc').val();
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
 			if($("#ddlPDDJ").combo("getValue")!=""){
 				lx.yjsdj= $("#ddlPDDJ").combo("getValue");
@@ -73,8 +73,9 @@
 			$('#grdab').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={'lx.gydwdm':lx.gydwdm,'jh.jhnf':jh.jhnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,
-					'jh.jh_sbthcd':jh.jh_sbthcd,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt};
+			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+					"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,
+					"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/queryGcsjSum.do',

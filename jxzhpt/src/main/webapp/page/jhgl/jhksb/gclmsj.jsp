@@ -30,7 +30,7 @@
 		}
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -61,8 +61,8 @@
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}
-			if($('#txtlxmc').val()!=""){
-				lx.lxmc=$('#txtlxmc').val();
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
 			if($("#ddlPDDJ").combo("getValue")!=""){
 				lx.yjsdj= $("#ddlPDDJ").combo("getValue");

@@ -24,7 +24,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('ddlTSDQ');

@@ -53,6 +53,11 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
 }
+function openLsjlWindow(id,index){
+	YMLib.Var.row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
+	//YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
+}
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
@@ -103,6 +108,15 @@ function gclmsjxm(jh,lx){
 //        		return '<a href="javascript:openZjxd('+"'gclmsj_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 //			}},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
+		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
+		  		formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		  	},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},

@@ -484,9 +484,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 	 * 查询路线历史记录
 	 */
 	public void queryXjls(){
-		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
 		try {
-			System.out.println("纪录个数："+ls.size());
+			List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
+			for (Plan_gcsj plan_gcsj : ls) {
+				System.out.println("路线个数："+plan_gcsj.getPlan_lx_gcsjs().size());
+			}
 			JsonUtils.write(ls, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

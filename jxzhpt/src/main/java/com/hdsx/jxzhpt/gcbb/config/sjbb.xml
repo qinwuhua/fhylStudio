@@ -33,7 +33,8 @@
 		    order by v_0,v_1
 	 </select>
 	 <select id="getGzgcjz" parameterType="sjbb" resultType="sjbb">
-	 	select a.*,decode(v_2,0,0,round(v_7/v_2,4)*100) v_14,
+	 	select a.*,decode(v_5,0,0,round(v_12/v_5,4)*100) v_13,
+decode(v_2,0,0,round(v_7/v_2,4)*100) v_14,
 decode(v_4,0,0,round(v_9/v_4,4)*100) v_15,
 decode(v_5,0,0,round(v_10/v_5,4)*100) v_16,
 decode(v_6,0,0,round(v_11/v_6,4)*100) v_17 from ( 
@@ -45,50 +46,59 @@ decode(ztz,null,0,ztz) v_4,decode(bbz,null,0,bbz) v_5,decode(dfzc,null,0,dfzc) v
 decode(decode(v_0,'危桥',wcxm,wclc),null,0,decode(v_0,'危桥',wcxm,wclc)) v_7,
 decode(decode(v_0,'危桥',wclc,'0'),null,0,decode(v_0,'危桥',wclc,'0')) v_8,
 decode(wcztz,null,0,wcztz) v_9,decode(wcbtz,null,0,wcbtz) v_10,decode(wcdfzc,null,0,wcdfzc) v_11,
-0 v_12,0 v_13
-from (
+decode(ybf, null, 0, ybf) v_12 
+from ( 
 select a,xmbm,
 count(xm) xm,sum(lc) lc,sum(ztj) ztz,sum(bbz) bbz,sum(dfzc) dfzc,
 count(decode(jhid,null,null,jhid)) wcxm,sum(decode(jhid,null,null,lc)) wclc,
-sum(wcztz) wcztz,sum(wcbtz) wcbtz,sum(wcdfzc) wcdfzc
+sum(wcztz) wcztz,sum(wcbtz) wcbtz,sum(wcdfzc) wcdfzc,sum(ybf) ybf
 
 from 
-(select * from (
-select decode(substr(lx.qlbh,0,1),'G','国省干线','S','国省干线','农村公路') xmbm,jh.sckid sckid,'危桥' a,qlmc xm,to_char(qlqc) lc,decode(PFZTZ,null,0,PFZTZ) ztj,
+(select a.*,b.*,c.ybf from (
+select decode(substr(lx.qlbh,0,1),'G','国省干线','S','国省干线','农村公路') xmbm,jh.id sckid,'危桥' a,qlmc xm,to_char(qlqc) lc,decode(PFZTZ,null,0,PFZTZ) ztj,
        decode(JHSYBZJE,null,0,JHSYBZJE) bbz,decode(JHSYDFZCJE,null,0,JHSYDFZCJE) dfzc,jh.kgzt,jh.jgzt,jh.sbnf,lx.xzqhdm,lx.gydwbm
        from plan_wqgz jh left join sck_wqgz sc on sc.sckid=jh.sckid
         left join XMK_WQGZ lx on lx.id=sc.xmkid
 ) a,(
-select jhid,sum(WC_BTZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz) wcdfzc from Gcgl_Wqgz
+select jhid,sum(WC_BTZ)+sum(WC_STZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz)+sum(WC_STZ) wcdfzc from Gcgl_Wqgz
 group by jhid
-) b
-where a.sckid=b.jhid(+)
+) b,(
+select jhid,decode(sum(cgsdwzj+stz),null,0,sum(cgsdwzj+stz)) ybf from gcgl_cgs
+where substr(tbyf,1,4)=#{nf} group by jhid  
+) c
+where a.sckid=b.jhid(+) and a.sckid=c.jhid(+)
 and sbnf=#{nf} ${unit} ${dist}
 union all
 
-select * from (
-select decode(substr(lx.lxbm,0,1),'G','国省干线','S','国省干线','农村公路') xmbm,jh.sckid sckid,'安保' a,QZLC xm,'0' lc,decode(PFZTZ,null,0,PFZTZ) ztj,
+select a.*,b.*,c.ybf from (
+select decode(substr(lx.lxbm,0,1),'G','国省干线','S','国省干线','农村公路') xmbm,jh.id sckid,'安保' a,QZLC xm,yhlc lc,decode(PFZTZ,null,0,PFZTZ) ztj,
        decode(JHSYBBZJE,null,0,JHSYBBZJE) bbz,decode(JHSYDFZCZJ,null,0,JHSYDFZCZJ) dfzc,jh.kgzt,jh.jgzt,jh.jhnf,lx.xzqhdm,lx.gydwbm
        from plan_abgc jh left join sck_abgc sc on sc.sckid=jh.sckid
         left join Xmk_Abgc lx on lx.id=sc.xmkid
 ) a,(
-select jhid,sum(WC_BTZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz) wcdfzc from Gcgl_Abgc
+select jhid,sum(WC_BTZ)+sum(WC_STZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz)+sum(WC_STZ) wcdfzc from Gcgl_Abgc
 group by jhid
-) b
-where a.sckid=b.jhid(+)
+) b,(
+select jhid,decode(sum(cgsdwzj+stz),null,0,sum(cgsdwzj+stz)) ybf from gcgl_cgs
+where substr(tbyf,1,4)=#{nf} group by jhid  
+) c
+where a.sckid=b.jhid(+) and a.sckid=c.jhid(+)
 and jhnf=#{nf} ${unit} ${dist}
 union all
 
-select * from (
-select '' xmbm,jh.sckid sckid,'灾害' a,QZLC xm,'0' lc,decode(PFZTZ,null,0,PFZTZ) ztj,
+select a.*,b.*,c.ybf from (
+select ' ' xmbm,jh.id sckid,'灾害' a,QZLC xm,yhlc lc,decode(PFZTZ,null,0,PFZTZ) ztj,
        decode(JHSYBZJE,null,0,JHSYBZJE) bbz,decode(JHSYDFZCJE,null,0,JHSYDFZCJE) dfzc,jh.kgzt,jh.jgzt,jh.sbnf,lx.xzqhdm,lx.gydwbm
        from plan_zhfz jh left join sck_zhfz sc on sc.sckid=jh.sckid
         left join Xmk_Zhfz lx on lx.id=sc.xmkid
 ) a,(
-select jhid,sum(WC_BTZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz) wcdfzc from Gcgl_Zhfz
+select jhid,sum(WC_BTZ)+sum(WC_STZ)+sum(WC_QTTZ) wcztz,sum(WC_BTZ) wcbtz,sum(wc_qttz)+sum(WC_STZ) wcdfzc from Gcgl_Zhfz
 group by jhid
-) b
-where a.sckid=b.jhid(+)
+) b,(
+select jhid,decode(sum(cgsdwzj+stz),null,0,sum(cgsdwzj+stz)) ybf from gcgl_cgs
+where substr(tbyf,1,4)=#{nf} group by jhid  
+) c
+where a.sckid=b.jhid(+) and a.sckid=c.jhid(+)
 and sbnf=#{nf} ${unit} ${dist}
 )
 group by a,xmbm) c,(
@@ -100,7 +110,7 @@ select '安保' v_0,'国省干线' v_1 from dual
 union all
 select '安保' v_0,'农村公路' v_1 from dual
 union all
-select '灾害' v_0,'' v_1 from dual
+select '灾害' v_0,' ' v_1 from dual
 ) d
 where  d.v_1=c.xmbm(+) and d.v_0=c.a (+)
 ) a

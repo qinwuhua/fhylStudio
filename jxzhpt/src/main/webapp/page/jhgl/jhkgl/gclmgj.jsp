@@ -25,7 +25,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit")); 
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			loadBmbm2('add_yjsdjxx','技术等级');
@@ -188,7 +188,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="add_lx" class="easyui-dialog" title="添加路线" style="width:800px;height:300px;"
+	<!-- <div id="add_lx" class="easyui-dialog" title="添加路线" style="width:800px;height:300px;"
 		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
        		<tr style="height: 25px;">
@@ -285,7 +285,7 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div> -->
 	<!-- <div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>
