@@ -372,13 +372,13 @@
 	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
 	    	jiceng,surface,reportingfee,totalinvest,
 	    	constructnumber,replynumber,devisenumbder,mark,
-	    	plandownnumber,remarks,qtbz,tbbm,tbsj ,xmmc,pqi,jh_sbthcd)
+	    	plandownnumber,remarks,qtbz,tbbm,tbsj ,xmmc,pqi,jh_sbthcd,totalplacefund,totalsubsidyfund)
 		values (
 			#{id},#{sbnf},#{classify},#{jhkgsj},#{jhwgsj},#{xdsj},#{dianceng},
 			#{jiceng},#{surface},#{reportingfee},#{totalinvest},
 			#{constructnumber},#{replynumber},#{devisenumbder},#{mark},
 			#{plandownnumber},#{remarks},#{qtbz},(select name from XTGL_DEPARTMENT t where t.id = #{tbbm}),to_date(#{tbsj},'yyyy-mm-dd')
-			,#{xmmc},#{pqi},#{jh_sbthcd} )
+			,#{xmmc},#{pqi},#{jh_sbthcd},#{totalplacefund},#{totalsubsidyfund} )
 	</insert>
 	<select id="yhdzxAutoCompleteLxbm" parameterType="plan_lx_yhdzx" resultType="plan_lx_yhdzx">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
