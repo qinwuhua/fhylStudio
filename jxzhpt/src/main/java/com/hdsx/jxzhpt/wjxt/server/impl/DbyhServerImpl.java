@@ -23,7 +23,7 @@ import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 
 	public DbyhServerImpl() {
-		super("dbyh", "odbc");
+		super("dbyh", "jdbc");
 	}
 
 	@Override
@@ -57,9 +57,9 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectxhbList1() {
+	public List<Map<String, Object>> selectxhbList1(Zdxx zdxx) {
 		// TODO Auto-generated method stub
-		return queryList("selectxhbList1");
+		return queryList("selectxhbList1",zdxx);
 	}
 
 	@Override
@@ -90,6 +90,102 @@ public class DbyhServerImpl extends BaseOperate implements DbyhServer {
 	public List<Map<String, Object>> selectYlbList(Zdxx zdxx) {
 		// TODO Auto-generated method stub
 		return queryList("selectYlbList",zdxx);
+	}
+
+	@Override
+	public boolean insertYBBData(List<Map> data) {
+		// TODO Auto-generated method stub
+		//insert("insertYBBData", data.get(0));
+		return insertBatch("insertYBBData", data)==data.size();
+	}
+
+	@Override
+	public List<Map<String,Object>> selectybbbyYf(String substring) {
+		// TODO Auto-generated method stub
+		return queryList("selectybbbyYf",substring);
+	}
+
+	@Override
+	public boolean delete_ybb(String string) {
+		if(delete("delete_ybb",string)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectxhbbyYf(String substring) {
+		// TODO Auto-generated method stub
+		return queryList("selectxhbbyYf",substring);
+	}
+
+	@Override
+	public boolean insertXHBData(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertXHBData", data)==data.size();
+	}
+
+	@Override
+	public boolean delete_xhb(String string) {
+		if(delete("delete_xhb",string)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectfxbbyYf(String substring) {
+		// TODO Auto-generated method stub
+		return queryList("selectfxbbyYf",substring);
+	}
+
+	@Override
+	public boolean insertFXBData(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertFXBData", data)==data.size();
+	}
+
+	@Override
+	public boolean delete_fxb(String string) {
+		if(delete("delete_fxb",string)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectpdbbyYf(String substring) {
+		// TODO Auto-generated method stub
+		return queryList("selectpdbbyYf",substring);
+	}
+
+	@Override
+	public boolean insertPDBData(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertPDBData", data)==data.size();
+	}
+
+	@Override
+	public boolean delete_pdb(String string) {
+		if(delete("delete_pdb",string)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectylbbyYf(String substring) {
+		// TODO Auto-generated method stub
+		return queryList("selectylbbyYf",substring);
+	}
+
+	@Override
+	public boolean insertYLBData(List<Map> data) {
+		// TODO Auto-generated method stub
+		return insertBatch("insertYLBData", data)==data.size();
+	}
+
+	@Override
+	public boolean delete_ylb(String string) {
+		if(delete("delete_ylb",string)>0){
+			return true;
+		}else return false;
 	}
 	
 }

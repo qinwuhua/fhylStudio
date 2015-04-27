@@ -13,7 +13,10 @@
 <script type="text/javascript" src="../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="../../js/YMLib.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="./js/yhtj.js"></script>
 </head>
 <body style="margin:0 0 0 0;overflow: hidden;">
 <script type="text/javascript">
@@ -45,22 +48,22 @@ function showAll(){
 		striped : true,
 		singleSelect : false,
 		columns:[[
-				    {field:'v_0',title:'路线编号',width:150,rowspan:2,align:'center'},
-					{field:'v_1',title:'路线名称',width:150,rowspan:2,align:'center'},
-					{field:'v_2',title:'养护单位',width:150,rowspan:2,align:'center'},
-					{field:'v_3',title:'起点桩号',width:100,rowspan:2,align:'center'},
-					{field:'v_4',title:'终点桩号',width:100,rowspan:2,align:'center'},
-					{field:'v_5',title:'评定里程（公里）',width:150,rowspan:2,align:'center'},
+				    {field:'V_0',title:'路线编号',width:150,rowspan:2,align:'center'},
+					{field:'V_1',title:'路线名称',width:150,rowspan:2,align:'center'},
+					{field:'V_2',title:'养护单位',width:150,rowspan:2,align:'center'},
+					{field:'V_3',title:'起点桩号',width:100,rowspan:2,align:'center'},
+					{field:'V_4',title:'终点桩号',width:100,rowspan:2,align:'center'},
+					{field:'V_5',title:'评定里程（公里）',width:150,rowspan:2,align:'center'},
 					{title:'评定结果（公里）',width:500,colspan:5,align:'center'},
-					{field:'v_11',title:'优良路率（%）',width:150,rowspan:2,align:'center'},
-					{field:'v_12',title:'MQI',width:100,rowspan:2,align:'center'},
-					{field:'v_13',title:'备 注',width:200,rowspan:2,align:'center'}
+					{field:'V_11',title:'优良路率（%）',width:150,rowspan:2,align:'center'},
+					{field:'V_12',title:'MQI',width:100,rowspan:2,align:'center'},
+					{field:'V_13',title:'备 注',width:200,rowspan:2,align:'center'}
 				],[
-				    {field:'v_6',title:'优等路',width:100,rowspan:2,align:'center'},
-					{field:'v_7',title:'良等路',width:100,rowspan:2,align:'center'},
-					{field:'v_8',title:'中等路',width:100,rowspan:2,align:'center'},
-					{field:'v_9',title:'次等路',width:100,rowspan:2,align:'center'},
-					{field:'v_10',title:'差等路',width:100,rowspan:2,align:'center'}
+				    {field:'V_6',title:'优等路',width:100,rowspan:2,align:'center'},
+					{field:'V_7',title:'良等路',width:100,rowspan:2,align:'center'},
+					{field:'V_8',title:'中等路',width:100,rowspan:2,align:'center'},
+					{field:'V_9',title:'次等路',width:100,rowspan:2,align:'center'},
+					{field:'V_10',title:'差等路',width:100,rowspan:2,align:'center'}
 				]]
 	});
 }
@@ -70,6 +73,27 @@ function export_ylb(){
 	var yf=$("#ddlMonth").val();
 	var data="gydw="+gydw+"&nian="+nf+"&yue="+yf;
 	window.location.href="/jxzhpt/wjxt/export_ylb.do?"+data;
+}
+function delete_ylb(){
+	var nf=$("#ddlYear").val();
+	var yf=$("#ddlMonth").val();
+	var data="nian="+nf+"&yue="+yf;
+	if(confirm("您确认删除"+nf+"年"+yf+"月的数据吗？")){
+		$.ajax({
+			type:"post",
+			url:"/jxzhpt/wjxt/delete_ylb.do",
+			dataType:'json',
+			data:data,
+			success:function(msg){
+				if(msg){
+					alert("删除成功！");
+					$("#jsgl_table").datagrid('reload');
+				}else{
+					alert("该年月暂无数据，删除失败！");
+				}
+			}
+		});
+	}
 }
 </script>
 <div style="width:100%;">
@@ -89,29 +113,33 @@ function export_ylb(){
 						</select>
  						<span>月份：</span>
  						<select name="ddlMonth" id="ddlMonth" style="width: 43px;">
-							<option id="yf1" value="1">01</option>
-							<option id="yf2" value="2">02</option>
-							<option id="yf3" value="3">03</option>
-							<option id="yf4" value="4">04</option>
-							<option id="yf5" value="5">05</option>
-							<option id="yf6" value="6">06</option>
-							<option id="yf7" value="7">07</option>
-							<option id="yf8" value="8">08</option>
-							<option id="yf9" value="9">09</option>
+							<option id="yf1" value="01">01</option>
+							<option id="yf2" value="02">02</option>
+							<option id="yf3" value="03">03</option>
+							<option id="yf4" value="04">04</option>
+							<option id="yf5" value="05">05</option>
+							<option id="yf6" value="06">06</option>
+							<option id="yf7" value="07">07</option>
+							<option id="yf8" value="08">08</option>
+							<option id="yf9" value="09">09</option>
 							<option id="yf10" value="10">10</option>
 							<option id="yf11" value="11">11</option>
 							<option id="yf12" value="12">12</option> 
 						</select>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="export_ylb()">导出Excel</a>
+ 						 <a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查　询</a>
+						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="import_ylb('ylb')">导入Excel</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="delete_ylb()">删除</a>
  					</p>
  				</div>
  			</fieldset>
         </div>
     </div>
-    <div style="height:430px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
+    <div  id='gddiv' style="height:430px;margin:5px;" oncontextmenu='return false' unselectable="on" style="-webkit-user-select:none;-moz-user-select:none;" onselectstart="return false">
     	<table id="jsgl_table" style="height:100%;" ></table>
     </div>
+     <script type="text/javascript">
+          $("#gddiv").attr('style','width:100%;height:'+($(window).height()-100)+'px');
+    </script>
 </div>
 </body>
 </html>
