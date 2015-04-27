@@ -1,6 +1,6 @@
 package com.hdsx.jxzhpt.jhgl.bean;
 
-public class Plan_lwxm_zjzj {
+public class Plan_zjzj {
 	private String id;
 	private String planId;
 	private String nf;

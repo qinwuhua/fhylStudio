@@ -417,36 +417,46 @@
 		and jh.jhnf=#{jhid}
 	</select>
 	<select id="queryXjls" parameterType="java.util.Map" resultType="plan_lx_gcsj">
+		select * from (
 		select '路面升级' as id,jh.id as jhid,jh.jhnf as bz,jh.xmmc as scbz,
 		lx.lxbm as lxbm,lx.lxmc as lxmc,to_number(lx.qdzh) as xqdzh,to_number(lx.zdzh) as xzdzh,
-		'   ' as ylxbm,0.0 yqdzh,0.0 yzdzh 
+		'   ' as ylxbm,0.0 yqdzh,0.0 yzdzh,lx.yjsdj as yjsdj,jh.gjhjsdj as gjjsdj
 		from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
 		where lx.lxbm like #{lx.lxbm}||'%' and lx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[and lx.qdzh<=#{lx.zdzh} and lx.zdzh>=#{lx.qdzh}]]> and jh.id!=#{lx.jhid}
+		<![CDATA[and lx.qdzh<=#{lx.zdzh} and lx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and jh.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">   
 			union all
 			<![CDATA[select '路面升级' as id,jh.id as jhid,jh.jhnf as bz,jh.xmmc as scbz,
 			#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			lx.lxbm as ylxbm, 
 			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-	        case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh 
+	        case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+	        lx.yjsdj as yjsdj,jh.gjhjsdj as gjjsdj
 	        from plan_lx_gcsj lx,plan_gcsj jh where jh.id=lx.jhid and lx.lxbm like substr(#{item.ylxbm},1,4)||'%' 
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}]]>
 		</foreach>
 		union all
 		select '路面改建' as id,gj.id as jhid,gj.sbnf as bz,gj.xmmc as scbz,
 		gjlx.lxbm as lxbm,gjlx.lxmc as lxmc,to_number(gjlx.qdzh) as xqdzh,to_number(gjlx.zdzh) as xzdzh,
-		'' as ylxbm,0.0 yqdzh,0.0 yzdzh
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		gjlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id) 
 		where gjlx.lxbm like #{lx.lxbm}||'%' and gjlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and gjlx.qdzh<=#{lx.zdzh} and gjlx.zdzh>=#{lx.qdzh}]]> and gj.id!=#{lx.jhid}
+		<![CDATA[ and gjlx.qdzh<=#{lx.zdzh} and gjlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and gj.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">
 			union all
 			<![CDATA[select '路面改建' as id,gj.id as jhid,gj.sbnf as bz,gj.xmmc as scbz,
 			#{item.lxbm} as lxbm,gjlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			gjlx.lxbm as ylxbm,
 			case when to_number(gjlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(gjlx.qdzh) end yqdzh,
-			case when to_number(gjlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(gjlx.zdzh) end  yzdzh
+			case when to_number(gjlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(gjlx.zdzh) end  yzdzh,
+			gjlx.yjsdj as yjsdj,'' as gjjsdj
 			from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id)
 			where gjlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and gjlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
 			and gjlx.qdzh<${item.yzdzh} and gjlx.zdzh>${item.yqdzh}]]>
@@ -454,17 +464,22 @@
 		union all
 		select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
 		shlx.lxbm as lxbm,shlx.lxmc as lxmc,to_number(shlx.qdzh) as xqdzh,to_number(shlx.zdzh) as xzdzh,
-		'' as ylxbm,0.0 yqdzh,0.0 yzdzh
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		shlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id) 
 		where shlx.lxbm like #{lx.lxbm}||'%' and shlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and shlx.qdzh<=#{lx.zdzh} and shlx.zdzh>=#{lx.qdzh}]]> and sh.id!=#{lx.jhid}
+		<![CDATA[ and shlx.qdzh<=#{lx.zdzh} and shlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and sh.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">
 			union all
 			<![CDATA[select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
 			#{item.lxbm} as lxbm,shlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			shlx.lxbm as ylxbm,
 			case when to_number(shlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(shlx.qdzh) end yqdzh,
-			case when to_number(shlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(shlx.zdzh) end  yzdzh
+			case when to_number(shlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(shlx.zdzh) end  yzdzh,
+			shlx.yjsdj as yjsdj,'' as gjjsdj
 			from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id)
 			where shlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and shlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%'
 			and shlx.qdzh<${item.yzdzh} and shlx.zdzh>${item.yqdzh}]]>
@@ -472,17 +487,22 @@
 		union all
 		select '养护大中修' as id,yh.id as jhid,yh.sbnf as bz,yh.xmmc as scbz,
 		yhlx.lxbm as lxbm,yhlx.lxmc as lxmc,to_number(yhlx.qdzh) as xqdzh,to_number(yhlx.zdzh) as xzdzh,
-		'' as ylxbm,0.0 yqdzh,0.0 yzdzh
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		yhlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id) 
 		where yhlx.lxbm like #{lx.lxbm}||'%' and yhlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and yhlx.qdzh<=#{lx.zdzh} and yhlx.zdzh>=#{lx.qdzh}]]> and yh.id!=#{lx.jhid}
+		<![CDATA[ and yhlx.qdzh<=#{lx.zdzh} and yhlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and yh.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">
 			union all
 			<![CDATA[select '养护大中修' as id,yh.id as jhid,yh.sbnf as bz,yh.xmmc as scbz,
 			#{item.lxbm} as lxbm,yhlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			yhlx.lxbm as ylxbm,
 			case when to_number(yhlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(yhlx.qdzh) end yqdzh,
-			case when to_number(yhlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(yhlx.zdzh) end yzdzh
+			case when to_number(yhlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(yhlx.zdzh) end yzdzh,
+			yhlx.yjsdj as yjsdj,'' as gjjsdj
 			from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id)
 			where yhlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and yhlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%'
 			and yhlx.qdzh<${item.yzdzh} and yhlx.zdzh>${item.yqdzh}]]>
@@ -490,38 +510,49 @@
 		union all
 		select '安保工程' as id,a.id as jhid,a.jhnf as bz,axm.lxmc as scbz,
 		axm.lxbm as lxbm,axm.lxmc as lxmc,to_number(axm.qdzh) as xqdzh,to_number(axm.zdzh) as xzdzh,
-		'' as ylxbm,0.0 yqdzh,0.0 yzdzh
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		'' as yjsdj,'' as gjjsdj
 		from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
 		where axm.lxbm like #{lx.lxbm}||'%' and axm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		and <![CDATA[ axm.qdzh<=#{lx.zdzh} and axm.zdzh>=#{lx.qdzh}]]> and a.id!=#{lx.jhid} 
+		and <![CDATA[ axm.qdzh<=#{lx.zdzh} and axm.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and a.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">
 			union all
 			<![CDATA[select '安保工程' as id,a.id as jhid,a.jhnf as bz,axm.lxmc as scbz,
 			#{item.lxbm} as lxbm,axm.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			axm.lxbm as ylxbm,
 			case when to_number(axm.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(axm.qdzh) end yqdzh,
-			case when to_number(axm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(axm.zdzh) end yzdzh
+			case when to_number(axm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(axm.zdzh) end yzdzh,
+			'' as yjsdj,'' as gjjsdj
 			from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
 			where axm.lxbm like substr(#{item.ylxbm},1,4)||'%' and  axm.qdzh<${item.yzdzh} and axm.zdzh>${item.yqdzh}]]>
 		</foreach>
 		union all
 		select '灾害防治' as id,z.id as jhid,z.sbnf as bz,zxm.lxmc as scbz,
 		zxm.lxbm as lxbm,zxm.lxmc as lxmc,to_number(zxm.qdzh) as xqdzh,to_number(zxm.zdzh) as xzdzh,
-		'' as ylxbm,0.0 yqdzh,0.0 yzdzh
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		'' as yjsdj,'' as gjjsdj
 		from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
 		where zxm.lxbm like #{lx.lxbm}||'%' and zxm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' and 
-		<![CDATA[ zxm.qdzh<=#{lx.zdzh} and zxm.zdzh>=#{lx.qdzh}]]> and z.id!=#{lx.jhid}
+		<![CDATA[ zxm.qdzh<=#{lx.zdzh} and zxm.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and z.id!=#{lx.jhid}
+		</if>
 		<foreach collection="ls" item="item">
 			union all
 			<![CDATA[select '灾害防治' as id,z.id as jhid,z.sbnf as bz,zxm.lxmc as scbz,
 			#{item.lxbm} as lxbm,zxm.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
 			zxm.lxbm as ylxbm,
 			case when to_number(zxm.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(zxm.qdzh) end yqdzh,
-			case when to_number(zxm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(zxm.zdzh) end yzdzh
+			case when to_number(zxm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(zxm.zdzh) end yzdzh,
+			'' as yjsdj,'' as gjjsdj
 			from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
 			where zxm.lxbm like substr(#{item.ylxbm},1,4)||'%' and zxm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' and 
 			zxm.qdzh<${item.yzdzh} and zxm.zdzh>${item.yqdzh}]]>
 		</foreach>
+		) t order by t.bz
 	</select>
 	<!--  <select id="queryXjls" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select '灾害防治' as remarks,z.id,z.sbnf as jhnf,zxm.lxmc as xmmc,zxm.lxbm,zxm.lxmc,zxm.qdzh,zxm.zdzh from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
