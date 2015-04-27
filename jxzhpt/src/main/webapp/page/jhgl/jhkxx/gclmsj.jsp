@@ -122,13 +122,9 @@
 					data:item,
 					dataType:'json',
 					success:function(data){
-						$.each(data,function(index,jh){
-							var a='<a href="javascript:onclickXx('+"'"+jh.remarks+"','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
-							a+=jh.jhnf+'年,'+jh.xmmc+'【';
-							$.each(jh.plan_lx_gcsjs,function(index,lx){
-								alert(lx.ylxbm+"  "+lx.yqdzh);
-								a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';
-							});
+						$.each(data,function(index,lx){
+							var a='<a href="javascript:onclickXx('+"'"+lx.id+"','"+lx.jhid+"'"+')" style="color:#0066CB;font-size:12px;">';
+							a+=lx.bz+'年,'+lx.scbz+'【'+lx.lxmc+'('+lx.xqdzh+'-'+lx.xzdzh+')';
 							a+='】</a>';
 							if(index<data.length-1){
 								a+="；";

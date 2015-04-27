@@ -2,7 +2,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -53,7 +53,7 @@ public interface Plan_zjxdServer {
 	 * @param zjzj
 	 * @return
 	 */
-	boolean insertZjzj(Plan_lwxm_zjzj zjzj);
+	boolean insertZjzj(Plan_zjzj zjzj);
 	
 	Plan_zjxd queryZjxdSumByXmid(String xmid);
 	boolean insertBatch(List<Plan_zjxd> readerExcel);

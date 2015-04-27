@@ -492,14 +492,14 @@
 			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
 			yhlb,sjlmlx,dc,jc,mc,
 			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,bz,sfylsjl,tbbm <!-- -->)
+			sfgyhbm,gksjwh,sjpfwh,bz,sfylsjl,tbbm,jh_sbthcd <!-- -->)
 		values (#{id},#{fapgdw},#{fascdw},
 			#{faspsj},#{spwh},#{tzgs},#{jsxz},#{jsnr},
 			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
 			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
 			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
-			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh} ,
-			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{bz},#{sfylsjl},#{tbbm}<!-- -->)
+			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
+			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{bz},#{sfylsjl},#{tbbm},#{jh_sbthcd}<!-- -->)
 	</insert>
 	<select id="gjAutoCompleteLxbm" parameterType="plan_lx_gcgj" resultType="plan_lx_gcgj">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,

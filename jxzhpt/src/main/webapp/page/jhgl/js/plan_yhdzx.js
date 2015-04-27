@@ -171,6 +171,9 @@ function yhdzxxm_sb(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},
@@ -242,6 +245,9 @@ function yhdzxxm_sp(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},
@@ -300,6 +306,9 @@ function yhdzxxm_zjxd(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},

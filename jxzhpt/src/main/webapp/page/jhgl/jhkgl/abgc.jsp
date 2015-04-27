@@ -29,31 +29,26 @@
 			xian=false;
 		}
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
-			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			sbnf("sbnf");
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}
 			querySumAbgc(jh,lx);
-			sbnf("sbnf");
 			abgcxm(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),gydwdm:$('#gydw').combobox('getValue'),
-				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-				lxmc:null,lxjsdj:null,lxbm:null
-			};
-			lx.gydwbm = filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -145,13 +140,15 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox">
-								</select>
+								<select name="ddlTSDQ" id="ddlTSDQ" style="width:80px;" class="easyui-combobox"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
-								</select>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox">
+								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select>
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">

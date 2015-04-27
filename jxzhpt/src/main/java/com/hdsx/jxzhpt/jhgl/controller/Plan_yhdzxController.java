@@ -212,9 +212,9 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				map.put("tbbm", tbbmbm2);
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
@@ -292,13 +292,14 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void insertYhdzx() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
-		if(lx.getXzqhdm().matches("^[0-9]*[1-9]00$")){
+		if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
 			jh.setJh_sbthcd("2");
-		}else if(lx.getXzqhdm().matches("^[0-9]*[1-9]0$") || lx.getXzqhdm().matches("^[0-9]*[1-9]$")){
+		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
 			jh.setJh_sbthcd("0");
-		}else if(lx.getXzqhdm().matches("^[0-9]*[1-9]0000$")){
+		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
 			
 		}
+		System.out.println("养护添加："+jh.getJh_sbthcd());
 		UUID uuid=UUID.randomUUID();
 		jh.setId(uuid.toString());
 		lx.setJhid(uuid.toString());

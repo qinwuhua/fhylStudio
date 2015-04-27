@@ -133,8 +133,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 	@Override
 	public Plan_abgc querySumAbgc(Plan_abgc jh, Jckabgc lx ) {
 		Map<String, Object> param=new HashMap<String, Object>();
-		param.put("p", jh);
-		param.put("x", lx);
+		param.put("jh", jh);
+		param.put("lx", lx);
 		return queryOne("querySumAbgc", param);
 	}
 	@Override

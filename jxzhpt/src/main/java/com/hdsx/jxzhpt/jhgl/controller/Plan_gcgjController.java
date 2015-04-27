@@ -314,9 +314,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
@@ -465,6 +465,11 @@ public class Plan_gcgjController extends BaseActionSupport{
 			UUID id=UUID.randomUUID();
 			lx.setJhid(id.toString());
 			jh.setId(id.toString());
+			if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+				jh.setJh_sbthcd("2");
+			}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+				jh.setJh_sbthcd("0");
+			}
 			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
 			gcgj.setXzqhdm(lx.getXzqhdm());
 			gcgj.setLxbm(lx.getLxbm());//路线编码

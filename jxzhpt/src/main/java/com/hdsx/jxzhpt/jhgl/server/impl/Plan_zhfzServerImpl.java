@@ -120,8 +120,8 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	@Override
 	public Plan_zhfz querySumZhfz(Plan_zhfz jh,Jckzhfz lx) {
 		Map<String, Object> param=new HashMap<String, Object>();
-		param.put("p", jh);
-		param.put("x", lx);
+		param.put("jh", jh);
+		param.put("lx", lx);
 		return queryOne("querySumZhfz", param);
 	}
 

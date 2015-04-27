@@ -54,9 +54,8 @@ function openEditWindow(id){
 	YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
 }
 function openLsjlWindow(id,index){
-	YMLib.Var.row = $('#'+id).datagrid("getSelected");
-	YMLib.UI.createWindow('','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
-	//YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('sjlsxx','工程改造路面升级历史信息',"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
 }
 //工程路面升级
 function gclmsjxm(jh,lx){
