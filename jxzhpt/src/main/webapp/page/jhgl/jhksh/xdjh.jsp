@@ -92,7 +92,7 @@ function startSearch(){
 	}else{
 		xzqh1str=xzqh1.join("','");
 	}
-	var data="xmbb.xzqh="+xzqh1str+"&xmbb.gydw="+gydw1str+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue");
+	var data="xmbb.xzqh="+xzqh1str+"&xmbb.gydw="+gydw1str+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue")+"&flag="+"查询数据";
 	
 	$.ajax({
 		type:'post',
@@ -118,6 +118,30 @@ function startSearch(){
 			$("#table_tbody").html(str);
 		}
 	});
+}
+function exportExcel_xdjh(){
+	$("#xmn").text($("#year").combobox("getValue"));
+	var gydw1=$("#gydw").combotree("getValues");
+	if(gydw1.length==0||gydw1.length==1){
+		if($.cookie("unit2")=='_____36')
+			gydw1str='36';
+		else
+		gydw1str=$.cookie("unit2");
+	}else{
+		gydw1str=gydw1.join("','");
+	}
+	var xzqh1=$("#xzqh").combotree("getValues");
+	if(xzqh1.length==0||xzqh1.length==1){
+		xzqh1str=$.cookie("dist2");
+	}else{
+		xzqh1str=xzqh1.join("','");
+	}
+	var data="xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue")+"&flag="+"导出excel";
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydw1str,xzqh:xzqh1str},function(){
+		window.location.href='/jxzhpt/dbbb/gljsxdList.do?'+data;
+	 });
+	
+	
 }
 </script>
 </head>
@@ -151,7 +175,7 @@ function startSearch(){
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel_gljsxd()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel_xdjh()" style="vertical-align: -50%;" />
         					</p>
         					
         				</div>

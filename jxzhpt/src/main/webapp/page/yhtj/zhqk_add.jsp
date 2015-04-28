@@ -38,19 +38,7 @@
             font-size: 9pt;
             color: #000000;
         }
-        .tableLb
-        {
-            border-collapse: collapse;
-        }
-        .tableLb td
-        {
-            border: 0px solid #B9D8F3;
-            text-align: center;
-        }
-        .depTable td
-        {
-            border: 0px;
-        }
+       
     </style>
     <script type="text/javascript">
     $(function(){
@@ -112,7 +100,7 @@
  
     <center>
     <form action="" id="trqkdata" method="post">
-        <table width="97%" cellpadding="0" cellspacing="0" border="0"  bordercolor="#ffffff" style="margin-top: 10px">
+        <table width="97%" cellpadding="1" cellspacing="1" border="0"  bordercolor="#ffffff" style="margin-top: 10px">
        
             <tr>
                 <td colspan="16" align="center" style="padding-top: 10px; padding-bottom: 10px; border: 0px" >
@@ -120,12 +108,12 @@
                 </td>
             </tr>
             </table>
-           <table width="97%" cellpadding="0" cellspacing="0" border="1"  bordercolor="#ffffff" style="margin-top: 10px">  
-            <tr>
+           <table width="97%" cellpadding="1" cellspacing="1" border="0"   style="margin-top: 10px;background-color:#404040">  
+            <tr style="text-align: center; color: #0076C8; background-color: #F4FAFF; font-weight: bold;">
 							<td colspan="3" style="text-align: right">
                                 管养单位：
                             </td>
-                            <td colspan="4" style="border-collapse: collapse">
+                            <td colspan="4" style="border-collapse: collapse" align="left">
                             <input type="text" id="gydw"/>
                             </td>
                             <td colspan="2" style="text-align: right">

@@ -6,8 +6,11 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcbb.bean.Gcbb5;
@@ -95,5 +98,28 @@ public class GcbbController extends BaseActionSupport{
 	}
 	public void setXmbb(Xmbb xmbb) {
 		this.xmbb = xmbb;
+	}
+	private String gydw;
+	private String xzqh;
+
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXzqh() {
+		return xzqh;
+	}
+	public void setXzqh(String xzqh) {
+		this.xzqh = xzqh;
+	}
+	public void exportbbsj_set(){
+//		System.out.println("*"+gydw);
+//		System.out.println("*"+xzqh);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute("gydwbb", gydw);
+		session.setAttribute("xzqhbb", xzqh);
 	}
 }

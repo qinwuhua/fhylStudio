@@ -1,6 +1,8 @@
 package com.hdsx.jxzhpt.wjxt.controller;
 
 import java.util.List;
+
+import com.hdsx.jxzhpt.utile.SjbbMessage;
 /**
  * 功能：用来存放excel的内容<br/>
  * 1：titleName 表名<br/>
@@ -17,6 +19,7 @@ public class ExcelData {
 	private String sheetName;
 	private String fileName;
 	private List<Excel_list> el;
+	private List<SjbbMessage> el1;
 	public List<Excel_tilte> getEt() {
 		return et;
 	}
@@ -47,5 +50,11 @@ public class ExcelData {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-	
+	public List<SjbbMessage> getEl1() {
+		return el1;
+	}
+	public void setEl1(List<SjbbMessage> el1) {
+		this.el1 = el1;
+	}
+
 }

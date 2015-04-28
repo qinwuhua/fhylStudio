@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.gcbb.server.SjbbServer;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 @Service
 public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 	public SjbbServerImpl() {
@@ -139,6 +140,39 @@ public class SjbbServerImpl extends BaseOperate implements SjbbServer{
 	@Override
 	public List<SjbbMessage> getGdzctzjs(SjbbMessage sjbb) throws Exception {
 		return queryList("getGdzctzjs",sjbb);
+	}
+
+	@Override
+	public List<Excel_list> getLwjgjsgzb1(SjbbMessage sjbb) throws Exception{
+		List<Excel_list> l=queryList("getLwjgjsgzb", sjbb);
+		List<Excel_list> l_n=new ArrayList<Excel_list>();
+		Excel_list temp=new Excel_list();
+		DecimalFormat fnum = new DecimalFormat("##0.000");
+		temp.setV_0("安保工程");
+		temp.setV_1("合计");
+		for(int j=2;j<=7;j++){
+			String methodGetName = "getV_"+j;
+			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(0),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(1),new Object[]{}));
+			temp.getClass().getMethod("setV_"+j,  String.class).invoke(temp,"0.0".equals(Double.parseDouble(fnum.format(v_j))+"")?"0":Double.parseDouble(fnum.format(v_j))+"");
+		}
+		l_n.add(temp);
+		l_n.add(l.get(0));
+		l_n.add(l.get(1));
+		temp=new Excel_list();
+		temp.setV_0("危桥改造");
+		temp.setV_1("合计");
+		for(int j=2;j<=7;j++){
+			String methodGetName = "getV_"+j;
+			Float v_j = Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(2),new Object[]{}))+
+					Float.parseFloat((String) temp.getClass().getMethod(methodGetName,  new Class[]{}).invoke(l.get(3),new Object[]{}));
+			temp.getClass().getMethod("setV_"+j,  String.class).invoke(temp,"0.0".equals(Double.parseDouble(fnum.format(v_j))+"")?"0":Double.parseDouble(fnum.format(v_j))+"");
+		}
+		l_n.add(temp);
+		l_n.add(l.get(2));
+		l_n.add(l.get(3));
+		l_n.add(l.get(4));
+		return l_n;
 	}
 	
 }
