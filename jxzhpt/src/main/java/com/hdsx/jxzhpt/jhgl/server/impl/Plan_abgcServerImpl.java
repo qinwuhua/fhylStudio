@@ -262,4 +262,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		params.put("lx", lx);
 		return queryList("queryAbgcList2",params);
 	}
+	@Override
+	public boolean editZjById(Plan_abgc jh) {
+		return update("editZjById", jh)>0;
+	}
 }

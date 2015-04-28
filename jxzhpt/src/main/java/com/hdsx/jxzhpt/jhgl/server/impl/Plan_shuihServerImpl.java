@@ -210,4 +210,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public List<Plan_lx_shuih> shAutoCompleteLxbm(Plan_lx_shuih lx) {
 		return queryList("shAutoCompleteLxbm",lx);
 	}
+
+	@Override
+	public boolean editZjById(Plan_shuih jh) {
+		return update("editZjById", jh)>0;
+	}
 }

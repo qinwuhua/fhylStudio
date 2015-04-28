@@ -207,4 +207,9 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx) {
 		return queryList("gjAutoCompleteLxbm",lx);
 	}
+
+	@Override
+	public boolean editZjById(Plan_gcgj jh) {
+		return update("editZjById", jh)>0;
+	}
 }

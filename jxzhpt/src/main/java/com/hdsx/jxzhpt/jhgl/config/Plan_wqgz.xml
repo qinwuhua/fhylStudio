@@ -10,6 +10,8 @@
 		<result property="jhkgsj" column="jhkgsj"/>
 		<result property="jhwgsj" column="jhwgsj"/>
 		<result property="pfztz" column="pfztz"/>
+		<result property="jhsybzje" column="jhsybzje"/>
+		<result property="jhsydfzcje" column="jhsydfzcje"/>
 		<result property="kgzt" column="kgzt"/>
 		<result property="jgzt" column="jgzt"/>
 		<result property="sfylsjl" column="sfylsjl"/>
@@ -507,4 +509,8 @@
     	left join xmk_wqgz lx on (sc.xmkid=lx.id) where lx.qlbh=#{qlbh} or
     	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})
 	</select>
+	<update id="editZjById" parameterType="plan_wqgz">
+		update plan_wqgz jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}
+		where jh.id=#{id}
+	</update>
 </mapper>

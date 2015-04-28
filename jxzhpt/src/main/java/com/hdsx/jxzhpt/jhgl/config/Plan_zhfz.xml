@@ -450,4 +450,8 @@
 			where jh.spzt='1' and jh.jh_sbthcd='6'
 		and lx.xzqhdm like #{xzqhdm}) r
 	</select>
+	<update id="editZjById" parameterType="plan_zhfz">
+		update plan_zhfz jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}
+		where jh.id=#{id}
+	</update>
 </mapper>

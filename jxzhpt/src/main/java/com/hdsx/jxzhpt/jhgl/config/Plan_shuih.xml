@@ -488,4 +488,8 @@
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		group by roadname,roadcode,g.f114,g.f116
 	</select>
+	<update id="editZjById" parameterType="plan_shuih">
+		update plan_shuih jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}
+    	where jh.id=#{id}
+	</update>
 </mapper>

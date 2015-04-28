@@ -173,4 +173,10 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx);
+	/**
+	 * 资金追加处，修改部投资金额和地方自筹金额
+	 * @param jh 计划信息
+	 * @return
+	 */
+	boolean editZjById(Plan_gcsj jh);
 }

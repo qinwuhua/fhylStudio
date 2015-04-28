@@ -27,21 +27,16 @@ function querySumZhfz(jh,lx){
 	});
 }
 function queryZjqf(nf){
-	//查询切分资金
-	var xzqhdm="360000";
-	if(roleName()=="县级"){
-		xzqhdm=$.cookie("unit").substring(5).substring(0,4)+"00";
-	}
 	$.ajax({
 		type:'post',async:false,dataType:'json',
-		url:'../../../jhgl/queryZjqfByXzqh.do',
-		data:{'zjqf.xzqhdm':xzqhdm,'zjqf.nf':nf},
+		url:'../../../jhgl/queryZjqfByZjqf.do',
+		data:zjqf={'zjqf.gydwbm':$.cookie("unit"),'zjqf.nf':nf},
 		success:function(data){
-			$.each(JSON.parse(data.zjqf),function(index,item){
-				if(item.id==$.cookie("unit").substring(5)){
-					$('#lblQfzj').html(item.zhfz);
-				}
-			});
+			if(data!=null){
+				$('#lblQfzj').html(data.zhfz);
+			}else{
+				$('#lblQfzj').html("0");
+			}
 		}
 	});
 }

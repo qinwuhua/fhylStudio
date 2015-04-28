@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import jsx3.gui.Interactive;
+
 import org.apache.struts2.ServletActionContext;
 import org.apache.xerces.impl.xpath.regex.Match;
 import org.springframework.context.annotation.Scope;
@@ -29,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -53,6 +56,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
 	private String tbbmbm2;
+	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
@@ -527,6 +531,18 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
+	public void editZj() throws IOException, Exception{
+		String Strresult="false";
+		jh.setPftz(new Integer(new Integer(jh.getPftz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+		jh.setJhsybbzje(new Integer(new Integer(jh.getJhsybbzje()).intValue()+new Integer(zjzj.getBbzje()).intValue()).toString());
+		jh.setJhsydfzczj(new Integer(new Integer(jh.getJhsydfzczj()).intValue()+new Integer(zjzj.getStz()).intValue()).toString());
+		if(gcsjServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+			Strresult="true";
+		}
+		Map<String, String> result=new HashMap<String, String>();
+		result.put("result", Strresult);
+		JsonUtils.write(result, getresponse().getWriter());
+	}
 	//set get
 	public int getPage() {
 		return page;
@@ -609,5 +625,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

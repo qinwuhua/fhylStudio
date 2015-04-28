@@ -28,8 +28,8 @@
 			xian=false;
 		}
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
@@ -56,12 +56,7 @@
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
-				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-				lxmc:null,lxjsdj:null,lxbm:null
-			};
-			lx.gydwbm = filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

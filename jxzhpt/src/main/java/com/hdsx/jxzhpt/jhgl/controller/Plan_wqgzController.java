@@ -27,6 +27,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -51,6 +52,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private Plan_wqgzServer wqgzServer;
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
+	private Plan_zjzj zjzj;
 	private Plan_wqgz jh;
 	private Jckwqgz lx;
 	private String fileuploadFileName;
@@ -390,43 +392,57 @@ public class Plan_wqgzController extends BaseActionSupport {
 		}
 		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
+	public void editWqZj(){
+		try{
+			String Strresult="false";
+			jh.setPfztz(new Double(new Double(jh.getPfztz()).doubleValue()+new Integer(zjzj.getZtz()).doubleValue()).toString());
+			jh.setJhsybzje(new Double(new Double(jh.getJhsybzje()).doubleValue()+new Double(zjzj.getBbzje()).doubleValue()).toString());
+			jh.setJhsydfzcje(new Double(new Double(jh.getJhsydfzcje()).doubleValue()+new Double(zjzj.getStz()).doubleValue()).toString());
+			if(wqgzServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
 	//set get
 	public int getPage() {
 		return page;
 	}
-
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
+	}
 	public void setPage(int page) {
 		this.page = page;
 	}
-
 	public int getRows() {
 		return rows;
 	}
-
 	public void setRows(int rows) {
 		this.rows = rows;
 	}
-
 	public Plan_wqgzServer getWqgzServer() {
 		return wqgzServer;
 	}
-
 	public void setWqgzServer(Plan_wqgzServer wqgzServer) {
 		this.wqgzServer = wqgzServer;
 	}
-
 	public Plan_wqgz getJh() {
 		return jh;
 	}
-
 	public void setJh(Plan_wqgz jh) {
 		this.jh = jh;
 	}
-
 	public Jckwqgz getLx() {
 		return lx;
 	}
-
 	public void setLx(Jckwqgz lx) {
 		this.lx = lx;
 	}
@@ -442,11 +458,9 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
 	}
-
 	public File getUploadGk() {
 		return uploadGk;
 	}
-
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}

@@ -159,8 +159,8 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
-				</if>
-				order by jh.jhnf,jh.jh_sbthcd) t
+				</if> order by jh.jhnf desc
+				) t  order by t.jhnf desc,t.jh_sbthcd desc
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
@@ -209,8 +209,8 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
-				</if> order by jh.jhnf,jh.jh_sbthcd
-				) t
+				</if>
+				) t order by t.jhnf,t.jh_sbthcd
 		 )
 	</select>
 	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
@@ -693,4 +693,8 @@
   		from XTGL_LXSJ t where  t.xlxbm like substr(#{lxbm},1,4) || '%' and 
   		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
 	</select>
+	<update id="editZjById" parameterType="plan_gcsj">
+		update plan_gcsj jh set jh.pftz=#{pftz},jh.jhsybbzje=#{jhsybbzje},jh.jhsydfzczj=#{jhsydfzczj}
+		where jh.id=#{id}
+	</update>
 </mapper>

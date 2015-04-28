@@ -18,6 +18,7 @@
 		<action name="verifyLx" class="plan_gcgjController" method="verifyLx"/>
 		<action name="exportGcgjZjxdExcel" class="plan_gcgjController" method="exportGcgjZjxdExcel"/>
 		<action name="gjAutoCompleteLxbm" class="plan_gcgjController" method="gjAutoCompleteLxbm"/>
+		<action name="editGjZj" class="plan_gcgjController" method="editGjZj"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -37,6 +38,7 @@
 		<action name="queryXjls" class="plan_gcsjController" method="queryXjls"></action>
 		<action name="sjAutoCompleteLxbm" class="plan_gcsjController" method="sjAutoCompleteLxbm"></action>
 		<action name="querySjzh" class="plan_gcsjController" method="querySjzh"></action>
+		<action name="editZj" class="plan_gcsjController" method="editZj"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>
@@ -53,6 +55,7 @@
 		<action name="queryFjByParentId" class="plan_abgcController" method="queryFjByParentId"/>
 		<action name="deleteFile" class="plan_abgcController" method="deleteFile"/>
 		<action name="exportAbgcZjxdExcel" class="plan_abgcController" method="exportAbgcZjxdExcel"/>
+		<action name="editAbZj" class="plan_abgcController" method="editAbZj"/>
 		
 		<action name="queryZhfzNfs" class="plan_zhfzController" method="queryZhfaNfs"/>
 		<action name="queryZhfzById" class="plan_zhfzController" method="queryZhfaById"/>
@@ -66,6 +69,7 @@
 		<action name="downZhfzFile" class="plan_zhfzController" method="downZhfzFile"/>
 		<action name="queryZhfzByStatus" class="plan_zhfzController" method="queryZhfzByStatus"/>
 		<action name="exportZhfzZjxdExcel" class="plan_zhfzController" method="exportZhfzZjxdExcel"/>
+		<action name="editZhZj" class="plan_zhfzController" method="editZhZj"/>
 		
 		<action name="queryWqgzNfs" class="plan_wqgzController" method="queryWqgzNfs"/>
 		<action name="queryWqgzById" class="plan_wqgzController" method="queryWqgzById"/>
@@ -80,6 +84,7 @@
 		<action name="queryWqgzByStatus" class="plan_wqgzController" method="queryWqgzByStatus"/>
 		<action name="exportWqgzZjxdExcel" class="plan_wqgzController" method="exportWqgzZjxdExcel"/>
 		<action name="queryWqLs" class="plan_wqgzController" method="queryWqLs"/>
+		<action name="editWqZj" class="plan_wqgzController" method="editWqZj"/>
 		
 		<action name="queryShuihNfs" class="plan_shuihController" method="queryShuihNfs"/>
 		<action name="queryShuihById" class="plan_shuihController" method="queryShuihById"/>
@@ -96,6 +101,7 @@
 		<action name="insertShuih" class="plan_shuihController" method="insertShuih"/>
 		<action name="insertShuihLx" class="plan_shuihController" method="insertShuihLx"/>
 		<action name="shAutoCompleteLxbm" class="plan_shuihController" method="shAutoCompleteLxbm"/>
+		<action name="editShZj" class="plan_shuihController" method="editShZj"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>

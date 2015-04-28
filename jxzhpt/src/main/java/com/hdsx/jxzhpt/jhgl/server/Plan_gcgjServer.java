@@ -157,4 +157,10 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx);
+	/**
+	 * 修改计划金额
+	 * @param jh
+	 * @return
+	 */
+	boolean editZjById(Plan_gcgj jh);
 }

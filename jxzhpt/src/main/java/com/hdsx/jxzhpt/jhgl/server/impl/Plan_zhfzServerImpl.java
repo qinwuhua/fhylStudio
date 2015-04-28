@@ -239,4 +239,9 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		return queryList;
 	}
 
+	@Override
+	public boolean editZjById(Plan_zhfz jh) {
+		return update("editZjById", jh)>0;
+	}
+
 }

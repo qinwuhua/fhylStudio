@@ -229,4 +229,9 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	public List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx) {
 		return queryList("querySjzh",lx);
 	}
+
+	@Override
+	public boolean editZjById(Plan_gcsj jh) {
+		return update("editZjById", jh)>0;
+	}
 }

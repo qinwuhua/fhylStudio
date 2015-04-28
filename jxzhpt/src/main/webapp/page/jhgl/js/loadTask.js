@@ -1,3 +1,12 @@
+function openZjzjWindow(id,url){
+	YMLib.Var.id=id;
+	YMLib.Var.url=url;
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('zjzjadd','资金追加',"/jxzhpt/page/jhgl/zjxd/zjzj.jsp",'zjzjadd',500,300);
+}
+function closeWindow2(id){
+	parent.$('#'+id).window("destroy");
+}
 /**
  * 管养单位下拉框
  * @param id

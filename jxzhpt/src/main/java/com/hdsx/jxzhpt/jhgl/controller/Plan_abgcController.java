@@ -22,6 +22,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -58,6 +59,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
+	private Plan_zjzj zjzj;
 	private Plan_upload uploads;
 	private String flag;//标记是哪个模块
 	private String fileuploadFileName;
@@ -424,10 +426,39 @@ public class Plan_abgcController extends BaseActionSupport{
 		}
 		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
+	/**
+	 * 修改安保工程金额
+	 * @throws Exception 
+	 * @throws IOException 
+	 */
+	public void editAbZj() throws IOException, Exception{
+		try{
+			String Strresult="false";
+			jh.setPfztz(new Double(new Double(jh.getPfztz()).doubleValue()+new Double(zjzj.getZtz()).doubleValue()).toString());
+			jh.setJhsybbzje(new Double(new Double(jh.getJhsybbzje()).doubleValue()+new Double(zjzj.getBbzje()).doubleValue()).toString());
+			jh.setJhsydfzczj(new Double(new Double(jh.getJhsydfzczj().equals("") ?"0":jh.getJhsydfzczj()).doubleValue()+new Double(zjzj.getStz()).doubleValue()).toString());
+			if(abgcServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	// get set
 	public int getPage() {
 		return page;
 	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
+	}
+
 	public void setPage(int page) {
 		this.page = page;
 	}

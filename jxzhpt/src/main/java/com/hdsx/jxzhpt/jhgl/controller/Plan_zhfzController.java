@@ -25,6 +25,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -52,6 +53,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
 	private Jckzhfz lx;
+	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
 	private File uploadGk;
@@ -352,10 +354,38 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		}
 		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 	}
+	/**
+	 * 资金追加修改计划金额
+	 * @throws Exception 
+	 */
+	public void editZhZj() throws Exception {
+		try {
+			String Strresult="false";
+			jh.setPfztz(new Double(new Double(jh.getPfztz()).doubleValue()+new Double(zjzj.getZtz()).doubleValue()).toString());
+			jh.setJhsybzje(new Double(new Double(jh.getJhsybzje()).doubleValue()+new Double(zjzj.getBbzje()).doubleValue()).toString());
+			jh.setJhsydfzcje(new Double(new Double(jh.getJhsydfzcje().equals("")?"0":jh.getJhsydfzcje()).doubleValue()-new Double(zjzj.getStz()).doubleValue()).toString());
+			if(zhfzServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;
 	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
+	}
+
 	public void setPage(int page) {
 		this.page = page;
 	}
