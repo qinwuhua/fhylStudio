@@ -23,20 +23,20 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
-			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
 			sbnf('sbnf');
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		});
 		function searchYhdzx(){
 			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -79,14 +79,14 @@
 			yhdzxxm(jh,lx);
 		}
 		$(window).resize(function () { 
-			$('#grid').datagrid('resize'); 
+			$('#grid').datagrid('resize');
 		});
 		function exportExcel_yhdzx(){
 			var gydw=filterGydwdm($("#gydw").combo("getValue"));
 			if(gydw==null){
 				gydw="";
 			}
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+gydw;
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+$.cookie("unit2");
 			window.location.href="/jxzhpt/jhgl/exportExcel_yhdzx.do?"+param;
 		}
 		function addLmsj(){

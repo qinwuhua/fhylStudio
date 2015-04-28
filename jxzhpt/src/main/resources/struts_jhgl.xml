@@ -133,6 +133,7 @@
 		<action name="insertYhdzx" class="plan_yhdzxController" method="insertYhdzx"/>
 		<action name="insertYhdzxLx" class="plan_yhdzxController" method="insertYhdzxLx"/>
 		<action name="yhdzxAutoCompleteLxbm" class="plan_yhdzxController" method="yhdzxAutoCompleteLxbm"/>
+		<action name="editYhZj" class="plan_yhdzxController" method="editYhZj"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>

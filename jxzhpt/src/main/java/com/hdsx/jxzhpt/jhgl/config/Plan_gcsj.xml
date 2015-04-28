@@ -159,8 +159,8 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
-				</if> order by jh.jhnf desc
-				) t  order by t.jhnf desc,t.jh_sbthcd desc
+				</if> order by jh.jhnf desc,jh.jh_sbthcd
+				) t  order by t.jhnf desc,t.jh_sbthcd
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

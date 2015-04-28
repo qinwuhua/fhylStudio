@@ -60,8 +60,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void querySumYhdzx(){
 		try {
-//			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
-//			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(yhdzxServer.querySumYhdzx(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,8 +72,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void queryYhdzxList(){
 		try {
-//			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
-//			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", yhdzxServer.queryYhdzxCount(jh,lx));
 			jsonMap.put("rows", yhdzxServer.queryYhdzxList(page,rows,jh,lx));
@@ -147,7 +147,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 */
 	public void exportExcel_yhdzx(){
 		try{
-//			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
 //			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			List<Plan_yhdzx> queryYhdzxList = yhdzxServer.queryYhdzxList(jh,lx);
 			List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
@@ -354,6 +354,12 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			bh=bh.substring(0,bh.length()-i);
 		}
 		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	/**
+	 * 资金追加，修改养护大中修金额
+	 */
+	public void editYhZj(){
+		
 	}
 	//set get
 	public int getPage() {

@@ -113,7 +113,7 @@
 			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 				lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
 			</if>
-			 order by jh.jh_sbthcd,jh.sbnf) t
+			 order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd
 			)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

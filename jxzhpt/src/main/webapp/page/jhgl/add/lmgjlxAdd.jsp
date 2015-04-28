@@ -132,7 +132,7 @@
 				if(data.result=="true"){
 					alert("添加成功！");
 					parent.$('#grid').datagrid('reload');
-					$('#add_gjlx').window('destroy');
+					parent.$('#add_gjlx').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){

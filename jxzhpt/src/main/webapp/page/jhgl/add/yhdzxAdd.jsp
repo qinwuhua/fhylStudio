@@ -285,7 +285,7 @@
 			$('#lblysdj').html(zjg.toFixed(3));
 			$('#lblpgdj').html(pgjg);
 			$('#lxhsjf').html((zjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-			$('#lxspjf').html((pgjg*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
+			$('#lxspjf').html((pgjg*(Number($('#txtHDLC').val()))).toFixed(3));
 			$('#dfptztz').html(($('#ztz').val()-$('#lxspjf').html()).toFixed(3));
 			$('#zbzzj').html($('#lxspjf').html());
 		}
@@ -340,6 +340,7 @@
 				success:function(data){
 					if(data.result){
 						alert("添加成功！");
+						parent.$('#grid').datagrid('reload');
 						parent.$('#add_yhdzx').window('destroy');
 					}
 				},

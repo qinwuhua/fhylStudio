@@ -80,8 +80,8 @@
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
 	 				</if>
-	 				order by jh.sbzt,jh.spzt,jh.sbnf desc
-	 			) t
+	 				order by jh.sbnf desc,jh.jh_sbthcd
+	 			) t order by t.sbnf desc,t.jh_sbthcd
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

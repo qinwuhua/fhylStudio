@@ -90,10 +90,10 @@
 	 				and jh.jgzt=#{jh.jgzt}
 	 			</if>
 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-					and lx.gydwdm like #{lx.gydwdm}
+					and ${lx.gydwdm}
 				</if>
 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-					and lx.xzqhdm like #{lx.xzqhdm}
+					and ${lx.xzqhdm}
 				</if>
 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -107,7 +107,7 @@
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
-	       		order by jh.jh_sbthcd,jh.sbnf) t)
+	       		order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryYhdzxList2" parameterType="java.util.Map" resultMap="yhdzx_jh">
@@ -137,10 +137,10 @@
 	 				and jh.jgzt=#{jh.jgzt}
 	 			</if>
 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-					and lx.gydwdm like #{lx.gydwdm}
+					and ${lx.gydwdm}
 				</if>
 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-					and lx.xzqhdm like #{lx.xzqhdm}
+					and ${lx.xzqhdm}
 				</if>
 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -154,7 +154,7 @@
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
-	       		order by jh.jh_sbthcd,jh.sbnf) t)
+	       		order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd)
 	</select>
 	<select id="queryYhdzxCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from plan_yhdzx jh left join plan_lx_yhdzx lx 
@@ -181,10 +181,10 @@
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
+				and ${lx.gydwdm}
 			</if>
 			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-				and lx.xzqhdm like #{lx.xzqhdm}
+				and ${lx.xzqhdm}
 			</if>
 			<if test="lx.lxmc!=null and lx.lxmc!=''">
 				and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -268,7 +268,10 @@
 			from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id) 
 			where 1=1
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
+				and ${lx.gydwdm}
+			</if>
+			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				and ${lx.xzqhdm}
 			</if>
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
