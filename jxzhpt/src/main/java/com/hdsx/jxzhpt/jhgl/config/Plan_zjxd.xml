@@ -64,6 +64,10 @@
 		insert into plan_zjzj (id,planid,nf,bbzje,ztz,stz) 
 		values(sys_guid(),#{planId},#{nf},#{bbzje},#{ztz},#{stz})
 	</insert>
+	<insert id="insertHslyZjzj" parameterType="plan_hslyzjzj">
+		insert into plan_hslyzjzj (id, planid, jhnf, ztz, zytzcgs, dfzc, gndk, lywz, zyjsnr, xzscnl) 
+		values(sys_guid(),#{planid},#{jhnf},#{ztz},#{zytzcgs},#{dfzc},#{gndk},#{lywz},#{zyjsnr},#{xzscnl})
+	</insert>
 	<select id="queryTsdqByXzqh" parameterType="treenode" resultType="treenode">
 		select t.name as name from xtgl_xzqhtsdq s left join xtgl_tsdq t on s.parent=t.id where s.xzqhdm =#{id}
 	</select>

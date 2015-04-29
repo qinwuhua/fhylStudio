@@ -20,7 +20,9 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_hsly;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_hslyZjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -41,6 +43,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	private String fileuploadFileName;
 	private String tbbmbm2;
 	private File fileupload;
+	private Plan_hslyZjzj zjzj;
 	private Plan_hsly hsly;
 	@Resource(name = "plan_HslyServerImpl")
 	private Plan_hslyServer hslyServer;
@@ -250,6 +253,26 @@ public class Plan_hslyController  extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("红色旅游",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "红色旅游-资金下达", getresponse());
 	}
+	
+	public void editHslyzj() throws Exception{
+		try{
+			String str="false";
+			hsly.setZtz(new Integer(new Integer(hsly.getZtz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+			hsly.setDfta(new Integer(new Integer(hsly.getDfta().equals("")?"0":hsly.getDfta()).intValue()+new Integer(zjzj.getDfzc()).intValue()).toString());
+			hsly.setGndk(new Integer(new Integer(hsly.getGndk().equals("")?"0":hsly.getGndk()).intValue()+new Integer(zjzj.getGndk()).intValue()).toString());
+			hsly.setLywz(new Integer(new Integer(hsly.getLywz().equals("")?"0":hsly.getLywz()).intValue()+new Integer(zjzj.getLywz()).intValue()).toString());
+			hsly.setZytz(new Integer(new Integer(hsly.getZytz().equals("")?"0":hsly.getZytz()).intValue()+new Integer(zjzj.getZytzcgs()).intValue()).toString());
+			if(hslyServer.editHslyZj(hsly) && zjxdServer.insertHslyZjzj(zjzj)) {
+				str="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",str);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	//get set
 	public int getPage() {
 		return page;
@@ -287,12 +310,16 @@ public class Plan_hslyController  extends BaseActionSupport{
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
 	}
-
 	public String getTbbmbm2() {
 		return tbbmbm2;
 	}
-
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public Plan_hslyZjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_hslyZjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

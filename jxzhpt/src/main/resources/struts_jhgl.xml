@@ -143,6 +143,7 @@
 		<action name="dropHslyById" class="plan_hslyController" method="dropHslyById"/>
 		<action name="querySumHsly" class="plan_hslyController" method="querySumHsly"/>
 		<action name="exportExcelHslyZjxd" class="plan_hslyController" method="exportExcelHslyZjxd"/>
+		<action name="editHslyzj" class="plan_hslyController" method="editHslyzj"/>
 		
 		<action name="queryGydwByparent" class="treeSelController" method="queryGydwByparent"/>
 		<action name="queryChildCount" class="treeSelController" method="queryChildCount"/>

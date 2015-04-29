@@ -60,4 +60,10 @@ public interface Plan_hslyServer {
 	boolean dropHslyById(String id);
 	
 	List<Plan_hsly> queryHslyList(Plan_hsly hsly);
+	/**
+	 * 修改红色旅游资金信息
+	 * @param hsly
+	 * @return
+	 */
+	boolean editHslyZj(Plan_hsly hsly);
 }

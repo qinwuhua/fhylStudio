@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_hslyZjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
@@ -76,5 +77,10 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	@Override
 	public List<TreeNode> queryTsdqByXzqh(String xzqh) {
 		return queryList("queryTsdqByXzqh",xzqh);
+	}
+
+	@Override
+	public boolean insertHslyZjzj(Plan_hslyZjzj zjzj) {
+		return insert("insertHslyZjzj", zjzj)>0;
 	}
 }

@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.jhgl.server;
 
 import java.util.List;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_hslyZjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -64,4 +65,10 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	List<TreeNode> queryTsdqByXzqh(String xzqh);
+	/**
+	 * 红色旅游资金追加
+	 * @param zjzj
+	 * @return
+	 */
+	boolean insertHslyZjzj(Plan_hslyZjzj zjzj);
 }

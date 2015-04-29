@@ -69,9 +69,9 @@ function hslyglxm(hsly){
 	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
-//	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-//	        	return '<a style="text-decoration:none;color:#3399CC;">资金追加</a>';
-//	        }},
+	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openHslyZjzj('+"'grid',''"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+	        }},
 	        {field:'jhnf',title:'计划年份',width:80,align:'center'},
 	        {field:'gydwmc',title:'管养单位',width:150,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:300,align:'center'},
@@ -81,6 +81,7 @@ function hslyglxm(hsly){
 	        {field:'zytz',title:'中央投资车购税',width:82,align:'center'},
 	        {field:'dfta',title:'地方(企业)自筹',width:82,align:'center'},
 	        {field:'gndk',title:'国内贷款',width:82,align:'center'},
+	        {field:'lywz',title:'利用外资',width:82,align:'center'},
 	        {field:'kgn',title:'开工年',width:80,align:'center'},
 	        {field:'wgn',title:'完工年',width:80,align:'center'},
 	    ]],
@@ -94,6 +95,11 @@ function hslyglxm(hsly){
 		}
 	};
 	gridBind(grid);
+}
+function openHslyZjzj(id){
+	YMLib.Var.id=id;
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('zjzjadd','资金追加',"/jxzhpt/page/jhgl/zjxd/hslyzjzj.jsp",'zjzjadd',600,400);
 }
 function hslyglxm_zjxd(){
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,

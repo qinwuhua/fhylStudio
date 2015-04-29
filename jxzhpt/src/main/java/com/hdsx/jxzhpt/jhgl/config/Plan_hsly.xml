@@ -82,4 +82,8 @@
        	NVL(sum(jh.jsgmdldq),0) as jsgmdldq,NVL(sum(jh.ztz),0) as ztz,NVL(sum(jh.zytz),0) as zytz
 		from plan_hsly jh
 	</select>
+	<update id="editHslyZj" parameterType="plan_hsly">
+		update plan_hsly set ztz=#{ztz},zytz=#{zytz},dfta=#{dfta},gndk=#{gndk},lywz=#{lywz}
+		where id=#{id}
+	</update>
 </mapper>
