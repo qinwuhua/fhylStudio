@@ -97,7 +97,7 @@
 											+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 											+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
 											+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
-											+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
+											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 											+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
 											+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
 											+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
