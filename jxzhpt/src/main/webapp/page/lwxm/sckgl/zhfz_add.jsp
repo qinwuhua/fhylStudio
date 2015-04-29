@@ -67,7 +67,7 @@ var bzls;
 				$("#tzgs").focus();
 				return false;
 			}
-			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
+			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmsck/onceSckZhfz.do',

@@ -196,6 +196,9 @@
 		<if test="zdzh!='' and zdzh!= null ">
 			and to_number(scqdzh) &lt;to_number(#{zdzh})
 		</if>
+		<if test="scxmnf!='' and scxmnf!=  null "  >
+ 			and scxmnf=#{scxmnf}
+ 		</if>
 	</select>
  <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM

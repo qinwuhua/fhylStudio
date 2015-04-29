@@ -225,6 +225,10 @@
  			and (sck_qlbh=#{qlbh}
  			or (sck_lxbm=#{lxbm} and to_number(sck_qlzxzh)=to_number(#{qlzxzh})))
  		</if>
+ 		<if test="scxmnf!='' and scxmnf!=  null "  >
+ 			and scxmnf=#{scxmnf}
+ 		</if>
+ 		
  </select>
 	<select id="bzWqgz" parameterType="sckwqgz" resultType="int">
  		SELECT C1.CON1+C2.CON2 FROM

@@ -45,7 +45,7 @@ $(function(){
 			$("#tzgs").focus();
 			return false;
 		}
-		var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
+		var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/xmsck/onceSckWqgz.do',
@@ -163,7 +163,7 @@ function saveWqgz(){
 	});  
 }
 function bzWqgz(){
-	var datas="lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val()+"&qlbh="+$("#qlbh").val();
+	var datas="lxbm="+$("#lxbm").html()+"&qlzxzh="+$("#qlzxzh").html()+"&qlbh="+$("#qlbh").val();
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/xmsck/bzWqgz.do',
