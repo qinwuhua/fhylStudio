@@ -133,7 +133,14 @@ public class Gcglyhdzx implements Serializable {
 	private String yhtype;
 	private String stj;
 	private String sfgk;
+	private String stz;
 	
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
 	public String getSfgk() {
 		return sfgk;
 	}

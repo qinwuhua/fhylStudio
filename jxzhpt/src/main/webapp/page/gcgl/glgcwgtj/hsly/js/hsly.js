@@ -16,8 +16,8 @@ function closes(str){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,450);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,450);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){

@@ -105,9 +105,6 @@ a:active {
                 </td>
             </tr>
         </table>
-
     </div>
-
-	</center>
 </body>
 </html>

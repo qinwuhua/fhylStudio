@@ -70,8 +70,8 @@ function AddInfo(){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',710,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',710,430);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];

@@ -71,8 +71,8 @@ function AddInfo(){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,430);
 	//window.open("gcgzsjybxx.jsp");
 }
 function Edityb(index){
