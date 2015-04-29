@@ -69,8 +69,8 @@
 					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].LXBM==' '){
-								tbody.append("<tr><td colspan='2'>"+msg[i].LXMC+"</td><td>"
+							if(msg[i].LXMC==' '){
+								tbody.append("<tr><td colspan='2'>"+msg[i].LXBM+"</td><td>"
 										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
 										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
 										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
@@ -104,12 +104,30 @@
 	function exportZhfzyb(){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
-		var gydw=$("#gydw").combobox("getValue");
-		var xzqh=$("#xzqh").combobox("getValue");
-		var xzdj=$("#xzdj").val();
+		var xmnf=$("#ddlYear1").val();
+		var gydw1=$("#gydw").combotree("getValues");
+		if(gydw1.length==0||gydw1.length==1){
+			if($.cookie("unit2")=='_____36')
+				gydw1str='36';
+			else
+			gydw1str=$.cookie("unit2");
+		}else{
+			gydw1str=gydw1.join(",");
+		}
+		var xzqh1=$("#xzqh").combotree("getValues");
+		if(xzqh1.length==0||xzqh1.length==1){
+			xzqh1str=$.cookie("dist2");
+		}else{
+			xzqh1str=xzqh1.join(",");
+		}
+		var xzdj=$("#xzdj").combobox("getValue");
 		var lxmc=$("#lxmc").val();
-		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
-		window.location.href="/jxzhpt/gcybb/exportZhfzyb.do?"+data;
+		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+		
+
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydw1str,xzqh:xzqh1str},function(){
+			window.location.href='/jxzhpt/gcybb/getZhfzybb.do?'+data;
+		 });
 	}	
 	</script>
 	<style type="text/css">
@@ -208,7 +226,7 @@ table tbody tr td {
         						<input id="lxmc" type="text"  style="width: 100px">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportZhfzyb()" style="vertical-align: -50%;" />
         					</p>         	
         				</div>
         			</fieldset>
