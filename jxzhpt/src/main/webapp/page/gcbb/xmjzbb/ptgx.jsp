@@ -232,13 +232,13 @@ table tbody tr td {
         							<option>否</option>
         						</select>
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:132px;">
+        						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
         						</select>
         						<span>未拨付资金：</span>
-        						<select id="wbf" style="width:60px;">
+        						<select id="wbf" style="width:62px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>

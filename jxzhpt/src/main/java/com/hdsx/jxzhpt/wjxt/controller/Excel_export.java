@@ -1675,7 +1675,10 @@ public class Excel_export {
             for (int j = 0; j <= maxy; j++) {
             	cell = row.createCell((short) j);
             	if(j==0){
-            		if(trqk1.getV_0().equals("合并")){
+            		if(trqk1.getV_0().equals("是")){
+            			cell.setCellValue(trqk1.getV_1());  
+                        cell.setCellStyle(style);
+            		}else if(trqk1.getV_0().equals("是1")){
             			cell.setCellValue("");  
                         cell.setCellStyle(style);
             		}else{
@@ -1689,12 +1692,12 @@ public class Excel_export {
                     cell.setCellStyle(style);
             	}
             	if(j==2){
-            		if(trqk1.getV_0().equals("")){
+            		if(trqk1.getV_0().equals(" ")){
             			cell.setCellValue(trqk1.getV_2());  
                         cell.setCellStyle(style);	
             		}else{
-            			if(trqk1.getV_0().equals("合并")){
-                			CellRangeAddress ranges = new CellRangeAddress((int) i + maxx+1,(int) i + maxx+1,1,2);
+            			if(trqk1.getV_0().equals("是")){
+                			CellRangeAddress ranges = new CellRangeAddress((int) i + maxx+1,(int) i + maxx+1,0,2);
                 			sheet.addMergedRegion(ranges);
                 			setRegionStyle(style,ranges,sheet);
             			}else{
@@ -2215,7 +2218,7 @@ public class Excel_export {
                     cell.setCellStyle(style);
             	}
             	if(j==3){
-            		if(trqk1.getV_0()!=""){
+            		if(trqk1.getV_22().equals("是")){
             			cell.setCellValue(trqk1.getV_3());  
                         cell.setCellStyle(style);
                         CellRangeAddress ranges = new CellRangeAddress((int) i + maxx+1,(int) i + maxx+1,1,3);

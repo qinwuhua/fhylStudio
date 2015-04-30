@@ -79,7 +79,7 @@
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){
 								tbody.append("<tr><td >"+msg[i].XH+"</td><td colspan='3'>"
-										+msg[i].TSDQ+"</td><td>"
+										+msg[i].XZQHMC+"</td><td>"
 										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
@@ -110,16 +110,31 @@
 			});
 		}
 		function exportLw(){
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw1=$("#gydw").combotree("getValues");
+			if(gydw1.length==0||gydw1.length==1){
+				if($.cookie("unit2")=='_____36')
+					gydw1str='36';
+				else
+				gydw1str=$.cookie("unit2");
+			}else{
+				gydw1str=gydw1.join(",");
+			}
+			var xzqh1=$("#xzqh").combotree("getValues");
+			if(xzqh1.length==0||xzqh1.length==1){
+				xzqh1str=$.cookie("dist2");
+			}else{
+				xzqh1str=xzqh1.join(",");
+			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
-			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
+			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydw1str,xzqh:xzqh1str},function(){
+				window.location.href='/jxzhpt/xmjzbb/getLwbb.do?'+data;
+			 });
 		}
 	</script>
 	<style type="text/css">
@@ -198,7 +213,7 @@ table tbody tr td {
         						<option>竣工</option>
         						</select> 						
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:132px;">
+        						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
