@@ -134,16 +134,14 @@
 			});
 		}
 	function exportWqgzyb(){
-		var nf=$("#ddlYear").val();
-		var xmnf=$("#ddlYear1").val();
-		var yf=$("#ddlMonth").val();
-		var gydw=$("#gydw").combobox("getValue");
-		var xzqh=$("#xzqh").combobox("getValue");
-		var xzdj=$("#xzdj").val();
-		var lxmc=$("#lxmc").val();
-		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmnf="+xmnf;
-		//alert(data);
-		window.location.href="/jxzhpt/gcybb/exportWqgzyb.do?"+data;
+		var xmnf=$("#jhxdnf").combotree("getValues");
+		var xmlx=$("#xmlx").combobox("getValue");
+		if(xmnf==''){
+			alert("请选择年份");
+			return;
+		}
+		var data="flag=flag&gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf;
+		window.location.href="/jxzhpt/gcybb/getGjxjmxb.do?"+data;
 	}	
 	</script>
 	<style type="text/css">

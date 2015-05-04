@@ -70,6 +70,7 @@ var zdStr;
 					if(Boolean(msg)){
 						parent.$("#grid").datagrid('reload');
 						alert("修改成功！");
+						parent.jckglZhfz();
 						parent.$('#jck_xg').window('destroy');	
 					}else{
 						alert('保存失败！');

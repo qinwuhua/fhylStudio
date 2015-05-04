@@ -173,6 +173,7 @@ text-decoration:none;
 				if(Boolean(msg)){
 					parent.jckglAbgc();
 					alert("保存成功！");
+					parent.jckglAbgc();
 					parent.$('#jck_add').window('destroy');
 					
 				}else{

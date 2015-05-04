@@ -151,6 +151,7 @@ function saveWqgz(){
 			if(Boolean(msg)){
 				parent.jckglWqgz();
 				alert("保存成功！");
+				parent.jckglWqgz();
 				parent.$('#jck_add').window('destroy');
 			}else{
 				alert('保存失败！');
