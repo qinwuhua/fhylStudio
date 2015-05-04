@@ -26,6 +26,14 @@ public class Xmbb implements Serializable {
 	private String tiaojian;
 	private String ybny;//月报年月
 	private String sbnf;//上报年份
+	private String flag;
+	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 	public String getSbnf() {
 		return sbnf;
 	}

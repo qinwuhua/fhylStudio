@@ -33,8 +33,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var myDate = new Date();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('xzdj','公路等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -47,8 +47,23 @@
 		});
 		function search(){
 			$('#tbody_gcgj').empty();
+			var gydw1=$("#gydw").combotree("getValues");
+			if(gydw1.length==0||gydw1.length==1){
+				if($.cookie("unit2")=='_____36')
+					gydw1str='36';
+				else
+				gydw1str=$.cookie("unit2");
+			}else{
+				gydw1str=gydw1.join(",");
+			}
+			var xzqh1=$("#xzqh").combotree("getValues");
+			if(xzqh1.length==0||xzqh1.length==1){
+				xzqh1str=$.cookie("dist2");
+			}else{
+				xzqh1str=xzqh1.join(",");
+			}
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':$('#gydw').combotree('getValue'),'xmbb.xzqh':$('#xzqh').combotree('getValue'),
+					'xmbb.gydw':gydw1str,'xmbb.xzqh':xzqh1str,
 					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
@@ -153,6 +168,29 @@
 				}
 			});
 		}
+		function exportExcel(){
+			var gydw1=$("#gydw").combotree("getValues");
+			if(gydw1.length==0||gydw1.length==1){
+				if($.cookie("unit2")=='_____36')
+					gydw1str='36';
+				else
+				gydw1str=$.cookie("unit2");
+			}else{
+				gydw1str=gydw1.join(",");
+			}
+			var xzqh1=$("#xzqh").combotree("getValues");
+			if(xzqh1.length==0||xzqh1.length==1){
+				xzqh1str=$.cookie("dist2");
+			}else{
+				xzqh1str=xzqh1.join(",");
+			}
+
+			var data = 'flag=flag&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
+			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue');
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydw1str,xzqh:xzqh1str},function(){
+				window.location.href='/jxzhpt/gcbb/selShuihJdbb.do?'+data;
+			 });
+		}
 	</script>
 </head>
 <body style="padding-right:1px">
@@ -207,7 +245,7 @@
         						<span>路线名称：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
