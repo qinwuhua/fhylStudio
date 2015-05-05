@@ -7,7 +7,7 @@ function queryGcsjSum(jh,lx){
 			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/jhgl/queryGcsjSum.do',
+		url:'../../../jhgl/queryGcsjSum.do',
 		data:param,
 		dataType:'json',
 		success:function(data){
@@ -45,84 +45,64 @@ function sbnf(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+}
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhdm":lx.xzqhdm,
 			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
-	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
-		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$(window).width()-10,queryParams:params,
+	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',pagination:true,queryParams:params,
+		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
-		    {field:'ck',checkbox:true},
-			{field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
-				var result='<a href=javascript:locationXm("'+row.lxbm+'")  style="text-decoration:none;color:#3399CC;">定位</a>    ';
-				result+='<a href="javascript:openDialog('+"'gclmsj_xx','工程改造路面升级项目计划详情','../jhkxx/gclmsj.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';	
+			{field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+				var result='<a href="javascript:locationXm('+"'"+row.plan_lx_gcsjs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+				result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 				return result;
 			}},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
-				var result;
-				if(row.sbzt=="0" && row.jh_sbthcd==0){
+				var result="";
+				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
 					result="未上报";
-				}
-				else if(row.sbzt=="0" && row.jh_sbthcd==2){
-					if(roleName()=="县级"){
-						result="已上报";
-					}else{
-						result="未上报";
-					}
-				}else if(row.sbzt=="1" && row.spzt=="0" && row.jh_sbthcd==4){
-					result="未审批";
-				}
-				else if(row.sbzt=="1" && row.spzt=="1" && row.jh_sbthcd==6){
-					result="已审批";
+				}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
+					result="已上报";
+				}else if((row.jh_sbthcd==4)){
+					result="未审核";
+				}else if((row.jh_sbthcd==6)){
+					result="已审核";
+				}else if((roleName()=="市级" && row.jh_sbthcd==0)){
+					result="待上报";
 				}
 				return result;
 			}},
-//			{field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-//				var id="'"+row.id+"'";
-//        		return '<a href="javascript:openZjxd('+"'gclmsj_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
-//			}},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		  	{field:'gydw',title:'管养单位',width:150,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].gydw;
-		    	}
-		  	},
-		  	{field:'xzqhmc',title:'行政区划名称',width:100,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xzqhmc;
-		    	}
-		  	},
-		  	{field:'lxbm',title:'路线编码',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxbm;
-		    	}
-		  	},
-		  	{field:'lxmc',title:'路线名称',width:80,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].lxmc;
-		    	}
-		  	},
-		  	{field:'qdzh',title:'起点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].qdzh;
-		    	}
-		  	},
-		  	{field:'zdzh',title:'止点桩号',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].zdzh;
-		    	}
-		  	},
-		  	{field:'xmlc',title:'项目里程',width:60,align:'center',
-		  		formatter : function(value, row, index) {
-		    		return row.plan_lx_gcsjs[0].xmlc;
-		    	}
-		  	},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
+		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
 	    ]],
+	    view: detailview,
+		detailFormatter:function(index,row){   
+	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	    },
+	    onExpandRow: function(index,row){
+	    	$('#table_lx'+index).datagrid({
+	    		data:row.plan_lx_gcsjs,
+    			columns:[[
+    			    {field:'gydw',title:'管养单位',width:200,align:'center'},
+    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
+    			    {field:'xmlc',title:'项目里程',width:60,align:'center'}
+    			]]
+	    	});
+	    },
 		onClickRow:function(rowIndex,rowDate){
 			if(oldIndex!=-1){
 				gridObj.datagrid("unselectRow",oldIndex);

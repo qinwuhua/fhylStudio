@@ -26,6 +26,7 @@ import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Controller
@@ -44,8 +45,44 @@ public class GcbbController extends BaseActionSupport{
 		JsonUtils.write(selGcgjJdbb, getresponse().getWriter());
 	}
 	public void selShuihJdbb() throws IOException, Exception{
+		String tiaojian1="";
+		String tiaojian2="";
+		String gydwdm = "";
+		String xzqhdm = "";
+		if("flag".equals(flag)){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydwdm=(String) session.getAttribute("gydwbb");	
+			xzqhdm=(String) session.getAttribute("xzqhbb");	
+		}else{
+		gydwdm = xmbb.getGydw();
+		xzqhdm	= xmbb.getXzqh();
+		}
+		if(gydwdm.indexOf(",")==-1){
+			tiaojian1="and tbbm like '%"+gydwdm+"%'";
+		}else{
+			tiaojian1="and tbbm in ("+gydwdm+")";
+		}
+		if(xzqhdm.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqhdm+")";
+		}
+		System.out.println(tiaojian1);
+		System.out.println(tiaojian2);
+		xmbb.setGydw(tiaojian1);
+		xmbb.setXzqh(tiaojian2);
+
 		List<GcgjJd> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
-		JsonUtils.write(selShuihJdbb, getresponse().getWriter());
+		for (GcgjJd gcgjJd : selShuihJdbb) {
+			
+		}
+		if("flag".equals(flag)){
+			
+			
+		}else{
+			JsonUtils.write(selShuihJdbb, getresponse().getWriter());	
+		}
 	}
 	public void selGcsjJdbb() throws IOException, Exception{
 		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
@@ -113,6 +150,14 @@ public class GcbbController extends BaseActionSupport{
 	}
 	public void setXzqh(String xzqh) {
 		this.xzqh = xzqh;
+	}
+	private String flag;
+	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 	public void exportbbsj_set(){
 //		System.out.println("*"+gydw);

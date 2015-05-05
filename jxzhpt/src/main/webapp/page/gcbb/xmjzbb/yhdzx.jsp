@@ -44,27 +44,35 @@
 			})
 		}
 		function showAll(){
-			var gydw1=$("#gydw").combotree("getValues");
-			if(gydw1.length==0||gydw1.length==1){
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
-					gydw1str='36';
-				else
-				gydw1str=$.cookie("unit2");
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
 			}else{
-				gydw1str=gydw1.join(",");
+				gydwstr= gydw.join(',');
 			}
-			var xzqh1=$("#xzqh").combotree("getValues");
-			if(xzqh1.length==0||xzqh1.length==1){
-				xzqh1str=$.cookie("dist2");
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
 			}else{
-				xzqh1str=xzqh1.join(",");
+				xzqhstr= xzqhdm.join(',');
 			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var tsdq=$("#tsdq").combobox("getValue");
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw1str+"&xmbb.xzqh="+xzqh1str+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.tsdq="+tsdq;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getYhbb.do",
@@ -77,7 +85,7 @@
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){
-								tbody.append("<tr><td colspan='3'>"+msg[i].SZDS+"</td><td>"
+								tbody.append("<tr><td colspan='3'>"+msg[i].XZQHMC+"</td><td>"
 										+msg[i].XMMC+"</td><td>"
 										+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
 										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
@@ -93,8 +101,7 @@
 										);
 							}else{
 								if(msg[i].HB=='是1'){
-									//if(msg[i].SZDS=="1（一）国道"){
-										tbody.append("<tr><td>"+' '+"</td><td colspan='2'>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td>"
+										tbody.append("<tr><td>"+' '+"</td><td colspan='2'>"+msg[i].XZQHMC.substr(1,msg[i].XZQHMC.length)+"</td><td>"
 												+msg[i].XMMC+"</td><td>"
 												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
 												+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
@@ -107,21 +114,7 @@
 												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
 												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 												);
-								/*	}else{
-										tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].SZDS.substr(1,msg[i].SZDS.length)+"</td><td></td><td>"
-												+msg[i].XMMC+"</td><td>"
-												+msg[i].GCFL+"</td><td>"+msg[i].XDNF+"</td><td>"
-												+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
-												+msg[i].JHLC+"</td><td>"+msg[i].GYS+"</td><td>"
-												+msg[i].JHXDZJ+"</td><td>"+msg[i].BFZJ+"</td><td>"
-												+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
-												+msg[i].DC+"</td><td>"+msg[i].JC+"</td><td>"
-												+msg[i].KGRQ+"</td><td>"+msg[i].WGRQ+"</td><td>"
-												+msg[i].KGDL+"</td><td>"+msg[i].WGLC+"</td><td>"
-												+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
-												+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
-												);
-									}*/
+								
 								}else{
 									tbody.append("<tr><td>"+' '+"</td><td>"+msg[i].XZQHMC+"</td><td>"+msg[i].TSDQ+"</td><td>"
 											+msg[i].XMMC+"</td><td>"
@@ -144,14 +137,38 @@
 			});
 		}
 		function exportYh(){
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf;
-			window.location.href="/jxzhpt/xmjzbb/exportYh.do?"+data;
+			var tsdq=$("#tsdq").combobox("getValue");
+			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.tsdq="+tsdq;
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/xmjzbb/getYhbb.do?'+data;
+			 });
 		}
 	</script>
 	<style type="text/css">
@@ -228,7 +245,7 @@ table tbody tr td {
         					<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:132px;">
+        						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>
