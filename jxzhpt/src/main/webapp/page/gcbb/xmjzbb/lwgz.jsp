@@ -44,20 +44,28 @@
 			})
 		}
 		function showAll(){
-			var gydw1=$("#gydw").combotree("getValues");
-			if(gydw1.length==0||gydw1.length==1){
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
-					gydw1str='36';
-				else
-				gydw1str=$.cookie("unit2");
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
 			}else{
-				gydw1str=gydw1.join(",");
+				gydwstr= gydw.join(',');
 			}
-			var xzqh1=$("#xzqh").combotree("getValues");
-			if(xzqh1.length==0||xzqh1.length==1){
-				xzqh1str=$.cookie("dist2");
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
 			}else{
-				xzqh1str=xzqh1.join(",");
+				xzqhstr= xzqhdm.join(',');
 			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var tsdq=$("#tsdq").combotree("getText");
@@ -65,7 +73,7 @@
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw1str+"&xmbb.xzqh="+xzqh1str+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getLwbb.do",
@@ -79,7 +87,7 @@
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){
 								tbody.append("<tr><td >"+msg[i].XH+"</td><td colspan='3'>"
-										+msg[i].TSDQ+"</td><td>"
+										+msg[i].XZQHMC+"</td><td>"
 										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
@@ -110,16 +118,39 @@
 			});
 		}
 		function exportLw(){
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
-			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
+			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/xmjzbb/getLwbb.do?'+data;
+			 });
 		}
 	</script>
 	<style type="text/css">
@@ -198,7 +229,7 @@ table tbody tr td {
         						<option>竣工</option>
         						</select> 						
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:132px;">
+        						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>

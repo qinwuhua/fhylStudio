@@ -106,8 +106,7 @@
 		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm') and gjgc.jhid=sh.id) as zjwcje,
 		sh.kgzt as kgzt,sh.jgzt as jgzt
 		from plan_shuih sh,(select * from plan_lx_shuih) lx
-		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf} and sh.tbbm like rtrim(#{gydw},0)||'%' and 
-		sh.tbbm like '%'||rtrim(#{xzqh},0)||'%' 
+		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf} ${xzqh} ${gydw}		
 		<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
