@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/sjcx/jhgl/js/plan_gcgj.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/sjcx/jhkgl/js/plan_gcgj.js"></script>
 	
 	<script type="text/javascript">
 		$(function(){
@@ -97,7 +97,7 @@
 					'lx.jhid':row.id,'lx.tbbmbh':$.cookie("unit"),'jh.sbnf':row.sbnf};
 			$.ajax({
 				type:'post',
-				url:'../../../jhgl/insertGcgjLx.do',
+				url:'/jxzhpt/jhgl/insertGcgjLx.do',
 				data:lx,
 				dataType:'json',
 				success:function(data){
