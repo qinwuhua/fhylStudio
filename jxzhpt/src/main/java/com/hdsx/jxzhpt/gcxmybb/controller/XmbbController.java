@@ -179,26 +179,57 @@ public class XmbbController extends BaseActionSupport{
 			xmbb.setJhxdnf(Calendar.getInstance().get(Calendar.YEAR)+"");
 		}
 		try{
-		List<Map<String,Object>> list1=xmbbServer.getptgxlist1(xmbb);
-		List<Map<String,Object>> list2=xmbbServer.getptgxlist2(xmbb);
-		List<Map<String,Object>> list3=xmbbServer.getptgxlist3(xmbb);
-		List<Map<String,Object>> list4=xmbbServer.getptgxlist4(xmbb);
-		if(list2.size()>0)
+		List<Map<String,Object>> l=new ArrayList<Map<String,Object>>();
+		List<Map<String,Object>> l1=xmbbServer.getptgxlist1(xmbb);
+		List<Map<String,Object>> l2=xmbbServer.getptgxlist2(xmbb);
+		List<Map<String,Object>> l3=xmbbServer.getptgxlist3(xmbb);
+		List<Map<String,Object>> l4=xmbbServer.getptgxlist4(xmbb);
+		int t2=0;
+		int i1=0,i2=0;
+		int j1=0,j2=0;
+		int k1=0;
+		for(int t=0;t<l1.size();t++){
+			l.add(l1.get(t));
+			t2=t2+Integer.parseInt((l1.get(t).get("XMGS").toString()));
+			//if() break;
+				for(int i=i1;i<l2.size();i++){
+					i1++;
+					i2=i2+Integer.parseInt((l2.get(i).get("XMGS").toString()));
+					l.add(l2.get(i));
+					
+						for(int j=j1;j<l3.size();j++){
+							j1++;
+							j2=j2+Integer.parseInt((l3.get(j).get("XMGS").toString()));
+							l.add(l3.get(j));
+							
+								for(int k=0; k< Integer.parseInt((l3.get(j).get("XMGS").toString()));k++){
+									
+									l.add(l4.get(k1));
+									k1++;
+								}
+								if(i2==j2) break;
+						}
+						if(t2==i2) break;
+				}
+		
+		}
+		
+		/*if(list2.size()>0)
 		for (Map<String, Object> map : list2) {
 			//System.out.println(map.get("XMLX").toString().substring(0,1));
-			if(map.get("XMLX").toString().substring(0,1).equals(1+"")){
+			if(map.get("XMLX").toString().substring(1,1).equals(1+"")){
 				map.put("SL", 1);
 				map.put("XH", "(一)");
 			}
-			if(map.get("XMLX").toString().substring(0,1).equals(2+"")){
+			if(map.get("XMLX").toString().substring(1,1).equals(2+"")){
 				map.put("SL", 1);
 				map.put("XH", "(二)");
 			}
-			if(map.get("XMLX").toString().substring(0,1).equals(3+"")){
+			if(map.get("XMLX").toString().substring(1,1).equals(3+"")){
 				map.put("SL", 1);
 				map.put("XH", "(三)");
 			}
-			if(map.get("XMLX").toString().substring(0,1).equals(4+"")){
+			if(map.get("XMLX").toString().substring(0,1).equals(2+"")){
 				map.put("SL", 1);
 				map.put("XH", "二");
 			}
@@ -215,12 +246,12 @@ public class XmbbController extends BaseActionSupport{
 					}
 				}
 			}
-		}
-			if(list1.size()==1){
+		}*/
+			if(l.size()==0){
 				JsonUtils.write(null, getresponse().getWriter());
 			}
 			else
-			JsonUtils.write(list1, getresponse().getWriter());
+			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
