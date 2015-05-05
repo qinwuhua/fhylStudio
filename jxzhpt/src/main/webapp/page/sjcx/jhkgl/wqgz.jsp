@@ -22,25 +22,24 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			xzqhComboxTree("xzqh");
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
+			loadBmbm2('ddlPDDJ','技术等级');
+			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
-			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:filterGydwdm($('#gydw').combobox('getValue'))};
+			var jh={sbnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumWqgz(jh,lx);
 			sbnf("sbnf");
+			querySumWqgz(jh,lx);
+			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
+				$('#imglrjh').show();
+			}
 			wqxm(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
-					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-					lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
-			};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.gydwdm=null;
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
-			
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -59,34 +58,22 @@
 				}
 				if($('#ddlSHZT').combo("getValue")=="未上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=0;
 					}else{
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}
 				}
 				if($('#ddlSHZT').combo("getValue")=="已上报"){
 					if(xian){
-						jh.sbzt='0';
-						jh.spzt='0';
 						jh.jh_sbthcd=2;
 					}else{
-						jh.sbzt='1';
-						jh.spzt='0';
 						jh.jh_sbthcd=4;
 					}
 				}
-				if($('#ddlSHZT').combo("getValue")=="未审批"){
-					jh.sbzt='1';
-					jh.spzt='0';
+				if($('#ddlSHZT').combo("getValue")=="未审核"){
 					jh.jh_sbthcd=4;
 				}
-				if($('#ddlSHZT').combo("getValue")=="已审批"){
-					jh.sbzt='1';
-					jh.spzt='1';
+				if($('#ddlSHZT').combo("getValue")=="已审核"){
 					jh.jh_sbthcd=6;
 				}
 			}
@@ -100,6 +87,7 @@
 				lx.akjfl=$('#ddlAKJFL').combobox('getValue');
 			}
 			wqxm(jh,lx);
+			querySumWqgz(jh,lx);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -107,18 +95,13 @@
 	</script>
 </head>
 <body>
-	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-			<tr>
-				<td>
-	                <div id="righttop">
-						<div id="p_top">数据查询>&nbsp;计划管理>&nbsp;危桥改造项目</div>
-					</div>
-	            </td>
-        	</tr>
+	<div id="righttop">
+		<div id="p_top">数据查询>&nbsp;计划管理>&nbsp;危桥改造项目</div>
+	</div>
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;padding-top: 10px;">
-        			<fieldset style="width:99%; text-align: left; vertical-align: middle;">
+        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -156,22 +139,9 @@
 								</select>
 								<span>&nbsp;技术等级：</span>
 								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="1">一级公路</option>
-									<option value="2">二级公路</option>
-									<option value="3">三级公路</option>
-									<option value="4">四级公路</option>
-									<option value="5">等外公路</option>
 								</select>
 								<span>&nbsp;公路等级：</span>
 								<select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="G">国道</option>
-									<option value="S">省道</option>
-									<option value="X">县道</option>
-									<option value="Y">乡道</option>
-									<option value="C">村道</option>
-									<option value="Z">专道</option>
 								</select>
 								<span>&nbsp;跨径分类：</span>
         						<select name="ddlAKJFL" id="ddlAKJFL" style="width:94px;" class="easyui-combobox">
@@ -183,6 +153,11 @@
 								</select>
         					</p>
 							<p style="margin:8px 0px 4px 20px;">
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
+								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
 							</p>
         				</div>
@@ -191,21 +166,20 @@
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000"></span>&nbsp;】个危桥改造项目，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000"></span>&nbsp;】万元。
+        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
+        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>
             	<td style="padding-left: 10px;padding-top:5px; font-size:12px;">
             		<div>
-            			<table id="grid" width="100%" height="320px"></table>
+            			<table id="grid" ></table>
             		</div>
             	</td>
         	</tr>
 		</table>
-	</div>
 	
 	<div id="wqgz_xx" style="text-align: left;font-size: 12px;width:80%;"></div>
 	<div id="wqgz_add" style="text-align: left;font-size: 12px;width:80%;"></div>

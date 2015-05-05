@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			//gydwComboxTree("gydw");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
@@ -43,8 +44,8 @@
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}
-			if($('#txtlxmc').val()!=""){
-				lx.lxmc=$('#txtlxmc').val();
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
 			if($("#yjsdj").combo("getValue")!=""){
 				lx.yjsdj= $("#yjsdj").combo("getValue");
@@ -90,6 +91,12 @@
 		$(window).resize(function () { 
 			$('#grdab').datagrid('resize'); 
 		});
+		function addLmsj(){
+			YMLib.UI.createWindow('add_lmsj','添加路面升级',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addlmsj',980,500);
+		}
+		function openSjls(){
+			YMLib.UI.createWindow('sjlsxx','工程改造路面升级历史信息',"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
+		}
 	</script>
 </head>
 <body>

@@ -51,7 +51,7 @@ function sbnf(id){
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$(window).width()-10,queryParams:params,
+		pageNumber:1,pageSize:10,height:$(window).height()-160,width:$(window).width()-10,queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
