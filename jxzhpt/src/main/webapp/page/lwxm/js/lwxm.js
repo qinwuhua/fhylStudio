@@ -191,13 +191,13 @@ function exportModule_sc(filename){
 function exportExcel_wqgz(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -219,13 +219,13 @@ function exportExcel_wqgz(){
 function exportExcel_abgc(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -246,13 +246,13 @@ function exportExcel_abgc(){
 function exportExcel_zhfz(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -273,13 +273,13 @@ function exportExcel_zhfz(){
 function exportExcel_wqgz_sh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -301,13 +301,13 @@ function exportExcel_wqgz_sh(){
 function exportExcel_abgc_sh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -328,13 +328,13 @@ function exportExcel_abgc_sh(){
 function exportExcel_zhfz_sh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -355,13 +355,13 @@ function exportExcel_zhfz_sh(){
 function exportExcel_wqgz_scgl(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -385,13 +385,13 @@ function exportExcel_wqgz_scgl(){
 function exportExcel_abgc_scgl(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -413,13 +413,13 @@ function exportExcel_abgc_scgl(){
 function exportExcel_zhfz_scgl(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -441,13 +441,13 @@ function exportExcel_zhfz_scgl(){
 function exportExcel_wqgz_scsh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -471,13 +471,13 @@ function exportExcel_wqgz_scsh(){
 function exportExcel_abgc_scsh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
@@ -499,13 +499,13 @@ function exportExcel_abgc_scsh(){
 function exportExcel_zhfz_scsh(){
 	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
 	var gydw=$("#gydw").combotree("getValues");
- 	if(gydw.length==0||gydw.length==1){
+ 	if(gydw.length==0){
  		gydw=$.cookie("unit2");
  	}else{
  		gydw=gydw.join(',');
  	}
 	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0||xzqhdm.length==1){
+		if(xzqhdm.length==0){
 			xzqhdm= $.cookie("dist2");
 		}else{
 			xzqhdm= xzqhdm.join(',');
