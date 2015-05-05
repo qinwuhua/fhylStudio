@@ -96,16 +96,16 @@
 											var s4="WCLC"+xmnf[j];
 											var s5="LJWCLC"+xmnf[j];
 											var s6="WCXMZJ"+xmnf[j];
-											strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2]+"</td><td>"
-											+msg[i][s3]+"</td><td>"+msg[i][s4]+"</td><td>"
-											+msg[i][s5]+"</td><td>"+msg[i][s6]+"</td><td>";
+											strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
+											+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+											+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>";
 											
 										}
 										tbodystr=tbodystr+"<tr><td colspan='2'>"+msg[i].XZQHMC+"</td><td>"
 										+$("#xmlx").combobox("getValue")+"</td><td>"
-										+msg[i].XMSL+"</td><td>"+msg[i].XMLC+"</td><td>"
-										+msg[i].XMZJ+"</td><td>"+msg[i].WCLC+"</td><td>"
-										+msg[i].LJWCLC+"</td><td>"+msg[i].WCXMZJ+"</td><td>"
+										+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
+										+msg[i].XMZJ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+										+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
 										+strs+"</tr>";
 							}else{
 								var strs="";
@@ -116,15 +116,15 @@
 									var s4="WCLC"+xmnf[j];
 									var s5="LJWCLC"+xmnf[j];
 									var s6="WCXMZJ"+xmnf[j];
-									strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2]+"</td><td>"
-									+msg[i][s3]+"</td><td>"+msg[i][s4]+"</td><td>"
-									+msg[i][s5]+"</td><td>"+msg[i][s6]+"</td><td>";
+									strs=strs+msg[i][s1]+"</td><td>"+msg[i][s2].toFixed(2)+"</td><td>"
+									+msg[i][s3].toFixed(2)+"</td><td>"+msg[i][s4].toFixed(2)+"</td><td>"
+									+msg[i][s5].toFixed(2)+"</td><td>"+msg[i][s6].toFixed(2)+"</td><td>";
 								}
 								tbodystr=tbodystr+"<tr><td>"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
 								+$("#xmlx").combobox("getValue")+"</td><td>"
-								+msg[i].XMSL+"</td><td>"+msg[i].XMLC+"</td><td>"
-								+msg[i].XMZJ+"</td><td>"+msg[i].WCLC+"</td><td>"
-								+msg[i].LJWCLC+"</td><td>"+msg[i].WCXMZJ+"</td><td>"
+								+msg[i].XMSL+"</td><td>"+msg[i].XMLC.toFixed(2)+"</td><td>"
+								+msg[i].XMZJ.toFixed(2)+"</td><td>"+msg[i].WCLC.toFixed(2)+"</td><td>"
+								+msg[i].LJWCLC.toFixed(2)+"</td><td>"+msg[i].WCXMZJ.toFixed(2)+"</td><td>"
 								+strs+"</tr>";
 							}
 						}

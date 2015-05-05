@@ -1,18 +1,10 @@
 package com.hdsx.jxzhpt.gcxmybb.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,46 +14,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFCellUtil;
-import org.apache.poi.hssf.util.Region;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
-import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcxmybb.server.GcybbServer;
-import com.hdsx.jxzhpt.utile.EasyUIPage;
-import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
-import com.hdsx.jxzhpt.utile.ResponseUtils;
-import com.hdsx.jxzhpt.utile.SheetBean;
-import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
-import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
-import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -863,6 +829,10 @@ public class GcybbController extends BaseActionSupport{
 					Arrays.sort(nf);
 					List<Excel_list> elist=new ArrayList<Excel_list>();
 					int cd=(nf.length+1)*6+3;
+					NumberFormat nfs = NumberFormat.getInstance(); 
+			        nfs.setRoundingMode(RoundingMode.HALF_UP);//设置四舍五入 
+			        nfs.setMinimumFractionDigits(2);//设置最小保留几位小数 
+			        nfs.setMaximumFractionDigits(2);//设置最大保留几位小数
 					for(int i=0;i<list.size();i++){
 						Excel_list l = new Excel_list();
 						Class cl = l.getClass();
@@ -873,36 +843,37 @@ public class GcybbController extends BaseActionSupport{
 							Method method = cl.getMethod("setV_"+0, new Class[]{String.class});
 							method.invoke(l, new Object[]{list.get(i).get("XH").toString()});
 						}
+						
 						Method method1 = cl.getMethod("setV_"+1, new Class[]{String.class});
 						method1.invoke(l, new Object[]{list.get(i).get("XZQHMC").toString()});
 						Method method2 = cl.getMethod("setV_"+2, new Class[]{String.class});
 						method2.invoke(l, new Object[]{gcglwqgz.getTiaojian()});
 						Method method3 = cl.getMethod("setV_"+3, new Class[]{String.class});
-						method3.invoke(l, new Object[]{list.get(i).get("XMSL").toString()});
+						method3.invoke(l, new Object[]{list.get(i).get("XMSL").toString().substring(0, list.get(i).get("XMSL").toString().length()-2)});
 						Method method4 = cl.getMethod("setV_"+4, new Class[]{String.class});
-						method4.invoke(l, new Object[]{list.get(i).get("XMLC").toString()});
+						method4.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMLC").toString()))});
 						Method method5 = cl.getMethod("setV_"+5, new Class[]{String.class});
-						method5.invoke(l, new Object[]{list.get(i).get("XMZJ").toString()});
+						method5.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMZJ").toString()))});
 						Method method6 = cl.getMethod("setV_"+6, new Class[]{String.class});
-						method6.invoke(l, new Object[]{list.get(i).get("WCLC").toString()});
+						method6.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCLC").toString()))});
 						Method method7 = cl.getMethod("setV_"+7, new Class[]{String.class});
-						method7.invoke(l, new Object[]{list.get(i).get("LJWCLC").toString()});
+						method7.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCLC").toString()))});
 						Method method8 = cl.getMethod("setV_"+8, new Class[]{String.class});
-						method8.invoke(l, new Object[]{list.get(i).get("WCXMZJ").toString()});
+						method8.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ").toString()))});
 						int k=9;
 						for (int j = 0; j < nf.length; j++) {
 							Method method9 = cl.getMethod("setV_"+k, new Class[]{String.class});
 							method9.invoke(l, new Object[]{list.get(i).get("XMSL"+nf[j]).toString()});
 							Method method10 = cl.getMethod("setV_"+(k+1), new Class[]{String.class});
-							method10.invoke(l, new Object[]{list.get(i).get("XMLC"+nf[j]).toString()});
+							method10.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMLC"+nf[j]).toString()))});
 							Method method11 = cl.getMethod("setV_"+(k+2), new Class[]{String.class});
-							method11.invoke(l, new Object[]{list.get(i).get("XMZJ"+nf[j]).toString()});
+							method11.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("XMZJ"+nf[j]).toString()))});
 							Method method12 = cl.getMethod("setV_"+(k+3), new Class[]{String.class});
-							method12.invoke(l, new Object[]{list.get(i).get("WCLC"+nf[j]).toString()});
+							method12.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCLC"+nf[j]).toString()))});
 							Method method13 = cl.getMethod("setV_"+(k+4), new Class[]{String.class});
-							method13.invoke(l, new Object[]{list.get(i).get("LJWCLC"+nf[j]).toString()});
+							method13.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("LJWCLC"+nf[j]).toString()))});
 							Method method14 = cl.getMethod("setV_"+(k+5), new Class[]{String.class});
-							method14.invoke(l, new Object[]{list.get(i).get("WCXMZJ"+nf[j]).toString()});
+							method14.invoke(l, new Object[]{nfs.format(Double.parseDouble(list.get(i).get("WCXMZJ"+nf[j]).toString()))});
 							k+=6;
 						}
 						Method method15 = cl.getMethod("setV_"+cd, new Class[]{String.class});

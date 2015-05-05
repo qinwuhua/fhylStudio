@@ -172,15 +172,26 @@ public class XmbbController extends BaseActionSupport{
 	public void getPtgxbb(){
 		String tiaojian1="";
 		String tiaojian2="";
-		if(xmbb.getGydw().indexOf(",")==-1){
-			tiaojian1="and gydw like '%"+xmbb.getGydw()+"%'";
+		String xzqhdm = "";
+		String gydwdm = "";
+		if("flag".equals(flag)){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydwdm=(String) session.getAttribute("gydwbb");	
+			xzqhdm=(String) session.getAttribute("xzqhbb");	
 		}else{
-			tiaojian1="and gydw in ("+xmbb.getGydw()+")";
+		gydwdm = xmbb.getGydw();
+		xzqhdm	= xmbb.getXzqh();
 		}
-		if(xmbb.getXzqh().indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xmbb.getXzqh()+"%'";
+		if(gydwdm.indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+gydwdm+"%'";
 		}else{
-			tiaojian2="and xzqhdm in ("+xmbb.getXzqh()+")";
+			tiaojian1="and gydw in ("+gydwdm+")";
+		}
+		if(xzqhdm.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqhdm+")";
 		}
 		xmbb.setGydw(tiaojian1);
 		xmbb.setXzqh(tiaojian2);
@@ -224,12 +235,170 @@ public class XmbbController extends BaseActionSupport{
 					}
 				}
 			}
-		}
+		}if("flag".equals(flag)){
+			List<Excel_list> elist=new ArrayList<Excel_list>();
+			for (int i=0;i<list1.size();i++) {
+				try{if(Integer.parseInt(list1.get(i).get("SL").toString())>1){
+					int j=Integer.parseInt(list1.get(i).get("SL").toString());
+					int ybf=0;
+					int wbf=0;
+					int sum=0;
+					for(int k=0;k<j;k++){
+						if(Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum>0 && Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum>=Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString())){
+							ybf=Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString());
+							wbf=0;
+							sum=sum+Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString());
+						}else if(Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum>0 && Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum<Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString())){
+							ybf=Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum;
+							wbf=Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString())-(Integer.parseInt(list1.get(i).get("BFZJ").toString())-sum);
+							sum=sum+Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString());
+						}else{
+							ybf=0;
+							wbf=Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString());
+							sum=sum+Integer.parseInt(list1.get(i+k).get("JHXDZJ").toString());
+						}
+						 if(k==0){
+							 Excel_list l=new Excel_list();
+							 try {l.setV_0(list1.get(i).get("XH").toString());} catch (Exception e) {l.setV_0("");} 
+							 try {l.setV_1(list1.get(i).get("XMMC").toString());} catch (Exception e) {l.setV_1("");} 
+							 try {l.setV_2(list1.get(i).get("XZQHMC").toString());} catch (Exception e) {l.setV_2("");} 
+							 try {l.setV_3(list1.get(i).get("TSDQ").toString());} catch (Exception e) {l.setV_3("");} 
+							 try {l.setV_4(list1.get(i).get("XDNF").toString());} catch (Exception e) {l.setV_4("");} 
+							 try {l.setV_5(list1.get(i).get("QDZH").toString());} catch (Exception e) {l.setV_5("");} 
+							 try {l.setV_6(list1.get(i).get("ZDZH").toString());} catch (Exception e) {l.setV_6("");} 
+							 try {l.setV_7(list1.get(i).get("YHLC").toString());} catch (Exception e) {l.setV_7("");} 
+							 try {l.setV_8(list1.get(i).get("PFZTZ").toString());} catch (Exception e) {l.setV_8("");} 
+							 try {l.setV_9(list1.get(i).get("JHXDZJ").toString());} catch (Exception e) {l.setV_9("");} 
+							 try {l.setV_10(ybf+"");} catch (Exception e) {l.setV_10("");} 
+							 try {l.setV_11(wbf+"");} catch (Exception e) {l.setV_11("");} 
+							 try {l.setV_12(list1.get(i).get("JSZT").toString());} catch (Exception e) {l.setV_12("");} 
+							 try {l.setV_13(list1.get(i).get("DC").toString());} catch (Exception e) {l.setV_13("");} 
+							 try {l.setV_14(list1.get(i).get("JC").toString());} catch (Exception e) {l.setV_14("");} 
+							 try {l.setV_15(list1.get(i).get("WGLC").toString());} catch (Exception e) {l.setV_15("");} 
+							 try {l.setV_16(list1.get(i).get("WKGLC").toString());} catch (Exception e) {l.setV_16("");} 
+							 try {l.setV_17(list1.get(i).get("SJKGSJ").toString());} catch (Exception e) {l.setV_17("");} 
+							 try {l.setV_18(list1.get(i).get("SFQXKG").toString());} catch (Exception e) {l.setV_18("");} 
+							 try {l.setV_19(list1.get(i).get("KGDL").toString());} catch (Exception e) {l.setV_19("");} 
+							 try {l.setV_20(list1.get(i).get("SJWGSJ").toString());} catch (Exception e) {l.setV_20("");} 
+							 try {l.setV_21(list1.get(i).get("YJWGSJ").toString());} catch (Exception e) {l.setV_21("");} 
+							 try {l.setV_22(list1.get(i).get("QKSM").toString());} catch (Exception e) {l.setV_22("");} 
+							 try {l.setV_23(list1.get(i).get("XDWH").toString());} catch (Exception e) {l.setV_23("");} 
+							 try {l.setV_24(list1.get(i).get("XGCSYJ").toString());} catch (Exception e) {l.setV_24("");} 
+							 try {l.setV_25(list1.get(i).get("CSCYJ").toString());} catch (Exception e) {l.setV_25("");} 
+							 try {l.setV_26(list1.get(i).get("SL").toString());} catch (Exception e) {l.setV_25("1");} 
+							 elist.add(l);
+						 }else{
+							 Excel_list l=new Excel_list();
+							 try {l.setV_0(list1.get(i).get("XH").toString());} catch (Exception e) {l.setV_0("");} 
+							 try {l.setV_1(list1.get(i).get("XMMC").toString());} catch (Exception e) {l.setV_1("");} 
+							 try {l.setV_2(list1.get(i).get("XZQHMC").toString());} catch (Exception e) {l.setV_2("");} 
+							 try {l.setV_3(list1.get(i).get("TSDQ").toString());} catch (Exception e) {l.setV_3("");} 
+							 try {l.setV_4(list1.get(i).get("XDNF").toString());} catch (Exception e) {l.setV_4("");} 
+							 try {l.setV_5(list1.get(i+k).get("QDZH").toString());} catch (Exception e) {l.setV_5("");} 
+							 try {l.setV_6(list1.get(i+k).get("ZDZH").toString());} catch (Exception e) {l.setV_6("");} 
+							 try {l.setV_7(list1.get(i+k).get("YHLC").toString());} catch (Exception e) {l.setV_7("");} 
+							 try {l.setV_8(list1.get(i+k).get("PFZTZ").toString());} catch (Exception e) {l.setV_8("");} 
+							 try {l.setV_9(list1.get(i+k).get("JHXDZJ").toString());} catch (Exception e) {l.setV_9("");} 
+							 try {l.setV_10(ybf+"");} catch (Exception e) {l.setV_10("");} 
+							 try {l.setV_11(wbf+"");} catch (Exception e) {l.setV_11("");} 
+							 try {l.setV_12(list1.get(i+k).get("JSZT").toString());} catch (Exception e) {l.setV_12("");} 
+							 try {l.setV_13(list1.get(i+k).get("DC").toString());} catch (Exception e) {l.setV_13("");} 
+							 try {l.setV_14(list1.get(i+k).get("JC").toString());} catch (Exception e) {l.setV_14("");} 
+							 try {l.setV_15(list1.get(i+k).get("WGLC").toString());} catch (Exception e) {l.setV_15("");} 
+							 try {l.setV_16(list1.get(i+k).get("WKGLC").toString());} catch (Exception e) {l.setV_16("");} 
+							 try {l.setV_17(list1.get(i+k).get("SJKGSJ").toString());} catch (Exception e) {l.setV_17("");} 
+							 try {l.setV_18(list1.get(i+k).get("SFQXKG").toString());} catch (Exception e) {l.setV_18("");} 
+							 try {l.setV_19(list1.get(i+k).get("KGDL").toString());} catch (Exception e) {l.setV_19("");} 
+							 try {l.setV_20(list1.get(i+k).get("SJWGSJ").toString());} catch (Exception e) {l.setV_20("");} 
+							 try {l.setV_21(list1.get(i+k).get("YJWGSJ").toString());} catch (Exception e) {l.setV_21("");} 
+							 try {l.setV_22(list1.get(i+k).get("QKSM").toString());} catch (Exception e) {l.setV_22("");} 
+							 try {l.setV_23(list1.get(i+k).get("XDWH").toString());} catch (Exception e) {l.setV_23("");} 
+							 try {l.setV_24(list1.get(i+k).get("XGCSYJ").toString());} catch (Exception e) {l.setV_24("");} 
+							 try {l.setV_25(list1.get(i+k).get("CSCYJ").toString());} catch (Exception e) {l.setV_25("");} 
+							 l.setV_26("1");
+							 elist.add(l);
+						 }
+						}
+						i=i+j-1;
+					}else{
+						throw new Exception();
+					}
+				}catch(Exception e1){
+					Excel_list l=new Excel_list();
+					try {l.setV_0(list1.get(i).get("XH").toString());} catch (Exception e) {l.setV_0("");} 
+					 try {l.setV_1(list1.get(i).get("XMMC").toString());} catch (Exception e) {l.setV_1("");} 
+					 try {l.setV_2(list1.get(i).get("XZQHMC").toString());} catch (Exception e) {l.setV_2("");} 
+					 try {l.setV_3(list1.get(i).get("TSDQ").toString());} catch (Exception e) {l.setV_3("");} 
+					 try {l.setV_4(list1.get(i).get("XDNF").toString());} catch (Exception e) {l.setV_4("");} 
+					 try {l.setV_5(list1.get(i).get("QDZH").toString());} catch (Exception e) {l.setV_5("");} 
+					 try {l.setV_6(list1.get(i).get("ZDZH").toString());} catch (Exception e) {l.setV_6("");} 
+					 try {l.setV_7(list1.get(i).get("YHLC").toString());} catch (Exception e) {l.setV_7("");} 
+					 try {l.setV_8(list1.get(i).get("PFZTZ").toString());} catch (Exception e) {l.setV_8("");} 
+					 try {l.setV_9(list1.get(i).get("JHXDZJ").toString());} catch (Exception e) {l.setV_9("");} 
+					 try {l.setV_10(list1.get(i).get("BFZJ").toString());} catch (Exception e) {l.setV_10("");} 
+					 try {l.setV_11(list1.get(i).get("WBFZJ").toString());} catch (Exception e) {l.setV_11("");} 
+					 try {l.setV_12(list1.get(i).get("JSZT").toString());} catch (Exception e) {l.setV_12("");} 
+					 try {l.setV_13(list1.get(i).get("DC").toString());} catch (Exception e) {l.setV_13("");} 
+					 try {l.setV_14(list1.get(i).get("JC").toString());} catch (Exception e) {l.setV_14("");} 
+					 try {l.setV_15(list1.get(i).get("WGLC").toString());} catch (Exception e) {l.setV_15("");} 
+					 try {l.setV_16(list1.get(i).get("WKGLC").toString());} catch (Exception e) {l.setV_16("");} 
+					 try {l.setV_17(list1.get(i).get("SJKGSJ").toString());} catch (Exception e) {l.setV_17("");} 
+					 try {l.setV_18(list1.get(i).get("SFQXKG").toString());} catch (Exception e) {l.setV_18("");} 
+					 try {l.setV_19(list1.get(i).get("KGDL").toString());} catch (Exception e) {l.setV_19("");} 
+					 try {l.setV_20(list1.get(i).get("SJWGSJ").toString());} catch (Exception e) {l.setV_20("");} 
+					 try {l.setV_21(list1.get(i).get("YJWGSJ").toString());} catch (Exception e) {l.setV_21("");} 
+					 try {l.setV_22(list1.get(i).get("QKSM").toString());} catch (Exception e) {l.setV_22("");} 
+					 try {l.setV_23(list1.get(i).get("XDWH").toString());} catch (Exception e) {l.setV_23("");} 
+					 try {l.setV_24(list1.get(i).get("XGCSYJ").toString());} catch (Exception e) {l.setV_24("");} 
+					 try {l.setV_25(list1.get(i).get("CSCYJ").toString());} catch (Exception e) {l.setV_25("");} 
+					 l.setV_26("1");
+					 elist.add(l);
+				}
+			}
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName("普通干线公路建设项目进展情况表");//设置第一行
+			eldata.setSheetName("项目进展情况表");//设置sheeet名
+			eldata.setFileName("普通干线公路建设项目进展情况表");//设置文件名
+			eldata.setEl(elist);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("序号",1,1,0,0));
+			et.add(new Excel_tilte("项目名称",1,1,1,1));
+			et.add(new Excel_tilte("所在地市",1,1,2,2));
+			et.add(new Excel_tilte("特殊区域",1,1,3,3));
+			et.add(new Excel_tilte("计划年度",1,1,4,4));
+			et.add(new Excel_tilte("起点桩号",1,1,5,5));
+			et.add(new Excel_tilte("讫点桩号",1,1,6,6));
+			et.add(new Excel_tilte("计划里程（里程）",1,1,7,7));
+			et.add(new Excel_tilte("概算总投资(万元)",1,1,8,8));
+			et.add(new Excel_tilte("计划下达资金(万元)",1,1,9,9));
+			et.add(new Excel_tilte("已拨付资金（万元）",1,1,10,10));
+			et.add(new Excel_tilte("未拨付资金（万元）",1,1,11,11));
+			et.add(new Excel_tilte("建设状态",1,1,12,12));
+			et.add(new Excel_tilte("垫层（m³）",1,1,13,13));
+			et.add(new Excel_tilte("基层（m³）",1,1,14,14));
+			et.add(new Excel_tilte("完工里程（公里）",1,1,15,15));
+			et.add(new Excel_tilte("未开工里程(公里)",1,1,16,16));
+			et.add(new Excel_tilte("开工日期",1,1,17,17));
+			et.add(new Excel_tilte("全线开工",1,1,18,18));
+			et.add(new Excel_tilte("开工段落",1,1,19,19));
+			et.add(new Excel_tilte("完工日期",1,1,20,20));
+			et.add(new Excel_tilte("预计完工时间",1,1,21,21));
+			et.add(new Excel_tilte("情况说明",1,1,22,22));
+			et.add(new Excel_tilte("计划下达文号",1,1,23,23));
+			et.add(new Excel_tilte("相关处室意见",1,1,24,24));
+			et.add(new Excel_tilte("财审处意见",1,1,25,25));
+
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_exportptgx(eldata,response);
+
+		}else{
 			if(list1.size()==1){
 				JsonUtils.write(null, getresponse().getWriter());
 			}
 			else
-			JsonUtils.write(list1, getresponse().getWriter());
+				JsonUtils.write(list1, getresponse().getWriter());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
