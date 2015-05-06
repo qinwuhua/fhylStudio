@@ -58,7 +58,7 @@
 		select * from (
 			select rownum as num,t.* from (	
 				select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
-	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
+	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.ylmlx 
 	      		from PLAN_lx_shuih lx right JOIN plan_shuih jh on  lx.jhid=jh.id 
 				where 1=1
 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
@@ -111,7 +111,7 @@
 		select * from (
 			select rownum as num,t.* from (	
 				select jh.xmmc,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
-	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.qzlc
+	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.qzlc,,lx.ylmlx
 	      		from PLAN_lx_shuih lx right JOIN plan_shuih jh on  lx.jhid=jh.id 
 				where 1=1
 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
@@ -266,23 +266,32 @@
 		delete from plan_shuih jh where jh.id=#{id}
 	</delete>
 	<update id="editShuihById" parameterType="plan_shuih">
-		update plan_shuih set sbnf=#{sbnf},
-			<if test="jhkgsj!=null and jhkgsj!=''">
-				jhkgsj=#{jhkgsj},
-			</if>
-			<if test="jhwgsj!=null and jhwgsj!=''">
-				jhwgsj=#{jhwgsj},
-			</if>
-			<if test="xdsj!=null and xdsj!=''">
-				xdsj=#{xdsj},
-			</if>
-			<if test="pfsj!=null and pfsj!=''">
-				pfsj=#{pfsj},
-			</if>
-			xmmc=#{xmmc},yhlb=#{yhlb},sjdw=#{sjdw},sjpfdw=#{sjpfdw},sjlmlx=#{sjlmlx},
-			dc=#{dc},jc=#{jc},mc=#{mc},lmkd=#{lmkd},pfwh=#{pfwh},pfztz=#{pfztz},jhsybzje=#{jhsybzje},
-			jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},sftqss=#{sftqss},
-			jhxdwh=#{jhxdwh},gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},sfgyhbm=#{sfgyhbm},jhbz=#{jhbz}
+		update plan_shuih set sbnf=#{sbnf}
+			<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=#{jhwgsj}</if>
+			<if test="xdsj!=null and xdsj!=''">,xdsj=#{xdsj}</if>
+			<if test="pfsj!=null and pfsj!=''">,pfsj=#{pfsj}</if>
+			<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+			<if test="yhlb!=null">,yhlb=#{yhlb}</if>
+			<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+			<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+			<if test="sjlmlx!=null">,sjlmlx=#{sjlmlx}</if>
+			<if test="dc!=null">,dc=#{dc}</if>
+			<if test="jc!=null">,jc=#{jc}</if>
+			<if test="mc!=null">,mc=#{mc}</if>
+			<if test="lmkd!=null">,lmkd=#{lmkd}</if>
+			<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+			<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+			<if test="jhsybzje!=null">,jhsybzje=#{jhsybzje}</if>
+			<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
+			<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+			<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+			<if test="sftqss!=null">,sftqss=#{sftqss}</if>
+			<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+			<if test="gksjwh!=null">,gksjwh=#{gksjwh}</if>
+			<if test="sjpfwh!=null">,sjpfwh=#{sjpfwh}</if>
+			<if test="sfgyhbm!=null">,sfgyhbm=#{sfgyhbm}</if>
+			<if test="jhbz!=null">,jhbz=#{jhbz}</if>
 		where id=#{id}
 	</update>
 	<update id="editShuihStatus" parameterType="plan_shuih">
@@ -327,8 +336,11 @@
 		    from  JXJCK_2013.GPSROAD g
 		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
+		    <if test="ylmlx!=null and ylmlx!=''">
+		    	and g.f116=#{ylmlx}
+		    </if>
 			group by roadname,roadcode,g.f114,g.f116) g1
-    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh}]]>
+    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh} and g1.yjsdj=#{yjsdj} and g1.ylmlx=#{ylmlx}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_shuih" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM
@@ -465,20 +477,76 @@
 			#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{tbsj},#{tbbmbh},#{yjsdj})
 	</insert>
 	<insert id="insertShuihJh" parameterType="plan_shuih">
-		insert into plan_shuih (id,fapgdw,fascdw,
-			faspsj,spwh,tzgs,jsxz,jsnr,
-			xmmc,lmkd,sftqss,sbnf,jhkgsj,
-			jhwgsj,sjdw,sjpfdw,pfwh,pfsj,
-			yhlb,sjlmlx,dc,jc,mc,
-			pfztz,jhsybzje,jhsydfzcje,sfsqablbz,ablbzsqwh,
-			sfgyhbm,gksjwh,sjpfwh,jhbz,sfylsjl,tbbm,jh_sbthcd)
-		values (#{id},#{fapgdw},#{fascdw},
-			to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
-			#{xmmc},#{lmkd},#{sftqss},#{sbnf},#{jhkgsj},
-			#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},#{pfsj},
-			#{yhlb},#{sjlmlx},#{dc},#{jc},#{mc},
-			#{pfztz},#{jhsybzje},#{jhsydfzcje},#{sfsqablbz},#{ablbzsqwh},
-			#{sfgyhbm},#{gksjwh},#{sjpfwh},#{jhbz},#{sfylsjl},#{tbbm},#{jh_sbthcd})
+		insert into plan_shuih (id
+			<if test="fapgdw!=null">,fapgdw</if>
+			<if test="fascdw!=null">,fascdw</if>
+			<if test="faspsj!=null">,faspsj</if>
+			<if test="spwh!=null">,spwh</if>
+			<if test="tzgs!=null">,tzgs</if>
+			<if test="jsxz!=null">,jsxz</if>
+			<if test="jsnr!=null">,jsnr</if>
+			<if test="xmmc!=null">,xmmc</if>
+			<if test="lmkd!=null">,lmkd</if>
+			<if test="sftqss!=null">,sftqss</if>
+			<if test="sbnf!=null">,sbnf</if>
+			<if test="jhkgsj!=null">,jhkgsj</if>
+			<if test="jhwgsj!=null">,jhwgsj</if>
+			<if test="sjdw!=null">,sjdw</if>
+			<if test="sjpfdw!=null">,sjpfdw</if>
+			<if test="pfwh!=null">,pfwh</if>
+			<if test="pfsj!=null">,pfsj</if>
+			<if test="yhlb!=null">,yhlb</if>
+			<if test="sjlmlx!=null">,sjlmlx</if>
+			<if test="dc!=null">,dc</if>
+			<if test="jc!=null">,jc</if>
+			<if test="mc!=null">,mc</if>
+			<if test="pfztz!=null">,pfztz</if>
+			<if test="jhsybzje!=null">,jhsybzje</if>
+			<if test="jhsydfzcje!=null">,jhsydfzcje</if>
+			<if test="sfsqablbz!=null">,sfsqablbz</if>
+			<if test="ablbzsqwh!=null">,ablbzsqwh</if>
+			<if test="sfgyhbm!=null">,sfgyhbm</if>
+			<if test="gksjwh!=null">,gksjwh</if>
+			<if test="sjpfwh!=null">,sjpfwh</if>
+			<if test="jhbz!=null">,jhbz</if>
+			<if test="sfylsjl!=null">,sfylsjl</if>
+			<if test="tbbm!=null">,tbbm</if>
+			<if test="jh_sbthcd!=null">,jh_sbthcd</if>)
+		values (#{id}
+			<if test="fapgdw!=null">,#{fapgdw}</if>
+			<if test="fascdw!=null">,#{fascdw}</if>
+			<if test="faspsj!=null">,to_date(#{faspsj},'yyyy-mm-dd')</if>
+			<if test="spwh!=null">,#{spwh}</if>
+			<if test="tzgs!=null">,#{tzgs}</if>
+			<if test="jsxz!=null">,#{jsxz}</if>
+			<if test="jsnr!=null">,#{jsnr}</if>
+			<if test="xmmc!=null">,#{xmmc}</if>
+			<if test="lmkd!=null">,#{lmkd}</if>
+			<if test="sftqss!=null">,#{sftqss}</if>
+			<if test="sbnf!=null">,#{sbnf}</if>
+			<if test="jhkgsj!=null">,#{jhkgsj}</if>
+			<if test="jhwgsj!=null">,#{jhwgsj}</if>
+			<if test="sjdw!=null">,#{sjdw}</if>
+			<if test="sjpfdw!=null">,#{sjpfdw}</if>
+			<if test="pfwh!=null">,#{pfwh}</if>
+			<if test="pfsj!=null">,#{pfsj}</if>
+			<if test="yhlb!=null">,#{yhlb}</if>
+			<if test="sjlmlx!=null">,#{sjlmlx}</if>
+			<if test="dc!=null">,#{dc}</if>
+			<if test="jc!=null">,#{jc}</if>
+			<if test="mc!=null">,#{mc}</if>
+			<if test="pfztz!=null">,#{pfztz}</if>
+			<if test="jhsybzje!=null">,#{jhsybzje}</if>
+			<if test="jhsydfzcje!=null">,#{jhsydfzcje}</if>
+			<if test="sfsqablbz!=null">,#{sfsqablbz}</if>
+			<if test="ablbzsqwh!=null">,#{ablbzsqwh}</if>
+			<if test="sfgyhbm!=null">,#{sfgyhbm}</if>
+			<if test="gksjwh!=null">,#{gksjwh}</if>
+			<if test="sjpfwh!=null">,#{sjpfwh}</if>
+			<if test="jhbz!=null">,#{jhbz}</if>
+			<if test="sfylsjl!=null">,#{sfylsjl}</if>
+			<if test="tbbm!=null">,#{tbbm}</if>
+			<if test="jh_sbthcd!=null">,#{jh_sbthcd}</if>)
 	</insert>
 	<select id="shAutoCompleteLxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,

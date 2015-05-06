@@ -101,9 +101,10 @@ function openHslyZjzj(id){
 	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
 	YMLib.UI.createWindow('zjzjadd','资金追加',"/jxzhpt/page/jhgl/zjxd/hslyzjzj.jsp",'zjzjadd',600,400);
 }
-function hslyglxm_zjxd(){
+function hslyglxm_zjxd(hsly){
+	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,
+		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:80,align:'center',formatter:function(value,row,index){

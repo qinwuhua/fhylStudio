@@ -88,7 +88,7 @@
 			window.location.href="/jxzhpt/jhgl/exportExcel_shuih.do?"+param;
 		}
 		function addShuih(){
-			parent.YMLib.UI.createWindow('add_shuih','水毁项目',"/jxzhpt/page/jhgl/add/shuihAdd.jsp",'addshuih',980,500);
+			YMLib.UI.createWindow('add_shuih','水毁项目',"/jxzhpt/page/jhgl/add/shuihAdd.jsp",'addshuih',980,500);
 		}
 	</script>
 </head>

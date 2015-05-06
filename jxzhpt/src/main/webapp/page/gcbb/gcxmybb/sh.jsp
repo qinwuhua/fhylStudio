@@ -90,6 +90,7 @@
 						var lxbm="";
 						var zh="";
 						var yhlc="";
+						alert("路线个数："+item.shjdlx.length+"   建设地点："+item.jsdd);
 						$.each(item.shjdlx,function(index,lx){
 							jsdd+=lx.jsdd;
 							lxbm+=lx.lxbm;

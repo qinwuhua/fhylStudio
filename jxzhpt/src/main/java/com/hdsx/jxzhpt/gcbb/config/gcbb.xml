@@ -84,9 +84,9 @@
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
 	</select>
-	<select id="selShuihJdbb" parameterType="xmbb" resultMap="gjjd">
-		select sh.xmmc,sh.id as jhid,sh.sfgyhbm as sfgyhbm,lx.jsdd as jsdd,lx.lxbm as lxbm,lx.qdzh as qdzh,lx.zdzh as zdzh,lx.yhlc as yhlc,
-		sh.yhlb as yhlb,sh.sjkgsj as sjkgsj,sh.sjwgsj as sjwgsj,lx.ylmlx as ylmlx,sh.sjlmlx as sjlmlx,
+	<select id="selShuihJdbb" parameterType="xmbb" resultType="gcgjjd">
+		select sh.xmmc,sh.id as jhid,sh.sfgyhbm as sfgyhbm,sh.yhlb as yhlb,sh.sjkgsj as sjkgsj,
+		sh.sjwgsj as sjwgsj,sh.sjlmlx as sjlmlx,
 		sh.dc as dc,(select gjgc.bywcdc from gcgl_sh gjgc where to_date(gjgc.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm') and gjgc.jhid=sh.id) bywcdc,
 		(select sum(gjgc.bywcdc) from gcgl_sh gjgc where gjgc.jhid=sh.id and 
 		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcdc ]]>,
@@ -105,8 +105,10 @@
 		to_date(gjgc.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm') and <![CDATA[ to_date(gjgc.sbyf,'yyyy-mm') <= to_date(#{ybny},'yyyy-mm')) as bnwcje ]]>,
 		(select sum(gjgc.wc_btz)+sum(gjgc.wc_stz)+sum(gjgc.wc_qttz) from gcgl_sh gjgc where to_date(#{ybny},'yyyy-mm') >= to_date(to_char(sh.sjkgsj,'yyyy-mm'),'yyyy-mm') and gjgc.jhid=sh.id) as zjwcje,
 		sh.kgzt as kgzt,sh.jgzt as jgzt
-		from plan_shuih sh,(select * from plan_lx_shuih) lx
-		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf} ${xzqh} ${gydw}		
+		from plan_shuih sh,(select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.jsdd)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
+		replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.yhlc)),',','、') as yhlc,
+		replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、') as ylmlx from plan_lx_shuih l where ${xzqh} ${gydw} group by l.jhid) lx
+		where sh.id=lx.jhid and sh.jh_sbthcd=6 and sh.sbnf=#{sbnf}		
 		<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>

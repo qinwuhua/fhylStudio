@@ -21,6 +21,7 @@
 		var lmjgjson,ymjson,sljson,glfjson;//1、存储路面结构的json字符串   2、存储延米数据的json 3、存储数量的json 4、存储管养费的json
 		$(function(){
 			loadBmbm2('txtJSDJ','技术等级');
+			loadBmbm2('txtGCFL','养护类别');
 			gydwComboxTree("txtGYDWMC");
 			loadXzqh("txtXZQHMC",$.cookie("dist"));
 			sbnf("lblYear");
@@ -314,14 +315,14 @@
 			var params={'lx.lxid':$('#lxid').val(),'lx.lxmc':$('#txtLXMC').val(),'lx.lxbm':$('#txtLXBM').val(),'lx.qdzh':$('#txtQDZH').val(),
 					'lx.zdzh':$('#txtZDZH').val(),'lx.qzlc':$('#txtLC').val(),'lx.hdlc':$('#txtHDLC').val(),
 					'lx.ylmlx':$('#txtYLMLX').val(),'lx.ylmkd':$('#txtYLMKD').val(),
-					'lx.ylmhd':$('#txtYLMHD').val(),'lx.yjsdj':$('#txtYLMKD').val(),
+					'lx.ylmhd':$('#txtYLMHD').val(),'lx.yjsdj':$('#txtJSDJ').combotree('getValue'),
 					'lx.xzqhdm':$('#txtXZQHMC').combotree('getValue'),'lx.xzqhmc':$('#txtXZQHMC').combotree('getText'),
 					'lx.gydwmc':$('#txtGYDWMC').combotree('getText'),'lx.gydwdm':$('#txtGYDWMC').combotree('getValue'),
 					'lx.bhnr':$('#txtBHNR').val(),'jh.sbnf':$('#lblYear').combotree('getValue'),
 					'lx.dzxkd':$('#txtyhdzxkd').val(),'lx.lmjg':lmjgjson,'lx.aym':JSON.stringify(ymjson),
 					'lx.asl':JSON.stringify(sljson),'lx.glf':JSON.stringify(glfjson),'lx.tbbmdm':$.cookie("unit"),
 					'jh.jhkgsj':$('#txtJhkgsj').combo('getValue'),'jh.jhwgsj':$('#txtJhwgsj').combo('getValue'),
-					'jh.classify':$('#txtGCFL').val(),'jh.aadt':$('#lblJTL').val(),
+					'jh.classify':$('#txtGCFL').combobox('getValue'),'jh.aadt':$('#lblJTL').val(),
 					'jh.pqi':$('#txtPQI').val(),'jh.dianceng':$('#txtDC').val(),'jh.jiceng':$('#txtJC').val(),
 					'jh.surface':$('#txtMC').val(),'jh.reportingfee':$('#txtSBJF').val(),
 					'jh.plandownnumber':$('#txtJHXDWH').val(),'jh.mark':$("input[name='txtXJBS']:checked").val(),
@@ -825,7 +826,13 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					PQI指标</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtPQI" type="text"/>
+					<select id="txtPQI" style="width: 50px;">
+						<option value="优">优</option>
+						<option value="良">良</option>
+						<option value="中">中</option>
+						<option value="次">次</option>
+						<option value="差">差</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

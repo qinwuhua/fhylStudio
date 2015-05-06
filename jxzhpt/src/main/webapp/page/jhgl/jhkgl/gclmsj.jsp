@@ -29,18 +29,15 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
+			sbnf("sbnf");
 			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")},
 			lx={lxmc:null,gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
-			sbnf("sbnf");
 			gclmsjxm(jh,lx);
 			queryGcsjSum(jh,lx);
 		});
 		function searchGcsj(){
 			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
-			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhmc:null,
-					xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhmc:null,xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}

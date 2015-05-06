@@ -23,6 +23,7 @@
 		loadXzqh("xzqhmc",$.cookie("dist"));
 		sbnf("editjhnf");
 		autoCompleteLXBM();
+		sfsqablbz("否");
 	});
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/jhgl/sjAutoCompleteLxbm.do";
@@ -172,6 +173,13 @@
 		}else{
 			alert("起止里程不能为负数！");
 			$(t).focus();
+		}
+	}
+	function sfsqablbz(value){
+		if(value=="是"){
+			$('#ablbzsqwh').removeAttr("disabled");
+		}else if(value=="否"){
+			$('#ablbzsqwh').attr("disabled","disabled");
 		}
 	}
 	</script>
@@ -387,13 +395,13 @@
 					工程唯一编码
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmwybh" style="width: 150px;"/>
+					<input type="text" id="xmwybh" style="width: 120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					项目名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmmc" style="width: 150px;"/>
+					<input type="text" id="xmmc" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -401,19 +409,19 @@
 					设计单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sjdw" style="width:150px;"/>
+					<input type="text" id="sjdw" style="width:120px;"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					设计批复单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sjpfdw" style="width:150px;"/>
+					<input type="text" id="sjpfdw" style="width:120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设技术标准
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="jsjsbz" style="width:150px;"/>
+					<input type="text" id="jsjsbz" style="width:120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -528,8 +536,8 @@
 					是否申请按比例补助
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="radio" id="sfsqablbz0" name="sfsqablbz" value="是"/>是
-					<input type="radio" id="sfsqablbz1" checked="checked" name="sfsqablbz" value="否"/>否
+					<input type="radio" id="sfsqablbz0" onchange="sfsqablbz('是')" name="sfsqablbz" value="是"/>是
+					<input type="radio" id="sfsqablbz1" onchange="sfsqablbz('否')" checked="checked" name="sfsqablbz" value="否"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号

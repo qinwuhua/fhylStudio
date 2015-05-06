@@ -72,6 +72,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	
 	public void queryHslyList(){
 		try {
+			hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> result =new HashMap<String, Object>();
 			result.put("rows", hslyServer.queryHslyList(page, rows, hsly));
 			result.put("total", hslyServer.queryHslyCount(hsly));
@@ -156,8 +157,9 @@ public class Plan_hslyController  extends BaseActionSupport{
 			List<Plan_hsly> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_hsly.class, 3, excel);
 			List<Plan_hsly> data=new ArrayList<Plan_hsly>();
 			readerExcel.remove(readerExcel.size()-1);
+			System.out.println("开始个数："+readerExcel.size());
 			for (int i = 0; i < readerExcel.size(); i++) {
-				if(readerExcel.get(i).getXzqhmc()==null){
+				if(readerExcel.get(i).getXzqhmc()==null || readerExcel.get(i).getXzqhmc().equals("")){
 					readerExcel.remove(i);
 				}else{
 					readerExcel.get(i).setTbbm(tbbmbm2);
@@ -176,7 +178,6 @@ public class Plan_hslyController  extends BaseActionSupport{
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
 //		try{
 //			if(!"xls".equals(fileType)){
 //				response.getWriter().print(fileuploadFileName+"不是excel文件");
@@ -215,6 +216,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	}
 	
 	public void exportExcelHslyZjxd(){
+		hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
 		hslyServer.queryHslyList(hsly);
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[8];
@@ -272,6 +274,24 @@ public class Plan_hslyController  extends BaseActionSupport{
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? name+" like '%"+bh+"%'": name+" in ("+bh+")";
 	}
 	//get set
 	public int getPage() {

@@ -460,48 +460,46 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	/**
 	 * 单次添加计划
+	 * @throws Exception 
 	 */
-	public void insertGcgj(){
-		try{
-			Map<String, String> result=new HashMap<String, String>();
-			UUID id=UUID.randomUUID();
-			lx.setJhid(id.toString());
-			jh.setId(id.toString());
-			if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
-				jh.setJh_sbthcd("2");
-			}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
-				jh.setJh_sbthcd("0");
-			}
-			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
-			gcgj.setXzqhdm(lx.getXzqhdm());
-			gcgj.setLxbm(lx.getLxbm());//路线编码
-			gcgj.setQdzh(lx.getQdzh());//起点桩号
-			gcgj.setZdzh(lx.getZdzh());//止点桩号
-			gcgj.setQzlc(lx.getQzlc());//隐患里程
-			gcgj.setGydwdm(lx.getGydwdm());//管养单位代码
-			gcgj.setYjsdj(lx.getYjsdj());
-			gcgj.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
-			String strResult="false";
-			if(gcgjServer.queryJhExist(gcgj)==0){
-				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
-				if(queryGPSBylxbm!=null){
-					jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
-					boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
-					boolean jhresult=gcgjServer.insertGcgjJh(jh);
-					if(lxresult && jhresult){
-						strResult="true";
-					}
-				}else{
-					strResult="none";
+	public void insertGcgj() throws Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		UUID id=UUID.randomUUID();
+		lx.setJhid(id.toString());
+		jh.setId(id.toString());
+		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+			jh.setJh_sbthcd("0");
+		}
+		Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
+		gcgj.setXzqhdm(lx.getXzqhdm());
+		gcgj.setLxbm(lx.getLxbm());//路线编码
+		gcgj.setQdzh(lx.getQdzh());//起点桩号
+		gcgj.setZdzh(lx.getZdzh());//止点桩号
+		gcgj.setQzlc(lx.getQzlc());//隐患里程
+		gcgj.setGydwdm(lx.getGydwdm());//管养单位代码
+		gcgj.setYjsdj(lx.getYjsdj());
+		gcgj.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+		gcgj.setYlmlx(lx.getYlmlx());//
+		String strResult="false";
+		if(gcgjServer.queryJhExist(gcgj)==0){
+			Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
+			if(queryGPSBylxbm!=null){
+				jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
+				boolean jhresult=gcgjServer.insertGcgjJh(jh);
+				boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
+				if(lxresult && jhresult){
+					strResult="true";
 				}
 			}else{
-				strResult="have";
+				strResult="none";
 			}
-			result.put("result", strResult);
-			JsonUtils.write(result, getresponse().getWriter());
-		}catch(Exception e){
-			e.printStackTrace();
+		}else{
+			strResult="have";
 		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
 	}
 	/**
 	 * 单次添加计划时的编码提示

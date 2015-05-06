@@ -26,8 +26,8 @@
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
 </style>
  <script type="text/javascript">
- var mapServerUrl = "http://192.168.1.102:8989/hdmapserver";
- var nameSpace = "http://192.168.1.102:8989/hdmapserver/jiangximap";
+ var mapServerUrl = "http://192.168.1.101:8989/hdmapserver";
+ var nameSpace = "http://192.168.1.101:8989/hdmapserver/jiangximap";
  var map, baseLayers;
  var format = 'image/png';
  var bounds = new OpenLayers.Bounds(

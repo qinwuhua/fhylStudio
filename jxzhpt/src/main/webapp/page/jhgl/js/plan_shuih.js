@@ -455,15 +455,15 @@ function editShuih(){
 		var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
 				'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
 				'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
-				'jh.yhlb':$('#yhlb').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
+				'jh.yhlb':$('#yhlb').combobox('getValue'),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
 				'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
 				'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
 				'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
 				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),
-				'jh.sfsqablbz':$('#lblSFSQABLBZ').val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
-				'jh.sftqss':$('#sftqss').val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
+				'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.jhxdwh':$('#jhxdwh').val(),
 				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-				'jh.sfgyhbm':$('#sfgyhbm').val(),'jh.jhbz':$('#lblJHRemarks').val()
+				'jh.sfgyhbm':$("input[name='sfgyhbm']:checked").val(),'jh.jhbz':$('#lblJHRemarks').val()
 		};
 		$.ajax({
 			type:'post',
@@ -484,7 +484,7 @@ function editShuih(){
  * 对每一条路线的总投资进行验证
  */
 function lxztz(){
-	var lxCount = ($('#tr_scxx').index()-1)/6;
+	/*var lxCount = ($('#tr_scxx').index()-1)/6;
 	var result=false,fdbz=0,ztz=0.0;//result：是否符合标准;fdbz：投资金额的浮动标准;ztz：总投资金额，每条路线累计相加
 	for(var i=0;i<lxCount;i++){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
@@ -503,13 +503,14 @@ function lxztz(){
 			}
 		});
 	}
-	if($('#pfztz').val()>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
+	if(Number($('#pfztz').val())>=(ztz-fdbz) && $('#pfztz').val()<=(Number(ztz)+Number(fdbz))){
 		result=true;
 	}else{
 		result=false;
 		return result;
-	}
-	if($('#pfztz').val()==Number($('#bbz').val())+Number($('#dfzc').val())){
+	}*/
+	if(Number($('#pfztz').val()==""? "0" : $('#pfztz').val())>=Number($('#bbz').val()==""? "0" : $('#bbz').val())
+			+Number($('#dfzc').val()==""? "0" : $('#dfzc').val())){
 		result=true;
 	}else{
 		result=false;

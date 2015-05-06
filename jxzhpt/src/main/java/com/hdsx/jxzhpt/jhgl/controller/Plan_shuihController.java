@@ -421,6 +421,7 @@ public class Plan_shuihController extends BaseActionSupport {
 		shuih.setZdzh(lx.getZdzh());
 		shuih.setGydwdm(lx.getGydwdm());
 		shuih.setYjsdj(lx.getYjsdj());
+		shuih.setYlmlx(lx.getYlmlx());
 		shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
 		String strResult="false";
 		if(shuihServer.queryJhExist(shuih)==0){
@@ -430,8 +431,8 @@ public class Plan_shuihController extends BaseActionSupport {
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
 				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
-				boolean lxresult = shuihServer.insertShuihLx(lx);
 				boolean jhresult = shuihServer.insertShuihJh(jh);
+				boolean lxresult = shuihServer.insertShuihLx(lx);
 				if(lxresult && jhresult){
 					strResult="true";
 				}

@@ -22,10 +22,15 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadDist("xzqh",$.cookie("dist"));
+			loadDist1("xzqh",$.cookie("dist"));
 			sbnf('jhnf');
-			hslyglxm_zjxd();
+			var params={xzqhdm:getxzqhdm('xzqh'),xmmc:null,jhnf:null};
+			hslyglxm_zjxd(params);
 		});
+		function searchHsly(){
+			var params={xzqhdm:getxzqhdm('xzqh'),jhnf:$('#jhnf').combo("getValue"),xmmc:$('#txtName').val()};
+			hslyglxm_zjxd(params);
+		}
 		function exportExcelZjxd(){
 			var param="gydwdm="+$.cookie("unit");
 			window.location.href="/jxzhpt/jhgl/exportExcelHslyZjxd.do?"+param;
@@ -38,7 +43,7 @@
 			<tr>
 				<td>
 	                <div id="righttop">
-						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;灾害防治项目</div>
+						<div id="p_top">计划管理>&nbsp;项目计划库资金下达>&nbsp;红色旅游公路项目</div>
 					</div>
 	            </td>
         	</tr>
@@ -63,7 +68,7 @@
 								</select>
         						<span style="vertical-align:middle;">&nbsp;项目名称：</span>
         						<input name="txtName" type="text" id="txtName" style="width:120px;vertical-align:middle;" />
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="importExcel()" style="vertical-align:middle;"/>
+        						<img onclick="searchHsly()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         						<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('hsly_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>

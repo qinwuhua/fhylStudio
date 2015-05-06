@@ -375,7 +375,7 @@ function dropGcsjs(){
 							"jh.jhwgsj":null,"jh.pfztz":null,
 							"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 					alert("移除成功！");
-					gridObj.datagrid("reload",params);
+					searchGcsj();
 				}
 			},
 			error:function(){
@@ -417,7 +417,7 @@ function editGcsj(){
 	}
 }
 function lxztz(){
-	var lxCount = ($('#tr_scxx').index()-1)/7;
+	/*var lxCount = ($('#tr_scxx').index()-1)/7;
 	var result=false,fdbz=0,ztz=0.0;//result：是否符合标准;fdbz：投资金额的浮动标准;ztz：总投资金额，每条路线累计相加
 	for(var i=0;i<lxCount;i++){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
@@ -441,7 +441,7 @@ function lxztz(){
 	}else{
 		result=false;
 		return result;
-	}
+	}*/
 	if($('#pftz').val()==Number($('#jhsybbzje').val())+Number($('#jhsysbzje').val())){
 		result=true;
 	}else{

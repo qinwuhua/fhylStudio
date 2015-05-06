@@ -7,6 +7,13 @@ function openZjzjWindow(id,url){
 function closeWindow2(id){
 	parent.$('#'+id).window("destroy");
 }
+function isNumber(txt){
+	var reg = new RegExp("^[0-9]*$");
+	if(!reg.test($(txt).val())){
+		alert("此处请输入数字！");
+		$(txt).focus();
+	}
+}
 /**
  * 管养单位下拉框
  * @param id

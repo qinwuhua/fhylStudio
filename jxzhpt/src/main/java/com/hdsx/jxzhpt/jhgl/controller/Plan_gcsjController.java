@@ -424,7 +424,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 		String strResult="false";
 		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
 			jh.setJh_sbthcd("2");
-		}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+		}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
 			jh.setJh_sbthcd("0");
 		}
 		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
@@ -433,6 +433,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 		lx1.setQdzh(lx.getQdzh());
 		lx1.setZdzh(lx.getZdzh());
 		lx1.setGydwdm(lx.getGydwdm());
+		lx1.setYjsdj(lx.getYjsdj());
 		lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
 		//查询是否有此计划
 		if(gcsjServer.queryJhExist(lx1)==0){
@@ -441,8 +442,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
 				jh.setSfylsjl("否");
-				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
 				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
+				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
 				if(lxresult && jhresult){
 					strResult="true";
 				}
