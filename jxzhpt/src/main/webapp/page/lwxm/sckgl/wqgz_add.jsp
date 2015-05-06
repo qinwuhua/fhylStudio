@@ -82,7 +82,7 @@ function autoCompleteQLBH(){
   			},
   			gydwbm:function() {
   				var d = $.cookie("unit2");
-  				if(d=='______36') return "";
+  				if(d=='_____36') return "";
   				else return d;
   			},
   			xzqhdm:function() {
