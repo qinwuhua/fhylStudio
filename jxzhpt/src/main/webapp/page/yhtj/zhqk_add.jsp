@@ -63,6 +63,22 @@
     	if(!confirm("您确认保存该信息吗？")){
     		return;
     	}
+    	var sbrq=$("#sbrq").datebox('getValue');
+    	var date = new Date();
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		var d = date.getDate();
+		if(m<=9){
+			m='0'+m;
+		}
+		if(d<=9){
+			d='0'+d;
+		}
+		var sbrq1=y+"-"+m+"-"+d;
+		if(sbrq1<sbrq){
+			alert("上报日期不能大于系统日期");
+			return;
+		}
     	 $.ajax({
     			type:"post",
     			url:"/jxzhpt/wjxt/insertzhqk.do",

@@ -59,6 +59,36 @@ text-decoration:none;
 	$('#' + id).combotree('setValue', '11101360000');
 
 }
+	function check(str){
+    	if(str.value!=''){
+    		if($.trim(str.value)==''){
+    			$(str).val('');
+    			return;
+    		}
+    		var flag= /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+    		if(!flag.test($.trim(str.value))){
+    			alert("请输入正确的数字");
+    			$(str).val('');
+    		}else{
+    			$(str).val($.trim(str.value));
+    		}
+    	}
+    }
+	function check1(str){
+    	if(str.value!=''){
+    		if($.trim(str.value)==''){
+    			$(str).val('');
+    			return;
+    		}
+    		var flag= /^[0-9]*[1-9][0-9]*$/;
+    		if(!flag.test($.trim(str.value))){
+    			alert("请输入正整数");
+    			$(str).val('');
+    		}else{
+    			$(str).val($.trim(str.value));
+    		}
+    	}
+    }
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -73,10 +103,10 @@ text-decoration:none;
 					<input type="text"  id="gydw" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">抢修人数(工日)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="qxrs" style="width: 156px" /></td>
+					<input type="text"  id="qxrs" style="width: 156px" onblur="check1(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投入抢修经费(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="trqxjf" /></td>
+					<input type="text" id="trqxjf"  onblur="check(this)"/></td>
 			</tr>
 			<tr>
 				<td colspan="6" style="background-color: #F1F8FF;color: #007DB3; height: 20px;" align="left">
@@ -86,21 +116,21 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沥青(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="lq" style="width: 156px" /></td>
+					<input type="text"  id="lq" style="width: 156px" onblur="check(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">水泥(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="sn" style="width: 156px" /></td>
+					<input type="text"  id="sn" style="width: 156px" onblur="check(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沙石(立方)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="ss" /></td>
+					<input type="text" id="ss"  onblur="check(this)"/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编织袋(个)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="bzd" style="width: 156px" /></td>
+					<input type="text"  id="bzd" style="width: 156px" onblur="check1(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工业盐(吨)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="gyy" style="width: 156px" /></td>
+					<input type="text"  id="gyy" style="width: 156px" onblur="check(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">沥青冷补料：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
 					<input type="text" id="lqlbl" /></td>
@@ -113,21 +143,21 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">挖掘机 ：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="wjj" style="width: 156px" /></td>
+					<input type="text"  id="wjj" style="width: 156px" onblur="check1(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">装载机：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="zzj" style="width: 156px" /></td>
+					<input type="text"  id="zzj" style="width: 156px" onblur="check1(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">自卸汽车：</td>
 				<td style="background-color: #ffffff; height: 20px;width:20%" align="left">
-					<input type="text" id="zxqc" /></td>
+					<input type="text" id="zxqc"  onblur="check1(this)"/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">抽水台班：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="cstb" style="width: 156px" /></td>
+					<input type="text"  id="cstb" style="width: 156px" onblur="check1(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设备台班小计：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text"  id="sbtbxj" style="width: 156px" /></td>
+					<input type="text"  id="sbtbxj" style="width: 156px" onblur="check1(this)"/></td>
 			</tr>			
 			<tr>
 				<td colspan="6" style="background-color: #F1F8FF;color: #007DB3; height: 20px;" align="left">
