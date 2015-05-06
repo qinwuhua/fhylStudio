@@ -86,30 +86,10 @@
 						var tr="<tr>";
 						tr+="<td>"+item.xmmc+"</td>";
 						tr+="<td>"+item.sfgyhbm+"</td>";
-						var jsdd="";
-						var lxbm="";
-						var zh="";
-						var yhlc="";
-						alert("路线个数："+item.shjdlx.length+"   建设地点："+item.jsdd);
-						$.each(item.shjdlx,function(index,lx){
-							jsdd+=lx.jsdd;
-							lxbm+=lx.lxbm;
-							zh+=lx.qdzh+"-"+lx.zdzh;
-							yhlc+=lx.yhlc;
-							if(lx.yhlb=="大修"){
-								dx+=lx.yhlb;
-							}else if(lx.yhlb=="中修"){
-								zx+=lx.yhlb;
-							}else if(lx.yhlb=="防御性养护"){
-								yfx+=lx.yhlb;
-							}
-							if(index!=item.gjjdlx.length-1){
-								jsdd+=",";
-								lxbm+=",";
-								zh+=",";
-								yhlc+=",";
-							}
-						});
+						var jsdd=item.jsdd;
+						var lxbm=item.lxbm;
+						var zh=item.qdzh+"-"+item.zdzh;
+						var yhlc=item.yhlc;
 						tr+="<td>"+jsdd+"</td>";
 						tr+="<td>"+lxbm+"</td>";
 						tr+="<td>"+zh+"</td>";
@@ -123,41 +103,45 @@
 						}
 						if(item.yhlb=="大修"){
 							tr+="<td>"+item.yhlb+"</td>";
-							tr+="<td></td>";
-							tr+="<td></td>";
+							tr+="<td>-</td>";
+							tr+="<td>-</td>";
 						}else if(item.yhlb=="中修"){
-							tr+="<td></td>";
+							tr+="<td>-</td>";
 							tr+="<td>"+item.yhlb+"</td>";
-							tr+="<td></td>";
+							tr+="<td>-</td>";
 						}else if(item.yhlb=="防御性养护"){
-							tr+="<td></td>";
-							tr+="<td></td>";
+							tr+="<td>-</td>";
+							tr+="<td>-</td>";
 							tr+="<td>"+item.yhlb+"</td>";
+						}else{
+							tr+="<td>-</td>";
+							tr+="<td>-</td>";
+							tr+="<td>-</td>";
 						}
-						tr+="<td>"+sjkgsj+"-"+sjwgsj+"</td>";
+						tr+="<td>"+(item.sjkgsj==null ? "" : item.sjkgsj)+"-"+(item.sjwgsj==null ? "" : item.sjwgsj)+"</td>";
 						tr+="<td>"+item.ylmlx+"</td>";
 						tr+="<td>"+item.sjlmlx+"</td>";
 						tr+="<td>"+item.dc+"</td>";
 						tr+="<td>"+item.bywcdc+"</td>";
 						tr+="<td>"+item.bnwcdc+"</td>";
 						tr+="<td>"+item.zjwcdc+"</td>";
-						tr+="<td>"+(Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.dc)==0 ? "0" : (Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.jc+"</td>";
 						tr+="<td>"+item.bywcjc+"</td>";
 						tr+="<td>"+item.bnwcjc+"</td>";
 						tr+="<td>"+item.zjwcjc+"</td>";
-						tr+="<td>"+(Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.jc)==0 ? "0" : (Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.mc+"</td>";
 						tr+="<td>"+item.bywcmc+"</td>";
 						tr+="<td>"+item.bnwcmc+"</td>";
 						tr+="<td>"+item.zjwcmc+"</td>";
-						tr+="<td>"+(Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.mc)==0 ? "0" : (Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.pfztz+"</td>";
 						tr+="<td>"+item.gys+"</td>";
 						tr+="<td>"+item.bywcje+"</td>";
 						tr+="<td>"+item.bnwcje+"</td>";
 						tr+="<td>"+item.zjwcje+"</td>";
-						tr+="<td>"+(Number(item.zjwcje)/Number(item.pfztz)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.pfztz)==0 ? "0" : Number(item.zjwcje)/Number(item.pfztz)*100).toFixed(2)+"%"+"</td>";
 						var zt="";
 						if(item.kgzt=="0"){
 							zt="未开工";

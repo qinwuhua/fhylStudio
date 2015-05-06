@@ -59,9 +59,9 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and tbbm like '%"+gydwdm+"%'";
+			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
 		}else{
-			tiaojian1="and tbbm in ("+gydwdm+")";
+			tiaojian1="and gydwdm in ("+gydwdm+")";
 		}
 		if(xzqhdm.indexOf(",")==-1){
 			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
