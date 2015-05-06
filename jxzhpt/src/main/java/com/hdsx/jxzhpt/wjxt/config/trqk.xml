@@ -205,4 +205,19 @@
 		</if>
 		
 	</select>
+	<select id="selectLqpdmxbdata" parameterType="lkmxb" resultType="lkmxb">
+		select * from lkpd_mxb where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
+	<select id="selectLktjbdata" parameterType="lktjb" resultType="lktjb">
+		select * from lkpd_tjb where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
+	<select id="selectJtlhzdata" parameterType="jtlhz" resultType="jtlhz">
+		select * from jtlhz where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
+	<select id="selectJtlhzgddata" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from jtlhzgd where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
+	<select id="selectJtlhzsddata" parameterType="jtlhzgd" resultType="jtlhzgd">
+		select * from jtlhzsd where tbnf=#{tbnf} and tbdw=#{tbdw}
+	</select>
 </mapper>

@@ -87,4 +87,14 @@ public interface TrqkServer {
 
 	List<Lkmxb> getPqiList(Lkmxb lkmxb);
 
+	Lkmxb selectLqpdmxbdata(Lkmxb lkmxb);
+
+	Lktjb selectLktjbdata(Lktjb lktjb);
+
+	Jtlhz selectJtlhzdata(Jtlhz jtlhz);
+
+	Jtlhzgd selectJtlhzgddata(Jtlhzgd jtlhz);
+
+	Jtlhzgd selectJtlhzsddata(Jtlhzgd jtlhz);
+
 }

@@ -81,7 +81,7 @@
                                 <table cellpadding="0" cellspacing="0" style=" width: 99.9%;">
                                     <tr>
                                         <td align="center" colspan="3" style="height: 20px; font-size: 20px; font-weight: bolder;">
-                                            公路技术状况统计表
+                                            公路技术状况评定明细表
                                         </td>
                                     </tr>
                                     <tr>

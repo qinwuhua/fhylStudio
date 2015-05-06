@@ -63,7 +63,7 @@ function showAll(){
 				    	}
 				    },
 					{field:'gydwmc',title:'管养单位',width:500,rowspan:2,align:'center'},
-					{field:'sbrq',title:'上报日期',width:300,rowspan:2,align:'center'},
+					{field:'sbrq',title:'上报日期',width:300,rowspan:2,align:'center'}
 				]]    
 	}); 
 }

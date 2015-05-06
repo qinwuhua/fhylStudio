@@ -25,7 +25,7 @@ function openJsUpdate(_id){
 	var str=new Date().getTime();
 	obj= $("#tt").tabs("add",{
 		id:_id+str,
-		 title:"公路技术状况统计表",
+		 title:"公路技术状况评定统计表",
 		 href :"tjb_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',
@@ -93,7 +93,7 @@ $(function(){
 <div style="width:100%;">
     <div  style="height:84px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;路况评定统计</div>
+			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;公路技术状况评定统计表</div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
 			<fieldset style="width:99%; text-align: left; vertical-align: middle;">

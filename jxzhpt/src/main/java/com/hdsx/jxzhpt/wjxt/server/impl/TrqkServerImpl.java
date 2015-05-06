@@ -281,4 +281,34 @@ public class TrqkServerImpl extends BaseOperate implements TrqkServer {
 		// TODO Auto-generated method stub
 		return queryList("getPqiList", lkmxb);
 	}
+
+	@Override
+	public Lkmxb selectLqpdmxbdata(Lkmxb lkmxb) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLqpdmxbdata", lkmxb);
+	}
+
+	@Override
+	public Lktjb selectLktjbdata(Lktjb lktjb) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLktjbdata", lktjb);
+	}
+
+	@Override
+	public Jtlhz selectJtlhzdata(Jtlhz jtlhz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectJtlhzdata", jtlhz);
+	}
+
+	@Override
+	public Jtlhzgd selectJtlhzgddata(Jtlhzgd jtlhz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectJtlhzgddata", jtlhz);
+	}
+
+	@Override
+	public Jtlhzgd selectJtlhzsddata(Jtlhzgd jtlhz) {
+		// TODO Auto-generated method stub
+		return queryOne("selectJtlhzsddata", jtlhz);
+	}
 }

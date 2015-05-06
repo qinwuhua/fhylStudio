@@ -168,6 +168,17 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setLxdh(data.get(data.size()-1).get("20").toString());
 			jtlhz1.setBcrq(data.get(data.size()-1).get("33").toString());
 			jtlhz1.setId(s1);
+			try {
+				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Jtlhz l=trqkServer.selectJtlhzdata(jtlhz1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
 			booltb=trqkServer.insertJtlhz(jtlhz1);
 			data.remove(0);
 			data.remove(0);
@@ -266,9 +277,18 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setLxdh(data.get(data.size()-1).get("13").toString());
 			jtlhz1.setRq(data.get(data.size()-1).get("18").toString());
 			jtlhz1.setId(s1);
+			try {
+				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Jtlhzgd l=trqkServer.selectJtlhzgddata(jtlhz1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
 			booltb=trqkServer.insertJtlhzgd(jtlhz1);
-			System.out.println(data);
-			System.out.println("-------------------------------------");
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);
@@ -365,9 +385,18 @@ public class JtlController extends BaseActionSupport{
 			jtlhz1.setLxdh(data.get(data.size()-1).get("13").toString());
 			jtlhz1.setRq(data.get(data.size()-1).get("18").toString());
 			jtlhz1.setId(s1);
+			try {
+				Integer.parseInt(jtlhz1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Jtlhzgd l=trqkServer.selectJtlhzsddata(jtlhz1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
 			booltb=trqkServer.insertJtlhzsd(jtlhz1);
-			System.out.println(data);
-			System.out.println("-------------------------------------");
 			data.remove(0);
 			data.remove(0);
 			data.remove(0);

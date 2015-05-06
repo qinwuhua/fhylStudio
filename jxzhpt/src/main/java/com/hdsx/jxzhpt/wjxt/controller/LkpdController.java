@@ -180,6 +180,17 @@ public class LkpdController extends BaseActionSupport{
 			lkmxb1.setTbrq(data.get(data.size()-1).get("12").toString().split("：")[1]);
 			else lkmxb1.setTbrq("");
 			lkmxb1.setId(s1);
+			try {
+				Integer.parseInt(lkmxb1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Lkmxb l=trqkServer.selectLqpdmxbdata(lkmxb1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
 			booltb=trqkServer.insertLqpdmxb(lkmxb1);
 			data.remove(0);
 			data.remove(0);
@@ -192,6 +203,7 @@ public class LkpdController extends BaseActionSupport{
 				i++;
 				map.put("mxb_id", s1);
 			}
+			
 			booldata=trqkServer.insertLqpdmxbdata(data);
 			if(booltb && booldata)
 				response.getWriter().print(fileuploadFileName+"导入成功");
@@ -278,6 +290,17 @@ public class LkpdController extends BaseActionSupport{
 			lktjb1.setTbrq(data.get(data.size()-1).get("8").toString().split("：")[1]);
 			else lktjb1.setTbrq("");
 			boolean booltb=false,booldata=false;
+			try {
+				Integer.parseInt(lktjb1.getTbnf().substring(0,4));
+			} catch (Exception e) {
+				response.getWriter().print("数据错误，导入失败\r");
+				return;
+			}
+			Lktjb l=trqkServer.selectLktjbdata(lktjb1);
+			if(l!=null){
+				response.getWriter().print("该单位在该年数据已存在，导入失败\r");
+				return;
+			}
 			booltb=trqkServer.insertLktjb(lktjb1);
 			data.remove(0);
 			data.remove(0);

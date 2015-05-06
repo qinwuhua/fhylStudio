@@ -91,7 +91,7 @@ function showAll(){
 	var xmnf=$("#ddlYear").val();
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
-		if($.cookie("unit2"gydwstr_36')
+		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
 		else gydwstr= $.cookie("unit2");
 	}else if(gydw.length==1){
@@ -100,17 +100,6 @@ function showAll(){
 		gydwstr=gydw[0] ;
 	}else{
 		gydwstr= gydw.join(',');
-	}
-var xzqhdm=$("#xzqh").combotree("getValues");
-	if(xzqhdm.length==0){
-		xzqhstr= $.cookie("dist2");
-		
-	}else if(xzqhdm.length==1){
-		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
-		xzqhstr=xzqhdm[0] ;
-	}else{
-		xzqhstr= xzqhdm.join(',');
 	}
 	var kgzt='';
 	var jgzt='0';

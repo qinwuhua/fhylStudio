@@ -60,7 +60,7 @@ function showAll(){
 	var xmnf=$("#ddlYear").val();
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
-		if($.cookie("unit2"gydwstr_36')
+		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
 		else gydwstr= $.cookie("unit2");
 	}else if(gydw.length==1){
@@ -109,7 +109,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqh11str,
+	    	xzqhdm: xzqhstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
