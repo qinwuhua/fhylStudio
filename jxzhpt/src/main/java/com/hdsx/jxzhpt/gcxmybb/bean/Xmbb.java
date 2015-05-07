@@ -27,7 +27,14 @@ public class Xmbb implements Serializable {
 	private String ybny;//月报年月
 	private String sbnf;//上报年份
 	private String flag;
+	private String lxmc;
 	
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
 	public String getFlag() {
 		return flag;
 	}

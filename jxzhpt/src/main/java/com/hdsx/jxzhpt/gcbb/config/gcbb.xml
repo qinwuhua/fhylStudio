@@ -148,11 +148,12 @@
 		replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
 		replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.hdlc)),',','、') as yhlc,
 		replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、') as ylmlx
-		from plan_lx_yhdzx l where 1=1 and ${xzqh} and ${gydw} group by l.jhid) lx right join plan_yhdzx yh on lx.jhid=yh.id 
+		from plan_lx_yhdzx l where 1=1 and ${xzqh} and ${gydw} <if test="lxmc!=null and lxmc!=''"> and l.lxbm like '%'||#{lxmc}||'%'</if>
+		group by l.jhid) 
+		lx right join plan_yhdzx yh on lx.jhid=yh.id 
 		where yh.jh_sbthcd=6 and yh.sbnf=#{sbnf}
-		<if test="tiaojian!=null and tiaojian!=''">
-			and lx.lxbm like #{tiaojian}||'%'
-		</if>
+		<if test="xmmc!=null and xmmc!=''">and yh.xmmc like #{xmmc}||'%'</if>
+		<if test="lxmc!=null and lxmc!=''"> and lx.lxbm like '%'||#{lxmc}||'%'</if>
 	</select>
 	<resultMap type="gcsjjd" id="sjjd">
 		<result property="jhid" column="jhid"/>

@@ -49,8 +49,8 @@
 		function search(){
 			$('#tbody_gcgj').empty();
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),
-					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
+					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),'xmbb.lxmc':$('#lxmc').val(),
+					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null,'xmbb.xmmc':$('#xmmc').val(),};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
 			}
@@ -197,7 +197,7 @@
         						<select  id="ddlYear1" style="width: 80px;"></select>
         						<span>行政等级：</span>
         						<select id="xzdj" class="easyui-combobox" style="width:60px;"></select>
-        						<span>路线名称：</span>
+        						<span>路线编码：</span>
         						<input id="lxmc" type="text"  style="width: 100px"/>
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
