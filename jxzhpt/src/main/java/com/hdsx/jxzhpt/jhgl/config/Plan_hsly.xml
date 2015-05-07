@@ -61,7 +61,7 @@
 			<if test="sgtpfwh!=null">,#{sgtpfwh}</if>
 			<if test="tbbm!=null">,#{tbbm}</if>
 			<if test="tbsj!=null">,#{tbsj}</if>
-			<if test="xzqhmc!=null">,(select id from XTGL_XZQH where name = substr(#{xzqhmc},4))</if>
+			<if test="xzqhmc!=null">,substr(#{gydwdm},6)</if>
 			<if test="xzqhmc!=null">,#{xzqhmc}</if>
 			<if test="gydwdm!=null">,#{gydwdm}</if>
 			<if test="gydwmc!=null">,#{gydwmc}</if>)
@@ -110,7 +110,7 @@
 		select * from plan_hsly where id=#{id}
 	</select>
 	<select id="queryHslyZjzj" parameterType="string" resultType="plan_hsly">
-		select jhnf,ztz,zytzcgs as zytz,dfzc as dfta,gndk,lywz,zyjsnr,xzscnl as xzscl from PLAN_HSLY_ZJZJ t
+		select jhnf,ztz,zytzcgs as zytz,dfzc as dfta,gndk,lywz,zyjsnr,NVL(xzscnl,' ') as xzscl from PLAN_HSLYZJZJ t
 		where t.PLANID=#{id}
 	</select>
 	<update id="editHsly" parameterType="plan_hsly">

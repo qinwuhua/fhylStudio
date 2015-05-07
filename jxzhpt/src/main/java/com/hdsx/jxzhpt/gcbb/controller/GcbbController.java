@@ -40,7 +40,28 @@ public class GcbbController extends BaseActionSupport{
 	private Jckwqgz jckwqgz=new Jckwqgz();
 	private Xmbb xmbb;
 	
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? name+" like '%"+bh+"%'": name+" in ("+bh+")";
+	}
+	
 	public void selGcgjJdbb() throws IOException, Exception{
+		xmbb.setGydw(gydwOrxzqhBm(xmbb.getGydw(),"gydwdm"));
+		xmbb.setXzqh(gydwOrxzqhBm(xmbb.getXzqh(), "xzqhdm"));
 		List<GcgjJd> selGcgjJdbb = gcbbServer.selGcgjJdbb(xmbb);
 		JsonUtils.write(selGcgjJdbb, getresponse().getWriter());
 	}

@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -33,8 +34,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var myDate = new Date();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('xzdj','公路等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -48,7 +49,7 @@
 		function search(){
 			$('#tbody_gcgj').empty();
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':$('#gydw').combotree('getValue'),'xmbb.xzqh':$('#xzqh').combotree('getValue'),
+					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),
 					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
@@ -63,29 +64,10 @@
 						var tr="<tr>";
 						tr+="<td>"+item.xmmc+"</td>";
 						tr+="<td>"+item.sfgyhbm+"</td>";
-						var jsdd="";
-						var lxbm="";
-						var zh="";
-						var yhlc="";
-						$.each(item.gjjdlx,function(index,lx){
-							jsdd+=lx.jsdd;
-							lxbm+=lx.lxbm;
-							zh+=lx.qdzh+"-"+lx.zdzh;
-							yhlc+=lx.yhlc;
-							if(lx.yhlb=="大修"){
-								dx+=lx.yhlb;
-							}else if(lx.yhlb=="中修"){
-								zx+=lx.yhlb;
-							}else if(lx.yhlb=="防御性养护"){
-								yfx+=lx.yhlb;
-							}
-							if(index!=item.gjjdlx.length-1){
-								jsdd+=",";
-								lxbm+=",";
-								zh+=",";
-								yhlc+=",";
-							}
-						});
+						var jsdd=item.jsdd;
+						var lxbm=item.lxbm;
+						var zh=item.qdzh+"-"+item.zdzh;
+						var yhlc=item.yhlc;
 						tr+="<td>"+jsdd+"</td>";
 						tr+="<td>"+lxbm+"</td>";
 						tr+="<td>"+zh+"</td>";
@@ -117,17 +99,17 @@
 						tr+="<td>"+item.bywcdc+"</td>";
 						tr+="<td>"+item.bnwcdc+"</td>";
 						tr+="<td>"+item.zjwcdc+"</td>";
-						tr+="<td>"+(Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.dc)==0 ? "0" : (Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.jc+"</td>";
 						tr+="<td>"+item.bywcjc+"</td>";
 						tr+="<td>"+item.bnwcjc+"</td>";
 						tr+="<td>"+item.zjwcjc+"</td>";
-						tr+="<td>"+(Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.jc)==0 ? "0" : (Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.mc+"</td>";
 						tr+="<td>"+item.bywcmc+"</td>";
 						tr+="<td>"+item.bnwcmc+"</td>";
 						tr+="<td>"+item.zjwcmc+"</td>";
-						tr+="<td>"+(Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.mc)==0 ? "0" : (Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.pfztz+"</td>";
 						tr+="<td>"+item.gys+"</td>";
 						tr+="<td>"+item.bywcje+"</td>";

@@ -88,6 +88,9 @@ public class Plan_hslyController  extends BaseActionSupport{
 		try {
 			List<Plan_hsly> queryHslyZjzj = hslyServer.queryHslyZjzj(hsly.getId());
 			Map<String, Object> result =new HashMap<String, Object>();
+			for (Plan_hsly item : queryHslyZjzj) {
+				System.out.println(item.getXzscl());
+			}
 			result.put("rows", queryHslyZjzj);
 			result.put("total", queryHslyZjzj.size());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -159,9 +162,13 @@ public class Plan_hslyController  extends BaseActionSupport{
 			readerExcel.remove(readerExcel.size()-1);
 			System.out.println("开始个数："+readerExcel.size());
 			for (int i = 0; i < readerExcel.size(); i++) {
-				if(readerExcel.get(i).getXzqhmc()==null || readerExcel.get(i).getXzqhmc().equals("")){
+				if(readerExcel.get(i).getGydwdm()==null || readerExcel.get(i).getGydwdm().equals("")){
 					readerExcel.remove(i);
 				}else{
+					readerExcel.get(i).setZtz(new Double(new Double(readerExcel.get(i).getZytz()).doubleValue() + 
+							new Double(readerExcel.get(i).getLywz()).doubleValue() + 
+							new Double(readerExcel.get(i).getDfta()).doubleValue() + 
+							new Double(readerExcel.get(i).getGndk()).doubleValue()).toString());
 					readerExcel.get(i).setTbbm(tbbmbm2);
 					readerExcel.get(i).setTbsj(new Date());
 					data.add(readerExcel.get(i));
