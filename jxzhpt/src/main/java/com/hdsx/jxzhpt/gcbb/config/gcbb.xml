@@ -121,33 +121,35 @@
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
 	</select>
-	<select id="selYhdzxJdbb" parameterType="xmbb" resultMap="gjjd">
-		select yh.xmmc as xmmc,yh.sfgk as sfgyhbm,lx.xzqhmc as jsdd,
-		lx.lxbm,lx.qdzh,lx.zdzh,lx.hdlc,yh.classify as yhlb,yh.sjkgsj as sjkgsj,yh.sjwgsj as sjwgsj,
-		lx.ylmlx as ylmlx,yh.sjlmlx as sjlmlx,
-		yh.dianceng as dc,(select gcyh.bywcdc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')) bywcdc,
-		(select sum(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) bnwcdc,
-		(select sum(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')) zjwcdc,
-		yh.jiceng as jc,(select gcyh.bywcjc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')) bywcjc,
-		(select sum(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) bnwcjc,
-		(select sum(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')) zjwcjc,
-		yh.surface as mc,(select gcyh.bywcmc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')) bywcmc,
-		(select sum(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) bnwcmc,
-		(select sum(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')) zjwcmc,
-		yh.totalinvest as pfztz,yh.gys as gys,
-		(select gcyh.wc_btz+gcyh.wc_stz+gcyh.wc_qttz from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')) as bywcje,
-		(select sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcje,
-		(select  sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')) zjwcje
-		from plan_lx_yhdzx lx right join plan_yhdzx yh on lx.jhid=yh.id where yh.jh_sbthcd=6 and yh.sbnf=#{sbnf} and yh.tbbm like rtrim(#{gydw},0)||'%' and 
-		yh.tbbm like '%'||rtrim(#{xzqh},0)||'%' 
+	<select id="selYhdzxJdbb" parameterType="xmbb" resultType="gcgjjd">
+		select lx.*,yh.xmmc as xmmc,yh.sfgk as sfgyhbm,yh.classify as yhlb,yh.sjkgsj as sjkgsj,yh.sjwgsj as sjwgsj,
+		NVL(yh.dianceng,0) as dc,
+		NVL((select gcyh.bywcdc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcdc,
+		NVL((select sum(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
+		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')),0) bnwcdc,
+		NVL((select sum(gcyh.bywcdc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')),0) zjwcdc,
+		NVL(yh.jiceng,0) as jc,
+		NVL((select gcyh.bywcjc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcjc,
+		NVL((select sum(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
+		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')),0) bnwcjc,
+		NVL((select sum(gcyh.bywcjc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')),0) zjwcjc,
+		NVL(yh.surface,0) as mc,
+		NVL((select gcyh.bywcmc from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) bywcmc,
+		NVL((select sum(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
+		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')),0) bnwcmc,
+		NVL((select sum(gcyh.bywcmc) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')),0) zjwcmc,
+		NVL(yh.totalinvest,0) as pfztz,NVL(yh.gys,0) as gys,
+		NVL((select gcyh.wc_btz+gcyh.wc_stz+gcyh.wc_qttz from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and to_date(gcyh.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) as bywcje,
+		NVL((select sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
+		to_date(#{ybny},'yyyy-mm') >= to_date(gcyh.sbyf,'yyyy-mm') and to_date(gcyh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')),0) as bnwcje,
+		NVL((select  sum(gcyh.wc_btz)+sum(gcyh.wc_stz)+sum(gcyh.wc_qttz) from gcgl_yhdzx gcyh where gcyh.jhid=yh.id and 
+		to_date(#{ybny},'yyyy-mm') >= to_date(to_char(yh.sjkgsj,'yyyy-mm'),'yyyy-mm')),0) zjwcje
+		from (select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhmc)),',','、') as jsdd,
+		replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
+		replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.hdlc)),',','、') as yhlc,
+		replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、') as ylmlx
+		from plan_lx_yhdzx l where 1=1 and ${xzqh} and ${gydw} group by l.jhid) lx right join plan_yhdzx yh on lx.jhid=yh.id 
+		where yh.jh_sbthcd=6 and yh.sbnf=#{sbnf}
 		<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
