@@ -106,6 +106,8 @@ public class GcbbController extends BaseActionSupport{
 		}
 	}
 	public void selGcsjJdbb() throws IOException, Exception{
+		xmbb.setGydw(gydwOrxzqhBm(xmbb.getGydw(),"gydwdm"));
+		xmbb.setXzqh(gydwOrxzqhBm(xmbb.getXzqh(), "xzqhdm"));
 		List<GcsjJd> gcsj=gcbbServer.selGcsjJdbb(xmbb);
 		JsonUtils.write(gcsj, getresponse().getWriter());
 	}

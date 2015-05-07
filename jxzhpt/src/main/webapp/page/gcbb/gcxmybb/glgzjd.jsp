@@ -7,14 +7,15 @@
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -33,8 +34,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var myDate = new Date();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('xzdj','公路等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -48,7 +49,8 @@
 		
 		function search(){
 			$('#tbody_gcgj').empty();
-			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val()};
+			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
+					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),};
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/gcbb/selGcsjJdbb.do',
@@ -58,21 +60,11 @@
 					$.each(data,function(index,item){
 						var tr="<tr>";
 						tr+="<td>"+(Number(index)+1)+"</td>";
-						var lxbm="",yjsdj="";//路线编码，原技术等级
-						var xmlc=0;//项目里程
-						$.each(item.gcsjlx,function(index,lx){
-							lxbm+=lx.lxbm;
-							yjsdj+=lx.yjsdj;
-							xmlc=Number(xmlc)+Number(lx.xmlc);
-							if(index!=item.gcsjlx.length-1){
-								lxbm+=",";
-							}
-						});
-						tr+="<td>"+lxbm+"</td>";
+						tr+="<td>"+item.lxbm+"</td>";
 						tr+="<td>"+item.xmmc+"</td>";
 						tr+="<td>"+item.jhnf+"</td>";
-						tr+="<td>"+xmlc+"</td>";
-						tr+="<td>"+yjsdj+"</td>";
+						tr+="<td>"+item.xmlc+"</td>";
+						tr+="<td>"+item.yjsdj+"</td>";
 						tr+="<td>"+item.jsjsbz+"</td>";
 						tr+="<td>"+item.sjkgsj+"</td>";
 						tr+="<td>"+item.pftz+"</td>";
