@@ -49,8 +49,8 @@
 		function search(){
 			$('#tbody_gcgj').empty();
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),
-					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
+					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),'xmbb.lxmc':$('#lxmc').val(),
+					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null,'xmbb.xmmc':$('#xmmc').val()};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
 			}
@@ -147,7 +147,7 @@
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.9%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -186,7 +186,7 @@
         						<span>行政等级：</span>
         						<select id="xzdj" class="easyui-combobox" style="width:60px;">
         						</select>
-        						<span>路线名称：</span>
+        						<span>路线编码：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
@@ -197,7 +197,7 @@
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:99%;height:150px">
+                	<div id="gddiv" style="width:99%;height:400px">
                 		<script type="text/javascript">
                 			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
                 		</script>

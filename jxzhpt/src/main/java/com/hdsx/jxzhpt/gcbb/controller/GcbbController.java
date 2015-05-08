@@ -117,13 +117,17 @@ public class GcbbController extends BaseActionSupport{
 		List<GcsjJd> yhdzx=gcbbServer.selYhdzxJdbb(xmbb);
 		JsonUtils.write(yhdzx, getresponse().getWriter());
 	}
-	public void selGcbb5(){
+	public void selGcbb5() throws IOException, Exception{
 		try{
+			xmbb.setGydw(gydwOrxzqhBm(xmbb.getGydw(),"gydwdm"));
+			xmbb.setXzqh(gydwOrxzqhBm(xmbb.getXzqh(), "xzqhdm"));
 			List<Gcbb5> s=gcbbServer.selGcbb5(xmbb);
 			JsonUtils.write(s, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
+			throw e;
 		}
+		
 	}
 	/***
 	 * 获取年份列表

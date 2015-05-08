@@ -189,9 +189,8 @@
      	replace(WMSYS.WM_CONCAT(to_char(l.xmlc)),',','、') as xmlc,
      	replace(WMSYS.WM_CONCAT(to_char(l.yjsdj)),',','、') as yjsdj from plan_lx_gcsj l where ${gydw} and ${xzqh} group by l.jhid) lx on sj.id=lx.jhid 
      	where sj.jhnf=#{sbnf} and sj.jh_sbthcd=6
-		<if test="tiaojian!=null and tiaojian!=''">
-			and sj.lxbm like #{tiaojian}||'%'
-		</if>
+     	<if test="xmmc!=null and xmmc!=''">sj.xmmc like '%'||#{xmmc}||'%'</if>
+     	<if test="lxmc!=null and lxmc!=''">lx.lxbm like '%'||#{lxmc}||'%'</if>
 	</select>
 	<resultMap type="gcbb5" id="gcbb5Map">
 		<result property="xmmc" column="xmmc"/>
@@ -225,8 +224,8 @@
 	</resultMap>
 	<resultMap type="plan_lx_gcgj" id="gjmap5">
 		<result property="jhid" column="jhid"/>
-		<result property="jsdd" column="gjjsdd"/>
 		<result property="lxbm" column="gjlxbm"/>
+		<result property="jsdd" column="gjjsdd"/>
 		<result property="qdzh" column="gjqdzh"/>
 		<result property="zdzh" column="gjzdzh"/>
 		<result property="yhlc" column="gjyhlc"/>
@@ -251,9 +250,61 @@
 		<result property="xmlc" column="sjyhlc"/>
 		<result property="yjsdj" column="sjyjsdj"/>
 	</resultMap>
-	<select id="selGcbb5_3" parameterType="xmbb" resultMap="gcbb5Map">
-		select lx.xzqhmc as sjxzqhmc,lx.lxbm as sjlxbm,lx.qdzh as sjqdzh,lx.zdzh as sjzdzh,lx.yjsdj as sjyjsdj,lx.xmlc as sjyhlc,
-		sj.xmmc as xmmc,sj.jhnf as jhnf,'升级' as jsxz,sj.jsjsbz as jsjsbz,sj.pftz as pfztz,sj.jhsybbzje as cgs,(sj.pftz-sj.jhsybbzje) as dfpt,
+	<select id="selGcbb5_1" parameterType="xmbb" resultType="gcbb5">
+		select gj.xmmc as xmmc,gj.sbnf as jhnf,'改建' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
+		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
+		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
+		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcgj.sbyf,'yyyy-mm'),'yyyy')) as bndsslc,
+		gj.kgzt as kgzt,gj.jgzt as jgzt,to_char(gj.sjkgsj,'yyyy-mm-dd') as kgsj,to_char(gj.sjwgsj,'yyyy-mm-dd') as jgsj,
+		(select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') and to_date(c.tbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnzycgs1,
+		(select sum(gcgj.zjdw_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnqtzj,
+		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwctz,
+		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcgzl,
+		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm')) as zjwctz,
+		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm')) as zjwctz,
+		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl,
+		lx.* from plan_gcgj gj left join (select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
+		replace(WMSYS.WM_CONCAT(to_char(l.jsdd)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
+    	replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,NVL(replace(WMSYS.WM_CONCAT(to_char(l.yhlc)),',','、'),0) as yhlc,
+    	NVL(replace(WMSYS.WM_CONCAT(to_char(l.yjsdj)),',','、'),' ') as yjsdj,
+    	NVL(replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、'),' ') as ylmlx from plan_lx_gcgj l where ${gydw} and ${xzqh} 
+    	group by l.jhid) lx on gj.id=lx.jhid 
+    	where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
+    	<if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
+    	<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
+    	<!-- and gj.tbbm like rtrim(#{gydw},0)||'%' and gj.tbbm like '%'||rtrim(#{xzqh},0)||'%'  -->
+	</select>
+	<select id="selGcbb5_2" parameterType="xmbb" resultType="gcbb5">
+		select gj.id,gj.xmmc as xmmc,gj.sbnf as jhnf,'水毁' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
+	    (select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
+	    (select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
+	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and
+	    to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsh.sbyf,'yyyy-mm'),'yyyy')) as bndsslc,
+	    gj.kgzt as kgzt,gj.jgzt as jgzt,to_char(gj.sjkgsj,'yyyy-mm-dd') as kgsj,to_char(gj.sjwgsj,'yyyy-mm-dd') as jgsj,
+	    (select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') 
+	    and to_date(c.tbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnzycgs1,
+	    (select sum(gcsh.zjdw_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
+	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnqtzj,
+	    (select sum(gcsh.wc_btz)+sum(gcsh.wc_stz)+sum(gcsh.wc_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
+	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwctz,
+	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
+	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcgzl,
+	    (select sum(gcsh.wc_btz)+sum(gcsh.wc_stz)+sum(gcsh.wc_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and 
+	    to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm')) as zjwctz,
+	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
+	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl,lx.*
+	    from plan_shuih gj left join (select sl.jhid,replace(WMSYS.WM_CONCAT(to_char(sl.lxbm)),',','、') as lxbm,
+	    replace(WMSYS.WM_CONCAT(to_char(sl.jsdd)),',','、') as jsdd,
+      	replace(WMSYS.WM_CONCAT(to_char(sl.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(sl.zdzh)),',','、') as zdzh,
+      	NVL(replace(WMSYS.WM_CONCAT(to_char(sl.yhlc)),',','、'),0) as yhlc,NVL(replace(WMSYS.WM_CONCAT(to_char(sl.yjsdj)),',','、'),' ') as yjsdj,
+      	NVL(replace(WMSYS.WM_CONCAT(to_char(sl.ylmlx)),',','、'),' ') as ylmlx from plan_lx_shuih sl where ${gydw} and ${xzqh}
+      	group by sl.jhid) lx on gj.id=lx.jhid 
+      	where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
+      	<if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
+      	<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
+	</select>
+	<select id="selGcbb5_3" parameterType="xmbb" resultType="gcbb5">
+		select sj.xmmc as xmmc,sj.jhnf as jhnf,'升级' as jsxz,sj.jsjsbz as jsjsbz,sj.pftz as pfztz,sj.jhsybbzje as cgs,(sj.pftz-sj.jhsybbzje) as dfpt,
 		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bndjhtz,
 		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bnzycgs,
 		(select sum(gcsj.lqlmwcqk)+sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and
@@ -262,7 +313,7 @@
 		to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsj.sbyf,'yyyy-mm'),'yyyy')) as bnlqlmwcqk,
 		(select sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and
 		to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsj.sbyf,'yyyy-mm'),'yyyy')) as bnsnlmwcqk,
-		sj.kgzt as kgzt,sj.jgzt as jgzt,sj.sjkgsj as kgsj,sj.sjwgsj as jgsj,
+		sj.kgzt as kgzt,sj.jgzt as jgzt,to_char(sj.sjkgsj,'yyyy-mm-dd') as kgsj,to_char(sj.sjwgsj,'yyyy-mm-dd') as jgsj,
 		(select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=sj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') 
 		and to_date(c.tbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnzycgs1,
 		(select sum(gcsj.dfbz) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsj.sbyf,'yyyy-mm') 
@@ -278,65 +329,16 @@
 		(select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and 
 		to_date(#{ybny},'yyyy-mm') >= to_date(gcsj.sbyf,'yyyy-mm')) as zjwctz,
 		(select sum(gcsj.bywcgzl) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsj.sbyf,'yyyy-mm') 
-		and to_date(gcsj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl
-		from plan_gcsj sj left join plan_lx_gcsj lx on sj.id=lx.jhid where sj.jh_sbthcd=6 and sj.jhnf=#{sbnf} and sj.tbbm like rtrim(#{gydw},0)||'%' and 
-		sj.tbbm like '%'||rtrim(#{xzqh},0)||'%' 
-		<if test="tiaojian!=null and tiaojian!=''">
-			and sj.lxbm like #{tiaojian}||'%'
-		</if>
-	</select>
-	<select id="selGcbb5_1" parameterType="xmbb" resultMap="gcbb5Map">
-		select lx.ylmlx as gjylmlx,lx.lxbm as gjlxbm,lx.qdzh as gjqdzh,lx.zdzh as gjzdzh,lx.yjsdj as gjyjsdj,lx.yhlc as gjyhlc,lx.jsdd as gjjsdd,
-		gj.xmmc as xmmc,gj.sbnf as jhnf,'改建' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
-		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
-		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
-		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and
-		to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcgj.sbyf,'yyyy-mm'),'yyyy')) as bndsslc,
-		gj.kgzt as kgzt,gj.jgzt as jgzt,gj.sjkgsj as kgsj,gj.sjwgsj as jgsj,
-		(select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') 
-		and to_date(c.tbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnzycgs1,
-		(select sum(gcgj.zjdw_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') 
-		and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnqtzj,
-		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') 
-		and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwctz,
-		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') 
-		and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcgzl,
-		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm')) as zjwctz,
-		(select sum(gcgj.wc_btz)+sum(gcgj.wc_stz)+sum(gcgj.wc_qttz) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and 
-		to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm')) as zjwctz,
-		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcgj.sbyf,'yyyy-mm') 
-		and to_date(gcgj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl
-		from plan_gcgj gj left join plan_lx_gcgj lx on gj.id=lx.jhid where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf} and gj.tbbm like rtrim(#{gydw},0)||'%' and 
-		gj.tbbm like '%'||rtrim(#{xzqh},0)||'%' 
-		<if test="tiaojian!=null and tiaojian!=''">
-			and gj.lxbm like #{tiaojian}||'%'
-		</if>
-	</select>
-	<select id="selGcbb5_2" parameterType="xmbb" resultMap="gcbb5Map">
-		select lx.ylmlx as shylmlx, lx.lxbm as shlxbm,lx.qdzh as shqdzh,lx.zdzh as shzdzh,lx.yjsdj as shyjsdj,lx.yhlc as shyhlc,lx.jsdd as shjsdd,
-	    gj.id,gj.xmmc as xmmc,gj.sbnf as jhnf,'水毁' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
-	    (select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
-	    (select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
-	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and
-	    to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsh.sbyf,'yyyy-mm'),'yyyy')) as bndsslc,
-	    gj.kgzt as kgzt,gj.jgzt as jgzt,gj.sjkgsj as kgsj,gj.sjwgsj as jgsj,
-	    (select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') 
-	    and to_date(c.tbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnzycgs1,
-	    (select sum(gcsh.zjdw_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
-	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnqtzj,
-	    (select sum(gcsh.wc_btz)+sum(gcsh.wc_stz)+sum(gcsh.wc_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
-	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwctz,
-	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
-	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as bnwcgzl,
-	    (select sum(gcsh.wc_btz)+sum(gcsh.wc_stz)+sum(gcsh.wc_qttz) from gcgl_sh gcsh where gcsh.jhid=gj.id and 
-	    to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm')) as zjwctz,
-	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(gcsh.sbyf,'yyyy-mm') 
-	    and to_date(gcsh.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl
-	    from plan_shuih gj left join plan_lx_shuih lx on gj.id=lx.jhid where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf} and gj.tbbm like rtrim(#{gydw},0)||'%' and 
-		gj.tbbm like '%'||rtrim(#{xzqh},0)||'%' 
-		<if test="tiaojian!=null and tiaojian!=''">
-			and gj.lxbm like #{tiaojian}||'%'
-		</if>
+		and to_date(gcsj.sbyf,'yyyy-mm') >= to_date(to_char(sysdate,'yyyy')||'-1','yyyy-mm')) as zjwcgzl,lx.*
+		from plan_gcsj sj left join (select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.lxbm)),',','、') as lxbm,
+		NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhmc)),',','、'),' ') as jsdd,
+	    replace(WMSYS.WM_CONCAT(to_char(sjl.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(sjl.zdzh)),',','、') as zdzh,
+	    NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.xmlc)),',','、'),0) as yhlc,NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.yjsdj)),',','、'),' ') as yjsdj,
+	    '' as ylmlx from plan_lx_gcsj sjl where ${gydw} and ${xzqh}
+	    group by sjl.jhid) lx on sj.id=lx.jhid 
+	    where sj.jh_sbthcd=6 and sj.jhnf=#{sbnf}
+	    <if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
+	    <if test="xmmc!=null and xmmc!=''">and sj.xmmc like '%'||#{xmmc}||'%'</if>
+	    <!-- and sj.tbbm like rtrim(#{gydw},0)||'%' and sj.tbbm like '%'||rtrim(#{xzqh},0)||'%'  -->
 	</select>
 </mapper>

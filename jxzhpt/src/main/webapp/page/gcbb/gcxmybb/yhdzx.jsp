@@ -50,7 +50,7 @@
 			$('#tbody_gcgj').empty();
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
 					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),'xmbb.lxmc':$('#lxmc').val(),
-					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null,'xmbb.xmmc':$('#xmmc').val(),};
+					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null,'xmbb.xmmc':$('#xmmc').val()};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
 			}
