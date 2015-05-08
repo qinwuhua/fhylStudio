@@ -465,7 +465,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getXspath();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getXspath());
+			File file=new File(realPath+gcglwqgz1.getXspath());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 
@@ -601,7 +601,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getXspath();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getXspath());
+			File file=new File(realPath+gcglwqgz1.getXspath());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 
@@ -831,7 +831,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getFilename();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getFilename());
+			File file=new File(realPath+gcglwqgz1.getFilename());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 
