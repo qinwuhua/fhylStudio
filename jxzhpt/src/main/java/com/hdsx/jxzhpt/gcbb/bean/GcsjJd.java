@@ -102,7 +102,28 @@ public class GcsjJd {
 	private String bnsnlmwcqk;
 	private String bz;
 	private String xmmc;
+	private String lxbm;
+	private String xmlc;
+	private String yjsdj;
 	private List<Plan_lx_gcsj> gcsjlx;
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getXmlc() {
+		return xmlc;
+	}
+	public void setXmlc(String xmlc) {
+		this.xmlc = xmlc;
+	}
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
 	public List<Plan_lx_gcsj> getGcsjlx() {
 		return gcsjlx;
 	}

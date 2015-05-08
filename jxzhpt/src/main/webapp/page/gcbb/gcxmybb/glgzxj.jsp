@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
@@ -13,8 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -33,8 +34,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var myDate = new Date();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('xzdj','公路等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -48,8 +49,8 @@
 		function search(){
 			$('#tbody_gcgj').empty();
 			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':$('#gydw').combotree('getValue'),'xmbb.xzqh':$('#xzqh').combotree('getValue'),
-					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
+					'xmbb.gydw':getgydw("gydw"),'xmbb.xzqh':getxzqhdm('xzqh'),'xmbb.lxmc':$('#lxmc').val(),
+					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null,'xmbb.xmmc':$('#xmmc').val()};
 			if($('#xzdj').combotree('getValue')!=""){
 				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
 			}
@@ -60,16 +61,16 @@
 				data:xmbb,
 				success:function(data){
 					$.each(data,function(index,item){
-						var tr="<tr>";
-						tr+="<td>"+item.jhjsdd+"</td>";
+						var tr="<tr style='height:20px;'>";
+						tr+="<td>"+item.jsdd+"</td>";
 						//bmmc:项目名称【路线编码(起点-止点)】
 						//yjsdj:原技术等级;xmlc:项目里程
-						var bmmc="",yjsdj="",xmlc=0;
+						var bmmc=item.lxbm+'【'+item.qdzh+'-'+item.zdzh+'】',yjsdj=item.yjsdj,xmlc=item.yhlc;
 						//本年路面技术等级,本年路面类型
-						var bngzlzj,bngzl1=0,bngzl2=0,bngzl3=0,bngzl4=0,bnlql=0,bnsnl=0;
+						var bngzlzj=0,bngzl1=0,bngzl2=0,bngzl3=0,bngzl4=0,bnlql=0,bnsnl=0;
 						//总计路面技术等级,本年路面类型
-						var zjgzlzj,zjgzl1=0,zjgzl2=0,zjgzl3=0,zjgzl4=0,zjlql=0,zjsnl=0;
-						if(item.gcgjlx.length>0){
+						var zjgzlzj=0,zjgzl1=0,zjgzl2=0,zjgzl3=0,zjgzl4=0,zjlql=0,zjsnl=0;
+						/*if(item.gcgjlx.length>0){
 							bmmc=item.xmmc+"【";
 							$.each(item.gcgjlx,function(index,lx){
 								bmmc+=lx.lxbm+"("+lx.qdzh+"-"+lx.zdzh+")";
@@ -150,7 +151,7 @@
 							bnlql=item.bnlqlmwcqk;bnsnl=item.bnsnlmwcqk;
 							zjlql=item.zjlqlmwcqk;zjsnl=item.zjsnlmwcqk;
 							bmmc+="】";
-						}
+						}*/
 						tr+="<td>"+bmmc+"</td>";
 						tr+="<td>"+yjsdj+"</td>";
 						tr+="<td>"+item.jsjsbz+"</td>";
@@ -181,13 +182,13 @@
 						tr+="<td>"+item.jsjsbz+"</td>";
 						tr+="<td>"+item.bnqtzj+"</td>";
 						tr+="<td>"+item.bnwctz+"</td>";
-						var a = Number(Number(item.bnwctz)/Number(item.bnwctz)*100).toFixed(2);
+						var a = Number(item.bnwctz)==0 ? "0" : Number(Number(item.bnwctz)/Number(item.bnwctz)*100).toFixed(2);
 						tr+="<td>"+a+"</td>";
 						tr+="<td>"+item.bnwcgzl+"</td>";
-						tr+="<td>"+bngzl1+"</td>";
-						tr+="<td>"+bngzl2+"</td>";
-						tr+="<td>"+bngzl3+"</td>";
-						tr+="<td>"+bngzl4+"</td>";
+						tr+="<td>"+item.bngzl1+"</td>";
+						tr+="<td>"+item.bngzl2+"</td>";
+						tr+="<td>"+item.bngzl3+"</td>";
+						tr+="<td>"+item.bngzl4+"</td>";
 						tr+="<td>"+bnlql+"</td>";
 						tr+="<td>"+bnsnl+"</td>";
 						tr+="<td>"+item.ssdctc+"</td>";
@@ -214,9 +215,9 @@
 </head>
 <body style="padding-right:1px">
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
-		<table width="100%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
+		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
-			<div id="righttop">
+					<div id="righttop">
 						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;公路改造工程新上、续建工程项目完成情况表</div>
 					</div>
         	</tr>
@@ -261,7 +262,7 @@
         						<span>行政等级：</span>
         						<select id="xzdj" class="easyui-combobox" style="width:60px;">
         						</select>
-        						<span>路线名称：</span>
+        						<span>路线编码：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                 	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
@@ -270,16 +271,15 @@
         			</fieldset>
         		</td>
         	</tr>
-
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:99%;" >
+                	<div id="gddiv" style="width:100%;height: 400px;" >
                 		<script type="text/javascript">
-                			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
+                			$("#gddiv").attr('style','width:100%;height:'+($(window).height()-150)+'px;');
                 		</script>
-                		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
-							<table width="4000px" >
+                		<div class="easyui-layout"  fit="true">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
+							<table width="3000px">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表（三）    灾害防治 </caption>
 								<thead>
 									<tr>
@@ -345,9 +345,7 @@
 										<td>水泥砼</td>
 									</tr>
 								</thead>
-								<tbody id="tbody_gcgj">
-								
-								</tbody>
+								<tbody id="tbody_gcgj"></tbody>
 							</table>
 							</div>
 						</div>

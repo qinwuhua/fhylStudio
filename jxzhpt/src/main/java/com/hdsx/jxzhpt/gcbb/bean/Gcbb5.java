@@ -35,9 +35,142 @@ public class Gcbb5 {
 	private String bnsnlmwcqk;//水泥路面完成情况
 	private String zjlqlmwcqk;//总计沥青路面完成情况
 	private String zjsnlmwcqk;//总计水泥路面完成情况
+	private String lxbm;//路线编码
+	private String jsdd;//建设地点
+	private String qdzh;//七点桩号
+	private String zdzh;//止点桩号
+	private String yhlc;//隐患里程
+	private String yjsdj;//原技术等级
+	private String ylmlx;//原路面类型
 	private List<Plan_lx_gcgj> gcgjlx;//工程改建路线
 	private List<Plan_lx_shuih> gcshlx;//工程水毁路线
 	private List<Plan_lx_gcsj> gcsjlx;//工程省级路线
+	private String bngzl1="0";
+	private String bngzl2="0";
+	private String bngzl3="0";
+	private String bngzl4="0";
+	private String bnlql="0";
+	private String bnsnl="0";
+	private String zjgzl1="0";
+	private String zjgzl2="0";
+	private String zjgzl3="0";
+	private String zjgzl4="0";
+	private String zjlql="0";
+	private String zjsnl="0";
+	public String getBngzl1() {
+		return bngzl1;
+	}
+	public void setBngzl1(String bngzl1) {
+		this.bngzl1 = bngzl1;
+	}
+	public String getBngzl2() {
+		return bngzl2;
+	}
+	public void setBngzl2(String bngzl2) {
+		this.bngzl2 = bngzl2;
+	}
+	public String getBngzl3() {
+		return bngzl3;
+	}
+	public void setBngzl3(String bngzl3) {
+		this.bngzl3 = bngzl3;
+	}
+	public String getBngzl4() {
+		return bngzl4;
+	}
+	public void setBngzl4(String bngzl4) {
+		this.bngzl4 = bngzl4;
+	}
+	public String getBnlql() {
+		return bnlql;
+	}
+	public void setBnlql(String bnlql) {
+		this.bnlql = bnlql;
+	}
+	public String getBnsnl() {
+		return bnsnl;
+	}
+	public void setBnsnl(String bnsnl) {
+		this.bnsnl = bnsnl;
+	}
+	public String getZjgzl1() {
+		return zjgzl1;
+	}
+	public void setZjgzl1(String zjgzl1) {
+		this.zjgzl1 = zjgzl1;
+	}
+	public String getZjgzl2() {
+		return zjgzl2;
+	}
+	public void setZjgzl2(String zjgzl2) {
+		this.zjgzl2 = zjgzl2;
+	}
+	public String getZjgzl3() {
+		return zjgzl3;
+	}
+	public void setZjgzl3(String zjgzl3) {
+		this.zjgzl3 = zjgzl3;
+	}
+	public String getZjgzl4() {
+		return zjgzl4;
+	}
+	public void setZjgzl4(String zjgzl4) {
+		this.zjgzl4 = zjgzl4;
+	}
+	public String getZjlql() {
+		return zjlql;
+	}
+	public void setZjlql(String zjlql) {
+		this.zjlql = zjlql;
+	}
+	public String getZjsnl() {
+		return zjsnl;
+	}
+	public void setZjsnl(String zjsnl) {
+		this.zjsnl = zjsnl;
+	}
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
+	public String getJsdd() {
+		return jsdd;
+	}
+	public void setJsdd(String jsdd) {
+		this.jsdd = jsdd;
+	}
+	public String getQdzh() {
+		return qdzh;
+	}
+	public void setQdzh(String qdzh) {
+		this.qdzh = qdzh;
+	}
+	public String getZdzh() {
+		return zdzh;
+	}
+	public void setZdzh(String zdzh) {
+		this.zdzh = zdzh;
+	}
+	public String getYhlc() {
+		return yhlc;
+	}
+	public void setYhlc(String yhlc) {
+		this.yhlc = yhlc;
+	}
+	public String getYjsdj() {
+		return yjsdj;
+	}
+	public void setYjsdj(String yjsdj) {
+		this.yjsdj = yjsdj;
+	}
+	public String getYlmlx() {
+		return ylmlx;
+	}
+	public void setYlmlx(String ylmlx) {
+		this.ylmlx = ylmlx;
+	}
 	public String getBnlqlmwcqk() {
 		return bnlqlmwcqk;
 	}
