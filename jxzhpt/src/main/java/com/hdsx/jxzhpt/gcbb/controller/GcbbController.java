@@ -95,11 +95,78 @@ public class GcbbController extends BaseActionSupport{
 		xmbb.setXzqh(tiaojian2);
 
 		List<GcgjJd> selShuihJdbb=gcbbServer.selShuihJdbb(xmbb);
-		for (GcgjJd gcgjJd : selShuihJdbb) {
-			
-		}
+		
 		if("flag".equals(flag)){
-			
+			List<Excel_list> elist=new ArrayList<Excel_list>();
+			for (GcgjJd gcgjJd : selShuihJdbb) {
+				Excel_list l=new Excel_list();
+				l.setV_0(gcgjJd.getXmmc());
+				l.setV_1(gcgjJd.getSfgyhbm());
+				l.setV_2(gcgjJd.getJsdd());
+				l.setV_3(gcgjJd.getLxbm());
+				l.setV_4(gcgjJd.getQdzh()+"-"+gcgjJd.getZdzh());
+				l.setV_5(gcgjJd.getYhlc());
+				if("大修".equals(gcgjJd.getYhlb()))
+				l.setV_6(gcgjJd.getYhlb());
+				else{
+					l.setV_6("");
+				}
+				if("中修".equals(gcgjJd.getYhlb()))
+				l.setV_7(gcgjJd.getYhlb());
+				else{
+					l.setV_7("");
+				}
+				if("防御性养护".equals(gcgjJd.getYhlb()))
+				l.setV_8(gcgjJd.getYhlb());
+				else{
+					l.setV_8("");
+				}
+				l.setV_9(gcgjJd.getSjkgsj()+" "+gcgjJd.getSjwgsj());
+				l.setV_10(gcgjJd.getYlmlx());
+				l.setV_11(gcgjJd.getSjlmlx());
+				l.setV_12(gcgjJd.getDc());
+				l.setV_13(gcgjJd.getBywcdc());
+				l.setV_14(gcgjJd.getBnwcdc());
+				l.setV_15(gcgjJd.getZjwcdc());
+				if("0".equals(gcgjJd.getDc()))
+				l.setV_16("0");
+				else
+					l.setV_16(Double.parseDouble(gcgjJd.getZjwcdc())/Double.parseDouble(gcgjJd.getDc())*100+"");
+				l.setV_17(gcgjJd.getJc());
+				l.setV_18(gcgjJd.getBywcjc());
+				l.setV_19(gcgjJd.getBnwcjc());
+				l.setV_20(gcgjJd.getZjwcjc());
+				if("0".equals(gcgjJd.getJc()))
+					l.setV_21("0");
+					else
+						l.setV_21(Double.parseDouble(gcgjJd.getZjwcjc())/Double.parseDouble(gcgjJd.getJc())*100+"");
+				l.setV_22(gcgjJd.getMc());
+				l.setV_23(gcgjJd.getBywcmc());
+				l.setV_24(gcgjJd.getBnwcmc());
+				l.setV_25(gcgjJd.getZjwcmc());
+				if("0".equals(gcgjJd.getMc()))
+					l.setV_26("0");
+					else
+						l.setV_26(Double.parseDouble(gcgjJd.getZjwcmc())/Double.parseDouble(gcgjJd.getMc())*100+"");
+				l.setV_27(gcgjJd.getPfztz());
+				l.setV_28(gcgjJd.getGys());
+				l.setV_29(gcgjJd.getBywcje());
+				l.setV_30(gcgjJd.getBnwcje());
+				l.setV_31(gcgjJd.getZjwcje());
+				if("0".equals(gcgjJd.getPfztz())){
+					l.setV_32("0");
+				}else{
+					l.setV_32(Double.parseDouble(gcgjJd.getZjwcje())/Double.parseDouble(gcgjJd.getPfztz())*100+"");
+				}
+				if("0".equals(gcgjJd.getKgzt())){
+					l.setV_33("未开工");
+				}else if("1".equals(gcgjJd.getJgzt())){
+					l.setV_33("完工");
+				}else{
+					l.setV_33("在建");
+				}
+				l.setV_34(gcgjJd.getBz());
+			}
 			
 		}else{
 			JsonUtils.write(selShuihJdbb, getresponse().getWriter());	
