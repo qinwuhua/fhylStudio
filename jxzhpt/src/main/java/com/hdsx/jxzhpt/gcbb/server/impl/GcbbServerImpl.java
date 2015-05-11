@@ -38,7 +38,7 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 	}
 
 	@Override
-	public List<GcsjJd> selYhdzxJdbb(Xmbb xmbb) {
+	public List<GcgjJd> selYhdzxJdbb(Xmbb xmbb) {
 		return queryList("selYhdzxJdbb",xmbb);
 	}
 

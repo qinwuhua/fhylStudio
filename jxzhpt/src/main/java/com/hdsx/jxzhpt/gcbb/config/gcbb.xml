@@ -83,11 +83,13 @@
 		from plan_gcgj gj,(select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.jsdd)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
 		replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,
 		replace(WMSYS.WM_CONCAT(to_char(l.yhlc)),',','、') as yhlc,replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、') as ylmlx 
-		from plan_lx_gcgj l where 1=1 and ${xzqh} and ${gydw} group by l.jhid) lx
+		from plan_lx_gcgj l where 1=1 ${xzqh} ${gydw} group by l.jhid) lx
 		where gj.id=lx.jhid and gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
 		<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
+		<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="lxmc!=null and lxmc!=''"> and lx.lxmc like '%'||#{lxmc}||'%'</if>
 	</select>
 	<select id="selShuihJdbb" parameterType="xmbb" resultType="gcgjjd">
 		select sh.xmmc,sh.id as jhid,sh.sfgyhbm as sfgyhbm,sh.yhlb as yhlb,sh.sjkgsj as sjkgsj,
@@ -120,6 +122,8 @@
 		<if test="tiaojian!=null and tiaojian!=''">
 			and lx.lxbm like #{tiaojian}||'%'
 		</if>
+		<if test="xmmc!=null and xmmc!=''">and sh.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="lxmc!=null and lxmc!=''"> and lx.lxmc like '%'||#{lxmc}||'%'</if>
 	</select>
 	<select id="selYhdzxJdbb" parameterType="xmbb" resultType="gcgjjd">
 		select lx.*,yh.xmmc as xmmc,yh.sfgk as sfgyhbm,yh.classify as yhlb,yh.sjkgsj as sjkgsj,yh.sjwgsj as sjwgsj,
@@ -148,15 +152,18 @@
 		replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
 		replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,replace(WMSYS.WM_CONCAT(to_char(l.hdlc)),',','、') as yhlc,
 		replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、') as ylmlx
-		from plan_lx_yhdzx l where 1=1 and ${xzqh} and ${gydw} <if test="lxmc!=null and lxmc!=''"> and l.lxbm like '%'||#{lxmc}||'%'</if>
+		from plan_lx_yhdzx l where 1=1 ${xzqh} ${gydw} <if test="lxmc!=null and lxmc!=''"> and l.lxbm like '%'||#{lxmc}||'%'</if>
 		group by l.jhid) 
 		lx right join plan_yhdzx yh on lx.jhid=yh.id 
 		where yh.jh_sbthcd=6 and yh.sbnf=#{sbnf}
-		<if test="xmmc!=null and xmmc!=''">and yh.xmmc like #{xmmc}||'%'</if>
-		<if test="lxmc!=null and lxmc!=''"> and lx.lxbm like '%'||#{lxmc}||'%'</if>
+		<if test="tiaojian!=null and tiaojian!=''">
+			and lx.lxbm like #{tiaojian}||'%'
+		</if>
+		<if test="xmmc!=null and xmmc!=''">and yh.xmmc like '%'||#{xmmc}||'%'</if>
+		<if test="lxmc!=null and lxmc!=''"> and lx.lxmc like '%'||#{lxmc}||'%'</if>
 	</select>
 	<select id="selGcsjJdbb" parameterType="xmbb" resultType="gcsjjd">
-		select sj.id as jhid,sj.jhnf as jhnf,sj.jsjsbz as jsjsbz,sj.sjkgsj as sjkgsj,
+		select sj.id as jhid,sj.jhnf as jhnf,sj.jsjsbz as jsjsbz,to_char(sj.sjkgsj,'yyyy-mm-dd') as sjkgsj,
 		sj.pftz as pftz,sj.ljtsf as ljtsf,sj.ql as ql,sj.ql_m as ql_m,sj.hd as hd,sj.sd as sd,
 		sj.sd_m as sd_m,sj.dc as dc,sj.jc as jc,sj.lqlm as lqlm,sj.snlm as snlm,
 		NVL((select sum(gcsj.bywctze) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and to_date(gcsj.sbyf,'yyyy-mm')=to_date(#{ybny},'yyyy-mm')),0) as bywcje,
@@ -187,10 +194,13 @@
 		sj.remarks as bz,sj.xmmc as xmmc,lx.*
 		from plan_gcsj sj inner join (select l.jhid, replace(WMSYS.WM_CONCAT(to_char(l.lxbm)),',','、') as lxbm,
      	replace(WMSYS.WM_CONCAT(to_char(l.xmlc)),',','、') as xmlc,
-     	replace(WMSYS.WM_CONCAT(to_char(l.yjsdj)),',','、') as yjsdj from plan_lx_gcsj l where ${gydw} and ${xzqh} group by l.jhid) lx on sj.id=lx.jhid 
+     	replace(WMSYS.WM_CONCAT(to_char(l.yjsdj)),',','、') as yjsdj from plan_lx_gcsj l where 1=1 ${gydw} ${xzqh} group by l.jhid) lx on sj.id=lx.jhid 
      	where sj.jhnf=#{sbnf} and sj.jh_sbthcd=6
+     	<if test="tiaojian!=null and tiaojian!=''">
+			and lx.lxbm like #{tiaojian}||'%'
+		</if>
      	<if test="xmmc!=null and xmmc!=''">sj.xmmc like '%'||#{xmmc}||'%'</if>
-     	<if test="lxmc!=null and lxmc!=''">lx.lxbm like '%'||#{lxmc}||'%'</if>
+     	<if test="lxmc!=null and lxmc!=''">lx.lxmc like '%'||#{lxmc}||'%'</if>
 	</select>
 	<resultMap type="gcbb5" id="gcbb5Map">
 		<result property="xmmc" column="xmmc"/>
@@ -251,7 +261,7 @@
 		<result property="yjsdj" column="sjyjsdj"/>
 	</resultMap>
 	<select id="selGcbb5_1" parameterType="xmbb" resultType="gcbb5">
-		select gj.xmmc as xmmc,gj.sbnf as jhnf,'改建' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
+		select gj.xmmc as xmmc,gj.sbnf as jhnf,'改建' as jsxz,decode(gj.pfztz,'',0,null,0,gj.pfztz) as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
 		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
 		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
 		(select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcgj.sbyf,'yyyy-mm'),'yyyy')) as bndsslc,
@@ -267,15 +277,18 @@
 		replace(WMSYS.WM_CONCAT(to_char(l.jsdd)),',','、') as jsdd,replace(WMSYS.WM_CONCAT(to_char(l.qdzh)),',','、') as qdzh,
     	replace(WMSYS.WM_CONCAT(to_char(l.zdzh)),',','、') as zdzh,NVL(replace(WMSYS.WM_CONCAT(to_char(l.yhlc)),',','、'),0) as yhlc,
     	NVL(replace(WMSYS.WM_CONCAT(to_char(l.yjsdj)),',','、'),' ') as yjsdj,
-    	NVL(replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、'),' ') as ylmlx from plan_lx_gcgj l where ${gydw} and ${xzqh} 
+    	NVL(replace(WMSYS.WM_CONCAT(to_char(l.ylmlx)),',','、'),' ') as ylmlx from plan_lx_gcgj l where 1=1 ${gydw} ${xzqh} 
     	group by l.jhid) lx on gj.id=lx.jhid 
     	where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
+    	<if test="tiaojian!=null and tiaojian!=''">
+			and lx.lxbm like '%'||#{tiaojian}||'%'
+		</if>
     	<if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
     	<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
     	<!-- and gj.tbbm like rtrim(#{gydw},0)||'%' and gj.tbbm like '%'||rtrim(#{xzqh},0)||'%'  -->
 	</select>
 	<select id="selGcbb5_2" parameterType="xmbb" resultType="gcbb5">
-		select gj.id,gj.xmmc as xmmc,gj.sbnf as jhnf,'水毁' as jsxz,gj.pfztz as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
+		select gj.id,gj.xmmc as xmmc,gj.sbnf as jhnf,'水毁' as jsxz,decode(gj.pfztz,'',0,null,0,gj.pfztz) as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
 	    (select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
 	    (select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
 	    (select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and
@@ -297,14 +310,17 @@
 	    replace(WMSYS.WM_CONCAT(to_char(sl.jsdd)),',','、') as jsdd,
       	replace(WMSYS.WM_CONCAT(to_char(sl.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(sl.zdzh)),',','、') as zdzh,
       	NVL(replace(WMSYS.WM_CONCAT(to_char(sl.yhlc)),',','、'),0) as yhlc,NVL(replace(WMSYS.WM_CONCAT(to_char(sl.yjsdj)),',','、'),' ') as yjsdj,
-      	NVL(replace(WMSYS.WM_CONCAT(to_char(sl.ylmlx)),',','、'),' ') as ylmlx from plan_lx_shuih sl where ${gydw} and ${xzqh}
+      	NVL(replace(WMSYS.WM_CONCAT(to_char(sl.ylmlx)),',','、'),' ') as ylmlx from plan_lx_shuih sl where 1=1 ${gydw} ${xzqh} 
       	group by sl.jhid) lx on gj.id=lx.jhid 
       	where gj.jh_sbthcd=6 and gj.sbnf=#{sbnf}
+      	<if test="tiaojian!=null and tiaojian!=''">
+			and lx.lxbm like '%'||#{tiaojian}||'%'
+		</if>
       	<if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
       	<if test="xmmc!=null and xmmc!=''">and gj.xmmc like '%'||#{xmmc}||'%'</if>
 	</select>
 	<select id="selGcbb5_3" parameterType="xmbb" resultType="gcbb5">
-		select sj.xmmc as xmmc,sj.jhnf as jhnf,'升级' as jsxz,sj.jsjsbz as jsjsbz,sj.pftz as pfztz,sj.jhsybbzje as cgs,(sj.pftz-sj.jhsybbzje) as dfpt,
+		select sj.xmmc as xmmc,sj.jhnf as jhnf,'升级' as jsxz,sj.jsjsbz as jsjsbz,decode(sj.pftz,'',0,null,0,sj.pftz) as pfztz,sj.jhsybbzje as cgs,(sj.pftz-sj.jhsybbzje) as dfpt,
 		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bndjhtz,
 		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bnzycgs,
 		(select sum(gcsj.lqlmwcqk)+sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and
@@ -334,9 +350,12 @@
 		NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhmc)),',','、'),' ') as jsdd,
 	    replace(WMSYS.WM_CONCAT(to_char(sjl.qdzh)),',','、') as qdzh,replace(WMSYS.WM_CONCAT(to_char(sjl.zdzh)),',','、') as zdzh,
 	    NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.xmlc)),',','、'),0) as yhlc,NVL(replace(WMSYS.WM_CONCAT(to_char(sjl.yjsdj)),',','、'),' ') as yjsdj,
-	    '' as ylmlx from plan_lx_gcsj sjl where ${gydw} and ${xzqh}
+	    '' as ylmlx from plan_lx_gcsj sjl where 1=1 ${gydw} ${xzqh} 
 	    group by sjl.jhid) lx on sj.id=lx.jhid 
 	    where sj.jh_sbthcd=6 and sj.jhnf=#{sbnf}
+	    <if test="tiaojian!=null and tiaojian!=''">
+			and lx.lxbm like '%'||#{tiaojian}||'%'
+		</if>
 	    <if test="lxmc!=null and lxmc!=''">and lx.lxbm like '%'||#{lxmc}||'%'</if>
 	    <if test="xmmc!=null and xmmc!=''">and sj.xmmc like '%'||#{xmmc}||'%'</if>
 	    <!-- and sj.tbbm like rtrim(#{gydw},0)||'%' and sj.tbbm like '%'||rtrim(#{xzqh},0)||'%'  -->
