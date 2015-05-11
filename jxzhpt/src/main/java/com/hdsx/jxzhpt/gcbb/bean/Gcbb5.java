@@ -45,18 +45,18 @@ public class Gcbb5 {
 	private List<Plan_lx_gcgj> gcgjlx;//工程改建路线
 	private List<Plan_lx_shuih> gcshlx;//工程水毁路线
 	private List<Plan_lx_gcsj> gcsjlx;//工程省级路线
-	private String bngzl1="0";
-	private String bngzl2="0";
-	private String bngzl3="0";
-	private String bngzl4="0";
-	private String bnlql="0";
-	private String bnsnl="0";
-	private String zjgzl1="0";
-	private String zjgzl2="0";
-	private String zjgzl3="0";
-	private String zjgzl4="0";
-	private String zjlql="0";
-	private String zjsnl="0";
+	private String bngzl1;
+	private String bngzl2;
+	private String bngzl3;
+	private String bngzl4;
+	private String bnlql;
+	private String bnsnl;
+	private String zjgzl1;
+	private String zjgzl2;
+	private String zjgzl3;
+	private String zjgzl4;
+	private String zjlql;
+	private String zjsnl;
 	public String getBngzl1() {
 		return bngzl1;
 	}

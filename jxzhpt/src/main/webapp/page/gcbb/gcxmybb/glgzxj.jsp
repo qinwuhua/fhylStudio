@@ -66,92 +66,6 @@
 						//bmmc:项目名称【路线编码(起点-止点)】
 						//yjsdj:原技术等级;xmlc:项目里程
 						var bmmc=item.lxbm+'【'+item.qdzh+'-'+item.zdzh+'】',yjsdj=item.yjsdj,xmlc=item.yhlc;
-						//本年路面技术等级,本年路面类型
-						var bngzlzj=0,bngzl1=0,bngzl2=0,bngzl3=0,bngzl4=0,bnlql=0,bnsnl=0;
-						//总计路面技术等级,本年路面类型
-						var zjgzlzj=0,zjgzl1=0,zjgzl2=0,zjgzl3=0,zjgzl4=0,zjlql=0,zjsnl=0;
-						/*if(item.gcgjlx.length>0){
-							bmmc=item.xmmc+"【";
-							$.each(item.gcgjlx,function(index,lx){
-								bmmc+=lx.lxbm+"("+lx.qdzh+"-"+lx.zdzh+")";
-								yjsdj+=lx.lxbm+"-"+lx.yjsdj+"<br/>";
-								xmlc=Number(xmlc)+Number(lx.yhlc);
-							});
-							if(item.gcgjlx[0].yjsdj=="一级公路"){
-								bngzl1=item.bnwcgzl;
-								zjgzl1=item.zjwcgzl;
-							}else if(item.gcgjlx[0].yjsdj=="二级公路"){
-								bngzl2=item.bnwcgzl;
-								zjgzl2=item.zjwcgzl;
-							}else if(item.gcgjlx[0].yjsdj=="三级公路"){
-								bngzl3=item.bnwcgzl;
-								zjgzl3=item.zjwcgzl;
-							}else if(item.gcgjlx[0].yjsdj=="四级公路"){
-								bngzl4=item.bnwcgzl;
-								zjgzl4=item.zjwcgzl;
-							}
-							if(item.gcgjlx[0].ylmlx.indexOf("沥青")>=0){
-								bnlql=item.bnwcgzl;
-								zjlql=item.bnwcgzl;
-							}else if(item.gcgjlx[0].ylmlx.indexOf("水泥")>=0){
-								bnsnl=item.bnwcgzl;
-								zjsnl=item.bnwcgzl;
-							}
-							bmmc+="】";
-						}
-						if(item.gcshlx.length>0){
-							bmmc=item.xmmc+"【";
-							$.each(item.gcshlx,function(index,lx){
-								bmmc+=lx.lxbm+"("+lx.qdzh+"-"+lx.zdzh+")";
-								yjsdj+=lx.lxbm+"-"+lx.yjsdj+"<br/>";
-								xmlc=Number(xmlc)+Number(lx.yhlc);
-							});
-							if(item.gcshlx[0].yjsdj=="一级公路"){
-								bngzl1=item.bnwcgzl;
-								zjgzl1=item.zjwcgzl;
-							}else if(item.gcshlx[0].yjsdj=="二级公路"){
-								bngzl2=item.bnwcgzl;
-								zjgzl2=item.zjwcgzl;
-							}else if(item.gcshlx[0].yjsdj=="三级公路"){
-								bngzl3=item.bnwcgzl;
-								zjgzl3=item.zjwcgzl;
-							}else if(item.gcshlx[0].yjsdj=="四级公路"){
-								bngzl4=item.bnwcgzl;
-								zjgzl4=item.zjwcgzl;
-							}
-							if(item.gcshlx[0].ylmlx.indexOf("沥青")>=0){
-								bnlql=item.bnwcgzl;
-								zjlql=item.bnwcgzl;
-							}else if(item.gcshlx[0].ylmlx.indexOf("水泥")>=0){
-								bnsnl=item.bnwcgzl;
-								zjsnl=item.bnwcgzl;
-							}
-							bmmc+="】";
-						}
-						if(item.gcsjlx.length>0){
-							bmmc=item.xmmc+"【";
-							$.each(item.gcsjlx,function(index,lx){
-								bmmc+=lx.lxbm+"("+lx.qdzh+"-"+lx.zdzh+")";
-								yjsdj+=lx.lxbm+"-"+lx.yjsdj+"<br/>";
-								xmlc=Number(xmlc)+Number(lx.xmlc);
-							});
-							if(item.gcsjlx[0].yjsdj=="一级公路"){
-								bngzl1=item.bnwcgzl;
-								zjgzl1=item.zjwcgzl;
-							}else if(item.gcsjlx[0].yjsdj=="二级公路"){
-								bngzl2=item.bnwcgzl;
-								zjgzl2=item.zjwcgzl;
-							}else if(item.gcsjlx[0].yjsdj=="三级公路"){
-								bngzl3=item.bnwcgzl;
-								zjgzl3=item.zjwcgzl;
-							}else if(item.gcsjlx[0].yjsdj=="四级公路"){
-								bngzl4=item.bnwcgzl;
-								zjgzl4=item.zjwcgzl;
-							}
-							bnlql=item.bnlqlmwcqk;bnsnl=item.bnsnlmwcqk;
-							zjlql=item.zjlqlmwcqk;zjsnl=item.zjsnlmwcqk;
-							bmmc+="】";
-						}*/
 						tr+="<td>"+bmmc+"</td>";
 						tr+="<td>"+yjsdj+"</td>";
 						tr+="<td>"+item.jsjsbz+"</td>";
@@ -189,17 +103,17 @@
 						tr+="<td>"+item.bngzl2+"</td>";
 						tr+="<td>"+item.bngzl3+"</td>";
 						tr+="<td>"+item.bngzl4+"</td>";
-						tr+="<td>"+bnlql+"</td>";
-						tr+="<td>"+bnsnl+"</td>";
+						tr+="<td>"+item.bnlqlmwcqk+"</td>";
+						tr+="<td>"+item.bnsnlmwcqk+"</td>";
 						tr+="<td>"+item.ssdctc+"</td>";
 						tr+="<td>"+item.zjwctz+"</td>";
 						tr+="<td>"+item.zjwcgzl+"</td>";
-						tr+="<td>"+zjgzl1+"</td>";
-						tr+="<td>"+zjgzl2+"</td>";
-						tr+="<td>"+zjgzl3+"</td>";
-						tr+="<td>"+zjgzl4+"</td>";
-						tr+="<td>"+zjlql+"</td>";
-						tr+="<td>"+zjsnl+"</td>";
+						tr+="<td>"+item.zjgzl1+"</td>";
+						tr+="<td>"+item.zjgzl2+"</td>";
+						tr+="<td>"+item.zjgzl3+"</td>";
+						tr+="<td>"+item.zjgzl4+"</td>";
+						tr+="<td>"+item.zjlqlmwcqk+"</td>";
+						tr+="<td>"+item.zjsnlmwcqk+"</td>";
 						tr+="<td>"+item.ssdctc+"</td>";
 						tr+="<td>"+(Number(xmlc)-Number(item.zjwcgzl)).toFixed(3)+"</td>";
 						tr+="</tr>";

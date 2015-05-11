@@ -185,7 +185,7 @@
                 			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
                 		</script>
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="4500px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通国省干线公路建设项目工程进度完成情况汇总表</caption>
 								<thead>
