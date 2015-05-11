@@ -58,15 +58,21 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 					yjsdj = gj.getYjsdj().split(",");
 				for(int i=0;i<yhlc.length;i++){
 					sumyhlc=sumyhlc+new Double(yhlc[i]).doubleValue();
-					if(gj.getYjsdj()!=null){
+				}
+				if(gj.getYjsdj()!=null){
+					for (int i=0;i<yjsdj.length;i++) {
 						if(yjsdj[i].equals("1") || yjsdj[i].equals("一级") || yjsdj[i].equals("一级公路")){
-							gj.setBngzl1(new Double(new Double(yhlc[i]).doubleValue()+new Double(gj.getBngzl1()).doubleValue()).toString());
+							gj.setBngzl1(new Double(gj.getBnwcgzl()).toString());
+							gj.setZjgzl1(new Double(gj.getBnwcgzl()).toString());
 						}else if(yjsdj[i].equals("2") || yjsdj[i].equals("二级") || yjsdj[i].equals("二级公路")){
-							gj.setBngzl2(new Double(new Double(yhlc[i]).doubleValue()+new Double(gj.getBngzl2()).doubleValue()).toString());
+							gj.setBngzl2(new Double(gj.getBnwcgzl()).toString());
+							gj.setZjgzl2(new Double(gj.getZjwcgzl()).toString());
 						}else if(yjsdj[i].equals("3") || yjsdj[i].equals("三级") || yjsdj[i].equals("三级公路")){
-							gj.setBngzl3(new Double(new Double(yhlc[i]).doubleValue()+new Double(gj.getBngzl3()).doubleValue()).toString());
+							gj.setBngzl3(new Double(gj.getBnwcgzl()).toString());
+							gj.setZjgzl3(new Double(gj.getZjwcgzl()).toString());
 						}else if(yjsdj[i].equals("4") || yjsdj[i].equals("四级") || yjsdj[i].equals("四级公路")){
-							gj.setBngzl4(new Double(new Double(yhlc[i]).doubleValue()+new Double(gj.getBngzl4()).doubleValue()).toString());
+							gj.setBngzl4(new Double(gj.getBnwcgzl()).toString());
+							gj.setZjgzl3(new Double(gj.getZjwcgzl()).toString());
 						}
 					}
 				}
@@ -82,13 +88,17 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 				for(int i=0;i<yhlc.length;i++){
 					sumyhlc=sumyhlc+new Double(yhlc[i]).doubleValue();
 					if(yjsdj[i].equals("1") || yjsdj[i].equals("一级") || yjsdj[i].equals("一级公路")){
-						sh.setBngzl1(new Double(new Double(yhlc[i]).doubleValue()+new Double(sh.getBngzl1()).doubleValue()).toString());
+						sh.setBngzl1(new Double(sh.getBnwcgzl()).toString());
+						sh.setZjgzl1(new Double(sh.getZjwcgzl()).toString());
 					}else if(yjsdj[i].equals("2") || yjsdj[i].equals("二级") || yjsdj[i].equals("二级公路")){
-						sh.setBngzl2(new Double(new Double(yhlc[i]).doubleValue()+new Double(sh.getBngzl2()).doubleValue()).toString());
+						sh.setBngzl2(new Double(sh.getBnwcgzl()).toString());
+						sh.setZjgzl2(new Double(sh.getZjwcgzl()).toString());
 					}else if(yjsdj[i].equals("3") || yjsdj[i].equals("三级") || yjsdj[i].equals("三级公路")){
-						sh.setBngzl3(new Double(new Double(yhlc[i]).doubleValue()+new Double(sh.getBngzl3()).doubleValue()).toString());
+						sh.setBngzl3(new Double(sh.getBnwcgzl()).toString());
+						sh.setZjgzl3(new Double(sh.getZjwcgzl()).toString());
 					}else if(yjsdj[i].equals("4") || yjsdj[i].equals("四级") || yjsdj[i].equals("四级公路")){
-						sh.setBngzl4(new Double(new Double(yhlc[i]).doubleValue()+new Double(sh.getBngzl4()).doubleValue()).toString());
+						sh.setBngzl4(new Double(sh.getBnwcgzl()).toString());
+						sh.setZjgzl4(new Double(sh.getZjwcgzl()).toString());
 					}
 				}
 				sh.setYhlc(new Double(sumyhlc).toString());
@@ -102,13 +112,17 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 			for(int i=0;i<yhlc.length;i++){
 				sumyhlc=sumyhlc+new Double(yhlc[i]).doubleValue();
 				if(yjsdj[i].equals("1") || yjsdj[i].equals("一级") || yjsdj[i].equals("一级公路")){
-					sj.setBngzl1(new Double(new Double(yhlc[i]).doubleValue()+new Double(sj.getBngzl1()).doubleValue()).toString());
+					sj.setBngzl1(new Double(sj.getBnwcgzl()).toString());
+					sj.setZjgzl1(new Double(sj.getZjwcgzl()).toString());
 				}else if(yjsdj[i].equals("2") || yjsdj[i].equals("二级") || yjsdj[i].equals("二级公路")){
-					sj.setBngzl2(new Double(new Double(yhlc[i]).doubleValue()+new Double(sj.getBngzl2()).doubleValue()).toString());
+					sj.setBngzl2(new Double(sj.getBnwcgzl()).toString());
+					sj.setZjgzl2(new Double(sj.getZjwcgzl()).toString());
 				}else if(yjsdj[i].equals("3") || yjsdj[i].equals("三级") || yjsdj[i].equals("三级公路")){
-					sj.setBngzl3(new Double(new Double(yhlc[i]).doubleValue()+new Double(sj.getBngzl3()).doubleValue()).toString());
+					sj.setBngzl3(new Double(sj.getBnwcgzl()).toString());
+					sj.setZjgzl3(new Double(sj.getZjwcgzl()).toString());
 				}else if(yjsdj[i].equals("4") || yjsdj[i].equals("四级") || yjsdj[i].equals("四级公路")){
-					sj.setBngzl4(new Double(new Double(yhlc[i]).doubleValue()+new Double(sj.getBngzl4()).doubleValue()).toString());
+					sj.setBngzl4(new Double(sj.getBnwcgzl()).toString());
+					sj.setZjgzl4(new Double(sj.getZjwcgzl()).toString());
 				}
 			}
 			sj.setYhlc(new Double(sumyhlc).toString());
