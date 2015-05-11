@@ -93,7 +93,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 					
 					if(i!=6){
 						if(i==0||i==3){
-							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
 							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
 						}else{
 							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
@@ -179,9 +179,9 @@ var xzqhdm=$("#xzqh").combotree("getValues");
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:100%;height:400px" >
+                	<div id="gddiv" style="width:99.5%;height:400px" >
                 	<script type="text/javascript">
-                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
+                	$("#gddiv").attr('style','width:99.5%;height:'+($(window).height()-110)+'px');
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" height="100%" style="overflow: auto;">
@@ -193,9 +193,9 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td width="150px;"></td>
 										<td width="150px;">座/项目数</td>
 										<td width="150px;">延米</td>
-										<td width="150px;">处治里程</td>
+										<td width="150px;">处治里程(公里)</td>
 										<td width="150px;">补助资金(万元)</td>
-										<td width="150px;">部安排资金</td>
+										<td width="150px;">部安排资金(万元)</td>
 										<td width="150px;">总投资(万元)</td>
 									</tr>
 								</thead>
