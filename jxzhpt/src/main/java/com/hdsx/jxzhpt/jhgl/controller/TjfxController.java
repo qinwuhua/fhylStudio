@@ -187,20 +187,14 @@ public class TjfxController extends BaseActionSupport{
 	public void queryJhktj2(){
 		try {
 			Map<String, Object> result=new HashMap<String, Object>();
-			result.put("gcgj", gcgjServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("gcsj", gcsjServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("shuih", shuihServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("yhdzx", yhdzxServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("abgc", abgcServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("wqgz", wqgzServer.queryJhktj2(xzqhdm,nf,end));
-			result.put("zhfz", zhfzServer.queryJhktj2(xzqhdm,nf,end));
 			Map<String,Map<String,Object>> attribute=null;
+			result.put("gcgj", gcgjServer.queryJhktj2(xzqhdm,nf,end));
 			if(getRequest().getSession().getAttribute("jhktj2")==null){
 				attribute=new HashMap<String, Map<String,Object>>();
 			}else{
 				attribute=(HashMap<String,Map<String,Object>>)getRequest().getSession().getAttribute("jhktj2");
 			}
-			attribute.put(xzqhdm, result);
+			attribute.put(xzqhdm+"00", result);
 			getRequest().getSession().setAttribute("jhktj2", attribute);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -232,14 +226,11 @@ public class TjfxController extends BaseActionSupport{
 				one.put("year", new Integer(i).toString());
 				for (TreeNode item : xzqhlist){
 					double sumJe=0;
+					if(item.getId().equals("36") || item.getId().equals("360000"))
+						continue;
+					String xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 					Map<String,Object> jhMap=(Map<String, Object>) attribute.get(item.getId());
 					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("gcgj"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("gcsj"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("shuih"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("yhdzx"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("abgc"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("wqgz"), sumJe);
-					sumJe = getJeFromList(i, (ArrayList<TreeNode>)jhMap.get("zhfz"), sumJe);
 					one.put("je"+item.getId(), new Double(sumJe).toString());
 				}
 				list.add(one);
@@ -265,6 +256,16 @@ public class TjfxController extends BaseActionSupport{
 				sumJe=sumJe+new Double(node.getText()).doubleValue();
 		}
 		return sumJe;
+	}
+	
+	public void queryJhktj3(){
+		try {
+			Map<String, Object> result=new HashMap<String, Object>();
+			System.out.println("项目类型："+xmlx);
+			JsonUtils.write(gcgjServer.queryJhktj3(xmlx,nf,end), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void queryJhktjt3(){

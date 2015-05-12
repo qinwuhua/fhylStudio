@@ -35,6 +35,7 @@ public class Plan_lx_gcsj {
 	private String lyllqk;//利用老路情况
 	private String dlqlbm;//独立桥梁编码
 	private String dlqlzxzh;//独立桥梁中心桩号
+	private String sfxz;//收费性质
 	public String getTsdqbm() {
 		return tsdqbm;
 	}
@@ -238,5 +239,11 @@ public class Plan_lx_gcsj {
 	}
 	public void setGjjsdj(String gjjsdj) {
 		this.gjjsdj = gjjsdj;
+	}
+	public String getSfxz() {
+		return sfxz;
+	}
+	public void setSfxz(String sfxz) {
+		this.sfxz = sfxz;
 	}
 }

@@ -311,7 +311,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader.readExcelContent(3,53,fs,Plan_gcsj.class);
+				dataMapArray = ExcelReader.readExcelContent(3,58,fs,Plan_gcsj.class);
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
 				return;
@@ -323,21 +323,22 @@ public class Plan_gcsjController extends BaseActionSupport{
 			Plan_flwbzbz defaultFlwje=null;//当无法找到对应计划类型的补助标准时，使用此默认值(只需要查一次，重复使用)
 			for (Map map : data) {
 				UUID jhId = UUID.randomUUID(); 
+				System.out.println(jhId.toString());
 				map.put("jhid", jhId.toString().replace("-", ""));
 				map.put("gydwdm", getGydwdm());
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
+				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
-				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
-				map.put("27", map.get("27").toString().substring(0, map.get("27").toString().indexOf(".")));
-				map.put("45", map.get("45").toString().substring(0, map.get("45").toString().indexOf(".")));
+				map.put("21", map.get("21").toString().substring(0, map.get("21").toString().indexOf(".")));
+				map.put("28", map.get("28").toString().substring(0, map.get("28").toString().indexOf(".")));
 				map.put("46", map.get("46").toString().substring(0, map.get("46").toString().indexOf(".")));
 				map.put("47", map.get("47").toString().substring(0, map.get("47").toString().indexOf(".")));
+				map.put("48", map.get("48").toString().substring(0, map.get("48").toString().indexOf(".")));
 				map.put("tbbm", getTbbmbm2());
 				Plan_lx_gcsj lx=new Plan_lx_gcsj();
 				lx.setXzqhdm(map.get("1").toString());
@@ -345,7 +346,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 				lx.setQdzh(map.get("7").toString());
 				lx.setZdzh(map.get("9").toString());
 				lx.setGydwdm(map.get("gydwdm").toString());
-				lx.setJhid(map.get("27").toString());//此处的Jhid存储的是 “上报年份”
+				lx.setYjsdj(map.get("5").toString());
+				lx.setJhid(map.get("28").toString());//此处的Jhid存储的是 “上报年份”
 				if(gcsjServer.queryJhExist(lx)==0){
 					//内容验证
 					strVerify=ImportVerify.gcsjVerify(map);
@@ -354,12 +356,6 @@ public class Plan_gcsjController extends BaseActionSupport{
 					if(queryGPSBylxbm==null){
 						strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("9").toString()+"】不正确或不属于您的管辖内;";
 					}else if(queryGPSBylxbm!=null && strVerify.equals("")){
-						//验证一下信息是否相同
-						if(map.get("5").toString().equals(queryGPSBylxbm.getYjsdj())){
-							lx.setYjsdj(queryGPSBylxbm.getYjsdj());//技术等级
-						}else{
-							strVerify+="【"+map.get("4").toString()+"】中的技术等级与计划内的技术等级不符<br/>";
-						}
 						if(!map.get("4").toString().equals(queryGPSBylxbm.getLxmc())){
 							strVerify+="【"+map.get("4").toString()+"】与计划内的路线名称不符<br/>";
 						}

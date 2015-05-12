@@ -170,7 +170,7 @@ public class ImportVerify {
 			if(obj.get("5").toString().equals(jsdj[i])){
 				yjsdj=true;
 			}
-			if(obj.get("44").toString().equals(jsdj[i])){
+			if(obj.get("45").toString().equals(jsdj[i])){
 				xjsdj=true;
 			}
 		}
@@ -193,46 +193,46 @@ public class ImportVerify {
 		if(!otherVerify("^[0-9]*.[0-9]*$",obj.get("12").toString())){
 			result+="【项目里程】";
 		}
-		if(!timeVerify(obj.get("18").toString())){
+		if(!timeVerify(obj.get("19").toString())){
 			result+="【方案审批时间】";
 		}
-		if(!obj.get("21").toString().equals("大修") && !obj.get("21").toString().equals("中修") &&!obj.get("21").toString().equals("改建")){
+		if(!obj.get("22").toString().equals("大修") && !obj.get("22").toString().equals("中修") && !obj.get("22").toString().equals("改建")){
 			result+="【建设性质】";
 		}
-		if(!obj.get("26").toString().equals("是") && !obj.get("26").toString().equals("否")){
+		if(!obj.get("27").toString().equals("是") && !obj.get("27").toString().equals("否")){
 			result+="【是否提前实施】";
 		}
-		if(!nfVerify(obj.get("27").toString())){
+		if(!nfVerify(obj.get("28").toString())){
 			result+="【上报年份】";
 		}
-		if(!timeVerify(obj.get("28").toString())){
+		if(!timeVerify(obj.get("29").toString())){
 			result+="【计划开工时间】";
 		}
-		if(!timeVerify(obj.get("29").toString())){
+		if(!timeVerify(obj.get("30").toString())){
 			result+="【计划完工时间】";
 		}
-		if(!timeVerify(obj.get("33").toString())){
+		if(!timeVerify(obj.get("34").toString())){
 			result+="【批复时间】";
 		}
-		if(!numVerify(obj.get("45").toString())){
+		if(!numVerify(obj.get("46").toString())){
 			result+="【批复总投资】";
 		}
-		if(!numVerify(obj.get("46").toString())){
+		if(!numVerify(obj.get("47").toString())){
 			result+="【计划使用部补助资金】 ";
 		}
-		if(!numVerify(obj.get("47").toString())){
+		if(!numVerify(obj.get("48").toString())){
 			result+="【计划使用省补助资金】";
 		}
 		
-		if(new Integer(obj.get("45").toString()).intValue()!=
-				new Integer(obj.get("46").toString()).intValue()
-				+new Integer(obj.get("47").toString()).intValue()){
+		if(new Integer(obj.get("46").toString()).intValue()!=
+				new Integer(obj.get("47").toString()).intValue()
+				+new Integer(obj.get("48").toString()).intValue()){
 			result+="批复总投资金额统计不正确";
 		}
-		if(!obj.get("48").toString().equals("是") && !obj.get("48").toString().equals("否")){
+		if(!obj.get("53").toString().equals("是") && !obj.get("53").toString().equals("否")){
 			result+="【是否申请按比例补助】";
 		}
-		if(obj.get("48").toString().equals("是") && obj.get("49").toString().length()==0){
+		if(obj.get("53").toString().equals("是") && obj.get("53").toString().length()==0){
 			result+="【按比例申请文号】";
 		}
 		return result;
