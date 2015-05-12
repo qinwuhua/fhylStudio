@@ -123,7 +123,7 @@
 				'lx.lyllqk':$('#lyllqk').val(),'lx.dlqlbm':$('#dlqlbm').val(),'lx.dlqlzxzh':$('#dlqlzxzh').val(),
 				'lx.gydwdm':$('#gydwxx').combobox("getValue"),'lx.gydw':$('#gydwxx').combobox("getText"),
 				'lx.xzqhmc':$('#xzqhmc').combobox("getText"),'lx.xzqhdm':$('#xzqhmc').combobox("getValue"),
-				'lx.bhnr':$('#bhnr').val(),'lx.tbsj':tbsj,
+				'lx.bhnr':$('#bhnr').val(),'lx.tbsj':tbsj,'lx.sfxz':$('#sfxz').val(),
 				'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),'jh.faspsj':$('#faspsj').datebox("getText"),
 				'jh.spwh':$('#spwh').val(),'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),
 				'jh.jsnr':$('#jsnr').val(),'jh.jhnf':$('#editjhnf').combobox("getValue"),'jh.jhkgsj':$('#jhkgsj').datebox("getText"),
@@ -198,13 +198,13 @@
                 	路线编码
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="lxbm" style="width: 150px;"/>
+                	<input type="text" id="lxbm" style="width: 120px;"/>
                 </td>
 				<td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">
                 	路线名称
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="lxmc" style="width: 150px;"/>
+                	<input type="text" id="lxmc" style="width: 120px;"/>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	原技术等级
@@ -240,13 +240,13 @@
                 	起点名称
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="qdmc" style="width: 150px;"/>
+                	<input type="text" id="qdmc" style="width: 120px;"/>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	止点名称
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="zdmc" style="width: 150px;"/>
+                	<input type="text" id="zdmc" style="width: 120px;"/>
                 </td>
                 <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					项目里程
@@ -260,19 +260,19 @@
                 	利用老路情况
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="lyllqk" style="width: 150px;"/>
+                	<input type="text" id="lyllqk" style="width: 120px;"/>
                 </td>
             	<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
                 	独立桥梁编码
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="dlqlbm" style="width: 150px;"/>
+                	<input type="text" id="dlqlbm" style="width: 120px;"/>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	独立桥梁中心桩号
                 </td>
                 <td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="dlqlzxzh" style="width: 150px;"/>
+                	<input type="text" id="dlqlzxzh" style="width: 120px;"/>
                 </td>
             </tr>
             <tr style="height: 30px;">
@@ -293,10 +293,19 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					收费性质
+				</td>
+				<td style="border:1px solid #C0C0C0;width: 18%;text-align:left;padding-left: 10px;">
+					<select id="sfxz">
+						<option value="收费">收费</option>
+						<option value="不收费">不收费</option>
+					</select>
+				</td>
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					特殊地区
 				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
+				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
 					<span id="lblTSDW"></span>&nbsp;
 				</td>
 			</tr>
@@ -317,13 +326,13 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案评估单位</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="fapgdw" style="width: 150px;"/>
+					<input type="text" id="fapgdw" style="width: 120px;"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					方案审查单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="fascdw" style="width: 150px;"/>
+					<input type="text" id="fascdw" style="width: 120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案审批时间</td>
@@ -336,7 +345,7 @@
 					审批文号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="spwh" style="width: 150px;"/>
+					<input type="text" id="spwh" style="width: 120px;"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					投资估算
@@ -496,7 +505,7 @@
 					批复文号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="pfwh" style="width: 150px;"/>
+					<input type="text" id="pfwh" style="width: 120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					批复时间

@@ -33,11 +33,15 @@
 			var col=[];
 			var trJson='{"xzqh":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox('getValue');i++){
-				trJson+=',"'+i+'xmzj":0,"'+i+'je":0';
-				var year ={title:i+'年',width:160,align:'center',colspan:2};
+				trJson+=',"'+i+'xmzj":0'+',"'+i+'je":0'+',"'+i+'xmcgs":0'+',"'+i+'xmstz":0';
+				var year ={title:i+'年',width:160,align:'center',colspan:4};
 				colYears.push(year);
 				var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
 				colZj.push(lczj);
+				var xmzycgs={field:i+'xmcgs',title:'车购税(万元)',width:80,align:'center'};
+				colZj.push(xmzycgs);
+				var xmzystz={field:i+'xmstz',title:'省投资(万元)',width:80,align:'center'};
+				colZj.push(xmzystz);
 				var xmgs={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
 				colZj.push(xmgs);
 				col[i+'je']=i;
@@ -54,13 +58,14 @@
 				success:function(data){
 					$.each(data,function(index,item){
 						var a=JSON.parse(trJson);
+						var xzqhdm = item.id=="360000" ? item.id.substr(0,2) : item.id.substr(0,4);
 						a['xzqh']=item.name;
-						queryMessage($('#startYear').combobox('getValue'),$('#endYear').combobox('getValue'),item.id,a);
+						queryMessage($('#startYear').combobox('getValue'),$('#endYear').combobox('getValue'),xzqhdm,a);
 						dataJson.push(a);
 					});
 				}
 			});
-			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:900};
+			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*4,width:900};
 			var grid={id:'grid',data:dataJson,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
 					pageNumber:1,pageSize:20,height:380,width:$('#grid').width(),
 				    columns:[
@@ -82,32 +87,10 @@
 				dataType:'json',
 				success:function(data){
 					$.each(data.gcgj,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
+						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.bmid);
 						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.gcsj,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.shuih,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.yhdzx,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.abgc,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.wqgz,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
-					});
-					$.each(data.zhfz,function(index,item){
-						a[item.id+'xmzj']=parseInt(a[item.id+'xmzj'])+parseInt(item.name);
-						a[item.id+'je']=parseFloat(a[item.id+'je'])+parseFloat(item.text);
+						a[item.id+'xmcgs']=parseFloat(a[item.id+'xmcgs'])+parseFloat(item.name);
+						a[item.id+'xmstz']=parseFloat(a[item.id+'xmstz'])+parseFloat(item.parent);
 					});
 				}
 			});

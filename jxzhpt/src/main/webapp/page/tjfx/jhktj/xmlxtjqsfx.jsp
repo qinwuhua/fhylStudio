@@ -33,11 +33,15 @@
 			var colYears =[],colZj=[];
 			var trJson='{"xmlx":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox("getValue");i++){
-				trJson+=',"'+i+'xmzj":0,"'+i+'je":0';
-				var year ={title:i+'年',width:160,align:'center',colspan:2};
+				trJson+=',"'+i+'xmzj":0'+',"'+i+'je":0'+',"'+i+'xmcgs":0'+',"'+i+'xmstz":0';
+				var year ={title:i+'年',width:160,align:'center',colspan:4};
 				colYears.push(year);
 				var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
 				colZj.push(lczj);
+				var xmzycgs={field:i+'xmcgs',title:'车购税(万元)',width:80,align:'center'};
+				colZj.push(xmzycgs);
+				var xmzystz={field:i+'xmstz',title:'省投资(万元)',width:80,align:'center'};
+				colZj.push(xmzystz);
 				var xmgs={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
 				colZj.push(xmgs);
 			}
@@ -53,37 +57,35 @@
 			}
 			//处理数据
 			var jsonData=new Array();
-			$.ajax({
-				type:'post',
-				async : false,
-				url:'../../../tjfx/queryJhktj2.do',
-				data:'xzqhdm='+xzqhdm+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val(),
-				dataType:'json',
-				success:function(data){
-					var l=["gcgj","gcsj","shuih","yhdzx","abgc","wqgz","zhfz"];
-					var lname=["工程改建","工程升级","水毁项目","养护大中修","安保工程","危桥改造","灾害防治"];
-					for(var i=0;i<l.length;i++){
+			var l=["gcgj","gcsj","shuih","yhdzx","abgc","wqgz","zhfz"];
+			var lname=["路面改建","路面升级","水毁项目","养护大中修","安保工程","危桥改造","灾害防治"];
+			for(var i=0;i<l.length;i++){
+				$.ajax({
+					type:'post',
+					async : false,
+					url:'../../../tjfx/queryJhktj3.do',
+					data:'xmlx='+lname[i]+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val(),
+					dataType:'json',
+					success:function(data){
 						var td=JSON.parse(trJson);
 						td['xmlx']=lname[i];
-						for (var j=$('#startYear').combobox("getValue");j<=$('#endYear').combobox("getValue");j++){
-							$.each(data[l[i]],function(index,item){
-								if(item.id==j){
-									td[item.id+"je"]=item.text;
-									td[item.id+"xmzj"]=item.name;
-								}
-							});
-						}
+						$.each(data,function(index,item){
+							td[item.id+"je"]=item.text;
+							td[item.id+"xmcgs"]=item.name;
+							td[item.id+"xmstz"]=item.parent;
+							td[item.id+"xmzj"]=item.bmid;
+						});
 						jsonData.push(td);
 					}
-				}
-			});
+				});
+			}
 			//绑定数据
-			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*2,width:900};
+			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*4,width:900};
 			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
 					pageNumber:1,pageSize:20,height:275,width:$('#grid').width(),
 				    columns:[
 					    [
-					     	{field:'xmlx',title:'行政区划',width:80,align:'center',rowspan:3,fixed:true},
+					     	{field:'xmlx',title:'项目类型',width:80,align:'center',rowspan:3,fixed:true},
 					     	zjtitle
 					    ],
 					    colYears,colZj

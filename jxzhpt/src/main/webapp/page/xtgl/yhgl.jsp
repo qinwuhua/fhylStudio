@@ -72,8 +72,8 @@ function startSearch(){
 			width : 150,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openYhUpdate("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />'+
-				'<input onclick=deleteYh("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除 />';
+				return '<a href=javascript:openYhUpdate("'+rec.id+'")>编辑</a>|'+
+				'<a href=javascript:deleteYh("'+rec.id+'")>删除</a>';
 			}
 		},{
 			field : 'unit',

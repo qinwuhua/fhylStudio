@@ -105,7 +105,7 @@ function loadQx(_id){
 	</div>
 	<div region="south" border="false" style="text-align:right;height:30px;line-height:30px;">
 		<a id="jsgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true" >保　存</a>
-		　<a id="jsgl_btn_Cancel" iconCls="icon-cancel" href="javascript:void(0)" class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true">取　消</a>
+		<a id="jsgl_btn_Cancel" iconCls="icon-cancel" href="javascript:void(0)" class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="true">取　消</a>
 	</div>
 </div>
 </body>
