@@ -24,11 +24,11 @@
         /**
          *地图服务地址
          **/
-        var mapServerUrl = "http://192.168.1.101:8989/hdmapserver";
+        var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
         /**
          * 服务命名空间 不能随便填，请通过hdmapserver服务查看
          **/
-		var nameSpace = "http://192.168.1.108:8989/hdmapserver/jiangximap";
+		var nameSpace = "jxmap2014";
 		jQuery(document).ready(function () {
 			OpenLayers.ProxyHost = "./proxy.jsp?";
 			initMap();
@@ -47,10 +47,10 @@
 					var showLayer="";
 					var lx="";
 					if(msg.length==4){
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
+						if((signFlag=="G"||signFlag=="S")&&(_lx=="1"||_lx=="2")) showLayer=msg[0].bmid;
+						if((signFlag=="G"||signFlag=="S")&&(_lx=="3"||_lx=="4")) showLayer=msg[1].bmid;
+						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="1"||_lx=="2")) showLayer=msg[2].bmid;
+						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="3"||_lx=="4")) showLayer=msg[3].bmid;
 						lx="ROADBM";
 					}else if(msg.length==6){
 						if(signFlag=="G") showLayer=msg[0].bmid;
@@ -134,7 +134,7 @@
                     "Geoserver layers - Tiled",
                     mapServerUrl + "/wms",
                     {
-                        LAYERS: 'jiangxi_map',
+                        LAYERS: 'jx_map',
                         STYLES: '',
                         format: format,
                         tiled: true,
@@ -225,7 +225,6 @@
          */
         var resultLayer = null;
         function wfsAttrQuery(layerName, keyCol, keyValue) {
-            debugger;
             if (resultLayer == null) {
                 resultLayer = new OpenLayers.Layer.Vector("resultLayer", {styleMap: styleMap});
                 map.addLayer(resultLayer);

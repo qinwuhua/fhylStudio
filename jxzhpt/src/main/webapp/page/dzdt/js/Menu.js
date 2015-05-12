@@ -19,7 +19,7 @@ function initMap() {
             "Geoserver layers - Tiled",
             mapServerUrl + "/wms",
             {
-                LAYERS: 'jiangxi_map',
+                LAYERS: tczName,
                 STYLES: '',
                 format: format,
                 tiled: true,
@@ -47,6 +47,7 @@ function initMap() {
 	YMLib.Var.bm=_roadcode;
 	var signFlag=_roadcode.substr(0,1);
 	var signName=_roadcode.length>11?"桥梁图层":"路线图层";
+	//wfsAttrQuery("jx_xianxiangzhongxiaoqiao", "ROADBM", "Y573360731L0030");
 	$.ajax({
 		type:"post",
 		url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
@@ -56,10 +57,10 @@ function initMap() {
 			var showLayer="";
 			var lx="";
 			if(msg.length==4){
-				if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
-				if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
-				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
-				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
+				if((signFlag=="G"||signFlag=="S")&&(_lx=="1"||_lx=="2")) showLayer=msg[0].bmid;
+				if((signFlag=="G"||signFlag=="S")&&(_lx=="3"||_lx=="4")) showLayer=msg[1].bmid;
+				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="1"||_lx=="2")) showLayer=msg[2].bmid;
+				if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="3"||_lx=="4")) showLayer=msg[3].bmid;
 				lx="ROADBM";
 			}else if(msg.length==6){
 				if(_lx=="G") showLayer=msg[0].bmid;
@@ -192,15 +193,14 @@ function showInfo(event) {
  * 注意：这里只封装了单一属性查询，实际上WFS是支持多种属性条件查询和空间查询
  */
 function wfsAttrQuery(layerName, keyCol, keyValue) {
-    //debugger;
     if (resultLayer == null) {
         resultLayer = new OpenLayers.Layer.Vector("resultLayer", {styleMap: styleMap});
         map.addLayer(resultLayer);
         //添加数据移动上去显示气泡
         var selectControl = new OpenLayers.Control.SelectFeature(resultLayer, {
-			onSelect: onFeatureSelect,
-			onUnselect: onFeatureUnselect,
-			hover: false
+            onSelect: onFeatureSelect,
+            onUnselect: onFeatureUnselect,
+            hover: false
         });
         map.addControl(selectControl);
         selectControl.activate();
@@ -222,11 +222,12 @@ function wfsAttrQuery(layerName, keyCol, keyValue) {
         maxFeatures: 1000,
         outputFormat: 'GML2',
         callback: function (req) {
+            //console.info(req);
             var gmlParse = new OpenLayers.Format.GML();
             var features = gmlParse.read(req.priv.responseText);
             resultLayer.addFeatures(features);
             if (resultLayer.features && resultLayer.features.length > 0) {
-               map.zoomToExtent(resultLayer.getDataExtent());
+                map.zoomToExtent(resultLayer.getDataExtent());
             }
         }
     });

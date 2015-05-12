@@ -282,7 +282,7 @@
     	select t.*,(select name from xtgl_bmbm where id=t.parent) text from xtgl_bmbm t order by id 
 	</select>
 	<select id="selectQlDataList" parameterType="hashmap" resultType="unit">
-		select roadbm id,f002 name,#{roadcode} parent,f010 bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
+		select roadbm id,f002 name,#{roadcode} parent,f009 bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
 	</select>
 	<select id="createGsAnyChartXml" parameterType="param" resultType="hashmap">
 		select * from xmk_abgc

@@ -26,8 +26,9 @@
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
 </style>
  <script type="text/javascript">
- var mapServerUrl = "http://192.168.1.101:8989/hdmapserver";
- var nameSpace = "http://192.168.1.101:8989/hdmapserver/jiangximap";
+ var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
+ var nameSpace = "jxmap2014";
+ var tczName="jx_map";
  var map, baseLayers;
  var format = 'image/png';
  var bounds = new OpenLayers.Bounds(
@@ -80,9 +81,9 @@ $(function(){
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
-						 <!-- <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
+						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
-						</div> -->
+						</div>
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
 				</div>
