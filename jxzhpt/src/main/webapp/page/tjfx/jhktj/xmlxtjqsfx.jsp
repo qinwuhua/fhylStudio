@@ -69,7 +69,6 @@
 					success:function(data){
 						var td=JSON.parse(trJson);
 						td['xmlx']=lname[i];
-						alert(lname[i]);
 						$.each(data,function(index,item){
 							td[item.id+"je"]=item.text;
 							td[item.id+"xmcgs"]=item.name;
