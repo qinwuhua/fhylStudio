@@ -79,84 +79,116 @@ function queryBar(){
 	});
 }
 function jhkxzqhtj(){
+	var jsonData=new Array();
 	$.ajax({
 		type:'post',
-		url:'../../../tjfx/queryJhktj.do?nf='+$('#startYear').val(),
-		async:false,
+		async : false,
+		url:'../../../jhgl/queryChildXzqh.do',
+		data:'xzqh.id=36__00',
 		dataType:'json',
 		success:function(data){
-			var jsonData=new Array();
-			for(var i=0;i<data.gcsj.length;i++){
-				var t={'xzqh':null,'xzqhdm':null,'ztz':null,'sl':null,'lmsjztz':null,'lmsjsl':null,
-						'lmgjztz':null,'lmgjsl':null,'shztz':null,'shsl':null,
-						'yhdzxztz':null,'yhdzxsl':null,'wqgzztz':null,'wqgzsl':null,
-						'abgcztz':null,'abgcsl':null,'zhfzztz':null,'zhfzsl':null};
-				t.xzqh=data.gcsj[i].name;
-				t.xzqhdm=data.gcsj[i].id;
-				t.ztz=parseFloat(data.gcsj[i].text)+parseFloat(data.gcgj[i].text)+
-						parseFloat(data.shuih[i].text)+parseFloat(data.yhdzx[i].text)+
-						parseFloat(data.abgc[i].text)+parseFloat(data.wqgz[i].text)+
-						parseFloat(data.zhfz[i].text);
-				t.sl=parseInt(data.gcsj[i].parent)+parseInt(data.gcgj[i].parent)+
-						parseInt(data.shuih[i].parent)+parseInt(data.yhdzx[i].parent)+
-						parseInt(data.abgc[i].parent)+parseInt(data.wqgz[i].parent)+
-						parseInt(data.zhfz[i].parent);
-				t.lmsjztz=data.gcsj[i].text;
-				t.lmsjsl=data.gcsj[i].parent;
-				t.lmgjztz=data.gcgj[i].text;
-				t.lmgjsl=data.gcgj[i].parent;
-				t.shztz=data.shuih[i].text;
-				t.shsl=data.shuih[i].parent;
-				t.yhdzxztz=data.yhdzx[i].text;
-				t.yhdzxsl=data.yhdzx[i].parent;
-				t.wqgzztz=data.wqgz[i].text;
-				t.wqgzsl=data.wqgz[i].parent;
-				t.abgcztz=data.abgc[i].text;
-				t.abgcsl=data.abgc[i].parent;
-				t.zhfzztz=data.zhfz[i].text;
-				t.zhfzsl=data.zhfz[i].parent;
-				jsonData.push(t);
-			}
-			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:373,width:$('#grid').width(),
-				    columns:[
-					    [
-					     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
-					     	{title:'合计',colspan:2},
-					     	{title:'路面升级',colspan:2},
-					     	{title:'路面改建',colspan:2},
-					     	{title:'水毁项目',colspan:2},
-					     	{title:'养护大中修',colspan:2},
-					     	{title:'危桥改造',colspan:2},
-					     	{title:'安保工程',colspan:2},
-					     	{title:'灾害防治',colspan:2}
-					    ],
-					    [
-					     	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'sl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'lmsjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'lmsjsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'lmgjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'lmgjsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'shztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'shsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'yhdzxztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'yhdzxsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'wqgzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'wqgzsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'abgcztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'abgcsl',title:'数量',width:60,align:'center',rowspan:1},
-					     	{field:'zhfzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-					     	{field:'zhfzsl',title:'数量',width:60,align:'center',rowspan:1},
-					    ]
-				    ],
-				    onSelect:function(rowIndex,rowData){
-				    	//window.location.href='../jhktj/xmlxtj.jsp?xzqhdm='+rowData.xzqhdm+'&xzqh='+rowData.xzqh;
-				    }
-				};
-			gridBind(grid);
+			$.each(data,function(index,item){
+				$.ajax({
+					type:'post',
+					url:'../../../tjfx/queryJhktj.do',
+					async:false,
+					dataType:'json',
+					data:'nf='+$('#startYear').val()+'&xzqhdm='+item.id,
+					success:function(result){
+						var t={'xzqh':null,'xzqhdm':0,'ztz':0,'sl':0,'cgs':0,'stz':0,
+								'lmsjztz':0,'lmsjsl':0,'lmsjcgs':0,'lmsjstz':0,
+								'lmgjztz':0,'lmgjsl':0,'lmgjcgs':0,'lmgjstz':0,
+								'shztz':0,'shsl':0,'shcgs':0,'shstz':0,
+								'yhdzxztz':0,'yhdzxsl':0,'yhdzxcgs':0,'yhdzxstz':0,
+								'wqgzztz':0,'wqgzsl':0,'wqgzcgs':0,'wqgzstz':0,
+								'abgcztz':0,'abgcsl':0,'abgccgs':0,'abgcstz':0,
+								'zhfzztz':0,'zhfzsl':0,'zhfzcgs':0,'zhfzstz':0,};
+						t.xzqh=item.name;
+						for(var i=0;i<result.length;i++){
+							t.ztz=Number(t.ztz)+Number(result[i].text);
+							t.sl=Number(t.sl)+Number(result[i].bmid);
+							if(result[i].id=="安保工程"){
+								t.abgcztz=result[i].text;t.abgcsl=result[i].bmid;
+								t.abgccgs=result[i].name;t.abgcztz=result[i].parent;
+							}else if(result[i].id=="危桥改造"){
+								t.wqgzztz=result[i].text;t.wqgzsl =result[i].bmid;
+								t.wqgzcgs=result[i].name;t.wqgzstz=result[i].parent;
+							}else if(result[i].id=="灾害防治"){
+								t.zhfzztz=result[i].text;t.zhfzsl =result[i].bmid;
+								t.zhfzcgs=result[i].name;t.zhfzstz=result[i].parent;
+							}else if(result[i].id=="路面升级"){
+								t.lmsjztz=result[i].text;t.lmsjsl =result[i].bmid;
+								t.lmsjcgs=result[i].name;t.lmsjstz=result[i].parent;
+							}else if(result[i].id=="路面改建"){
+								t.lmgjztz=result[i].text;t.lmgjsl =result[i].bmid;
+								t.lmgjcgs=result[i].name;t.lmgjstz=result[i].parent;
+							}else if(result[i].id=="水毁项目"){
+								t.wqgzztz=result[i].text;t.wqgzsl =result[i].bmid;
+								t.wqgzcgs=result[i].name;t.wqgzstz=result[i].parent;
+							}else if(result[i].id=="养护大中修"){
+								t.yhdzxztz=result[i].text;t.yhdzxsl =result[i].bmid;
+								t.yhdzxcgs=result[i].name;t.yhdzxstz=result[i].parent;
+							}
+						}
+						jsonData.push(t);
+					}
+				});
+			});
 		}
 	});
+	var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
+		pageNumber:1,pageSize:20,height:373,width:$('#grid').width(),
+	    columns:[
+		    [
+			    {field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
+			    {title:'合计',colspan:4},
+			    {title:'路面升级',colspan:4},
+			    {title:'路面改建',colspan:4},
+			    {title:'水毁项目',colspan:4},
+			    {title:'养护大中修',colspan:4},
+			    {title:'危桥改造',colspan:4},
+			    {title:'安保工程',colspan:4},
+			    {title:'灾害防治',colspan:4}
+			],
+			[
+			 	{field:'ztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'cgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'stz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'sl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'lmsjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmsjcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmsjstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmsjsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'lmgjztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmgjcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmgjstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'lmgjsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'shztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'shcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'shstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'shsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'yhdzxztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'yhdzxcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'yhdzxstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'yhdzxsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'wqgzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'wqgzcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'wqgzstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'wqgzsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'abgcztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'abgccgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'abgcstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'abgcsl',title:'数量',width:60,align:'center',rowspan:1},
+			    {field:'zhfzztz',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'zhfzcgs',title:'车购税(万元)',width:100,align:'center',rowspan:1},
+			    {field:'zhfzstz',title:'省投资(万元)',width:100,align:'center',rowspan:1},
+			    {field:'zhfzsl',title:'数量',width:60,align:'center',rowspan:1},
+			]],
+		    onSelect:function(rowIndex,rowData){
+		    	//window.location.href='../jhktj/xmlxtj.jsp?xzqhdm='+rowData.xzqhdm+'&xzqh='+rowData.xzqh;
+		    }
+	};
+	gridBind(grid);
 }
 function queryjhkBar(){
 	barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
@@ -167,8 +199,9 @@ function queryjhkBar(){
     barChart_1.write("anychart_div");
     $.ajax({
 		type:"post",
-		url:"../../../tjfx/queryJhktjt.do?nf="+$('#startYear').val(),
+		url:"../../../tjfx/queryJhktjt.do",
 		dataType:'text',
+		data:'nf='+$('#startYear').val()+'&xzqhdm=36__00',
 		success:function(msg){
 			//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
 			barChart_1.setData(msg);

@@ -127,21 +127,10 @@ public class TjfxController extends BaseActionSupport{
 
 	public void queryJhktj(){
 		try {
-			Map<String, Object> result=new HashMap<String, Object>();
-			List<TreeNode> gcsj = gcsjServer.queryJhktj(nf);
-			result.put("gcsj", gcsj);
-			List<TreeNode> gcgj = gcgjServer.queryJhktj(nf);
-			result.put("gcgj", gcgj);
-			List<TreeNode> shuih = shuihServer.queryJhktj(nf);
-			result.put("shuih", shuih);
-			List<TreeNode> yhdzx = yhdzxServer.queryJhktj(nf);
-			result.put("yhdzx", yhdzx);
-			List<TreeNode> abgc = abgcServer.queryJcktj1(nf);
-			result.put("abgc", abgc);
-			List<TreeNode> wqgz= wqgzServer.queryJcktj1(nf);
-			result.put("wqgz", wqgz);
-			List<TreeNode> zhfz= zhfzServer.queryJcktj1(nf);
-			result.put("zhfz", zhfz);
+			//Map<String, Object> result=new HashMap<String, Object>();
+			List<TreeNode> result=new ArrayList<TreeNode>();
+			List<TreeNode> gcgj = gcgjServer.queryJhktj(xzqhdm.equals("360000") ? xzqhdm.substring(0, 2) : xzqhdm.substring(0, 4),nf);
+			result.addAll(gcgj);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,23 +146,19 @@ public class TjfxController extends BaseActionSupport{
 		parameter.put("chart_title_y", yName);
 		parameter.put("precision",precision);
 		String chartType = "jhkbar.ftl";
-		List<TreeNode> gcsj = gcsjServer.queryJhktj(nf);
-		List<TreeNode> gcgj = gcgjServer.queryJhktj(nf);
-		List<TreeNode> shuih = shuihServer.queryJhktj(nf);
-		List<TreeNode> yhdzx = yhdzxServer.queryJhktj(nf);
-		List<TreeNode> abgc = abgcServer.queryJcktj1(nf);
-		List<TreeNode> wqgz= wqgzServer.queryJcktj1(nf);
-		List<TreeNode> zhfz= zhfzServer.queryJcktj1(nf);
-		for(int i=0;i<gcsj.size();i++){
+		TreeNode treenode=new TreeNode();
+		treenode.setId(xzqhdm);
+		List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+		for (TreeNode item : xzqhlist) {
+			if(item.getId().equals("360000"))
+				continue;
+			List<TreeNode> gcgj = gcgjServer.queryJhktj(item.getId().substring(0,4),nf);
 			Map<String, String> param=new HashMap<String, String>();
-			param.put("name", gcsj.get(i).getName());
-			double je= new Double(gcsj.get(i).getText()).doubleValue()+
-					new Double(gcgj.get(i).getText()).doubleValue()+
-					new Double(shuih.get(i).getText()).doubleValue()+
-					new Double(yhdzx.get(i).getText()).doubleValue()+
-					new Double(abgc.get(i).getText()).doubleValue()+
-					new Double(wqgz.get(i).getText()).doubleValue()+
-					new Double(zhfz.get(i).getText()).doubleValue();
+			param.put("name", item.getName());
+			double je= 0;
+			for (TreeNode jh : gcgj) {
+				je=je+new Double(jh.getText()).doubleValue();
+			}
 			param.put("je", new Double(je).toString());
 			list.add(param);
 		}

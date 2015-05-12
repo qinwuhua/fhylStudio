@@ -151,9 +151,10 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 	
 	@Override
-	public List<TreeNode> queryJhktj(String nf) {
+	public List<TreeNode> queryJhktj(String xzqhdm,String nf) {
 		Map<String, String> param=new HashMap<String, String>();
 		param.put("nf", nf);
+		param.put("xzqhdm", xzqhdm);
 		return queryList("queryTjJeAndSl",param);
 	}
 
