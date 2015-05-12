@@ -47,10 +47,10 @@
 					var showLayer="";
 					var lx="";
 					if(msg.length==4){
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="1"||_lx=="2")) showLayer=msg[0].bmid;
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="3"||_lx=="4")) showLayer=msg[1].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="1"||_lx=="2")) showLayer=msg[2].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="3"||_lx=="4")) showLayer=msg[3].bmid;
+						if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
+						if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
+						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
+						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
 						lx="ROADBM";
 					}else if(msg.length==6){
 						if(signFlag=="G") showLayer=msg[0].bmid;
