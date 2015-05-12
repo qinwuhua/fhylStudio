@@ -56,7 +56,7 @@ $(function(){
 	startSearch();
 });
 function startSearch(){
-	v	var gydw=$("#gydw").combotree("getValues");
+	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
 			gydwstr=36;

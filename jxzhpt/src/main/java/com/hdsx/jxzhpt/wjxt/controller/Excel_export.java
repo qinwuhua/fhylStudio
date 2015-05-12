@@ -2732,8 +2732,8 @@ public class Excel_export {
             		cell.setCellValue(trqk1.getV_1());  
                     cell.setCellStyle(style);
             	}
-            	if(j==2){
-            		cell.setCellValue(trqk1.getV_2());  
+            	if(j==2){            		
+						cell.setCellValue((int)Double.parseDouble(trqk1.getV_2()));  
                     cell.setCellStyle(style);
             	}
             	if(j==3){

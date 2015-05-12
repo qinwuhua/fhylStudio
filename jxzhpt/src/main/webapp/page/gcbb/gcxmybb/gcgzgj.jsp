@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -33,8 +34,8 @@
 	<script type="text/javascript">
 		$(function(){
 			var myDate = new Date();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('xzdj','公路等级');
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -47,12 +48,32 @@
 		});
 		function search(){
 			$('#tbody_gcgj').empty();
-			var xmbb={'xmbb.ybny':$('#ddlYear').val()+"-"+$('#ddlMonth').val(),'xmbb.sbnf':$('#ddlYear1').val(),
-					'xmbb.gydw':$('#gydw').combotree('getValue'),'xmbb.xzqh':$('#xzqh').combotree('getValue'),
-					'xmbb.sbnf':$('#ddlYear1').val(),'xmbb.tiaojian':null};
-			if($('#xzdj').combotree('getValue')!=""){
-				xmbb['xmbb.tiaojian']=$('#xzdj').combotree('getValue');
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
 			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+
+			var xmbb = 'flag=""&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
+			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xzqh="+xzqhstr+"&xmbb.gydw="+gydwstr+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/gcbb/selGcgjJdbb.do',
@@ -63,29 +84,10 @@
 						var tr="<tr>";
 						tr+="<td>"+item.xmmc+"</td>";
 						tr+="<td>"+item.sfgyhbm+"</td>";
-						var jsdd="";
-						var lxbm="";
-						var zh="";
-						var yhlc="";
-						$.each(item.gjjdlx,function(index,lx){
-							jsdd+=lx.jsdd;
-							lxbm+=lx.lxbm;
-							zh+=lx.qdzh+"-"+lx.zdzh;
-							yhlc+=lx.yhlc;
-							if(lx.yhlb=="大修"){
-								dx+=lx.yhlb;
-							}else if(lx.yhlb=="中修"){
-								zx+=lx.yhlb;
-							}else if(lx.yhlb=="防御性养护"){
-								yfx+=lx.yhlb;
-							}
-							if(index!=item.gjjdlx.length-1){
-								jsdd+=",";
-								lxbm+=",";
-								zh+=",";
-								yhlc+=",";
-							}
-						});
+						var jsdd=item.jsdd;
+						var lxbm=item.lxbm;
+						var zh=item.qdzh+"-"+item.zdzh;
+						var yhlc=item.yhlc;
 						tr+="<td>"+jsdd+"</td>";
 						tr+="<td>"+lxbm+"</td>";
 						tr+="<td>"+zh+"</td>";
@@ -117,17 +119,17 @@
 						tr+="<td>"+item.bywcdc+"</td>";
 						tr+="<td>"+item.bnwcdc+"</td>";
 						tr+="<td>"+item.zjwcdc+"</td>";
-						tr+="<td>"+(Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.dc)==0 ? "0" : (Number(item.zjwcdc)/Number(item.dc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.jc+"</td>";
 						tr+="<td>"+item.bywcjc+"</td>";
 						tr+="<td>"+item.bnwcjc+"</td>";
 						tr+="<td>"+item.zjwcjc+"</td>";
-						tr+="<td>"+(Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.jc)==0 ? "0" : (Number(item.zjwcjc)/Number(item.jc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.mc+"</td>";
 						tr+="<td>"+item.bywcmc+"</td>";
 						tr+="<td>"+item.bnwcmc+"</td>";
 						tr+="<td>"+item.zjwcmc+"</td>";
-						tr+="<td>"+(Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2)+"%"+"</td>";
+						tr+="<td>"+(Number(item.mc)==0 ? "0" : (Number(item.zjwcmc)/Number(item.mc)*100).toFixed(2))+"%"+"</td>";
 						tr+="<td>"+item.pfztz+"</td>";
 						tr+="<td>"+item.gys+"</td>";
 						tr+="<td>"+item.bywcje+"</td>";
@@ -153,6 +155,37 @@
 				}
 			});
 		}
+		function exportExcel(){
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
+
+			var data = 'flag=flag&xmbb.ybny='+$('#ddlYear').val()+"-"+$('#ddlMonth').val()+'&xmbb.sbnf='+$('#ddlYear1').val()+
+			'&xmbb.tiaojian='+$('#xzdj').combotree('getValue')+"&xmbb.xmmc="+$('#xmmc').val()+"&xmbb.lxmc="+$('#lxmc').val();
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/gcbb/selGcgjJdbb.do?'+data;
+			 });
+		}
 	</script>
 </head>
 <body style="padding-right:1px">
@@ -165,7 +198,7 @@
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99.9%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -207,7 +240,7 @@
         						<span>路线名称：</span>
         						<input id="lxmc" type="text"  style="width: 100px">
 								<img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                	onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportExcel()" style="vertical-align: -50%;" />
         					</p>
         				</div>
         			</fieldset>
@@ -215,12 +248,12 @@
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:99%;height:150px">
+                	<div id="gddiv" style="width:99%;height:400px">
                 		<script type="text/javascript">
                 			$("#gddiv").attr('style','width:99%;height:'+($(window).height()-150)+'px');
                 		</script>
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="4500px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年工程改造路面改建工程进度报表 </caption>
 								<thead>

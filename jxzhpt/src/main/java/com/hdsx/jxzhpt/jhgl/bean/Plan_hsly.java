@@ -24,6 +24,7 @@ public class Plan_hsly {
 	private String lywz;
 	private String zyjsnr;
 	private String xzscl;
+	private String xzscnl;
 	private String gkpfwh;
 	private String sgtpfwh;
 	private String tbbm;
@@ -324,5 +325,11 @@ public class Plan_hsly {
 	}
 	public void setGydwmc(String gydwmc) {
 		this.gydwmc = gydwmc;
+	}
+	public String getXzscnl() {
+		return xzscnl;
+	}
+	public void setXzscnl(String xzscnl) {
+		this.xzscnl = xzscnl;
 	}
 }

@@ -64,7 +64,7 @@ $(function(){
 			width : 80,
 			align : 'center',
 			formatter : function(value,rec,index){
-				return '<input onclick=openJsUpdate("'+rec.roleid+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />';
+				return '<a href=javascript:openJsUpdate("'+rec.roleid+'")>编辑</a>';
 			}
 		},{
 			field : 'rolename',
@@ -78,20 +78,27 @@ $(function(){
 			align : 'center'
 		}
 		]],toolbar : [{
-			text : '删除',
-			handler : function(){
-				var rows = $('#jsgl_table').datagrid('getSelections');
-				var _id="('"+rows[0].roleid;
-				for(var i=1;i<rows.length;i++){
-					_id+="','"+rows[i].roleid;
-				}
-				_id+="')";
-				deleteJs(_id);
-			}
-		},{
 			text : '添加',
+			iconCls: 'icon-add',
 			handler : function(){
 				YMLib.UI.createWindow('jsgl_add_win','添加角色','./jsgl_add.jsp','app_add',630,330);
+			}
+		},{
+			text : '删除',
+			iconCls: 'icon-remove',
+			handler : function(){
+				if($('#jsgl_table').datagrid('getSelections')==""){
+					alert("请选择要删除的角色!");
+					return;
+				}else{
+					var rows = $('#jsgl_table').datagrid('getSelections');
+					var _id="('"+rows[0].roleid;
+					for(var i=1;i<rows.length;i++){
+						_id+="','"+rows[i].roleid;
+					}
+					_id+="')";
+					deleteJs(_id);
+				}
 			}
 		}]
 	});

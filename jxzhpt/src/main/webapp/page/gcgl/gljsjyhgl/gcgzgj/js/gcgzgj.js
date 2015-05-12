@@ -307,7 +307,6 @@ function showAll(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();

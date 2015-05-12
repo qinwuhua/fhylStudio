@@ -270,7 +270,7 @@ function tjwqgzwwg(){
 function showAll(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
-		if($.cookie("unit2"gydwstr_36')
+		if($.cookie("unit2")=='_____36')
 			gydwstr=36;
 		else gydwstr= $.cookie("unit2");
 	}else if(gydw.length==1){
@@ -280,7 +280,6 @@ function showAll(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();

@@ -79,6 +79,10 @@ public class Plan_gcsj {
 	private String sbbmdm;//上报部门的部门代码
 	private String spbmdm;//审批部门的部门代码
 	private String sfylsjl;//最近年份是否有历史记录
+	private String gndk;//国内贷款
+	private String lywz;//利用外资
+	private String zyjsnr;//主要建设内容
+	private String xzscnl;//新增生产能力
 	private List<Plan_lx_gcsj> plan_lx_gcsjs;
 	public List<Plan_lx_gcsj> getPlan_lx_gcsjs() {
 		return plan_lx_gcsjs;
@@ -535,5 +539,29 @@ public class Plan_gcsj {
 	}
 	public void setJsnr(String jsnr) {
 		this.jsnr = jsnr;
+	}
+	public String getGndk() {
+		return gndk;
+	}
+	public void setGndk(String gndk) {
+		this.gndk = gndk;
+	}
+	public String getLywz() {
+		return lywz;
+	}
+	public void setLywz(String lywz) {
+		this.lywz = lywz;
+	}
+	public String getZyjsnr() {
+		return zyjsnr;
+	}
+	public void setZyjsnr(String zyjsnr) {
+		this.zyjsnr = zyjsnr;
+	}
+	public String getXzscnl() {
+		return xzscnl;
+	}
+	public void setXzscnl(String xzscnl) {
+		this.xzscnl = xzscnl;
 	}
 }

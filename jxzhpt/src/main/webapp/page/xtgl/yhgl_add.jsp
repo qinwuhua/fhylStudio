@@ -78,10 +78,10 @@ function save(){
 		alert("请输入用户名！");
 		return false;
 	}
-	/* if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
+	if(!/((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)/.test($("#tel").val())){
 		alert("联系电话的格式不正确！");
 		return false;
-	} */
+	}
 	if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test($("#idcard").val())){
 	    alert("请输入正确的身份证号码！");
 	    return  false;
@@ -108,7 +108,7 @@ $(function(){
 					用户名：
 				</td>
 				<td>
-					<input type="text" id="truename" name="master.truename"/>
+					<input type="text" id="truename" name="master.truename"/><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			<tr>
@@ -116,7 +116,7 @@ $(function(){
 					 所属单位：
 				</td>
 				<td>
-					<input  type="text" id="unit" name="master.unit" style="width:156px;"/>
+					<input  type="text" id="unit" name="master.unit" style="width:156px;"/><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			<tr>
@@ -124,7 +124,7 @@ $(function(){
 					 用户角色：
 				</td>
 				<td>
-					<select id="roleid" name="master.roleid" style="width:156px;"></select>
+					<select id="roleid" name="master.roleid" style="width:156px;"></select><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			<tr>
@@ -149,7 +149,7 @@ $(function(){
 					身份证号：
 				</td>
 				<td style="text-align: left">
-					<input id="idcard" name="master.idcard" type="text"/>
+					<input id="idcard" name="master.idcard" type="text"/><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			<tr>
@@ -157,7 +157,7 @@ $(function(){
 					联系电话：
 				</td>
 				<td style="text-align: left">
-					<input id="tel" name="master.tel" type="text"/>
+					<input id="tel" name="master.tel" type="text"/><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			<tr>
