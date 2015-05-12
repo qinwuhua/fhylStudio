@@ -72,9 +72,9 @@ function startSearch(){
 			{field:'desr',title:'描述',width:100,align : 'center'},
 			{field : 'sc',title : '操作',width : 200,align : 'center',
 				formatter : function(value,rec,index){
-					var str1='<input onclick=openDwInsert("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
-					return '<input onclick=openDwUpdate("'+rec.id+'","'+rec.name+'","'+rec.desr+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=编辑 />'+
-					'<input onclick=deleteDw("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除>'+str1;
+					var str1='|<a href=javascript:openDwInsert("'+rec.id+'")type=button value=添加>添加';
+					return '<a href=javascript:openDwUpdate("'+rec.id+'","'+rec.name+'","'+rec.desr+'")>编辑</a>|'+
+					'<a href=javascript:deleteDw("'+rec.id+'")>删除</a>'+str1;
 				}
 			}
 		]]

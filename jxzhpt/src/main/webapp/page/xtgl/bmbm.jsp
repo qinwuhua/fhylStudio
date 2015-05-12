@@ -80,12 +80,12 @@ function startSearch(){
 			{field : 'sc',title : '操作',width : 200,align : 'center',
 				formatter : function(value,rec,index){
 					if(rec.id.length<6){
-						var str='<input onclick=openDwInsert("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=添加>';
+						var str='<a href=javascript:openDwInsert("'+rec.id+'")>添加</a>|';
 					}else var str="";
-					if(rec.id.length>2){
-						var str2='<input onclick=deleteDw("'+rec.id+'") style="width:60px;border:1px #8db2e3 solid;" type=button value=删除>';
-					}else var str2="";
-					return str2+str;
+
+					var str2='<a href=javascript:deleteDw("'+rec.id+'")>删除</a>';
+					
+					return str+str2;
 				}
 			}
 		]]

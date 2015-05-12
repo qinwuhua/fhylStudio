@@ -58,6 +58,7 @@ $(function(){
 	$("#dwgl_btn_Save").click(function(){
 		updateBzbz();
 	});
+	
 });
 function selBzbz(){
 	$.ajax({
@@ -69,10 +70,17 @@ function selBzbz(){
 				 var htmlStr="";
 				 $("#bzbz_table").html("");
 				 for(var i=0;i<msg.length;i++){
-					 htmlStr+="<tr><td>"+msg[i].xmlx+"<input type='hidden' id='id_"+i+"' value='"+msg[i].id+"'></td><td>"+msg[i].lx+"</td><td><input id='bz_"+i+"' value='"+msg[i].bz+"' /></td><td>"+
-					 "<input id='bl_"+i+"' value='"+msg[i].bl+"' /></td><td><input id='fd_"+i+"' value='"+msg[i].fd+"' /></td></tr>";
+					 htmlStr+="<tr><td>"+msg[i].xmlx+"<input type='hidden' id='id_"+i+"' value='"+msg[i].id+"'></td><td>"+msg[i].lx+"</td><td><input id='bz_"+i+"' value='"+msg[i].bz+"' class='numOnly'/></td><td>"+
+					 "<input id='bl_"+i+"' value='"+msg[i].bl+"'  class='numOnly'/></td><td><input id='fd_"+i+"' value='"+msg[i].fd+"'  class='numOnly'/></td></tr>";
 				 }
 				 $("#bzbz_table").html(htmlStr);
+				 $(".numOnly").keypress(function(event){
+					var keyCode = event.which;
+					if(keyCode==46||(keyCode>=48&&keyCode<=57)||keyCode==8) return true;
+					else return false;
+				}).focus(function(){
+					this.style.imeMode='disabled';
+				});
 			 }
 		 }
 	});
@@ -86,7 +94,7 @@ function selBzbz(){
     </div>
     <div style="height:700px;margin-top:10px;margin-left:10px;">
     	<table width="100%" class="bgg" border="0" cellpadding="0" cellspacing="1">
-    		<tr style="font-weight:700;font-size:16px;"><td>项目类型</td><td>补助类型</td><td>补助标准</td><td>补助比例</td><td>补助浮动</td></tr>
+    		<tr style="font-weight:700;font-size:16px;"><td>项目类型</td><td>补助类型</td><td>补助标准(万元/公里)</td><td>补助比例</td><td>补助浮动(万元)</td></tr>
     		<tbody id="bzbz_table"></tbody>
     	</table>
     	<div style="width:700px;margin-top:10px;text-align:center;">

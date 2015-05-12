@@ -29,23 +29,21 @@ function saveDwgl(){
 		alert("行政区划名称不能为空！");
 		return;
 	}
-	param = $("#dwgl_form").serialize()+"&unit.bmid=360000"+$("#parent").val()+$("#id").val();
-	trueSave(param);
-	/*
+	var param = $("#dwgl_form").serialize()+"&unit.bmid=360000"+$("#parent").val()+$("#id").val();
 	$.ajax({
 		type : "POST",
 		url : "../../xtgl/checkXzqhCfById.do",
 		dataType : 'json',
 		data : param,
 		success : function(msg){
-			if(msg.length>0){
+			if(msg.length!=0){
 				alert("已存在该行政区划代码！");
+				return;
 			}else{
-				alert(param);
 				trueSave(param);
 			}
 		}
-	});*/
+	});
 	delete param;
 }
 function trueSave(_param){
@@ -97,7 +95,7 @@ $(function(){
 					行政区划代码：
 				</td>
 				<td>
-					<input id="id" name="unit.id" type="text" style="width:160px;"/>
+					<input id="id" name="unit.id" type="text" style="width:160px;"/><span style="color:red;">必填项</span>
 					<input id="parent" name="unit.parent" type="hidden"/>
 				</td>
 			</tr>
@@ -106,7 +104,7 @@ $(function(){
 					行政区划名称：
 				</td>
 				<td>
-					<input id="name" name="unit.name" type="text" style="width:160px;"/>
+					<input id="name" name="unit.name" type="text" style="width:160px;"/><span style="color:red;">必填项</span>
 				</td>
 			</tr>
 			
