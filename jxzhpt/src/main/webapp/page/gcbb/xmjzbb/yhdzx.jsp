@@ -74,14 +74,15 @@
 			var tsdq=$("#tsdq").combobox("getValue");
 			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.tsdq="+tsdq;
 			//alert(data);
+			var tbody = $("#yhlist");
+					tbody.empty();
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getYhbb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#yhlist");
-					tbody.empty();
+					
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){

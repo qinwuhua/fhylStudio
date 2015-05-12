@@ -731,12 +731,12 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				if(gydwdm.indexOf(",")==-1){
 					tiaojian1="and gydw like '%"+gydwdm+"%'";
 				}else{
-					tiaojian1="and gydw in ('"+gydwdm+"')";
+					tiaojian1="and gydw in ("+gydwdm+")";
 				}
 				if(xzqhdm.indexOf(",")==-1){
 					tiaojian2="and xzqh like '%"+xzqhdm+"%'";
 				}else{
-					tiaojian2="and xzqh in ('"+xzqhdm+"')";
+					tiaojian2="and xzqh in ("+xzqhdm+")";
 				}
 				//System.out.println(tiaojian1);
 				//System.out.println(tiaojian2);

@@ -163,4 +163,6 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_gcgj jh);
+
+	List<TreeNode> queryJhktj3(String xmlx, String nf, String end);
 }

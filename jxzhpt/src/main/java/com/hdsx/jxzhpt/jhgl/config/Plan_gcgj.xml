@@ -456,10 +456,74 @@
 		) t join xtgl_xzqh xz on(t.parent=xz.id) group by t.parent,xz.name order by t.parent
 	</select>
 	<select id="queryJhktj2" resultType="treenode" parameterType="java.util.Map">
-		select t.sbnf as id,sum(t.jhsybzje) as text,count(t.jhsybzje) as name from (
-       		select distinct jh.id,lx.xzqhdm,jh.sbnf,jh.jhsybzje 
-       		from plan_gcgj jh left join plan_lx_gcgj lx on (jh.id=lx.jhid) where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%') t
-		where t.sbnf>=#{start} and <![CDATA[t.sbnf<=#{end}]]> group by t.sbnf
+		select id,sum(text) text,sum(name) name,sum(stz) parent,count(id) bmid from (
+		select jh.sbnf as id,lx.xzqhdm,jh.pfztz as text,jh.jhsybzje as name,jh.jhsydfzcje stz,jh.id as jhid,'路面改建' as xmlx from plan_gcgj jh,(
+		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_gcgj l group by l.jhid ) lx where jh.id=lx.jhid
+		union all
+		select sj.jhnf,sjlx.xzqhdm,sj.pftz,sj.jhsybbzje,sj.jhsydfzczj,sj.id,'路面升级' from plan_gcsj sj,(
+		select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_gcsj sjl group by sjl.jhid) sjlx where sj.id=sjlx.jhid
+		union all
+		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'水毁项目' from plan_shuih jh,(
+		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_shuih l group by l.jhid ) lx where jh.id=lx.jhid
+		union all
+		select yh.sbnf,lx.xzqhdm,yh.totalinvest,yh.totalsubsidyfund,yh.totalplacefund,yh.id,'养护大中修' from plan_yhdzx yh,(
+		select yhl.jhid,replace(WMSYS.WM_CONCAT(to_char(yhl.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_yhdzx yhl group by yhl.jhid) lx where yh.id=lx.jhid
+		union all
+		select wq.sbnf,wqlx.xzqhdm,wq.pfztz,wq.jhsybzje,wq.jhsydfzcje,wq.id,'危桥改造' from plan_wqgz wq left join sck_wqgz wqsc 
+		on (wq.sckid=wqsc.sckid) left join xmk_wqgz wqlx on (wqsc.xmkid=wqlx.id)
+		union all
+		select abjh.jhnf,ablx.xzqhdm,abjh.pfztz,abjh.jhsybbzje,abjh.jhsydfzczj,abjh.id,'安保工程' from plan_abgc abjh left join sck_abgc absc 
+		on (abjh.sckid=absc.sckid) left join xmk_abgc ablx 
+		on (absc.xmkid=ablx.id)
+		union all
+		select zhjh.sbnf,zhlx.xzqhdm,zhjh.pfztz,zhjh.jhsybzje,zhjh.jhsydfzcje,zhjh.id,'灾害防治' from plan_zhfz zhjh left join sck_zhfz zhsc on 
+		(zhjh.sckid=zhsc.sckid) left join xmk_zhfz zhlx 
+		on (zhsc.xmkid=zhlx.id))
+		where 1=1 
+		<if test="xzqhdm!=null and xzqhdm!=''">and xzqhdm like substr(#{xzqhdm},0,4)||'%'</if>
+		<if test="start!=null and start!='' and end!=null and end!=''">
+			and id>=#{start} and <![CDATA[id<=#{end}]]>
+		</if>
+		 group by id order by id
+	</select>
+	<select id="queryJhktj3" resultType="treenode" parameterType="java.util.Map">
+		select id,sum(text) text,sum(name) name,sum(stz) parent,count(id) bmid from (
+		select jh.sbnf as id,lx.xzqhdm,jh.pfztz as text,jh.jhsybzje as name,jh.jhsydfzcje stz,jh.id as jhid,'路面改建' as xmlx from plan_gcgj jh,(
+		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_gcgj l group by l.jhid ) lx where jh.id=lx.jhid
+		union all
+		select sj.jhnf,sjlx.xzqhdm,sj.pftz,sj.jhsybbzje,sj.jhsydfzczj,sj.id,'路面升级' from plan_gcsj sj,(
+		select sjl.jhid,replace(WMSYS.WM_CONCAT(to_char(sjl.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_gcsj sjl group by sjl.jhid) sjlx where sj.id=sjlx.jhid
+		union all
+		select jh.sbnf,lx.xzqhdm,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje,jh.id,'水毁项目' from plan_shuih jh,(
+		select l.jhid,replace(WMSYS.WM_CONCAT(to_char(l.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_shuih l group by l.jhid ) lx where jh.id=lx.jhid
+		union all
+		select yh.sbnf,lx.xzqhdm,yh.totalinvest,yh.totalsubsidyfund,yh.totalplacefund,yh.id,'养护大中修' from plan_yhdzx yh,(
+		select yhl.jhid,replace(WMSYS.WM_CONCAT(to_char(yhl.xzqhdm)),',','、') as xzqhdm 
+		from plan_lx_yhdzx yhl group by yhl.jhid) lx where yh.id=lx.jhid
+		union all
+		select wq.sbnf,wqlx.xzqhdm,wq.pfztz,wq.jhsybzje,wq.jhsydfzcje,wq.id,'危桥改造' from plan_wqgz wq left join sck_wqgz wqsc 
+		on (wq.sckid=wqsc.sckid) left join xmk_wqgz wqlx on (wqsc.xmkid=wqlx.id)
+		union all
+		select abjh.jhnf,ablx.xzqhdm,abjh.pfztz,abjh.jhsybbzje,abjh.jhsydfzczj,abjh.id,'安保工程' from plan_abgc abjh left join sck_abgc absc 
+		on (abjh.sckid=absc.sckid) left join xmk_abgc ablx 
+		on (absc.xmkid=ablx.id)
+		union all
+		select zhjh.sbnf,zhlx.xzqhdm,zhjh.pfztz,zhjh.jhsybzje,zhjh.jhsydfzcje,zhjh.id,'灾害防治' from plan_zhfz zhjh left join sck_zhfz zhsc on 
+		(zhjh.sckid=zhsc.sckid) left join xmk_zhfz zhlx 
+		on (zhsc.xmkid=zhlx.id))
+		where 1=1 
+		<if test="xmlx!=null and xmlx!=''">and xmlx = #{xmlx}</if>
+		<if test="start!=null and start!='' and end!=null and end!=''">
+			and id>=#{start} and <![CDATA[id<=#{end}]]>
+		</if>
+		 group by id order by id
 	</select>
 	<select id="queryJhktjt2" resultType="treenode" parameterType="java.util.Map">
 		select sbnf as id,NVL(sum(t.jhsybzje),0) as name from (
