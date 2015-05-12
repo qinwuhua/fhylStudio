@@ -190,7 +190,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
-							<div data-options="region:'center',border:false" style="overflow-y:hidden;">
+							<div data-options="region:'center',border:false" style="overflow: auto;">
 							<table width="2000px" class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年公路路网结构改造工程进展情况汇总表</caption>
 								<thead>
@@ -221,7 +221,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td>单位1</td>
 										<td>单位2</td>
 										<td>总投资(万元)</td>
-										<td>中央投资(万元) </td>
+										<td>中央投资(万元)</td>
 										<td>地方自筹(万元)</td>
 										<td>(万元)</td>
 										<td>(%)</td>
