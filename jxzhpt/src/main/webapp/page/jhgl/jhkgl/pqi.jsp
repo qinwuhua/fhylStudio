@@ -37,14 +37,15 @@
 			}
 			var data="lkmxb.lxbh="+lxbm+"&lkmxb.qdzh="+qdzh+"&lkmxb.zdzh="+zdzh+"&lkmxb.tbnf="+$("#nian").combobox("getValue")+"年";
 			//alert(data);
+			var tbody = $("#pqilist");
+					tbody.empty();
 			$.ajax({
 				url:"/jxzhpt/wjxt/getPqiList.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#pqilist");
-					tbody.empty();
+					
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
 							tbody.append( "<tr style='background-color: #FFFFFF; height: 15px;'><td align='center'>"

@@ -138,7 +138,7 @@ public interface Plan_gcgjServer {
 	 */
 	int queryGPSBylxbm1(Plan_lx_gcgj lx);
 
-	List<TreeNode> queryJhktj(String nf);
+	List<TreeNode> queryJhktj(String xzqhdm,String nf);
 
 	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
 

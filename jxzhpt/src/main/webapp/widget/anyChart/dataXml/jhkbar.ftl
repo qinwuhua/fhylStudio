@@ -22,7 +22,7 @@
         		</bar_series>
       		</data_plot_settings>
 			<data>
-				<series name="计划数量">
+				<series name="计划金额">
 					<#list list as l >
 						<point name="${l.name}" y="${l.je}">
 							<tooltip enabled="true">
