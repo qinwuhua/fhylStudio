@@ -75,14 +75,15 @@
 			var tsdq=$("#tsdq").combobox("getValue");
 			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg+"&xmbb.tsdq="+tsdq;
 			//alert(data);
+			var tbody = $("#ptgxlist");
+					tbody.empty();
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getPtgxbb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#ptgxlist");
-					tbody.empty();
+					
 					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {

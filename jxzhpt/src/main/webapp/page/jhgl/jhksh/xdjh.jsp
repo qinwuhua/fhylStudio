@@ -101,15 +101,15 @@ function startSearch(){
 			xzqhstr= xzqhdm.join(',');
 		}
 	var data="xmbb.xzqh="+xzqhstr+"&xmbb.gydw="+gydwstr+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue")+"&flag="+"查询数据";
-	
+	var str="";
+	$("#table_tbody").html("");
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/dbbb/gljsxdList.do',
 		dataType:"JSON",
 		data:data,
 		success:function(msg){
-			var str="";
-			$("#table_tbody").html("");
+			
 			if(msg.length!=0){
 				for(var i=0;i<msg.length;i++){
 							str+="<tr align='center'><td>"+msg[i].BZ+"</td>"+"<td>"+msg[i].XMMC+"</td>"+"<td>"+msg[i].XZDJ+"</td>"+"<td>"+msg[i].QDZH+"</td>"

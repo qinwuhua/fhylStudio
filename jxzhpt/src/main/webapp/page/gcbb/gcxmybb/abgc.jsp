@@ -66,14 +66,15 @@
 			var lxmc=$("#lxmc").val();
 			var data="nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 			//alert(data);
+			var tbody = $("#abgclist");
+					tbody.empty();
 			$.ajax({
 				url:"/jxzhpt/gcybb/getAbgcybb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#abgclist");
-					tbody.empty();
+					
 					$("#nian").text($("#ddlYear").val());
 					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {

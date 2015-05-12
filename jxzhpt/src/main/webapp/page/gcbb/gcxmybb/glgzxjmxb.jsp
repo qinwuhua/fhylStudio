@@ -73,7 +73,8 @@
 			+str3+'</tr>';
 			biaotou.empty();
 			biaotou.append(biaotstr);
-			
+			var tbody = $("#wqgzlist");
+			tbody.empty();
 			var data="gcglwqgz.tiaojian="+xmlx+"&gcglwqgz.xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
@@ -82,8 +83,7 @@
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					var tbody = $("#wqgzlist");
-					tbody.empty();
+					
 					var tbodystr="";
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
