@@ -23,7 +23,7 @@
 	<script type="text/javascript">
 		$(function(){
 			loadUnit1("gydw",$.cookie("unit"));
-			loadDist1("xzqh",$.cookie("dist2"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("kgzt","开工状态");
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未上报');

@@ -19,18 +19,17 @@
  		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from 
  			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t where
  			sck_sbthcd &lt;=#{sck_sbthcd}
-  		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+  		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -56,18 +55,17 @@
   <select id="selectSckZhfzCount" parameterType="sckzhfz" resultType="int">
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
-  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -119,18 +117,17 @@
  		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
-  		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
- 		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+  		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -157,18 +154,17 @@
  		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
-  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -200,6 +196,9 @@
 		<if test="zdzh!='' and zdzh!= null ">
 			and to_number(scqdzh) &lt;to_number(#{zdzh})
 		</if>
+		<if test="scxmnf!='' and scxmnf!=  null "  >
+ 			and scxmnf=#{scxmnf}
+ 		</if>
 	</select>
  <select id="bzZhfz" parameterType="sckzhfz" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM
@@ -235,17 +234,17 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id
  	where 1=1
  	and sck_sbthcd &lt;=#{sck_sbthcd}
- 	<if test="gydw!='' and gydw!= null "  >
-		and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
-	</if>
+ 	<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 	<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -272,17 +271,17 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  	from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id 
  	where 1=1 and sck_sbthcd=7
  	and sck_sbthcd >=#{sck_sbthcd}
- 	<if test="gydw!='' and gydw!= null "  >
-		and scbmbm like  substr(#{gydw},1,instr(#{gydw},'00')-1) || '%'
-	</if>
-	<if test="xzqhmc!='' and xzqhmc!= null "  >
-		and xzqhdm like  substr(#{xzqhmc},1,instr(#{xzqhmc},'00')-1) || '%'
-	</if>
+ 	<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 	<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -321,18 +320,17 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  <select id="selSckZhfzCount" parameterType="sckzhfz" resultType="sckzhfz">
  		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
-  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -354,18 +352,17 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  	select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
- 		<if test="gydw!='' and gydw!= null "  >
- 			and scbmbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
- 		</if>
-  		<if test="xzqhmc!='' and xzqhmc!= null "  >
- 			and xzqhdm in(select id from xtgl_xzqh
- 			where id=#{xzqhmc} or parent=#{xzqhmc})
- 		</if>
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
  		<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="xmtype!='' and xmtype!= null ">
  			and xmtype like '%'||(#{xmtype})||'%'
@@ -392,16 +389,16 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
   			<if test="gydw!='' and gydw!= null ">
-  			and  scbmbm  like #{gydw}||'%' 
-  			</if>
-  			<if test="xzqhdm!='' and xzqhdm!= null ">
-			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
-			</if>
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 			<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'
@@ -423,16 +420,16 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		 where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
  			<if test="gydw!='' and gydw!= null ">
-  			and  scbmbm  like #{gydw}||'%' 
-  			</if>
-  			<if test="xzqhdm!='' and xzqhdm!= null ">
-			and  xzqhdm like rtrim(#{xzqhdm},0)||'%'
-			</if>
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
 			<if test="lxmc!='' and lxmc!= null ">
  			and sck_lxmc like '%'||(#{lxmc})||'%'
  		</if>
  		<if test="xmnf!='' and xmnf!= null ">
- 			and xmnf like '%'||(#{xmnf})||'%'
+ 			and scxmnf like '%'||(#{xmnf})||'%'
  		</if>
  		<if test="lxjsdj!='' and lxjsdj!= null ">
  			and lxjsdj like '%'||(#{lxjsdj})||'%'

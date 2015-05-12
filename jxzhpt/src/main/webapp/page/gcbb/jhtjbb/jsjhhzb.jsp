@@ -51,17 +51,40 @@ table tbody tr td {
 <script type="text/javascript">
 $(function(){
 	selYearList("year");
-	loadUnit("gydw",$.cookie("unit"));
-	loadDist("xzqh",$.cookie("dist"));
+	loadUnit1("gydw",$.cookie("unit"));
+	loadDist1("xzqh",$.cookie("dist"));
 	startSearch();
 });
 function startSearch(){
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
 	$("#titleYear").html($("#year").combotree("getValue"));
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/gcbb/getLwjgjshzb.do',
 		dataType:"json",
-		data:"dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue"),
+		data:"dist="+xzqhstr+"&unit="+gydwstr+"&nf="+$("#year").combotree("getValue"),
 		success:function(msg){
 			var str="";
 			$("#table_tbody").html("");
@@ -70,7 +93,7 @@ function startSearch(){
 					
 					if(i!=6){
 						if(i==0||i==3){
-							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
 							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td></tr>";
 						}else{
 							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
@@ -89,7 +112,34 @@ function startSearch(){
 	});
 }
 function exportExcel(){
-	window.location.href = "/jxzhpt/gcbb/getLwjgjshzb.do?flag=flag&dist="+$("#xzqh").combotree("getValue")+"&unit="+$("#gydw").combotree("getValue")+"&nf="+$("#year").combotree("getValue");
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var data="flag=flag&nf="+$("#year").combotree("getValue");
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		window.location.href='/jxzhpt/gcbb/getLwjgjshzb.do?'+data;
+	 });
+
 }
 </script>
 </head>
@@ -129,9 +179,9 @@ function exportExcel(){
         	</tr>
             <tr>
             	<td style="padding-top: 10px;padding-left:10px;padding-right:10px;">
-                	<div id="gddiv" style="width:100%;height:400px" >
+                	<div id="gddiv" style="width:99.5%;height:400px" >
                 	<script type="text/javascript">
-                	$("#gddiv").attr('style','width:100%;height:'+($(window).height()-110)+'px');
+                	$("#gddiv").attr('style','width:99.5%;height:'+($(window).height()-110)+'px');
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" height="100%" style="overflow: auto;">
@@ -143,9 +193,9 @@ function exportExcel(){
 										<td width="150px;"></td>
 										<td width="150px;">座/项目数</td>
 										<td width="150px;">延米</td>
-										<td width="150px;">处治里程</td>
+										<td width="150px;">处治里程(公里)</td>
 										<td width="150px;">补助资金(万元)</td>
-										<td width="150px;">部安排资金</td>
+										<td width="150px;">部安排资金(万元)</td>
 										<td width="150px;">总投资(万元)</td>
 									</tr>
 								</thead>

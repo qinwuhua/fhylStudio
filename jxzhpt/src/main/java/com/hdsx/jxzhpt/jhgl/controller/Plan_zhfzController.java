@@ -25,6 +25,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -52,6 +53,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
 	private Jckzhfz lx;
+	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
 	private File uploadGk;
@@ -61,6 +63,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	//批量审批
 	public void editZhfzStatusBatch(){
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, String> result=new HashMap<String, String>();
 			List<Plan_zhfz> splist = zhfzServer.queryZhfzByStatus(jh,lx);
 			for (Plan_zhfz item : splist) {
@@ -78,6 +82,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	
 	public void queryZhfzByStatus(){
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.queryZhfzByStatus(jh, lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,6 +92,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	
 	public void querySumZhfz(){
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.querySumZhfz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -122,6 +130,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		HttpServletResponse response= getresponse();
 		ee.makeExcel(tableName, sheetBeans, response);
 	}
+	/**
+	 * 导入灾害计划
+	 */
 	public void importZhfz_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -151,10 +162,12 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		}
 	}
 	public void queryZhfzList(){
-		Map<String, Object> jsonMap=new HashMap<String, Object>();
-		jsonMap.put("rows", zhfzServer.queryZhfzList(page, rows, jh, lx));
-		jsonMap.put("total", zhfzServer.queryZhfzCount(jh, lx));
 		try {
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			jsonMap.put("rows", zhfzServer.queryZhfzList(page, rows, jh, lx));
+			jsonMap.put("total", zhfzServer.queryZhfzCount(jh, lx));
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -171,7 +184,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 方法弃用
+	 */
 	public void queryZhfaNfs(){
 		try {
 			JsonUtils.write(zhfzServer.queryZhfaNfs(),getresponse().getWriter());
@@ -321,11 +336,56 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "安保工程-资金下达", getresponse());
 	}
-	
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	/**
+	 * 资金追加修改计划金额
+	 * @throws Exception 
+	 */
+	public void editZhZj() throws Exception {
+		try {
+			String Strresult="false";
+			jh.setPfztz(new Double(new Double(jh.getPfztz()).doubleValue()+new Double(zjzj.getZtz()).doubleValue()).toString());
+			jh.setJhsybzje(new Double(new Double(jh.getJhsybzje()).doubleValue()+new Double(zjzj.getBbzje()).doubleValue()).toString());
+			jh.setJhsydfzcje(new Double(new Double(jh.getJhsydfzcje().equals("")?"0":jh.getJhsydfzcje()).doubleValue()-new Double(zjzj.getStz()).doubleValue()).toString());
+			if(zhfzServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;
 	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
+	}
+
 	public void setPage(int page) {
 		this.page = page;
 	}

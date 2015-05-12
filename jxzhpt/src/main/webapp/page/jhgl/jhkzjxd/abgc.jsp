@@ -23,26 +23,20 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6};
-			var lx={gydw:null,gydwdm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			abgcxm_zjxd(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:'1',spzt:'1',
-					jh_sbthcd:6,kgzt:null,jgzt:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
-					xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-					lxmc:null,lxjsdj:null,lxbm:null
-			};
-			lx.gydwbm = filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:'1',spzt:'1',jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -75,8 +69,9 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={'lx.gydwbm':lx.gydwbm,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,"jh.kgzt":jh.kgzt,
-					"jh.jgzt":jh.jgzt,'jh.jh_sbthcd':jh.jh_sbthcd,'jh.jhnf':jh.jhnf};
+			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
+					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
+					"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd};
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/querySumAbgc.do',
@@ -118,7 +113,6 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;"/>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<span style=" vertical-align:middle;">上报年份：</span>
@@ -134,12 +128,18 @@
 									<option value="竣工">竣工</option>
 								</select>
 								<span style=" vertical-align:middle;">&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px; vertical-align:middle;">
-								</select>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px; vertical-align:middle;"></select>
 								<span style=" vertical-align:middle;">&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px; vertical-align:middle;">
+								<select name="ddlGldj" id="ddlGldj" style="width:104px; vertical-align:middle;"></select>
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
-								<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        					</p>
+        					<p style="margin:8px 0px 4px 20px;">
+        						<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;"/>
+        						<img alt="导出模版" onclick="exportExcelZjxd()" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('abgc_zjxd')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>

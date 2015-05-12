@@ -120,7 +120,7 @@
 				if(data.result=="true"){
 					alert("添加成功！");
 					parent.$('#grid').datagrid('reload');
-					$('#add_shuihlx').window('destroy');
+					parent.$('#add_shuihlx').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){
@@ -158,7 +158,7 @@
 			border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安保工程项目路线信息
+					水毁项目路线信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">

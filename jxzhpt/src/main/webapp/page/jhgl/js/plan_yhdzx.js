@@ -6,14 +6,15 @@ function ckPQI(index){
 	var data=$("#grid").datagrid('getRows')[index];
 	object=data.plan_lx_yhdzxs;
 	
-	YMLib.UI.createWindow('pqi','PQI详情','pqi.jsp','pqi',1000,450);
+	YMLib.UI.createWindow('pqi','PQI详情','/jxzhpt/page/jhgl/jhkgl/pqi.jsp','pqi',1000,450);
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function querySumYhdzx(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.sbnf':jh.sbnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,
-			'jh.jh_sbthcd':jh.jh_sbthcd,"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt};
+	var param={'lx.gydwdm':lx.gydwdm,'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
+			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,
+			'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumYhdzx.do',
@@ -62,8 +63,7 @@ function openEditWindow(id){
 	YMLib.UI.createWindow('yhdzx_edit','养护大中修项目计划详情',"/jxzhpt/page/jhgl/edit/yhdzx.jsp",'yhdzx_edit',1000,500);
 }
 function yhdzxxm(jh,lx){
-	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
-			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
+	var params={'lx.gydwdm':lx.gydwdm,'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,
 			'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
@@ -91,6 +91,11 @@ function yhdzxxm(jh,lx){
 				    		}
 			        	}
 			      },
+//			      {field:'c5',title:'资金追加',width:80,align:'center',
+//			    	  formatter:function(value,row,index){
+//			    		  return '<a href="javascript:openZjzjWindow('+"'grid','editYhZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+//			    	  }
+//			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
 			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
@@ -171,6 +176,9 @@ function yhdzxxm_sb(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},
@@ -210,8 +218,7 @@ function yhdzxxm_sb(jh,lx){
 	gridBind(grid);
 }
 function yhdzxxm_sp(jh,lx){
-	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
-			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
+	var params={'lx.gydwdm':lx.gydwdm,'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),queryParams:params,
@@ -242,6 +249,9 @@ function yhdzxxm_sp(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},
@@ -281,14 +291,13 @@ function yhdzxxm_sp(jh,lx){
 	gridBind(grid);
 }
 function yhdzxxm_zjxd(jh,lx){
-	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
-			'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,'lx.gydwdm':lx.gydwdm,'lx.xzqhdm':lx.xzqhdm,'lx.lxmc':lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.lxbm':lx.lxbm,
 			'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.sbnf':jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'lx.tsdq':lx.tsdq};
 	var grid={id:'grid',url:'../../../jhgl/queryYhdzxList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-150,width:$('#searchField').width(),queryParams:params,
 		columns:[[
 		          {field:'ck',checkbox:true},
-		          {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
+		          {field:'c',title:'操作',width:100,align:'center',formatter:function(value,row,index){
 		        	  var result='<a href="javascript:locationXm('+"'"+row.plan_lx_yhdzxs[0].lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		        	  result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 		        	  return result;
@@ -298,8 +307,11 @@ function yhdzxxm_zjxd(jh,lx){
 				    	return '<a href="javascript:openDialog('+"'zjxd_yhdzx','养护大中修项目资金下达','../zjxd/yhdzx.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 			    	  }
 			      },
-			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
+			      {field:'xmmc',title:'项目名称',width:180,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
+			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
+			      }},
 			      {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				  {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 			      {field:'classify',title:'工程分类',width:80,align:'center'},

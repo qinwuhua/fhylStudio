@@ -107,7 +107,7 @@ text-decoration:none;
 	  			},
 	  			gydwbm:function() {
 	  				var d = $.cookie("unit2");
-	  				if(d=='______36') return "";
+	  				if(d=='_____36') return "";
 	  				else return d;
 	  			},
 	  			xzqhdm:function() {
@@ -172,6 +172,7 @@ text-decoration:none;
 				if(Boolean(msg)){
 					parent.jckglZhfz();
 					alert("保存成功！");
+					parent.jckglZhfz();
 					parent.$('#jck_add').window('destroy');
 					
 				}else{

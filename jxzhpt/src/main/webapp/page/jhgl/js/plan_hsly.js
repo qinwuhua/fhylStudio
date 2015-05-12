@@ -48,6 +48,14 @@ function sbnf(id){
 	    textField:'text'   
 	});
 }
+function openWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
+}
+function openEditWindow(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('abgc_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'abgc_edit',1000,500);
+}
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
@@ -56,14 +64,14 @@ function hslyglxm(hsly){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
-	        	result+='<a href="javascript:openDialog('+"'hslygl_xx','红色旅游公路项目计划详情','../edit/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
-//	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-//	        	return '<a style="text-decoration:none;color:#3399CC;">资金追加</a>';
-//	        }},
+	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+	        	return '<a href="javascript:openHslyZjzj('+"'grid',''"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+	        }},
 	        {field:'jhnf',title:'计划年份',width:80,align:'center'},
 	        {field:'gydwmc',title:'管养单位',width:150,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:300,align:'center'},
@@ -73,6 +81,7 @@ function hslyglxm(hsly){
 	        {field:'zytz',title:'中央投资车购税',width:82,align:'center'},
 	        {field:'dfta',title:'地方(企业)自筹',width:82,align:'center'},
 	        {field:'gndk',title:'国内贷款',width:82,align:'center'},
+	        {field:'lywz',title:'利用外资',width:82,align:'center'},
 	        {field:'kgn',title:'开工年',width:80,align:'center'},
 	        {field:'wgn',title:'完工年',width:80,align:'center'},
 	    ]],
@@ -87,14 +96,20 @@ function hslyglxm(hsly){
 	};
 	gridBind(grid);
 }
-function hslyglxm_zjxd(){
+function openHslyZjzj(id){
+	YMLib.Var.id=id;
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('zjzjadd','资金追加',"/jxzhpt/page/jhgl/zjxd/hslyzjzj.jsp",'zjzjadd',600,400);
+}
+function hslyglxm_zjxd(hsly){
+	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	var grid={id:'grid',url:'../../../jhgl/queryHslyList.do',pagination:true,rownumbers:false,
-		pageNumber:1,pageSize:10,height:325,width:990,
+		pageNumber:1,pageSize:10,height:325,width:990,queryParams:params,
 	    columns:[[
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:80,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a href="javascript:openDialog('+"'zjxd_hslygl','红色旅游公路项目计划详情','../jhkxx/hslygl.jsp'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
+	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金下发',width:100,align:'center',formatter:function(value,row,index){
@@ -163,8 +178,8 @@ function queryHslyXx(id){
 					$('#hslygl_xiangxi').append('<tr style="height: 30px;"><td colspan="6"style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: left; padding-left: 50px; color: red;">【'+item.jhnf+'】年资金追加</td></tr>');
 					$('#hslygl_xiangxi').append('<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建议计划总投资</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+item.ztz+'</td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">中央投资车购税</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+item.zytz+'</td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">地方自筹/省级投资</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+item.dfta+'</td></tr>');
 					$('#hslygl_xiangxi').append('<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">国内贷款</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+item.gndk+'</td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">利用外资</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">'+item.lywz+'</td><td colspan="2" style="border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">&nbsp;</td></tr>');
-					$('#hslygl_xiangxi').append('<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">主要建设内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">16&nbsp;</td></tr>');
-					$('#hslygl_xiangxi').append('<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">新增生产力</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px; margin-bottom: 5px;">16&nbsp;</td></tr>');
+					$('#hslygl_xiangxi').append('<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">主要建设内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">'+item.zyjsnr+'</td></tr>');
+					$('#hslygl_xiangxi').append('<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">新增生产力</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px; margin-bottom: 5px;">'+item.xzscl+'</td></tr>');
 				});
 			}
 		}

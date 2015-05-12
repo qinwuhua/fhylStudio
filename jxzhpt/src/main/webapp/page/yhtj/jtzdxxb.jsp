@@ -86,9 +86,9 @@ $(function(){
 							<option id="yf12" value="12">12</option> 
 						</select>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-search" onclick="showAll()">查询</a>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="false" iconCls="icon-add" onclick="zdxxadd()">添加</a>
-	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="false" onclick="exportZdxx()">导出Excel</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查询</a>
+ 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="zdxxadd()">添加</a>
+	 					<a id="yhgl_btn_add" href="javascript:void(0)" class="easyui-linkbutton" plain="true"  iconCls="icon-remove" onclick="exportZdxx()">导出Excel</a>
  					</p>
  			</fieldset>
       </td>

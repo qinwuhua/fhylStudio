@@ -85,4 +85,8 @@ public interface GcglaqybServer {
 
 	List<TreeNode> selAllUnit1(String replaceAll);
 
+	int selectmbgllistCount1(Gcglaqyb gcglaqyb);
+
+	List<Gcglaqyb> selectmbgllist1(Gcglaqyb gcglaqyb);
+
 }

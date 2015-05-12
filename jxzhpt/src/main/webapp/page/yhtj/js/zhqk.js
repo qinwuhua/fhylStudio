@@ -1,19 +1,19 @@
 var obj=new Object();
 function zhqkadd(){
-	YMLib.UI.createWindow('zhqk_add','添加信息','zhqk_add.jsp','zhqk_add',970,450);
+	YMLib.UI.createWindow('zhqk_add','添加信息','zhqk_add.jsp','zhqk_add',1000,500);
 }
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
 function zhqkxx(index){
 	var data=$("#zhqk_table").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('zhqk_xx','详细信息','zhqk_xx.jsp','zhqk_xx',970,450);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('zhqk_xx','详细信息','zhqk_xx.jsp','zhqk_xx',1167,500);
 }
 function zhqkbj(index){
 	var data=$("#zhqk_table").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('zhqk_bj','编辑信息','zhqk_bj.jsp','zhqk_bj',970,450);
+	YMLib.UI.createWindow('zhqk_bj','编辑信息','zhqk_bj.jsp','zhqk_bj',1000,500);
 }
 function zhqksc(index){
 	var data1=$("#zhqk_table").datagrid('getRows')[index];
@@ -63,7 +63,7 @@ function showAll(){
 				    	}
 				    },
 					{field:'gydwmc',title:'管养单位',width:500,rowspan:2,align:'center'},
-					{field:'sbrq',title:'上报日期',width:300,rowspan:2,align:'center'},
+					{field:'sbrq',title:'上报日期',width:300,rowspan:2,align:'center'}
 				]]    
 	}); 
 }

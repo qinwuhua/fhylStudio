@@ -43,6 +43,7 @@ $(function(){
 				if(Boolean(msg)){
 					parent.$("#grid").datagrid('reload');
 					alert("修改成功！");
+					parent.jckglWqgz();
 					parent.$('#jck_xg').window('destroy');	
 				}else{
 					alert('保存失败！');

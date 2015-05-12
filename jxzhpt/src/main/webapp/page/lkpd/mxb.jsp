@@ -25,7 +25,7 @@ function openJsUpdate(_id){
 	var str=new Date().getTime();
 	obj= $("#tt").tabs("add",{
 		id:_id+str,
-		 title:"公路技术状况明细表",
+		 title:"公路技术状况评定明细表",
 		 href :"mxb_xx.jsp",
 		 fit:true,
 		 iconCls:'icon-file',
@@ -92,7 +92,7 @@ function showMxbAll(){
 <div style="width:100%;">
     <div  style="height:84px;" border="false" >
 	    <div id="righttop" >
-			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;路况评定明细</div>
+			<div id="p_top">当前位置>&nbsp;路况评定>&nbsp;公路技术状况评定明细表</div>
 		</div>
 		<div  style="padding-left: 10px; padding-right: 10px;">
 			<fieldset style="width:99%; text-align: left; vertical-align: middle;">

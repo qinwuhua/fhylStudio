@@ -28,28 +28,23 @@
 			xian=false;
 		}
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
-			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwbm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			sbnf("sbnf");
+			var jh={sbnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}
 			querySumZhfz(jh,lx);
-			sbnf("sbnf");
 			zhfzxm(jh,lx);
 		});
 		function searchZhfz(){
-			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:$('#gydw').combobox('getText'),gydwbm:$('#gydw').combobox('getValue'),
-				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-				lxmc:null,lxjsdj:null,lxbm:null
-			};
-			lx.gydwbm = filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -138,20 +133,15 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
+								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
-								</select>
+								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox">
+								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select>
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<table style="margin:8px 0px 8px 20px;">

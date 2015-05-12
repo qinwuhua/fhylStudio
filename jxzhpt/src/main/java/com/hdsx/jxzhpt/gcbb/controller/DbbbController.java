@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.gcbb.server.DbbbServer;
@@ -714,8 +717,17 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			try {
 				String tiaojian1="";
 				String tiaojian2="";
-				String gydwdm = xmbb.getGydw();
-				String xzqhdm = xmbb.getXzqh();
+				String xzqhdm = "";
+				String gydwdm = "";
+				if("导出excel".equals(flag)){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					gydwdm=(String) session.getAttribute("gydwbb");	
+					xzqhdm=(String) session.getAttribute("xzqhbb");	
+				}else{
+				gydwdm = xmbb.getGydw();
+				xzqhdm	= xmbb.getXzqh();
+				}
 				if(gydwdm.indexOf(",")==-1){
 					tiaojian1="and gydw like '%"+gydwdm+"%'";
 				}else{
@@ -731,8 +743,91 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 			xmbb.setGydw(tiaojian1);
 			xmbb.setXzqh(tiaojian2);
 			List<Map<String,Object>> list = dbServer.selectgljsxdList(xmbb);
-			
+			System.out.println("导出excel".equals(flag));
+			if("导出excel".equals(flag)){
+				List<Excel_list> elist=new ArrayList<Excel_list>();
+				for (Map<String, Object> map : list) {
+					Excel_list l=new Excel_list();
+					try {l.setV_0(map.get("BZ").toString());} catch (Exception e) {l.setV_0("");}
+					try {l.setV_1(map.get("XMMC").toString());} catch (Exception e) {l.setV_1("");}
+					try {l.setV_2(map.get("XZDJ").toString());} catch (Exception e) {l.setV_2("");}
+					try {l.setV_3(map.get("QDZH").toString());} catch (Exception e) {l.setV_3("");}
+					try {l.setV_4(map.get("ZDZH").toString());} catch (Exception e) {l.setV_4("");}
+					try {l.setV_5(map.get("LXBH").toString());} catch (Exception e) {l.setV_5("");}
+					try {l.setV_6(map.get("JSDJ").toString());} catch (Exception e) {l.setV_6("");}
+					try {l.setV_7(map.get("TSDQ").toString());} catch (Exception e) {l.setV_7("");}
+					try {l.setV_8(map.get("SHI").toString());} catch (Exception e) {l.setV_8("");}
+					try {l.setV_9(map.get("XIAN").toString());} catch (Exception e) {l.setV_9("");}
+					try {l.setV_10(map.get("JSXZ").toString());} catch (Exception e) {l.setV_10("");}
+					try {l.setV_11(map.get("HEJGL").toString());} catch (Exception e) {l.setV_11("");}
+					try {l.setV_12(map.get("YIJGL").toString());} catch (Exception e) {l.setV_12("");}
+					try {l.setV_13(map.get("ERJGL").toString());} catch (Exception e) {l.setV_13("");}
+					try {l.setV_14(map.get("SANJGL").toString());} catch (Exception e) {l.setV_14("");}
+					try {l.setV_15(map.get("SIJGL").toString());} catch (Exception e) {l.setV_15("");}
+					try {l.setV_16(map.get("DQIAO").toString());} catch (Exception e) {l.setV_16("");}
+					try {l.setV_17(map.get("SDAO").toString());} catch (Exception e) {l.setV_17("");}
+					try {l.setV_18(map.get("LMKD").toString());} catch (Exception e) {l.setV_18("");}
+					try {l.setV_19(map.get("JSFA").toString());} catch (Exception e) {l.setV_19("");}
+					try {l.setV_20(map.get("ZTZ").toString());} catch (Exception e) {l.setV_20("");}
+					try {l.setV_21(map.get("BTZ").toString());} catch (Exception e) {l.setV_21("");}
+					try {l.setV_22(map.get("STZ").toString());} catch (Exception e) {l.setV_22("");}
+					try {l.setV_23(map.get("SNHJ").toString());} catch (Exception e) {l.setV_23("");}
+					try {l.setV_24(map.get("SNBTZ").toString());} catch (Exception e) {l.setV_24("");}
+					try {l.setV_25(map.get("BNHJ").toString());} catch (Exception e) {l.setV_25("");}
+					try {l.setV_26(map.get("BNBTZ").toString());} catch (Exception e) {l.setV_26("");}
+					try {l.setV_27(map.get("GKPFWH").toString());} catch (Exception e) {l.setV_27("");}
+					try {l.setV_28(map.get("SJPFWH").toString());} catch (Exception e) {l.setV_28("");}
+					try {l.setV_29(map.get("JHXDWH").toString());} catch (Exception e) {l.setV_29("");}
+					elist.add(l);
+				}
+				ExcelData eldata=new ExcelData();//创建一个类
+				eldata.setTitleName("公路建设下达计划（国省道改造项目）");//设置第一行
+				eldata.setSheetName("公路建设下达计划表");//设置sheeet名
+				eldata.setFileName("公路建设下达计划表");//设置文件名
+				eldata.setEl(elist);//将实体list放入类中
+				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+				et.add(new Excel_tilte("备注",1,2,0,0));
+				et.add(new Excel_tilte("项目名称",1,2,1,1));
+				et.add(new Excel_tilte("行政等级",1,2,2,2));
+				et.add(new Excel_tilte("起点桩号",1,2,3,3));
+				et.add(new Excel_tilte("终点桩号",1,2,4,4));
+				et.add(new Excel_tilte("路线编码",1,2,5,5));
+				et.add(new Excel_tilte("现公路技术等级",1,2,6,6));
+				et.add(new Excel_tilte(" ",1,1,7,9));
+				et.add(new Excel_tilte("建设性质",1,2,10,10));
+				et.add(new Excel_tilte("建 设 规 模（ 公 里 ） / （ 延 米 ）",1,1,11,17));
+				et.add(new Excel_tilte("路面宽度",1,2,18,18));
+				et.add(new Excel_tilte("技术方案",1,2,19,19));
+				et.add(new Excel_tilte("总投资（万元）",1,2,20,20));
+				et.add(new Excel_tilte("中央投资（万元）",1,2,21,21));
+				et.add(new Excel_tilte("省级补助（万元）",1,2,22,22));
+				et.add(new Excel_tilte("上年累计完成投资（万元）",1,1,23,24));
+				et.add(new Excel_tilte("本年建设计划（万元）",1,1,25,26));
+				et.add(new Excel_tilte("前期工作情况",1,1,27,28));
+				et.add(new Excel_tilte("计划下达文号",1,2,29,29));
+				et.add(new Excel_tilte("特殊地区 ",2,2,7,7));
+				et.add(new Excel_tilte("市",2,2,8,8));
+				et.add(new Excel_tilte("县",2,2,9,9));
+				et.add(new Excel_tilte("合计",2,2,11,11));
+				et.add(new Excel_tilte("一级公路",2,2,12,12));
+				et.add(new Excel_tilte("二级公路",2,2,13,13));
+				et.add(new Excel_tilte("三级公路",2,2,14,14));
+				et.add(new Excel_tilte("四级公路",2,2,15,15));
+				et.add(new Excel_tilte("大桥",2,2,16,16));
+				et.add(new Excel_tilte("隧道",2,2,17,17));
+				et.add(new Excel_tilte("合计",2,2,23,23));
+				et.add(new Excel_tilte("内：中央车购税",2,2,24,24));
+				et.add(new Excel_tilte("合计",2,2,25,25));
+				et.add(new Excel_tilte("车购税合计",2,2,26,26));
+				et.add(new Excel_tilte("工可批复文号",2,2,27,27));
+				et.add(new Excel_tilte("设计批复文号",2,2,28,28));
+				eldata.setEt(et);//将表头内容设置到类里面
+				HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+				Excel_export.excel_export(eldata,response);
+			}
+			else{
 				JsonUtils.write(list, getresponse().getWriter());
+			}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -826,6 +921,13 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 	}
 	public void setXmbb(Xmbb xmbb) {
 		this.xmbb = xmbb;
+	}
+	private String flag;
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 	
 }

@@ -4,15 +4,21 @@ public class Plan_lx_gcsj {
 	private String id;//项目唯一编号
 	private String lxmc;//路线名称
 	private String lxbm;//路线编码
+	private String ylxbm;//原路线编码
 	private String xzqhdm;//行政区划代码
 	private String xzqhmc;//行政区划名称
 	private String qdzh;//七点桩号
+	private double xqdzh;//现在的起点装好
+	private double yqdzh;//原来的起点装好
 	private String zdzh;//止点桩号
+	private double xzdzh;//现止点桩号
+	private double yzdzh;//原来的止点桩号
 	private String qzlc;//起止里程(公里)
 	private String xmlc;//项目里程(公里)
 	private String gydw;//管养单位
 	private String gydwbm;//管养单位编码 
 	private String yjsdj;//原技术等级
+	private String gjjsdj;//改建技术等级
 	private String bhnr;//病害内容
 	private String sczt;//审查状态
 	private String tbsj;//填报时间
@@ -196,5 +202,41 @@ public class Plan_lx_gcsj {
 	}
 	public void setDlqlzxzh(String dlqlzxzh) {
 		this.dlqlzxzh = dlqlzxzh;
+	}
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public double getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(double yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public double getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(double yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public double getXqdzh() {
+		return xqdzh;
+	}
+	public void setXqdzh(double xqdzh) {
+		this.xqdzh = xqdzh;
+	}
+	public double getXzdzh() {
+		return xzdzh;
+	}
+	public void setXzdzh(double xzdzh) {
+		this.xzdzh = xzdzh;
+	}
+	public String getGjjsdj() {
+		return gjjsdj;
+	}
+	public void setGjjsdj(String gjjsdj) {
+		this.gjjsdj = gjjsdj;
 	}
 }

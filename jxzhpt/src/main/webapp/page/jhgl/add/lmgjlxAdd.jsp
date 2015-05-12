@@ -102,15 +102,15 @@
 	}
 	
 	function insert(){
-		if($('#qdzh').val()<$('#spqdzh').html()){
+		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
 		}
-		if($('#zdzh').val()>$('#spzdzh').html()){
+		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
 			alert("止点桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
-		if($('#qzlc').val()>$('#yhlc').val()){
+		if(Number($('#qzlc').val())>($('#yhlc').val())){
 			alert("核对里程不能大于起止里程！");
 			return;
 		}
@@ -132,7 +132,7 @@
 				if(data.result=="true"){
 					alert("添加成功！");
 					parent.$('#grid').datagrid('reload');
-					$('#add_gjlx').window('destroy');
+					parent.$('#add_gjlx').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){
@@ -145,11 +145,11 @@
 		});
 	}
 	function jisuanlc(t){
-		if($('#qdzh').val()<$('#spqdzh').html()){
+		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
 		}
-		if($('#zdzh').val()>$('#spzdzh').html()){
+		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
 			alert("起点桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
@@ -170,7 +170,7 @@
 			border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安保工程项目路线信息
+					路面改造路面改建项目路线信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">

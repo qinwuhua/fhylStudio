@@ -103,4 +103,10 @@ public interface Plan_zhfzServer {
 	TreeNode queryGcktjt(String xzqhdm);
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 	List<Plan_zhfz> queryZhfzList(Plan_zhfz jh, Jckzhfz lx);
+	/**
+	 * 资金追加修改计划资金
+	 * @param jh
+	 * @return
+	 */
+	boolean editZjById(Plan_zhfz jh);
 }

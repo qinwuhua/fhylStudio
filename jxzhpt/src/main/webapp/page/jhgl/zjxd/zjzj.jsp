@@ -3,8 +3,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>资金追加</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>资金追加</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
 	<div>
@@ -21,10 +31,26 @@
 			</tr>
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-					<font color="#009ACD" style="cursor: hand; font-size: 12px">部补助资金：</font>
+					<font color="#009ACD" style="cursor: hand; font-size: 12px">追加总投资：</font>
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-					<input id="zjje" type="text" width="150" />万元
+					<input id="txtztz" type="text" width="150" value="0"/>万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					<font color="#009ACD" style="cursor: hand; font-size: 12px">追加部补助资金：</font>
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+					<input id="zjje" type="text" width="150" value="0"/>万元
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					<font color="#009ACD" style="cursor: hand; font-size: 12px">追加省补助资金：</font>
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+					<input id="txtStz" type="text" width="150" value="0"/>万元
 				</td>
 			</tr>
 			<tr>
@@ -46,26 +72,76 @@
 		function zizj(){
 			var nf=new RegExp("^[1-9][0-9]{3}$");
 			var je=new RegExp("^[0-9]*$");
+			var fje=new RegExp("^-[0-9]*$");
 			if($('#zjnf').val()=="" || !nf.test($('#zjnf').val())){
 				alert("请正确填写上报年份！");
-			}else if($('#zjje').val()=="" || !je.test($('#zjje').val())){
-				alert("请正确填写补助金额");
-			}else{
-				var zjzj={"zjzj.planId":zjId,"zjzj.nf":$('#zjnf').val(),"zjzj.bbzje":$('#zjje').val()};
-				$.ajax({
-					type:'post',
-					url:'../../../jhgl/insertZjzj.do',
-					dataType:'json',
-					data:zjzj,
-					success:function(data){
-						if(data.result=="true"){
-							alert("资金追加成功！");
-							$('#'+bz).dialog("close");
-						}
-					}
-				});
+				return;
 			}
-			
+			if(!je.test($('#txtztz').val()) && !fje.test($('#txtztz').val())){
+				alert("请正确填写追加总资金");
+				return;
+			}
+			if(!je.test($('#zjje').val()) && !fje.test($('#zjje').val())){
+				alert("请正确填写部补助金额");
+				return;
+			}
+			if(!je.test($('#txtStz').val()) && !fje.test($('#txtStz').val())){
+				alert("请正确填写追加省资金");
+				return;
+			}
+			var row =parent.YMLib.Var.Row;
+			var jh,ztz=0,stz=0,dftz=0;
+			if(parent.YMLib.Var.url=="editZj" || parent.YMLib.Var.url=="editAbZj"){
+				if(parent.YMLib.Var.url=="editAbZj"){
+					ztz=Number(row.pfztz)+Number($('#txtztz').val());
+				}else{
+					ztz=Number(row.pftz)+Number($('#txtztz').val());
+				}
+				stz=Number(row.jhsybbzje)+Number($('#zjje').val());
+				dftz=Number(row.jhsydfzczj)+Number($('#txtStz').val());
+				if(Number(ztz) >=Number(stz)+Number(dftz)){
+					jh={'jh.id':row.id,'jh.jhsybbzje':row.jhsybbzje,'jh.jhsydfzczj':row.jhsydfzczj,
+						'zjzj.planId':row.id,'zjzj.nf':$('#zjnf').val(),'zjzj.bbzje':$('#zjje').val(),
+						'zjzj.ztz':$('#txtztz').val(),'zjzj.stz':$('#txtStz').val()};
+					if(parent.YMLib.Var.url=="editAbZj"){
+						jh['jh.pfztz']=row.pfztz;
+					}else{
+						jh['jh.pftz']=row.pftz;
+					}
+				}else{
+					alert("追加后得部补助金额和省补助金额不能高于总投资！");
+					return;
+				}
+			}else if(parent.YMLib.Var.url=="editGjZj" || parent.YMLib.Var.url=="editShZj" || parent.YMLib.Var.url=="editWqZj" || parent.YMLib.Var.url=="editZhZj"){
+				ztz=Number(row.pfztz)+Number($('#txtztz').val());
+				stz=Number(row.jhsybzje)+Number($('#zjje').val());
+				dftz=Number(row.jhsydfzcje)+Number($('#txtStz').val());
+				if( Number(ztz) >= Number(stz)+Number(dftz)){
+					jh={'jh.id':row.id,'jh.pfztz':row.pfztz,'jh.jhsybzje':row.jhsybzje,
+							'jh.jhsydfzcje':row.jhsydfzcje,
+						'zjzj.planId':row.id,'zjzj.nf':$('#zjnf').val(),'zjzj.bbzje':$('#zjje').val(),
+						'zjzj.ztz':$('#txtztz').val(),'zjzj.stz':$('#txtStz').val()};
+				}else{
+					alert("追加后得部补助金额和省补助金额不能高于总投资！");
+					return;
+				}
+			}
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/'+parent.YMLib.Var.url+'.do',
+				dataType:'json',
+				data:jh,
+				success:function(data){
+					if(data.result=="true"){
+						alert("资金追加成功！");
+						parent.$('#'+parent.YMLib.Var.id).datagrid('reload');
+						closeWindow2("zjzjadd");
+					}
+				},
+				error:function(e){
+					alert("系统错误！");
+				}
+			});
 		}
 	</script>
 </body>

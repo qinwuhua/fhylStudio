@@ -13,7 +13,7 @@ import javax.xml.crypto.Data;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
@@ -32,7 +32,7 @@ public class Plan_zjxdController extends BaseActionSupport {
 	private String fileuploadFileName;
 	private File fileupload;
 	private Plan_zjxd zjxd;
-	private Plan_lwxm_zjzj zjzj;
+	private Plan_zjzj zjzj;
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	public void queryZjxdByXmId(){
@@ -337,10 +337,10 @@ public class Plan_zjxdController extends BaseActionSupport {
 	public void setZjxdServer(Plan_zjxdServer zjxdServer) {
 		this.zjxdServer = zjxdServer;
 	}
-	public Plan_lwxm_zjzj getZjzj() {
+	public Plan_zjzj getZjzj() {
 		return zjzj;
 	}
-	public void setZjzj(Plan_lwxm_zjzj zjzj) {
+	public void setZjzj(Plan_zjzj zjzj) {
 		this.zjzj = zjzj;
 	}
 	public String getFileuploadFileName() {

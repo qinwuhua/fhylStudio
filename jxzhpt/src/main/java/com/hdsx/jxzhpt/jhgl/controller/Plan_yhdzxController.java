@@ -60,6 +60,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void querySumYhdzx(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(yhdzxServer.querySumYhdzx(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -70,6 +72,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	
 	public void queryYhdzxList(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", yhdzxServer.queryYhdzxCount(jh,lx));
 			jsonMap.put("rows", yhdzxServer.queryYhdzxList(page,rows,jh,lx));
@@ -80,7 +84,9 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 根据ID查询养护大中修
+	 */
 	public void queryYhdzxById(){
 		try {
 			JsonUtils.write(yhdzxServer.queryYhdzxById(jh.getId()), getresponse().getWriter());
@@ -90,7 +96,9 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 删除养护大中修计划
+	 */
 	public void dropYhdzxById(){
 		try {
 			Map<String, Object> result=new HashMap<String, Object>();
@@ -103,7 +111,9 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改养护大中修状态
+	 */
 	public void editYhdzxStatus(){
 		try {
 			System.out.println("设计批复问好："+jh.getDevisenumbder());
@@ -116,7 +126,9 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改养护大中修
+	 */
 	public void editYhdzxById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -130,9 +142,13 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出养护大中修Excel
+	 */
 	public void exportExcel_yhdzx(){
 		try{
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+//			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			List<Plan_yhdzx> queryYhdzxList = yhdzxServer.queryYhdzxList(jh,lx);
 			List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
 			for (Plan_yhdzx item : queryYhdzxList) {
@@ -164,56 +180,57 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
-	public void importYhdzx_jh(){
+	/**
+	 * 导入养护大中修计划Excel
+	 * @throws Exception 
+	 */
+	public void importYhdzx_jh() throws Exception{
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
 		HttpServletResponse response = ServletActionContext.getResponse();
-		try{
-			if(!"xls".equals(fileType)){
-				response.getWriter().print(fileuploadFileName+"不是excel文件");
-				return ;
-			}
-			response.setCharacterEncoding("utf-8"); 
-			FileInputStream fs = new FileInputStream(this.fileupload);
-			List<Map>[] dataMapArray;
-			try{
-				dataMapArray = ExcelReader.readExcelContent(3,40,fs,Plan_gcsj.class);
-			}catch(Exception e){
-				response.getWriter().print(fileuploadFileName+"数据有误");
-				return;
-			}
-			String strVerify=null;
-			boolean boolJh=true,boolLx=true;
-			List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
-			for (Map map : data) {
-				UUID jhId = UUID.randomUUID(); 
-				map.put("jhid", jhId.toString().replace("-", ""));
-				map.put("gydwdm", getGydwdm());
-				map.put("tbsj", new Date());
-				map.put("tbbm", tbbmbm2);
-				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
-				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
-					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
-					map.put("jh_sbthcd", 0);
-				}
-				map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
-			}
-			System.out.println(data);
-			yhdzxServer.insertYhdzx_lx(data);
-			yhdzxServer.insertYhdzx_jh(data);
-			//将数据插入到数据库
-			if(boolJh && boolLx)
-				response.getWriter().print(fileuploadFileName+"导入成功");
-			else 
-				response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
-		}catch(Exception e){
-			e.printStackTrace();
+		if(!"xls".equals(fileType)){
+			response.getWriter().print(fileuploadFileName+"不是excel文件");
+			return ;
 		}
+		response.setCharacterEncoding("utf-8"); 
+		FileInputStream fs = new FileInputStream(this.fileupload);
+		List<Map>[] dataMapArray;
+		try{
+			dataMapArray = ExcelReader.readExcelContent(3,40,fs,Plan_gcsj.class);
+		}catch(Exception e){
+			response.getWriter().print(fileuploadFileName+"数据有误");
+			return;
+		}
+		String strVerify=null;
+		boolean boolJh=true,boolLx=true;
+		List<Map> data = ExcelReader.removeBlankRow(dataMapArray[0]);
+		for (Map map : data) {
+			UUID jhId = UUID.randomUUID(); 
+			map.put("jhid", jhId.toString().replace("-", ""));
+			map.put("gydwdm", getGydwdm());
+			map.put("tbsj", new Date());
+			map.put("tbbm", tbbmbm2);
+			map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
+			String xzqh = map.get("1").toString();
+			if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
+				map.put("jh_sbthcd", 2);
+			}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+				map.put("jh_sbthcd", 0);
+			}
+			map.put("15", map.get("15").toString().substring(0, map.get("15").toString().indexOf(".")));
+		}
+		System.out.println(data);
+		yhdzxServer.insertYhdzx_jh(data);
+		yhdzxServer.insertYhdzx_lx(data);
+		//将数据插入到数据库
+		if(boolJh && boolLx)
+			response.getWriter().print(fileuploadFileName+"导入成功");
+		else 
+			response.getWriter().print(fileuploadFileName+"导入失败"+strVerify);
 	}
-	
+	/**
+	 * 养护大中修资金下达导出
+	 */
 	public void exportYhdzxZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[9];
@@ -264,21 +281,39 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("养护大中修",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "养护大中修-资金下达", getresponse());
 	}
+	/**
+	 * 单次添加养护大中修计划
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void insertYhdzx() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
+		if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
+			jh.setJh_sbthcd("0");
+		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
+			
+		}
+		System.out.println("养护添加："+jh.getJh_sbthcd());
 		UUID uuid=UUID.randomUUID();
 		jh.setId(uuid.toString());
 		lx.setJhid(uuid.toString());
 		lx.setTbsj(new Date());
-		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
 		boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
+		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
 		if(lxresult && jhresult){
 			strResult="true";
 		}
 		result.put("result", strResult);
 		JsonUtils.write(result, getresponse().getWriter());
 	}
+	/**
+	 * 单次添加养护大中修路线
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void insertYhdzxLx() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
@@ -290,9 +325,38 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		result.put("result", strResult);
 		JsonUtils.write(result, getresponse().getWriter());
 	}
+	/**
+	 * 单次添加养护大中修德编码提示
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void yhdzxAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_yhdzx> list=yhdzxServer.yhdzxAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	/**
+	 * 资金追加，修改养护大中修金额
+	 */
+	public void editYhZj(){
+		
 	}
 	//set get
 	public int getPage() {

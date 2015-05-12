@@ -4,6 +4,7 @@
 <struts>
 <package name="gcbb" extends="struts-default" namespace="/gcbb">
 	<action name="getYearList" class="gcbbController" method="getYearList" />
+	<action name="exportbbsj_set" class="gcbbController" method="exportbbsj_set" />
 	<action name="selYearList" class="gcbbController" method="selYearList" />
 	<action name="selGcgjJdbb" class="gcbbController" method="selGcgjJdbb" />
 	<action name="selShuihJdbb" class="gcbbController" method="selShuihJdbb"></action>

@@ -20,7 +20,9 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_hsly;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_hslyZjzj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -41,6 +43,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	private String fileuploadFileName;
 	private String tbbmbm2;
 	private File fileupload;
+	private Plan_hslyZjzj zjzj;
 	private Plan_hsly hsly;
 	@Resource(name = "plan_HslyServerImpl")
 	private Plan_hslyServer hslyServer;
@@ -69,6 +72,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	
 	public void queryHslyList(){
 		try {
+			hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> result =new HashMap<String, Object>();
 			result.put("rows", hslyServer.queryHslyList(page, rows, hsly));
 			result.put("total", hslyServer.queryHslyCount(hsly));
@@ -84,6 +88,9 @@ public class Plan_hslyController  extends BaseActionSupport{
 		try {
 			List<Plan_hsly> queryHslyZjzj = hslyServer.queryHslyZjzj(hsly.getId());
 			Map<String, Object> result =new HashMap<String, Object>();
+			for (Plan_hsly item : queryHslyZjzj) {
+				System.out.println(item.getXzscl());
+			}
 			result.put("rows", queryHslyZjzj);
 			result.put("total", queryHslyZjzj.size());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -153,10 +160,15 @@ public class Plan_hslyController  extends BaseActionSupport{
 			List<Plan_hsly> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_hsly.class, 3, excel);
 			List<Plan_hsly> data=new ArrayList<Plan_hsly>();
 			readerExcel.remove(readerExcel.size()-1);
+			System.out.println("开始个数："+readerExcel.size());
 			for (int i = 0; i < readerExcel.size(); i++) {
-				if(readerExcel.get(i).getXzqhmc()==null){
+				if(readerExcel.get(i).getGydwdm()==null || readerExcel.get(i).getGydwdm().equals("")){
 					readerExcel.remove(i);
 				}else{
+					readerExcel.get(i).setZtz(new Double(new Double(readerExcel.get(i).getZytz()).doubleValue() + 
+							new Double(readerExcel.get(i).getLywz()).doubleValue() + 
+							new Double(readerExcel.get(i).getDfta()).doubleValue() + 
+							new Double(readerExcel.get(i).getGndk()).doubleValue()).toString());
 					readerExcel.get(i).setTbbm(tbbmbm2);
 					readerExcel.get(i).setTbsj(new Date());
 					data.add(readerExcel.get(i));
@@ -173,7 +185,6 @@ public class Plan_hslyController  extends BaseActionSupport{
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
 //		try{
 //			if(!"xls".equals(fileType)){
 //				response.getWriter().print(fileuploadFileName+"不是excel文件");
@@ -212,6 +223,7 @@ public class Plan_hslyController  extends BaseActionSupport{
 	}
 	
 	public void exportExcelHslyZjxd(){
+		hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
 		hslyServer.queryHslyList(hsly);
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[8];
@@ -250,6 +262,44 @@ public class Plan_hslyController  extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("红色旅游",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "红色旅游-资金下达", getresponse());
 	}
+	
+	public void editHslyzj() throws Exception{
+		try{
+			String str="false";
+			hsly.setZtz(new Integer(new Integer(hsly.getZtz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+			hsly.setDfta(new Integer(new Integer(hsly.getDfta().equals("")?"0":hsly.getDfta()).intValue()+new Integer(zjzj.getDfzc()).intValue()).toString());
+			hsly.setGndk(new Integer(new Integer(hsly.getGndk().equals("")?"0":hsly.getGndk()).intValue()+new Integer(zjzj.getGndk()).intValue()).toString());
+			hsly.setLywz(new Integer(new Integer(hsly.getLywz().equals("")?"0":hsly.getLywz()).intValue()+new Integer(zjzj.getLywz()).intValue()).toString());
+			hsly.setZytz(new Integer(new Integer(hsly.getZytz().equals("")?"0":hsly.getZytz()).intValue()+new Integer(zjzj.getZytzcgs()).intValue()).toString());
+			if(hslyServer.editHslyZj(hsly) && zjxdServer.insertHslyZjzj(zjzj)) {
+				str="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",str);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? name+" like '%"+bh+"%'": name+" in ("+bh+")";
+	}
 	//get set
 	public int getPage() {
 		return page;
@@ -287,12 +337,16 @@ public class Plan_hslyController  extends BaseActionSupport{
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
 	}
-
 	public String getTbbmbm2() {
 		return tbbmbm2;
 	}
-
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public Plan_hslyZjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_hslyZjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

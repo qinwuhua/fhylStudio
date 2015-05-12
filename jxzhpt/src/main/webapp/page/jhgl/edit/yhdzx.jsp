@@ -26,6 +26,7 @@
 		var xxId=parent.YMLib.Var.jhbm;
 		$(function(){
 			sbnf("lblYear");
+			loadBmbm2('txtGCFL','养护类别');
 			loadCslx('selsmc','上面层');
 			loadCslx('selzmc','中面层');
 			loadCslx('selxmc','下面层');
@@ -51,20 +52,20 @@
 						$('#table_lx').append(tr1+tr2+tr3+tr4+tr5+tr6);
 					});
 					$('#lblYear').combobox('select',data.sbnf);
-					$('#txtGCFL').val(data.classify);
+					$('#txtGCFL').combobox('select',data.classify);
 					$('#txtSBJF').val(data.reportingfee);
+					$('#txtXMMC').val(data.xmmc);
 					$('#txtBNBZZJ').val(data.nowyearsubsidyfund);
 					$('#txtDC').val(data.dianceng);
 					$('#txtJC').val(data.jiceng);
 					$('#txtMC').val(data.surface);
-					$('#txtXJBS').val(data.mark);
+					radioChecked("txtXJBS",data.mark);
 					$('#txtPQI').val(data.pqi);
 					$('#lblJTL').val(data.aadt);
 					$('#txtSGTWH').val(data.constructnumber);
 					$('#txtGKPFWH').val(data.replynumber);
 					$('#txtSJPFWH').val(data.devisenumber);
 					$('#txtJHXDWH').val(data.plandownnumber);
-					
 					$('#txtJSCZMS').val(data.description);
 					$('#txtXCHSQK').val(data.xchsqk);
 					$('#txtSTCBZ').val(data.remarks);
@@ -189,11 +190,11 @@
 					'lx.aym':JSON.stringify(ymjson),'lx.asl':JSON.stringify(sljson),'lx.glf':JSON.stringify(glfjson),
 					'jh.sbnf':$('#lblYear').combotree('getValue'),
 					'jh.jhkgsj':$('#txtJhkgsj').combo('getValue'),'jh.jhwgsj':$('#txtJhwgsj').combo('getValue'),
-					'jh.classify':$('#txtGCFL').val(),'jh.aadt':$('#lblJTL').val(),
+					'jh.classify':$('#txtGCFL').combobox('getValue'),'jh.aadt':$('#lblJTL').val(),
 					'jh.pqi':$('#txtPQI').val(),'jh.dianceng':$('#txtDC').val(),'jh.jiceng':$('#txtJC').val(),
-					'jh.surface':$('#txtMC').val(),
+					'jh.surface':$('#txtMC').val(),'jh.xmmc':$('#txtXMMC').val(),
 					'jh.reportingfee':$('#txtSBJF').val(),
-					'jh.mark':$('#txtXJBS').val(),'jh.plandownnumber':$('#txtJHXDWH').val(),
+					'jh.mark':$("input[name='txtXJBS']:checked").val(),'jh.plandownnumber':$('#txtJHXDWH').val(),
 					'jh.xdsj':$('#txtJhxdsj').combo('getValue'),'jh.constructnumber':$('#txtSGTWH').val(),
 					'jh.replynumber':$('#txtGKPFWH').val(),'jh.devisenumbder':$('#txtSJPFWHH').val(),
 					'jh.description':$('#txtJSCZMS').val(),'jh.xchsqk':$('#txtXCHSQK').val(),
@@ -201,9 +202,6 @@
 					'jh.fee':$('#lxhsjf').html(),'jh.newfee':$('#lxspjf').html(),
 					'jh.totalplacefund':$('#dfptztz').html(),'jh.totalsubsidyfund':$('#zbzzj').html(),
 					'jh.totalinvest':$('#ztz').html()};
-			//总投资 'jh.totalinvest':$('#txtZTZ').val(),
-			//地方配套 'jh.totalplacefund':$('#txtDFPTZTZ').val(),
-			//总补助资金  'jh.totalsubsidyfund':$('#txtZBZZJ').val(),
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/editYhdzxById.do',
@@ -404,12 +402,17 @@
 					<input id="txtJhxdsj" class="easyui-datebox" style="width:105px;" type="text"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					项目名称</td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="txtXMMC" type="text"/>
+				</td>
+            </tr>
+			<tr style="height: 30px;">
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					垫层</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="txtDC" type="text"/>
 				</td>
-            </tr>
-			<tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					基层</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
@@ -420,11 +423,18 @@
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="txtMC" type="text"/>
 				</td>
+			</tr>
+			<tr style="height: 30px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					续建表示</td>
+				续建表示</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtXJBS" type="text"/>
+					<input id="txtXJBS0" name="txtXJBS" value="是" type="radio"/>是
+					<input id="txtXJBS1" name="txtXJBS" value="否" type="radio"/>否
 				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -726,7 +736,13 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					PQI指标</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtPQI" type="text"/>
+					<select id="txtPQI" style="width: 50px;">
+						<option value="优">优</option>
+						<option value="良">良</option>
+						<option value="中">中</option>
+						<option value="次">次</option>
+						<option value="差">差</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

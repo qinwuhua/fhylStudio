@@ -110,4 +110,10 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	List<Plan_wqgz> queryWqLs(Jckwqgz lx);
+	/**
+	 * 修改危桥改造金额
+	 * @param jh
+	 * @return
+	 */
+	boolean editZjById(Plan_wqgz jh);
 }

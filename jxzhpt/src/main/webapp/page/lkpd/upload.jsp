@@ -121,7 +121,7 @@
 				class="as"> 取消上传 </a> &nbsp;
             <a href="#" class="as" onclick="fanhui()" >返回 </a>
 		</p>
-		<ol class=files>
+		<ol class=files style="text-align: left;">
 		</ol>
 		</center>
 	</form>

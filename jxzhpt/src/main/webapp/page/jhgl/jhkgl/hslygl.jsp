@@ -20,15 +20,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			xzqhComboxTree("xzqh");
-			var params={xzqhdm:null,xmmc:null,jhnf:null};
+			loadDist1("xzqh",$.cookie("dist"));
 			sbnf("ddlSHZT");
+			var params={xzqhdm:getxzqhdm('xzqh'),xmmc:null,jhnf:null};
 			querySumHsly();
 			hslyglxm(params);
 		});
 		function searchHsly(){
-			var params={xzqhdm:filterXzqhdm($('#xzqh').combo("getValue")),
-				jhnf:$('#ddlSHZT').combo("getValue"),xmmc:$('#txtName').val()};
+			var params={xzqhdm:getxzqhdm('xzqh'),jhnf:$('#ddlSHZT').combo("getValue"),xmmc:$('#txtName').val()};
 			hslyglxm(params);
 		}
 		$(window).resize(function () { 

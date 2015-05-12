@@ -594,7 +594,7 @@
 	<!-- 危桥重做 -->
 	<select id="getwqgzbblist1" parameterType="gcglwqgz" resultType="hashmap">
 		select
-			' ' qlmc,'总计' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
+			'总计' qlmc,' ' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
 			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr
@@ -615,10 +615,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -632,7 +632,7 @@
 	</select>
 	<select id="getwqgzbblist2" parameterType="gcglwqgz" resultType="hashmap">
 		select
-			' ' qlmc,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
+			' ' qldm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' qlmc,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
 			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,substr(xzqhdm,0,4) xzqh
@@ -653,10 +653,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -671,7 +671,7 @@
 	</select>
 	<select id="getwqgzbblist3" parameterType="gcglwqgz" resultType="hashmap">
 		select
-			' ' qlmc,xdnf||'年项目' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
+			' ' qldm,xdnf||'年项目' qlmc,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
 			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,xdnf,substr(xzqhdm,0,4) xzqh
@@ -692,10 +692,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) 
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -728,10 +728,10 @@
       where xm.id=sc.xmkid and sc.sckid=p.sckid(+) and p.id=zj1.xmid(+) and p.id=jz1.jhid(+) and p.id=jz2.jhid(+) and p.id=jz3.jhid(+) and y.jhid(+)=p.id and y.sbyf is not null) t
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -746,7 +746,7 @@
 	</select>
 	<select id="getabgcbblist1" parameterType="gcglabgc" resultType="hashmap">
 		select
-			 ' ' lxbm,'总计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			 ' ' lxmc,'总计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
 			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
@@ -767,10 +767,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -784,7 +784,7 @@
 	</select>
 	<select id="getabgcbblist2" parameterType="gcglabgc" resultType="hashmap">
 		select
-			 ' ' lxbm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			 ' ' lxmc,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
 			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
@@ -805,10 +805,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -823,7 +823,7 @@
 	</select>
 	<select id="getabgcbblist3" parameterType="gcglabgc" resultType="hashmap">
 		select
-			 ' ' lxbm,xdnf||'年项目' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			 ' ' lxmc,xdnf||'年项目' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
 			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
@@ -844,10 +844,10 @@
       ) 
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -879,10 +879,10 @@
       ) 	tt
 			where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -897,7 +897,7 @@
 	</select>
 	<select id="getzhfzbblist1" parameterType="gcglzhfz" resultType="hashmap">
 		select
-			' ' lxbm,'总计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' lxmc,'总计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
 			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
 			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
@@ -917,10 +917,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -934,10 +934,10 @@
 	</select>
 	<select id="getzhfzbblist2" parameterType="gcglzhfz" resultType="hashmap">
 		select
-			' ' lxbm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' lxmc,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
-			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			' ' yhlx,' ' jsxz,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from  (
 		      select
@@ -954,10 +954,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -972,10 +972,10 @@
 	</select>
 	<select id="getzhfzbblist3" parameterType="gcglzhfz" resultType="hashmap">
 		select
-			' ' lxbm,xdnf||'年项目' lxmc,' ' qdzh,' ' zdzh,' ' jsdj,
+			' ' lxmc,xdnf||'年项目' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
-			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			' ' yhlx,' ' jsxz,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
 			from  (
 		      select
@@ -992,10 +992,10 @@
 		    )
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'
@@ -1013,7 +1013,7 @@
 			substr(xzqhdm,0,4) xzqh,tt.*
 		from  (
 		      select
-		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,jz1.bywcgl,jz2.yywcgl,jz3.kgwcgl,
+		      xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
 		      jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
 		      xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
 		    from xmk_zhfz xm,sck_zhfz sc,plan_zhfz p,
@@ -1026,10 +1026,10 @@
 		    ) tt
 		where 1=1 
 		<if test="gydw != null and  gydw != ''">
-				and gydw like '%'||trim(#{gydw})||'%'
+				${gydw}
 		</if>
 		<if test="xzqhdm != null and  xzqhdm != ''">
-				and xzqhdm like '%'||trim(#{xzqhdm})||'%'
+				${xzqhdm}
 		</if>
 		<if test="lxmc != null and  lxmc != ''">
 				and lxmc like '%'||trim(#{lxmc})||'%'

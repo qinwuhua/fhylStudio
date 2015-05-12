@@ -287,15 +287,15 @@ public class GcglaqybController extends BaseActionSupport{
 		gcglaqyb.setRows(rows);
 		gcglaqyb.setPage(page);
 		if("全部".equals(type)){
-			tiaojian="and (uploadepartment like '%'||trim("+gydw+")||'%'"+"or sendingunits like '%'||trim("+gydw+")||'%')";
+			tiaojian="and (uploadepartment='"+gydw+"' or sendingunits like'%"+gydw+"%')";
 			gcglaqyb.setSendingunits(tiaojian);
 		}
 		if("上传".equals(type)){
-			tiaojian="and uploadepartment like '%'||trim("+gydw+")||'%'";
+			tiaojian="and uploadepartment='"+gydw+"'";
 			gcglaqyb.setSendingunits(tiaojian);
 			}
 		if("接收".equals(type)){
-			tiaojian="and sendingunits like '%'||trim("+gydw+")||'%'";
+			tiaojian="and sendingunits like'%"+gydw+"%'";
 			gcglaqyb.setSendingunits(tiaojian);
 		}
 		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);
@@ -345,8 +345,11 @@ public class GcglaqybController extends BaseActionSupport{
 		List<TreeNode> children1 = new ArrayList<TreeNode>();
 		children1.add(l.get(0));
 		List<TreeNode> children = root.getChildren();
-		children1.get(0).setId(yhdw.replaceAll("0*$",""));
+		//children1.get(0).setId(yhdw.replaceAll("0*$",""));
 		children1.get(0).setChildren(children);
+		for (TreeNode treeNode : children1) {
+			System.out.println(treeNode.getId());
+		}
 		try{
 		    String s=JSONArray.fromObject(children1).toString();
             ResponseUtils.write(getresponse(), s);
@@ -462,7 +465,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getXspath();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getXspath());
+			File file=new File(realPath+gcglwqgz1.getXspath());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 
@@ -569,6 +572,23 @@ public class GcglaqybController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void selectmbgllist1(){
+		gcglaqyb.setReportmonth(ddlyear+"-"+ddlmonth);
+		gcglaqyb.setFilename(wjmc);
+		gcglaqyb.setRows(rows);
+		gcglaqyb.setPage(page);
+		gcglaqyb.setSendingunits(sendingunits);
+		int count=gcglaqybServer.selectmbgllistCount1(gcglaqyb);
+		List<Gcglaqyb> list=gcglaqybServer.selectmbgllist1(gcglaqyb);
+		EasyUIPage<Gcglaqyb> e=new EasyUIPage<Gcglaqyb>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	@RequestMapping("file/download")  
 	public void downMbglFile() {
 		try {
@@ -581,7 +601,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getXspath();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getXspath());
+			File file=new File(realPath+gcglwqgz1.getXspath());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 
@@ -811,7 +831,7 @@ public class GcglaqybController extends BaseActionSupport{
 			String realPath = ServletActionContext.getServletContext().getRealPath("/");
 			String filename=gcglwqgz1.getFilename();
 			response.addHeader("Content-Disposition", "attachment;filename="+ new String(filename.getBytes("gb2312"), "ISO-8859-1"));
-			File file=new File(realPath+"upload\\"+gcglwqgz1.getFilename());
+			File file=new File(realPath+gcglwqgz1.getFilename());
 			if (!file.exists()) { 
 	            file.createNewFile(); // 如果文件不存在，则创建 
 	        } 

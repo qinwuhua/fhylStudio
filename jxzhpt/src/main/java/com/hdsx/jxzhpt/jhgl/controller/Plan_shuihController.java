@@ -22,6 +22,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -45,6 +46,7 @@ public class Plan_shuihController extends BaseActionSupport {
 	private Plan_zjxdServer zjxdServer;
 	private Plan_shuih jh;
 	private Plan_lx_shuih lx;
+	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
@@ -112,6 +114,8 @@ public class Plan_shuihController extends BaseActionSupport {
 	
 	public void querySumShuih(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(shuihServer.querySumShuih(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -121,6 +125,8 @@ public class Plan_shuihController extends BaseActionSupport {
 	}
 	
 	public void queryShuihList(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		try {
 			jsonMap.put("total", shuihServer.queryShuihCount(jh, lx));
@@ -141,6 +147,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		}
 	}
 	
+	/**
+	 * 此方法弃用
+	 */
 	public void queryShuihNfs(){
 		try {
 			JsonUtils.write(shuihServer.queryShuihNfs(), getresponse().getWriter());
@@ -185,7 +194,9 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出计划Excel
+	 */
 	public void exportExcel_shuih(){
 		List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
 		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
@@ -217,7 +228,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		HttpServletResponse response= getresponse();
 		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 	}
-	
+	/**
+	 * 导入计划Excel
+	 */
 	public void importShuih_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
@@ -247,9 +260,9 @@ public class Plan_shuihController extends BaseActionSupport {
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
@@ -286,31 +299,31 @@ public class Plan_shuihController extends BaseActionSupport {
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						shuih.setTsdqbm(shuihServer.queryTsdqByXzqh(shuih.getXzqhdm()));
 						shuih.setYjsdj(queryGPSBylxbm.getYjsdj());
-						//设置非路网项目的查询条件
-						Plan_flwbzbz flw=new Plan_flwbzbz();
-						flw.setXmlx("水毁项目");//建设项目类型
-						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
-						flw.setJsdj(shuih.getYjsdj());//技术等级
-						flw.setTsdq(shuih.getTsdqbm());
-						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
-						Integer bzzj=null;//对应补助标准金额
-						if(flwResult==null && defaultFlwje==null){
-							flw.setXmlx(null);
-							flw.setGldj(null);
-							flw.setJsdj(null);
-							flw.setTsdq(null);
-							flwResult=shuihServer.queryBzzj(flw);
-						}
-						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
-						//验证金额
-						Double yhlc=new Double(map.get("11").toString());
-						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("34").toString());
-						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
-						System.out.println("总投资"+pfztz.intValue()+"   计算"+je+"   浮动"+fdbz+"  标准："+bzzj.intValue());
-						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
-						}
+						//设置非路网项目的查询条件，注释：因为没有统一的补助标准
+//						Plan_flwbzbz flw=new Plan_flwbzbz();
+//						flw.setXmlx("水毁项目");//建设项目类型
+//						flw.setGldj(shuih.getLxbm().substring(0, 1));//公路等级
+//						flw.setJsdj(shuih.getYjsdj());//技术等级
+//						flw.setTsdq(shuih.getTsdqbm());
+//						Plan_flwbzbz flwResult=shuihServer.queryBzzj(flw);
+//						Integer bzzj=null;//对应补助标准金额
+//						if(flwResult==null && defaultFlwje==null){
+//							flw.setXmlx(null);
+//							flw.setGldj(null);
+//							flw.setJsdj(null);
+//							flw.setTsdq(null);
+//							flwResult=shuihServer.queryBzzj(flw);
+//						}
+//						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+//						//验证金额
+//						Double yhlc=new Double(map.get("11").toString());
+//						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+//						Integer pfztz=new Integer(map.get("34").toString());
+//						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+//						System.out.println("总投资"+pfztz.intValue()+"   计算"+je+"   浮动"+fdbz+"  标准："+bzzj.intValue());
+//						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+//							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
+//						}
 					}
 				}else{
 					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已存在计划！";
@@ -333,7 +346,9 @@ public class Plan_shuihController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出水毁资金下达Excel
+	 */
 	public void exportShuihZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[10];
@@ -387,16 +402,26 @@ public class Plan_shuihController extends BaseActionSupport {
 		ExcelEntity excel=new ExcelEntity("水毁项目",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "水毁项目-资金下达", getresponse());
 	}
-	
+	/**
+	 * 单次添加水毁计划
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void insertShuih() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		Plan_lx_shuih shuih=new Plan_lx_shuih();
+		if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
+			jh.setJh_sbthcd("0");
+		}
 		shuih.setXzqhdm(lx.getXzqhdm());
 		shuih.setLxbm(lx.getLxbm());
 		shuih.setQdzh(lx.getQdzh());
 		shuih.setZdzh(lx.getZdzh());
 		shuih.setGydwdm(lx.getGydwdm());
 		shuih.setYjsdj(lx.getYjsdj());
+		shuih.setYlmlx(lx.getYlmlx());
 		shuih.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
 		String strResult="false";
 		if(shuihServer.queryJhExist(shuih)==0){
@@ -406,8 +431,8 @@ public class Plan_shuihController extends BaseActionSupport {
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
 				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
-				boolean lxresult = shuihServer.insertShuihLx(lx);
 				boolean jhresult = shuihServer.insertShuihJh(jh);
+				boolean lxresult = shuihServer.insertShuihLx(lx);
 				if(lxresult && jhresult){
 					strResult="true";
 				}
@@ -420,6 +445,9 @@ public class Plan_shuihController extends BaseActionSupport {
 		result.put("result", strResult);
 		JsonUtils.write(result, getresponse().getWriter());
 	}
+	/**
+	 * 单次添加水毁路线
+	 */
 	public void insertShuihLx(){
 		try{
 			Map<String, String> result=new HashMap<String, String>();
@@ -455,18 +483,56 @@ public class Plan_shuihController extends BaseActionSupport {
 		List<Plan_lx_shuih> list=shuihServer.shAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
 	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	public void editShZj(){
+		try{
+			String Strresult="false";
+			jh.setPfztz(new Integer(new Integer(jh.getPfztz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+			jh.setJhsybzje(new Integer(new Integer(jh.getJhsybzje()).intValue()+new Integer(zjzj.getBbzje()).intValue()).toString());
+			jh.setJhsydfzcje(new Integer(new Integer(jh.getJhsydfzcje()).intValue()+new Integer(zjzj.getStz()).intValue()).toString());
+			if(shuihServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//set get
 	public int getPage() {
 		return page;
 	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
+	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
-
 	public void setFileuploadFileName(String fileuploadFileName) {
 		this.fileuploadFileName = fileuploadFileName;
 	}
-
 	public File getFileupload() {
 		return fileupload;
 	}

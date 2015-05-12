@@ -53,6 +53,7 @@
 	<action name="deletezdxx" class="zdxxController" method="deletezdxx"/>
 	<action name="exportExcel_zdxx" class="zdxxController" method="exportExcel_zdxx"/>
  	<action name="selectYbbList" class="dbyhController" method="selectYbbList"/>
+ 	<action name="insertYBBData" class="dbyhController" method="insertYBBData"/>
  	<action name="export_ybb" class="dbyhController" method="export_ybb"/>
  	<action name="selectXhbList" class="dbyhController" method="selectXhbList"/>
  	<action name="export_xhb" class="dbyhController" method="export_xhb"/>
@@ -62,5 +63,14 @@
  	<action name="export_pdb" class="dbyhController" method="export_pdb"/>
  	<action name="selectYlbList" class="dbyhController" method="selectYlbList"/>
  	<action name="export_ylb" class="dbyhController" method="export_ylb"/>
+ 	<action name="delete_ybb" class="dbyhController" method="delete_ybb"/>
+ 	<action name="insertXHBData" class="dbyhController" method="insertXHBData"/>
+ 	<action name="delete_xhb" class="dbyhController" method="delete_xhb"/>
+ 	<action name="insertFXBData" class="dbyhController" method="insertFXBData"/>
+ 	<action name="delete_fxb" class="dbyhController" method="delete_fxb"/>
+ 	<action name="insertPDBData" class="dbyhController" method="insertPDBData"/>
+ 	<action name="delete_pdb" class="dbyhController" method="delete_pdb"/>
+ 	<action name="insertYLBData" class="dbyhController" method="insertYLBData"/>
+ 	<action name="delete_ylb" class="dbyhController" method="delete_ylb"/>
  </package>
 </struts>

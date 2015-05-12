@@ -7,7 +7,8 @@ function dingwei(index){
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','红色旅游开工详情','hslyxx.jsp','wqxx',740,450);
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -15,8 +16,8 @@ function closes(str){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',700,430);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
@@ -57,17 +58,28 @@ function xghslyyb(){
 
 function showAll(){
 	var xmnf=$("#ddlYear").val();
-	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
-		gydw1str=$.cookie("unit2");
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
 	}else{
-		gydw1str=gydw1.join(',');
+		gydwstr= gydw.join(',');
 	}
-	var xzqh1=$("#xzqh").combotree("getValues");
-	if(xzqh1.length==0){
-		xzqh11str=$.cookie("dist2");
+var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
 	}else{
-		xzqh11str=gydw1.join(',');
+		xzqhstr= xzqhdm.join(',');
 	}
 	var jgzt='0';
 	var kgzt='';
@@ -97,13 +109,13 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqh11str,
+	    	xzqhdm: xzqhstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	gydwdm:gydw1str,
+	    	gydwdm:gydwstr,
 	    	xmnf:xmnf
 		},
 	    columns:[[

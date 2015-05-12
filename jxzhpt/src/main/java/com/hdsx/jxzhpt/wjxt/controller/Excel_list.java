@@ -1,10 +1,17 @@
 package com.hdsx.jxzhpt.wjxt.controller;
+
+import java.io.Serializable;
+
 /**
  * excel的内容实体，从第一列到第n列的数据分别为v_0到v_n
  * @author qwh
  *
  */
-public class Excel_list {
+public class Excel_list implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5979618537460526286L;
 	private String v_0 ="";
 	private String v_1 ="";
 	private String v_2 ="";

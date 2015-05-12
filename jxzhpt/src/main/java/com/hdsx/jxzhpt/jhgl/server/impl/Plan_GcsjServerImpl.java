@@ -212,12 +212,26 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	}
 
 	@Override
-	public List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx) {
-		return queryList("queryXjls",lx);
+	public List<Plan_lx_gcsj> queryXjls(Plan_lx_gcsj lx) {
+		List<HashMap> queryList = queryList("querySjzh",lx);
+		Map<String, Object> param=new HashMap<String, Object>();
+		param.put("lx", lx);
+		param.put("ls", queryList);
+		return queryList("queryXjls",param);
 	}
 
 	@Override
 	public List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx) {
 		return queryList("sjAutoCompleteLxbm",lx);
+	}
+
+	@Override
+	public List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx) {
+		return queryList("querySjzh",lx);
+	}
+
+	@Override
+	public boolean editZjById(Plan_gcsj jh) {
+		return update("editZjById", jh)>0;
 	}
 }

@@ -21,8 +21,8 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("xzdj","公路等级");
 			var myDate = new Date();
 			var y = myDate.getFullYear();
@@ -38,11 +38,33 @@
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
 			var xmnf=$("#ddlYear1").val();
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw1=$("#gydw").combotree("getValues");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
 			var xzdj=$("#xzdj").combobox("getValue");
 			var lxmc=$("#lxmc").val();
-			var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+			var data="nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/gcybb/getAbgcybb.do",
@@ -56,8 +78,8 @@
 					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].LXBM==' '){
-								tbody.append("<tr><td colspan='2'>"+msg[i].LXMC+"</td><td>"
+							if(msg[i].LXMC==' '){
+								tbody.append("<tr><td colspan='2'>"+msg[i].LXBM+"</td><td>"
 										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
 										+msg[i].JSDJ+"</td><td>"+msg[i].XJGJND+"</td><td>"
 										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
@@ -101,12 +123,37 @@
 	function exportAbgcyb(){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
-		var gydw=$("#gydw").combobox("getValue");
-		var xzqh=$("#xzqh").combobox("getValue");
-		var xzdj=$("#xzdj").val();
+		var xmnf=$("#ddlYear1").val();
+		var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+		var xzdj=$("#xzdj").combobox("getValue");
 		var lxmc=$("#lxmc").val();
-		var data="nf="+nf+"&yf="+yf+"&gydw="+gydw+"&xzqh="+xzqh+"&xzdj="+xzdj+"&lxmc="+lxmc;
-		window.location.href="/jxzhpt/gcybb/exportAbgcyb.do?"+data;
+		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+		
+		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+			window.location.href='/jxzhpt/gcybb/getAbgcybb.do?'+data;
+		 });
 	}	
 	</script>
 	<style type="text/css">
@@ -205,7 +252,7 @@ table tbody tr td {
         						<input id="lxmc" type="text"  style="width: 100px">
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportAbgcyb()" style="vertical-align: -50%;" />
         					</p>         		
         				</div>
         			</fieldset>

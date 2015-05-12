@@ -69,28 +69,38 @@ function xmnf(id){
 }
 $(function(){
 	loadUnit1("gydw",$.cookie("unit"));
-	loadDist1("xzqh",$.cookie("dist2"));
+	loadDist1("xzqh",$.cookie("dist"));
 	loadBmbm2("xmlx","项目类型1");
 	xmnf('year');
+	$("#xmn").text($("#year").combobox("getValue"));
 	startSearch();
 });
 function startSearch(){
-	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
-		if($.cookie("unit2")=='_____36')
-			gydw1str='36';
-		else
-		gydw1str=$.cookie("unit2");
-	}else{
-		gydw1str=gydw1.join("','");
-	}
-	var xzqh1=$("#xzqh").combotree("getValues");
-	if(xzqh1.length==0){
-		xzqh1str=$.cookie("dist2");
-	}else{
-		xzqh1str=xzqh1.join("','");
-	}
-	var data="xmbb.xzqh="+xzqh1str+"&xmbb.gydw="+gydw1str+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue");
+	$("#xmn").text($("#year").combobox("getValue"));
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqh").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var data="xmbb.xzqh="+xzqhstr+"&xmbb.gydw="+gydwstr+"&xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue")+"&flag="+"查询数据";
 	
 	$.ajax({
 		type:'post',
@@ -116,6 +126,38 @@ function startSearch(){
 			$("#table_tbody").html(str);
 		}
 	});
+}
+function exportExcel_xdjh(){
+	$("#xmn").text($("#year").combobox("getValue"));
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var data="xmbb.sbnf="+$("#year").combobox("getValue")+"&xmbb.tiaojian="+$("#xmlx").combobox("getValue")+"&flag="+"导出excel";
+	$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+		window.location.href='/jxzhpt/dbbb/gljsxdList.do?'+data;
+	 });
+	
+	
 }
 </script>
 </head>
@@ -149,7 +191,7 @@ function startSearch(){
 									 <img alt="查询" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'"
                                         onmouseout="this.src='../../../images/Button/Serch01.gif' " onclick="startSearch()" style="border-width:0px;cursor: hand;vertical-align: -50%;" />
 									 <img alt="导出Excel" src="../../../images/Button/dcecl1.gif" onmouseover="this.src='../../../images/Button/dcecl2.gif'"
-                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel_gljsxd()" style="vertical-align: -50%;" />
+                                        onmouseout="this.src='../../../images/Button/dcecl1.gif' " onclick="exportExcel_xdjh()" style="vertical-align: -50%;" />
         					</p>
         					
         				</div>
@@ -165,7 +207,7 @@ function startSearch(){
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
 							<table width="2800px"   class="table_body">
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年公路建设下达计划（国省道改造项目） </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;"><font id="xmn"></font>年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
 										<td rowspan="2">备注</td>

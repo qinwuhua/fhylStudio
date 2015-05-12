@@ -63,8 +63,8 @@
                 </td>
             </tr>
           </table>
-         <table align="center" width="97%" cellpadding="0" cellspacing="0" border="1"  bordercolor="#ffffff" style="margin-top: 10px">
-            <tr>
+         <table width="97%" cellpadding="1" cellspacing="1" border="0"   style="margin-top: 10px;background-color:#404040">  
+            <tr style="text-align: center; color: #0076C8; background-color: #F4FAFF; font-weight: bold;">
 							<td align="center"  colspan="3" style="text-align: right">
                                 管养单位：
                             </td>

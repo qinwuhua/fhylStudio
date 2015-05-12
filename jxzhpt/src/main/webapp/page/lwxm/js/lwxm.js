@@ -188,10 +188,33 @@ function exportModule_sc(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_sc.do?moduleName="+filename+"&tbdw="+tbdw;
 }
 //危桥改造导出excel 
-var cd=$.cookie("unit2").length==2?7:$.cookie("unit2").length;
 function exportExcel_wqgz(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
@@ -205,8 +228,32 @@ function exportExcel_wqgz(){
 }
 //安保工程改造导出excel 
 function exportExcel_abgc(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&sbzt='+$("#sbzt").combobox("getValue")+
@@ -219,8 +266,32 @@ function exportExcel_abgc(){
 }
 //灾害防治改造导出excel 
 function exportExcel_zhfz(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&sbzt='+$("#sbzt").combobox("getValue")+
@@ -233,8 +304,32 @@ function exportExcel_zhfz(){
 }
 //危桥改造审核excel导出
 function exportExcel_wqgz_sh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
@@ -248,8 +343,32 @@ function exportExcel_wqgz_sh(){
 }
 //安保工程审核excel导出
 function exportExcel_abgc_sh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
@@ -262,8 +381,32 @@ function exportExcel_abgc_sh(){
 }
 //灾害防治审核excel导出
 function exportExcel_zhfz_sh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
@@ -276,8 +419,32 @@ function exportExcel_zhfz_sh(){
 }
 //危桥改造审查库管理excel导出
 function exportExcel_wqgz_scgl(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
@@ -293,8 +460,32 @@ function exportExcel_wqgz_scgl(){
 }
 //安保工程审查库管理excel导出
 function exportExcel_abgc_scgl(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&sbzt='+$("#sbzt").combobox("getValue")+
@@ -308,8 +499,32 @@ function exportExcel_abgc_scgl(){
 }
 //灾害防治审查库管理excel导出
 function exportExcel_zhfz_scgl(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&sbzt='+$("#sbzt").combobox("getValue")+
@@ -323,8 +538,32 @@ function exportExcel_zhfz_scgl(){
 }
 //危桥改造审查库管理excel导出
 function exportExcel_wqgz_scsh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&qlmc='+$("#qlmc").val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
@@ -340,8 +579,32 @@ function exportExcel_wqgz_scsh(){
 }
 //安保工程审查库管理excel导出
 function exportExcel_abgc_scsh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+
@@ -355,8 +618,32 @@ function exportExcel_abgc_scsh(){
 }
 //灾害防治审查库管理excel导出
 function exportExcel_zhfz_scsh(){
-	var param='gydw='+$("#gydw").combotree('getValue')+
- 	'&xzqhmc='+$("#xzqhmc").combotree('getValue')+
+	var cd=$.cookie("unit2")=='______36'?7:$.cookie("unit2").length;
+	var gydw=$("#gydw").combotree("getValues");
+		if(gydw.length==0){
+			if($.cookie("unit2")=='_____36')
+				gydwstr=36;
+			else gydwstr= $.cookie("unit2");
+		}else if(gydw.length==1){
+			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+ 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+			gydwstr=gydw[0] ;
+		}else{
+			gydwstr= gydw.join(',');
+		}
+	var xzqhdm=$("#xzqhmc").combotree("getValues");
+		if(xzqhdm.length==0){
+			xzqhstr= $.cookie("dist2");
+			
+		}else if(xzqhdm.length==1){
+			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+ 		xzqhstr=xzqhdm[0] ;
+		}else{
+			xzqhstr= xzqhdm.join(',');
+		}
+	var param='gydw='+gydwstr+
+ 	'&xzqhdm='+xzqhstr+
  	'&lxmc='+$('#lxmc').val()+
  	'&xmnf='+$("#xmnf").combobox("getValue")+
  	'&shzt='+$("#shzt").combobox("getValue")+

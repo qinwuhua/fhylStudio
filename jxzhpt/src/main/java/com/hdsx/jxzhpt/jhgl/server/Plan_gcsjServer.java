@@ -160,11 +160,23 @@ public interface Plan_gcsjServer {
 	 * @param lx
 	 * @return
 	 */
-	List<Plan_gcsj> queryXjls(Plan_lx_gcsj lx);
+	List<Plan_lx_gcsj> queryXjls(Plan_lx_gcsj lx);
 	/**
 	 * 查询GPSROAD表中的路线
 	 * @param lx
 	 * @return
 	 */
 	List<Plan_lx_gcsj> sjAutoCompleteLxbm(Plan_lx_gcsj lx);
+	/**
+	 * 查询升级桩号
+	 * @param lx
+	 * @return
+	 */
+	List<Plan_lx_gcsj> querySjzh(Plan_lx_gcsj lx);
+	/**
+	 * 资金追加处，修改部投资金额和地方自筹金额
+	 * @param jh 计划信息
+	 * @return
+	 */
+	boolean editZjById(Plan_gcsj jh);
 }

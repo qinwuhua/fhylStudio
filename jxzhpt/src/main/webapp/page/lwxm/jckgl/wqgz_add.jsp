@@ -74,7 +74,7 @@ function autoCompleteLXBM(){
   			},
   			gydwbm:function() {
   				var d = $.cookie("unit2");
-  				if(d=='______36') return "";
+  				if(d=='_____36') return "";
   				else return d;
   			},
   			xzqhdm:function() {
@@ -114,7 +114,7 @@ function autoCompleteLXBM(){
 				$("#qlqc").html(item.qlqc);
 				$("#qlkd").html(item.qlkd);
 				$("#dkzdkj").html(item.dkzdkj);
-				$.ajax({
+				 $.ajax({
 					type : 'post',
 					url : '/jxzhpt/xmjck/selJsdj.do',
 					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
@@ -122,7 +122,7 @@ function autoCompleteLXBM(){
 					success : function(msg) {
 					$("#jsdj").html(msg.jsdj);
 					}
-				});
+				}); 
 				$("#pddj").html(item.pddj);
 				$("#xjgjnd").html(item.xjgjnd);
 				$("#akjfl").html(item.akjfl);
@@ -151,6 +151,7 @@ function saveWqgz(){
 			if(Boolean(msg)){
 				parent.jckglWqgz();
 				alert("保存成功！");
+				parent.jckglWqgz();
 				parent.$('#jck_add').window('destroy');
 			}else{
 				alert('保存失败！');

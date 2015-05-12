@@ -67,7 +67,7 @@ var bzls;
 				$("#tzgs").focus();
 				return false;
 			}
-			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val();
+			var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#scqdzh").val()+"&zdzh="+$("#sczdzh").val()+"&scxmnf="+$("#scxmnf").combobox("getValue");
 			$.ajax({
 				type:'post',
 				url:'/jxzhpt/xmsck/onceSckAbgc.do',
@@ -104,7 +104,7 @@ var bzls;
 	  			},
 	  			gydwbm:function() {
 	  				var d = $.cookie("unit2");
-	  				if(d=='______36') return "";
+	  				if(d=='_____36') return "";
 	  				else return d;
 	  			},
 	  			xzqhdm:function() {

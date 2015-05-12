@@ -69,7 +69,7 @@
 							}else{
 								bz="国省";
 							}
-							 $.ajax({
+							$.ajax({
 								type:'post',
 								url:'../../../jhgl/lwBzbz.do',
 								data:"bzbz.xmlx="+"安保"+"&bzbz.lx="+bz,
@@ -98,8 +98,8 @@
 							//审查
 							$('#scqdzh').val(sck.scqdzh);
 							$('#sczdzh').val(sck.sczdzh);
-							$('#sczlc').val(sck.sczdzh);
-							$('#scyhlc').val(sck.sczdzh);
+							$('#sczlc').val(sck.sczlc);
+							$('#scyhlc').val(sck.scyhlc);
 							$('#fapgdw').val(sck.fapgdw);
 							$('#fascdw').val(sck.fascdw);
 							$('#faspsj').datebox('setValue',sck.faspsj);

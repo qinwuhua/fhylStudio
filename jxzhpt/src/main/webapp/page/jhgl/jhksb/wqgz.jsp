@@ -28,14 +28,14 @@
 			xian=false;
 		}
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0};
-			var lx={gydw:null,gydwbm:null,gydwbm:filterGydwdm($.cookie("unit"))};
+			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
@@ -52,17 +52,11 @@
 			wqxm_sb(jh,lx);
 		});
 		function searchWqgz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:1};
+			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			if(!xian){
 				jh.jh_sbthcd=2;
 			}
-			var lx={gydw:$('#gydw').combobox('getText'),gydwdm:$('#gydw').combobox('getValue'),
-				gydwbm:$('#gydw').combobox('getValue'),
-				xzqhmc:$('#xzqh').combobox('getText'),xzqhdm:$('#xzqh').combobox('getValue'),
-				lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null
-			};
-			lx.gydwbm = filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -109,7 +103,7 @@
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
 			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.sbnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,
-						'lx.gydwbm':filterGydwdm($.cookie("unit"))};
+						'lx.gydwbm':$.cookie("unit")};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;
 				}
@@ -219,6 +213,11 @@
 								</select>
         					</p>
 							<p style="margin:8px 0px 8px 20px;">
+								<span>是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="无" selected="selected">否</option>
+									<option value="是">是</option>
+								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
         						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

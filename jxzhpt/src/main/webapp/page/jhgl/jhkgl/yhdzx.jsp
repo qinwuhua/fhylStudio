@@ -23,20 +23,20 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
-			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
 			sbnf('sbnf');
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumYhdzx(jh,lx);
 			yhdzxxm(jh,lx);
 		});
 		function searchYhdzx(){
 			var jh={sbzt:null,spzt:null,jh_sbthcd:null};
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}
@@ -79,18 +79,18 @@
 			yhdzxxm(jh,lx);
 		}
 		$(window).resize(function () { 
-			$('#grid').datagrid('resize'); 
+			$('#grid').datagrid('resize');
 		});
 		function exportExcel_yhdzx(){
 			var gydw=filterGydwdm($("#gydw").combo("getValue"));
 			if(gydw==null){
 				gydw="";
 			}
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+gydw;
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+$.cookie("unit2");
 			window.location.href="/jxzhpt/jhgl/exportExcel_yhdzx.do?"+param;
 		}
-		function addLmsj(){
-			parent.YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,500);
+		function addYhdzx(){
+			YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,500);
 		}
 	</script>
 </head>
@@ -145,7 +145,7 @@
         					<p style="margin-left:12px;margin-bottom: 5px;">
         						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 								<img alt="导出模版" onclick="exportYh('Plan_Yhdzx')" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" />
-								<img onclick="addLmsj()" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src="" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="addYhdzx()" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src="" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img alt="导入" onclick="importData_jh('yhdzx_jh')" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
 				                <img alt="删除"  onclick="dropYhdzxs()" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
 				                <img onclick="exportExcel_yhdzx()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

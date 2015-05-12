@@ -1,5 +1,27 @@
 var obj=new Object();
 var obj1=new Object();
+function sfqxkg(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var sfqxkg='是';
+	if(data1.sfqxkg=='是')
+		sfqxkg='否';
+	if(data1.sfqxkg=='否')
+		sfqxkg='是';
+	var data="flag="+"hsly"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.id;
+	$.ajax({
+		type:'post',
+		url:'../../../../gcgl/updataSFQX.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				$("#datagrid").datagrid('reload');
+			}else{
+				alert('失败！');
+			}
+		}
+	});	
+}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationXm(data.lxbm,"");
@@ -7,7 +29,8 @@ function dingwei(index){
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','红色旅游开工详情','hslyxx.jsp','wqxx',740,450);
+	YMLib.Var.jhbm=data.id;
+	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
 	//window.open("hslyxx.jsp");
 }
 function closes(str){
@@ -47,8 +70,8 @@ function AddInfo(){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',710,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','红色旅游月报详情','hslyybxx.jsp','wqxx',710,430);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
@@ -240,17 +263,28 @@ function tjwqgzwwg(){
 
 
 function showAll(){
-	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
-		gydw1str=$.cookie("unit2");
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
 	}else{
-		gydw1str=gydw1.join(',');
+		gydwstr= gydw.join(',');
 	}
-	var xzqh1=$("#xzqh").combotree("getValues");
-	if(xzqh1.length==0){
-		xzqh11str=$.cookie("dist2");
+var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
 	}else{
-		xzqh11str=gydw1.join(',');
+		xzqhstr= xzqhdm.join(',');
 	}
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
@@ -281,13 +315,13 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	xzqhdm: xzqh11str,
+	    	xzqhdm: xzqhstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	gydwdm:gydw1str,
+	    	gydwdm:gydwstr,
 	    	xmnf:xmnf
 		},
 	    columns:[[
@@ -298,7 +332,7 @@ function showAll(){
   	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'未完工   ';
 	        }},
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="#" onclick="Showyx()">否</a>    ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.sfqxkg+'</a>    ';
 	        }},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 	        {field:'jhnf',title:'计划年份',width:120,align:'center'},

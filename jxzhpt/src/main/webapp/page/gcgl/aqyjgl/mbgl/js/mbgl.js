@@ -4,7 +4,7 @@ function mbgltj(){
 		title : '模板管理添加',
 		page : 'upload.jsp?url='+"/jxzhpt/gcgl/uploadMbglFile.do"+'&flag='+'aqyjgl%2fmbgl%2fmbgl',
 		width : 570,
-		height : 390,
+		height : 440,
 		top : 0,
 		rang : true,
 		resize : false,

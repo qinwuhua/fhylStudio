@@ -24,27 +24,21 @@
 	
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			gydwComboxTree("add_gydwxx");
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			loadBmbm2('add_yjsdjxx','技术等级');
-			loadDist("xzqh",$.cookie("dist"));
-			xzqhComboxTree("add_xzqh");
 			tsdq('tsdq');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:null,spzt:null};
-			var lx={gydw:null,gydwdm:filterGydwdm($.cookie("unit")),lxmc:null,xzqhmc:null,yjsdj:null,lxbm:null};
+			var jh={sbnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumGcgj(jh,lx);
 			gclmgjxm(jh,lx);
 		});
 		function searchGcgj(){
-			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
-			//管养单位编码
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			//行政区划代码
-			lx.xzqhdm = filterXzqhdm(lx.xzqhdm);
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
 			if($("#sbnf").combo("getValue")!=""){
 				jh.sbnf=$("#sbnf").combo("getValue");
 			}
@@ -117,7 +111,7 @@
 			});
 		}
 		function addLmsj(){
-			parent.YMLib.UI.createWindow('add_lmgj','添加路面改建',"/jxzhpt/page/jhgl/add/lmgjAdd.jsp",'addlmgj',980,500);
+			YMLib.UI.createWindow('add_lmgj','添加路面改建',"/jxzhpt/page/jhgl/add/lmgjAdd.jsp",'addlmgj',980,500);
 		}
 	</script>
 </head>
@@ -153,20 +147,15 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
+								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;">
-								</select>
+								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="gldj" id="gldj" class="easyui-combobox" style="width:104px;">
+								<select name="gldj" id="gldj" class="easyui-combobox" style="width:104px;"></select>
+								<span>&nbsp;是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="否" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
@@ -199,7 +188,7 @@
             	</td>
         	</tr>
 		</table>
-	<div id="add_lx" class="easyui-dialog" title="添加路线" style="width:800px;height:300px;"
+	<!-- <div id="add_lx" class="easyui-dialog" title="添加路线" style="width:800px;height:300px;"
 		data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
        		<tr style="height: 25px;">
@@ -296,7 +285,7 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div> -->
 	<!-- <div id="gclmgj_xx" style="text-align: left;font-size: 12px;width:80%;"></div> -->
 </body>
 </html>

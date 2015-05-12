@@ -23,6 +23,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -51,6 +52,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_lx_gcgj lx;
 	private String gydwdm;
 	private String tbbmbm2;
+	private Plan_zjzj zjzj;
 	private String xmlx;
 	private String fileuploadFileName;
 	private File fileupload;
@@ -110,7 +112,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 上传文件到数据库
+	 */
 	public void uploadGkbg(){
 		try {
 			HttpServletResponse response = ServletActionContext.getResponse();
@@ -144,9 +148,13 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 查询总计信息
+	 */
 	public void querySumGcgj(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(gcgjServer.querySumGcgj(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -160,6 +168,8 @@ public class Plan_gcgjController extends BaseActionSupport{
 	 */
 	public void queryGcgjList(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
 			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
@@ -183,7 +193,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 此方法弃用
+	 */
 	public void queryGcgjNfs(){
 		try {
 			List<TreeNode> queryGcgjNfs = gcgjServer.queryGcgjNfs();
@@ -195,7 +207,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 根据ID删除计划
+	 */
 	public void dropGcgjById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -208,7 +222,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改计划ID
+	 */
 	public void editGcgjById(){
 		try {
 			JsonUtils.write(gcgjServer.editGcgjById(jh), getresponse().getWriter());
@@ -218,7 +234,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 添加计划验证
+	 */
 	public void verifyLx(){
 		Map<String, Object> result=new HashMap<String, Object>();
 		boolean boolResult=false;
@@ -251,19 +269,23 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 修改状态
+	 */
 	public void editGcgjStatus(){
 		try {
-				Map<String, String> result=new HashMap<String, String>();
-				result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
-				JsonUtils.write(result, getresponse().getWriter());
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(gcgjServer.editGcgjStatus(jh)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导入计划
+	 */
 	public void importGcgj_jh(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		System.out.println("文件类型："+fileType);
@@ -294,9 +316,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 				map.put("gydwdm", getGydwdm());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("16", map.get("16").toString().substring(0, map.get("16").toString().indexOf(".")));
@@ -333,30 +355,30 @@ public class Plan_gcgjController extends BaseActionSupport{
 						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						gcgj.setTsdqbm(gcgjServer.queryTsdqByXzqh(gcgj.getXzqhdm()));
-						//设置非路网项目的查询条件
-						Plan_flwbzbz flw=new Plan_flwbzbz();
-						flw.setXmlx("工程改造路面改建");//建设项目类型
-						flw.setGldj(gcgj.getLxbm().substring(0, 1));//公路等级
-						flw.setJsdj(gcgj.getYjsdj());//技术等级
-						flw.setTsdq(gcgj.getTsdqbm());
-						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
-						Integer bzzj=null;
-						if(flwResult==null && defaultFlwje==null){
-							flw.setXmlx(null);
-							flw.setGldj(null);
-							flw.setJsdj(null);
-							flw.setTsdq(null);
-							flwResult=gcgjServer.queryBzzj(flw);
-						}
-						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
-						//验证金额
-						Double yhlc=new Double(map.get("11").toString());
-						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("34").toString());
-						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
-						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>"+gcgj.getLxbm()+"批复总投资不在计算结果的范围内<br/>";
-						}
+						//设置非路网项目的查询条件，注释，因为没有统一标准
+//						Plan_flwbzbz flw=new Plan_flwbzbz();
+//						flw.setXmlx("工程改造路面改建");//建设项目类型
+//						flw.setGldj(gcgj.getLxbm().substring(0, 1));//公路等级
+//						flw.setJsdj(gcgj.getYjsdj());//技术等级
+//						flw.setTsdq(gcgj.getTsdqbm());
+//						Plan_flwbzbz flwResult=gcgjServer.queryBzzj(flw);
+//						Integer bzzj=null;
+//						if(flwResult==null && defaultFlwje==null){
+//							flw.setXmlx(null);
+//							flw.setGldj(null);
+//							flw.setJsdj(null);
+//							flw.setTsdq(null);
+//							flwResult=gcgjServer.queryBzzj(flw);
+//						}
+//						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+//						//验证金额
+//						Double yhlc=new Double(map.get("11").toString());
+//						double je=new Double(Math.rint(yhlc.doubleValue()*bzzj.intValue())).doubleValue();
+//						Integer pfztz=new Integer(map.get("34").toString());
+//						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+//						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+//							strVerify+="<br/>"+gcgj.getLxbm()+"批复总投资不在计算结果的范围内<br/>";
+//						}
 					}
 				}else{
 					strVerify+="路线【"+map.get("4").toString()+"】【"+map.get("8").toString()+"-"+map.get("9").toString()+"】已经存在计划！";
@@ -380,7 +402,9 @@ public class Plan_gcgjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 导出资金下达Excel
+	 */
 	public void exportGcgjZjxdExcel(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[10];
@@ -434,47 +458,92 @@ public class Plan_gcgjController extends BaseActionSupport{
 		ExcelEntity excel=new ExcelEntity("工程改造路面改建",title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, "工程改造路面改建-资金下达", getresponse());
 	}
-	
-	public void insertGcgj(){
-		try{
-			Map<String, String> result=new HashMap<String, String>();
-			UUID id=UUID.randomUUID();
-			lx.setJhid(id.toString());
-			jh.setId(id.toString());
-			Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
-			gcgj.setXzqhdm(lx.getXzqhdm());
-			gcgj.setLxbm(lx.getLxbm());//路线编码
-			gcgj.setQdzh(lx.getQdzh());//起点桩号
-			gcgj.setZdzh(lx.getZdzh());//止点桩号
-			gcgj.setQzlc(lx.getQzlc());//隐患里程
-			gcgj.setGydwdm(lx.getGydwdm());//管养单位代码
-			gcgj.setYjsdj(lx.getYjsdj());
-			gcgj.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
-			String strResult="false";
-			if(gcgjServer.queryJhExist(gcgj)==0){
-				Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
-				if(queryGPSBylxbm!=null){
-					jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
-					boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
-					boolean jhresult=gcgjServer.insertGcgjJh(jh);
-					if(lxresult && jhresult){
-						strResult="true";
-					}
-				}else{
-					strResult="none";
+	/**
+	 * 单次添加计划
+	 * @throws Exception 
+	 */
+	public void insertGcgj() throws Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		UUID id=UUID.randomUUID();
+		lx.setJhid(id.toString());
+		jh.setId(id.toString());
+		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
+			jh.setJh_sbthcd("0");
+		}
+		Plan_lx_gcgj gcgj=new Plan_lx_gcgj();
+		gcgj.setXzqhdm(lx.getXzqhdm());
+		gcgj.setLxbm(lx.getLxbm());//路线编码
+		gcgj.setQdzh(lx.getQdzh());//起点桩号
+		gcgj.setZdzh(lx.getZdzh());//止点桩号
+		gcgj.setQzlc(lx.getQzlc());//隐患里程
+		gcgj.setGydwdm(lx.getGydwdm());//管养单位代码
+		gcgj.setYjsdj(lx.getYjsdj());
+		gcgj.setJhid(jh.getSbnf());//此处的Jhid存储的是 “上报年份”
+		gcgj.setYlmlx(lx.getYlmlx());//
+		String strResult="false";
+		if(gcgjServer.queryJhExist(gcgj)==0){
+			Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
+			if(queryGPSBylxbm!=null){
+				jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
+				boolean jhresult=gcgjServer.insertGcgjJh(jh);
+				boolean lxresult = gcgjServer.insertPlan_lx_Gcgj(lx);
+				if(lxresult && jhresult){
+					strResult="true";
 				}
 			}else{
-				strResult="have";
+				strResult="none";
 			}
-			result.put("result", strResult);
-			JsonUtils.write(result, getresponse().getWriter());
-		}catch(Exception e){
-			e.printStackTrace();
+		}else{
+			strResult="have";
 		}
+		result.put("result", strResult);
+		JsonUtils.write(result, getresponse().getWriter());
 	}
+	/**
+	 * 单次添加计划时的编码提示
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void gjAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_gcgj> list=gcgjServer.gjAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	/**
+	 * 管养单位或行政区划代码处理
+	 * @param bh
+	 * @param name
+	 * @return
+	 */
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	public void editGjZj() throws Exception {
+		try{
+			String Strresult="false";
+			jh.setPfztz(new Integer(new Integer(jh.getPfztz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+			jh.setJhsybzje(new Integer(new Integer(jh.getJhsybzje()).intValue()+new Integer(zjzj.getBbzje()).intValue()).toString());
+			jh.setJhsydfzcje(new Integer(new Integer(jh.getJhsydfzcje()).intValue()-new Integer(zjzj.getStz()).intValue()).toString());
+			if(gcgjServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+				Strresult="true";
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", Strresult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	//get set
 	public int getPage() {
@@ -563,5 +632,11 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	public void setXmlx(String xmlx) {
 		this.xmlx = xmlx;
+	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

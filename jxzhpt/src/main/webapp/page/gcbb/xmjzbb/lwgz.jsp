@@ -23,8 +23,8 @@
 		$(function(){
 			setjhxdnf();
 			settsdq();
-			loadUnit("gydw",$.cookie("unit"));
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			showAll();
 		});
 		function setjhxdnf(){
@@ -44,15 +44,36 @@
 			})
 		}
 		function showAll(){
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			$.ajax({
 				url:"/jxzhpt/xmjzbb/getLwbb.do",
@@ -66,7 +87,7 @@
 						for ( var i = 0; i < msg.length; i++) {
 							if(msg[i].HB=='是'){
 								tbody.append("<tr><td >"+msg[i].XH+"</td><td colspan='3'>"
-										+msg[i].TSDQ+"</td><td>"
+										+msg[i].XZQHMC+"</td><td>"
 										+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 										+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 										+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
@@ -78,13 +99,13 @@
 										+msg[i].XGCSYJ+"</td><td>"+msg[i].CSCYJ+"</td></tr>"
 										);
 							}else{
-									tbody.append("<tr><td >"+msg[i].XH+"</td><td>"+msg[i].SZDS+"</td><td>"
+									tbody.append("<tr><td >"+msg[i].XH+"</td><td>"+msg[i].XZQHMC+"</td><td>"
 											+msg[i].TSDQ+"</td><td>"+msg[i].XMMC+"</td><td>"
 											+msg[i].JSXZ+"</td><td>"+msg[i].QDZH+"</td><td>"
 											+msg[i].ZDZH+"</td><td>"+msg[i].YHLC+"</td><td>"
 											+msg[i].XDNF+"</td><td>"+msg[i].XDZJ+"</td><td>"
 											+msg[i].GYS+"</td><td>"+msg[i].BFZJ+"</td><td>"
-											+msg[i].WBFZJ+"</td><td>"+msg[i].JSXZ+"</td><td>"
+											+msg[i].WBFZJ+"</td><td>"+msg[i].JSZT+"</td><td>"
 											+msg[i].WGLC+"</td><td>"+msg[i].KGRQ+"</td><td>"
 											+msg[i].WGRQ+"</td><td>"+msg[i].YJRQ+"</td><td>"
 											+msg[i].QKSM+"</td><td>"+msg[i].JHXDWH+"</td><td>"
@@ -97,16 +118,39 @@
 			});
 		}
 		function exportLw(){
-			var gydw=$("#gydw").combobox("getValue");
-			var xzqh=$("#xzqh").combobox("getValue");
+			var gydw=$("#gydw").combotree("getValues");
+			if(gydw.length==0){
+				if($.cookie("unit2")=='_____36')
+					gydwstr=36;
+				else gydwstr= $.cookie("unit2");
+			}else if(gydw.length==1){
+				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+				gydwstr=gydw[0] ;
+			}else{
+				gydwstr= gydw.join(',');
+			}
+		var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+	 		xzqhstr=xzqhdm[0] ;
+			}else{
+				xzqhstr= xzqhdm.join(',');
+			}
 			var jhxdnf=$("#jhxdnf").combotree("getValues");
 			var tsdq=$("#tsdq").combotree("getText");
 			var jszt=$("#jszt").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var xmmc=$("#xmmc").val();
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydw+"&xmbb.xzqh="+xzqh+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
-			window.location.href="/jxzhpt/xmjzbb/exportLw.do?"+data;
+			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.xmmc="+xmmc+"&xmbb.tsdq="+tsdq;
+			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
+				window.location.href='/jxzhpt/xmjzbb/getLwbb.do?'+data;
+			 });
 		}
 	</script>
 	<style type="text/css">
@@ -185,7 +229,7 @@ table tbody tr td {
         						<option>竣工</option>
         						</select> 						
         						<span>累计拨付资金：</span>
-        						<select id="ljbf" style="width:132px;">
+        						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
         							<option value="=0">零</option>
         							<option value="!=0">非零</option>

@@ -38,19 +38,7 @@
             font-size: 9pt;
             color: #000000;
         }
-        .tableLb
-        {
-            border-collapse: collapse;
-        }
-        .tableLb td
-        {
-            border: 1px solid #B9D8F3;
-            text-align: center;
-        }
-        .depTable td
-        {
-            border: 0px;
-        }
+
     </style>
     <script type="text/javascript">
     $(function(){
@@ -82,6 +70,22 @@
     	if(!confirm("您确认保存该信息吗？")){
     		return;
     	}
+    	var sbrq=$("#sbrq").datebox('getValue');
+    	var date = new Date();
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		var d = date.getDate();
+		if(m<=9){
+			m='0'+m;
+		}
+		if(d<=9){
+			d='0'+d;
+		}
+		var sbrq1=y+"-"+m+"-"+d;
+		if(sbrq1<sbrq){
+			alert("上报日期不能大于系统日期");
+			return;
+		}
     	 $.ajax({
     			type:"post",
     			url:"/jxzhpt/wjxt/updatezhqk.do",
@@ -127,9 +131,8 @@
                 </td>
             </tr>
         </table>
-        <table width="97%" cellpadding="0" cellspacing="0" border="1" bordercolor="#ffffff" style="margin-top: 10px">
-            
-            <tr>
+         <table width="97%" cellpadding="1" cellspacing="1" border="0"   style="margin-top: 10px;background-color:#404040">  
+            <tr style="text-align: center; color: #0076C8; background-color: #F4FAFF; font-weight: bold;">
 							<td colspan="3" style="text-align: right">
                                 管养单位：
                             </td>

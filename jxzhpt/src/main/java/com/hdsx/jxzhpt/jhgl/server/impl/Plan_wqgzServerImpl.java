@@ -241,4 +241,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	public List<Plan_wqgz> queryWqLs(Jckwqgz lx) {
 		return queryList("queryWqLs",lx);
 	}
+
+	@Override
+	public boolean editZjById(Plan_wqgz jh) {
+		return update("editZjById", jh)>0;
+	}
 }

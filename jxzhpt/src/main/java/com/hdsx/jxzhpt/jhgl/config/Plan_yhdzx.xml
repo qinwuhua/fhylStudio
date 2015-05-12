@@ -90,10 +90,10 @@
 	 				and jh.jgzt=#{jh.jgzt}
 	 			</if>
 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-					and lx.gydwdm like #{lx.gydwdm}
+					and ${lx.gydwdm}
 				</if>
 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-					and lx.xzqhdm like #{lx.xzqhdm}
+					and ${lx.xzqhdm}
 				</if>
 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -107,7 +107,7 @@
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
-	       		order by jh.jh_sbthcd,jh.sbnf) t)
+	       		order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd)
 		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryYhdzxList2" parameterType="java.util.Map" resultMap="yhdzx_jh">
@@ -137,10 +137,10 @@
 	 				and jh.jgzt=#{jh.jgzt}
 	 			</if>
 				<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-					and lx.gydwdm like #{lx.gydwdm}
+					and ${lx.gydwdm}
 				</if>
 				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-					and lx.xzqhdm like #{lx.xzqhdm}
+					and ${lx.xzqhdm}
 				</if>
 				<if test="lx.lxmc!=null and lx.lxmc!=''">
 					and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -154,7 +154,7 @@
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
-	       		order by jh.jh_sbthcd,jh.sbnf) t)
+	       		order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd)
 	</select>
 	<select id="queryYhdzxCount" parameterType="java.util.Map" resultType="int">
 		select count(*) from plan_yhdzx jh left join plan_lx_yhdzx lx 
@@ -181,10 +181,10 @@
 	 			and jh.jgzt=#{jh.jgzt}
 	 		</if>
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
+				and ${lx.gydwdm}
 			</if>
 			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-				and lx.xzqhdm like #{lx.xzqhdm}
+				and ${lx.xzqhdm}
 			</if>
 			<if test="lx.lxmc!=null and lx.lxmc!=''">
 				and lx.lxmc like '%'||#{lx.lxmc}||'%'
@@ -209,15 +209,33 @@
 		where lx.lxid=#{lx.lxid}
 	</update>
 	<update id="editYhdzxById" parameterType="java.util.Map">
-		update plan_yhdzx jh set jh.sbnf=#{jh.sbnf},jh.jhkgsj=#{jh.jhkgsj},jh.jhwgsj=#{jh.jhwgsj},
-		jh.classify=#{jh.classify},jh.aadt=#{jh.aadt},jh.pqi=#{jh.pqi},jh.dianceng=#{jh.dianceng},jh.jiceng=#{jh.jiceng},
-		jh.surface=#{jh.surface},jh.reportingfee=#{jh.reportingfee},jh.mark=#{jh.mark},
-		jh.plandownnumber=#{jh.plandownnumber},jh.xdsj=#{jh.xdsj},
-		jh.constructnumber=#{jh.constructnumber},jh.replynumber=#{jh.replynumber},
-		jh.devisenumbder=#{jh.devisenumbder},jh.description=#{jh.description},
-		jh.xchsqk=#{jh.xchsqk},jh.remarks=#{jh.remarks},jh.qtbz=#{jh.qtbz} ,
-		jh.fee=#{jh.fee},jh.newfee=#{jh.newfee},jh.totalplacefund=#{jh.totalplacefund},
-		jh.totalsubsidyfund=#{jh.totalsubsidyfund},jh.totalinvest=#{jh.totalinvest}<!--
+		update plan_yhdzx jh set jh.sbnf=#{jh.sbnf}
+		<if test="jh.jhkgsj!=null and jh.jhkgsj!=''">,jh.jhkgsj=#{jh.jhkgsj}</if>
+		<if test="jh.jhwgsj!=null and jh.jhwgsj!=''">,jh.jhwgsj=#{jh.jhwgsj}</if>
+		<if test="jh.xdsj!=null and jh.xdsj!=''">,jh.xdsj=#{jh.xdsj}</if>
+		<if test="jh.xmmc!=null">,jh.xmmc=#{jh.xmmc}</if>
+		<if test="jh.classify!=null">,jh.classify=#{jh.classify}</if>
+		<if test="jh.aadt!=null">,jh.aadt=#{jh.aadt}</if>
+		<if test="jh.pqi!=null">,jh.pqi=#{jh.pqi}</if>
+		<if test="jh.dianceng!=null">,jh.dianceng=#{jh.dianceng}</if>
+		<if test="jh.jiceng!=null">,jh.jiceng=#{jh.jiceng}</if>
+		<if test="jh.surface!=null">,jh.surface=#{jh.surface}</if>
+		<if test="jh.reportingfee!=null">,jh.reportingfee=#{jh.reportingfee}</if>
+		<if test="jh.mark!=null">,jh.mark=#{jh.mark}</if>
+		<if test="jh.plandownnumber!=null">,jh.plandownnumber=#{jh.plandownnumber}</if>
+		<if test="jh.constructnumber!=null">,jh.constructnumber=#{jh.constructnumber}</if>
+		<if test="jh.replynumber!=null">,jh.replynumber=#{jh.replynumber}</if>
+		<if test="jh.devisenumbder!=null">,jh.devisenumbder=#{jh.devisenumbder}</if>
+		<if test="jh.description!=null">,jh.description=#{jh.description}</if>
+		<if test="jh.xchsqk!=null">,jh.xchsqk=#{jh.xchsqk}</if>
+		<if test="jh.remarks!=null">,jh.remarks=#{jh.remarks}</if>
+		<if test="jh.qtbz!=null">,jh.qtbz=#{jh.qtbz}</if>
+		<if test="jh.fee!=null">,jh.fee=#{jh.fee}</if>
+		<if test="jh.newfee!=null">,jh.newfee=#{jh.newfee}</if>
+		<if test="jh.totalplacefund!=null">,jh.totalplacefund=#{jh.totalplacefund}</if>
+		<if test="jh.totalsubsidyfund!=null">,jh.totalsubsidyfund=#{jh.totalsubsidyfund}</if>
+		<if test="jh.totalinvest!=null">,jh.totalinvest=#{jh.totalinvest}</if>
+		<!--
 		jh.accumulativesubsidyfund=#{jh.accumulativesubsidyfund},
 		jh.nowyearsubsidyfund=#{jh.nowyearsubsidyfund},
 		 -->
@@ -253,12 +271,12 @@
 	    	id,xmmc,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
 	    	jiceng,surface,reportingfee,totalinvest,
 	    	mark,constructnumber,replynumber,devisenumbder,
-	    	plandownnumber,remarks,qtbz,tbbm,tbsj,sjlmlx <!-- -->)
+	    	plandownnumber,remarks,qtbz,tbbm,tbsj,sjlmlx,jh_sbthcd<!-- -->)
 		values (
 			#{jhid},#{14},#{15},#{16},to_date(#{17},'yyyy-mm-dd'),to_date(#{18},'yyyy-mm-dd'),to_date(#{19},'yyyy-mm-dd'),#{21},
 			#{22},#{23},#{24},#{25},
 			#{26},#{27},#{28},#{29},
-			#{30},#{31},#{32},#{tbbm},#{tbsj},#{13} <!-- -->)
+			#{30},#{31},#{32},#{tbbm},#{tbsj},#{13},#{jh_sbthcd}<!-- -->)
 	</insert>
 	<select id="querySumYhdzx" resultMap="yhdzx_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(qzlc) as qzlc,sum(hdlc) as hdlc,
@@ -268,7 +286,10 @@
 			from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id) 
 			where 1=1
 			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
+				and ${lx.gydwdm}
+			</if>
+			<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+				and ${lx.xzqhdm}
 			</if>
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -360,23 +381,66 @@
 		insert into plan_lx_yhdzx (lxid,jhid,gydwmc,gydwdm,xzqhdm,xzqhmc,
 			lxmc,lxbm,qdzh,zdzh,qzlc,hdlc,
 			yjsdj,ylmkd,ylmhd,ylmlx,DZXKD,
-			tbbm,tbbmdm,tbsj <!-- -->) 
+			tbbm,tbbmdm,tbsj,lmjg,aym,asl,glf <!-- -->) 
 		values (sys_guid(),#{jhid},#{gydwmc},#{gydwdm},#{xzqhdm},#{xzqhmc},
 			#{lxmc},#{lxbm},#{qdzh},#{zdzh},#{qzlc},#{hdlc},
 			#{yjsdj},#{ylmkd},#{ylmhd},#{ylmlx},#{dzxkd} ,
-			(select name from XTGL_DEPARTMENT t where t.id = #{tbbmdm}),#{tbbmdm},#{tbsj}<!-- -->)
+			(select name from XTGL_DEPARTMENT t where t.id = #{tbbmdm}),#{tbbmdm},
+			#{tbsj},#{lmjg},#{aym},#{asl},#{glf}<!-- -->)
 	</insert>
 	<insert id="insertYhdzxJh" parameterType="plan_yhdzx">
 		insert into plan_yhdzx (
-	    	id,sbnf,classify,jhkgsj,jhwgsj,xdsj,dianceng,
-	    	jiceng,surface,reportingfee,totalinvest,
-	    	mark,constructnumber,replynumber,devisenumbder,
-	    	plandownnumber,remarks,qtbz,tbbm,tbsj <!-- -->)
+	    	id
+	    	<if test="sbnf!=null">,sbnf</if>
+	    	<if test="classify!=null">,classify</if>
+	    	<if test="jhkgsj!=null">,jhkgsj</if>
+	    	<if test="jhwgsj!=null">,jhwgsj</if>
+	    	<if test="xdsj!=null">,xdsj</if>
+	    	<if test="dianceng!=null">,dianceng</if>
+	    	<if test="jiceng!=null">,jiceng</if>
+	    	<if test="surface!=null">,surface</if>
+	    	<if test="reportingfee!=null">,reportingfee</if>
+	    	<if test="totalinvest!=null">,totalinvest</if>
+	    	<if test="constructnumber!=null">,constructnumber</if>
+	    	<if test="replynumber!=null">,replynumber</if>
+	    	<if test="devisenumbder!=null">,devisenumbder</if>
+	    	<if test="mark!=null">,mark</if>
+	    	<if test="plandownnumber!=null">,plandownnumber</if>
+	    	<if test="remarks!=null">,remarks</if>
+	    	<if test="qtbz!=null">,qtbz</if>
+	    	<if test="tbbm!=null">,tbbm</if>
+	    	<if test="tbsj!=null">,tbsj</if>
+	    	<if test="xmmc!=null">,xmmc</if>
+	    	<if test="pqi!=null">,pqi</if>
+	    	<if test="jh_sbthcd!=null">,jh_sbthcd</if>
+	    	<if test="totalplacefund!=null">,totalplacefund</if>
+	    	<if test="totalsubsidyfund!=null">,totalsubsidyfund</if>)
 		values (
-			#{id},#{sbnf},#{classify},#{jhkgsj},#{jhwgsj},#{xdsj},#{dianceng},
-			#{jiceng},#{surface},#{reportingfee},#{totalinvest},
-			#{mark},#{constructnumber},#{replynumber},#{devisenumbder},
-			#{plandownnumber},#{remarks},#{qtbz},(select name from XTGL_DEPARTMENT t where t.id = #{tbbm}),to_date(#{tbsj},'yyyy-mm-dd')  <!---->)
+			#{id}
+			<if test="sbnf!=null">,#{sbnf}</if>
+	    	<if test="classify!=null">,#{classify}</if>
+	    	<if test="jhkgsj!=null">,#{jhkgsj}</if>
+	    	<if test="jhwgsj!=null">,#{jhwgsj}</if>
+	    	<if test="xdsj!=null">,#{xdsj}</if>
+	    	<if test="dianceng!=null">,#{dianceng}</if>
+	    	<if test="jiceng!=null">,#{jiceng}</if>
+	    	<if test="surface!=null">,#{surface}</if>
+	    	<if test="reportingfee!=null">,#{reportingfee}</if>
+	    	<if test="totalinvest!=null">,#{totalinvest}</if>
+	    	<if test="constructnumber!=null">,#{constructnumber}</if>
+	    	<if test="replynumber!=null">,#{replynumber}</if>
+	    	<if test="devisenumbder!=null">,#{devisenumbder}</if>
+	    	<if test="mark!=null">,#{mark}</if>
+	    	<if test="plandownnumber!=null">,#{plandownnumber}</if>
+	    	<if test="remarks!=null">,#{remarks}</if>
+	    	<if test="qtbz!=null">,#{qtbz}</if>
+	    	<if test="tbbm!=null">,(select name from XTGL_DEPARTMENT t where t.id = #{tbbm})</if>
+	    	<if test="tbsj!=null">,to_date(#{tbsj},'yyyy-mm-dd')</if>
+	    	<if test="xmmc!=null">,#{xmmc}</if>
+	    	<if test="pqi!=null">,#{pqi}</if>
+	    	<if test="jh_sbthcd!=null">,#{jh_sbthcd}</if>
+	    	<if test="totalplacefund!=null">,#{totalplacefund}</if>
+	    	<if test="totalsubsidyfund!=null">,#{totalsubsidyfund}</if>)
 	</insert>
 	<select id="yhdzxAutoCompleteLxbm" parameterType="plan_lx_yhdzx" resultType="plan_lx_yhdzx">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,

@@ -23,27 +23,26 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			//gydwComboxTree("gydw");
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
-			var jh={jhnf:null,sbzt:null,spzt:null},lx={lxmc:null,gydwdm:filterGydwdm($("#gydw").combo("getValue"))};
 			sbnf("sbnf");
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")},
+			lx={lxmc:null,gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			gclmsjxm(jh,lx);
 			queryGcsjSum(jh,lx);
 		});
 		function searchGcsj(){
-			var jh={jhnf:null,sbzt:null,spzt:null};
-			var lx={gydw:$("#gydw").combo("getText"),gydwdm:$("#gydw").combo("getValue"),lxmc:null,xzqhmc:null,
-					xzqhdm:$("#xzqh").combo("getValue"),yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
+			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhmc:null,xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}
-			if($('#txtlxmc').val()!=""){
-				lx.lxmc=$('#txtlxmc').val();
+			if($('#txtRoad').val()!=""){
+				lx.lxmc=$('#txtRoad').val();
 			}
 			if($("#yjsdj").combo("getValue")!=""){
 				lx.yjsdj= $("#yjsdj").combo("getValue");
@@ -92,6 +91,9 @@
 		function addLmsj(){
 			YMLib.UI.createWindow('add_lmsj','添加路面升级',"/jxzhpt/page/jhgl/add/lmsjAdd.jsp",'addlmsj',980,500);
 		}
+		function openSjls(){
+			YMLib.UI.createWindow('sjlsxx','工程改造路面升级历史信息',"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
+		}
 	</script>
 </head>
 <body>
@@ -126,20 +128,15 @@
 									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;">
-									<option selected="selected" value="">全部</option>
-									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
-									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
-									<option value="ACDB9299F81642E3B2F0526F70492823">罗霄山山脉</option>
-									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
-									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
-									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
+								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select>
 								<span>&nbsp;技术等级：</span>
-								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;">
-								</select>
+								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:65px;"></select>
 								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="gldj" class="easyui-combobox" style="width:104px;">
+								<select name="ddlGldj" id="gldj" class="easyui-combobox" style="width:104px;"></select>
+								<span>&nbsp;是否有补助历史：</span>
+								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+									<option value="否" selected="selected">否</option>
+									<option value="是">是</option>
 								</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
@@ -149,6 +146,7 @@
         						<img onclick="importData_jh('gcsj_jh')" alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         						<img onclick="dropGcsjs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
         						<img onclick="exportExcel_gcsj()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img onclick="openSjls()" alt="补助历史查询" src="${pageContext.request.contextPath}/images/Button/Serchls01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serchls02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serchls01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

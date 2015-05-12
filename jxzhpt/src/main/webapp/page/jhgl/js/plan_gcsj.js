@@ -2,7 +2,9 @@ var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
 function queryGcsjSum(jh,lx){
-	var param={'lx.gydwdm':lx.gydwdm,'jh.jhnf':jh.jhnf,'jh.sbzt':jh.sbzt,'jh.spzt':jh.spzt,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.xzqhdm":lx.xzqhdm,
+			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryGcsjSum.do',
@@ -51,13 +53,16 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
 }
+function openLsjlWindow(id,index){
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('sjlsxx','工程改造路面升级历史信息',"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
+}
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,
-			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
-			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
-			'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
+			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhdm":lx.xzqhdm,
+			"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',pagination:true,queryParams:params,
 		rownumbers:false,pageNumber:1,pageSize:10,height:$(window).height()-180,width:$('#searchField').width(),
 		columns:[[
@@ -97,16 +102,24 @@ function gclmsjxm(jh,lx){
 				}
 				return result;
 			}},
-//			{field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-//				var id="'"+row.id+"'";
-//        		return '<a href="javascript:openZjxd('+"'gclmsj_xx'"+','+"'资金追加'"+','+"'../zjxd/zjzj.jsp'"+',500,300,'+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
-//			}},
+			{field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
+        		return '<a href="javascript:openZjzjWindow('+"'grdab','editZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+			}},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
+		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
+		  		formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		  	},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -143,7 +156,7 @@ function openAddSjlx(id,nf){
 	YMLib.UI.createWindow('add_sjlx','添加路线',"/jxzhpt/page/jhgl/add/lmsjlxAdd.jsp",'addsjlx',900,380);
 }
 function gclmsjxm_sb(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
@@ -176,7 +189,7 @@ function gclmsjxm_sb(jh,lx){
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -208,7 +221,7 @@ function gclmsjxm_sb(jh,lx){
 	gridBind(grid);
 }
 function gclmsjxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
@@ -242,7 +255,7 @@ function gclmsjxm_sh(jh,lx){
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -274,7 +287,8 @@ function gclmsjxm_sh(jh,lx){
 	gridBind(grid);
 }
 function gclmsjxm_zjxd(jh,lx){
-	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,
+			"jh.jhnf":jh.jhnf,"jh.jh_sbthcd":jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydw":lx.gydw,"lx.gydwdm":lx.gydwdm,"lx.xzqhmc":lx.xzqhmc,"lx.lxbm":lx.lxbm,
 			"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,'lx.tsdqbm':lx.tsdqbm};
 	var grid={id:'grdab',url:'../../../jhgl/queryGcsjList.do',striped:true,pagination:true,
@@ -305,7 +319,7 @@ function gclmsjxm_zjxd(jh,lx){
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
 		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'地方自筹资金',width:80,align:'center'}
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -361,7 +375,7 @@ function dropGcsjs(){
 							"jh.jhwgsj":null,"jh.pfztz":null,
 							"lx.gydw":null,"lx.gydwdm":null,"lx.xzqhmc":null,"lx.xzqhdm":null,"lx.lxmc":null};
 					alert("移除成功！");
-					gridObj.datagrid("reload",params);
+					searchGcsj();
 				}
 			},
 			error:function(){
@@ -403,7 +417,7 @@ function editGcsj(){
 	}
 }
 function lxztz(){
-	var lxCount = ($('#tr_scxx').index()-1)/7;
+	/*var lxCount = ($('#tr_scxx').index()-1)/7;
 	var result=false,fdbz=0,ztz=0.0;//result：是否符合标准;fdbz：投资金额的浮动标准;ztz：总投资金额，每条路线累计相加
 	for(var i=0;i<lxCount;i++){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
@@ -427,7 +441,7 @@ function lxztz(){
 	}else{
 		result=false;
 		return result;
-	}
+	}*/
 	if($('#pftz').val()==Number($('#jhsybbzje').val())+Number($('#jhsysbzje').val())){
 		result=true;
 	}else{

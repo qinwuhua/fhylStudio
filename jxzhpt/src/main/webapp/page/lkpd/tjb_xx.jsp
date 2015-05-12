@@ -66,7 +66,7 @@
 			});
 	});
 	</script>
-    <div style="text-align: left; vertical-align: top; margin: 0px; height: 50%;width: 99.9%;">
+    <div style="text-align: left; vertical-align: top; margin: 0px; height: 100%;width: 99.9%;">
         <table border="0" style="margin-top: 1px; margin-left: 1px; width: 99.9%;" cellspacing="0"
             cellpadding="0">
             <tr>
@@ -77,7 +77,7 @@
                                 <table cellpadding="0" cellspacing="0" style="width: 99.9%;">
                                     <tr>
                                         <td align="center" colspan="3" style="height: 20px; font-size: 20px; font-weight: bolder;">
-                                            公路技术状况统计表
+                                            公路技术状况评定统计表
                                         </td>
                                     </tr>
                                     <tr>

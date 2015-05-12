@@ -54,7 +54,8 @@
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_shuih" alias="plan_shuih"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih" alias="plan_lx_shuih"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd" alias="plan_zjxd"/>
-     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lwxm_zjzj" alias="plan_zjzj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj" alias="plan_zjzj"/>
+     <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_hslyZjzj" alias="plan_hslyzjzj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx" alias="plan_yhdzx"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx" alias="plan_lx_yhdzx"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_hsly" alias="plan_hsly"/>

@@ -238,25 +238,26 @@
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">是否申请按比例补助
+					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					是否申请按比例补助
 				</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="lblSFSQABLBZ"/> &nbsp;
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input id="sfsqablbz0" onchange="ablwhDis('是')" name="sfsqablbz" type="radio" value="是"/>是
+					<input id="sfsqablbz1" onchange="ablwhDis('否')" name="sfsqablbz" type="radio" value="否" />否
 				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">按比例补助申请文号
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					按比例补助申请文号
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
 					<input type="text" id="lblABLBZWH"/>&nbsp;
 				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;是否提前实施
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;
+					是否提前实施
 				</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sftqss"/>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<input id="sftqss0" name="sftqss" type="radio" value="是"/>是
+					<input id="sftqss1" name="sftqss" type="radio" value="否" />否
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -281,11 +282,12 @@
 			</tr>
 			<tr style="height: 30px;">
 				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">是否归口市局养护部门
+					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+					是否归口市局养护部门
 				</td>
-				<td colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<input type="text" id="sfgyhbm"/>&nbsp;
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<input id="sfgyhbm0" name="sfgyhbm" type="radio" value="是"/>是
+					<input id="sfgyhbm1" name="sfgyhbm" type="radio" value="否" />否
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -328,6 +330,7 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editsbnf");
+	loadBmbm2('yhlb','养护类别');
 	var xxId=parent.YMLib.Var.jhbm;
 	$("#uploadGk").uploadify({
 		/*注意前面需要书写path的代码*/
@@ -405,7 +408,7 @@
 				var tr1='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">路线名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxmc'+index+'">'+item.lxmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxbm'+index+'">'+item.lxbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建设地点</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="jsdd'+index+'">'+item.jsdd+'</span></td></tr>';
 				var tr2='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdzh'+index+'">'+item.qdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdzh'+index+'">'+item.zdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="qzlc'+index+'">'+item.qzlc+'</span>公里</td></tr>';
 				var tr3='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">管养单位</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="gydwxx'+index+'">'+item.gydw+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">行政区划代码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="xzqhdm'+index+'">'+item.xzqhdm+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">行政区划</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="xzqhmc'+index+'">'+item.xzqhmc+'</span></td></tr>';
-				var tr4='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="yjsdj'+index+'">'+item.yjsdj+'</span>&nbsp;</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">原路面类型</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="ylmlx'+index+'">'+item.ylxlx+'</span>&nbsp;</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">隐患里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="yhlc'+index+'">'+item.yhlc+'</span>公里</td></tr>';
+				var tr4='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="yjsdj'+index+'">'+item.yjsdj+'</span>&nbsp;</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">原路面类型</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="ylmlx'+index+'">'+item.ylmlx+'</span>&nbsp;</td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">隐患里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="yhlc'+index+'">'+item.yhlc+'</span>公里</td></tr>';
 				var tr5='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">特殊地区</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="tsdq"></span> &nbsp;</td></tr>';
 				var tr6='<tr style="height: 50px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="bhnr">'+item.bhnr+'</span> &nbsp;</td></tr>';
 				$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5+tr6);
@@ -417,7 +420,7 @@
 			$('#jhwgsj').datebox('setValue',data.jhwgsj);
 			$('#jhxdsj').datebox('setValue',data.xdsj);
 			$('#xmmc').val(data.xmmc);
-			$('#yhlb').val(data.yhlb);
+			$('#yhlb').combobox('select',data.yhlb);
 			$('#sjdw').val(data.sjdw);
 			$('#sjpfdw').val(data.sjpfdw);
 			$('#sjlmlx').val(data.sjlmlx);
@@ -430,13 +433,16 @@
 			$('#pfztz').val(data.pfztz);
 			$('#bbz').val(data.jhsybzje);
 			$('#dfzc').val(data.jhsydfzcje);
-			$('#lblSFSQABLBZ').val(data.sfsqablbz);
+			radioChecked("sfsqablbz",data.sfsqablbz);
+			if(data.sfsqablbz=="否"){
+				$('#lblABLBZWH').attr("disabled",'true');
+			}
 			$('#lblABLBZWH').val(data.ablbzsqwh);
-			$('#sftqss').val(data.sftqss);
+			radioChecked("sftqss",data.sftqss);
 			$('#jhxdwh').val(data.jhxdwh);
 			$('#gkpfwh').val(data.gksjwh);
 			$('#sjpfwh').val(data.sjpfwh);
-			$('#sfgydbm').val(data.sfgydbm);
+			radioChecked("sfgyhbm",data.sfgyhbm);
 			$('#lblJHRemarks').val(data.jhbz);
 			//审查
 			$('#fapgdw').html(data.fapgdw);
@@ -454,6 +460,13 @@
 			}
 		}
 	});
+	function ablwhDis(value){
+		if(value=="是"){
+			$('#lblABLBZWH').removeAttr("disabled");
+		}else{
+			$('#lblABLBZWH').attr("disabled",'true');
+		}
+	}
 	</script>
 </body>
 </html>

@@ -51,8 +51,8 @@ function AddInfo(){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,430);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
@@ -260,11 +260,17 @@ function tjwqgzwwg(){
 }
 
 function showAll(){
-	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
-		gydw1str=$.cookie("unit2");
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
 	}else{
-		gydw1str=gydw1.join(',');
+		gydwstr= gydw.join(',');
 	}
 	var jgzt='0';
 	var kgzt=$("#kgzt").combobox("getValue");
@@ -295,7 +301,7 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw1str,
+	    	gydw: gydwstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
@@ -382,16 +388,16 @@ function showYBlist(){
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
 			        {field:'bywcgl',title:'本月完成（公里）',width:100,align:'center',rowspan:2},
 			        {field:'kgdl',title:'截至开工段落',width:100,align:'center',rowspan:2},
-			        {title:'本月完成投资（万元）',colspan:2},
-			        {title:'本月资金到位（万元）',colspan:2},
+			        {title:'本月完成投资（万元）',colspan:3},
+			        {title:'本月资金到位（万元）',colspan:3},
 			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
 	             ],
 	             [
 			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			       // {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
 			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
 			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
-			      //  {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
 			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
 			    ]
 	    ]

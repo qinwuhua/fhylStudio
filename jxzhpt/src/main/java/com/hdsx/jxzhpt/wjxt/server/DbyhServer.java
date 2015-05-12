@@ -25,7 +25,7 @@ public interface DbyhServer {
 
 	List<Map<String, Object>> selectList5(Zdxx zdxx);
 
-	List<Map<String, Object>> selectxhbList1();
+	List<Map<String, Object>> selectxhbList1(Zdxx zdxx);
 
 	List<Map<String, Object>> selectxhbList4(Zdxx zdxx);
 
@@ -36,5 +36,35 @@ public interface DbyhServer {
 	List<Map<String, Object>> selectPdbList(Zdxx zdxx);
 
 	List<Map<String, Object>> selectYlbList(Zdxx zdxx);
+
+	boolean insertYBBData(List<Map> data);
+
+	List<Map<String,Object>> selectybbbyYf(String substring);
+
+	boolean delete_ybb(String string);
+
+	List<Map<String, Object>> selectxhbbyYf(String substring);
+
+	boolean insertXHBData(List<Map> data);
+
+	boolean delete_xhb(String string);
+
+	List<Map<String, Object>> selectfxbbyYf(String substring);
+
+	boolean insertFXBData(List<Map> data);
+
+	boolean delete_fxb(String string);
+
+	List<Map<String, Object>> selectpdbbyYf(String substring);
+
+	boolean insertPDBData(List<Map> data);
+
+	boolean delete_pdb(String string);
+
+	List<Map<String, Object>> selectylbbyYf(String substring);
+
+	boolean insertYLBData(List<Map> data);
+
+	boolean delete_ylb(String string);
 
 }

@@ -74,7 +74,7 @@
 		<result property="jsnr" column="jsnr"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="sfylsjl" column="sfylsjl"/>
-		<collection property="plan_lx_gcsjs" ofType="plan_lx_gcsj" resultMap="gcsj_lx"/>
+		<collection property="plan_lx_gcsjs" column="jhid" ofType="plan_lx_gcsj" javaType="ArrayList"  resultMap="gcsj_lx"/>
 	</resultMap>
 	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
 		<id property="id" column="id" />
@@ -82,10 +82,15 @@
 		<result property="qzlc" column="qzlc"/>
 		<result property="xmlc" column="xmlc"/>
 		<result property="lxbm" column="lxbm"/>
+		<result property="ylxbm" column="ylxbm"/>
 		<result property="xzqhdm" column="xzqhdm"/>
 		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="qdzh" column="qdzh"/>
 		<result property="zdzh" column="zdzh"/>
+		<result property="xqdzh" column="xqdzh"/>
+		<result property="xzdzh" column="xzdzh"/>
+		<result property="yqdzh" column="yqdzh"/>
+		<result property="yzdzh" column="yzdzh"/>
 		<result property="qzlc" column="qzlc"/>
 		<result property="xmlc" column="xmlc"/>
 		<result property="gydw" column="gydw"/>
@@ -113,7 +118,7 @@
 			select rownum as num,t.* from (
 				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
 				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
-				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
+				lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1
 			 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -137,29 +142,25 @@
 		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 		 			and jh.jgzt=#{jh.jgzt}
 		 		</if>
-				and jh.id in (
-						select lx.jhid from PLAN_lx_GCSJ lx 
-						where 1=1 
-							<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-								and lx.gydwdm like #{lx.gydwdm}
-							</if>
-							<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-								and lx.xzqhdm like #{lx.xzqhdm}
-							</if>
-							<if test="lx.lxmc!=null and lx.lxmc!=''">
-								and lx.lxmc like '%'||#{lx.lxmc}||'%'
-							</if>
-							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-								and lx.yjsdj=#{lx.yjsdj}
-							</if>
-							<if test="lx.lxbm!=null and lx.lxbm!=''">
-								and lx.lxbm like '%'||#{lx.lxbm}||'%'
-							</if>
-							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-						    </if>
-						    ) order by jh.jhnf,jh.jh_sbthcd
-				) t
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if> order by jh.jhnf desc,jh.jh_sbthcd
+				) t  order by t.jhnf desc,t.jh_sbthcd
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
@@ -191,77 +192,69 @@
 		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
 		 			and jh.jgzt=#{jh.jgzt}
 		 		</if>
-				and jh.id in (
-						select lx.jhid from PLAN_lx_GCSJ lx 
-						where 1=1 
-							<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-								and lx.gydwdm like #{lx.gydwdm}
-							</if>
-							<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-								and lx.xzqhdm like #{lx.xzqhdm}
-							</if>
-							<if test="lx.lxmc!=null and lx.lxmc!=''">
-								and lx.lxmc like '%'||#{lx.lxmc}||'%'
-							</if>
-							<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-								and lx.yjsdj=#{lx.yjsdj}
-							</if>
-							<if test="lx.lxbm!=null and lx.lxbm!=''">
-								and lx.lxbm like 'S'||#{lx.lxbm}
-							</if>
-							<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-						    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-						    </if>
-						    ) order by jh.jhnf,jh.jh_sbthcd
-				) t
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				) t order by t.jhnf,t.jh_sbthcd
 		 )
 	</select>
 	<select id="queryGcsjCount" resultType="int" parameterType="java.util.Map">
 		select count(jh.id) from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 		 	where 1=1
-		 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
-				and jh.jhnf =#{jh.jhnf}
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-			and jh.id in (
-					select lx.jhid from PLAN_lx_GCSJ l 
-					where 1=1 
-						<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-							and lx.gydwdm like #{lx.gydwdm}
-						</if>
-						<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
-							and lx.xzqhdm like #{lx.xzqhdm}
-						</if>
-						<if test="lx.lxmc!=null and lx.lxmc!=''">
-							and lx.lxmc like '%'||#{lx.lxmc}||'%'
-						</if>
-						<if test="lx.yjsdj!=null and lx.yjsdj!=''">
-							and lx.yjsdj=#{lx.yjsdj}
-						</if>
-						<if test="lx.lxbm!=null and lx.lxbm!=''">
-							and lx.lxbm like 'S'||#{lx.lxbm}
-						</if>
-						<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					    and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-					    </if>
-					    )
+		 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+		 			and jh.kgzt=#{jh.kgzt}
+		 		</if>
+		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+		 			and jh.jgzt=#{jh.jgzt}
+		 		</if>
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
 	</select>
 	<select id="queryGcsjSum" resultMap="gcsj_jh" parameterType="java.util.Map">
 		select count(id) as id, sum(qzlc) as qzlc,sum(xmlc) as xmlc,sum(pftz) as pftz,
@@ -270,33 +263,45 @@
 			sum(jh.pftz) as pftz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj
 			from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			where 1=1
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
-		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-		 	<if test="jh.jhnf!=null and jh.jhnf!=''">
-				and jh.jhnf =#{jh.jhnf}
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
-			</if>
-			<if test="jh.kgzt!=null and jh.kgzt!=''">
-	 			and jh.kgzt=#{jh.kgzt}
-	 		</if>
-	 		<if test="jh.jgzt!=null and jh.jgzt!=''">
-	 			and jh.jgzt=#{jh.jgzt}
-	 		</if>
-			<if test="lx.gydwdm!=null and lx.gydwdm!=''">
-				and lx.gydwdm like #{lx.gydwdm}
-			</if>
-			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
-			</if>
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					and jh.jh_sbthcd=#{jh.jh_sbthcd}
+				</if>
+				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
+				</if>
+			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
+					and jh.jhnf =#{jh.jhnf}
+				</if>
+				<if test="jh.sbzt!=null and jh.sbzt!=''">
+					and jh.sbzt=#{jh.sbzt}
+				</if>
+				<if test="jh.spzt!=null and jh.spzt!=''">
+					and jh.spzt=#{jh.spzt}
+				</if>
+				<if test="jh.kgzt!=null and jh.kgzt!=''">
+		 			and jh.kgzt=#{jh.kgzt}
+		 		</if>
+		 		<if test="jh.jgzt!=null and jh.jgzt!=''">
+		 			and jh.jgzt=#{jh.jgzt}
+		 		</if>
+		 		<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
+		 			and jh.sfylsjl=#{jh.sfylsjl}
+		 		</if>
+		 		<if test="lx.gydwdm!=null and lx.gydwdm!=''">
+					and ${lx.gydwdm}
+				</if>
+				<if test="lx.xzqhdm!=null and lx.xzqhdm!=''">
+					and ${lx.xzqhdm}
+				</if>
+				<if test="lx.lxmc!=null and lx.lxmc!=''">
+					and lx.lxmc like '%'||#{lx.lxmc}||'%'
+				</if>
+				<if test="lx.yjsdj!=null and lx.yjsdj!=''">
+					and lx.yjsdj=#{lx.yjsdj}
+				</if>
+				<if test="lx.lxbm!=null and lx.lxbm!=''">
+					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
 			group by jh.id)
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
@@ -346,14 +351,14 @@
 			pfsj,ql,ql_m,sd,sd_m,
 			hd,ljtsf,dc,jc,lqlm,snlm,
 			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
-			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl,tbbm) 
+			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl,tbbm,jh_sbthcd) 
 		values(#{jhid},#{16},#{17},to_date(#{18},'yyyy-mm-dd'),#{19},#{20},#{21},#{22},
 			#{23},#{24},#{25},#{26},SUBSTR(#{27},0,4),
 			to_date(#{28},'yyyy-mm-dd'),to_date(#{29},'yyyy-mm-dd'),#{30},#{31},#{32},
 			to_date(#{33},'yyyy-mm-dd'),#{34},#{35},#{36},#{37},
 			#{38},#{39},#{40},#{41},#{42},#{43},
 			#{44},#{45},#{46},#{47},#{48},
-			#{49},#{50},#{51},#{52},#{sfylsjl},#{tbbm})
+			#{49},#{50},#{51},#{52},#{sfylsjl},#{tbbm},#{jh_sbthcd})
 	</insert>
 	<insert id="insertGcsj_lx" parameterType="hashMap">
 		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,xzqhdm,xzqhmc,lxbm,lxmc,
@@ -365,12 +370,12 @@
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select * from (
 			select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
-		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
+		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj
 		    from  JXJCK_2013.GPSROAD g
 		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
-			group by roadname,roadcode,g.f114,g.f116) g1
-    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh}]]>
+			group by roadname,roadcode,g.f114) g1
+    	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh} and g1.yjsdj=#{yjsdj}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">
 		SELECT C1.CON1+C2.CON2 FROM
@@ -411,25 +416,151 @@
 		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
 		and jh.jhnf=#{jhid}
 	</select>
-	<select id="queryXjls" parameterType="plan_lx_gcsj" resultMap="gcsj_jh">
-		select jh.id,jh.jhnf,jh.xmmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-		where lx.lxbm like #{lxbm}||'%' and lx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[and lx.qdzh<=#{zdzh} and lx.zdzh>=#{qdzh} and jh.jhnf<#{jhid}]]>
+	<select id="queryXjls" parameterType="java.util.Map" resultType="plan_lx_gcsj">
+		select * from (
+		select '路面升级' as id,jh.id as jhid,jh.jhnf as bz,jh.xmmc as scbz,
+		lx.lxbm as lxbm,lx.lxmc as lxmc,to_number(lx.qdzh) as xqdzh,to_number(lx.zdzh) as xzdzh,
+		'   ' as ylxbm,0.0 yqdzh,0.0 yzdzh,lx.yjsdj as yjsdj,jh.gjhjsdj as gjjsdj
+		from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
+		where lx.lxbm like #{lx.lxbm}||'%' and lx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+		<![CDATA[and lx.qdzh<=#{lx.zdzh} and lx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and jh.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">   
+			union all
+			<![CDATA[select '路面升级' as id,jh.id as jhid,jh.jhnf as bz,jh.xmmc as scbz,
+			#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			lx.lxbm as ylxbm, 
+			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
+	        case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+	        lx.yjsdj as yjsdj,jh.gjhjsdj as gjjsdj
+	        from plan_lx_gcsj lx,plan_gcsj jh where jh.id=lx.jhid and lx.lxbm like substr(#{item.ylxbm},1,4)||'%' 
+	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}]]>
+		</foreach>
 		union all
-		select gj.id,gj.sbnf as jhnf,gj.xmmc,gjlx.lxbm,gjlx.lxmc,gjlx.qdzh,gjlx.zdzh from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id) 
-		where gjlx.lxbm like #{lxbm}||'%' and gjlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and gjlx.qdzh<=#{zdzh} and gjlx.zdzh>=#{qdzh} and gj.sbnf<#{jhid}]]>
+		select '路面改建' as id,gj.id as jhid,gj.sbnf as bz,gj.xmmc as scbz,
+		gjlx.lxbm as lxbm,gjlx.lxmc as lxmc,to_number(gjlx.qdzh) as xqdzh,to_number(gjlx.zdzh) as xzdzh,
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		gjlx.yjsdj as yjsdj,'' as gjjsdj
+		from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id) 
+		where gjlx.lxbm like #{lx.lxbm}||'%' and gjlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+		<![CDATA[ and gjlx.qdzh<=#{lx.zdzh} and gjlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and gj.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">
+			union all
+			<![CDATA[select '路面改建' as id,gj.id as jhid,gj.sbnf as bz,gj.xmmc as scbz,
+			#{item.lxbm} as lxbm,gjlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			gjlx.lxbm as ylxbm,
+			case when to_number(gjlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(gjlx.qdzh) end yqdzh,
+			case when to_number(gjlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(gjlx.zdzh) end  yzdzh,
+			gjlx.yjsdj as yjsdj,'' as gjjsdj
+			from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id)
+			where gjlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and gjlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+			and gjlx.qdzh<${item.yzdzh} and gjlx.zdzh>${item.yqdzh}]]>
+		</foreach>
 		union all
-		select sh.id,sh.sbnf as jhnf,sh.xmmc,shlx.lxbm,shlx.lxmc,shlx.qdzh,shlx.zdzh from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id) 
-		where shlx.lxbm like #{lxbm}||'%' and shlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and shlx.qdzh<=#{zdzh} and shlx.zdzh>=#{qdzh} and sh.sbnf<#{jhid}]]>
+		select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
+		shlx.lxbm as lxbm,shlx.lxmc as lxmc,to_number(shlx.qdzh) as xqdzh,to_number(shlx.zdzh) as xzdzh,
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		shlx.yjsdj as yjsdj,'' as gjjsdj
+		from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id) 
+		where shlx.lxbm like #{lx.lxbm}||'%' and shlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+		<![CDATA[ and shlx.qdzh<=#{lx.zdzh} and shlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and sh.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">
+			union all
+			<![CDATA[select '水毁项目' as id,sh.id as jhid,sh.sbnf as bz,sh.xmmc as scbz,
+			#{item.lxbm} as lxbm,shlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			shlx.lxbm as ylxbm,
+			case when to_number(shlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(shlx.qdzh) end yqdzh,
+			case when to_number(shlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(shlx.zdzh) end  yzdzh,
+			shlx.yjsdj as yjsdj,'' as gjjsdj
+			from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id)
+			where shlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and shlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%'
+			and shlx.qdzh<${item.yzdzh} and shlx.zdzh>${item.yqdzh}]]>
+		</foreach>
 		union all
-		select yh.id,yh.sbnf as jhnf,yh.xmmc,yhlx.lxbm,yhlx.lxmc,yhlx.qdzh,yhlx.zdzh from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id) 
-		where yhlx.lxbm like #{lxbm}||'%' and yhlx.xzqhdm like rtrim(#{xzqhdm},0)||'%' <![CDATA[ and yhlx.qdzh<=#{zdzh} and yhlx.zdzh>=#{qdzh} and yh.sbnf<#{jhid}]]>
+		select '养护大中修' as id,yh.id as jhid,yh.sbnf as bz,yh.xmmc as scbz,
+		yhlx.lxbm as lxbm,yhlx.lxmc as lxmc,to_number(yhlx.qdzh) as xqdzh,to_number(yhlx.zdzh) as xzdzh,
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		yhlx.yjsdj as yjsdj,'' as gjjsdj
+		from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id) 
+		where yhlx.lxbm like #{lx.lxbm}||'%' and yhlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+		<![CDATA[ and yhlx.qdzh<=#{lx.zdzh} and yhlx.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and yh.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">
+			union all
+			<![CDATA[select '养护大中修' as id,yh.id as jhid,yh.sbnf as bz,yh.xmmc as scbz,
+			#{item.lxbm} as lxbm,yhlx.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			yhlx.lxbm as ylxbm,
+			case when to_number(yhlx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(yhlx.qdzh) end yqdzh,
+			case when to_number(yhlx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(yhlx.zdzh) end yzdzh,
+			yhlx.yjsdj as yjsdj,'' as gjjsdj
+			from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id)
+			where yhlx.lxbm like substr(#{item.ylxbm},1,4)||'%' and yhlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%'
+			and yhlx.qdzh<${item.yzdzh} and yhlx.zdzh>${item.yqdzh}]]>
+		</foreach>
 		union all
-		select a.id,a.jhnf,axm.lxmc as xmmc,axm.lxbm,axm.lxmc,axm.qdzh,axm.zdzh from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
-		where axm.lxbm like #{lxbm}||'%' and axm.xzqhdm like rtrim(#{xzqhdm},0)||'%' and <![CDATA[ axm.qdzh<=#{zdzh} and axm.zdzh>=#{qdzh} and a.jhnf <#{jhid}]]>
+		select '安保工程' as id,a.id as jhid,a.jhnf as bz,axm.lxmc as scbz,
+		axm.lxbm as lxbm,axm.lxmc as lxmc,to_number(axm.qdzh) as xqdzh,to_number(axm.zdzh) as xzdzh,
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		'' as yjsdj,'' as gjjsdj
+		from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
+		where axm.lxbm like #{lx.lxbm}||'%' and axm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
+		and <![CDATA[ axm.qdzh<=#{lx.zdzh} and axm.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and a.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">
+			union all
+			<![CDATA[select '安保工程' as id,a.id as jhid,a.jhnf as bz,axm.lxmc as scbz,
+			#{item.lxbm} as lxbm,axm.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			axm.lxbm as ylxbm,
+			case when to_number(axm.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(axm.qdzh) end yqdzh,
+			case when to_number(axm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(axm.zdzh) end yzdzh,
+			'' as yjsdj,'' as gjjsdj
+			from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
+			where axm.lxbm like substr(#{item.ylxbm},1,4)||'%' and  axm.qdzh<${item.yzdzh} and axm.zdzh>${item.yqdzh}]]>
+		</foreach>
 		union all
-		select z.id,z.sbnf as jhnf,zxm.lxmc as xmmc,zxm.lxbm,zxm.lxmc,zxm.qdzh,zxm.zdzh from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
-		where zxm.lxbm like #{lxbm}||'%' and zxm.xzqhdm like rtrim(#{xzqhdm},0)||'%' and <![CDATA[ zxm.qdzh<=#{zdzh} and zxm.zdzh>=#{qdzh} and z.sbnf <#{jhid}]]>
+		select '灾害防治' as id,z.id as jhid,z.sbnf as bz,zxm.lxmc as scbz,
+		zxm.lxbm as lxbm,zxm.lxmc as lxmc,to_number(zxm.qdzh) as xqdzh,to_number(zxm.zdzh) as xzdzh,
+		'' as ylxbm,0.0 yqdzh,0.0 yzdzh,
+		'' as yjsdj,'' as gjjsdj
+		from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
+		where zxm.lxbm like #{lx.lxbm}||'%' and zxm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' and 
+		<![CDATA[ zxm.qdzh<=#{lx.zdzh} and zxm.zdzh>=#{lx.qdzh}]]> 
+		<if test="lx.jhid!=null and lx.jhid!=''">
+			and z.id!=#{lx.jhid}
+		</if>
+		<foreach collection="ls" item="item">
+			union all
+			<![CDATA[select '灾害防治' as id,z.id as jhid,z.sbnf as bz,zxm.lxmc as scbz,
+			#{item.lxbm} as lxbm,zxm.lxmc as lxmc,#{item.xqdzh} as xqdzh,#{item.xzdzh} as xzdzh,
+			zxm.lxbm as ylxbm,
+			case when to_number(zxm.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(zxm.qdzh) end yqdzh,
+			case when to_number(zxm.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(zxm.zdzh) end yzdzh,
+			'' as yjsdj,'' as gjjsdj
+			from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
+			where zxm.lxbm like substr(#{item.ylxbm},1,4)||'%' and zxm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' and 
+			zxm.qdzh<${item.yzdzh} and zxm.zdzh>${item.yqdzh}]]>
+		</foreach>
+		) t order by t.bz
 	</select>
+	<!--  <select id="queryXjls" parameterType="java.util.Map" resultMap="gcsj_jh">
+		select '灾害防治' as remarks,z.id,z.sbnf as jhnf,zxm.lxmc as xmmc,zxm.lxbm,zxm.lxmc,zxm.qdzh,zxm.zdzh from xmk_zhfz zxm right join sck_zhfz zsck on zxm.id=zsck.xmkid right join plan_zhfz z on zsck.sckid=z.sckid
+		where ( (zxm.lxbm like #{lx.lxbm}||'%' and zxm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' and <![CDATA[ zxm.qdzh<=#{lx.zdzh} and zxm.zdzh>=#{lx.qdzh}]]>)
+		<foreach collection="ls" item="item">
+			<![CDATA[ or (zxm.lxbm like substr(#{item.ylxbm},1,4)||'%' and zxm.qdzh<${item.yqdzh} and zxm.zdzh>${item.yzdzh})]]>
+		</foreach>)  
+	</select>-->
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
 		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}
 	</select>
@@ -530,20 +661,86 @@
 			to_date(#{tbsj},'yyyy-mm-dd'),#{gydwdm},#{lyllqk},#{dlqlbm},#{dlqlzxzh})
 	</insert>
 	<insert id="insertGcsjJh" parameterType="plan_gcsj">
-		insert into plan_gcsj (id,fapgdw,fascdw,faspsj,spwh,tzgs,jsxz,jsnr,
-			xmwybh,xmmc,jsjsbz,sftqss,jhnf,
-			jhkgsj,jhwgsj,sjdw,sjpfdw,pfwh,
-			pfsj,ql,ql_m,sd,sd_m,
-			hd,ljtsf,dc,jc,lqlm,snlm,
-			gjhjsdj,pftz,jhsybbzje,jhsydfzczj,sfsqablbz,
-			ablbzsqwh,gksjwh,sjpfwh,remarks,sfylsjl) 
-		values(#{id},#{fapgdw},#{fascdw},to_date(#{faspsj},'yyyy-mm-dd'),#{spwh},#{tzgs},#{jsxz},#{jsnr},
-			#{xmwybh},#{xmmc},#{jsjsbz},#{sftqss},#{jhnf},
-			#{jhkgsj},#{jhwgsj},#{sjdw},#{sjpfdw},#{pfwh},
-			#{pfsj},#{ql},#{ql_m},#{sd},#{sd_m},
-			#{hd},#{ljtsf},#{dc},#{jc},#{lqlm},#{snlm},
-			#{gjhjsdj},#{pftz},#{jhsybbzje},#{jhsydfzczj},#{sfsqablbz},
-			#{ablbzsqwh},#{gksjwh},#{sjpfwh},#{remarks},#{sfylsjl})
+		insert into plan_gcsj (id,
+			<if test="fapgdw!=null">fapgdw,</if>
+			<if test="fascdw!=null">fascdw,</if>
+			<if test="faspsj!=null">faspsj,</if>
+			<if test="spwh!=null">spwh,</if>
+			<if test="tzgs!=null">tzgs,</if>
+			<if test="jsxz!=null">jsxz,</if>
+			<if test="jsnr!=null">jsnr,</if>
+			<if test="xmwybh!=null">xmwybh,</if>
+			<if test="xmmc!=null">xmmc,</if>
+			<if test="jsjsbz!=null">jsjsbz,</if>
+			<if test="sftqss!=null">sftqss,</if>
+			<if test="jhnf!=null">jhnf,</if>
+			<if test="jhkgsj!=null">jhkgsj,</if>
+			<if test="jhwgsj!=null">jhwgsj,</if>
+			<if test="sjdw!=null">sjdw,</if>
+			<if test="sjpfdw!=null">sjpfdw,</if>
+			<if test="pfwh!=null">pfwh,</if>
+			<if test="pfsj!=null">pfsj,</if>
+			<if test="ql!=null">ql,</if>
+			<if test="ql_m!=null">ql_m,</if>
+			<if test="sd!=null">sd,</if>
+			<if test="sd_m!=null">sd_m,</if>
+			<if test="hd!=null">hd,</if>
+			<if test="ljtsf!=null">ljtsf,</if>
+			<if test="dc!=null">dc,</if>
+			<if test="jc!=null">jc,</if>
+			<if test="lqlm!=null">lqlm,</if>
+			<if test="snlm!=null">snlm,</if>
+			<if test="gjhjsdj!=null">gjhjsdj,</if>
+			<if test="pftz!=null">pftz,</if>
+			<if test="jhsybbzje!=null">jhsybbzje,</if>
+			<if test="jhsydfzczj!=null">jhsydfzczj,</if>
+			<if test="sfsqablbz!=null">sfsqablbz,</if>
+			<if test="ablbzsqwh!=null">ablbzsqwh,</if>
+			<if test="gksjwh!=null">gksjwh,</if>
+			<if test="sjpfwh!=null">sjpfwh,</if>
+			<if test="remarks!=null">remarks,</if>
+			<if test="sfylsjl!=null">sfylsjl</if>
+			<if test="jh_sbthcd!=null">,jh_sbthcd</if>) 
+		values(#{id},
+			<if test="fapgdw!=null">#{fapgdw},</if>
+			<if test="fascdw!=null">#{fascdw},</if>
+			<if test="faspsj!=null">to_date(#{faspsj},'yyyy-mm-dd'),</if>
+			<if test="spwh!=null">#{spwh},</if>
+			<if test="tzgs!=null">#{tzgs},</if>
+			<if test="jsxz!=null">#{jsxz},</if>
+			<if test="jsnr!=null">#{jsnr},</if>
+			<if test="xmwybh!=null">#{xmwybh},</if>
+			<if test="xmmc!=null">#{xmmc},</if>
+			<if test="jsjsbz!=null">#{jsjsbz},</if>
+			<if test="sftqss!=null">#{sftqss},</if>
+			<if test="jhnf!=null">#{jhnf},</if>
+			<if test="jhkgsj!=null">#{jhkgsj},</if>
+			<if test="jhwgsj!=null">#{jhwgsj},</if>
+			<if test="sjdw!=null">#{sjdw},</if>
+			<if test="sjpfdw!=null">#{sjpfdw},</if>
+			<if test="pfwh!=null">#{pfwh},</if>
+			<if test="pfsj!=null">#{pfsj},</if>
+			<if test="ql!=null">#{ql},</if>
+			<if test="ql_m!=null">#{ql_m},</if>
+			<if test="sd!=null">#{sd},</if>
+			<if test="sd_m!=null">#{sd_m},</if>
+			<if test="hd!=null">#{hd},</if>
+			<if test="ljtsf!=null">#{ljtsf},</if>
+			<if test="dc!=null">#{dc},</if>
+			<if test="jc!=null">#{jc},</if>
+			<if test="lqlm!=null">#{lqlm},</if>
+			<if test="snlm!=null">#{snlm},</if>
+			<if test="gjhjsdj!=null">#{gjhjsdj},</if>
+			<if test="pftz!=null">#{pftz},</if>
+			<if test="jhsybbzje!=null">#{jhsybbzje},</if>
+			<if test="jhsydfzczj!=null">#{jhsydfzczj},</if>
+			<if test="sfsqablbz!=null">#{sfsqablbz},</if>
+			<if test="ablbzsqwh!=null">#{ablbzsqwh},</if>
+			<if test="gksjwh!=null">#{gksjwh},</if>
+			<if test="sjpfwh!=null">#{sjpfwh},</if>
+			<if test="remarks!=null">#{remarks},</if>
+			<if test="sfylsjl!=null">#{sfylsjl}</if>
+			<if test="jh_sbthcd!=null">,#{jh_sbthcd}</if>)
 	</insert>
 	<select id="sjAutoCompleteLxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
@@ -553,4 +750,17 @@
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		group by roadname,roadcode,g.f114,g.f116
 	</select>
+	<select id="querySjzh" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
+		<![CDATA[
+		select ylxbm ylxbm,(case when Xqdzh<${qdzh} then YQDZH+${qdzh}-XQDZH else yqdzh end) yqdzh,
+		(case when ${zdzh}<Xzdzh then YZDZH-XZDZH+${zdzh} else yzdzh end ) yzdzh ,
+        xlxbm as lxbm,(case when Xqdzh<${qdzh} then ${qdzh} else xqdzh end ) xqdzh,
+        (case when ${zdzh}<Xzdzh then ${zdzh} else xzdzh end) xzdzh 
+  		from XTGL_LXSJ t where  t.xlxbm like substr(#{lxbm},1,4) || '%' and 
+  		t.Xqdzh<${zdzh} and t.Xzdzh>${qdzh}]]>
+	</select>
+	<update id="editZjById" parameterType="plan_gcsj">
+		update plan_gcsj jh set jh.pftz=#{pftz},jh.jhsybbzje=#{jhsybbzje},jh.jhsydfzczj=#{jhsydfzczj}
+		where jh.id=#{id}
+	</update>
 </mapper>

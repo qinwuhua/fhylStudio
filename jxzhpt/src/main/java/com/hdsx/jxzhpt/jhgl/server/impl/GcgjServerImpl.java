@@ -26,7 +26,7 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 		params.put("page", page);
 		params.put("rows", row);
 		params.put("jh", plan_gcgj);
-		params.put("l", plan_lx_gcgj);
+		params.put("lx", plan_lx_gcgj);
 		List<Plan_gcgj> queryList = queryList("queryGcgjList",params);
 		return queryList;
 	}
@@ -35,7 +35,7 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public List<Plan_gcgj> queryGcgjList(Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", plan_gcgj);
-		params.put("l", plan_lx_gcgj);
+		params.put("lx", plan_lx_gcgj);
 		List<Plan_gcgj> queryList = queryList("queryGcgjList2",params);
 		return queryList;
 	}
@@ -44,7 +44,7 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	public int queryGcgjCount(Plan_gcgj plan_gcgj,Plan_lx_gcgj plan_lx_gcgj) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", plan_gcgj);
-		params.put("l", plan_lx_gcgj);
+		params.put("lx", plan_lx_gcgj);
 		return queryOne("queryGcgjCount", params);
 	}
 
@@ -206,5 +206,10 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	@Override
 	public List<Plan_lx_gcgj> gjAutoCompleteLxbm(Plan_lx_gcgj lx) {
 		return queryList("gjAutoCompleteLxbm",lx);
+	}
+
+	@Override
+	public boolean editZjById(Plan_gcgj jh) {
+		return update("editZjById", jh)>0;
 	}
 }

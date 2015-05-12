@@ -23,14 +23,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			gydwComboxTree("gydw");
-			loadDist("xzqh",$.cookie("dist"));
+			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf('sbnf');
 			var jh={sbnf:null,sbzt:'1',spzt:null,jh_sbthcd:4};
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			//if(roleName()=="省级"){
 				if(getParam("t")=='1'){
 					jh.jh_sbthcd=4;
@@ -44,7 +44,7 @@
 		});
 		function searchYhdzx(){
 			var jh={sbzt:null,spzt:null,jh_sbthcd:4};
-			var lx={gydwdm:filterGydwdm($.cookie("unit"))};
+			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

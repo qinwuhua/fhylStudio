@@ -22,6 +22,8 @@
 		loadUnit("gydw",$.cookie("unit"));
 		loadDist("xzqhmc",$.cookie("dist"));
 		loadBmbm2("kgzt","开工状态");
+		xmnf("xmnf");
+		xmnf("jhnf");
 		
 		$("#btnSelect").click(function(){
 			YMLib.Var.gydw=$("#gydw").combobox("getValue");
@@ -30,6 +32,8 @@
 			YMLib.Var.lxmc=$("#lxmc").val();
 			YMLib.Var.lxbm=$("#lxbm").val();
 			YMLib.Var.xmlx=$("#xmlx").combobox("getValue");
+			YMLib.Var.xmnf=$("#xmnf").combobox("getValue");
+			YMLib.Var.jhnf=$("#jhnf").combobox("getValue");
 			YMLib.Var.xmName=$("#xmlx").combobox("getText");
 			if($("#xmlx").combobox("getValue")=='wqgz') Wqgz();
 			else if($("#xmlx").combobox("getValue")=='abgc') Abgc();	
@@ -101,6 +105,16 @@ text-decoration:none;
 				<td style="background-color: #ffffff;width:15%" align="right">路线编码：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" id="lxbm" style="width: 145px"/></td>
+			</tr>
+			<tr  style="height: 30px;">
+				<td style="background-color: #ffffff;width:15%" align="right">项目年份：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select  id="xmnf" style="width:160px"></select></td>
+				<td style="background-color: #ffffff;width:15%" align="right">计划年份：</td>
+				<td style="background-color: #ffffff;" align="left">
+					<select id="jhnf" style="width:160px"></select></td>
+				<td style="background-color: #ffffff;width:15%" align="right"></td>
+				<td style="background-color: #ffffff;" align="left"></td>
 			</tr>
 			<tr  style="height: 30px;">
 				<td colspan="6" style="background-color: #ffffff;width:15%" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

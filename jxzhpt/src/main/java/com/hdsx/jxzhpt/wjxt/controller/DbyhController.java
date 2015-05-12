@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -41,9 +42,12 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
+import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
@@ -53,6 +57,7 @@ import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
 import com.hdsx.jxzhpt.wjxt.server.ZhqkServer;
 import com.hdsx.jxzhpt.xtgl.bean.Master;
 import com.hdsx.webutil.struts.BaseActionSupport;
+import com.ibm.icu.text.SimpleDateFormat;
 
 
 /**
@@ -73,8 +78,23 @@ public class DbyhController extends BaseActionSupport{
 	private String tiaojian;
 	private String nian;
 	private String yue;
-	private Zdxx zdxx=new Zdxx();
+	private String fileuploadFileName;
 	
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	private Zdxx zdxx=new Zdxx();
+	private String fileupload;
+	
+	public String getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(String fileupload) {
+		this.fileupload = fileupload;
+	}
 	public Zdxx getZdxx() {
 		return zdxx;
 	}
@@ -119,458 +139,12 @@ public class DbyhController extends BaseActionSupport{
 		this.yue = yue;
 	}
 	public void selectYbbList(){
-		zdxx.setGydw(gydw);
 		zdxx.setNian(nian);
 		zdxx.setYue(yue);
-		List<Map<String, Object>> list1=dbyhServer.selectList1();
-		List<Map<String, Object>> list2=dbyhServer.selectList2(zdxx);
-		
-		List<Zdxx> list3=dbyhServer.selectList3(zdxx);
-		String str="";
-		for (int i = 0; i < list3.size(); i++) {
-			if(i!=list3.size()-1){
-				str=str+"'"+list3.get(i).getId()+"',";
-			}
-			else{
-				str=str+"'"+list3.get(i).getId()+"'";
-			}
-		}
-		zdxx.setTiaojian("iOrgID in("+str+")");
-		List<Map<String, Object>> list4=dbyhServer.selectList4(zdxx);
-		
-		List<Map<String, Object>> list5=dbyhServer.selectList5(zdxx);
-		
-		List<Excel_list> list6=new ArrayList<Excel_list>();
-		if(list5.size()>0){
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			el.setV_31("0");
-			el.setV_32("0");
-			el.setV_33("0");
-			el.setV_34("0");
-			el.setV_35("0");
-			el.setV_36("0");
-			el.setV_37("0");
-			el.setV_38("0");
-			el.setV_39("0");
-			el.setV_40("0");
-			for (Map<String, Object> map : list5) {
-				
-				if("0101".equals(map.get("sItemCode").toString()))
-					el.setV_1(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0102".equals(map.get("sItemCode").toString()))
-					el.setV_2(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0103".equals(map.get("sItemCode").toString()))
-					el.setV_3(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0104".equals(map.get("sItemCode").toString()))
-					el.setV_4(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0105".equals(map.get("sItemCode").toString()))
-					el.setV_5(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0106".equals(map.get("sItemCode").toString()))
-					el.setV_6(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0107".equals(map.get("sItemCode").toString()))
-					el.setV_7(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0201".equals(map.get("sItemCode").toString()))
-					el.setV_8(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0202".equals(map.get("sItemCode").toString()))
-					el.setV_9(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0203".equals(map.get("sItemCode").toString()))
-					el.setV_10(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0204".equals(map.get("sItemCode").toString()))
-					el.setV_11(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0205".equals(map.get("sItemCode").toString()))
-					el.setV_12(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0206".equals(map.get("sItemCode").toString()))
-					el.setV_13(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0207".equals(map.get("sItemCode").toString()))
-					el.setV_14(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0208".equals(map.get("sItemCode").toString()))
-					el.setV_15(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0209".equals(map.get("sItemCode").toString()))
-					el.setV_16(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0301".equals(map.get("sItemCode").toString()))
-					el.setV_17(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0302".equals(map.get("sItemCode").toString()))
-					el.setV_18(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0303".equals(map.get("sItemCode").toString()))
-					el.setV_19(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0304".equals(map.get("sItemCode").toString()))
-					el.setV_20(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0305".equals(map.get("sItemCode").toString()))
-					el.setV_21(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0306".equals(map.get("sItemCode").toString()))
-					el.setV_22(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0401".equals(map.get("sItemCode").toString()))
-					el.setV_23(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0402".equals(map.get("sItemCode").toString()))
-					el.setV_24(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0403".equals(map.get("sItemCode").toString()))
-					el.setV_25(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0404".equals(map.get("sItemCode").toString()))
-					el.setV_26(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0405".equals(map.get("sItemCode").toString()))
-					el.setV_27(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0406".equals(map.get("sItemCode").toString()))
-					el.setV_28(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0407".equals(map.get("sItemCode").toString()))
-					el.setV_29(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0501".equals(map.get("sItemCode").toString()))
-					el.setV_30(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0502".equals(map.get("sItemCode").toString()))
-					el.setV_31(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0503".equals(map.get("sItemCode").toString()))
-					el.setV_32(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0504".equals(map.get("sItemCode").toString()))
-					el.setV_33(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0505".equals(map.get("sItemCode").toString()))
-					el.setV_34(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0506".equals(map.get("sItemCode").toString()))
-					el.setV_35(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0507".equals(map.get("sItemCode").toString()))
-					el.setV_36(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0508".equals(map.get("sItemCode").toString()))
-					el.setV_37(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0509".equals(map.get("sItemCode").toString()))
-					el.setV_38(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0601".equals(map.get("sItemCode").toString()))
-					el.setV_39(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-				
-				if("0602".equals(map.get("sItemCode").toString()))
-					el.setV_40(map.get("mWorkNum").toString().substring(0,map.get("mWorkNum").toString().length()-2));
-					
-			}
-			list6.add(el);
-		}
-		else{
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			el.setV_31("0");
-			el.setV_32("0");
-			el.setV_33("0");
-			el.setV_34("0");
-			el.setV_35("0");
-			el.setV_36("0");
-			el.setV_37("0");
-			el.setV_38("0");
-			el.setV_39("0");
-			el.setV_40("0");
-			list6.add(el);
-		}
-		for (Map<String, Object> map : list2) {
-			Excel_list el=new Excel_list();
-			el.setV_0(map.get("sOrgName").toString());
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			el.setV_31("0");
-			el.setV_32("0");
-			el.setV_33("0");
-			el.setV_34("0");
-			el.setV_35("0");
-			el.setV_36("0");
-			el.setV_37("0");
-			el.setV_38("0");
-			el.setV_39("0");
-			el.setV_40("0");
-			if(list4.size()==0){
-				el.setV_1("0");
-				el.setV_1("0");
-				el.setV_2("0");
-				el.setV_3("0");
-				el.setV_4("0");
-				el.setV_5("0");
-				el.setV_6("0");
-				el.setV_7("0");
-				el.setV_8("0");
-				el.setV_9("0");
-				el.setV_10("0");
-				el.setV_11("0");
-				el.setV_12("0");
-				el.setV_13("0");
-				el.setV_14("0");
-				el.setV_15("0");
-				el.setV_16("0");
-				el.setV_17("0");
-				el.setV_18("0");
-				el.setV_19("0");
-				el.setV_20("0");
-				el.setV_21("0");
-				el.setV_22("0");
-				el.setV_23("0");
-				el.setV_24("0");
-				el.setV_25("0");
-				el.setV_26("0");
-				el.setV_27("0");
-				el.setV_28("0");
-				el.setV_29("0");
-				el.setV_30("0");
-				el.setV_31("0");
-				el.setV_32("0");
-				el.setV_33("0");
-				el.setV_34("0");
-				el.setV_35("0");
-				el.setV_36("0");
-				el.setV_37("0");
-				el.setV_38("0");
-				el.setV_39("0");
-				el.setV_40("0");
-			}
-			else{
-				for (int i = 0; i < list4.size(); i++) {
-					
-					if(map.get("iOrgID").toString().equals(list4.get(i).get("iOrgID").toString())){
-						if("0101".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_1(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0102".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_2(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0103".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_3(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0104".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_4(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0105".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_5(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0106".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_6(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0107".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_7(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0201".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_8(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0202".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_9(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0203".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_10(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0204".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_11(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0205".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_12(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0206".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_13(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0207".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_14(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0208".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_15(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0209".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_16(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0301".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_17(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0302".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_18(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0303".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_19(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0304".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_20(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0305".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_21(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0306".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_22(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0401".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_23(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0402".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_24(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0403".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_25(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0404".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_26(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0405".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_27(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0406".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_28(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0407".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_29(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0501".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_30(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0502".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_31(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0503".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_32(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0504".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_33(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0505".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_34(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0506".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_35(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0507".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_36(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0508".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_37(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0509".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_38(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0601".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_39(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-						if("0602".equals(list4.get(i).get("sItemCode").toString()))
-							el.setV_40(list4.get(i).get("mWorkNum").toString().substring(0,list4.get(i).get("mWorkNum").toString().length()-2));
-						
-					}
-				}
-			}
-			list6.add(el);
-		}
+		List<Map<String, Object>> list1 =dbyhServer.selectList2(zdxx);
+
 		try {
-			JsonUtils.write(list6, getresponse().getWriter());
+			JsonUtils.write(list1, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -1125,1037 +699,37 @@ public class DbyhController extends BaseActionSupport{
 		zdxx.setGydw(gydw);
 		zdxx.setNian(nian);
 		zdxx.setYue(yue);
-		List<Map<String, Object>> list1=dbyhServer.selectxhbList1();
-		List<Map<String, Object>> list2=dbyhServer.selectList2(zdxx);
-		
-		List<Zdxx> list3=dbyhServer.selectList3(zdxx);
-		String str="";
-		for (int i = 0; i < list3.size(); i++) {
-			if(i!=list3.size()-1){
-				str=str+"'"+list3.get(i).getId()+"',";
-			}
-			else{
-				str=str+"'"+list3.get(i).getId()+"'";
-			}
-		}
-		zdxx.setTiaojian("iOrgID in("+str+")");
-		List<Map<String, Object>> list4=dbyhServer.selectxhbList4(zdxx);
-		
-		List<Map<String, Object>> list5=dbyhServer.selectxhbList5(zdxx);
-		
-		List<Excel_list> list6=new ArrayList<Excel_list>();
-		
-		if(list5.size()>0){
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			for (Map<String, Object> map : list5) {
-				
-				if("0302".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_1(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0303".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_2(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0304".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_3(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0305".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_4(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0306".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_5(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0307".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_6(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0308".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_7(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0309".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_8(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0310".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_9(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0311".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_10(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0312".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_11(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0314".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_12(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0315".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_13(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0326".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_14(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0327".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_15(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0302".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_16(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0303".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_17(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0304".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_18(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0305".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_19(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0306".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_20(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0307".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_21(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0308".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_22(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0309".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_23(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0310".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_24(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0311".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_25(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0312".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_26(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0314".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_27(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0315".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_28(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0326".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_29(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0327".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_30(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-
-			}
-			list6.add(el);
-		}
-		else{
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			list6.add(el);
-		}
-		for (Map<String, Object> map : list2) {
-			Excel_list el=new Excel_list();
-			el.setV_0(map.get("sOrgName").toString());
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			if(list4.size()==0){
-				el.setV_1("0");
-				el.setV_1("0");
-				el.setV_2("0");
-				el.setV_3("0");
-				el.setV_4("0");
-				el.setV_5("0");
-				el.setV_6("0");
-				el.setV_7("0");
-				el.setV_8("0");
-				el.setV_9("0");
-				el.setV_10("0");
-				el.setV_11("0");
-				el.setV_12("0");
-				el.setV_13("0");
-				el.setV_14("0");
-				el.setV_15("0");
-				el.setV_16("0");
-				el.setV_17("0");
-				el.setV_18("0");
-				el.setV_19("0");
-				el.setV_20("0");
-				el.setV_21("0");
-				el.setV_22("0");
-				el.setV_23("0");
-				el.setV_24("0");
-				el.setV_25("0");
-				el.setV_26("0");
-				el.setV_27("0");
-				el.setV_28("0");
-				el.setV_29("0");
-				el.setV_30("0");
-			}
-			else{
-				for (int i = 0; i < list4.size(); i++) {
-					
-					if(map.get("iOrgID").toString().equals(list4.get(i).get("iOrgID").toString())){
-						
-						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_1(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_2(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_3(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_4(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_5(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_6(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_7(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_8(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_9(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_10(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_11(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_12(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_13(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_14(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_15(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_16(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_17(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_18(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_19(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_20(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_21(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_22(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_23(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_24(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_25(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_26(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_27(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_28(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_29(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_30(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-
-					}
-				}
-			}
-			list6.add(el);
-		}
+		List<Map<String, Object>> list=dbyhServer.selectxhbList1(zdxx);
+	
 		try {
-			JsonUtils.write(list6, getresponse().getWriter());
+			JsonUtils.write(list, getresponse().getWriter());
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-	public void export_xhb() throws Exception{
-		zdxx.setGydw(gydw);
-		zdxx.setNian(nian);
-		zdxx.setYue(yue);
-		List<Map<String, Object>> list1=dbyhServer.selectxhbList1();
-		List<Map<String, Object>> list2=dbyhServer.selectList2(zdxx);
-		
-		List<Zdxx> list3=dbyhServer.selectList3(zdxx);
-		String str="";
-		for (int i = 0; i < list3.size(); i++) {
-			if(i!=list3.size()-1){
-				str=str+"'"+list3.get(i).getId()+"',";
-			}
-			else{
-				str=str+"'"+list3.get(i).getId()+"'";
-			}
-		}
-		zdxx.setTiaojian("iOrgID in("+str+")");
-		List<Map<String, Object>> list4=dbyhServer.selectxhbList4(zdxx);
-		
-		List<Map<String, Object>> list5=dbyhServer.selectxhbList5(zdxx);
-		
-		List<Excel_list> list6=new ArrayList<Excel_list>();
-		
-		if(list5.size()>0){
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			for (Map<String, Object> map : list5) {
-				
-				if("0302".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_1(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0303".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_2(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0304".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_3(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0305".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_4(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0306".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_5(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0307".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_6(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0308".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_7(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0309".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_8(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0310".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_9(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0311".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_10(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0312".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_11(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0314".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_12(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0315".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_13(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0326".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_14(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0327".equals(map.get("sItemCode").toString())&&"1".equals(map.get("iType").toString()))
-					el.setV_15(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0302".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_16(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0303".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_17(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0304".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_18(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0305".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_19(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0306".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_20(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0307".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_21(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0308".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_22(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0309".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_23(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0310".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_24(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0311".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_25(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0312".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_26(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0314".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_27(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0315".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_28(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0326".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_29(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-				
-				if("0327".equals(map.get("sItemCode").toString())&&"2".equals(map.get("iType").toString()))
-					el.setV_30(map.get("mNums").toString().substring(0,map.get("mNums").toString().length()-2));
-
-			}
-			list6.add(el);
-		}
-		else{
-			Excel_list el=new Excel_list();
-			el.setV_0("合计");
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			list6.add(el);
-		}
-		for (Map<String, Object> map : list2) {
-			Excel_list el=new Excel_list();
-			el.setV_0(map.get("sOrgName").toString());
-			el.setV_1("0");
-			el.setV_2("0");
-			el.setV_3("0");
-			el.setV_4("0");
-			el.setV_5("0");
-			el.setV_6("0");
-			el.setV_7("0");
-			el.setV_8("0");
-			el.setV_9("0");
-			el.setV_10("0");
-			el.setV_11("0");
-			el.setV_12("0");
-			el.setV_13("0");
-			el.setV_14("0");
-			el.setV_15("0");
-			el.setV_16("0");
-			el.setV_17("0");
-			el.setV_18("0");
-			el.setV_19("0");
-			el.setV_20("0");
-			el.setV_21("0");
-			el.setV_22("0");
-			el.setV_23("0");
-			el.setV_24("0");
-			el.setV_25("0");
-			el.setV_26("0");
-			el.setV_27("0");
-			el.setV_28("0");
-			el.setV_29("0");
-			el.setV_30("0");
-			if(list4.size()==0){
-				el.setV_1("0");
-				el.setV_1("0");
-				el.setV_2("0");
-				el.setV_3("0");
-				el.setV_4("0");
-				el.setV_5("0");
-				el.setV_6("0");
-				el.setV_7("0");
-				el.setV_8("0");
-				el.setV_9("0");
-				el.setV_10("0");
-				el.setV_11("0");
-				el.setV_12("0");
-				el.setV_13("0");
-				el.setV_14("0");
-				el.setV_15("0");
-				el.setV_16("0");
-				el.setV_17("0");
-				el.setV_18("0");
-				el.setV_19("0");
-				el.setV_20("0");
-				el.setV_21("0");
-				el.setV_22("0");
-				el.setV_23("0");
-				el.setV_24("0");
-				el.setV_25("0");
-				el.setV_26("0");
-				el.setV_27("0");
-				el.setV_28("0");
-				el.setV_29("0");
-				el.setV_30("0");
-			}
-			else{
-				for (int i = 0; i < list4.size(); i++) {
-					
-					if(map.get("iOrgID").toString().equals(list4.get(i).get("iOrgID").toString())){
-						
-						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_1(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_2(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_3(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_4(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_5(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_6(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_7(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_8(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_9(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_10(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_11(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_12(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_13(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_14(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"1".equals(list4.get(i).get("iType").toString()))
-							el.setV_15(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0302".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_16(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0303".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_17(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0304".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_18(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0305".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_19(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0306".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_20(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0307".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_21(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0308".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_22(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0309".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_23(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0310".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_24(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0311".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_25(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0312".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_26(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0314".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_27(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0315".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_28(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0326".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_29(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-						
-						if("0327".equals(list4.get(i).get("sItemCode").toString())&&"2".equals(list4.get(i).get("iType").toString()))
-							el.setV_30(list4.get(i).get("mNums").toString().substring(0,list4.get(i).get("mNums").toString().length()-2));
-
-					}
-				}
-			}
-			list6.add(el);
-		}
-		
-		ExcelData eldata=new ExcelData();//创建一个类
-		eldata.setTitleName("公路养护小修保养机械材料消耗表");//设置第一行
-		eldata.setSheetName("消耗表");//设置sheeet名
-		eldata.setFileName(nian+"年"+yue+"月"+"公路养护小修保养机械材料消耗表");//设置文件名
-		eldata.setEl(list6);//将实体list放入类中
-		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-		et.add(new Excel_tilte("分局(道班名称)",1,2,0,0));
-		et.add(new Excel_tilte("备料",1,1,1,15));
-		et.add(new Excel_tilte("材料、燃料消耗",1,1,16,30));	
-		et.add(new Excel_tilte("砂(立方米)", 2, 2, 1, 1));
-		et.add(new Excel_tilte("石(立方米)", 2, 2, 2, 2));
-		et.add(new Excel_tilte("(黄土)包括天然料(立方米)", 2, 2, 3, 3));
-		et.add(new Excel_tilte("沥青(吨)", 2, 2, 4, 4));
-		et.add(new Excel_tilte("乳化沥青(吨)", 2, 2, 5, 5));
-		et.add(new Excel_tilte("水泥(吨)", 2, 2, 6, 6));
-		et.add(new Excel_tilte("嵌缝料(吨)", 2, 2, 7, 7));
-		et.add(new Excel_tilte("柴油(升)", 2, 2, 8, 8));
-		et.add(new Excel_tilte("汽油(升)", 2, 2, 9, 9));
-		et.add(new Excel_tilte("石灰(吨)", 2, 2, 10, 10));
-		et.add(new Excel_tilte("柴火(吨)", 2, 2, 11, 11));
-		et.add(new Excel_tilte("工业盐(吨)", 2, 2, 12, 12));
-		et.add(new Excel_tilte("草袋(只)", 2, 2, 13, 13));
-		et.add(new Excel_tilte("橡胶水(公斤)", 2, 2, 14, 14));
-		et.add(new Excel_tilte("冷补料", 2, 2, 15, 15));
-		et.add(new Excel_tilte("砂(立方米)", 2, 2, 16, 16));
-		et.add(new Excel_tilte("石(立方米)", 2, 2, 17, 17));
-		et.add(new Excel_tilte("(黄土)包括天然料(立方米)", 2, 2, 18, 18));
-		et.add(new Excel_tilte("沥青(吨)", 2, 2, 19, 19));
-		et.add(new Excel_tilte("乳化沥青(吨)", 2, 2, 20, 20));
-		et.add(new Excel_tilte("水泥(吨)", 2, 2, 21, 21));
-		et.add(new Excel_tilte("嵌缝料(吨)", 2, 2, 22, 22));
-		et.add(new Excel_tilte("柴油(升)", 2, 2, 23, 23));
-		et.add(new Excel_tilte("汽油(升)", 2, 2, 24, 24));
-		et.add(new Excel_tilte("石灰(吨)", 2, 2, 25, 28));
-		et.add(new Excel_tilte("橡胶水(公斤)", 2, 2, 29, 29));
-		et.add(new Excel_tilte("冷补料", 2, 2, 30, 30));		
-
-		eldata.setEt(et);//将表头内容设置到类里面
-		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
-
-	}
+	
 	public void selectFxbList(){
 		zdxx.setGydw(gydw);
 		zdxx.setNian(nian);
 		zdxx.setYue(yue);
 		List<Map<String, Object>> list1=dbyhServer.selectfxbList1(zdxx);
-		List<Excel_list> list2=new ArrayList<Excel_list>();
 		try{
-		for (int i = 0; i < list1.size(); i++) {
-			Excel_list eli=new Excel_list();
-			eli.setV_0("0.00");
-			eli.setV_1("0.00");
-			eli.setV_2("0.00");
-			eli.setV_3("0.00");
-			eli.setV_4("0.00");
-			eli.setV_5("0.00");
-			eli.setV_6("0.00");
-			eli.setV_7("0.00");
-			eli.setV_8("0.00");
-			eli.setV_9("0.00");
-			eli.setV_10("0.00");
-			eli.setV_11("0.00");
-			if(list1.get(i).get("OrgName")!=null){
-				eli.setV_0(list1.get(i).get("OrgName").toString());
-			}
-			if(list1.get(i).get("mSpace")!=null){
-				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
-			}
-			if(list1.get(i).get("LastGoodRate")!=null){
-				eli.setV_2(list1.get(i).get("LastGoodRate").toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("GoodRate")!=null){
-				eli.setV_3(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("CompGoodRate")!=null){
-				eli.setV_4(list1.get(i).get("CompGoodRate").toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("LastMQI")!=null){
-				eli.setV_5(list1.get(i).get("LastMQI").toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("MQI")!=null){
-				eli.setV_6(list1.get(i).get("MQI").toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
-			}
-			if(list1.get(i).get("CompMQI")!=null){
-				eli.setV_7(list1.get(i).get("CompMQI").toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("LastYlGoodRate")!=null){
-				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("YlGoodRate")!=null){
-				eli.setV_9(list1.get(i).get("YlGoodRate").toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("LastSnGoodRate")!=null){
-				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("SnGoodRate")!=null){
-				eli.setV_11(list1.get(i).get("SnGoodRate").toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
-			}
-			list2.add(eli);
-		}
-		JsonUtils.write(list2, getresponse().getWriter());
+		JsonUtils.write(list1, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
 	}
-	public void export_fxb() throws Exception{
-		zdxx.setGydw(gydw);
-		zdxx.setNian(nian);
-		zdxx.setYue(yue);
-		List<Map<String, Object>> list1=dbyhServer.selectfxbList1(zdxx);
-		List<Excel_list> list2=new ArrayList<Excel_list>();
-		try{
-		for (int i = 0; i < list1.size(); i++) {
-			Excel_list eli=new Excel_list();
-			eli.setV_0("0.00");
-			eli.setV_1("0.00");
-			eli.setV_2("0.00");
-			eli.setV_3("0.00");
-			eli.setV_4("0.00");
-			eli.setV_5("0.00");
-			eli.setV_6("0.00");
-			eli.setV_7("0.00");
-			eli.setV_8("0.00");
-			eli.setV_9("0.00");
-			eli.setV_10("0.00");
-			eli.setV_11("0.00");
-			if(list1.get(i).get("OrgName")!=null){
-				eli.setV_0(list1.get(i).get("OrgName").toString());
-			}
-			if(list1.get(i).get("mSpace")!=null){
-				eli.setV_1(list1.get(i).get("mSpace").toString().substring(0,list1.get(i).get("mSpace").toString().length()-2));
-			}
-			if(list1.get(i).get("LastGoodRate")!=null){
-				eli.setV_2(list1.get(i).get("LastGoodRate").toString().substring(0,list1.get(i).get("LastGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("GoodRate")!=null){
-				eli.setV_3(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("CompGoodRate")!=null){
-				eli.setV_4(list1.get(i).get("CompGoodRate").toString().substring(0,list1.get(i).get("CompGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("LastMQI")!=null){
-				eli.setV_5(list1.get(i).get("LastMQI").toString().substring(0,list1.get(i).get("LastMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("MQI")!=null){
-				eli.setV_6(list1.get(i).get("MQI").toString().substring(0,list1.get(i).get("MQI").toString().length()-2));
-			}
-			if(list1.get(i).get("CompMQI")!=null){
-				eli.setV_7(list1.get(i).get("CompMQI").toString().substring(0,list1.get(i).get("CompMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("LastYlGoodRate")!=null){
-				eli.setV_8(list1.get(i).get("LastYlGoodRate").toString().substring(0,list1.get(i).get("LastYlGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("YlGoodRate")!=null){
-				eli.setV_9(list1.get(i).get("YlGoodRate").toString().substring(0,list1.get(i).get("YlGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("LastSnGoodRate")!=null){
-				eli.setV_10(list1.get(i).get("LastSnGoodRate").toString().substring(0,list1.get(i).get("LastSnGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("SnGoodRate")!=null){
-				eli.setV_11(list1.get(i).get("SnGoodRate").toString().substring(0,list1.get(i).get("SnGoodRate").toString().length()-2));
-			}
-			list2.add(eli);
-		}
-		ExcelData eldata=new ExcelData();//创建一个类
-		eldata.setTitleName("公路管理月报分析表");//设置第一行
-		eldata.setSheetName("分析表");//设置sheeet名
-		eldata.setFileName(nian+"年"+yue+"月"+"公路管理月报分析表");//设置文件名
-		eldata.setEl(list2);//将实体list放入类中
-		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-		et.add(new Excel_tilte("分局(道班名称)",1,3,0,0));
-		et.add(new Excel_tilte("实际评定养护里程Km",1,3,1,1));
-		et.add(new Excel_tilte("本 月 路 况",1,1,2,7));	
-		et.add(new Excel_tilte("其 中", 1, 1, 8, 11));
-		et.add(new Excel_tilte("优良路率 %", 2, 2, 2, 4));
-		et.add(new Excel_tilte("MQI", 2, 2, 5, 7));
-		et.add(new Excel_tilte("油 路", 2, 2, 8, 9));
-		et.add(new Excel_tilte("水 泥 路", 2, 2, 10, 11));
-		et.add(new Excel_tilte("上月优良路率%", 3, 3, 2, 2));
-		et.add(new Excel_tilte("本月优良路率%", 3, 3, 3, 3));
-		et.add(new Excel_tilte("优良路率比上月↑↓", 3, 3, 4, 4));
-		et.add(new Excel_tilte("上月MQI", 3, 3, 5, 5));
-		et.add(new Excel_tilte("本月MQI", 3, 3, 6, 6));
-		et.add(new Excel_tilte("MQI比上月↑↓", 3, 3, 7, 7));
-		et.add(new Excel_tilte("上月优良路率%", 3, 3, 8, 8));
-		et.add(new Excel_tilte("本月优良路率%", 3, 3, 9, 9));
-		et.add(new Excel_tilte("上月优良路率%", 3, 3, 10, 10));
-		et.add(new Excel_tilte("本月优良路率%", 3, 3, 11, 11));
-
-		eldata.setEt(et);//将表头内容设置到类里面
-		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
-		Excel_export.excel_export(eldata,response);//将类和参数HttpServletResponse传入即可实现导出excel
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	}
+	
 	public void selectPdbList(){
 		zdxx.setGydw(gydw);
 		zdxx.setNian(nian);
 		zdxx.setYue(yue);
 		List<Map<String, Object>> list1=dbyhServer.selectPdbList(zdxx);
-		List<Excel_list> list2=new ArrayList<Excel_list>();
 		try{
-		for (int i = 0; i < list1.size(); i++) {
-			Excel_list eli=new Excel_list();
-			eli.setV_0("0.00");
-			eli.setV_1("0.00");
-			eli.setV_2("0.00");
-			eli.setV_3("0.00");
-			eli.setV_4("0.00");
-			eli.setV_5("0.00");
-			eli.setV_6("0.00");
-			eli.setV_7("0.00");
-			eli.setV_8("0.00");
-			eli.setV_9("0.00");
-			eli.setV_10("0.00");
-			eli.setV_11("0.00");
-			eli.setV_12("0.00");
-			eli.setV_13("0.00");
-			eli.setV_14("0.00");
-			eli.setV_15("0.00");
-			eli.setV_16("0.00");
-			eli.setV_17("0.00");
-			eli.setV_18("0.00");
-			eli.setV_19("0.00");
-			eli.setV_20("0.00");
-			eli.setV_21("0.00");
-			eli.setV_22("0.00");
-			eli.setV_23("0.00");
-			eli.setV_24("0.00");
-			eli.setV_25("0.00");
-			eli.setV_26("0.00");
-			eli.setV_27("0.00");
-			eli.setV_28("0.00");
-			eli.setV_29("0.00");
-			eli.setV_30("0.00");
-			if(list1.get(i).get("OrgName")!=null){
-				eli.setV_0(list1.get(i).get("OrgName").toString());
-			}
-			if(list1.get(i).get("YLSpace")!=null){
-				eli.setV_9(list1.get(i).get("YLSpace").toString().substring(0,list1.get(i).get("YLSpace").toString().length()-2));
-			}
-			if(list1.get(i).get("YLSpace1")!=null){
-				eli.setV_10(list1.get(i).get("YLSpace1").toString().substring(0,list1.get(i).get("YLSpace1").toString().length()-2));
-			}
-			if(list1.get(i).get("YLSpace2")!=null){
-				eli.setV_11(list1.get(i).get("YLSpace2").toString().substring(0,list1.get(i).get("YLSpace2").toString().length()-2));
-			}
-			if(list1.get(i).get("YLSpace3")!=null){
-				eli.setV_12(list1.get(i).get("YLSpace3").toString().substring(0,list1.get(i).get("YLSpace3").toString().length()-2));
-			}
-			if(list1.get(i).get("YLSpace4")!=null){
-				eli.setV_13(list1.get(i).get("YLSpace4").toString().substring(0,list1.get(i).get("YLSpace4").toString().length()-2));
-			}
-			if(list1.get(i).get("YLSpace5")!=null){
-				eli.setV_14(list1.get(i).get("YLSpace5").toString().substring(0,list1.get(i).get("YLSpace5").toString().length()-2));
-			}
-			if(list1.get(i).get("YLMQI")!=null){
-				eli.setV_15(list1.get(i).get("YLMQI").toString().substring(0,list1.get(i).get("YLMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("YLGoodRate")!=null){
-				eli.setV_16(list1.get(i).get("YLGoodRate").toString().substring(0,list1.get(i).get("YLGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace")!=null){
-				eli.setV_17(list1.get(i).get("SNSpace").toString().substring(0,list1.get(i).get("SNSpace").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace1")!=null){
-				eli.setV_18(list1.get(i).get("SNSpace1").toString().substring(0,list1.get(i).get("SNSpace1").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace2")!=null){
-				eli.setV_19(list1.get(i).get("SNSpace2").toString().substring(0,list1.get(i).get("SNSpace2").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace3")!=null){
-				eli.setV_20(list1.get(i).get("SNSpace3").toString().substring(0,list1.get(i).get("SNSpace3").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace4")!=null){
-				eli.setV_21(list1.get(i).get("SNSpace4").toString().substring(0,list1.get(i).get("SNSpace4").toString().length()-2));
-			}
-			if(list1.get(i).get("SNSpace5")!=null){
-				eli.setV_22(list1.get(i).get("SNSpace5").toString().substring(0,list1.get(i).get("SNSpace5").toString().length()-2));
-			}
-			if(list1.get(i).get("SNMQI")!=null){
-				eli.setV_23(list1.get(i).get("SNMQI").toString().substring(0,list1.get(i).get("SNMQI").toString().length()-2));
-			}
-			if(list1.get(i).get("snGoodRate")!=null){
-				eli.setV_24(list1.get(i).get("snGoodRate").toString().substring(0,list1.get(i).get("snGoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("WorkManZz")!=null){
-				eli.setV_25(list1.get(i).get("WorkManZz").toString().substring(0,list1.get(i).get("WorkManZz").toString().length()-2));
-			}
-			if(list1.get(i).get("WorkManLs")!=null){
-				eli.setV_26(list1.get(i).get("WorkManLs").toString().substring(0,list1.get(i).get("WorkManLs").toString().length()-2));
-			}
-			if(list1.get(i).get("WorkDay")!=null){
-				eli.setV_27(list1.get(i).get("WorkDay").toString().substring(0,list1.get(i).get("WorkDay").toString().length()-2));
-			}
-			if(list1.get(i).get("WorkDayRate")!=null){
-				eli.setV_28(list1.get(i).get("WorkDayRate").toString().substring(0,list1.get(i).get("WorkDayRate").toString().length()-2));
-			}
-			if(list1.get(i).get("TimeDay")!=null){
-				eli.setV_29(list1.get(i).get("TimeDay").toString().substring(0,list1.get(i).get("TimeDay").toString().length()-2));
-			}
-			if(list1.get(i).get("TimeDayRate")!=null){
-				eli.setV_30(list1.get(i).get("TimeDayRate").toString().substring(0,list1.get(i).get("TimeDayRate").toString().length()-2));
-			}
-			eli.setV_1(new   BigDecimal(Double.parseDouble(eli.getV_9())+Double.parseDouble(eli.getV_17())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_2(new   BigDecimal(Double.parseDouble(eli.getV_10())+Double.parseDouble(eli.getV_18())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_3(new   BigDecimal(Double.parseDouble(eli.getV_11())+Double.parseDouble(eli.getV_19())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_4(new   BigDecimal(Double.parseDouble(eli.getV_12())+Double.parseDouble(eli.getV_20())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_5(new   BigDecimal(Double.parseDouble(eli.getV_13())+Double.parseDouble(eli.getV_21())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_6(new   BigDecimal(Double.parseDouble(eli.getV_14())+Double.parseDouble(eli.getV_22())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_7(new   BigDecimal(Double.parseDouble(eli.getV_15())+Double.parseDouble(eli.getV_23())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			eli.setV_8(new   BigDecimal(Double.parseDouble(eli.getV_16())+Double.parseDouble(eli.getV_24())).setScale(2,BigDecimal.ROUND_HALF_UP)+"");
-			list2.add(eli);
-		}
-		JsonUtils.write(list2, getresponse().getWriter());
+		JsonUtils.write(list1, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -2340,70 +914,9 @@ public class DbyhController extends BaseActionSupport{
 		zdxx.setNian(nian);
 		zdxx.setYue(yue);
 		List<Map<String, Object>> list1=dbyhServer.selectYlbList(zdxx);
-		List<Excel_list> list2=new ArrayList<Excel_list>();
 		try{
-		for (int i = 0; i < list1.size(); i++) {
-			Excel_list eli=new Excel_list();
-			eli.setV_0("");
-			eli.setV_1("");
-			eli.setV_2("");
-			eli.setV_3("");
-			eli.setV_4("");
-			eli.setV_5("");
-			eli.setV_6("");
-			eli.setV_7("");
-			eli.setV_8("");
-			eli.setV_9("");
-			eli.setV_10("");
-			eli.setV_11("");
-			eli.setV_12("");
-			eli.setV_13("");
-			
-			if(list1.get(i).get("LineCode")!=null){
-				eli.setV_0(list1.get(i).get("LineCode").toString());
-			}
-			if(list1.get(i).get("LineName")!=null){
-				eli.setV_1(list1.get(i).get("LineName").toString());
-			}
-			if(list1.get(i).get("OrgName")!=null){
-				eli.setV_2(list1.get(i).get("OrgName").toString());
-			}
-			if(list1.get(i).get("StartSpace")!=null){
-				eli.setV_3(list1.get(i).get("StartSpace").toString());
-			}
-			if(list1.get(i).get("EndSpace")!=null){
-				eli.setV_4(list1.get(i).get("EndSpace").toString());
-			}
-			if(list1.get(i).get("RoadTotal")!=null){
-				eli.setV_5(list1.get(i).get("RoadTotal").toString().substring(0,list1.get(i).get("RoadTotal").toString().length()-2));
-			}
-			if(list1.get(i).get("Space1")!=null){
-				eli.setV_6(list1.get(i).get("Space1").toString().substring(0,list1.get(i).get("Space1").toString().length()-2));
-			}
-			if(list1.get(i).get("Space2")!=null){
-				eli.setV_7(list1.get(i).get("Space2").toString().substring(0,list1.get(i).get("Space2").toString().length()-2));
-			}
-			if(list1.get(i).get("Space3")!=null){
-				eli.setV_8(list1.get(i).get("Space3").toString().substring(0,list1.get(i).get("Space3").toString().length()-2));
-			}
-			if(list1.get(i).get("Space4")!=null){
-				eli.setV_9(list1.get(i).get("Space4").toString().substring(0,list1.get(i).get("Space4").toString().length()-2));
-			}
-			if(list1.get(i).get("Space5")!=null){
-				eli.setV_10(list1.get(i).get("Space5").toString().substring(0,list1.get(i).get("Space5").toString().length()-2));
-			}
-			if(list1.get(i).get("GoodRate")!=null){
-				eli.setV_11(list1.get(i).get("GoodRate").toString().substring(0,list1.get(i).get("GoodRate").toString().length()-2));
-			}
-			if(list1.get(i).get("MQITotal")!=null){
-				eli.setV_12(list1.get(i).get("MQITotal").toString().substring(0,list1.get(i).get("MQITotal").toString().length()-2));
-			}
-			if(list1.get(i).get("LineIndex")!=null){
-				eli.setV_13(list1.get(i).get("LineIndex").toString().substring(0,list1.get(i).get("LineIndex").toString().length()-2));
-			}
-			list2.add(eli);
-		}
-		JsonUtils.write(list2, getresponse().getWriter());
+		
+		JsonUtils.write(list1, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -2508,6 +1021,393 @@ public class DbyhController extends BaseActionSupport{
 		}
 		
 	}
+	//重做
+	public void insertYBBData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(3,41,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			int num=1;
+			
+			String niany=data.get(data.size()-1).get("1").toString();
+			//验证是否为时间
+			try{
+				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+				d.parse(niany);
+				//System.out.println(d);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
+				e.printStackTrace();
+				return;
+			}
+			//验证是否存在
+			List<Map<String,Object>> l=dbyhServer.selectybbbyYf(niany.substring(0,7));
+			//System.out.println(l.size()+"长度");
+			if(l.size()>0){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期重复\r");
+				return;
+			}
+			//System.out.println(niany);
+			for (int i = 0; i < data.size()-1; i++) {
+				String s = UUID.randomUUID().toString(); 
+				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+				data.get(i).put("id", s1);data.get(i).put("xh", num+"");
+				data.get(i).put("ybyf", niany.substring(0,7));
+				num++;
+			}
+			data.remove(data.size()-1);
+			boolean sfcg=true;
+			
+			sfcg=dbyhServer.insertYBBData(data);
+			
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
+	public void delete_ybb(){
+		System.out.println(nian+"-"+yue);
+		List<Map<String,Object>> l=dbyhServer.selectybbbyYf(nian+"-"+yue);
+		boolean flag=false;
+		if(l.size()>0){
+			flag = dbyhServer.delete_ybb(nian+"-"+yue);
+		}
+		if(flag){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void insertXHBData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(3,31,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			int num=1;
+			
+			String niany=data.get(data.size()-1).get("1").toString();
+			//验证是否为时间
+			try{
+				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+				d.parse(niany);
+				//System.out.println(d);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
+				e.printStackTrace();
+				return;
+			}
+			//验证是否存在
+			List<Map<String,Object>> l=dbyhServer.selectxhbbyYf(niany.substring(0,7));
+			//System.out.println(l.size()+"长度");
+			if(l.size()>0){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期重复\r");
+				return;
+			}
+			//System.out.println(niany);
+			for (int i = 0; i < data.size()-1; i++) {
+				String s = UUID.randomUUID().toString(); 
+				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+				data.get(i).put("id", s1);data.get(i).put("xh", num+"");
+				data.get(i).put("ybyf", niany.substring(0,7).toString());
+				num++;
+			}
+			data.remove(data.size()-1);
+			boolean sfcg=true;
+			for (Map map : data) {
+				System.out.println(map);
+			}
+			sfcg=dbyhServer.insertXHBData(data);
+			
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void delete_xhb(){
+		System.out.println(nian+"-"+yue);
+		List<Map<String,Object>> l=dbyhServer.selectxhbbyYf(nian+"-"+yue);
+		boolean flag=false;
+		if(l.size()>0){
+			flag = dbyhServer.delete_xhb(nian+"-"+yue);
+		}
+		if(flag){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void insertFXBData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(4,12,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			int num=1;
+			
+			String niany=data.get(data.size()-1).get("1").toString();
+			//验证是否为时间
+			try{
+				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+				d.parse(niany);
+				//System.out.println(d);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
+				e.printStackTrace();
+				return;
+			}
+			//验证是否存在
+			List<Map<String,Object>> l=dbyhServer.selectfxbbyYf(niany.substring(0,7));
+			//System.out.println(l.size()+"长度");
+			if(l.size()>0){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期重复\r");
+				return;
+			}
+			//System.out.println(niany);
+			for (int i = 0; i < data.size()-1; i++) {
+				String s = UUID.randomUUID().toString(); 
+				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+				data.get(i).put("id", s1);data.get(i).put("xh", num+"");
+				data.get(i).put("ybyf", niany.substring(0,7).toString());
+				num++;
+			}
+			data.remove(data.size()-1);
+			boolean sfcg=true;
+			for (Map map : data) {
+				System.out.println(map);
+			}
+			sfcg=dbyhServer.insertFXBData(data);
+			
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void delete_fxb(){
+		System.out.println(nian+"-"+yue);
+		List<Map<String,Object>> l=dbyhServer.selectfxbbyYf(nian+"-"+yue);
+		boolean flag=false;
+		if(l.size()>0){
+			flag = dbyhServer.delete_fxb(nian+"-"+yue);
+		}
+		if(flag){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void insertPDBData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(4,31,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			int num=1;
+			
+			String niany=data.get(data.size()-1).get("1").toString();
+			//验证是否为时间
+			try{
+				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+				d.parse(niany);
+				//System.out.println(d);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
+				e.printStackTrace();
+				return;
+			}
+			//验证是否存在
+			List<Map<String,Object>> l=dbyhServer.selectpdbbyYf(niany.substring(0,7));
+			//System.out.println(l.size()+"长度");
+			if(l.size()>0){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期重复\r");
+				return;
+			}
+			//System.out.println(niany);
+			for (int i = 0; i < data.size()-1; i++) {
+				String s = UUID.randomUUID().toString(); 
+				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+				data.get(i).put("id", s1);data.get(i).put("xh", num+"");
+				data.get(i).put("ybyf", niany.substring(0,7).toString());
+				num++;
+			}
+			data.remove(data.size()-1);
+			boolean sfcg=true;
+			for (Map map : data) {
+				System.out.println(map);
+			}
+			sfcg=dbyhServer.insertPDBData(data);
+			
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void delete_pdb(){
+		System.out.println(nian+"-"+yue);
+		List<Map<String,Object>> l=dbyhServer.selectpdbbyYf(nian+"-"+yue);
+		boolean flag=false;
+		if(l.size()>0){
+			flag = dbyhServer.delete_pdb(nian+"-"+yue);
+		}
+		if(flag){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	//
+	public void insertYLBData(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(3,14,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			int num=1;
+			
+			String niany=data.get(data.size()-1).get("1").toString();
+			//验证是否为时间
+			try{
+				SimpleDateFormat d=new SimpleDateFormat("yyyy-MM-dd");
+				d.parse(niany);
+				//System.out.println(d);
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期不为日期");
+				e.printStackTrace();
+				return;
+			}
+			//验证是否存在
+			List<Map<String,Object>> l=dbyhServer.selectylbbyYf(niany.substring(0,7));
+			//System.out.println(l.size()+"长度");
+			if(l.size()>0){
+				response.getWriter().print(fileuploadFileName+"导入失败，填报日期重复\r");
+				return;
+			}
+			//System.out.println(niany);
+			for (int i = 0; i < data.size()-1; i++) {
+				String s = UUID.randomUUID().toString(); 
+				String s1 = s.substring(0,8)+s.substring(9,13)+s.substring(14,18)+s.substring(19,23)+s.substring(24);
+				data.get(i).put("id", s1);data.get(i).put("xh", num+"");
+				data.get(i).put("ybyf", niany.substring(0,7).toString());
+				num++;
+			}
+			data.remove(data.size()-1);
+			boolean sfcg=true;
+			for (Map map : data) {
+				System.out.println(map);
+			}
+			sfcg=dbyhServer.insertYLBData(data);
+			
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void delete_ylb(){
+		System.out.println(nian+"-"+yue);
+		List<Map<String,Object>> l=dbyhServer.selectylbbyYf(nian+"-"+yue);
+		boolean flag=false;
+		if(l.size()>0){
+			flag = dbyhServer.delete_ylb(nian+"-"+yue);
+		}
+		if(flag){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }
 

@@ -38,7 +38,6 @@
 					$('#jhid').val(data.id);
 					$('#sckid').val(data.sckid);
 					$('#editjhnf').combobox('select',data.sbnf);
-					alert(data.sbnf);
 					$('#jhkgsj').datebox('setValue',data.jhkgsj);
 					$('#jhwgsj').datebox('setValue',data.jhkgsj);
 					$('#jhxdsj').datebox('setValue',data.jhkgsj);

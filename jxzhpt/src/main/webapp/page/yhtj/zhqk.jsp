@@ -95,7 +95,7 @@ $(function(){
 						<input type="text" id="jssj"/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-search" onclick="showAll()">查询</a>
- 						<a id="yhgl_btn_search" href="javascript:void(0)" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="zhqkadd()">添加</a>
+ 						<a id="yhgl_btn_add" href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="zhqkadd()">添加</a>
  					</p>
  			</fieldset>
       </td>

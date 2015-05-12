@@ -6,6 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>灾害防治详细</title>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
 	<div id="zhfz_xx" style="text-align: left;font-size: 12px;width:100%;">
@@ -421,12 +424,6 @@
 					<div id="divPlan"></div>
 				</td>
 			</tr>
-			<tr style="height: 30px;">
-            	<td align="center" colspan="6">
-                	<img onclick="closeWindow('zhfz_xx')" alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " />
-                	<input type="hidden" id="jhid"/>
-                </td>
-            </tr>
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -524,7 +521,7 @@
 		success:function(data){
 			if(data.length>0){
 				$.each(data,function(index,jh){
-					var a='<a style="color:#0066CB;font-size:12px;">';
+					var a='<a href="javascript:onclickXx('+"'"+jh.remarks+"','"+jh.id+"'"+')" style="color:#0066CB;font-size:12px;">';
 					a+=jh.jhnf+'年,'+jh.xmmc+'【';
 					$.each(jh.plan_lx_gcsjs,function(index,lx){
 						a+=lx.lxbm+'('+lx.qdzh+'-'+lx.zdzh+')';

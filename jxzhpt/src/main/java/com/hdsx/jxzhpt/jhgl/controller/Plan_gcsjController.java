@@ -15,17 +15,23 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import jsx3.gui.Interactive;
+
 import org.apache.struts2.ServletActionContext;
+import org.apache.xerces.impl.xpath.regex.Match;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
@@ -50,6 +56,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
 	private String tbbmbm2;
+	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
 	private String gydwdm;
@@ -125,9 +132,12 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void queryGcsjList(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
 		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
+		System.out.println("管养单位："+lx.getGydwdm());
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
@@ -139,6 +149,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void queryGcsjSum(){
 		try {
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(gcsjServer.queryGcsjSum(jh,lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -199,6 +211,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void exportExcel_gcsj(){
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
 		List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
 		for(Plan_gcsj item : queryGcsjList){
@@ -314,9 +328,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 				map.put("tbsj", new Date());
 				map.put("1", map.get("1").toString().substring(0, map.get("1").toString().indexOf(".")));
 				String xzqh = map.get("1").toString();
-				if(xzqh.matches("^36[0-9][1-9]00$") || xzqh.matches("^36[1-9][0-9]00$")){
+				if(xzqh.matches("^[0-9]{5}36[0-9][1-9]00$") || xzqh.matches("^[0-9]{5}36[1-9][0-9]00$")){
 					map.put("jh_sbthcd", 2);
-				}else if(xzqh.matches("^36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^36[0-9]{2}[1-9][0-9]$")){
+				}else if(xzqh.matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || xzqh.matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$")){
 					map.put("jh_sbthcd", 0);
 				}
 				map.put("20", map.get("20").toString().substring(0, map.get("20").toString().indexOf(".")));
@@ -357,31 +371,31 @@ public class Plan_gcsjController extends BaseActionSupport{
 						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
 						lx.setTsdqbm(gcsjServer.queryTsdqByXzqh(lx.getXzqhdm()));
-						//设置非路网项目的查询条件
-						Plan_flwbzbz flw=new Plan_flwbzbz();
-						flw.setXmlx("工程改造路面升级");//建设项目类型
-						flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
-						flw.setJsdj(lx.getYjsdj());//技术等级
-						flw.setTsdq(lx.getTsdqbm());
-						Plan_flwbzbz flwResult=gcsjServer.queryBzzj(flw);
-						Integer bzzj=null;//对应补助标准金额
-						if(flwResult==null && defaultFlwje==null){
-							flw.setXmlx(null);
-							flw.setGldj(null);
-							flw.setJsdj(null);
-							flw.setTsdq(null);
-							flwResult=gcsjServer.queryBzzj(flw);
-						}
-						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
-						//验证金额
-						Double xmlc=new Double(map.get("12").toString());
-						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
-						Integer pfztz=new Integer(map.get("45").toString());
-						System.out.println("计算结果："+je+"  项目里程："+xmlc+"   补助金额："+bzzj);
-						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
-						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
-							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
-						}
+						//设置非路网项目的查询条件，注释，因为没有统一补助标准
+//						Plan_flwbzbz flw=new Plan_flwbzbz();
+//						flw.setXmlx("工程改造路面升级");//建设项目类型
+//						flw.setGldj(lx.getLxbm().substring(0, 1));//公路等级
+//						flw.setJsdj(lx.getYjsdj());//技术等级
+//						flw.setTsdq(lx.getTsdqbm());
+//						Plan_flwbzbz flwResult=gcsjServer.queryBzzj(flw);
+//						Integer bzzj=null;//对应补助标准金额
+//						if(flwResult==null && defaultFlwje==null){
+//							flw.setXmlx(null);
+//							flw.setGldj(null);
+//							flw.setJsdj(null);
+//							flw.setTsdq(null);
+//							flwResult=gcsjServer.queryBzzj(flw);
+//						}
+//						bzzj = flwResult==null ? new Integer(defaultFlwje.getBzzj()) : new Integer(flwResult.getBzzj());
+//						//验证金额
+//						Double xmlc=new Double(map.get("12").toString());
+//						double je=new Double(Math.rint(xmlc.doubleValue()*bzzj.intValue())).doubleValue();
+//						Integer pfztz=new Integer(map.get("45").toString());
+//						System.out.println("计算结果："+je+"  项目里程："+xmlc+"   补助金额："+bzzj);
+//						int fdbz=new Integer(flwResult.getFdbz()).intValue();//浮动标准
+//						if(!(pfztz.intValue()>=je-fdbz) || !(pfztz.intValue()<=je+fdbz)){
+//							strVerify+="<br/>批复总投资不在计算结果的范围内<br/>";
+//						}
 					}
 				}else{
 					strVerify="路线【"+map.get("4").toString()+"】【"+map.get("7").toString()+"-"+map.get("8").toString()+"】已经存在计划！";
@@ -408,12 +422,18 @@ public class Plan_gcsjController extends BaseActionSupport{
 	public void insertGcsj() throws IOException, Exception{
 		Map<String, String> result=new HashMap<String, String>();
 		String strResult="false";
+		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+			jh.setJh_sbthcd("2");
+		}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
+			jh.setJh_sbthcd("0");
+		}
 		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
 		lx1.setXzqhdm(lx.getXzqhdm());
 		lx1.setLxbm(lx.getLxbm());
 		lx1.setQdzh(lx.getQdzh());
 		lx1.setZdzh(lx.getZdzh());
 		lx1.setGydwdm(lx.getGydwdm());
+		lx1.setYjsdj(lx.getYjsdj());
 		lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
 		//查询是否有此计划
 		if(gcsjServer.queryJhExist(lx1)==0){
@@ -422,8 +442,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
 				jh.setSfylsjl("否");
-				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
 				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
+				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
 				if(lxresult && jhresult){
 					strResult="true";
 				}
@@ -470,18 +490,59 @@ public class Plan_gcsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 查询路线历史记录
+	 */
 	public void queryXjls(){
-		List<Plan_gcsj> ls=gcsjServer.queryXjls(lx);
 		try {
-			System.out.println("纪录个数："+ls.size());
+			List<Plan_lx_gcsj> ls=gcsjServer.queryXjls(lx);
+			System.out.println("个数："+ls.size());
 			JsonUtils.write(ls, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 路线升级单次添加提醒
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public void sjAutoCompleteLxbm() throws IOException, Exception{
 		List<Plan_lx_gcsj> list=gcsjServer.sjAutoCompleteLxbm(lx);
 		JsonUtils.write(list, getresponse().getWriter());
+	}
+	/**
+	 * 查询路线升降级记录
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	public void querySjzh() throws IOException, Exception{
+		List<Plan_lx_gcsj> list=gcsjServer.querySjzh(lx);
+		JsonUtils.write(list, getresponse().getWriter());
+	}
+	public String gydwOrxzqhBm(String bh,String name){
+		if(bh.indexOf(",")==-1){
+			int i=0;
+			if(bh.matches("^[0-9]*[1-9]00$")){
+				i=2;
+			}else if(bh.matches("^[0-9]*[1-9]0000$")){
+				i=4;
+			}
+			bh=bh.substring(0,bh.length()-i);
+		}
+		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+	}
+	public void editZj() throws IOException, Exception{
+		String Strresult="false";
+		jh.setPftz(new Integer(new Integer(jh.getPftz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
+		jh.setJhsybbzje(new Integer(new Integer(jh.getJhsybbzje()).intValue()+new Integer(zjzj.getBbzje()).intValue()).toString());
+		jh.setJhsydfzczj(new Integer(new Integer(jh.getJhsydfzczj()).intValue()+new Integer(zjzj.getStz()).intValue()).toString());
+		if(gcsjServer.editZjById(jh) && zjxdServer.insertZjzj(zjzj)){
+			Strresult="true";
+		}
+		Map<String, String> result=new HashMap<String, String>();
+		result.put("result", Strresult);
+		JsonUtils.write(result, getresponse().getWriter());
 	}
 	//set get
 	public int getPage() {
@@ -565,5 +626,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public Plan_zjzj getZjzj() {
+		return zjzj;
+	}
+	public void setZjzj(Plan_zjzj zjzj) {
+		this.zjzj = zjzj;
 	}
 }

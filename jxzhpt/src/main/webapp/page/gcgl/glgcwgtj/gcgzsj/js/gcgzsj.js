@@ -16,8 +16,8 @@ function closes(str){
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',700,450);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,450);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
@@ -29,12 +29,19 @@ function ybsb(index){
 
 function showAll(){
 	var xmnf=$("#ddlYear").val();
-	var gydw1=$("#gydw").combotree("getValues");
-	if(gydw1.length==0){
-		gydw1str=$.cookie("unit2");
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
 	}else{
-		gydw1str=gydw1.join(',');
+		gydwstr= gydw.join(',');
 	}
+
 	var jgzt='1';
 	var kgzt='1';
 	var lxmc=$("#lxmc").val();
@@ -49,7 +56,7 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydw1str,
+	    	gydw: gydwstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,

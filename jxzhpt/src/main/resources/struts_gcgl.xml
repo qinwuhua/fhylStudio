@@ -224,6 +224,7 @@
 	<action name="insertMbgl" class="gcglaqybController" method="insertMbgl"/>
 	<action name="insertMbgl1" class="gcglaqybController" method="insertMbgl1"/>
 	<action name="selectmbgllist" class="gcglaqybController" method="selectmbgllist"/>
+	<action name="selectmbgllist1" class="gcglaqybController" method="selectmbgllist1"/>
 	<action name="downMbglFile" class="gcglaqybController" method="downMbglFile"/>
 	<action name="deleteMbgl" class="gcglaqybController" method="deleteMbgl"/>
 	

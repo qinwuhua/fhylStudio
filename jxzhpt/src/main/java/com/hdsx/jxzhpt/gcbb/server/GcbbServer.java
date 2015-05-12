@@ -31,7 +31,7 @@ public interface GcbbServer {
 	 * @param xmbb
 	 * @return
 	 */
-	List<GcsjJd> selYhdzxJdbb(Xmbb xmbb);
+	List<GcgjJd> selYhdzxJdbb(Xmbb xmbb);
 	/**
 	 * 月报非路网项目第5个报表
 	 * @param xmbb

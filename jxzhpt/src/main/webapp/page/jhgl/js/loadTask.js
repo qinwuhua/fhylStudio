@@ -1,3 +1,19 @@
+function openZjzjWindow(id,url){
+	YMLib.Var.id=id;
+	YMLib.Var.url=url;
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.UI.createWindow('zjzjadd','资金追加',"/jxzhpt/page/jhgl/zjxd/zjzj.jsp",'zjzjadd',500,300);
+}
+function closeWindow2(id){
+	parent.$('#'+id).window("destroy");
+}
+function isNumber(txt){
+	var reg = new RegExp("^[0-9]*$");
+	if(!reg.test($(txt).val())){
+		alert("此处请输入数字！");
+		$(txt).focus();
+	}
+}
 /**
  * 管养单位下拉框
  * @param id
@@ -5,12 +21,53 @@
 function gydwComboxTree(id){
 	loadUnit(id,$.cookie("unit"));
 }
+function getgydw(id){
+	var result="";
+	var gydws = $("#"+id).combotree("getValues");
+	if(gydws.length==0){
+		result=$.cookie("unit2");
+	}else{
+		result=gydws.join(',');
+	}
+	return result;
+}
+function getxzqhdm(id){
+	var result="";
+	var xzqhs = $("#"+id).combotree("getValues");
+	if(xzqhs.length==0){
+		result=$.cookie("dist2");
+	}else{
+		result=xzqhs.join(',');
+	}
+	return result;
+}
 function radioChecked(name,value){
 	$.each($("input[name='"+name+"']"),function(index,item){
 		if($(item).val()==value){
 			$(item).attr('checked','true');
 		}
 	});
+}
+function onclickXx(xmlx,id){
+	var url="/jxzhpt/page/jhgl/jhkxx/";
+	if(xmlx=="路面改建")
+		url+="gclmgj.jsp";
+	else if(xmlx=="路面升级")
+		url+="gclmsj.jsp";
+	else if(xmlx=="水毁项目")
+		url+="shxm.jsp";
+	else if(xmlx=="养护大中修")
+		url+="yhdzx.jsp";
+	else if(xmlx=="安保工程")
+		url+="abgc.jsp";
+	else if(xmlx=="灾害防治")
+		url+="zhfz.jsp";
+	else if(xmlx=="危桥改造"){
+		url+="wqgz.jsp";
+	}
+	parent.YMLib.Var.jhbm=id;
+	parent.YMLib.Var.bz="xx";
+	parent.YMLib.UI.createWindow('xmxx_xx',xmlx,url,'xmxx',1000,500);
 }
 function sbnf(id){
 	var myDate = new Date();

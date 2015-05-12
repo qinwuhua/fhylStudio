@@ -23,6 +23,7 @@
 		loadXzqh("xzqhmc",$.cookie("dist"));
 		sbnf("editjhnf");
 		autoCompleteLXBM();
+		sfsqablbz("否");
 	});
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/jhgl/sjAutoCompleteLxbm.do";
@@ -102,15 +103,15 @@
 	}
 	
 	function insert(){
-		if($('#qdzh').val()<$('#spqdzh').html()){
+		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
 		}
-		if($('#zdzh').val()>$('#spzdzh').html()){
+		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
 			alert("止点桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
-		if($('#qzlc').val()>$('#xmlc').val()){
+		if(Number($('#qzlc').val())<Number($('#xmlc').val())){
 			alert("项目里程不能大于起止里程！");
 			return;
 		}
@@ -147,7 +148,7 @@
 				if(data.result=="true"){
 					alert("添加成功！");
 					parent.$("#grdab").datagrid('reload');
-					$('#add_lmsj').window('destroy');
+					parent.$('#add_lmsj').window('destroy');
 				}else if(data.result=="have"){
 					alert("此路线以存在！");
 				}else if(data.result=="none"){
@@ -157,11 +158,11 @@
 		});
 	}
 	function jisuanlc(t){
-		if($('#qdzh').val()<$('#spqdzh').html()){
+		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
 		}
-		if($('#zdzh').val()>$('#spzdzh').html()){
+		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
 			alert("起点桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
@@ -174,6 +175,13 @@
 			$(t).focus();
 		}
 	}
+	function sfsqablbz(value){
+		if(value=="是"){
+			$('#ablbzsqwh').removeAttr("disabled");
+		}else if(value=="否"){
+			$('#ablbzsqwh').attr("disabled","disabled");
+		}
+	}
 	</script>
 </head>
 <body style="font-size: 12px;">
@@ -182,7 +190,7 @@
 			border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安保工程项目路线信息
+					路面改造路面升级项目路线信息
 				</td>
 			</tr>
 			<tr style="height: 25px;">
@@ -302,7 +310,7 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					安保工程项目计划审核信息
+					路面改造路面升级项目计划审核信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -387,13 +395,13 @@
 					工程唯一编码
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmwybh" style="width: 150px;"/>
+					<input type="text" id="xmwybh" style="width: 120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					项目名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmmc" style="width: 150px;"/>
+					<input type="text" id="xmmc" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -401,19 +409,19 @@
 					设计单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sjdw" style="width:150px;"/>
+					<input type="text" id="sjdw" style="width:120px;"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					设计批复单位
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sjpfdw" style="width:150px;"/>
+					<input type="text" id="sjpfdw" style="width:120px;"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设技术标准
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="jsjsbz" style="width:150px;"/>
+					<input type="text" id="jsjsbz" style="width:120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -528,8 +536,8 @@
 					是否申请按比例补助
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="radio" id="sfsqablbz0" name="sfsqablbz" value="是"/>是
-					<input type="radio" id="sfsqablbz1" checked="checked" name="sfsqablbz" value="否"/>否
+					<input type="radio" id="sfsqablbz0" onchange="sfsqablbz('是')" name="sfsqablbz" value="是"/>是
+					<input type="radio" id="sfsqablbz1" onchange="sfsqablbz('否')" checked="checked" name="sfsqablbz" value="否"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号

@@ -155,4 +155,10 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	List<Plan_lx_shuih> shAutoCompleteLxbm(Plan_lx_shuih lx);
+	/**
+	 * 修改计划资金
+	 * @param jh
+	 * @return
+	 */
+	boolean editZjById(Plan_shuih jh);
 }

@@ -207,7 +207,8 @@
 					是否申请按比例补助
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sfsqablbz" style="width: 100px;"/> &nbsp;
+					<input type="radio" id="sfsqablbz0" name="sfsqablbz" value="是"/>是
+					<input type="radio" id="sfsqablbz1" name="sfsqablbz" value="否"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号
@@ -219,7 +220,8 @@
 					是否提前实施
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="sftqss" style="width: 100px;"/>
+					<input type="radio" id="sftqss0" name="sftqss" value="是"/>是
+					<input type="radio" id="sftqss1" name="sftqss" value="否"/>否
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -247,7 +249,8 @@
 					是否归口市局养护部门
 				</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<input type="text" id="sfgyhbm" style="width: 100px;"/>&nbsp;
+					<input type="radio" id="sfgyhbm0" name="sfgyhbm" value="是"/>是
+					<input type="radio" id="sfgyhbm1" name="sfgyhbm" value="否"/>否
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -290,6 +293,7 @@
 	</div>
 	<script type="text/javascript">
 	sbnf("editsbnf");
+	loadBmbm2('yhlb','养护类别');
 	var xxId=parent.YMLib.Var.jhbm;
 	//准备上传工可报告
 	$("#uploadGk").uploadify({
@@ -372,7 +376,7 @@
 			$('#jhwgsj').datebox('setValue',data.jhwgsj);
 			$('#xdsj').datebox('setValue',data.xdsj);
 			$('#xmmc').val(data.xmmc);
-			$('#yhlb').val(data.yhlb);
+			$('#yhlb').combobox('select',data.yhlb);
 			$('#sjdw').val(data.sjdw);
 			$('#sjpfdw').val(data.sjpfdw);
 			$('#sjlmlx').val(data.sjlmlx);
@@ -385,13 +389,16 @@
 			$('#pfztz').val(data.pfztz);
 			$('#jhsybzje').val(data.jhsybzje);
 			$('#jhsydfzcje').val(data.jhsydfzcje);
-			$('#sfsqablbz').val(data.sfsqablbz);
+			radioChecked("sfsqablbz",data.sfsqablbz);
+			if(data.sfsqablbz=="否"){
+				$('#ablbzsqwh').attr("disabled",'true');
+			}
 			$('#ablbzsqwh').val(data.ablbzsqwh);
-			$('#sftqss').val(data.sftqss);
+			radioChecked("sftqss",data.sftqss);
 			$('#jhxdwh').val(data.jhxdwh);
 			$('#gksjwh').val(data.gksjwh);
 			$('#sjpfwh').val(data.sjpfwh);
-			$('#sfgyhbm').val(data.sfgyhbm);
+			radioChecked("sfgyhbm",data.sfgyhbm);
 			$('#gksjwh').val(data.gksjwh);
 			$('#bz').val(data.bz);
 			if(data.gkbgmc!=null && data.gkbgmc!=''){

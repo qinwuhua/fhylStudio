@@ -124,4 +124,10 @@ public interface Plan_abgcServer {
 	TreeNode queryGcktj2(String xzqhdm, String nf);
 
 	List<Plan_abgc> queryAbgcList(Plan_abgc jh, Jckabgc lx);
+	/**
+	 * 安保工程资金追加
+	 * @param jh
+	 * @return
+	 */
+	boolean editZjById(Plan_abgc jh);
 }
