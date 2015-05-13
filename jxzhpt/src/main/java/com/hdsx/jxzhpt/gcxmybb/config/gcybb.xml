@@ -595,16 +595,16 @@
 	<select id="getwqgzbblist1" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			'总计' qlmc,' ' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
+			' ' xjgjnd,' ' sl,' ' wl,decode(sum(bnhj),null,' ',sum(bnhj)) bnhj,decode(sum(bnbtz),null,' ',sum(bnbtz)) bnbtz,decode(sum(bnstz),null,' ',sum(bnstz)) bnstz,
+			decode(sum(byhj),null,' ',sum(byhj)) byhj,decode(sum(bybtz),null,' ',sum(bybtz)) bybtz,decode(sum(bystz),null,' ',sum(bystz)) bystz,decode(sum(yyhj),null,' ',sum(yyhj)) yyhj,decode(sum(yybtz),null,' ',sum(yybtz)) yybtz,decode(sum(yystz),null,' ',sum(yystz)) yystz,decode(sum(kghj),null,' ',sum(kghj)) kghj,decode(sum(kgbtz),null,' ',sum(kgbtz)) kgbtz,decode(sum(kgstz),null,' ',sum(kgstz)) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr
 		from
 			(select
         xm.qlmc,xm.qlbh qldm,xm.qlzxzh,xm.lxbm,xm.lxmc,xm.jsdj,sc.scqlqc qlqc,xm.kjzc,xm.dkzdkj,sc.scqlqk qlqk,xm.sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
         xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,zj1.bnhj,zj1.bnbtz,zj1.bnstz,
-        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
+        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk,decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0) zgjqk,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
         to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
       from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
       (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
@@ -640,9 +640,9 @@
 			(select
         xm.qlmc,xm.qlbh qldm,xm.qlzxzh,xm.lxbm,xm.lxmc,xm.jsdj,sc.scqlqc qlqc,xm.kjzc,xm.dkzdkj,sc.scqlqk qlqk,xm.sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
         xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,zj1.bnhj,zj1.bnbtz,zj1.bnstz,
-        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
+        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk,decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0) zgjqk,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
         to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
       from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
       (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
@@ -679,9 +679,9 @@
 			(select
         xm.qlmc,xm.qlbh qldm,xm.qlzxzh,xm.lxbm,xm.lxmc,xm.jsdj,sc.scqlqc qlqc,xm.kjzc,xm.dkzdkj,sc.scqlqk qlqk,xm.sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
         xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,zj1.bnhj,zj1.bnbtz,zj1.bnstz,
-        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
+        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk,decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
+        decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0) zgjqk,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
         to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
       from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
       (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
@@ -714,10 +714,10 @@
 		from
 			(select
         xm.qlmc,xm.qlbh qldm,xm.qlzxzh,xm.lxbm,xm.lxmc,xm.jsdj,sc.scqlqc qlqc,xm.kjzc,xm.dkzdkj,sc.scqlqk qlqk,xm.sbjgxs,decode(xm.akjfl,'大桥','大桥',' ') dq,decode(xm.akjfl,'大桥',' ','中桥') zq,
-        xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,zj1.bnhj,zj1.bnbtz,zj1.bnstz,
-        jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,decode(substr(sc.jsxz,0,2),'加固'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yyjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yygjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz2.yyhj/zj1.bnhj,4)*100,0) yycjqk,decode(substr(sc.jsxz,0,2),'加固'，round(jz3.kghj/p.pfztz,4)*100,0) zjgqk,
-        decode(substr(sc.jsxz,0,2),'改建'，round(jz3.kghj/p.pfztz,4)*100,0) zgjqk，decode(substr(sc.jsxz,-2),'重建'，round(jz3.kghj/p.pfztz,4)*100,0) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
+        xm.xjgjnd,decode(xm.pddj,'四类','四类',' ') sl,decode(xm.pddj,'五类','五类',' ') wl,decode(zj1.bnhj,null,0,zj1.bnhj) bnhj,decode(zj1.bnbtz,null,0,zj1.bnbtz) bnbtz,decode(zj1.bnstz,null,0,zj1.bnstz) bnstz,
+        decode(jz1.byhj,null,0,jz1.byhj) byhj,decode(jz1.bybtz,null,0,jz1.bybtz) bybtz,decode(jz1.bystz,null,0,jz1.bystz) bystz,decode(jz2.yyhj,null,0,jz2.yyhj) yyhj,decode(jz2.yybtz,null,0,jz2.yybtz) yybtz,decode(jz2.yystz,null,0,jz2.yystz) yystz,decode(jz3.kghj,null,0,jz3.kghj) kghj,decode(jz3.kgbtz,null,0,jz3.kgbtz) kgbtz,decode(jz3.kgstz,null,0,jz3.kgstz) kgstz,decode(decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'加固',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yyjgqk,
+        decode(decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'改建',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yygjqk,decode(decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0),null,0,decode(substr(sc.jsxz,-2),'重建',round(jz2.yyhj/zj1.bnhj,4)*100,0)) yycjqk,decode(decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'加固',round(jz3.kghj/p.pfztz,4)*100,0)) zjgqk,
+        decode(decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,0,2),'改建',round(jz3.kghj/p.pfztz,4)*100,0)) zgjqk,decode(decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0),null,0,decode(substr(sc.jsxz,-2),'重建',round(jz3.kghj/p.pfztz,4)*100,0)) zcjqk,sc.jsxz,to_char(p.jhkgsj,'yyyy') jhkgn,
         to_char(p.jhwgsj,'yyyy') jhwgn,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,xm.qlmc||'('||xm.qlzxzh||')' xmmc
       from xmk_wqgz xm,sck_wqgz sc,plan_wqgz p,
       (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
@@ -747,10 +747,10 @@
 	<select id="getabgcbblist1" parameterType="gcglabgc" resultType="hashmap">
 		select
 			 ' ' lxmc,'总计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
-			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
-			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr
+			' ' xjgjnd,decode(sum(bnhj),null,0,sum(bnhj)) bnhj,decode(sum(bnbtz),null,0,sum(bnbtz)) bnbtz,decode(sum(bnstz),null,0,sum(bnstz)) bnstz,
+			' ' yhlx,' ' jsxz,decode(sum(jhc),null,0,sum(jhc)) jhc,decode(sum(jhgl),null,0,sum(jhgl)) jhgl,' ' jhkgn,' ' jhwgn,decode(sum(bywcc),null,0,sum(bywcc)) bywcc,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcc),null,0,sum(yywcc)) yywcc,decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcc),null,0,sum(kgwcc)) kgwcc,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
+			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr
 		from(
         select
           xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
@@ -785,10 +785,10 @@
 	<select id="getabgcbblist2" parameterType="gcglabgc" resultType="hashmap">
 		select
 			 ' ' lxmc,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
-			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
-			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
+			' ' xjgjnd,decode(sum(bnhj),null,0,sum(bnhj)) bnhj,decode(sum(bnbtz),null,0,sum(bnbtz)) bnbtz,decode(sum(bnstz),null,0,sum(bnstz)) bnstz,
+			' ' yhlx,' ' jsxz,decode(sum(jhc),null,0,sum(jhc)) jhc,decode(sum(jhgl),null,0,sum(jhgl)) jhgl,' ' jhkgn,' ' jhwgn,decode(sum(bywcc),null,0,sum(bywcc)) bywcc,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcc),null,0,sum(yywcc)) yywcc,decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcc),null,0,sum(kgwcc)) kgwcc,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
+			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from(
         select
           xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
@@ -824,10 +824,10 @@
 	<select id="getabgcbblist3" parameterType="gcglabgc" resultType="hashmap">
 		select
 			 ' ' lxmc,xdnf||'年项目' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
-			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(jhc) jhc,sum(jhgl) jhgl,' ' jhkgn,' ' jhwgn,sum(bywcc) bywcc,sum(bywcgl) bywcgl,
-			sum(yywcc) yywcc,sum(yywcgl) yywcgl,sum(kgwcc) kgwcc,sum(kgwcgl) kgwcgl,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
+			' ' xjgjnd,decode(sum(bnhj),null,0,sum(bnhj)) bnhj,decode(sum(bnbtz),null,0,sum(bnbtz)) bnbtz,decode(sum(bnstz),null,0,sum(bnstz)) bnstz,
+			' ' yhlx,' ' jsxz,decode(sum(jhc),null,0,sum(jhc)) jhc,decode(sum(jhgl),null,0,sum(jhgl)) jhgl,' ' jhkgn,' ' jhwgn,decode(sum(bywcc),null,0,sum(bywcc)) bywcc,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcc),null,0,sum(yywcc)) yywcc,decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcc),null,0,sum(kgwcc)) kgwcc,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
+			decode(sum(byhj),null,0,sum(byhj)) byhj,decode(sum(bybtz),null,0,sum(bybtz)) bybtz,decode(sum(bystz),null,0,sum(bystz)) bystz,decode(sum(yyhj),null,0,sum(yyhj)) yyhj,decode(sum(yybtz),null,0,sum(yybtz)) yybtz,decode(sum(yystz),null,0,sum(yystz)) yystz, decode(sum(kghj),null,0,sum(kghj)) kghj,decode(sum(kgbtz),null,0,sum(kgbtz)) kgbtz,decode(sum(kgstz),null,0,sum(kgstz)) kgstz,' ' jsnr,substr(xzqhdm,0,4) xzqh,xdnf
 		from(
         select
           xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
@@ -865,9 +865,9 @@
 			substr(xzqhdm,0,4) xzqh,tt.*
 		from(
         select
-          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,p.jhwc_c jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
-          to_char(p.jhwgsj,'yyyy') jhwgn,jz1.bywcc,jz1.bywcgl,jz2.yywcc,jz2.yywcgl,jz3.kgwcc,jz3.kgwcgl,
-          jz1.byhj,jz1.bybtz,jz1.bystz,jz2.yyhj,jz2.yybtz,jz2.yystz,jz3.kghj,jz3.kgbtz,jz3.kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
+          xm.lxbm,xm.lxmc,xm.qdzh,xm.zdzh,xm.lxjsdj jsdj,xm.gjxjnd xjgjnd,zj1.bnhj,zj1.bnbtz,zj1.bnstz,xm.yhnr yhlx,sc.jsxz,decode(p.jhwc_c,null,0,p.jhwc_c) jhc,sc.scyhlc jhgl,to_char(p.jhkgsj,'yyyy') jhkgn,
+          to_char(p.jhwgsj,'yyyy') jhwgn,decode(jz1.bywcc,null,0,jz1.bywcc) bywcc,decode(jz1.bywcgl,null,0,jz1.bywcgl) bywcgl,decode(jz2.yywcc,null,0,jz2.yywcc) yywcc,decode(jz2.yywcgl,null,0,jz2.yywcgl) yywcgl,decode(jz3.kgwcc,null,0,jz3.kgwcc) kgwcc,decode(jz3.kgwcgl,null,0,jz3.kgwcgl) kgwcgl,
+          decode(jz1.byhj,null,0,jz1.byhj) byhj,decode(jz1.bybtz,null,0,jz1.bybtz) bybtz,decode(jz1.bystz,null,0,jz1.bystz) bystz,decode(jz2.yyhj,null,0,jz2.yyhj) yyhj,decode(jz2.yybtz,null,0,jz2.yybtz) yybtz,decode(jz2.yystz,null,0,jz2.yystz) yystz,decode(jz3.kghj,null,0,jz3.kghj) kghj,decode(jz3.kgbtz,null,0,jz3.kgbtz) kgbtz,decode(jz3.kgstz,null,0,jz3.kgstz) kgstz,sc.jsnr,zj1.xdnf,zj1.xmid,xm.gydwbm gydw,xm.xzqhmc,xm.xzqhdm,
           xm.lxmc||'('||xm.qdzh||','||xm.zdzh||')' xmmc
         from xmk_abgc xm,sck_abgc sc,plan_abgc p,
         (select sum(zj.xdzj) bnhj,sum(zj.btzzj) bnbtz,sum(zj.stz) bnstz,avg(zj.xdnf) xdnf,zj.xmid from plan_zjxd zj where zj.xdnf=#{xmnf} group by zj.xmid) zj1,
@@ -899,8 +899,8 @@
 		select
 			' ' lxmc,'总计' lxbm,' ' qdzh,' ' zdzh,' ' jsdj,
 			' ' xjgjnd,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			' ' yhlx,' ' jsxz,sum(bywcgl) bywcgl,
-			sum(yywcgl) yywcgl,sum(kgwcgl) kgwcgl,
+			' ' yhlx,' ' jsxz,decode(sum(bywcgl),null,0,sum(bywcgl)) bywcgl,
+			decode(sum(yywcgl),null,0,sum(yywcgl)) yywcgl,decode(sum(kgwcgl),null,0,sum(kgwcgl)) kgwcgl,
 			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' jsnr
 		from  (
 		      select
