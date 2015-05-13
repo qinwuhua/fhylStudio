@@ -151,9 +151,9 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 				
 				//导出设置
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("路网结构改造建设计划汇总表（分国省）");//设置第一行
-				eldata.setSheetName("路网结构改造建设计划汇总表");//设置sheeet名
-				eldata.setFileName("路网结构改造建设计划汇总表");//设置文件名
+				eldata.setTitleName("路网结构改造工程进展情况");//设置第一行
+				eldata.setSheetName("路网结构改造工程进展情况");//设置sheeet名
+				eldata.setFileName("路网结构改造工程进展情况");//设置文件名
 				eldata.setEl1(list);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("项目",1,3,0,1));
