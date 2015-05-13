@@ -137,9 +137,6 @@ public class Plan_gcsjController extends BaseActionSupport{
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
 		List<Plan_gcsj> list = gcsjServer.queryGcsjList(page,rows,jh,lx);
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
-		for (Plan_gcsj item : list) {
-			System.out.println(item.getId()+"路线个数："+item.getPlan_lx_gcsjs().size());
-		}
 		jsonMap.put("rows", list);
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
