@@ -532,4 +532,14 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	public boolean updateFdbzByXmlx(Plan_flwbzbz flwbzbz) {
 		return update("updateFdbzByXmlx", flwbzbz)>0;
 	}
+
+	@Override
+	public List<Param> checkJsCfByName(Param param) {
+		return queryList("checkJsCfByName", param);
+	}
+
+	@Override
+	public List<Param> selJsUsedById(Param param) {
+		return queryList("selJsUsedById", param);
+	}
 }
