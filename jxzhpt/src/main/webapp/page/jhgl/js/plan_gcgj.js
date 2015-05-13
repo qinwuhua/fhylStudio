@@ -56,6 +56,15 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/edit/gclmgj.jsp",'gclmgj_xx',1000,500);
 }
+function dingwei(lxbms){
+	alert(lxbms);
+	var l = lxbms.split(',');
+	alert(l.length);
+	for(var i=0;i<l.length;i++){
+		locationXm(l[i]);
+		alert(l[i]);
+	}
+}
 /**
  * 工程路面改建列表信息
  * @param jh 计划库条件
@@ -73,7 +82,15 @@ function gclmgjxm(jh,lx){
 		    {field:'ck',checkbox:true},
 		    {field : 'c',title : '操作',width : 150,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		var result='<a style="text-decoration:none;color:#3399CC;">定位<a>    ';
+		    		var lxbms="";
+		    		for(var i=0;i<row.plan_lx_gcgjs.length;i++){
+		    			if(i==row.plan_lx_gcgjs.length-1){
+		    				lxbms+=row.plan_lx_gcgjs[i].lxbm;
+		    			}else{
+		    				lxbms+=row.plan_lx_gcgjs[i].lxbm+",";
+		    			}
+		    		}
+		    		var result='<a href="javascript:dingwei('+"'"+lxbms+"'"+')" style="text-decoration:none;color:#3399CC;">定位<a>    ';
 		    		result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 		    		if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 		    			result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
@@ -107,7 +124,7 @@ function gclmgjxm(jh,lx){
 		    },
 		    {field : 'id',title : '添加路线',width : 80,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a href="javascript:openZjzjWindow('+"'grid','editGjZj'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
 		    	}
 		    },
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
@@ -392,8 +409,12 @@ function dropGcgj(id,readLoad){
 		});
 }
 function dropGcgjs(){
+	var sel=gridObj.datagrid("getSelections");
+	if(sel.length==0){
+		alert("请选择要删除的计划！");
+		return;
+	}
 	if(confirm("确认要移除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
 			if(index==sel.length-1){

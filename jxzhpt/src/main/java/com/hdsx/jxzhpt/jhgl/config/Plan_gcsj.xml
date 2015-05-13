@@ -74,10 +74,10 @@
 		<result property="jsnr" column="jsnr"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="sfylsjl" column="sfylsjl"/>
-		<collection property="plan_lx_gcsjs" column="jhid" ofType="plan_lx_gcsj" javaType="ArrayList"  resultMap="gcsj_lx"/>
+		<collection property="plan_lx_gcsjs" column="jhid" javaType="ArrayList" ofType="plan_lx_gcsj" resultMap="gcsj_lx"/>
 	</resultMap>
 	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
-		<id property="id" column="id" />
+		<result property="jhid" column="jhid" />
 		<result property="lxmc" column="lxmc"/>
 		<result property="qzlc" column="qzlc"/>
 		<result property="xmlc" column="xmlc"/>
@@ -104,8 +104,6 @@
 		<result property="scbz" column="scbz"/>
 		<result property="scbmbm" column="scbmbm"/>
 		<result property="bz" column="bz"/>
-		<result property="jhid" column="jhid"/>
-		
 		<result property="qdmc" column="qdmc"/>
 		<result property="zdmc" column="zdmc"/>
 		<result property="lyllqk" column="lyllqk"/>
@@ -305,11 +303,8 @@
 			group by jh.id)
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
-		select jh.id,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
-		lx.qdmc,lx.zdmc,lx.lyllqk,lx.dlqlbm,lx.dlqlzxzh,jh.fapgdw,jh.fascdw,jh.faspsj,jh.spwh,jh.tzgs,jh.jsxz,jh.jsnr,
-		jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.jhxdwh,jh.xmwybh,jh.xmmc,jh.sjdw,jh.sjpfdw,jh.jsjsbz,jh.ql,jh.ql_m,
-		jh.sd,jh.sd_m,jh.hd,jh.ljtsf,jh.dc,jh.jc,jh.lqlm,jh.snlm,jh.gjhjsdj,jh.sftqss,jh.pfwh,jh.pfsj,jh.pftz,
-		jh.jhsybbzje,jh.jhsydfzczj,jh.jhxdwh,jh.sfsqablbz,jh.ablbzsqwh,jh.gksjwh,jh.sjpfwh,jh.gkbgmc,jh.sjsgtmc,jh.remarks
+		select jh.*,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
+		lx.qdmc,lx.zdmc,lx.lyllqk,lx.dlqlbm,lx.dlqlzxzh
 		from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id where jh.id=#{id}
 	</select>
 	<select id="querySumMessage" resultMap="gcsj_jh">
@@ -323,12 +318,38 @@
 		delete from plan_gcsj jh where jh.id=#{id}
 	</delete>
 	<update id="editGcsjById" parameterType="plan_gcsj">
-		update plan_gcsj set jhnf=#{jhnf},jhkgsj=#{jhkgsj},jhwgsj=#{jhwgsj},xdsj=#{xdsj},
-		xmwybh=#{xmwybh},xmmc=#{xmmc},sjdw=#{sjdw},sjpfdw=#{sjpfdw},jsjsbz=#{jsjsbz},ql=#{ql},ql_m=#{ql_m},
-		sd=#{sd},sd_m=#{sd_m},hd=#{hd},ljtsf=#{ljtsf},dc=#{dc},jc=#{jc},lqlm=#{lqlm},snlm=#{snlm},
-		gjhjsdj=#{gjhjsdj},sftqss=#{sftqss},pfwh=#{pfwh},pfsj=#{pfsj},pftz=#{pftz},jhsybbzje=#{jhsybbzje},
-		jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
-		gksjwh=#{gksjwh},sjpfwh=#{sjpfwh},remarks=#{remarks}
+		update plan_gcsj set jhnf=#{jhnf}
+		<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null and jhwgsj !=''">,jhwgsj=#{jhwgsj}</if>
+		<if test="xdsj!=null and xdsj !=''">,xdsj=#{xdsj}</if>
+		<if test="pfsj!=null and pfsj !=''">,pfsj=#{pfsj}</if>
+		<if test="xmwybh!=null">,xmwybh=#{xmwybh}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+		<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+		<if test="jsjsbz!=null">,jsjsbz=#{jsjsbz}</if>
+		<if test="ql!=null">,ql=#{ql}</if>
+		<if test="ql_m!=null">,ql_m=#{ql_m}</if>
+		<if test="sd!=null">,sd=#{sd}</if>
+		<if test="sd_m!=null">,sd_m=#{sd_m}</if>
+		<if test="hd!=null">,hd=#{hd}</if>
+		<if test="ljtsf!=null">,ljtsf=#{ljtsf}</if>
+		<if test="dc!=null">,dc=#{dc}</if>
+		<if test="jc!=null">,jc=#{jc}</if>
+		<if test="lqlm!=null">,lqlm=#{lqlm}</if>
+		<if test="snlm!=null">,snlm=#{snlm}</if>
+		<if test="gjhjsdj!=null">,gjhjsdj=#{gjhjsdj}</if>
+		<if test="sftqss!=null">,sftqss=#{sftqss}</if>
+		<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+		<if test="pftz!=null">,pftz=#{pftz}</if>
+		<if test="jhsybbzje!=null">,jhsybbzje=#{jhsybbzje}</if>
+		<if test="jhsydfzczj!=null">,jhsydfzczj=#{jhsydfzczj}</if>
+		<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+		<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+		<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+		<if test="gksjwh!=null">,gksjwh=#{gksjwh}</if>
+		<if test="sjpfwh!=null">,sjpfwh=#{sjpfwh}</if>
+		<if test="remarks!=null">,remarks=#{remarks}</if>
 		where id=#{id}
 	</update>
 	<update id="editGcsjStatus" parameterType="plan_gcsj">
@@ -653,16 +674,48 @@
 		and lx.xzqhdm like #{xzqhdm} order by jh.id) r
 	</select>
 	<insert id="insertGcsj" parameterType="plan_lx_gcsj">
-		insert into plan_lx_gcsj (id,jhid,gydw,gydwdm,
-			xzqhdm,xzqhmc,lxbm,lxmc,
-			yjsdj,bhnr,qdzh,qdmc,
-			zdzh,zdmc,qzlc,xmlc,
-			TBSJ,TBBMBH,lyllqk,dlqlbm,dlqlzxzh,sfxz)
-		values(sys_guid(),#{jhid},#{gydw},(select id from XTGL_DEPARTMENT t where t.name = #{gydw}),
-			#{xzqhdm},#{xzqhmc},#{lxbm},#{lxmc},
-			#{yjsdj},#{bhnr},#{qdzh},#{qdmc},
-			#{zdzh},#{zdmc},#{qzlc},#{xmlc},
-			to_date(#{tbsj},'yyyy-mm-dd'),#{gydwdm},#{lyllqk},#{dlqlbm},#{dlqlzxzh},#{sfxz})
+		insert into plan_lx_gcsj (id,jhid
+			<if test="gydw!=null">,gydw</if>
+			<if test="gydwdm!=null">,gydwdm</if>
+			<if test="xzqhdm!=null">,xzqhdm</if>
+			<if test="xzqhmc!=null">,xzqhmc</if>
+			<if test="lxbm!=null">,lxbm</if>
+			<if test="lxmc!=null">,lxmc</if>
+			<if test="yjsdj!=null">,yjsdj</if>
+			<if test="bhnr!=null">,bhnr</if>
+			<if test="qdzh!=null">,qdzh</if>
+			<if test="qdmc!=null">,qdmc</if>
+			<if test="zdzh!=null">,zdzh</if>
+			<if test="zdmc!=null">,zdmc</if>
+			<if test="qzlc!=null">,qzlc</if>
+			<if test="xmlc!=null">,xmlc</if>
+			<if test="tbsj!=null">,TBSJ</if>
+			<if test="tbbmbh!=null">,TBBMBH</if>
+			<if test="lyllqk!=null">,lyllqk</if>
+			<if test="dlqlbm!=null">,dlqlbm</if>
+			<if test="dlqlzxzh!=null">,dlqlzxzh</if>
+			<if test="sfxz!=null">,sfxz</if>)
+		values(sys_guid(),#{jhid}
+			<if test="gydw!=null">,#{gydw}</if>
+			<if test="gydwdm!=null">,#{gydwdm}</if>
+			<if test="xzqhdm!=null">,#{xzqhdm}</if>
+			<if test="xzqhmc!=null">,#{xzqhmc}</if>
+			<if test="lxbm!=null">,#{lxbm}</if>
+			<if test="lxmc!=null">,#{lxmc}</if>
+			<if test="yjsdj!=null">,#{yjsdj}</if>
+			<if test="bhnr!=null">,#{bhnr}</if>
+			<if test="qdzh!=null">,#{qdzh}</if>
+			<if test="qdmc!=null">,#{qdmc}</if>
+			<if test="zdzh!=null">,#{zdzh}</if>
+			<if test="zdmc!=null">,#{zdmc}</if>
+			<if test="qzlc!=null">,#{qzlc}</if>
+			<if test="xmlc!=null">,#{xmlc}</if>
+			<if test="tbsj!=null">,to_date(#{tbsj},'yyyy-mm-dd')</if>
+			<if test="tbbmbh!=null">,#{gydwdm}</if>
+			<if test="lyllqk!=null">,#{lyllqk}</if>
+			<if test="dlqlbm!=null">,#{dlqlbm}</if>
+			<if test="dlqlzxzh!=null">,#{dlqlzxzh}</if>
+			<if test="sfxz!=null">,#{sfxz}</if>)
 	</insert>
 	<insert id="insertGcsjJh" parameterType="plan_gcsj">
 		insert into plan_gcsj (id,

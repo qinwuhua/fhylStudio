@@ -135,9 +135,12 @@ public class Plan_gcsjController extends BaseActionSupport{
 		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		Map<String, Object> jsonMap=new HashMap<String, Object>();
+		List<Plan_gcsj> list = gcsjServer.queryGcsjList(page,rows,jh,lx);
 		jsonMap.put("total", gcsjServer.queryGcsjCount(jh,lx));
-		jsonMap.put("rows", gcsjServer.queryGcsjList(page,rows,jh,lx));
-		System.out.println("管养单位："+lx.getGydwdm());
+		for (Plan_gcsj item : list) {
+			System.out.println(item.getId()+"路线个数："+item.getPlan_lx_gcsjs().size());
+		}
+		jsonMap.put("rows", list);
 		try {
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
@@ -159,7 +162,10 @@ public class Plan_gcsjController extends BaseActionSupport{
 	
 	public void queryGcsjById(){
 		try {
-			JsonUtils.write(gcsjServer.queryGcsjById(jh.getId()), getresponse().getWriter());
+			Plan_gcsj gcsj = gcsjServer.queryGcsjById(jh.getId());
+			System.out.println("下达时间："+gcsj.getXdsj());
+			System.out.println("计划开工："+gcsj.getJhkgsj());
+			JsonUtils.write(gcsj, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -463,11 +469,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 			lx1.setZdzh(lx.getZdzh());
 			lx1.setGydwdm(lx.getGydwdm());
 			lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
+			lx1.setYjsdj(lx.getYjsdj());
 			//查询是否有此计划
 			if(gcsjServer.queryJhExist(lx1)==0){
 				if(gcsjServer.queryGPSBylxbm(lx1)!=null){
 					UUID jhId = UUID.randomUUID(); 
-					lx.setJhid(jhId.toString());
 					jh.setId(jhId.toString());
 					jh.setSfylsjl("否");
 					boolean lxresult = gcsjServer.insertGcsj_lx(lx);

@@ -98,6 +98,10 @@
 		function sbList(){
 			var isOk=true;
 			var selList=gridObj.datagrid('getSelections');
+			if(selList.length==0){
+				alert("请选择要上报的计划！");
+				return;
+			}
 			$.each(selList,function(index,item){
 				if(item.jh_sbthcd>4)
 					isOk=false;

@@ -465,8 +465,12 @@ function dropYhdzx(id){
 	});
 }
 function dropYhdzxs(){
+	var grid =$('#grid').datagrid('getSelections');
+	if(grid.length==0){
+		alert("请选择要删除的计划！");
+		return;
+	}
 	if(confirm("确定要移除所选中的计划?移除后不能回复，如有需要请重新添加！")){
-		var grid =$('#grid').datagrid('getSelections');
 		var id="";
 		$.each(grid,function(index,item){
 				if(index==grid.length-1){

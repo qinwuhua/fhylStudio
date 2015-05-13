@@ -70,6 +70,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 			gcgj.setLxbm(lx.getLxbm());
 			gcgj.setQdzh(lx.getQdzh());
 			gcgj.setZdzh(lx.getZdzh());
+			gcgj.setXzqhdm(lx.getXzqhdm());
 			//此处的Jhid存储的是 “上报年份”，因为路线表中无年份字段，为了省去计划对象的参数
 			gcgj.setJhid(jh.getSbnf());
 			gcgj.setGydwdm(lx.getGydwdm());
@@ -79,10 +80,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 					gcgjServer.insertPlan_lx_Gcgj(lx);
 					
 				}else{
-					result.put("msg", "项目库中不包含此路线信息");
+					strResult="none";
 				}
 			}else{
-				result.put("msg", "此计划中已经包含有此路线信息");
+				strResult="have";
 			}
 			result.put("result", strResult);
 			JsonUtils.write(result, getresponse().getWriter());

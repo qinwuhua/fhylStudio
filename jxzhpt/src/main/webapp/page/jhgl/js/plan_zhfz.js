@@ -433,8 +433,12 @@ function dropZhfz(id,readLoad){
 		});
 }
 function dropZhfzs(){
+	var sel=gridObj.datagrid("getSelections");
+	if(sel.length==0){
+		alert("请选择要删除的计划！");
+		return;
+	}
 	if(confirm("确认要移除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
 		var id="",sckid="";
 		$.each(sel,function(index,item){
 			if(index==sel.length-1){

@@ -70,6 +70,7 @@
 					$('#jhkgsj').html(data.jhkgsj);
 					$('#jhwgsj').html(data.jhwgsj);
 					$('#xdsj').html(data.xdsj);
+					$('#xmwybm').html(data.xmwybh);
 					$('#xmmc').html(data.xmmc);
 					$('#yhlb').html(data.yhlb);
 					$('#sjdw').html(data.sjdw);
@@ -94,12 +95,14 @@
 					$('#jhsybbzje').html(data.jhsybbzje);
 					$('#jhsysbzje').html(data.jhsysbzje);
 					$('#sfsqablbz').html(data.sfsqablbz);
+					if(data.sfsqablbz=="是")
+						$('#ablbzwh').html(data.ablbzsqwh);
 					$('#sftqss').html(data.sftqss);
 					$('#jhxdwh').html(data.jhxdwh);
 					$('#gksjwh').html(data.gksjwh);
 					$('#sjpfwh').html(data.sjpfwh);
 					$('#sfgyhbm').html(data.sfgyhbm);
-					$('#gksjwh').html(data.gksjwh);
+					$('#gkpfwh').html(data.gksjwh);
 					$('#remarks').html(data.remarks);
 					if(data.gkbgmc!=null){
 						var mc="'"+data.gkbgmc+"'";

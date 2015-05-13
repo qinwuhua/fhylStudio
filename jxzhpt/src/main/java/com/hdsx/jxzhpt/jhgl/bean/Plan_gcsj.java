@@ -3,6 +3,8 @@ package com.hdsx.jxzhpt.jhgl.bean;
 import java.util.Date;
 import java.util.List;
 
+import com.ibm.icu.text.SimpleDateFormat;
+
 public class Plan_gcsj {
 	private String id;//唯一编码
 	private String jhnf;//计划年份
@@ -38,7 +40,7 @@ public class Plan_gcsj {
 	private String spbm;//审批部门
 	private Date spsj;//审批时间
 	private String xmwybh;//项目唯一编号(手填)
-	private String xdsj;//计划下达时间
+	private Date xdsj;//计划下达时间
 	private String gkbgmc;//工可报告附件名称
 	private byte[] gkbgwj;//工可报告附件路径
 	private String sjsgtmc;//设计施工图附件名称
@@ -324,10 +326,10 @@ public class Plan_gcsj {
 	public void setXmwybh(String xmwybh) {
 		this.xmwybh = xmwybh;
 	}
-	public String getXdsj() {
+	public Date getXdsj() {
 		return xdsj;
 	}
-	public void setXdsj(String xdsj) {
+	public void setXdsj(Date xdsj) {
 		this.xdsj = xdsj;
 	}
 	public String getGkbgmc() {
