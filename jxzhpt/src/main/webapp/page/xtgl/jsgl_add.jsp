@@ -26,7 +26,24 @@ function save(){
 		alert("请选择角色权限！");
 		return false;
 	}
-	param=$("#jsgl_form").serialize();
+	var param=$("#jsgl_form").serialize();
+	$.ajax({
+		 type : "POST",
+		 url : "../../xtgl/checkJsCfByName.do",
+		 dataType : 'json',
+		 data : param+"&param.source="+YMLib.Var.note,
+		 success : function(msg){
+			 if(msg.length>0){
+				 alert('该角色已存在！');
+			 }else{
+				 trueSave(param);
+			 }
+		 }
+	});
+	delete param;
+}
+
+function trueSave(param){
 	$.ajax({
 		 type : "POST",
 		 url : "../../xtgl/insertJs.do",
@@ -42,8 +59,8 @@ function save(){
 			 }
 		 }
 	});
-	delete param;
 }
+
 $(function(){
 	loadQx("source");
 	$("#jsgl_btn_Save").click(function(){

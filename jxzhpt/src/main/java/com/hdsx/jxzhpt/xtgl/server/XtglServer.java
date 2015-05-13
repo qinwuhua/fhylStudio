@@ -158,4 +158,8 @@ public interface XtglServer {
 	List<Plan_flwbzbz> queryFlwxmFdfw();
 	
 	boolean updateFdbzByXmlx(Plan_flwbzbz flwbzbz);
+
+	List<Param> checkJsCfByName(Param param);
+
+	List<Param> selJsUsedById(Param param);
 }

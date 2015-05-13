@@ -22,6 +22,8 @@
 	<action name="selectJsList" class="xtglController" method="selectJsList"></action>
 	<action name="insertJs" class="xtglController" method="insertJs"></action>
 	<action name="updateJs" class="xtglController" method="updateJs"></action>
+	<action name="checkJsCfByName" class="xtglController" method="checkJsCfByName"></action>
+	
 	
 	<action name="deleteJsById" class="xtglController" method="deleteJsById"></action>
 	<action name="selectDwList" class="xtglController" method="selectDwList"></action>
@@ -53,6 +55,8 @@
 	<action name="selAllQx2" class="xtglController" method="selAllQx2"></action>
 	<action name="selectJsById" class="xtglController" method="selectJsById"></action>
 	<action name="selQxByUser" class="xtglController" method="selQxByUser"></action>
+	<action name="selJsUsedById" class="xtglController" method="selJsUsedById"></action>
+	
 	
 	<action name="selAllBm" class="xtglController" method="selAllBm"></action>
 	<action name="selAllBm2" class="xtglController" method="selAllBm2"></action>

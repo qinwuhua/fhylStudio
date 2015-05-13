@@ -42,7 +42,21 @@ function deleteJs(_id){
 		}
 	});
 }
-
+function checkDeleteJs(_id){
+	$.ajax({
+		 type : "POST",
+		 url : "../../xtgl/selJsUsedById.do",
+		 dataType : 'json',
+		 data : 'param.roleid=' +_id,
+		 success : function(msg){
+			 if(msg.length>0){
+				  YMLib.Tools.Show('该角色正在被使用，不能删除！',3000);
+			 }else{
+			 	deleteJs(_id);
+			 }
+		 }
+	});
+}
 $(function(){
 	$("#jsgl_table").datagrid({
 		border:true,
@@ -97,7 +111,7 @@ $(function(){
 						_id+="','"+rows[i].roleid;
 					}
 					_id+="')";
-					deleteJs(_id);
+					checkDeleteJs(_id);
 				}
 			}
 		}]

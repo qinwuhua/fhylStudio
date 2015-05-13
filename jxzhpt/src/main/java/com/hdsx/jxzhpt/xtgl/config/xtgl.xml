@@ -306,4 +306,10 @@
 	<update id="updateFdbzByXmlx" parameterType="flwbzbz">
 		update plan_flwbzbz f set f.fdbz=#{fdbz} where f.xmlx=#{xmlx}
 	</update>
+	<select id="checkJsCfByName" parameterType="param" resultType="param">
+		select * from xtgl_role where rolename=#{rolename}
+	</select>
+	<select id="selJsUsedById" parameterType="param" resultType="param">
+		select * from xtgl_master where roleid in ${roleid}
+	</select>
 </mapper>

@@ -958,6 +958,26 @@ public class XtglController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), new Boolean(xtglServer.updateFdbzByXmlx(flwbzbz)).toString());
 	}
 	
+	public void checkJsCfByName(){
+		List<Param> l=xtglServer.checkJsCfByName(param);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void selJsUsedById(){
+		System.out.println(param.getRoleid());
+		List<Param> l=xtglServer.selJsUsedById(param);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
 	public String getYhdw() {
 		return yhdw;
 	}
