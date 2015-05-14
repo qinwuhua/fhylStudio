@@ -255,11 +255,13 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		attribute.put("7", "jhxdwh");//计划下达文号
 		attribute.put("8", "xmid");
 		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getTbbmdm());
 		List<Object> excelData = new ArrayList<Object>();
-		if(lx.getGydwdm().equals("36")){
-			lx.setGydwdm(null);
+		if(lx.getTbbmdm().equals("36")){
+			lx.setTbbmdm(null);
 		}
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_yhdzx item : yhdzxServer.queryYhdzxList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
 			String strLx="";

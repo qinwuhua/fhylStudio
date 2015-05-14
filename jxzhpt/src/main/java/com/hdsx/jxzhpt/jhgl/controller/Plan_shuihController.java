@@ -375,11 +375,13 @@ public class Plan_shuihController extends BaseActionSupport {
 		attribute.put("8", "jhxdwh");//计划下达文号
 		attribute.put("9", "xmid");
 		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwbm());
 		List<Object> excelData = new ArrayList<Object>();
-		if(lx.getGydwdm().equals("36")){
-			lx.setGydwdm(null);
+		if(lx.getGydwbm().equals("36")){
+			lx.setGydwbm(null);
 		}
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_shuih item : shuihServer.queryShuihList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
 			zjxd.setXmmc(item.getXmmc());

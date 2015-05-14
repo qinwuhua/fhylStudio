@@ -432,11 +432,13 @@ public class Plan_gcgjController extends BaseActionSupport{
 		attribute.put("8", "jhxdwh");//下达的部投资
 		attribute.put("9", "xmid");
 		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwbm());
 		List<Object> excelData = new ArrayList<Object>();
-		if(lx.getGydwdm().equals("36")){
-			lx.setGydwdm(null);
+		if(lx.getGydwbm().equals("36")){
+			lx.setGydwbm(null);
 		}
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_gcgj item : gcgjServer.queryGcgjList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
 			zjxd.setXmmc(item.getXmmc());

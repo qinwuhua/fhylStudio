@@ -41,7 +41,7 @@
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
-				jh.sbnf=$("#sbnf").combo("getValue");
+				jh.jhnf=$("#sbnf").combo("getValue");
 			}
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
@@ -93,7 +93,21 @@
 			});
 		}
 		function exportExcelZjxd(){
-			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			var gydwdm=getgydw("gydw");
+			var xzqhdm=getxzqhdm('xzqh');
+			var gydwbm=$.cookie("unit");
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
+						"&lx.lxmc="+$('#txtRoad').val()+"&lx.yjsdj="+$("#ddlPDDJ").combo("getValue")+
+						"&lx.lxbm="+$("#ddlGldj").combo("getValue")+"&lx.tsdqbm="+$('#ddlTSDQ').combo("getValue")+
+						"&jh.jhnf="+$("#sbnf").combo("getValue");
+			if($("#ddlSHZT").combo("getValue")=="未开工"){
+				param+="&jh.kgzt=0";
+			}else if($("#ddlSHZT").combo("getValue")=="在建"){
+				param+="&jh.kgzt=1";
+				param+="&jh.jgzt=0";
+			}else if($("#ddlSHZT").combo("getValue")=="竣工"){
+				param+="&jh.jgzt=1";
+			}
 			window.location.href="/jxzhpt/jhgl/exportZjxdExcel.do?"+param;
 		}
 	</script>

@@ -273,7 +273,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 		attribute.put("8", "jhxdwh");//省投资
 		attribute.put("9", "xmid");
 		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwbm());
 		List<Object> excelData = new ArrayList<Object>();
 		if(lx.getGydwdm().equals("36")){
 			lx.setGydwdm(null);

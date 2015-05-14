@@ -72,7 +72,7 @@
 			$('#grid').datagrid('resize'); 
 		});
 		function queryMessage(jh,lx){
-			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,'jh.sfylsjl':jh.sfylsjl,
+			var param={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbnf":jh.sbnf,'jh.sfylsjl':jh.sfylsjl,
 					"lx.gydwdm":lx.gydwdm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 					'lx.tsdqbm':lx.tsdqbm,'jh.jh_sbthcd':jh.jh_sbthcd};
 			$.ajax({
@@ -93,7 +93,21 @@
 			});
 		}
 		function exportExcelZjxd(){
-			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			var gydwdm=getgydw("gydw");
+			var xzqhdm=getxzqhdm('xzqh');
+			var gydwbm=$.cookie("unit");
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
+						"&lx.lxmc="+$('#txtRoad').val()+"&lx.yjsdj="+$("#ddlPDDJ").combo("getValue")+
+						"&lx.lxbm="+$("#ddlGldj").combo("getValue")+"&lx.tsdqbm="+$('#ddlTSDQ').combo("getValue")+
+						"&jh.sbnf="+$("#sbnf").combo("getValue");
+			if($('#ddlSHZT').combobox('getValue')=='未开工'){
+				param+="&jh.kgzt=0";
+			}else if($('#ddlSHZT').combobox('getValue')=='在建'){
+				param+="&jh.kgzt=1";
+				param+="&jh.jgzt=0";
+			}else if($('#ddlSHZT').combobox('getValue')=='竣工'){
+				param+="&jh.jgzt=1";
+			}
 			window.location.href="/jxzhpt/jhgl/exportShuihZjxdExcel.do?"+param;
 		}
 	</script>

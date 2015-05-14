@@ -111,7 +111,7 @@
 				and lx.lxbm like #{lx.lxbm}
 			</if>
 			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-				lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 			</if>
 			 order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd
 			)
@@ -124,17 +124,8 @@
 			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
 			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">	
 		 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-			</if>
-			<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-				and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-			</if>
-			<if test="jh.sbzt!=null and jh.sbzt!=''">
-				and jh.sbzt=#{jh.sbzt}
-			</if>
-			<if test="jh.spzt!=null and jh.spzt!=''">
-				and jh.spzt=#{jh.spzt}
 			</if>
 			<if test="jh.sbnf!=null and jh.sbnf!=''">
 				and jh.sbnf =#{jh.sbnf}
@@ -164,7 +155,7 @@
 				and lx.lxbm like #{lx.lxbm}
 			</if>
 			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-				lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 			</if>
 			order by jh.jh_sbthcd,jh.sbnf) t
 			)
@@ -211,7 +202,7 @@
 			and lx.lxbm like #{lx.lxbm}
 		</if>
 		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-			lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 		</if>
 	</select>
 	<select id="querySumGcgj" resultMap="gcgj_lx" parameterType="java.util.Map">
@@ -221,7 +212,7 @@
 			sum(lx.qzlc) as qzlc,sum(lx.yhlc) as yhlc
 			from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id)
 			where 1=1
-			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
 		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
@@ -261,7 +252,7 @@
 			and lx.lxbm like #{lx.lxbm}
 		</if>
 		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-			lx.tsdqbm like '%'||#{lx.tsdqbm}||'%'
+			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 		</if>
 			group by jh.id,jh.pfztz,jh.jhsybzje,jh.jhsydfzcje)
 	</select>
