@@ -55,13 +55,11 @@ text-decoration:none;
 </style>
 </head>
 <body>
-		<table align="left"  width="100%">
-			<tr><td>
+	
 		<div id="righttop">
 		<div id="p_top">数据查询>&nbsp;自定义查询>&nbsp;当前位置</div>
 		</div>
-		</td></tr>
-	     </table>
+
 <center>
 <table style="width: 80%; margin-top: 15px; background-color: #aacbf8; font-size: 12px;"
 			border="0" cellpadding="3" cellspacing="1">
