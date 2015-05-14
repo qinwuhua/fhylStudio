@@ -157,7 +157,11 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
-				</if> order by jh.jhnf desc,jh.jh_sbthcd
+				</if>
+				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
+				</if>
+				order by jh.jhnf desc,jh.jh_sbthcd
 				) t  order by t.jhnf desc,t.jh_sbthcd
 		 )
 		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
@@ -169,20 +173,11 @@
 				lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc,lx.qzlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1
-			 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+			 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 					and jh.jh_sbthcd=#{jh.jh_sbthcd}
-				</if>
-				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 				</if>
 			 	<if test="jh.jhnf!=null and jh.jhnf!=''">
 					and jh.jhnf =#{jh.jhnf}
-				</if>
-				<if test="jh.sbzt!=null and jh.sbzt!=''">
-					and jh.sbzt=#{jh.sbzt}
-				</if>
-				<if test="jh.spzt!=null and jh.spzt!=''">
-					and jh.spzt=#{jh.spzt}
 				</if>
 				<if test="jh.kgzt!=null and jh.kgzt!=''">
 		 			and jh.kgzt=#{jh.kgzt}
@@ -207,6 +202,9 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 				) t order by t.jhnf,t.jh_sbthcd
 		 )
@@ -252,6 +250,9 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 	</select>
 	<select id="queryGcsjSum" resultMap="gcsj_jh" parameterType="java.util.Map">
@@ -299,6 +300,9 @@
 				</if>
 				<if test="lx.lxbm!=null and lx.lxbm!=''">
 					and lx.lxbm like '%'||#{lx.lxbm}||'%'
+				</if>
+				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 			group by jh.id)
 	</select>

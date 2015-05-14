@@ -255,11 +255,13 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		attribute.put("7", "jhxdwh");//计划下达文号
 		attribute.put("8", "xmid");
 		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
+		String gydwmc=zjxdServer.queryGydwmcById(lx.getTbbmdm());
 		List<Object> excelData = new ArrayList<Object>();
-		if(lx.getGydwdm().equals("36")){
-			lx.setGydwdm(null);
+		if(lx.getTbbmdm().equals("36")){
+			lx.setTbbmdm(null);
 		}
+		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_yhdzx item : yhdzxServer.queryYhdzxList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
 			String strLx="";
@@ -341,16 +343,20 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 * @return
 	 */
 	public String gydwOrxzqhBm(String bh,String name){
-		if(bh.indexOf(",")==-1){
-			int i=0;
-			if(bh.matches("^[0-9]*[1-9]00$")){
-				i=2;
-			}else if(bh.matches("^[0-9]*[1-9]0000$")){
-				i=4;
+		String result=null;
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
 			}
-			bh=bh.substring(0,bh.length()-i);
+			result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 		}
-		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+		return result;
 	}
 	/**
 	 * 资金追加，修改养护大中修金额

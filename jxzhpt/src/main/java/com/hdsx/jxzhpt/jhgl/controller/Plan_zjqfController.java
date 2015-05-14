@@ -47,7 +47,9 @@ public class Plan_zjqfController extends BaseActionSupport{
 	
 	public void queryZjqfByZjqf(){
 		try {
-			JsonUtils.write(zjqfServer.queryZjqfByZjqf(zjqf), getresponse().getWriter());
+			PlanZjqf result = zjqfServer.queryZjqfByZjqf(zjqf);
+			System.out.println("资金切分："+result.getZhfz());
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

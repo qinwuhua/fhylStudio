@@ -318,7 +318,7 @@ function gclmgjxm_sh(jh,lx){
 	gridBind(grid);
 }
 function gclmgjxm_zjxd(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbnf":jh.sbnf,'jh.jh_sbthcd':jh.jh_sbthcd,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydwdm":lx.gydwdm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'lx.yjsdj':lx.yjsdj,
 			'lx.tsdqbm':lx.tsdqbm};
 	var grid = {id : 'grid',url : '../../../jhgl/queryGcgjList.do',pagination : true,rownumbers:false,

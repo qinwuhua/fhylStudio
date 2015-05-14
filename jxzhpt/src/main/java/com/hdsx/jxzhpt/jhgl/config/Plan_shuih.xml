@@ -101,7 +101,7 @@
 					and lx.lxbm like #{lx.lxbm}
 				</if>
 				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 				order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd
 			)
@@ -111,23 +111,14 @@
 		select * from (
 			select rownum as num,t.* from (	
 				select jh.xmmc,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
-	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.qzlc,,lx.ylmlx
+	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.qzlc,lx.ylmlx
 	      		from PLAN_lx_shuih lx right JOIN plan_shuih jh on  lx.jhid=jh.id 
 				where 1=1
-				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">	
 			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-				</if>
-				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 				</if>
 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 					and jh.sbnf =#{jh.sbnf}
-				</if>
-				<if test="jh.sbzt!=null and jh.sbzt!=''">
-					and jh.sbzt=#{jh.sbzt}
-				</if>
-				<if test="jh.spzt!=null and jh.spzt!=''">
-					and jh.spzt=#{jh.spzt}
 				</if>
 				<if test="jh.kgzt!=null and jh.kgzt!=''">
 					and jh.kgzt=#{jh.kgzt}
@@ -154,7 +145,7 @@
 					and lx.lxbm like #{lx.lxbm}
 				</if>
 				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 				order by jh.jh_sbthcd,jh.sbnf desc
 				) t)
@@ -201,7 +192,7 @@
 			and lx.lxbm like #{lx.lxbm}
 		</if>
 		<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 		</if>
 	</select>
 	<select id="queryShuihNfs"  resultType="treenode">
@@ -254,7 +245,7 @@
 					and lx.lxbm like #{lx.lxbm}
 				</if>
 				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
-					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
 				group by jh.id)
 	</select>

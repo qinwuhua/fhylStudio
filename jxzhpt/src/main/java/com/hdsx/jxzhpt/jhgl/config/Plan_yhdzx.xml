@@ -115,20 +115,11 @@
 			select rownum as num,t.* from (
 	    		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
 	       		where 1=1 
-	       		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
+	       		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">	
 			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
-				</if>
-				<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-					and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 				</if>
 				<if test="jh.sbnf!=null and jh.sbnf!=''">
 					and jh.sbnf =#{jh.sbnf}
-				</if>
-				<if test="jh.sbzt!=null and jh.sbzt!=''">
-					and jh.sbzt=#{jh.sbzt}
-				</if>
-				<if test="jh.spzt!=null and jh.spzt!=''">
-					and jh.spzt=#{jh.spzt}
 				</if>
 				<if test="jh.kgzt!=null and jh.kgzt!=''">
 					and jh.kgzt=#{jh.kgzt}

@@ -122,8 +122,6 @@
         						<select id="gydw" style="width:227px;"></select>
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:224px;"></select>
-        						<span style="vertical-align:middle;">&nbsp;项目状态：</span>
-        						<select name="ddlXMtype" id="ddlXMtype" style="width:104px;vertical-align:middle;" class="easyui-combobox">
 								</select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />

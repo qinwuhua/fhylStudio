@@ -183,7 +183,7 @@
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,gjxjnd v_9,fapgdw v_10,
 		fascdw v_11,faspsj v_12,spwh v_13,tzgs v_14,jsxz v_15,jsnr v_16,bz v_17
-		from (select * from sck_abgc t join xmk_abgc on xmkid=xmk_abgc.id)
+		from (select * from sck_abgc join xmk_abgc on xmkid=xmk_abgc.id) t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
  			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')
@@ -301,7 +301,7 @@
 		select
 		gydw v_0,xzqhdm v_1,xzqhmc v_2,lxbm v_3,lxmc v_4,t.scqdzh v_5,t.sczdzh v_6,t.sczlc v_7,t.scyhlc v_8,gjxjnd v_9,fapgdw v_10,
 		fascdw v_11,faspsj v_12,spwh v_13,tzgs v_14,jsxz v_15,jsnr v_16,bz v_17
-		from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+		from (select * from sck_zhfz join xmk_zhfz on xmkid=xmk_zhfz.id) t
 		where  1=1
  		<if test="gydw!='' and gydw!= null "  >
  			and gydwbm in(select id from xtgl_department where id like #{gydw}||'%' or parent like #{gydw}||'%')

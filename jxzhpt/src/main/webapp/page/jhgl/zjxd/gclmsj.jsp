@@ -168,7 +168,7 @@
 			</tr>
 		</table>
 	</div>
-	<div id="zjxd" style="font-size: 12px;width:80%;"></div>
+	<div id="zjxd" style="font-size: 12px;width:90%;"></div>
 	<script type="text/javascript">
 	$.ajax({
 		type:'post',
