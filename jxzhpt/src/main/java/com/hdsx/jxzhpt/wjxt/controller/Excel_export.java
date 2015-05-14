@@ -3434,8 +3434,14 @@ public class Excel_export {
 	                    cell.setCellStyle(style);
 	            	}
 	            	if(j==2){
-	            		cell.setCellValue(trqk1.getV_2());  
-	                    cell.setCellStyle(style);
+	            		if(i==3){
+	            			cell.setCellValue((int)Double.parseDouble(trqk1.getV_2()));  
+		                    cell.setCellStyle(style);
+	            		}else{
+	            			cell.setCellValue(trqk1.getV_2());  
+		                    cell.setCellStyle(style);
+	            		}
+	            		
 	            	}
 	            	if(j==3){
 	            		cell.setCellValue(trqk1.getV_3());  
@@ -3454,8 +3460,13 @@ public class Excel_export {
 	                    cell.setCellStyle(style);
 	            	}
 	            	if(j==7){
-	            		cell.setCellValue(trqk1.getV_7());  
-	                    cell.setCellStyle(style);
+	            		if(i==3){
+	            			cell.setCellValue((int)Double.parseDouble(trqk1.getV_7()));  
+		                    cell.setCellStyle(style);
+	            		}else{
+	            			cell.setCellValue(trqk1.getV_7());  
+		                    cell.setCellStyle(style);
+	            		}
 	            	}
 	            	if(j==8){
 	            		cell.setCellValue(trqk1.getV_8());  

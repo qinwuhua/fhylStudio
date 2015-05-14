@@ -92,11 +92,19 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 				for(var i=0;i<msg.length;i++){
 					if(i!=6){
 						if(i==0||i==3){
-							str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
-							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
-							+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
-							+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
-							+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td></tr>";
+							if(i==3){
+								str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+parseInt(msg[i].v_2)+"</td>"+"<td>"+msg[i].v_3+"</td>"
+								+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+parseInt(msg[i].v_7)+"</td>"
+								+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
+								+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
+								+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td></tr>";
+							}else{
+								str+="<tr align='center'><td rowspan='3'>"+msg[i].v_0+"</td>"+"<td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
+								+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
+								+"<td>"+msg[i].v_8+"</td>"+"<td>"+msg[i].v_9+"</td>"+"<td>"+msg[i].v_10+"</td>"+"<td>"+msg[i].v_11+"</td>"
+								+"<td>"+msg[i].v_12+"</td>"+"<td>"+msg[i].v_13+"</td>"+"<td>"+msg[i].v_14+"</td>"+"<td>"+msg[i].v_15+"</td>"
+								+"<td>"+msg[i].v_16+"</td>"+"<td>"+msg[i].v_17+"</td></tr>";
+							}
 						}else{
 							str+="<tr align='center'><td>"+msg[i].v_1+"</td>"+"<td>"+msg[i].v_2+"</td>"+"<td>"+msg[i].v_3+"</td>"
 							+"<td>"+msg[i].v_4+"</td>"+"<td>"+msg[i].v_5+"</td>"+"<td>"+msg[i].v_6+"</td>"+"<td>"+msg[i].v_7+"</td>"
