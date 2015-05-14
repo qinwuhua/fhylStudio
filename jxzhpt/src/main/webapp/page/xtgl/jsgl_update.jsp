@@ -97,7 +97,7 @@ function loadQx(_id){
 		<table id="jsgl_form_table" cellspacing="0"  class="table_grid">
 			<tr height="30px">
 				<td width="80px" align="right">
-					角色名称：
+					角色名称<span style="color:red;">(*)</span>：
 				</td>
 				<td>
 					<input style="width:248px;" type="text" id="rolename" name="param.rolename"/>
@@ -106,7 +106,7 @@ function loadQx(_id){
 			</tr>
 			<tr>
 				<td width="80px" align="right">
-					权限分配：
+					权限分配<span style="color:red;">(*)</span>：
 				</td>
 				<td>
 					<ul id="source"></ul> 
