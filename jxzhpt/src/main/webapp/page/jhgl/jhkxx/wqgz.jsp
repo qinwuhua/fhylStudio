@@ -472,6 +472,7 @@
 						lx['lx.lxbm']=jcAndSc.lxbm;
 						lx['lx.qlbh']=jcAndSc.qlbh;
 						lx['lx.qlzxzh']=jcAndSc.qlzxzh;
+						lx['lx.id']=data.id;
 						$('#qlmc').html(jcAndSc.qlmc);
 						$('#qlbm').html(jcAndSc.qlbh);
 						$('#qlzxzh').html(jcAndSc.qlzxzh);

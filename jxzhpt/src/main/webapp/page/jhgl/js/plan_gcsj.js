@@ -362,12 +362,17 @@ function dropGcsjs(){
 	if(confirm("确认要移除选中计划？")){
 		var id="";
 		$.each(sel,function(index,item){
-			if(index==sel.length-1){
-				id+=item.id;
-			}else{
-				id+=item.id+",";
+			if(item.jh_sbthcd==0){
+				if(Number(index)==Number(sel.length-1)){
+					id=id+item.id;
+				}else{
+					id=id+","+item.id;
+				}
 			}
+			alert("ID："+item.id +"     加后:"+id);
 		});
+		alert(id);
+		return;
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropGcsjById.do',

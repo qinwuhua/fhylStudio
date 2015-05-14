@@ -102,38 +102,38 @@
 			</tr>
 		</table>
 		<script type="text/javascript">
-		var master ={'gydwdm':$.cookie("unit")};
-		$.ajax({
-			type:'post',
-			url:'../../../jhgl/queryGydwmcById.do',
-			dataType:'json',
-			data:master,
-			success:function(data){
-				$('#tbdw').html(data.gydwmc);
+			var master ={'gydwdm':$.cookie("unit")};
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryGydwmcById.do',
+				dataType:'json',
+				data:master,
+				success:function(data){
+					$('#tbdw').html(data.gydwmc);
+				}
+			});
+			var myDate = new Date();
+			var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
+			$('#tbsj').html(date);
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryZjxdExistById.do',
+				dataType:'json',
+				data:'zjxd.xmid='+xxId,
+				success:function(data){
+					if(data.count!="0")
+						$('#sfzj').val("1");
+				}
+			});
+			var years=[];
+			for(var i=0;i<=10;i++){
+				years.push({text:(myDate.getFullYear()-i)});
 			}
-		});
-		var myDate = new Date();
-		var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
-		$('#tbsj').html(date);
-		$.ajax({
-			type:'post',
-			url:'../../../jhgl/queryZjxdExistById.do',
-			dataType:'json',
-			data:'zjxd.xmid='+xxId,
-			success:function(data){
-				if(data.count!="0")
-					$('#sfzj').val("1");
-			}
-		});
-		var years=[];
-		for(var i=0;i<=10;i++){
-			years.push({text:(myDate.getFullYear()-i)});
-		}
-		$('#zjxdnf').combobox({    
-		    data:years,
-		    valueField:'text',    
-		    textField:'text'   
-		});
+			$('#zjxdnf').combobox({    
+			    data:years,
+			    valueField:'text',    
+			    textField:'text'   
+			});
 		</script>
 	</center>
 </body>

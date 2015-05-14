@@ -15,34 +15,51 @@
 						cellspacing="0" cellpadding="0">
 						<tr style="height: 35px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">下达年份：
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<select name="ddlXDNF" id="zjxdnf" style="width: 80px;">
-							</select>
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD"
-									style="cursor: hand; font-size: 12px">下达资金：</font></b>
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
+									总投资资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="xdzj" name="xdzj" type="text"  style="width: 80px;" onkeyup="clearNoNum(event,this)" onblur="clearNoNum(event,this)" />&nbsp;万元
+								<input id="xdzj" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
-									部投资资金：</font></b>
+									车购税资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="btzzj" name="btzzj" type="text"  style="width: 80px;" onkeyup="clearNoNum(event,this)" onblur="clearNoNum(event,this)" />&nbsp;万元
+								<input id="btzzj" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
+									省投资：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="stz" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 35px;">
-							<td
-								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">是否为追加资金：</font>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<font color="#009ACD" style="cursor: hand; font-size: 12px">下达年份：
 							</td>
-							<td
-								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<select name="ddlXDNF" id="zjxdnf" style="width: 80px;"></select>
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="jhxdwh" name="btzzj" type="text"  style="width: 80px;" />&nbsp;
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font>
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<span id="tbdw"></span>
+							</td>
+							<td style="display:none;border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								<font color="#009ACD" style="cursor: hand; font-size: 12px">是否为追加资金：</font>
+								<input id="sfzj" value="0" type="hidden"/>
+							</td>
+							<td style="display:none;border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<table id="rList" border="0">
 									<tr>
 										<td>
@@ -54,20 +71,12 @@
 									</tr>
 								</table>
 							</td>
-							<td
-								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font>
-							</td>
-							<td
-								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<span id="tbdw"></span>
-							</td>
-							<td
-								style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						</tr>
+						<tr style="height: 35px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font>
 							</td>
-							<td
-								style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<span id="tbsj"></span>
 							</td>
 						</tr>
@@ -111,9 +120,16 @@
 			success:function(data){
 				$('#zjxdnf').combobox('setValue',data.xdnf);
 				$('#xdzj').val(data.xdzj);
+				$('#btzzj').val(data.btzzj);
+				$('#stz').val(data.stz);
 				$('#tbdw').html(data.tbdw);
 				$('#tbsj').html(data.tbtime);
-				$('#btzzj').val(data.bbtzzj);
+				$('#btzzj').val(data.btzzj);
+				$('#jhxdwh').val(data.jhxdwh);
+				if(data.sfzj=="0")
+					$('#rList_0').attr("checked","checked");
+				else if(data.sfzj=="1")
+					$('#rList_1').attr("checked","checked");
 			}
 		});
 		</script>

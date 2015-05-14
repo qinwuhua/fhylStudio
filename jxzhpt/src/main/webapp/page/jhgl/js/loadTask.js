@@ -311,7 +311,7 @@ function queryZjxdList(url){
 		columns : [[
 		{field : 'cz',title : '操作',width : 120,align : 'center',
 			formatter : function(value, row, index) {
-				var p1="'zjxd',",p2="'资金下达',",p3="'../zjxd/zjxd_edit.jsp',",p4="'800',",
+				var p1="'zjxd',",p2="'资金下达',",p3="'../zjxd/zjxd_edit.jsp',",p4="'820',",
 					p5="'250'",p6=",'"+row.id+"'";
 				var result = '<a href="javascript:openZjxd('+p1+p2+p3+p4+p5+p6+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 				result += '<a href="javascript:dropZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
@@ -355,9 +355,9 @@ function dropZjxdById(id){
 	});
 }
 function editZjxd(){
-	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),
+	var zjxd={'zjxd.id':zjId,'zjxd.xdnf':$('#zjxdnf').combobox('getValue'),'zjxd.stz':$('#stz').val(),
 			'zjxd.btzzj':$('#btzzj').val(),'zjxd.xdzj':$('#xdzj').val(),'zjxd.tbdw':$('#tbdw').html(),
-			'zjxd.tbtime':$('#tbsj').html()};
+			'zjxd.tbtime':$('#tbsj').html(),'zjxd.sfzj':$("input[name='rList']:checked").val()};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/editZjxdById.do',
