@@ -122,10 +122,12 @@
 		}
 		var sckid= rows[0].sckid;
 		var jh_sbthcd="";
-		var gydw=""+rows[0].gydwbm;
-		if(gydw.test(new RegExp("^[0-9]{7}[0-9][1-9]00$")) || gydw.test(new RegExp("^[0-9]{7}[1-9][0-9]00$"))){
+		var gydw=rows[0].gydwbm;
+		var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$"),shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$"),xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+		if(shi1.test(gydw) || shi2.test(gydw)){
  			jh_sbthcd="2";
- 		}else if(gydw.test(new RegExp("^[0-9]{9}[0-9][1-9]$")) || gydw.test(new RegExp("^[0-9]{9}[1-9][0-9]$"))){
+ 		}else if(xian1.test(gydw) || xian2.test(gydw)){
  			jh_sbthcd="0";
  		}
 		for(var i=0;i<rows.length;i++){
@@ -139,15 +141,13 @@
 			}
 		}
 	 	for(var i=1;i<rows.length;i++){
-	 		if(rows[i].gydwbm.test(new RegExp("^[0-9]{7}[0-9][1-9]00$")) || rows[i].gydwbm.test(new RegExp("^[0-9]{7}[1-9][0-9]00$"))){
+	 		if(shi1.test(rows[i].gydwbm) || shi2.test(rows[i].gydwbm)){
 	 			jh_sbthcd+=",2";
-	 		}else if(rows[i].gydwbm.test(new RegExp("^[0-9]{9}[0-9][1-9]$")) || rows[i].gydwbm.test(new RegExp("^[0-9]{9}[1-9][0-9]$"))){
+	 		}else if(xian1.test(rows[i].gydwbm) || xian2.test(rows[i].gydwbm)){
 	 			jh_sbthcd+=",0";
 	 		}
 			sckid+=","+rows[i].sckid ;
 		}
-	 	alert(jh_sbthcd);
-	 	return;
 	 	if($('#lrjhnf').combobox("getValue")==""){
 	 		alert("请选择列入计划年份！");
 	 		return;
@@ -157,7 +157,7 @@
 					 type : "POST",
 					 url : "/jxzhpt/xmsck/lrjhSckabgc.do",
 					 dataType : 'json',
-					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue"),
+					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue")+'&sbthcd1='+jh_sbthcd,
 					 success : function(msg){
 						 if(msg){
 							 	parent.$("#grid").datagrid('reload');
