@@ -350,10 +350,12 @@ public class Plan_wqgzController extends BaseActionSupport {
 			lx.setGydwdm(null);
 		}
 		//此处遍历查询资金下达模块的所有项目
+		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_wqgz item : wqgzServer.queryWqgzList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
-			String strLx=item.getJckwqgz().getLxmc()+"-"+
-					item.getJckwqgz().getQlmc()+"-"+
+			String strLx=(item.getJckwqgz().getLxmc()==null ? "" : item.getJckwqgz().getLxmc()+"-")+
+					(item.getJckwqgz().getQlmc()==null ? "" : item.getJckwqgz().getQlmc()+"-")+
 					item.getJckwqgz().getQlbh()+"("+
 					item.getJckwqgz().getQlzxzh()+")";
 			zjxd.setLxxx(strLx);

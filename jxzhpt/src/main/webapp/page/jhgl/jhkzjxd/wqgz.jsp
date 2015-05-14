@@ -89,7 +89,21 @@
 			});
 		}
 		function exportExcelZjxd(){
-			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			var gydwdm=$.cookie("unit");
+			var gydwbm=getgydw("gydw");
+			var xzqhdm=getxzqhdm('xzqh');
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
+					"&lx.lxmc="+$('#txtRoad').val()+"&lx.akjfl="+$('#ddlAKJFL').combobox('getValue')+
+					"&lx.qlmc="+$('#txtBridge').val()+"&lx.tsdq="+$('#ddlTSDQ').combo("getValue")+
+					"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+					"&jh.sbnf="+$('#sbnf').combobox('getValue');
+			if($('#ddlSHZT').combo("getValue")=="未开工"){
+				param+="&jh.kgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="在建"){
+				param+="&jh.kgzt=1&jh.jgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="竣工"){
+				param+="&jh.jgzt=1";
+			}
 			window.location.href="/jxzhpt/jhgl/exportWqgzZjxdExcel.do?"+param;
 		}
 	</script>
@@ -123,7 +137,7 @@
 								</select>
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
-        						<span style=" vertical-align:middle;">桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
+        						<span style=" vertical-align:middle;">桥梁名称：</span>
         						<input name="txtBridge" type="text" id="txtBridge" style="width:120px;vertical-align:middle;" />
         						<span style="vertical-align:middle;">上报年份：</span>
         						<select id="sbnf" style="width: 80px;vertical-align:middle;"></select>

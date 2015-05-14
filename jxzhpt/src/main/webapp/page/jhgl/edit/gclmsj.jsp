@@ -259,7 +259,7 @@
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="sfsqablbz0" name="sfsqablbz" type="radio" value="是" onchange="ablwhDis('是')"/>是
-					<input id="sfsqablbz1" name="sfsqablbz" type="radio" value="否" onchange="ablwhDis('否')"/>否
+					<input id="sfsqablbz1" name="sfsqablbz" type="radio" value="否" onchange="ablwhDis('否')" checked="checked"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号
@@ -429,6 +429,7 @@ $("#uploadSjt").uploadify({
 			$('#jc').val(data.jc);
 			$('#lqlm').val(data.lqlm);
 			$('#snlm').val(data.snlm);
+			alert(data.gjhjsdj);
 			$('#gjhjsdj').combobox("setValue",data.gjhjsdj);
 			radioChecked("sftqss",data.sftqss);
 			$('#pfwh').val(data.pfwh);

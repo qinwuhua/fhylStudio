@@ -45,7 +45,8 @@
 			(
 				select rownum as num,t.* from 
 				(
-					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,jh.sbzt,jh.spzt,jh.jh_sbthcd,
+					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
+					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,
                		lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc as yhlc
                 	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
@@ -86,7 +87,7 @@
 				 		and lx.lxbm like #{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 		and lx.lxjsdj = #{lx.lxjsdj}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -96,6 +97,7 @@
     		)
     	where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	<!-- 此方法仅用在资金下达的Excel导出数据查询 -->
 	<select id="queryAbgcList2"  parameterType="java.util.Map"  resultMap="abgc_jh">
 		select * from 
 			(
@@ -103,11 +105,8 @@
 				(
 					select * from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
-					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
+					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
-					</if>
-				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 					</if>
 					<if test="jh.kgzt!=null and jh.kgzt!=''">
 			 			and jh.kgzt=#{jh.kgzt}
@@ -117,12 +116,6 @@
 			 		</if>
 				    <if test="jh.jhnf!=null and jh.jhnf!=''">
 				 		and jh.jhnf=#{jh.jhnf}
-				 	</if>
-				 	<if test="jh.sbzt!=null and jh.sbzt!=''">
-				 		and jh.sbzt=#{jh.sbzt}
-				 	</if>
-				 	<if test="jh.spzt!=null and jh.spzt!=''">
-				 		and jh.spzt=#{jh.spzt}
 				 	</if>
 				 	<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
 				 		and sc.bzls=#{jh.sfylsjl}
@@ -140,7 +133,7 @@
 				 		and lx.lxbm like #{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 		and lx.lxjsdj = #{lx.lxjsdj}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -179,7 +172,7 @@
 			and lx.lxbm like #{lx.lxbm}||'%'
 		</if>
 		<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-			and lx.lxjsdj = #{lx.lxjsjd}
+			and lx.lxjsdj = #{lx.lxjsdj}
 		</if>
 		<if test="lx.tsdq!=null and lx.tsdq!=''">
 			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -226,7 +219,7 @@
 			and lx.lxbm like #{lx.lxbm}||'%'
 		</if>
 		<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-			and lx.lxjsdj = #{lx.lxjsjd}
+			and lx.lxjsdj = #{lx.lxjsdj}
 		</if>
 		<if test="lx.tsdq!=null and lx.tsdq!=''">
 			and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -318,7 +311,7 @@
 				 		and lx.lxbm like #{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 		and lx.lxjsdj = #{lx.lxjsdj}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
@@ -422,7 +415,7 @@
 				 		and lx.lxbm like #{lx.lxbm}||'%'
 				 	</if>
 				 	<if test="lx.lxjsdj!=null and lx.lxjsdj!=''">
-				 		and lx.lxjsdj = #{lx.lxjsjd}
+				 		and lx.lxjsdj = #{lx.lxjsdj}
 				 	</if>
 				 	<if test="lx.tsdq!=null and lx.tsdq!=''">
 				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})

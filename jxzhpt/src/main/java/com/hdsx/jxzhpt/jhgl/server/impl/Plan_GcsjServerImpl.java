@@ -88,6 +88,7 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 
 	@Override
 	public Plan_lx_gcsj queryGPSBylxbm(Plan_lx_gcsj gcsj){
+		System.out.println("参数：" +gcsj.getYjsdj()+"    "+gcsj.getLxbm()+"    "+gcsj.getQdzh()+"    "+gcsj.getZdzh());
 		return queryOne("queryGPSBylxbm", gcsj);
 	}
 

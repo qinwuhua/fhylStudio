@@ -325,8 +325,8 @@ function zhfzxm_sh(jh,lx){
 	gridBind(grid);
 }
 function zhfzxm_zjxd(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
-			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd};
+	var params={"jh.kgzt":jh.kgzt,"jh.jgzt":jh.jgzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
+			"lx.lxjsdj":lx.lxjsdj,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-150,width:$('#searchField').width(),queryParams:params,
 	    columns:[[
@@ -433,8 +433,12 @@ function dropZhfz(id,readLoad){
 		});
 }
 function dropZhfzs(){
+	var sel=gridObj.datagrid("getSelections");
+	if(sel.length==0){
+		alert("请选择要删除的计划！");
+		return;
+	}
 	if(confirm("确认要移除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
 		var id="",sckid="";
 		$.each(sel,function(index,item){
 			if(index==sel.length-1){

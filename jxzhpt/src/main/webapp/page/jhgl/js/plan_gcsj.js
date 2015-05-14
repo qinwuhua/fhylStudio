@@ -354,8 +354,12 @@ function queryGcsjXx(id){
 	
 }
 function dropGcsjs(){
+	var sel=gridObj.datagrid("getSelections");
+	if(sel.length==0){
+		alert("请选择要删除的计划！");
+		return;
+	}
 	if(confirm("确认要移除选中计划？")){
-		var sel=gridObj.datagrid("getSelections");
 		var id="";
 		$.each(sel,function(index,item){
 			if(index==sel.length-1){
@@ -387,14 +391,14 @@ function dropGcsjs(){
 function editGcsj(){
 	if(lxztz()){
 		var jh={'jh.id':$('#jhid').val() ,'jh.jhnf':$('#editjhnf').combobox('getValue'),
-				'jh.jhkgsj':$('#jhkgsj').datebox("getValue"),'jh.jhwgsj':$('#jhwgsj').datebox("getValue"),
-				'jh.xdsj':$('#xdsj').datebox("getValue"),'jh.xmwybh':$('#xmwybh').val(),
+				'jh.jhkgsj':$('#jhkgsj').datebox("getText"),'jh.jhwgsj':$('#jhwgsj').datebox("getText"),
+				'jh.xdsj':$('#xdsj').datebox("getText"),'jh.xmwybh':$('#xmwybh').val(),
 				'jh.xmmc':$('#xmmc').val(),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
 				'jh.jsjsbz':$('#jsjsbz').val(),'jh.ql':$('#ql').val(),'jh.ql_m':$('#ql_m').val(),
 				'jh.sd':$('#sd').val(),'jh.sd_m':$('#sd_m').val(),'jh.hd':$('#hd').val(),
 				'jh.ljtsf':$('#ljtsf').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
-				'jh.lqlm':$('#lqlm').val(),'jh.snlm':$('#snlm').val(),'jh.gjhjsdj':$('#gjhjsdj').val,
-				'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getValue'),
+				'jh.lqlm':$('#lqlm').val(),'jh.snlm':$('#snlm').val(),'jh.gjhjsdj':$('#gjhjsdj').combobox('getValue'),
+				'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox('getText'),
 				'jh.pftz':$('#pftz').val(),'jh.jhsybbzje':$('#jhsybbzje').val(),
 				'jh.jhsydfzczj':$('#jhsysbzje').val(),'jh.jhxdwh':$('#jhxdwh').val(),
 				'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),

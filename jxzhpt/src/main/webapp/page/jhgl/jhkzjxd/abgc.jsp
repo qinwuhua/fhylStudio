@@ -89,7 +89,20 @@
 			});
 		}
 		function exportExcelZjxd(){
-			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+$("#gydw").combo("getValue");
+			var gydwbm=getgydw("gydw");
+			var xzqhdm=getxzqhdm('xzqh');
+			var gydwdm=$.cookie("unit");
+			var param="jh.jh_sbthcd=6"+"&lx.gydwdm="+gydwdm+"&lx.gydwbm="+gydwbm+"&lx.xzqhdm="+xzqhdm+
+					"&lx.lxmc="+$('#txtRoad').val()+"&lx.lxjsdj="+$("#ddlPDDJ").combo("getValue")+
+					"&lx.lxbm="+$("#ddlGldj").combo("getValue")+"&lx.tsdq="+$('#ddlTSDQ').combo("getValue")+
+					"&jh.jhnf="+$('#sbnf').combobox('getValue');
+			if($('#ddlSHZT').combo("getValue")=="未开工"){
+				param+="&jh.kgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="在建"){
+				param+="&jh.kgzt=1&jh.jgzt=0";
+			}else if($('#ddlSHZT').combo("getValue")=="竣工"){
+				param+="&jh.jgzt=1";
+			}
 			window.location.href="/jxzhpt/jhgl/exportAbgcZjxdExcel.do?"+param;
 		}
 	</script>

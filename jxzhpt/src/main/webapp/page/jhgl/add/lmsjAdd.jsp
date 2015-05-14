@@ -158,21 +158,30 @@
 		});
 	}
 	function jisuanlc(t){
+		var lc = (Number($('#zdzh').val()).toFixed(3)-Number($('#qdzh').val()).toFixed(3)).toFixed(3);
+		if(lc<0){
+			alert("起止里程不能为负数！");
+			$(t).focus();
+			return;
+		}else{
+			$('#qzlc').val(lc);
+			if(t.id!="xmlc")
+				$('#xmlc').val(lc);
+		}
 		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
+			$(t).focus();
 			return;
 		}
 		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
 			alert("起点桩号要小于或等于"+$('#spzdzh').html());
+			$(t).focus();
 			return;
 		}
-		var lc = (Number($('#zdzh').val()).toFixed(3)-Number($('#qdzh').val()).toFixed(3)).toFixed(3);
-		if(lc>=0){
-			$('#qzlc').val(lc);
-			$('#yhlc').val(lc);
-		}else{
-			alert("起止里程不能为负数！");
+		if(Number($('#xmlc').val())>Number($('#qzlc').val())){
+			alert("项目里程不能大于起止里程！");
 			$(t).focus();
+			return;
 		}
 	}
 	function sfsqablbz(value){

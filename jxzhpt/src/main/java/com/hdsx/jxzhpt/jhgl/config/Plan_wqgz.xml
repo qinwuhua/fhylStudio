@@ -80,11 +80,15 @@
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
 	 				</if>
+	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
 	 				order by jh.sbnf desc,jh.jh_sbthcd
 	 			) t order by t.sbnf desc,t.jh_sbthcd
  			)
  		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
+	<!-- 此方法仅用于导出危桥资金下达Excel的查询 -->
 	<select id="queryWqgzList2" parameterType="java.util.Map" resultMap="wqgz_jh">
 		select * from 
 			(
@@ -92,26 +96,17 @@
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
-	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
-						and jh.jh_sbthcd=#{jh.jh_sbthcd}
-					</if>
-				    <if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='') and jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
-						and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
-					</if>
-	 				<if test="jh.sbnf!=null and jh.sbnf!=''">
+					<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
-	 				<if test="jh.sbzt!=null and jh.sbzt!=''">
-	 					and jh.sbzt=#{jh.sbzt}
-	 				</if>
+	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!=''">
+						and jh.jh_sbthcd=#{jh.jh_sbthcd}
+					</if>
 	 				<if test="jh.kgzt!=null and jh.kgzt!=''">
 	 					and jh.kgzt=#{jh.kgzt}
 	 				</if>
 	 				<if test="jh.jgzt!=null and jh.jgzt!=''">
 	 					and jh.jgzt=#{jh.jgzt}
-	 				</if>
-	 				<if test="jh.spzt!=null and jh.spzt!=''">
-	 					and jh.spzt=#{jh.spzt}
 	 				</if>
 	 				<if test="jh.sfylsjl!=null and jh.sfylsjl!=''">
 			 			and sc.bzls=#{jh.sfylsjl}
@@ -137,6 +132,9 @@
 	 				<if test="lx.akjfl!=null and lx.akjfl!=''">
 	 					and lx.akjfl like #{lx.akjfl}||'%'
 	 				</if>
+	 				<if test="lx.tsdq!=null and lx.tsdq!=''">
+				 		and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
+				 	</if>
 	 				order by jh.sbzt,jh.spzt,jh.sbnf desc
 	 			) t
  			)

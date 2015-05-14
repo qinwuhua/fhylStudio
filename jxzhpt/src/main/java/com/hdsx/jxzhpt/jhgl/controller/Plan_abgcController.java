@@ -389,13 +389,12 @@ public class Plan_abgcController extends BaseActionSupport{
 		//准备数据
 		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
 		List<Object> excelData = new ArrayList<Object>();
-		if(lx.getGydwdm().equals("36")){
-			lx.setGydwdm(null);
-		}
+		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		//此处遍历查询资金下达模块的所有项目
 		for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
-			String strLx=item.getJckabgc().getLxmc()+"-"+
+			String strLx=(item.getJckabgc().getLxmc()==null ? "" : item.getJckabgc().getLxmc()+"-" )+
 					item.getJckabgc().getLxbm()+"("+
 					item.getJckabgc().getQdzh()+"-"+
 					item.getJckabgc().getZdzh()+")";
@@ -417,7 +416,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	public String gydwOrxzqhBm(String bh,String name){
 		if(bh.indexOf(",")==-1){
 			int i=0;
-			if(bh.matches("^[0-9]*[1-9]00$")){
+			if(bh.matches("^[0-9]*[1-9]00$") || bh.matches("^[0-9]*[1-9][0-9]00$")){
 				i=2;
 			}else if(bh.matches("^[0-9]*[1-9]0000$")){
 				i=4;

@@ -155,9 +155,9 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <td style="width: 157px;">部投资：<input style="width: 50px" name="WC_BTZ" type="text" id="tj_wc_btz"  onblur='check(this)' /></td>
-                                <td style="width: 157px;">省投资：<input style="width: 50px" name="WC_STZ" type="text" id="tj_wc_stz" onblur='check(this)'/></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="WC_QTTZ" type="text" id="tj_wc_qttz"  onblur='check(this)' /></td>
+                                <td style="width: 157px;">部投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_btz"  onblur='check(this)' /></td>
+                                <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)'/></td>
+                                <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -190,7 +190,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input name="BYWCMC" type="text" id="tj_bywc_c" style="width: 50px;" />
+                                <input maxlength="20"  type="text" id="tj_bywc_c" style="width: 50px;" />
                             </td>
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -199,7 +199,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input name="BYWCMC" type="text" id="tj_bywc_gl" style="width: 50px;" />
+                                <input maxlength="20" type="text" id="tj_bywc_gl" style="width: 50px;" />
                             </td>
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
