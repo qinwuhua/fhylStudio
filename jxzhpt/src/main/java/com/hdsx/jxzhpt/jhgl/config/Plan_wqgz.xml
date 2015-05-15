@@ -504,8 +504,8 @@
 	</select>
 	<select id="queryWqLs" parameterType="jckwqgz" resultMap="wqgz_jh">
 		select jh.id,jh.sbnf,lx.qlmc,lx.qlzxzh from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-    	left join xmk_wqgz lx on (sc.xmkid=lx.id) where lx.qlbh=#{qlbh} or
-    	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})
+    	left join xmk_wqgz lx on (sc.xmkid=lx.id) where (lx.qlbh=#{qlbh} or
+    	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})) and jh.id!=#{id}
 	</select>
 	<update id="editZjById" parameterType="plan_wqgz">
 		update plan_wqgz jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}

@@ -135,12 +135,14 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean lrjhSckabgc(String delstr,String nf) {
+	public boolean lrjhSckabgc(String delstr,String nf,String jh_sbthcd) {
 		String[] strs = delstr.split(",");
+		String[] jh_sbthcds=jh_sbthcd.split(",");
 		List<Plan_abgc> l = new ArrayList<Plan_abgc>();
 		for (int i = 0; i < strs.length; i++) {
 			Plan_abgc item =new Plan_abgc();
 			item.setSckid(strs[i]);
+			item.setJh_sbthcd(jh_sbthcds[i]);
 			item.setJhnf(nf);
 			l.add(item);
 		}

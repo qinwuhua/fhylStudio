@@ -429,7 +429,6 @@ $("#uploadSjt").uploadify({
 			$('#jc').val(data.jc);
 			$('#lqlm').val(data.lqlm);
 			$('#snlm').val(data.snlm);
-			//alert(data.gjhjsdj);
 			$('#gjhjsdj').combobox("setValue",data.gjhjsdj);
 			radioChecked("sftqss",data.sftqss);
 			$('#pfwh').val(data.pfwh);

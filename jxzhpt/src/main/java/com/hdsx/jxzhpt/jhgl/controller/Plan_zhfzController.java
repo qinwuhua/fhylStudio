@@ -83,7 +83,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void queryZhfzByStatus(){
 		try {
 			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
-			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+//			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(zhfzServer.queryZhfzByStatus(jh, lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -335,8 +335,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			zjxd.setTbdw(gydwmc);
 			excelData.add(zjxd);
 		}
-		ExcelEntity excel=new ExcelEntity("安保工程",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "安保工程-资金下达", getresponse());
+		ExcelEntity excel=new ExcelEntity("灾害防治",title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, "灾害防治-资金下达", getresponse());
 	}
 	/**
 	 * 管养单位或行政区划代码处理
@@ -345,16 +345,20 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	 * @return
 	 */
 	public String gydwOrxzqhBm(String bh,String name){
-		if(bh.indexOf(",")==-1){
-			int i=0;
-			if(bh.matches("^[0-9]*[1-9]00$")){
-				i=2;
-			}else if(bh.matches("^[0-9]*[1-9]0000$")){
-				i=4;
+		String result=null;
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
 			}
-			bh=bh.substring(0,bh.length()-i);
+			result= bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 		}
-		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+		return result;
 	}
 	/**
 	 * 资金追加修改计划金额

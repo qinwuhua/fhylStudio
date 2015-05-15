@@ -492,16 +492,20 @@ public class Plan_shuihController extends BaseActionSupport {
 	 * @return
 	 */
 	public String gydwOrxzqhBm(String bh,String name){
-		if(bh.indexOf(",")==-1){
-			int i=0;
-			if(bh.matches("^[0-9]*[1-9]00$")){
-				i=2;
-			}else if(bh.matches("^[0-9]*[1-9]0000$")){
-				i=4;
+		String result=null;
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
 			}
-			bh=bh.substring(0,bh.length()-i);
+			result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
 		}
-		return bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+		return result;
 	}
 	public void editShZj(){
 		try{

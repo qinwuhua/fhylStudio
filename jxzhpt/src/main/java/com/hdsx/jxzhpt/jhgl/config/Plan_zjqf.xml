@@ -8,7 +8,7 @@
 		select * from plan_zjqf z where nf=#{nf} and (z.gydwbm=#{gydwbm} or z.parent=#{gydwbm})
 	</select>
 	<select id="queryZjqfByZjqf" parameterType="planzjqf" resultType="planzjqf">
-		select ID, GYDWBM, PARENT, NVL(WQGZ,"0"), NVL(ABGC,"0"), NVL(ZHFZ,"0"), NF from plan_zjqf z where nf=#{nf} and z.gydwbm=#{gydwbm}
+		select ID, GYDWBM, PARENT, NVL(WQGZ,0) wqgz, NVL(ABGC,0) abgc, NVL(ZHFZ,0) zhfz, NF from plan_zjqf z where nf=#{nf} and z.gydwbm=#{gydwbm}
 	</select>
 	<insert id="insertZjqfBatch" parameterType="planzjqf">
 		insert into plan_zjqf (id,gydwbm,parent,nf,wqgz,abgc,zhfz) values

@@ -47,7 +47,8 @@ public class Plan_zjqfController extends BaseActionSupport{
 	
 	public void queryZjqfByZjqf(){
 		try {
-			JsonUtils.write(zjqfServer.queryZjqfByZjqf(zjqf), getresponse().getWriter());
+			PlanZjqf result = zjqfServer.queryZjqfByZjqf(zjqf);
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
