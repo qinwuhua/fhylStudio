@@ -89,7 +89,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 */
 	public void queryYhdzxById(){
 		try {
-			JsonUtils.write(yhdzxServer.queryYhdzxById(jh.getId()), getresponse().getWriter());
+			Plan_yhdzx yhdzx = yhdzxServer.queryYhdzxById(jh.getId());
+			JsonUtils.write(yhdzx, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -132,14 +133,24 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void editYhdzxById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			System.out.println("是否："+jh.getTotalsubsidyfund());
 			result.put("result", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
-			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
+			//result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	public void editYhdzxLxById() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		try{
+			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(lx)).toString());
+			result.put("jh", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
 		}
 	}
 	/**
@@ -298,7 +309,6 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
 			
 		}
-		System.out.println("养护添加："+jh.getJh_sbthcd());
 		UUID uuid=UUID.randomUUID();
 		jh.setId(uuid.toString());
 		lx.setJhid(uuid.toString());

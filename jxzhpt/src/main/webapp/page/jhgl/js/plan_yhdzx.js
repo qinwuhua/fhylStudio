@@ -142,7 +142,7 @@ function yhdzxxm(jh,lx){
 function openAddSjlx(id,nf){
 	YMLib.Var.NF=nf;
 	YMLib.Var.ID=id;
-	YMLib.UI.createWindow('add_yhdzxlx','添加路线',"/jxzhpt/page/jhgl/add/yhdzxlxAdd.jsp",'addyhdzxlx',880,330);
+	YMLib.UI.createWindow('add_yhdzxlx','添加路线',"/jxzhpt/page/jhgl/add/yhdzxlxAdd.jsp",'addyhdzxlx',880,500);
 }
 function yhdzxxm_sb(jh,lx){
 	var params={'lx.gydwmc':lx.gydwmc,'lx.gydwdm':lx.gydwdm,'lx.xzqhmc':lx.xzqhmc,
@@ -517,4 +517,214 @@ function editStatus(jh){
 }
 function exportYh(filename){
 	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+filename;
+}
+///////////////////////////////////////养护大中修路面结构加载和计算
+/**
+ * 根据对应结构，加载结构的下拉信息
+ */
+function loadCslx(id,cslx){
+	$.ajax({
+		type:'post',
+		url:'../../../xtgl/queryYhdzxcsByLx.do',
+		dataType:'json',
+		async:'false',
+		data:'yhdzxcs.cslx='+cslx,
+		success:function(result){
+			var n={clmc:'---请选择---',id:''};
+			result.splice(0,0,n);
+			$('#'+id).combobox({
+			    data:result,
+			    valueField:'id',
+			    textField:'clmc',
+			    onChange:function(newValue,oldValue){
+			    	var lx=id.substring(3);
+			    	if(newValue!=""){
+			    		$.ajax({
+				    		type:'post',
+							url:'../../../xtgl/queryYhdzxcsById.do',
+							dataType:'json',
+							data:'yhdzxcs.id='+newValue,
+							success:function(result2){
+								$('#txt'+lx+'dj').val(result2.lfmdj);
+								$('#txt'+lx+'sddj').val(result2.sddj);
+							}
+				    	});
+			    	}else{
+			    		$('#txt'+lx+'dj').val("0");
+						$('#txt'+lx+'sddj').val("0");
+			    	}
+			    }
+			}); 
+		}
+	});
+}
+/**
+ * 加载选择对应的下拉信息
+ * @param date
+ * @param cslx
+ * @param cs
+ */
+function loadYhdzxcs(date,cslx,cs){
+	$('#sel'+cs).combobox("setValue",date[cslx].clmc);
+	$('#txt'+cs+'hd').html(date[cslx].hd);
+	$('#txt'+cs+'dj').html(date[cslx].dj);
+	$('#txt'+cs+'sddj').html(date[cslx].sddj);
+}
+/**
+ * 添加延米
+ */
+function addym(){
+	var  myDate = new Date();
+	var id=myDate.getFullYear()+""+(myDate.getMonth()+1)+""+myDate.getDate()+""+
+		myDate.getHours()+""+myDate.getMinutes()+""+myDate.getSeconds()+""+myDate.getMilliseconds();
+	var html='<tr align="center" id="'+id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeym('+"'"+id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
+	$('#ymtr').after(html);
+}
+/**
+ * 添加按数量
+ */
+function addasl(){
+	var  myDate = new Date();
+	var id=myDate.getFullYear()+""+(myDate.getMonth()+1)+""+myDate.getDate()+""+
+		(myDate.getHours()+1)+""+(myDate.getMinutes()+1)+""+(myDate.getSeconds()+1)+""+myDate.getMilliseconds();
+	var html='<tr align="center" id="'+id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
+	$('#asltr').after(html);
+}
+/**
+ * 移除延米
+ * @param id
+ */
+function removeym(id){
+	$('#'+id).remove();
+}
+/**
+ * 移除数量
+ * @param id
+ */
+function removeasl(id){
+	$('#'+id).remove();
+}
+function reckonsum(){
+	if($('#ztz').val()==""){
+		alert("请填写总投资金额！");
+		return;
+	}
+	var lmjg=0,ym=0,sl=0,glf=0,zjg=0;
+	lmjgjson="{";//最后将路面结构、按延米、按数量、管理费的数据存储到json格式的字符串中
+	var ljkdzj='"路基宽度增加":{"ljkd":"'+$('#ljkdzj').is(":checked")+'"}';
+	lmjgjson+=ljkdzj+",";
+	var smc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcdj').val());
+	var sdsmc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcsddj').val());
+	var smcjson='"上面层":{"clmc":"'+$('#selsmc').combobox("getValue")+
+		'","hd":"'+$('#txtsmchd').val()+'","dj":"'+$('#txtsmcdj').val()+
+		'","sddj":"'+$('#txtsmcsddj').val()+'"}';
+	lmjgjson+=smcjson+",";
+	var zmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcdj').val());
+	var sdzmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcsddj').val());
+	var zmcjson='"中面层":{"clmc":"'+$('#selzmc').combobox("getValue")+
+	'","hd":"'+$('#txtzmchd').val()+'","dj":"'+$('#txtzmcdj').val()+
+	'","sddj":"'+$('#txtzmcsddj').val()+'"}';
+	lmjgjson+=zmcjson+",";
+	
+	var xmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcdj').val());
+	var sdxmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcsddj').val());
+	var xmcjson='"下面层":{"clmc":"'+$('#selxmc').combobox("getValue")+
+	'","hd":"'+$('#txtxmchd').val()+'","dj":"'+$('#txtxmcdj').val()+
+	'","sddj":"'+$('#txtxmcsddj').val()+'"}';
+	lmjgjson+=xmcjson+",";
+	
+	var fc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcdj').val());
+	var sdfc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcsddj').val());
+	var fcjson='"封层":{"clmc":"'+$('#selfc').combobox("getValue")+
+	'","hd":"'+$('#txtfchd').val()+'","dj":"'+$('#txtfcdj').val()+
+	'","sddj":"'+$('#txtfcsddj').val()+'"}';
+	lmjgjson+=fcjson+",";
+	
+	var sjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtsjchd').val(),$('#txtsjcdj').val());
+	var sdsjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtsjchd').val(),$('#txtsjcsddj').val());
+	var sjcjson='"上基层":{"clmc":"'+$('#selsjc').combobox("getValue")+
+	'","hd":"'+$('#txtsjchd').val()+'","dj":"'+$('#txtsjcdj').val()+
+	'","sddj":"'+$('#txtsjcsddj').val()+'"}';
+	lmjgjson+=sjcjson+",";
+	
+	var zjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtzjchd').val(),$('#txtzjcdj').val());
+	var sdzjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtzjchd').val(),$('#txtzjcsddj').val());
+	var zjcjson='"中基层":{"clmc":"'+$('#selzjc').combobox("getValue")+
+	'","hd":"'+$('#txtzjchd').val()+'","dj":"'+$('#txtzjcdj').val()+
+	'","sddj":"'+$('#txtzjcsddj').val()+'"}';
+	lmjgjson+=zjcjson+",";
+	
+	var xjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtxjchd').val(),$('#txtxjcdj').val());
+	var sdxjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			$('#txtxjchd').val(),$('#txtxjcsddj').val());
+	var xjcjson='"下基层":{"clmc":"'+$('#selxjc').combobox("getValue")+
+	'","hd":"'+$('#txtxjchd').val()+'","dj":"'+$('#txtxjcdj').val()+
+	'","sddj":"'+$('#txtxjcsddj').val()+'"}';
+	lmjgjson+=xjcjson+",";
+	
+	var dc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcdj').val());
+	var sddc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcsddj').val());
+	var dcjson='"垫层":{"clmc":"'+$('#seldc').combobox("getValue")+
+	'","hd":"'+$('#txtdchd').val()+'","dj":"'+$('#txtdcdj').val()+
+	'","sddj":"'+$('#txtdcsddj').val()+'"}';
+	lmjgjson+=dcjson+",";
+	
+	var yl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtyldj').val());
+	var sdyl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtylsddj').val());
+	var yljson='"原路":{"clmc":"'+$('#selyl').combobox("getValue")+
+	'","hd":"'+$('#txtylhd').val()+'","dj":"'+$('#txtyldj').val()+
+	'","sddj":"'+$('#txtylsddj').val()+'"}';
+	lmjgjson+=yljson+"}";
+	lmjg=smc+zmc+xmc+fc+sjc+zjc+xjc+dc+yl;
+	//获取延米集合
+	ymjson=new Array();//存储延米数据的json
+	var ymArray=$("#ymtab tr:gt(0)");
+	$.each(ymArray,function(index,item){
+		var ymMessage=$("#"+item.id+" input[type=text]");
+		ym+=($(ymMessage[2]).val())*($(ymMessage[3]).val())/10000;
+		var y={id:item.id,xmmc:$(ymMessage[0]).val(),sm:$(ymMessage[1]).val(),
+				cd:$(ymMessage[2]).val(),dj:$(ymMessage[3]).val()};
+		ymjson.push(y);
+	});
+	//获取数量集合，计算价格
+	sljson=new Array();
+	var slArray=$("#sltab tr:gt(0)");
+	$.each(slArray,function(index,item){
+		var slMessage=$("#"+item.id+" input[type=text]");
+		sl+=($(slMessage[2]).val())*($(slMessage[3]).val())/10000;
+		var s={id:item.id,xmmc:$(slMessage[0]).val(),sm:$(slMessage[1]).val(),
+				sl:$(slMessage[2]).val(),dj:$(slMessage[3]).val()};
+		sljson.push(s);
+	});
+	//计算总单价
+	zjg=lmjg+ym+sl;
+	//评估价格
+	var pgjg=sdsmc+sdzmc+sdxmc+sdfc+sdsjc+sdzjc+sdxjc+sddc+sdyl+ym+sl;
+	if($('#seldw').val()=="百分比"){
+		zjg=zjg*(1+$('#txtglfdj').val()/100);
+		pgjg=pgjg*(1+$('#txtglfdj').val()/100);
+	}else if($('#seldw').val()=="公里"){
+		zjg=zjg+$('#txtglfdj').val()/10000;
+		pgjg=pgjg+$('#txtglfdj').val()/10000;
+	}
+	pgjg=pgjg.toFixed(3);
+	glfjson={dw:$('#seldw').val(),dj:$('#txtglfdj').val(),ysdj:zjg.toFixed(3),pgdj:pgjg};
+	
+	$('#lblysdj').html(zjg.toFixed(3));
+	$('#lblpgdj').html(pgjg);
+	$('#lxhsjf').html((zjg.toFixed(3)*($('#txtHDLC').val())).toFixed(3));
+	$('#lxspjf').html((pgjg*(Number($('#txtHDLC').val()))).toFixed(3));
+	$('#dfptztz').html(($('#ztz').val()-$('#lxspjf').html()).toFixed(3));
+	$('#zbzzj').html($('#lxspjf').html());
+}
+function reckon(kd,hd,dj){
+	return (kd*(hd/100)*1000)*dj/10000;
+}
+function reckonsd(kd,hd,sddj){
+	return (kd*(hd/100)*1000)*sddj/10000;
 }

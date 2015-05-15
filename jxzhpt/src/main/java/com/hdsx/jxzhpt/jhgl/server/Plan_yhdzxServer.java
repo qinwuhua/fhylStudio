@@ -116,4 +116,10 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	List<Plan_lx_yhdzx> yhdzxAutoCompleteLxbm(Plan_lx_yhdzx lx);
+	/**
+	 * 修改养护大中修路线
+	 * @param lx 路线对象
+	 * @return
+	 */
+	boolean editYhdzxLxById(Plan_lx_yhdzx lx);
 }
