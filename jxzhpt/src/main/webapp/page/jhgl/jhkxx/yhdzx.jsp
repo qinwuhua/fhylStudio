@@ -236,11 +236,6 @@
 		}
 		function sellx(newValue){
 			var lmdate=$.parseJSON(lxlist[newValue].lmjg);
-			if(lmdate["路基宽度增加"]!=null && lmdate["路基宽度增加"].ljkd=="true"){
-				$('#ljkdzj').attr("checked", true);
-			}else{
-				$('#ljkdzj').attr("checked", false);
-			}
 			$('#txtGYDWMC').combotree('setValue', lxlist[newValue].gydwdm);
 			$('#txtXZQHMC').combotree('setValue', lxlist[newValue].xzqhdm);
 			$('#lxid').html(lxlist[newValue].lxid);
@@ -256,33 +251,39 @@
 			$('#txtYLMKD').html(lxlist[newValue].ylmkd);
 			$('#txtYLMHD').html(lxlist[newValue].ylmhd);
 			$('#txtBHNR').html(lxlist[newValue].bhnr);
-			
-			if(lxlist[newValue].lmjg!=""){
-				loadYhdzxcs(lmdate,"上面层","smc");
-				loadYhdzxcs(lmdate,"中面层","zmc");
-				loadYhdzxcs(lmdate,"下面层","xmc");
-				loadYhdzxcs(lmdate,"封层","fc");
-				loadYhdzxcs(lmdate,"上基层","sjc");
-				loadYhdzxcs(lmdate,"中基层","zjc");
-				loadYhdzxcs(lmdate,"下基层","xjc");
-				loadYhdzxcs(lmdate,"垫层","dc");
-				loadYhdzxcs(lmdate,"原路","yl");
+			if(lmdate!=null){
+				if(lmdate["路基宽度增加"]!=null && lmdate["路基宽度增加"].ljkd=="true"){
+					$('#ljkdzj').attr("checked", true);
+				}else{
+					$('#ljkdzj').attr("checked", false);
+				}
+				if(lxlist[newValue].lmjg!=""){
+					loadYhdzxcs(lmdate,"上面层","smc");
+					loadYhdzxcs(lmdate,"中面层","zmc");
+					loadYhdzxcs(lmdate,"下面层","xmc");
+					loadYhdzxcs(lmdate,"封层","fc");
+					loadYhdzxcs(lmdate,"上基层","sjc");
+					loadYhdzxcs(lmdate,"中基层","zjc");
+					loadYhdzxcs(lmdate,"下基层","xjc");
+					loadYhdzxcs(lmdate,"垫层","dc");
+					loadYhdzxcs(lmdate,"原路","yl");
+				}
 			}
-			if(lxlist[newValue].aym!=""){
+			if(lxlist[newValue].aym!="" && lxlist[newValue].aym!=null){
 				$('#ymtab tr:eq(1)').remove();
 				$.each(JSON.parse(lxlist[newValue].aym),function(index,item){
 					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.cd+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
 					$('#ymtr').after(html);
 				});
 			}
-			if(lxlist[newValue].asl!=""){
+			if(lxlist[newValue].asl!="" && lxlist[newValue].asl!=null){
 				$('#sltab tr:eq(1)').remove();
 				$.each(JSON.parse(lxlist[newValue].asl),function(index,item){
 					var html='<tr align="center" id="'+item.id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.xmmc+'" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input value="'+item.sm+'" type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" value="'+item.sl+'" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input value="'+item.dj+'" type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+item.id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
 					$('#asltr').after(html);
 				});
 			}
-			if(lxlist[newValue].glf!=""){
+			if(lxlist[newValue].glf!="" && lxlist[newValue].glf!=null){
 				$('#seldw').val(JSON.parse(lxlist[newValue].glf).dw);
 				$('#txtglfdj').val(JSON.parse(lxlist[newValue].glf).dj);
 				$('#lblysdj').html(JSON.parse(lxlist[newValue].glf).ysdj);
