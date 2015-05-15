@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
 	</insert>
 
 	<select id="selectJckabgc" parameterType="jckabgc" resultType="jckabgc">

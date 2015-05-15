@@ -62,6 +62,7 @@
 		<result property="ylmlx" column="ylmlx"/>
 		<result property="bhnr" column="bhnr"/>
 		<result property="jhid" column="jhid"/>
+		<result property="tsdq" column="tsdq"/>
 	</resultMap>
 	
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
@@ -263,7 +264,7 @@
        		jh.jhsydfzcje,jh.sfsqablbz,jh.ablbzsqwh,jh.sftqss,jh.jhxdwh,jh.gksjwh,
        		jh.sjpfwh,jh.sfgyhbm,jh.gkbgmc,jh.sjsgtmc,jh.bz,
        		lx.lxmc,lx.lxbm,lx.jsdd,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,
-       		lx.yjsdj,lx.ylmlx,lx.yhlc,lx.bhnr
+       		lx.yjsdj,lx.ylmlx,lx.yhlc,lx.bhnr,lx.tsdq
 		from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on lx.jhid=jh.id 
 		where jh.id=#{id}
 	</select>
@@ -433,9 +434,9 @@
 	</select>
 	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">
 		insert into plan_lx_gcgj (id,lxmc,lxbm,xzqhdm,xzqhmc,jsdd,gydw,gydwdm,bhnr,
-		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh <!---->)
+		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh,tsdq <!---->)
 		values(sys_guid(),#{lxmc},#{lxbm},#{xzqhdm},#{xzqhmc},#{jsdd},#{gydw},#{gydwdm},#{bhnr},
-		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid} ,#{tbsj},#{tbbmbh}<!-- -->)
+		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid} ,#{tbsj},#{tbbmbh},#{tsdq}<!-- -->)
 	</insert>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">
 		select xmlx as id,sum(text) text,sum(name) name,sum(stz) parent,count(xmlx) bmid from (

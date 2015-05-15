@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
 </insert>
  
  <select id="selectJckzhfz" parameterType="jckzhfz" resultType="jckzhfz">

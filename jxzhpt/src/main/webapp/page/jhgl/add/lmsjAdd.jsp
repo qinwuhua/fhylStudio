@@ -58,6 +58,7 @@
 	  		}
 	  	}).result(
 			function(e, item) {
+				
 				$('#lxmc').val(item.lxmc);
 				$('#qdzh').val(item.qdzh);
 				$('#spqdzh').html(item.qdzh);
@@ -80,6 +81,7 @@
 			onSelect:function(node) {
 				YMLib.Var.DistName = node.text;
 				$('#xzqhdm').html(node.id);
+				selectTSDQ(node.id);
 			}
 		});
 		$('#'+id).combotree('setValue', dwbm);
@@ -138,7 +140,7 @@
 				'jh.pftz':$('#pftz').val(),'jh.jhsybbzje':$('#jhsybbzje').val(),'jh.jhsydfzczj':$('#jhsysbzje').val(),
 				'jh.jhxdwh':$('#jhxdwh').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),
 				'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
-				'jh.remarks':$('#remarks').val(),'jh.tbbm':$.cookie("unit")};
+				'jh.remarks':$('#remarks').val(),'jh.tbbm':$.cookie("unit"),'lx.tsdq':$("#tsdq").html()};
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/jhgl/insertGcsj.do',
@@ -190,6 +192,26 @@
 		}else if(value=="否"){
 			$('#ablbzsqwh').attr("disabled","disabled");
 		}
+	}
+	function selectTSDQ(str){
+		var data="xzqhdm1="+str;
+		$("#tsdq").text("");
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/xmjck/selectTSDQ.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(msg.length>0){
+					var tsdqstr="";
+					for(var i=0;i<msg.length;i++){
+						tsdqstr=tsdqstr+msg[i]+"、";
+					}
+					tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
+					$("#tsdq").text(tsdqstr);
+				}
+			}
+		});	
 	}
 	</script>
 </head>
@@ -315,7 +337,7 @@
 					特殊地区
 				</td>
 				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="lblTSDW"></span>&nbsp;
+					<span id="tsdq"></span>&nbsp;
 				</td>
 			</tr>
 			<tr style="height: 50px;">

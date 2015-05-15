@@ -429,6 +429,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			jh.setJh_sbthcd("0");
 		}
 		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
+		lx1.setTsdq(lx.getTsdq());
 		lx1.setXzqhdm(lx.getXzqhdm());
 		lx1.setLxbm(lx.getLxbm());
 		lx1.setQdzh(lx.getQdzh());

@@ -24,7 +24,7 @@ function sfqxkg(index){
 }
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.lxbm,"");
+	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];

@@ -194,4 +194,10 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 		return queryOne("selJsdj", wqgz);
 	}
 
+	@Override
+	public List<String> selectTSDQ(String xzqh) {
+		// TODO Auto-generated method stub
+		return queryList("selectTSDQ",xzqh);
+	}
+
 }

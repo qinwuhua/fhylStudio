@@ -106,6 +106,7 @@
 		<result property="bz" column="bz"/>
 		<result property="qdmc" column="qdmc"/>
 		<result property="zdmc" column="zdmc"/>
+		<result property="tsdq" column="tsdq"/>
 		<result property="lyllqk" column="lyllqk"/>
 		<result property="dlqlbm" column="dlqlbm"/>
 		<result property="dlqlzxzh" column="dlqlzxzh"/>
@@ -307,7 +308,7 @@
 			group by jh.id)
 	</select>
 	<select id="queryGcsjById" resultMap="gcsj_jh" parameterType="string">
-		select jh.*,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,
+		select jh.*,lx.lxmc,lx.lxbm,lx.yjsdj,lx.qdzh,lx.zdzh,lx.qzlc,lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.xmlc,lx.bhnr,lx.tsdq,
 		lx.qdmc,lx.zdmc,lx.lyllqk,lx.dlqlbm,lx.dlqlzxzh
 		from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id where jh.id=#{id}
 	</select>
@@ -698,7 +699,8 @@
 			<if test="lyllqk!=null">,lyllqk</if>
 			<if test="dlqlbm!=null">,dlqlbm</if>
 			<if test="dlqlzxzh!=null">,dlqlzxzh</if>
-			<if test="sfxz!=null">,sfxz</if>)
+			<if test="sfxz!=null">,sfxz</if>
+			<if test="tsdq!=null">,tsdq</if>)
 		values(sys_guid(),#{jhid}
 			<if test="gydw!=null">,#{gydw}</if>
 			<if test="gydwdm!=null">,#{gydwdm}</if>
@@ -719,7 +721,8 @@
 			<if test="lyllqk!=null">,#{lyllqk}</if>
 			<if test="dlqlbm!=null">,#{dlqlbm}</if>
 			<if test="dlqlzxzh!=null">,#{dlqlzxzh}</if>
-			<if test="sfxz!=null">,#{sfxz}</if>)
+			<if test="sfxz!=null">,#{sfxz}</if>
+			<if test="tsdq!=null">,#{tsdq}</if>)
 	</insert>
 	<insert id="insertGcsjJh" parameterType="plan_gcsj">
 		insert into plan_gcsj (id,
