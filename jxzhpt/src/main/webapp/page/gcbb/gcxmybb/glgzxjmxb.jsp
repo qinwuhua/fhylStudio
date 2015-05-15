@@ -279,10 +279,8 @@ table tbody tr td {
 									</tr>
 								</thead>
 								<tbody id="wqgzlist">
-								
-								</tbody>
-								
-							</table>
+									</tbody>	
+								</table>
 							</div>
 						</div>
 					</div>
