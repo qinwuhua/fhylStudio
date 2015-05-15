@@ -60,6 +60,8 @@
 			var str3='';
 			var min=xmnf[xmnf.length-1];
 			var max=xmnf[0];
+			var len=(xmnf.length+1)*1000+"px";
+			$("#kdtb").attr('width',len);
 			for(var i=xmnf.length-1;i>=0;i--){
 				str1=str1+'<td colspan="6">计划下达及完成情况</td>';
 				str2=str2+'<td rowspan="1" colspan="3">'+xmnf[i]+'年度</td><td rowspan="2">本年完成里程（公里）</td><td rowspan="2">累计完成里程（公里）</td><td rowspan="2">本年完成投资（万元）</td>';
@@ -222,19 +224,19 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table id="kdtb" width="6000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">公路改造工程新上、续建工程项目完成情况明细表</caption>
 								<thead id="biaotou">
 									<tr>
-										<td rowspan="3">序号</td>
-										<td rowspan="3">设区市</td>
-										<td rowspan="3">项目类型</td>
+										<td rowspan="3" style="width: 100px;">序号</td>
+										<td rowspan="3" style="width: 125px;">设区市</td>
+										<td rowspan="3" style="width: 125px;">项目类型</td>
 										<td colspan="6">计划下达及完成情况</td>
 										<td colspan="6">计划下达及完成情况</td>
 										<td colspan="6">计划下达及完成情况</td>
 										<td colspan="6">计划下达及完成情况</td>
 										<td colspan="6">计划下达及完成情况</td>
-										<td rowspan="3" colspan="6">备注</td>
+										<td rowspan="3" style="width: 125px;">备注</td>
 										</tr>
 									<tr>
 										<td rowspan="1" colspan="3">2011-2014年度</td>
