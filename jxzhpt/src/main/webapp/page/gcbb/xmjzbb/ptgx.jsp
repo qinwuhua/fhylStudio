@@ -293,36 +293,36 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table width="3500px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通干线公路建设项目进展情况表</caption>
 								<thead>
 									<tr>
-										<td>序号</td>
-										<td>项目名称</td>
-										<td>所在地市</td>
-										<td>特殊区域</td>
-										<td>计划年度</td>
-										<td>起点桩号</td>
-										<td>讫点桩号</td>
-										<td>计划里程（里程）</td>
-										<td>概算总投资(万元)</td>
-										<td>计划下达资金(万元)</td>
-										<td>累计拨付资金（万元）</td>
-										<td>未拨付资金（万元）</td>
-										<td>建设状态</td>
-										<td> 垫层（m³ </td>
-										<td>基层（m³）</td>
-										<td>完工里程（公里）</td>
-										<td>未开工里程(公里)</td>
-										<td>开工日期</td>
-										<td>全线开工</td>
-										<td>开工段落</td>
-										<td>完工日期</td>
-										<td> 预计完工时间 </td>
-										<td> 情况说明 </td>
-										<td> 计划下达文号 </td>
-										<td> 相关处室意见</td>
-										<td> 财审处意见 </td>
+										<td style="width: 67px">序号</td>
+										<td style="width: 160px">项目名称</td>
+										<td style="width: 160px">所在地市</td>
+										<td style="width: 150px">特殊区域</td>
+										<td style="width: 160px">计划年度</td>
+										<td style="width: 160px">起点桩号</td>
+										<td style="width: 160px">讫点桩号</td>
+										<td style="width: 140px">计划里程（里程）</td>
+										<td style="width: 140px">概算总投资(万元)</td>
+										<td style="width: 140px">计划下达资金(万元)</td>
+										<td style="width: 140px">累计拨付资金（万元）</td>
+										<td style="width: 140px">未拨付资金（万元）</td>
+										<td style="width: 140px">建设状态</td>
+										<td style="width: 140px"> 垫层（m³ </td>
+										<td style="width: 140px">基层（m³）</td>
+										<td style="width: 140px">完工里程（公里）</td>
+										<td style="width: 140px">未开工里程(公里)</td>
+										<td style="width: 140px">开工日期</td>
+										<td style="width: 140px">全线开工</td>
+										<td style="width: 140px">开工段落</td>
+										<td style="width: 140px">完工日期</td>
+										<td style="width: 140px"> 预计完工时间 </td>
+										<td style="width: 140px"> 情况说明 </td>
+										<td style="width: 140px"> 计划下达文号 </td>
+										<td style="width: 140px"> 相关处室意见</td>
+										<td style="width: 140px"> 财审处意见 </td>
 									</tr>
 								</thead>
 								<tbody id="ptgxlist">

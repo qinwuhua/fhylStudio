@@ -265,31 +265,31 @@ table tbody tr td {
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">路网结构改造工程项目资金拔付情况表</caption>
 								<thead>
 									<tr>
-										<td rowspan="2">序号</td>
-										<td rowspan="2">所在设区市</td>
-										<td rowspan="2">特殊区域</td>
-										<td rowspan="2">项目名称</td>
-										<td rowspan="2">建设性质</td>
-										<td colspan="3">项目段落</td>
-										<td rowspan="2">计划下达年度</td>
-										<td rowspan="2">计划下达资金（万元）</td>
-										<td rowspan="2">概预算（万元）</td>
-										<td rowspan="2">累计拨付资金（万元）</td>
-										<td rowspan="2">未拨付资金（万元）</td>
-										<td rowspan="2">建设状态</td>
-										<td rowspan="2">完工桥长或隐患里程</td>
-										<td rowspan="2">开工日期</td>
-										<td rowspan="2">完工日期</td>
-										<td rowspan="2">预计完工时间</td>
-										<td rowspan="2"> 情况说明 </td>
-										<td rowspan="2"> 计划下达文号 </td>
-										<td rowspan="2"> 相关处室意见</td>
-										<td rowspan="2"> 财审处意见 </td>
+										<td rowspan="2" style="width: 60px">序号</td>
+										<td rowspan="2" style="width: 140px">所在设区市</td>
+										<td rowspan="2" style="width: 140px">特殊区域</td>
+										<td rowspan="2" style="width: 140px">项目名称</td>
+										<td rowspan="2" style="width: 140px">建设性质</td>
+										<td colspan="3" >项目段落</td>
+										<td rowspan="2" style="width: 140px">计划下达年度</td>
+										<td rowspan="2" style="width: 140px">计划下达资金（万元）</td>
+										<td rowspan="2" style="width: 140px">概预算（万元）</td>
+										<td rowspan="2" style="width: 140px">累计拨付资金（万元）</td>
+										<td rowspan="2" style="width: 140px">未拨付资金（万元）</td>
+										<td rowspan="2" style="width: 140px">建设状态</td>
+										<td rowspan="2" style="width: 140px">完工桥长或隐患里程</td>
+										<td rowspan="2" style="width: 140px">开工日期</td>
+										<td rowspan="2" style="width: 140px">完工日期</td>
+										<td rowspan="2" style="width: 140px">预计完工时间</td>
+										<td rowspan="2" style="width: 140px"> 情况说明 </td>
+										<td rowspan="2" style="width: 140px"> 计划下达文号 </td>
+										<td rowspan="2" style="width: 140px"> 相关处室意见</td>
+										<td rowspan="2" style="width: 140px"> 财审处意见 </td>
 									</tr>
 									<tr>
-										<td>起点桩号<br>或中心桩号</td>
-										<td> 迄点桩号 </td>
-										<td>桥长或隐<br>患里程（延米）</td>
+										<td style="width: 140px">起点桩号<br>或中心桩号</td>
+										<td style="width: 140px"> 迄点桩号 </td>
+										<td style="width: 140px">桥长或隐<br>患里程（延米）</td>
 									</tr>
 								</thead>
 								<tbody id="lwlist">

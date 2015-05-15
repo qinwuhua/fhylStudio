@@ -178,11 +178,11 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table class="table_body" width="2000px" >
+							<table class="table_body" width="2700px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年交通固定资产投资建设计划(路网结构改造)</caption>
 								<thead>
 									<tr>
-										<td rowspan="3">项目所在地区</td>
+										<td rowspan="3" style="width: 125px">项目所在地区</td>
 										<td colspan="6">危桥</td>
 										<td colspan="6">安保</td>
 										<td colspan="6">灾害</td>
@@ -203,27 +203,27 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td>小计</td>
 									</tr>
 									<tr>
-										<td>座</td>
-										<td>补助资金(万元)</td>
-										<td>座</td>
-										<td>补助资金(万元)</td>
-										<td>座</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>处治里程(km)</td>
-										<td>补助资金(万元)</td>
-										<td>补助资金(万元)</td>
-										<td>补助资金(万元)</td>
-										<td>补助资金(万元)</td>
+										<td style="width: 55px">座</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">座</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 55px">座</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">处治里程(km)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">补助资金(万元)</td>
+										<td style="width: 140px">补助资金(万元)</td>
 									</tr>
 								</thead>
 								<tbody id="table_tbody"></tbody>

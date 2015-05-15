@@ -245,72 +245,72 @@
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">普通国省干线公路建设项目工程进度完成情况汇总表</caption>
 								<thead>
 									<tr>
-										<td rowspan="3">序号</td>
-										<td rowspan="3">路线编码</td>
-										<td rowspan="3">项目名称</td>
-										<td rowspan="3">计划年度</td>
-										<td rowspan="3">改造公里（公里）</td>
-										<td rowspan="3">原技术等级</td>
-										<td rowspan="3">建设技术标准</td>
-										<td rowspan="3">开工时间</td>
+										<td rowspan="3" width="125px;">序号</td>
+										<td rowspan="3" width="125px;">路线编码</td>
+										<td rowspan="3" width="125px;">项目名称</td>
+										<td rowspan="3" width="125px;">计划年度</td>
+										<td rowspan="3" width="125px;">改造公里<br>（公里）</td>
+										<td rowspan="3" width="125px;">原技术等级</td>
+										<td rowspan="3" width="125px;">建设技术标准</td>
+										<td rowspan="3" width="125px;">开工时间</td>
 										<td colspan="11">计划工程</td>
 										<td colspan="12">本月完成工程量</td>
 										<td colspan="12">自开工累计完成工程量</td>
 										<td colspan="4">本年元月至本月累计完成工程量</td>
-										<td rowspan="3">备注</td>
+										<td rowspan="3" width="125px;">备注</td>
 									</tr>	
 									<tr>
-										<td rowspan="2">投资额（万元）</td>
-										<td rowspan="2">路基土石方（m³）</td>
+										<td rowspan="2" width="125px;">投资额<br>（万元）</td>
+										<td rowspan="2" width="125px;">路基土石方（m³）</td>
 										<td colspan="2">桥梁</td>
-										<td rowspan="2">涵洞（米）</td>
+										<td rowspan="2" width="125px;">涵洞（米）</td>
 										<td colspan="2">隧道</td>
 										<td colspan="4">路面工程（公里）</td>
-										<td rowspan="2">投资额（万元）</td>
-										<td rowspan="2">占投资比例（%）</td>
-										<td rowspan="2">路基土石方 （m³）</td>
+										<td rowspan="2" width="125px;">投资额<br>（万元）</td>
+										<td rowspan="2" width="125px;">占投资比例（%）</td>
+										<td rowspan="2" width="125px;">路基土石方 （m³）</td>
 										<td colspan="2">桥梁</td>
-										<td rowspan="2">涵洞（米）</td>
+										<td rowspan="2" width="125px;">涵洞（米）</td>
 										<td colspan="2">隧道</td>
 										<td colspan="4">路面工程（公里）</td>
-										<td rowspan="2">投资额（万元）</td>
-										<td rowspan="2">占投资比例（%）</td>
-										<td rowspan="2">路基土石方（m³）</td>
+										<td rowspan="2" width="125px;">投资额<br>（万元）</td>
+										<td rowspan="2" width="125px;">占投资比例（%）</td>
+										<td rowspan="2" width="125px;">路基土石方（m³）</td>
 										<td colspan="2">桥梁</td>
-										<td rowspan="2">涵洞（米）</td>
+										<td rowspan="2" width="125px;">涵洞（米）</td>
 										<td colspan="2">隧道</td>
-										<td colspan="4">路面工程（公里）</td>
-										<td rowspan="2">投资额（万元）</td>
-										<td rowspan="2">占投资比例（%）</td>
-										<td colspan="2">路面工程（公里）</td>
+										<td colspan="4">路面工程<br>（公里）</td>
+										<td rowspan="2" width="125px;">投资额<br>（万元）</td>
+										<td rowspan="2" width="125px;">占投资比例（%）</td>
+										<td colspan="2">路面工程<br>（公里）</td>
 									</tr>
 									<tr>
-										<td>米</td>
-										<td>座</td>
-										<td>米</td>
-										<td>座</td>
-										<td>垫层</td>
-										<td>基层</td>
-										<td>沥青路面</td>
-										<td>水泥路面</td>
-										<td>米</td>
-										<td>座</td>
-										<td>米</td>
-										<td>座</td>
-										<td>垫层</td>
-										<td>基层</td>
-										<td>沥青路面</td>
-										<td>水泥路面</td>
-										<td>米</td>
-										<td>座</td>
-										<td>米</td>
-										<td>座</td>
-										<td>垫层</td>
-										<td>基层</td>
-										<td>沥青路面</td>
-										<td>水泥路面</td>
-										<td>沥青路面</td>
-										<td>水泥路面</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">垫层</td>
+										<td width="125px;">基层</td>
+										<td width="125px;">沥青路面</td>
+										<td width="125px;">水泥路面</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">垫层</td>
+										<td width="125px;">基层</td>
+										<td width="125px;">沥青路面</td>
+										<td width="125px;">水泥路面</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">米</td>
+										<td width="125px;">座</td>
+										<td width="125px;">垫层</td>
+										<td width="125px;">基层</td>
+										<td width="125px;">沥青路面</td>
+										<td width="125px;">水泥路面</td>
+										<td width="125px;">沥青路面</td>
+										<td width="125px;">水泥路面</td>
 									</tr>
 								</thead>
 								<tbody id="tbody_gcgj">

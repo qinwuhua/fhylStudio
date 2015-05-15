@@ -203,6 +203,17 @@
 			}
 		});	
 	}
+	function check(str){
+		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+		if(str.value==''){
+			return;
+		}
+	    if( !g.test(str.value)){
+	    	alert("请输入正确的数字");
+	    	$(str).val('');
+	    	return;
+	    }
+	}
 	</script>
 </head>
 <body style="font-size: 12px;">
@@ -293,7 +304,7 @@
 					隐患里程
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="yhlc" style="width:90px;" type="text"/>公里
+					<input onblur="check(this)" id="yhlc" style="width:90px;" type="text"/>公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -346,7 +357,7 @@
 					投资估算
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" onblur="isNumber(this)" id="tzgs" style="width: 80px;"/>&nbsp;万元
+					<input type="text" onblur="check(this)" id="tzgs" style="width: 80px;"/>&nbsp;万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设性质
@@ -433,19 +444,19 @@
 					垫层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="dc" style="width:100px;"/>m³
+					<input onblur="check(this)" type="text" id="dc" style="width:100px;"/>m³
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					基层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="jc" style="width:100px;"/>m³
+					<input onblur="check(this)" type="text" id="jc" style="width:100px;"/>m³
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					面层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="mc" style="width:100px;"/>km
+					<input onblur="check(this)" type="text" id="mc" style="width:100px;"/>km
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -453,7 +464,7 @@
 					路面宽度
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="lmkd" style="width: 100px;"/>米
+					<input onblur="check(this)" type="text" id="lmkd" style="width: 100px;"/>米
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					批复文号
@@ -473,19 +484,19 @@
 					批复总投资
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="pfztz" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="pfztz" style="width: 100px;"/> 万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划使用部补助金额
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="bbz" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="bbz" style="width: 100px;"/> 万元
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					计划使用省补助资金
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="dfzc" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="dfzc" style="width: 100px;"/> 万元
 				</td>
 			</tr>
 			<tr style="height: 30px;">
