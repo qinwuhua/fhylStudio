@@ -57,6 +57,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String zjlx;
 	
 	public void querySumYhdzx(){
 		try {
@@ -326,16 +327,33 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void insertYhdzxLx() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		lx.setTbsj(new Date());
-		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
-		if(lxresult){
-			strResult="true";
+	public void insertYhdzxLx(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			lx.setTbsj(new Date());
+			if(zjlx!=null && zjlx.equals("true")){
+				Plan_yhdzx yhdzx = yhdzxServer.queryYhdzxById(lx.getJhid());
+				yhdzx.setFee(new Double(new Double(yhdzx.getFee()).doubleValue()+new Double(jh.getFee())).toString());
+				yhdzx.setNewfee(new Double(new Double(yhdzx.getNewfee()).doubleValue()+new Double(jh.getNewfee())).toString());
+				yhdzx.setTotalsubsidyfund(new Double(new Double(yhdzx.getTotalsubsidyfund()).doubleValue()+new Double(jh.getTotalsubsidyfund())).toString());
+				yhdzx.setTotalplacefund(new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(jh.getTotalsubsidyfund())).toString());
+				yhdzxServer.editYhdzxById(yhdzx, lx);
+			}
+			
+			boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+			if(lxresult){
+				strResult="true";
+			}
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
 	}
 	/**
 	 * 单次添加养护大中修德编码提示
@@ -428,5 +446,12 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	}
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public String getZjlx() {
+		return zjlx;
+	}
+
+	public void setZjlx(String zjlx) {
+		this.zjlx = zjlx;
 	}
 }

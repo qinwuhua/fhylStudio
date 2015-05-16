@@ -36,6 +36,13 @@
 		<result property="gkbgmc" column="gkbgmc"/>
 		<result property="sjsgtmc" column="sjsgtmc"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="fapgdw" column="fapgdw"/>
+		<result property="fascdw" column="kgzt"/>
+		<result property="faspsj" column="faspsj"/>
+		<result property="spwh" column="spwh"/>
+		<result property="tzgs" column="tzgs"/>
+		<result property="jsxz" column="jsxz"/>
+		<result property="jsnr" column="jsnr"/>
 		<collection property="shuihs" ofType="plan_lx_shuih" resultMap="shuih_lx"/>
 	</resultMap>
 	<resultMap type="plan_lx_shuih" id="shuih_lx">

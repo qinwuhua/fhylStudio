@@ -158,7 +158,7 @@
 					 type : "POST",
 					 url : "/jxzhpt/xmsck/lrjhSckwqgz.do",
 					 dataType : 'json',
-					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue"),
+					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue")+'&sbthcd1='+jh_sbthcd,
 					 success : function(msg){
 						 if(msg){
 							 	parent.$("#grid").datagrid('reload');

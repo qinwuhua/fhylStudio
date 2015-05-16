@@ -121,6 +121,15 @@
 			return;
 		}
 		var sckid= rows[0].sckid;
+		var jh_sbthcd="";
+		var gydw=rows[0].gydwbm;
+		var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$"),shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$"),xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
+		if(shi1.test(gydw) || shi2.test(gydw)){
+ 			jh_sbthcd="2";
+ 		}else if(xian1.test(gydw) || xian2.test(gydw)){
+ 			jh_sbthcd="0";
+ 		}
 		for(var i=0;i<rows.length;i++){
 			if(rows[i].sck_shzt=='未审核'){
 				alert("对不起，该项目未审核！");
@@ -132,6 +141,11 @@
 			}
 		}
 	 	for(var i=1;i<rows.length;i++){
+	 		if(shi1.test(rows[i].gydwbm) || shi2.test(rows[i].gydwbm)){
+	 			jh_sbthcd+=",2";
+	 		}else if(xian1.test(rows[i].gydwbm) || xian2.test(rows[i].gydwbm)){
+	 			jh_sbthcd+=",0";
+	 		}
 			sckid+=","+rows[i].sckid ;
 		}
 	 	if($('#lrjhnf').combobox("getValue")==""){
@@ -143,7 +157,7 @@
 					 type : "POST",
 					 url : "/jxzhpt/xmsck/lrjhSckzhfz.do",
 					 dataType : 'json',
-					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue"),
+					 data : 'delstr=' +sckid+'&nf='+$('#lrjhnf').combobox("getValue")+'&sbthcd1='+jh_sbthcd,
 					 success : function(msg){
 						 if(msg){
 							 	parent.$("#grid").datagrid('reload');
