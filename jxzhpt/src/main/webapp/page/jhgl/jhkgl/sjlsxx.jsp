@@ -107,6 +107,9 @@
 	</script>
 </head>
 <body>
+	<div id="righttop">
+		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;补助历史查询</div>
+	</div>
 	<div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
 		<table>
 			<tr>

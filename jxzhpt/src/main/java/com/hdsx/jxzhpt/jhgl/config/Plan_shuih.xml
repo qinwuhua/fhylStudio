@@ -350,8 +350,6 @@
 		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_shuih lx, plan_shuih jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
 		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
 		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) C2]]>
-		<!-- select count(jh.id) from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id)
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]> -->
 	</select>
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}

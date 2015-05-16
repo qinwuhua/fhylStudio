@@ -105,6 +105,7 @@ function gclmsjxm(jh,lx){
 			{field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
         		return '<a href="javascript:openZjzjWindow('+"'grdab','editZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 			}},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
 		  		formatter:function(value,row,index){
@@ -117,9 +118,9 @@ function gclmsjxm(jh,lx){
 		  	},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -184,12 +185,13 @@ function gclmsjxm_sb(jh,lx){
 				}
 				return result;
 			}},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -249,13 +251,14 @@ function gclmsjxm_sh(jh,lx){
 				}
 				return result;
 			}},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -313,13 +316,14 @@ function gclmsjxm_zjxd(jh,lx){
 						return '竣工';
 				}
 			},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
