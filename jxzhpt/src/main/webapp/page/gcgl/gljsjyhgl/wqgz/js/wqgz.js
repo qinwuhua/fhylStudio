@@ -48,13 +48,13 @@ function ybsb(index){
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxxtj','危桥改造月报添加','wqgzybtj.jsp','wqxxtj',650,350);
+	YMLib.UI.createWindow('wqxxtj','危桥改造月报添加','wqgzybtj.jsp','wqxxtj',650,340);
 	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,430);
+	parent.YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,340);
 	//window.open("wqgzybxx.jsp");
 }
 var ybxiangxi;
@@ -63,7 +63,7 @@ function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
 	ybxiangxi=data;
-	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',650,350);
+	YMLib.UI.createWindow('wqxx','危桥改造月报编辑','wqgzybxg.jsp','wqxx',650,340);
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];

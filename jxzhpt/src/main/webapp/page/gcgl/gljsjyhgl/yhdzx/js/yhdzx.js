@@ -41,20 +41,20 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,500);
+	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,467);
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',680,360);
+	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',680,340);
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','养护大中修月报详情','yhdzxybxx.jsp','wqxx',800,430);
+	parent.YMLib.UI.createWindow('wqxx','养护大中修月报详情','yhdzxybxx.jsp','wqxx',800,340);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',680,360);
+	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',680,340);
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
