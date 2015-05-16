@@ -47,6 +47,9 @@
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
@@ -85,6 +88,9 @@
  		</if>
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
@@ -181,6 +187,9 @@
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -219,6 +228,9 @@
  		</if>
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
 
@@ -305,6 +317,9 @@
  		</if>
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">

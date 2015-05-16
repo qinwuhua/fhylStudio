@@ -102,7 +102,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					parent.shezhi();
+					shezhi();
 				}else{
 					alert('删除失败！');
 				}

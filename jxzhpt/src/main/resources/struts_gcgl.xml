@@ -41,6 +41,7 @@
 	<action name="insertAbgcCgs" class="gcglabgcController" method="insertAbgcCgs"/>
 	<action name="exportAbyb" class="gcglabgcController" method="exportAbyb"/>
 	<action name="insertCGS" class="gcglabgcController" method="insertCGS"/>
+	<action name="insertCGS1" class="gcglabgcController" method="insertCGS1"/>
 	<action name="exportgjyb" class="gcglabgcController" method="exportgjyb"/>
 	<action name="exportsjyb" class="gcglabgcController" method="exportsjyb"/>
 	<action name="exportsjyb_set" class="gcglabgcController" method="exportsjyb_set"/>

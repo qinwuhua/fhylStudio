@@ -39,6 +39,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
 	</select>
@@ -71,6 +74,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</select>
 	<select id="selectJckabgcById" parameterType="jckabgc"
@@ -157,6 +163,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by shzt desc
@@ -192,6 +201,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 	</select>
 	<sql id="abgc_commonsql">
 		and  sbthcd &lt;=#{sbthcd}
@@ -221,6 +233,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</sql>
 	<select id="exportExcel_abgc" parameterType="jckabgc"
@@ -268,6 +283,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</select>
 	<select id="onceAbgc" parameterType="jckabgc" resultType="int">
@@ -336,6 +354,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 	</select>
 	
 	<select id="selAbgcShCount" parameterType="jckabgc" resultType="jckabgc">
@@ -367,6 +388,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</select>
 	<select id="selTsdq" resultType="jckabgc">

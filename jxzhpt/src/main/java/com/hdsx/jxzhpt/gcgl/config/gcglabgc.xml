@@ -225,7 +225,7 @@ where t1.spzt='1'
 	 
 	 <select id="exportAbyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,0 v_8,0 v_9,'同意' v_10,#{tbyf} v_11,to_char(sysdate,'yyyy-mm-dd') v_12,#{tbr} v_13
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBBZJE v_8,JHSYDFZCZJ v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and c.tbyf is null and t1.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
@@ -310,7 +310,7 @@ where t1.spzt='1'
 	
 	 <select id="exporthsyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t2.id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,t2.ztz v_7,0 v_8,0 v_9,'同意' v_10,#{tbyf} v_11,to_char(sysdate,'yyyy-mm-dd') v_12,#{tbr} v_13
+			t2.id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,t2.ztz v_7,zytz v_8,dfta v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_HSLY t2 left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
 			where 1=1 and c.tbyf is null and t2.jhnf=#{jhnf}
 			<if test="gydw != null and  gydw != ''">
@@ -371,7 +371,7 @@ where t1.spzt='1'
 	
 	<select id="exportzhyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,0 v_8,0 v_9,'同意' v_10,#{tbyf} v_11,to_char(sysdate,'yyyy-mm-dd') v_12,#{tbr} v_13
+			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">
@@ -390,7 +390,7 @@ where t1.spzt='1'
 	
 	<select id="exportwqyb" parameterType="gcglabgc" resultType="elist">
 			select 
-			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,t1.pfztz v_7,0 v_8,0 v_9,'同意' v_10,#{tbyf} v_11,to_char(sysdate,'yyyy-mm-dd') v_12,#{tbr} v_13
+			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
 			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
 			<if test="gydw != null and  gydw != ''">

@@ -211,8 +211,8 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 								<thead>
 									<tr>
 										<td rowspan="2" style="width: 80px">备注</td>
-										<td rowspan="2" style="width: 120px">项目名称</td>
-										<td rowspan="2" style="width: 77px">行政等级</td>
+										<td rowspan="2" style="width: 220px">项目名称</td>
+										<td rowspan="2" style="width: 88px">行政等级</td>
 										<td rowspan="2" style="width: 180px">起点桩号</td>
 										<td rowspan="2" style="width: 180px">终点桩号</td>
 										<td rowspan="2" style="width: 180px">路线编码</td>

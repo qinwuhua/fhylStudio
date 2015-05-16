@@ -38,6 +38,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
  </select>
@@ -70,6 +73,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <select id="selectJckzhfzById" parameterType="jckzhfz" resultType="jckzhfz">
@@ -151,6 +157,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -183,6 +192,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <sql id="zhfz_commonsql">
@@ -258,6 +270,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  	</select>
     <select id="onceZhfz" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_zhfz where 1=1
@@ -326,6 +341,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  </select>
  <select id="selZhfzShCount" parameterType="jckabgc" resultType="jckzhfz">
 	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbthcd=7
@@ -356,6 +374,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
 </mapper>
