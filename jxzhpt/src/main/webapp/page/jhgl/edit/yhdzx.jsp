@@ -94,7 +94,7 @@
 					$('#zbzzj').html(data.totalsubsidyfund);
 				}
 			});
-			if(roleName()=="省级"){
+			if(roleName()!="省级"){
 				$.each($('td [name=sdtd]'),function(index,item){
 					$(item).hide();
 				});
@@ -438,7 +438,16 @@
 				$('#lblpgdj').html(JSON.parse(lxlist[newValue].glf).pgdj);
 			}
 		}
-		function touzi(){
+		function touzi(str){
+			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+			if(str.value==''){
+				return;
+			}
+		    if( !g.test(str.value)){
+		    	alert("请输入正确的数字");
+		    	$(str).val('');
+		    	return;
+		    }
 			var dfzc=Number($('#ztz').val())-$('#zbzzj').html();
 			$('#dfptztz').html(dfzc.toFixed(3));
 		}
@@ -548,7 +557,7 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					总投资</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" id="ztz" onblur="touzi()" type="text" value="0"></span>万元
+					<input id="ztz" onblur="touzi(this)" type="text" value="0"></span>万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					地方配套总投资</td>

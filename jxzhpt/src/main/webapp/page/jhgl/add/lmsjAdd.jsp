@@ -341,7 +341,7 @@
 				<td style="border:1px solid #C0C0C0;width: 18%;text-align:left;padding-left: 10px;">
 					<select id="sfxz">
 						<option value="收费">收费</option>
-						<option value="不收费">不收费</option>
+						<option value="不收费" selected="selected">不收费</option>
 					</select>
 				</td>
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">

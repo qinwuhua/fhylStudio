@@ -41,6 +41,7 @@ import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
+import com.ibm.icu.math.BigDecimal;
 
 @Scope("prototype")
 @Controller
@@ -334,10 +335,18 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			lx.setTbsj(new Date());
 			if(zjlx!=null && zjlx.equals("true")){
 				Plan_yhdzx yhdzx = yhdzxServer.queryYhdzxById(lx.getJhid());
-				yhdzx.setFee(new Double(new Double(yhdzx.getFee()).doubleValue()+new Double(jh.getFee())).toString());
-				yhdzx.setNewfee(new Double(new Double(yhdzx.getNewfee()).doubleValue()+new Double(jh.getNewfee())).toString());
-				yhdzx.setTotalsubsidyfund(new Double(new Double(yhdzx.getTotalsubsidyfund()).doubleValue()+new Double(jh.getTotalsubsidyfund())).toString());
-				yhdzx.setTotalplacefund(new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(jh.getTotalsubsidyfund())).toString());
+				Double fee = new Double(new Double(yhdzx.getFee()).doubleValue()+new Double(jh.getFee()));
+				BigDecimal b = new BigDecimal(fee);
+				yhdzx.setFee(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double newfee = new Double(new Double(yhdzx.getNewfee()).doubleValue()+new Double(jh.getNewfee()));
+				b=new BigDecimal(newfee);
+				yhdzx.setNewfee(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double totalsubsidyfund = new Double(new Double(yhdzx.getTotalsubsidyfund()).doubleValue()+new Double(jh.getTotalsubsidyfund()));
+				b=new BigDecimal(totalsubsidyfund);
+				yhdzx.setTotalsubsidyfund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double totalplacefund = new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(jh.getTotalsubsidyfund()));
+				b=new BigDecimal(totalplacefund);
+				yhdzx.setTotalplacefund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
 				yhdzxServer.editYhdzxById(yhdzx, lx);
 			}
 			

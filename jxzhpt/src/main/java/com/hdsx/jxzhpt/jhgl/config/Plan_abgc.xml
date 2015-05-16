@@ -322,31 +322,38 @@
 		delete from plan_abgc jh where jh.id=#{id}
 	</delete>
 	<update id="editAbgcById" parameterType="plan_abgc">
-		update plan_abgc set 
-			<if test="jhnf!=null and jhnf!=''">
-				jhnf=#{jhnf},
-			</if>
-			<if test="jhkgsj!=null and jhkgsj!=''">
-				jhkgsj=#{jhkgsj},
-			</if>
-			<if test="jhwgsj!=null and jhwgsj!=''">
-				jhwgsj=#{jhwgsj},
-			</if>
-			<if test="xdsj!=null and xdsj!=''">
-				xdsj=#{xdsj},
-			</if>
-			<if test="pfsj!=null and pfsj!=''">
-				pfsj=#{pfsj},
-			</if>
-			jhwc_c=#{jhwc_c},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},jhsybbzje=#{jhsybbzje},
-			jhsydfzczj=#{jhsydfzczj},jhxdwh=#{jhxdwh},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},remarks=#{remarks}
+		update plan_abgc set jhnf=#{jhnf}
+			<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=#{jhwgsj}</if>
+			<if test="xdsj!=null and xdsj!=''">,xdsj=#{xdsj}</if>
+			<if test="pfsj!=null and pfsj!=''">,pfsj=#{pfsj}</if>
+			<if test="jhwc_c!=null">,jhwc_c=#{jhwc_c}</if>
+			<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+			<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+			<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+			<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+			<if test="jhsybbzje!=null">,jhsybbzje=#{jhsybbzje}</if>
+			<if test="jhsydfzczj!=null">,jhsydfzczj=#{jhsydfzczj}</if>
+			<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+			<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+			<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+			<if test="remarks!=null">,remarks=#{remarks}</if>
 		where id=#{id}
 	</update>
 	<update id="editAbgcSckBysckid" parameterType="plan_abgc">
-		update SCK_ABGC set 
-		scqdzh=#{jckabgc.scqdzh},sczdzh=#{jckabgc.sczdzh},sczlc=#{jckabgc.sczlc},scyhlc=#{jckabgc.scyhlc},
-		fapgdw=#{jckabgc.fapgdw},fascdw=#{jckabgc.fascdw},spwh=#{jckabgc.spwh},tzgs=#{jckabgc.tzgs},
-		faspsj=#{jckabgc.faspsj},jsxz=#{jckabgc.jsxz},jsnr=#{jckabgc.jsnr},scbz=#{jckabgc.scbz}
+		update SCK_ABGC set sckid=#{sckid}
+		<if test="!=null">,scqdzh=#{jckabgc.scqdzh}</if>
+		<if test="!=null">,sczdzh=#{jckabgc.sczdzh}</if>
+		<if test="!=null">,sczlc=#{jckabgc.sczlc}</if>
+		<if test="!=null">,scyhlc=#{jckabgc.scyhlc}</if>
+		<if test="!=null">,fapgdw=#{jckabgc.fapgdw}</if>
+		<if test="!=null">,fascdw=#{jckabgc.fascdw}</if>
+		<if test="!=null">,spwh=#{jckabgc.spwh}</if>
+		<if test="!=null">,tzgs=#{jckabgc.tzgs}</if>
+		<if test="!=null">,faspsj=#{jckabgc.faspsj}</if>
+		<if test="!=null">,jsxz=#{jckabgc.jsxz}</if>
+		<if test="!=null">,jsnr=#{jckabgc.jsnr}</if>
+		<if test="!=null">,scbz=#{jckabgc.scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editStatus" parameterType="plan_abgc">

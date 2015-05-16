@@ -93,7 +93,7 @@
 					$('#zbzzj').html(data.totalsubsidyfund);
 				}
 			});
-			if(roleName()=="省级"){
+			if(roleName()!="省级"){
 				$.each($('td [name=sdtd]'),function(index,item){
 					$(item).hide();
 				});
