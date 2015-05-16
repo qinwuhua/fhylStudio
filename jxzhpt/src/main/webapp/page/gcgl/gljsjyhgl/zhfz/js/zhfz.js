@@ -43,7 +43,7 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb.jsp','wqxx1',1059,500);
+	YMLib.UI.createWindow('wqxx1','灾害防治月报信息','zhfzyb.jsp','wqxx1',1059,467);
 	//window.open("zhfzyb.jsp");
 }
 function AddInfo(){
@@ -52,7 +52,7 @@ function AddInfo(){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,430);
+	parent.YMLib.UI.createWindow('wqxx','灾害防治月报详情','zhfzybxx.jsp','wqxx',700,340);
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];

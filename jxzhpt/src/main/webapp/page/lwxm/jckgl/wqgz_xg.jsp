@@ -87,6 +87,7 @@ function wqgzById(){
 		$("#xmtype").html(msg.xmtype);
 		$("#bhnr").val(msg.bhnr);
 		$("#bz").val(msg.bz);
+		$("#tsdq").html(msg.tsdq);
 		}
 	});
 }		

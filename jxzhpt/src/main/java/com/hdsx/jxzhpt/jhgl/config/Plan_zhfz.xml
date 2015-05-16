@@ -267,30 +267,37 @@
 		delete from plan_zhfz jh where jh.id=#{id}
 	</delete>
 	<update id="editZhfzById" parameterType="plan_zhfz">
-		update plan_zhfz set sbnf=#{sbnf},
-			<if test="jhkgsj!=null and jhkgsj!=''">
-				jhkgsj=#{jhkgsj},
-			</if>
-			<if test="jhwgsj!=null and jhwgsj!=''">
-				jhwgsj=#{jhwgsj},
-			</if>
-			<if test="xdsj!=null and xdsj!=''">
-				xdsj=#{xdsj},
-			</if>
-			<if test="pfsj!=null and pfsj!=''">
-				pfsj=#{pfsj},
-			</if>
-			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
-			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},ablbzsqwh=#{ablbzsqwh},
-			bz=#{bz}
+		update plan_zhfz set sbnf=#{sbnf}
+			<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+			<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=#{jhwgsj}</if>
+			<if test="xdsj!=null and xdsj!=''">,xdsj=#{xdsj}</if>
+			<if test="pfsj!=null and pfsj!=''">,pfsj=#{pfsj}</if>
+			<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+			<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+			<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+			<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+			<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+			<if test="jhsybzje!=null">,jhsybzje=#{jhsybzje}</if>
+			<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
+			<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+			<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+			<if test="bz!=null">,bz=#{bz}</if>
 		where id=#{id}
 	</update>
 	<update id="editZhfzSckBysckid" parameterType="plan_zhfz">
-		update SCK_ZHFZ set 
-			scqdzh=#{jckzhfz.scqdzh},sczdzh=#{jckzhfz.sczdzh},sczlc=#{jckzhfz.sczlc},
-			scyhlc=#{jckzhfz.scyhlc},fapgdw=#{jckzhfz.fapgdw},fascdw=#{jckzhfz.fascdw},
-			faspsj=#{jckzhfz.faspsj},spwh=#{jckzhfz.spwh},tzgs=#{jckzhfz.tzgs},
-			jsxz=#{jckzhfz.jsxz},jsnr=#{jckzhfz.jsnr},scbz=#{jckzhfz.scbz}
+		update SCK_ZHFZ set sckid=#{sckid}
+		<if test="jckzhfz.scqdzh!=null">,scqdzh=#{jckzhfz.scqdzh}</if>
+		<if test="jckzhfz.sczdzh!=null">,sczdzh=#{jckzhfz.sczdzh}</if>
+		<if test="jckzhfz.sczlc!=null">,sczlc=#{jckzhfz.sczlc}</if>
+		<if test="jckzhfz.scyhlc!=null">,scyhlc=#{jckzhfz.scyhlc}</if>
+		<if test="jckzhfz.fapgdw!=null">,fapgdw=#{jckzhfz.fapgdw}</if>
+		<if test="jckzhfz.fascdw!=null">,fascdw=#{jckzhfz.fascdw}</if>
+		<if test="jckzhfz.faspsj!=null">,faspsj=#{jckzhfz.faspsj}</if>
+		<if test="jckzhfz.spwh!=null">,spwh=#{jckzhfz.spwh}</if>
+		<if test="jckzhfz.tzgs!=null">,tzgs=#{jckzhfz.tzgs}</if>
+		<if test="jckzhfz.jsxz!=null">,jsxz=#{jckzhfz.jsxz}</if>
+		<if test="jckzhfz.jsnr!=null">,jsnr=#{jckzhfz.jsnr}</if>
+		<if test="jckzhfz.scbz!=null">,scbz=#{jckzhfz.scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">

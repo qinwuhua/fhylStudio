@@ -10,7 +10,7 @@
 	</insert>
 	
 	<insert id="lrjhSckwqgz"  parameterType="java.util.List">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf) values(sys_guid(),#{sckid},'未下达',#{sbnf})
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd) values(sys_guid(),#{sckid},'未下达',#{sbnf},#{jh_sbthcd})
 	</insert>
  	<insert id="xglrjhSckwqgz"  parameterType="java.util.List">
 		update sck_wqgz set lrjh='已列入'  where sckid=#{String}

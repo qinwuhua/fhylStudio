@@ -81,9 +81,10 @@ $(function(){
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
+						 <!--
 						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
-						</div>
+						</div> -->
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
 				</div>

@@ -579,12 +579,13 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("路线名称",1,1,4,4));
 		et.add(new Excel_tilte("起点桩号",1,1,5,5));
 		et.add(new Excel_tilte("止点桩号",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
-		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
-		et.add(new Excel_tilte("财审处意见",1,1,9,9));
-		et.add(new Excel_tilte("填报月份",1,1,10,10));
-		et.add(new Excel_tilte("填报时间",1,1,11,11));
-		et.add(new Excel_tilte("填报人",1,1,12,12));
+		et.add(new Excel_tilte("批复总投资(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,8,8));
+		et.add(new Excel_tilte("省投资(万元)",1,1,9,9));
+		et.add(new Excel_tilte("财审处意见",1,1,10,10));
+		et.add(new Excel_tilte("填报月份",1,1,11,11));
+		et.add(new Excel_tilte("填报时间",1,1,12,12));
+		et.add(new Excel_tilte("填报人",1,1,13,13));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -694,7 +695,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
 		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
 		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,7,7));
 		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
 		et.add(new Excel_tilte("财审处意见",1,1,9,9));
 		et.add(new Excel_tilte("填报月份",1,1,10,10));
@@ -753,7 +754,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
 		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
 		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,7,7));
 		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
 		et.add(new Excel_tilte("财审处意见",1,1,9,9));
 		et.add(new Excel_tilte("填报月份",1,1,10,10));
@@ -804,12 +805,13 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("建设性质",1,1,4,4));
 		et.add(new Excel_tilte("开工年",1,1,5,5));
 		et.add(new Excel_tilte("完工年",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
-		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
-		et.add(new Excel_tilte("财审处意见",1,1,9,9));
-		et.add(new Excel_tilte("填报月份",1,1,10,10));
-		et.add(new Excel_tilte("填报时间",1,1,11,11));
-		et.add(new Excel_tilte("填报人",1,1,12,12));
+		et.add(new Excel_tilte("批复总投资(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,8,8));
+		et.add(new Excel_tilte("省投资(万元)",1,1,9,9));
+		et.add(new Excel_tilte("财审处意见",1,1,10,10));
+		et.add(new Excel_tilte("填报月份",1,1,11,11));
+		et.add(new Excel_tilte("填报时间",1,1,12,12));
+		et.add(new Excel_tilte("填报人",1,1,13,13));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -856,7 +858,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
 		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
 		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,7,7));
 		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
 		et.add(new Excel_tilte("财审处意见",1,1,9,9));
 		et.add(new Excel_tilte("填报月份",1,1,10,10));
@@ -908,7 +910,7 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
 		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));
 		et.add(new Excel_tilte("部补助总金额(万元) ",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,7,7));
 		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
 		et.add(new Excel_tilte("财审处意见",1,1,9,9));
 		et.add(new Excel_tilte("填报月份",1,1,10,10));
@@ -959,12 +961,13 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("路线名称",1,1,4,4));
 		et.add(new Excel_tilte("起点桩号",1,1,5,5));
 		et.add(new Excel_tilte("止点桩号",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
-		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
-		et.add(new Excel_tilte("财审处意见",1,1,9,9));
-		et.add(new Excel_tilte("填报月份",1,1,10,10));
-		et.add(new Excel_tilte("填报时间",1,1,11,11));
-		et.add(new Excel_tilte("填报人",1,1,12,12));
+		et.add(new Excel_tilte("批复总投资(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,8,8));
+		et.add(new Excel_tilte("省投资(万元)",1,1,9,9));
+		et.add(new Excel_tilte("财审处意见",1,1,10,10));
+		et.add(new Excel_tilte("填报月份",1,1,11,11));
+		et.add(new Excel_tilte("填报时间",1,1,12,12));
+		et.add(new Excel_tilte("填报人",1,1,13,13));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse
@@ -1012,12 +1015,13 @@ public class GcglabgcController extends BaseActionSupport{
 		et.add(new Excel_tilte("桥梁名称",1,1,4,4));
 		et.add(new Excel_tilte("技术等级",1,1,5,5));
 		et.add(new Excel_tilte("桥梁中心桩号",1,1,6,6));
-		et.add(new Excel_tilte("拨付资金(万元)",1,1,7,7));
-		et.add(new Excel_tilte("省投资(万元)",1,1,8,8));
-		et.add(new Excel_tilte("财审处意见",1,1,9,9));
-		et.add(new Excel_tilte("填报月份",1,1,10,10));
-		et.add(new Excel_tilte("填报时间",1,1,11,11));
-		et.add(new Excel_tilte("填报人",1,1,12,12));
+		et.add(new Excel_tilte("批复总投资(万元)",1,1,7,7));
+		et.add(new Excel_tilte("中央车购税(万元)",1,1,8,8));
+		et.add(new Excel_tilte("省投资(万元)",1,1,9,9));
+		et.add(new Excel_tilte("财审处意见",1,1,10,10));
+		et.add(new Excel_tilte("填报月份",1,1,11,11));
+		et.add(new Excel_tilte("填报时间",1,1,12,12));
+		et.add(new Excel_tilte("填报人",1,1,13,13));
 		
 		eldata.setEt(et);//将表头内容设置到类里面
 		HttpServletResponse response= getresponse();//获得一个HttpServletResponse

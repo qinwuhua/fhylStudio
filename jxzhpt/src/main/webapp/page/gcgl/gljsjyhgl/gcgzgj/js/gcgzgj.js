@@ -24,7 +24,7 @@ function sfqxkg(index){
 }
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.lxbm,"");
+	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -62,23 +62,23 @@ function ykaigong(index){
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','工程改造路面改建月报信息','gcgzgjyb.jsp','wqxx1',1059,500);
+	YMLib.UI.createWindow('wqxx1','工程改造路面改建月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
 	//window.open("gcgzgjyb.jsp");
 }
 function AddInfo(index){
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报添加','gcgzgjybtj.jsp','wqxx',780,380);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报添加','gcgzgjybtj.jsp','wqxx',780,340);
 	//window.open("gcgzgjybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','工程改造路面改建月报详情','gcgzgjybxx.jsp','wqxx',900,450);
+	parent.YMLib.UI.createWindow('wqxx','工程改造路面改建月报详情','gcgzgjybxx.jsp','wqxx',900,340);
 	//window.open("gcgzgjybxx.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面改建月报编辑','gcgzgjybxg.jsp','wqxx',780,380);
+	YMLib.UI.createWindow('wqxx','工程改造路面改建月报编辑','gcgzgjybxg.jsp','wqxx',780,340);
 	//window.open("gcgzgjybxg.jsp");
 }
 function Delyb(index){

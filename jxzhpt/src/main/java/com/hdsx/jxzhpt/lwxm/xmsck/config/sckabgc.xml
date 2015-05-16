@@ -8,7 +8,7 @@
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf})
 </insert>
 <insert id="lrjhSckabgc"  parameterType="java.util.List">
-	insert into plan_abgc(sckid,xdzt,jhnf) values(#{sckid},'未下达',#{jhnf})
+	insert into plan_abgc(sckid,xdzt,jhnf,jh_sbthcd) values(#{sckid},'未下达',#{jhnf},#{jh_sbthcd})
 </insert>
  <insert id="xglrjhSckabgc"  parameterType="java.util.List">
 	update sck_abgc set lrjh='已列入'  where sckid=#{String}

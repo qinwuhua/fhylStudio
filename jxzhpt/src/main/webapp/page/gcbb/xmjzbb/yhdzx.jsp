@@ -275,37 +275,37 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table width="4000px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">省统筹养护大中修工程项目进展情况表 </caption>
 								<thead>
 									<tr>
-										<td rowspan="2">序号</td>
-										<td rowspan="2">所在地市</td>
-										<td rowspan="2">特殊区域</td>
-										<td rowspan="2">项目名称</td>
-										<td rowspan="2">工程分类</td>
-										<td rowspan="2">计划下达年度</td>
-										<td colspan="2">项目段落</td>
-										<td rowspan="2">计划里程（公里）</td>
-										<td rowspan="2">概预算（万元）</td>
-										<td rowspan="2">计划下达资金（万元）</td>
-										<td rowspan="2">累计拨付资金（万元）</td>
-										<td rowspan="2">未拨付资金（万元）</td>
-										<td rowspan="2">建设状态</td>
-										<td rowspan="2"> 垫层（m³ </td>
-										<td rowspan="2">基层（m³）</td>
-										<td rowspan="2">开工日期</td>
-										<td rowspan="2">完工日期</td>
-										<td rowspan="2">开工段落</td>
-										<td rowspan="2">完工里程（公里）</td>
-										<td rowspan="2"> 情况说明 </td>
-										<td rowspan="2"> 计划下达文号 </td>
-										<td rowspan="2"> 相关处室意见</td>
-										<td rowspan="2"> 财审处意见 </td>
+										<td rowspan="2" style="width: 60px">序号</td>
+										<td rowspan="2" style="width: 140px">所在地市</td>
+										<td rowspan="2" style="width: 140px">特殊区域</td>
+										<td rowspan="2" style="width: 140px">项目名称</td>
+										<td rowspan="2" style="width: 140px">工程分类</td>
+										<td rowspan="2" style="width: 140px">计划下达年度</td>
+										<td colspan="2" >项目段落</td>
+										<td rowspan="2" style="width: 140px">计划里程（公里）</td>
+										<td rowspan="2" style="width: 140px">概预算（万元）</td>
+										<td rowspan="2" style="width: 140px">计划下达资金（万元）</td>
+										<td rowspan="2" style="width: 140px">累计拨付资金（万元）</td>
+										<td rowspan="2" style="width: 140px">未拨付资金（万元）</td>
+										<td rowspan="2" style="width: 140px">建设状态</td>
+										<td rowspan="2" style="width: 140px"> 垫层（m³ </td>
+										<td rowspan="2" style="width: 140px">基层（m³）</td>
+										<td rowspan="2" style="width: 140px">开工日期</td>
+										<td rowspan="2" style="width: 140px">完工日期</td>
+										<td rowspan="2" style="width: 140px">开工段落</td>
+										<td rowspan="2" style="width: 140px">完工里程（公里）</td>
+										<td rowspan="2" style="width: 140px"> 情况说明 </td>
+										<td rowspan="2" style="width: 140px"> 计划下达文号 </td>
+										<td rowspan="2" style="width: 140px"> 相关处室意见</td>
+										<td rowspan="2" style="width: 140px"> 财审处意见 </td>
 									</tr>
 									<tr>
-										<td>起点桩号</td>
-										<td> 迄点桩号 </td>
+										<td style="width: 100px">起点桩号</td>
+										<td style="width: 100px"> 迄点桩号 </td>
 									</tr>
 								</thead>
 								<tbody id="yhlist">

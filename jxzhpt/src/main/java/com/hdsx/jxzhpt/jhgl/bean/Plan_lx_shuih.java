@@ -27,6 +27,14 @@ public class Plan_lx_shuih {
 	private String yjsdj;//原技术等级
 	private String jhid;//所属计划的ID
 	private String tsdqbm;//特殊区域编码
+	private String tsdq;
+	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getTsdqbm() {
 		return tsdqbm;
 	}

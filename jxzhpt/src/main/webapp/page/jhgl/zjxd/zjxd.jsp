@@ -6,6 +6,19 @@
 	<title>资金下达页面</title>
 </head>
 <body>
+<script type="text/javascript">
+function check(str){
+	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+	if(str.value==''){
+		return;
+	}
+    if( !g.test(str.value)){
+    	alert("请输入正确的数字");
+    	$(str).val('');
+    	return;
+    }
+}
+</script>
 	<center>
 		<table width="100%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
@@ -19,26 +32,26 @@
 									总投资资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="xdzj" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
+								<input onblur="check(this)" id="xdzj" name="xdzj" type="text"  style="width: 80px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
 									车购税资金：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="btzzj" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
+								<input onblur="check(this)" id="btzzj" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
 									省投资：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="stz" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
+								<input onblur="check(this)" id="stz" name="btzzj" type="text"  style="width: 80px;"/>&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 35px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">下达年份：
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">下达年份：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 								<select name="ddlXDNF" id="zjxdnf" style="width: 80px;"></select>
@@ -50,7 +63,7 @@
 								<input id="jhxdwh" name="btzzj" type="text"  style="width: 80px;" />&nbsp;
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font>
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<span id="tbdw"></span>
@@ -74,7 +87,7 @@
 						</tr>
 						<tr style="height: 35px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font>
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<span id="tbsj"></span>
@@ -95,7 +108,6 @@
 								<input type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'" alt="返回"
 								onclick="closezjxd()" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'"
 								src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" style="border-width: 0px;" />
-							</td>
 							</td>
 						</tr>
 					</table></td>

@@ -110,6 +110,7 @@ var zdStr;
 			$("#yhlc").val(msg.yhlc);
 			$("#xmnf").combobox("setValue",msg.xmnf);
 			$("#xmtype").html(msg.xmtype);
+			$("#tsdq").html(msg.tsdq);
 			$("#yhnr").val(msg.yhnr);
 			$("#bz").val(msg.bz);
 			qdStr=parseFloat(msg.qdzh);

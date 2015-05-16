@@ -103,6 +103,7 @@ var zdStr;
 			$("#xzqhmc").html(msg.xzqhmc);
 			$("#xjnd").html(msg.gjxjnd);
 			$("#lxjsdj").html(msg.lxjsdj);
+			$("#tsdq").html(msg.tsdq);
 			$("#yhlc").val(msg.yhlc);
 			$("#xmnf").combobox("setValue",msg.xmnf);
 			$("#xmtype").html(msg.xmtype);

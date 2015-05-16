@@ -79,7 +79,7 @@
 								$('#dkzdkj').html(jcAndSc.dkzdkj);
 								$('#jsdjxx').html(jcAndSc.jsdj);
 								$('#pddj').html(jcAndSc.pddj);
-								$('#xjnd').html(jcAndSc.xjnd);
+								$('#xjnd').html(jcAndSc.xjgjnd);
 								$('#akjfl').html(jcAndSc.akjfl);
 								$('#sbjgxs').html(jcAndSc.sbjgxs);
 								$('#tsdq').html(jcAndSc.tsdq);

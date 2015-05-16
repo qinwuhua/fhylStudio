@@ -8,7 +8,7 @@
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf})
 </insert>
 <insert id="lrjhSckzhfz"  parameterType="java.util.List">
-		insert into plan_zhfz(id,sckid,xdzt,sbnf) values(sys_guid(),#{sckid},'未下达',#{sbnf})
+		insert into plan_zhfz(id,sckid,xdzt,sbnf,jh_sbthcd) values(sys_guid(),#{sckid},'未下达',#{sbnf},#{jh_sbthcd})
 </insert>
  <insert id="xglrjhSckzhfz"  parameterType="java.util.List">
 		update sck_zhfz set lrjh='已列入'  where sckid=#{String}

@@ -268,16 +268,16 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table width="3500px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id='nian' style="font-size: large;"></span>年公路路网结构改造工程统计月报表（二）   安保工程（<span id='yue' style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
-										<td rowspan="2">路线编码</td>
-										<td rowspan="2">路线名称</td>
+										<td rowspan="2" style="width: 125px">路线编码</td>
+										<td rowspan="2" style="width: 125px">路线名称</td>
 										<td colspan="4">基本情况</td>
 										<td colspan="3">本年计划投资(万元)</td>
-										<td rowspan="2">隐患类型</td>
-										<td rowspan="2">建设类型</td>
+										<td rowspan="2" style="width: 225px">隐患类型</td>
+										<td rowspan="2" style="width: 125px">建设类型</td>
 										<td colspan="2">计划处治隐患</td>
 										<td colspan="2">建设年限</td>
 										<td colspan="2">本月完成工程量</td>
@@ -286,35 +286,35 @@ table tbody tr td {
 										<td colspan="3">本月完成投资(万元)</td>
 										<td colspan="3">自元月至本月底完成投资（万元）</td>
 										<td colspan="3">开工至本月底累计完成投资(万元)</td>
-										<td rowspan="2">主要建设内容</td>
+										<td rowspan="2" style="width: 125px">主要建设内容</td>
 									</tr>	
 									<tr>
-										<td>起点桩号</td>
-										<td>止点桩号</td>
-										<td>技术等级</td>
-										<td>公路修建/改建年度</td>
-										<td>合计</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>处</td>
-										<td>公里</td>
-										<td>计划开工年</td>
-										<td>计划完工年</td>
-										<td>处</td>
-										<td>公里</td>
-										<td>处</td>
-										<td>公里</td>
-										<td>处</td>
-										<td>公里</td>
-										<td>总投资</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>总投资</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>总投资</td>
-										<td>部投资</td>
-										<td>省投资</td>
+										<td style="width: 125px">起点桩号</td>
+										<td style="width: 125px">止点桩号</td>
+										<td style="width: 125px">技术等级</td>
+										<td style="width: 125px">公路修建/改建年度</td>
+										<td style="width: 125px">合计</td>
+										<td style="width: 125px">部投资</td>
+										<td style="width: 125px">省投资</td>
+										<td style="width: 125px">处</td>
+										<td style="width: 125px">公里</td>
+										<td style="width: 125px">计划开工年</td>
+										<td style="width: 125px">计划完工年</td>
+										<td style="width: 125px">处</td>
+										<td style="width: 125px">公里</td>
+										<td style="width: 125px">处</td>
+										<td style="width: 125px">公里</td>
+										<td style="width: 125px">处</td>
+										<td style="width: 125px">公里</td>
+										<td style="width: 125px">总投资</td>
+										<td style="width: 125px">部投资</td>
+										<td style="width: 125px">省投资</td>
+										<td style="width: 125px">总投资</td>
+										<td style="width: 125px">部投资</td>
+										<td style="width: 125px">省投资</td>
+										<td style="width: 125px">总投资</td>
+										<td style="width: 125px">部投资</td>
+										<td style="width: 125px">省投资</td>
 									</tr>
 								</thead>
 								<tbody id='abgclist'>

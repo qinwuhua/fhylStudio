@@ -244,7 +244,7 @@
                 		</script>
                 		<div class="easyui-layout"  fit="true">
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px">
+							<table width="4000px">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表（三）    灾害防治 </caption>
 								<thead>
 									<tr>
@@ -253,61 +253,61 @@
 										<td colspan="16">四、 自开工至本月底累计完成情况</td>
 									</tr>
 									<tr>
-										<td rowspan="3">项目所在县市</td>
-										<td rowspan="3">路线编码、项目名称及路线桩号</td>
-										<td rowspan="3" style="width: 150px;">原技术等级</td>
-										<td rowspan="3">建设技术标准</td>
-										<td rowspan="3">项目里程（公里）</td>
-										<td rowspan="3">总投资（万元）</td>
-										<td rowspan="3">中央车购税（万元）</td>
-										<td rowspan="3">地方配套（万元）</td>
-										<td rowspan="3">项目在建个数（个）</td>										
-										<td rowspan="3">项目完工个数（个）</td>
-										<td rowspan="3">项目未开工个数（个）</td>
-										<td rowspan="3">开工时间</td>
-										<td rowspan="3">竣工时间</td>
-										<td rowspan="3">本年实施里程(公里)</td>
+										<td rowspan="3"  style="width: 125px;">项目所在县市</td>
+										<td rowspan="3" style="width: 125px;">路线编码、项目名称及路线桩号</td>
+										<td rowspan="3" style="width: 125px;">原技术等级</td>
+										<td rowspan="3" style="width: 125px;">建设技术标准</td>
+										<td rowspan="3" style="width: 125px;">项目里程<br>（公里）</td>
+										<td rowspan="3" style="width: 125px;">总投资<br>（万元）</td>
+										<td rowspan="3" style="width: 125px;">中央车购税<br>（万元）</td>
+										<td rowspan="3" style="width: 125px;">地方配套<br>（万元）</td>
+										<td rowspan="3" style="width: 125px;">项目在建个数<br>（个）</td>										
+										<td rowspan="3" style="width: 125px;">项目完工个数<br>（个）</td>
+										<td rowspan="3" style="width: 125px;">项目未开工个数<br>（个）</td>
+										<td rowspan="3" style="width: 125px;">开工时间</td>
+										<td rowspan="3" style="width: 125px;">竣工时间</td>
+										<td rowspan="3" style="width: 125px;">本年实施里程<br>(公里)</td>
 										<td colspan="2">本年计划投资</td>
-										<td colspan="6">累计资金到位（万 元）</td>
-										<td rowspan="3">项目完成投资(万元)</td>
-										<td rowspan="3">占投资比例（%)</td>
-										<td colspan="8">完 成 工 程 量（公里)</td>
-										<td rowspan="3">项目完成投资（万元）</td>
-										<td colspan="8">累 计 完 成 工 程 量 （ 公 里 )</td>
-										<td rowspan="3">项目未完工程量（公里）</td>
+										<td colspan="6">累计资金到位<br>（万 元）</td>
+										<td rowspan="3" style="width: 125px;">项目完成投资<br>(万元)</td>
+										<td rowspan="3" style="width: 125px;">占投资比例<br>（%)</td>
+										<td colspan="8">完 成 工 程 量<br>（公里)</td>
+										<td rowspan="3" style="width: 125px;">项目完成投资<br>（万元）</td>
+										<td colspan="8">累 计 完 成 工 程 量 <br>（ 公 里 )</td>
+										<td rowspan="3" style="width: 125px;">项目未完工程量<br>（公里）</td>
 									</tr>	
 									<tr>
-										<td rowspan="2">合计</td>
-										<td rowspan="2">其中：<br>中央车购税</td>
-										<td rowspan="2">合计</td>
-										<td rowspan="2">中央车购税</td>
+										<td rowspan="2" style="width: 125px;">合计</td>
+										<td rowspan="2" style="width: 125px;">其中：<br>中央车购税</td>
+										<td rowspan="2" style="width: 125px;">合计</td>
+										<td rowspan="2" style="width: 125px;">中央车购税</td>
 										<td colspan="2">地方配套</td>
-										<td rowspan="2">省厅贴息(贷款)</td>
-										<td rowspan="2">其他资金</td>
+										<td rowspan="2" style="width: 125px;">省厅贴息<br>(贷款)</td>
+										<td rowspan="2" style="width: 125px;">其他资金</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
-										<td rowspan="2">砂石垫层通车</td>
+										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
 										<td colspan="5">按技术等级</td>
 										<td colspan="2">按路面类型</td>
-										<td rowspan="2">砂石垫层通车</td>
+										<td rowspan="2" style="width: 125px;">砂石垫层通车</td>
 									</tr>
 									<tr>
-										<td>小计</td>
-										<td>其中：银行贷款</td>
-										<td>小计</td>
-										<td>一级</td>
-										<td>二级</td>
-										<td>三级</td>
-										<td>四级</td>
-										<td>沥青路</td>
-										<td>水泥砼</td>
-										<td>小计</td>
-										<td>一级</td>
-										<td>二级</td>
-										<td>三级</td>
-										<td>四级</td>
-										<td>沥青路</td>
-										<td>水泥砼</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">其中：银行贷款</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">一级</td>
+										<td style="width: 100px;">二级</td>
+										<td style="width: 100px;">三级</td>
+										<td style="width: 100px;">四级</td>
+										<td style="width: 100px;">沥青路</td>
+										<td style="width: 100px;">水泥砼</td>
+										<td style="width: 100px;">小计</td>
+										<td style="width: 100px;">一级</td>
+										<td style="width: 100px;">二级</td>
+										<td style="width: 100px;">三级</td>
+										<td style="width: 100px;">四级</td>
+										<td style="width: 100px;">沥青路</td>
+										<td style="width: 100px;">水泥砼</td>
 									</tr>
 								</thead>
 								<tbody id="tbody_gcgj"></tbody>
