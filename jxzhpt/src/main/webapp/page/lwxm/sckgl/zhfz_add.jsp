@@ -149,6 +149,7 @@ var bzls;
 					$("#xmtype").html(item.xmtype);
 					$("#yhnr").html(item.yhnr);
 					$("#bz").html(item.bz);
+					$("#tsdq").html(item.tsdq);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);

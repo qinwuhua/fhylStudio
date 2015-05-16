@@ -118,7 +118,7 @@
   	order by roadcode,min(roadstart)
  </select>
   <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
- 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
+ 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tsdq
  	from xmk_zhfz where shzt='已审核' and lxbm like #{lxbm}||'%' 
  	<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 

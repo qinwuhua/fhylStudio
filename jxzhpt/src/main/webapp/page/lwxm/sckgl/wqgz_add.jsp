@@ -133,6 +133,7 @@ function autoCompleteQLBH(){
 				$("#xmtype").html(item.xmtype);
 				$("#bhnr").html(item.bhnr);
 				$("#bz").html(item.bz);
+				$("#tsdq").html(item.tsdq);
 			});
 }
 function saveWqgz(){
