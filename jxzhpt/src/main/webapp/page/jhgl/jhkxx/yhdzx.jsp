@@ -803,8 +803,8 @@
 						<tr height="25">
 							<td width="130" style="border: 1px solid #C0C0C0;">预算单价(万元/公里)：</td>
 							<td width="80" style="border: 1px solid #C0C0C0;"><span id="lblysdj" style="margin-left: 5px;">0</span>万元</td>
-							<td width="130" style="border: 1px solid #C0C0C0;">评估单价(万元/公里)：</td>
-							<td width="80" style="border: 1px solid #C0C0C0;"><span id="lblpgdj" style="margin-left: 5px;">0</span>万元</td>
+							<td width="130" name="sdtd" style="border: 1px solid #C0C0C0;">评估单价(万元/公里)：</td>
+							<td width="80" name="sdtd" style="border: 1px solid #C0C0C0;"><span id="lblpgdj" style="margin-left: 5px;">0</span>万元</td>
 						</tr>
 					</table>
 				</td>

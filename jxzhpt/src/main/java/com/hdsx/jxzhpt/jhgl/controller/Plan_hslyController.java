@@ -223,44 +223,50 @@ public class Plan_hslyController  extends BaseActionSupport{
 	}
 	
 	public void exportExcelHslyZjxd(){
-		hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
-		hslyServer.queryHslyList(hsly);
-		//设置表头
-		ExcelTitleCell [] title=new ExcelTitleCell[8];
-		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,50);
-		title[1]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)1), null,15);
-		title[2]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)2), null,15);
-		title[3]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)3), null,15);
-		title[4]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)4), null,15);
-		title[5]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)5), null,15);
-		title[6]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)6), null,15);
-		title[7]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)7), null,20);
-		//设置列与字段对应
-		Map<String, String> attribute=new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "tbdw");//填报单位-即导出单位
-		attribute.put("2", "xdnf");//下达年份
-		attribute.put("3", "xdzj");//下达的总投资
-		attribute.put("4", "btzzj");//下达的部投资
-		attribute.put("5", "stz");//下达的部投资
-		attribute.put("6", "jhxdwh");//下达的部投资
-		attribute.put("7", "xmid");
-		//准备数据
-		String gydwmc=zjxdServer.queryGydwmcById(gydwdm);
-		List<Object> excelData = new ArrayList<Object>();
-		if(gydwdm.equals("36")){
-			gydwdm=null;
+		try{
+			hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
+			System.out.println("行政区划："+hsly.getXzqhdm());
+			hslyServer.queryHslyList(hsly);
+			//设置表头
+			ExcelTitleCell [] title=new ExcelTitleCell[8];
+			title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,50);
+			title[1]=new ExcelTitleCell("填报单位",false, new ExcelCoordinate(0, (short)1), null,15);
+			title[2]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)2), null,15);
+			title[3]=new ExcelTitleCell("总投资",false, new ExcelCoordinate(0, (short)3), null,15);
+			title[4]=new ExcelTitleCell("车购税",false, new ExcelCoordinate(0, (short)4), null,15);
+			title[5]=new ExcelTitleCell("省投资",false, new ExcelCoordinate(0, (short)5), null,15);
+			title[6]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)6), null,15);
+			title[7]=new ExcelTitleCell("ID",true, new ExcelCoordinate(0, (short)7), null,20);
+			//设置列与字段对应
+			Map<String, String> attribute=new HashMap<String, String>();
+			attribute.put("0", "xmmc");//项目名称
+			attribute.put("1", "tbdw");//填报单位-即导出单位
+			attribute.put("2", "xdnf");//下达年份
+			attribute.put("3", "xdzj");//下达的总投资
+			attribute.put("4", "btzzj");//下达的部投资
+			attribute.put("5", "stz");//下达的部投资
+			attribute.put("6", "jhxdwh");//下达的部投资
+			attribute.put("7", "xmid");
+			//准备数据
+			String gydwmc=zjxdServer.queryGydwmcById(gydwdm);
+			List<Object> excelData = new ArrayList<Object>();
+			if(gydwdm.equals("36")){
+				gydwdm=null;
+			}
+			//此处遍历查询资金下达模块的所有项目
+			for (Plan_hsly item : hslyServer.queryHslyList(hsly)) {
+				Plan_zjxd zjxd=new Plan_zjxd();
+				zjxd.setXmid(item.getId());
+				zjxd.setXmmc(item.getXmmc());
+				zjxd.setTbdw(gydwmc);
+				excelData.add(zjxd);
+			}
+			ExcelEntity excel=new ExcelEntity("红色旅游",title,attribute,excelData);
+			ExcelExportUtil.excelWrite(excel, "红色旅游-资金下达", getresponse());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		//此处遍历查询资金下达模块的所有项目
-		for (Plan_hsly item : hslyServer.queryHslyList(hsly)) {
-			Plan_zjxd zjxd=new Plan_zjxd();
-			zjxd.setXmid(item.getId());
-			zjxd.setXmmc(item.getXmmc());
-			zjxd.setTbdw(gydwmc);
-			excelData.add(zjxd);
-		}
-		ExcelEntity excel=new ExcelEntity("红色旅游",title,attribute,excelData);
-		ExcelExportUtil.excelWrite(excel, "红色旅游-资金下达", getresponse());
+		
 	}
 	
 	public void editHslyzj() throws Exception{

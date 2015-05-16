@@ -344,7 +344,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 				Double totalsubsidyfund = new Double(new Double(yhdzx.getTotalsubsidyfund()).doubleValue()+new Double(jh.getTotalsubsidyfund()));
 				b=new BigDecimal(totalsubsidyfund);
 				yhdzx.setTotalsubsidyfund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
-				Double totalplacefund = new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(jh.getTotalsubsidyfund()));
+				Double totalplacefund = new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(yhdzx.getTotalsubsidyfund()));
 				b=new BigDecimal(totalplacefund);
 				yhdzx.setTotalplacefund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
 				yhdzxServer.editYhdzxById(yhdzx, lx);
@@ -357,10 +357,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			result.put("result", strResult);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

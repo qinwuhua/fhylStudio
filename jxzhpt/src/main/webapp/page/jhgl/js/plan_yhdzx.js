@@ -681,7 +681,6 @@ function reckonsum(){
 	'","sddj":"'+$('#txtylsddj').val()+'"}';
 	lmjgjson+=yljson+"}";
 	lmjg=smc+zmc+xmc+fc+sjc+zjc+xjc+dc+yl;
-	alert(lmjg);
 	//获取延米集合
 	ymjson=new Array();//存储延米数据的json
 	var ymArray=$("#ymtab tr:gt(0)");

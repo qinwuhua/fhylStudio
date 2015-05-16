@@ -83,10 +83,7 @@
 		) where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryHslyList2" resultType="plan_hsly" parameterType="plan_hsly">
-		select * from plan_hsly where 1=1 
-		<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
-			and ${xzqhdm}
-		</if>
+		select * from plan_hsly where 1=1 and ${xzqhdm}
 		<if test="jhnf!=null and jhnf!=''">
 			and jhnf=#{jhnf}
 		</if>
