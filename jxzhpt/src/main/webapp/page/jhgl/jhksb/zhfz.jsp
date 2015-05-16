@@ -114,13 +114,9 @@
 								var sbsj=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+
 									" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
 								var jh={'jh.id':item.id,'jh.sbsj':sbsj,'jh.sbbmdm':$.cookie("unit"),'jh.sbzt':'1',
-										'jh.jh_sbthcd':item.jh_sbthcd};
-								if(xian && (item.jh_sbthcd<=11-$.cookie("unit").length)){
+										'jh.jh_sbthcd':Number(item.jh_sbthcd)+2};
+								if(xian){
 									jh['jh.sbzt']='0';
-									jh['jh.jh_sbthcd']=Number(item.jh_sbthcd)+2;
-								}else if(!xian && (item.jh_sbthcd<=11-$.cookie("unit").length)){
-									jh['jh.sbzt']='1';
-									jh['jh.jh_sbthcd']=Number(item.jh_sbthcd)+2;
 								}
 								editStatus(jh);
 							});

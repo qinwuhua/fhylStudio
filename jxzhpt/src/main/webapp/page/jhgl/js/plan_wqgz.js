@@ -519,6 +519,7 @@ function editWqgz(){
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ablbzwh').val(),
 			'jh.bz':$('#JHRemarks').val(),
+			'jh.jckwqgz.scqlqk':$('#scqlqk').val(),'jh.jckwqgz.scqlqc':$('#scqlqc').val(),
 			'jh.jckwqgz.fapgdw':$('#fapgdw').val(),'jh.jckwqgz.fascdw':$('#fascdw').val(),
 			'jh.jckwqgz.faspsj':$('#faspsj').datebox('getValue'),'jh.jckwqgz.spwh':$('#spwh').val(),
 			'jh.jckwqgz.tzgs':$('#tzgs').val(),'jh.jckwqgz.jsxz':$('#jsxz').val(),

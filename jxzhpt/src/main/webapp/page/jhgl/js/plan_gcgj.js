@@ -160,8 +160,6 @@ function gclmgjxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -237,8 +235,6 @@ function gclmgjxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -311,8 +307,6 @@ function gclmgjxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -379,8 +373,6 @@ function gclmgjxm_zjxd(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);

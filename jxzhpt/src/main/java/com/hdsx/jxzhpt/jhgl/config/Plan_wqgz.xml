@@ -383,6 +383,8 @@
 	</update>
 	<update id="editWqgzSckxx" parameterType="plan_wqgz">
 		update SCK_WQGZ set sckid=#{sckid}
+		<if test="jh.jckwqgz.scqlqk!=null">,scqlqk=jckwqgz.scqlqk</if>
+		<if test="jh.jckwqgz.scqlqc!=null">,scqlqc=jckwqgz.scqlqc</if>
 		<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">,faspsj=#{jckwqgz.faspsj}</if>
 		<if test="jckwqgz.fapgdw!=null">,fapgdw=#{jckwqgz.fapgdw}</if>
 		<if test="jckwqgz.fascdw!=null">,fascdw=#{jckwqgz.fascdw}</if>
