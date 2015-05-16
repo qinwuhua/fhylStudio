@@ -296,27 +296,27 @@
 			'","sddj":"'+$('#txtfcsddj').val()+'"}';
 			lmjgjson+=fcjson+",";
 			
-			var sjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var sjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtsjchd').val(),$('#txtsjcdj').val());
-			var sdsjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var sdsjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtsjchd').val(),$('#txtsjcsddj').val());
 			var sjcjson='"上基层":{"clmc":"'+$('#selsjc').combobox("getValue")+
 			'","hd":"'+$('#txtsjchd').val()+'","dj":"'+$('#txtsjcdj').val()+
 			'","sddj":"'+$('#txtsjcsddj').val()+'"}';
 			lmjgjson+=sjcjson+",";
 			
-			var zjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var zjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtzjchd').val(),$('#txtzjcdj').val());
-			var sdzjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var sdzjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtzjchd').val(),$('#txtzjcsddj').val());
 			var zjcjson='"中基层":{"clmc":"'+$('#selzjc').combobox("getValue")+
 			'","hd":"'+$('#txtzjchd').val()+'","dj":"'+$('#txtzjcdj').val()+
 			'","sddj":"'+$('#txtzjcsddj').val()+'"}';
 			lmjgjson+=zjcjson+",";
 			
-			var xjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var xjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtxjchd').val(),$('#txtxjcdj').val());
-			var sdxjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(50) : $('#txtyhdzxkd').val(),
+			var sdxjc= reckon($('#ljkdzj').is(":checked") ?  Number($('#txtyhdzxkd').val())+Number(0.5) : $('#txtyhdzxkd').val(),
 					$('#txtxjchd').val(),$('#txtxjcsddj').val());
 			var xjcjson='"下基层":{"clmc":"'+$('#selxjc').combobox("getValue")+
 			'","hd":"'+$('#txtxjchd').val()+'","dj":"'+$('#txtxjcdj').val()+
