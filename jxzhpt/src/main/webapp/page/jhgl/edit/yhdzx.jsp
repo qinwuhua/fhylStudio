@@ -386,6 +386,7 @@
 			return (kd*(hd/100)*1000)*sddj/10000;
 		}
 		function sellx(newValue){
+			$('#tsdq').html(lxlist[newValue].tsdq);
 			$('#lxid').val(lxlist[newValue].lxid);
 			$('#txtLXBM').val(lxlist[newValue].lxbm);
 			$('#txtLXMC').val(lxlist[newValue].lxmc);
@@ -441,6 +442,18 @@
 			var dfzc=Number($('#ztz').val())-$('#zbzzj').html();
 			$('#dfptztz').html(dfzc.toFixed(3));
 		}
+		
+		function check(str){
+			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+			if(str.value==''){
+				return;
+			}
+		    if( !g.test(str.value)){
+		    	alert("请输入正确的数字");
+		    	$(str).val('');
+		    	return;
+		    }
+		}
 	</script>
 </head>
 <body>
@@ -489,17 +502,17 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					垫层</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtDC" type="text"/>
+					<input onblur="check(this)" id="txtDC" type="text"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					基层</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtJC" type="text"/>
+					<input onblur="check(this)" id="txtJC" type="text"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					面层</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtMC" type="text"/>
+					<input onblur="check(this)" id="txtMC" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -518,7 +531,7 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					上报经费</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtSBJF" type="text"/>万元
+					<input onblur="check(this)" id="txtSBJF" type="text"/>万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					核算经费</td>
@@ -535,7 +548,7 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					总投资</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="ztz" onblur="touzi()" type="text" value="0"></span>万元
+					<input onblur="check(this)" id="ztz" onblur="touzi()" type="text" value="0"></span>万元
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					地方配套总投资</td>
@@ -574,7 +587,7 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					交通量</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lblJTL" type="text"/>
+					<input onblur="check(this)" id="lblJTL" type="text"/>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					PQI指标</td>
@@ -672,17 +685,17 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					起止里程</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLC" type="text" style="width:80px;"/>&nbsp;公里
+					<input onblur="check(this)" id="txtLC" type="text" style="width:80px;"/>&nbsp;公里
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					核对里程</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtHDLC" type="text" style="width:80px;"/>&nbsp;公里
+					<input onblur="check(this)" id="txtHDLC" type="text" style="width:80px;"/>&nbsp;公里
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					大中修宽度</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtyhdzxkd" style="width: 80px;" type="text"/>&nbsp;米
+					<input onblur="check(this)" id="txtyhdzxkd" style="width: 80px;" type="text"/>&nbsp;米
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -699,19 +712,19 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					原路面宽度</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtYLMKD" type="text"/>
+					<input onblur="check(this)" id="txtYLMKD" type="text"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="border-left: 1px none #C0C0C0;border-right: 1px none #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					原路面厚度</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtYLMHD" type="text"/>
+					<input onblur="check(this)" id="txtYLMHD" type="text"/>
 				</td>
 				<td style="border-style:1px solid #C0C0C0; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					特殊地区</td>
 				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblTSDQ">罗霄山山脉</span>
+					<span id="tsdq"></span>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -742,13 +755,13 @@
 								<select id="selsmc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtsmchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtsmchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtsmcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtsmcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtsmcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtsmcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -757,13 +770,13 @@
 								<select id="selzmc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtzmchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtzmchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtzmcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtzmcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtzmcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtzmcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -772,13 +785,13 @@
 								<select id="selxmc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtxmchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtxmchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtxmcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtxmcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtxmcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtxmcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -787,13 +800,13 @@
 								<select id="selfc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtfchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtfchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtfcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtfcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtfcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtfcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -802,13 +815,13 @@
 								<select id="selsjc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtsjchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtsjchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtsjcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtsjcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtsjcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtsjcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -817,13 +830,13 @@
 								<select id="selzjc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtzjchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtzjchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtzjcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtzjcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtzjcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtzjcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -832,13 +845,13 @@
 								<select id="selxjc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtxjchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtxjchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtxjcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtxjcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtxjcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtxjcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -847,13 +860,13 @@
 								<select id="seldc" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtdchd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtdchd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtdcdj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtdcdj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtdcsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtdcsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 						<tr>
@@ -862,13 +875,13 @@
 								<select id="selyl" class="easyui-combobox" style="width:125px;"></select>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtylhd" value="0" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtylhd" value="0" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtyldj" type="text" style="width: 50px"/>
+								<input onblur="check(this)" id="txtyldj" type="text" style="width: 50px"/>
 							</td>
 							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
-								<input id="txtylsddj" type="text" style="width: 80px"/>
+								<input onblur="check(this)" id="txtylsddj" type="text" style="width: 80px"/>
 							</td>
 						</tr>
 					</table>
@@ -932,7 +945,7 @@
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;"></td>
 							<td align="center" style="border: 1px solid #C0C0C0;">
-								<input id="txtglfdj" value="0" type="text" style="width: 80px;"/>
+								<input onblur="check(this)" id="txtglfdj" value="0" type="text" style="width: 80px;"/>
 							</td>
 							<td align="center" style="border: 1px solid #C0C0C0;">此项目只能选择一种 </td>
 						</tr>

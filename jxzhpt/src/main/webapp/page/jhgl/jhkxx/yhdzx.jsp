@@ -236,6 +236,7 @@
 		}
 		function sellx(newValue){
 			var lmdate=$.parseJSON(lxlist[newValue].lmjg);
+			$('#tsdq').html(lxlist[newValue].tsdq);
 			$('#txtGYDWMC').combotree('setValue', lxlist[newValue].gydwdm);
 			$('#txtXZQHMC').combotree('setValue', lxlist[newValue].xzqhdm);
 			$('#lxid').html(lxlist[newValue].lxid);
@@ -566,7 +567,7 @@
 				<td style="border-style:1px solid #C0C0C0; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					特殊地区</td>
 				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<span id="lblTSDQ"></span>
+					<span id="tsdq"></span>
 				</td>
 			</tr>
 			<tr style="height: 50px;">

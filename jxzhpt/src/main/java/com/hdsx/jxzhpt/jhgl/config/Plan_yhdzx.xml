@@ -62,6 +62,7 @@
 		<result property="aym" column="aym"/>
 		<result property="asl" column="asl"/>
 		<result property="glf" column="glf"/>
+		<result property="tsdq" column="tsdq"/>
 	</resultMap>
 	<select id="queryYhdzxList" parameterType="java.util.Map" resultMap="yhdzx_jh">
 		select * from (
@@ -412,7 +413,8 @@
 			<if test="aym!=null">,aym</if>
 			<if test="asl!=null">,asl</if>
 			<if test="glf!=null">,glf</if>
-			<if test="bhnr!=null">,bhnr</if>) 
+			<if test="bhnr!=null">,bhnr</if>
+			<if test="tsdq!=null">,tsdq</if>) 
 		values (sys_guid(),#{jhid}
 			<if test="gydwmc!=null">,#{gydwmc}</if>
 			<if test="gydwdm!=null">,#{gydwdm}</if>
@@ -436,7 +438,8 @@
 			<if test="aym!=null">,#{aym}</if>
 			<if test="asl!=null">,#{asl}</if>
 			<if test="glf!=null">,#{glf}</if>
-			<if test="bhnr!=null">,#{bhnr}</if>)
+			<if test="bhnr!=null">,#{bhnr}</if>
+			<if test="tsdq!=null">,#{tsdq}</if>)
 	</insert>
 	<insert id="insertYhdzxJh" parameterType="plan_yhdzx">
 		insert into plan_yhdzx (
