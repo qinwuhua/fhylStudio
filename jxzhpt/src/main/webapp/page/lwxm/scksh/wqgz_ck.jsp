@@ -50,7 +50,7 @@ function selWqgzById(){
 		$("#xmtype").html(msg.xmtype);
 		$("#bhnr").html(msg.bhnr);
 		$("#bz").html(msg.bz);
-		
+		$("#tsdq").html(msg.tsdq);
 		$("#fapgdw").html(msg.fapgdw);
 		$("#fascdw").html(msg.fascdw);
 		$("#faspsj").html(msg.faspsj);

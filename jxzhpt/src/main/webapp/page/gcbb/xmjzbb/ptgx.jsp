@@ -72,7 +72,7 @@
 			var qxkg=$("#qxkg").val();
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
-			var tsdq=$("#tsdq").combobox("getValue");
+			var tsdq=$("#tsdq").combobox("getText");
 			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg+"&xmbb.tsdq="+tsdq;
 			//alert(data);
 			var tbody = $("#ptgxlist");

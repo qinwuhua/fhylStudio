@@ -42,7 +42,7 @@
 				$("#xmtype").html(msg.xmtype);
 				$("#yhnr").html(msg.yhnr);
 				$("#bz").html(msg.bz);
-				
+				$("#tsdq").html(msg.tsdq);
 				$("#scqdzh").html(msg.scqdzh);
 				$("#sczdzh").html(msg.sczdzh);
 				$("#sczlc").html(msg.sczlc);
