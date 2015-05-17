@@ -372,8 +372,6 @@
 		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcgj lx, plan_gcgj jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
 		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
 		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) C2]]>
-		<!-- select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]> -->
 	</select>
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
@@ -400,7 +398,7 @@
 	<select id="queryJhExist" parameterType="plan_lx_gcgj" resultType="int">
 		select count(*) from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
 		where lx.lxbm = #{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
-		 and jh.sbnf=#{jhid}
+		and jh.sbnf=#{jhid}
 	</select>
 	<select id="queryTsdqByXzqh" resultType="string" parameterType="string">
 		select bt.areaname from bt_xzqhtsdq xz right join bt_specialarea bt on (xz.areacode=bt.areacode) where xz.xzqhdm=#{_parameter}

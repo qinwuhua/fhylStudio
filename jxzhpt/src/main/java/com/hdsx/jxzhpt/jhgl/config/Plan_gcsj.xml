@@ -74,6 +74,7 @@
 		<result property="jsnr" column="jsnr"/>
 		<result property="jh_sbthcd" column="jh_sbthcd"/>
 		<result property="sfylsjl" column="sfylsjl"/>
+		<result property="xmmc" column="xmmc"/>
 		<collection property="plan_lx_gcsjs" column="jhid" javaType="ArrayList" ofType="plan_lx_gcsj" resultMap="gcsj_lx"/>
 	</resultMap>
 	<resultMap id="gcsj_lx" type="plan_lx_gcsj">
@@ -115,7 +116,7 @@
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
 			select rownum as num,t.* from (
-				select jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
+				select jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
 				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
 				lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
@@ -416,8 +417,6 @@
 		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcsj lx, plan_gcsj jh where lx.jhid=jh.id and <![CDATA[jh.jhnf<#{jhid}]]>) j,
 		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and <![CDATA[XQDZH<=${zdzh} and XZDZH>=${qdzh}]]>) k
 		where j.lxbm=k.YLXBM and <![CDATA[j.qdzh<k.YZDZH and j.zdzh>k.YQDZH]]>) C2
-		<!-- select count(jh.id) from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-		where <![CDATA[ lx.lxbm=#{lxbm} and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.jhnf<#{jhid}]]> -->
 	</select>
 	<delete id="dropGcsjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcsj where jhid=#{String}
