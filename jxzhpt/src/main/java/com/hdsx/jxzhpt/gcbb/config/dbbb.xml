@@ -675,7 +675,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
 			group by jhid) lx1,
 			(select jhid,replace(WMSYS.WM_CONCAT(decode(substr(to_char(t1.lxbm),0,1),'G','国道','S','省道','X','县道','Y','乡道','C','村道','Z','专道')),',','、') xzdj,replace(WMSYS.WM_CONCAT(to_char(t1.lxbm)),',','、') lxbh,replace(WMSYS.WM_CONCAT(to_char(substr(t1.xzqhmc,0,instr(t1.xzqhmc, '市')))),',','、') shi,replace(WMSYS.WM_CONCAT(to_char(substr(t1.xzqhmc,instr(t1.xzqhmc, '市')+1,instr(t1.xzqhmc, '县')))),',','、') xian,replace(WMSYS.WM_CONCAT(to_char(t1.yjsdj)),',','、') jsdj from (select jhid,replace(WMSYS.WM_CONCAT(distinct to_char( t.lxbm)), ',', '、')  lxbm, 
 replace(WMSYS.WM_CONCAT(distinct to_char( t.xzqhmc)), ',', '、')  xzqhmc, 
-replace(WMSYS.WM_CONCAT(distinct to_char( t.yjsdj)), ',', '、') yjsdj from plan_lx_gcsj t group by jhid)t1 group by t1.jhid) lx2,
+plan.GJHJSDJ yjsdj from plan_lx_gcsj t left join plan_gcsj plan on t.jhid=plan.id group by jhid,plan.GJHJSDJ)t1 group by t1.jhid) lx2,
 			(select z.xmid,z.xdnf,sum(z.xdzj) bnhj,sum(z.btzzj) bnbtz,replace(WMSYS.WM_CONCAT(to_char(z.jhxdwh)),',','、') jhxdwh from plan_zjxd z where z.xdnf=#{sbnf} group by z.xmid,z.xdnf) zj1,
 			(select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
 			where p.id=lx.jhid(+) and p.id=lx1.jhid(+) and p.id=lx2.jhid(+) and p.id= zj1.xmid(+) and p.id=zj2.xmid(+) and zj1.xdnf is not null
