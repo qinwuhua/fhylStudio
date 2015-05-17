@@ -89,7 +89,7 @@ function selWqgzById(){
 		$("#xmtype").html(msg.xmtype);
 		$("#bhnr").html(msg.bhnr);
 		$("#bz").html(msg.bz);
-		
+		$("#tsdq").html(msg.tsdq);
 		$("#scqlqc").val(msg.scqlqc);
 		$("#scqlqk").val(msg.scqlqk);
 		$("#scxmnf").combobox("setValue",msg.scxmnf);
