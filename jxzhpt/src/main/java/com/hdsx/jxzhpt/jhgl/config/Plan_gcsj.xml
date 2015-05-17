@@ -486,7 +486,7 @@
 		'   ' as ylxbm,0.0 yqdzh,0.0 yzdzh,lx.yjsdj as yjsdj,jh.gjhjsdj as gjjsdj
 		from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
 		where lx.lxbm like #{lx.lxbm}||'%' and lx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[and lx.qdzh<=#{lx.zdzh} and lx.zdzh>=#{lx.qdzh}]]> 
+		<![CDATA[and lx.qdzh<=${lx.zdzh} and lx.zdzh>=${lx.qdzh}]]> 
 		<if test="lx.jhid!=null and lx.jhid!=''">
 			and jh.id!=#{lx.jhid}
 		</if>
@@ -508,7 +508,7 @@
 		gjlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_gcgj gjlx right join plan_gcgj gj  on (gjlx.jhid=gj.id) 
 		where gjlx.lxbm like #{lx.lxbm}||'%' and gjlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and gjlx.qdzh<=#{lx.zdzh} and gjlx.zdzh>=#{lx.qdzh}]]> 
+		<![CDATA[ and gjlx.qdzh<=${lx.zdzh} and gjlx.zdzh>=${lx.qdzh}]]> 
 		<if test="lx.jhid!=null and lx.jhid!=''">
 			and gj.id!=#{lx.jhid}
 		</if>
@@ -531,7 +531,7 @@
 		shlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_shuih shlx right join plan_shuih sh  on (shlx.jhid=sh.id) 
 		where shlx.lxbm like #{lx.lxbm}||'%' and shlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and shlx.qdzh<=#{lx.zdzh} and shlx.zdzh>=#{lx.qdzh}]]> 
+		<![CDATA[ and shlx.qdzh<=${lx.zdzh} and shlx.zdzh>=${lx.qdzh}]]> 
 		<if test="lx.jhid!=null and lx.jhid!=''">
 			and sh.id!=#{lx.jhid}
 		</if>
@@ -554,7 +554,7 @@
 		yhlx.yjsdj as yjsdj,'' as gjjsdj
 		from plan_lx_yhdzx yhlx right join plan_yhdzx yh  on (yhlx.jhid=yh.id) 
 		where yhlx.lxbm like #{lx.lxbm}||'%' and yhlx.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		<![CDATA[ and yhlx.qdzh<=#{lx.zdzh} and yhlx.zdzh>=#{lx.qdzh}]]> 
+		<![CDATA[ and yhlx.qdzh<=${lx.zdzh} and yhlx.zdzh>=${lx.qdzh}]]> 
 		<if test="lx.jhid!=null and lx.jhid!=''">
 			and yh.id!=#{lx.jhid}
 		</if>
@@ -577,7 +577,7 @@
 		'' as yjsdj,'' as gjjsdj
 		from xmk_abgc axm right join sck_abgc asck on axm.id=asck.xmkid right join plan_abgc a on asck.sckid=a.sckid
 		where axm.lxbm like #{lx.lxbm}||'%' and axm.xzqhdm like rtrim(#{lx.xzqhdm},0)||'%' 
-		and <![CDATA[ axm.qdzh<=#{lx.zdzh} and axm.zdzh>=#{lx.qdzh}]]> 
+		and <![CDATA[ axm.qdzh<=${lx.zdzh} and axm.zdzh>=${lx.qdzh}]]> 
 		<if test="lx.jhid!=null and lx.jhid!=''">
 			and a.id!=#{lx.jhid}
 		</if>

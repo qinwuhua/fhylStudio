@@ -98,6 +98,15 @@ function yhdzxxm(jh,lx){
 //			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'planhistorycompara',title : '是否有历史补助',width : 100,align : 'center',
+				    	formatter:function(value,row,index){
+				  			if(value=="是"){
+				  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'yhdzx'"+",'养护大中修项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+				  			}else{
+				  				return "否";
+				  			}
+				  		}
+				  },
 			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
 			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
 			      }},
@@ -176,6 +185,15 @@ function yhdzxxm_sb(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'planhistorycompara',title : '是否有历史补助',width : 100,align : 'center',
+				    	formatter:function(value,row,index){
+				  			if(value=="是"){
+				  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'yhdzx'"+",'养护大中修项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+				  			}else{
+				  				return "否";
+				  			}
+				  		}
+				  },
 			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
 			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
 			      }},
@@ -249,6 +267,15 @@ function yhdzxxm_sp(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:100,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'planhistorycompara',title : '是否有历史补助',width : 100,align : 'center',
+				    	formatter:function(value,row,index){
+				  			if(value=="是"){
+				  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'yhdzx'"+",'养护大中修项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+				  			}else{
+				  				return "否";
+				  			}
+				  		}
+				  },
 			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
 			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
 			      }},
@@ -309,6 +336,15 @@ function yhdzxxm_zjxd(jh,lx){
 			      },
 			      {field:'xmmc',title:'项目名称',width:180,align:'center'},
 			      {field:'sbnf',title:'上报年份',width:80,align:'center'},
+			      {field:'planhistorycompara',title : '是否有历史补助',width : 100,align : 'center',
+				    	formatter:function(value,row,index){
+				  			if(value=="是"){
+				  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'yhdzx'"+",'养护大中修项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+				  			}else{
+				  				return "否";
+				  			}
+				  		}
+				  },
 			      {field:'pqiccc',title:'PQI指标',width:80,align:'center',formatter:function(value,row,index){
 			    	  return '<a href="#" style="text-decoration:none;color:#3399CC; " onclick="ckPQI('+index+')">'+row.pqi+'</a>';
 			      }},

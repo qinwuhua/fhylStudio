@@ -1,3 +1,8 @@
+function openLsjlWindow(id,index,xmlx,title){
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.Var.XMLX=xmlx;
+	YMLib.UI.createWindow('sjlsxx',title,"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
+}
 function openZjzjWindow(id,url){
 	YMLib.Var.id=id;
 	YMLib.Var.url=url;

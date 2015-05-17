@@ -101,7 +101,15 @@ function shxm(jh,lx){
 				return result;
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-	        {field:'sfylsjl',title:'是否有历史记录',width:100,align:'center'},
+	        {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'shuih'"+",'水毁项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
@@ -173,7 +181,15 @@ function shxm_sb(jh,lx){
 	        	return result;
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-	        {field:'sfylsjl',title:'是否有历史记录',width:100,align:'center'},
+	        {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'shuih'"+",'水毁项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
@@ -240,7 +256,15 @@ function shxm_sh(jh,lx){
 	        	return result;
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
+	        {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'shuih'"+",'水毁项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:100,align:'center'},
@@ -304,7 +328,15 @@ function shxm_zjxd(jh,lx){
 	        		}
 	        },
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
-	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
+	        {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'shuih'"+",'水毁项目历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 	        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 	        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:100,align:'center'},

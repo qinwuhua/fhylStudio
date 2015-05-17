@@ -14,6 +14,7 @@
 		<result property="totalsubsidyfund" column="totalsubsidyfund"/>
 		<result property="nowyearsubsidyfund" column="nowyearsubsidyfund"/>
 		<result property="accumulativesubsidyfund" column="accumulativesubsidyfund"/>
+		<result property="planhistorycompara" column="planhistorycompara"/>
 		<result property="dianceng" column="dianceng"/>
 		<result property="jiceng" column="jiceng"/>
 		<result property="surface" column="surface"/>

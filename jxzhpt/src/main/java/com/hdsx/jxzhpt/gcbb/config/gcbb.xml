@@ -262,8 +262,8 @@
 	</resultMap>
 	<select id="selGcbb5_1" parameterType="xmbb" resultType="gcbb5">
 		select gj.xmmc as xmmc,gj.sbnf as jhnf,'改建' as jsxz,decode(gj.pfztz,'',0,null,0,gj.pfztz) as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
-		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
-		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
+		(select sum(zj.xdzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
+		(select sum(zj.btzzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
 		NVL((select sum(gcgj.bywcmc) from gcgl_gcgzgj gcgj where gcgj.jhid=gj.id and to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcgj.sbyf,'yyyy-mm'),'yyyy')),0) as bndsslc,
 		gj.kgzt as kgzt,gj.jgzt as jgzt,to_char(gj.sjkgsj,'yyyy-mm-dd') as kgsj,to_char(gj.sjwgsj,'yyyy-mm-dd') as jgsj,
 		(select sum(c.cgsdwzj) from gcgl_cgs c where c.jhid=gj.id and to_date(#{ybny},'yyyy-mm') >= to_date(c.tbyf,'yyyy-mm') and to_date(c.tbyf,'yyyy-mm') >= to_date(substr(#{ybny},0,4)||'-1','yyyy-mm')) as bnzycgs1,
@@ -289,8 +289,8 @@
 	</select>
 	<select id="selGcbb5_2" parameterType="xmbb" resultType="gcbb5">
 		select gj.id,gj.xmmc as xmmc,gj.sbnf as jhnf,'水毁' as jsxz,decode(gj.pfztz,'',0,null,0,gj.pfztz) as pfztz,gj.jhsybzje as cgs,(gj.pfztz-gj.jhsybzje) as dfpt,
-	    (select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
-	    (select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
+	    (select sum(zj.xdzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bndjhtz,
+	    (select sum(zj.btzzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=gj.id) as bnzycgs,
 	    NVL((select sum(gcsh.bywcmc) from gcgl_sh gcsh where gcsh.jhid=gj.id and
 	    to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsh.sbyf,'yyyy-mm'),'yyyy')),0) as bndsslc,
 	    gj.kgzt as kgzt,gj.jgzt as jgzt,to_char(gj.sjkgsj,'yyyy-mm-dd') as kgsj,to_char(gj.sjwgsj,'yyyy-mm-dd') as jgsj,
@@ -321,8 +321,8 @@
 	</select>
 	<select id="selGcbb5_3" parameterType="xmbb" resultType="gcbb5">
 		select sj.xmmc as xmmc,sj.jhnf as jhnf,'升级' as jsxz,sj.jsjsbz as jsjsbz,decode(sj.pftz,'',0,null,0,sj.pftz) as pfztz,sj.jhsybbzje as cgs,(sj.pftz-sj.jhsybbzje) as dfpt,
-		(select zj.xdzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bndjhtz,
-		(select zj.btzzj from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bnzycgs,
+		(select sum(zj.xdzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bndjhtz,
+		(select sum(zj.btzzj) from plan_zjxd zj where zj.xdnf=to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') and zj.xmid=sj.id) as bnzycgs,
 		NVL((select sum(gcsj.lqlmwcqk)+sum(gcsj.snlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and
 		to_char(to_date(#{ybny},'yyyy-mm'),'yyyy') = to_char(to_date(gcsj.sbyf,'yyyy-mm'),'yyyy')),0) as bndsslc,
 		(select sum(gcsj.lqlmwcqk) from gcgl_gcgzsj gcsj where gcsj.jhid=sj.id and

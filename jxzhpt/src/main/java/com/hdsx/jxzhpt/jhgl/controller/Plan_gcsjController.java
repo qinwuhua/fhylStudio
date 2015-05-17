@@ -501,7 +501,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	 */
 	public void queryXjls(){
 		try {
-			lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().indexOf(lx.getXzqhdm())) 
+			lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().length()-6) 
 					: lx.getLxbm());
 			List<Plan_lx_gcsj> ls=gcsjServer.queryXjls(lx);
 			JsonUtils.write(ls, getresponse().getWriter());
