@@ -409,14 +409,38 @@
     	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh} and g1.yjsdj=#{yjsdj}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">
-		SELECT C1.CON1+C2.CON2 FROM
-		(select count(jh.id) CON1 from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
-		    where lx.lxbm=#{lxbm} and <![CDATA[(lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.jhnf<#{jhid}]]>
+		SELECT C1.CON1+C2.CON2+shC1.CON1+shC2.CON2+sjC1.CON1+sjC2.Con2+yhC1.CON1+yhC2.CON2 FROM
+		(select count(jh.id) CON1 from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		    where <![CDATA[lx.lxbm like #{lxbm}||'%' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]>
 		)C1,
+		<![CDATA[(select count(*) CON2 from
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcgj lx, plan_gcgj jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM like #{lxbm}||'%' and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) C2]]>,
+		
+		(select count(jh.id) CON1 from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
+		    where <![CDATA[lx.lxbm like #{lxbm}||'%' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh}) and jh.sbnf<#{jhid}]]>
+		) shC1,
+		<![CDATA[(select count(*) CON2 from
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_shuih lx, plan_shuih jh where lx.jhid=jh.id and jh.sbnf<#{jhid})  j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM like #{lxbm}||'%' and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) shC2]]>,
+		
+		<![CDATA[(select count(jh.id) CON1 from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
+		    where lx.lxbm like #{lxbm}||'%' and (lx.qdzh<=${zdzh} and lx.zdzh>=${qdzh}) and jh.jhnf<#{jhid}
+		) sjC1,
 		(select count(*) CON2 from
-		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcsj lx, plan_gcsj jh where lx.jhid=jh.id and <![CDATA[jh.jhnf<#{jhid}]]>) j,
-		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM =#{lxbm} and <![CDATA[XQDZH<=${zdzh} and XZDZH>=${qdzh}]]>) k
-		where j.lxbm=k.YLXBM and <![CDATA[j.qdzh<k.YZDZH and j.zdzh>k.YQDZH]]>) C2
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_gcsj lx, plan_gcsj jh where lx.jhid=jh.id and jh.jhnf<#{jhid}) j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM like #{lxbm}||'%' and XQDZH<=${zdzh} and XZDZH>=${qdzh}) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) sjC2 ]]>,
+		
+		<![CDATA[(select count(jh.id) CON1 from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id) 
+		    where lx.lxbm like 'G105'||'%' and (lx.qdzh<=1727.33 and lx.zdzh>=1721.756) and jh.sbnf<2015
+		) yhC1,
+		(select count(*) CON2 from
+		(select lx.lxbm,lx.qdzh,lx.zdzh from plan_lx_yhdzx lx, plan_yhdzx jh where lx.jhid=jh.id and jh.sbnf<2015) j,
+		(select YLXBM,YQDZH,YZDZH from XTGL_LXSJ where XLXBM like 'G105'||'%' and XQDZH<=1727.33 and XZDZH>=1721.756) k
+		where j.lxbm=k.YLXBM and j.qdzh<k.YZDZH and j.zdzh>k.YQDZH) yhC2]]>
 	</select>
 	<delete id="dropGcsjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcsj where jhid=#{String}
@@ -441,9 +465,19 @@
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcsj j where id=#{id}
 	</select>
 	<select id="queryJhExist" parameterType="plan_lx_gcsj" resultType="int">
-		select count(jh.id) from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
+		select gj.gjCon+shuih.shCon+sj.sjCon+yh.yhCon from 
+		(select count(*) gjCon from plan_lx_gcgj lx right join plan_gcgj jh on (lx.jhid=jh.id) 
+		where lx.lxbm = #{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
+		and jh.sbnf=#{jhid}) gj,
+		(select count(*) shCon from plan_lx_shuih lx right join plan_shuih jh on (lx.jhid=jh.id) 
+		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<=#{zdzh}]]> and lx.zdzh>=#{qdzh} 
+		and jh.sbnf=#{jhid}) shuih,
+		(select count(jh.id) sjCon from plan_lx_gcsj lx right join plan_gcsj jh on (lx.jhid=jh.id) 
 		where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
-		and jh.jhnf=#{jhid}
+		and jh.jhnf=#{jhid}) sj,
+		(select count(jh.id) yhCon from plan_lx_yhdzx lx right join plan_yhdzx jh on (lx.jhid=jh.id) 
+    	where lx.lxbm=#{lxbm} and <![CDATA[lx.qdzh<#{zdzh}]]> and lx.zdzh>#{qdzh}
+    	and jh.sbnf=#{jhid}) yh
 	</select>
 	<select id="queryXjls" parameterType="java.util.Map" resultType="plan_lx_gcsj">
 		select * from (
@@ -807,11 +841,11 @@
 	</insert>
 	<select id="sjAutoCompleteLxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
-		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
+		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj
 		from  JXJCK_2013.GPSROAD g
 		where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
-		group by roadname,roadcode,g.f114,g.f116
+		group by roadname,roadcode,g.f114
 	</select>
 	<select id="querySjzh" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		<![CDATA[

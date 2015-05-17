@@ -190,4 +190,14 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public List<Plan_lx_yhdzx> yhdzxAutoCompleteLxbm(Plan_lx_yhdzx lx) {
 		return queryList("yhdzxAutoCompleteLxbm",lx);
 	}
+
+	@Override
+	public int queryJhExist(Plan_lx_yhdzx lx) {
+		return queryOne("queryJhExist", lx);
+	}
+
+	@Override
+	public int queryJlBylx(Plan_lx_yhdzx lx) {
+		return queryOne("queryJlBylx", lx);
+	}
 }

@@ -164,10 +164,12 @@
 				dataType:'json',
 				data:params,
 				success:function(data){
-					if(data.result){
+					if(data.result=="true"){
 						alert("添加成功！");
 						parent.$('#grid').datagrid('reload');
 						parent.$('#add_yhdzx').window('destroy');
+					}else if(data.result='have'){
+						alert("此路线已存在！");
 					}
 				},
 				error:function(e){

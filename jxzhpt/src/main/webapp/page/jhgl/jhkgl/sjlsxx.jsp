@@ -22,9 +22,9 @@
 			var row = parent.YMLib.Var.Row;
 			if(row!=null){
 				$('#searchDiv').hide();
-				queryByRowData(row);
-				parent.YMLib.Var.Row=null;
 			}
+			queryByRowData(row);
+			parent.YMLib.Var.Row=null;
 		});
 		function queryByRowData(row){
 			var data=new Array();

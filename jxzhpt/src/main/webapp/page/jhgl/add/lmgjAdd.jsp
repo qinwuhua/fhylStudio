@@ -164,7 +164,7 @@
 			return;
 		}
 		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
-			alert("起点桩号要小于或等于"+$('#spzdzh').html());
+			alert("止点桩号桩号要小于或等于"+$('#spzdzh').html());
 			return;
 		}
 		var lc = (Number($('#zdzh').val()).toFixed(3)-Number($('#qdzh').val()).toFixed(3)).toFixed(3);

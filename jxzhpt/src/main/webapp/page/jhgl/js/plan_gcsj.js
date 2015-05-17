@@ -373,10 +373,7 @@ function dropGcsjs(){
 					id=id+","+item.id;
 				}
 			}
-			alert("ID："+item.id +"     加后:"+id);
 		});
-		alert(id);
-		return;
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropGcsjById.do',

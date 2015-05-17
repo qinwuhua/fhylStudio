@@ -203,11 +203,11 @@
 		});	
 	}
 	function check(str){
-		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)/;
+		var g = new RegExp("^[0-9]*.[0-9]*$");
 		if(str.value==''){
 			return;
 		}
-	    if( !g.test(str.value)){
+	    if(!g.test($(str).val())){
 	    	alert("请输入正确的数字");
 	    	$(str).val('');
 	    	return;

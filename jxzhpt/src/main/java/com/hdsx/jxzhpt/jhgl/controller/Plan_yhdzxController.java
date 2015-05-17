@@ -301,27 +301,46 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void insertYhdzx() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
-			jh.setJh_sbthcd("2");
-		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
-			jh.setJh_sbthcd("0");
-		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
+	public void insertYhdzx(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
+				jh.setJh_sbthcd("2");
+			}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
+				jh.setJh_sbthcd("0");
+			}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
+				
+			}
+			UUID uuid=UUID.randomUUID();
+			jh.setId(uuid.toString());
+			lx.setJhid(uuid.toString());
+			lx.setTbsj(new Date());
+			Plan_lx_yhdzx lx1=new Plan_lx_yhdzx();
+			lx1.setXzqhdm(lx.getXzqhdm());
+			lx1.setLxbm(lx.getLxbm());
+			lx1.setQdzh(lx.getQdzh());
+			lx1.setZdzh(lx.getZdzh());
+			lx1.setJhid(jh.getSbnf());
+			if(yhdzxServer.queryJhExist(lx1)==0){
+				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
+							: lx1.getLxbm());
+				jh.setPlanhistorycompara(yhdzxServer.queryJlBylx(lx1)>0 ? "是" : "否");
+				boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
+				boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+				if(lxresult && jhresult){
+					strResult="true";
+				}
+			}else{
+				strResult="have";
+			}
 			
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		UUID uuid=UUID.randomUUID();
-		jh.setId(uuid.toString());
-		lx.setJhid(uuid.toString());
-		lx.setTbsj(new Date());
-		boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
-		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
-		if(lxresult && jhresult){
-			strResult="true";
-		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
+		
 	}
 	/**
 	 * 单次添加养护大中修路线

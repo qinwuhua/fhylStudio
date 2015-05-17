@@ -122,4 +122,16 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	boolean editYhdzxLxById(Plan_lx_yhdzx lx);
+	/**
+	 * 查询是否有次路线
+	 * @param lx
+	 * @return
+	 */
+	int queryJhExist(Plan_lx_yhdzx lx);
+	/**
+	 * 查询是否有历史记录
+	 * @param lx1
+	 * @return
+	 */
+	int queryJlBylx(Plan_lx_yhdzx lx1);
 }
