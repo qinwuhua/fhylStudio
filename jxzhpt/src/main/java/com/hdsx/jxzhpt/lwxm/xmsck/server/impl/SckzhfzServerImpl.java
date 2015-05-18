@@ -139,12 +139,14 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean lrjhSckzhfz(String delstr,String nf) {
+	public boolean lrjhSckzhfz(String delstr,String nf,String jh_sbthcd) {
 		String[] strs = delstr.split(",");
+		String[] jh_sbthcds=jh_sbthcd.split(",");
 		List<Plan_zhfz> l = new ArrayList<Plan_zhfz>();
 		for (int i = 0; i < strs.length; i++) {
 			Plan_zhfz item =new Plan_zhfz();
 			item.setSckid(strs[i]);
+			item.setJh_sbthcd(jh_sbthcds[i]);
 			item.setSbnf(nf);
 			l.add(item);
 		}

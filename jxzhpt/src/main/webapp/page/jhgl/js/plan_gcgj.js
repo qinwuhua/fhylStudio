@@ -129,6 +129,15 @@ function gclmgjxm(jh,lx){
 		    },
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
+		    {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'gcgj'"+",'工程改建历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
 		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
@@ -160,8 +169,6 @@ function gclmgjxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -206,6 +213,15 @@ function gclmgjxm_sb(jh,lx){
 		    },
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
+		    {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'gcgj'"+",'工程改建历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
 		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
@@ -237,8 +253,6 @@ function gclmgjxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -277,9 +291,17 @@ function gclmgjxm_sh(jh,lx){
 					return result;
 				}
 		    },
-		    {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
+		    {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'gcgj'"+",'工程改建历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
 		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
@@ -311,8 +333,6 @@ function gclmgjxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);
@@ -345,9 +365,17 @@ function gclmgjxm_zjxd(jh,lx){
 						return '竣工';
 				}
 		    },
-		    {field : 'sfylsjl',title : '是否有修建记录',width : 80,align : 'center'},
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
 		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
+		    {field:'sfylsjl',title : '是否有历史补助',width : 100,align : 'center',
+		    	formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grid'"+",'"+index+"'"+",'gcgj'"+",'工程改建历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		    },
 		    {field : 'jhkgsj',title : '计划开工时间',width : 100,align : 'center'},
 		    {field : 'jhwgsj',title : '计划完工时间',width : 100,align : 'center'},
 		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
@@ -379,8 +407,6 @@ function gclmgjxm_zjxd(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
-			gridObj.datagrid('expandRow',rowIndex);
-			gridObj.datagrid('fixDetailRowHeight',rowIndex);
 		}
 	};
 	gridBind(grid);

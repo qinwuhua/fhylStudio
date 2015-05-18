@@ -65,7 +65,14 @@ public class Sckabgc implements Serializable{
 		private String shbm;
 		private String bz;
 		private String sck_sbzt2;
+		private String tsdq;
 		
+		public String getTsdq() {
+			return tsdq;
+		}
+		public void setTsdq(String tsdq) {
+			this.tsdq = tsdq;
+		}
 		public String getSckid() {
 			return sckid;
 		}

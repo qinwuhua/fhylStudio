@@ -206,47 +206,47 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table width="2800px"   class="table_body">
+							<table width="4000px"   class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><font id="xmn"></font>年公路建设下达计划（国省道改造项目） </caption>
 								<thead>
 									<tr>
-										<td rowspan="2">备注</td>
-										<td rowspan="2">项目名称</td>
-										<td rowspan="2">行政等级</td>
-										<td rowspan="2">起点桩号</td>
-										<td rowspan="2">终点桩号</td>
-										<td rowspan="2">路线编码</td>
-										<td rowspan="2">现公路技术等级</td>
-										<td colspan="3"></td>
-										<td rowspan="2">建设性质</td>
+										<td rowspan="2" style="width: 80px">备注</td>
+										<td rowspan="2" style="width: 220px">项目名称</td>
+										<td rowspan="2" style="width: 88px">行政等级</td>
+										<td rowspan="2" style="width: 180px">起点桩号</td>
+										<td rowspan="2" style="width: 180px">终点桩号</td>
+										<td rowspan="2" style="width: 180px">路线编码</td>
+										<td rowspan="2" style="width: 100px">现公路技术等级</td>
+										<td colspan="3" ></td>
+										<td rowspan="2" style="width: 120px">建设性质</td>
 										<td colspan="7">建 设 规 模（ 公 里 ） / （ 延 米 ）</td>
-										<td rowspan="2">路面宽度</td>
-										<td rowspan="2">技术方案</td>
-										<td rowspan="2">总投资（万元）</td>
-										<td rowspan="2">中央投资（万元）</td>
-										<td rowspan="2">省级补助（万元）</td>
+										<td rowspan="2" style="width: 140px">路面宽度</td>
+										<td rowspan="2" style="width: 140px">技术方案</td>
+										<td rowspan="2" style="width: 140px">总投资（万元）</td>
+										<td rowspan="2" style="width: 140px">中央投资（万元）</td>
+										<td rowspan="2" style="width: 140px">省级补助（万元）</td>
 										<td colspan="2">上年累计完成投资（万元）</td>
 										<td colspan="2">本年建设计划（万元）</td>
 										<td colspan="2">前期工作情况</td>
-										<td rowspan="2">计划下达文号</td>
+										<td rowspan="2" style="width: 140px">计划下达文号</td>
 									</tr>	
 									<tr>
-										<td>特殊地区 </td>
-										<td>市</td>
-										<td>县</td>
-										<td>合计</td>
-										<td>一级公路</td>
-										<td>二级公路</td>
-										<td>三级公路</td>
-										<td>四级公路</td>
-										<td>大桥</td>
-										<td>隧道</td>
-										<td>合计</td>
-										<td>内：中央车购税</td>
-										<td>合计</td>
-										<td>车购税合计</td>
-										<td>工可批复文号</td>
-										<td>设计批复文号</td>
+										<td style="width: 150px">特殊地区 </td>
+										<td style="width: 100px">市</td>
+										<td style="width: 100px">县</td>
+										<td style="width: 80px">合计</td>
+										<td style="width: 100px">一级公路</td>
+										<td style="width: 100px">二级公路</td>
+										<td style="width: 100px">三级公路</td>
+										<td style="width: 100px">四级公路</td>
+										<td style="width: 80px">大桥</td>
+										<td style="width: 80px">隧道</td>
+										<td style="width: 100px">合计</td>
+										<td style="width: 140px">内：中央车购税</td>
+										<td style="width: 100px">合计</td>
+										<td style="width: 140px">车购税合计</td>
+										<td style="width: 140px">工可批复文号</td>
+										<td style="width: 140px">设计批复文号</td>
 									</tr>
 								</thead>
 								<tbody id='table_tbody'>

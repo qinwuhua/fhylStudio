@@ -142,7 +142,8 @@
 								<select name="ddlGldj" id="ddlGldj" class="easyui-combobox" style="width:104px;vertical-align:middle;"></select>
 								<span>&nbsp;是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="否" selected="selected">否</option>
+									<option value="" selected="selected">全部</option>
+									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
         					</p>

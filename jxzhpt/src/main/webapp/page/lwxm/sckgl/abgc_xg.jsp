@@ -90,7 +90,7 @@ var zdStr;
 			$("#xmtype").html(msg.xmtype);
 			$("#yhnr").html(msg.yhnr);
 			$("#bz").html(msg.bz);
-			
+			$("#tsdq").html(msg.tsdq);
 			$("#scqdzh").val(msg.scqdzh);
 			$("#sczdzh").val(msg.sczdzh);
 			$("#sczlc").html(msg.sczlc);

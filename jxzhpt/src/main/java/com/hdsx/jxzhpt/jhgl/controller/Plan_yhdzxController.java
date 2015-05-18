@@ -41,6 +41,7 @@ import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
+import com.ibm.icu.math.BigDecimal;
 
 @Scope("prototype")
 @Controller
@@ -57,6 +58,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String zjlx;
 	
 	public void querySumYhdzx(){
 		try {
@@ -89,7 +91,8 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 */
 	public void queryYhdzxById(){
 		try {
-			JsonUtils.write(yhdzxServer.queryYhdzxById(jh.getId()), getresponse().getWriter());
+			Plan_yhdzx yhdzx = yhdzxServer.queryYhdzxById(jh.getId());
+			JsonUtils.write(yhdzx, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -132,14 +135,24 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	public void editYhdzxById(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			System.out.println("是否："+jh.getTotalsubsidyfund());
 			result.put("result", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
-			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
+			//result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(jh,lx)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	public void editYhdzxLxById() throws IOException, Exception{
+		Map<String, String> result=new HashMap<String, String>();
+		try{
+			result.put("lx", new Boolean(yhdzxServer.editYhdzxLxById(lx)).toString());
+			result.put("jh", new Boolean(yhdzxServer.editYhdzxById(jh, lx)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
 		}
 	}
 	/**
@@ -288,44 +301,85 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void insertYhdzx() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
-			jh.setJh_sbthcd("2");
-		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
-			jh.setJh_sbthcd("0");
-		}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
+	public void insertYhdzx(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			if(jh.getTbbm().matches("^[0-9]*[1-9]00$")){
+				jh.setJh_sbthcd("2");
+			}else if(jh.getTbbm().matches("^[0-9]*[1-9]0$") || jh.getTbbm().matches("^[0-9]*[1-9]$")){
+				jh.setJh_sbthcd("0");
+			}else if(jh.getTbbm().matches("^[0-9]*[1-9]0000$")){
+				
+			}
+			UUID uuid=UUID.randomUUID();
+			jh.setId(uuid.toString());
+			lx.setJhid(uuid.toString());
+			lx.setTbsj(new Date());
+			Plan_lx_yhdzx lx1=new Plan_lx_yhdzx();
+			lx1.setXzqhdm(lx.getXzqhdm());
+			lx1.setLxbm(lx.getLxbm());
+			lx1.setQdzh(lx.getQdzh());
+			lx1.setZdzh(lx.getZdzh());
+			lx1.setJhid(jh.getSbnf());
+			if(yhdzxServer.queryJhExist(lx1)==0){
+				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
+							: lx1.getLxbm());
+				jh.setPlanhistorycompara(yhdzxServer.queryJlBylx(lx1)>0 ? "是" : "否");
+				boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
+				boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+				if(lxresult && jhresult){
+					strResult="true";
+				}
+			}else{
+				strResult="have";
+			}
 			
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		System.out.println("养护添加："+jh.getJh_sbthcd());
-		UUID uuid=UUID.randomUUID();
-		jh.setId(uuid.toString());
-		lx.setJhid(uuid.toString());
-		lx.setTbsj(new Date());
-		boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);
-		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
-		if(lxresult && jhresult){
-			strResult="true";
-		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
+		
 	}
 	/**
 	 * 单次添加养护大中修路线
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public void insertYhdzxLx() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		lx.setTbsj(new Date());
-		boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
-		if(lxresult){
-			strResult="true";
+	public void insertYhdzxLx(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			lx.setTbsj(new Date());
+			if(zjlx!=null && zjlx.equals("true")){
+				Plan_yhdzx yhdzx = yhdzxServer.queryYhdzxById(lx.getJhid());
+				Double fee = new Double(new Double(yhdzx.getFee()).doubleValue()+new Double(jh.getFee()));
+				BigDecimal b = new BigDecimal(fee);
+				yhdzx.setFee(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double newfee = new Double(new Double(yhdzx.getNewfee()).doubleValue()+new Double(jh.getNewfee()));
+				b=new BigDecimal(newfee);
+				yhdzx.setNewfee(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double totalsubsidyfund = new Double(new Double(yhdzx.getTotalsubsidyfund()).doubleValue()+new Double(jh.getTotalsubsidyfund()));
+				b=new BigDecimal(totalsubsidyfund);
+				yhdzx.setTotalsubsidyfund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				Double totalplacefund = new Double(new Double(yhdzx.getTotalinvest()).doubleValue()-new Double(yhdzx.getTotalsubsidyfund()));
+				b=new BigDecimal(totalplacefund);
+				yhdzx.setTotalplacefund(b.setScale(3,BigDecimal.ROUND_HALF_UP).toString());
+				yhdzxServer.editYhdzxById(yhdzx, lx);
+			}
+			
+			boolean lxresult=yhdzxServer.insertYhdzx_lx(lx);
+			if(lxresult){
+				strResult="true";
+			}
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
 	}
 	/**
 	 * 单次添加养护大中修德编码提示
@@ -418,5 +472,12 @@ public class Plan_yhdzxController extends BaseActionSupport{
 	}
 	public void setTbbmbm2(String tbbmbm2) {
 		this.tbbmbm2 = tbbmbm2;
+	}
+	public String getZjlx() {
+		return zjlx;
+	}
+
+	public void setZjlx(String zjlx) {
+		this.zjlx = zjlx;
 	}
 }

@@ -2,7 +2,7 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.lxbm,"");
+	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -102,7 +102,7 @@ function delCgs(index){
 				if(Boolean(msg)){
 					alert('删除成功！');
 					$("#zjgrid").datagrid('reload');
-					parent.shezhi();
+					shezhi();
 				}else{
 					alert('删除失败！');
 				}

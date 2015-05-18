@@ -57,7 +57,7 @@
 					<span id="zdzh"></span> &nbsp;
 				</td>
 				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">总里程
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目里程
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
@@ -117,13 +117,8 @@
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<span id="xmnf"></span> &nbsp;
 				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目状态
-				</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span id="xmzt"></span> &nbsp;
-				</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"></td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">&nbsp;
 				</td>
@@ -389,28 +384,7 @@
 					<span id="jhbz"></span>&nbsp;
 				</td>
 			</tr>
-			<tr id="trSY3" style="height: 25px;">
-				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					灾害防治项目计划部补助资金信息
-				</td>
-			</tr>
-			<tr id="trSY4" style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					2014年部补助金额
-				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					1万元
-				</td>
-			</tr>
-			<tr  id="trSY5" style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-					2013年部补助金额
-				</td>
-				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					1万元
-				</td>
-			</tr>
-			<tr id="trSY" style="height: 25px;">
+			<!-- <tr id="trSY" style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					最近年份历史修建记录
@@ -423,7 +397,7 @@
 				<td colspan="6" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<div id="divPlan"></div>
 				</td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -460,7 +434,7 @@
 						$('#gydwxx').html(jcAndSc.gydw);
 						$('#qdzh').html(jcAndSc.qdzh);
 						$('#zdzh').html(jcAndSc.zdzh);
-						$('#zlc').html(jcAndSc.zlc);
+						$('#zlc').html(jcAndSc.qzlc);
 						$('#xzqhdm').html(jcAndSc.xzqhdm);
 						$('#xzqhmc').html(jcAndSc.xzqhmc);
 						$('#xjnd').html(jcAndSc.gjxjnd);
@@ -512,7 +486,7 @@
 			}
 		}
 	});
-	$.ajax({
+	/*$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryXjls.do',
 		async:false,
@@ -536,7 +510,7 @@
 				$('#divPlan').append("暂无历史记录！");
 			}
 		}
-	});
+	});*/
 	function closeWindow(id){
 		parent.$('#'+id).window('destroy');
 	}

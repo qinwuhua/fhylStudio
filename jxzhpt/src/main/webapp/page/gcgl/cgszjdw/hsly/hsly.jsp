@@ -116,7 +116,7 @@
 			var weatherDlg = new J.dialog( {
 				id : 'id4',
 				title : '车购税信息导入',
-				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS.do"+'&flag='+flag,
+				page : '../../upload.jsp?url='+"/jxzhpt/gcgl/insertCGS1.do"+'&flag='+flag,
 				width : 570,
 				height : 440,
 				top : 0,
@@ -164,16 +164,16 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         					<span>管养单位：</span>
-        						<input id="gydw" style="width: 150px;">
+        						<input id="gydw" style="width: 140px;">
         						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 150px;">
+        						<input id="xzqh" style="width: 140px;">
         						<span>项目名称：</span>
-        							<input type="text" id="lxmc" >
+        							<input type="text" id="lxmc"  style="width: 140px;">
         						<span>项目年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 50px;">
         						</select>
         						<span>拨付月份：</span> <select name="ddlMonth"
-									id="ddlMonth" style="width: 60px;">
+									id="ddlMonth" style="width: 60px;" >
 								</select> <span>拨付状态：</span> <select id=bfzt
 									style="width: 50px;">
 									<option value="">全部</option>

@@ -8,7 +8,7 @@
 		#{scbmbm},'未上报','未审核',#{lxbm},#{lxmc},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf})
 </insert>
 <insert id="lrjhSckzhfz"  parameterType="java.util.List">
-		insert into plan_zhfz(id,sckid,xdzt,sbnf) values(sys_guid(),#{sckid},'未下达',#{sbnf})
+		insert into plan_zhfz(id,sckid,xdzt,sbnf,jh_sbthcd) values(sys_guid(),#{sckid},'未下达',#{sbnf},#{jh_sbthcd})
 </insert>
  <insert id="xglrjhSckzhfz"  parameterType="java.util.List">
 		update sck_zhfz set lrjh='已列入'  where sckid=#{String}
@@ -17,7 +17,12 @@
  <select id="selectSckzhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
  		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from 
- 			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t where
+ 			(select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id
+ 			where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>
+ 			) t where
  			sck_sbthcd &lt;=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -53,7 +58,10 @@
  			order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
  </select>
   <select id="selectSckZhfzCount" parameterType="sckzhfz" resultType="int">
- 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
+ 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -114,7 +122,10 @@
  
   <select id="selectSckShzhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
+ 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t 
  		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
   		<if test="gydw!='' and gydw!= null ">
@@ -151,7 +162,10 @@
  			order by sck_shzt desc,lrjh desc
  </select>
   <select id="selectSckZhfzShCount" parameterType="sckzhfz" resultType="int">
- 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+ 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null ">
@@ -318,7 +332,10 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
 	#{2},#{3},#{9},#{10},to_number(#{10})-to_number(#{9}),#{11},#{12},#{13},#{14},#{15},#{16},#{17},#{18},#{19},'未上报','未审核',#{scbmbm},#{sck_sbthcd},'未列入','无')
  </insert>
  <select id="selSckZhfzCount" parameterType="sckzhfz" resultType="sckzhfz">
- 		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) where
+ 		select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) where
  			sck_sbthcd &lt;=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -349,7 +366,10 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  		</if>
  </select>
    <select id="selSckZhfzShCount" parameterType="sckzhfz" resultType="sckzhfz">
- 	select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+ 	select count(*) sck_sbthcd,sum(sczlc) sczlc,sum(scyhlc) scyhlc from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
  		 where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
  		<if test="gydw!='' and gydw!= null ">
@@ -385,7 +405,10 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  
  <select id="lrjhZhfz" parameterType="sckzhfz" resultType="sckzhfz">
  	select * from (
- 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id) t 
+ 		select rownum num ,t.* from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t 
  		where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
   			<if test="gydw!='' and gydw!= null ">
@@ -416,7 +439,10 @@ where SC.lrjh='已列入' AND  SC.sck_lxbm=k.YLXBM and SC.scqdzh &lt;k.YZDZH and
  			order by sck_shzt desc,lrjh desc
  </select>
   <select id="lrjhZhfzCount" parameterType="sckzhfz" resultType="int">
- 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id)
+ 		select count(*) from (select * from sck_zhfz t join xmk_zhfz on xmkid=xmk_zhfz.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_zhfz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
  		 where sck_shzt='已审核' and lrjh='未列入'
 			and sck_sbthcd>=#{sck_sbthcd}
  			<if test="gydw!='' and gydw!= null ">

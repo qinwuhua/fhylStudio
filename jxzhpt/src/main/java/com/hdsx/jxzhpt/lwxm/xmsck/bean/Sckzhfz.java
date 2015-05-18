@@ -65,7 +65,14 @@ public class Sckzhfz implements Serializable{
 		private Date shsj;
 		private String shbm;
 		private String bz;
+		private String tsdq;
 		
+		public String getTsdq() {
+			return tsdq;
+		}
+		public void setTsdq(String tsdq) {
+			this.tsdq = tsdq;
+		}
 		public String getSckid() {
 			return sckid;
 		}

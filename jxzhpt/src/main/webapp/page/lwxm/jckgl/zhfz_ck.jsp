@@ -43,6 +43,7 @@
 			$("#xmzt").html(msg.xmtype);
 			$("#yhnr").html(msg.yhnr);
 			$("#bz").html(msg.bz);
+			$("#tsdq").html(msg.tsdq);
 			}
 		});
 	}		

@@ -63,8 +63,15 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public boolean editYhdzxById(Plan_yhdzx jh,Plan_lx_yhdzx lx) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("jh", jh);
-		params.put("lx", lx);
+//		params.put("lx", lx);
 		return update("editYhdzxById", params)>0;
+	}
+	
+	@Override
+	public boolean editYhdzxLxById(Plan_lx_yhdzx lx) {
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("lx", lx);
+		return update("editYhdzxLxById", params)>0;
 	}
 
 	@Override
@@ -109,7 +116,7 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public boolean editYhdzxLxById(Plan_yhdzx jh, Plan_lx_yhdzx lx) {
 		Map<String, Object> params=new HashMap<String, Object>();
 		params.put("lx", lx);
-		return update("editYhdzxLxByid", params)>0;
+		return update("editYhdzxLxById", params)>0;
 	}
 
 	@Override
@@ -182,5 +189,15 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	@Override
 	public List<Plan_lx_yhdzx> yhdzxAutoCompleteLxbm(Plan_lx_yhdzx lx) {
 		return queryList("yhdzxAutoCompleteLxbm",lx);
+	}
+
+	@Override
+	public int queryJhExist(Plan_lx_yhdzx lx) {
+		return queryOne("queryJhExist", lx);
+	}
+
+	@Override
+	public int queryJlBylx(Plan_lx_yhdzx lx) {
+		return queryOne("queryJlBylx", lx);
 	}
 }

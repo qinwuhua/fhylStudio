@@ -199,7 +199,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow: auto;">
-							<table width="2000px" class="table_body">
+							<table width="2700px" class="table_body">
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"><span id="titleYear" style="font-size:x-large;font-weight: bolder;"></span>年公路路网结构改造工程进展情况汇总表</caption>
 								<thead>
 									<tr>
@@ -239,23 +239,23 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td>到位比例</td>
 									</tr>
 									<tr>
-										<td colspan="2">甲</td>
-										<td>1</td>
-										<td>2</td>
-										<td>3</td>
-										<td>4</td>
-										<td>5</td>
-										<td>6</td>
-										<td>7</td>
-										<td>8 </td>
-										<td>9</td>
-										<td>10</td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td colspan="2" style="width: 300px">甲</td>
+										<td style="width: 80px">1</td>
+										<td style="width: 80px">2</td>
+										<td style="width: 160px">3</td>
+										<td style="width: 160px">4</td>
+										<td style="width: 160px">5</td>
+										<td style="width: 80px">6</td>
+										<td style="width: 80px">7</td>
+										<td style="width: 160px">8 </td>
+										<td style="width: 160px">9</td>
+										<td style="width: 160px">10</td>
+										<td style="width: 160px"></td>
+										<td style="width: 160px"></td>
+										<td style="width: 160px"></td>
+										<td style="width: 160px"></td>
+										<td style="width: 160px"></td>
+										<td style="width: 160px"></td>
 									</tr>
 								</thead>
 								<tbody id="table_tbody"></tbody>

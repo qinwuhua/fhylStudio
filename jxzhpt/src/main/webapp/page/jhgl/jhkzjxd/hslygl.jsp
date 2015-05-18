@@ -32,7 +32,7 @@
 			hslyglxm_zjxd(params);
 		}
 		function exportExcelZjxd(){
-			var param="gydwdm="+$.cookie("unit");
+			var param="gydwdm="+$.cookie("unit")+"&hsly.xzqhdm="+getxzqhdm('xzqh');
 			window.location.href="/jxzhpt/jhgl/exportExcelHslyZjxd.do?"+param;
 		}
 	</script>

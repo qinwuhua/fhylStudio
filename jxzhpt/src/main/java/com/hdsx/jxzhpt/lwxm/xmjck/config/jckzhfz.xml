@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.jckzhfz">
 <insert id="insertJckzhfz"  parameterType="jckzhfz">
-	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+	insert into xmk_zhfz(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
 </insert>
  
  <select id="selectJckzhfz" parameterType="jckzhfz" resultType="jckzhfz">
@@ -38,6 +38,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
  </select>
@@ -70,6 +73,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <select id="selectJckzhfzById" parameterType="jckzhfz" resultType="jckzhfz">
@@ -112,7 +118,7 @@
   	order by roadcode,min(roadstart)
  </select>
   <select id="JckzhfzRoad" parameterType="hashmap" resultType="jckzhfz">
- 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
+ 	select id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tsdq
  	from xmk_zhfz where shzt='已审核' and lxbm like #{lxbm}||'%' 
  	<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
@@ -151,6 +157,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -183,6 +192,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <sql id="zhfz_commonsql">
@@ -258,6 +270,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  	</select>
     <select id="onceZhfz" parameterType="hashmap" resultType="int">
  		select count(*) from xmk_zhfz where 1=1
@@ -326,6 +341,9 @@
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  </select>
  <select id="selZhfzShCount" parameterType="jckabgc" resultType="jckzhfz">
 	select count(*) sbthcd,sum(qzlc) qzlc,sum(yhlc) yhlc from xmk_zhfz where sbthcd=7
@@ -356,6 +374,9 @@
  		</if>
  		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
 </mapper>

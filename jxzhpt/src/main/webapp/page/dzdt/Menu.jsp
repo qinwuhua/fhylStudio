@@ -25,7 +25,7 @@
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
 </style>
  <script type="text/javascript">
- var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
+ var mapServerUrl = "http://127.0.0.1:8989/hdmapserver";
  var nameSpace = "jxmap2014";
  var tczName="jx_map";
  var map, baseLayers;
@@ -40,7 +40,7 @@
  var layersConfig = [];
  var resultLayer = null;
 $(function(){
-	//$(".layout-button-right").click(); 
+	//$(".layout-button-right").click();
 	xmlxTj();
 	var LeftHeight = $(window).height();
 	loadDataunit();

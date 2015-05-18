@@ -100,8 +100,8 @@ function delCgs(index){
 			success:function(msg){
 				if(Boolean(msg)){
 					alert('删除成功！');
-					parent.shezhi();
 					$("#zjgrid").datagrid('reload');
+					shezhi();
 				}else{
 					alert('删除失败！');
 				}

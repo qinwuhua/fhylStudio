@@ -1,3 +1,8 @@
+function openLsjlWindow(id,index,xmlx,title){
+	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
+	YMLib.Var.XMLX=xmlx;
+	YMLib.UI.createWindow('sjlsxx',title,"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
+}
 function openZjzjWindow(id,url){
 	YMLib.Var.id=id;
 	YMLib.Var.url=url;
@@ -24,7 +29,7 @@ function gydwComboxTree(id){
 function getgydw(id){
 	var result="";
 	var gydws = $("#"+id).combotree("getValues");
-	if(gydws.length==0){
+	if(gydws.length==0 || gydws.length==1){
 		result=$.cookie("unit2");
 	}else{
 		result=gydws.join(',');
@@ -34,7 +39,7 @@ function getgydw(id){
 function getxzqhdm(id){
 	var result="";
 	var xzqhs = $("#"+id).combotree("getValues");
-	if(xzqhs.length==0){
+	if(xzqhs.length==0 || xzqhs.length==1){
 		result=$.cookie("dist2");
 	}else{
 		result=xzqhs.join(',');

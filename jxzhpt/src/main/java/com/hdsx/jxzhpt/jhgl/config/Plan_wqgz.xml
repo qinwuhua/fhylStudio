@@ -364,31 +364,35 @@
 		delete from plan_wqgz jh where jh.id=#{id}
 	</delete>
 	<update id="editWqgzById" parameterType="plan_wqgz">
-		update plan_wqgz set sbnf=#{sbnf},
-		<if test="jhkgsj!=null and jhkgsj!=''">
-			jhkgsj=#{jhkgsj},
-		</if>
-		<if test="jhwgsj!=null and jhwgsj!=''">
-			jhwgsj=#{jhwgsj},
-		</if>
-		<if test="xdsj!=null and xdsj!=''">
-			xdsj=#{xdsj},
-		</if>
-		<if test="pfsj!=null and pfsj!=''">
-			pfsj=#{pfsj},
-		</if>
-			jhxdwh=#{jhxdwh},sjdw=#{sjdw},sjpfdw=#{sjpfdw},pfwh=#{pfwh},pfztz=#{pfztz},
-			jhsybzje=#{jhsybzje},jhsydfzcje=#{jhsydfzcje},sfsqablbz=#{sfsqablbz},
-			ablbzsqwh=#{ablbzsqwh},bz=#{bz}
+		update plan_wqgz set sbnf=#{sbnf}
+		<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=#{jhwgsj}</if>
+		<if test="xdsj!=null and xdsj!=''">,xdsj=#{xdsj}</if>
+		<if test="pfsj!=null and pfsj!=''">,pfsj=#{pfsj}</if>
+		<if test="jhxdwh!=null">,jhxdwh=#{jhxdwh}</if>
+		<if test="sjdw!=null">,sjdw=#{sjdw}</if>
+		<if test="sjpfdw!=null">,sjpfdw=#{sjpfdw}</if>
+		<if test="pfwh!=null">,pfwh=#{pfwh}</if>
+		<if test="pfztz!=null">,pfztz=#{pfztz}</if>
+		<if test="jhsybzje!=null">,jhsybzje=#{jhsybzje}</if>
+		<if test="jhsydfzcje!=null">,jhsydfzcje=#{jhsydfzcje}</if>
+		<if test="sfsqablbz!=null">,sfsqablbz=#{sfsqablbz}</if>
+		<if test="ablbzsqwh!=null">,ablbzsqwh=#{ablbzsqwh}</if>
+		<if test="bz!=null">,bz=#{bz}</if>
 		where id=#{id}
 	</update>
 	<update id="editWqgzSckxx" parameterType="plan_wqgz">
-		update SCK_WQGZ set 
-			<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">
-				faspsj=#{jckwqgz.faspsj},
-			</if>
-			fapgdw=#{jckwqgz.fapgdw},fascdw=#{jckwqgz.fascdw},
-			spwh=#{jckwqgz.spwh},tzgs=#{jckwqgz.tzgs},jsxz=#{jckwqgz.jsxz},jsnr=#{jckwqgz.jsnr},scbz=#{jckwqgz.scbz}
+		update SCK_WQGZ set sckid=#{sckid}
+		<if test="jh.jckwqgz.scqlqk!=null">,scqlqk=jckwqgz.scqlqk</if>
+		<if test="jh.jckwqgz.scqlqc!=null">,scqlqc=jckwqgz.scqlqc</if>
+		<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">,faspsj=#{jckwqgz.faspsj}</if>
+		<if test="jckwqgz.fapgdw!=null">,fapgdw=#{jckwqgz.fapgdw}</if>
+		<if test="jckwqgz.fascdw!=null">,fascdw=#{jckwqgz.fascdw}</if>
+		<if test="jckwqgz.spwh!=null">,spwh=#{jckwqgz.spwh}</if>
+		<if test="jckwqgz.tzgs!=null">,tzgs=#{jckwqgz.tzgs}</if>
+		<if test="jckwqgz.jsxz!=null">,jsxz=#{jckwqgz.jsxz}</if>
+		<if test="jckwqgz.jsnr!=null">,jsnr=#{jckwqgz.jsnr}</if>
+		<if test="jckwqgz.scbz!=null">,scbz=#{jckwqgz.scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editWqgzStatus" parameterType="plan_wqgz">

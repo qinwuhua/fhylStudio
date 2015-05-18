@@ -53,10 +53,6 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('gclmsj_edit','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/edit/gclmsj.jsp",'gclmsj_edit',1000,500);
 }
-function openLsjlWindow(id,index){
-	YMLib.Var.Row = $('#'+id).datagrid("getSelected");
-	YMLib.UI.createWindow('sjlsxx','工程改造路面升级历史信息',"/jxzhpt/page/jhgl/jhkgl/sjlsxx.jsp",'sjlsxx',1000,300);
-}
 //工程路面升级
 function gclmsjxm(jh,lx){
 	selectRow={};//每次查询清空选择数据
@@ -105,11 +101,12 @@ function gclmsjxm(jh,lx){
 			{field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
         		return '<a href="javascript:openZjzjWindow('+"'grdab','editZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
 			}},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
 		  		formatter:function(value,row,index){
 		  			if(value=="是"){
-		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程省级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 		  			}else{
 		  				return "否";
 		  			}
@@ -117,9 +114,9 @@ function gclmsjxm(jh,lx){
 		  	},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -184,12 +181,22 @@ function gclmsjxm_sb(jh,lx){
 				}
 				return result;
 			}},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
+		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
+		  		formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程省级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		  	},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -249,13 +256,22 @@ function gclmsjxm_sh(jh,lx){
 				}
 				return result;
 			}},
-			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
+			{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
+		  		formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程升级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		  	},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -313,13 +329,22 @@ function gclmsjxm_zjxd(jh,lx){
 						return '竣工';
 				}
 			},
-			{field:'sfylsjl',title:'是否有修建记录',width:80,align:'center'},
+			{field:'xmmc',title:'项目名称',width:100,align:'center'},
+			{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
+		  		formatter:function(value,row,index){
+		  			if(value=="是"){
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程省级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  			}else{
+		  				return "否";
+		  			}
+		  		}
+		  	},
 		  	{field:'jhnf',title:'上报年份',width:80,align:'center'},
 		  	{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		  	{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
-		    {field:'pftz',title:'批复总投资',width:80,align:'center'},
-		    {field:'jhsybbzje',title:'部补助资金',width:80,align:'center'},
-		    {field:'jhsydfzczj',title:'省补助金额资金',width:80,align:'center'}
+		    {field:'pftz',title:'批复总投资',width:100,align:'center'},
+		    {field:'jhsybbzje',title:'部补助资金',width:100,align:'center'},
+		    {field:'jhsydfzczj',title:'省补助金额资金',width:100,align:'center'}
 	    ]],
 	    view: detailview,
 		detailFormatter:function(index,row){   
@@ -369,10 +394,7 @@ function dropGcsjs(){
 					id=id+","+item.id;
 				}
 			}
-			alert("ID："+item.id +"     加后:"+id);
 		});
-		alert(id);
-		return;
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropGcsjById.do',

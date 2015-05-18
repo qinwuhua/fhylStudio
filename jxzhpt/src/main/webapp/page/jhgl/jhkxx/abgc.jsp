@@ -99,7 +99,7 @@
 				}
 			}
 		});
-		$.ajax({
+		/*$.ajax({
 			type:'post',
 			url:'../../../jhgl/queryXjls.do',
 			async:false,
@@ -123,7 +123,7 @@
 					$('#divPlan').append("暂无历史记录！");
 				}
 			}
-		});
+		});*/
 	});
 	function closeWindow(id){
 		parent.$('#'+id).window('destroy');
@@ -516,7 +516,7 @@
 					<span id="JHRemarks"></span>&nbsp;
 				</td>
 			</tr>
-			<div id="divBBZJE"></div>
+			<!-- <div id="divBBZJE"></div>
 			<tr id="trSY" style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
 					最近年份历史修建记录
@@ -529,7 +529,7 @@
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<div id="divPlan"></div>
 				</td>
-			</tr>
+			</tr> -->
 		</table>
 	</div>
 </body>

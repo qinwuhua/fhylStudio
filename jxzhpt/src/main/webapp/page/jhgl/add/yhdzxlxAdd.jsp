@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_yhdzx.js"></script>
 	<script type="text/javascript">
 		var lmjgjson,ymjson,sljson,glfjson;//1、存储路面结构的json字符串   2、存储延米数据的json 3、存储数量的json 4、存储管养费的json
 		$(function(){
@@ -33,7 +34,7 @@
 			loadCslx('selxjc','下基层');
 			loadCslx('seldc','垫层');
 			loadCslx('selyl','原路');
-			if(roleName()=="省级"){
+			if(roleName()!="省级"){
 				$.each($('td [name=sdtd]'),function(index,item){
 					$(item).hide();
 				});
@@ -88,62 +89,6 @@
 					$('#txtyhdzxkd').val(item.ylmkd);
 			});
 		}
-		function loadCslx(id,cslx){
-			$.ajax({
-				type:'post',
-				url:'../../../xtgl/queryYhdzxcsByLx.do',
-				dataType:'json',
-				async:'false',
-				data:'yhdzxcs.cslx='+cslx,
-				success:function(result){
-					var n={clmc:'---请选择---',id:''};
-					result.splice(0,0,n);
-					$('#'+id).combobox({
-					    data:result,
-					    valueField:'id',
-					    textField:'clmc',
-					    onChange:function(newValue,oldValue){
-					    	var lx=id.substring(3);
-					    	if(newValue!=""){
-					    		$.ajax({
-						    		type:'post',
-									url:'../../../xtgl/queryYhdzxcsById.do',
-									dataType:'json',
-									data:'yhdzxcs.id='+newValue,
-									success:function(result2){
-										$('#txt'+lx+'dj').val(result2.lfmdj);
-										$('#txt'+lx+'sddj').val(result2.sddj);
-									}
-						    	});
-					    	}else{
-					    		$('#txt'+lx+'dj').val("0");
-								$('#txt'+lx+'sddj').val("0");
-					    	}
-					    }
-					}); 
-				}
-			});
-		}
-		function loadYhdzxcs(date,cslx,cs){
-			$('#sel'+cs).combobox("setValue",date[cslx].clmc);
-			$('#txt'+cs+'hd').html(date[cslx].hd);
-			$('#txt'+cs+'dj').html(date[cslx].dj);
-			$('#txt'+cs+'sddj').html(date[cslx].sddj);
-		}
-		function addym(){
-			var  myDate = new Date();
-			var id=myDate.getFullYear()+""+(myDate.getMonth()+1)+""+myDate.getDate()+""+
-				myDate.getHours()+""+myDate.getMinutes()+""+myDate.getSeconds()+""+myDate.getMilliseconds();
-			var html='<tr align="center" id="'+id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeym('+"'"+id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
-			$('#ymtr').after(html);
-		}
-		function addasl(){
-			var  myDate = new Date();
-			var id=myDate.getFullYear()+""+(myDate.getMonth()+1)+""+myDate.getDate()+""+
-				(myDate.getHours()+1)+""+(myDate.getMinutes()+1)+""+(myDate.getSeconds()+1)+""+myDate.getMilliseconds();
-			var html='<tr align="center" id="'+id+'"><td align="center" height="30" style="border: 1px solid #C0C0C0;"><input type="text" style="width: 180px;"/></td><td align="center" style="border: 1px solid #C0C0C0;"><input type="text" style="width:100px;"/></td><td align="center" width="50" style="border: 1px solid #C0C0C0;"><input type="text" style="width:50px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><input type="text" style="width:80px;"/></td><td align="center" width="100" style="border: 1px solid #C0C0C0;"><a href="javascript:removeasl('+"'"+id+"'"+')" style="text-decoration: none;color: blue;">删除</a></td></tr>';
-			$('#asltr').after(html);
-		}
 		function loadXzqh(id,dwbm){
 			$('#'+id).combotree({
 				checkbox:false,
@@ -174,124 +119,7 @@
 			});
 			$('#'+id).combobox("setValue",first);
 		}
-		function removeym(id){
-			$('#'+id).remove();
-		}
-		function removeasl(id){
-			$('#'+id).remove();
-		}
-		function reckonsum(){
-			var lmjg=0,ym=0,sl=0,glf=0,zjg=0;
-			lmjgjson="{";//最后将路面结构、按延米、按数量、管理费的数据存储到json格式的字符串中
-			var smc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcdj').val());
-			var sdsmc= reckon($('#txtyhdzxkd').val(),$('#txtsmchd').val(),$('#txtsmcsddj').val());
-			var smcjson='"上面层":{"clmc":"'+$('#selsmc').combobox("getValue")+
-				'","hd":"'+$('#txtsmchd').val()+'","dj":"'+$('#txtsmcdj').val()+
-				'","sddj":"'+$('#txtsmcsddj').val()+'"}';
-			lmjgjson+=smcjson+",";
-			var zmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcdj').val());
-			var sdzmc= reckon($('#txtyhdzxkd').val(),$('#txtzmchd').val(),$('#txtzmcsddj').val());
-			var zmcjson='"中面层":{"clmc":"'+$('#selzmc').combobox("getValue")+
-			'","hd":"'+$('#txtzmchd').val()+'","dj":"'+$('#txtzmcdj').val()+
-			'","sddj":"'+$('#txtzmcsddj').val()+'"}';
-			lmjgjson+=zmcjson+",";
-			
-			var xmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcdj').val());
-			var sdxmc= reckon($('#txtyhdzxkd').val(),$('#txtxmchd').val(),$('#txtxmcsddj').val());
-			var xmcjson='"下面层":{"clmc":"'+$('#selxmc').combobox("getValue")+
-			'","hd":"'+$('#txtxmchd').val()+'","dj":"'+$('#txtxmcdj').val()+
-			'","sddj":"'+$('#txtxmcsddj').val()+'"}';
-			lmjgjson+=xmcjson+",";
-			
-			var fc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcdj').val());
-			var sdfc= reckon($('#txtyhdzxkd').val(),$('#txtfchd').val(),$('#txtfcsddj').val());
-			var fcjson='"封层":{"clmc":"'+$('#selfc').combobox("getValue")+
-			'","hd":"'+$('#txtfchd').val()+'","dj":"'+$('#txtfcdj').val()+
-			'","sddj":"'+$('#txtfcsddj').val()+'"}';
-			lmjgjson+=fcjson+",";
-			
-			var sjc= reckon($('#txtyhdzxkd').val(),$('#txtsjchd').val(),$('#txtsjcdj').val());
-			var sdsjc= reckon($('#txtyhdzxkd').val(),$('#txtsjchd').val(),$('#txtsjcsddj').val());
-			var sjcjson='"上基层":{"clmc":"'+$('#selsjc').combobox("getValue")+
-			'","hd":"'+$('#txtsjchd').val()+'","dj":"'+$('#txtsjcdj').val()+
-			'","sddj":"'+$('#txtsjcsddj').val()+'"}';
-			lmjgjson+=sjcjson+",";
-			
-			var zjc= reckon($('#txtyhdzxkd').val(),$('#txtzjchd').val(),$('#txtzjcdj').val());
-			var sdzjc= reckon($('#txtyhdzxkd').val(),$('#txtzjchd').val(),$('#txtzjcsddj').val());
-			var zjcjson='"中基层":{"clmc":"'+$('#selzjc').combobox("getValue")+
-			'","hd":"'+$('#txtzjchd').val()+'","dj":"'+$('#txtzjcdj').val()+
-			'","sddj":"'+$('#txtzjcsddj').val()+'"}';
-			lmjgjson+=zjcjson+",";
-			
-			var xjc= reckon($('#txtyhdzxkd').val(),$('#txtxjchd').val(),$('#txtxjcdj').val());
-			var sdxjc= reckon($('#txtyhdzxkd').val(),$('#txtxjchd').val(),$('#txtxjcsddj').val());
-			var xjcjson='"下基层":{"clmc":"'+$('#selxjc').combobox("getValue")+
-			'","hd":"'+$('#txtxjchd').val()+'","dj":"'+$('#txtxjcdj').val()+
-			'","sddj":"'+$('#txtxjcsddj').val()+'"}';
-			lmjgjson+=xjcjson+",";
-			
-			var dc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcdj').val());
-			var sddc= reckon($('#txtyhdzxkd').val(),$('#txtdchd').val(),$('#txtdcsddj').val());
-			var dcjson='"垫层":{"clmc":"'+$('#seldc').combobox("getValue")+
-			'","hd":"'+$('#txtdchd').val()+'","dj":"'+$('#txtdcdj').val()+
-			'","sddj":"'+$('#txtdcsddj').val()+'"}';
-			lmjgjson+=dcjson+",";
-			
-			var yl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtyldj').val());
-			var sdyl= reckon($('#txtyhdzxkd').val(),$('#txtylhd').val(),$('#txtylsddj').val());
-			var yljson='"原路":{"clmc":"'+$('#selyl').combobox("getValue")+
-			'","hd":"'+$('#txtylhd').val()+'","dj":"'+$('#txtyldj').val()+
-			'","sddj":"'+$('#txtylsddj').val()+'"}';
-			lmjgjson+=yljson+"}";
-			lmjg=smc+zmc+xmc+fc+sjc+zjc+xjc+dc+yl;
-			//获取延米集合
-			ymjson=new Array();//存储延米数据的json
-			var ymArray=$("#ymtab tr:gt(0)");
-			$.each(ymArray,function(index,item){
-				var ymMessage=$("#"+item.id+" input[type=text]");
-				ym+=($(ymMessage[2]).val()/1000)*($(ymMessage[3]).val()/10000);
-				var y={id:item.id,xmmc:$(ymMessage[0]).val(),sm:$(ymMessage[1]).val(),
-						cd:$(ymMessage[2]).val(),dj:$(ymMessage[3]).val()};
-				ymjson.push(y);
-			});
-			//获取数量集合，计算价格
-			sljson=new Array();
-			var slArray=$("#sltab tr:gt(0)");
-			$.each(slArray,function(index,item){
-				var slMessage=$("#"+item.id+" input[type=text]");
-				sl+=($(slMessage[2]).val()/1000)*($(slMessage[3]).val()/10000);
-				var s={id:item.id,xmmc:$(slMessage[0]).val(),sm:$(slMessage[1]).val(),
-						sl:$(slMessage[2]).val(),dj:$(slMessage[3]).val()};
-				sljson.push(s);
-			});
-			//计算总单价
-			zjg=lmjg+ym+sl;
-			//评估价格
-			var pgjg=sdsmc+sdzmc+sdxmc+sdfc+sdsjc+sdzjc+sdxjc+sddc+sdyl+ym+sl;
-			if($('#seldw').val()=="百分比"){
-				zjg=zjg*(1+$('#txtglfdj').val()/100);
-				pgjg=pgjg*(1+$('#txtglfdj').val()/100);
-			}else if($('#seldw').val()=="公里"){
-				zjg=zjg+$('#txtglfdj').val()/10000;
-				pgjg=pgjg+$('#txtglfdj').val()/10000;
-			}
-			pgjg=pgjg.toFixed(3);
-			glfjson={dw:$('#seldw').val(),dj:$('#txtglfdj').val(),ysdj:zjg.toFixed(3),pgdj:pgjg};
-			
-			$('#lblysdj').html(zjg.toFixed(3));
-			$('#lblpgdj').html(pgjg);
-			$('#lxhsjf').html((zjg.toFixed(3)*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-			$('#lxspjf').html((pgjg*($('#txtZDZH').val()-$('#txtQDZH').val())).toFixed(3));
-			$('#dfptztz').html(($('#ztz').val()-$('#lxspjf').html()).toFixed(3));
-			$('#zbzzj').html($('#lxspjf').html());
-		}
-		function reckon(kd,hd,dj){
-			return (kd*(hd/100)*1000)*dj/10000;
-		}
-		function reckonsd(kd,hd,sddj){
-			return (kd*(hd/100)*1000)*sddj/10000;
-		}
+		
 		function insert(){
 			if(Number($('#txtQDZH').val())<Number($('#spqdzh').html())){
 				alert("起点桩号要大于或等于"+$('#spqdzh').html());
@@ -305,18 +133,22 @@
 				alert("核对里程不能大于起止里程！");
 				return;
 			}
+			reckonsum();
 			var myDate = new Date();
 			var tbsj=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
 			var params={'lx.lxid':$('#lxid').val(),'lx.lxmc':$('#txtLXMC').val(),'lx.lxbm':$('#txtLXBM').val(),'lx.qdzh':$('#txtQDZH').val(),
 					'lx.zdzh':$('#txtZDZH').val(),'lx.qzlc':$('#txtLC').val(),'lx.hdlc':$('#txtHDLC').val(),
 					'lx.ylmlx':$('#txtYLMLX').val(),'lx.ylmkd':$('#txtYLMKD').val(),
-					'lx.ylmhd':$('#txtYLMHD').val(),'lx.yjsdj':$('#txtYLMKD').val(),
+					'lx.ylmhd':$('#txtYLMHD').val(),'lx.yjsdj':$('#txtJSDJ').combo('getValue'),
 					'lx.xzqhdm':$('#txtXZQHMC').combotree('getValue'),'lx.xzqhmc':$('#txtXZQHMC').combotree('getText'),
 					'lx.gydwmc':$('#txtGYDWMC').combotree('getText'),'lx.gydwdm':$('#txtGYDWMC').combotree('getValue'),
 					'lx.bhnr':$('#txtBHNR').val(),'lx.dzxkd':$('#txtyhdzxkd').val(),
 					'lx.lmjg':lmjgjson,'lx.aym':JSON.stringify(ymjson),'lx.asl':JSON.stringify(sljson),
 					'lx.glf':JSON.stringify(glfjson),'lx.tbbmdm':$.cookie("unit"),
-					'lx.jhid':parent.YMLib.Var.ID,'jh.sbnf':parent.YMLib.Var.NF};
+					'lx.tbsj':tbsj,'lx.jhid':parent.YMLib.Var.ID,'jh.sbnf':parent.YMLib.Var.NF,'zjlx':'true',
+					'jh.totalsubsidyfund':Number(glfjson.pgdj)*Number($('#txtHDLC').val()),
+					'jh.fee':Number(glfjson.ysdj)*Number($('#txtHDLC').val()),
+					'jh.newfee':Number(glfjson.pgdj)*Number($('#txtHDLC').val())};
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/insertYhdzxLx.do',
@@ -359,7 +191,6 @@
 			<tr style="height: 25px;">
             	<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
                 	养护大中修项目路线信息
-                	<input id="jhid" type="hidden"/>
                 </td>
             </tr>
 			<tr style="height: 30px;">
@@ -450,6 +281,241 @@
 					病害内容</td>
 				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
 					<textarea id="txtBHNR" style="width: 700px;height: 40px;"></textarea>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					路面结构
+				</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<table style="margin-top: 5px;margin-bottom: 5px;">
+						<tr align="center">
+							<td width="80" style="border: 1px solid #C0C0C0;">
+								<input id="ljkdzj" type="checkbox"/> 路基宽度增加0.5m
+							</td>
+							<td width="100" style="border: 1px solid #C0C0C0;">材料</td>
+							<td width="60" style="border: 1px solid #C0C0C0;">厚度(cm)</td>
+							<td style="border: 1px solid #C0C0C0;">单价(元/m³)</td>
+							<td name="sdtd" style="border: 1px solid #C0C0C0;">审定单价(元/m³)</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">上面层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selsmc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtsmchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtsmcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtsmcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">中面层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selzmc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtzmchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtzmcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtzmcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">下面层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selxmc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtxmchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtxmcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtxmcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">封层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selfc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtfchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtfcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtfcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">上基层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selsjc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtsjchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtsjcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtsjcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">中基层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selzjc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtzjchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtzjcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtzjcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">下基层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selxjc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtxjchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtxjcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtxjcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">垫层</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="seldc" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtdchd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtdcdj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtdcsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">原路</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="selyl" class="easyui-combobox" style="width:125px;"></select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtylhd" value="0" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtyldj" type="text" style="width: 50px"/>
+							</td>
+							<td align="center" name="sdtd" style="border: 1px solid #C0C0C0;">
+								<input id="txtylsddj" type="text" style="width: 80px"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					按延米</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<table id="ymtab" style="border: 1px solid #C0C0C0;margin-top: 5px;margin-bottom: 5px;">
+						<tr align="center" id="ymtr">
+							<td width="200" height="30" style="border: 1px solid #C0C0C0;">项目：如路肩、标线等</td>
+							<td width="120" height="30" style="border: 1px solid #C0C0C0;">说明</td>
+							<td width="60" height="30" style="border: 1px solid #C0C0C0;">长度(m)</td>
+							<td width="100" height="30" style="border: 1px solid #C0C0C0;">单价(元/m)</td>
+							<td width="100" height="30" style="border: 1px solid #C0C0C0;">
+								操作  <input onclick="addym()" type="button" value="添加"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					按数量</td>
+				<td colspan="5" id="sltab" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<table style="border: 1px solid #C0C0C0;margin-top: 5px;margin-bottom: 5px;">
+						<tr align="center" id="asltr">
+							<td width="200" height="30" style="border: 1px solid #C0C0C0;">项目：如边坡、挡土墙等</td>
+							<td width="120" height="30" style="border: 1px solid #C0C0C0;">说明</td>
+							<td width="60" height="30" style="border: 1px solid #C0C0C0;">数量(m、m²、m³)</td>
+							<td width="100" height="30" style="border: 1px solid #C0C0C0;">单价(元/m、m²、m³)</td>
+							<td width="100" height="30" style="border: 1px solid #C0C0C0;">
+								操作  <input onclick="addasl()" type="button" value="添加"/>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					管理费</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<table style="border: 1px solid #C0C0C0;margin-top: 5px;margin-bottom: 5px;">
+						<tr align="center">
+							<td width="198" align="center" style="border: 1px solid #C0C0C0;">项目</td>
+							<td width="120" align="center" style="border: 1px solid #C0C0C0;">单位</td>
+							<td width="58" style="border: 1px solid #C0C0C0;"></td>
+							<td width="99" align="center" style="border: 1px solid #C0C0C0;">单价(元)</td>
+							<td width="100" style="border: 1px solid #C0C0C0;"></td>
+						</tr>
+						<tr>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								按每%或元/每公里计算
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<select id="seldw" style="width:100px;">
+									<option value="百分比">按%计算</option>
+									<option value="公里">按元/每公里</option>
+								</select>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;"></td>
+							<td align="center" style="border: 1px solid #C0C0C0;">
+								<input id="txtglfdj" value="0" type="text" style="width: 80px;"/>
+							</td>
+							<td align="center" style="border: 1px solid #C0C0C0;">此项目只能选择一种 </td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					合计</td>
+				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<table  style="border: 1px solid #C0C0C0;margin-top: 5px;margin-bottom: 5px;">
+						<tr height="25">
+							<td width="130" style="border: 1px solid #C0C0C0;">预算单价(万元/公里)：</td>
+							<td width="80" style="border: 1px solid #C0C0C0;"><span id="lblysdj" style="margin-left: 5px;">0</span>万元</td>
+							<td width="130" name="sdtd" style="border: 1px solid #C0C0C0;">评估单价(万元/公里)：</td>
+							<td width="80" name="sdtd" style="border: 1px solid #C0C0C0;"><span id="lblpgdj" style="margin-left: 5px;">0</span>万元</td>
+						</tr>
+					</table>
+				</td>
+				<td colspan="2"  style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input type="button" onclick="reckonsum()" value=" 计 算 价 格 "/>
 				</td>
 			</tr>
 		</table>

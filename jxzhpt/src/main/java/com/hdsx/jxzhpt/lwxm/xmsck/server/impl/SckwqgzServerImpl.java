@@ -140,12 +140,14 @@ public class SckwqgzServerImpl extends BaseOperate implements SckwqgzServer {
 	}
 
 	@Override
-	public boolean lrjhSckwqgz(String delstr,String nf) {
+	public boolean lrjhSckwqgz(String delstr,String nf,String jh_sbthcd) {
 		String[] strs = delstr.split(",");
+		String[] jh_sbthcds=jh_sbthcd.split(",");
 		List<Plan_wqgz> l = new ArrayList<Plan_wqgz>();
 		for (int i = 0; i < strs.length; i++) {
 			Plan_wqgz item=new Plan_wqgz();
 			item.setSckid(strs[i]);
+			item.setJh_sbthcd(jh_sbthcds[i]);
 			item.setSbnf(nf);
 			l.add(item);
 		}

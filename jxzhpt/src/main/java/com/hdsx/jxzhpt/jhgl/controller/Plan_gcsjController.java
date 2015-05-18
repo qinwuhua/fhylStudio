@@ -368,6 +368,8 @@ public class Plan_gcsjController extends BaseActionSupport{
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
+							lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().indexOf(lx.getXzqhdm())) 
+									: lx.getLxbm());
 							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
 						}
 						//根据行政区划查询是否有特殊地区  此处存储的为特殊地区名称
@@ -429,6 +431,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 			jh.setJh_sbthcd("0");
 		}
 		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
+		lx1.setTsdq(lx.getTsdq());
 		lx1.setXzqhdm(lx.getXzqhdm());
 		lx1.setLxbm(lx.getLxbm());
 		lx1.setQdzh(lx.getQdzh());
@@ -442,7 +445,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 				UUID jhId = UUID.randomUUID(); 
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
-				jh.setSfylsjl("否");
+				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
+						: lx1.getLxbm());
+				jh.setSfylsjl(gcsjServer.queryJlBylx(lx1)>0 ? "是" : "否");
 				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
 				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
 				if(lxresult && jhresult){
@@ -496,8 +501,9 @@ public class Plan_gcsjController extends BaseActionSupport{
 	 */
 	public void queryXjls(){
 		try {
+			lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().length()-6) 
+					: lx.getLxbm());
 			List<Plan_lx_gcsj> ls=gcsjServer.queryXjls(lx);
-			System.out.println("个数："+ls.size());
 			JsonUtils.write(ls, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();

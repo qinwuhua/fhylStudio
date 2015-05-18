@@ -25,6 +25,7 @@ var xzqhstr;
  		}else{
  			xzqhstr= xzqhdm.join(',');
  		}
+ 		
 		$("#grid").datagrid({    
 			 url:'/jxzhpt/xmjck/selectWqgz.do',
 			 queryParams : {
@@ -41,7 +42,9 @@ var xzqhstr;
 				 	'jsdj':$("#jsdj").combobox("getValue"),
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
-				 	'qlbh':$("#qlbh").val()
+				 	'qlbh':$("#qlbh").val(),
+				 	'tsdq':$("#tsdq").combobox("getText")
+				 	
 				},
 			    striped:true,
 			    pagination:true,
@@ -149,6 +152,7 @@ var xzqhstr;
 				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
 				 	'bz':$("#bz").combobox("getValue"),
+				 	'tsdq':$("#tsdq").combobox("getText")
 				},
 				striped:true,
 				pagination:true,
@@ -264,6 +268,7 @@ var xzqhstr;
 				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 				 	'bz':$("#bz").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
+				 	'tsdq':$("#tsdq").combobox("getText")
 				},
 			    striped:true,
 			    pagination:true,
@@ -381,6 +386,7 @@ function jckshWqgz(){
 			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
 			 	'qlbh':$("#qlbh").val(),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -471,6 +477,7 @@ function jckshAbgc(){
 			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
 			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -571,7 +578,8 @@ function jckshZhfz(){
 			 	'shzt':$("#shzt").combobox("getValue"),
 			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
-			 	'bz':$("#bz").combobox("getValue")
+			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -677,7 +685,8 @@ function sckglWqgz(){
 			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
-			 	'qlbh':$("#qlbh").val()
+			 	'qlbh':$("#qlbh").val(),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -789,6 +798,7 @@ function sckglAbgc(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -906,6 +916,7 @@ function sckglZhfz(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -1025,7 +1036,8 @@ function sckshWqgz(){
 			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
-			 	'qlbh':$("#qlbh").val()
+			 	'qlbh':$("#qlbh").val(),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -1125,6 +1137,7 @@ function sckshAbgc(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,
@@ -1226,6 +1239,7 @@ function sckshZhfz(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
+			 	'tsdq':$("#tsdq").combobox("getText")
 			},
 		    striped:true,
 		    pagination:true,

@@ -265,57 +265,57 @@
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015养护路面大中修工程进度报表 </caption>
 								<thead>
 									<tr>
-										<td rowspan="4">项目名称</td>
-										<td rowspan="4">是否归口市局养护部门</td>
-										<td rowspan="4">建设地点</td>
-										<td rowspan="4">路线编号</td>
-										<td rowspan="4">起讫点桩号</td>
-										<td rowspan="4">里程长度（km）</td>
+										<td rowspan="4" width="125px;">项目名称</td>
+										<td rowspan="4" width="200px;">是否归口市局养护部门</td>
+										<td rowspan="4" width="125px;">建设地点</td>
+										<td rowspan="4" width="125px;">路线编号</td>
+										<td rowspan="4" width="125px;">起讫点桩号</td>
+										<td rowspan="4" width="125px;">里程长度（km）</td>
 										<td colspan="3">养护类别（KM）</td>
-										<td rowspan="4">开工日--竣工日</td>
-										<td rowspan="4">原路面类型</td>
-										<td rowspan="4">设计路面类型</td>
+										<td rowspan="4" width="125px;">开工日--竣工日</td>
+										<td rowspan="4" width="125px;">原路面类型</td>
+										<td rowspan="4" width="125px;">设计路面类型</td>
 										<td colspan="15">主 要 工 程数 量 完 成 情 况</td>
 										<td colspan="6">投 资 额 完 成 情 况 </td>
-										<td rowspan="4">形象进度<br>（未开工\在建\完工）</td>
-										<td rowspan="4">备注</td>
+										<td rowspan="4" width="145px;">形象进度<br>（未开工\在建\完工）</td>
+										<td rowspan="4" width="125px;">备注</td>
 									</tr>
 									<tr>
-										<td rowspan="3">大修（KM）</td>
-										<td rowspan="3">中修（KM）</td>
-										<td rowspan="3">预防性养护</td>
+										<td rowspan="3" width="125px;">大修（KM）</td>
+										<td rowspan="3" width="125px;">中修（KM）</td>
+										<td rowspan="3" width="125px;">预防性养护</td>
 										<td colspan="5">垫层</td>
 										<td colspan="5">基层</td>
 										<td colspan="5">面层</td>
-										<td rowspan="3">计划（万元）</td>
-										<td rowspan="3">批准预算（万元）</td>
-										<td rowspan="3">本月完成（万元）</td>
-										<td colspan="3">累计</td>
+										<td rowspan="3" width="125px;">计划（万元）</td>
+										<td rowspan="3" width="125px;">批准预算（万元）</td>
+										<td rowspan="3" width="125px;">本月完成（万元）</td>
+										<td colspan="3" >累计</td>
 									</tr>
 									<tr>
-										<td rowspan="2">计划数量（M³）</td>										
-										<td rowspan="2">本月完成数量（M³）</td>
+										<td rowspan="2" width="125px;">计划数量（M³）</td>										
+										<td rowspan="2" width="125px;">本月完成数量（M³）</td>
 										<td colspan="3">累计</td>
-										<td rowspan="2">计划数量（M³）</td>										
-										<td rowspan="2">本月完成数量（M³）</td>
+										<td rowspan="2" width="125px;">计划数量（M³）</td>										
+										<td rowspan="2" width="125px;">本月完成数量（M³）</td>
 										<td colspan="3">累计</td>
-										<td rowspan="2">计划数量（M³）</td>										
-										<td rowspan="2">本月完成数量（M³）</td>
+										<td rowspan="2" width="125px;">计划数量（M³）</td>										
+										<td rowspan="2" width="125px;">本月完成数量（M³）</td>
 										<td colspan="3">累计</td>
-										<td rowspan="2">年初至本月完成（万元）</td>
-										<td rowspan="2">自开工累计完成（万元）</td>
-										<td rowspan="2">完成比例(%)</td>
+										<td rowspan="2" width="125px;">年初至本月完成（万元）</td>
+										<td rowspan="2" width="125px;">自开工累计完成（万元）</td>
+										<td rowspan="2" width="125px;">完成比例(%)</td>
 									</tr>
 									<tr>
-										<td>年初至本月完成数量（M³）</td>
-										<td>自开工累计完成数量（M³）</td>
-										<td>完成比例(%)</td>
-										<td>年初至本月完成数量（M³）</td>
-										<td>自开工累计完成数量（M³）</td>
-										<td>完成比例(%)</td>
-										<td>年初至本月完成数量（M³）</td>
-										<td>自开工累计完成数量（M³）</td>
-										<td>完成比例(%)</td>
+										<td width="125px;">年初至本月完成数量（M³）</td>
+										<td width="125px;">自开工累计完成数量（M³）</td>
+										<td width="125px;">完成比例(%)</td>
+										<td width="125px;">年初至本月完成数量（M³）</td>
+										<td width="125px;">自开工累计完成数量（M³）</td>
+										<td width="125px;">完成比例(%)</td>
+										<td width="125px;">年初至本月完成数量（M³）</td>
+										<td width="125px;">自开工累计完成数量（M³）</td>
+										<td width="125px;">完成比例(%)</td>
 									</tr>
 								</thead>
 								<tbody id=tbody_gcgj></tbody>

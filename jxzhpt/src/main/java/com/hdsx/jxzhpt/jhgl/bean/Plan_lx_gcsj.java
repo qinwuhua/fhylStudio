@@ -36,6 +36,14 @@ public class Plan_lx_gcsj {
 	private String dlqlbm;//独立桥梁编码
 	private String dlqlzxzh;//独立桥梁中心桩号
 	private String sfxz;//收费性质
+	private String tsdq;
+	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getTsdqbm() {
 		return tsdqbm;
 	}

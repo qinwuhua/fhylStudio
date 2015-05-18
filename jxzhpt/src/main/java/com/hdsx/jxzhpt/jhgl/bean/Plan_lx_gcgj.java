@@ -29,6 +29,14 @@ public class Plan_lx_gcgj {
 	private String yjsdj;//原技术等级
 	private String tsdqbm;//特殊地区编码
 	private Plan_gcgj plan_gcgj;//对应工程改建对象
+	private String tsdq;
+	
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
 	public String getTsdqbm() {
 		return tsdqbm;
 	}

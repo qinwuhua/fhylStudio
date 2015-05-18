@@ -3,11 +3,11 @@
 <mapper namespace="com.hdsx.jxzhpt.jckwqgz">
 <insert id="insertJckwqgz"  parameterType="jckwqgz">
 	insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
-		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt,sbthcd) 
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt,sbthcd,tsdq) 
 		values(sys_guid(),#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
-		sysdate,'未上报','未审核',#{sbthcd})
+		sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
 </insert>
 
  <select id="selectJckwqgz" parameterType="jckwqgz" resultType="jckwqgz">
@@ -47,6 +47,9 @@
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
  </select>
@@ -85,6 +88,9 @@
  		</if>
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
@@ -181,6 +187,9 @@
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
@@ -219,6 +228,9 @@
  		</if>
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
 
@@ -306,6 +318,9 @@
  		<if test="qlbh!='' and qlbh!= null ">
  			and qlbh like '%'||(#{qlbh})||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
  </select>
  <insert id="importWqgz"  parameterType="hashMap">
 	insert into xmk_wqgz(id,gydwbm,gydw,xzqhdm,xzqhmc,lxbm,lxmc,qlbh,qlmc,qlzxzh,
@@ -372,5 +387,11 @@
 		from JXJCK_2013.DATA50 where roadbm =#{5}
 		
  </insert>
+ 
+ <!-- qwh查询行政区划 -->
+ <select id="selectTSDQ" parameterType="String" resultType="String">
+ 	select t.name from XTGL_TSDQ t where id in(select parent from XTGL_XZQHTSDQ where xzqhdm=${value}) and t.state='启用'
+ </select>
+ 
 </mapper>
 

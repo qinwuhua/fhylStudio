@@ -21,14 +21,25 @@
 		$(function(){
 			var row = parent.YMLib.Var.Row;
 			if(row!=null){
+				$('#righttop').hide();
 				$('#searchDiv').hide();
-				queryByRowData(row);
-				parent.YMLib.Var.Row=null;
 			}
+			queryByRowData(row);
+			parent.YMLib.Var.Row=null;
 		});
 		function queryByRowData(row){
 			var data=new Array();
-			$.each(row.plan_lx_gcsjs,function(index,item){
+			var list=null;
+			if(parent.YMLib.Var.XMLX=="gcsj"){
+				list=row.plan_lx_gcsjs;
+			}else if(parent.YMLib.Var.XMLX=="gcgj"){
+				list=row.plan_lx_gcgjs;
+			}else if(parent.YMLib.Var.XMLX=="shuih"){
+				list=row.shuihs;
+			}else if(parent.YMLib.Var.XMLX=="yhdzx"){
+				list=row.plan_lx_yhdzxs;
+			}
+			$.each(list,function(index,item){
 				var l={'lx.lxbm':item.lxbm,'lx.zdzh':item.zdzh,'lx.xzqhdm':item.xzqhdm,
 						'lx.qdzh':item.qdzh,'lx.jhid':row.id};
 				$.ajax({
@@ -46,7 +57,8 @@
 			});
 			$('#grid').datagrid({
 				data:data,
-				columns:[[    
+				columns:[[
+					{field:'id',title:'项目类型',width:100,align:'center'},
 					{field:'scbz',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
 							var a='<a href="javascript:onclickXx('+"'"+row.id+"','"+row.jhid+"'"+')" style="color:#0066CB;font-size:12px;">';
@@ -107,6 +119,9 @@
 	</script>
 </head>
 <body>
+	<div id="righttop">
+		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;补助历史查询</div>
+	</div>
 	<div id="searchDiv" style="margin-left: 20px;margin-top: 5px;margin-bottom: 5px;">
 		<table>
 			<tr>

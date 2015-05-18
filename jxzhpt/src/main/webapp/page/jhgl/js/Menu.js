@@ -110,6 +110,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhkgl/zjqf.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030111',
+		title:'补助历史查询',
+		imgSrc:'../../images/zjqf.png',
+		renderTo:'left_menu1',
+		href:'./jhkgl/sjlsxx.jsp'
+	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101030109',
 //		title:'战备公路项目',

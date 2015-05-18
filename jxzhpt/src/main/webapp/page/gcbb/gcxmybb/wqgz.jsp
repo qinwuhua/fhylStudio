@@ -273,14 +273,14 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3000px" >
+							<table width="3800px" >
 								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（一）   危桥工程（<span id="yue" style="font-size: large;"></span>月） </caption>
 								<thead>
 									<tr>
-										<td rowspan="3">桥梁名称</td>
-										<td rowspan="3">桥梁代码</td>
-										<td rowspan="3">桥梁中心桩号</td>
-										<td colspan="3">所属路线情况</td>
+										<td rowspan="3" style="width: 125px">桥梁名称</td>
+										<td rowspan="3" style="width: 125px">桥梁代码</td>
+										<td rowspan="3" style="width: 125px">桥梁中心桩号</td>
+										<td colspan="3" >所属路线情况</td>
 										<td colspan="8">老桥梁基本状况</td>
 										<td colspan="2" rowspan="2">评定等级</td>
 										<td colspan="3" rowspan="2">本年计划投资(万元)</td>
@@ -289,53 +289,53 @@ table tbody tr td {
 										<td colspan="3" rowspan="2">开工至本月完成投资（万元）</td>
 										<td colspan="3">本年自元月至本月底形象进度完成情况</td>
 										<td colspan="3">开工至本月底形象进度完成情况 </td> 
-										<td rowspan="3">建设性质</td>
+										<td rowspan="3" style="width: 125px">建设性质</td>
 										<td colspan="2">建设年限</td>
-										<td rowspan="3">主要建设内容</td>
+										<td rowspan="3" style="width: 125px">主要建设内容</td>
 									</tr>	
 									<tr>
-										<td rowspan="2">路线编码</td>
-										<td rowspan="2">路线名称</td>
-										<td rowspan="2">技术等级</td>
-										<td rowspan="2">桥梁全长(米)</td>
-										<td rowspan="2">跨径总长(米)</td>
-										<td rowspan="2">单孔最大跨径 (米)</td>
-										<td rowspan="2">桥梁全宽</td>
-										<td rowspan="2">主桥上部构造结构形式</td>
+										<td rowspan="2" style="width: 125px">路线编码</td>
+										<td rowspan="2" style="width: 125px">路线名称</td>
+										<td rowspan="2" style="width: 125px">技术等级</td>
+										<td rowspan="2" style="width: 125px">桥梁全长(米)</td>
+										<td rowspan="2" style="width: 125px">跨径总长(米)</td>
+										<td rowspan="2" style="width: 125px">单孔最大跨径 (米)</td>
+										<td rowspan="2" style="width: 125px">桥梁全宽</td>
+										<td rowspan="2" style="width: 125px">主桥上部构造结构形式</td>
 										<td colspan="2">按跨径分类</td>
-										<td rowspan="2">修建/改建年度</td>
+										<td rowspan="2" style="width: 125px">修建/改建年度</td>
 										<td>危桥加固</td>
 										<td>危桥改建</td>
 										<td>危桥重建</td>
 										<td>危桥加固</td>
 										<td>危桥改建</td>
 										<td>危桥重建</td>
-										<td rowspan="2">计划开工年</td>
-										<td rowspan="2">计划完工年</td>
+										<td rowspan="2" style="width: 125px">计划开工年</td>
+										<td rowspan="2" style="width: 125px">计划完工年</td>
 									</tr>
 									<tr>
-										<td>大桥</td>
-										<td>中桥</td>
-										<td>四类</td>
-										<td>五类</td>
-										<td>合计</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>合计</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>合计</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>合计</td>
-										<td>部投资</td>
-										<td>省投资</td>
-										<td>百分比（%）</td>
-										<td>百分比（%）</td>
-										<td>百分比（%）</td>
-										<td>百分比（%）</td>
-										<td>百分比（%）</td>
-										<td>百分比（%）</td>
+										<td style="width: 80px">大桥</td>
+										<td style="width: 80px">中桥</td>
+										<td style="width: 80px">四类</td>
+										<td style="width: 80px">五类</td>
+										<td style="width: 80px">合计</td>
+										<td style="width: 80px">部投资</td>
+										<td style="width: 80px">省投资</td>
+										<td style="width: 80px">合计</td>
+										<td style="width: 80px">部投资</td>
+										<td style="width: 80px">省投资</td>
+										<td style="width: 80px">合计</td>
+										<td style="width: 80px">部投资</td>
+										<td style="width: 80px">省投资</td>
+										<td style="width: 80px">合计</td>
+										<td style="width: 80px">部投资</td>
+										<td style="width: 80px">省投资</td>
+										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 125px">百分比（%）</td>
 									</tr>
 								</thead>
 								<tbody id="wqgzlist">

@@ -3,9 +3,9 @@
 <mapper namespace="com.hdsx.jxzhpt.jckabgc">
 	<insert id="insertJckabgc" parameterType="jckabgc">
 		insert into
-		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd)
+		xmk_abgc(id,lxbm,lxmc,gydw,gydwbm,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tbbmbm,tbsj,sbzt,shzt,sbthcd,tsdq)
 		values(sys_guid(),#{lxbm},#{lxmc},#{gydw},#{gydwbm},#{qdzh},#{zdzh},#{qzlc},#{xzqhdm},#{xzqhmc},#{gjxjnd},#{lxjsdj},#{yhlc},#{xmnf},
-		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd})
+		#{xmtype},#{yhnr},#{bz},#{tbbmbm},sysdate,'未上报','未审核',#{sbthcd},#{tsdq})
 	</insert>
 
 	<select id="selectJckabgc" parameterType="jckabgc" resultType="jckabgc">
@@ -38,6 +38,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc
@@ -72,6 +75,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 	</select>
 	<select id="selectJckabgcById" parameterType="jckabgc"
 		resultType="jckabgc">
@@ -105,7 +111,7 @@
 	</select>
 	<select id="selectJckRoad" parameterType="hashmap" resultType="jckabgc">
 		select
-		id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz
+		id,lxbm,lxmc,gydw,qdzh,zdzh,qzlc,xzqhdm,xzqhmc,gjxjnd,lxjsdj,yhlc,xmnf,xmtype,yhnr,bz,tsdq
 		from xmk_abgc where shzt='已审核' and lxbm like #{lxbm}||'%'
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
@@ -157,6 +163,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and
 		t1.num>(#{page}-1)*#{rows}
 		order by shzt desc
@@ -192,6 +201,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 	</select>
 	<sql id="abgc_commonsql">
 		and  sbthcd &lt;=#{sbthcd}
@@ -221,6 +233,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</sql>
 	<select id="exportExcel_abgc" parameterType="jckabgc"
@@ -268,6 +283,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</select>
 	<select id="onceAbgc" parameterType="jckabgc" resultType="int">
@@ -336,6 +354,9 @@
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
  		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
+ 		</if>
 	</select>
 	
 	<select id="selAbgcShCount" parameterType="jckabgc" resultType="jckabgc">
@@ -367,6 +388,9 @@
 		</if>
 		<if test="bz!='' and bz!= null ">
  			and lxbm like #{bz}||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||#{tsdq}||'%'
  		</if>
 	</select>
 	<select id="selTsdq" resultType="jckabgc">

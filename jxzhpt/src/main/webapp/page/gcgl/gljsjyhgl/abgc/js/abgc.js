@@ -45,13 +45,13 @@ function ybsb(index){
 	//window.open("wqgzyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','安保工程月报添加','abgcybtj.jsp','wqxx',650,360);
+	YMLib.UI.createWindow('wqxx','安保工程月报添加','abgcybtj.jsp','wqxx',650,340);
 	//window.open("wqgzybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,430);
+	parent.YMLib.UI.createWindow('wqxx','安保工程月报详情','abgcybxx.jsp','wqxx',700,340);
 	//window.open("wqgzybxx.jsp");
 }
 function Edityb(index){
