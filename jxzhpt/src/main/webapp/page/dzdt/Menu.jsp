@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
-<title>Insert title here</title>
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> 
+ --><title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/default/easyui.css" />
 <link rel="stylesheet" type="text/css" href="../../easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="../../css/style.css" />
