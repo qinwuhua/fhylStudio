@@ -33,13 +33,15 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
+			var myDate = new Date();
 			sbnf("sbnf");
+			$('#sbnf').combobox("setValue",myDate.getFullYear());
+			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if(roleName()=="市级" || roleName()=="省级"){
 				jh.jh_sbthcd=2;
 			}
-			queryZjqf($('#sbnf').combobox("getValue"));
 			if(getParam("t")=='1'){
 				if(roleName()=="县级"){
 					jh.jh_sbthcd=0;

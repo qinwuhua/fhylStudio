@@ -33,7 +33,9 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
+			var myDate = new Date();
 			sbnf("sbnf");
+			$('#sbnf').combobox("setValue",myDate.getFullYear());
 			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={sbnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};

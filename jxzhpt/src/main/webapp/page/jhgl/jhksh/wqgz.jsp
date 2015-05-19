@@ -27,11 +27,13 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
+			var myDate = new Date();
 			sbnf("sbnf");
+			$('#sbnf').combobox("setValue",myDate.getFullYear());
+			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:'1',spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			//if(roleName()=="省级"){
-				queryZjqf($('#sbnf').combobox("getValue"));
 				if(getParam("t")=='1'){
 					jh.jh_sbthcd=4;
 					jh.sbzt=null;

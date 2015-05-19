@@ -29,22 +29,6 @@ function querySumShuih(jh,lx){
 		}
 	});
 }
-function sbnf(id){
-	var myDate = new Date();
-	var years=[];
-	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
-	}
-	$('#'+id).combobox({    
-	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
-	});
-	$('#'+id).combobox("setValue",first);
-}
 function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);

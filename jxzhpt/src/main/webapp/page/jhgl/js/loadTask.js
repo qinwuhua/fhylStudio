@@ -78,17 +78,18 @@ function sbnf(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
+	years.push({text:'所有年份',value:''});
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
 	}
-	$('#'+id).combobox({    
+	$('#'+id).combobox({
 	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
+	    valueField:'value',
+	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",first);
+	$('#'+id).combobox("setValue",'');
 }
 /**
  * 行政区划下拉框

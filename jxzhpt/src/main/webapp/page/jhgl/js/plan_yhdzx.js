@@ -38,22 +38,6 @@ function querySumYhdzx(jh,lx){
 		}
 	});
 }
-function sbnf(id){
-	var myDate = new Date();
-	var years=[];
-	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
-	}
-	$('#'+id).combobox({    
-	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
-	});
-	$('#'+id).combobox("setValue",first);
-}
 function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
