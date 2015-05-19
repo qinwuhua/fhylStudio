@@ -18,6 +18,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
@@ -179,6 +180,31 @@ public class Plan_shuihController extends BaseActionSupport {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editShuihStatusBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			System.out.println("ID:"+jh.getId());
+			List<Plan_shuih> list=new ArrayList<Plan_shuih>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_shuih shuih=new Plan_shuih();
+				shuih.setId(id[i]);
+				shuih.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				shuih.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				shuih.setSpbmdm(jh.getSpbmdm());
+				shuih.setSbsj(new Date());
+				list.add(shuih);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(shuihServer.editShuihStatus(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}

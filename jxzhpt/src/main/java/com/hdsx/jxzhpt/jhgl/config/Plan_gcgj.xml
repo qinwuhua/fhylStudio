@@ -310,6 +310,20 @@
 			<if test="jsnr!=null">,jsnr=#{jsnr}</if>
 		where id=#{id}
 	</update>
+	<update id="editGcgjStatusBatch" parameterType="java.util.List">
+		update plan_gcgj set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			<if test="bcapzj!=null">bcapzj=#{bcapzj},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
+	</update>
 	<update id="editGcgjStatus" parameterType="plan_gcgj">
 		update plan_gcgj set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>

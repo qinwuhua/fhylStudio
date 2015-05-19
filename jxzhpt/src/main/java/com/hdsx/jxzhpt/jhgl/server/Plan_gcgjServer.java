@@ -118,7 +118,12 @@ public interface Plan_gcgjServer {
 	 * @return
 	 */
 	boolean editGcgjStatus(Plan_gcgj jh);
-	
+	/**
+	 * 批量审批
+	 * @param list
+	 * @return
+	 */
+	boolean editGcgjStatus(List<Plan_gcgj> list);
 	/**
 	 * 添加工程改建计划信息
 	 * @param jh

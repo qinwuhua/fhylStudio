@@ -591,4 +591,17 @@
 		update plan_shuih jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}
     	where jh.id=#{id}
 	</update>
+	<update id="editShuihStatusBatch" parameterType="java.util.List">
+		update plan_shuih set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
+	</update>
 </mapper>

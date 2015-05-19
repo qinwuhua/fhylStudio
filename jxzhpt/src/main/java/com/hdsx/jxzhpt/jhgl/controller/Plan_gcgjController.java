@@ -195,20 +195,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 此方法弃用
-	 */
-	public void queryGcgjNfs(){
-		try {
-			List<TreeNode> queryGcgjNfs = gcgjServer.queryGcgjNfs();
-			System.out.println("年份："+queryGcgjNfs.size());
-			JsonUtils.write(gcgjServer.queryGcgjNfs(),getresponse().getWriter());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	/**
 	 * 根据ID删除计划
 	 */
 	public void dropGcgjById(){
@@ -224,7 +210,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 修改计划ID
+	 * 根据id修改计划信息
 	 */
 	public void editGcgjById(){
 		try {
@@ -539,6 +525,35 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 		return result;
 	}
+	
+	/**
+	 * 批量审批计划
+	 */
+	public void editSpBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			System.out.println("ID:"+jh.getId());
+			List<Plan_gcgj> list=new ArrayList<Plan_gcgj>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_gcgj gcgj=new Plan_gcgj();
+				gcgj.setId(id[i]);
+				gcgj.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				gcgj.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				gcgj.setSpbmdm(jh.getSpbmdm());
+				gcgj.setSbsj(new Date());
+				list.add(gcgj);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(gcgjServer.editGcgjStatus(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void editGjZj() throws Exception {
 		try{
 			String Strresult="false";

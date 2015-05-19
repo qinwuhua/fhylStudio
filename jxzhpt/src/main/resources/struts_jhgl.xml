@@ -19,6 +19,7 @@
 		<action name="exportGcgjZjxdExcel" class="plan_gcgjController" method="exportGcgjZjxdExcel"/>
 		<action name="gjAutoCompleteLxbm" class="plan_gcgjController" method="gjAutoCompleteLxbm"/>
 		<action name="editGjZj" class="plan_gcgjController" method="editGjZj"/>
+		<action name="editSpBatch" class="plan_gcgjController" method="editSpBatch"/>
 		
 		<action name="querySumMessage" class="plan_gcsjController" method="querySumMessage"/>
 		<action name="queryGcsjNfs" class="plan_gcsjController" method="queryGcsjNfs"/>
@@ -39,6 +40,7 @@
 		<action name="sjAutoCompleteLxbm" class="plan_gcsjController" method="sjAutoCompleteLxbm"></action>
 		<action name="querySjzh" class="plan_gcsjController" method="querySjzh"></action>
 		<action name="editZj" class="plan_gcsjController" method="editZj"></action>
+		<action name="editGcsjSpBatch" class="plan_gcsjController" method="editGcsjSpBatch"></action>
 		
 		<action name="queryAbgcList" class="plan_abgcController" method="queryAbgcList"/>
 		<action name="editAbgcStatusBatch" class="plan_abgcController" method="editAbgcStatusBatch"/>
@@ -102,6 +104,7 @@
 		<action name="insertShuihLx" class="plan_shuihController" method="insertShuihLx"/>
 		<action name="shAutoCompleteLxbm" class="plan_shuihController" method="shAutoCompleteLxbm"/>
 		<action name="editShZj" class="plan_shuihController" method="editShZj"/>
+		<action name="editShuihStatusBatch" class="plan_shuihController" method="editShuihStatusBatch"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>

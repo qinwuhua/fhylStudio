@@ -69,10 +69,14 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	public int editGcsjById(Plan_gcsj jh) {
 		return update("editGcsjById", jh);
 	}
+	
+	@Override
+	public boolean editGcgjStatusBatch(List<Plan_gcsj> list) {
+		return updateBatch("editGcgjStatusBatch", list)==list.size();
+	}
 
 	@Override
 	public boolean editGcsjStatus(Plan_gcsj jh) {
-		System.out.println("升级："+jh.getJh_sbthcd());
 		return update("editGcsjStatus", jh)>0;
 	}
 

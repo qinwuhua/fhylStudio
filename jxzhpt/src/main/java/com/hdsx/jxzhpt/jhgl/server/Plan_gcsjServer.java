@@ -179,4 +179,6 @@ public interface Plan_gcsjServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_gcsj jh);
+	
+	boolean editGcgjStatusBatch(List<Plan_gcsj> list);
 }
