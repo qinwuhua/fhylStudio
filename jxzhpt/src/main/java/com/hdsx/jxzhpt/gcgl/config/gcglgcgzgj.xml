@@ -313,23 +313,29 @@
 	</resultMap>
 	<select id="queryGcgjList"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
 	select * from (
-			select rownum as num,t.* from(
-			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sfqxkg,jh.yjwgsj,jh.sjkgsj,jh.xdsj,jh.sgdw,jh.jldw,jh.jsdw,jh.gsztz,jh.htje,jh.sfgk,
+			select t.* from(
+			select jh.num numbe,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.sfqxkg,jh.yjwgsj,jh.sjkgsj,jh.xdsj,jh.sgdw,jh.jldw,jh.jsdw,jh.gsztz,jh.htje,jh.sfgk,
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id
-			where 1=1 and spzt='1'
+			from PLAN_lx_GCGJ l right JOIN (
+			select * from (
+			select p.*,rownum num from Plan_Gcgj p where 1=1 
+			and spzt='1'
 			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+					and p.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="sbnf != null and  sbnf != ''">
-					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+					and p.sbnf like '%'||trim(#{sbnf})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+					and p.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
 			<if test="shzt != null and  shzt != ''">
 					and ${tiaojian} like '%'||trim(#{shzt})||'%'
 			</if>
+			)
+			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+			) jh on  l.jhid=jh.id
+			where 1=1 
 			and jh.id in (
 					select l.jhid from PLAN_lx_GCGJ l
 					where 1=1 
@@ -343,7 +349,7 @@
 					     )
 					) t
 			)
-		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+		
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglgcgzgj">
 		select count(*) from PLAN_GCGJ jh where 1=1 and spzt='1'
@@ -374,20 +380,27 @@
 	<!-- 拨付列表 -->
 	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultMap="gcgj_lx">
 	select * from (
-			select rownum as num,t.* from(
+			select t.* from(
 			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-			from PLAN_lx_GCGJ l right JOIN Plan_Gcgj jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-			where 1=1 and spzt='1' 
+			from PLAN_lx_GCGJ l right JOIN 
+			(
+			select * from (
+			select p.*,rownum num from Plan_Gcgj p where 1=1 
+			and spzt='1' 
 			<if test="sbnf != null and  sbnf != ''">
-					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+					and p.sbnf like '%'||trim(#{sbnf})||'%'
 			</if>
 			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
+					and p.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
 			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
+					and p.jgzt like '%'||trim(#{jgzt})||'%'
 			</if>
+			)
+			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+			) jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -408,7 +421,7 @@
 					     )
 					) t
 			)
-		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+		
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzgj">
 		select count(*) from PLAN_GCGJ jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
