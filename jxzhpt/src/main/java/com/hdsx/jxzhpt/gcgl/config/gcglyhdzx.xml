@@ -349,7 +349,10 @@
 	select * from (
 			select rownum as num,t.* from (
 	    		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-			where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+			where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
@@ -381,7 +384,10 @@
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglyhdzx">
 		select count(*) from PLAN_yhdzx jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-		where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+		where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>

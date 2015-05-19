@@ -426,7 +426,10 @@
 			jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,jh.xmmc,
 			lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 		 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-			where 1=1 and spzt='1' and jh.jhnf=#{sbnf}
+			where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.jhnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
@@ -458,7 +461,10 @@
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglgcgzsj">
 		select count(*) from PLAN_GCSJ jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-		where 1=1 and spzt='1' and jh.jhnf=#{sbnf}
+		where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.jhnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>

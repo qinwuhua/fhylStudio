@@ -596,7 +596,7 @@
 		select
 			'总计' qlmc,' ' qldm,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
 			' ' xjgjnd,' ' sl,' ' wl,decode(sum(bnhj),null,' ',sum(bnhj)) bnhj,decode(sum(bnbtz),null,' ',sum(bnbtz)) bnbtz,decode(sum(bnstz),null,' ',sum(bnstz)) bnstz,
-			decode(sum(byhj),null,' ',sum(byhj)) byhj,decode(sum(bybtz),null,' ',sum(bybtz)) bybtz,decode(sum(bystz),null,' ',sum(bystz)) bystz,decode(sum(yyhj),null,' ',sum(yyhj)) yyhj,decode(sum(yybtz),null,' ',sum(yybtz)) yybtz,decode(sum(yystz),null,' ',sum(yystz)) yystz,decode(sum(kghj),null,' ',sum(kghj)) kghj,decode(sum(kgbtz),null,' ',sum(kgbtz)) kgbtz,decode(sum(kgstz),null,' ',sum(kgstz)) kgstz,' ' yyjgqk,
+			decode(sum(byhj),null,'0',sum(byhj)) byhj,decode(sum(bybtz),null,'0',sum(bybtz)) bybtz,decode(sum(bystz),null,'0',sum(bystz)) bystz,decode(sum(yyhj),null,'0',sum(yyhj)) yyhj,decode(sum(yybtz),null,'0',sum(yybtz)) yybtz,decode(sum(yystz),null,'0',sum(yystz)) yystz,decode(sum(kghj),null,'0',sum(kghj)) kghj,decode(sum(kgbtz),null,'0',sum(kgbtz)) kgbtz,decode(sum(kgstz),null,'0',sum(kgstz)) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr
 		from
 			(select
@@ -633,8 +633,8 @@
 	<select id="getwqgzbblist2" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			' ' qldm,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'合计' qlmc,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
+			' ' xjgjnd,' ' sl,' ' wl,decode(sum(bnhj),null,' ',sum(bnhj)) bnhj,decode(sum(bnbtz),null,' ',sum(bnbtz)) bnbtz,decode(sum(bnstz),null,' ',sum(bnstz)) bnstz,
+			decode(sum(byhj),null,'0',sum(byhj)) byhj,decode(sum(bybtz),null,'0',sum(bybtz)) bybtz,decode(sum(bystz),null,'0',sum(bystz)) bystz,decode(sum(yyhj),null,'0',sum(yyhj)) yyhj,decode(sum(yybtz),null,'0',sum(yybtz)) yybtz,decode(sum(yystz),null,'0',sum(yystz)) yystz,decode(sum(kghj),null,'0',sum(kghj)) kghj,decode(sum(kgbtz),null,'0',sum(kgbtz)) kgbtz,decode(sum(kgstz),null,'0',sum(kgstz)) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,substr(xzqhdm,0,4) xzqh
 		from
 			(select
@@ -672,8 +672,8 @@
 	<select id="getwqgzbblist3" parameterType="gcglwqgz" resultType="hashmap">
 		select
 			' ' qldm,xdnf||'年项目' qlmc,' ' qlzxzh,' ' lxbm,' ' lxmc,' ' jsdj,sum(qlqc) qlqc,sum(kjzc) kjzc,sum(dkzdkj) dkzdkj,sum(qlqk) qlqk,' ' sbjgxs,' ' dq,' ' zq,
-			' ' xjgjnd,' ' sl,' ' wl,sum(bnhj) bnhj,sum(bnbtz) bnbtz,sum(bnstz) bnstz,
-			sum(byhj) byhj,sum(bybtz) bybtz,sum(bystz) bystz,sum(yyhj) yyhj,sum(yybtz) yybtz,sum(yystz) yystz, sum(kghj) kghj,sum(kgbtz) kgbtz,sum(kgstz) kgstz,' ' yyjgqk,
+			' ' xjgjnd,' ' sl,' ' wl,decode(sum(bnhj),null,' ',sum(bnhj)) bnhj,decode(sum(bnbtz),null,' ',sum(bnbtz)) bnbtz,decode(sum(bnstz),null,' ',sum(bnstz)) bnstz,
+			decode(sum(byhj),null,'0',sum(byhj)) byhj,decode(sum(bybtz),null,'0',sum(bybtz)) bybtz,decode(sum(bystz),null,'0',sum(bystz)) bystz,decode(sum(yyhj),null,'0',sum(yyhj)) yyhj,decode(sum(yybtz),null,'0',sum(yybtz)) yybtz,decode(sum(yystz),null,'0',sum(yystz)) yystz,decode(sum(kghj),null,'0',sum(kghj)) kghj,decode(sum(kgbtz),null,'0',sum(kgbtz)) kgbtz,decode(sum(kgstz),null,'0',sum(kgstz)) kgstz,' ' yyjgqk,
 			' ' yygjqk,' ' yycjqk,' ' zjgqk,' ' zgjqk,' ' zcjqk,' ' jsxz,' ' jhkgn,' ' jhwgn,' ' jsnr,xdnf,substr(xzqhdm,0,4) xzqh
 		from
 			(select

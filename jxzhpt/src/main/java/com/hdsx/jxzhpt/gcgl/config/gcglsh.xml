@@ -342,7 +342,10 @@
 				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,jh.xmmc,
 	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
 	      		from PLAN_lx_shuih l right JOIN plan_shuih jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-			where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+			where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>
@@ -375,7 +378,10 @@
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglsh">
 		select count(*) from PLAN_shuih jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 		
-		where 1=1 and spzt='1' and jh.sbnf=#{sbnf}
+		where 1=1 and spzt='1' 
+			<if test="sbnf != null and  sbnf != ''">
+					and jh.sbnf like '%'||trim(#{sbnf})||'%'
+			</if>
 			<if test="kgzt != null and  kgzt != ''">
 					and jh.kgzt like '%'||trim(#{kgzt})||'%'
 			</if>

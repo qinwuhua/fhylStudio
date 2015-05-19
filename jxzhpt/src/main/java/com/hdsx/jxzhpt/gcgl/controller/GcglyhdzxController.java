@@ -533,7 +533,6 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setTbyf(bfyf);
 		gcglyhdzx.setSbnf(xmnf);
 		gcglyhdzx.setTiaojian(bfzt);
-
 		List<Plan_yhdzx> list=gcglyhdzxServer.selectWqgzjhList2(gcglyhdzx);
 		int count=gcglyhdzxServer.selectWqgzjhListcount1(gcglyhdzx);
 		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();

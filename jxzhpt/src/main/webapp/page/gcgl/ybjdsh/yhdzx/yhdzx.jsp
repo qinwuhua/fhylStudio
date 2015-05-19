@@ -77,6 +77,7 @@ a:active {
         							<input type="text" id="lxmc" >
         						<span>项目年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<option value="">全部</option>
         						</select>
         						<span>月报状态：</span>
         						<select id="ybzt" style="width: 70px;">
