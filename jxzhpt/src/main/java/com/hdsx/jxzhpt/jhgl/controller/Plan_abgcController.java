@@ -171,6 +171,8 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void editAbgcStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
 			for (Plan_abgc item : splist) {
 				item.setJh_sbthcd(new Integer(new Integer(item.getJh_sbthcd()).intValue()+2).toString());

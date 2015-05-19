@@ -67,6 +67,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void editWqgzStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
+			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
 			List<Plan_wqgz> splist = wqgzServer.queryWqgzByStatus(jh,lx);
 			for (Plan_wqgz item : splist) {
 				System.out.println(item.getId());

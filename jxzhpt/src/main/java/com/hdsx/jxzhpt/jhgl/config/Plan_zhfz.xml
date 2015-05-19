@@ -20,6 +20,7 @@
 	<resultMap type="sckzhfz"  id="zhfz_lx">
 		<id property="id" column="id" />
 		<result property="gydw" column="gydw"/>
+		<result property="bzls" column="bzls"/>
 		<result property="xzqhmc" column="xzqhmc"/>
 		<result property="lxbm" column="lxbm"/>
 		<result property="lxmc" column="lxmc"/>

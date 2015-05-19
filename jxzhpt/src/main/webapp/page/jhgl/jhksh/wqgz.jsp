@@ -174,7 +174,8 @@
 							<p style="margin:8px 0px 4px 20px;">
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="无" selected="selected">否</option>
+									<option value="" selected="selected">全部</option>
+									<option value="无">否</option>
 									<option value="是">是</option>
 								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 10px;"/>

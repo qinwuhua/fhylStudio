@@ -274,9 +274,9 @@ function abgcxm_sh(jh,lx){
 				return result;
 	        }},
 	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
+	        	if(row.sfylsjl=='无')
 	        		return '无';
-	        	else if(row.sfylsjl=='1')
+	        	else if(row.sfylsjl=='有')
 	        		return '有';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
@@ -357,9 +357,9 @@ function abgcxm_zjxd(jh,lx){
 	        	}
 	        },
 	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
+	        	if(row.sfylsjl=='无')
 	        		return '无';
-	        	else if(row.sfylsjl=='1')
+	        	else if(row.sfylsjl=='有')
 	        		return '有';
 	        }},
 	        {field:'jhnf',title:'上报年份',width:80,align:'center'},
