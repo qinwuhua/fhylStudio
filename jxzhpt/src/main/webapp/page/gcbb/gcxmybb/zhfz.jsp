@@ -21,6 +21,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
+			setjhxdnf();
 			loadUnit1("gydw",$.cookie("unit"));
 			loadDist1("xzqh",$.cookie("dist"));
 			loadBmbm2("xzdj","公路等级");
@@ -34,10 +35,20 @@
 			$("#yf"+m).attr("selected","selected");
 			showAll();
 		});
+		function setjhxdnf(){
+			$("#ddlYear1").combotree({    
+				checkbox: true,
+				async: false,
+			    url: '/jxzhpt/xmjzbb/setjhxdnf1.do',    
+			    required: false,
+			    multiple:true
+			});
+			
+		}
 		function showAll(){
 			var nf=$("#ddlYear").val();
 			var yf=$("#ddlMonth").val();
-			var xmnf=$("#ddlYear1").val();
+			var xmnf=$("#ddlYear1").combotree("getValues");
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
@@ -113,7 +124,7 @@
 	function exportZhfzyb(){
 		var nf=$("#ddlYear").val();
 		var yf=$("#ddlMonth").val();
-		var xmnf=$("#ddlYear1").val();
+		var xmnf=$("#ddlYear1").combotree("getValues");
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
