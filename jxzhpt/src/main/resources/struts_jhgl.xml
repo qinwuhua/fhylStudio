@@ -138,6 +138,7 @@
 		<action name="yhdzxAutoCompleteLxbm" class="plan_yhdzxController" method="yhdzxAutoCompleteLxbm"/>
 		<action name="editYhZj" class="plan_yhdzxController" method="editYhZj"/>
 		<action name="editYhdzxLxById" class="plan_yhdzxController" method="editYhdzxLxById"/>
+		<action name="editYhdzxStatusBatch" class="plan_yhdzxController" method="editYhdzxStatusBatch"/>
 		
 		<action name="importHsly_jh" class="plan_hslyController" method="importHsly_jh"/>
 		<action name="queryHslyList" class="plan_hslyController" method="queryHslyList"/>

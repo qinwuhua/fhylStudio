@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_yhdzx;
@@ -126,6 +127,33 @@ public class Plan_yhdzxController extends BaseActionSupport{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 批量修改计划状态
+	 * 使用操作：批量审批
+	 */
+	public void editYhdzxStatusBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			List<Plan_yhdzx> list=new ArrayList<Plan_yhdzx>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_yhdzx yhdzx=new Plan_yhdzx();
+				yhdzx.setId(id[i]);
+				yhdzx.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				yhdzx.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				yhdzx.setSpsj(new Date());
+				yhdzx.setSpbm(jh.getSpbm());
+				list.add(yhdzx);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(yhdzxServer.editYhdzxStatusBatch(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}

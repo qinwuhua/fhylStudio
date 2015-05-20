@@ -534,7 +534,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 			String[] id = jh.getId().split(",");
 			String[] spzt = jh.getSpzt().split(",");
 			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
-			System.out.println("ID:"+jh.getId());
 			List<Plan_gcgj> list=new ArrayList<Plan_gcgj>();
 			for (int i = 0; i < id.length; i++) {
 				Plan_gcgj gcgj=new Plan_gcgj();
@@ -543,7 +542,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 				gcgj.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
 					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
 				gcgj.setSpbmdm(jh.getSpbmdm());
-				gcgj.setSbsj(new Date());
+				gcgj.setSpsj(new Date());
 				list.add(gcgj);
 			}
 			Map<String, String> result=new HashMap<String, String>();

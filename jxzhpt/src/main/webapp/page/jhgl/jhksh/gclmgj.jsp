@@ -97,7 +97,7 @@
 				alert("请选择要审批的计划！");
 				return;
 			}
-			var jh={'jh.id':'','jh.spzt':'','jh.jh_sbthcd':''};
+			var jh={'jh.id':'','jh.spzt':'','jh.jh_sbthcd':'','jh.spbmdm':$.cookie('dist')};
 			$.each(list,function(index,item){
 				if(index==list.length-1){
 					jh['jh.id']+=item.id;
