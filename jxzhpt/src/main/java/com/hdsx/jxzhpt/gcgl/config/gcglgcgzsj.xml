@@ -391,7 +391,7 @@
 					     )
 			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-			) jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
+			) jh left join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			where 1=1 
 			
 					) t
@@ -457,7 +457,7 @@
 					     )
 			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-		 	 )jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		 	 )jh left join Plan_Lx_Gcsj lx on lx.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
 			where 1=1 
 			
 			<if test="tiaojian != null and  tiaojian != ''">
