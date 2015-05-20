@@ -112,7 +112,11 @@ function tjzhfzyb(){
 		alert("请填入本月完成其他投资");
 		return;
 	}
-	if($("#tj_bywc_gl").val()==''){
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
+	if($("#tj_bywcgl").val()==''){
 		alert("请填入本月完成公里");
 		return;
 	}
@@ -143,7 +147,7 @@ function xgzhfzyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
-	if($("#xg_bywc_gl").val()==''){
+	if($("#xg_bywcgl").val()==''){
 		alert("请填入本月完成公里");
 		return;
 	}
