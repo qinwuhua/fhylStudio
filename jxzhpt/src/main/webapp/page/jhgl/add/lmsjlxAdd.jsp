@@ -19,7 +19,7 @@
 	$(function(){
 		loadBmbm2('yjsdj','技术等级');
 		gydwComboxTree("gydwxx");
-		loadXzqh("xzqhmc",'360000');
+		loadXzqh("xzqhmc",$.cookie("dist"));
 		autoCompleteLXBM();
 		sbnf("editjhnf");
 	});

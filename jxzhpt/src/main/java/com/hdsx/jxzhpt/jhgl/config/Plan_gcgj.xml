@@ -479,10 +479,44 @@
 		</if>
 	</select>
 	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">
-		insert into plan_lx_gcgj (id,lxmc,lxbm,xzqhdm,xzqhmc,jsdd,gydw,gydwdm,bhnr,
-		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh,tsdq <!---->)
-		values(sys_guid(),#{lxmc},#{lxbm},#{xzqhdm},#{xzqhmc},#{jsdd},#{gydw},#{gydwdm},#{bhnr},
-		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid} ,#{tbsj},#{tbbmbh},#{tsdq}<!-- -->)
+		insert into plan_lx_gcgj (id
+			<if test="lxmc!=null">,lxmc</if>
+			<if test="lxbm!=null">,lxbm</if>
+			<if test="xzqhdm!=null">,xzqhdm</if>
+			<if test="xzqhmc!=null">,xzqhmc</if>
+			<if test="jsdd!=null">,jsdd</if>
+			<if test="gydw!=null">,gydw</if>
+			<if test="gydwdm!=null">,gydwdm</if>
+			<if test="bhnr!=null">,bhnr</if>
+			<if test="qdzh!=null">,qdzh</if>
+			<if test="zdzh!=null">,zdzh</if>
+			<if test="qzlc!=null">,qzlc</if>
+			<if test="yhlc!=null">,yhlc</if>
+			<if test="ylmlx!=null">,ylmlx</if>
+			<if test="yjsdj!=null">,yjsdj</if>
+			<if test="jhid!=null">,jhid</if>
+			<if test="tbsj!=null">,tbsj</if>
+			<if test="tbbmbh!=null">,tbbmbh</if>
+			<if test="tsdq!=null">,tsdq</if>)
+		values(sys_guid()
+			<if test="lxmc!=null">,#{lxmc}</if>
+			<if test="lxbm!=null">,#{lxbm}</if>
+			<if test="xzqhdm!=null">,#{xzqhdm}</if>
+			<if test="xzqhmc!=null">,#{xzqhmc}</if>
+			<if test="jsdd!=null">,#{jsdd}</if>
+			<if test="gydw!=null">,#{gydw}</if>
+			<if test="gydwdm!=null">,#{gydwdm}</if>
+			<if test="bhnr!=null">,#{bhnr}</if>
+			<if test="qdzh!=null">,#{qdzh}</if>
+			<if test="zdzh!=null">,#{zdzh}</if>
+			<if test="qzlc!=null">,#{qzlc}</if>
+			<if test="yhlc!=null">,#{yhlc}</if>
+			<if test="ylmlx!=null">,#{ylmlx}</if>
+			<if test="yjsdj!=null">,#{yjsdj}</if>
+			<if test="jhid!=null">,#{jhid}</if>
+			<if test="tbsj!=null">,#{tbsj}</if>
+			<if test="tbbmbh!=null">,#{tbbmbh}</if>
+			<if test="tsdq!=null">,#{tsdq}</if>)
 	</insert>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">
 		select xmlx as id,sum(text) text,sum(name) name,sum(stz) parent,count(xmlx) bmid from (
