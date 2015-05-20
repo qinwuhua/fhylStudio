@@ -198,7 +198,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				shuih.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
 					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
 				shuih.setSpbmdm(jh.getSpbmdm());
-				shuih.setSbsj(new Date());
+				shuih.setSpsj(new Date());
 				list.add(shuih);
 			}
 			Map<String, String> result=new HashMap<String, String>();

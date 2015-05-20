@@ -216,7 +216,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 				gcsj.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
 					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
 				gcsj.setSpbmdm(jh.getSpbmdm());
-				gcsj.setSbsj(new Date());
+				gcsj.setSpsj(new Date());
 				list.add(gcsj);
 			}
 			Map<String, String> result=new HashMap<String, String>();

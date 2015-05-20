@@ -265,6 +265,17 @@
 			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
+	<update id="editYhdzxStatusBatch" parameterType="java.util.List">
+		update plan_yhdzx set 
+			<if test="sbbm!=null">sbbm=(select name from XTGL_DEPARTMENT t where t.id = #{sbbm}),</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=(select name from XTGL_DEPARTMENT t where t.id = #{spbm}),</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
+	</update>
 	<delete id="dropYhdzxById" parameterType="java.util.List">
 		delete from plan_yhdzx jh where jh.id =#{id}
 	</delete>

@@ -134,4 +134,6 @@ public interface Plan_yhdzxServer {
 	 * @return
 	 */
 	int queryJlBylx(Plan_lx_yhdzx lx1);
+
+	boolean editYhdzxStatusBatch(List<Plan_yhdzx> list);
 }

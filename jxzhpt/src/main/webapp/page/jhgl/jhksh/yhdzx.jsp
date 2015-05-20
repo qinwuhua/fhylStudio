@@ -89,6 +89,43 @@
 				searchYhdzx();
 			}
 		}
+		function batchSp(){
+			var list=$('#grid').datagrid("getSelections");
+			if(list.length==0){
+				alert("请选择要审批的计划！");
+				return;
+			}
+			var jh={'jh.id':'','jh.spzt':'','jh.jh_sbthcd':'','jh.spbm':$.cookie('dist')};
+			$.each(list,function(index,item){
+				if(index==list.length-1){
+					jh['jh.id']+=item.id;
+					jh['jh.spzt']+=item.spzt;
+					jh['jh.jh_sbthcd']+=item.jh_sbthcd;
+				}else{
+					jh['jh.id']+=item.id+',';
+					jh['jh.spzt']+=item.spzt+',';
+					jh['jh.jh_sbthcd']+=item.jh_sbthcd+',';
+				}
+			});
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/editYhdzxStatusBatch.do',
+				dataType:'json',
+				data:jh,
+				success:function(data){
+					if(data.result=="true"){
+						alert("审批成功！");
+						searchYhdzx();
+					}else{
+						alert("审批失败！");
+					}
+				},
+				error:function(){
+					alert("系统错误！");
+				}
+			});
+			
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -135,6 +172,7 @@
         					</p>
         					<p style="margin-left:12px;margin-bottom: 5px;">
         						<img onclick="searchYhdzx()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 10px;"/>
+        						<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>

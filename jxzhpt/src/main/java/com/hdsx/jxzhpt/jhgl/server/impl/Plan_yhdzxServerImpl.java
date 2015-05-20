@@ -200,4 +200,9 @@ public class Plan_yhdzxServerImpl extends BaseOperate implements Plan_yhdzxServe
 	public int queryJlBylx(Plan_lx_yhdzx lx) {
 		return queryOne("queryJlBylx", lx);
 	}
+
+	@Override
+	public boolean editYhdzxStatusBatch(List<Plan_yhdzx> list) {
+		return updateBatch("editYhdzxStatusBatch", list)==list.size();
+	}
 }
