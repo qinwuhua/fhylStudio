@@ -105,6 +105,59 @@
 	}
 	
 	function insert(){
+		if($("#lxbm").val()==''||$("#lxbm").val()==null){
+			alert("路线编码不能为空");
+			return;
+		}
+		if($("#lxmc").val()==''||$("#lxmc").val()==null){
+			alert("路线名称不能为空");
+			return;
+		}
+		if($('#yjsdj').combobox("getValue")==''||$('#yjsdj').combobox("getValue")==null){
+			alert("请选择原技术等级");
+			return;
+		}
+		if($("#qdzh").val()==''||$("#qdzh").val()==null){
+			alert("起点桩号不能为空");
+			return;
+		}
+		if($("#zdzh").val()==''||$("#zdzh").val()==null){
+			alert("止点桩号不能为空");
+			return;
+		}
+		if($("#qzlc").val()==''||$("#qzlc").val()==null){
+			alert("起止里程不能为空");
+			return;
+		}
+		if($("#xmlc").val()==''||$("#xmlc").val()==null){
+			alert("项目里程不能为空");
+			return;
+		}
+		if($('#jhkgsj').datebox("getText")==''||$('#jhkgsj').datebox("getText")==null){
+			alert("计划开工时间不能为空");
+			return;
+		}
+		if($('#jhwgsj').datebox("getText")==''||$('#jhwgsj').datebox("getText")==null){
+			alert("计划完工时间不能为空");
+			return;
+		}
+		if($('#xmmc').val()==''||$('#xmmc').val()==null){
+			alert("项目名称不能为空");
+			return;
+		},
+		if($('#pftz').val()==''||$('#pftz').val()==null){
+			alert("批复总投资不能为空");
+			return;
+		}
+		if($('#jhsybbzje').val()==''||$('#jhsybbzje').val()==null){
+			alert("计划使用部补助金额不能为空");
+			return;
+		}
+		if($('#jhsysbzje').val()==''||$('#jhsysbzje').val()==null){
+			alert("计划使用省补助金额不能为空");
+			return;
+		}
+		
 		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;

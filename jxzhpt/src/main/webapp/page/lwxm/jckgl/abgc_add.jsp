@@ -35,7 +35,7 @@ text-decoration:none;
 	$(function(){
 		xmnf1("xmnf");
 		$("#save_button").click(function(){
-			if($("#lxbm").val()=="" && $("#lxbm").val()==null){
+			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
 				return false;
@@ -211,7 +211,7 @@ text-decoration:none;
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
@@ -223,11 +223,11 @@ text-decoration:none;
 					<input type="text" id="gydwbm" style="display:none"/></td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qdzh" id="qdzh" style="width: 156px" onblur="changeZlc()"/><br/>
 					<span id="qd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdzh"id="zdzh" style="width: 145px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span></td>
@@ -250,7 +250,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="lxjsdj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>隐患里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="yhlc"id="yhlc" style="width: 145px" value="0"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
