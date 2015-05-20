@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_gcgj">
 	<resultMap id="gcgj_lx" type="plan_gcgj">
 		<id property="id" column="id" />
+		<result property="tbbm" column="tbbm"/>
 		<result property="fapgdw" column="fapgdw"/>
 		<result property="fascdw" column="fascdw"/>
 		<result property="faspsj" column="faspsj"/>
@@ -68,7 +69,7 @@
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
 			select rownum as num,t.* from(
-			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			select jh.tbbm,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
 			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1

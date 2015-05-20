@@ -351,7 +351,7 @@ public class Plan_yhdzxController extends BaseActionSupport{
 			lx1.setZdzh(lx.getZdzh());
 			lx1.setJhid(jh.getSbnf());
 			if(yhdzxServer.queryJhExist(lx1)==0){
-				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
+				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().length()-6) 
 							: lx1.getLxbm());
 				jh.setPlanhistorycompara(yhdzxServer.queryJlBylx(lx1)>0 ? "是" : "否");
 				boolean jhresult=yhdzxServer.insertYhdzx_jh(jh);

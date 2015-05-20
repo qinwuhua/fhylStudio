@@ -338,7 +338,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().indexOf(gcgj.getXzqhdm())) 
+							gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().length()-6) 
 									: gcgj.getLxbm());
 							map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
 						}
@@ -477,7 +477,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 		if(gcgjServer.queryJhExist(gcgj)==0){
 			Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
 			if(queryGPSBylxbm!=null){
-				gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().indexOf(gcgj.getXzqhdm())) 
+				gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().length()-6) 
 						: gcgj.getLxbm());
 				jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
 				boolean jhresult=gcgjServer.insertGcgjJh(jh);

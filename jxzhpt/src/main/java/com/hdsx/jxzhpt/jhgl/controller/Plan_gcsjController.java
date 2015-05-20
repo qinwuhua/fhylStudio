@@ -394,7 +394,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().indexOf(lx.getXzqhdm())) 
+							lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().length()-6) 
 									: lx.getLxbm());
 							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
 						}
@@ -448,45 +448,49 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
-	public void insertGcsj() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
-			jh.setJh_sbthcd("2");
-		}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
-			jh.setJh_sbthcd("0");
-		}
-		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
-		lx1.setTsdq(lx.getTsdq());
-		lx1.setXzqhdm(lx.getXzqhdm());
-		lx1.setLxbm(lx.getLxbm());
-		lx1.setQdzh(lx.getQdzh());
-		lx1.setZdzh(lx.getZdzh());
-		lx1.setGydwdm(lx.getGydwdm());
-		lx1.setYjsdj(lx.getYjsdj());
-		lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
-		//查询是否有此计划
-		if(gcsjServer.queryJhExist(lx1)==0){
-			if(gcsjServer.queryGPSBylxbm(lx1)!=null){
-				UUID jhId = UUID.randomUUID(); 
-				lx.setJhid(jhId.toString());
-				jh.setId(jhId.toString());
-				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
-						: lx1.getLxbm());
-				jh.setSfylsjl(gcsjServer.queryJlBylx(lx1)>0 ? "是" : "否");
-				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
-				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
-				if(lxresult && jhresult){
-					strResult="true";
+	public void insertGcsj(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+				jh.setJh_sbthcd("2");
+			}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
+				jh.setJh_sbthcd("0");
+			}
+			Plan_lx_gcsj lx1=new Plan_lx_gcsj();
+			lx1.setTsdq(lx.getTsdq());
+			lx1.setXzqhdm(lx.getXzqhdm());
+			lx1.setLxbm(lx.getLxbm());
+			lx1.setQdzh(lx.getQdzh());
+			lx1.setZdzh(lx.getZdzh());
+			lx1.setGydwdm(lx.getGydwdm());
+			lx1.setYjsdj(lx.getYjsdj());
+			lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
+			//查询是否有此计划
+			if(gcsjServer.queryJhExist(lx1)==0){
+				if(gcsjServer.queryGPSBylxbm(lx1)!=null){
+					UUID jhId = UUID.randomUUID(); 
+					lx.setJhid(jhId.toString());
+					jh.setId(jhId.toString());
+					lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().length()-6) 
+							: lx1.getLxbm());
+					jh.setSfylsjl(gcsjServer.queryJlBylx(lx1)>0 ? "是" : "否");
+					boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
+					boolean lxresult = gcsjServer.insertGcsj_lx(lx);
+					if(lxresult && jhresult){
+						strResult="true";
+					}
+				}else{
+					strResult="none";
 				}
 			}else{
-				strResult="none";
+				strResult="have";
 			}
-		}else{
-			strResult="have";
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
 	}
 	public void insertGcsjlx(){
 		try{

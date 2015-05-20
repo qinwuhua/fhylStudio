@@ -452,3 +452,17 @@ function loadTsdq(id){
 	    textField:'text'
 	}); 
 }
+function getunit2(gydwdm){
+	var result=0;
+	var sheng = new RegExp("^[0-9]{7}0000$");
+	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+	if(shi1.test(gydwdm) || shi2.test(gydwdm)){
+		result=9;
+	}else if(sheng.test(gydwdm)){
+		result=7;
+	}else{
+		result=11;
+	}
+	return result;
+}

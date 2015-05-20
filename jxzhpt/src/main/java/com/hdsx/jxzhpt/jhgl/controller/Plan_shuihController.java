@@ -319,7 +319,7 @@ public class Plan_shuihController extends BaseActionSupport {
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().indexOf(shuih.getXzqhdm())) 
+							shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().length()-6) 
 									: shuih.getLxbm());
 							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 						}
@@ -460,7 +460,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				UUID jhId = UUID.randomUUID(); 
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
-				shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().indexOf(shuih.getXzqhdm())) 
+				shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().length()-6) 
 						: shuih.getLxbm());
 				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 				boolean jhresult = shuihServer.insertShuihJh(jh);
