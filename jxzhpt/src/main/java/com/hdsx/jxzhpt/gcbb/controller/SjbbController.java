@@ -93,7 +93,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 				et.add(new Excel_tilte("座/项目数",1,1,2,2));
 				et.add(new Excel_tilte("延米",1,1,3,3));
 				et.add(new Excel_tilte("处治里程",1,1,4,4));
-				et.add(new Excel_tilte("补助资金(万元)",1,1,5,5));
+				et.add(new Excel_tilte("地方补助资金(万元)",1,1,5,5));
 				et.add(new Excel_tilte("部安排资金",1,1,6,6));
 				et.add(new Excel_tilte("总投资(万元)",1,1,7,7));
 				eldata.setEt(et);//将表头内容设置到类里面
