@@ -82,7 +82,7 @@
 			gclmsjxm(jh,lx);
 		}
 		function exportExcel_gcsj(){
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+filterGydwdm($("#gydw").combo("getValue"));
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+getgydw("gydw");
 			window.location.href="/jxzhpt/jhgl/exportExcel_gcsj.do?"+param;
 		}
 		$(window).resize(function () { 

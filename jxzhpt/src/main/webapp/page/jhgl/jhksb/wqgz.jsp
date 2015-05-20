@@ -103,7 +103,6 @@
 		}
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.sbnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,
 						'lx.gydwbm':$.cookie("unit")};
 				if(roleName()=="市级"){
@@ -135,9 +134,6 @@
 						}
 					}
 				});
-			}else{
-				alert("计划项目的资金不等于分到的资金！");
-			}
 		}
 		function sb(id,jh_sbthcd){
 			var date=new Date();
@@ -184,7 +180,7 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
+        						<span>&nbsp;桥梁名称：</span>
         						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
         					</p>
         					<p style="margin:8px 0px 8px 20px;">

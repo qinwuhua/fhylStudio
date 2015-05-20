@@ -106,6 +106,17 @@
 	}
 	
 	function insert(){
+		if($('#lxbm').val()==""){alert("路线编码不能为空！");return;
+		}else if($('#lxmc').val()==""){alert("路线名称不能为空！");return;
+		}else if($('#qdzh').val()==""){alert("起点桩号不能为空！");return;
+		}else if($('#zdzh').val()==""){alert("止点桩号不能为空！");return;
+		}else if($('#qzlc').val()==""){alert("起止里程不能为空！");return;
+		}else if($('#yhlc').val()==""){alert("隐患里程不能为空！");return;
+		}else if($('#jhkgsj').datebox("getText")==""){alert("计划开工时间不能为空");return;
+		}else if($('#jhwgsj').datebox("getText")==""){alert("计划完工时间不能为空！");return;
+		}else if($('#xmmc').val()==""){alert("项目名称不能为空！");return;
+		}else if($('#yhlb').combobox("getValue")==""){alert("养护类别不能为空！");return;
+		}else if($('#pfztz').val()==""){alert("批复总投资不能为空！");return;}
 		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
@@ -230,13 +241,13 @@
 					路线编码
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lxbm" style="width:120px;" type="text"/>
+					<input id="lxbm" style="width:120px;" type="text"/><span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					路线名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="lxmc" style="width: 120px;" type="text"/>
+					<input id="lxmc" style="width: 120px;" type="text"/><span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					建设地点
@@ -250,21 +261,21 @@
 					起点桩号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="qdzh" onblur="jisuanlc(this)" style="width: 120px;" type="text"/>
+					<input id="qdzh" onblur="jisuanlc(this)" style="width: 120px;" type="text"/><span style="color: red;">  *</span>
 					<div id="qdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spqdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					止点桩号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="zdzh" onblur="jisuanlc(this)" style="width: 120px;" type="text"/>
-					<div id="zdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spzdzh">0</span></div>
+					<input id="zdzh" onblur="jisuanlc(this)" style="width: 120px;" type="text"/><span style="color: red;">  *</span>
+					<div id="zdts" style="color:red;font-size:xx-small; ;display: none;">止点桩号要<=<span id="spzdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					起止里程
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="qzlc" style="width: 90px;" type="text"/>公里
+					<input id="qzlc" style="width: 90px;" type="text"/>公里<span style="color: red;">  *</span>
 				</td>
 			</tr>
             <tr style="height: 30px;">
@@ -292,7 +303,7 @@
 					原技术等级
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<select id="yjsdj" style="width: 100px;"></select>&nbsp;
+					<select id="yjsdj" style="width: 100px;"></select><span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					原路面类型
@@ -304,7 +315,7 @@
 					隐患里程
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" id="yhlc" style="width:90px;" type="text"/>公里
+					<input onblur="check(this)" id="yhlc" style="width:90px;" type="text"/>公里<span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -390,13 +401,13 @@
 					计划开工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhkgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
+					<input id="jhkgsj" type="text" style="width: 100px;" class="easyui-datebox"></input><span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划完工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhwgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
+					<input id="jhwgsj" type="text" style="width: 100px;" class="easyui-datebox"></input><span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -410,13 +421,13 @@
 					项目名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmmc" style="width: 120px;"/>
+					<input type="text" id="xmmc" style="width: 120px;"/><span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					养护类别
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<select id="yhlb" style="width: 100px;"></select>
+					<select id="yhlb" style="width: 100px;"></select><span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -444,19 +455,19 @@
 					垫层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="dc" style="width:100px;"/>m³
+					<input onblur="check(this)" type="text" id="dc" value="0" style="width:100px;"/>m³
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					基层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="jc" style="width:100px;"/>m³
+					<input onblur="check(this)" type="text" id="jc" value="0" style="width:100px;"/>m³
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					面层
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="mc" style="width:100px;"/>km
+					<input onblur="check(this)" type="text" id="mc" value="0" style="width:100px;"/>km
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -484,19 +495,19 @@
 					批复总投资
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="pfztz" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="pfztz" style="width: 80px;"/> 万元<span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划使用部补助金额
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="bbz" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="bbz" style="width: 80px;"/> 万元<span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					计划使用省补助资金
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="dfzc" style="width: 100px;"/> 万元
+					<input onblur="check(this)" type="text" id="dfzc" style="width: 80px;"/> 万元<span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

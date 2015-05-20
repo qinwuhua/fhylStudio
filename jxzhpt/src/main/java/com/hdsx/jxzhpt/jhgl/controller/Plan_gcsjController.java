@@ -240,37 +240,41 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void exportExcel_gcsj(){
-		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
-		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-		List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
-		List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
-		for(Plan_gcsj item : queryGcsjList){
-			List<Plan_lx_gcsj> lxlist = item.getPlan_lx_gcsjs();
-			for(Plan_lx_gcsj itemlx : lxlist){
-				Map<String, String> lxmap=new HashMap<String, String>();
-				lxmap.put("0", itemlx.getGydw());
-				lxmap.put("1", itemlx.getXzqhmc());
-				lxmap.put("2", itemlx.getLxbm());
-				lxmap.put("3", itemlx.getLxmc());
-				lxmap.put("4", itemlx.getQdzh());
-				lxmap.put("5", itemlx.getZdzh());
-				lxmap.put("6", itemlx.getQzlc());
-				lxmap.put("7", itemlx.getXmlc());
-				exceData.add(lxmap);
+		try{
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
+			List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
+			for(Plan_gcsj item : queryGcsjList){
+				List<Plan_lx_gcsj> lxlist = item.getPlan_lx_gcsjs();
+				for(Plan_lx_gcsj itemlx : lxlist){
+					Map<String, String> lxmap=new HashMap<String, String>();
+					lxmap.put("0", itemlx.getGydw());
+					lxmap.put("1", itemlx.getXzqhmc());
+					lxmap.put("2", itemlx.getLxbm());
+					lxmap.put("3", itemlx.getLxmc());
+					lxmap.put("4", itemlx.getQdzh());
+					lxmap.put("5", itemlx.getZdzh());
+					lxmap.put("6", itemlx.getQzlc());
+					lxmap.put("7", itemlx.getXmlc());
+					exceData.add(lxmap);
+				}
 			}
+			List<String> excelTitle=new ArrayList<String>();
+			excelTitle.add("管养单位");
+			excelTitle.add("行政区划");
+			excelTitle.add("路线编码");
+			excelTitle.add("路线名称");
+			excelTitle.add("起点桩号");
+			excelTitle.add("止点桩号");
+			excelTitle.add("起止里程");
+			excelTitle.add("项目里程");
+			String tableName="工程改建路面升级";
+			HttpServletResponse response= getresponse();
+			ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		List<String> excelTitle=new ArrayList<String>();
-		excelTitle.add("管养单位");
-		excelTitle.add("行政区划");
-		excelTitle.add("路线编码");
-		excelTitle.add("路线名称");
-		excelTitle.add("起点桩号");
-		excelTitle.add("止点桩号");
-		excelTitle.add("起止里程");
-		excelTitle.add("项目里程");
-		String tableName="工程改建路面升级";
-		HttpServletResponse response= getresponse();
-		ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
 	}
 	
 	public void exportZjxdExcel(){

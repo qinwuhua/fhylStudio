@@ -453,7 +453,7 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="scqdzh" type="text"/> &nbsp;
+					<input id="scqdzh" type="text" style="width: 120px;"/>
 					<input id="sckid" type="hidden"/>
 				</td>
 				<td
@@ -461,14 +461,14 @@
 					class="style1">止点桩号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="sczdzh" type="text"/>
+					<input id="sczdzh" type="text" style="width: 120px;"/>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">总里程
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="sczlc" type="text"/>公里 &nbsp;
+					<input id="sczlc" type="text" style="width: 120px;"/>公里 
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -477,7 +477,7 @@
 				</td>
 				<td colspan="5"
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<input id="scyhlc" type="text"/>公里 &nbsp;
+					<input id="scyhlc" type="text" style="width: 120px;"/>公里
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -486,21 +486,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="fapgdw" type="text"/> &nbsp;
+					<input id="fapgdw" type="text" style="width: 120px;"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">方案审查单位</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="fascdw" type="text"/> &nbsp;
+					<input id="fascdw" type="text" style="width: 120px;"/>
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">方案审批时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="faspsj" type="text" class="easyui-datebox"/> &nbsp;
+					<input id="faspsj" type="text" style="width: 120px;" class="easyui-datebox"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -509,21 +509,21 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="spwh" type="text"/> &nbsp;
+					<input id="spwh" type="text" style="width: 120px;"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">投资估算</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="tzgs" type="text"/> 万元
+					<input id="tzgs" type="text" style="width: 120px;"/> 万元
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">建设性质
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="jsxz" type="text"/> &nbsp;
+					<input id="jsxz" type="text" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -562,14 +562,14 @@
 					class="style1">计划开工时间</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="JHKGSJ" type="text" class="easyui-datebox"></input>
+					<input id="JHKGSJ" type="text" style="width: 100px;" class="easyui-datebox"></input>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">计划完工时间
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="JHWGSJ" type="text" class="easyui-datebox"></input>
+					<input id="JHWGSJ" type="text" style="width: 100px;" class="easyui-datebox"></input>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -578,44 +578,39 @@
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="JHXDSJ" type="text" class="easyui-datebox"></input>
+					<input id="JHXDSJ" type="text" class="easyui-datebox" style="width: 120px;"></input>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">计划完成</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="JHWC_C"/> 处&nbsp; &nbsp;
+					<input type="text" id="JHWC_C" style="width: 100px;"/> 处
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计单位
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="SJDW"/> &nbsp;
+					<input type="text" id="SJDW" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计批复单位
 				</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="SJPFDW"/> &nbsp;
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input type="text" id="SJPFDW" style="width: 120px;"/>
 				</td>
-				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">批复文号</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="PFWH"/> &nbsp;
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					<input type="text" id="PFWH" style="width: 120px;"/>
 				</td>
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">批复时间
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">批复时间
 				</td>
-				<td
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="PFSJ" type="text" class="easyui-datebox"></input>
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<input id="PFSJ" type="text" class="easyui-datebox" style="width: 100px;"></input>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -623,13 +618,13 @@
 					批复总投资
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="JHZTZ" onblur="bzSum()"></input> 万元
+					<input type="text" id="JHZTZ" onblur="bzSum()" style="width: 120px;"></input> 万元
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
 					class="style1">计划使用部补助金额</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="bbz" onblur="zjSum()"/>万元
+					<input type="text" id="bbz" onblur="zjSum()" style="width: 120px;"/>万元
 					<br/><span id="bbzts"></span>
 				</td>
 				<td
@@ -645,7 +640,7 @@
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;计划下达文号</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="JHXDWH" /> &nbsp;
+					<input type="text" id="JHXDWH" style="width: 120px;"/>
 				</td>
 				<td
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"
@@ -654,14 +649,13 @@
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<!-- <input type="text" id="SFSQABLBZ"/>  -->
 					<span id="sfsqablbz"></span>
-					&nbsp;
 				</td>
 				<td
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">&nbsp;按比例补助申请文号
 				</td>
 				<td
 					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input type="text" id="ABLBZWH"/> &nbsp;
+					<input type="text" id="ABLBZWH" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

@@ -224,35 +224,41 @@ public class Plan_shuihController extends BaseActionSupport {
 	 * 导出计划Excel
 	 */
 	public void exportExcel_shuih(){
-		List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
-		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
-		for (Plan_shuih item : queryShuihList) {
-			List<Plan_lx_shuih> shuihs = item.getShuihs();
-			for (Plan_lx_shuih itemlx: shuihs) {
-				Map<String, String> lxmap=new HashMap<String, String>();
-				lxmap.put("0", itemlx.getGydw());
-				lxmap.put("1", itemlx.getXzqhmc());
-				lxmap.put("2", itemlx.getLxbm());
-				lxmap.put("3", itemlx.getLxmc());
-				lxmap.put("4", itemlx.getQdzh());
-				lxmap.put("5", itemlx.getZdzh());
-				lxmap.put("6", itemlx.getQzlc());
-				lxmap.put("7", itemlx.getYhlc());
-				excelData.add(lxmap);
+		try{
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
+			List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
+			for (Plan_shuih item : queryShuihList) {
+				List<Plan_lx_shuih> shuihs = item.getShuihs();
+				for (Plan_lx_shuih itemlx: shuihs) {
+					Map<String, String> lxmap=new HashMap<String, String>();
+					lxmap.put("0", itemlx.getGydw());
+					lxmap.put("1", itemlx.getXzqhmc());
+					lxmap.put("2", itemlx.getLxbm());
+					lxmap.put("3", itemlx.getLxmc());
+					lxmap.put("4", itemlx.getQdzh());
+					lxmap.put("5", itemlx.getZdzh());
+					lxmap.put("6", itemlx.getQzlc());
+					lxmap.put("7", itemlx.getYhlc());
+					excelData.add(lxmap);
+				}
 			}
+			List<String> excelTitle=new ArrayList<String>();
+			excelTitle.add("管养单位");
+			excelTitle.add("行政区划");
+			excelTitle.add("路线编码");
+			excelTitle.add("路线名称");
+			excelTitle.add("起点桩号");
+			excelTitle.add("止点桩号");
+			excelTitle.add("起止里程");
+			excelTitle.add("项目里程");
+			String tableName="水毁项目";
+			HttpServletResponse response= getresponse();
+			ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		List<String> excelTitle=new ArrayList<String>();
-		excelTitle.add("管养单位");
-		excelTitle.add("行政区划");
-		excelTitle.add("路线编码");
-		excelTitle.add("路线名称");
-		excelTitle.add("起点桩号");
-		excelTitle.add("止点桩号");
-		excelTitle.add("起止里程");
-		excelTitle.add("项目里程");
-		String tableName="水毁项目";
-		HttpServletResponse response= getresponse();
-		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 	}
 	/**
 	 * 导入计划Excel
