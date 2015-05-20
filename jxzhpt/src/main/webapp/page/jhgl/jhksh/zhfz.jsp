@@ -45,7 +45,7 @@
 			}*/
 		});
 		function searchZhfz(){
-			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null};
 			lx.gydwdm = filterGydwdm(lx.gydwdm);
 			lx.gydwdm=null;
@@ -54,7 +54,7 @@
 				lx.lxmc=$('#txtRoad').val();
 			}
 			if($('#sbnf').combobox('getText')!=""){
-				jh.jhnf=$('#sbnf').combobox('getValue');
+				jh.sbnf=$('#sbnf').combobox('getValue');
 			}
 			if($('#ddlSHZT').combobox('getValue')=="未审核"){
 				jh.jh_sbthcd=4;

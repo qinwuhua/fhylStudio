@@ -156,6 +156,9 @@ function zhfzxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -235,12 +238,15 @@ function zhfzxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
 }
 function zhfzxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-190,width:$('#searchField').width(),queryParams:params,
@@ -320,6 +326,9 @@ function zhfzxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -543,7 +552,8 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:grid.onSelect,
-	    onClickRow:grid.onClickRow
+	    onClickRow:grid.onClickRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

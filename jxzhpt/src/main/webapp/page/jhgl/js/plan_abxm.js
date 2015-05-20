@@ -158,6 +158,9 @@ function abgcxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumAbgc(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -240,6 +243,9 @@ function abgcxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumAbgc(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -326,6 +332,9 @@ function abgcxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumAbgc(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -630,7 +639,8 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:grid.onSelect,
-	    onClickRow:grid.onClickRow
+	    onClickRow:grid.onClickRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

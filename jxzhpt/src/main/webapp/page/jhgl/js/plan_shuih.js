@@ -126,6 +126,9 @@ function shxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -206,6 +209,9 @@ function shxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -281,6 +287,9 @@ function shxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -569,7 +578,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

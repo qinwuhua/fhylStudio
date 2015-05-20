@@ -153,6 +153,9 @@ function gclmgjxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -237,6 +240,9 @@ function gclmgjxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -317,6 +323,9 @@ function gclmgjxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -509,7 +518,8 @@ function lxztz(){
 		result=false;
 		return result;
 	}*/
-	if($('#pfztz').val()==Number($('#jhsybzje').val())+Number($('#jhsydfzcje').val())){
+	if(Number($('#pfztz').val()=="" ? "0" : $('#pfztz').val())>=Number($('#jhsybzje').val()=="" ? "0" : $('#jhsybzje').val())
+			+ Number($('#jhsydfzcje').val()=="" ? "0" : $('#jhsydfzcje').val())){
 		result=true;
 	}else{
 		result=false;
@@ -546,7 +556,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

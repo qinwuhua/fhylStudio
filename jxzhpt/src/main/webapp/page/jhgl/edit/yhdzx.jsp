@@ -26,8 +26,6 @@
 		var xxId=parent.YMLib.Var.jhbm;
 		var lxlist;
 		$(function(){
-			loadUnit("txtGYDWMC",$.cookie("unit")); 
-			loadDist("txtXZQHMC",$.cookie("dist"));
 			loadBmbm2('txtJSDJ','技术等级');
 			loadBmbm2('txtGCFL','养护类别');
 			sbnf("lblYear");
@@ -237,6 +235,7 @@
 					if(data.lx && data.jh){
 						alert("修改成功！");
 						lxlist=newlxlist;
+						parent.$('#grid').datagrid('reload');
 						/*var params={'jh.id':$('#jhid').val(),
 								'jh.fee':$('#lxhsjf').html(),'jh.newfee':$('#lxspjf').html(),
 								'jh.totalplacefund':$('#dfptztz').html(),'jh.totalsubsidyfund':$('#zbzzj').html(),
@@ -386,6 +385,8 @@
 			return (kd*(hd/100)*1000)*sddj/10000;
 		}
 		function sellx(newValue){
+			loadUnit("txtGYDWMC",lxlist[newValue].gydwdm); 
+			loadDist("txtXZQHMC",lxlist[newValue].xzqhdm);
 			$('#tsdq').html(lxlist[newValue].tsdq);
 			$('#lxid').val(lxlist[newValue].lxid);
 			$('#txtLXBM').val(lxlist[newValue].lxbm);
