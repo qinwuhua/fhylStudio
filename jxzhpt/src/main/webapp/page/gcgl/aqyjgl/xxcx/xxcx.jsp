@@ -93,12 +93,12 @@ a:active {
         							<input type="text" id="kssj" >
         							<span>至</span>
         							<input type="text" id="jssj" >
-        							<span>状态：</span>
-        							<select id="ckzt">
-        								<option value="">全部</option>
-        								<option value="未查看">未查看</option>
-        								<option value="已查看">已查看</option>
-        							</select>
+<!--         							<span>状态：</span> -->
+<!--         							<select id="ckzt"> -->
+<!--         								<option value="">全部</option> -->
+<!--         								<option value="未查看">未查看</option> -->
+<!--         								<option value="已查看">已查看</option> -->
+<!--         							</select> -->
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
