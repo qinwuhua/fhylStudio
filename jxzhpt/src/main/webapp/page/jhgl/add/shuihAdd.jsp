@@ -129,7 +129,7 @@
 			alert("起止里程不能为空");
 			return;
 		}
-		if($("#xmlc").val()==''||$("#xmlc").val()==null){
+		if($("#yhlc").val()==''||$("#yhlc").val()==null){
 			alert("隐患里程不能为空");
 			return;
 		}
@@ -144,8 +144,7 @@
 		if($('#xmmc').val()==''||$('#xmmc').val()==null){
 			alert("项目名称不能为空");
 			return;
-		},,
-		'jh.jhsybzje':,'jh.jhsydfzcje':
+		}
 		if($('#pfztz').val()==''||$('#pfztz').val()==null){
 			alert("批复总投资不能为空");
 			return;

@@ -144,7 +144,7 @@
 		if($('#xmmc').val()==''||$('#xmmc').val()==null){
 			alert("项目名称不能为空");
 			return;
-		},
+		}
 		if($('#pftz').val()==''||$('#pftz').val()==null){
 			alert("批复总投资不能为空");
 			return;
