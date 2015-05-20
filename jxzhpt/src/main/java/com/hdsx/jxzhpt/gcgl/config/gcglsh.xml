@@ -296,11 +296,7 @@
 				<if test="shzt != null and  shzt != ''">
 						and ${tiaojian} like '%'||trim(#{shzt})||'%'
 				</if>
-				)
-			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-	      		 )jh on  l.jhid=jh.id 
-			where 1=1 
-			and jh.id in (
+				and p.id in (
 					select l.jhid from PLAN_lx_shuih l
 					where 1=1 
 						<if test="gydw != null and  gydw != ''">
@@ -309,8 +305,12 @@
 						<if test="lxmc != null and  lxmc != ''">
 								and l.lxmc like '%'||trim(#{lxmc})||'%'
 						</if>
-						
 					     )
+				)
+			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	      		 )jh on  l.jhid=jh.id 
+			where 1=1 
+			
 					) t
 			)
 		
@@ -360,6 +360,17 @@
 				<if test="jgzt != null and  jgzt != ''">
 						and p.jgzt like '%'||trim(#{jgzt})||'%'
 				</if>
+				and p.id in (
+					select l.jhid from PLAN_lx_shuih l
+					where 1=1 
+						<if test="gydw != null and  gydw != ''">
+							${gydw}
+						</if>
+						<if test="lxmc != null and  lxmc != ''">
+								and l.lxmc like '%'||trim(#{lxmc})||'%'
+						</if>
+						
+					     )
 				)
 				where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 				) jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
@@ -372,17 +383,7 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-			and jh.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
+			
 					) t
 			)
 		
