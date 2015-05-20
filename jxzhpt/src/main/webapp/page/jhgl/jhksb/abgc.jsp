@@ -33,13 +33,15 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
+			var myDate = new Date();
 			sbnf("sbnf");
+			$('#sbnf').combobox("setValue",myDate.getFullYear());
+			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if(roleName()=="市级" || roleName()=="省级"){
 				jh.jh_sbthcd=2;
 			}
-			queryZjqf($('#sbnf').combobox("getValue"));
 			if(getParam("t")=='1'){
 				if(roleName()=="县级"){
 					jh.jh_sbthcd=0;
@@ -98,7 +100,6 @@
 		}
 		function sbList(){
 			//判断是否能上报，如果可以上报就查询所有要上报的计划，并上报
-			if($('#lblQfzj').html()==$('#lblBTZ').html()){
 				var param={'jh.jhnf':zjqf['zjqf.nf'],'jh.jh_sbthcd':0,'lx.gydwbm':filterGydwdm($.cookie("unit"))};
 				if(roleName()=="市级"){
 					param['jh.jh_sbthcd']=2;
@@ -126,9 +127,6 @@
 						}
 					}
 				});
-			}else{
-				alert("计划项目的资金不等于分到的资金！");
-			}
 		}
 		function sb(id,jh_sbthcd){
 			var date=new Date();
@@ -214,7 +212,8 @@
 								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select>
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="无" selected="selected">否</option>
+									<option value="" selected="selected">全部</option>
+									<option value="无">否</option>
 									<option value="是">是</option>
 								</select>
         					</p>

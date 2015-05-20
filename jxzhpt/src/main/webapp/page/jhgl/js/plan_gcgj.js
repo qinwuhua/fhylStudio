@@ -32,22 +32,6 @@ function querySumGcgj(jh,lx){
 		}
 	});
 }
-function sbnf(id){
-	var myDate = new Date();
-	var years=[];
-	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
-	}
-	$('#'+id).combobox({    
-	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
-	});
-	$('#'+id).combobox("setValue",first);
-}
 function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
@@ -169,6 +153,9 @@ function gclmgjxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -203,7 +190,7 @@ function gclmgjxm_sb(jh,lx){
 					var result="";
 					if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2)){
 						result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-						if(row.jh_sbthcd==2)
+						if(row.jh_sbthcd==2 && Number(row.jh_sbthcd)>11-Number(getunit2(row.tbbm)))
 							result+='   |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 					}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
 						result+="已上报";
@@ -253,6 +240,9 @@ function gclmgjxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -333,6 +323,9 @@ function gclmgjxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumGcgj(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -525,7 +518,8 @@ function lxztz(){
 		result=false;
 		return result;
 	}*/
-	if($('#pfztz').val()==Number($('#jhsybzje').val())+Number($('#jhsydfzcje').val())){
+	if(Number($('#pfztz').val()=="" ? "0" : $('#pfztz').val())>=Number($('#jhsybzje').val()=="" ? "0" : $('#jhsybzje').val())
+			+ Number($('#jhsydfzcje').val()=="" ? "0" : $('#jhsydfzcje').val())){
 		result=true;
 	}else{
 		result=false;
@@ -562,7 +556,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

@@ -165,6 +165,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		try {
 			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			List<Plan_zhfz> list = zhfzServer.queryZhfzList(page, rows, jh, lx);
+			System.out.println("个数："+list.size());
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("rows", zhfzServer.queryZhfzList(page, rows, jh, lx));
 			jsonMap.put("total", zhfzServer.queryZhfzCount(jh, lx));

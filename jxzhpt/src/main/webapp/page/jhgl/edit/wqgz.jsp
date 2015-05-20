@@ -39,8 +39,8 @@
 					$('#sckid').val(data.sckid);
 					$('#editjhnf').combobox('select',data.sbnf);
 					$('#jhkgsj').datebox('setValue',data.jhkgsj);
-					$('#jhwgsj').datebox('setValue',data.jhkgsj);
-					$('#jhxdsj').datebox('setValue',data.jhkgsj);
+					$('#jhwgsj').datebox('setValue',data.jhwgsj);
+					$('#jhxdsj').datebox('setValue',data.xdsj);
 					$('#jhxdwh').val(data.jhxdwh);
 					$('#sjdw').val(data.sjdw);
 					$('#sjpfdw').val(data.sjpfdw);
@@ -135,7 +135,7 @@
 				'fileDataName' : 'uploadGk',
 				'auto' : false,
 				'multi' : false,
-				'buttonImg': '../../../js/uploader/btn_view.png',
+				'buttonImg': '../../../js/uploader/bdll.png',
 				'simUploadLimit' : 3,
 				'sizeLimit' : 20000000,
 				'queueSizeLimit' : 5,
@@ -169,7 +169,7 @@
 				'fileDataName' : 'uploadSjt',
 				'auto' : false,
 				'multi' : false,
-				'buttonImg': '../../../js/uploader/btn_view.png',
+				'buttonImg': '../../../js/uploader/bdll.png',
 				'simUploadLimit' : 3,
 				'sizeLimit' : 20000000,
 				'queueSizeLimit' : 5,
@@ -651,10 +651,12 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="fileQueue"></div>
-						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
+						<div id="fileQueue"></div>
+						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>
 						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
-						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">
+							<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" style="border-width:0px;cursor: hand;" />
+						</a>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -663,9 +665,11 @@
 				</td>
 				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
 					<div id="fileQueue1"></div>
-						<a id="xz_sjsgt" href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
-						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
-						<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					<a id="xz_sjsgt" href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">
+						<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" style="border-width:0px;cursor: hand;" />
+					</a>
 				</td>
 			</tr>
 			<tr style="height: 50px;">

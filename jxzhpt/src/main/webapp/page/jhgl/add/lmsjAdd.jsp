@@ -240,19 +240,19 @@
                 	路线编码
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="lxbm" style="width: 120px;"/>
+                	<input type="text" id="lxbm" style="width: 120px;"/><span style="color: red;">  *</span>
                 </td>
 				<td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">
                 	路线名称
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="lxmc" style="width: 120px;"/>
+                	<input type="text" id="lxmc" style="width: 120px;"/><span style="color: red;">  *</span>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	原技术等级
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-                	<select id="yjsdj" style="width: 100px;"></select>
+                	<select id="yjsdj" style="width: 100px;"></select><span style="color: red;">  *</span>
                 </td>
 			</tr>
 			<tr style="height: 30px;">
@@ -260,21 +260,21 @@
                 	起点桩号
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" onblur="jisuanlc(this)" id="qdzh" style="width: 120px;"/>
+                	<input type="text" onblur="jisuanlc(this)" id="qdzh" style="width: 120px;"/><span style="color: red;">  *</span>
                 	<div id="qdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spqdzh">0</span></div>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	止点桩号
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-                	<input type="text" onblur="jisuanlc(this)" id="zdzh" style="width: 120px;"/>
+                	<input type="text" onblur="jisuanlc(this)" id="zdzh" style="width: 120px;"/><span style="color: red;">  *</span>
                 	<div id="zdts" style="color:red;font-size:xx-small; ;display: none;">止点桩号桩号要<=<span id="spzdzh">0</span></div>
                 </td>
                 <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
                 	起止里程
                 </td>
                 <td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-                	<input type="text" id="qzlc" style="width: 80px;"/>（公里）
+                	<input type="text" id="qzlc" style="width: 80px;"/>（公里）<span style="color: red;">*</span>
             	</td>
             </tr>
             <tr style="height: 30px;">
@@ -294,7 +294,7 @@
 					项目里程
 				</td>
 				<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmlc" style="width: 80px;"/>（公里）
+					<input type="text" id="xmlc" style="width: 80px;"/>（公里）<span style="color: red;">*</span>
 				</td>
             </tr>
             <tr style="height: 30px;">
@@ -426,13 +426,13 @@
 					计划开工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhkgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
+					<input id="jhkgsj" type="text" style="width: 100px;" class="easyui-datebox"></input><span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划完工时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="jhwgsj" type="text" style="width: 100px;" class="easyui-datebox"></input>
+					<input id="jhwgsj" type="text" style="width: 100px;" class="easyui-datebox"></input><span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -452,7 +452,7 @@
 					项目名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="text" id="xmmc" style="width: 120px;"/>
+					<input type="text" id="xmmc" style="width: 120px;"/><span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -561,19 +561,19 @@
 					批复总投资
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" type="text" id="pftz" style="width: 80px;"/>&nbsp;万元
+					<input onblur="check(this)" type="text" id="pftz" style="width: 80px;"/>&nbsp;万元<span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划使用部补助金额
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" id="jhsybbzje" type="text" style="width: 80px;"/>&nbsp;万元
+					<input onblur="check(this)" id="jhsybbzje" type="text" style="width: 80px;"/>&nbsp;万元<span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">&nbsp;
 					计划使用省补助金额
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input onblur="check(this)" id="jhsysbzje" type="text" style="width: 80px;"/>&nbsp;万元
+					<input onblur="check(this)" id="jhsysbzje" type="text" style="width: 80px;"/>&nbsp;万元<span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

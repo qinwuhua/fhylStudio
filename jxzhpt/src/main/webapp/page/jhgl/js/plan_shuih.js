@@ -29,22 +29,6 @@ function querySumShuih(jh,lx){
 		}
 	});
 }
-function sbnf(id){
-	var myDate = new Date();
-	var years=[];
-	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
-	}
-	$('#'+id).combobox({    
-	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
-	});
-	$('#'+id).combobox("setValue",first);
-}
 function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
@@ -142,6 +126,9 @@ function shxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -173,7 +160,7 @@ function shxm_sb(jh,lx){
 	        	var result;
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<4)){
 					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					if(roleName()!="县级")
+					if(roleName()!="县级" && row.jh_sbthcd==2 && Number(row.jh_sbthcd)>11-Number(getunit2(row.tbbm)))
 						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 				}else{
 					result='已上报';
@@ -222,6 +209,9 @@ function shxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -297,6 +287,9 @@ function shxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumShuih(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -585,7 +578,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

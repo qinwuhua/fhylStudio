@@ -78,17 +78,18 @@ function sbnf(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
+	years.push({text:'全部',value:''});
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
 	}
-	$('#'+id).combobox({    
+	$('#'+id).combobox({
 	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
+	    valueField:'value',
+	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",first);
+	$('#'+id).combobox("setValue",'');
 }
 /**
  * 行政区划下拉框
@@ -450,4 +451,18 @@ function loadTsdq(id){
 	    valueField:'id',
 	    textField:'text'
 	}); 
+}
+function getunit2(gydwdm){
+	var result=0;
+	var sheng = new RegExp("^[0-9]{7}0000$");
+	var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$");
+	var shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
+	if(shi1.test(gydwdm) || shi2.test(gydwdm)){
+		result=9;
+	}else if(sheng.test(gydwdm)){
+		result=7;
+	}else{
+		result=11;
+	}
+	return result;
 }

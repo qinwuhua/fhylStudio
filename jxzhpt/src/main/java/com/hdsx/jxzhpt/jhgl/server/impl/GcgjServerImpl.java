@@ -73,6 +73,11 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 
 	@Override
+	public boolean editGcgjStatus(List<Plan_gcgj> list) {
+		return updateBatch("editGcgjStatusBatch", list)==list.size();
+	}
+	
+	@Override
 	public boolean editGcgjStatus(Plan_gcgj jh) {
 		return update("editGcgjStatus",jh)>0;
 	}

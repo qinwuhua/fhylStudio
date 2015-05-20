@@ -215,4 +215,9 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	public boolean editZjById(Plan_shuih jh) {
 		return update("editZjById", jh)>0;
 	}
+
+	@Override
+	public boolean editShuihStatus(List<Plan_shuih> list) {
+		return updateBatch("editShuihStatusBatch", list)==list.size();
+	}
 }

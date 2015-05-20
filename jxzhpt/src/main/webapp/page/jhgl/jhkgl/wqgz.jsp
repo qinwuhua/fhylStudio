@@ -113,7 +113,7 @@
         						<select id="xzqh" style="width:224px;"></select>
         						<span>&nbsp;路线名称：</span>
         						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;桥&nbsp;&nbsp;&nbsp;&nbsp;梁：</span>
+        						<span>&nbsp;桥梁名称：</span>
         						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
         					</p>
         					<p style="margin:8px 0px 8px 20px;">
@@ -155,7 +155,8 @@
 							<p style="margin:8px 0px 4px 20px;">
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
-									<option value="无" selected="selected">否</option>
+									<option value="" selected="selected">全部</option>
+									<option value="无">否</option>
 									<option value="是">是</option>
 								</select>
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>

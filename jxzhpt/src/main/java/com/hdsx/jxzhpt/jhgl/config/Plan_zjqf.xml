@@ -8,7 +8,12 @@
 		select * from plan_zjqf z where nf=#{nf} and (z.gydwbm=#{gydwbm} or z.parent=#{gydwbm})
 	</select>
 	<select id="queryZjqfByZjqf" parameterType="planzjqf" resultType="planzjqf">
-		select ID, GYDWBM, PARENT, NVL(WQGZ,0) wqgz, NVL(ABGC,0) abgc, NVL(ZHFZ,0) zhfz, NF from plan_zjqf z where nf=#{nf} and z.gydwbm=#{gydwbm}
+		<if test="gydwbm=='36'">
+			select z.parent,NVL(Sum(WQGZ),0) wqgz, NVL(sum(ABGC),0) abgc, NVL(sum(ZHFZ),0) zhfz, NF from plan_zjqf z where nf=#{nf} and parent=#{gydwbm} group by z.parent,nf
+		</if>
+		<if test="gydwbm!='36'">
+			select ID, GYDWBM, PARENT, NVL(WQGZ,0) wqgz, NVL(ABGC,0) abgc, NVL(ZHFZ,0) zhfz, NF from plan_zjqf z where nf=#{nf} and z.gydwbm=#{gydwbm}
+		</if>
 	</select>
 	<insert id="insertZjqfBatch" parameterType="planzjqf">
 		insert into plan_zjqf (id,gydwbm,parent,nf,wqgz,abgc,zhfz) values

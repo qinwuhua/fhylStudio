@@ -76,6 +76,7 @@ a:active {
         							<input type="text" id="qlmc" >
         						<span>项目年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<option value="">全部</option>
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
         						 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"

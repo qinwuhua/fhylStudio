@@ -227,7 +227,10 @@ where t1.spzt='1'
 			select 
 			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBBZJE v_8,JHSYDFZCZJ v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1' and c.tbyf is null and t1.jhnf=#{jhnf}
+			where t1.spzt='1' and c.tbyf is null 
+			<if test="jhnf != null and  jhnf != ''">
+					and t1.jhnf like '%'||trim(#{jhnf})||'%'
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -248,7 +251,10 @@ where t1.spzt='1'
 		t2.id v_0,
 		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_4,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pfztz) v_5,max(t2.jhsybzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from PLAN_GCGJ t2 left join PLAN_LX_GCGJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		where 1=1 and spzt='1' and c.tbyf is null 
+		<if test="jhnf != null and  jhnf != ''">
+					and t2.sbnf like '%'||trim(#{jhnf})||'%'
+			</if>
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -292,7 +298,10 @@ where t1.spzt='1'
 		t2.id v_0,
 		max(t2.jhnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pftz) v_5,max(t2.jhsybbzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from PLAN_GCSJ t2 left join PLAN_LX_GCSJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-		where 1=1 and spzt='1' and c.tbyf is null and t2.jhnf=#{jhnf}
+		where 1=1 and spzt='1' and c.tbyf is null 
+		<if test="jhnf != null and  jhnf != ''">
+					and t2.jhnf like '%'||trim(#{jhnf})||'%'
+			</if>
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -312,7 +321,10 @@ where t1.spzt='1'
 			select 
 			t2.id v_0,xzqhmc v_1,jhnf v_2,xmmc v_3,jsxz v_4,kgn v_5,wgn v_6,t2.ztz v_7,zytz v_8,dfta v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_HSLY t2 left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-			where 1=1 and c.tbyf is null and t2.jhnf=#{jhnf}
+			where 1=1 and c.tbyf is null 
+			<if test="jhnf != null and  jhnf != ''">
+					and t2.jhnf like '%'||trim(#{jhnf})||'%'
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -332,7 +344,10 @@ where t1.spzt='1'
 		t2.id v_0,
 		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pfztz) v_5,max(t2.jhsybzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from PLAN_SHUIH t2 left join PLAN_LX_SHUIH t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		where 1=1 and spzt='1' and c.tbyf is null 
+		<if test="jhnf != null and  jhnf != ''">
+					and t2.sbnf like '%'||trim(#{jhnf})||'%'
+			</if>
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -353,7 +368,10 @@ where t1.spzt='1'
 		t2.id v_0,
 		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_3,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.totalsubsidyfund) v_5,max(t2.totalinvest) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from PLAN_YHDZX t2 left join PLAN_LX_YHDZX t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-		where 1=1 and spzt='1' and c.tbyf is null and t2.sbnf=#{jhnf}
+		where 1=1 and spzt='1' and c.tbyf is null 
+		<if test="jhnf != null and  jhnf != ''">
+					and t2.sbnf like '%'||trim(#{jhnf})||'%'
+			</if>
 		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
@@ -373,7 +391,10 @@ where t1.spzt='1'
 			select 
 			t1.ID v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.lxbm v_3,t3.lxmc v_4,t3.qdzh v_5,t3.zdzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_ZHFZ t1 left join SCK_ZHFZ  t2 on t1.SCKID=t2.SCKID left join XMK_ZHFZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
+			where t1.spzt='1'  and c.tbyf is null 
+			<if test="jhnf != null and  jhnf != ''">
+					and t1.sbnf like '%'||trim(#{jhnf})||'%'
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -392,7 +413,10 @@ where t1.spzt='1'
 			select 
 			t1.id v_0,t3.gydw v_1,t3.xzqhmc v_2,t3.qlbh v_3,t3.qlmc v_4,t3.jsdj v_5,t3.qlzxzh v_6,t1.pfztz v_7,JHSYBZJE v_8,JHSYDFZCJE v_9,0 v_10,0 v_11,'同意' v_12,#{tbyf} v_13,to_char(sysdate,'yyyy-mm-dd') v_14,#{tbr} v_15
 			from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-			where t1.spzt='1' and t1.sbnf=#{jhnf} and c.tbyf is null 
+			where t1.spzt='1' and c.tbyf is null 
+			<if test="jhnf != null and  jhnf != ''">
+					and t1.sbnf like '%'||trim(#{jhnf})||'%'
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -452,7 +476,10 @@ where t1.spzt='1'
 		t3.gydw,t3.xzqhdm,t3.xzqhmc,t3.lxjsdj,t3.lxbm,t3.lxmc,t3.qdzh,t3.zdzh,t2.sczlc qzlc,t2.scyhlc yhlc,t3.gjxjnd,t3.yhnr,t3.xmnf,t3.xmtype,t3.bz,t3.tsdq,
 		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
 		from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-		where t1.spzt='1' and t1.jhnf=#{xmnf}
+		where t1.spzt='1' 
+		<if test="xmnf != null and  xmnf != ''">
+			and t1.jhnf like '%'||trim(#{xmnf})||'%'
+		</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -481,7 +508,10 @@ where t1.spzt='1'
 	</select>
 	 <select id="selectWqgzjhListcount1" parameterType="gcglabgc" resultType="int">
 	 	select count(*) from PLAN_ABGC t1 left join SCK_ABGC  t2 on t1.SCKID=t2.SCKID left join XMK_ABGC t3 on t2.xmkid=t3.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t1.id=c.jhid
-	 	where t1.spzt='1' and t1.jhnf=#{xmnf}
+	 	where t1.spzt='1' 
+			<if test="xmnf != null and  xmnf != ''">
+					and t1.jhnf like '%'||trim(#{xmnf})||'%'
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>

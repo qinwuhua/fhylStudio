@@ -116,7 +116,7 @@
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
 			select rownum as num,t.* from (
-				select jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
+				select jh.tbbm,jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
 				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
 				lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
@@ -356,6 +356,19 @@
 		<if test="gksjwh!=null">,gksjwh=#{gksjwh}</if>
 		<if test="sjpfwh!=null">,sjpfwh=#{sjpfwh}</if>
 		<if test="remarks!=null">,remarks=#{remarks}</if>
+		where id=#{id}
+	</update>
+	<update id="editGcgjStatusBatch" parameterType="java.util.List">
+		update plan_gcsj set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
 		where id=#{id}
 	</update>
 	<update id="editGcsjStatus" parameterType="plan_gcsj">
@@ -797,7 +810,8 @@
 			<if test="sjpfwh!=null">sjpfwh,</if>
 			<if test="remarks!=null">remarks,</if>
 			<if test="sfylsjl!=null">sfylsjl</if>
-			<if test="jh_sbthcd!=null">,jh_sbthcd</if>) 
+			<if test="jh_sbthcd!=null">,jh_sbthcd</if>
+			<if test="tbbm!=null">,tbbm</if>) 
 		values(#{id},
 			<if test="fapgdw!=null">#{fapgdw},</if>
 			<if test="fascdw!=null">#{fascdw},</if>
@@ -837,7 +851,8 @@
 			<if test="sjpfwh!=null">#{sjpfwh},</if>
 			<if test="remarks!=null">#{remarks},</if>
 			<if test="sfylsjl!=null">#{sfylsjl}</if>
-			<if test="jh_sbthcd!=null">,#{jh_sbthcd}</if>)
+			<if test="jh_sbthcd!=null">,#{jh_sbthcd}</if>
+			<if test="tbbm!=null">,#{tbbm}</if>)
 	</insert>
 	<select id="sjAutoCompleteLxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,

@@ -159,6 +159,7 @@ a:active {
         							<input type="text" id="lxmc" >
         						<span>项目年份：</span> 
         						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+        						<option value="">全部</option>
         						</select>
         						<span>拨付月份：</span> <select name="ddlMonth"
 									id="ddlMonth" style="width: 60px;">

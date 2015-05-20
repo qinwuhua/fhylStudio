@@ -10,6 +10,7 @@
 		<result property="xdsj" column="xdsj"/>
 		<result property="xmmc" column="xmmc"/>
 		<result property="yhlb" column="yhlb"/>
+		<result property="tbbm" column="tbbm"/>
 		<result property="sjdw" column="sjdw"/>
 		<result property="sjpfdw" column="sjpfdw"/>
 		<result property="dc" column="dc"/>
@@ -65,7 +66,7 @@
 	<select id="queryShuihList"  parameterType="java.util.Map" resultMap="shuih_jh">
 		select * from (
 			select rownum as num,t.* from (	
-				select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
+				select jh.tbbm,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,
 	      		lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.ylmlx 
 	      		from PLAN_lx_shuih lx right JOIN plan_shuih jh on  lx.jhid=jh.id 
 				where 1=1
@@ -590,5 +591,18 @@
 	<update id="editZjById" parameterType="plan_shuih">
 		update plan_shuih jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}
     	where jh.id=#{id}
+	</update>
+	<update id="editShuihStatusBatch" parameterType="java.util.List">
+		update plan_shuih set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
 	</update>
 </mapper>

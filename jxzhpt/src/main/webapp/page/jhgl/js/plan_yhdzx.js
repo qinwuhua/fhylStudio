@@ -38,22 +38,6 @@ function querySumYhdzx(jh,lx){
 		}
 	});
 }
-function sbnf(id){
-	var myDate = new Date();
-	var years=[];
-	var first;
-	for(var i=0;i<=10;i++){
-		if(i==0)
-			first=myDate.getFullYear()-i;
-		years.push({text:(myDate.getFullYear()-i)});
-	}
-	$('#'+id).combobox({    
-	    data:years,
-	    valueField:'text',    
-	    textField:'text'   
-	});
-	$('#'+id).combobox("setValue",first);
-}
 function openWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
@@ -144,6 +128,9 @@ function yhdzxxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumYhdzx(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -175,7 +162,7 @@ function yhdzxxm_sb(jh,lx){
 			    		  var result="";
 			    		  if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 			    			  result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+','+(row.plan_lx_yhdzxs[0].lmjg!="")+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-			    			  if(roleName()!="县级")
+			    			  if(roleName()!="县级" && row.jh_sbthcd==2 && Number(row.jh_sbthcd)>11-Number(getunit2(row.tbbm)))
 			    				  result+='   |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 			    		  }else{
 			    			  result='<a style="text-decoration:none;color:black;">已上报</a>';
@@ -231,6 +218,9 @@ function yhdzxxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumYhdzx(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -313,6 +303,9 @@ function yhdzxxm_sp(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumYhdzx(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -402,7 +395,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

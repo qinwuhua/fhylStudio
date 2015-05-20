@@ -156,6 +156,9 @@ function zhfzxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -235,12 +238,15 @@ function zhfzxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
 }
 function zhfzxm_sh(jh,lx){
-	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
+	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,"jh.jhkgsj":jh.jhkgsj,'jh.sfylsjl':jh.sfylsjl,
 			"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,'jh.jh_sbthcd':jh.jh_sbthcd};
 	var grid={id:'grid',url:'../../../jhgl/queryZhfzList.do',pagination:true,rownumbers:false,
 		pageNumber:1,pageSize:10,height:$(window).height()-190,width:$('#searchField').width(),queryParams:params,
@@ -268,9 +274,9 @@ function zhfzxm_sh(jh,lx){
 	        	return result;
 	        }},
 	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
+	        	if(row.jckzhfz.bzls=='无')
 	        		return '无';
-	        	else if(row.sfylsjl=='1')
+	        	else if(row.jckzhfz.bzls=='有')
 	        		return '有';
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
@@ -320,6 +326,9 @@ function zhfzxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			querySumZhfz(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -350,9 +359,9 @@ function zhfzxm_zjxd(jh,lx){
 	        	}
 	        },
 	        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-	        	if(row.sfylsjl=='0')
+	        	if(row.jckzhfz.bzls=='无')
 	        		return '无';
-	        	else if(row.sfylsjl=='1')
+	        	else if(row.jckzhfz.bzls=='有')
 	        		return '有';
 	        }},
 	        {field:'sbnf',title:'上报年份',width:80,align:'center'},
@@ -543,7 +552,8 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:grid.onSelect,
-	    onClickRow:grid.onClickRow
+	    onClickRow:grid.onClickRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

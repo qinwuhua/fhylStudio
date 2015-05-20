@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_gcgj">
 	<resultMap id="gcgj_lx" type="plan_gcgj">
 		<id property="id" column="id" />
+		<result property="tbbm" column="tbbm"/>
 		<result property="fapgdw" column="fapgdw"/>
 		<result property="fascdw" column="fascdw"/>
 		<result property="faspsj" column="faspsj"/>
@@ -68,7 +69,7 @@
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
 			select rownum as num,t.* from(
-			select jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
+			select jh.tbbm,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
 			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
 			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1
@@ -310,6 +311,20 @@
 			<if test="jsnr!=null">,jsnr=#{jsnr}</if>
 		where id=#{id}
 	</update>
+	<update id="editGcgjStatusBatch" parameterType="java.util.List">
+		update plan_gcgj set 
+			<if test="sbbm!=null">sbbm=#{sbbm},</if>
+			<if test="sbbmdm!=null">sbbmdm=#{sbbmdm},</if>
+			<if test="sbsj!=null">sbsj=#{sbsj},</if>
+			<if test="sbzt!=null">sbzt=#{sbzt},</if>
+			<if test="spbm!=null">spbm=#{spbm},</if>
+			<if test="spbmdm!=null">spbmdm=#{spbmdm},</if>
+			<if test="spsj!=null">spsj=#{spsj},</if>
+			<if test="spzt!=null">spzt=#{spzt},</if>
+			<if test="bcapzj!=null">bcapzj=#{bcapzj},</if>
+			jh_sbthcd=#{jh_sbthcd}
+		where id=#{id}
+	</update>
 	<update id="editGcgjStatus" parameterType="plan_gcgj">
 		update plan_gcgj set 
 			<if test="sbbm!=null">sbbm=#{sbbm},</if>
@@ -465,10 +480,44 @@
 		</if>
 	</select>
 	<insert id="insertPlan_lx_Gcgj" parameterType="plan_lx_gcgj">
-		insert into plan_lx_gcgj (id,lxmc,lxbm,xzqhdm,xzqhmc,jsdd,gydw,gydwdm,bhnr,
-		qdzh,zdzh,qzlc,yhlc,ylmlx,yjsdj,jhid,tbsj,tbbmbh,tsdq <!---->)
-		values(sys_guid(),#{lxmc},#{lxbm},#{xzqhdm},#{xzqhmc},#{jsdd},#{gydw},#{gydwdm},#{bhnr},
-		#{qdzh},#{zdzh},#{qzlc},#{yhlc},#{ylmlx},#{yjsdj},#{jhid} ,#{tbsj},#{tbbmbh},#{tsdq}<!-- -->)
+		insert into plan_lx_gcgj (id
+			<if test="lxmc!=null">,lxmc</if>
+			<if test="lxbm!=null">,lxbm</if>
+			<if test="xzqhdm!=null">,xzqhdm</if>
+			<if test="xzqhmc!=null">,xzqhmc</if>
+			<if test="jsdd!=null">,jsdd</if>
+			<if test="gydw!=null">,gydw</if>
+			<if test="gydwdm!=null">,gydwdm</if>
+			<if test="bhnr!=null">,bhnr</if>
+			<if test="qdzh!=null">,qdzh</if>
+			<if test="zdzh!=null">,zdzh</if>
+			<if test="qzlc!=null">,qzlc</if>
+			<if test="yhlc!=null">,yhlc</if>
+			<if test="ylmlx!=null">,ylmlx</if>
+			<if test="yjsdj!=null">,yjsdj</if>
+			<if test="jhid!=null">,jhid</if>
+			<if test="tbsj!=null">,tbsj</if>
+			<if test="tbbmbh!=null">,tbbmbh</if>
+			<if test="tsdq!=null">,tsdq</if>)
+		values(sys_guid()
+			<if test="lxmc!=null">,#{lxmc}</if>
+			<if test="lxbm!=null">,#{lxbm}</if>
+			<if test="xzqhdm!=null">,#{xzqhdm}</if>
+			<if test="xzqhmc!=null">,#{xzqhmc}</if>
+			<if test="jsdd!=null">,#{jsdd}</if>
+			<if test="gydw!=null">,#{gydw}</if>
+			<if test="gydwdm!=null">,#{gydwdm}</if>
+			<if test="bhnr!=null">,#{bhnr}</if>
+			<if test="qdzh!=null">,#{qdzh}</if>
+			<if test="zdzh!=null">,#{zdzh}</if>
+			<if test="qzlc!=null">,#{qzlc}</if>
+			<if test="yhlc!=null">,#{yhlc}</if>
+			<if test="ylmlx!=null">,#{ylmlx}</if>
+			<if test="yjsdj!=null">,#{yjsdj}</if>
+			<if test="jhid!=null">,#{jhid}</if>
+			<if test="tbsj!=null">,#{tbsj}</if>
+			<if test="tbbmbh!=null">,#{tbbmbh}</if>
+			<if test="tsdq!=null">,#{tsdq}</if>)
 	</insert>
 	<select id="queryTjJeAndSl" resultType="treenode" parameterType="java.util.Map">
 		select xmlx as id,sum(text) text,sum(name) name,sum(stz) parent,count(xmlx) bmid from (

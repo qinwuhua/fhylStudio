@@ -19,23 +19,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
-import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
-import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 
@@ -195,20 +190,6 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 此方法弃用
-	 */
-	public void queryGcgjNfs(){
-		try {
-			List<TreeNode> queryGcgjNfs = gcgjServer.queryGcgjNfs();
-			System.out.println("年份："+queryGcgjNfs.size());
-			JsonUtils.write(gcgjServer.queryGcgjNfs(),getresponse().getWriter());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	/**
 	 * 根据ID删除计划
 	 */
 	public void dropGcgjById(){
@@ -224,7 +205,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 修改计划ID
+	 * 根据id修改计划信息
 	 */
 	public void editGcgjById(){
 		try {
@@ -352,7 +333,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().indexOf(gcgj.getXzqhdm())) 
+							gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().length()-6) 
 									: gcgj.getLxbm());
 							map.put("sfylsjl", gcgjServer.queryJlBylx(gcgj)>0? "是" :"否");
 						}
@@ -491,7 +472,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 		if(gcgjServer.queryJhExist(gcgj)==0){
 			Plan_lx_gcgj queryGPSBylxbm = gcgjServer.queryGPSBylxbm(gcgj);
 			if(queryGPSBylxbm!=null){
-				gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().indexOf(gcgj.getXzqhdm())) 
+				gcgj.setLxbm(gcgj.getLxbm().length()>6 ? gcgj.getLxbm().substring(0,gcgj.getLxbm().length()-6) 
 						: gcgj.getLxbm());
 				jh.setSfylsjl(gcgjServer.queryJlBylx(gcgj) >0 ? "是" :"否");
 				boolean jhresult=gcgjServer.insertGcgjJh(jh);
@@ -539,6 +520,34 @@ public class Plan_gcgjController extends BaseActionSupport{
 		}
 		return result;
 	}
+	
+	/**
+	 * 批量审批计划
+	 */
+	public void editSpBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			List<Plan_gcgj> list=new ArrayList<Plan_gcgj>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_gcgj gcgj=new Plan_gcgj();
+				gcgj.setId(id[i]);
+				gcgj.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				gcgj.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				gcgj.setSpbmdm(jh.getSpbmdm());
+				gcgj.setSpsj(new Date());
+				list.add(gcgj);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(gcgjServer.editGcgjStatus(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void editGjZj() throws Exception {
 		try{
 			String Strresult="false";

@@ -103,8 +103,10 @@
 				return;
 			}
 			$.each(selList,function(index,item){
-				if(item.jh_sbthcd>4)
+				if((item.jh_sbthcd>=4 && roleName()=="市级") || (item.jh_sbthcd>=2 && roleName()=="县级")){
 					isOk=false;
+					return isOk;
+				}
 			});
 			if(isOk){
 				$.each(selList,function(index,item){

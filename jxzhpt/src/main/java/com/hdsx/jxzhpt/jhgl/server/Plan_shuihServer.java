@@ -161,4 +161,10 @@ public interface Plan_shuihServer {
 	 * @return
 	 */
 	boolean editZjById(Plan_shuih jh);
+	/**
+	 * 批量审批
+	 * @param list
+	 * @return
+	 */
+	boolean editShuihStatus(List<Plan_shuih> list);
 }

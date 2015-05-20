@@ -378,7 +378,7 @@
 					$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
 				}
 			}
-		});
+		//});
 		/*$.each(lxls,function(index,item){
 			$.ajax({
 				type:'post',

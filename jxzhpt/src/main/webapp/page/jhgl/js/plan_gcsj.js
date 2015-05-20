@@ -69,7 +69,7 @@ function gclmsjxm(jh,lx){
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 					var id="'"+row.id+"'";
 					result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-					result+='<a href="javascript:dropGcsjs()" style="text-decoration:none;color:#3399CC;">移除</a>';
+					result+='<a href="javascript:dropGcsj2('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 				}else{
 					result+="编辑          移除";
 				}
@@ -143,6 +143,9 @@ function gclmsjxm(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			queryGcsjSum(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -174,7 +177,7 @@ function gclmsjxm_sb(jh,lx){
 				var result="";
 				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 					result='<a href="javascript:sb('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">上报</a>';
-					if(roleName()=="市级" && row.jh_sbthcd==2)
+					if(roleName()=="市级" && row.jh_sbthcd==2 && Number(row.jh_sbthcd)>11-getunit2(row.tbbm))
 						result+='    |    <a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 				}else{
 					result="已上报";
@@ -223,6 +226,9 @@ function gclmsjxm_sb(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			queryGcsjSum(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -298,6 +304,9 @@ function gclmsjxm_sh(jh,lx){
 			selRow.push(rowIndex);
 			gridObj.datagrid("selectRow",rowIndex);
 			oldIndex=rowIndex;
+		},
+		onLoadSuccess:function(data){
+			queryGcsjSum(jh,lx);
 		}
 	};
 	gridBind(grid);
@@ -377,6 +386,23 @@ function gclmsjxm_zjxd(jh,lx){
 }
 function queryGcsjXx(id){
 	
+}
+function dropGcsj2(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/dropGcsjById.do',
+		dataType:'json',
+		data:'jh.id='+id,
+		success:function(data){
+			if(data.jh && data.lx){
+				alert("移除成功！");
+				searchGcsj();
+			}
+		},
+		error:function(){
+			alert("移除失败！");
+		}
+	});
 }
 function dropGcsjs(){
 	var sel=gridObj.datagrid("getSelections");
@@ -473,7 +499,8 @@ function lxztz(){
 		result=false;
 		return result;
 	}*/
-	if($('#pftz').val()==Number($('#jhsybbzje').val())+Number($('#jhsysbzje').val())){
+	if(Number($('#pftz').val()=="" ? "0" : $('#pftz').val())>=Number($('#jhsybbzje').val()=="" ? "0" : $('#jhsybbzje').val())
+			+Number($('#jhsysbzje').val()=="" ? "0" : $('#jhsysbzje').val())){
 		result=true;
 	}else{
 		result=false;
@@ -510,7 +537,8 @@ function gridBind(grid){
 	    onClickRow:grid.onClickRow,
 	    view:grid.view,
 	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow
+	    onExpandRow:grid.onExpandRow,
+	    onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

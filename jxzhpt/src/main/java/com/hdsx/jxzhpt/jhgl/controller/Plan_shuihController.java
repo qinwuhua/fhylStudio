@@ -18,6 +18,7 @@ import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
@@ -183,6 +184,31 @@ public class Plan_shuihController extends BaseActionSupport {
 		}
 	}
 	
+	public void editShuihStatusBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			System.out.println("ID:"+jh.getId());
+			List<Plan_shuih> list=new ArrayList<Plan_shuih>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_shuih shuih=new Plan_shuih();
+				shuih.setId(id[i]);
+				shuih.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				shuih.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				shuih.setSpbmdm(jh.getSpbmdm());
+				shuih.setSpsj(new Date());
+				list.add(shuih);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(shuihServer.editShuihStatus(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void editShuihStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -198,35 +224,41 @@ public class Plan_shuihController extends BaseActionSupport {
 	 * 导出计划Excel
 	 */
 	public void exportExcel_shuih(){
-		List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
-		List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
-		for (Plan_shuih item : queryShuihList) {
-			List<Plan_lx_shuih> shuihs = item.getShuihs();
-			for (Plan_lx_shuih itemlx: shuihs) {
-				Map<String, String> lxmap=new HashMap<String, String>();
-				lxmap.put("0", itemlx.getGydw());
-				lxmap.put("1", itemlx.getXzqhmc());
-				lxmap.put("2", itemlx.getLxbm());
-				lxmap.put("3", itemlx.getLxmc());
-				lxmap.put("4", itemlx.getQdzh());
-				lxmap.put("5", itemlx.getZdzh());
-				lxmap.put("6", itemlx.getQzlc());
-				lxmap.put("7", itemlx.getYhlc());
-				excelData.add(lxmap);
+		try{
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			List<Plan_shuih> queryShuihList = shuihServer.queryShuihList(jh, lx);
+			List<Map<String,String>> excelData=new ArrayList<Map<String,String>>();
+			for (Plan_shuih item : queryShuihList) {
+				List<Plan_lx_shuih> shuihs = item.getShuihs();
+				for (Plan_lx_shuih itemlx: shuihs) {
+					Map<String, String> lxmap=new HashMap<String, String>();
+					lxmap.put("0", itemlx.getGydw());
+					lxmap.put("1", itemlx.getXzqhmc());
+					lxmap.put("2", itemlx.getLxbm());
+					lxmap.put("3", itemlx.getLxmc());
+					lxmap.put("4", itemlx.getQdzh());
+					lxmap.put("5", itemlx.getZdzh());
+					lxmap.put("6", itemlx.getQzlc());
+					lxmap.put("7", itemlx.getYhlc());
+					excelData.add(lxmap);
+				}
 			}
+			List<String> excelTitle=new ArrayList<String>();
+			excelTitle.add("管养单位");
+			excelTitle.add("行政区划");
+			excelTitle.add("路线编码");
+			excelTitle.add("路线名称");
+			excelTitle.add("起点桩号");
+			excelTitle.add("止点桩号");
+			excelTitle.add("起止里程");
+			excelTitle.add("项目里程");
+			String tableName="水毁项目";
+			HttpServletResponse response= getresponse();
+			ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		List<String> excelTitle=new ArrayList<String>();
-		excelTitle.add("管养单位");
-		excelTitle.add("行政区划");
-		excelTitle.add("路线编码");
-		excelTitle.add("路线名称");
-		excelTitle.add("起点桩号");
-		excelTitle.add("止点桩号");
-		excelTitle.add("起止里程");
-		excelTitle.add("项目里程");
-		String tableName="水毁项目";
-		HttpServletResponse response= getresponse();
-		ExcelUtil.excelWrite(excelData, excelTitle, tableName, response);
 	}
 	/**
 	 * 导入计划Excel
@@ -293,7 +325,7 @@ public class Plan_shuihController extends BaseActionSupport {
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().indexOf(shuih.getXzqhdm())) 
+							shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().length()-6) 
 									: shuih.getLxbm());
 							map.put("sfylsjl", shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 						}
@@ -434,7 +466,7 @@ public class Plan_shuihController extends BaseActionSupport {
 				UUID jhId = UUID.randomUUID(); 
 				lx.setJhid(jhId.toString());
 				jh.setId(jhId.toString());
-				shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().indexOf(shuih.getXzqhdm())) 
+				shuih.setLxbm(shuih.getLxbm().length()>6 ? shuih.getLxbm().substring(0,shuih.getLxbm().length()-6) 
 						: shuih.getLxbm());
 				jh.setSfylsjl(shuihServer.queryJlBylx(shuih)>0 ?"是" :"否");
 				boolean jhresult = shuihServer.insertShuihJh(jh);

@@ -156,6 +156,9 @@ function wqxm(jh,lx){
 				selRow.push(rowIndex);
 				gridObj.datagrid("selectRow",rowIndex);
 				oldIndex=rowIndex;
+			},
+			onLoadSuccess:function(data){
+				querySumWqgz(jh,lx);
 			}
 	};
 	gridBind(grid);
@@ -231,6 +234,9 @@ function wqxm_sb(jh,lx){
 				selRow.push(rowIndex);
 				gridObj.datagrid("selectRow",rowIndex);
 				oldIndex=rowIndex;
+			},
+			onLoadSuccess:function(data){
+				querySumWqgz(jh,lx);
 			}
 	};
 	gridBind(grid);
@@ -304,6 +310,9 @@ function wqxm_sh(jh,lx){
 				selRow.push(rowIndex);
 				gridObj.datagrid("selectRow",rowIndex);
 				oldIndex=rowIndex;
+			},
+			onLoadSuccess:function(data){
+				querySumWqgz(jh,lx);
 			}
 	};
 	gridBind(grid);
@@ -571,7 +580,8 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:grid.onSelect,
-	    onClickRow:grid.onClickRow
+	    onClickRow:grid.onClickRow,
+		onLoadSuccess:grid.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

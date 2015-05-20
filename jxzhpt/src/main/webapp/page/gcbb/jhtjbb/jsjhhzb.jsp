@@ -194,7 +194,7 @@ var xzqhdm=$("#xzqh").combotree("getValues");
 										<td width="150px;">座/项目数</td>
 										<td width="150px;">延米</td>
 										<td width="150px;">处治里程(公里)</td>
-										<td width="150px;">补助资金(万元)</td>
+										<td width="150px;">地方补助资金(万元)</td>
 										<td width="150px;">部安排资金(万元)</td>
 										<td width="150px;">总投资(万元)</td>
 									</tr>

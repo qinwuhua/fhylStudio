@@ -139,7 +139,11 @@
 	<select id="selectSckShwqgz" parameterType="sckwqgz" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
-		xmkid=xmk_wqgz.id) t
+		xmkid=xmk_wqgz.id 
+		where 1=1
+		<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -185,7 +189,11 @@
 	<select id="selectSckWqgzShCount" parameterType="sckwqgz"
 		resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
-		xmkid=xmk_wqgz.id)
+		xmkid=xmk_wqgz.id
+		where 1=1
+		<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
 		where sck_sbthcd=7
 			and sck_sbthcd>=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">

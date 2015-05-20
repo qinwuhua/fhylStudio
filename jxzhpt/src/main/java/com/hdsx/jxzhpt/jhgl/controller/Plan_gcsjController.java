@@ -28,6 +28,7 @@ import org.apache.xerces.impl.xpath.regex.Match;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
@@ -201,6 +202,31 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
+	public void editGcsjSpBatch(){
+		try{
+			String[] id = jh.getId().split(",");
+			String[] spzt = jh.getSpzt().split(",");
+			String[] jh_sbthcd = jh.getJh_sbthcd().split(",");
+			System.out.println("ID:"+jh.getId());
+			List<Plan_gcsj> list=new ArrayList<Plan_gcsj>();
+			for (int i = 0; i < id.length; i++) {
+				Plan_gcsj gcsj=new Plan_gcsj();
+				gcsj.setId(id[i]);
+				gcsj.setSpzt(spzt[i].equals("0") ? "1" : spzt[i]);
+				gcsj.setJh_sbthcd(new Integer(jh_sbthcd[i]).intValue() >=6 ? jh_sbthcd[i] : 
+					new Integer((new Integer(jh_sbthcd[i]).intValue()+2)).toString());
+				gcsj.setSpbmdm(jh.getSpbmdm());
+				gcsj.setSpsj(new Date());
+				list.add(gcsj);
+			}
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result",  new Boolean(gcsjServer.editGcgjStatusBatch(list)).toString());
+			JsonUtils.write(result,getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	public void editGcsjStatus(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
@@ -214,37 +240,41 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	
 	public void exportExcel_gcsj(){
-		lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
-		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
-		List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
-		List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
-		for(Plan_gcsj item : queryGcsjList){
-			List<Plan_lx_gcsj> lxlist = item.getPlan_lx_gcsjs();
-			for(Plan_lx_gcsj itemlx : lxlist){
-				Map<String, String> lxmap=new HashMap<String, String>();
-				lxmap.put("0", itemlx.getGydw());
-				lxmap.put("1", itemlx.getXzqhmc());
-				lxmap.put("2", itemlx.getLxbm());
-				lxmap.put("3", itemlx.getLxmc());
-				lxmap.put("4", itemlx.getQdzh());
-				lxmap.put("5", itemlx.getZdzh());
-				lxmap.put("6", itemlx.getQzlc());
-				lxmap.put("7", itemlx.getXmlc());
-				exceData.add(lxmap);
+		try{
+			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
+			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
+			List<Plan_gcsj> queryGcsjList = gcsjServer.queryGcsjList(jh,lx);
+			List<Map<String,String>> exceData=new ArrayList<Map<String,String>>();
+			for(Plan_gcsj item : queryGcsjList){
+				List<Plan_lx_gcsj> lxlist = item.getPlan_lx_gcsjs();
+				for(Plan_lx_gcsj itemlx : lxlist){
+					Map<String, String> lxmap=new HashMap<String, String>();
+					lxmap.put("0", itemlx.getGydw());
+					lxmap.put("1", itemlx.getXzqhmc());
+					lxmap.put("2", itemlx.getLxbm());
+					lxmap.put("3", itemlx.getLxmc());
+					lxmap.put("4", itemlx.getQdzh());
+					lxmap.put("5", itemlx.getZdzh());
+					lxmap.put("6", itemlx.getQzlc());
+					lxmap.put("7", itemlx.getXmlc());
+					exceData.add(lxmap);
+				}
 			}
+			List<String> excelTitle=new ArrayList<String>();
+			excelTitle.add("管养单位");
+			excelTitle.add("行政区划");
+			excelTitle.add("路线编码");
+			excelTitle.add("路线名称");
+			excelTitle.add("起点桩号");
+			excelTitle.add("止点桩号");
+			excelTitle.add("起止里程");
+			excelTitle.add("项目里程");
+			String tableName="工程改建路面升级";
+			HttpServletResponse response= getresponse();
+			ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		List<String> excelTitle=new ArrayList<String>();
-		excelTitle.add("管养单位");
-		excelTitle.add("行政区划");
-		excelTitle.add("路线编码");
-		excelTitle.add("路线名称");
-		excelTitle.add("起点桩号");
-		excelTitle.add("止点桩号");
-		excelTitle.add("起止里程");
-		excelTitle.add("项目里程");
-		String tableName="工程改建路面升级";
-		HttpServletResponse response= getresponse();
-		ExcelUtil.excelWrite(exceData, excelTitle, tableName, response);
 	}
 	
 	public void exportZjxdExcel(){
@@ -368,7 +398,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 //							strVerify+="【"+map.get("4").toString()+"】与计划内的起止里程不符<br/>";
 //						}
 						else{
-							lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().indexOf(lx.getXzqhdm())) 
+							lx.setLxbm(lx.getLxbm().length()>6 ? lx.getLxbm().substring(0,lx.getLxbm().length()-6) 
 									: lx.getLxbm());
 							map.put("sfylsjl", gcsjServer.queryJlBylx(lx)>0 ? "是" : "否");
 						}
@@ -422,45 +452,49 @@ public class Plan_gcsjController extends BaseActionSupport{
 		}
 	}
 	
-	public void insertGcsj() throws IOException, Exception{
-		Map<String, String> result=new HashMap<String, String>();
-		String strResult="false";
-		if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
-			jh.setJh_sbthcd("2");
-		}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
-			jh.setJh_sbthcd("0");
-		}
-		Plan_lx_gcsj lx1=new Plan_lx_gcsj();
-		lx1.setTsdq(lx.getTsdq());
-		lx1.setXzqhdm(lx.getXzqhdm());
-		lx1.setLxbm(lx.getLxbm());
-		lx1.setQdzh(lx.getQdzh());
-		lx1.setZdzh(lx.getZdzh());
-		lx1.setGydwdm(lx.getGydwdm());
-		lx1.setYjsdj(lx.getYjsdj());
-		lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
-		//查询是否有此计划
-		if(gcsjServer.queryJhExist(lx1)==0){
-			if(gcsjServer.queryGPSBylxbm(lx1)!=null){
-				UUID jhId = UUID.randomUUID(); 
-				lx.setJhid(jhId.toString());
-				jh.setId(jhId.toString());
-				lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().indexOf(lx1.getXzqhdm())) 
-						: lx1.getLxbm());
-				jh.setSfylsjl(gcsjServer.queryJlBylx(lx1)>0 ? "是" : "否");
-				boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
-				boolean lxresult = gcsjServer.insertGcsj_lx(lx);
-				if(lxresult && jhresult){
-					strResult="true";
+	public void insertGcsj(){
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			String strResult="false";
+			if(jh.getTbbm().matches("^[0-9]{5}36[0-9][1-9]00$") || jh.getTbbm().matches("^[0-9]{5}36[1-9][0-9]00$")){
+				jh.setJh_sbthcd("2");
+			}else{ //if(jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[0-9][1-9]$") || jh.getTbbm().matches("^[0-9]{5}36[0-9]{2}[1-9][0-9]$"))
+				jh.setJh_sbthcd("0");
+			}
+			Plan_lx_gcsj lx1=new Plan_lx_gcsj();
+			lx1.setTsdq(lx.getTsdq());
+			lx1.setXzqhdm(lx.getXzqhdm());
+			lx1.setLxbm(lx.getLxbm());
+			lx1.setQdzh(lx.getQdzh());
+			lx1.setZdzh(lx.getZdzh());
+			lx1.setGydwdm(lx.getGydwdm());
+			lx1.setYjsdj(lx.getYjsdj());
+			lx1.setJhid(jh.getJhnf());//此处的Jhid存储的是 “上报年份”
+			//查询是否有此计划
+			if(gcsjServer.queryJhExist(lx1)==0){
+				if(gcsjServer.queryGPSBylxbm(lx1)!=null){
+					UUID jhId = UUID.randomUUID(); 
+					lx.setJhid(jhId.toString());
+					jh.setId(jhId.toString());
+					lx1.setLxbm(lx1.getLxbm().length()>6 ? lx1.getLxbm().substring(0,lx1.getLxbm().length()-6) 
+							: lx1.getLxbm());
+					jh.setSfylsjl(gcsjServer.queryJlBylx(lx1)>0 ? "是" : "否");
+					boolean jhresult = gcsjServer.insertGcsj_Jh(jh);
+					boolean lxresult = gcsjServer.insertGcsj_lx(lx);
+					if(lxresult && jhresult){
+						strResult="true";
+					}
+				}else{
+					strResult="none";
 				}
 			}else{
-				strResult="none";
+				strResult="have";
 			}
-		}else{
-			strResult="have";
+			result.put("result", strResult);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		result.put("result", strResult);
-		JsonUtils.write(result, getresponse().getWriter());
 	}
 	public void insertGcsjlx(){
 		try{
