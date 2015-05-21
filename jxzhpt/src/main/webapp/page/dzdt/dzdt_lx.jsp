@@ -55,7 +55,8 @@ $(function(){
 		url:'../../xtgl/selectExistLxProgramList.do',
 		queryParams : {
 			"pb.roadcode":parent.YMLib.Var.bm,
-			"pb.gydw":$.cookie("unit")
+			"pb.gydw":$.cookie("unit2"),
+			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
 		},
 		singleSelect : false,
 		striped : true,
@@ -104,6 +105,20 @@ $(function(){
 		]]
 	});
 });
+function filterXzqhdm(xzqhdm){
+	xzqhdm= xzqhdm.substr(xzqhdm.length-6);
+	var yi1 = new RegExp("^36[0-9][1-9]00$");
+	var yi2= new RegExp("^36[1-9][0-9]00$");
+	var result=null;
+	if(xzqhdm=="360000"){
+		result='36%';
+	}else if(yi1.test(xzqhdm) || yi2.test(xzqhdm)){
+		result=xzqhdm.substring(0, xzqhdm.length-2)+"__";
+	}else{
+		result=xzqhdm;
+	}
+	return result;
+}
 function onclickXx(xmlx,id){
 	var url="/jxzhpt/page/jhgl/jhkxx/";
 	if(xmlx=="路面改建")
