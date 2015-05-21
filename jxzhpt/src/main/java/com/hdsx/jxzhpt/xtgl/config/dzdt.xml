@@ -394,7 +394,7 @@ union all
 		select sj.id,sj.xmmc as roadname,sjlx.qdzh as roadstart,sjlx.zdzh as roadends,sjlx.gydw,sjlx.xzqhmc,
 		to_char(sj.jhnf) as nf ,'路面升级' as unit
 		from plan_lx_gcsj sjlx right join plan_gcsj sj on sjlx.jhid=sj.id where (sjlx.lxbm like #{roadcode}||'%'
-		or sjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%') and sjlx.gydwdm like rtrim(#{gydw},'0')||'%'
+		or sjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and sjlx.gydwdm like rtrim(#{gydw},'0')||'%'
 		union all
 		select gj.id,gj.xmmc as roadname,gjlx.qdzh as roadstart,gjlx.zdzh as roadends,gjlx.gydw,gjlx.xzqhmc,
 		to_char(gj.sbnf) as nf,'路面改建' as unit

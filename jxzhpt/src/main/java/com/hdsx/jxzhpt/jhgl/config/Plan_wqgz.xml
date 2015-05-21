@@ -426,12 +426,6 @@
 		insert into plan_upload(filename,filedata,parentid,filetype) 
 		values(#{filename},#{filedata},#{parentid},#{filetype})
 	</insert>
-	<!-- <update id="updateGkbg" parameterType="plan_wqgz">
- 		update plan_wqgz set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
- 	</update>
- 	<update id="updateSjsgt" parameterType="plan_wqgz">
- 		update plan_wqgz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
- 	</update> -->
  	<select id="queryWqgzFjById" parameterType="string" resultType="plan_wqgz">
 		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
 	</select>

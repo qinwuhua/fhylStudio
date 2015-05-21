@@ -131,7 +131,7 @@
 			'fileDataName' : 'uploadGk',
 			'auto' : false,
 			'multi' : false,
-			'buttonImg': '../../../js/uploader/btn_view.png',
+			'buttonImg': '../../../js/uploader/bdll.png',
 			'simUploadLimit' : 3,
 			'sizeLimit' : 20000000,
 			'queueSizeLimit' : 5,
@@ -143,7 +143,7 @@
 				'jh.id':xxId,
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
-				$('#xz_gkbg').html(response);
+				fileShow();
 			},
 			onError : function(event, queueID, fileObj) {
 				alert("文件:" + fileObj.name + "上传失败");
@@ -152,7 +152,6 @@
 			},
 			onQueueFull : function(event, queueSizeLimit) {
 				alert("最多支持上传文件数为：" + queueSizeLimit);
-
 			}
 		});
 		
@@ -165,7 +164,7 @@
 			'fileDataName' : 'uploadSjt',
 			'auto' : false,
 			'multi' : false,
-			'buttonImg': '../../../js/uploader/btn_view.png',
+			'buttonImg': '../../../js/uploader/bdll.png',
 			'simUploadLimit' : 3,
 			'sizeLimit' : 20000000,
 			'queueSizeLimit' : 5,
@@ -177,7 +176,7 @@
 				'jh.id':xxId,
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
-				$('#xz_sjsgt').html(response);
+				fileShow();
 			},
 			onError : function(event, queueID, fileObj) {
 				alert("文件:" + fileObj.name + "上传失败");
@@ -228,7 +227,7 @@
 			$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 			$("#zfzc").html((parseFloat($("#jhztz").val())-ztz.toFixed(3)).toFixed(3));
 		}
-		if(parseFloat($("#jhztz").val())*100000>=500*100000){
+		if(parseFloat($("#jhztz").val())*10000>=500*10000){
 			$("#sfsqablbz").html("是");
 			document.getElementById("ablbzwh").disabled=false;
 		}else{
@@ -609,10 +608,26 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+							<td><div id="fileQueue" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 					<div id="fileQueue"></div>
-						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
-						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
-						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
+					<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					 -->
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -620,10 +635,27 @@
 					设计施工图
 				</td>
 				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+							<td><div id="fileQueue1" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 					<div id="fileQueue1"></div>
-						<a id="xz_sjsgt" href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
-						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
-						<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					<a id="xz_sjsgt" href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>&nbsp;&nbsp;
+					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
+					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					-->
 				</td>
 			</tr>
 			<tr style="height: 50px;">

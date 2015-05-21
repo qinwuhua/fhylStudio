@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
@@ -133,14 +134,10 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
-
+	
 	@Override
-	public boolean updateGkbg(Plan_zhfz jh) {
-		return update("updateGkbg", jh)>0;
-	}
-	@Override
-	public boolean updateSjsgt(Plan_zhfz jh) {
-		return update("updateSjsgt", jh)>0;
+	public boolean insertZhFile(Plan_upload upload){
+		return insert("insertZhFile",upload)>0;
 	}
 
 	@Override

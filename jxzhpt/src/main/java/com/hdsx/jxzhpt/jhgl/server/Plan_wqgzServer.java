@@ -91,8 +91,6 @@ public interface Plan_wqgzServer {
 	 * @return
 	 */
 	Plan_wqgz querySumWqgz(Plan_wqgz jh,Jckwqgz lx);
-	boolean updateGkbg(Plan_wqgz jh);
-	boolean updateSjsgt(Plan_wqgz jh);
 	Plan_wqgz queryWqgzFjById(String id);
 	boolean editWqgzSckxx(Sckwqgz jh);
 	List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx);

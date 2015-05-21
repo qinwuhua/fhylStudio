@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
@@ -53,6 +54,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
+	private Plan_upload uploads;
 	private Jckzhfz lx;
 	private Sckzhfz sc;
 	private Plan_zjzj zjzj;
@@ -243,27 +245,30 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		FileInputStream fs=null;
 		byte[] data;
 		try {
-				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8"); 		
-				if((uploadGk!=null)){
-						fs=new FileInputStream(this.uploadGk);
-						data=new byte[(int) this.uploadGk.length()];
-						fs.read(data);
-					   jh.setGkbgmc(uploadGkFileName);
-					   jh.setGkbgdata(data);
-					   if(zhfzServer.updateGkbg(jh))
-						   response.getWriter().print(uploadGkFileName+"导入成功");
-					   else response.getWriter().print(uploadGkFileName+"导入失败");
-				}else{
-					fs=new FileInputStream(this.uploadSjt);
-					data=new byte[(int) this.uploadSjt.length()];
-					fs.read(data);
-					jh.setSjsgtmc(uploadSjtFileName);
-					jh.setSjsgtdata(data);
-					if(zhfzServer.updateSjsgt(jh))
-						response.getWriter().print(uploadSjtFileName+"导入成功");
-					   else response.getWriter().print(uploadSjtFileName+"导入失败");
-				}	
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8");
+			uploads=new Plan_upload();
+			if((uploadGk!=null)){
+				
+				fs=new FileInputStream(this.uploadGk);
+				data=new byte[(int) this.uploadGk.length()];
+				fs.read(data);
+				uploads.setFiledata(data);
+				uploads.setFilename(uploadGkFileName);
+				uploads.setFiletype("工可报告");
+			}else{
+				fs=new FileInputStream(this.uploadSjt);
+				data=new byte[(int) this.uploadSjt.length()];
+				fs.read(data);
+				uploads.setFiledata(data);
+				uploads.setFilename(uploadSjtFileName);
+				uploads.setFiletype("设计施工图");
+			}
+			uploads.setParentid(jh.getId());
+			if(zhfzServer.insertZhFile(uploads))
+				response.getWriter().print(uploadGkFileName+"导入成功");
+			else 
+				response.getWriter().print(uploadGkFileName+"导入失败");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -467,5 +472,10 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void setSc(Sckzhfz sc) {
 		this.sc = sc;
 	}
-	
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
+	}
 }

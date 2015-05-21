@@ -136,15 +136,6 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
-
-	@Override
-	public boolean updateGkbg(Plan_wqgz jh) {
-		return update("updateGkbg", jh)>0;
-	}
-	@Override
-	public boolean updateSjsgt(Plan_wqgz jh) {
-		return update("updateSjsgt", jh)>0;
-	}
 	
 	public boolean insertwqFile(Plan_upload upload){
 		return insert("insertwqFile", upload)>0;
