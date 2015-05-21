@@ -273,6 +273,9 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -280,6 +283,9 @@
 					设计施工图
 				</td>
 				<td id="td_sjt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -369,14 +375,7 @@
 				$('#Lab_TZGS').html(data.tzgs);
 				$('#Lab_JSXZ').html(data.jsxz);
 				$('#Lab_JSNR').html(data.jsnr);
-				if(data.gkbgmc!=null){
-					var mc="'"+data.gkbgmc+"'";
-					$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
-				}
-				if(data.sjsgtmc!=null){
-					var mc="'"+data.sjsgtmc+"'";
-					$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
-				}
+				fileShow();
 			}
 		//});
 		/*$.each(lxls,function(index,item){

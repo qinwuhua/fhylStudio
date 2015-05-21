@@ -21,8 +21,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/plan_zhfz.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
+		var xxId=parent.YMLib.Var.jhbm;
 		$(function(){
-			var xxId=parent.YMLib.Var.jhbm;
 			sbnf("editjhnf");
 			$.ajax({
 				type:'post',
@@ -143,6 +143,7 @@
 				'jh.id':xxId,
 			},
 			onComplete : function(event, queueID, fileObj, response, data) {
+				alert(response);
 				fileShow();
 			},
 			onError : function(event, queueID, fileObj) {

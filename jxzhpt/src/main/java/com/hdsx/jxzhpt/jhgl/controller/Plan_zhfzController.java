@@ -249,7 +249,6 @@ public class Plan_zhfzController  extends BaseActionSupport{
 			response.setCharacterEncoding("utf-8");
 			uploads=new Plan_upload();
 			if((uploadGk!=null)){
-				
 				fs=new FileInputStream(this.uploadGk);
 				data=new byte[(int) this.uploadGk.length()];
 				fs.read(data);

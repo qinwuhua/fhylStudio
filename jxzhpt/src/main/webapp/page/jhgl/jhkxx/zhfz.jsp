@@ -364,7 +364,9 @@
 					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">工可报告
 				</td>
 				<td id="xz_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span >暂无附件</span>
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -372,7 +374,9 @@
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计施工图
 				</td>
 				<td id="xz_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<span >暂无附件</span>
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -384,20 +388,6 @@
 					<span id="jhbz"></span>&nbsp;
 				</td>
 			</tr>
-			<!-- <tr id="trSY" style="height: 25px;">
-				<td colspan="6"
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					最近年份历史修建记录
-				</td>
-			</tr>
-			<tr id="trSY1" style="height: 50px;">
-				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
-					历史修建记录
-				</td>
-				<td colspan="6" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<div id="divPlan"></div>
-				</td>
-			</tr> -->
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -478,12 +468,7 @@
 			$('#sfsqablbz').html(data.sfsqablbz);
 			$('#ablbzwh').html(data.ablbzsqwh);
 			$('#jhbz').html(data.bz);
-			if(data.gkbgmc!=''){
-				$('#xz_gkbg').html("<a href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'>"+data.gkbgmc+"</a>");
-			}
-			if(data.sjsgtmc!=''){
-				$("#xz_sjsgt").html("<a href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'>"+data.sjsgtmc+"</a>");
-			}
+			fileShow();
 		}
 	});
 	/*$.ajax({
