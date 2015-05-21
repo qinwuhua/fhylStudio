@@ -148,7 +148,7 @@
 					'jh.id':xxId,
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
-					$('#xz_gkbg').html(response);
+					fileShow();
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");
@@ -182,7 +182,7 @@
 					'jh.id':xxId,
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
-					$('#xz_sjsgt').html(response);
+					fileShow();
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");
@@ -256,32 +256,6 @@
 				return;
 			}
 			$("#zfzc").html((parseFloat($("#jhztz").val())-$("#bbz").val()).toFixed(3));
-		}
-		function fileShow(){
-			//加载文件
-			$.ajax({
-				type:'post',
-				url:'../../../jhgl/queryFjByParentId.do',
-				dataType:'json',
-				data:'uploads.id='+xxId,
-				success:function(data){
-			/* 		var data=datas.rows; */
-				/* 	alert(data); */
-					$("#gkbgTable").empty();
-					$("#sjsgtTable").empty();
-					var gkbg="";
-					var sjsgt="";
-					for ( var i = 0; i < data.length; i++) {
-						if(data[i].filetype=="工可报告"){
-							gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-						}if(data[i].filetype=="设计施工图"){
-							sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-						}
-						}
-					$("#gkbgTable").append(gkbg);
-					$("#sjsgtTable").append(sjsgt);
-				}
-			});
 		}
 	</script>
 </head>

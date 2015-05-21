@@ -45,8 +45,6 @@
 		function searchGcgj(){
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:4,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
 				jh.sbnf=$("#sbnf").combo("getValue");
 			}

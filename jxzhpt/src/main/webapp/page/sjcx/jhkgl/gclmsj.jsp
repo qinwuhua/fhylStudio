@@ -39,8 +39,6 @@
 			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhmc:null,
 					xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}
@@ -85,7 +83,7 @@
 			gclmsjxm(jh,lx);
 		}
 		function exportExcel_gcsj(){
-			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+filterGydwdm($("#gydw").combo("getValue"));
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwdm="+getgydw("#gydw");
 			window.location.href="/jxzhpt/jhgl/exportExcel_gcsj.do?"+param;
 		}
 		$(window).resize(function () { 

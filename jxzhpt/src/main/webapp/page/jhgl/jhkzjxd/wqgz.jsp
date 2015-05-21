@@ -27,7 +27,7 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			wqxm_zjxd(jh,lx);
@@ -35,8 +35,6 @@
 		function searchWqgz(){
 			var jh={jhnf:null,sbzt:'1',spzt:null,jh_sbthcd:6,jgzt:null,kgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null,akjfl:null};
-			lx.gydwbm=filterGydwdm(lx.gydwbm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

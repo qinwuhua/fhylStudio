@@ -270,11 +270,13 @@ public class Plan_wqgzController extends BaseActionSupport {
 		try {
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setCharacterEncoding("utf-8");
+				uploads =new Plan_upload();
 				if((uploadGk!=null)){
 					fs=new FileInputStream(this.uploadGk);
 					data=new byte[(int) this.uploadGk.length()];
 					fs.read(data);
 					System.out.println("文件是否为空:"+(uploadGk!=null));
+					System.out.println("文件名称："+uploadGkFileName);
 					System.out.println((uploadGkFileName==null) +"    "+(uploadGkFileName==null)+"   "+(fileuploadFileName==null));
 					uploads.setFilename(uploadGkFileName);
 					uploads.setFiledata(data);
@@ -287,6 +289,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 					uploads.setFiledata(data);
 					uploads.setFiletype("设计施工图");
 				}
+				uploads.setParentid(jh.getId());
 				if(wqgzServer.insertwqFile(uploads)){
 					response.getWriter().print(uploadSjtFileName+"导入成功");
 				}else{

@@ -38,8 +38,6 @@
 			var jh={jhnf:null,sbzt:null,spzt:null,jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),lxmc:null,xzqhmc:null,
 					xzqhdm:getxzqhdm('xzqh'),yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($("#sbnf").combo("getValue")!=""){
 				jh.jhnf=$("#sbnf").combo("getValue");
 			}

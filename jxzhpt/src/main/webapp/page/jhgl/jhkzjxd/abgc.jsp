@@ -29,13 +29,13 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
 			sbnf("sbnf");
-			var jh={jhnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			abgcxm_zjxd(jh,lx);
 		});
 		function searchAbgc(){
-			var jh={jhnf:$('#sbnf').combobox('getValue'),sbzt:'1',spzt:'1',jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={jhnf:$('#sbnf').combobox('getValue'),jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,lxjsdj:null,lxbm:null,qlmc:null};
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();

@@ -82,7 +82,7 @@
 			$('#grid').datagrid('resize');
 		});
 		function exportExcel_yhdzx(){
-			var gydw=filterGydwdm($("#gydw").combo("getValue"));
+			var gydw=getgydw("#gydw");
 			if(gydw==null){
 				gydw="";
 			}
