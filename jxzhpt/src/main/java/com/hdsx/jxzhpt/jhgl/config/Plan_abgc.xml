@@ -340,20 +340,20 @@
 			<if test="remarks!=null">,remarks=#{remarks}</if>
 		where id=#{id}
 	</update>
-	<update id="editAbgcSckBysckid" parameterType="plan_abgc">
+	<update id="editAbgcSckBysckid" parameterType="sckabgc">
 		update SCK_ABGC set sckid=#{sckid}
-		<if test="!=null">,scqdzh=#{jckabgc.scqdzh}</if>
-		<if test="!=null">,sczdzh=#{jckabgc.sczdzh}</if>
-		<if test="!=null">,sczlc=#{jckabgc.sczlc}</if>
-		<if test="!=null">,scyhlc=#{jckabgc.scyhlc}</if>
-		<if test="!=null">,fapgdw=#{jckabgc.fapgdw}</if>
-		<if test="!=null">,fascdw=#{jckabgc.fascdw}</if>
-		<if test="!=null">,spwh=#{jckabgc.spwh}</if>
-		<if test="!=null">,tzgs=#{jckabgc.tzgs}</if>
-		<if test="!=null">,faspsj=#{jckabgc.faspsj}</if>
-		<if test="!=null">,jsxz=#{jckabgc.jsxz}</if>
-		<if test="!=null">,jsnr=#{jckabgc.jsnr}</if>
-		<if test="!=null">,scbz=#{jckabgc.scbz}</if>
+		<if test="scqdzh!=null">,scqdzh=#{scqdzh}</if>
+		<if test="sczdzh!=null">,sczdzh=#{sczdzh}</if>
+		<if test="sczlc!=null">,sczlc=#{sczlc}</if>
+		<if test="scyhlc!=null">,scyhlc=#{scyhlc}</if>
+		<if test="fapgdw!=null">,fapgdw=#{fapgdw}</if>
+		<if test="fascdw!=null">,fascdw=#{fascdw}</if>
+		<if test="spwh!=null">,spwh=#{spwh}</if>
+		<if test="tzgs!=null">,tzgs=#{tzgs}</if>
+		<if test="faspsj!=null">,faspsj=#{faspsj}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="jsnr!=null">,jsnr=#{jsnr}</if>
+		<if test="scbz!=null">,scbz=#{scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editStatus" parameterType="plan_abgc">

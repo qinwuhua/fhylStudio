@@ -7,6 +7,7 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -84,7 +85,7 @@ public interface Plan_zhfzServer {
 	boolean updateGkbg(Plan_zhfz jh);
 	boolean updateSjsgt(Plan_zhfz jh);
 	Plan_zhfz queryZhfzFjById(String id);
-	boolean editZhfzSckBysckid(Plan_zhfz jh);
+	boolean editZhfzSckBysckid(Sckzhfz jh);
 	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
 	boolean updateStatusBatch(List<Plan_zhfz> splist);
 	List<TreeNode> queryJcktj();

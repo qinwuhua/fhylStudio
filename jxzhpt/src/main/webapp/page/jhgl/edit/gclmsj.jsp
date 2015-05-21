@@ -22,19 +22,165 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-function check(str){
-	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
-	if(str.value==''){
-		return;
-	}
-    if( !g.test(str.value)){
-    	alert("请输入正确的数字");
-    	$(str).val('');
-    	return;
-    }
-}
-</script>
+	<script type="text/javascript">
+		function check(str){
+			var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
+			if(str.value==''){
+				return;
+			}
+		    if( !g.test(str.value)){
+		    	alert("请输入正确的数字");
+		    	$(str).val('');
+		    	return;
+		    }
+		}
+	</script>
+	<script type="text/javascript">
+		sbnf("editjhnf");
+		var xxId=parent.YMLib.Var.jhbm;
+		loadBmbm2('gjhjsdj','技术等级');
+		loadBmbm2('jsjsbz','技术等级');
+		$("#uploadGk").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadGcsjFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue',
+			'fileDataName' : 'uploadGk',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/btn_view.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'jh.id':xxId
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				$('#td_gkbg').html("<a>"+response+"</a>");
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+	
+			}
+		});
+		$("#uploadSjt").uploadify({
+		/*注意前面需要书写path的代码*/
+		'uploader' : '../../../js/uploader/uploadify.swf',
+		'script' : '../../../jhgl/uploadGcsjFile.do',
+		'cancelImg' : '../../../js/uploader/cancel.png',
+		'queueID' : 'fileQueue1',
+		'fileDataName' : 'uploadSjt',
+		'auto' : false,
+		'multi' : false,
+		'buttonImg': '../../../js/uploader/btn_view.png',
+		'simUploadLimit' : 3,
+		'sizeLimit' : 20000000,
+		'queueSizeLimit' : 5,
+		'fileDesc' : '支持格式:xls',
+		'fileExt' : '',
+		'height' : 30,
+		'width' : 92,
+		'scriptData' : {
+			'jh.id':xxId
+		},
+		onComplete : function(event, queueID, fileObj, response, data) {
+			$('#td_sjt').html("<a>"+response+"</a>");
+		},
+		onError : function(event, queueID, fileObj) {
+			alert("文件:" + fileObj.name + "上传失败");
+		},
+		onCancel : function(event, queueID, fileObj) {
+		},
+		onQueueFull : function(event, queueSizeLimit) {
+			alert("最多支持上传文件数为：" + queueSizeLimit);
+		}
+	});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryGcsjById.do',
+			data:"jh.id="+xxId,
+			dataType:'json',
+			success:function(data){
+				$.each(data.plan_lx_gcsjs,function(index,item){
+					var tr1='<tr style="height: 30px;"><td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">路线名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxmc'+index+'">'+item.lxmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxbm'+index+'">'+item.lxbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="yjsdjxx'+index+'">'+item.yjsdj+'</span></td></tr>';
+					var tr2='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdzh'+index+'">'+item.qdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdzh'+index+'">'+item.zdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="qzlc'+index+'">'+item.qzlc+'</span>（公里）</td></tr>';
+					var tr3='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdmc'+index+'">'+item.qdmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdmc'+index+'">'+item.zdmc+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目里程</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="xmlc'+index+'">'+item.xmlc+'</span>（公里）</td></tr>';
+					var tr4='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">利用老路情况</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="lyllqk'+index+'">'+item.lyllqk+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">独立桥梁编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="dlqlbm'+index+'">'+item.dlqlbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">独立桥梁中心桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="dlqlzxzh'+index+'">'+item.dlqlzxzh+'</span></td></tr>';
+					var tr5='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">管养单位</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="gydwxx'+index+'">'+item.gydw+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">行政区划代码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="xzqhdm'+index+'">'+item.xzqhdm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">行政区划</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="xzqhmc'+index+'">'+item.xzqhmc+'</span></td></tr>';
+					var tr6='<tr style="height: 30px;"><td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">特殊地区</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;"><span id="tsdq'+index+'">'+item.tsdq+'</span>&nbsp;</td></tr>';
+					var tr7='<tr style="height: 50px;"><td style="border-top: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="bhnr'+index+'">'+item.bhnr+'</span>&nbsp;</td></tr>';
+					$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5+tr6+tr7);
+				});
+				//计划
+				$('#jhid').val(data.id);
+				$('#editjhnf').combobox('select',data.jhnf);
+				$('#jhkgsj').datebox('setValue',data.jhkgsj);
+				$('#jhwgsj').datebox('setValue',data.jhwgsj);
+				$('#xdsj').datebox('setValue',data.xdsj);
+				$('#xmwybh').val(data.xmwybh);
+				$('#xmmc').val(data.xmmc);
+				$('#sjdw').val(data.sjdw);
+				$('#sjpfdw').val(data.sjpfdw);
+				$('#jsjsbz').combobox('select',data.jsjsbz);
+				$('#ql').val(data.ql);
+				$('#ql_m').val(data.ql_m);
+				$('#sd').val(data.sd);
+				$('#sd_m').val(data.sd_m);
+				$('#hd').val(data.hd);
+				$('#ljtsf').val(data.ljtsf);
+				$('#dc').val(data.dc);
+				$('#jc').val(data.jc);
+				$('#lqlm').val(data.lqlm);
+				$('#snlm').val(data.snlm);
+				$('#gjhjsdj').combobox("setValue",data.gjhjsdj);
+				radioChecked("sftqss",data.sftqss);
+				$('#pfwh').val(data.pfwh);
+				$('#pfsj').datebox('setValue',data.pfsj);
+				$('#pftz').val(data.pftz);
+				$('#jhsybbzje').val(data.jhsybbzje);
+				$('#jhsysbzje').val(data.jhsydfzczj);
+				$('#jhxdwh').val(data.jhxdwh);
+				radioChecked("sfsqablbz",data.sfsqablbz);
+				if(data.sfsqablbz=="否"){
+					$('#ablbzsqwh').attr("disabled",'true');
+				}
+				$('#gksjwh').val(data.gksjwh);
+				$('#sjpfwh').val(data.sjpfwh);
+				$('#sfgyhbm').val(data.sfgyhbm);
+				$('#remarks').val(data.remarks);
+				$('#fapgdw').html(data.fapgdw);
+				$('#fascdw').html(data.fascdw);
+				$('#faspsj').html(data.faspsj);
+				$('#spwh').html(data.spwh);
+				$('#tzgs').html(data.tzgs);
+				$('#jsxz').html(data.jsxz);
+				$('#jsnr').html(data.jsnr);
+				if(data.gkbgmc!=null && data.gkbgmc!=''){
+					$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
+				}
+				if(data.sjsgtmc!=null && data.sjsgtmc!=''){
+					$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
+				}
+			}
+		});
+		function ablwhDis(value){
+			if(value=="是"){
+				$('#ablbzsqwh').removeAttr("disabled");
+			}else{
+				$('#ablbzsqwh').attr("disabled",'true');
+			}
+		}
+	</script>
 	<div id="gclmsj_xx" style="text-align: left;font-size: 12px;width:100%;">
 		<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
        		<tr style="height: 25px;">
@@ -335,151 +481,5 @@ function check(str){
             </tr>
 		</table>
 	</div>
-	<script type="text/javascript">
-	sbnf("editjhnf");
-	var xxId=parent.YMLib.Var.jhbm;
-	loadBmbm2('gjhjsdj','技术等级');
-	$("#uploadGk").uploadify({
-		/*注意前面需要书写path的代码*/
-		'uploader' : '../../../js/uploader/uploadify.swf',
-		'script' : '../../../jhgl/uploadGcsjFile.do',
-		'cancelImg' : '../../../js/uploader/cancel.png',
-		'queueID' : 'fileQueue',
-		'fileDataName' : 'uploadGk',
-		'auto' : false,
-		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
-		'simUploadLimit' : 3,
-		'sizeLimit' : 20000000,
-		'queueSizeLimit' : 5,
-		'fileDesc' : '支持格式:xls',
-		'fileExt' : '',
-		'height' : 30,
-		'width' : 92,
-		'scriptData' : {
-			'jh.id':xxId
-		},
-		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_gkbg').html("<a>"+response+"</a>");
-		},
-		onError : function(event, queueID, fileObj) {
-			alert("文件:" + fileObj.name + "上传失败");
-		},
-		onCancel : function(event, queueID, fileObj) {
-		},
-		onQueueFull : function(event, queueSizeLimit) {
-			alert("最多支持上传文件数为：" + queueSizeLimit);
-
-		}
-	});
-$("#uploadSjt").uploadify({
-	/*注意前面需要书写path的代码*/
-	'uploader' : '../../../js/uploader/uploadify.swf',
-	'script' : '../../../jhgl/uploadGcsjFile.do',
-	'cancelImg' : '../../../js/uploader/cancel.png',
-	'queueID' : 'fileQueue1',
-	'fileDataName' : 'uploadSjt',
-	'auto' : false,
-	'multi' : false,
-	'buttonImg': '../../../js/uploader/btn_view.png',
-	'simUploadLimit' : 3,
-	'sizeLimit' : 20000000,
-	'queueSizeLimit' : 5,
-	'fileDesc' : '支持格式:xls',
-	'fileExt' : '',
-	'height' : 30,
-	'width' : 92,
-	'scriptData' : {
-		'jh.id':xxId
-	},
-	onComplete : function(event, queueID, fileObj, response, data) {
-		$('#td_sjt').html("<a>"+response+"</a>");
-	},
-	onError : function(event, queueID, fileObj) {
-		alert("文件:" + fileObj.name + "上传失败");
-	},
-	onCancel : function(event, queueID, fileObj) {
-	},
-	onQueueFull : function(event, queueSizeLimit) {
-		alert("最多支持上传文件数为：" + queueSizeLimit);
-
-	}
-});
-	$.ajax({
-		type:'post',
-		url:'../../../jhgl/queryGcsjById.do',
-		data:"jh.id="+xxId,
-		dataType:'json',
-		success:function(data){
-			$.each(data.plan_lx_gcsjs,function(index,item){
-				var tr1='<tr style="height: 30px;"><td style="background-color:#F1F8FF;padding-right:5px;color:#007DB3;font-weight:bold;font-size:small;text-align:right;border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;">路线名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxmc'+index+'">'+item.lxmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">路线编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="lxbm'+index+'">'+item.lxbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">原技术等级</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="yjsdjxx'+index+'">'+item.yjsdj+'</span></td></tr>';
-				var tr2='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdzh'+index+'">'+item.qdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdzh'+index+'">'+item.zdzh+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">起止里程</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="qzlc'+index+'">'+item.qzlc+'</span>（公里）</td></tr>';
-				var tr3='<tr style="height: 30px;"><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">起点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="qdmc'+index+'">'+item.qdmc+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">止点名称</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="zdmc'+index+'">'+item.zdmc+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">项目里程</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="xmlc'+index+'">'+item.xmlc+'</span>（公里）</td></tr>';
-				var tr4='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">利用老路情况</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="lyllqk'+index+'">'+item.lyllqk+'</span></td><td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">独立桥梁编码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="dlqlbm'+index+'">'+item.dlqlbm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">独立桥梁中心桩号</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="dlqlzxzh'+index+'">'+item.dlqlzxzh+'</span></td></tr>';
-				var tr5='<tr style="height: 30px;"><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">管养单位</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"><span id="gydwxx'+index+'">'+item.gydw+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">行政区划代码</td><td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="xzqhdm'+index+'">'+item.xzqhdm+'</span></td><td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">行政区划</td><td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;"><span id="xzqhmc'+index+'">'+item.xzqhmc+'</span></td></tr>';
-				var tr6='<tr style="height: 30px;"><td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">特殊地区</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;"><span id="tsdq'+index+'">'+item.tsdq+'</span>&nbsp;</td></tr>';
-				var tr7='<tr style="height: 50px;"><td style="border-top: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="bhnr'+index+'">'+item.bhnr+'</span>&nbsp;</td></tr>';
-				$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5+tr6+tr7);
-			});
-			//计划
-			$('#jhid').val(data.id);
-			$('#editjhnf').combobox('select',data.jhnf);
-			$('#jhkgsj').datebox('setValue',data.jhkgsj);
-			$('#jhwgsj').datebox('setValue',data.jhwgsj);
-			$('#xdsj').datebox('setValue',data.xdsj);
-			$('#xmwybh').val(data.xmwybh);
-			$('#xmmc').val(data.xmmc);
-			$('#sjdw').val(data.sjdw);
-			$('#sjpfdw').val(data.sjpfdw);
-			$('#jsjsbz').val(data.jsjsbz);
-			$('#ql').val(data.ql);
-			$('#ql_m').val(data.ql_m);
-			$('#sd').val(data.sd);
-			$('#sd_m').val(data.sd_m);
-			$('#hd').val(data.hd);
-			$('#ljtsf').val(data.ljtsf);
-			$('#dc').val(data.dc);
-			$('#jc').val(data.jc);
-			$('#lqlm').val(data.lqlm);
-			$('#snlm').val(data.snlm);
-			$('#gjhjsdj').combobox("setValue",data.gjhjsdj);
-			radioChecked("sftqss",data.sftqss);
-			$('#pfwh').val(data.pfwh);
-			$('#pfsj').datebox('setValue',data.pfsj);
-			$('#pftz').val(data.pftz);
-			$('#jhsybbzje').val(data.jhsybbzje);
-			$('#jhsysbzje').val(data.jhsydfzczj);
-			$('#jhxdwh').val(data.jhxdwh);
-			radioChecked("sfsqablbz",data.sfsqablbz);
-			if(data.sfsqablbz=="否"){
-				$('#ablbzsqwh').attr("disabled",'true');
-			}
-			$('#gksjwh').val(data.gksjwh);
-			$('#sjpfwh').val(data.sjpfwh);
-			$('#sfgyhbm').val(data.sfgyhbm);
-			$('#remarks').val(data.remarks);
-			$('#fapgdw').html(data.fapgdw);
-			$('#fascdw').html(data.fascdw);
-			$('#faspsj').html(data.faspsj);
-			$('#spwh').html(data.spwh);
-			$('#tzgs').html(data.tzgs);
-			$('#jsxz').html(data.jsxz);
-			$('#jsnr').html(data.jsnr);
-			if(data.gkbgmc!=null && data.gkbgmc!=''){
-				$('#td_gkbg').html("<a>"+data.gkbgmc+"</a>");
-			}
-			if(data.sjsgtmc!=null && data.sjsgtmc!=''){
-				$('#td_sjt').html("<a>"+data.sjsgtmc+"</a>");
-			}
-		}
-	});
-	function ablwhDis(value){
-		if(value=="是"){
-			$('#ablbzsqwh').removeAttr("disabled");
-		}else{
-			$('#ablbzsqwh').attr("disabled",'true');
-		}
-	}
-	</script>
 </body>
 </html>

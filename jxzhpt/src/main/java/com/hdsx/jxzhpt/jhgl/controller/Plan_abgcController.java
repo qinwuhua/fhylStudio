@@ -34,6 +34,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -59,6 +60,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
+	private Sckabgc sc;
 	private Plan_zjzj zjzj;
 	private Plan_upload uploads;
 	private String flag;//标记是哪个模块
@@ -232,7 +234,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			Map<String, String> result=new HashMap<String, String>();
 			System.out.println("审查："+jh.getSckid());
 			result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
-			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(jh)).toString());
+			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(sc)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -551,6 +553,14 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void setUploads(Plan_upload uploads) {
 		this.uploads = uploads;
+	}
+
+	public Sckabgc getSc() {
+		return sc;
+	}
+
+	public void setSc(Sckabgc sc) {
+		this.sc = sc;
 	}
 	
 }

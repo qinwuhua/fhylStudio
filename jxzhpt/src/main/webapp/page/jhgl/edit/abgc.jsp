@@ -250,7 +250,7 @@
 				$("#bbzts").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+ts+"万元");
 				$("#DFZC").html((parseFloat($("#JHZTZ").val())-ztz.toFixed(3)).toFixed(3));
 			}
-			if(parseFloat($("#JHZTZ").val())*100000>=500*100000){
+			if(parseFloat($("#JHZTZ").val())*10000>=500*10000){
 				$("#sfsqablbz").html("是");
 				document.getElementById("ABLBZWH").disabled=false;
 			}else{
@@ -663,21 +663,20 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0"
-								cellpadding="1" cellspacing="1">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 						<tbody id="gkbgTable"></tbody>
 					</table>
-						<table>
-							<tr>
-								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
-								<td><div id="fileQueue" ></div></td>
-							</tr>
-							<tr>
-								<td rowspan="2">
-									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
-								</td>
-							</tr>
-						</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+							<td><div id="fileQueue" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

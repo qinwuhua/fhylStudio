@@ -19,6 +19,7 @@
 	$(function(){
 		loadBmbm2('yjsdj','技术等级');
 		loadBmbm2('gjhjsdj','技术等级');
+		loadBmbm2('jsjsbz','技术等级');
 		gydwComboxTree("gydwxx");
 		loadXzqh("xzqhmc",$.cookie("dist"));
 		sbnf("editjhnf");
@@ -184,7 +185,7 @@
 				'jh.jsnr':$('#jsnr').val(),'jh.jhnf':$('#editjhnf').combobox("getValue"),'jh.jhkgsj':$('#jhkgsj').datebox("getText"),
 				'jh.jhwgsj':$('#jhwgsj').datebox("getText"),'jh.xdsj':$('#xdsj').datebox("getText"),
 				'jh.xmwybh':$('#xmwybh').val(),'jh.xmmc':$('#xmmc').val(),'jh.sjdw':$('#sjdw').val(),
-				'jh.sjpfdw':$('#sjpfdw').val(),'jh.jsjsbz':$('#sjpfdw').val(),
+				'jh.sjpfdw':$('#sjpfdw').val(),'jh.jsjsbz':$('#jsjsbz').combobox("getValue"),
 				'jh.ql':$('#ql').val(),'jh.ql_m':$('#ql_m').val(),
 				'jh.sd':$('#sd').val(),'jh.sd_m':$('#sd_m').val(),'jh.hd':$('#hd').val(),
 				'jh.ljtsf':$('#ljtsf').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),

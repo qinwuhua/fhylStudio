@@ -112,7 +112,7 @@
 				<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 				</if>
-				order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd
+				order by jh.jh_sbthcd,jh.sbnf desc) t order by t.jh_sbthcd,t.sbnf desc
 			)
 			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
 	</select>

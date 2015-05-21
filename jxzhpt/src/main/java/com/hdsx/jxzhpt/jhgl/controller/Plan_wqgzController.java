@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
@@ -36,6 +37,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -55,6 +57,8 @@ public class Plan_wqgzController extends BaseActionSupport {
 	private Plan_zjzj zjzj;
 	private Plan_wqgz jh;
 	private Jckwqgz lx;
+	private Sckwqgz sc;
+	private Plan_upload uploads;
 	private String fileuploadFileName;
 	private File fileupload;
 	private File uploadGk;
@@ -235,7 +239,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void editWqgzById(){
 		try {
 			JsonUtils.write(wqgzServer.editWqgzById(jh), getresponse().getWriter());
-			wqgzServer.editWqgzSckxx(jh);
+			wqgzServer.editWqgzSckxx(sc);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -265,26 +269,29 @@ public class Plan_wqgzController extends BaseActionSupport {
 		byte[] data;
 		try {
 				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8"); 		
+				response.setCharacterEncoding("utf-8");
 				if((uploadGk!=null)){
-						fs=new FileInputStream(this.uploadGk);
-						data=new byte[(int) this.uploadGk.length()];
-						fs.read(data);
-					   jh.setGkbgmc(uploadGkFileName);
-					   jh.setGkbgdata(data);
-					   if(wqgzServer.updateGkbg(jh))
-						   response.getWriter().print(uploadGkFileName+"导入成功");
-					   else response.getWriter().print(uploadGkFileName+"导入失败");
+					fs=new FileInputStream(this.uploadGk);
+					data=new byte[(int) this.uploadGk.length()];
+					fs.read(data);
+					System.out.println("文件是否为空:"+(uploadGk!=null));
+					System.out.println((uploadGkFileName==null) +"    "+(uploadGkFileName==null)+"   "+(fileuploadFileName==null));
+					uploads.setFilename(uploadGkFileName);
+					uploads.setFiledata(data);
+					uploads.setFiletype("工可报告");
 				}else{
 					fs=new FileInputStream(this.uploadSjt);
 					data=new byte[(int) this.uploadSjt.length()];
 					fs.read(data);
-					jh.setSjsgtmc(uploadSjtFileName);
-					jh.setSjsgtdata(data);
-					if(wqgzServer.updateSjsgt(jh))
-						response.getWriter().print(uploadSjtFileName+"导入成功");
-					   else response.getWriter().print(uploadSjtFileName+"导入失败");
-				}	
+					uploads.setFilename(uploadSjtFileName);
+					uploads.setFiledata(data);
+					uploads.setFiletype("设计施工图");
+				}
+				if(wqgzServer.insertwqFile(uploads)){
+					response.getWriter().print(uploadSjtFileName+"导入成功");
+				}else{
+					response.getWriter().print(uploadSjtFileName+"导入失败");
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -471,29 +478,35 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public Sckwqgz getSc() {
+		return sc;
+	}
+	public void setSc(Sckwqgz sc) {
+		this.sc = sc;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
 	}
 	
 }

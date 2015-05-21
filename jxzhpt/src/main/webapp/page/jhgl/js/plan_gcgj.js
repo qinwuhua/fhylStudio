@@ -87,7 +87,11 @@ function gclmgjxm(jh,lx){
 		    	}
 		    },
 		    {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-        		return '<a href="javascript:openZjzjWindow('+"'grid','editGjZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+		    	if(roleName()=="省级"){
+		    		return '<a href="javascript:openZjzjWindow('+"'grid','editGjZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+		    	}else{
+					return '<a style="text-decoration:none;color:black;">资金追加</a>';
+				}
 			}},
 		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
@@ -108,7 +112,11 @@ function gclmgjxm(jh,lx){
 		    },
 		    {field : 'id',title : '添加路线',width : 80,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		if((row.jh_sbthcd==0 && roleName()=="县级") || (row.jh_sbthcd<=2 && roleName()=="市级") || (row.jh_sbthcd<=4 && roleName()=="省级")){
+		    			return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		}else{
+		    			return '<a style="text-decoration:none;color:black;">添加路线</a>';
+		    		}
 		    	}
 		    },
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},

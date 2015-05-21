@@ -414,11 +414,11 @@
 	<select id="queryGPSBylxbm" parameterType="plan_lx_gcsj" resultType="plan_lx_gcsj">
 		select * from (
 			select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
-		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj
+		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
 		    from  JXJCK_2013.GPSROAD g
 		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
-			group by roadname,roadcode,g.f114) g1
+			group by roadname,roadcode,g.f114,g.f116) g1
     	where <![CDATA[ g1.qdzh<=#{qdzh} and g1.zdzh>=#{zdzh} and g1.yjsdj=#{yjsdj}]]>
 	</select>
 	<select id="queryJlBylx" parameterType="plan_lx_gcsj" resultType="int">

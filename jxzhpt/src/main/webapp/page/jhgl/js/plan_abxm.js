@@ -578,13 +578,13 @@ function editAbgc(){
 			'jh.sfsqablbz':$('#sfsqablbz').html(),
 			'jh.ablbzsqwh':$('#ABLBZWH').val(),
 			'jh.remarks':$('#JHRemarks').val(),
-			'jh.jckabgc.scqdzh':$('#scqdzh').val(),'jh.jckabgc.sczdzh':$('#sczdzh').val(),
-			'jh.jckabgc.sczlc':$('#sczlc').val(),'jh.jckabgc.scyhlc':$('#scyhlc').val(),
-			'jh.jckabgc.fapgdw':$('#fapgdw').val(),'jh.jckabgc.fascdw':$('#fascdw').val(),
-			'jh.jckabgc.faspsj':$('#faspsj').datebox('getValue'),'jh.jckabgc.spwh':$('#spwh').val(),
-			'jh.jckabgc.tzgs':$('#tzgs').val(),'jh.jckabgc.jsxz':$('#jsxz').val(),
-			'jh.jckabgc.jsnr':$('#jsnr').val(),'jh.jckabgc.scbz':$('#remarks').val(),
-			'jh.sckid':$('#sckid').val()};
+			'sc.scqdzh':$('#scqdzh').val(),'sc.sczdzh':$('#sczdzh').val(),
+			'sc.sczlc':$('#sczlc').val(),'sc.scyhlc':$('#scyhlc').val(),
+			'sc.fapgdw':$('#fapgdw').val(),'sc.fascdw':$('#fascdw').val(),
+			'sc.faspsj':$('#faspsj').datebox('getValue'),'sc.spwh':$('#spwh').val(),
+			'sc.tzgs':$('#tzgs').val(),'sc.jsxz':$('#jsxz').val(),
+			'sc.jsnr':$('#jsnr').val(),'sc.scbz':$('#remarks').val(),
+			'sc.sckid':$('#sckid').val(),'jh.sckid':$('#sckid').val()};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/editAbgcById.do',

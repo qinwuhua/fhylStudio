@@ -285,20 +285,20 @@
 			<if test="bz!=null">,bz=#{bz}</if>
 		where id=#{id}
 	</update>
-	<update id="editZhfzSckBysckid" parameterType="plan_zhfz">
+	<update id="editZhfzSckBysckid" parameterType="sckzhfz">
 		update SCK_ZHFZ set sckid=#{sckid}
-		<if test="jckzhfz.scqdzh!=null">,scqdzh=#{jckzhfz.scqdzh}</if>
-		<if test="jckzhfz.sczdzh!=null">,sczdzh=#{jckzhfz.sczdzh}</if>
-		<if test="jckzhfz.sczlc!=null">,sczlc=#{jckzhfz.sczlc}</if>
-		<if test="jckzhfz.scyhlc!=null">,scyhlc=#{jckzhfz.scyhlc}</if>
-		<if test="jckzhfz.fapgdw!=null">,fapgdw=#{jckzhfz.fapgdw}</if>
-		<if test="jckzhfz.fascdw!=null">,fascdw=#{jckzhfz.fascdw}</if>
-		<if test="jckzhfz.faspsj!=null">,faspsj=#{jckzhfz.faspsj}</if>
-		<if test="jckzhfz.spwh!=null">,spwh=#{jckzhfz.spwh}</if>
-		<if test="jckzhfz.tzgs!=null">,tzgs=#{jckzhfz.tzgs}</if>
-		<if test="jckzhfz.jsxz!=null">,jsxz=#{jckzhfz.jsxz}</if>
-		<if test="jckzhfz.jsnr!=null">,jsnr=#{jckzhfz.jsnr}</if>
-		<if test="jckzhfz.scbz!=null">,scbz=#{jckzhfz.scbz}</if>
+		<if test="scqdzh!=null">,scqdzh=#{scqdzh}</if>
+		<if test="sczdzh!=null">,sczdzh=#{sczdzh}</if>
+		<if test="sczlc!=null">,sczlc=#{sczlc}</if>
+		<if test="scyhlc!=null">,scyhlc=#{scyhlc}</if>
+		<if test="fapgdw!=null">,fapgdw=#{fapgdw}</if>
+		<if test="fascdw!=null">,fascdw=#{fascdw}</if>
+		<if test="faspsj!=null">,faspsj=#{faspsj}</if>
+		<if test="spwh!=null">,spwh=#{spwh}</if>
+		<if test="tzgs!=null">,tzgs=#{tzgs}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="jsnr!=null">,jsnr=#{jsnr}</if>
+		<if test="scbz!=null">,scbz=#{scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editZhfzStatus" parameterType="plan_zhfz">

@@ -5,9 +5,12 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_yhdzx;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -17,6 +20,12 @@ import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
  */
 public interface Plan_wqgzServer {
 	boolean updateLrztBySckid(String sckid);
+	/**
+	 * 添加危桥改造的上传文件
+	 * @param upload
+	 * @return
+	 */
+	boolean insertwqFile(Plan_upload upload);
 	/**
 	 * 危桥改造列表
 	 * @param page
@@ -85,7 +94,7 @@ public interface Plan_wqgzServer {
 	boolean updateGkbg(Plan_wqgz jh);
 	boolean updateSjsgt(Plan_wqgz jh);
 	Plan_wqgz queryWqgzFjById(String id);
-	boolean editWqgzSckxx(Plan_wqgz jh);
+	boolean editWqgzSckxx(Sckwqgz jh);
 	List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx);
 	boolean updateStatusBatch(List<Plan_wqgz> splist);
 	List<TreeNode> queryJcktj();

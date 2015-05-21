@@ -35,6 +35,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -53,6 +54,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
 	private Jckzhfz lx;
+	private Sckzhfz sc;
 	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
@@ -216,7 +218,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("jh", new Boolean((zhfzServer.editZhfzById(jh)>0)).toString());
-			result.put("sc", new Boolean(zhfzServer.editZhfzSckBysckid(jh)).toString());
+			result.put("sc", new Boolean(zhfzServer.editZhfzSckBysckid(sc)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 			
 		} catch (IOException e) {
@@ -441,29 +443,29 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
+	}
+	public Sckzhfz getSc() {
+		return sc;
+	}
+	public void setSc(Sckzhfz sc) {
+		this.sc = sc;
 	}
 	
 }

@@ -26,8 +26,8 @@
 		var fd;
 		var bzzj;
 		var ts;
+		var xxId=parent.YMLib.Var.jhbm;
 		$(function(){
-			var xxId=parent.YMLib.Var.jhbm;
 			sbnf("editjhnf");
 			$.ajax({
 				url:'../../../jhgl/queryWqgzById.do',
@@ -58,6 +58,7 @@
 					if(data.sjsgtmc!=''){
 						$("#xz_sjsgt").html(data.sjsgtmc);
 					}
+					fileShow();
 					//基础和审查
 					$.ajax({
 						url:'../../../xmsck/selectSckwqgzById.do',
@@ -232,7 +233,7 @@
 				$("#zfzc").html((parseFloat($("#jhztz").val())-ztz.toFixed(3)).toFixed(3));
 			}
 			
-			if(parseFloat($("#jhztz").val())*100000>=500*100000){
+			if(parseFloat($("#jhztz").val())*10000>=500*10000){
 				$("#sfsqablbz").html("是");
 				document.getElementById("ablbzwh").disabled=false;
 			}else{
@@ -255,6 +256,32 @@
 				return;
 			}
 			$("#zfzc").html((parseFloat($("#jhztz").val())-$("#bbz").val()).toFixed(3));
+		}
+		function fileShow(){
+			//加载文件
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryFjByParentId.do',
+				dataType:'json',
+				data:'uploads.id='+xxId,
+				success:function(data){
+			/* 		var data=datas.rows; */
+				/* 	alert(data); */
+					$("#gkbgTable").empty();
+					$("#sjsgtTable").empty();
+					var gkbg="";
+					var sjsgt="";
+					for ( var i = 0; i < data.length; i++) {
+						if(data[i].filetype=="工可报告"){
+							gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+						}if(data[i].filetype=="设计施工图"){
+							sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+						}
+						}
+					$("#gkbgTable").append(gkbg);
+					$("#sjsgtTable").append(sjsgt);
+				}
+			});
 		}
 	</script>
 </head>
@@ -651,12 +678,28 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+							<td><div id="fileQueue" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 						<div id="fileQueue"></div>
 						<a id="xz_gkbg" href='#' onclick='downFile1()' style='text-decoration:none;color:#3399CC;'></a>
 						<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
 						<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">
 							<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" style="border-width:0px;cursor: hand;" />
-						</a>
+						</a> 
+					-->
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -664,12 +707,28 @@
 					设计施工图
 				</td>
 				<td id="td_sjsgt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+							<td><div id="fileQueue1" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 					<div id="fileQueue1"></div>
 					<a id="xz_sjsgt" href='#' onclick='downFile2()' style='text-decoration:none;color:#3399CC;'></a>
 					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
 					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">
 						<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" style="border-width:0px;cursor: hand;" />
 					</a>
+					 -->
 				</td>
 			</tr>
 			<tr style="height: 50px;">

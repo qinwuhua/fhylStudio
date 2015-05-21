@@ -381,18 +381,18 @@
 		<if test="bz!=null">,bz=#{bz}</if>
 		where id=#{id}
 	</update>
-	<update id="editWqgzSckxx" parameterType="plan_wqgz">
+	<update id="editWqgzSckxx" parameterType="sckwqgz">
 		update SCK_WQGZ set sckid=#{sckid}
-		<if test="jh.jckwqgz.scqlqk!=null">,scqlqk=jckwqgz.scqlqk</if>
-		<if test="jh.jckwqgz.scqlqc!=null">,scqlqc=jckwqgz.scqlqc</if>
-		<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">,faspsj=#{jckwqgz.faspsj}</if>
-		<if test="jckwqgz.fapgdw!=null">,fapgdw=#{jckwqgz.fapgdw}</if>
-		<if test="jckwqgz.fascdw!=null">,fascdw=#{jckwqgz.fascdw}</if>
-		<if test="jckwqgz.spwh!=null">,spwh=#{jckwqgz.spwh}</if>
-		<if test="jckwqgz.tzgs!=null">,tzgs=#{jckwqgz.tzgs}</if>
-		<if test="jckwqgz.jsxz!=null">,jsxz=#{jckwqgz.jsxz}</if>
-		<if test="jckwqgz.jsnr!=null">,jsnr=#{jckwqgz.jsnr}</if>
-		<if test="jckwqgz.scbz!=null">,scbz=#{jckwqgz.scbz}</if>
+		<if test="scqlqk!=null">,scqlqk=#{scqlqk}</if>
+		<if test="scqlqc!=null">,scqlqc=#{scqlqc}</if>
+		<if test="faspsj!=null">,faspsj=#{faspsj}</if>
+		<if test="fapgdw!=null">,fapgdw=#{fapgdw}</if>
+		<if test="fascdw!=null">,fascdw=#{fascdw}</if>
+		<if test="spwh!=null">,spwh=#{spwh}</if>
+		<if test="tzgs!=null">,tzgs=#{tzgs}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="jsnr!=null">,jsnr=#{jsnr}</if>
+		<if test="scbz!=null">,scbz=#{scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editWqgzStatus" parameterType="plan_wqgz">
@@ -422,12 +422,16 @@
  	<select id="queryJckWqgz" parameterType="String" resultType="plan_wqgz">
 		select * from xmk_wqgz where qlbh=#{String}
 	</select>
-	<update id="updateGkbg" parameterType="plan_wqgz">
+	<insert id="insertwqFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) 
+		values(#{filename},#{filedata},#{parentid},#{filetype})
+	</insert>
+	<!-- <update id="updateGkbg" parameterType="plan_wqgz">
  		update plan_wqgz set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
  	</update>
  	<update id="updateSjsgt" parameterType="plan_wqgz">
  		update plan_wqgz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
- 	</update>
+ 	</update> -->
  	<select id="queryWqgzFjById" parameterType="string" resultType="plan_wqgz">
 		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
 	</select>
