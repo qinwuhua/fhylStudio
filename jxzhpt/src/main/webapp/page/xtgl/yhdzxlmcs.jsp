@@ -88,6 +88,24 @@
 				]
 			});
 		});
+		function addYhdzxcs(){
+			var yhdzxcs={'yhdzxcs.cslx':$('#addsellmjg').val(),'yhdzxcs.clmc':$('#txtclmc').val(),
+					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.sddj':$('#txtsddj').val()};
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../xtgl/addYhdzxcs.do',
+				data:yhdzxcs,
+				dataType:'json',
+				success:function(data){
+					if(data.result=="true"){
+						alert("添加成功！");
+						$('#addFlwbzbz').dialog("close");
+						$('#xtgl_flwbzbz_table').datagrid("reload");
+					}
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -157,7 +175,7 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="2" align="center">
-					<input id="add" type="button" onclick="" value="添加" style="margin-top: 5px;"/>
+					<input id="add" type="button" onclick="addYhdzxcs()" value="添加" style="margin-top: 5px;"/>
 					<input id="update" type="button" onclick="" value="修改" style="margin-top: 5px;"/>
 				</td>
 			</tr>

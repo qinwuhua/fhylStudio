@@ -923,7 +923,13 @@ public class XtglController extends BaseActionSupport{
 	}
 	
 	public void addYhdzxcs(){
-		xtglServer.addYhdzxcs(yhdzxcs);
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.addYhdzxcs(yhdzxcs)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void queryYhdzxcsById(){
