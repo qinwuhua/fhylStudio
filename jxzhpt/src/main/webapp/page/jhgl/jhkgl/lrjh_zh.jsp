@@ -122,7 +122,7 @@
 		}
 		var sckid= rows[0].sckid;
 		var jh_sbthcd="";
-		var gydw=rows[0].gydwbm;
+		var gydw=rows[0].tbbmbm;
 		var shi1=new RegExp("^[0-9]{7}[0-9][1-9]00$"),shi2=new RegExp("^[0-9]{7}[1-9][0-9]00$");
 		var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$"),xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
 		if(shi1.test(gydw) || shi2.test(gydw)){
@@ -141,9 +141,9 @@
 			}
 		}
 	 	for(var i=1;i<rows.length;i++){
-	 		if(shi1.test(rows[i].gydwbm) || shi2.test(rows[i].gydwbm)){
+	 		if(shi1.test(rows[i].tbbmbm) || shi2.test(rows[i].tbbmbm)){
 	 			jh_sbthcd+=",2";
-	 		}else if(xian1.test(rows[i].gydwbm) || xian2.test(rows[i].gydwbm)){
+	 		}else if(xian1.test(rows[i].tbbmbm) || xian2.test(rows[i].tbbmbm)){
 	 			jh_sbthcd+=",0";
 	 		}
 			sckid+=","+rows[i].sckid ;
