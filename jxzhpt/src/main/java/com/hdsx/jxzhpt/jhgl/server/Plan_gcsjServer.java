@@ -7,6 +7,7 @@ import jsx3.gui.Tree;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -28,7 +29,8 @@ public interface Plan_gcsjServer {
 	 * @param jh
 	 * @return
 	 */
-	boolean uploadGcsjFile(Plan_gcsj jh);
+	boolean insertGcsjFile(Plan_upload jh);
+	
 	/**
 	 * 根据计划ID删除路线
 	 * @param id

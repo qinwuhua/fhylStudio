@@ -31,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
@@ -56,6 +57,7 @@ public class Plan_gcsjController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_gcsj jh;
 	private Plan_lx_gcsj lx;
+	private Plan_upload uploads;
 	private String tbbmbm2;
 	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
@@ -107,16 +109,25 @@ public class Plan_gcsjController extends BaseActionSupport{
 			while((index=inputStream.read(file))!=-1){
 				byteOutpu.write(file, 0, index);
 			}
+			uploads=new Plan_upload();
+			String fileName="";
 			if(uploadGkFileName!=null){
-				jh.setGkbgmc(uploadGkFileName);
-				jh.setGkbgwj(file);
+				uploads.setFiledata(file);
+				uploads.setFilename(uploadGkFileName);
+				uploads.setFiletype("工可报告");
+				fileName=uploadGkFileName;
 			}
 			if(uploadSjtFileName!=null){
-				jh.setSjsgtmc(uploadSjtFileName);
-				jh.setSjsgtwj(file);
+				uploads.setFiledata(file);
+				uploads.setFilename(uploadSjtFileName);
+				uploads.setFiletype("设计施工图");
+				fileName=uploadSjtFileName;
 			}
-			gcsjServer.uploadGcsjFile(jh);
-			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+			uploads.setParentid(jh.getId());
+			if(gcsjServer.insertGcsjFile(uploads))
+				response.getWriter().print(fileName+"导入成功");
+			else 
+				response.getWriter().print(fileName+"导入失败");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -677,5 +688,11 @@ public class Plan_gcsjController extends BaseActionSupport{
 	}
 	public void setZjzj(Plan_zjzj zjzj) {
 		this.zjzj = zjzj;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
 	}
 }

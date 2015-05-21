@@ -301,9 +301,25 @@ function check(str){
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+							<td><div id="fileQueue" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 					<div id="fileQueue"></div>
 					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadGk" id="uploadGk" />
 					<a href="javascript:$('#uploadGk').uploadifyUpload()" onclick="$('#uploadGk').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					 -->
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -311,9 +327,26 @@ function check(str){
 					设计施工图
 				</td>
 				<td id="td_sjt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+							<td><div id="fileQueue1" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+					<!-- 
 					<div id="fileQueue1"></div>
 					<input type="file" value="选择图片" style="background-image: url('../../../js/uploader/btn_view.png');" name="uploadSjt" id="uploadSjt" />
 					<a href="javascript:$('#uploadSjt').uploadifyUpload()" onclick="$('#uploadSjt').uploadifyUpload()" style="text-decoration:none;color:#3399CC;">上传</a>
+					 -->
 				</td>
 			</tr>
 			<tr style="height: 50px;">
@@ -347,7 +380,7 @@ function check(str){
 		'fileDataName' : 'uploadGk',
 		'auto' : false,
 		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
+		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,
@@ -359,7 +392,8 @@ function check(str){
 			'jh.id':xxId
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_gkbg').html("<a>"+response+"</a>");
+			alert(response);
+			fileShow();
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -380,7 +414,7 @@ function check(str){
 		'fileDataName' : 'uploadSjt',
 		'auto' : false,
 		'multi' : false,
-		'buttonImg': '../../../js/uploader/btn_view.png',
+		'buttonImg': '../../../js/uploader/bdll.png',
 		'simUploadLimit' : 3,
 		'sizeLimit' : 20000000,
 		'queueSizeLimit' : 5,
@@ -392,7 +426,8 @@ function check(str){
 			'jh.id':xxId
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
-			$('#td_sjt').html("<a>"+response+"</a>");
+			alert(response);
+			fileShow();
 		},
 		onError : function(event, queueID, fileObj) {
 			alert("文件:" + fileObj.name + "上传失败");
@@ -450,6 +485,7 @@ function check(str){
 			$('#sjpfwh').val(data.sjpfwh);
 			radioChecked("sfgyhbm",data.sfgyhbm);
 			$('#lblJHRemarks').val(data.jhbz);
+			fileShow();
 			//审查
 			$('#fapgdw').html(data.fapgdw);
 			$('#fascdw').html(data.fascdw);

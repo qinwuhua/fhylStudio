@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcsj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcsjServer;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -117,8 +118,8 @@ public class Plan_GcsjServerImpl extends BaseOperate implements Plan_gcsjServer{
 	}
 
 	@Override
-	public boolean uploadGcsjFile(Plan_gcsj jh) {
-		return update("uploadGcsjFile", jh)>0;
+	public boolean insertGcsjFile(Plan_upload jh) {
+		return update("insertGcsjFile", jh)>0;
 	}
 
 	@Override

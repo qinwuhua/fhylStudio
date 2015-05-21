@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -26,7 +27,7 @@ public interface Plan_shuihServer {
 	 * @param jh
 	 * @return
 	 */
-	boolean uploadShuihFile(Plan_shuih jh);
+	boolean insertShuihFile(Plan_upload jh);
 	/**
 	 * 根据计划ID删除路线信息
 	 * @param id

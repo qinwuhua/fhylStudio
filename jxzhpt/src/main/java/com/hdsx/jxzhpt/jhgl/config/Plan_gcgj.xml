@@ -415,21 +415,9 @@
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
 	</delete>
-	<update id="uploadGcgjFile" parameterType="plan_gcgj">
-		update plan_gcgj jh set 
-		<if test="gkbgmc!=null and gkbgmc!=''">
-			jh.GKBGMC=#{gkbgmc},
-		</if>
-		<if test="gkbgwj!=null">
-			jh.gkbgwj=#{gkbgwj}
-		</if>
-		<if test="sjsgtmc!=null and sjsgtmc!=''">
-			jh.SJSGTMC=#{sjsgtmc},
-		</if>
-		<if test="sjsgtwj!=null">
-			jh.sjsgtwj=#{sjsgtwj}
-		</if>
-		where jh.id=#{id}
+	<update id="insertGcgjFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) 
+		values(#{filename},#{filedata},#{parentid},#{filetype})
 	</update>
 	<select id="queryGjwjById" parameterType="plan_gcgj" resultType="plan_gcgj">
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcgj j where id=#{id}

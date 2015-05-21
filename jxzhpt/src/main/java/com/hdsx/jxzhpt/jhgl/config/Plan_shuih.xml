@@ -379,21 +379,9 @@
 	<delete id="dropShuihLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_shuih where jhid=#{String}
 	</delete>
-	<update id="uploadShuihFile" parameterType="plan_shuih">
-		update plan_shuih jh set 
-		<if test="gkbgmc!=null and gkbgmc!=''">
-			jh.GKBGMC=#{gkbgmc},
-		</if>
-		<if test="gkbgwj!=null">
-			jh.gkbgwj=#{gkbgwj}
-		</if>
-		<if test="sjsgtmc!=null and sjsgtmc!=''">
-			jh.SJSGTMC=#{sjsgtmc},
-		</if>
-		<if test="sjsgtwj!=null">
-			jh.sjsgtwj=#{sjsgtwj}
-		</if>
-		where jh.id=#{id}
+	<update id="insertShuihFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) 
+		values(#{filename},#{filedata},#{parentid},#{filetype})
 	</update>
 	<select id="queryShuihwjById" parameterType="plan_shuih" resultType="plan_shuih">
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_shuih j where id=#{id}
