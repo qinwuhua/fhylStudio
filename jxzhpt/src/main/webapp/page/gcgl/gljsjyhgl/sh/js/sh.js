@@ -126,6 +126,18 @@ function tjshyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#tj_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#tj_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
 	if($("#tj_bywcdc").val()==''){
 		alert("请填入本月完成垫层");
 		return;
@@ -166,6 +178,18 @@ function xgshyb(){
 	//alert("xx");
 	if($("#xg_wc_btz").val()==''){
 		alert("请填入本月完成部投资");
+		return;
+	}
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
 		return;
 	}
 	if($("#xg_bywcdc").val()==''){

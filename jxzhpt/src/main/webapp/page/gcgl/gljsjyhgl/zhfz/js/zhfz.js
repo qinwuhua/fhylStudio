@@ -147,10 +147,23 @@ function xgzhfzyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
 	if($("#xg_bywcgl").val()==''){
 		alert("请填入本月完成公里");
 		return;
 	}
+	
 	var data = "gcglzhfz.wc_btz="+$("#xg_wc_btz").val()+"&gcglzhfz.wc_stz="+$("#xg_wc_stz").val()+"&gcglzhfz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglzhfz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglzhfz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglzhfz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglzhfz.bywcgl="+$("#xg_bywcgl").val()+"&gcglzhfz.kgdl="+$("#xg_kgdl").val()+"&gcglzhfz.qksm="+$("#xg_qksm").val()+"&gcglzhfz.wcqk="+$("#xg_wcqk").text()

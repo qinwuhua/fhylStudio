@@ -127,6 +127,18 @@ function tjgcgzgjyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#tj_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#tj_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
 	if($("#tj_bywcdc").val()==''){
 		alert("请填入本月完成垫层");
 		return;
@@ -139,7 +151,7 @@ function tjgcgzgjyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
-
+	
 	var data = "gcglgcgzgj.wc_btz="+$("#tj_wc_btz").val()+"&gcglgcgzgj.wc_stz="+$("#tj_wc_stz").val()+"&gcglgcgzgj.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglgcgzgj.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglgcgzgj.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglgcgzgj.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglgcgzgj.bywcdc="+$("#tj_bywcdc").val()+"&gcglgcgzgj.bywcjc="+$("#tj_bywcjc").val()+"&gcglgcgzgj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzgj.kgdl="+$("#tj_kgdl").val()
@@ -167,6 +179,18 @@ function xggcgzgjyb(){
 	//alert("xx");
 	if($("#xg_wc_btz").val()==''){
 		alert("请填入本月完成部投资");
+		return;
+	}
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
 		return;
 	}
 	if($("#xg_bywcdc").val()==''){

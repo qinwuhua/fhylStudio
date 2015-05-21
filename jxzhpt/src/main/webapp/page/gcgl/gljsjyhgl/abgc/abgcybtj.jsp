@@ -157,7 +157,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /></td>
+                                <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -176,7 +176,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
                                 <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/></td>
+                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color='red' size='2'>*</font></td>
                                 </tr>
                                 </table>
                                 </div>

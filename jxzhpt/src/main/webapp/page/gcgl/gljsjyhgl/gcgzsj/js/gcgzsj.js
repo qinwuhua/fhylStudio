@@ -66,13 +66,13 @@ function ybsb(index){
 	//window.open("gcgzsjyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报添加','gcgzsjybtj.jsp','wqxx',900,340);
+	YMLib.UI.createWindow('wqxx','工程改造路面升级月报添加','gcgzsjybtj.jsp','wqxx',950,340);
 	//window.open("gcgzsjybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,340);
+	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',950,340);
 	//window.open("gcgzsjybxx.jsp");
 }
 function Edityb(index){

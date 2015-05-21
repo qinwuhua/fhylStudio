@@ -116,8 +116,32 @@ function tjhslyyb(){
 	if(yhjb.length<8&&yhjb.length>=2){
 		yhtype='省级';
 	}
-	if($("#tj_bywcdc").val()==''||$("#tj_bywcjc").val()==''||$("#tj_bywcmc").val()==''||$("#tj_kgdl").val()==''){
-		alert("页面信息未填写完整，请您检查漏填项");
+	if($("#tj_wc_btz").val()==''){
+		alert("请填入本月完成部投资");
+		return;
+	}
+	if($("#tj_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#tj_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
+	if($("#tj_bywcdc").val()==''){
+		alert("请填入本月完成垫层");
+		return;
+	}
+	if($("#tj_bywcjc").val()==''){
+		alert("请填入本月完成基层");
+		return;
+	}
+	if($("#tj_bywcmc").val()==''){
+		alert("请填入本月完成面层");
 		return;
 	}
 	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
@@ -145,10 +169,35 @@ function tjhslyyb(){
 //修改
 function xghslyyb(){
 	//alert("xx");
-	if($("#xg_bywcdc").val()==''||$("#xg_bywcjc").val()==''||$("#xg_bywcmc").val()==''||$("#xg_kgdl").val()==''){
-		alert("页面信息未填写完整，请您检查漏填项");
+	if($("#xg_wc_btz").val()==''){
+		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
+	if($("#xg_bywcdc").val()==''){
+		alert("请填入本月完成垫层");
+		return;
+	}
+	if($("#xg_bywcjc").val()==''){
+		alert("请填入本月完成基层");
+		return;
+	}
+	if($("#xg_bywcmc").val()==''){
+		alert("请填入本月完成面层");
+		return;
+	}
+
 	var data = "gcglhsly.wc_btz="+$("#tj_wc_btz").val()+"&gcglhsly.wc_stz="+$("#tj_wc_stz").val()+"&gcglhsly.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglhsly.bfzj="+$("#tj_zjdw_btz").val()+"&gcglhsly.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglhsly.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 		+"&gcglhsly.bywcdc="+$("#xg_bywcdc").val()+"&gcglhsly.bywcjc="+$("#xg_bywcjc").val()+"&gcglhsly.bywcmc="+$("#xg_bywcmc").val()+"&gcglhsly.kgdl="+$("#tj_kgdl").val()

@@ -44,7 +44,7 @@ function ybsb(index){
 	YMLib.UI.createWindow('wqxx1','养护大中修月报信息','yhdzxyb.jsp','wqxx1',1059,467);
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',680,340);
+	YMLib.UI.createWindow('wqxx','养护大中修月报添加','yhdzxybtj.jsp','wqxx',800,340);
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
@@ -54,7 +54,7 @@ function Showybxx(index){
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',680,340);
+	YMLib.UI.createWindow('wqxx','养护大中修月报编辑','yhdzxybxg.jsp','wqxx',800,340);
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
@@ -101,6 +101,18 @@ function tjyhdzxyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#tj_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#tj_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
 	if($("#tj_bywcdc").val()==''){
 		alert("请填入本月完成垫层");
 		return;
@@ -113,6 +125,7 @@ function tjyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
+	
 	var data = "gcglyhdzx.wc_btz="+$("#tj_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#tj_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#tj_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#tj_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#tj_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#tj_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#tj_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#tj_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#tj_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#tj_kgdl").val()
@@ -142,6 +155,18 @@ function xgyhdzxyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
 	if($("#xg_bywcdc").val()==''){
 		alert("请填入本月完成垫层");
 		return;
@@ -154,6 +179,7 @@ function xgyhdzxyb(){
 		alert("请填入本月完成面层");
 		return;
 	}
+	
 	var data = "gcglyhdzx.wc_btz="+$("#xg_wc_btz").val()+"&gcglyhdzx.wc_stz="+$("#xg_wc_stz").val()+"&gcglyhdzx.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglyhdzx.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglyhdzx.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglyhdzx.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglyhdzx.bywcdc="+$("#xg_bywcdc").val()+"&gcglyhdzx.bywcjc="+$("#xg_bywcjc").val()+"&gcglyhdzx.bywcmc="+$("#xg_bywcmc").val()+"&gcglyhdzx.kgdl="+$("#xg_kgdl").val()
