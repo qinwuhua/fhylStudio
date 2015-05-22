@@ -89,7 +89,7 @@ function sbnf(id){
 	    valueField:'value',
 	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",'');
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 /**
  * 行政区划下拉框
@@ -443,7 +443,7 @@ function xmnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
-	$('#'+id).combobox("setValue","");
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 function loadTsdq(id){
 	$('#'+id).combobox({    

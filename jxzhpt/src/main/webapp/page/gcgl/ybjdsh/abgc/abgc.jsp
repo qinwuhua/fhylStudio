@@ -32,6 +32,7 @@
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
+			$("#ddlYear").val(myDate.getFullYear());
 			showAll();
 		});
 	</script>

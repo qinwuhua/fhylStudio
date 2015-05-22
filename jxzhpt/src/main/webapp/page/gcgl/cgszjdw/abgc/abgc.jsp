@@ -73,7 +73,7 @@
 			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr1+">"+mystr1+"</option>");
 			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
 			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
-
+			$("#ddlYear").val(myDate.getFullYear());
 			showAll();
 		});
 		function exportAbyb(){

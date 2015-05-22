@@ -15,7 +15,7 @@ function xmnf(id){
 	    valueField:'value',
 	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",'');
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 function xmnf1(id){
 	var myDate = new Date();
