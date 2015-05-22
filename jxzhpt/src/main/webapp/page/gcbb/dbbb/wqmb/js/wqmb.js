@@ -108,7 +108,8 @@ function showAllkg(){
 	        {field:'sjkgsj',title:'实际开工时间',width:100,align:'center'},
 	        {field:'sgdw',title:'施工单位',width:100,align:'center'},
 	        {field:'jldw',title:'监理单位',width:100,align:'center'},
-	        {field:'htje',title:'合同金额',width:100,align:'center'}
+	        {field:'htje',title:'预算总投资（万元）',width:100,align:'center'},
+	        {field:'bz',title:'备注',width:100,align:'center'}
 	    ]]    
 	}); 
 }
