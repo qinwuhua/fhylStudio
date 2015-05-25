@@ -58,7 +58,10 @@ public class GcbbServerImpl extends BaseOperate implements GcbbServer{
 					if(gj.getYjsdj()!=null)
 						yjsdj = gj.getYjsdj().split(",");
 					for(int i=0;i<yhlc.length;i++){
-						sumyhlc=sumyhlc+new Double(yhlc[i]).doubleValue();
+						String[] a= yhlc[i].split("、");
+						for (int j = 0; j < a.length; j++) {
+							sumyhlc=sumyhlc+new Double(a[j]).doubleValue();
+						}
 					}
 					if(gj.getYjsdj()!=null){
 						for (int i=0;i<yjsdj.length;i++) {

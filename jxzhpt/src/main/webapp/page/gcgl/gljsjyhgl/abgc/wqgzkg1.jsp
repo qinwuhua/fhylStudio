@@ -27,6 +27,7 @@
 			$('#tj_xdsj').datebox('setValue', data.xdsj);
 			$('#tj_sjkgsj').datebox('setValue', data.sjkgsj);
 			$('#tj_yjjgsj').datebox('setValue', data.yjwgsj);
+			$('#tj_xdwh').val(data.xdwh);
 			$('#tj_sgdw').val(data.sgdw);
 			$('#tj_jldw').val(data.jldw);
 			$('#tj_jsdw').val(data.jsdw);
@@ -80,17 +81,28 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <input style="width: 105px" type="text" id="tj_xdsj" />
                             </td>
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            
+                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
-                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">实际开工时间：</font></b>
+                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 105px" type="text" id="tj_sjkgsj" />
+                                <input style="width: 100px" type="text" id="tj_xdwh" />
                             </td>
+                           
                         </tr>
-                                                <tr style="height: 35px;">
+                        <tr style="height: 35px;">
+	                         <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+	                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+	                                 padding-right: 5px;">
+	                                <b><font color="#009ACD" style="cursor: hand; font-size: 12px">实际开工时间：</font></b>
+	                            </td>
+	                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+	                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+	                                <input style="width: 105px" type="text" id="tj_sjkgsj" />
+	                            </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 width: 23%; padding-right: 5px;">
@@ -100,7 +112,10 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <input style="width: 105px" type="text" id="tj_yjjgsj" />
                             </td>
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                            
+                        </tr>
+                        <tr style="height: 35px;">
+                        	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">施工单位：</font></b>
@@ -109,8 +124,6 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <input style="width: 100px" type="text" id="tj_sgdw" />
                             </td>
-                        </tr>
-                                                <tr style="height: 35px;">
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 width: 23%; padding-right: 5px;">
@@ -120,13 +133,16 @@ a:active {
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
                                 <input style="width: 100px" type="text" id="tj_jldw" />
                             </td>
-                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                           
+                        </tr>
+                        <tr style="height: 35px;">
+                         <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                  padding-right: 5px;">
                                 <b><font color="#009ACD" style="cursor: hand; font-size: 12px">建设单位：</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
-                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
                                 <input style="width: 100px" type="text" id="tj_jsdw" />
                             </td>
                         </tr>
