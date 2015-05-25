@@ -12,6 +12,10 @@
 <script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/Datagrid.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
@@ -20,7 +24,9 @@ var qdStr;
 var zdStr;
 	$(function(){
 		xmnf1("scxmnf");
+		loadUploadify();
 		selAbgcById();
+		fileShow();
 		$("#save_button").click(function(){
 			if($("#scqdzh").val()==null || $("#scqdzh").val()=='' || isNaN($("#scqdzh").val()) || parseFloat($("#scqdzh").val())<0){
 				alert("请填写正确的起点桩号！");
@@ -63,7 +69,7 @@ var zdStr;
 			parent.$('#sck_xg').window('destroy');
 		});	
 	});
-	
+	var xxId=parent.rowid;
 	function selAbgcById(){
 		$.ajax({
 			type : 'post',
@@ -132,6 +138,130 @@ var zdStr;
 		var zlc=(parseFloat($("#sczdzh").val())*1000000000000-parseFloat($("#scqdzh").val())*1000000000000)/1000000000000;
 		$("#sczlc").html(zlc);
 	}
+	
+	function loadUploadify(){
+		$("#uploadGk").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadAbgcFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue',
+			'fileDataName' : 'uploadGk',
+			'auto' : false,
+			'multi' : false,
+			'buttonImg': '../../../js/uploader/bdll.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'uploads.parentid':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				alert(response);
+				fileShow();
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+
+			}
+		});
+		
+		$("#uploadSjt").uploadify({
+			/*注意前面需要书写path的代码*/
+			'uploader' : '../../../js/uploader/uploadify.swf',
+			'script' : '../../../jhgl/uploadAbgcFile.do',
+			'cancelImg' : '../../../js/uploader/cancel.png',
+			'queueID' : 'fileQueue1',
+			'fileDataName' : 'uploadSjt',
+			'auto' : false,
+			'multi' : true,
+			'buttonImg': '../../../js/uploader/bdll.png',
+			'simUploadLimit' : 3,
+			'sizeLimit' : 20000000,
+			'queueSizeLimit' : 5,
+			'fileDesc' : '支持格式:xls',
+			'fileExt' : '',
+			'height' : 30,
+			'width' : 92,
+			'scriptData' : {
+				'uploads.parentid':xxId,
+			},
+			onComplete : function(event, queueID, fileObj, response, data) {
+				alert(response);
+				fileShow();
+			},
+			onError : function(event, queueID, fileObj) {
+				alert("文件:" + fileObj.name + "上传失败");
+			},
+			onCancel : function(event, queueID, fileObj) {
+			},
+			onQueueFull : function(event, queueSizeLimit) {
+				alert("最多支持上传文件数为：" + queueSizeLimit);
+
+			}
+		});
+	}
+	
+	function fileShow(){
+		//加载文件
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryFjByParentId.do',
+			dataType:'json',
+			data:'uploads.id='+xxId,
+			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
+				$("#gkbgTable").empty();
+				$("#sjsgtTable").empty();
+				var gkbg="";
+				var sjsgt="";
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].filetype=="工可报告"){
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}if(data[i].filetype=="设计施工图"){
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}
+					}
+				$("#gkbgTable").append(gkbg);
+				$("#sjsgtTable").append(sjsgt);
+			}
+		});
+	}
+	function downFile(id){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	}
+	function deleteFile(id){
+		if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/jhgl/deleteFile.do",
+				 dataType : 'json',
+				 data : 'uploads.id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 fileShow();
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+	}
+
 </script>
 <style type="text/css">
 TD {
@@ -283,6 +413,46 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<textarea id="scbz" rows="2" style="width:99%"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可报告：</td>
+				<td id="td_gkbg" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+					<table>
+						<tr>
+							<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadGk" id="uploadGk" /></td>
+							<td><div id="fileQueue" ></div></td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadGk').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+				<tr>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计施工图：</td>
+				<td id="td_sjsgt" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+					<table>
+							<tr>
+								<td><input type="file" value="选择图片" style="background-image: url('../../../js/uploader/bdll.png');" name="uploadSjt" id="uploadSjt" /></td>
+								<td><div id="fileQueue1" ></div></td>
+							</tr>
+							<tr>
+								<td rowspan="2">
+									<img name="uploadFile" id="uploadFile" src="../../../js/uploader/upload.png" onclick="$('#uploadSjt').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
+								</td>
+							</tr>
+						</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

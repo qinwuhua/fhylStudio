@@ -17,6 +17,7 @@
 <script type="text/javascript">
 	$(function(){
 		selZhfzById();
+		fileShow();
 		$("#qx_window").click(function(){
 			parent.$('#sck_ck').window('destroy');
 		});	
@@ -60,6 +61,58 @@
 			});
 		}		
 	});
+	var xxId=parent.rowid;
+	function fileShow(){
+		//加载文件
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/queryFjByParentId.do',
+			dataType:'json',
+			data:'uploads.id='+xxId,
+			success:function(data){
+		/* 		var data=datas.rows; */
+			/* 	alert(data); */
+				$("#gkbgTable").empty();
+				$("#sjsgtTable").empty();
+				var gkbg="";
+				var sjsgt="";
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].filetype=="工可报告"){
+						gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}if(data[i].filetype=="设计施工图"){
+						sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					}
+					}
+				$("#gkbgTable").append(gkbg);
+				$("#sjsgtTable").append(sjsgt);
+			}
+		});
+	}
+	function downFile(id){
+		parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+	}
+	function deleteFile(id){
+		if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/jhgl/deleteFile.do",
+				 dataType : 'json',
+				 data : 'uploads.id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 fileShow();
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+	}
+
 </script>
 <style type="text/css">
 TD {
@@ -205,6 +258,22 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备&nbsp;&nbsp;注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="scbz"></span>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可报告：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工设计图：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
