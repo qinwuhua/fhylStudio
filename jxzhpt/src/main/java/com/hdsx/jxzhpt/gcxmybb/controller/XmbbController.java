@@ -209,7 +209,7 @@ public class XmbbController extends BaseActionSupport{
 		int j1=0,j2=0;
 		int k1=0;
 		for(int t=0;t<l1.size();t++){
-			l.add(l1.get(t));
+			if(t==0) l.add(l1.get(t));
 			t2=t2+Integer.parseInt((l1.get(t).get("XMGS").toString()));
 			//if() break;
 				for(int i=i1;i<l2.size();i++){

@@ -129,7 +129,7 @@
 	</update>
 	
 	<update id="xgSckWqgzShzt" parameterType="hashmap">
-		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
+		update sck_wqgz set sck_shzt='已审核',lrjh='已列入',sck_shsj=sysdate,sck_shbm=#{sck_shbm} where sckid=#{sckid}
 	</update>
 
 	<update id="xgSckWqgzTH" parameterType="java.util.List">

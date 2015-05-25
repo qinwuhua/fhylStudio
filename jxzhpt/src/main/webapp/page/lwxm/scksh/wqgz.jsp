@@ -39,6 +39,8 @@ function xgShzt(){
 		return;
 	}
 	var sckid=rows[0].sckid;
+	var nf=rows[0].xmnf;
+	var tbbmbm=rows[0].tbbmbm;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_shzt=='已审核'){
 			alert("有项目已审核，请勿重复操作！");
@@ -47,13 +49,15 @@ function xgShzt(){
 	}
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
+		nf+=","+rows[i].xmnf;
+		tbbmbm+=","+rows[i].tbbmbm;
 	}
 	if(confirm('您确定审核通过该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/xgSckWqgzShzt.do",
 				 dataType : 'json',
-				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit"),
+				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit")+"&nf="+nf+"&tbbmbm1="+tbbmbm,
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');

@@ -716,7 +716,7 @@
 		order by substr(xmlx,1,1)
 	</select>
 	<select id="getptgxlist2" parameterType="xmbb" resultType="hashmap">
-		select decode(substr(xmlx,0,1),'1','（一）','2','（二）','3','（三）','') xh,min(xmlx) xmlx,min(substr(xmlx,2)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
+		select decode(substr(xmlx,0,2),'11','（一）','12','（二）','13','（三）','21','二','') xh,min(xmlx) xmlx,min(substr(xmlx,3)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
 		 decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
     	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
