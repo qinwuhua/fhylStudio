@@ -81,10 +81,7 @@ function zhfzxm(jh,lx){
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
 		        	var id="'"+row.id+"'";
-		        	if(roleName()=="省级")
-		        		result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
-	        		else
-	        			result+='<a style="text-decoration:none;color:black;">移除</a>';
+		        	result+='<a href="javascript:dropZhfz('+id+','+"'true'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	}else{
 	        		result+='<a style="text-decoration:none;">编辑</a>    ';
 		        	result+='<a style="text-decoration:none;">移除</a>';

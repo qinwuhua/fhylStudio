@@ -16,7 +16,7 @@ public interface SckabgcServer {
 		boolean xgSckAbgcSbzt(String delstr,Sckabgc abgc);
 		List<Sckabgc> selectSckShabgc(Sckabgc abgc);
 		int selectAbgcShCount(Sckabgc abgc);
-		boolean xgSckAbgcShzt(String delstr,Sckabgc abgc);
+		boolean xgSckAbgcShzt(String delstr,Sckabgc abgc,String nf,String tbbmbm);
 		boolean xgSckAbgcTH(String delstr);
 		boolean bzAbgc(Sckabgc abgc);
 		boolean onceSckAbgc(Sckabgc abgc);
