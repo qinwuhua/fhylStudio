@@ -489,14 +489,15 @@ function editShuih(){
 	if(lxztz()){
 		var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),
 				'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
-				'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),
+				//'jh.xdsj':$('#jhxdsj').datebox('getValue'),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.xmmc':$('#xmmc').val(),
 				'jh.yhlb':$('#yhlb').combobox('getValue'),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
 				'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),
 				'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
 				'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),
 				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),
 				'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#lblABLBZWH').val(),
-				'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.sftqss':$("input[name='sftqss']:checked").val(),
 				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),
 				'jh.sfgyhbm':$("input[name='sfgyhbm']:checked").val(),'jh.jhbz':$('#lblJHRemarks').val()
 		};

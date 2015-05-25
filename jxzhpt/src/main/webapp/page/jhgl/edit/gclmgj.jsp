@@ -116,12 +116,12 @@ function check(str){
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+				<!-- <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划下达时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="xdsj" type="text" class="easyui-datebox" style="width: 100px;"></input>
-				</td>
+				</td> -->
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					项目名称
 				</td>
@@ -131,9 +131,11 @@ function check(str){
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					养护类别
 				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="border-left: 1px solid #C0C0C0;border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="yhlb" style="width: 100px;"/>
 				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
@@ -220,8 +222,8 @@ function check(str){
 					是否申请按比例补助
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input type="radio" id="sfsqablbz0" name="sfsqablbz" value="是"/>是
-					<input type="radio" id="sfsqablbz1" name="sfsqablbz" value="否"/>否
+					<input type="radio" id="sfsqablbz0" name="sfsqablbz" onchange="ablwhDis('是')" value="是"/>是
+					<input type="radio" id="sfsqablbz1" name="sfsqablbz" onchange="ablwhDis('否')" value="否"/>否
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					按比例补助申请文号
@@ -238,12 +240,12 @@ function check(str){
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+				<!-- <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					计划下达文号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="jhxdwh" style="width: 100px;"/> &nbsp;
-				</td>
+				</td> -->
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					工可批复文号
 				</td>
@@ -256,6 +258,8 @@ function check(str){
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="sjpfwh" style="width: 100px;"/> &nbsp;
 				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
@@ -422,7 +426,8 @@ function check(str){
 			$('#editsbnf').combobox('select',data.sbnf);
 			$('#jhkgsj').datebox('setValue',data.jhkgsj);
 			$('#jhwgsj').datebox('setValue',data.jhwgsj);
-			$('#xdsj').datebox('setValue',data.xdsj);
+			//$('#xdsj').datebox('setValue',data.xdsj);
+			//$('#jhxdwh').val(data.jhxdwh);
 			$('#xmmc').val(data.xmmc);
 			$('#yhlb').combobox('select',data.yhlb);
 			$('#sjdw').val(data.sjdw);
@@ -443,7 +448,6 @@ function check(str){
 			}
 			$('#ablbzsqwh').val(data.ablbzsqwh);
 			radioChecked("sftqss",data.sftqss);
-			$('#jhxdwh').val(data.jhxdwh);
 			$('#gksjwh').val(data.gksjwh);
 			$('#sjpfwh').val(data.sjpfwh);
 			radioChecked("sfgyhbm",data.sfgyhbm);
@@ -533,6 +537,13 @@ function check(str){
 			});
 		}
 	});
+	function ablwhDis(value){
+		if(value=="是"){
+			$('#ablbzsqwh').removeAttr("disabled");
+		}else{
+			$('#ablbzsqwh').attr("disabled",'true');
+		}
+	}
 	</script>
 </body>
 </html>
