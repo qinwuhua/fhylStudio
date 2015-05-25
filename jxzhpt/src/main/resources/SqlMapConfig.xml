@@ -23,6 +23,7 @@
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj" alias="gcglgcgzsj"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglhsly" alias="gcglhsly"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb" alias="gcglaqyb"/>
+      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys" alias="gcgl_jgys"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgltz" alias="gcgltz"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Trqk" alias="trqk"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lkmxb" alias="lkmxb"/>

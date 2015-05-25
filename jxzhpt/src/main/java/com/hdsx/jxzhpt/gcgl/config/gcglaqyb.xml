@@ -275,4 +275,27 @@
 		and sendingunits like '%'||trim(#{sendingunits})||'%'
 		</if>
 	</select>
+	<insert id="insertSgxk" parameterType="gcgl_jgys">
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{jhid},'施工许可')
+ 	</insert>
+ 	<insert id="insertJgtc" parameterType="gcgl_jgys">
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{jhid},'交工通车')
+ 	</insert>
+ 	<insert id="insertWgys" parameterType="gcgl_jgys">
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{jhid},'完工验收')
+ 	</insert>
+ 	
+ 	<insert id="insertJGYS" parameterType="gcgl_jgys">
+ 		insert into gcgl_jgys(id,yssj,ysdw,ysyj,jhid)
+ 		 values(sys_guid(),#{yssj},#{ysdw},#{ysyj},#{jhid})
+ 	</insert>
+ 	<insert id="updateJGYS" parameterType="gcgl_jgys">
+ 		update gcgl_jgys set yssj=#{yssj},ysdw=#{ysdw},ysyj=#{ysyj} where jhid=#{jhid}
+ 	</insert>
+ 	<select id="queryJGYS" parameterType="gcgl_jgys" resultType="gcgl_jgys">
+ 		select * from gcgl_jgys where jhid=#{jhid}
+ 	</select>
 </mapper>

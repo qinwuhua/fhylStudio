@@ -28,6 +28,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
@@ -77,7 +78,58 @@ public class GcglaqybController extends BaseActionSupport{
 	private String type;
 	private String yhdw;
 	private String id;
+	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
+	private File uploadSGXK;
+	private File uploadJGTC;
+	private File uploadWGYS;
+	private String uploadSGXKFileName;
+	private String uploadJGTCFileName;
+	private String uploadWGYSFileName;
 	
+	public File getUploadSGXK() {
+		return uploadSGXK;
+	}
+	public void setUploadSGXK(File uploadSGXK) {
+		this.uploadSGXK = uploadSGXK;
+	}
+	public File getUploadJGTC() {
+		return uploadJGTC;
+	}
+	public void setUploadJGTC(File uploadJGTC) {
+		this.uploadJGTC = uploadJGTC;
+	}
+	public File getUploadWGYS() {
+		return uploadWGYS;
+	}
+	public void setUploadWGYS(File uploadWGYS) {
+		this.uploadWGYS = uploadWGYS;
+	}
+	
+	public String getUploadSGXKFileName() {
+		return uploadSGXKFileName;
+	}
+	public void setUploadSGXKFileName(String uploadSGXKFileName) {
+		this.uploadSGXKFileName = uploadSGXKFileName;
+	}
+	public String getUploadJGTCFileName() {
+		return uploadJGTCFileName;
+	}
+	public void setUploadJGTCFileName(String uploadJGTCFileName) {
+		this.uploadJGTCFileName = uploadJGTCFileName;
+	}
+	
+	public String getUploadWGYSFileName() {
+		return uploadWGYSFileName;
+	}
+	public void setUploadWGYSFileName(String uploadWGYSFileName) {
+		this.uploadWGYSFileName = uploadWGYSFileName;
+	}
+	public Gcgl_jgys getGcgl_jgys() {
+		return gcgl_jgys;
+	}
+	public void setGcgl_jgys(Gcgl_jgys gcgl_jgys) {
+		this.gcgl_jgys = gcgl_jgys;
+	}
 	public String getCkzt() {
 		return ckzt;
 	}
@@ -862,6 +914,65 @@ public class GcglaqybController extends BaseActionSupport{
 			out.close();
 			file.delete();
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void uploadJGYSFile() throws Exception{
+		FileInputStream fs=null;
+		byte[] data;
+		System.out.println(gcgl_jgys);
+		System.out.println(fileuploadFileName);
+		try {
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setCharacterEncoding("utf-8"); 		
+				if((uploadSGXK!=null)){
+						fs=new FileInputStream(this.uploadSGXK);
+						data=new byte[(int) this.uploadSGXK.length()];
+						fs.read(data);
+						 gcgl_jgys.setFilename(uploadSGXKFileName);
+						 gcgl_jgys.setFiledata(data);
+					   if(gcglaqybServer.updateSGXK(gcgl_jgys))
+						   response.getWriter().print(uploadSGXKFileName+"导入成功");
+					   else response.getWriter().print(uploadSGXKFileName+"导入失败");
+				}else if((uploadJGTC!=null)){
+					fs=new FileInputStream(this.uploadJGTC);
+					data=new byte[(int) this.uploadJGTC.length()];
+					fs.read(data);
+					gcgl_jgys.setFilename(uploadJGTCFileName);
+					gcgl_jgys.setFiledata(data);
+				   if(gcglaqybServer.updateJGTC(gcgl_jgys))
+					   response.getWriter().print(uploadJGTCFileName+"导入成功");
+				   else response.getWriter().print(uploadJGTCFileName+"导入失败");
+			}else{
+					fs=new FileInputStream(this.uploadWGYS);
+					data=new byte[(int) this.uploadWGYS.length()];
+					fs.read(data);
+					gcgl_jgys.setFilename(uploadWGYSFileName);
+					gcgl_jgys.setFiledata(data);
+					if(gcglaqybServer.updateWGYS(gcgl_jgys))
+						response.getWriter().print(uploadWGYSFileName+"导入成功");
+					   else response.getWriter().print(uploadWGYSFileName+"导入失败");
+				}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			fs.close();
+		}
+	}
+	
+	public void insertJGYS(){
+		boolean bl=gcglaqybServer.insertJGYS(gcgl_jgys);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void queryJGYS(){
+		try {
+			JsonUtils.write(gcglaqybServer.queryJGYS(gcgl_jgys), getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

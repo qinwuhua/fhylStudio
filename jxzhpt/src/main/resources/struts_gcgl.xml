@@ -206,6 +206,9 @@
 	<action name="selectHslyjhList1" class="gcglhslyController" method="selectHslyjhList1"/>
 	
 	<!-- aqyb -->
+	<action name="queryJGYS" class="gcglaqybController" method="queryJGYS"/>
+	<action name="insertJGYS" class="gcglaqybController" method="insertJGYS"/>
+	<action name="uploadJGYSFile" class="gcglaqybController" method="uploadJGYSFile"/>
 	<action name="uploadAqybFile" class="gcglaqybController" method="uploadAqybFile"/>
 	<action name="uploadAqybFile1" class="gcglaqybController" method="uploadAqybFile1"/>
 	<action name="insertAqybb" class="gcglaqybController" method="insertAqybb"/>
