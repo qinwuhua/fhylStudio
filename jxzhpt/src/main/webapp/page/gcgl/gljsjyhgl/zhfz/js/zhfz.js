@@ -209,7 +209,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglzhfz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglzhfz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglzhfz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglzhfz.sgdw="+$("#tj_sgdw").val()+"&gcglzhfz.jldw="+$("#tj_jldw").val()+"&gcglzhfz.jsdw="+$("#tj_jsdw").val()
+	+"&gcglzhfz.sgdw="+$("#tj_sgdw").val()+"&gcglzhfz.jldw="+$("#tj_jldw").val()+"&gcglzhfz.jsdw="+$("#tj_jsdw").val()+"&gcglzhfz.xdwh="+$("#tj_xdwh").val()
 	+"&gcglzhfz.htje="+$("#tj_htje").val()+"&gcglzhfz.gys="+$("#tj_gys").val()+"&gcglzhfz.jhid="+parent.obj1.jhid;
 	//alert(data);
 	$.ajax({

@@ -120,7 +120,14 @@ public class Gcglabgc implements Serializable {
 	private String yhtype;
 	private String stz;
 	private String xmmc;
+	private String xdwh;
 	
+	public String getXdwh() {
+		return xdwh;
+	}
+	public void setXdwh(String xdwh) {
+		this.xdwh = xdwh;
+	}
 	public String getXmmc() {
 		return xmmc;
 	}
