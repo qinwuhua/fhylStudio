@@ -67,8 +67,8 @@
 							//基础
 							$('#lxmc').html(sck.lxmc);
 							$('#lxbm').html(sck.lxbm);
-							if(sck.lxbm.substr(0,1)=="X"){
-								bz="县";
+							if(sck.lxbm.substr(0,1)=="X" || sck.lxbm.substr(0,1)=="Y"){
+								bz="县乡";
 							}else{
 								bz="国省";
 							}

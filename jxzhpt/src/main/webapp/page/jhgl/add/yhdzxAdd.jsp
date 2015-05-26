@@ -522,8 +522,8 @@
 							</td>
 							<td width="100" style="border: 1px solid #C0C0C0;">材料</td>
 							<td width="60" style="border: 1px solid #C0C0C0;">厚度(cm)</td>
-							<td style="border: 1px solid #C0C0C0;">单价(元/m³)</td>
-							<td name="sdtd" style="border: 1px solid #C0C0C0;">审定单价(元/m³)</td>
+							<td style="border: 1px solid #C0C0C0;">单价(元/㎡)</td>
+							<td name="sdtd" style="border: 1px solid #C0C0C0;">审定单价(元/㎡)</td>
 						</tr>
 						<tr>
 							<td align="center" style="border: 1px solid #C0C0C0;">上面层</td>

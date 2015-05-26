@@ -90,7 +90,7 @@
 			window.location.href="/jxzhpt/jhgl/exportExcel_yhdzx.do?"+param;
 		}
 		function addYhdzx(){
-			YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,500);
+			YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,400);
 		}
 	</script>
 </head>

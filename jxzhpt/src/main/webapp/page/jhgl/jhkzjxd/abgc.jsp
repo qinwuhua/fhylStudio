@@ -71,7 +71,7 @@
 		function queryMessage(jh,lx){
 			var param={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.jhnf":jh.jhnf,'jh.sfylsjl':jh.sfylsjl,
 					"lx.gydwdm":lx.gydwdm,"lx.gydwbm":lx.gydwbm,"lx.xzqhdm":lx.xzqhdm,"lx.lxmc":lx.lxmc,
-					"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd};
+					"lx.lxbm":lx.lxbm,"lx.tsdq":lx.tsdq,"jh.jh_sbthcd":jh.jh_sbthcd};
 			$.ajax({
 				type:'post',
 				url:'../../../jhgl/querySumAbgc.do',

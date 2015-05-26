@@ -98,7 +98,7 @@
 		xzqhmc,F044 gydwbm,F045 gydw,
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
 		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD
-		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm} ||'%' 
+		where substr(roadcode,1,1) in('G','S','X','Y') and F048='1' and roadcode like #{lxbm} ||'%' 
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and F044 in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 		</if>
