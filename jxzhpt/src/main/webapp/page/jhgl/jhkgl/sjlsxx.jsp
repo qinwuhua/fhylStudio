@@ -38,6 +38,16 @@
 				list=row.shuihs;
 			}else if(parent.YMLib.Var.XMLX=="yhdzx"){
 				list=row.plan_lx_yhdzxs;
+			}else if(parent.YMLib.Var.XMLX=="abgc"){
+				list=new Array();
+				var ab={lxbm:row.jckabgc.lxbm,zdzh:row.jckabgc.zdzh,qdzh:row.jckabgc.qdzh,
+						xzqhdm:row.jckabgc.xzqhdm,jhid:row.id};
+				list.push(ab);
+			}else if(parent.YMLib.Var.XMLX=="zhfz"){
+				list=new Array();
+				var zh={lxbm:row.jckzhfz.lxbm,zdzh:row.jckzhfz.zdzh,qdzh:row.jckzhfz.qdzh,
+						xzqhdm:row.jckzhfz.xzqhdm,jhid:row.id};
+				list.push(zh);
 			}
 			$.each(list,function(index,item){
 				var l={'lx.lxbm':item.lxbm,'lx.zdzh':item.zdzh,'lx.xzqhdm':item.xzqhdm,

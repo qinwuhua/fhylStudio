@@ -94,22 +94,34 @@ function wqxm(jh,lx){
 		        }},
 		        {field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 		        	var result="";
-					if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
+					if(roleName()=="县级" && row.sbzt=="0" && row.jh_sbthcd==0){
 						result="未上报";
-					}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
+					}else if((roleName()=="县级" && row.sbzt=="0" && row.jh_sbthcd==2)){
 						result="已上报";
-					}else if((row.jh_sbthcd==4)){
+					}else if(roleName()=="市级" && row.sbzt=="0" && row.jh_sbthcd==0){
+						result="待上报";
+					}else if(roleName()=="市级" && row.sbzt=="0" && row.jh_sbthcd==2){
+						result="未上报";
+					}else if(roleName()=="市级" && row.sbzt=="1" && row.jh_sbthcd==4){
+						result="已上报";
+					}else if(roleName()=="省级" && row.jh_sbthcd<4){
+						result="未上报";
+					}else if(roleName()=="省级" && row.jh_sbthcd==4){
 						result="未审核";
 					}else if((row.jh_sbthcd==6)){
 						result="已审核";
-					}else if((roleName()=="市级" && row.jh_sbthcd==0)){
-						result="待上报";
 					}
 					return result;
 		        }},
 		        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
 		        	var id="'"+row.id+"'";
 	        		return '<a href="javascript:openZjzjWindow('+"'grid','editWqZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+		        }},
+		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylsjl=='无')
+		        		return '无';
+		        	else if(row.sfylsjl=='有')
+		        		return '有';
 		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
@@ -189,6 +201,12 @@ function wqxm_sb(jh,lx){
 		        	}
 		        	return result;
 		        }},
+		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylsjl=='无')
+		        		return '无';
+		        	else if(row.sfylsjl=='有')
+		        		return '有';
+		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 		        {field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
@@ -264,6 +282,12 @@ function wqxm_sh(jh,lx){
 		        		result="已审批";
 		        	}
 		        	return result;
+		        }},
+		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
+		        	if(row.sfylsjl=='无')
+		        		return '无';
+		        	else if(row.sfylsjl=='有')
+		        		return '有';
 		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},
 		        {field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
@@ -341,9 +365,9 @@ function wqxm_zjxd(jh,lx){
 		        	}
 		        },
 		        {field:'sfylsjl',title:'是否有修建记录',width:80,align:'center',formatter:function(value,row,index){
-		        	if(row.sfylsjl=='0')
+		        	if(row.sfylsjl=='无')
 		        		return '无';
-		        	else if(row.sfylsjl=='1')
+		        	else if(row.sfylsjl=='有')
 		        		return '有';
 		        }},
 		        {field:'sbnf',title:'上报年份',width:80,align:'center'},

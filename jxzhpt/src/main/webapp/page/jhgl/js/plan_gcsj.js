@@ -112,7 +112,7 @@ function gclmsjxm(jh,lx){
 		  	{field:'sfylsjl',title:'是否有历史记录',width:100,align:'center',
 		  		formatter:function(value,row,index){
 		  			if(value=="是"){
-		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程省级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
+		  				return '<a href="javascript:openLsjlWindow('+"'grdab'"+",'"+index+"'"+",'gcsj'"+",'工程升级历史信息'"+')" style="text-decoration:none;color:#3399CC;">是</a>';
 		  			}else{
 		  				return "否";
 		  			}

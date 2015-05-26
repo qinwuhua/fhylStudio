@@ -33,7 +33,9 @@
 		select * from 
 			(
 				select rownum as num,t.* from (
-					select * from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
+					select jh.jh_sbthcd,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.sbnf,jh.id,jh.sckid,jh.pfztz,sc.bzls as sfylsjl,
+					lx.lxmc,lx.lxbm,lx.gydw,lx.gydwbm,lx.qdzh,lx.zdzh,lx.yhlc,lx.xzqhmc,lx.xzqhdm
+					from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid)
 					left join xmk_zhfz lx on (sc.xmkid=lx.id) where 1=1
 				 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
