@@ -717,7 +717,7 @@
 	</select>
 	<select id="getptgxlist2" parameterType="xmbb" resultType="hashmap">
 		select decode(substr(xmlx,0,2),'11','（一）','12','（二）','13','（三）','21','二','') xh,min(xmlx) xmlx,min(substr(xmlx,3)) xmmc,' ' xzqhmc,' ' xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		 decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
+		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
     	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
    		where 1=1
@@ -749,7 +749,7 @@
 	</select>
 	<select id="getptgxlist3" parameterType="xmbb" resultType="hashmap">
 		select ' ' xh,min(xmlx) xmlx,decode(instr(max(xzqhmc), '市'),0,max(xzqhmc),substr(min(xzqhmc), 0, instr(max(xzqhmc), '市')))||'小计' xmmc,' ' xzqhmc,substr(xzqhdm,0,4) xzqhdm,' ' tsdq,' ' xdnf,' ' qdzh,' ' zdzh,
-		 decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
+		decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,decode(sum(pfztz),null,' ',sum(pfztz)) pfztz,decode(sum(jhxdzj),null,' ',sum(jhxdzj)) jhxdzj,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(dc),null,' ',sum(dc)) dc,
     	decode(sum(jc),null,' ',sum(jc)) jc,decode(sum(wglc),null,' ',sum(wglc)) wglc,decode(sum(wkglc),null,' ',sum(wkglc)) wkglc,' ' sjkgsj,' ' sfqxkg,' ' kgdl,' ' sjwgsj,' ' yjwgsj,' ' qksm,' ' xdwh,' ' xgcsyj,' ' cscyj,' ' gydw,count(*) xmgs
    		from gljsxdjh_gsdgzxm
    		where 1=1
@@ -940,7 +940,7 @@
 		select 
  		xmlx,substr(xmlx,0,1) xh1,substr(xmlx,2,2) xh,'是' hb,' ' szds,substr(xmlx,4) xzqhmc,' ' xmmc,' ' jsxz,' ' qdzh,' ' zdzh,decode(sum(yhlc),null,' ',sum(yhlc)) yhlc,
      	' ' xdnf,decode(sum(xdzj),null,' ',sum(xdzj)) xdzj,decode(sum(gys),null,' ',sum(gys)) gys,decode(sum(bfzj),null,' ',sum(bfzj)) bfzj,decode(sum(wbfzj),null,' ',sum(wbfzj)) wbfzj,' ' jszt,decode(sum(wglc),null,' ',sum(wglc)) wglc,' ' kgrq,' ' wgrq,
-    	 ' ' yjrq, ' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
+    	' ' yjrq, ' ' qksm,' ' jhxdwh,' ' xgcsyj,' ' cscyj
  		from lwjggz_gcxmjzb
  		where 1=1
  		<if test="gydw != null and  gydw != ''">
@@ -964,7 +964,7 @@
 		<if test="wbf != null and  wbf != ''">
 				and wbfzj ${wbf}
 		</if>
-		 group by xmlx 
+		group by xmlx 
 		order by xh1
 	</select>
 	<select id="getlwbblist2" parameterType="xmbb" resultType="hashmap">
@@ -976,8 +976,8 @@
        		decode(kgrq,null,' ',to_char(kgrq,'yyyy-mm-dd')) kgrq, decode(wgrq,null,' ',to_char(wgrq,'yyyy-mm-dd')) wgrq, decode(yjrq,null,' ',to_char(yjrq,'yyyy-mm-dd')) yjrq, decode(qksm,null,' ',qksm) qksm,
          	decode(jhxdwh,null,' ',jhxdwh) jhxdwh, decode(xgcsyj,null,' ',xgcsyj) xgcsyj, decode(cscyj,null,' ',cscyj) cscyj, decode(gydw,null,' ',gydw) gydw,' '  hb
 	from lwjggz_gcxmjzb 
-	 where 1=1
-		 <if test="gydw != null and  gydw != ''">
+	where 1=1
+		<if test="gydw != null and  gydw != ''">
 				${gydw}
 		</if>
 		<if test="xzqh != null and  xzqh != ''">
@@ -998,6 +998,6 @@
 		<if test="wbf != null and  wbf != ''">
 				and wbfzj ${wbf}
 		</if>
-	 order by substr(xzqhdm,0,4),xmlx
+	 	order by substr(xzqhdm,0,4),xmlx
 	</select>
 </mapper>
