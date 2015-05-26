@@ -322,7 +322,7 @@ text-decoration:none;
 					<table>
 							<tr>
 								<td><input type="file" value="选择图片" style="background-image: url('${pageContext.request.contextPath }/js/uploader/bdll.png');" name="uploadSjt" id="uploadWGYS" /></td>
-								<td><div id="fileQueue1" ></div></td>
+								<td><div id="fileQueue2" ></div></td>
 							</tr>
 							<tr>
 								<td rowspan="2">
