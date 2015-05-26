@@ -122,7 +122,7 @@ function Addzhfz(){
 	openDialog("zhfz_xx", "添加灾害防治计划库信息", "../add/zhfzAdd.jsp");
 }
 //步骤(xx,sh)   点击详细时对应的ID   资金下达的ID
-var bz,xxId,zjId;
+var bz,xxId,zjId,sckid;
 /**
  * 弹出详细信息层
  * @param id ID
@@ -473,7 +473,7 @@ function fileShow(){
 		type:'post',
 		url:'../../../jhgl/queryFjByParentId.do',
 		dataType:'json',
-		data:'uploads.id='+xxId,
+		data:'uploads.id='+sckid,
 		success:function(data){
 	/* 		var data=datas.rows; */
 		/* 	alert(data); */

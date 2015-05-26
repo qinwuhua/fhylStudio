@@ -26,6 +26,7 @@
 			data:"jh.id="+xxId,
 			dataType:'json',
 			success:function(data){
+				sckid=data.sckid;
 				//审查库
 				lxls['lx.jhid']=data.jhnf;
 				$.ajax({
@@ -366,6 +367,28 @@
 					<span id="remarks"></span> &nbsp;
 				</td>
 			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">工可报告
+				</td>
+				<td id="xz_gkbg"  colspan="5"
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td
+					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计施工图
+				</td>
+				<td id="xz_sjsgt" colspan="5"
+					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
+				</td>
+			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">安保工程建议计划信息
@@ -485,28 +508,7 @@
 					<span id="ABLBZWH"></span> &nbsp;
 				</td>
 			</tr>
-			<tr style="height: 30px;">
-				<td
-					style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">工可报告
-				</td>
-				<td id="xz_gkbg"  colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-						<tbody id="gkbgTable"></tbody>
-					</table>
-				</td>
-			</tr>
-			<tr style="height: 30px;">
-				<td
-					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">设计施工图
-				</td>
-				<td id="xz_sjsgt" colspan="5"
-					style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-						<tbody id="sjsgtTable"></tbody>
-					</table>
-				</td>
-			</tr>
+			
 			<tr style="height: 50px;">
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
 					备&nbsp;&nbsp;&nbsp;注</td>

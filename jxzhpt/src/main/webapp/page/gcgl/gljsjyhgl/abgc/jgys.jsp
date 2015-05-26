@@ -273,25 +273,25 @@ text-decoration:none;
 					<textarea id="ysyj" rows="3" cols="50%"></textarea>
 				</td>
 			</tr>
-			<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可文件：</td>
-				<td id="td_sgxk" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-						<tbody id="sgxkTable"></tbody>
-					</table>
-					<table>
-						<tr>
-							<td><input type="file" value="选择图片" style="background-image: url('${pageContext.request.contextPath }/js/uploader/bdll.png');" name="uploadGk" id="uploadSGXK" /></td>
-							<td><div id="fileQueue" ></div></td>
-						</tr>
-						<tr>
-							<td rowspan="2">
-								<img name="uploadFile" id="uploadFile" src="${pageContext.request.contextPath }/js/uploader/upload.png" onclick="$('#uploadSGXK').uploadifyUpload()"  style="border-width:0px;cursor: hand;" />
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工许可文件：</td> -->
+<!-- 				<td id="td_sgxk" colspan="5" style="background-color: #ffffff; height: 20px;" align="left"> -->
+<!-- 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1"> -->
+<!-- 						<tbody id="sgxkTable"></tbody> -->
+<!-- 					</table> -->
+<!-- 					<table> -->
+<!-- 						<tr> -->
+<%-- 							<td><input type="file" value="选择图片" style="background-image: url('${pageContext.request.contextPath }/js/uploader/bdll.png');" name="uploadGk" id="uploadSGXK" /></td> --%>
+<!-- 							<td><div id="fileQueue" ></div></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td rowspan="2"> -->
+<%-- 								<img name="uploadFile" id="uploadFile" src="${pageContext.request.contextPath }/js/uploader/upload.png" onclick="$('#uploadSGXK').uploadifyUpload()"  style="border-width:0px;cursor: hand;" /> --%>
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 					</table> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
 				<tr>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">交工通车文件：</td>
 				<td id="td_jgtc" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
@@ -313,7 +313,7 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工验收文件：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">竣工验收文件：</td>
 				<td id="td_wgys" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
 								cellpadding="1" cellspacing="2">
