@@ -29,10 +29,11 @@
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('tsdq');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={sbnf:$('#sbnf').combobox('getValue'),sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumShuih(jh,lx);
 			shxm(jh,lx);
+			loadJhzt('ddlSHZT');
 		});
 		function searchShuih(){
 			var jh={sbnf:null,sbzt:null,spzt:null,jh_sbthcd:null,sfylsjl:$('#sfylsjl').combo("getValue")};
@@ -53,28 +54,37 @@
 				lx.tsdqbm=$('#tsdq').combobox('getValue');
 			}
 			if($('#ddlSHZT').combo("getValue")!="" && $('#ddlSHZT').combo("getValue")!='全部'){
-				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-				var xian=true;
-				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
-					xian=false;
-				}
-				if($('#ddlSHZT').combo("getValue")=="未上报"){
-					if(xian){
+				if(roleName()=="县级"){
+					if($('#ddlSHZT').combo("getValue")=="未上报"){
 						jh.jh_sbthcd=0;
-					}else{
+					}else if($('#ddlSHZT').combo("getValue")=="已上报"){
 						jh.jh_sbthcd=2;
-					}
-				}else if($('#ddlSHZT').combo("getValue")=="已上报"){
-					if(xian){
-						jh.jh_sbthcd=2;
-					}else{
+					}else if($('#ddlSHZT').combo("getValue")=="未审核"){
 						jh.jh_sbthcd=4;
+					}else if($('#ddlSHZT').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
 					}
-				}else if($('#ddlSHZT').combo("getValue")=="未审核"){
-					jh.jh_sbthcd=4;
-				}else if($('#ddlSHZT').combo("getValue")=="已审核"){
-					jh.jh_sbthcd=6;
+				}
+				if(roleName()=="市级"){
+					if($('#ddlSHZT').combo("getValue")=="待上报"){
+						jh.jh_sbthcd=0;
+					}else if($('#ddlSHZT').combo("getValue")=="未上报"){
+						jh.jh_sbthcd=2;
+					}else if($('#ddlSHZT').combo("getValue")=="已上报"){
+						jh.jh_sbthcd=4;
+					}else if($('#ddlSHZT').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
+					}
+				}
+				if(roleName()=="省级"){
+					if($('#ddlSHZT').combo("getValue")=="未上报"){
+						jh.spzt="0";
+						jh.jh_sbthcd="0";
+					}else if($('#ddlSHZT').combo("getValue")=="未审核"){
+						jh.jh_sbthcd=4;
+					}else if($('#ddlSHZT').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
+					}
 				}
 			}
 			querySumShuih(jh,lx);
@@ -117,11 +127,6 @@
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
         						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
-									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:80px;"></select>
@@ -154,8 +159,8 @@
         			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000"></span>&nbsp;】
         			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
-        			万元，地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			万元，其中中央车购税【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
+        			万元，省投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

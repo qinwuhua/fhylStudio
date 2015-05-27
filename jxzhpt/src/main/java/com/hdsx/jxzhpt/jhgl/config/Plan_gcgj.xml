@@ -605,6 +605,9 @@
 		<if test="start!=null and start!='' and end!=null and end!=''">
 			and id>=#{start} and <![CDATA[id<=#{end}]]>
 		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and xzqhdm like #{xzqhdm}
+		</if>
 		 group by id order by id
 	</select>
 	<select id="queryJhktjt2" resultType="treenode" parameterType="java.util.Map">

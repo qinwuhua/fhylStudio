@@ -19,6 +19,28 @@ function isNumber(txt){
 		$(txt).focus();
 	}
 }
+function loadJhzt(id){
+	var ztxian=[{"value":'',"text":"全部"},{"value":'未上报',"text":"未上报"},{"value":'已上报',"text":"已上报"}
+		,{"value":'未审核',"text":"未审核"},{"value":'已审核',"text":"已审核"}];
+	var ztshi=[{"value":"","text":"全部"},{"value":'待上报',"text":"待上报"},{"value":'未上报',"text":"未上报"}
+		,{"value":'已上报',"text":"已上报"},{"value":'已审核',"text":"已审核"}];
+	var ztsheng=[{"value":"","text":"全部"},{"value":'未上报',"text":"未上报"},{"value":'未审核',"text":"未审核"}
+		,{"value":'已审核',"text":"已审核"}];
+	$('#'+id).combobox({    
+		readonly:true,
+		valueField:'value',
+		textField:'text'
+	});
+	if(roleName()=="县级"){
+		$('#'+id).combobox("loadData",ztxian);
+	}
+	if(roleName()=="市级"){
+		$('#'+id).combobox("loadData",ztshi);
+	}
+	if(roleName()=="省级"){
+		$('#'+id).combobox("loadData",ztsheng);
+	}
+}
 /**
  * 管养单位下拉框
  * @param id
@@ -483,7 +505,7 @@ function fileShow(){
 		type:'post',
 		url:'../../../jhgl/queryFjByParentId.do',
 		dataType:'json',
-		data:'uploads.id='+sckid,
+		data:'uploads.id='+xxId,
 		success:function(data){
 	/* 		var data=datas.rows; */
 		/* 	alert(data); */

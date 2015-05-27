@@ -246,8 +246,7 @@ public class TjfxController extends BaseActionSupport{
 	public void queryJhktj3(){
 		try {
 			Map<String, Object> result=new HashMap<String, Object>();
-			System.out.println("项目类型："+xmlx);
-			JsonUtils.write(gcgjServer.queryJhktj3(xmlx,nf,end), getresponse().getWriter());
+			JsonUtils.write(gcgjServer.queryJhktj3(xmlx,nf,end,xzqhdm), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

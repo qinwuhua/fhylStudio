@@ -170,5 +170,5 @@ public interface Plan_gcgjServer {
 	 */
 	boolean editZjById(Plan_gcgj jh);
 
-	List<TreeNode> queryJhktj3(String xmlx, String nf, String end);
+	List<TreeNode> queryJhktj3(String xmlx, String nf, String end,String xzqhdm);
 }

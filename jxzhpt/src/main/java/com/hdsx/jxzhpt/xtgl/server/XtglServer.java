@@ -139,7 +139,7 @@ public interface XtglServer {
 
 	boolean dropFlwbzbzById(String id);
 	
-	List<Yhdzxcs> queryYhdzxcs();
+	List<Yhdzxcs> queryYhdzxcs(Yhdzxcs yhdzxcs);
 	
 	List<Unit> selectLxQlDataList(String id);
 
@@ -162,4 +162,6 @@ public interface XtglServer {
 	List<Param> checkJsCfByName(Param param);
 
 	List<Param> selJsUsedById(Param param);
+
+	boolean dropYhdzxcsById(String id);
 }

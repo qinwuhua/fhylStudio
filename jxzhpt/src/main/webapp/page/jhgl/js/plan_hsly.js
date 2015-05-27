@@ -66,7 +66,7 @@ function hslyglxm(hsly){
 	        	var result='';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
+	        	result+='<a href="javascript:dropById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
@@ -186,7 +186,7 @@ function queryHslyXx(id){
 	});
 	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></td></tr>');
 }
-function dropById(){
+function dropHsly(){
 	if(confirm("确认移除选中计划吗？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
@@ -197,6 +197,22 @@ function dropById(){
 				id+=item.id+",";
 			}
 		});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropHslyById.do',
+			data:"hsly.id="+id,
+			dataType:'json',
+			success:function(data){
+				if(data.result=='true'){
+					alert("移除成功！");
+					searchHsly();
+				}
+			}
+		});
+	}
+}
+function dropById(id){
+	if(confirm("确认移除选中计划吗？")){
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropHslyById.do',

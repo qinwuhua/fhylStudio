@@ -87,16 +87,34 @@ function gclmsjxm(jh,lx){
 			},
 			{field:'c4',title:'计划状态',width:80,align:'center',formatter:function(value,row,index){
 				var result="";
-				if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
-					result="未上报";
-				}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
-					result="已上报";
-				}else if((row.jh_sbthcd==4)){
-					result="未审核";
-				}else if((row.jh_sbthcd==6)){
-					result="已审核";
-				}else if((roleName()=="市级" && row.jh_sbthcd==0)){
-					result="待上报";
+				if(roleName()=="县级"){
+					if(row.jh_sbthcd==0){
+						result="未上报";
+					}else if(row.jh_sbthcd>=2 && row.jh_sbthcd<6){
+						result="已上报";
+					}else if(row.jh_sbthcd==6){
+						result="已审核";
+					}
+				}
+				if(roleName()=="市级"){
+					if(row.jh_sbthcd==0){
+						result="待上报";
+					}else if(row.jh_sbthcd==2){
+						result="未上报";
+					}else if(row.jh_sbthcd==4){
+						result="已上报";
+					}else if(row.jh_sbthcd==6){
+						result="已审核";
+					}
+				}
+				if(roleName()=="省级"){
+					if(row.jh_sbthcd<4){
+						result="未上报";
+					}else if(row.jh_sbthcd==4){
+						result="未审核";
+					}else if(row.jh_sbthcd==6){
+						result="已审核";
+					}
 				}
 				return result;
 			}},
@@ -256,15 +274,15 @@ function gclmsjxm_sh(jh,lx){
 					result+='编辑';
 				return result;
 			}},
-			{field:'c1',title:'审批状态',width:80,align:'center',formatter:function(value,row,index){
+			{field:'c1',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
 				var result="";
 				if($.cookie("unit")=="36" && row.jh_sbthcd==4 && row.spzt=="0"){
-					result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审批</a>    |    ';
+					result='<a href="javascript:sp('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">审核</a>    |    ';
 					result+='<a href="javascript:tuihui('+"'"+row.id+"'"+','+row.jh_sbthcd+')" style="text-decoration:none;color:#3399CC;">退回</a>';
 				}else if($.cookie("unit")!="36" && row.jh_sbthcd==4 && row.spzt=="0"){
-					result="审批      |    退回";
+					result="审核      |    退回";
 				}else if(row.spzt=="1"){
-					result="已审批";
+					result="已审核";
 				}
 				return result;
 			}},

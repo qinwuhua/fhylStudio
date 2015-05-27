@@ -25,7 +25,7 @@
 			$('#endYear').combobox("setValue",new Date().getFullYear());
 			sbnf("startYear");
 			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-10);
-			loadData();
+			//loadData();
 			search();
 		});
 		function loadData(){
@@ -64,7 +64,7 @@
 					type:'post',
 					async : false,
 					url:'../../../tjfx/queryJhktj3.do',
-					data:'xmlx='+lname[i]+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val(),
+					data:'xmlx='+lname[i]+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val()+'&xzqhdm='+xzqhdm,
 					dataType:'json',
 					success:function(data){
 						var td=JSON.parse(trJson);
@@ -79,6 +79,7 @@
 					}
 				});
 			}
+			alert("水电费");
 			//绑定数据
 			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*4,width:900};
 			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
@@ -94,6 +95,7 @@
 			gridBind(grid);
 		}
 		function search(){
+			loadData();
 			var xzqhdm=$('#xzqh').combotree("getValue");
 			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
 				xzqhdm=xzqhdm;
