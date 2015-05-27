@@ -230,7 +230,7 @@
 		select decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.sbnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qdzh v_8,lx.zdzh v_9,'' v_10,jh.pfztz v_11 
 		from plan_zhfz jh
 		left join sck_zhfz sc on (jh.sckid = sc.sckid)
-		left join xmk_zhfz lx on (sc.xmkid = lx.id)
+		left join xmk_zhfz lx on (sc.xmkid = lx.id) where 1=1
 		<if test="(jh.sbzt!=null or jh.spzt!=null) and (jh.sbzt!='' or jh.spzt!='')">
 			and (jh.jh_sbthcd=#{jh.jh_sbthcd} or jh.jh_sbthcd=#{jh.jh_sbthcd}+2)
 		</if>

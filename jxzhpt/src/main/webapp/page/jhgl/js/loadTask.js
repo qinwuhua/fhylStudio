@@ -202,16 +202,26 @@ function exportExcel(flag){
 	param=param.replace(/null/g,'').replace(/undefined/g,'');
 	param=param.substring(1, param.length-1);
 	if(flag=='abgc'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+				"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+"&lx.tsdq="+$('#ddlTSDQ').combobox('getValue');
 		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
 	}
 	if(flag=='wqgz'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&lx.qlmc="+$('#txtBridge').val()+"&jh.sbnf="+$('#sbnf').combobox('getValue')+
+				"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+
+				"&lx.akjfl="+$('#ddlAKJFL').combobox('getValue');
 		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_wqgz.do?flag="+flag+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_wqgz.do?flag="+flag+params;
 	}
 	if(flag=='zhfz'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+				"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+"&lx.tsdq="+$('#tsdq').combobox('getValue');
 		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}
 }
 //excel审查库数据导入
