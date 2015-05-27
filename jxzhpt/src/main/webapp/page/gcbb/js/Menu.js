@@ -58,6 +58,20 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhtjbb/gcjz.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050104',
+		title:'市农村公路危桥改造工程项目建设表',
+		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
+		renderTo:'left_menu1',
+		href:'./jhtjbb/wqgzjsb.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101050105',
+		title:'市农村公路安保工程项目建设表',
+		imgSrc:'../../images/menubutton/lwjggzjcqk.png',
+		renderTo:'left_menu1',
+		href:'./jhtjbb/abgcjsb.jsp'
+	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101050104',
 //		title:'公路建设下达计划',

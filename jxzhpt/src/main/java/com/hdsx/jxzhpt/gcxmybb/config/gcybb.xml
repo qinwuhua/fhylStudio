@@ -1082,4 +1082,39 @@
 	<select id="getGjxjmxbsj" parameterType="string" resultType="hashmap">
 		${value}
 	</select>
+	
+	<select id="getWqgzJsb" parameterType="gcglwqgz" resultType="hashmap">
+		select * from
+		(
+			select substr(xm.xzqhmc,instr(xzqhmc, '市')+1,length(xm.xzqhmc)) xian,(case when tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) sflxs,
+			(case when tsdq like '%原中央苏区%'and tsdq like '%国家贫困县%' then '是' else '否' end) sfpkx,(case when tsdq like '%原中央苏区%' then '是' else '否' end) sfyzy,
+			xm.xzqhdm,xm.xzqhmc,xm.lxbm,xm.lxmc,sc.sck_qlzxzh qlzh,xm.qlbh qlbm,xm.qlmc,decode(pl.xdsj,null,' ',to_char(pl.xdsj,'yyyy-mm-dd')) xdsj,decode(pl.jhkgsj,null,' ',to_char(pl.jhkgsj,'yyyy-mm-dd')) jhkgsj, decode(pl.jhwgsj,null,' ',to_char(pl.jhwgsj,'yyyy-mm-dd')) jhwcsj,decode(pl.yjjgsj,null,' ',to_char(pl.yjjgsj,'yyyy-mm-dd')) yjjgsj,xm.qlqc,xm.kjzc qlqk,
+			sc.jsxz,pl.pfwh,pl.pfztz ztz,pl.jhsybzje zytz,'0' stz,decode(pl.sjkgsj,null,' ',to_char(pl.sjkgsj,'yyyy-mm-dd')) sjkgsj,decode(pl.sjwgsj,null,' ',to_char(pl.sjwgsj,'yyyy-mm-dd')) sjwgsj,pl.jsdw,pl.sjdw,pl.sgdw,pl.jldw,
+			sc.scqlqc sjqlqc,sc.scqlqk sjqlqk,decode(to_char(pl.sjwgsj,'yyyy'),#{sbyf},'是','否') sfbnwc,' ' zjz,' ' zjm,' ' wkgz,' ' wkgm,
+			(gc.wcbtz+gc.wcqttz) wcztz,gc.wcbtz,gc.wcqttz,nvl(bf1.bnwctz,0) bnwctz,pl.wjgyy,decode(jg.yssj,null,'否','是') sfjgys,decode(sc.jsxz,'拆除重建','是','否') sfcclq,
+			zj.xdbtz,bf.dwbtz,decode(zj.xdbtz,null,' ',0,0||'%',round((bf.dwbtz/zj.xdbtz*100),0)||'%') bdwl,
+			zj.xdstz,bf.dwstz,decode(zj.xdstz,null,' ',0,0||'%',round((bf.dwstz/zj.xdstz*100),0)||'%') sdwl,
+			zj.xddfzj,gc.dwdfzj,decode(zj.xddfzj,null,' ',0,0||'%',decode(gc.dwdfzj,null,0||'%',round((gc.dwdfzj/zj.xddfzj*100),0)||'%')) dfdwl,' ' yjbz,' ' bz,
+			pl.sbnf,xm.gydwbm gydw
+			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz pl,(select jhid,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_wqgz g where to_number(substr(g.sbyf,0,4))&lt;to_number(#{sbyf}) group by jhid) gc,gcgl_jgys jg,
+			(select z.xmid jhid,sum(z.btzzj) xdbtz,sum(z.stz) xdstz,sum(z.xdzj)-sum(z.stz)-sum(z.btzzj) xddfzj from plan_zjxd z where to_number(z.xdnf)&lt;to_number(#{sbyf}) group by z.xmid) zj,
+			(select b.jhid,decode(sum(b.cgsdwzj),null,0,sum(b.cgsdwzj)) dwbtz,decode(sum(b.stz),null,0,sum(b.stz)) dwstz from gcgl_cgs b where to_number(substr(b.tbyf,0,4))&lt;to_number(#{sbyf}) group by b.jhid) bf,
+			(select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g where substr(g.sbyf,0,4)=#{sbyf} group by g.jhid) bf1
+			where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid(+) and pl.id=jg.jhid(+) and pl.id=zj.jhid(+) and pl.id=bf.jhid(+) and pl.id=bf1.jhid(+)
+		)
+		where 1=1
+		<if test="gydw != null and  gydw != ''">
+				${gydw}
+		</if>
+		<if test="xzqhdm != null and  xzqhdm != ''">
+				${xzqhdm}
+		</if>
+		<if test="tiaojian != null and  tiaojian != ''">
+				and lxbm like trim(#{tiaojian})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and sbnf in (${xmnf})
+		</if>
+		order by xzqhdm
+	</select>
 </mapper>

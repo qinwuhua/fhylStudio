@@ -82,5 +82,7 @@ public interface GcybbServer {
 
 	List<Map<String, Object>> getGjxjmxbsj(String sql);
 
+	List<Map<String, Object>> getWqgzJsb(Gcglwqgz gcglwqgz);
+
 	
 }

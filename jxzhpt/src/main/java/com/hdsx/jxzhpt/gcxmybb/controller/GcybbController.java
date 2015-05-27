@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.gcxmybb.controller;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -929,4 +930,42 @@ public class GcybbController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	} 
+	
+	//weiqiao
+	public void getWqgzjsb(){
+		String tiaojian1="";
+		String tiaojian2="";
+		String xzqhdm = "";
+		String gydwdm = "";
+		if("flag".equals(flag)){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydwdm=(String) session.getAttribute("gydwbb");	
+			xzqhdm=(String) session.getAttribute("xzqhbb");	
+		}else{
+		gydwdm = gydw;
+		xzqhdm	= xzqh;
+		}
+		if(gydwdm.indexOf(",")==-1){
+			tiaojian1="and gydw like '%"+gydwdm+"%'";
+		}else{
+			tiaojian1="and gydw in ("+gydwdm+")";
+		}
+		if(xzqhdm.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+		}else{
+			tiaojian2="and xzqhdm in ("+xzqhdm+")";
+		}
+		gcglwqgz.setSbyf(nf);
+		gcglwqgz.setGydw(tiaojian1);
+		gcglwqgz.setTiaojian(xzdj);
+		gcglwqgz.setXzqhdm(tiaojian2);
+		gcglwqgz.setXmnf(xmnf);
+		List<Map<String, Object>> list=gcybbServer.getWqgzJsb(gcglwqgz);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

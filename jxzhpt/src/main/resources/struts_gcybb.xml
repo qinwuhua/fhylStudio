@@ -15,5 +15,7 @@
 	<action name="getShybb" class="gcybbController" method="getShybb"/>
 	<action name="exportShyb" class="gcybbController" method="exportShyb"/>
 	<action name="getGjxjmxb" class="gcybbController" method="getGjxjmxb"/>
+	
+	<action name="getWqgzjsb" class="gcybbController" method="getWqgzjsb"/>
  </package>
 </struts>
