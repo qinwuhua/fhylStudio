@@ -178,8 +178,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			List<Plan_gcgj> queryGcgjList = gcgjServer.queryGcgjList(page,rows,jh,lx);
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
-			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
+			jsonMap.put("rows", queryGcgjList);
+			System.out.println("集合个数："+queryGcgjList.size());
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

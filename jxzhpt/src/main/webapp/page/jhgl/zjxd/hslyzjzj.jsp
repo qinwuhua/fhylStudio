@@ -131,7 +131,6 @@
 			}
 			var row =parent.YMLib.Var.Row;
 			var hsly={};
-			alert(row.ztz+"   "+row.zytz+"   "+row.dfta+"   "+row.gndk+"   "+row.lywz);
 			hsly={'hsly.id':row.id,'hsly.ztz':row.ztz,'hsly.zytz':row.zytz,'hsly.dfta':row.dfta,
 					'hsly.gndk':row.gndk,'hsly.lywz':row.lywz,
 					'zjzj.planid':row.id,'zjzj.ztz':$('#txtjyjhztz').val(),'zjzj.xzscnl':$('#txtxzscl').val(),
