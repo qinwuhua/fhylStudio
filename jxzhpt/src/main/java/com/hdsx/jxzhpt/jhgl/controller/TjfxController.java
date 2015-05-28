@@ -79,10 +79,12 @@ public class TjfxController extends BaseActionSupport{
 				for(int i=0;i<abgc.size();i++){
 					Map<String, String> t=new HashMap<String, String>();
 					String name=abgc.get(i).getName();
-					t.put("name", name);
-					t.put("count", abgc.get(i).getText());
-					t.put("length", abgc.get(i).getParent());
-					list.add(t);
+					if(!name.equals("江西省")){
+						t.put("name", name);
+						t.put("count", abgc.get(i).getText());
+						t.put("length", abgc.get(i).getParent());
+						list.add(t);
+					}
 				}
 			}
 			else if(xmlx.equals("wqgz")){
@@ -91,10 +93,12 @@ public class TjfxController extends BaseActionSupport{
 				for(int i=0;i<wqgz.size();i++){
 					Map<String, String> t=new HashMap<String, String>();
 					String name=wqgz.get(i).getName();
-					t.put("name", name);
-					t.put("count", wqgz.get(i).getText());
-					t.put("length", wqgz.get(i).getParent());
-					list.add(t);
+					if(!name.equals("江西省")){
+						t.put("name", name);
+						t.put("count", wqgz.get(i).getText());
+						t.put("length", wqgz.get(i).getParent());
+						list.add(t);
+					}
 				}
 			}
 			else if(xmlx.equals("zhfz")){
@@ -103,10 +107,12 @@ public class TjfxController extends BaseActionSupport{
 				for(int i=0;i<zhfz.size();i++){
 					Map<String, String> t=new HashMap<String, String>();
 					String name=zhfz.get(i).getName();
-					t.put("name", name);
-					t.put("count", zhfz.get(i).getParent());
-					t.put("length", zhfz.get(i).getText());
-					list.add(t);
+					if(!name.equals("江西省")){
+						t.put("name", name);
+						t.put("count", zhfz.get(i).getParent());
+						t.put("length", zhfz.get(i).getText());
+						list.add(t);
+					}
 				}
 			}
 			

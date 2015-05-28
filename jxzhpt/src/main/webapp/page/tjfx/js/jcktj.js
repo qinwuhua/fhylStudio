@@ -14,19 +14,20 @@ function jckxzqhtj(){
 				tr.xzqhmc=data.abgc[i].name;
 				
 				tr.wqlczj=data.wqgz[i].parent;
-				jxwqlczj=Number(jxwqlczj)+Number(tr.wqlczj);
+				jxwqlczj=parseFloat(jxwqlczj)+parseFloat(tr.wqlczj);
 				tr.wqxmzj=data.wqgz[i].text;
 				jxwqxmzj=Number(jxwqxmzj)+Number(tr.wqxmzj);
 				
 				tr.ablczj=data.abgc[i].parent;
-				jxablczj=Number(jxablczj)+Number(tr.ablczj);
+				jxablczj=parseFloat(jxablczj)+parseFloat(tr.ablczj);
 				tr.abxmzj=data.abgc[i].text;
 				jxabxmzj=Number(jxabxmzj)+Number(tr.abxmzj);
 				
 				tr.zhlczj=data.zhfz[i].parent;
-				jxzhlczj=Number(jxzhlczj)+Number(tr.zhlczj);
+				jxzhlczj=parseFloat(jxzhlczj)+parseFloat(tr.zhlczj);
 				tr.zhxmzj=data.zhfz[i].text;
 				jxzhxmzj=Number(jxzhxmzj)+Number(tr.zhxmzj);
+				alert(jxablczj+"     "+jxzhlczj);
 				jsonDate.push(tr);
 			}
 			jsonDate[0].wqlczj=jxwqlczj;

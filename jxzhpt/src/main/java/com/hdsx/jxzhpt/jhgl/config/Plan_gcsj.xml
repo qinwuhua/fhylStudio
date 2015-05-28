@@ -114,11 +114,11 @@
 	</resultMap>
 	
 	<select id="queryGcsjList" parameterType="java.util.Map" resultMap="gcsj_jh">
-		select * from (
+		select t1.*,t2.gydw,t2.xzqhdm,t2.xzqhmc,t2.lxbm,t2.lxmc,t2.qdzh,t2.zdzh,t2.xmlc from (
 			select rownum as num,t.* from (
-				select jh.tbbm,jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
-				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ,
-				lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc
+				select distinct jh.tbbm,jh.xmmc,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.jhnf,
+				jh.jhkgsj,jh.jhwgsj,jh.pftz,jh.jhsybbzje,jh.JHSYDFZCZJ
+				<!-- lx.gydw,lx.xzqhdm,lx.xzqhmc,lx.lxbm,lx.lxmc,lx.qdzh,lx.zdzh,lx.xmlc -->
 			 	from PLAN_GCSJ jh right join Plan_Lx_Gcsj lx on lx.jhid=jh.id
 			 	where 1=1
 			 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -165,8 +165,8 @@
 				</if>
 				order by jh.jhnf desc,jh.jh_sbthcd
 				) t  order by t.jhnf desc,t.jh_sbthcd
-		 )
-		 where  <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+		 ) t1 right join Plan_Lx_Gcsj t2 on t1.id=t2.jhid
+		 where  <![CDATA[ t1.num <= (#{page} * #{rows})]]> and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryGcsjList2" parameterType="java.util.Map" resultMap="gcsj_jh">
 		select * from (
