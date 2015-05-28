@@ -52,7 +52,8 @@ public class Plan_hslyController  extends BaseActionSupport{
 	
 	public void querySumHsly(){
 		try {
-			JsonUtils.write(hslyServer.querySumHsly(), getresponse().getWriter());
+			hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
+			JsonUtils.write(hslyServer.querySumHsly(hsly), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

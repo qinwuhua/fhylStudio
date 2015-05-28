@@ -23,12 +23,13 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			sbnf("ddlSHZT");
 			var params={xzqhdm:getxzqhdm('xzqh'),xmmc:null,jhnf:null};
-			querySumHsly();
+			querySumHsly(params);
 			hslyglxm(params);
 		});
 		function searchHsly(){
 			var params={xzqhdm:getxzqhdm('xzqh'),jhnf:$('#ddlSHZT').combo("getValue"),xmmc:$('#txtName').val()};
 			hslyglxm(params);
+			querySumAbgc(params);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 

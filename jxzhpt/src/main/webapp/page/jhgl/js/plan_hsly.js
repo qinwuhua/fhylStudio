@@ -1,11 +1,13 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-function querySumHsly(){
+function querySumHsly(hsly){
+	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumHsly.do',
 		dataType:'json',
+		data:params,
 		success:function(data){
 			if(data.id>0){
 				$('#lblCount').html(data.id);

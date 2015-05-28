@@ -10,7 +10,7 @@ public interface Plan_hslyServer {
 	 * 信息总计查询
 	 * @return
 	 */
-	Plan_hsly querySumHsly();
+	Plan_hsly querySumHsly(Plan_hsly yhsl);
 	/**
 	 * 添加
 	 * @param list
