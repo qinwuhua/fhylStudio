@@ -32,23 +32,33 @@
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 				$("#ddlYear1").append("<option value="+x+">"+x+"</option>");
 			}
-			$("#yf"+m).attr("selected","selected");
+			//$("#yf"+m).attr("selected","selected");
 			showAll();
 		});
 		function setjhxdnf(){
 			$("#ddlYear1").combotree({    
 				checkbox: true,
 				async: false,
-			    url: '/jxzhpt/xmjzbb/setjhxdnf1.do',    
+			    url: '/jxzhpt/xmjzbb/setjhxdnf.do',    
 			    required: false,
 			    multiple:true
 			});
 			
 		}
+		var fls=1;
 		function showAll(){
+			var myDate = new Date();
+			var y = myDate.getFullYear();
 			var nf=$("#ddlYear").val();
-			var yf=$("#ddlMonth").val();
 			var xmnf=$("#ddlYear1").combotree("getValues");
+			if(fls==1){
+				xmnf=y;
+				fls++;
+			}
+			if(xmnf.length==0){
+				alert("请选择项目年份");
+				return;
+			}
 			var gydw=$("#gydw").combotree("getValues");
 			if(gydw.length==0){
 				if($.cookie("unit2")=='_____36')
@@ -73,74 +83,55 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 			var xzdj=$("#xzdj").combobox("getValue");
-			var lxmc=$("#lxmc").val();
-			var data="nf="+nf+"&yf="+yf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
+			var data="nf="+nf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
 			//alert(data);
 			var tbody = $("#wqgzlist");
 			tbody.empty();
 			$.ajax({
-				url:"/jxzhpt/gcybb/getWqgzybb.do",
+				url:"/jxzhpt/gcybb/getAbgcjsb.do",
 				data:data,
 				type:"post",
 				dataType:"JSON",
 				success:function(msg){
-					
-					$("#nian").text($("#ddlYear").val());
-					$("#yue").text($("#ddlMonth").val());
 					if (msg != null) {
 						for ( var i = 0; i < msg.length; i++) {
-							if(msg[i].QLDM==' '){
-								tbody.append("<tr><td colspan='2'>"+msg[i].QLMC+"</td><td>"
-										+msg[i].QLZXZH+"</td><td>"+msg[i].LXBM+"</td><td>"
-										+msg[i].LXMC+"</td><td>"+msg[i].JSDJ+"</td><td>"
-										+msg[i].QLQC+"</td><td>"+msg[i].KJZC+"</td><td>"
-										+msg[i].DKZDKJ+"</td><td>"+msg[i].QLQK+"</td><td>"
-										+msg[i].SBJGXS+"</td><td>"+msg[i].DQ+"</td><td>"
-										+msg[i].ZQ+"</td><td>"+msg[i].XJGJND+"</td><td>"
-										+msg[i].SL+"</td><td>"+msg[i].WL+"</td><td>"
-										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
-										+msg[i].BNSTZ+"</td><td>"+msg[i].BYHJ+"</td><td>"
-										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
-										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
-										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
-										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
-										+msg[i].YYJGQK+"</td><td>"+msg[i].YYGJQK+"</td><td>"
-										+msg[i].YYCJQK+"</td><td>"+msg[i].ZJGQK+"</td><td>"
-										+msg[i].ZGJQK+"</td><td>"+msg[i].ZCJQK+"</td><td>"
-										+msg[i].JSXZ+"</td><td>"+msg[i].JHKGN+"</td><td>"
-										+msg[i].JHWGN+"</td><td>"+msg[i].JSNR+"</td></tr>"
-								);
-							}else{
-								tbody.append("<tr><td>"+msg[i].QLMC+"</td><td>"+msg[i].QLDM+"</td><td>"
-										+msg[i].QLZXZH+"</td><td>"+msg[i].LXBM+"</td><td>"
-										+msg[i].LXMC+"</td><td>"+msg[i].JSDJ+"</td><td>"
-										+msg[i].QLQC+"</td><td>"+msg[i].KJZC+"</td><td>"
-										+msg[i].DKZDKJ+"</td><td>"+msg[i].QLQK+"</td><td>"
-										+msg[i].SBJGXS+"</td><td>"+msg[i].DQ+"</td><td>"
-										+msg[i].ZQ+"</td><td>"+msg[i].XJGJND+"</td><td>"
-										+msg[i].SL+"</td><td>"+msg[i].WL+"</td><td>"
-										+msg[i].BNHJ+"</td><td>"+msg[i].BNBTZ+"</td><td>"
-										+msg[i].BNSTZ+"</td><td>"+msg[i].BYHJ+"</td><td>"
-										+msg[i].BYBTZ+"</td><td>"+msg[i].BYSTZ+"</td><td>"
-										+msg[i].YYHJ+"</td><td>"+msg[i].YYBTZ+"</td><td>"
-										+msg[i].YYSTZ+"</td><td>"+msg[i].KGHJ+"</td><td>"
-										+msg[i].KGBTZ+"</td><td>"+msg[i].KGSTZ+"</td><td>"
-										+msg[i].YYJGQK+"</td><td>"+msg[i].YYGJQK+"</td><td>"
-										+msg[i].YYCJQK+"</td><td>"+msg[i].ZJGQK+"</td><td>"
-										+msg[i].ZGJQK+"</td><td>"+msg[i].ZCJQK+"</td><td>"
-										+msg[i].JSXZ+"</td><td>"+msg[i].JHKGN+"</td><td>"
-										+msg[i].JHWGN+"</td><td>"+msg[i].JSNR+"</td></tr>"
-								);
+								tbody.append("<tr><td>"+(i+1)+"</td><td>"+msg[i].XIAN+"</td><td>"+msg[i].SFLXS+"</td><td>"
+										+msg[i].SFPKX+"</td><td>"+msg[i].SFYZY+"</td><td>"
+										+msg[i].XZQHDM+"</td><td>"+msg[i].XZQHMC+"</td><td>"
+										+msg[i].LXBM+"</td><td>"+msg[i].LXMC+"</td><td>"
+										+msg[i].QDZH+"</td><td>"+msg[i].ZDZH+"</td><td>"
+										+msg[i].YHLC+"</td><td>"+msg[i].JSXZ+"</td><td>"
+										+msg[i].XDSJ+"</td><td>"+msg[i].JHKGSJ+"</td><td>"
+										+msg[i].JHWCSJ+"</td><td>"+msg[i].YJJGSJ+"</td><td>"
+										+msg[i].ZTZ+"</td><td>"+msg[i].ZYTZ+"</td><td>"
+										+msg[i].SJKGSJ+"</td><td>"+msg[i].SJWGSJ+"</td><td>"
+										+msg[i].JSDW+"</td><td>"+msg[i].SJDW+"</td><td>"
+										+msg[i].SGDW+"</td><td>"+msg[i].JLDW+"</td><td>"
+										+msg[i].WCZLC+"</td><td>"+msg[i].BNWCLC+"</td><td>"
+										+msg[i].WCZTZ+"</td><td>"+msg[i].WCBTZ+"</td><td>"
+										+msg[i].WCQTTZ+"</td><td>"+msg[i].BNWCZTZ+"</td><td>"
+										+msg[i].XMYSLC+"</td><td>"+msg[i].XDBTZ+"</td><td>"
+										+msg[i].DWBTZ+"</td><td>"+msg[i].BDWL+"</td><td>"
+										+msg[i].XDDFZJ+"</td><td>"+msg[i].DWDFZJ+"</td><td>"
+										+msg[i].DFDWL+"</td><td>"+msg[i].BZ+"</td></tr>");
 							}
 						}
 					}
-				}
 			});
 		}
 	function exportWqgzyb(){
+		var myDate = new Date();
+		var y = myDate.getFullYear();
 		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combotree("getValues");
+		if(fls==1){
+			xmnf=y;
+			fls++;
+		}
+		if(xmnf.length==0){
+			alert("请选择项目年份");
+			return;
+		}
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -165,11 +156,9 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
-		var lxmc=$("#lxmc").val();
-		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
-		
+		var data="flag=flag&nf="+nf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getWqgzybb.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getAbgcjsb.do?'+data;
 		 });
 	}	
 	</script>
@@ -217,7 +206,7 @@ table tbody tr td {
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
-        			<fieldset style="width:99%;height:80px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
+        			<fieldset style="width:99%;height:40px; text-align: left; vertical-align: middle;margin: 8px 0px 0px 0px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
@@ -225,50 +214,19 @@ table tbody tr td {
         					<p style="margin: 8px 0px 8px 20px;">
         						<span>管养单位：</span>
         						<select id="gydw" style="width:150px;"></select>
-        						<span>月报年份：</span>
- 						<select name="ddlYear" id="ddlYear" style="width: 80px;">
-						</select>
- 						<span>月报月份：</span>
- 						<select name="ddlMonth" id="ddlMonth" style="width: 50px;">
-							<option id="yf1" value="1">01</option>
-							<option id="yf2" value="2">02</option>
-							<option id="yf3" value="3">03</option>
-							<option id="yf4" value="4">04</option>
-							<option id="yf5" value="5">05</option>
-							<option id="yf6" value="6">06</option>
-							<option id="yf7" value="7">07</option>
-							<option id="yf8" value="8">08</option>
-							<option id="yf9" value="9">09</option>
-							<option id="yf10" value="10">10</option>
-							<option id="yf11" value="11">11</option>
-							<option id="yf12" value="12">12</option> 
-						</select>
-        				<span>项目名称：</span>
-        				<input id="xmmc" type="text"  style="width: 100px">		
-        				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
-        					</p>
-        					<p style="margin: 8px 0px 8px 20px;">
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:150px;"></select>
         						<span>项目年份：</span>
         						<select  id="ddlYear1" style="width: 80px;"></select>
+        						<span>截止年份：</span>
+		 						<select name="ddlYear" id="ddlYear" style="width: 50px;">
+								</select>
         						<span>行政等级：</span>
         						<input type="text" id="xzdj" style="width:50px;">
-<!--         						<select id="xzdj" style="width:50px;"> -->
-<!--         							<option value="">全部</option> -->
-<!--         							<option value="G">国道</option> -->
-<!--         							<option value="S">省道</option> -->
-<!--         							<option value="X">县道</option> -->
-<!--         							<option value="Y">乡道</option> -->
-<!--         							<option value="C">村道</option> -->
-<!--         							<option value="Z">专道</option> -->
-<!--         						</select> -->
-        						<span>路线名称：</span>
-        						<input id="lxmc" type="text"  style="width: 100px">
-        							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
+
+       								<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -50%;" onclick="showAll()" />
+								    <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"
                                         onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif' " onclick="exportWqgzyb()" style="vertical-align: -50%;" />
         					</p>         					
         				</div>
@@ -284,69 +242,59 @@ table tbody tr td {
                 	</script>
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
-							<table width="3800px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">江西省<span id="nian" style="font-size: large;"></span>年公路路网结构改造工程统计月报表（一）   危桥工程（<span id="yue" style="font-size: large;"></span>月） </caption>
+							<table width="4800px" >
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">市农村公路危桥改造工程项目建设表 </caption>
 								<thead>
 									<tr>
-										<td rowspan="3" style="width: 125px">桥梁名称</td>
-										<td rowspan="3" style="width: 125px">桥梁代码</td>
-										<td rowspan="3" style="width: 125px">桥梁中心桩号</td>
-										<td colspan="3" >所属路线情况</td>
-										<td colspan="8">老桥梁基本状况</td>
-										<td colspan="2" rowspan="2">评定等级</td>
-										<td colspan="3" rowspan="2">本年计划投资(万元)</td>
-										<td colspan="3" rowspan="2">本月完成投资（万元）</td>
-										<td colspan="3" rowspan="2">自元月至本月完成投资（万元）</td>
-										<td colspan="3" rowspan="2">开工至本月完成投资（万元）</td>
-										<td colspan="3">本年自元月至本月底形象进度完成情况</td>
-										<td colspan="3">开工至本月底形象进度完成情况 </td> 
-										<td rowspan="3" style="width: 125px">建设性质</td>
-										<td colspan="2">建设年限</td>
-										<td rowspan="3" style="width: 125px">主要建设内容</td>
+										<td rowspan="3" style="width: 125px">序号</td>
+										<td rowspan="3" style="width: 125px">县（市、区）</td>
+										<td rowspan="3" style="width: 125px">是否17个罗宵山区连片特困县</td>
+										<td rowspan="3" style="width: 125px">是否38个原中央苏区和特困片区县</td>
+										<td rowspan="3" style="width: 125px">是否54个赣南等原中央苏区县</td>
+										<td colspan="14" >计划情况</td>
+										<td colspan="13">建设进展情况</td>
+										<td colspan="6" >资金落实情况</td>
+										<td rowspan="3">备注</td>
+										
 									</tr>	
 									<tr>
+										<td rowspan="2" style="width: 125px">行政区划代码</td>
+										<td rowspan="2" style="width: 125px">行政区划名称</td>
 										<td rowspan="2" style="width: 125px">路线编码</td>
 										<td rowspan="2" style="width: 125px">路线名称</td>
-										<td rowspan="2" style="width: 125px">技术等级</td>
-										<td rowspan="2" style="width: 125px">桥梁全长(米)</td>
-										<td rowspan="2" style="width: 125px">跨径总长(米)</td>
-										<td rowspan="2" style="width: 125px">单孔最大跨径 (米)</td>
-										<td rowspan="2" style="width: 125px">桥梁全宽</td>
-										<td rowspan="2" style="width: 125px">主桥上部构造结构形式</td>
-										<td colspan="2">按跨径分类</td>
-										<td rowspan="2" style="width: 125px">修建/改建年度</td>
-										<td>危桥加固</td>
-										<td>危桥改建</td>
-										<td>危桥重建</td>
-										<td>危桥加固</td>
-										<td>危桥改建</td>
-										<td>危桥重建</td>
-										<td rowspan="2" style="width: 125px">计划开工年</td>
-										<td rowspan="2" style="width: 125px">计划完工年</td>
+										<td rowspan="2" style="width: 125px">起点桩号</td>
+										<td rowspan="2" style="width: 125px">止点桩号</td>
+										<td rowspan="2" style="width: 125px">处理隐患里程（公里）</td>
+										<td rowspan="2" style="width: 125px">建设性质</td>
+										<td rowspan="2" style="width: 125px">计划下达时间</td>
+										<td rowspan="2" style="width: 125px">计划开工时间</td>
+										<td rowspan="2" style="width: 125px">计划完成时间</td>
+										<td rowspan="2" style="width: 125px">预计竣工时间</td>
+										<td rowspan="2" style="width: 125px">总投资(万元)</td>
+										<td rowspan="2" style="width: 125px">其中中央投资(万元)</td>
+										<td rowspan="2" style="width: 125px">实际开工时间</td>
+										<td rowspan="2" style="width: 125px">工程竣工时间</td>
+										<td rowspan="2" style="width: 125px">建设单位</td>
+										<td rowspan="2" style="width: 125px">设计单位</td>
+										<td rowspan="2" style="width: 125px">施工单位</td>
+										<td rowspan="2" style="width: 125px">监理单位</td>
+										<td rowspan="2" style="width: 125px">完成总里程（公里）</td>
+										<td rowspan="2" style="width: 125px">本年完成里程（公里）</td>
+										<td rowspan="2" style="width: 125px">完成总投资（万元）</td>
+										<td rowspan="2" style="width: 125px">完成中央投资(万元)</td>
+										<td rowspan="2" style="width: 125px">完成地方自筹(万元)</td>
+										<td rowspan="2" style="width: 125px">本年完成投资（万元）</td>
+										<td rowspan="2" style="width: 125px">项目验收里程(公里)</td>
+										<td colspan="3" style="width: 125px">车购税补助资金</td>
+										<td colspan="3" style="width: 125px">地方配套资金</td>
 									</tr>
 									<tr>
-										<td style="width: 80px">大桥</td>
-										<td style="width: 80px">中桥</td>
-										<td style="width: 80px">四类</td>
-										<td style="width: 80px">五类</td>
-										<td style="width: 80px">合计</td>
-										<td style="width: 80px">部投资</td>
-										<td style="width: 80px">省投资</td>
-										<td style="width: 80px">合计</td>
-										<td style="width: 80px">部投资</td>
-										<td style="width: 80px">省投资</td>
-										<td style="width: 80px">合计</td>
-										<td style="width: 80px">部投资</td>
-										<td style="width: 80px">省投资</td>
-										<td style="width: 80px">合计</td>
-										<td style="width: 80px">部投资</td>
-										<td style="width: 80px">省投资</td>
-										<td style="width: 125px">百分比（%）</td>
-										<td style="width: 125px">百分比（%）</td>
-										<td style="width: 125px">百分比（%）</td>
-										<td style="width: 125px">百分比（%）</td>
-										<td style="width: 125px">百分比（%）</td>
-										<td style="width: 125px">百分比（%）</td>
+										<td style="width: 80px">计划补助资金</td>
+										<td style="width: 80px">到位金额(万元)</td>
+										<td style="width: 80px">到位率(%)</td>
+										<td style="width: 80px">应配套资金(万元)</td>
+										<td style="width: 80px">到位金额(万元)</td>
+										<td style="width: 80px">到位率(%)</td>
 									</tr>
 								</thead>
 								<tbody id="wqgzlist">

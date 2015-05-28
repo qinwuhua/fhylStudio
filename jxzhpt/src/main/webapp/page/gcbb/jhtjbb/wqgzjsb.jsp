@@ -127,9 +127,18 @@
 			});
 		}
 	function exportWqgzyb(){
+		var myDate = new Date();
+		var y = myDate.getFullYear();
 		var nf=$("#ddlYear").val();
-		var yf=$("#ddlMonth").val();
 		var xmnf=$("#ddlYear1").combotree("getValues");
+		if(fls==1){
+			xmnf=y;
+			fls++;
+		}
+		if(xmnf.length==0){
+			alert("请选择项目年份");
+			return;
+		}
 		var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
 			if($.cookie("unit2")=='_____36')
@@ -154,11 +163,9 @@
 			xzqhstr= xzqhdm.join(',');
 		}
 		var xzdj=$("#xzdj").combobox("getValue");
-		var lxmc=$("#lxmc").val();
-		var data="flag=flag&nf="+nf+"&yf="+yf+"&xzdj="+xzdj+"&lxmc="+lxmc+"&xmmc="+$("#xmmc").val()+"&xmnf="+xmnf;
-		
+		var data="flag=flag&nf="+nf+"&gydw="+gydwstr+"&xzqh="+xzqhstr+"&xzdj="+xzdj+"&xmnf="+xmnf;
 		$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
-			window.location.href='/jxzhpt/gcybb/getWqgzybb.do?'+data;
+			window.location.href='/jxzhpt/gcybb/getWqgzjsb.do?'+data;
 		 });
 	}	
 	</script>
