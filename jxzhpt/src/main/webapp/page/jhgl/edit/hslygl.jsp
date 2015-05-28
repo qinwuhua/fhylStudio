@@ -198,8 +198,8 @@
 			$('#txtJSGMS').val(data.jsgms);
 			$('#txtJSGMF').val(data.jsgmf);
 			$('#txtJSGMDLDQ').val(data.jsgmdldq);
-			$('#txtZTZxx').val(data.ztz);
-			$('#txtZYTZxx').val(data.zytz);
+			$('#txtZTZ').val(data.ztz);
+			$('#txtZYTZ').val(data.zytz);
 			$('#txtDFZC').val(data.dfta);
 			$('#txtGNDK').val(data.gndk);
 			$('#txtLYWZ').val(data.lywz);
@@ -248,7 +248,7 @@
 			success:function(data){
 				if(data.result=="true"){
 					alert("修改成功");
-					$('#hslygl_xx').dialog('close',false);
+					parent.$('#hsly_edit').window('destroy');
 				}
 			}
 		});

@@ -50,11 +50,11 @@ function sbnf(id){
 }
 function openWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
+	YMLib.UI.createWindow('hsly_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'hsly_xx',1000,500);
 }
 function openEditWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'abgc_edit',1000,500);
+	YMLib.UI.createWindow('hsly_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'hsly_edit',1000,500);
 }
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
@@ -184,7 +184,10 @@ function queryHslyXx(id){
 			}
 		}
 	});
-	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></td></tr>');
+	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><a href="javascript:close()"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></a></td></tr>');
+}
+function close(){
+	parent.$('#hsly_xx').window('destroy');
 }
 function dropHsly(){
 	if(confirm("确认移除选中计划吗？")){
