@@ -21,8 +21,8 @@ $(function(){
 </script>
 </head>
 <body id="index_layout" class="easyui-layout">
-    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:205px;overflow:hidden">
-		<div id="aa" fit="true" class="easyui-accordion" style="width:205px;">  
+    <div data-options="region:'west',split:true, iconCls: 'icon-west'" style="width:225px;overflow:hidden">
+		<div id="aa" fit="true" class="easyui-accordion" style="width:225px;">  
 		    
 		</div>
     </div>
