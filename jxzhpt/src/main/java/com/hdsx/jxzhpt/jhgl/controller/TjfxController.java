@@ -51,13 +51,31 @@ public class TjfxController extends BaseActionSupport{
 	private String ftlName;
 	
 	public void queryJcktj(){
-		try {	
+		try {
 			Map<String, Object> result=new HashMap<String, Object>();
-			List<TreeNode> abgc = abgcServer.queryJcktj();
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+			List<TreeNode> abgc = new ArrayList<TreeNode>();
+			List<TreeNode> wqgz = new ArrayList<TreeNode>();
+			List<TreeNode> zhfz = new ArrayList<TreeNode>();
+			for (TreeNode item : xzqhlist) {
+				String xzqh =item.getParent()==null ? item.getId().substring(0, 2) : item.getId().substring(0, 4);
+				xzqh="'"+xzqh+"'";
+				treenode.setId(xzqh);
+				TreeNode abObj = abgcServer.queryJcktj(treenode);
+				abObj.setName(item.getName());
+				abgc.add(abObj);
+				TreeNode wqObj = wqgzServer.queryJcktj(treenode);
+				wqObj.setName(item.getName());
+				wqgz.add(wqObj);
+				TreeNode zhObj = zhfzServer.queryJcktj(treenode);
+				zhObj.setName(item.getName());
+				zhfz.add(zhObj);
+			}
+			System.out.println("安保："+abgc.size());
 			result.put("abgc", abgc);
-			List<TreeNode> wqgz = wqgzServer.queryJcktj();
 			result.put("wqgz", wqgz);
-			List<TreeNode> zhfz = zhfzServer.queryJcktj();
 			result.put("zhfz", zhfz);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -67,7 +85,7 @@ public class TjfxController extends BaseActionSupport{
 	
 	public void queryJcktj1(){
 		try {
-			Map<String, Object> result=new HashMap<String, Object>();
+			/*Map<String, Object> result=new HashMap<String, Object>();
 			List<TreeNode> abgc=null;
 			List<TreeNode> wqgz=null;
 			List<TreeNode> zhfz=null;
@@ -126,6 +144,7 @@ public class TjfxController extends BaseActionSupport{
 			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 			result.put("bar", anyChartXml);
 			ResponseUtils.write(getresponse(), anyChartXml);
+			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

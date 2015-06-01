@@ -177,7 +177,7 @@ $(function() {
 		title:'升级改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu5',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./cbsj/lmsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080502',
