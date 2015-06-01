@@ -41,6 +41,7 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -339,8 +340,12 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryTsdq(){
 		try {
-//		    System.out.println("特殊地区："+abgcServer.queryTsdq().size());
-			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
+			List<TreeNode> result = abgcServer.queryTsdq();
+			TreeNode tree=new TreeNode();
+			tree.setId(null);
+			tree.setText("---------全部---------");
+			result.add(0, tree);
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

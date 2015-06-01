@@ -431,14 +431,18 @@
 		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
 	</select>
 	<select id="queryJcktj" resultType="treenode">
-		select t1.*,xz.name from (
+		select substr(xm.xzqhdm,0,length(${id})) as id,count(xm.xzqhdm),sum(xm.qlqc) 
+		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz xm 
+		on (sc.xmkid=xm.id) left join  xtgl_xzqh xt on (xm.xzqhdm=xt.id)
+		where xm.xzqhdm like ${id}||'%' group by substr(xm.xzqhdm,0,length(${id}))
+		<!-- select t1.*,xz.name from (
 			select t.parent as id,<![CDATA[count(t.parent)-1]]> as text,NVL(sum(t.qlqc),0) as parent
 			from (
 			      select distinct xt.parent,jck.xzqhdm,jck.qlqc 
 			      from xmk_wqgz jck right join xtgl_xzqh xt on (jck.xzqhdm=xt.id) 
 			      order by xt.parent
 			) t where t.parent is not null group by t.parent order by t.parent
-		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
+		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id -->
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
 		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (

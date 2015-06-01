@@ -165,8 +165,8 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 
 	@Override

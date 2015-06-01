@@ -102,7 +102,7 @@ public interface Plan_abgcServer {
 
 	boolean updateStatusBatch(List<Plan_abgc> splist);
 
-	List<TreeNode> queryJcktj();
+	TreeNode queryJcktj(TreeNode treenode);
 
 	List<TreeNode> queryJcktj1(String nf);
 

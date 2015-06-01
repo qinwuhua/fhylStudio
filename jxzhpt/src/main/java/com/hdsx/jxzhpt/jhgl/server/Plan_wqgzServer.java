@@ -95,7 +95,7 @@ public interface Plan_wqgzServer {
 	boolean editWqgzSckxx(Sckwqgz jh);
 	List<Plan_wqgz> queryWqgzByStatus(Plan_wqgz jh, Jckwqgz lx);
 	boolean updateStatusBatch(List<Plan_wqgz> splist);
-	List<TreeNode> queryJcktj();
+	TreeNode queryJcktj(TreeNode treenode);
 	List<TreeNode> queryJcktj1(String nf);
 	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
 	/**

@@ -27,15 +27,14 @@ function jckxzqhtj(){
 				jxzhlczj=parseFloat(jxzhlczj)+parseFloat(tr.zhlczj);
 				tr.zhxmzj=data.zhfz[i].text;
 				jxzhxmzj=Number(jxzhxmzj)+Number(tr.zhxmzj);
-				alert(jxablczj+"     "+jxzhlczj);
 				jsonDate.push(tr);
 			}
-			jsonDate[0].wqlczj=jxwqlczj;
+			/*jsonDate[0].wqlczj=jxwqlczj;
 			jsonDate[0].wqxmzj=jxwqxmzj;
 			jsonDate[0].ablczj=jxablczj;
 			jsonDate[0].abxmzj=jxabxmzj;
 			jsonDate[0].zhlczj=jxzhlczj;
-			jsonDate[0].zhxmzj=jxzhxmzj;
+			jsonDate[0].zhxmzj=jxzhxmzj;*/
 			var grid={id:'grid',data:jsonDate,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
 					pageNumber:1,pageSize:20,height:355,width:1030,
 				    columns:[

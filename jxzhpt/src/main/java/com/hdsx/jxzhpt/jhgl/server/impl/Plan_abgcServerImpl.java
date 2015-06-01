@@ -202,8 +202,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return updateBatch("editStatus", splist)==splist.size();
 	}
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 	@Override
 	public List<TreeNode> queryJcktj1(String nf) {

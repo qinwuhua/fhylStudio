@@ -383,14 +383,18 @@
 		select  gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from Plan_Zhfz jh where jh.id=#{id}
 	</select>
 	<select id="queryJcktj" resultType="treenode">
-		select t1.*,xz.name from (
+	select substr(xm.xzqhdm,0,length(${id})) as id,count(xm.xzqhdm),sum(xm.yhlc) 
+	from plan_zhfz jh left join sck_zhfz sc on (jh.sckid=sc.sckid) left join xmk_zhfz xm on 
+	(sc.xmkid=xm.id) left join  xtgl_xzqh xt on (xm.xzqhdm=xt.id)
+	where xm.xzqhdm like ${id}||'%' group by substr(xm.xzqhdm,0,length(${id}))
+		<!-- select t1.*,xz.name from (
 			select t.parent as id,count(t.parent)-1 as text,NVL(sum(t.yhlc),0) as parent
 			 from (
 			       select distinct xt.parent,jck.xzqhdm,jck.yhlc 
 			       from xmk_zhfz jck right join xtgl_xzqh xt on (jck.xzqhdm=xt.id) 
 			       order by xt.parent
 			) t where t.parent is not null group by t.parent
-		) t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
+		) t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id -->
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
 		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (

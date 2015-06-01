@@ -164,8 +164,8 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 
 	@Override
