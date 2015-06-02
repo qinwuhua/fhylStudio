@@ -268,8 +268,10 @@
 				<input type="hidden" id="flwid"/>
 					<select id="xmlx" style="width: 125px;">
 						<option value="">--请选择--</option>
-						<option value="工程改造路面升级">工程改造路面升级</option>
-						<option value="工程改造路面改建">工程改造路面改建</option>
+						<option value="升级改造工程项目">升级改造工程项目</option>
+						<option value="路面改造工程项目">路面改造工程项目</option>
+						<option value="新建工程项目">新建工程项目</option>
+						<option value="大中修工程项目">大中修工程项目</option>
 						<option value="水毁项目">水毁项目</option>
 						<option value="红色旅游项目">红色旅游项目</option>
 					</select>
