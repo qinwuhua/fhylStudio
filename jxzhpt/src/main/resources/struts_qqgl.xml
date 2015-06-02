@@ -6,5 +6,7 @@
 	 <!-- qwh -->
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 	 <!-- qwh -->
-	 </package>
+		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
+	</package>
 </struts>
+
