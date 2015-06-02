@@ -1,0 +1,8 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+	<package name="qqgl" extends="struts-default" namespace="/qqgl">
+		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
+	</package>
+</struts>

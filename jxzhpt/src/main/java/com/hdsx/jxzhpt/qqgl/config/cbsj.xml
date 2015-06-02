@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.cbsj">
+	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsjlmsj">
+		select * from (
+		select rownum num,c.*,l.ghlxbh as lxbm from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		where 1=1
+		<if test="lmsj.xzqhdm!=null and lmsj.xzqhdm!=''">
+			and ${lmsj.xzqhdm}
+		</if>
+		<if test="lmsj.lxbm!=null and lmsj.lxbm!=''">
+			and l.ghlxbh like '%'||#{lmsj.lxbm}||'%'
+		</if>
+		<if test="lmsj.xjsdj!=null and lmsj.xjsdj!=''">
+			and l.xjsdj = #{lmsj.xjsdj}
+		</if>
+		<if test="lmsj.jsjsdj!=null and lmsj.jsjsdj!=''">
+			and c.jsjsdj=lmsj.jsjsdj
+		</if>
+		<if test="lmsj.tsdq!=null and lmsj.tsdq!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lmsj.tsdq})
+		</if>
+		) t where <![CDATA[ t.num>(${page}-1)*${rows} and t.num<=${page}*${rows}]]>
+	</select>
+	<select id="queryCbsjLmsjCount" parameterType="java.util.Map" resultType="int">
+		select count(c.id) from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		where 1=1
+		<if test="lmsj.xzqhdm!=null and lmsj.xzqhdm!=''">
+			and ${lmsj.xzqhdm}
+		</if>
+		<if test="lmsj.lxbm!=null and lmsj.lxbm!=''">
+			and l.ghlxbh like '%'||#{lmsj.lxbm}||'%'
+		</if>
+		<if test="lmsj.xjsdj!=null and lmsj.xjsdj!=''">
+			and l.xjsdj = #{lmsj.xjsdj}
+		</if>
+		<if test="lmsj.jsjsdj!=null and lmsj.jsjsdj!=''">
+			and c.jsjsdj=lmsj.jsjsdj
+		</if>
+		<if test="lmsj.tsdq!=null and lmsj.tsdq!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lmsj.tsdq})
+		</if>
+	</select>
+</mapper>
