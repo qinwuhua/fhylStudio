@@ -5,6 +5,11 @@
 	 <package name="qqgl" extends="struts-default" namespace="/qqgl">
 	 <!-- qwh -->
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
+		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
+		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
+		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
+		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 	 <!-- qwh -->
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 	</package>

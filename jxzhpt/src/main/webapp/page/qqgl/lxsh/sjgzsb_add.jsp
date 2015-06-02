@@ -36,11 +36,50 @@ text-decoration:none;
 		xmnf1("xmnf");
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
-		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear())
+		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear());
+		$('#jsjsdj').combobox({
+		    onSelect:function(rec){
+		    	getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html());
+		    }
+		});
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
+				return false;
+			}
+			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
+				alert("请填写项目名称！");
+				$("#xmmc").focus();
+				return false;
+			}
+			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
+				alert("请填写起点名称！");
+				$("#qdmc").focus();
+				return false;
+			}
+			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
+				alert("请填写止点名称！");
+				$("#zdmc").focus();
+				return false;
+			}
+			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
+				alert("请填写建设性质！");
+				$("#jsxz").focus();
+				return false;
+			}
+			if($("#tz").val()=="" || $("#tz").val()==null){
+				alert("请填写投资！");
+				$("#tz").focus();
+				return false;
+			}
+			if($("#dfzc").val()=="" || $("#dfzc").val()==null){
+				alert("请填写地方自筹！");
+				$("#dfzc").focus();
+				return false;
+			}
+			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
+				alert("未能正确计算出补助测算");
 				return false;
 			}
 			if($("#qdzh").val()==null || $("#qdzh").val()=='' || isNaN($("#qdzh").val()) || parseFloat($("#qdzh").val())<0){
@@ -68,29 +107,25 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#yhlc").val())*1000>parseFloat($("#zlc").html())*1000){
-				alert("对不起，隐患里程不能大于总里程！");
-				$("#yhlc").focus();
+			if(parseInt($("#jhkgn").combobox('getText'))>parseInt($("#jhwgn").combobox('getText'))){
+				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-				var datas="lxbm="+$("#lxbm").val()+"&qdzh="+$("#qdzh").val()+"&zdzh="+$("#zdzh").val();
+				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=sjgz";
 				$.ajax({
 					type:'post',
-					url:'/jxzhpt/xmjck/onceAbgc.do',
+					url:'/jxzhpt/qqgl/selectSFCF.do',
 					dataType:'json',
 			        data:datas,
 					success:function(msg){
 						if(Boolean(msg)){
-							saveAbgc();
+							saveLxsh();
 						}else{
-							alert('该项目已添加过，请勿重复添加！');
+							alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
 						}
 					}
 				});
 		});
-		$("#qx_window").click(function(){
-			parent.$('#jck_add').window('destroy');
-		});	
 		autoCompleteLXBM();
 	});
 	function autoCompleteLXBM(){
@@ -147,6 +182,7 @@ text-decoration:none;
 					$("#xzqh").html(item.xzqhmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
+					getbzcs(item.lxbm.substr(0,1),item.lxjsdj,(parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
 					$("#lc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
 					$("#xjnd").html(item.gjxjnd);
 					$("#jsjsdj").combobox('setValue',item.lxjsdj);
@@ -160,28 +196,29 @@ text-decoration:none;
 					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
 				});
 	}
-	function saveAbgc(){
-		
+	function saveLxsh(){
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		var data ="lxbm="+$("#lxbm").val()+"&lxmc="+$("#lxmc").html()+"&gydw="+$("#gydw").html()+"&gydwbm="+$("#gydwbm").val()+"&qdzh="+$("#qdzh").val()
-		+"&zdzh="+$("#zdzh").val()+"&qzlc="+$("#zlc").html()+"&xzqhdm="+$("#xzqhdm").html()+"&xzqhmc="+$("#xzqhmc").html()+"&gjxjnd="+$("#xjnd").html()+"&tsdq="+$("#tsdq").html()+
-		"&lxjsdj="+$("#lxjsdj").html()+"&yhlc="+$("#yhlc").val()+"&xmnf="+$("#xmnf").combobox("getValue")+"&xmtype="+$("#xmzt").html()+"&yhnr="+$("#yhnr").val()+"&bz="+$("#bz").val()
-		+"&tbbmbm="+$.cookie("unit")+"&sbthcd="+sbthcd;
+		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
+		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
+		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.gydw="+$("#gydw").html()+"&lxsh.xzqh="+$("#xzqh").html()+"&lxsh.gydwdm="+$("#gydwdm").val()+"&lxsh.xzqhdm="+$("#xzqhdm").val()+"&lxsh.tsdq="+$("#tsdq").html()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
+		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").val()+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.sbthcd="+sbthcd;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmjck/insertAbgc.do',
+			url:'/jxzhpt/qqgl/insertSjgz.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
 				if(Boolean(msg)){
-					parent.jckglAbgc();
 					alert("保存成功！");
-					parent.jckglAbgc();
-					parent.$('#jck_add').window('destroy');
-					
+					remove('lxxx');
+					parent.$("#datagrid").datagrid('reload')
 				}else{
 					alert('保存失败！');
 				}
@@ -190,7 +227,8 @@ text-decoration:none;
 	}
 	function changeZlc(){
 		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
-		$("#zlc").html(zlc);
+		$("#lc").html(zlc);
+		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html());
 	}
 	function selectTSDQ(str){
 		$("#tsdq").text("");
@@ -252,7 +290,7 @@ text-decoration:none;
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsxz" style="font-size: 14px">0</span></td>
+					<input type="text" id="jsxz" style="width: 145px" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
@@ -261,7 +299,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="xzqh"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>特殊地区：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="tsdq" style="font-size: 14px"></span></td>
 			</tr>
@@ -272,9 +310,6 @@ text-decoration:none;
 						<option value="一级公路">一级公路</option>
 						<option value="二级公路">二级公路</option>
 						<option value="三级公路">三级公路</option>
-						<option value="四级公路">四级公路</option>
-						<option value="等外公路">等外公路</option>
-						<option value="高速公路">高速公路</option>
 					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -308,7 +343,7 @@ text-decoration:none;
 					<input type="text" id="tz"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-<!-- 					<span id="bzcs"></span> --><input type="text" id="bzcs"/></td>
+				<span id="bzcs"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="dfzc"/>

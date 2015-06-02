@@ -37,8 +37,56 @@ public class Lxsh implements Serializable {
 	private int page;
 	private int rows;
 	private String xmnf;
+	private String gldj;
+	private String jsdj;
+	private String xmlx;
+	private int sbthcd;
+	private int sbzt;
+	private int shzt;
+	private String lxmc;
 	
-	
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public int getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(int sbthcd) {
+		this.sbthcd = sbthcd;
+	}
+	public int getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(int sbzt) {
+		this.sbzt = sbzt;
+	}
+	public int getShzt() {
+		return shzt;
+	}
+	public void setShzt(int shzt) {
+		this.shzt = shzt;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
 	public String getXmnf() {
 		return xmnf;
 	}
