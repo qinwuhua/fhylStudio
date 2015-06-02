@@ -34,27 +34,40 @@ function showAll(){
 	}else{
 		gydwstr= gydw.join(',');
 	}
-	var jgzt='0';
-	var kgzt='0';
-	var lxmc='0';
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+	var sbthcd='';
 	var yhjb=$.cookie("unit2");
-	var sfsj='';
 	if(yhjb.length==11){
-		yhtype='县级';
-		sfsj=11;
+		sbthcd=11;
 	}
 	if(yhjb.length==9||yhjb.length==8){
-		yhtype='市级';
-		sfsj=9;
+		sbthcd=9;
 	}
 	if(yhjb.length<8&&yhjb.length>=2){
-		yhtype='省级';
-		sfsj=7;
+		sbthcd=7;
 	}
-	var xmnf=$("#xmnf").val();
-	var ybzt='';
+	var xmmc=$("#xmmc").val();
+	var xmnf=$("#xmnf").combobox('getText');
+	var sbzt=$("#sbzt").combobox('getValue');
+	var tsdq=$("#tsdq").combobox('getText');
+	if(tsdq=='全部'){
+		tsdq="";
+	}
+	var jsdj=$("#jsdj").combobox('getValue');
+	var gldj=$("#gldj").combobox('getValue');
+	
 	$('#datagrid').datagrid({    
-	    url:'../../../../gcgl/selectGcgzgjjhList1.do',
+	    url:'/jxzhpt/qqgl/selectSjgzList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -64,28 +77,30 @@ function showAll(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
-	    	gydw: gydwstr,
-	    	kgzt: kgzt,
-	    	jgzt: jgzt,
-	    	lxmc:lxmc,
-	    	ybzt:ybzt,
-	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xzqh:xzqhstr,
+	    	gydw:gydwstr,
+	    	xmmc:xmmc,
+			xmnf:xmnf,
+			sbzt:sbzt,
+			tsdq:tsdq,
+			jsdj:jsdj,
+			gldj:gldj,
+			sbthcd:sbthcd
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-  	        	if(row.kgzt=='1'){
-  	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">交工验收</a>  ';
-  	        	}else
-  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'交工验收   ';
-  	        }},
-		    {field : 'sbnf',title : '上报年份',width : 80,align : 'center'},
-		    {field : 'jhkgsj',title : '计划开工时间',width : 150,align : 'center'},
-		    {field : 'jhwgsj',title : '计划完工时间',width : 150,align : 'center'},
-		    {field:'pfztz',title:'批复总投资(万元)',width:100,align:'center'},
-		    {field:'jhsybzje',title:'部补助金额(万元)',width:100,align:'center'},
-		    {field:'jhsydfzcje',title:'地方自筹金额(万元)',width:100,align:'center'}
+  	        
+	        }},
+	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
+		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
+		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
+		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
+		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
+		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -93,15 +108,22 @@ function showAll(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		data:row.plan_lx_gcgjs,
+	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		 queryParams: {
+	    		    	xzqh:row.xmbm
+	    			},
     			columns:[[
     			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
-    			    {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
+    			    {field:'xzqh',title:'行政区划名称',width:100,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
-    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
+    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-    			    {field:'yhlc',title:'隐患里程',width:60,align:'center'}
+    			    {field:'qdmc',title:'起点名称',width:60,align:'center'},
+    			    {field:'zdmc',title:'止点名称',width:60,align:'center'},
+    			    {field:'jsjsdj',title:'建设技术等级',width:60,align:'center'},
+    			    {field:'xjsdj',title:'现技术等级',width:60,align:'center'},
+    			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -126,4 +148,20 @@ function xmnf1(id){
 	    }
 	});
 	$('#'+id).combobox("setValue",first);
+}
+function getbzcs(gldj,jsdj,lc){
+	var data="lxsh.xmlx=升级改造工程项目"+"&lxsh.gldj="+gldj+"&lxsh.jsdj="+jsdj+"&lxsh.lc="+lc;
+	$("#bzcs").html('');
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/selectbzcs.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			$("#bzcs").html(msg.bzys);
+		},
+		error : function(){
+		 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
+	 }
+	});	
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
@@ -31,6 +32,55 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public String selectXmbm(String str) {
 		// TODO Auto-generated method stub
 		return queryOne("selectXmbm", str);
+	}
+
+	@Override
+	public Lxsh selectbzcs(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectbzcs", lxsh);
+	}
+
+	@Override
+	public boolean selectSFCF(Lxsh lxsh) {
+		Lxsh l=queryOne("selectSFCF", lxsh);
+		if(l==null)
+			return true;
+		else
+		return false;
+	}
+
+	@Override
+	public boolean insertSjgz(Lxsh lxsh) {
+		if(insert("insertSjgz", lxsh)>0){
+			insert("insertlx", lxsh);
+			return true;
+		}
+		else
+		return false;
+	}
+
+	@Override
+	public List<Lxsh> selectSjgzList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectSjgzList", lxsh);
+	}
+
+	@Override
+	public int selectSjgzListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSjgzListCount", lxsh);
+	}
+
+	@Override
+	public List<Lxsh> selectSjgzlxList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectSjgzlxList",lxsh);
+	}
+
+	@Override
+	public int selectSjgzlxListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSjgzlxListCount", lxsh);
 	}
 
 	

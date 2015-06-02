@@ -39,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
+import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
@@ -77,7 +78,86 @@ public class LxshController extends BaseActionSupport{
 	private String xmtype;
 	private String xzqh;
 	private String nf;
+	private Lxsh lxsh=new Lxsh();
+	private String gydw;
+	private String xmmc;
+	private String xmnf;
+	private String sbzt;
+	private int shzt;
+	private String tsdq;
+	private String jsdj;
+	private String gldj;
+	private int sbthcd;
+	private String xmbm;
 	
+	public String getXmbm() {
+		return xmbm;
+	}
+	public void setXmbm(String xmbm) {
+		this.xmbm = xmbm;
+	}
+	public String getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(String sbzt) {
+		this.sbzt = sbzt;
+	}
+	public int getShzt() {
+		return shzt;
+	}
+	public void setShzt(int shzt) {
+		this.shzt = shzt;
+	}
+	public int getSbthcd() {
+		return sbthcd;
+	}
+	public void setSbthcd(int sbthcd) {
+		this.sbthcd = sbthcd;
+	}
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getXmnf() {
+		return xmnf;
+	}
+	public void setXmnf(String xmnf) {
+		this.xmnf = xmnf;
+	}
+
+	public String getTsdq() {
+		return tsdq;
+	}
+	public void setTsdq(String tsdq) {
+		this.tsdq = tsdq;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
+	}
+	public String getGldj() {
+		return gldj;
+	}
+	public void setGldj(String gldj) {
+		this.gldj = gldj;
+	}
+
+	public Lxsh getLxsh() {
+		return lxsh;
+	}
+	public void setLxsh(Lxsh lxsh) {
+		this.lxsh = lxsh;
+	}
 	public int getPage() {
 		return page;
 	}
@@ -118,6 +198,8 @@ public class LxshController extends BaseActionSupport{
 			String xmbm1 = lxshServer.selectXmbm(str);
 			if(xmbm1==null){
 				xmbm="";
+			}else{
+				xmbm=xmbm1;
 			}
 		}
 	
@@ -142,6 +224,88 @@ public class LxshController extends BaseActionSupport{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	public void selectbzcs(){
+		Lxsh l = lxshServer.selectbzcs(lxsh);
+		String bzys=(Double.parseDouble(l.getBzys()))*(Double.parseDouble(lxsh.getLc()))+"";
+		l.setBzys(bzys);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void selectSFCF(){
+		boolean bl=false;
+		if("sjgz".equals(lxsh.getXmlx())){
+			bl=lxshServer.selectSFCF(lxsh);
+		}
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void insertSjgz(){
+		boolean bl=lxshServer.insertSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectSjgzList(){
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="andxzqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			lxsh.setXmmc(xmmc);
+			lxsh.setXmnf(xmnf);
+			if(!"".equals(sbzt)){
+				lxsh.setSbzt(Integer.parseInt(sbzt));
+			}
+			lxsh.setSbthcd(sbthcd);
+			lxsh.setTsdq(tsdq);
+			lxsh.setGldj(gldj);
+			lxsh.setJsdj(jsdj);
+			lxsh.setPage(page);
+			lxsh.setRows(rows);
+		List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
+		int count=lxshServer.selectSjgzListCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void selectSjgzlxList(){
+		lxsh.setXmbm(xmbm);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		List<Lxsh> list=lxshServer.selectSjgzlxList(lxsh);
+		int count=lxshServer.selectSjgzlxListCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

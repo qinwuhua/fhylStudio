@@ -53,7 +53,7 @@
         						<span>行政区划：</span>
         						<select id="xzqh" style="width:220px;"></select>
         						<span>项目名称：</span>
-        						<input name="txtRoad" type="text" id="xmmc" style="width:95px;" />
+        						<input type="text" id="xmmc" style="width:95px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
         						<span>项目年份：</span>
@@ -62,8 +62,8 @@
         						<span>上报状态：</span>
         						<select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option>
 								</select>
 								<span>特殊地区：</span>
 								<select name="tsdq" id="tsdq" style="width:88px;" >
