@@ -6,7 +6,20 @@ function remove(id){
 }
 function xmbm(id,xzqh,nf){
 	
-	
+	var data="xmtype=sjgz"+"&xzqh="+xzqh+"&nf="+nf;
+	$("#"+id).html('');
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/selectxmbm.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			$("#xmbm").html(msg.xmbm);
+		},
+		error : function(){
+		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
+	 }
+	});	
 }
 function showAll(){
 	var gydw=$("#gydw").combotree("getValues");
@@ -93,4 +106,24 @@ function showAll(){
 	    	});
 	    }   
 	}); 
+}
+
+function xmnf1(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text',
+	    onSelect:function(rec){
+	    	xmbm(id,$.cookie("dist"),rec.value);
+	    }
+	});
+	$('#'+id).combobox("setValue",first);
 }

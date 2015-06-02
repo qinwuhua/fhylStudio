@@ -142,7 +142,8 @@ text-decoration:none;
 					selectTSDQ(item.xzqhdm);
 					$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
 					$("#lxmc").html(item.lxmc);
-					$("#xzqhdm").html(item.xzqhdm);
+					$("#xzqhdm").val(item.xzqhdm);
+					$("#gydwdm").val(item.gydwbm);
 					$("#xzqh").html(item.xzqhmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
@@ -217,6 +218,8 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="hidden" name="xzqhdm" id="xzqhdm" style="width: 156px" />
+					<input type="hidden" name="gydwdm" id="gydwdm" style="width: 156px" />
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -305,7 +308,7 @@ text-decoration:none;
 					<input type="text" id="tz"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="bzcs"></span></td>
+<!-- 					<span id="bzcs"></span> --><input type="text" id="bzcs"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="dfzc"/>

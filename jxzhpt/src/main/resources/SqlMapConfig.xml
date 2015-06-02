@@ -34,6 +34,7 @@
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Zdxx" alias="zdxx"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.controller.Excel_list" alias="elist"/>
       <typeAlias type="com.hdsx.jxzhpt.gcxmybb.bean.Xmbb" alias="xmbb"/>
+      <typeAlias type="com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh" alias="lxsh"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>
@@ -138,6 +139,7 @@
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/dbyh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/gcybb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/xmbb.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/lxsh.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/zdycx.xml"/>
