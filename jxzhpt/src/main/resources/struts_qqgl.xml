@@ -5,8 +5,13 @@
 	 <package name="qqgl" extends="struts-default" namespace="/qqgl">
 	 <!-- qwh -->
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
-	 <!-- qwh -->
-		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
+	 <!-- rh -->
+		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
+		<action name="queryCbsjLmgzByXmbm" class="cbsjController" method="queryCbsjLmgzByXmbm"></action>
+		<action name="updateCbsjLmgz" class="cbsjController" method="updateCbsjLmgz"></action>
+		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
+		<action name="deleteLmgzByXmbm" class="cbsjController" method="deleteLmgzByXmbm"></action>
+		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
 	</package>
 </struts>
 

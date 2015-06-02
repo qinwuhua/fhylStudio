@@ -46,7 +46,7 @@
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz" alias="sckzhfz"/>
      <!-- lhp -->
      <!-- rh -->
-     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.CbsjLmsj" alias="cbsjlmsj"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Cbsj" alias="cbsj"/>
      
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>

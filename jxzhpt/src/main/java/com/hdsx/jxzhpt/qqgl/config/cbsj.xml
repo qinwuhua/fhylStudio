@@ -1,44 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.cbsj">
-	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsjlmsj">
+	<select id="queryCbsjLmgz" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
-		select rownum num,c.*,l.ghlxbh as lxbm from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
+		select rownum num,c.*,l.ghlxbh from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		where 1=1
 		<if test="lmsj.xzqhdm!=null and lmsj.xzqhdm!=''">
 			and ${lmsj.xzqhdm}
 		</if>
-		<if test="lmsj.lxbm!=null and lmsj.lxbm!=''">
-			and l.ghlxbh like '%'||#{lmsj.lxbm}||'%'
+		<if test="lmsj.ghlxbh!=null and lmsj.ghlxbh!=''">
+			and l.ghlxbh like '%'||#{lmsj.ghlxbh}||'%'
 		</if>
 		<if test="lmsj.xjsdj!=null and lmsj.xjsdj!=''">
 			and l.xjsdj = #{lmsj.xjsdj}
 		</if>
 		<if test="lmsj.jsjsdj!=null and lmsj.jsjsdj!=''">
-			and c.jsjsdj=lmsj.jsjsdj
+			and c.jsjsdj=#{lmsj.jsjsdj}
 		</if>
 		<if test="lmsj.tsdq!=null and lmsj.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lmsj.tsdq})
 		</if>
 		) t where <![CDATA[ t.num>(${page}-1)*${rows} and t.num<=${page}*${rows}]]>
 	</select>
-	<select id="queryCbsjLmsjCount" parameterType="java.util.Map" resultType="int">
+	<select id="queryCbsjLmgzCount" parameterType="java.util.Map" resultType="int">
 		select count(c.id) from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
 		where 1=1
 		<if test="lmsj.xzqhdm!=null and lmsj.xzqhdm!=''">
 			and ${lmsj.xzqhdm}
 		</if>
-		<if test="lmsj.lxbm!=null and lmsj.lxbm!=''">
-			and l.ghlxbh like '%'||#{lmsj.lxbm}||'%'
+		<if test="lmsj.ghlxbh!=null and lmsj.ghlxbh!=''">
+			and l.ghlxbh like '%'||#{lmsj.ghlxbh}||'%'
 		</if>
 		<if test="lmsj.xjsdj!=null and lmsj.xjsdj!=''">
 			and l.xjsdj = #{lmsj.xjsdj}
 		</if>
 		<if test="lmsj.jsjsdj!=null and lmsj.jsjsdj!=''">
-			and c.jsjsdj=lmsj.jsjsdj
+			and c.jsjsdj=#{lmsj.jsjsdj}
 		</if>
 		<if test="lmsj.tsdq!=null and lmsj.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lmsj.tsdq})
 		</if>
 	</select>
+	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
+		select * from cbsj_lmgz c where c.xmbm=#{xmbm}
+	</select>
+	<update id="updateCbsjLmgz" parameterType="cbsj">
+		update cbsj_lmgz c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
+		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		<if test="lj!=null">c.lj=#{lj},</if> 
+		<if test="ql!=null">c.ql=#{ql},</if>
+		<if test="hd!=null">c.hd=#{hd},</if>
+		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="sd!=null">c.sd=#{sd},</if>
+		<if test="dq!=null">c.dq=#{dq},</if>
+		<if test="sdmc!=null">c.sdmc=#{sdmc},</if>
+		<if test="jaf!=null">c.jaf=#{jaf},</if>
+		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
+		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
+		<if test="gq!=null">c.gq=#{gq},</if>
+		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
+		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
+		<if test="pfsj!=null">c.pfsj=#{pfsj}</if>
+		where c.xmbm=#{xmbm}
+	</update>
+	<delete id="deleteLmgzByXmbm" parameterType="java.util.List">
+		delete from cbsj_lmgz where xmbm=#{xmbm}
+	</delete>
+	<!-- 文件操作部分 -->
+	<select id="queryFileByXmbm" parameterType="string" resultType="plan_upload">
+		select * from plan_upload where parentid=#{xmbm}
+	</select>
+	<insert id="insertFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
+	</insert>
 </mapper>
