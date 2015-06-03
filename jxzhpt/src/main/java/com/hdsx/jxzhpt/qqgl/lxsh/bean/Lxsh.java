@@ -41,7 +41,7 @@ public class Lxsh implements Serializable {
 	private String jsdj;
 	private String xmlx;
 	private int sbthcd;
-	private int sbzt;
+	private String sbzt1;
 	private int shzt;
 	private String lxmc;
 	
@@ -57,11 +57,12 @@ public class Lxsh implements Serializable {
 	public void setSbthcd(int sbthcd) {
 		this.sbthcd = sbthcd;
 	}
-	public int getSbzt() {
-		return sbzt;
+	
+	public String getSbzt1() {
+		return sbzt1;
 	}
-	public void setSbzt(int sbzt) {
-		this.sbzt = sbzt;
+	public void setSbzt1(String sbzt1) {
+		this.sbzt1 = sbzt1;
 	}
 	public int getShzt() {
 		return shzt;

@@ -5,11 +5,14 @@
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
 		<action name="selectxmbm" class="lxshController" method="selectxmbm"/>
-		<action name="selectbzcs" class="lxshController" method="selectbzcs"/>
-		<action name="selectSFCF" class="lxshController" method="selectSFCF"/>
-		<action name="insertSjgz" class="lxshController" method="insertSjgz"/>
-		<action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
-		<action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
+		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
+		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
+		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
+		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
+		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
+		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
+		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 		<!-- rh -->
 		<!-- 工程改造 -->
 		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
