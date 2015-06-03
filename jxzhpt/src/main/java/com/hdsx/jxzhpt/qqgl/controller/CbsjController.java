@@ -46,10 +46,17 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void queryCbsj() throws Exception{
 		try {
 			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
-			//分页查询信息列表
-			result.put("rows", cbsjServer.queryCbsjLmgz(cbsj, page, rows));
-			//查询信息总数量
-			result.put("total", cbsjServer.queryCbsjLmgzCount(cbsj));
+			List<Cbsj> resultData=null;
+			int total=0;
+			if(cbsj.getXmlx()==1){
+				resultData=cbsjServer.queryCbsjLmsj(cbsj, page, rows);
+				total=cbsjServer.queryCbsjLmsjCount(cbsj);
+			}else if(cbsj.getXmlx()==2){
+				resultData = cbsjServer.queryCbsjLmgz(cbsj, page, rows);
+				total = cbsjServer.queryCbsjLmgzCount(cbsj);
+			}
+			result.put("rows", resultData);
+			result.put("total", total);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,9 +67,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * 根据项目编码查询计划初步设计信息
 	 * @throws Exception
 	 */
-	public void queryCbsjLmgzByXmbm() throws Exception{
-		Cbsj object= cbsjServer.queryCbsjLmgzByXmbm(cbsj.getXmbm());
+	public void queryCbsjByXmbm() throws Exception{
+		Cbsj object=null;
 		try {
+			if(cbsj.getXmlx()==1){
+				object=cbsjServer.queryCbsjLmsjByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==2){
+				object= cbsjServer.queryCbsjLmgzByXmbm(cbsj.getXmbm());
+			}
+			object.setXmlx(cbsj.getXmlx());
 			JsonUtils.write(object, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,9 +86,14 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * 修改路面改造初步设计信息
 	 * @throws Exception
 	 */
-	public void updateCbsjLmgz() throws Exception{
+	public void updateCbsj() throws Exception{
 		try{
-			boolean b = cbsjServer.updateCbsjLmgz(cbsj);
+			boolean b = false;
+			if(cbsj.getXmlx()==1){
+				b = cbsjServer.updateCbsjLmsj(cbsj);
+			}else if(cbsj.getXmlx()==2){
+				b=cbsjServer.updateCbsjLmgz(cbsj);
+			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
@@ -87,15 +105,23 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * 根据项目编码删除信息
 	 * @throws Exception
 	 */
-	public void deleteLmgzByXmbm() throws Exception{
+	public void deleteCbsjByXmbm() throws Exception{
 		try {
-			boolean b=cbsjServer.deleteLmgzByXmbm(cbsj.getXmbm());
+			boolean b=false;
+			if(cbsj.getXmlx()==1){
+				b=cbsjServer.deleteLmsjByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==2){
+				b = cbsjServer.deleteLmgzByXmbm(cbsj.getXmbm());
+			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	public void shCbsjByXmbm(){
+		System.out.println("项目编码："+cbsj.getXmbm());
 	}
 	/**
 	 * 上传设计批复文件

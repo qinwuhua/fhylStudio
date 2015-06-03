@@ -87,7 +87,13 @@ function deleteFile(id){
  */
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
-	YMLib.UI.createWindow(id,title,url,id,width,height);
+	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
+		if(id=="lmsjedit"){
+			queryLmsj();
+		}else if(id=="lmgzedit"){
+			queryLmgz();
+		}
+	});
 }
 /**
  * 关闭弹出窗口
