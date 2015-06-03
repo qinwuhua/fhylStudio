@@ -49,7 +49,7 @@ public class Cbsj {
 	private String xjsdj;//现技术等级
 	private String tsdq;//特殊地区
 	//附加属性，用于代码判断
-	private int xmlx;//项目类型：1—升级项目、2 — 改造项目
+	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
 	public int getXmlx() {
 		return xmlx;
 	}

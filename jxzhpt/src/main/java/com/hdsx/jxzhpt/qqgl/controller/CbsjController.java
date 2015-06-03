@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -33,12 +34,17 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	//分页参数
 	private int page = 1;
 	private int rows = 10;
+	//上报审核状态，批量操作
+	private String sbzt1;
+	private String shzt1;
 	//上传文件对象参数
 	private File uploadSjpf;
 	private String uploadSjpfFileName;
 	//数据访问对象
 	@Resource(name="cbsjServerImpl")
 	private CbsjServer cbsjServer;
+	@Resource(name="jhshServerImpl")
+	private JhshServer jhshServer;
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -54,6 +60,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==2){
 				resultData = cbsjServer.queryCbsjLmgz(cbsj, page, rows);
 				total = cbsjServer.queryCbsjLmgzCount(cbsj);
+			}else if(cbsj.getXmlx()==3){
+				resultData = cbsjServer.queryCbsjXj(cbsj, page, rows);
+				total = cbsjServer.queryCbsjXjCount(cbsj);
 			}
 			result.put("rows", resultData);
 			result.put("total", total);
@@ -73,7 +82,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			if(cbsj.getXmlx()==1){
 				object=cbsjServer.queryCbsjLmsjByXmbm(cbsj.getXmbm());
 			}else if(cbsj.getXmlx()==2){
-				object= cbsjServer.queryCbsjLmgzByXmbm(cbsj.getXmbm());
+				object = cbsjServer.queryCbsjLmgzByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==3){
+				object =cbsjServer.queryCbsjXjByXmbm(cbsj.getXmbm());
 			}
 			object.setXmlx(cbsj.getXmlx());
 			JsonUtils.write(object, getresponse().getWriter());
@@ -93,6 +104,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b = cbsjServer.updateCbsjLmsj(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				b=cbsjServer.updateCbsjLmgz(cbsj);
+			}else if(cbsj.getXmlx()==3){
+				b=cbsjServer.updateCbsjXj(cbsj);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -112,6 +125,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b=cbsjServer.deleteLmsjByXmbm(cbsj.getXmbm());
 			}else if(cbsj.getXmlx()==2){
 				b = cbsjServer.deleteLmgzByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==3){
+				b = cbsjServer.deleteXjByXmbm(cbsj.getXmbm());
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -120,8 +135,35 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			throw e;
 		}
 	}
-	public void shCbsjByXmbm(){
-		System.out.println("项目编码："+cbsj.getXmbm());
+	/**
+	 * 审核流程，修改上报、审核状态
+	 * @throws Exception 
+	 */
+	public void shCbsjByXmbm() throws Exception{
+		try {
+			boolean b=false;
+			if(cbsj.getXmlx()==1){
+				b=cbsjServer.shCbsjLmsjByXmbm(cbsj,sbzt1,shzt1);
+				if(b && (shzt1!=null && !shzt1.equals(""))){
+					jhshServer.insertJhshLmsjFromCbsj(cbsj.getXmbm());
+				}
+			}else if(cbsj.getXmlx()==2){
+				b = cbsjServer.shCbsjLmgzByXmbm(cbsj,sbzt1,shzt1);
+				if(b && (shzt1!=null && !shzt1.equals(""))){
+					
+				}
+			}else if(cbsj.getXmlx()==3){
+				b = cbsjServer.shCbsjXjByXmbm(cbsj,sbzt1,shzt1);
+				if(b && (shzt1!=null && !shzt1.equals(""))){
+					
+				}
+			}
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	/**
 	 * 上传设计批复文件
@@ -227,5 +269,17 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setUploadSjpfFileName(String uploadSjpfFileName) {
 		this.uploadSjpfFileName = uploadSjpfFileName;
+	}
+	public String getSbzt1() {
+		return sbzt1;
+	}
+	public void setSbzt1(String sbzt1) {
+		this.sbzt1 = sbzt1;
+	}
+	public String getShzt1() {
+		return shzt1;
+	}
+	public void setShzt1(String shzt1) {
+		this.shzt1 = shzt1;
 	}
 }
