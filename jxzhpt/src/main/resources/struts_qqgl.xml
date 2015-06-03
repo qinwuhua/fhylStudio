@@ -10,6 +10,8 @@
 		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
 		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
 		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
+		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
+		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 	 <!-- qwh -->
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 	</package>

@@ -32,4 +32,8 @@ public interface LxshServer {
 
 	int selectSjgzlxListCount(Lxsh lxsh);
 
+	boolean sbsjgzSbzt(Lxsh lxsh);
+
+	boolean thSjgzSbzt(Lxsh lxsh);
+
 }

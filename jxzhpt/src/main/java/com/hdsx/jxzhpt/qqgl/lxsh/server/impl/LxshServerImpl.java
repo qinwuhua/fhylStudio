@@ -1,6 +1,8 @@
 package com.hdsx.jxzhpt.qqgl.lxsh.server.impl;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -83,5 +85,33 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		return queryOne("selectSjgzlxListCount", lxsh);
 	}
 
-	
+	@Override
+	public boolean sbsjgzSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("sbsjgzSbzt", lm)>0) return true;
+		else return false;
+	}
+
+	private List<Map<String,Object>> lm;
+	private Map<String,Object> hm;
+	@Override
+	public boolean thSjgzSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("thSjgzSbzt", lm)>0) return true;
+		else return false;
+	}
 }

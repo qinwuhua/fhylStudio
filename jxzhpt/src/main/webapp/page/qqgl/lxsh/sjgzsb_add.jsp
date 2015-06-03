@@ -217,8 +217,8 @@ text-decoration:none;
 			success:function(msg){
 				if(Boolean(msg)){
 					alert("保存成功！");
+					parent.showAll();
 					remove('lxxx');
-					parent.$("#datagrid").datagrid('reload')
 				}else{
 					alert('保存失败！');
 				}

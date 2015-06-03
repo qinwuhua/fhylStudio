@@ -228,7 +228,9 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void selectbzcs(){
 		Lxsh l = lxshServer.selectbzcs(lxsh);
-		String bzys=(Double.parseDouble(l.getBzys()))*(Double.parseDouble(lxsh.getLc()))+"";
+		BigDecimal b1=new BigDecimal(l.getBzys());
+		BigDecimal b2=new BigDecimal(lxsh.getLc());
+		String bzys=b1.multiply(b2)+"";
 		l.setBzys(bzys);
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
@@ -274,7 +276,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setXmmc(xmmc);
 			lxsh.setXmnf(xmnf);
 			if(!"".equals(sbzt)){
-				lxsh.setSbzt(Integer.parseInt(sbzt));
+				lxsh.setSbzt1(sbzt);
 			}
 			lxsh.setSbthcd(sbthcd);
 			lxsh.setTsdq(tsdq);
@@ -306,6 +308,23 @@ public class LxshController extends BaseActionSupport{
 			JsonUtils.write(e, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	
+	public void sbsjgzSbzt(){
+		boolean bl=lxshServer.sbsjgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void thSjgzSbzt(){
+		boolean bl=lxshServer.thSjgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
 		}
 	}
 }

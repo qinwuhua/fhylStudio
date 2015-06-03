@@ -47,7 +47,7 @@
 			and ghlxbm like '#{tsdq}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		
+		order by xmbm
 	</select>
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_SJGZ where 1=1
@@ -81,14 +81,20 @@
 		select * from (
 		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc  from LXSH_LX t where 1=1
 		<if test="xmbm!='' and xmbm!= null ">
-			and xmbm like '%'||#{xmbm}||'%'
+			and xmid like '%'||#{xmbm}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectSjgzlxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_LX where 1=1
 		<if test="xmbm!='' and xmbm!= null ">
-			and xmbm like '%'||#{xmbm}||'%'
+			and xmid like '%'||#{xmbm}||'%'
 		</if>
 	</select>
+	<update id="sbsjgzSbzt" parameterType="hashmap">
+		update LXSH_SJGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="thSjgzSbzt" parameterType="hashmap">
+		update LXSH_SJGZ set sbzt=0,sbthcd=#{sbthcd} where id=#{id}
+	</update>
 </mapper>

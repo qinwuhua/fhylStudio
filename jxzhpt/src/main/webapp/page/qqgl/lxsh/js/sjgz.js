@@ -4,6 +4,10 @@ function addLXSH(url,width,length){
 function remove(id){
 	parent.$('#'+id).window('destroy');
 }
+function dingwei(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	locationXm(data.lxbm,"");
+}
 function xmbm(id,xzqh,nf){
 	
 	var data="xmtype=sjgz"+"&xzqh="+xzqh+"&nf="+nf;
@@ -90,7 +94,14 @@ function showAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-  	        
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wangong('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">删除</a>  ';
+	        }},
+	        {field:'c1',title:'上报状态',width:50,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt=='0')
+        		return '未上报';
+	        	else if(row.sbzt=='1')
+	        		return '已上报';
+	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
@@ -110,19 +121,19 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
-	    		    	xzqh:row.xmbm
+	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
-    			    {field:'gydw',title:'管养单位',width:100,align:'center'},    
-    			    {field:'xzqh',title:'行政区划名称',width:100,align:'center'},
-    			    {field:'lxmc',title:'路线名称',width:100,align:'center'},
+    			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
+    			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
+    			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
     			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
-    			    {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-    			    {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-    			    {field:'qdmc',title:'起点名称',width:60,align:'center'},
-    			    {field:'zdmc',title:'止点名称',width:60,align:'center'},
-    			    {field:'jsjsdj',title:'建设技术等级',width:60,align:'center'},
-    			    {field:'xjsdj',title:'现技术等级',width:60,align:'center'},
+    			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
+    			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+    			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+    			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+    			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+    			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
     			    {field:'lc',title:'里程',width:60,align:'center'}
     			]]
 	    	});
