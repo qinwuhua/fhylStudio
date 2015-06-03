@@ -17,9 +17,10 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		super("cbsj", "jdbc");
 	}
 	private Map<String, Object> params=new HashMap<String, Object>();
+	//路面改造部分代码
 	@Override
 	public List<Cbsj> queryCbsjLmgz(Cbsj lmsj, int page, int rows) {
-		params.put("lmsj", lmsj);
+		params.put("cbsj", lmsj);
 		params.put("page", page);
 		params.put("rows", rows);
 		return queryList("queryCbsjLmgz",params);
@@ -49,7 +50,6 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 	}
 	@Override
 	public boolean deleteLmgzByXmbm(String xmbm) {
-		System.out.println("项目编码："+xmbm);
 		String[] split = xmbm.split(",");
 		List<Cbsj> list=new ArrayList<Cbsj>();
 		for (String string : split) {
@@ -58,6 +58,39 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 			list.add(obj);
 		}
 		return deleteBatch("deleteLmgzByXmbm",list)==list.size();
+	}
+	/////升级项目部分代码
+	@Override
+	public List<Cbsj> queryCbsjLmsj(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjLmsj",params);
+	}
+	@Override
+	public int queryCbsjLmsjCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjLmsjCount", params);
+	}
+	@Override
+	public Cbsj queryCbsjLmsjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjLmsjByXmbm", params);
+	}
+	@Override
+	public boolean updateCbsjLmsj(Cbsj cbsj) {
+		return update("updateCbsjLmsj", cbsj)>0;
+	}
+	@Override
+	public boolean deleteLmsjByXmbm(String xmbm) {
+		String[] split = xmbm.split(",");
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (String string : split) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(string);
+			list.add(obj);
+		}
+		return deleteBatch("deleteLmsjByXmbm", list)==list.size();
 	}
 
 }

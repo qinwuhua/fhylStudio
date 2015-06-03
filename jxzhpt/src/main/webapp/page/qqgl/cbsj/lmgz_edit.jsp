@@ -23,8 +23,8 @@
 			loadBmbm2('jsjsdj','技术等级');
 			$.ajax({
 				type:'post',
-				url:'../../../qqgl/queryCbsjLmgzByXmbm.do',
-				data:'cbsj.xmbm='+parent.YMLib.Var.xmbm,
+				url:'../../../qqgl/queryCbsjByXmbm.do',
+				data:'cbsj.xmlx='+2+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
@@ -74,7 +74,7 @@
 				success:function(msg){
 					if(msg.result){
 						alert("修改成功！");
-						closeWindow("lmsjedit");
+						closeWindow("lmgzedit");
 					}
 				},
 				error:function(msg){
@@ -86,7 +86,7 @@
 </head>
 <body style="font-size: 12px;">
 	<div>
-		<form id="cbsj" action="../../../qqgl/updateCbsjLmgz.do">
+		<form id="cbsj" action="../../../qqgl/updateCbsj.do">
 			<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
@@ -101,6 +101,7 @@
 						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
+						<input id="xmlx" name="xmlx" value="2" type="hidden"/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						项目名称

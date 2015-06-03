@@ -2,8 +2,9 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
     "/xsd/struts-2.1.7.dtd">
 <struts>
-	 <package name="qqgl" extends="struts-default" namespace="/qqgl">
-	 <!-- qwh -->
+	<package name="qqgl" extends="struts-default" namespace="/qqgl">
+		<!-- qwh -->
+		<action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
 		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
@@ -14,19 +15,17 @@
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
 	 <!-- qwh -->
-		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 	<!-- rh -->
+		<!-- 工程改造 -->
+		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
-		<action name="queryCbsjLmgzByXmbm" class="cbsjController" method="queryCbsjLmgzByXmbm"></action>
-		<action name="updateCbsjLmgz" class="cbsjController" method="updateCbsjLmgz"></action>
+		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
+		<action name="updateCbsj" class="cbsjController" method="updateCbsj"></action>
 		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
-		<action name="deleteLmgzByXmbm" class="cbsjController" method="deleteLmgzByXmbm"></action>
+		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
-		<action name="selectbzcs" class="lxshController" method="selectbzcs"/>
-		<action name="selectSFCF" class="lxshController" method="selectSFCF"/>
-		<action name="insertSjgz" class="lxshController" method="insertSjgz"/>
-		<action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
-		<action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
+		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
+	<!-- rh -->
 	</package>
 </struts>
 

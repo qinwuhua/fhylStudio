@@ -51,4 +51,36 @@ public interface CbsjServer {
 	 * @return 返回执行结果
 	 */
 	public boolean deleteLmgzByXmbm(String xmbm);
+	/**
+	 * 查询路面升级项目列表
+	 * @param cbsj 初步设计数据对象
+	 * @param page 页码
+	 * @param rows 每页数据数量
+	 * @return 返回数据集合
+	 */
+	public List<Cbsj> queryCbsjLmsj(Cbsj cbsj, int page, int rows);
+	/**
+	 * 查询路面升级项目总数量
+	 * @param cbsj 初步设计数据对象
+	 * @return 返回总数
+	 */
+	public int queryCbsjLmsjCount(Cbsj cbsj);
+	/**
+	 * 根据项目编码查询详细信息
+	 * @param xmbm
+	 * @return
+	 */
+	public Cbsj queryCbsjLmsjByXmbm(String xmbm);
+	/**
+	 * 修改升级项目
+	 * @param cbsj 升级项目对象
+	 * @return 执行结果
+	 */
+	public boolean updateCbsjLmsj(Cbsj cbsj);
+	/**
+	 * 删除升级项目
+	 * @param xmbm 项目编码
+	 * @return 执行结果
+	 */
+	public boolean deleteLmsjByXmbm(String xmbm);
 }

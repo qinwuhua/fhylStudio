@@ -27,12 +27,12 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
-			queryLmgz();
+			queryLmsj();
 		});
-		function queryLmgz(){
+		function queryLmsj(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
@@ -44,13 +44,13 @@
 					formatter: function(value,row,index){
 						var result="";
 						if(row.sbzt==0){
-							result='<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
 							result='<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
@@ -79,24 +79,44 @@
 				{field:'jaf',title:'建安费',width:100,align:'center'}]];
 			gridBind(grid);
 		}
-		function deleteLmgz(){
+		function deleteLmsj(){
 			if(selArray.length!=0){
 				var xmbm = selArray.join(",");
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/deleteCbsjByXmbm.do',
-					data:'cbsj.xmlx='+2+'&cbsj.xmbm='+xmbm,
+					data:'cbsj.xmlx='+1+'&cbsj.xmbm='+xmbm,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("删除成功!");
-							queryLmgz();
+							queryLmsj();
 						}
 					}
 				});
 			}else{
 				alert("请选择要删除的信息！");
+			}
+		}
+		function batchSh(){
+			if(selArray.length!=0){
+				var xmbm = selArray.join(",");
+				/*$.ajax({
+					type:'post',
+					url:'../../../qqgl/deleteCbsjByXmbm.do',
+					data:'cbsj.xmlx='+1+'&cbsj.xmbm='+xmbm,
+					dataType:'json',
+					success:function(msg){
+						if(msg.result=="true"){
+							selArray.splice(0,selArray.length);
+							alert("删除成功!");
+							queryLmsj();
+						}
+					}
+				});*/
+			}else{
+				alert("请选择要审核的信息！");
 			}
 		}
 		$(window).resize(function () { 
@@ -106,7 +126,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;路面改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;升级改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -135,9 +155,9 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
-								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img  onclick="batchSp()" name="shenPi" id="shenPi" src="../../../images/Button/qbsp1.png" onmouseover="this.src='../../../images/Button/qbsp2.png'" onmouseout="this.src='../../../images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
-								<img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
+								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img  onclick="batchSh()" name="shenPi" id="shenPi" src="../../../images/Button/qbsp1.png" onmouseover="this.src='../../../images/Button/qbsp2.png'" onmouseout="this.src='../../../images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
+								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

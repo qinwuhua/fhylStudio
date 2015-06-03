@@ -48,6 +48,14 @@ public class Cbsj {
 	private String xzqhdm;//行政区划代码
 	private String xjsdj;//现技术等级
 	private String tsdq;//特殊地区
+	//附加属性，用于代码判断
+	private int xmlx;//项目类型：1—升级项目、2 — 改造项目
+	public int getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(int xmlx) {
+		this.xmlx = xmlx;
+	}
 	public int getSbzt() {
 		return sbzt;
 	}

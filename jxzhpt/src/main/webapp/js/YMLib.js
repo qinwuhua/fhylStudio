@@ -167,6 +167,56 @@ var YMLib = {
 
 		},
 		/*
+		 * 加载Window窗体来自框架
+		 */
+		createWindow1 : function(_id, _title, _href, _icon, _width, _height,
+				_onDestroy) {
+			if ($("#" + _id).size() != 0) {// 是否存在
+				return;
+			}
+			YMLib.Tools.createDivById(_id); // 创建div
+			$("#" + _id)
+					.window(
+							{// 渲染window
+								title : _title,
+								iconCls : _icon,
+								content : "<iframe id='"
+										+ _id
+										+ "_frame' name='"
+										+ _id
+										+ "_frame' src='"
+										+ _href
+										+ "' frameborder='0' height='100%' width='100%'></iframe>",
+								width : _width,
+								height : _height,
+								// collapsible: typeof _collapsible ==
+								// 'undefined',
+								minimizable : false,
+								maximizable : false,
+								resizable : true,
+								modal : false,
+								onClose : function() {
+									var frame = $('iframe', $("#" + _id)); // 释放frame
+									if (frame.length > 0) {
+										frame[0].contentWindow.document
+												.write('');
+										frame[0].contentWindow.close();
+										frame.remove();
+										if ($.browser.msie) {
+											CollectGarbage();
+										}
+									}
+									if (typeof _onClose != 'undefined') {
+										_onClose();
+									}
+									$("#" + _id).window('destroy');
+									$("#" + _id).remove();
+								},
+								onDestroy : _onDestroy
+							});
+
+		},
+		/*
 		 * 构造指定参数类型。
 		 */
 		builderType : function(jsons, counts) {
