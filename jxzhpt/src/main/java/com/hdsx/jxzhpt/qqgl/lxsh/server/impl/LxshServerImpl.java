@@ -53,8 +53,10 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean insertSjgz(Lxsh lxsh) {
+		insert("insertlx", lxsh);
+		int bzcs=queryOne("queryMaxbzcs",lxsh);
+		lxsh.setBzys(bzcs+"");
 		if(insert("insertSjgz", lxsh)>0){
-			insert("insertlx", lxsh);
 			return true;
 		}
 		else
@@ -113,5 +115,17 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		}
 		if(updateBatch("thSjgzSbzt", lm)>0) return true;
 		else return false;
+	}
+
+	@Override
+	public boolean updateSjgz(Lxsh lxsh) {
+		update("updateSjgzlx", lxsh);
+		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		lxsh.setBzys(bzcs+"");
+		if(update("updateSjgz", lxsh)>0){
+			return true;
+		}
+		else
+		return false;
 	}
 }

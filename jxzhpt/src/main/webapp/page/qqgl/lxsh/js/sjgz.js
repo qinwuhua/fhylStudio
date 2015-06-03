@@ -1,5 +1,16 @@
+var obj=new Object();
 function addLXSH(url,width,length){
 	YMLib.UI.createWindow('lxxx','添加立项信息',url,'lxxx',width,length);
+}
+function xiangxi(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','立项详细信息','sjgzsb_xx.jsp','lxxx',900,400);
+}
+function edit(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,400);
 }
 function remove(id){
 	parent.$('#'+id).window('destroy');
@@ -93,13 +104,15 @@ function showAll(){
 		},
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
-	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wangong('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">删除</a>  ';
+	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
+	            if(row.sbzt1=='1'||sbthcd==7)
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
 	        }},
-	        {field:'c1',title:'上报状态',width:50,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt=='0')
+	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt1=='0'&&sbthcd!=7)
         		return '未上报';
-	        	else if(row.sbzt=='1')
+	        	else if(row.sbzt1=='1'||sbthcd==7)
 	        		return '已上报';
 	        	else return '未知';
 	        }},

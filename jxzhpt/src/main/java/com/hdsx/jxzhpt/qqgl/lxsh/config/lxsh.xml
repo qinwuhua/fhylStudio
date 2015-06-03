@@ -15,12 +15,12 @@
 		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc})
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzcs},'1')
 	</insert>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*  from LXSH_SJGZ t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_SJGZ t where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -34,8 +34,8 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and sbzt like '%'||#{sbzt}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
@@ -64,8 +64,8 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and sbzt like '%'||#{sbzt}||'%'
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
@@ -95,6 +95,17 @@
 		update LXSH_SJGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
 	</update>
 	<update id="thSjgzSbzt" parameterType="hashmap">
-		update LXSH_SJGZ set sbzt=0,sbthcd=#{sbthcd} where id=#{id}
+		update LXSH_SJGZ set sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="updateSjgz" parameterType="lxsh">
+		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateSjgzlx" parameterType="lxsh">
+		update LXSH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},bzcs=#{bzys}
+		where xmid=#{xmbm} and sffirst='1'
+	</update>
+	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
+		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm}
+	</select>
 </mapper>

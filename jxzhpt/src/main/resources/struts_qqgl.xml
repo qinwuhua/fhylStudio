@@ -12,6 +12,7 @@
 		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
+		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
 	 <!-- qwh -->
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 	<!-- rh -->

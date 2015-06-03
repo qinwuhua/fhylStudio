@@ -327,5 +327,13 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void updateSjgz(){
+		boolean bl=lxshServer.updateSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }
 

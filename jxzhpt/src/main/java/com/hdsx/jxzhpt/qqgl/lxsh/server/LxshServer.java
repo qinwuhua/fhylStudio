@@ -36,4 +36,6 @@ public interface LxshServer {
 
 	boolean thSjgzSbzt(Lxsh lxsh);
 
+	boolean updateSjgz(Lxsh lxsh);
+
 }
