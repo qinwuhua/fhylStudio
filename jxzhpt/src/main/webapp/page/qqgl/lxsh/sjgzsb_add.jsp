@@ -123,12 +123,13 @@ text-decoration:none;
 			        data:datas,
 					success:function(msg){
 						if(Boolean(msg)){
-							saveLxsh();
+								saveLxsh();
 						}else{
 							alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
 						}
 					}
 				});
+				
 		});
 		autoCompleteLXBM();
 	});

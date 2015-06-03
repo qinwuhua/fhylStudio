@@ -38,4 +38,13 @@ public interface LxshServer {
 
 	boolean updateSjgz(Lxsh lxsh);
 
+	List<Lxsh> selectSjgzshList(Lxsh lxsh);
+
+	int selectSjgzshListCount(Lxsh lxsh);
+
+	boolean delSjgz(Lxsh lxsh);
+
+	boolean shsjgzSbzt(Lxsh lxsh);
+
+
 }
