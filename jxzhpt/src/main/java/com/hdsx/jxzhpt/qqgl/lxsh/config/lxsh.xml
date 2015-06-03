@@ -10,13 +10,16 @@
 	<select id="selectSFCF" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
+	<select id="selectSFCF1" parameterType="lxsh" resultType="lxsh">
+		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf&lt;#{xmnf}
+	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
 		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzcs},'1')
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1')
 	</insert>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -79,14 +82,14 @@
 	</select>
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc  from LXSH_LX t where 1=1
+		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc  from LXSH_LX t where 1=1 and sffirst!='1'
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectSjgzlxListCount" parameterType="lxsh" resultType="int">
-		select count(*) from LXSH_LX where 1=1
+		select count(*) from LXSH_LX where 1=1 and sffirst!='1'
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
@@ -108,4 +111,73 @@
 	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
 		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm}
 	</select>
+	
+	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select rownum num ,t.*  from LXSH_SJGZ t where 1=1
+			and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectSjgzshListCount" parameterType="lxsh" resultType="int">
+		select count(*) from LXSH_SJGZ where 1=1
+		and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and shzt like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+	</select>
+	<delete id="delSjgz" parameterType="hashmap">
+		delete from LXSH_SJGZ where xmbm=#{xmbm}
+	</delete>
+	<delete id="delSjgzlx" parameterType="hashmap">
+		delete from LXSH_LX where xmid=#{xmbm}
+	</delete>
+	<update id="shsjgzSbzt" parameterType="hashmap">
+		update LXSH_SJGZ set shzt=1 where id=#{id}
+	</update>
 </mapper>

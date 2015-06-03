@@ -14,7 +14,9 @@
 		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
-		  
+		  <action name="selectSjgzshList" class="lxshController" method="selectSjgzshList"/>
+		  <action name="delSjgz" class="lxshController" method="delSjgz"/>
+		  <action name="shsjgzSbzt" class="lxshController" method="shsjgzSbzt"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 工程改造 -->

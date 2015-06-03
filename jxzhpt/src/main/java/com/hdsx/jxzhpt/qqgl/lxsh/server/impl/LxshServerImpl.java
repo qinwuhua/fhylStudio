@@ -54,13 +54,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean insertSjgz(Lxsh lxsh) {
 		insert("insertlx", lxsh);
-		int bzcs=queryOne("queryMaxbzcs",lxsh);
+		double bzcs=queryOne("queryMaxbzcs",lxsh);
 		lxsh.setBzys(bzcs+"");
-		if(insert("insertSjgz", lxsh)>0){
+		if (insert("insertSjgz", lxsh) > 0) {
 			return true;
-		}
-		else
-		return false;
+		} else
+			return false;
 	}
 
 	@Override
@@ -128,4 +127,44 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		else
 		return false;
 	}
+
+	@Override
+	public List<Lxsh> selectSjgzshList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectSjgzshList", lxsh);
+	}
+
+	@Override
+	public int selectSjgzshListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSjgzshListCount", lxsh);
+	}
+
+	@Override
+	public boolean delSjgz(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(deleteBatch("delSjgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean shsjgzSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("shsjgzSbzt", lm)>0) return true;
+		else return false;
+	}
+
+	
 }

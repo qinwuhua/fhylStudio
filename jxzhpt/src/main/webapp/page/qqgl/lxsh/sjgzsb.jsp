@@ -126,6 +126,45 @@
 					});
 			}
 		}
+		function delsjgz(){
+			var rows=$('#datagrid').datagrid('getSelections');
+			if(rows.length==0) {
+				alert("请选择要删除项目！");
+				return;
+			}
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].sbthcd<$.cookie("unit2").length){
+					alert("对不起，该项目已上报，不能执行删除操作！");
+					return;
+				}
+			}
+			var id=rows[0].xmbm;
+			
+			for(var i=1;i<rows.length;i++){
+				id+=","+rows[i].xmbm ;
+			}
+			
+			var data="lxsh.xmbm="+id;
+			if(confirm('您确定删除该项目？')){
+					$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/delSjgz.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+							 if(msg){
+								 alert('删除成功！');
+								 $("#datagrid").datagrid('reload');
+							 }else{
+								 alert('删除失败！');
+							 }
+						 },
+						 error : function(){
+							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+						 }
+					});
+			}
+		}
 	</script>
 </head>
 <body>
@@ -173,7 +212,7 @@
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" />
 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addLXSH('sjgzsb_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/>
-				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;">
+				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;">
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 				              </p>
         				</div>

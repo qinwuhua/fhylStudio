@@ -335,5 +335,58 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void selectSjgzshList(){
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="andxzqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmmc(xmmc);
+		lxsh.setXmnf(xmnf);
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
+		lxsh.setTsdq(tsdq);
+		lxsh.setGldj(gldj);
+		lxsh.setJsdj(jsdj);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+	List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
+	int count=lxshServer.selectSjgzshListCount(lxsh);
+	EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+	e.setRows(list);
+	e.setTotal(count);
+	try {
+		JsonUtils.write(e, getresponse().getWriter());
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
+	}
+	public void delSjgz(){
+		boolean bl=lxshServer.delSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void shsjgzSbzt(){
+		boolean bl=lxshServer.shsjgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
 }
 
