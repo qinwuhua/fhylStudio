@@ -14,6 +14,18 @@
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 	 <!-- qwh -->
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
+	<!-- rh -->
+		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
+		<action name="queryCbsjLmgzByXmbm" class="cbsjController" method="queryCbsjLmgzByXmbm"></action>
+		<action name="updateCbsjLmgz" class="cbsjController" method="updateCbsjLmgz"></action>
+		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
+		<action name="deleteLmgzByXmbm" class="cbsjController" method="deleteLmgzByXmbm"></action>
+		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
+		<action name="selectbzcs" class="lxshController" method="selectbzcs"/>
+		<action name="selectSFCF" class="lxshController" method="selectSFCF"/>
+		<action name="insertSjgz" class="lxshController" method="insertSjgz"/>
+		<action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		<action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 	</package>
 </struts>
 

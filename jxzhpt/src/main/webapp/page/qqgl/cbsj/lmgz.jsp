@@ -31,22 +31,36 @@
 		});
 		function queryGcsj(){
 			grid.id="grid";
-			grid.url="../../../qqgl/queryLmsj.do";
-			var params={'cbsjlmsj.xzqhdm':getxzqhdm('xzqh'),'cbsjlmsj.lxbm':$('#txtlxbm').val(),
-					'cbsjlmsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsjlmsj.jsjsdj':$('#gjhjsdj').combo("getValue")};
+			grid.url="../../../qqgl/queryCbsj.do";
+			var params={'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'cz',title:'操作',width:150,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						if(row.sbzt==0){
+							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+						}else{
+							result='<a style="color:black;">编辑</a>';
+						}
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						return result;
+					}
+				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
-				{field:'xmmc',title:'项目名称',width:100,align:'center'},
+				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'lxbm',title:'路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
-				{field:'jsxz',title:'建设性质',width:100,align:'center'},
+				{field:'jsxz',title:'建设性质',width:150,align:'center'},
 				{field:'lj',title:'路基（m3）',width:100,align:'center'},
 				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
 				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},
@@ -54,8 +68,8 @@
 				{field:'jc',title:'基基（公里）',width:100,align:'center'},
 				{field:'dc',title:'垫基（公里）',width:100,align:'center'},
 				{field:'sd',title:'隧道（延米/座）',width:100,align:'center'},
-				{field:'dq',title:'大桥(名称/长度/单跨)',width:100,align:'center'},
-				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:100,align:'center'},
+				{field:'dq',title:'大桥(名称/长度/单跨)',width:150,align:'center'},
+				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
@@ -65,6 +79,26 @@
 				{field:'jaf',title:'建安费',width:100,align:'center'}]];
 			gridBind(grid);
 		}
+		function deleteLmgz(){
+			if(selArray.length!=0){
+				var xmbm = selArray.join(",");
+				$.ajax({
+					type:'post',
+					url:'../../../qqgl/deleteLmgzByXmbm.do',
+					data:'cbsj.xmbm='+xmbm,
+					dataType:'json',
+					success:function(msg){
+						if(msg.result){
+							selArray.splice(0,selArray.length);
+							alert("删除成功!");
+							queryGcsj();
+						}
+					}
+				});
+			}else{
+				alert("请选择要删除的信息！");
+			}
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -72,7 +106,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -103,7 +137,7 @@
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
 								<img onclick="queryGcsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src="" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
+								<img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
 								<img onclick="" alt="导出Excel" onmouseover="this.src='../../../images/Button/dcecl2.gif'"  onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 	        					<img onclick="" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>

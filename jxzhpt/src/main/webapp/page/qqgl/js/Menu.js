@@ -184,21 +184,21 @@ $(function() {
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu5',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./cbsj/lmgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080503',
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu5',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./cbsj/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080504',
 		title:'大中修工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu5',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./cbsj/wqgz.jsp'
 	});
 	
 	createMenux('LeftMenu',{

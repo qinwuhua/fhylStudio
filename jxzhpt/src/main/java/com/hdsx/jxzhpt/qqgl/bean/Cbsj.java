@@ -1,6 +1,20 @@
 package com.hdsx.jxzhpt.qqgl.bean;
 
-public class CbsjLmsj {
+public class Cbsj {
+	@Override
+	public String toString() {
+		return "Cbsj [id=" + id + ", xmbm=" + xmbm + ", xmmc=" + xmmc
+				+ ", jsdw=" + jsdw + ", xzqh=" + xzqh + ", qdzh=" + qdzh
+				+ ", zdzh=" + zdzh + ", jsjsdj=" + jsjsdj + ", jsxz=" + jsxz
+				+ ", lj=" + lj + ", ql=" + ql + ", hd=" + hd + ", mc=" + mc
+				+ ", jc=" + jc + ", dc=" + dc + ", sd=" + sd + ", dq=" + dq
+				+ ", sdmc=" + sdmc + ", kgsj=" + kgsj + ", wgsj=" + wgsj
+				+ ", gq=" + gq + ", sjdw=" + sjdw + ", sjpfwh=" + sjpfwh
+				+ ", pfsj=" + pfsj + ", jaf=" + jaf + ", sbzt=" + sbzt
+				+ ", shzt=" + shzt + ", ghlxbh=" + ghlxbh + ", lxmc=" + lxmc
+				+ ", xzqhdm=" + xzqhdm + ", xjsdj=" + xjsdj + ", tsdq=" + tsdq
+				+ "]";
+	}
 	private String id;//唯一ID
 	private String xmbm;//项目编码
 	private String xmmc;//项目名称
@@ -26,12 +40,26 @@ public class CbsjLmsj {
 	private String sjpfwh;//设计批复文号
 	private String pfsj;//批复时间
 	private String jaf;//建安费
+	private int sbzt;//上报状态
+	private int shzt;//审核状态
 	//以上是初步设计表中的字段，以下是立项审核中的字段
-	private String lxbm;//路线编码
+	private String ghlxbh;//路线编码
 	private String lxmc;//路线名称
 	private String xzqhdm;//行政区划代码
 	private String xjsdj;//现技术等级
 	private String tsdq;//特殊地区
+	public int getSbzt() {
+		return sbzt;
+	}
+	public void setSbzt(int sbzt) {
+		this.sbzt = sbzt;
+	}
+	public int getShzt() {
+		return shzt;
+	}
+	public void setShzt(int shzt) {
+		this.shzt = shzt;
+	}
 	public String getTsdq() {
 		return tsdq;
 	}
@@ -56,11 +84,11 @@ public class CbsjLmsj {
 	public void setLxmc(String lxmc) {
 		this.lxmc = lxmc;
 	}
-	public String getLxbm() {
-		return lxbm;
+	public String getGhlxbh() {
+		return ghlxbh;
 	}
-	public void setLxbm(String lxbm) {
-		this.lxbm = lxbm;
+	public void setGhlxbh(String ghlxbh) {
+		this.ghlxbh = ghlxbh;
 	}
 	public String getId() {
 		return id;
