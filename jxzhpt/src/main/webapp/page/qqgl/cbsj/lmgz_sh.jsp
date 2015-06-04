@@ -27,14 +27,14 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
-			queryLmsj();
+			queryLmgz();
 		});
-		function queryLmsj(){
+		function queryLmgz(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'cbsj.sbzt':1,'cbsj.shzt':$('#sbzt').combo("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -45,13 +45,13 @@
 					formatter: function(value,row,index){
 						var result="";
 						if(row.shzt==0){
-							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result='<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
 							result='<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
@@ -69,7 +69,7 @@
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
@@ -118,7 +118,7 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
@@ -159,13 +159,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("审核成功!");
-							queryLmsj();
+							alert("上报成功!");
+							queryLmgz();
 						}
 					}
 				});
@@ -180,7 +180,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -193,7 +193,7 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:160px;"></select>
-        						<span>&nbsp;路线编码：</span>
+        						<span>&nbsp;规划路线编码：</span>
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
 								<span>&nbsp;原技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select>
@@ -201,7 +201,7 @@
 								<select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select>
 								<span>&nbsp;是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="" selected="selected">全部</option>
+									<option value="-1" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
@@ -209,13 +209,13 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
-								<span>&nbsp;审核状态：</span>
-        						<select id="shzt" style="width:80px;" class="easyui-combobox">
+								<span>&nbsp;上报状态：</span>
+        						<select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
 								</select>
-								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/>
         					</p>

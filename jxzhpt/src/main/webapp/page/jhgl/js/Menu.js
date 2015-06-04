@@ -247,9 +247,16 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./jhksh/zhfz.jsp'
 	});
+//	createMenux('LeftMenu',{
+//		id:'menu_0101030304',
+//		title:'工程改造路面升级项目',
+//		imgSrc:'../../images/sj_s.png',
+//		renderTo:'left_menu3',
+//		href:'../qqgl/jhsh/lmsj.jsp'
+//	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030304',
-		title:'工程改造路面升级项目',
+		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu3',
 		href:'../qqgl/jhsh/lmsj.jsp'

@@ -29,11 +29,11 @@ function loadTsdq(id){
  * 查询设计批复文件
  * @param xmbm
  */
-function fileShow(xmbm){
+function fileShow(xmbm,type){
 	$.ajax({
 		type:'post',
 		url:'../../../qqgl/queryFileByXmbm.do',
-		data:'cbsj.xmbm='+xmbm,
+		data:'upload.parentid='+xmbm+'&upload.filetype='+type,
 		dataType:'json',
 		success:function(data){
 			$("#sjpfTable").empty();
@@ -87,6 +87,9 @@ function deleteFile(id){
  */
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
+	if(id=="jhxd"){
+		YMLib.Var.xmlx=xmlx;
+	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
 		if(id=="lmsjedit"){
 			queryLmsj();
@@ -94,6 +97,9 @@ function openWindow(id,title,url,width,height){
 			queryLmgz();
 		}else if(id=="xjgcedit"){
 			queryXj();
+		}
+		if(id=="jhxd" && xmlx==1){
+			queryLmsj();
 		}
 	});
 }
@@ -150,8 +156,7 @@ var Rh={
 			selArray.pop(rowData.xmbm);
 		},
 		detailFormatter:function(index,row){
-			if(index==1)
-				return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';
+			return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';
 		},
 		onExpandRow:function(index,row){
 			$('#table_lx'+index).datagrid({
@@ -171,7 +176,10 @@ var Rh={
 					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
 					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
 					{field:'lc',title:'里程',width:60,align:'center'}
-    			]]
+    			]],
+    			onLoadSuccess:function(){
+    				$('#'+grid.id).datagrid('fixDetailRowHeight',index);
+    	        }
 	    	});
 		}
 	};
@@ -182,6 +190,7 @@ var grid={
 		rownumbers:true,pageNumber:1,pageSize:10,
 		view:detailview,detailFormatter:null,onExpandRow:null};
 var xmbm;//最新选择的项目编码
+var xmlx;//项目类型，用在计划下达弹窗，在设置计划审核信息时，区分项目类型
 var selArray=new Array();//选中的项目编码集合
 /**
  * 绑定easy-ui的datagrid表格

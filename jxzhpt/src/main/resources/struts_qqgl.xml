@@ -19,7 +19,7 @@
 		  <action name="shsjgzSbzt" class="lxshController" method="shsjgzSbzt"/>
 	 <!-- qwh -->
 	<!-- rh -->
-		<!-- 工程改造 -->
+		<!-- 初步设计-->
 		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
 		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
 		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
@@ -28,6 +28,10 @@
 		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
 		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
 		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
+		<!-- 计划审核 -->
+		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
+		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
+		
 	<!-- rh -->
 	</package>
 </struts>

@@ -28,7 +28,7 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
-					fileShow(parent.YMLib.Var.xmbm);
+					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 				}
 			});
 			loadFileUpload();
@@ -56,7 +56,7 @@
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
 					alert(response);
-					fileShow(parent.YMLib.Var.xmbm);
+					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");

@@ -213,7 +213,7 @@ $(function() {
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./cbsj/lmgz_sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080603',

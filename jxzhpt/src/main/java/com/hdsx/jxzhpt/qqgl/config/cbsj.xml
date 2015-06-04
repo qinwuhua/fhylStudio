@@ -259,8 +259,8 @@
 		update cbsj_xj c set c.sbzt=${sbzt},c.shzt=${shzt} where c.xmbm=#{xmbm}
 	</update>
 	<!-- 文件操作部分 -->
-	<select id="queryFileByXmbm" parameterType="string" resultType="plan_upload">
-		select * from plan_upload where parentid=#{xmbm}
+	<select id="queryFileByXmbm" parameterType="plan_upload" resultType="plan_upload">
+		select * from plan_upload where parentid=#{parentid} and filetype=#{filetype}
 	</select>
 	<insert id="insertFile" parameterType="plan_upload">
 		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})

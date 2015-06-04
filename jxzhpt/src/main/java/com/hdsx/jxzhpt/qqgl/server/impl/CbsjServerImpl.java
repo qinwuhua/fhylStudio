@@ -44,9 +44,8 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		return insert("insertFile", uploads)>0;
 	}
 	@Override
-	public List<Plan_upload> queryFileByXmbm(String xmbm) {
-		params.put("xmbm", xmbm);
-		return queryList("queryFileByXmbm",params);
+	public List<Plan_upload> queryFileByXmbm(Plan_upload upload) {
+		return queryList("queryFileByXmbm",upload);
 	}
 	@Override
 	public boolean deleteLmgzByXmbm(String xmbm) {

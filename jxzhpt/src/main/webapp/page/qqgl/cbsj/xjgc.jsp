@@ -34,7 +34,15 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':$('#sbzt').combo("getValue")};
+					'cbsj.sbzt':-1,'cbsj.shzt':-1};
+			if($('#sbzt').combo("getText")=="未上报"){
+				params['cbsj.sbzt']=0;
+			}else if($('#sbzt').combo("getText")=="已上报"){
+				params['cbsj.sbzt']=1;
+				params['cbsj.shzt']=0;
+			}else if($('#sbzt').combo("getText")=="已审核"){
+				params['cbsj.shzt']=1;
+			}
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -69,7 +77,7 @@
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
-				{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+				{field:'ghlxbh',title:'规划路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
@@ -161,7 +169,7 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:160px;"></select>
-        						<span>&nbsp;路线编码：</span>
+        						<span>&nbsp;规划路线编码：</span>
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
 								<span>&nbsp;原技术等级：</span>
 								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select>
@@ -182,6 +190,7 @@
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option>
+									<option value="4">已审核</option>
 								</select>
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

@@ -44,7 +44,7 @@ public interface CbsjServer {
 	 * @param xmbm 项目编码
 	 * @return 返回文件对象集合
 	 */
-	public List<Plan_upload> queryFileByXmbm(String xmbm);
+	public List<Plan_upload> queryFileByXmbm(Plan_upload upload);
 	/**
 	 * 删除对应项目信息
 	 * @param xmbm 项目编码

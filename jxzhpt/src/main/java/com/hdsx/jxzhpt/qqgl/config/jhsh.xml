@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.jhsh">
+	<insert id="insertJhshLmsjFromCbsj" parameterType="java.util.List">
+		insert into jhsh_sjgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
+		from cbsj_sjgz c left join kxxyj_sjgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+	</insert>
+	<insert id="insertJhshLmgzFromCbsj" parameterType="java.util.List">
+		insert into jhsh_lmgz (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
+		from cbsj_lmgz c left join kxxyj_lmgz k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+	</insert>
+	<insert id="insertJhshXjFromCbsj" parameterType="java.util.List">
+		insert into jhsh_xj (id,xmbm,xmmc, xzqh, qdzh, zdzh, kgsj, wgsj, gq, gkpfwh, sjpfwh)
+		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
+		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
+	</insert>
+	<select id="queryJhshLmsj" parameterType="java.util.Map" resultType="jhsh">
+		select * from (	
+			select rownum num,t.* from (
+				select j.*,l.ghlxbh from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm
+				where 1=1
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+					and ${jhsh.xzqhdm}
+				</if>
+				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+				</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+				</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+				</if>
+				order by j.xmbm desc
+			) t 
+		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+	</select>
+	<select id="queryJhshLmgz" parameterType="java.util.Map" resultType="jhsh">
+		select * from (	
+			select rownum num,t.* from (
+				select j.*,l.ghlxbh from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm
+				where 1=1
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+					and ${jhsh.xzqhdm}
+				</if>
+				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+				</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+				</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+				</if>
+				order by j.xmbm desc
+			) t 
+		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+	</select>
+	<select id="queryJhshXj" parameterType="java.util.Map" resultType="jhsh">
+		select * from (	
+			select rownum num,t.* from (
+				select j.*,l.ghlxbh from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm
+				where 1=1
+				<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+					and ${jhsh.xzqhdm}
+				</if>
+				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+				</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+				</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+				</if>
+				order by j.xmbm desc
+			) t 
+		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+	</select>
+	
+	<select id="queryJhshCountLmsj" parameterType="java.util.Map" resultType="int">
+		select count(j.xmbm) from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm where 1=1
+		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+			and ${jhsh.xzqhdm}
+		</if>
+		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+			and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+		</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+		</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+		</if>
+	</select>
+	<select id="queryJhshCountLmgz" parameterType="java.util.Map" resultType="int">
+		select count(j.xmbm) from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm where 1=1
+		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+			and ${jhsh.xzqhdm}
+		</if>
+		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+			and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+		</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+		</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+		</if>
+	</select>
+	<select id="queryJhshCountXj" parameterType="java.util.Map" resultType="int">
+		select count(j.xmbm) from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm where 1=1
+		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
+			and ${jhsh.xzqhdm}
+		</if>
+		<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
+			and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
+		</if>
+		<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+			and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+		</if>
+		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+		</if>
+	</select>
+	
+	<update id="updateJhshxxLmsj" parameterType="java.util.List">
+		update jhsh_sjgz c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
+		c.xdwh=#{xdwh},c.xdsj=#{xdsj} where c.xmbm=#{xmbm}
+	</update>
+</mapper>
