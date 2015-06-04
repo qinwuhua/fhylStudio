@@ -33,7 +33,7 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
-		xmnf1("xmnf");
+		xmnf1("xmnf",'sjgz');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'sjgz');

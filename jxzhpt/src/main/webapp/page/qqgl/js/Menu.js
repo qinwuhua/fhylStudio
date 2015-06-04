@@ -75,7 +75,7 @@ $(function() {
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu1',
-		href:'./lxsh/lmgzsb.jsp'
+		href:'./lxsh/xjsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080104',
@@ -104,7 +104,7 @@ $(function() {
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu2',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./lxsh/xjsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080204',

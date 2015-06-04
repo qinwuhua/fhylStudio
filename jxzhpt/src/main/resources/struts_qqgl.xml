@@ -10,20 +10,28 @@
 		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
 		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
 		  <action name="insertLmgz" class="lxshController" method="insertLmgz"/>
+		  <action name="insertXj" class="lxshController" method="insertXj"/>
 		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		  <action name="selectXjList" class="lxshController" method="selectXjList"/>
 		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
 		  <action name="sblmgzSbzt" class="lxshController" method="sblmgzSbzt"/>
+		  <action name="sbxjSbzt" class="lxshController" method="sbxjSbzt"/>
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
 		  <action name="thLmgzSbzt" class="lxshController" method="thLmgzSbzt"/>
+		  <action name="thXjSbzt" class="lxshController" method="thXjSbzt"/>
 		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
 		  <action name="updateLmgz" class="lxshController" method="updateLmgz"/>
+		  <action name="updateXj" class="lxshController" method="updateXj"/>
 		  <action name="selectSjgzshList" class="lxshController" method="selectSjgzshList"/>
 		  <action name="selectLmgzshList" class="lxshController" method="selectLmgzshList"/>
+		  <action name="selectXjshList" class="lxshController" method="selectXjshList"/>
 		  <action name="delSjgz" class="lxshController" method="delSjgz"/>
 		  <action name="delLmgz" class="lxshController" method="delLmgz"/>
+		  <action name="delXj" class="lxshController" method="delXj"/>
 		  <action name="shsjgzSbzt" class="lxshController" method="shsjgzSbzt"/>
 		  <action name="shlmgzSbzt" class="lxshController" method="shlmgzSbzt"/>
+		  <action name="shxjSbzt" class="lxshController" method="shxjSbzt"/>
 		  <action name="selectLmgzList" class="lxshController" method="selectLmgzList"/>
 	 <!-- qwh -->
 	<!-- rh -->

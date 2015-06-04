@@ -58,7 +58,14 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		else
 		return false;
 	}
-
+	@Override
+	public boolean selectSFCF2(Lxsh lxsh) {
+		Lxsh l=queryOne("selectSFCF2", lxsh);
+		if(l==null)
+			return true;
+		else
+		return false;
+	}
 	@Override
 	public boolean insertSjgz(Lxsh lxsh) {
 		insert("insertlx", lxsh);
@@ -80,7 +87,16 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		} else
 			return false;
 	}
-
+	@Override
+	public boolean insertXj(Lxsh lxsh) {
+		insert("insertlx", lxsh);
+		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		lxsh.setBzys(bzcs+"");
+		if (insert("insertXj", lxsh) > 0) {
+			return true;
+		} else
+			return false;
+	}
 	@Override
 	public List<Lxsh> selectSjgzList(Lxsh lxsh) {
 		// TODO Auto-generated method stub
@@ -131,7 +147,19 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(updateBatch("sblmgzSbzt", lm)>0) return true;
 		else return false;
 	}
-	
+	@Override
+	public boolean sbxjSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("sbxjSbzt", lm)>0) return true;
+		else return false;
+	}
 	private List<Map<String,Object>> lm;
 	private Map<String,Object> hm;
 	@Override
@@ -160,7 +188,19 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(updateBatch("thLmgzSbzt", lm)>0) return true;
 		else return false;
 	}
-
+	@Override
+	public boolean thXjSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("thXjSbzt", lm)>0) return true;
+		else return false;
+	}
 	@Override
 	public boolean updateSjgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
@@ -179,6 +219,17 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		double bzcs=queryOne("queryMaxbzcs",lxsh);
 		lxsh.setBzys(bzcs+"");
 		if(update("updateLmgz", lxsh)>0){
+			return true;
+		}
+		else
+		return false;
+	}
+	@Override
+	public boolean updateXj(Lxsh lxsh) {
+		update("updateSjgzlx", lxsh);
+		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		lxsh.setBzys(bzcs+"");
+		if(update("updateXj", lxsh)>0){
 			return true;
 		}
 		else
@@ -219,6 +270,18 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lm.add(hm);
 		}
 		if(deleteBatch("delLmgz", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
+		else return false;
+	}
+	@Override
+	public boolean delXj(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(deleteBatch("delXj", lm)>0&&deleteBatch("delSjgzlx", lm)>0) return true;
 		else return false;
 	}
 	@Override
@@ -274,6 +337,33 @@ System.out.println(str);
 			return false;
 	}
 	@Override
+	public boolean shxjSbzt(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		String str="";
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			lm.add(hm);
+			if(i==0)
+				str=str+"'"+ids[i];
+			else
+			str=str+"','"+ids[i];
+		}
+		str="id in("+str+"')";
+//System.out.println(str);
+		if(updateBatch("shxjSbzt", lm)>0){
+			List<Lxsh> list=queryList("queryshxj", str);
+			for (Lxsh lxsh2 : list) {
+				insert("insertxjkxx", lxsh2);
+			}
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	@Override
 	public List<Lxsh> selectLmgzList(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryList("selectLmgzList",lxsh);
@@ -289,7 +379,10 @@ System.out.println(str);
 	public String selectlmgzXmbm(String str) {
 		return queryOne("selectlmgzXmbm", str);
 	}
-
+	@Override
+	public String selectxjXmbm(String str) {
+		return queryOne("selectxjXmbm", str);
+	}
 	@Override
 	public List<Lxsh> selectLmgzshList(Lxsh lxsh) {
 		// TODO Auto-generated method stub
@@ -300,6 +393,30 @@ System.out.println(str);
 	public int selectLmgzshListCount(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryOne("selectLmgzshListCount", lxsh);
+	}
+
+	@Override
+	public List<Lxsh> selectXjList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectXjList", lxsh);
+	}
+
+	@Override
+	public int selectXjListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectXjListCount", lxsh);
+	}
+
+	@Override
+	public List<Lxsh> selectXjshList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectXjshList",lxsh);
+	}
+
+	@Override
+	public int selectXjshListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectXjshListCount", lxsh);
 	}
 
 	

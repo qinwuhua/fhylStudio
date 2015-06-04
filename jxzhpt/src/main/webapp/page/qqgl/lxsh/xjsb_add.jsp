@@ -33,10 +33,10 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
-		xmnf1("xmnf",'lmgz');
+		xmnf1("xmnf",'xj');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
-		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'lmgz');
+		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'xj');
 		
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
@@ -111,7 +111,7 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=lmgz";
+				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=xj";
 				$.ajax({
 					type:'post',
 					url:'/jxzhpt/qqgl/selectSFCF.do',
@@ -212,13 +212,13 @@ text-decoration:none;
 		+"&lxsh.sbthcd="+sbthcd;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/insertLmgz.do',
+			url:'/jxzhpt/qqgl/insertXj.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
 				if(Boolean(msg)){
 					alert("保存成功！");
-					parent.showAlllmgz();
+					parent.showAllxj();
 					remove('lxxx');
 				}else{
 					alert('保存失败！');
