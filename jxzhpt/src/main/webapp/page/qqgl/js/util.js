@@ -33,7 +33,7 @@ function fileShow(xmbm,type){
 	$.ajax({
 		type:'post',
 		url:'../../../qqgl/queryFileByXmbm.do',
-		data:'upload.parentid='+xmbm+'&upload.filetype='+type,
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
 			$("#sjpfTable").empty();

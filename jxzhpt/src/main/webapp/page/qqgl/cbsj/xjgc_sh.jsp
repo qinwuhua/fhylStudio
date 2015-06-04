@@ -27,14 +27,22 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
-			queryLmgz();
+			queryXj();
 		});
-		function queryLmgz(){
+		function queryXj(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':1,'cbsj.shzt':$('#sbzt').combo("getValue")};
+					'cbsj.sbzt':-1,'cbsj.shzt':-1};
+			if($('#sbzt').combo("getText")=="未上报"){
+				params['cbsj.sbzt']=0;
+			}else if($('#sbzt').combo("getText")=="已上报"){
+				params['cbsj.sbzt']=1;
+				params['cbsj.shzt']=0;
+			}else if($('#sbzt').combo("getText")=="已审核"){
+				params['cbsj.shzt']=1;
+			}
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -44,24 +52,24 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						if(row.shzt==0){
-							result='<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+						if(row.sbzt==0){
+							result='<a href="javascript:openWindow('+"'xjgcedit'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
 							result='<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
-				{field:'shzt',title:'审核状态',width:100,align:'center',
+				{field:'sbzt',title:'上报状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						if(row.shzt==0){
-							result="未审核";
-						}else if(row.shzt==1){
-							result="已审核";
+						if(row.sbzt==0){
+							result="未上报";
+						}else if(row.sbzt==1){
+							result="已上报";
 						}
 						return result;
 					}
@@ -91,81 +99,49 @@
 				{field:'jaf',title:'建安费',width:100,align:'center'}]];
 			gridBind(grid);
 		}
-		function batchTh(){
+		function deleteLmsj(){
 			if(selArray.length!=0){
-				var xmbm="",sbzt="",shzt="";
-				var sels =$('#grid').datagrid("getSelections");
-				var breakTh=true;
-				$.each(sels,function(index,item){
-					if(item.shzt==1){
-						breakTh=false;
-						return false;
-					}
-					if(index==sels.length-1){
-						xmbm+=item.xmbm;
-						sbzt+="0";
-						shzt+=item.shzt;
-					}else{
-						xmbm+=item.xmbm+",";
-						sbzt+="0"+",";
-						shzt+=item.shzt+",";
-					}
-				});
-				if(breakTh==false){
-					alert("不能退回已审核的项目！");
-					return;
-				}
+				var xmbm = selArray.join(",");
 				$.ajax({
 					type:'post',
-					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					url:'../../../qqgl/deleteCbsjByXmbm.do',
+					data:'cbsj.xmlx='+3+'&cbsj.xmbm='+xmbm,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("退回成功!");
-							queryLmgz();
+							alert("删除成功!");
+							queryXj();
 						}
 					}
 				});
 			}else{
-				alert("请选择要退回的信息！");
+				alert("请选择要删除的信息！");
 			}
 		}
 		function batchSb(){
 			if(selArray.length!=0){
 				var xmbm="",sbzt="",shzt="";
 				var sels =$('#grid').datagrid("getSelections");
-				var breakTh=true;
 				$.each(sels,function(index,item){
-					if(item.shzt==1){
-						breakTh=false;
-						return false;
-					}
 					if(index==sels.length-1){
 						xmbm+=item.xmbm;
-						sbzt+=item.sbzt;
-						shzt+="1";
+						sbzt+="1";
 					}else{
 						xmbm+=item.xmbm+",";
-						sbzt+=item.sbzt+",";
-						shzt+="1,";
+						sbzt+="1,";
 					}
 				});
-				if(breakTh==false){
-					alert("不能包含已审核的项目！");
-					return;
-				}
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+sbzt,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("上报成功!");
-							queryLmgz();
+							queryXj();
 						}
 					}
 				});
@@ -180,7 +156,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;路面改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;新建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -201,7 +177,7 @@
 								<select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select>
 								<span>&nbsp;是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="-1" selected="selected">全部</option>
+									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
@@ -212,12 +188,13 @@
 								<span>&nbsp;上报状态：</span>
         						<select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
-									<option value="0">未审核</option>
-									<option value="1">已审核</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option>
+									<option value="4">已审核</option>
 								</select>
-								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

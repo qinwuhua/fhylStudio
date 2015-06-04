@@ -31,7 +31,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private Map<String, Object> result=new HashMap<String, Object>();
 	//初步设计路面升级对象
 	private Cbsj cbsj=new Cbsj();
-	private Plan_upload upload;
+	private Plan_upload file;
 	//分页参数
 	private int page = 1;
 	private int rows = 10;
@@ -206,7 +206,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void queryFileByXmbm() throws Exception{
 		try {
-			List<Plan_upload> list = cbsjServer.queryFileByXmbm(upload);
+			List<Plan_upload> list = cbsjServer.queryFileByXmbm(file);
 			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -283,10 +283,10 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void setShzt1(String shzt1) {
 		this.shzt1 = shzt1;
 	}
-	public Plan_upload getUpload() {
-		return upload;
+	public Plan_upload getFile() {
+		return file;
 	}
-	public void setUpload(Plan_upload upload) {
-		this.upload = upload;
+	public void setFile(Plan_upload file) {
+		this.file = file;
 	}
 }
