@@ -177,7 +177,7 @@ text-decoration:none;
 				if(Boolean(msg)){
 					alert("保存成功！");
 					parent.showAll();
-					remove('lxxx');
+					removes('lxxx');
 				}else{
 					alert('保存失败！');
 				}
@@ -316,7 +316,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
 				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
-				<a href="# "  onclick="remove('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
+				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
 			</tr>
 			</table>
 </body>

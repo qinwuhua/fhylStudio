@@ -40,6 +40,12 @@
 				alert("请选择要审核项目！");
 				return;
 			}
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].shzt=='1'){
+					alert("对不起，项目已审核！");
+					return;
+				}
+			}
 			if($.cookie("unit2").length!=7) {
 				alert("您无审核项目权限！");
 				return;

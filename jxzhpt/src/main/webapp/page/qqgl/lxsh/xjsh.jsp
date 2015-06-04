@@ -40,6 +40,12 @@
 				alert("请选择要审核项目！");
 				return;
 			}
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].shzt=='1'){
+					alert("对不起，项目已审核！");
+					return;
+				}
+			}
 			if($.cookie("unit2").length!=7) {
 				alert("您无审核项目权限！");
 				return;
@@ -117,7 +123,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;路面改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;新建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

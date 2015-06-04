@@ -5,12 +5,12 @@ function addLXSH(url,width,length){
 function xiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','sjgzsb_xx.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','立项详细信息','sjgzsb_xx.jsp','lxxx',900,360);
 }
 function edit(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,380);
 }
 function del(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -39,12 +39,12 @@ function del(index){
 function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','lmgzsb_xx.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','立项详细信息','lmgzsb_xx.jsp','lxxx',900,360);
 }
 function edit1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,380);
 }
 function del1(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -73,12 +73,12 @@ function del1(index){
 function xiangxi2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','xjsb_xx.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','立项详细信息','xjsb_xx.jsp','lxxx',900,360);
 }
 function edit2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,400);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,380);
 }
 function del2(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -104,7 +104,7 @@ function del2(index){
   }
 }
 //
-function remove(id){
+function removes(id){
 	parent.$('#'+id).window('destroy');
 }
 function dingwei(index){
