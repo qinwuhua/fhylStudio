@@ -90,6 +90,10 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
+	if(rows[i].shzt='已审核'){
+		alert("对不起，项目已审核，不能执行退回操作！");
+		return;
+	}
 	}	
 	for(var i=1;i<rows.length;i++){
 		id+=","+rows[i].id ;
@@ -152,16 +156,16 @@ text-decoration:none;
                               	<select id="xmnf" style="width:70px">
                               		<option selected="selected" value="">全部</option>
                               	</select>
-                              <span style="display: none;">&nbsp;项目状态： </span>
+                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               	</select>
-                               <span>&nbsp;审核状态：</span>
+                               <span>&nbsp;&nbsp;&nbsp;&nbsp;审核状态：</span>
                               	<select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="tsdq" class="easyui-combobox" style="width:70px">
                               	</select>
-                              <span>&nbsp;技术等级：</span>
+                              <span>&nbsp;&nbsp;&nbsp;&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               	</select>
                               	<span>&nbsp;公路等级：</span>

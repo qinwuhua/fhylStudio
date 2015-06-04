@@ -343,7 +343,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			List<TreeNode> result = abgcServer.queryTsdq();
 			TreeNode tree=new TreeNode();
 			tree.setId(null);
-			tree.setText("---------全部---------");
+			tree.setText("全部");
 			result.add(0, tree);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {

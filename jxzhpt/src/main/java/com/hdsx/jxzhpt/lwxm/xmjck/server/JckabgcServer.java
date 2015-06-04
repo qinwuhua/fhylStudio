@@ -16,6 +16,7 @@ public interface JckabgcServer {
 	List<Jckabgc> selectJckRoad(Jckabgc abgc);
 	boolean deleteAbgcById(String delstr);
 	boolean xgJckAbgcShzt(String delstr,Jckabgc abgc);
+	boolean xgShzt2(String delstr,String xmlx);
 	boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc);
 	List<Jckabgc> selectJckShabgc(Jckabgc abgc);
 	int selectAbgcShCount(Jckabgc abgc);

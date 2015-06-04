@@ -81,7 +81,13 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 		}
 		return this.updateBatch("xgJckAbgcShzt", lm)==lm.size()?true:false;
 	}
-
+	@Override
+	public boolean xgShzt2(String delstr, String xmlx) {
+		hm=new HashMap<String, Object>();
+		hm.put("id", delstr);
+		hm.put("xmlx", xmlx);
+		return this.update("xgShzt2", hm)!=0?true:false;
+	}
 	@Override
 	public boolean xgJckAbgcSbzt(String delstr,Jckabgc abgc) {
 		String[] strs = delstr.split(",");
@@ -192,5 +198,7 @@ public class JckabgcServerImpl extends BaseOperate implements JckabgcServer {
 	public Jckabgc selAbgcShCount(Jckabgc abgc) {
 		return queryOne("selAbgcShCount", abgc);
 	}
+
+	
 	
 }

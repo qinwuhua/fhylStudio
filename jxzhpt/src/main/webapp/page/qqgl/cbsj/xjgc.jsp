@@ -27,12 +27,12 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
-			queryLmsj();
+			queryXj();
 		});
-		function queryLmsj(){
+		function queryXj(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
 					'cbsj.sbzt':$('#sbzt').combo("getValue")};
 			grid.queryParams=params;
@@ -45,13 +45,13 @@
 					formatter: function(value,row,index){
 						var result="";
 						if(row.sbzt==0){
-							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result='<a href="javascript:openWindow('+"'xjgcedit'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
 							result='<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
@@ -97,13 +97,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/deleteCbsjByXmbm.do',
-					data:'cbsj.xmlx='+1+'&cbsj.xmbm='+xmbm,
+					data:'cbsj.xmlx='+3+'&cbsj.xmbm='+xmbm,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("删除成功!");
-							queryLmsj();
+							queryXj();
 						}
 					}
 				});
@@ -127,13 +127,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+1+'&xmbm='+xmbm+'&sbzt1='+sbzt,
+					data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+sbzt,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("上报成功!");
-							queryLmsj();
+							queryXj();
 						}
 					}
 				});
@@ -148,7 +148,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;新建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -183,7 +183,7 @@
 									<option value="0">未上报</option>
 									<option value="1">已上报</option>
 								</select>
-								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
         					</p>
