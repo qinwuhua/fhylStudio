@@ -83,9 +83,34 @@
 				return;
 			}
 			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
+			for(var i=1;i<rows.length;i++){
+				xmbm+=","+rows[i].xmbm;
+			}
 			for(var i=0;i<rows.length;i++){
 			if(rows[i].shzt=='1'){
-				alert("对不起，项目已审核，无法退回！");
+				//
+				if(confirm('您确定将该项目退回未审核状态？')){
+					var data = "lxsh.xmbm="+xmbm;
+					$.ajax({
+						 type : "POST",
+						 url : "/jxzhpt/qqgl/thXjSbzt1.do",
+						 dataType : 'json',
+						 data : data,
+						 success : function(msg){
+							 if(msg){
+								 alert('退回成功！');
+								 $("#datagrid").datagrid('reload');
+							 }else{
+								 alert('退回失败,请选择要退回项目！');
+							 }
+						 },
+						 error : function(){
+							 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+						 }
+					});
+			}
+				//
 				return;
 			}
 			if(rows[i].tbbmbm==$.cookie("unit")){

@@ -18,8 +18,11 @@
 		  <action name="sblmgzSbzt" class="lxshController" method="sblmgzSbzt"/>
 		  <action name="sbxjSbzt" class="lxshController" method="sbxjSbzt"/>
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
+		  <action name="thSjgzSbzt1" class="lxshController" method="thSjgzSbzt1"/>
 		  <action name="thLmgzSbzt" class="lxshController" method="thLmgzSbzt"/>
+		  <action name="thLmgzSbzt1" class="lxshController" method="thLmgzSbzt1"/>
 		  <action name="thXjSbzt" class="lxshController" method="thXjSbzt"/>
+		  <action name="thXjSbzt1" class="lxshController" method="thXjSbzt1"/>
 		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
 		  <action name="updateLmgz" class="lxshController" method="updateLmgz"/>
 		  <action name="updateXj" class="lxshController" method="updateXj"/>

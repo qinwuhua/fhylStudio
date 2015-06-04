@@ -188,6 +188,41 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(updateBatch("thLmgzSbzt", lm)>0) return true;
 		else return false;
 	}
+	public boolean thLmgzSbzt1(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			System.out.println(ids[i]);
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("thLmgzSbzt1", lm)>0&&deleteBatch("deletelmgzkxx",lm)>0) return true;
+		else return false;
+	}
+	public boolean thSjgzSbzt1(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			System.out.println(ids[i]);
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("thSjgzSbzt1", lm)>0&&deleteBatch("deletesjgzkxx",lm)>0) return true;
+		else return false;
+	}
+	public boolean thXjSbzt1(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("thXjSbzt1", lm)>0&&deleteBatch("deletexjkxx",lm)>0) return true;
+		else return false;
+	}
 	@Override
 	public boolean thXjSbzt(Lxsh lxsh) {
 		String[] ids=lxsh.getId().split(",");

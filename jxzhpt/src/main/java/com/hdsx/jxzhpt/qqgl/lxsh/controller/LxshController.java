@@ -420,6 +420,14 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void thSjgzSbzt1(){
+		boolean bl=lxshServer.thSjgzSbzt1(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	public void thLmgzSbzt(){
 		boolean bl=lxshServer.thLmgzSbzt(lxsh);
 		if(bl){
@@ -428,8 +436,24 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void thLmgzSbzt1(){
+		boolean bl=lxshServer.thLmgzSbzt1(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	public void thXjSbzt(){
 		boolean bl=lxshServer.thXjSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void thXjSbzt1(){
+		boolean bl=lxshServer.thXjSbzt1(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{

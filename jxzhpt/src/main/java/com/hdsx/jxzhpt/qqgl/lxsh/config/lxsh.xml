@@ -123,11 +123,29 @@
 	<update id="thSjgzSbzt" parameterType="hashmap">
 		update LXSH_SJGZ set sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="thSjgzSbzt1" parameterType="hashmap">
+		update LXSH_SJGZ set shzt=0 where xmbm=#{xmbm}
+	</update>
 	<update id="thLmgzSbzt" parameterType="hashmap">
 		update LXSH_LMGZ set sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="thLmgzSbzt1" parameterType="hashmap">
+		update LXSH_LMGZ set shzt=0 where xmbm=#{xmbm}
+	</update>
+	<delete id="deletelmgzkxx" parameterType="hashmap">
+		delete from kxxyj_lmgz where xmbm=#{xmbm}
+	</delete>
+	<delete id="deletesjgzkxx" parameterType="hashmap">
+		delete from kxxyj_sjgz where xmbm=#{xmbm}
+	</delete>
+	<delete id="deletexjkxx" parameterType="hashmap">
+		delete from kxxyj_xj where xmbm=#{xmbm}
+	</delete>
 	<update id="thXjSbzt" parameterType="hashmap">
 		update LXSH_XJ set sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="thXjSbzt1" parameterType="hashmap">
+		update LXSH_XJ set shzt=0 where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgz" parameterType="lxsh">
 		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
