@@ -1,7 +1,8 @@
 function tsdq(id){
 			$("#"+id).combobox({    
-				checkbox: true,
-			    url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist")
+			    url: '/jxzhpt/xmjzbb/settsdq1.do?xzqh='+$.cookie("dist"),
+			    valueField:'id',    
+			    textField:'text'   
 			})
 			$("#"+id).combobox('setValue','全部');
 	}

@@ -83,4 +83,56 @@ public interface CbsjServer {
 	 * @return 执行结果
 	 */
 	public boolean deleteLmsjByXmbm(String xmbm);
+	/**
+	 * 上报、审核流程，修改流程状态
+	 * @param xmbm 项目编码
+	 * @return 执行结果
+	 */
+	public boolean shCbsjLmsjByXmbm(Cbsj cbsj,String sbzt,String shzt);
+	/**
+	 * 上报、审核流程，修改流程状态
+	 * @param cbsj 项目编码
+	 * @return 执行结果
+	 */
+	public boolean shCbsjLmgzByXmbm(Cbsj cbsj,String sbzt,String shzt);
+	/**
+	 * 查询新建项目列表信息
+	 * @param cbsj 初步设计对象
+	 * @param page 页码
+	 * @param rows 每页条数
+	 * @return
+	 */
+	public List<Cbsj> queryCbsjXj(Cbsj cbsj, int page, int rows);
+	/**
+	 * 新建项目总数
+	 * @param cbsj 初步设计对象
+	 * @return 总条数
+	 */
+	public int queryCbsjXjCount(Cbsj cbsj);
+	/**
+	 * 根据项目编码查询新建工程信息
+	 * @param xmbm 项目编码
+	 * @return 新建项目对象
+	 */
+	public Cbsj queryCbsjXjByXmbm(String xmbm);
+	/**
+	 * 修改新建项目信息
+	 * @param cbsj 新建项目对象
+	 * @return 执行结果
+	 */
+	public boolean updateCbsjXj(Cbsj cbsj);
+	/**
+	 * 删除新建项目信息
+	 * @param xmbm 新建项目编码
+	 * @return 执行结果
+	 */
+	public boolean deleteXjByXmbm(String xmbm);
+	/**
+	 * 上报、审核新建项目
+	 * @param cbsj
+	 * @param sbzt1
+	 * @param shzt1
+	 * @return
+	 */
+	public boolean shCbsjXjByXmbm(Cbsj cbsj, String sbzt1, String shzt1);
 }

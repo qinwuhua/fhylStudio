@@ -92,5 +92,109 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		}
 		return deleteBatch("deleteLmsjByXmbm", list)==list.size();
 	}
+	@Override
+	public boolean shCbsjLmsjByXmbm(Cbsj cbsj,String sbzt,String shzt) {
+		String[] split = cbsj.getXmbm().split(",");
+		String[] split2=null,split3 = null;
+		if(sbzt!=null && !sbzt.equals("")){
+			split2 = sbzt.split(",");
+		}
+		if(shzt!=null && !shzt.equals("")){
+			split3 = shzt.split(",");
+		}
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (int j = 0; j < split.length; j++) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(split[j]);
+			if(split2!=null){
+				obj.setSbzt(new Integer(split2[j]));
+			}
+			if(split3!=null){
+				obj.setShzt(new Integer(split3[j]));
+			}
+			list.add(obj);
+		}
+		return updateBatch("shCbsjLmsjByXmbm", list)==list.size();
+	}
+	@Override
+	public boolean shCbsjLmgzByXmbm(Cbsj cbsj,String sbzt,String shzt) {
+		String[] split = cbsj.getXmbm().split(",");
+		String[] split2=null,split3 = null;
+		if(sbzt!=null && !sbzt.equals("")){
+			split2 = sbzt.split(",");
+		}
+		if(shzt!=null && !shzt.equals("")){
+			split3 = shzt.split(",");
+		}
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (int j = 0; j < split.length; j++) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(split[j]);
+			if(split2!=null){
+				obj.setSbzt(new Integer(split2[j]));
+			}
+			if(split3!=null){
+				obj.setShzt(new Integer(split3[j]));
+			}
+			list.add(obj);
+		}
+		return updateBatch("shCbsjLmgzByXmbm", list)==list.size();
+	}
+	@Override
+	public List<Cbsj> queryCbsjXj(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjXj",params);
+	}
+	@Override
+	public int queryCbsjXjCount(Cbsj cbsj) {
+		params.put("cbsj",cbsj);
+		return queryOne("queryCbsjXjCount", params);
+	}
+	@Override
+	public Cbsj queryCbsjXjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjXjByXmbm", params);
+	}
+	@Override
+	public boolean updateCbsjXj(Cbsj cbsj) {
+		return update("updateCbsjXj",cbsj)>0;
+	}
+	@Override
+	public boolean deleteXjByXmbm(String xmbm) {
+		String[] split = xmbm.split(",");
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (String string : split) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(string);
+			list.add(obj);
+		}
+		return deleteBatch("deleteXjByXmbm", list)==list.size();
+	}
+	@Override
+	public boolean shCbsjXjByXmbm(Cbsj cbsj, String sbzt, String shzt) {
+		String[] split = cbsj.getXmbm().split(",");
+		String[] split2=null,split3 = null;
+		if(sbzt!=null && !sbzt.equals("")){
+			split2 = sbzt.split(",");
+		}
+		if(shzt!=null && !shzt.equals("")){
+			split3 = shzt.split(",");
+		}
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (int j = 0; j < split.length; j++) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(split[j]);
+			if(split2!=null){
+				obj.setSbzt(new Integer(split2[j]));
+			}
+			if(split3!=null){
+				obj.setShzt(new Integer(split3[j]));
+			}
+			list.add(obj);
+		}
+		return updateBatch("shCbsjXjByXmbm", list)==list.size();
+	}
 
 }

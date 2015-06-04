@@ -33,7 +33,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
-					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue")};
+					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
+					'cbsj.sbzt':$('#sbzt').combo("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -51,6 +52,17 @@
 						}
 						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						return result;
+					}
+				},
+				{field:'sbzt',title:'上报状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						if(row.sbzt==0){
+							result="未上报";
+						}else if(row.sbzt==1){
+							result="已上报";
+						}
 						return result;
 					}
 				},
@@ -99,6 +111,36 @@
 				alert("请选择要删除的信息！");
 			}
 		}
+		function batchSb(){
+			if(selArray.length!=0){
+				var xmbm="",sbzt="",shzt="";
+				var sels =$('#grid').datagrid("getSelections");
+				$.each(sels,function(index,item){
+					if(index==sels.length-1){
+						xmbm+=item.xmbm;
+						sbzt+="1";
+					}else{
+						xmbm+=item.xmbm+",";
+						sbzt+="1,";
+					}
+				});
+				$.ajax({
+					type:'post',
+					url:'../../../qqgl/shCbsjByXmbm.do',
+					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt,
+					dataType:'json',
+					success:function(msg){
+						if(msg.result=="true"){
+							selArray.splice(0,selArray.length);
+							alert("上报成功!");
+							queryLmgz();
+						}
+					}
+				});
+			}else{
+				alert("请选择要审核的信息！");
+			}
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
@@ -127,7 +169,7 @@
 								<select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select>
 								<span>&nbsp;是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="" selected="selected">全部</option>
+									<option value="-1" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
@@ -135,8 +177,14 @@
         					<p style="margin:8px 0px 4px 20px;">
         						<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
+								<span>&nbsp;上报状态：</span>
+        						<select id="sbzt" style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="-1">全部</option>
+									<option value="0">未上报</option>
+									<option value="1">已上报</option>
+								</select>
 								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img  onclick="batchSp()" name="shenPi" id="shenPi" src="../../../images/Button/qbsp1.png" onmouseover="this.src='../../../images/Button/qbsp2.png'" onmouseout="this.src='../../../images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
+								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
         					</p>
         				</div>

@@ -92,6 +92,8 @@ function openWindow(id,title,url,width,height){
 			queryLmsj();
 		}else if(id=="lmgzedit"){
 			queryLmgz();
+		}else if(id=="xjgcedit"){
+			queryXj();
 		}
 	});
 }
@@ -146,14 +148,39 @@ var Rh={
 		onUnselect:function(rowIndex, rowData){
 			xmbm=rowData.xmbm;
 			selArray.pop(rowData.xmbm);
+		},
+		detailFormatter:function(index,row){
+			if(index==1)
+				return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';
+		},
+		onExpandRow:function(index,row){
+			$('#table_lx'+index).datagrid({
+				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+				queryParams:{
+					xmbm:row.xmbm
+				},
+    			columns:[[
+					{field:'gydw',title:'管养单位',width:150,align:'center'},    
+					{field:'xzqh',title:'行政区划',width:150,align:'center'},
+					{field:'lxmc',title:'路线名称',width:120,align:'center'},
+					{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+					{field:'qdzh',title:'起点桩号',width:80,align:'center'},
+					{field:'zdzh',title:'止点桩号',width:80,align:'center'},
+					{field:'qdmc',title:'起点名称',width:100,align:'center'},
+					{field:'zdmc',title:'止点名称',width:100,align:'center'},
+					{field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+					{field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+					{field:'lc',title:'里程',width:60,align:'center'}
+    			]]
+	    	});
 		}
 	};
 //此对象为绑定列表对象
 var grid={
 		url:null,queryParams:null,height:null,width:null,
 		columns:null,striped:true,pagination:true,
-		rownumbers:true,pageNumber:1,pageSize:10
-		/*,view:null,detailFormatter:null,onExpandRow:null*/};
+		rownumbers:true,pageNumber:1,pageSize:10,
+		view:detailview,detailFormatter:null,onExpandRow:null};
 var xmbm;//最新选择的项目编码
 var selArray=new Array();//选中的项目编码集合
 /**
@@ -175,10 +202,10 @@ function gridBind(grid){
 	    onSelect:Rh.onSelect,
 	    onUnselect:Rh.onUnselect,
 	    onClickRow:Rh.onClickRow,
-	    onLoadSuccess:Rh.onLoadSuccess
-	    /*view:grid.view,
-	    detailFormatter:grid.detailFormatter,
-	    onExpandRow:grid.onExpandRow,*/
+	    onLoadSuccess:Rh.onLoadSuccess,
+	    view:grid.view,
+	    detailFormatter:Rh.detailFormatter,
+	    onExpandRow:Rh.onExpandRow
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

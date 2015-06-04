@@ -182,6 +182,9 @@ public class XmbbController extends BaseActionSupport{
 			treeNode.setIconCls("icon-none");
 			i++;
 		}
+		for (TreeNode treeNode : list2) {
+			System.out.println(treeNode);
+		}
 		try {
 			JsonUtils.write(list2, getresponse().getWriter());
 		} catch (Exception e) {
