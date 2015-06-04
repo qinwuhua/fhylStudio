@@ -43,7 +43,7 @@ var xzqhstr;
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
 				 	'qlbh':$("#qlbh").val(),
-				 	'tsdq':$("#tsdq").combobox("getText")
+				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 				 	
 				},
 			    striped:true,
@@ -152,7 +152,7 @@ var xzqhstr;
 				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
 				 	'bz':$("#bz").combobox("getValue"),
-				 	'tsdq':$("#tsdq").combobox("getText")
+				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 				},
 				striped:true,
 				pagination:true,
@@ -268,7 +268,7 @@ var xzqhstr;
 				 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 				 	'bz':$("#bz").combobox("getValue"),
 				 	'lxbm':$("#lxbm").val(),
-				 	'tsdq':$("#tsdq").combobox("getText")
+				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 				},
 			    striped:true,
 			    pagination:true,
@@ -386,7 +386,7 @@ function jckshWqgz(){
 			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -405,7 +405,8 @@ function jckshWqgz(){
 				if(row.shzt=="未审核"){
 				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
-					return '<span style="color:grey;">已审核</span>';
+				//return '<span style="color:grey;">已审核</span>';
+				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_wqgz") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
 				}
 			}},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -477,7 +478,7 @@ function jckshAbgc(){
 			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -501,7 +502,8 @@ function jckshAbgc(){
 				if(row.shzt=="未审核"){
 				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
-					return '<span style="color:grey;">已审核</span>';
+				//return '<span style="color:grey;">已审核</span>';
+				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_abgc") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
 				}
 			}},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -540,6 +542,30 @@ $.ajax({
 	 },
 });
 }
+
+function xgShzt2(id,xmlx){
+	
+	if(confirm('您确定该项目不通过审核？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/xmjck/xgShzt2.do",
+				 dataType : 'json',
+				 data : 'delstr='+id+"&shbm="+$.cookie("unit")+"&xmlx="+xmlx,
+				 success : function(msg){
+					 if(msg){
+						 alert('修改成功！');
+						 $("#grid").datagrid('reload');
+					 }else{
+						 alert('修改失败,请选择要审核项目！');
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+	}
+}
+
 function jckshZhfz(){
 	var gydw=$("#gydw").combotree("getValues");
 		if(gydw.length==0){
@@ -579,7 +605,7 @@ function jckshZhfz(){
 			 	'lxjsdj':$("#lxjsdj").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -603,7 +629,8 @@ function jckshZhfz(){
 				if(row.shzt=="未审核"){
 				return '<a href=javascript:xgShzt() style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}else{
-					return '<span style="color:grey;">已审核</span>';
+				//return '<span style="color:grey;">已审核</span>';
+				return '<a href=javascript:xgShzt2("'+row.id+'","xmk_zhfz") style="text-decoration:none;color:#3399CC; ">已审核</a>  ';
 				}
 			}},
 	        {field:'gydw',title:'管养单位',width:160,align:'center'},
@@ -686,7 +713,7 @@ function sckglWqgz(){
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -798,7 +825,7 @@ function sckglAbgc(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -916,7 +943,7 @@ function sckglZhfz(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -1037,7 +1064,7 @@ function sckshWqgz(){
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -1137,7 +1164,7 @@ function sckshAbgc(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,
@@ -1239,7 +1266,7 @@ function sckshZhfz(){
 			 	'lxbm':$("#lxbm").val(),
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'bz':$("#bz").combobox("getValue"),
-			 	'tsdq':$("#tsdq").combobox("getText")
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
 			},
 		    striped:true,
 		    pagination:true,

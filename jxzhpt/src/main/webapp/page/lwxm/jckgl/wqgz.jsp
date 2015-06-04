@@ -205,19 +205,19 @@ text-decoration:none;
                               <span style="display: none;">&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               	</select>
-                               <span>&nbsp;上报状态：</span>
+                               <span>&nbsp;&nbsp;&nbsp;&nbsp;上报状态：</span>
                               	<select id="sbzt" style="width:70px"class="easyui-combobox">
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="tsdq" style="width:70px"class="easyui-combobox">
                               	</select>
-                              <span>&nbsp;技术等级：</span>
+                              <span>&nbsp;&nbsp;&nbsp;&nbsp;技术等级：</span>
                               	<select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select>
                               	<span>&nbsp;按跨径分类：</span>
                               	<select id="akjfl" style="width:60px"class="easyui-combobox">
                               	</select>
-                              	<span>&nbsp;桥梁编号：</span>
+                              	<span>&nbsp;&nbsp;桥梁编号：</span>
                               	<input type="text" id="qlbh"style="width:70px"/>
                              </p>
                              <p style="margin:8px 0px 4px 20px;">

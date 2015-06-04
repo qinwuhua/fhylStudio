@@ -201,7 +201,7 @@ text-decoration:none;
 							  <span>项目年份：</span>
                               	<select id="xmnf" style="width:70px">
                               	</select>
-                              <span style="display: none;">&nbsp;项目状态： </span>
+                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               		<option selected="selected" value="">全部</option>
 									<option value="未上报">待上报</option>
@@ -209,13 +209,13 @@ text-decoration:none;
 									<option value="未审核">已入库</option>
 									<option value="已审核">已下达</option>
                               	</select>
-                               <span>&nbsp;上报状态：</span>
+                               <span>&nbsp;&nbsp;&nbsp;&nbsp;上报状态：</span>
                               	<select id="sbzt" style="width:70px"class="easyui-combobox">
                               	</select>
                               <span>&nbsp;特殊地区：</span>
                               	<select id="tsdq"  style="width:70px"class="easyui-combobox">
                               	</select>
-                              <span>&nbsp;技术等级：</span>
+                              <span>&nbsp;&nbsp;&nbsp;&nbsp;技术等级：</span>
                               	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
                               	</select>
                               	<span>&nbsp;公路等级：</span>
