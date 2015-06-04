@@ -9,14 +9,22 @@
 		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
 		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
 		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
+		  <action name="insertLmgz" class="lxshController" method="insertLmgz"/>
 		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
 		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
 		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
+		  <action name="sblmgzSbzt" class="lxshController" method="sblmgzSbzt"/>
 		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
+		  <action name="thLmgzSbzt" class="lxshController" method="thLmgzSbzt"/>
 		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
+		  <action name="updateLmgz" class="lxshController" method="updateLmgz"/>
 		  <action name="selectSjgzshList" class="lxshController" method="selectSjgzshList"/>
+		  <action name="selectLmgzshList" class="lxshController" method="selectLmgzshList"/>
 		  <action name="delSjgz" class="lxshController" method="delSjgz"/>
+		  <action name="delLmgz" class="lxshController" method="delLmgz"/>
 		  <action name="shsjgzSbzt" class="lxshController" method="shsjgzSbzt"/>
+		  <action name="shlmgzSbzt" class="lxshController" method="shlmgzSbzt"/>
+		  <action name="selectLmgzList" class="lxshController" method="selectLmgzList"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 工程改造 -->

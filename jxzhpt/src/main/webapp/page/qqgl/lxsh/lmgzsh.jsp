@@ -31,7 +31,7 @@
 			loadBmbm2('gldj','公路等级');
 			tsdq("tsdq");
 			xmnf("xmnf");
-			showAllsjsh();
+			showAlllmsh();
 		});
 		
 		function shangB(){
@@ -52,7 +52,7 @@
 				var data = "lxsh.id="+id;
 				$.ajax({
 					 type : "POST",
-					 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+					 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
 					 dataType : 'json',
 					 data : data,
 					 success : function(msg){
@@ -96,7 +96,7 @@
 			if(confirm('您确定退回该项目？')){
 					$.ajax({
 						 type : "POST",
-						 url : "/jxzhpt/qqgl/thSjgzSbzt.do",
+						 url : "/jxzhpt/qqgl/thLmgzSbzt.do",
 						 dataType : 'json',
 						 data : data,
 						 success : function(msg){
@@ -104,7 +104,7 @@
 								 alert('退回成功！');
 								 $("#datagrid").datagrid('reload');
 							 }else{
-								 alert('退回失败！');
+								 alert('退回失败,请选择要退回项目！');
 							 }
 						 },
 						 error : function(){
@@ -117,7 +117,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

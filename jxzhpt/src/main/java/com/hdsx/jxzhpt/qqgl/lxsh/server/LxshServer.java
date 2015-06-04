@@ -46,5 +46,29 @@ public interface LxshServer {
 
 	boolean shsjgzSbzt(Lxsh lxsh);
 
+	List<Lxsh> selectLmgzList(Lxsh lxsh);
+
+	int selectLmgzListCount(Lxsh lxsh);
+
+	String selectlmgzXmbm(String str);
+
+	boolean selectSFCF1(Lxsh lxsh);
+
+	boolean insertLmgz(Lxsh lxsh);
+
+	boolean updateLmgz(Lxsh lxsh);
+
+	boolean sblmgzSbzt(Lxsh lxsh);
+
+	boolean thLmgzSbzt(Lxsh lxsh);
+
+	boolean delLmgz(Lxsh lxsh);
+
+	List<Lxsh> selectLmgzshList(Lxsh lxsh);
+
+	int selectLmgzshListCount(Lxsh lxsh);
+
+	boolean shlmgzSbzt(Lxsh lxsh);
+
 
 }

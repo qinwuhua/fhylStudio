@@ -202,19 +202,27 @@ public class LxshController extends BaseActionSupport{
 				xmbm=xmbm1;
 			}
 		}
-	
+		
+		if("lmgz".equals(xmtype)){
+			str=nf+xzqh+"2";
+			String xmbm1 = lxshServer.selectlmgzXmbm(str);
+			if(xmbm1==null){
+				xmbm="";
+			}else{
+				xmbm=xmbm1;
+			}
+		}
 		//生成项目编码
 		if("".equals(xmbm)){
-			xmbm = nf+xzqh+"1"+"001";
+			xmbm = str+"001";
 		}else{
 			xmbm=Integer.parseInt(xmbm)+1+"";
 			if(xmbm.length()==1)
-				xmbm=nf+xzqh+"1"+"00"+xmbm;
+				xmbm=str+"00"+xmbm;
 			if(xmbm.length()==2)
-				xmbm=nf+xzqh+"1"+"0"+xmbm;
+				xmbm=str+"0"+xmbm;
 			if(xmbm.length()==3)
-				xmbm=nf+xzqh+"1"+xmbm;
-			
+				xmbm=str+xmbm;
 		}
 		System.out.println(xmbm);
 		Lxsh l = new Lxsh();
@@ -244,6 +252,9 @@ public class LxshController extends BaseActionSupport{
 		if("sjgz".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF(lxsh);
 		}
+		if("lmgz".equals(lxsh.getXmlx())){
+			bl=lxshServer.selectSFCF1(lxsh);
+		}
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -252,6 +263,14 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertSjgz(){
 		boolean bl=lxshServer.insertSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void insertLmgz(){
+		boolean bl=lxshServer.insertLmgz(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -319,6 +338,14 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void sblmgzSbzt(){
+		boolean bl=lxshServer.sblmgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	public void thSjgzSbzt(){
 		boolean bl=lxshServer.thSjgzSbzt(lxsh);
 		if(bl){
@@ -327,8 +354,24 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	public void thLmgzSbzt(){
+		boolean bl=lxshServer.thLmgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 	public void updateSjgz(){
 		boolean bl=lxshServer.updateSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void updateLmgz(){
+		boolean bl=lxshServer.updateLmgz(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -371,8 +414,52 @@ public class LxshController extends BaseActionSupport{
 		e1.printStackTrace();
 	}
 	}
+	public void selectLmgzshList(){
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="andxzqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmmc(xmmc);
+		lxsh.setXmnf(xmnf);
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
+		lxsh.setTsdq(tsdq);
+		lxsh.setGldj(gldj);
+		lxsh.setJsdj(jsdj);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		List<Lxsh> list=lxshServer.selectLmgzshList(lxsh);
+		int count=lxshServer.selectLmgzshListCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 	public void delSjgz(){
 		boolean bl=lxshServer.delSjgz(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void delLmgz(){
+		boolean bl=lxshServer.delLmgz(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -385,6 +472,51 @@ public class LxshController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void shlmgzSbzt(){
+		boolean bl=lxshServer.shlmgzSbzt(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void selectLmgzList(){
+		String tiaojian1="";
+		String tiaojian2="";
+		if(gydw.indexOf(",")==-1){
+			tiaojian1="and gydwdm like '%"+gydw+"%'";
+		}else{
+			tiaojian1="and gydwdm in ("+gydw+")";
+		}
+		if(xzqh.indexOf(",")==-1){
+			tiaojian2="and xzqhdm like '%"+xzqh+"%'";
+		}else{
+			tiaojian2="andxzqhdm in ("+xzqh+")";
+		}
+		lxsh.setXzqh(tiaojian2);
+		lxsh.setGydw(tiaojian1);
+		lxsh.setXmmc(xmmc);
+		lxsh.setXmnf(xmnf);
+		if(!"".equals(sbzt)){
+			lxsh.setSbzt1(sbzt);
+		}
+		lxsh.setSbthcd(sbthcd);
+		lxsh.setTsdq(tsdq);
+		lxsh.setGldj(gldj);
+		lxsh.setJsdj(jsdj);
+		lxsh.setPage(page);
+		lxsh.setRows(rows);
+		List<Lxsh> list=lxshServer.selectLmgzList(lxsh);
+		int count=lxshServer.selectLmgzListCount(lxsh);
+		EasyUIPage<Lxsh> e=new EasyUIPage<Lxsh>();
+		e.setRows(list);
+		e.setTotal(count);
+		try {
+			JsonUtils.write(e, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 	
