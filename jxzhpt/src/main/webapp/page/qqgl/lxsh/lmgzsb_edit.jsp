@@ -46,7 +46,7 @@ text-decoration:none;
 		$("#gydw").html(data.gydw);
 		$("#xzqh").html(data.xzqh);
 		$("#tsdq").html(data.tsdq);
-		$("#jsjsdj").combobox('setText',data.jsjsdj);
+		$("#jsjsdj").html(data.jsjsdj);
 		$("#xjsdj").html(data.xjsdj);
 		$("#xmbm").html(data.xmbm);
 		$("#xmnf").html(data.xmnf);
@@ -78,12 +78,7 @@ text-decoration:none;
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		load();
-		$('#jsjsdj').combobox({
-		    onSelect:function(rec){
-		    	getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
-		    }
-		});
-		$("#save_button").click(function(){
+			$("#save_button").click(function(){
 			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
 				alert("请填写项目名称！");
 				$("#xmmc").focus();
@@ -164,19 +159,19 @@ text-decoration:none;
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')
+		+"&lxsh.jsjsdj="+$("#jsjsdj").html()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").val();
-		alert(data);
+		//alert(data);
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/updateSjgz.do',
+			url:'/jxzhpt/qqgl/updateLmgz.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
 				if(Boolean(msg)){
 					alert("保存成功！");
-					parent.showAll();
+					parent.showAlllmgz();
 					remove('lxxx');
 				}else{
 					alert('保存失败！');
@@ -195,7 +190,7 @@ text-decoration:none;
 		}
 		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
 		$("#lc").html(zlc);
-		getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 	}
 	function selectTSDQ(str){
 		$("#tsdq").text("");
@@ -271,11 +266,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<select id="jsjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						<option value="一级公路">一级公路</option>
-						<option value="二级公路">二级公路</option>
-						<option value="三级公路">三级公路</option>
-					</select></td>
+					<span id="jsjsdj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="xjsdj"></span></td>

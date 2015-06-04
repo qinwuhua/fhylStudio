@@ -68,14 +68,14 @@ $(function() {
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu1',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./lxsh/lmgzsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080103',
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu1',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./lxsh/xjsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080104',
@@ -97,14 +97,14 @@ $(function() {
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu2',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./lxsh/lmgzsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080203',
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu2',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./lxsh/xjsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080204',
@@ -119,21 +119,21 @@ $(function() {
 		title:'升级改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/sjgzsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080302',
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/lmgzsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080303',
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu3',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/xjsb.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080304',
@@ -148,21 +148,21 @@ $(function() {
 		title:'升级改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu4',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/sjgzsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080402',
 		title:'路面改造工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu4',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/lmgzsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080403',
 		title:'新建工程项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu4',
-		href:'./jhkgl/wqgz.jsp'
+		href:'./kxxyj/xjsh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080404',

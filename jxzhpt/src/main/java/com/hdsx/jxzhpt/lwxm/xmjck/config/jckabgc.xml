@@ -128,6 +128,9 @@
 	<update id="xgJckAbgcShzt" parameterType="hashmap">
 		update xmk_abgc set shzt='已审核', shsj=sysdate,shbm=#{shbm} where id=#{id}
 	</update>
+	<update id="xgShzt2" parameterType="hashmap">
+		update ${xmlx} set shzt='未审核', shsj=null,shbm='' where id=#{id}
+	</update>
 	<update id="xgJckAbgcTH" parameterType="java.util.List">
 		update xmk_abgc set sbthcd=(sbthcd+2) where id =#{String}
 	</update>

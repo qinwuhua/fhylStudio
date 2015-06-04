@@ -4,6 +4,12 @@
 	<select id="selectXmbm" parameterType="String" resultType="String">
 		select max(substr(xmbm,-3)) from lxsh_sjgz where xmbm like ${value}||'%'
 	</select>
+	<select id="selectlmgzXmbm" parameterType="String" resultType="String">
+		select max(substr(xmbm,-3)) from lxsh_lmgz where xmbm like ${value}||'%'
+	</select>
+	<select id="selectxjXmbm" parameterType="String" resultType="String">
+		select max(substr(xmbm,-3)) from lxsh_xj where xmbm like ${value}||'%'
+	</select>
 	<select id="selectbzcs" parameterType="lxsh" resultType="lxsh">
 		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj=#{jsdj}
 	</select>
@@ -11,10 +17,21 @@
 		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
 	<select id="selectSFCF1" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf&lt;#{xmnf}
+		select * from LXSH_LMGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
+	</select>
+	<select id="selectSFCF2" parameterType="lxsh" resultType="lxsh">
+		select * from LXSH_XJ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
+	</insert>
+	<insert id="insertLmgz" parameterType="lxsh">
+		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
+		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
+	</insert>
+	<insert id="insertXj" parameterType="lxsh">
+		insert into LXSH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
 		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
@@ -97,11 +114,31 @@
 	<update id="sbsjgzSbzt" parameterType="hashmap">
 		update LXSH_SJGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="sblmgzSbzt" parameterType="hashmap">
+		update LXSH_LMGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="sbxjSbzt" parameterType="hashmap">
+		update LXSH_XJ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+	</update>
 	<update id="thSjgzSbzt" parameterType="hashmap">
 		update LXSH_SJGZ set sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="thLmgzSbzt" parameterType="hashmap">
+		update LXSH_LMGZ set sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="thXjSbzt" parameterType="hashmap">
+		update LXSH_XJ set sbthcd=#{sbthcd} where id=#{id}
+	</update>
 	<update id="updateSjgz" parameterType="lxsh">
 		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateLmgz" parameterType="lxsh">
+		update LXSH_LMGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateXj" parameterType="lxsh">
+		update LXSH_XJ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
@@ -129,7 +166,7 @@
 			and xmnf like '%'||#{xmnf}||'%'
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+			and  shzt=#{sbzt1}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
@@ -159,7 +196,126 @@
 			and xmnf like '%'||#{xmnf}||'%'
 		</if>
 		<if test="sbzt1!='' and sbzt1!= null ">
-			and shzt like '%'||#{sbzt1}||'%'
+			and shzt=#{sbzt1}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+	</select>
+	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select rownum num ,t.*  from LXSH_LMGZ t where 1=1
+			and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and shzt=#{sbzt1}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectLmgzshListCount" parameterType="lxsh" resultType="int">
+		select count(*) from LXSH_LMGZ where 1=1
+		and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and shzt=#{sbzt1}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+	</select>
+	
+	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select rownum num ,t.*  from LXSH_XJ t where 1=1
+			and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and shzt=#{sbzt1}
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectXjshListCount" parameterType="lxsh" resultType="int">
+		select count(*) from LXSH_XJ where 1=1
+		and  sbthcd=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and shzt=#{sbzt1}
 		</if>
 		<if test="tsdq!='' and tsdq!= null ">
 			and tsdq like '%'||#{tsdq}||'%'
@@ -174,10 +330,162 @@
 	<delete id="delSjgz" parameterType="hashmap">
 		delete from LXSH_SJGZ where xmbm=#{xmbm}
 	</delete>
+	<delete id="delLmgz" parameterType="hashmap">
+		delete from LXSH_LMGZ where xmbm=#{xmbm}
+	</delete>
+	<delete id="delXj" parameterType="hashmap">
+		delete from LXSH_XJ where xmbm=#{xmbm}
+	</delete>
 	<delete id="delSjgzlx" parameterType="hashmap">
 		delete from LXSH_LX where xmid=#{xmbm}
 	</delete>
 	<update id="shsjgzSbzt" parameterType="hashmap">
 		update LXSH_SJGZ set shzt=1 where id=#{id}
 	</update>
+	<update id="shlmgzSbzt" parameterType="hashmap">
+		update LXSH_LMGZ set shzt=1 where id=#{id}
+	</update>
+	<update id="shxjSbzt" parameterType="hashmap">
+		update LXSH_XJ set shzt=1 where id=#{id}
+	</update>
+	<select id="queryshsjgz" parameterType="string" resultType="lxsh">
+		select * from LXSH_SJGZ where ${value}
+	</select>
+	<select id="queryshlmgz" parameterType="string" resultType="lxsh">
+		select * from LXSH_LMGZ where ${value}
+	</select>
+	<select id="queryshxj" parameterType="string" resultType="lxsh">
+		select * from LXSH_XJ where ${value}
+	</select>
+	<insert id="insertsjgzkxx" parameterType="lxsh">
+		insert into kxxyj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+	</insert>
+	<insert id="insertlmgzkxx" parameterType="lxsh">
+		insert into kxxyj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+	</insert>
+	<insert id="insertxjkxx" parameterType="lxsh">
+		insert into kxxyj_xj(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+	</insert>
+	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_LMGZ t where 1=1
+			and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectLmgzListCount" parameterType="lxsh" resultType="int">
+		select count(*) from LXSH_LMGZ where 1=1
+		and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+	</select>
+	
+	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
+		select * from (
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_XJ t where 1=1
+			and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectXjListCount" parameterType="lxsh" resultType="int">
+		select count(*) from LXSH_XJ where 1=1
+		and  sbthcd &lt;=#{sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and xjsdj like '%'||#{xjsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbm like '#{tsdq}||'%'
+		</if>
+	</select>
 </mapper>

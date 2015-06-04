@@ -31,7 +31,7 @@
 			loadBmbm2('gldj','公路等级');
 			tsdq("tsdq");
 			xmnf("xmnf");
-			showAllsjsh();
+			showAlllmsh();
 		});
 		
 		function shangB(){
@@ -52,7 +52,7 @@
 				var data = "lxsh.id="+id;
 				$.ajax({
 					 type : "POST",
-					 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+					 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
 					 dataType : 'json',
 					 data : data,
 					 success : function(msg){
@@ -96,7 +96,7 @@
 			if(confirm('您确定退回该项目？')){
 					$.ajax({
 						 type : "POST",
-						 url : "/jxzhpt/qqgl/thSjgzSbzt.do",
+						 url : "/jxzhpt/qqgl/thLmgzSbzt.do",
 						 dataType : 'json',
 						 data : data,
 						 success : function(msg){
@@ -104,7 +104,7 @@
 								 alert('退回成功！');
 								 $("#datagrid").datagrid('reload');
 							 }else{
-								 alert('退回失败！');
+								 alert('退回失败,请选择要退回项目！');
 							 }
 						 },
 						 error : function(){
@@ -117,7 +117,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -154,7 +154,7 @@
 								<select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<img onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="showAlllmsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;"" />
