@@ -36,6 +36,13 @@
 		  <action name="shlmgzSbzt" class="lxshController" method="shlmgzSbzt"/>
 		  <action name="shxjSbzt" class="lxshController" method="shxjSbzt"/>
 		  <action name="selectLmgzList" class="lxshController" method="selectLmgzList"/>
+		  <action name="Lmgzsfkxx" class="lxshController" method="Lmgzsfkxx"/>
+		  <action name="sjgzsfkxx" class="lxshController" method="sjgzsfkxx"/>
+		  <action name="Xjsfkxx" class="lxshController" method="Xjsfkxx"/>
+		  
+		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
+		  <action name="uploadGkpf" class="kxxyjController" method="uploadGkpf"/>
+		  <action name="updateSjgzkxx" class="kxxyjController" method="updateSjgzkxx"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 初步设计-->

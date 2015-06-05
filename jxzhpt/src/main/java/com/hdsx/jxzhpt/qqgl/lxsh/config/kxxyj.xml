@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.kxxyj">
+	<select id="selectSjgzList" parameterType="lxsh" resultType="kxxyj">
+		select * from (
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) sbzt1  from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
+			and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and t1.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm
+	</select>
+	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
+		select count(*) from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
+		and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqh!='' and xzqh!= null ">
+			${xzqh}
+		</if>
+		<if test="xmmc!='' and xmmc!= null ">
+			and t.xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and t1.xmnf like '%'||#{xmnf}||'%'
+		</if>
+		<if test="sbzt1!='' and sbzt1!= null ">
+			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
+		</if>
+		<if test="tsdq!='' and tsdq!= null ">
+			and t1.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and t.jsjsdj like '%'||#{jsdj}||'%'
+		</if>
+		<if test="gldj!='' and gldj!= null ">
+			and ghlxbh like #{gldj}||'%'
+		</if>
+	</select>
+	<insert id="insertFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
+	</insert>
+	<update id="updateSjgzkxx" parameterType="kxxyj">
+		update kxxyj_sjgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
+		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj}
+		where xmbm=#{xmbm}
+	</update>
+</mapper>

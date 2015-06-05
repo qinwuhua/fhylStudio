@@ -139,7 +139,10 @@ text-decoration:none;
 					<span id="dfzc"></span>
 				</td>
 			</tr>
-
+			<tr style="height: 35px;">
+				<td colspan="6" style="background-color: #ffffff;"align="center">
+				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">关闭</a></td>
+			</tr>
 			</table>
 </body>
 </html>

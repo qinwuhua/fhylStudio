@@ -1,16 +1,13 @@
 var obj=new Object();
-function addLXSH(url,width,length){
-	YMLib.UI.createWindow('lxxx','添加立项信息',url,'lxxx',width,length);
-}
 function xiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','sjgzsb_xx.jsp','lxxx',900,360);
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','sjgzsb_xx.jsp','lxxx',900,400);
 }
 function edit(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑可行性研究信息','sjgzsb_edit.jsp','lxxx',900,400);
 }
 function del(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -39,12 +36,12 @@ function del(index){
 function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','lmgzsb_xx.jsp','lxxx',900,360);
+	YMLib.UI.createWindow('lxxx','立项详细信息','lmgzsb_xx.jsp','lxxx',900,400);
 }
 function edit1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,400);
 }
 function del1(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -73,12 +70,12 @@ function del1(index){
 function xiangxi2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','立项详细信息','xjsb_xx.jsp','lxxx',900,360);
+	YMLib.UI.createWindow('lxxx','立项详细信息','xjsb_xx.jsp','lxxx',900,400);
 }
 function edit2(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,380);
+	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,400);
 }
 function del2(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
@@ -109,26 +106,9 @@ function removes(id){
 }
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.ghlxbh,"");
+	locationXm(data.lxbh,"");
 }
-function xmbm(id,xzqh,nf,xmlx){
-	
-	var data="xmtype="+xmlx+"&xzqh="+xzqh+"&nf="+nf;
-	$("#"+id).html('');
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/selectxmbm.do',
-		data:data,
-		dataType:'json',
-		success:function(msg){
-			$("#xmbm").html(msg.xmbm);
-		},
-		error : function(){
-		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
-	 }
-	});	
-}
-function showAll(){
+function showsjgzAll(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
 		if($.cookie("unit2")=='_____36')
@@ -174,7 +154,7 @@ function showAll(){
 	var gldj=$("#gldj").combobox('getValue');
 	
 	$('#datagrid').datagrid({    
-	    url:'/jxzhpt/qqgl/selectSjgzList.do',
+	    url:'/jxzhpt/qqgl/selectSjgzkxList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -198,24 +178,21 @@ function showAll(){
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
 	            if(row.sbzt1=='1'||sbthcd==7)
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
-	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
+	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt1=='0')
         		return '未上报';
 	        	else if(row.sbzt1=='1'||sbthcd==7)
 	        		return '已上报';
 	        	else return '未知';
 	        }},
-	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
-		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
-		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
+	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
+		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
-		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
-		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -830,4 +807,92 @@ function showAllxjsh(){
 	    	});
 	    }   
 	}); 
+}
+
+//
+function fileShow(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/queryFileByXmbm.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#gkpfTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				$("#gkpfTable").append(tr);
+			}
+		}
+	});
+}
+function fileShow1(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/queryFileByXmbm.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#gkpfTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
+				$("#gkpfTable").append(tr);
+			}
+		}
+	});
+}
+/**
+ * 下载文件
+ * @param id 文件ID
+ */
+function downFile(id){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+}
+/**
+ * 删除文件
+ * @param id 文件ID
+ */
+function deleteFile(id){
+	if(confirm('确定删除所选数据？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/deleteFile.do",
+			 dataType : 'json',
+			 data : 'uploads.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('删除成功！');
+					 fileShow(parent.obj.xmbm,'工可批复文件');
+				 }else{
+					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+//
+function xmny(id){
+	$('#'+id).datebox({    
+	    required:false,
+	    formatter:function(date){
+	    	var y = date.getFullYear();
+	    	var m = date.getMonth()+1;
+	    	return y+'-'+m;
+	    }
+	});  
+	
+}
+function xmsj(id){
+	$('#'+id).datebox({    
+	    required:false,
+	    formatter:function(date){
+	    	var y = date.getFullYear();
+	    	var m = date.getMonth()+1;
+	    	var d = date.getDate();
+	    	return y+'-'+m+'-'+d;
+	    }
+	});  
+	
 }

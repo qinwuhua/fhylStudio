@@ -223,6 +223,36 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		if(updateBatch("thXjSbzt1", lm)>0&&deleteBatch("deletexjkxx",lm)>0) return true;
 		else return false;
 	}
+	public boolean Lmgzsfkxx(Lxsh lxsh) {
+		String str="xmbm in ("+lxsh.getXmbm()+")";
+			List<Lxsh> list=queryList("Lmgzsfkxx", str);
+			if(list==null){
+				return true;
+			}
+			if(list.size()>0)
+			 return false;
+			else return true;
+	}
+	public boolean sjgzsfkxx(Lxsh lxsh) {
+		String str="xmbm in ("+lxsh.getXmbm()+")";
+			List<Lxsh> list=queryList("sjgzsfkxx", str);
+			if(list==null){
+				return true;
+			}
+			if(list.size()>0)
+			 return false;
+			else return true;
+	}
+	public boolean Xjsfkxx(Lxsh lxsh) {
+		String str="xmbm in ("+lxsh.getXmbm()+")";
+			List<Lxsh> list=queryList("Xjsfkxx", str);
+			if(list==null){
+				return true;
+			}
+			if(list.size()>0)
+			 return false;
+			else return true;
+	}
 	@Override
 	public boolean thXjSbzt(Lxsh lxsh) {
 		String[] ids=lxsh.getId().split(",");
@@ -334,7 +364,6 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			str=str+"','"+ids[i];
 		}
 		str="id in("+str+"')";
-System.out.println(str);
 		if(updateBatch("shsjgzSbzt", lm)>0){
 			List<Lxsh> list=queryList("queryshsjgz", str);
 			for (Lxsh lxsh2 : list) {
