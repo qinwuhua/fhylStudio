@@ -44,7 +44,7 @@
 				params['cbsj.shzt']=1;
 			}
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-$('#searchField').height();
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;

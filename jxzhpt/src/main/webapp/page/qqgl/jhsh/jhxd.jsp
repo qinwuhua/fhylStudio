@@ -86,6 +86,7 @@
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">批复总投资：</font></b>
 								<input id="xmbm" name="xmbm" type="hidden"/>
 								<input id="xmlx" name="xmlx" type="hidden"/>
+								<input id="xdzt" name="xdzt" value="1" type="hidden"/>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="pfztz" name="pfztz" type="text"  style="width: 100px;height: 20px;" />万元

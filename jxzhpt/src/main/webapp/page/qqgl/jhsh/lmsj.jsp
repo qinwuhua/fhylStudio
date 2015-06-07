@@ -30,7 +30,7 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue")};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -40,15 +40,20 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
 				{field:'sbzt',title:'计划下达',width:100,align:'center',
 					formatter: function(value,row,index){
+						var result="";
 						xmlx=1;
-						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-						"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
+						if(row.xdzt==0){
+							var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
+						}else{
+							result="计划下达";
+						}
 						return result;
 					}
 				},
@@ -69,6 +74,10 @@
 				{field:'bbzzj',title:'部补助投资',width:100,align:'center'},
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			gridBind(grid);
+		}
+		function exportJhshxx(){
+			var param='jhsh.xmlx=1&jhsh.xdzt=0';
+			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -105,8 +114,8 @@
 									<option value="是">是</option>
 								</select>
 								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img onclick="" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhsh(1)" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

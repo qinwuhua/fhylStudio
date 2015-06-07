@@ -33,9 +33,15 @@
 				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 				</if>
-				order by j.xmbm desc
+				<if test="jhsh.xdzt>=0">
+					and j.xdzt=${jhsh.xdzt}
+				</if>
+				order by j.xdzt,j.xmbm desc
 			) t 
-		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		) 
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="queryJhshLmgz" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
@@ -54,9 +60,15 @@
 				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 				</if>
-				order by j.xmbm desc
+				<if test="jhsh.xdzt>=0">
+					and j.xdzt=${jhsh.xdzt}
+				</if>
+				order by j.xdzt,j.xmbm desc
 			) t 
-		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		) 
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	<select id="queryJhshXj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
@@ -75,9 +87,15 @@
 				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 				</if>
-				order by j.xmbm desc
+				<if test="jhsh.xdzt>=0">
+					and j.xdzt=${jhsh.xdzt}
+				</if>
+				order by j.xdzt,j.xmbm desc
 			) t 
-		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		) 
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
 	</select>
 	
 	<select id="queryJhshCountLmsj" parameterType="java.util.Map" resultType="int">
@@ -94,6 +112,9 @@
 		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 		</if>
+		<if test="jhsh.xdzt>=0">
+			and j.xdzt=${jhsh.xdzt}
+		</if>
 	</select>
 	<select id="queryJhshCountLmgz" parameterType="java.util.Map" resultType="int">
 		select count(j.xmbm) from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm where 1=1
@@ -108,6 +129,9 @@
 		</if>
 		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+		</if>
+		<if test="jhsh.xdzt>=0">
+			and j.xdzt=${jhsh.xdzt}
 		</if>
 	</select>
 	<select id="queryJhshCountXj" parameterType="java.util.Map" resultType="int">
@@ -124,10 +148,41 @@
 		<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
 			and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 		</if>
+		<if test="jhsh.xdzt>=0">
+			and j.xdzt=${jhsh.xdzt}
+		</if>
 	</select>
 	
 	<update id="updateJhshxxLmsj" parameterType="java.util.List">
 		update jhsh_sjgz c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
-		c.xdwh=#{xdwh},c.xdsj=#{xdsj} where c.xmbm=#{xmbm}
+		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
+	<update id="updateJhshxxLmgz" parameterType="java.util.List">
+		update jhsh_lmgz c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
+		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
+	</update>
+	<update id="updateJhshxxXj" parameterType="java.util.List">
+		update jhsh_xj c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
+		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
+	</update>
+	
+	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
+		select * from lxsh_sjgz l where l.xmbm=#{xmbm}
+	</select>
+	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
+		select * from lxsh_lmgz l where l.xmbm=#{xmbm}
+	</select>
+	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
+		select * from lxsh_xj l where l.xmbm=#{xmbm}
+	</select>
+	
+	<select id="queryJhshxxLmsjByXmbm" parameterType="java.util.Map" resultType="jhsh">
+		select * from jhsh_sjgz where xmbm=#{xmbm}
+	</select>
+	<select id="queryJhshxxLmgzByXmbm" parameterType="java.util.Map" resultType="jhsh">
+		select * from jhsh_lmgz where xmbm=#{xmbm}
+	</select>
+	<select id="queryJhshxxXjByXmbm" parameterType="java.util.Map" resultType="jhsh">
+		select * from jhsh_xj where xmbm=#{xmbm}
+	</select>
 </mapper>
