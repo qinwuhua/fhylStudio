@@ -100,5 +100,11 @@ public interface LxshServer {
 
 	boolean thXjSbzt1(Lxsh lxsh);
 
+	boolean Lmgzsfkxx(Lxsh lxsh);
+
+	boolean sjgzsfkxx(Lxsh lxsh);
+
+	boolean Xjsfkxx(Lxsh lxsh);
+
 
 }

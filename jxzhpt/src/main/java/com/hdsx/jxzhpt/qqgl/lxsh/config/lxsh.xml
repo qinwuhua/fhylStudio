@@ -61,10 +61,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -91,10 +91,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 	</select>
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
@@ -190,10 +190,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -220,10 +220,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
@@ -249,10 +249,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -279,10 +279,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 	</select>
 	
@@ -309,10 +309,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -339,10 +339,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 	</select>
 	<delete id="delSjgz" parameterType="hashmap">
@@ -410,10 +410,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -440,10 +440,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 	</select>
 	
@@ -470,10 +470,10 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -500,10 +500,19 @@
 			and tsdq like '%'||#{tsdq}||'%'
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
-			and xjsdj like '%'||#{xjsdj}||'%'
+			and xjsdj like '%'||#{jsdj}||'%'
 		</if>
 		<if test="gldj!='' and gldj!= null ">
-			and ghlxbm like '#{tsdq}||'%'
+			and ghlxbh like #{gldj}||'%'
 		</if>
+	</select>
+	<select id="Lmgzsfkxx" parameterType="string" resultType="lxsh">
+		select * from kxxyj_lmgz where 1=1 and ${value} and sbthcd is not null
+	</select>
+	<select id="sjgzsfkxx" parameterType="string" resultType="lxsh">
+		select * from kxxyj_sjgz where 1=1 and ${value} and sbthcd is not null
+	</select>
+	<select id="Xjsfkxx" parameterType="string" resultType="lxsh">
+		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
 	</select>
 </mapper>
