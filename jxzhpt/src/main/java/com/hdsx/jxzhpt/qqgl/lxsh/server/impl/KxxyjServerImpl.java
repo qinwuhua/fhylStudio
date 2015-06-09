@@ -56,5 +56,146 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		}
 		else return false;
 	}
+
+	@Override
+	public boolean sbsjgzkxx(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("sbsjgzkxx", lm)>0) return true;
+		else return false;
+	}
+	private List<Map<String,Object>> lm;
+	private Map<String,Object> hm;
+	@Override
+	public boolean thSjgzkxx(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			hm.put("sbthcd", lxsh.getSbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("thSjgzkxx", lm)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public List<Kxxyj> selectSjgzkxshList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectSjgzkxshList", lxsh);
+	}
+
+	@Override
+	public int selectSjgzkxshListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSjgzkxshListCount", lxsh);
+	}
+
+	@Override
+	public boolean shsjgzkxx(Lxsh lxsh) {
+		String[] ids=lxsh.getId().split(",");
+		String str="";
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", ids[i]);
+			lm.add(hm);
+			if(i==0)
+				str=str+"'"+ids[i];
+			else
+			str=str+"','"+ids[i];
+		}
+		str="id in("+str+"')";
+		if(updateBatch("shsjgzkxx", lm)>0){
+			List<Kxxyj> list=queryList("queryshsjgz", str);
+			for (Kxxyj lxsh2 : list) {
+				insert("insertsjgzcb", lxsh2);
+			}
+			return true;
+		}
+		else
+			return false;
+	}
+
+	@Override
+	public boolean sjgzsfcb(Lxsh lxsh) {
+		String str="xmbm in ("+lxsh.getXmbm()+")";
+		List<Kxxyj> list=queryList("sjgzsfcb", str);
+		if(list==null){
+			return true;
+		}
+		if(list.size()>0)
+		 return false;
+		else return true;
+	}
+
+	@Override
+	public boolean thSjgzkxx1(Lxsh lxsh) {
+		String[] ids=lxsh.getXmbm().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < ids.length; i++) {
+			hm=new HashMap<String, Object>();
+			System.out.println(ids[i]);
+			hm.put("xmbm", ids[i]);
+			lm.add(hm);
+		}
+		if(updateBatch("thSjgzkxx1", lm)>0&&deleteBatch("deletesjgzcb",lm)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public List<Kxxyj> selectLmgzkxList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectLmgzkxList", lxsh);
+	}
+
+	@Override
+	public int selectLmgzkxListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLmgzkxListCount", lxsh);
+	}
+
+	@Override
+	public List<Kxxyj> selectXjkxList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectXjkxList", lxsh);
+	}
+
+	@Override
+	public int selectXjkxListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectXjkxListCount", lxsh);
+	}
+
+	@Override
+	public List<Kxxyj> selectLmgzkxshList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectLmgzkxshList", lxsh);
+	}
+
+	@Override
+	public int selectLmgzkxshListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectLmgzkxshListCount", lxsh);
+	}
+
+	@Override
+	public List<Kxxyj> selectXjkxshList(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectXjkxshList", lxsh);
+	}
+
+	@Override
+	public int selectXjkxshListCount(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("selectXjkxshListCount", lxsh);
+	}
 	
 }

@@ -26,4 +26,34 @@ public interface KxxyjServer {
 
 	boolean updateSjgzkxx(Kxxyj kxxyj);
 
+	boolean sbsjgzkxx(Lxsh lxsh);
+
+	boolean thSjgzkxx(Lxsh lxsh);
+
+	List<Kxxyj> selectSjgzkxshList(Lxsh lxsh);
+
+	int selectSjgzkxshListCount(Lxsh lxsh);
+
+	boolean shsjgzkxx(Lxsh lxsh);
+
+	boolean sjgzsfcb(Lxsh lxsh);
+
+	boolean thSjgzkxx1(Lxsh lxsh);
+
+	List<Kxxyj> selectLmgzkxList(Lxsh lxsh);
+
+	int selectLmgzkxListCount(Lxsh lxsh);
+
+	List<Kxxyj> selectXjkxList(Lxsh lxsh);
+
+	int selectXjkxListCount(Lxsh lxsh);
+
+	List<Kxxyj> selectLmgzkxshList(Lxsh lxsh);
+
+	int selectLmgzkxshListCount(Lxsh lxsh);
+
+	List<Kxxyj> selectXjkxshList(Lxsh lxsh);
+
+	int selectXjkxshListCount(Lxsh lxsh);
+
 }

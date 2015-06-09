@@ -39,10 +39,22 @@
 		  <action name="Lmgzsfkxx" class="lxshController" method="Lmgzsfkxx"/>
 		  <action name="sjgzsfkxx" class="lxshController" method="sjgzsfkxx"/>
 		  <action name="Xjsfkxx" class="lxshController" method="Xjsfkxx"/>
+		  <action name="qqglGpsroad" class="lxshController" method="qqglGpsroad"/>
+		  
 		  
 		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
+		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
+		  <action name="selectXjkxList" class="kxxyjController" method="selectXjkxList"/>
 		  <action name="uploadGkpf" class="kxxyjController" method="uploadGkpf"/>
 		  <action name="updateSjgzkxx" class="kxxyjController" method="updateSjgzkxx"/>
+		  <action name="sbsjgzkxx" class="kxxyjController" method="sbsjgzkxx"/>
+	      <action name="thSjgzkxx" class="kxxyjController" method="thSjgzkxx"/>
+	      <action name="selectSjgzkxshList" class="kxxyjController" method="selectSjgzkxshList"/>
+	      <action name="selectLmgzkxshList" class="kxxyjController" method="selectLmgzkxshList"/>
+	      <action name="selectXjkxshList" class="kxxyjController" method="selectXjkxshList"/>
+	      <action name="shsjgzkxx" class="kxxyjController" method="shsjgzkxx"/>
+	      <action name="sjgzsfcb" class="kxxyjController" method="sjgzsfcb"/>
+	      <action name="thSjgzkxx1" class="kxxyjController" method="thSjgzkxx1"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 初步设计-->

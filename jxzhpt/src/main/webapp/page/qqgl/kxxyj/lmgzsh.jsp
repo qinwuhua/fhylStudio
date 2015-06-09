@@ -31,45 +31,42 @@
 			loadBmbm2('gldj','公路等级');
 			tsdq("tsdq");
 			xmnf("xmnf");
-			showsjgzAll();
+			showAllsjsh();
 		});
 		
 		function shangB(){
 			var rows=$('#datagrid').datagrid('getSelections');
 			if(rows.length==0) {
-				alert("请选择要上报项目！");
+				alert("请选择要审核项目！");
+				return;
+			}
+			for(var i=0;i<rows.length;i++){
+				if(rows[i].shzt=='1'){
+					alert("对不起，项目已审核！");
+					return;
+				}
+			}
+			if($.cookie("unit2").length!=7) {
+				alert("您无审核项目权限！");
 				return;
 			}
 			var id=rows[0].id;
-			var sbthcd=0;
-			if($.cookie("unit2").length==7 ){
-				alert("省级用户请移到审核模块进行操作");
-				return;
-			}else{
-				sbthcd=$.cookie("unit2").length-2;
-			}
-			for(var i=0;i<rows.length;i++){
-				if(rows[i].sbzt1=='1'){
-					alert("有项目已上报，请检查后操作！");
-					return ;
-				}
-			}
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
 			}
-			if(confirm('您确定上报该项目？')){
-				var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+			if(confirm('您确定审核该项目？')){
+				var data = "lxsh.id="+id;
 				$.ajax({
 					 type : "POST",
-					 url : "/jxzhpt/qqgl/sbsjgzkxx.do",
+					 url : "/jxzhpt/qqgl/shsjgzkxx.do",
 					 dataType : 'json',
 					 data : data,
 					 success : function(msg){
 						 if(msg){
-							 alert('上报成功！');
+							 alert('审核成功！');
 							 $("#datagrid").datagrid('reload');
 						 }else{
-							 alert('上报失败,请选择要上报项目！');
+							 alert('审核失败,请选择要上报项目！');
 						 }
 					 },
 					 error : function(){
@@ -85,18 +82,60 @@
 				alert("请选择要退回项目！");
 				return;
 			}
+			if($.cookie("unit2").length!=7){
+				alert("您不是省级用户");
+				return;
+			}
 			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
+			for(var i=1;i<rows.length;i++){
+				xmbm+=","+rows[i].xmbm;
+			}
 			for(var i=0;i<rows.length;i++){
-			if(rows[i].sbzt1=='0' && rows[i].sbthcd==11){
-				alert("对不起，无法退回！");
+			if(rows[i].shzt=='1'){
+				//
+				var data = "lxsh.xmbm="+xmbm;
+				$.ajax({
+					 type : "POST",
+					 url : "/jxzhpt/qqgl/sjgzsfcb.do",
+					 dataType : 'json',
+					 data : data,
+					 success : function(msg){
+						 if(msg){
+							 if(confirm('您确定将该项目退回未审核状态？')){
+										$.ajax({
+											 type : "POST",
+											 url : "/jxzhpt/qqgl/thSjgzkxx1.do",
+											 dataType : 'json',
+											 data : data,
+											 success : function(msg){
+												 if(msg){
+													 alert('退回成功！');
+													 $("#datagrid").datagrid('reload');
+												 }else{
+													 alert('退回失败！');
+												 }
+											 },
+											 error : function(){
+												 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+											 }
+										});
+								}
+							 
+						 }else{
+							 alert('项目已经进行初步设计上报，无法退回！');
+						 }
+					 },
+					 error : function(){
+						 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+					 }
+				});
+				
+				//
 				return;
 			}
 			if(rows[i].tbbmbm==$.cookie("unit")){
 				alert("对不起，由您添加的项目无法退回！");
-				return;
-			}
-			if(rows[i].sbthcd<$.cookie("unit2").length){
-				alert("对不起，该项目已上报，不能执行退回操作！");
 				return;
 			}
 			}	
@@ -117,7 +156,7 @@
 								 alert('退回成功！');
 								 $("#datagrid").datagrid('reload');
 							 }else{
-								 alert('退回失败,请选择要退回项目！');
+								 alert('退回失败！');
 							 }
 						 },
 						 error : function(){
@@ -126,12 +165,11 @@
 					});
 			}
 		}
-		
 	</script>
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目立项审核>&nbsp;升级改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -153,11 +191,11 @@
         						<span>项目年份：</span>
         						<select id="xmnf" style="width:70px;">
 								</select>
-        						<span>上报状态：</span>
+        						<span>审核状态：</span>
         						<select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
-									<option value="0">未上报</option>
-									<option value="1">已上报</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
 								</select>
 								<span>特殊地区：</span>
 								<select name="tsdq" id="tsdq" style="width:88px;" >
@@ -168,13 +206,12 @@
 								<select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<img onclick="showsjgzAll()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="showAllsjsh()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
-								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />
+								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;"" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" />
-<!-- 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addLXSH('sjgzsb_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/> -->
-<%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;"> --%>
+<%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="dropOne()" style="vertical-align:middle;"> --%>
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
 				              </p>
         				</div>

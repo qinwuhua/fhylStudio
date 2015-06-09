@@ -89,7 +89,14 @@ public class LxshController extends BaseActionSupport{
 	private String gldj;
 	private int sbthcd;
 	private String xmbm;
+	private String ghlxbh;
 	
+	public String getGhlxbh() {
+		return ghlxbh;
+	}
+	public void setGhlxbh(String ghlxbh) {
+		this.ghlxbh = ghlxbh;
+	}
 	public String getXmbm() {
 		return xmbm;
 	}
@@ -701,6 +708,15 @@ public class LxshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
-	
+	public void qqglGpsroad(){
+		lxsh.setGhlxbh(ghlxbh);
+		lxsh.setXzqh(xzqh);
+		List<Lxsh> list=lxshServer.qqglGpsroad(lxsh);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }
 

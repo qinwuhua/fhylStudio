@@ -106,5 +106,7 @@ public interface LxshServer {
 
 	boolean Xjsfkxx(Lxsh lxsh);
 
+	List<Lxsh> qqglGpsroad(Lxsh lxsh);
+
 
 }

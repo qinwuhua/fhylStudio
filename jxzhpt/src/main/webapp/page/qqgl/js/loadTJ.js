@@ -42,3 +42,45 @@ function xmnf2(id){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+//浮点数减法
+function accSub(arg1,arg2){
+	　　 var r1,r2,m,n;
+	　　 try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+	　　 try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+	　　 m=Math.pow(10,Math.max(r1,r2));
+	　　 //last modify by deeka
+	　　 //动态控制精度长度
+	　　 n=(r1>=r2)?r1:r2;
+	　　 return ((arg1*m-arg2*m)/m).toFixed(n);
+	}
+
+function loadDist3(id, dwbm,yhdw) {
+	$('#' + id)
+			.combotree(
+					{
+						checkbox : true,
+						url : '/jxzhpt/gcgl/selAllXzqh1.do?yhdw=' + yhdw,
+						onBeforeExpand : function(node, param) {
+							$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
+									+ node.id;
+						},
+						onSelect : function(node) {
+							YMLib.Var.DistName = node.text;
+						}
+					});
+	$('#' + id).combotree('setValue', dwbm);
+}
+function loadUnit3(id, dwbm,yhdw) {
+	$('#' + id).combotree({
+		checkbox : false,
+		url : '/jxzhpt/gcgl/selAllUnit1.do?yhdw=' + yhdw,
+		onBeforeExpand : function(node, param) {
+			$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllBm2.do?yhdw="
+					+ node.id;
+		},
+		onSelect : function(node) {
+			YMLib.Var.DistName = node.text
+		}
+	});
+	$('#' + id).combotree('setValue', dwbm);
+}

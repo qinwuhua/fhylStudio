@@ -148,15 +148,15 @@
 		update LXSH_XJ set shzt=0 where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgz" parameterType="lxsh">
-		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq} 
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
-		update LXSH_LMGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		update LXSH_LMGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
-		update LXSH_XJ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc} 
+		update LXSH_XJ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
@@ -514,5 +514,9 @@
 	</select>
 	<select id="Xjsfkxx" parameterType="string" resultType="lxsh">
 		select * from kxxyj_xj where 1=1 and ${value} and sbthcd is not null
+	</select>
+	<select id="qqglGpsroad" parameterType="lxsh" resultType="lxsh">
+		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj
+		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
 	</select>
 </mapper>

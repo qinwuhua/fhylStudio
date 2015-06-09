@@ -389,9 +389,11 @@
  </insert>
  
  <!-- qwh查询行政区划 -->
- <select id="selectTSDQ" parameterType="String" resultType="String">
- 	select t.name from XTGL_TSDQ t where id in(select parent from XTGL_XZQHTSDQ where xzqhdm=${value}) and t.state='启用'
- </select>
+ <select id="selectTSDQ" parameterType="jckwqgz" resultType="String">
+ 	select distinct x.name from xtgl_xzqhtsdq t,xtgl_tsdq x where t.xzqhdm in(
+	select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{lxbm}
+	and roadstart&lt;=#{zdzh} and roadends>=#{qdzh}) and x.id=t.parent 
+</select>
  
 </mapper>
 

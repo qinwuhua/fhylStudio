@@ -34,6 +34,8 @@ text-decoration:none;
 	var zdStr;
 	function load(){
 		var data=parent.obj;
+		loadUnit3("gydw",data.gydwdm,$.cookie("unit"));
+		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
 		$("#lxbm").html(data.ghlxbh);
 		$("#lxmc").html(data.lxmc);
 		$("#xmmc").val(data.xmmc);
@@ -43,8 +45,6 @@ text-decoration:none;
 		$("#qdmc").val(data.qdmc);
 		$("#zdmc").val(data.zdmc);
 		$("#jsxz").val(data.jsxz);
-		$("#gydw").html(data.gydw);
-		$("#xzqh").html(data.xzqh);
 		$("#tsdq").html(data.tsdq);
 		$("#jsjsdj").html(data.jsjsdj);
 		$("#xjsdj").html(data.xjsdj);
@@ -53,12 +53,12 @@ text-decoration:none;
 		$("#jhkgn").combobox('setText',data.xmnf);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
-		$("#bzcs").html(data.bzys);
+		$("#bzcs").val(data.bzys);
 		$("#dfzc").val(data.dfzc);
-		var data1="lxbm="+data.ghlxbh+"&gydwbm="+data.gydwdm;
+		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmjck/abgcGpsroad.do',
+			url:'/jxzhpt/qqgl/qqglGpsroad.do',
 			data:data1,
 			dataType:'json',
 			success:function(msg){
@@ -160,8 +160,9 @@ text-decoration:none;
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").html()
+		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").val();
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -188,30 +189,12 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
+		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").html(zlc);
-		getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
+		selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
+		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 	}
-	function selectTSDQ(str){
-		$("#tsdq").text("");
-		var data="xzqhdm1="+str;
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/xmjck/selectTSDQ.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				if(msg.length>0){
-					var tsdqstr="";
-					for(var i=0;i<msg.length;i++){
-						tsdqstr=tsdqstr+msg[i]+"、";
-					}
-					tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
-					$("#tsdq").text(tsdqstr);
-				}
-			}
-		});	
-	}
+	
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -255,10 +238,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="gydw" style="font-size: 14px"></span></td>
+					<input id='gydw' type="text"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="xzqh"></span></td>
+					<input id='xzqh' type="text"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="tsdq" style="font-size: 14px"></span></td>
@@ -297,7 +280,7 @@ text-decoration:none;
 					<input type="text" id="tz"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="bzcs"></span></td>
+				<input type="text" id="bzcs"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="dfzc"/>

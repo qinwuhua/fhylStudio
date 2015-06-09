@@ -269,7 +269,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean updateSjgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateSjgz", lxsh)>0){
 			return true;
@@ -281,7 +282,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean updateLmgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateLmgz", lxsh)>0){
 			return true;
@@ -292,7 +294,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean updateXj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateXj", lxsh)>0){
 			return true;
@@ -481,6 +484,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public int selectXjshListCount(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryOne("selectXjshListCount", lxsh);
+	}
+
+	@Override
+	public List<Lxsh> qqglGpsroad(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("qqglGpsroad", lxsh);
 	}
 
 	

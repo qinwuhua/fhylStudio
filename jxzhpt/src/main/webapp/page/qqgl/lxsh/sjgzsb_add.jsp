@@ -33,6 +33,8 @@ text-decoration:none;
 	var qdStr;
 	var zdStr;
 	$(function(){
+		loadUnit("gydw",$.cookie("unit"));
+		loadDist("xzqh",$.cookie("dist"));
 		xmnf1("xmnf",'sjgz');
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
@@ -134,7 +136,7 @@ text-decoration:none;
 		autoCompleteLXBM();
 	});
 	function autoCompleteLXBM(){
-		var url = "/jxzhpt/xmjck/abgcGpsroad.do";
+		var url = "/jxzhpt/qqgl/qqglGpsroad.do";
 		$("#lxbm").autocomplete(url, {
 			multiple : false,
 			minChars :1,
@@ -144,19 +146,13 @@ text-decoration:none;
 	  		delay : 200,
 	  		max : 50,
 	  		extraParams : {
-	  			lxbm:function() {
+	  			ghlxbh:function() {
 	  				var d = $("#lxbm").val();
 	  				return d;
 	  			},
-	  			gydwbm:function() {
-	  				var d = $.cookie("unit2");
-	  				if(d=='_____36') return "";
-	  				else return d;
-	  			},
-	  			xzqhdm:function() {
+	  			xzqh:function() {
 	  				var d = $.cookie("dist");
-	  				if(d=='360000') return "";
-	  				else return d;
+	  				return d;
 	  			}
 	  		},
 	  		dataType : 'json',// 返回类型
@@ -166,35 +162,29 @@ text-decoration:none;
 	  			aa = $.map(eval(data), function(row) {
 	  					return {
 	  						data : row,
-	  						value : row.lxbm.replace(/(\s*$)/g,""),
-	  						result : row.lxbm.replace(/(\s*$)/g,"")
+	  						value : row.ghlxbh.replace(/(\s*$)/g,""),
+	  						result : row.ghlxbh.replace(/(\s*$)/g,"")
 	  					};
 	  				});
 	  			return aa;
 	  		},
 	  		formatItem : function(row, i, max) {
-	  			return row.lxbm.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
+	  			return row.ghlxbh.replace(/(\s*$)/g,"")+"("+row.qdzh+","+row.zdzh+")"+"<br/>"+row.lxmc.replace(/(\s*$)/g,"");
 	  		}
 	  	}).result(
 				function(e, item) {
-
 					if(item==undefined) return ;
-					selectTSDQ(item.xzqhdm);
 					$("#xzqh,#qdzh,#zdzh,#lc,#xjsdj,#gydw,#qd,#zd").attr("value",'');
 					$("#lxmc").html(item.lxmc);
-					$("#xzqhdm").val(item.xzqhdm);
-					$("#gydwdm").val(item.gydwbm);
-					$("#xzqh").html(item.xzqhmc);
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
-					getbzcs(item.lxbm.substr(0,1),item.lxjsdj,(parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000,'升级改造工程项目');
-					$("#lc").html((parseFloat($("#zdzh").val())*1000-parseFloat($("#qdzh").val())*1000)/1000);
-					$("#xjnd").html(item.gjxjnd);
-					$("#jsjsdj").combobox('setValue',item.lxjsdj);
-					$("#xjsdj").html(item.lxjsdj);
-					$("#gydw").html(item.gydw);
-					$("#gydwbm").val(item.gydwbm);
-					$("#xmzt").html('待上报');
+					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
+					getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
+					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
+					$("#jsjsdj").combobox('setValue',item.xjsdj);
+					$("#xjsdj").html(item.xjsdj);
+					$("#qdmc").val(item.qdmc);
+					$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
@@ -209,7 +199,7 @@ text-decoration:none;
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
-		+"&lxsh.gydw="+$("#gydw").html()+"&lxsh.xzqh="+$("#xzqh").html()+"&lxsh.gydwdm="+$("#gydwdm").val()+"&lxsh.xzqhdm="+$("#xzqhdm").val()+"&lxsh.tsdq="+$("#tsdq").html()
+		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").val()+"&lxsh.tbbmbm="+$.cookie("unit")
@@ -239,38 +229,18 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		var zlc=(parseFloat($("#zdzh").val())*1000000000000-parseFloat($("#qdzh").val())*1000000000000)/1000000000000;
+		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").html(zlc);
 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 	}
-	function selectTSDQ(str){
-		$("#tsdq").text("");
-		var data="xzqhdm1="+str;
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/xmjck/selectTSDQ.do',
-			data:data,
-			dataType:'json',
-			success:function(msg){
-				if(msg.length>0){
-					var tsdqstr="";
-					for(var i=0;i<msg.length;i++){
-						tsdqstr=tsdqstr+msg[i]+"、";
-					}
-					tsdqstr=tsdqstr.substr(0,tsdqstr.length-1);
-					$("#tsdq").text(tsdqstr);
-				}
-			}
-		});	
-	}
+	
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="hidden" name="xzqhdm" id="xzqhdm" style="width: 156px" />
-					<input type="hidden" name="gydwdm" id="gydwdm" style="width: 156px" />
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -308,10 +278,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="gydw" style="font-size: 14px"></span></td>
+					<input type='text' id='gydw'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="xzqh"></span></td>
+					<input type='text' id='xzqh'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="tsdq" style="font-size: 14px"></span></td>
