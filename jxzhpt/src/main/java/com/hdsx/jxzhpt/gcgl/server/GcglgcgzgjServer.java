@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzgj;
@@ -9,6 +10,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 
 public interface GcglgcgzgjServer {
 
@@ -66,13 +68,13 @@ public interface GcglgcgzgjServer {
 
 	Gcglgcgzgj queryCGSByYf(Gcglgcgzgj gcglgcgzgj);
 
-	List<Plan_gcgj> queryGcgjList(Gcglgcgzgj gcglgcgzgj);
+	List<Map<String,Object>> queryGcgjList(Gcglgcgzgj gcglgcgzgj);
 
 	int queryGcgjListCount(Gcglgcgzgj gcglgcgzgj);
 
 	int selectWqgzjhListcount1(Gcglgcgzgj gcglgcgzgj);
 
-	List<Plan_gcgj> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj);
+	List<Map<String,Object>> selectWqgzjhList2(Gcglgcgzgj gcglgcgzgj);
 
 	boolean updatagjSFQX(Gcglgcgzgj gcglgcgzgj);
 

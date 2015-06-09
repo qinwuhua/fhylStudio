@@ -25,7 +25,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit1("gydw",$.cookie("unit")); 
+			loadDist1("xzqh",$.cookie("dist")); 
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var m = myDate.getMonth()+1; 
@@ -78,19 +78,17 @@
 			showAll();
 		});
 		function exportAbyb(){
-			var gydw=$("#gydw").combotree("getValues");
-			if(gydw.length==0){
-				if($.cookie("unit2")=='_____36')
-					gydwstr=36;
-				else gydwstr= $.cookie("unit2");
-			}else if(gydw.length==1){
-				if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-	 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-				gydwstr=gydw[0] ;
+			var xzqhdm=$("#xzqh").combotree("getValues");
+			if(xzqhdm.length==0){
+				xzqhstr= $.cookie("dist2");
+				
+			}else if(xzqhdm.length==1){
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+				xzqhstr=xzqhdm[0] ;
 			}else{
-				gydwstr= gydw.join(',');
+				xzqhstr= xzqhdm.join(',');
 			}
-		
 			var jgzt='0';
 			var kgzt='';
 			var lxmc=$("#lxmc").val();
@@ -99,7 +97,7 @@
 			var m=$("#ddlMonth").val();    //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
 			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&xmnf="+y;
-			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydwstr} ,function(){
+			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:xzqhstr} ,function(){
 				window.location.href="/jxzhpt/gcgl/exportgjyb.do?"+data;
 			    });
 		}
@@ -153,8 +151,8 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 150px;">
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 150px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
         						<span>项目年份：</span> 

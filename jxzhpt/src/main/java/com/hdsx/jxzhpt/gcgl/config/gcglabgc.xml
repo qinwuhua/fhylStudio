@@ -248,26 +248,33 @@ where t1.spzt='1'
 	
 	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
 		select 
-		t2.id v_0,
-		max(t2.sbnf) v_2,to_char(max(t2.jhkgsj),'yyyy-mm-dd') v_4,to_char(max(t2.jhwgsj),'yyyy-mm-dd') v_4,max(t2.xmmc) v_1,max(t2.pfztz) v_5,max(t2.jhsybzje) v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
-		from PLAN_GCGJ t2 left join PLAN_LX_GCGJ t1 on t1.jhid=t2.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t2.id=c.jhid
-		where 1=1 and spzt='1' and c.tbyf is null 
-		<if test="jhnf != null and  jhnf != ''">
-					and t2.sbnf like '%'||trim(#{jhnf})||'%'
+		t.xmbm v_0,
+		substr(t.xmbm,4) v_2,to_char(t.kgsj,'yyyy-mm-dd') v_4,to_char(t.wgsj,'yyyy-mm-dd') v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from JHSH_LMGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+			where 1=1 and c.tbyf is null 
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
 			</if>
-		<if test="gydw != null and  gydw != ''">
-				${gydw}
-		</if>
 		<if test="kgzt != null and  kgzt != ''">
-				and t2.kgzt like '%'||trim(#{kgzt})||'%'
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
 		</if>
 		<if test="jgzt != null and  jgzt != ''">
-				and t2.jgzt like '%'||trim(#{jgzt})||'%'
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
 		</if>
-		<if test="lxmc != null and  lxmc != ''">
-				and t1.lxmc like '%'||trim(#{lxmc})||'%'
+		<if test="jhnf != null and  jhnf != ''">
+				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		group by t2.id
+		and xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+			)
 	</select>
 	<select id="selectWqgzjhListid1" parameterType="gcglgcgzgj" resultType="gcglgcgzgj">
 	
