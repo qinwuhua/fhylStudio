@@ -92,6 +92,65 @@ function importJhsh(xmlx){
 	weatherDlg.ShowDialog();
 	return false;
 }
+function queryZjxd(xmbm){
+	grid.id="zjxdList";
+	grid.url="../../../jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field:'cz',title:'操作',width:100,align:'center',
+			formatter : function(value, row, index) {
+				var result = '<a href="javascript:updateZjxdById('+"'"+index+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				result += '<a href="javascript:deleteZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
+function deleteZjxdById(id){
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/dropZjxdById.do',
+		dataType:'json',
+		data:'zjxd.id='+id,
+		success:function(data){
+			if(data.result=="true"){
+				alert("删除成功！");
+				$('#zjxdList').datagrid("reload");
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
+function openZjzj(index){
+	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
+	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
+}
+function updateZjxdById(index){
+	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
+	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd_edit.jsp',800,300);
+}
+function openZjxd(){
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
+	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd.jsp',800,300);
+}
 /**
  * 弹出窗口
  * @param id 窗口ID
@@ -234,6 +293,25 @@ function gridBind(grid){
 	    view:grid.view,
 	    detailFormatter:Rh.detailFormatter,
 	    onExpandRow:Rh.onExpandRow
+	});
+	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
+}
+function gridBind1(grid){
+	gridObj = $('#'+grid.id).datagrid({
+	    url:grid.url,
+	    queryParams:grid.queryParams,
+	    striped:grid.striped,
+	    pagination:grid.pagination,
+	    rownumbers:grid.rownumbers,
+	    pageNumber:grid.pageNumber,
+	    pageSize:grid.pageSize,
+	    height:grid.height,
+	    width:grid.width,
+	    columns:grid.columns,
+	    onSelect:Rh.onSelect,
+	    onUnselect:Rh.onUnselect,
+	    onClickRow:Rh.onClickRow,
+	    onLoadSuccess:Rh.onLoadSuccess
 	});
 	$('#'+grid.id).datagrid('resize',{width:$("body").width()*0.97});
 }

@@ -24,13 +24,13 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
-			queryLmsj();
+			queryXj();
 		});
-		function queryLmsj(){
+		function queryXj(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
-			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
+			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -39,28 +39,15 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
-				{field:'sbzt',title:'计划下达',width:100,align:'center',
+				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result="";
-						xmlx=1;
-						if(row.xdzt==0){
-							var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
-						}else{
-							result="计划下达";
-						}
-						return result;
-					}
-				},
-				{field:'xdzt',title:'资金追加',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result="";
-						result='<a href="javascript:openZjzj('+"'"+index+"'"+')" style="color:blue;">资金追加</a>';
+						var result='<a href="javascript:openWindow('+"'xjzjxd'"+','+"'新建工程项目 — 资金下发'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/xjgc_zjxd.jsp'"+',900,400)" style="color:blue;">资金下发</a>';
 						return result;
 					}
 				},
@@ -83,7 +70,7 @@
 			gridBind(grid);
 		}
 		function exportJhshxx(){
-			var param='jhsh.xmlx=1&jhsh.xdzt=0';
+			var param='jhsh.xmlx=3&jhsh.xdzt=0';
 			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
 		}
 		$(window).resize(function () { 
@@ -93,7 +80,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;新建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -120,9 +107,9 @@
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
-								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="importJhsh(1)" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<img onclick="importJhsh(3)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

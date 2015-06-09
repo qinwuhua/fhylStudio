@@ -154,16 +154,32 @@
 	</select>
 	
 	<update id="updateJhshxxLmsj" parameterType="java.util.List">
-		update jhsh_sjgz c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
-		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
+		update jhsh_sjgz c set 
+		<if test="pfztz!=null">c.pfztz=#{pfztz},</if>
+		<if test="bbzzj!=null">c.bbzzj=#{bbzzj},</if>
+		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
+		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
+		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		c.xdzt=${xdzt} 
+		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateJhshxxLmgz" parameterType="java.util.List">
-		update jhsh_lmgz c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
-		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
+		update jhsh_lmgz c set 
+		<if test="pfztz!=null">c.pfztz=#{pfztz},</if>
+		<if test="bbzzj!=null">c.bbzzj=#{bbzzj},</if>
+		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
+		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
+		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		c.xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateJhshxxXj" parameterType="java.util.List">
-		update jhsh_xj c set c.pfztz=#{pfztz},c.bbzzj=#{bbzzj},c.sbzzj=#{sbzzj},
-		c.xdwh=#{xdwh},c.xdsj=#{xdsj},c.xdzt=${xdzt} where c.xmbm=#{xmbm}
+		update jhsh_xj c set 
+		<if test="pfztz!=null">c.pfztz=#{pfztz},</if>
+		<if test="bbzzj!=null">c.bbzzj=#{bbzzj},</if>
+		<if test="sbzzj!=null">c.sbzzj=#{sbzzj},</if>
+		<if test="xdwh!=null">c.xdwh=#{xdwh},</if>
+		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
+		c.xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">

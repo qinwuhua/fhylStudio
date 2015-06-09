@@ -321,17 +321,24 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030404',
-		title:'工程改造路面升级项目',
+		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu4',
-		href:'./jhkzjxd/gclmsj.jsp'
+		href:'../qqgl/zjxd/lmsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030405',
-		title:'工程改造路面改建项目',
+		title:'路面改造工程项目',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu4',
-		href:'./jhkzjxd/gclmgj.jsp'
+		href:'../qqgl/zjxd/lmgz.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101030410',
+		title:'新建工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu4',
+		href:'../qqgl/zjxd/xjgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030406',

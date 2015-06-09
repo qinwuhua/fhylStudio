@@ -30,7 +30,7 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
 			grid.queryParams=params;
 			grid.height=$(window).height()-180;
 			grid.width=$('#searchField').width();
@@ -44,23 +44,10 @@
 						return result;
 					}
 				},
-				{field:'sbzt',title:'计划下达',width:100,align:'center',
+				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result="";
-						xmlx=1;
-						if(row.xdzt==0){
-							var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
-						}else{
-							result="计划下达";
-						}
-						return result;
-					}
-				},
-				{field:'xdzt',title:'资金追加',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result="";
-						result='<a href="javascript:openZjzj('+"'"+index+"'"+')" style="color:blue;">资金追加</a>';
+						var result='<a href="javascript:openWindow('+"'lmsjzjxd'"+','+"'升级改造工程项目 — 资金下发'"+','+
+							"'/jxzhpt/page/qqgl/zjxd/lmsj_zjxd.jsp'"+',900,400)" style="color:blue;">资金下发</a>';
 						return result;
 					}
 				},
@@ -93,7 +80,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;升级改造工程项目</div>
+		<div id="p_top">计划管理>&nbsp;项目计划资金下达>&nbsp;升级改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>

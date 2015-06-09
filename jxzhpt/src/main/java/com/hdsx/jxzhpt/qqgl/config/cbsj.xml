@@ -200,7 +200,8 @@
 		<if test="gq!=null">c.gq=#{gq},</if>
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
-		<if test="pfsj!=null">c.pfsj=#{pfsj}</if>
+		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjLmsj" parameterType="cbsj">
@@ -228,7 +229,8 @@
 		<if test="gq!=null">c.gq=#{gq},</if>
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
-		<if test="pfsj!=null">c.pfsj=#{pfsj}</if>
+		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjXj" parameterType="cbsj">
@@ -256,7 +258,8 @@
 		<if test="gq!=null">c.gq=#{gq},</if>
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
-		<if test="pfsj!=null">c.pfsj=#{pfsj}</if>
+		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
 	
