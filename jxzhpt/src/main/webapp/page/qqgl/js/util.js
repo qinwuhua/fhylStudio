@@ -76,7 +76,22 @@ function deleteFile(id){
 		});
 	}
 }
-//最新选择的行的项目编码
+function importJhsh(xmlx){
+	var url="/jxzhpt/qqgl/importExcelJhxd.do?xmlx="+xmlx;
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+xmlx,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
 /**
  * 弹出窗口
  * @param id 窗口ID
@@ -100,6 +115,10 @@ function openWindow(id,title,url,width,height){
 		}
 		if(id=="jhxd" && xmlx==1){
 			queryLmsj();
+		}else if(id=="jhxd" && xmlx==2){
+			queryLmgz();
+		}else if(id=="jhxd" && xmlx==3){
+			queryXj();
 		}
 	});
 }

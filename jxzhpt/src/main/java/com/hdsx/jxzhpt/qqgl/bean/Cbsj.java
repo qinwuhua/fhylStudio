@@ -26,13 +26,20 @@ public class Cbsj {
 	private String jsxz;//建设性质
 	private String lj;//路基
 	private String ql;//桥梁
+	private String ql_ym;//桥梁延米
 	private String hd;//涵洞
+	private String hd_m;//涵洞米
 	private String mc;//面层
 	private String jc;//基层
 	private String dc;//垫层
 	private String sd;//隧道（延米/座）
+	private String sd_ym;//隧道延米
 	private String dq;//大桥（名称/长度/单跨）
+	private String dq_cd;//大桥长度
+	private String dq_dk;//大桥单跨
 	private String sdmc;//隧道（名称/双幅长度/类型）
+	private String sd_sfcd;//隧道双幅长度
+	private String sd_lx;//隧道类型
 	private String kgsj;//开工时间
 	private String wgsj;//完工时间
 	private String gq;//工期
@@ -247,5 +254,47 @@ public class Cbsj {
 	}
 	public void setJaf(String jaf) {
 		this.jaf = jaf;
+	}
+	public String getQl_ym() {
+		return ql_ym;
+	}
+	public void setQl_ym(String ql_ym) {
+		this.ql_ym = ql_ym;
+	}
+	public String getHd_m() {
+		return hd_m;
+	}
+	public void setHd_m(String hd_m) {
+		this.hd_m = hd_m;
+	}
+	public String getSd_ym() {
+		return sd_ym;
+	}
+	public void setSd_ym(String sd_ym) {
+		this.sd_ym = sd_ym;
+	}
+	public String getDq_cd() {
+		return dq_cd;
+	}
+	public void setDq_cd(String dq_cd) {
+		this.dq_cd = dq_cd;
+	}
+	public String getDq_dk() {
+		return dq_dk;
+	}
+	public void setDq_dk(String dq_dk) {
+		this.dq_dk = dq_dk;
+	}
+	public String getSd_sfcd() {
+		return sd_sfcd;
+	}
+	public void setSd_sfcd(String sd_sfcd) {
+		this.sd_sfcd = sd_sfcd;
+	}
+	public String getSd_lx() {
+		return sd_lx;
+	}
+	public void setSd_lx(String sd_lx) {
+		this.sd_lx = sd_lx;
 	}
 }

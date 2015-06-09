@@ -69,7 +69,10 @@
 		<!-- 计划审核 -->
 		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
 		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
-		
+		<action name="queryLxshByXmbm" class="jhshController" method="queryLxshByXmbm"></action>
+		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
+		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
+		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
 	<!-- rh -->
 	</package>
 </struts>

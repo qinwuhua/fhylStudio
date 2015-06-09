@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 @Service
 public class jhshServerImpl extends BaseOperate implements JhshServer {
@@ -64,27 +65,69 @@ public class jhshServerImpl extends BaseOperate implements JhshServer {
 	}
 	@Override
 	public List<Jhsh> queryJhshLmgz(Jhsh jhsh, int page, int rows) {
-		// TODO Auto-generated method stub
-		return null;
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshLmgz",params);
 	}
 	@Override
 	public int queryJhshCountLmgz(Jhsh jhsh) {
-		// TODO Auto-generated method stub
-		return 0;
+		params.put("jhsh", jhsh);
+		return queryOne("queryJhshCountLmgz", params);
 	}
 	@Override
 	public List<Jhsh> queryJhshXj(Jhsh jhsh, int page, int rows) {
-		// TODO Auto-generated method stub
-		return null;
+		params.put("jhsh", jhsh);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryJhshXj",params);
 	}
 	@Override
 	public int queryJhshCountXj(Jhsh jhsh) {
-		// TODO Auto-generated method stub
-		return 0;
+		params.put("jhsh", jhsh);
+		return queryOne("queryJhshCountXj", params);
 	}
 	@Override
 	public boolean updateJhshxxLmsj(List<Jhsh> jhshs) {
 		return updateBatch("updateJhshxxLmsj", jhshs)==jhshs.size();
+	}
+	@Override
+	public boolean updateJhshxxLmgz(List<Jhsh> list) {
+		return updateBatch("updateJhshxxLmgz", list)==list.size();
+	}
+	@Override
+	public boolean updateJhshxxXj(List<Jhsh> list) {
+		return updateBatch("updateJhshxxXj", list)==list.size();
+	}
+	@Override
+	public Lxsh queryLxshLmsjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshLmsjByXmbm", params);
+	}
+	@Override
+	public Lxsh queryLxshLmgzByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshLmgzByXmbm", params);
+	}
+	@Override
+	public Lxsh queryLxshXjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryLxshXjByXmbm", params);
+	}
+	@Override
+	public Jhsh queryJhshxxLmsjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryJhshxxLmsjByXmbm", params);
+	}
+	@Override
+	public Jhsh queryJhshxxLmgzByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryJhshxxLmgzByXmbm", params);
+	}
+	@Override
+	public Jhsh queryJhshxxXjByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryJhshxxXjByXmbm", params);
 	}
 
 }

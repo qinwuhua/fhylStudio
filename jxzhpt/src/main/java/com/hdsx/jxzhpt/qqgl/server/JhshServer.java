@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.qqgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface JhshServer {
 	/**
@@ -71,4 +72,52 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateJhshxxLmsj(List<Jhsh> jhsh);
+	/**
+	 * 修改计划审核信息
+	 * @param list 计划审核信息
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxLmgz(List<Jhsh> list);
+	/**
+	 * 修改计划审核信息
+	 * @param list 计划审核信息
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxXj(List<Jhsh> list);
+	/**
+	 * 查询升级项目的立项审核信息
+	 * @param xmbm 项目编码
+	 * @return 立项审核信息
+	 */
+	public Lxsh queryLxshLmsjByXmbm(String xmbm);
+	/**
+	 * 查询改造项目的立项审核信息
+	 * @param xmbm 项目编码
+	 * @return 立项审核信息
+	 */
+	public Lxsh queryLxshLmgzByXmbm(String xmbm);
+	/**
+	 * 查询新建项目的立项审核信息
+	 * @param xmbm 项目编码
+	 * @return 立项审核信息
+	 */
+	public Lxsh queryLxshXjByXmbm(String xmbm);
+	/**
+	 * 查询路面升级计划审核信息
+	 * @param xmbm 项目编码
+	 * @return 计划审核信息
+	 */
+	public Jhsh queryJhshxxLmsjByXmbm(String xmbm);
+	/**
+	 * 查询路面改造计划审核信息
+	 * @param xmbm 项目编码
+	 * @return 计划审核信息
+	 */
+	public Jhsh queryJhshxxLmgzByXmbm(String xmbm);
+	/**
+	 * 查询新建项目计划审核信息
+	 * @param xmbm 项目编码
+	 * @return 计划审核信息
+	 */
+	public Jhsh queryJhshxxXjByXmbm(String xmbm);
 }

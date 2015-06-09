@@ -27,6 +27,7 @@ public class Jhsh {
 	private String pfztz;//批复总投资
 	private String bbzzj;//部补助投资
 	private String sbzzj;//省补助资金
+	private int xdzt;//下达状态
 	//用到立项审核表中的数据
 	private String ghlxbh;//路线编码
 	private String xzqhdm;//行政区划代码
@@ -152,5 +153,11 @@ public class Jhsh {
 	}
 	public void setTsdq(String tsdq) {
 		this.tsdq = tsdq;
+	}
+	public int getXdzt() {
+		return xdzt;
+	}
+	public void setXdzt(int xdzt) {
+		this.xdzt = xdzt;
 	}
 }
