@@ -101,6 +101,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void updateCbsj() throws Exception{
 		try{
 			boolean b = false;
+			System.out.println("是否编辑："+cbsj.getSfbj());
 			if(cbsj.getXmlx()==1){
 				b = cbsjServer.updateCbsjLmsj(cbsj);
 			}else if(cbsj.getXmlx()==2){

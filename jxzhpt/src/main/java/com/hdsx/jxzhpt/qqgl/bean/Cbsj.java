@@ -49,6 +49,7 @@ public class Cbsj {
 	private String jaf;//建安费
 	private int sbzt;//上报状态
 	private int shzt;//审核状态
+	private String sfbj;//是否编辑
 	//以上是初步设计表中的字段，以下是立项审核中的字段
 	private String ghlxbh;//路线编码
 	private String lxmc;//路线名称
@@ -296,5 +297,11 @@ public class Cbsj {
 	}
 	public void setSd_lx(String sd_lx) {
 		this.sd_lx = sd_lx;
+	}
+	public String getSfbj() {
+		return sfbj;
+	}
+	public void setSfbj(String sfbj) {
+		this.sfbj = sfbj;
 	}
 }

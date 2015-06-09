@@ -22,16 +22,17 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.opensymphony.xwork2.ModelDriven;
 
 @Scope("prototype")
 @Controller
-public class Plan_zjxdController extends BaseActionSupport {
+public class Plan_zjxdController extends BaseActionSupport implements ModelDriven<Plan_zjxd> {
 	private int page=1;
 	private int rows=3;
 	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
-	private Plan_zjxd zjxd;
+	private Plan_zjxd zjxd=new Plan_zjxd();
 	private Plan_zjzj zjzj;
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
@@ -85,6 +86,15 @@ public class Plan_zjxdController extends BaseActionSupport {
 	}
 	public void addZjxd(){
 		try {
+			System.out.println("项目ID："+zjxd.getXmid());
+			System.out.println("年份："+zjxd.getXdnf());
+			System.out.println("批复总投资："+zjxd.getXdzj());
+			System.out.println("是否追加："+zjxd.getSfzj());
+			System.out.println("天保部门："+zjxd.getTbdw());
+			System.out.println("填报时间："+zjxd.getTbtime());
+			System.out.println("部补助资金："+zjxd.getBtzzj());
+			System.out.println("省投资："+zjxd.getStz());
+			System.out.println("文号："+zjxd.getJhxdwh());
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("result",  new Boolean(zjxdServer.addZjxd(zjxd)).toString());
 			JsonUtils.write(result,getresponse().getWriter());
@@ -360,5 +370,9 @@ public class Plan_zjxdController extends BaseActionSupport {
 	}
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+	@Override
+	public Plan_zjxd getModel() {
+		return zjxd;
 	}
 }

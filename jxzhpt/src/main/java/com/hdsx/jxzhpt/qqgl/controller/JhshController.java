@@ -160,7 +160,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		title[11]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)11), null,20);
 		title[12]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)12), null,20);
 		title[13]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)13), null,20);
-		title[14]=new ExcelTitleCell("省补助资金",true, new ExcelCoordinate(0, (short)14), null,20);
+		title[14]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)14), null,20);
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
 		attribute.put("0", "xmmc");//项目名称
@@ -224,9 +224,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		attribute.put("14", "sbzzj");//省补助资金
 		excel.setAttributes(attribute);
 		try {
+			boolean b=false;
 			List<Jhsh> readerExcel = ExcelImportUtil.readerExcel(fileupload, Jhsh.class, 1, excel);
 			for (Jhsh item : readerExcel) {
-				System.out.println("项目名称："+item.getXmmc());
+				item.setXdzt(1);
+			}
+			if(jhsh.getXmlx()==1){
+				b=jhshServer.updateJhshxxLmsj(readerExcel);
+			}else if(jhsh.getXmlx()==2){
+				b=jhshServer.updateJhshxxLmgz(readerExcel);
+			}else if(jhsh.getXmlx()==3){
+				b=jhshServer.updateJhshxxXj(readerExcel);
+			}
+			if(b){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

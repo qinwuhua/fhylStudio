@@ -5,7 +5,8 @@
 		select * from plan_zjxd where xmid=#{id} order by xdnf
 	</select>
 	<select id="queryZjxdSumByXmid" parameterType="string" resultType="plan_zjxd">
-		select count(z.xmid) as xmid,sum(z.xdzj) as xdzj from plan_zjxd z 
+		select count(z.xmid) as xmid,nvl(sum(z.xdzj),0) as xdzj,
+		nvl(sum(z.btzzj),0) as btzzj,nvl(sum(z.stz),0) as stz from plan_zjxd z 
 		where z.xmid=#{id} group by z.xmid
 	</select>
 	<select id="queryGydwmcById" parameterType="string" resultType="string">
@@ -30,30 +31,14 @@
 	</insert>
 	<update id="editZjxd" parameterType="plan_zjxd">
 		update plan_zjxd set 
-			<if test="xdnf!=null and xdnf!=''">
-				xdnf=#{xdnf},
-			</if>
-			<if test="xdzj!=null and xdzj!=''">
-				xdzj=#{xdzj},
-			</if>
-			<if test="btzzj!=null and btzzj!=''">
-				btzzj=#{btzzj},
-			</if>
-			<if test="stz!=null and stz!=''">
-				stz=#{stz},
-			</if>
-			<if test="jhxdwh!=null and jhxdwh!=''">
-				jhxdwh=#{jhxdwh},
-			</if>
-			<if test="sfzj!=null and sfzj!=''">
-				sfzj=#{sfzj},
-			</if>
-			<if test="tbdw!=null and tbdw!=''">
-				tbdw=#{tbdw},
-			</if>
-			<if test="tbtime!=null and tbtime!=''">
-				tbtime=#{tbtime},
-			</if>
+			<if test="xdnf!=null and xdnf!=''">xdnf=#{xdnf},</if>
+			<if test="xdzj!=null and xdzj!=''">xdzj=#{xdzj},</if>
+			<if test="btzzj!=null and btzzj!=''">btzzj=#{btzzj},</if>
+			<if test="stz!=null and stz!=''">stz=#{stz},</if>
+			<if test="jhxdwh!=null and jhxdwh!=''">jhxdwh=#{jhxdwh},</if>
+			<if test="sfzj!=null and sfzj!=''">sfzj=#{sfzj},</if>
+			<if test="tbdw!=null and tbdw!=''">tbdw=#{tbdw},</if>
+			<if test="tbtime!=null and tbtime!=''">tbtime=#{tbtime},</if>
 			id=#{id}
 		where id=#{id}
 	</update>
