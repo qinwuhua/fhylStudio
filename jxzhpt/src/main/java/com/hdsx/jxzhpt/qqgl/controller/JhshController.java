@@ -200,6 +200,53 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
+	public void exportZjxd(){
+		//设置表头
+		ExcelTitleCell [] title=new ExcelTitleCell[12];
+		title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+		title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
+		title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
+		title[3]=new ExcelTitleCell("计划下达文号",false, new ExcelCoordinate(0, (short)3), null,20);
+		title[4]=new ExcelTitleCell("计划下达时间",false, new ExcelCoordinate(0, (short)4), null,20);
+		title[5]=new ExcelTitleCell("批复总投资",false, new ExcelCoordinate(0, (short)5), null,20);
+		title[6]=new ExcelTitleCell("部补助资金",false, new ExcelCoordinate(0, (short)6), null,20);
+		title[7]=new ExcelTitleCell("省补助资金",false, new ExcelCoordinate(0, (short)7), null,20);
+		title[8]=new ExcelTitleCell("下达年份",false, new ExcelCoordinate(0, (short)8), null,20);
+		title[9]=new ExcelTitleCell("下达总投资",false, new ExcelCoordinate(0, (short)9), null,20);
+		title[10]=new ExcelTitleCell("下达车购税",false, new ExcelCoordinate(0, (short)10), null,20);
+		title[11]=new ExcelTitleCell("下达省投资",false, new ExcelCoordinate(0, (short)11), null,20);
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "xdwh");//计划下达文号
+		attribute.put("4", "xdsj");//计划下达时间
+		attribute.put("5", "pfztz");//批复总投资
+		attribute.put("6", "bbzzj");//部补助资金
+		attribute.put("7", "sbzzj");//省补助资金
+		jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(),"xzqhdm"));
+		List<Object> excelData=new ArrayList<Object>();
+		String titleName="";
+		String fileName="";
+		if(jhsh.getXmlx()==1){
+			excelData.addAll(jhshServer.queryJhshLmsj(jhsh, 0, 0));
+			titleName="升级改造工程项目";
+			fileName="升级改造工程项目-资金下达";
+		}
+		else if(jhsh.getXmlx()==2){
+			excelData.addAll(jhshServer.queryJhshLmgz(jhsh, 0, 0));
+			titleName="路面改造工程项目";
+			fileName="路面改造工程项目-资金下达";
+		}
+		else if(jhsh.getXmlx()==3){
+			excelData.addAll(jhshServer.queryJhshXj(jhsh, 0, 0));
+			titleName="新建工程项目";
+			fileName="新建工程项目-资金下达";
+		}
+		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+	}
 	/**
 	 * 导入计划审核信息
 	 * @throws Exception

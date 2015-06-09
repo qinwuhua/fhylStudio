@@ -83,7 +83,8 @@
 			gridBind(grid);
 		}
 		function exportJhshxx(){
-			var param='jhsh.xmlx=2&jhsh.xdzt=0';
+			var param='jhsh.xmlx=2&jhsh.xdzt=0&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
+					'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue");
 			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
 		}
 		$(window).resize(function () { 

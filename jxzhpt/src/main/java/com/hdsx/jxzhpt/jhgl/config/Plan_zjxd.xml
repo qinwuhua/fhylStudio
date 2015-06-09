@@ -22,12 +22,47 @@
 		select count(*) from plan_zjxd where xmid=#{id}
 	</select>
 	<insert id="addZjxd" parameterType="plan_zjxd">
-		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh) 
-		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime},#{btzzj},#{stz},#{jhxdwh})
+		insert into plan_zjxd (id
+		<if test="xmid!=null">,xmid</if>
+		<if test="xdnf!=null">,xdnf</if>
+		<if test="xdzj!=null">,xdzj</if>
+		<if test="sfzj!=null">,sfzj</if>
+		<if test="tbdw!=null">,tbdw</if>
+		<if test="tbtime!=null">,tbtime</if>
+		<if test="btzzj!=null">,btzzj</if>
+		<if test="stz!=null">,stz</if>
+		<if test="jhxdwh!=null">,jhxdwh</if>
+		) 
+		values (SYS_GUID()
+		<if test="xmid!=null">,#{xmid}</if>
+		<if test="xdnf!=null">,#{xdnf}</if>
+		<if test="xdzj!=null">,#{xdzj}</if>
+		<if test="sfzj!=null">,#{sfzj}</if>
+		<if test="tbdw!=null">,#{tbdw}</if>
+		<if test="tbtime!=null">,#{tbtime}</if>
+		<if test="btzzj!=null">,#{btzzj}</if>
+		<if test="stz!=null">,#{stz}</if>
+		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
 	<insert id="insertBatch" parameterType="plan_zjxd">
-		insert into plan_zjxd (id,xmid,xdnf,xdzj,sfzj,tbdw,tbtime,btzzj,stz,jhxdwh) 
-		values (SYS_GUID(),#{xmid},#{xdnf},#{xdzj},#{sfzj},#{tbdw},#{tbtime},#{btzzj},#{stz},#{jhxdwh})
+		insert into plan_zjxd (id<if test="xmid!=null">,xmid</if>
+		<if test="xdnf!=null">,xdnf</if>
+		<if test="xdzj!=null">,xdzj</if>
+		<if test="sfzj!=null">,sfzj</if>
+		<if test="tbdw!=null">,tbdw</if>
+		<if test="tbtime!=null">,tbtime</if>
+		<if test="btzzj!=null">,btzzj</if>
+		<if test="stz!=null">,stz</if>
+		<if test="jhxdwh!=null">,jhxdwh</if>) 
+		values (SYS_GUID()<if test="xmid!=null">,#{xmid}</if>
+		<if test="xdnf!=null">,#{xdnf}</if>
+		<if test="xdzj!=null">,#{xdzj}</if>
+		<if test="sfzj!=null">,#{sfzj}</if>
+		<if test="tbdw!=null">,#{tbdw}</if>
+		<if test="tbtime!=null">,#{tbtime}</if>
+		<if test="btzzj!=null">,#{btzzj}</if>
+		<if test="stz!=null">,#{stz}</if>
+		<if test="jhxdwh!=null">,#{jhxdwh}</if>)
 	</insert>
 	<update id="editZjxd" parameterType="plan_zjxd">
 		update plan_zjxd set 

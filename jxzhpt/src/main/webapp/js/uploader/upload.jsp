@@ -155,6 +155,15 @@
 		if(flag==3){
 			parent.window.location = '/jxzhpt/page/qqgl/jhsh/xjgc.jsp';
 		}
+		if(flag==4){
+			parent.window.location = '/jxzhpt/page/qqgl/zjxd/lmsj.jsp';
+		}
+		if(flag==5){
+			parent.window.location = '/jxzhpt/page/qqgl/zjxd/lmgz.jsp';
+		}
+		if(flag==6){
+			parent.window.location = '/jxzhpt/page/qqgl/zjxd/xjgc.jsp';
+		}
  		dg.cancel();
 	}
 </script>

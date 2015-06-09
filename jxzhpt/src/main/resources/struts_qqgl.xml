@@ -85,6 +85,7 @@
 		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
 		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
 		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
+		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
 	<!-- rh -->
 	</package>
 </struts>

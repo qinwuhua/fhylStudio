@@ -107,6 +107,7 @@
 		<action name="editShuihStatusBatch" class="plan_shuihController" method="editShuihStatusBatch"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
+		<action name="importJhshZjzj" class="plan_zjxdController" method="importJhshZjzj"/>
 		<action name="queryZjzjByXmid" class="plan_zjxdController" method="queryZjzjByXmid"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>
 		<action name="addZjxd" class="plan_zjxdController" method="addZjxd"/>

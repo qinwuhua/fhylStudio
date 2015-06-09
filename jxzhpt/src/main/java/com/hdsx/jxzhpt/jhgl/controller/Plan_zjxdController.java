@@ -123,6 +123,25 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 			e.printStackTrace();
 		}
 	}
+	public void importJhshZjzj(){
+		ExcelEntity excel=new ExcelEntity();
+		Map<String, String> attribute=new HashMap<String, String>();
+		String gydwmc = zjxdServer.queryGydwmcById(gydwdm);
+		attribute.put("1", "xmid");
+		attribute.put("8", "xdnf");
+		attribute.put("9", "xdzj");
+		attribute.put("10", "btzzj");
+		attribute.put("11", "stz");
+		excel.setAttributes(attribute);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);
+			eachPlanZjxdSfzj(readerExcel,gydwmc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	///////////////////////////////////旧方法
 	public void importGcsj_zjxd(){
 		ExcelEntity excel=new ExcelEntity();
 		Map<String, String> attribute=new HashMap<String, String>();
@@ -301,6 +320,18 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 	private void eachPlanZjxdSfzj(List<Plan_zjxd> readerExcel) throws IOException {
 		for (Plan_zjxd item : readerExcel) {
 			System.out.println("项目ID："+item.getXmid()+"   计划文号:"+item.getJhxdwh());
+			int sfzj = zjxdServer.queryZjxdExistById(item.getXmid());
+			item.setSfzj(sfzj>0? "1" : "0");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			item.setTbtime(df.format(new Date()));
+		}
+		if(zjxdServer.insertBatch(readerExcel)){
+			getresponse().getWriter().print(fileuploadFileName+"导入成功");
+		}
+	}
+	private void eachPlanZjxdSfzj(List<Plan_zjxd> readerExcel,String gydwmc) throws IOException {
+		for (Plan_zjxd item : readerExcel) {
+			item.setTbdw(gydwmc);
 			int sfzj = zjxdServer.queryZjxdExistById(item.getXmid());
 			item.setSfzj(sfzj>0? "1" : "0");
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

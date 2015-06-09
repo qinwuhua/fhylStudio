@@ -28,6 +28,9 @@
 			    textField:'text'
 			});
 			$('#zjxdForm').form("load",parent.YMLib.Var.row);
+			$('#yxdzj').val(parent.YMLib.Var.row.xdzj);
+			$('#ybtzzj').val(parent.YMLib.Var.row.btzzj);
+			$('#ystz').val(parent.YMLib.Var.row.stz);
 		});
 		function updateZjxd(){
 			isNumber($('#xdzj'));
@@ -42,22 +45,23 @@
 				data:'zjxd.xmid='+parent.YMLib.Var.xmid,
 				success:function(data){
 					if(data!=null){
-						if(Number(parent.YMLib.Var.shxx.pfztz)<Number(data.xdzj)+Number($('#xdzj').val())){
+						if(Number(parent.YMLib.Var.shxx.pfztz)<(Number(data.xdzj)-Number($('#yxdzj').val())+Number($('#xdzj').val()))){
 							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.pfztz+
-									'，已经下达资金：'+Number(data.xdzj));
+									'，已经下达资金：'+(Number(data.xdzj)-Number($('#yxdzj').val())));
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.bbzzj)<Number(data.btzzj)+Number($('#btzzj').val())){
+						}else if(Number(parent.YMLib.Var.shxx.bbzzj)<(Number(data.btzzj)-Number($('#ybtzzj').val())+Number($('#btzzj').val()))){
 							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+parent.YMLib.Var.shxx.bbzzj+
-									',已下达部补助资金：'+data.btzzj);
+									',已下达部补助资金：'+(data.btzzj-Number($('#ybtzzj').val())));
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.sbzzj)<Number(data.stz)+Number($('#stz').val())){
+						}else if(Number(parent.YMLib.Var.shxx.sbzzj)<(Number(data.stz)-Number($('#ystz').val())+Number($('#stz').val()))){
 							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+parent.YMLib.Var.shxx.sbzzj+
-									',已下达省补助资金：'+data.stz);
+									',已下达省补助资金：'+(data.stz-Number($('#ystz').val())));
 							tj=false;
 						}
 					}
 				}
 			});
+			return;
 			if(!tj){
 				return;
 			}
@@ -101,6 +105,7 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="xdzj" name="xdzj" onblur="isNumber(this)" type="text" value="0" style="width: 80px;" />&nbsp;万元
+								<input id="yxdzj" name="yxdzj" type="hidden"/>
 								<input id="xmid" name="xmid" type="hidden" />
 								<input id="id" name="id" type="hidden" />
 							</td>
@@ -110,6 +115,7 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="btzzj" name="btzzj" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
+								<input id="ybtzzj" name="ybtzzj" type="hidden"/>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
@@ -117,6 +123,7 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="stz" name="stz" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
+								<input id="ystz" name="ystz" type="hidden"/>
 							</td>
 						</tr>
 						<tr style="height: 35px;">
@@ -127,10 +134,10 @@
 								<select name="xdnf" id="xdnf" style="width: 80px;"></select>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文号：</font></b>
+								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="jhxdwh" name="jhxdwh" type="text"  style="width: 80px;" />&nbsp;
+								<input id="tbtime" name="tbtime" type="text" class="easyui-datebox" style="width: 100px;"/>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报部门：</font></b>
@@ -153,14 +160,6 @@
 											<label for="rList_1">是</label></td>
 									</tr>
 								</table>
-							</td>
-						</tr>
-						<tr style="height: 35px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">填报时间：</font></b>
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="tbtime" name="tbtime" type="text" class="easyui-datebox" style="width: 100px;"/>
 							</td>
 						</tr>
 					</table>

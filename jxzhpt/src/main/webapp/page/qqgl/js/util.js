@@ -92,6 +92,22 @@ function importJhsh(xmlx){
 	weatherDlg.ShowDialog();
 	return false;
 }
+function importJhshZjzj(xmlx){
+	var url="/jxzhpt/jhgl/importJhshZjzj.do?gydwdm="+$.cookie("unit");
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+xmlx,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
 function queryZjxd(xmbm){
 	grid.id="zjxdList";
 	grid.url="../../../jhgl/queryZjxdByXmId.do";
@@ -119,7 +135,6 @@ function queryZjxd(xmbm){
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
-		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
@@ -146,6 +161,7 @@ function openZjzj(index,xmlx){
 }
 function updateZjxdById(index){
 	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd_edit.jsp',800,300);
 }
 function openZjxd(){
