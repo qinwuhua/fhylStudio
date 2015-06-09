@@ -71,4 +71,10 @@ public interface Plan_zjxdServer {
 	 * @return
 	 */
 	boolean insertHslyZjzj(Plan_hslyZjzj zjzj);
+	/**
+	 * 根据项目ID查询资金追加记录
+	 * @param zjzj
+	 * @return
+	 */
+	List<Plan_zjzj> queryZjzjByXmid(Plan_zjzj zjzj);
 }

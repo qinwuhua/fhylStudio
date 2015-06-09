@@ -86,15 +86,6 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 	}
 	public void addZjxd(){
 		try {
-			System.out.println("项目ID："+zjxd.getXmid());
-			System.out.println("年份："+zjxd.getXdnf());
-			System.out.println("批复总投资："+zjxd.getXdzj());
-			System.out.println("是否追加："+zjxd.getSfzj());
-			System.out.println("天保部门："+zjxd.getTbdw());
-			System.out.println("填报时间："+zjxd.getTbtime());
-			System.out.println("部补助资金："+zjxd.getBtzzj());
-			System.out.println("省投资："+zjxd.getStz());
-			System.out.println("文号："+zjxd.getJhxdwh());
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("result",  new Boolean(zjxdServer.addZjxd(zjxd)).toString());
 			JsonUtils.write(result,getresponse().getWriter());
@@ -124,7 +115,14 @@ public class Plan_zjxdController extends BaseActionSupport implements ModelDrive
 			e.printStackTrace();
 		}
 	}
-	
+	public void queryZjzjByXmid(){
+		List<Plan_zjzj> list = zjxdServer.queryZjzjByXmid(zjzj);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void importGcsj_zjxd(){
 		ExcelEntity excel=new ExcelEntity();
 		Map<String, String> attribute=new HashMap<String, String>();

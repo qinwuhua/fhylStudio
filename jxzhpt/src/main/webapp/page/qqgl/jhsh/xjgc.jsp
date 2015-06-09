@@ -57,10 +57,10 @@
 						return result;
 					}
 				},
-				{field:'xdzt',title:'资金追加',width:100,align:'center',
+				{field:'zjzj',title:'资金追加',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a href="javascript:openZjzj('+"'"+index+"'"+')" style="color:blue;">资金追加</a>';
+						result='<a href="javascript:openZjzj('+"'"+index+"',"+"'3'"+')" style="color:blue;">资金追加</a>';
 						return result;
 					}
 				},

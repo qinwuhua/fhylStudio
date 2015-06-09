@@ -139,9 +139,10 @@ function deleteZjxdById(id){
 		}
 	});
 }
-function openZjzj(index){
+function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
-	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
+	YMLib.Var.xmlx=xmlx;
+	openWindow('zjzj','资金追加','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
 }
 function updateZjxdById(index){
 	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
@@ -161,7 +162,7 @@ function openZjxd(){
  */
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
-	if(id=="jhxd"){
+	if(id=="jhxd" || id=="zjzj"){
 		YMLib.Var.xmlx=xmlx;
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
@@ -172,11 +173,11 @@ function openWindow(id,title,url,width,height){
 		}else if(id=="xjgcedit"){
 			queryXj();
 		}
-		if(id=="jhxd" && xmlx==1){
+		if((id=="jhxd" || id=="zjzj") && xmlx==1){
 			queryLmsj();
-		}else if(id=="jhxd" && xmlx==2){
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==2){
 			queryLmgz();
-		}else if(id=="jhxd" && xmlx==3){
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==3){
 			queryXj();
 		}
 	});
@@ -263,7 +264,7 @@ var Rh={
 	};
 //此对象为绑定列表对象
 var grid={
-		url:null,queryParams:null,height:null,width:null,
+		url:null,queryParams:null,height:null,width:null,fitColumns:false,
 		columns:null,striped:true,pagination:true,
 		rownumbers:true,pageNumber:1,pageSize:10,
 		view:detailview,detailFormatter:null,onExpandRow:null};
@@ -301,6 +302,7 @@ function gridBind1(grid){
 	    url:grid.url,
 	    queryParams:grid.queryParams,
 	    striped:grid.striped,
+	    fitColumns:grid.fitColumns,
 	    pagination:grid.pagination,
 	    rownumbers:grid.rownumbers,
 	    pageNumber:grid.pageNumber,

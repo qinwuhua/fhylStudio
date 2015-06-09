@@ -56,4 +56,7 @@
 	<select id="queryTsdqByXzqh" parameterType="treenode" resultType="treenode">
 		select t.name as name from xtgl_xzqhtsdq s left join xtgl_tsdq t on s.parent=t.id where s.xzqhdm =#{id}
 	</select>
+	<select id="queryZjzjByXmid" parameterType="plan_zjzj" resultType="plan_zjzj">
+		select * from plan_zjzj z where z.planid=#{planId}
+	</select>
 </mapper>
