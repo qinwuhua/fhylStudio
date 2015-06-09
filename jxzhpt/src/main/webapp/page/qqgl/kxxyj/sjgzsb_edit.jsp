@@ -156,7 +156,7 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
+		//selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
 	}
 	
 	

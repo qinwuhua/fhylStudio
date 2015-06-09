@@ -133,7 +133,7 @@ text-decoration:none;
 		//alert(data);
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/updateLmgzkxx.do',
+			url:'/jxzhpt/qqgl/updateXjkxx.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){

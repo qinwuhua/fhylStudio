@@ -188,11 +188,37 @@
 		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm}
 		where xmbm=#{xmbm}
 	</update>
+	<update id="updateLmgzkxx" parameterType="kxxyj">
+		update kxxyj_lmgz set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
+		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm}
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateXjkxx" parameterType="kxxyj">
+		update kxxyj_xj set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},jsxz=#{jsxz},dq=#{dq},
+		dq_m=#{dq_m},jsjsdj=#{jsjsdj},sd=#{sd},sd_m=#{sd_m},jsdw=#{jsdw},sbthcd=#{sbthcd},tbbmbm=#{tbbmbm},
+		kgny=#{kgny},wgny=#{wgny},bzdw=#{bzdw},tzgs=#{tzgs},gkpfwh=#{gkpfwh},pfsj=#{pfsj},xzqh=#{xzqh},xzqhdm=#{xzqhdm}
+		where xmbm=#{xmbm}
+	</update>
+	
 	<update id="sbsjgzkxx" parameterType="hashmap">
 		update KXXYJ_SJGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
 	</update>
+	<update id="sblmgzkxx" parameterType="hashmap">
+		update KXXYJ_LMGZ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="sbxjkxx" parameterType="hashmap">
+		update KXXYJ_XJ set sbzt=1,sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	
 	<update id="thSjgzkxx" parameterType="hashmap">
 		update KXXYJ_SJGZ set sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="thLmgzkxx" parameterType="hashmap">
+		update KXXYJ_LMGZ set sbthcd=#{sbthcd} where id=#{id}
+	</update>
+	<update id="thXjkxx" parameterType="hashmap">
+		update KXXYJ_XJ set sbthcd=#{sbthcd} where id=#{id}
 	</update>
 	
 	<select id="selectSjgzkxshList" parameterType="lxsh" resultType="kxxyj">
@@ -384,6 +410,27 @@
 		insert into cbsj_sjgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw)
 		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw})
 	</insert>
+	<update id="shlmgzkxx" parameterType="hashmap">
+		update KXXYJ_LMGZ set shzt=1 where id=#{id}
+	</update>
+	<select id="queryshlmgz" parameterType="string" resultType="kxxyj">
+		select * from KXXYJ_LMGZ where ${value}
+	</select>
+	<insert id="insertlmgzcb" parameterType="kxxyj">
+		insert into cbsj_lmgz(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw})
+	</insert>
+	<update id="shxjkxx" parameterType="hashmap">
+		update KXXYJ_XJ set shzt=1 where id=#{id}
+	</update>
+	<select id="queryshxj" parameterType="string" resultType="kxxyj">
+		select * from KXXYJ_XJ where ${value}
+	</select>
+	<insert id="insertxjcb" parameterType="kxxyj">
+		insert into cbsj_xj(id,xmmc,xmbm,xzqh,qdzh,zdzh,jsjsdj,jsxz,jsdw)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{jsdw})
+	</insert>
+	
 	<select id="sjgzsfcb" parameterType="string" resultType="kxxyj">
 		select * from cbsj_sjgz where ${value} and sfbj=1
 	</select>
@@ -392,5 +439,24 @@
 	</update>
 	<delete id="deletesjgzcb" parameterType="hashmap">
 		delete from cbsj_sjgz where xmbm=#{xmbm}
+	</delete>
+	
+	<select id="lmgzsfcb" parameterType="string" resultType="kxxyj">
+		select * from cbsj_lmgz where ${value} and sfbj=1
+	</select>
+	<update id="thLmgzkxx1" parameterType="hashmap">
+		update KXXYJ_LMGZ set shzt=0 where xmbm=#{xmbm}
+	</update>
+	<delete id="deletelmgzcb" parameterType="hashmap">
+		delete from cbsj_lmgz where xmbm=#{xmbm}
+	</delete>
+	<select id="xjsfcb" parameterType="string" resultType="kxxyj">
+		select * from cbsj_xj where ${value} and sfbj=1
+	</select>
+	<update id="thXjkxx1" parameterType="hashmap">
+		update KXXYJ_XJ set shzt=0 where xmbm=#{xmbm}
+	</update>
+	<delete id="deletexjcb" parameterType="hashmap">
+		delete from cbsj_xj where xmbm=#{xmbm}
 	</delete>
 </mapper>

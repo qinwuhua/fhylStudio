@@ -10,8 +10,27 @@ function edit(index){
 	YMLib.UI.createWindow('lxxx','编辑可行性研究信息','sjgzsb_edit.jsp','lxxx',900,400);
 }
 //
-
+function xiangxi1(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','lmgzsb_xx.jsp','lxxx',900,400);
+}
+function edit1(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','编辑可行性研究信息','lmgzsb_edit.jsp','lxxx',900,400);
+}
 //
+function xiangxi2(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','可行性研究详细信息','xjsb_xx.jsp','lxxx',900,400);
+}
+function edit2(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','编辑可行性研究信息','xjsb_edit.jsp','lxxx',900,400);
+}
 function removes(id){
 	parent.$('#'+id).window('destroy');
 }

@@ -61,7 +61,7 @@
 				var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
 				$.ajax({
 					 type : "POST",
-					 url : "/jxzhpt/qqgl/sbsjgzkxx.do",
+					 url : "/jxzhpt/qqgl/sblmgzkxx.do",
 					 dataType : 'json',
 					 data : data,
 					 success : function(msg){
@@ -109,7 +109,7 @@
 			if(confirm('您确定退回该项目？')){
 					$.ajax({
 						 type : "POST",
-						 url : "/jxzhpt/qqgl/thSjgzkxx.do",
+						 url : "/jxzhpt/qqgl/thLmgzkxx.do",
 						 dataType : 'json',
 						 data : data,
 						 success : function(msg){
@@ -131,7 +131,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目立项申请>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;工程可行性研究申请>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
