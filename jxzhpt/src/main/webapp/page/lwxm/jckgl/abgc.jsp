@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理安保工程项目</title>
+
 <link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
@@ -168,11 +169,12 @@ function tuiHui(){
 </script>
 <style type="text/css">
 TD {
-font-size: 12px;
+font-size: 12px;margin:0px;padding:0px;
 }
 a{
 text-decoration:none;
 }
+.abgc_td td{padding-right:6px;}
 </style>
 </head>
 <body>
@@ -186,16 +188,16 @@ text-decoration:none;
 		</td></tr>
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
-			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
+			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 				<div>
-						<table>
-							<tr style="margin:8px 0px 4px 20px;">
+						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="32">
 							  <td>管养单位：</td>
-							  <td colspan="3" style="width:218px"><select  id="gydw" style="width:218px"></select></td>
+							  <td colspan="3" style="width:220px;"><select  id="gydw" style="width:220px;" ></select></td>
 							  <td>行政区划：</td>
-							  <td colspan="3" style="width:218px"><select id="xzqhmc" style="width:218px"></select></td>
+							  <td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
 							  <td>路线名称：</td>
 							  <td><input type="text" id="lxmc"  style="width:100px;" /></td>
 							  <td>路线编码：</td>
@@ -203,7 +205,7 @@ text-decoration:none;
 							  <td></td>
 							  <td></td>
 							</tr>
-							<tr style="margin:8px 0px 4px 20px;">
+							<tr  height="32">
 							  <td>项目年份：</td>
 							  <td><select id="xmnf" style="width:70px"></select></td>
 							  <td>上报状态：</td>
@@ -219,7 +221,7 @@ text-decoration:none;
 							  <td><select id="bz" style="width:105px" class="easyui-combobox"></select></td>
 							  
 							</tr>
-							<tr style="margin:8px 0px 4px 20px;">
+							<tr   height="32">
 							  <td colspan="10">
 							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglAbgc();"style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
