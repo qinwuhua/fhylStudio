@@ -86,6 +86,16 @@
 		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
 		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
+		<!-- 养护大中修与水毁 -->
+		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
+		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
+		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
+		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>
+		<action name="queryXmsq" class="xmsqController" method="queryXmsq"></action>
+		<action name="deleteXmsq" class="xmsqController" method="deleteXmsq"></action>
+		<action name="updateXmsqSbzt" class="xmsqController" method="updateXmsqSbzt"></action>
+		<action name="updateXmsqSp" class="xmsqController" method="updateXmsqSp"></action>
+		
 	<!-- rh -->
 	</package>
 </struts>

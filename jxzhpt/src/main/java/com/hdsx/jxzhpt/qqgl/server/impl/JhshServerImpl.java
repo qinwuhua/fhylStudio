@@ -13,8 +13,8 @@ import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 @Service
-public class jhshServerImpl extends BaseOperate implements JhshServer {
-	public jhshServerImpl(){
+public class JhshServerImpl extends BaseOperate implements JhshServer {
+	public JhshServerImpl(){
 		super("jhsh", "jdbc");
 	}
 	private Map<String, Object> params=new HashMap<String, Object>();

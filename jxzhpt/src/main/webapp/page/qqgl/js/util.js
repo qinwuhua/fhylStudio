@@ -14,6 +14,34 @@ function userPanduan(unit2){
 	}
 }
 //-------------------------------------------公用方法
+
+/**
+ * 验证文本内容
+ * @param id 元素ID
+ * @param type 验证类型(数字)
+ */
+function validateText(id,type,result){
+	if(!result){
+		return result;
+	}
+	if($('#'+id).val()=='' || $('#'+id).val()==null){
+		alert($('#'+id).parent().prev().html()+"不能为空！");
+		return false;
+	}
+	if(type!=null){
+		var reg=null;
+		if(type=="number"){
+			reg = new RegExp("^[0-9]*$");
+			var double=new RegExp("^[0-9]*.[0-9]*$");
+			if(!reg.test($('#'+id).val()) && !double.test($('#'+id).val())){
+				alert("此处请输入数字！");
+				$('#'+id).focus();
+				return false;
+			}
+		}
+	}
+	return result;
+}
 /**
  * 加载特殊地区下拉列表
  * @param id 元素ID
@@ -23,6 +51,22 @@ function loadTsdq(id){
 	    url:'../../../jhgl/queryTsdq.do',
 	    valueField:'id',
 	    textField:'text'
+	});
+}
+/**
+ * 加载特殊地区下拉列表
+ * @param id 元素ID
+ * @param multiple 是否多选
+ */
+function loadTsdq(id,multiple){
+	$('#'+id).combobox({    
+	    url:'../../../jhgl/queryTsdq.do',
+	    valueField:'id',
+	    textField:'text',
+	    multiple:multiple,
+	    onSelect:function(){
+	    	$('#tsdq').val($('#'+id).combobox("getText"));
+	    }
 	});
 }
 /**
@@ -188,6 +232,10 @@ function openWindow(id,title,url,width,height){
 			queryLmgz();
 		}else if(id=="xjgcedit"){
 			queryXj();
+		}else if(id=="yhdzxadd"){
+			queryYhdzx();
+		}else if(id=="shxmadd"){
+			queryShxm();
 		}
 		if((id=="jhxd" || id=="zjzj") && xmlx==1){
 			queryLmsj();
