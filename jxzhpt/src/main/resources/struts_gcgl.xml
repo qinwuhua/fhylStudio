@@ -42,6 +42,7 @@
 	<action name="exportAbyb" class="gcglabgcController" method="exportAbyb"/>
 	<action name="insertCGS" class="gcglabgcController" method="insertCGS"/>
 	<action name="insertCGS1" class="gcglabgcController" method="insertCGS1"/>
+	<action name="exportxjyb" class="gcglabgcController" method="exportxjyb"/>
 	<action name="exportgjyb" class="gcglabgcController" method="exportgjyb"/>
 	<action name="exportsjyb" class="gcglabgcController" method="exportsjyb"/>
 	<action name="exportsjyb_set" class="gcglabgcController" method="exportsjyb_set"/>
@@ -135,6 +136,20 @@
 	<action name="selectXjgcjhList1" class="xjgcController" method="selectXjgcjhList1"/>
 	<action name="insertXjgckg" class="xjgcController" method="insertXjgckg"/>
 	<action name="selectxjgcYbByJhid" class="xjgcController" method="selectxjgcYbByJhid"/>
+	<action name="selectxjgcYbByJhid1" class="xjgcController" method="selectxjgcYbByJhid1"/>
+	<action name="insertxjYb" class="xjgcController" method="insertxjYb"/>
+	<action name="updatexjgcYb" class="xjgcController" method="updatexjgcYb"/>
+	<action name="insertXjwg" class="xjgcController" method="insertXjwg"/>
+	<action name="insertXjwwg" class="xjgcController" method="insertXjwwg"/>
+	<action name="deletexjYb" class="xjgcController" method="deletexjYb"/>
+	<action name="sbXjYb" class="xjgcController" method="sbXjYb"/>
+	<action name="shxjYb" class="xjgcController" method="shxjYb"/>
+	<action name="selectXjjhList2" class="xjgcController" method="selectXjjhList2"/>
+	<action name="selectXjCgsList" class="xjgcController" method="selectXjCgsList"/>
+	<action name="insertXjCgs" class="xjgcController" method="insertXjCgs"/>
+	<action name="updateXjCgs" class="xjgcController" method="updateXjCgs"/>
+	<action name="deleteXjCgs" class="xjgcController" method="deleteXjCgs"/>
+	
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
 	<action name="updategcgzgjYb" class="gcglgcgzgjController" method="updategcgzgjYb"/>

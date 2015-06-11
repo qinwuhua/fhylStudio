@@ -185,7 +185,7 @@ public class XjgcController extends BaseActionSupport{
 		this.rows = rows;
 	}
 	//添加月报
-	public void insertgcgzgjYb(){
+	public void insertxjYb(){
 		if("县级".equals(yhtype)){
 			gcglgcgzgj.setSfsj(11);
 		}
@@ -236,7 +236,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//修改月报
-	public void updategcgzgjYb(){
+	public void updatexjgcYb(){
 		Boolean bl=xjgcServer.updategcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -245,7 +245,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//删除月报
-	public void deletegcgzgjYb(){
+	public void deletexjYb(){
 		Boolean bl=xjgcServer.deletegcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -254,7 +254,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//审核月报
-	public void shgcgzgjYb(){
+	public void shxjYb(){
 		Boolean bl=xjgcServer.shgcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -263,7 +263,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//添加车购税
-	public void insertGcgzgjCgs(){
+	public void insertXjCgs(){
 		Boolean bl=xjgcServer.insertGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -272,7 +272,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//查询cgs
-	public void selectGcgzgjCgsList(){
+	public void selectXjCgsList(){
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
@@ -288,7 +288,7 @@ public class XjgcController extends BaseActionSupport{
 		}
 	}
 	//修改cgs
-	public void updateGcgzgjCgs(){
+	public void updateXjCgs(){
 		Boolean bl=xjgcServer.updateGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -296,7 +296,7 @@ public class XjgcController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void deleteGcgzgjCgs(){
+	public void deleteXjCgs(){
 		Boolean bl=xjgcServer.deleteGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -409,7 +409,7 @@ public class XjgcController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void insertGcgzgjwg(){
+	public void insertXjwg(){
 		Boolean bl=xjgcServer.insertWqgzwg(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -417,7 +417,7 @@ public class XjgcController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
-	public void insertGcgzgjwwg(){
+	public void insertXjwwg(){
 		Boolean bl=xjgcServer.insertWqgzwwg(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -477,7 +477,7 @@ public class XjgcController extends BaseActionSupport{
 		
 	}
 	//修改月报状态
-	public void sbGcgzgjYb(){
+	public void sbXjYb(){
 		System.out.println(gcglgcgzgj);
 		Boolean bl=xjgcServer.sbWqgzYb(gcglgcgzgj);
 		if(bl){
@@ -542,7 +542,7 @@ public class XjgcController extends BaseActionSupport{
 	}		
 	
 	//查询jihua2
-		public void selectGcgzgjjhList2(){
+		public void selectXjjhList2(){
 			Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){

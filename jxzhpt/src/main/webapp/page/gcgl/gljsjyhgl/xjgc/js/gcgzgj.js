@@ -93,7 +93,7 @@ function Delyb(index){
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/deletegcgzgjYb.do',
+			url:'../../../../gcgl/deletexjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -165,7 +165,7 @@ function tjgcgzgjyb(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertgcgzgjYb.do',
+		url:'../../../../gcgl/insertxjYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -219,7 +219,7 @@ function xggcgzgjyb(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/updategcgzgjYb.do',
+		url:'../../../../gcgl/updatexjgcYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -284,7 +284,7 @@ function tjwqgzwg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzgjwg.do',
+		url:'../../../../gcgl/insertXjwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -308,7 +308,7 @@ function tjwqgzwwg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzgjwwg.do',
+		url:'../../../../gcgl/insertXjwwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -592,7 +592,7 @@ function sbsjyb(index){
 	if(confirm("确认上报吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbGcgzgjYb.do',
+			url:'../../../../gcgl/sbXjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -612,7 +612,7 @@ function thsjyb(index){
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbGcgzgjYb.do',
+			url:'../../../../gcgl/sbXjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

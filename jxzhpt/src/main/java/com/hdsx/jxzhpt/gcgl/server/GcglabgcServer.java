@@ -85,6 +85,8 @@ public interface GcglabgcServer {
 
 	int selectWqgzjhListcount1(Gcglabgc gcglabgc);
 
+	List<Excel_list> exportxjyb(Gcglabgc gcglabgc);
+
 	
 
 }

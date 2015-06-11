@@ -249,8 +249,39 @@ where t1.spzt='1'
 	 <select id="exportgjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from JHSH_LMGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+			where 1=1 and c.tbyf is null 
+			<if test="tiaojian != null and  tiaojian != ''">
+				<if test="tiaojian =='未拨付'">
+					and c.tbyf is null
+				</if>
+				<if test="tiaojian =='已拨付'">
+					and c.tbyf is not null
+				</if>
+			</if>
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="jhnf != null and  jhnf != ''">
+				and t.xmbm like trim(#{jhnf})||'%'
+		</if>
+		and xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+			)
+	</select>
+	
+	<select id="exportxjyb" parameterType="gcglabgc" resultType="elist">
+		select 
+		t.xmbm v_0,
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		from JHSH_XJ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -303,7 +334,7 @@ where t1.spzt='1'
 	 <select id="exportsjyb" parameterType="gcglabgc" resultType="elist">
 		select 
 		t.xmbm v_0,
-		substr(t.xmbm,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
+		substr(t.xmbm,0,4) v_2,t.kgsj v_3,t.wgsj v_4,t.xmmc v_1,zj.ztz v_5,zj.btz v_6,0 v_7,0 v_8,'同意' v_9,#{tbyf} v_10,to_char(sysdate,'yyyy-mm-dd') v_11,#{tbr} v_12
 		from JHSH_SJGZ t left join (select sum(xdzj) ztz,sum(btzzj) btz,sum(stz),xmid from plan_zjxd group by xmid) zj on t.xmbm=zj.xmid left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 and c.tbyf is null 
 			<if test="tiaojian != null and  tiaojian != ''">
