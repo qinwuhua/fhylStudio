@@ -71,8 +71,8 @@ public class Gcglgcgzsj implements Serializable {
 	private String scbz;
 	//计划
 	private String sbnf;
-	private Date jhkgsj;
-	private Date jhwgsj;
+	private String jhkgsj;
+	private String jhwgsj;
 	private String xmkid;
 	private String xmmc;
 	private String sftqss;
@@ -107,11 +107,11 @@ public class Gcglgcgzsj implements Serializable {
 	private String jhsydfzcje;
 	
 	private Date xdsj;
-	private Date sjkgsj;
-	private Date sjwgsj;
+	private String sjkgsj;
+	private String sjwgsj;
 	private String kgzt;
 	private String jgzt;
-	private Date yjwgsj;
+	private String yjwgsj;
 	private String sfqxkg;
 	private String jsdw;
 	private String sgdw;
@@ -546,18 +546,7 @@ public class Gcglgcgzsj implements Serializable {
 	public void setSbnf(String sbnf) {
 		this.sbnf = sbnf;
 	}
-	public Date getJhkgsj() {
-		return jhkgsj;
-	}
-	public void setJhkgsj(Date jhkgsj) {
-		this.jhkgsj = jhkgsj;
-	}
-	public Date getJhwgsj() {
-		return jhwgsj;
-	}
-	public void setJhwgsj(Date jhwgsj) {
-		this.jhwgsj = jhwgsj;
-	}
+	
 	public String getXmkid() {
 		return xmkid;
 	}
@@ -738,18 +727,7 @@ public class Gcglgcgzsj implements Serializable {
 	public void setXdsj(Date xdsj) {
 		this.xdsj = xdsj;
 	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+
 	public String getKgzt() {
 		return kgzt;
 	}
@@ -762,12 +740,7 @@ public class Gcglgcgzsj implements Serializable {
 	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
-	public Date getYjwgsj() {
-		return yjwgsj;
-	}
-	public void setYjwgsj(Date yjwgsj) {
-		this.yjwgsj = yjwgsj;
-	}
+	
 	public String getSfqxkg() {
 		return sfqxkg;
 	}
@@ -888,6 +861,36 @@ public class Gcglgcgzsj implements Serializable {
 	}
 	public void setJhsydfzcje(String jhsydfzcje) {
 		this.jhsydfzcje = jhsydfzcje;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
+	}
+	public String getYjwgsj() {
+		return yjwgsj;
+	}
+	public void setYjwgsj(String yjwgsj) {
+		this.yjwgsj = yjwgsj;
 	}
 
 }

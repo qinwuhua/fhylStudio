@@ -578,6 +578,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			if("gcgj".equals(flag)){
 				fanhui = gcglgcgzgjServer.updatagjSFQX(gcglgcgzgj);
 			}
+			if("xjgc".equals(flag)){
+				fanhui = gcglgcgzgjServer.updataxjSFQX(gcglgcgzgj);
+			}
 			if("gcsj".equals(flag)){
 				fanhui = gcglgcgzgjServer.updatasjSFQX(gcglgcgzgj);		
 			}

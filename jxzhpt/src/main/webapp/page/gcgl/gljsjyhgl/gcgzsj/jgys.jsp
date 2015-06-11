@@ -36,7 +36,7 @@
 		fileShow();
 		showJGYS();
 	});
-	var xxId=parent.obj1.id;
+	var xxId=parent.obj1.XMBM;
 
 	function loadUploadify(){
 		$("#uploadSGXK").uploadify({
