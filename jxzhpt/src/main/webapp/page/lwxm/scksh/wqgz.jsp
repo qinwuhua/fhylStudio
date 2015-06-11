@@ -155,8 +155,8 @@ text-decoration:none;
                              	<td>行政区划：</td>
                               	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
                               	</select></td>
-                               <td>桥梁编号：</td>
-        						<td><input type="text" id="qlbh" style="width:72px;" /></td>
+                               <td align="right">桥梁编号：</td>
+        						<td><input type="text" id="qlbh" style="width:70px;" /></td>
                               	<td>桥梁名称：</td>
                               	<td><input id="qlmc" type="text" style="width:76px"/></td>
                               	<td>路线编码：</td>
@@ -179,7 +179,7 @@ text-decoration:none;
                               <td>	<select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>按跨径分类：</td>
-                              	<td><select id="akjfl" style="width:65px"class="easyui-combobox">
+                              	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
                               	</select>
                               	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:80px"class="easyui-combobox">

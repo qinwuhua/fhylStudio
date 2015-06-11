@@ -191,7 +191,7 @@ text-decoration:none;
                               	  <td colspan="3" style="width:220px;"><select id="gydw" style="width:220px"></select></td>
                              	<td>行政区划：</td>
                               	<td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
-                               <td>路线名称：</td>
+                               <td align="right">路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
         						<td>路线编码：</td>
                               	<td><input type="text" id="lxbm"style="width:70px"/></td>
@@ -209,7 +209,7 @@ text-decoration:none;
                              <td>技术等级：</td>
                               <td><select id="jsdj" style="width:70px"class="easyui-combobox"></select></td>
                               <td>按跨径分类：</td>
-                              <td><select id="akjfl" style="width:60px"class="easyui-combobox"></select></td>
+                              <td><select id="akjfl" style="width:74px"class="easyui-combobox"></select></td>
                               <td>桥梁编号：</td>
                               <td><input type="text" id="qlbh"style="width:70px"/></td>
                            </tr>
