@@ -92,6 +92,22 @@ function importJhsh(xmlx){
 	weatherDlg.ShowDialog();
 	return false;
 }
+function importJhshZjzj(xmlx){
+	var url="/jxzhpt/jhgl/importJhshZjzj.do?gydwdm="+$.cookie("unit");
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+xmlx,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
 function queryZjxd(xmbm){
 	grid.id="zjxdList";
 	grid.url="../../../jhgl/queryZjxdByXmId.do";
@@ -119,7 +135,6 @@ function queryZjxd(xmbm){
 		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
 		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
 		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
-		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
@@ -139,12 +154,14 @@ function deleteZjxdById(id){
 		}
 	});
 }
-function openZjzj(index){
+function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
-	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
+	YMLib.Var.xmlx=xmlx;
+	openWindow('zjzj','资金追加','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
 }
 function updateZjxdById(index){
 	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd_edit.jsp',800,300);
 }
 function openZjxd(){
@@ -161,7 +178,7 @@ function openZjxd(){
  */
 function openWindow(id,title,url,width,height){
 	YMLib.Var.xmbm=xmbm;
-	if(id=="jhxd"){
+	if(id=="jhxd" || id=="zjzj"){
 		YMLib.Var.xmlx=xmlx;
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
@@ -172,11 +189,11 @@ function openWindow(id,title,url,width,height){
 		}else if(id=="xjgcedit"){
 			queryXj();
 		}
-		if(id=="jhxd" && xmlx==1){
+		if((id=="jhxd" || id=="zjzj") && xmlx==1){
 			queryLmsj();
-		}else if(id=="jhxd" && xmlx==2){
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==2){
 			queryLmgz();
-		}else if(id=="jhxd" && xmlx==3){
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==3){
 			queryXj();
 		}
 	});
@@ -263,7 +280,7 @@ var Rh={
 	};
 //此对象为绑定列表对象
 var grid={
-		url:null,queryParams:null,height:null,width:null,
+		url:null,queryParams:null,height:null,width:null,fitColumns:false,
 		columns:null,striped:true,pagination:true,
 		rownumbers:true,pageNumber:1,pageSize:10,
 		view:detailview,detailFormatter:null,onExpandRow:null};
@@ -301,6 +318,7 @@ function gridBind1(grid){
 	    url:grid.url,
 	    queryParams:grid.queryParams,
 	    striped:grid.striped,
+	    fitColumns:grid.fitColumns,
 	    pagination:grid.pagination,
 	    rownumbers:grid.rownumbers,
 	    pageNumber:grid.pageNumber,

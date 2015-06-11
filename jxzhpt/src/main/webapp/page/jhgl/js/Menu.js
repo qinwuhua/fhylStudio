@@ -116,7 +116,7 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./jhkgl/zhfz.jsp'
 	});
-	createMenux('LeftMenu',{
+	/*createMenux('LeftMenu',{
 		id:'menu_0101030104',
 		title:'工程改造路面升级项目',
 		imgSrc:'../../images/sj_s.png',
@@ -129,7 +129,7 @@ $(function() {
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu1',
 		href:'./jhkgl/gclmgj.jsp'
-	});
+	});*/
 	createMenux('LeftMenu',{
 		id:'menu_0101030106',
 		title:'养护大中修项目',

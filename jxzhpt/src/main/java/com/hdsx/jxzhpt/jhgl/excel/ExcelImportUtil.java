@@ -6,17 +6,21 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.DateUtil;
 
 public class ExcelImportUtil {
 	/**
@@ -71,13 +75,18 @@ public class ExcelImportUtil {
 	 */
 	private static String getCellValue(HSSFCell cell) {  
         String cellValue = "";  
-        DecimalFormat df = new DecimalFormat("#");  
+        DecimalFormat df = new DecimalFormat("#");
         switch (cell.getCellType()) {  
         case HSSFCell.CELL_TYPE_STRING:  
             cellValue = cell.getRichStringCellValue().getString().trim();  
             break;  
-        case HSSFCell.CELL_TYPE_NUMERIC:  
-            cellValue = df.format(cell.getNumericCellValue()).toString();  
+        case HSSFCell.CELL_TYPE_NUMERIC:
+        	if(HSSFDateUtil.isCellDateFormatted(cell)){
+        		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
+        	}else{
+        		cellValue = df.format(cell.getNumericCellValue()).toString();  
+        	}
             break;  
         case HSSFCell.CELL_TYPE_BOOLEAN:  
             cellValue = String.valueOf(cell.getBooleanCellValue()).trim();  

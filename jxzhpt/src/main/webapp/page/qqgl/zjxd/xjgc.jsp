@@ -69,9 +69,10 @@
 				{field:'sbzzj',title:'省补助资金',width:100,align:'center'}]];
 			gridBind(grid);
 		}
-		function exportJhshxx(){
-			var param='jhsh.xmlx=3&jhsh.xdzt=0';
-			window.location.href="/jxzhpt/qqgl/exportJhshxx.do?"+param;
+		function exportZjxd(){
+			var param='jhsh.xmlx=3&jhsh.xdzt=1&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
+			'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue");
+			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -108,8 +109,8 @@
 									<option value="是">是</option>
 								</select>
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="importJhsh(3)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhshZjzj(6)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

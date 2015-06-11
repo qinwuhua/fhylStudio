@@ -83,4 +83,9 @@ public class Plan_zjxdServerImpl extends BaseOperate implements Plan_zjxdServer 
 	public boolean insertHslyZjzj(Plan_hslyZjzj zjzj) {
 		return insert("insertHslyZjzj", zjzj)>0;
 	}
+
+	@Override
+	public List<Plan_zjzj> queryZjzjByXmid(Plan_zjzj zjzj) {
+		return queryList("queryZjzjByXmid",zjzj);
+	}
 }
