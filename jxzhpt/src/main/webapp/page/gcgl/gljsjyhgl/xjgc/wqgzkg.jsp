@@ -11,37 +11,49 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
+	<script type="text/javascript" src="js/gcgzgj.js"></script>
 	<script type="text/javascript">
 	var sbsj;
 	var sbyf;
 	$(function(){
-			
+// 			var myDate = new Date();
+// 			var y = myDate.getFullYear();
+// 			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)
+// 			var d = myDate.getDate();
+// 			sbsj = y+"-"+m+"-"+d;
+// 			sbyf = y+"-"+m;
+// 			$("#tj_sbsj").text(sbsj);
+// 			$("#tj_sbyf").text(sbyf);
+			 
 			$("#tj_sjkgsj").datebox({      
 			});  
 			$("#tj_yjjgsj").datebox({       
 			});  
-			
+			var date=new Date();
+			var y = date.getFullYear();
+			var m = date.getMonth()+1;
+			var d = date.getDate(); 
+			if(m<=9){
+				m='0'+m;
+			}
+			if(d<=9){
+				d='0'+d;
+			}
 			var data=parent.obj1;
 			$('#tj_xdsj').html(data.XDSJ);
-			$('#tj_sjkgsj').datebox('setValue', data.SJKGSJ);
-			$('#tj_yjjgsj').datebox('setValue', data.YJWGSJ);
-			$('#tj_sgdw').val(data.SGDW);
-			$('#tj_jldw').val(data.JLDW);
-			$('#tj_jsdw').val(data.JSDW);
-			$('#tj_htje').val(data.HTJE);
-			$('#tj_gys').val(data.GYS);
-			$('#sfgk').val(data.SFGK);
+			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);
+			$('#tj_yjjgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
 	function checkZJ1(aa){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
+		if(aa.value==''){
+			return;
+		}
 	    if( !g.test(aa.value)){
 	    	alert("请输入正确的金额");
 	    	$(aa).val('');
 	    }
 	}
-		
-		
 	</script>
 	<style type="text/css">
 <!--
@@ -78,7 +90,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <span id="tj_xdsj"></span>
+                                <span id='tj_xdsj'></span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -138,7 +150,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 100px" type="text" id="tj_htje"  onblur="checkZJ1(this)"/>
+                                <input style="width: 100px" type="text" id="tj_htje" onblur="checkZJ1(this)"/>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -150,7 +162,21 @@ a:active {
                                 <input style="width: 100px" type="text" id="tj_gys"  onblur="checkZJ1(this)"/>
                             </td>
                         </tr>
-                       
+                        <tr style="height: 35px;">
+                            <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
+                                color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
+                                width: 23%; padding-right: 5px;">
+                                <b><font color="#009ACD" style=" font-size: 12px">是否归口市局养护部门：</font></b>
+                            </td>
+                            <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
+                                border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;" colspan="3">
+                                <select id="sfgk">
+                                	<option>是</option>
+                                	<option>否</option>
+                                </select>
+                            </td>
+                          
+                        </tr>
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

@@ -21,7 +21,7 @@
 			shezhi();
 		});
 		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.id+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.id;
+			var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM;
 			$.ajax({
 				type:'post',
 				url:'../../../../gcgl/selectWqgzbzzj.do',

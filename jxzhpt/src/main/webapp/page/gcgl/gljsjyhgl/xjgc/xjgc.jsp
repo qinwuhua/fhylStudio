@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
+	<script type="text/javascript" src="js/gcgzgj.js"></script>
 	<style>
 		#p_top{height:33px;line-height:33px;letter-spacing:1px;text-indent:18px;background:url(${pageContext.request.contextPath}/images/jianjiao.png) 8px 0 no-repeat;}
 		#righttop{height:33px;background:url(${pageContext.request.contextPath}/images/righttopbg.gif) 0 0 repeat-x;}
@@ -61,9 +61,8 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;工程改造路面升级施工过程管理</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;新建工程项目</div>
 					</div>
-	           
         	</tr>
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-right: 10px;">
@@ -74,8 +73,7 @@ a:active {
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
         						<span>行政区划：</span>
-        						<input id="xzqh" style="width: 200px;">
-        						
+        						<input id="xzqh" style="width: 150px;">
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">
         						<span>路线名称：</span>
@@ -100,11 +98,11 @@ a:active {
             <tr>
                 <td width="100%" style="padding-top: 1%;padding-left:10px;">
                     <div>
-		<table id="datagrid" >
-			</table>
-		</div>
-		</td>
-		</tr>	
+				<table id="datagrid" >
+				</table>
+				</div>
+			</td>
+			</tr>
 		</table>
 	</div>
 </body>

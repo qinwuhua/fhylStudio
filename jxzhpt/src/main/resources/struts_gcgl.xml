@@ -131,7 +131,10 @@
 	<action name="deleteShFile" class="gcglshController" method="deleteShFile"/>
 	<action name="sbShYb" class="gcglshController" method="sbShYb"/>
 	<action name="selectShjhList1" class="gcglshController" method="selectShjhList1"/>
-	
+	<!-- xj -->
+	<action name="selectXjgcjhList1" class="xjgcController" method="selectXjgcjhList1"/>
+	<action name="insertXjgckg" class="xjgcController" method="insertXjgckg"/>
+	<action name="selectxjgcYbByJhid" class="xjgcController" method="selectxjgcYbByJhid"/>
 	<!-- gcgzgj -->
 	<action name="insertgcgzgjYb" class="gcglgcgzgjController" method="insertgcgzgjYb"/>
 	<action name="updategcgzgjYb" class="gcglgcgzgjController" method="updategcgzgjYb"/>

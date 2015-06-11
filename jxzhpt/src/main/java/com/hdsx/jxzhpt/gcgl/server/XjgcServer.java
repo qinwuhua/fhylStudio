@@ -12,7 +12,7 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 
-public interface GcglgcgzgjServer {
+public interface XjgcServer {
 
 	Boolean insertgcgzgjYb(Gcglgcgzgj gcglgcgzgj);
 
@@ -83,8 +83,6 @@ public interface GcglgcgzgjServer {
 	boolean updatashSFQX(Gcglgcgzgj gcglgcgzgj);
 
 	boolean updatahslySFQX(Gcglgcgzgj gcglgcgzgj);
-
-	boolean updataxjSFQX(Gcglgcgzgj gcglgcgzgj);
 
 
 }

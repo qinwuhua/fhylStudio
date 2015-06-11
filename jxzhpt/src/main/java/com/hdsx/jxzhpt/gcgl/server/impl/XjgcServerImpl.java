@@ -16,14 +16,15 @@ import com.hdsx.jxzhpt.gcgl.server.GcglgcgzgjServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.gcgl.server.XjgcServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 
 @Service
-public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServer {
+public class XjgcServerImpl extends BaseOperate implements XjgcServer {
 
-	public GcglgcgzgjServerImpl() {
-		super("gcglgcgzgj", "jdbc");
+	public XjgcServerImpl() {
+		super("xjgc", "jdbc");
 	}
 
 	@Override
@@ -361,15 +362,6 @@ public class GcglgcgzgjServerImpl extends BaseOperate implements GcglgcgzgjServe
 	@Override
 	public boolean updatahslySFQX(Gcglgcgzgj gcglgcgzgj) {
 		if(update("updatahslySFQX", gcglgcgzgj)>0){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	@Override
-	public boolean updataxjSFQX(Gcglgcgzgj gcglgcgzgj) {
-		if(update("updataxjSFQX", gcglgcgzgj)>0){
 			return true;
 		}else{
 			return false;

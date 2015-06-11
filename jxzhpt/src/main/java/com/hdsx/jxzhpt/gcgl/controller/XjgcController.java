@@ -29,11 +29,11 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglyhdzx;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglzhfz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
-import com.hdsx.jxzhpt.gcgl.server.GcglgcgzgjServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.gcgl.server.XjgcServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
@@ -50,13 +50,13 @@ import com.hdsx.webutil.struts.BaseActionSupport;
  */
 @Scope("prototype")
 @Controller
-public class GcglgcgzgjController extends BaseActionSupport{
+public class XjgcController extends BaseActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	private int page = 1;
 	private int rows = 10;
-	@Resource(name = "gcglgcgzgjServerImpl")
-	private GcglgcgzgjServer gcglgcgzgjServer;
+	@Resource(name = "xjgcServerImpl")
+	private XjgcServer xjgcServer;
 	
 	private Gcglgcgzgj gcglgcgzgj = new Gcglgcgzgj();
 	private String jhid;
@@ -195,7 +195,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		if("省级".equals(yhtype)){
 			gcglgcgzgj.setSfsj(7);
 		}
-		Boolean bl=gcglgcgzgjServer.insertgcgzgjYb(gcglgcgzgj);
+		Boolean bl=xjgcServer.insertgcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -203,13 +203,13 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		}
 	}
 	//查询月报
-	public void selectgcgzgjYbByJhid(){
+	public void selectxjgcYbByJhid(){
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
 		gcglgcgzgj.setSfsj(sfsj);
-		int count=gcglgcgzgjServer.selectgcgzgjYbByJhidCount(gcglgcgzgj);
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectgcgzgjYbByJhid(gcglgcgzgj);
+		int count=xjgcServer.selectgcgzgjYbByJhidCount(gcglgcgzgj);
+		List<Gcglgcgzgj> list=xjgcServer.selectgcgzgjYbByJhid(gcglgcgzgj);
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -220,12 +220,12 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		}
 	}
 	//查询月报
-	public void selectgcgzgjYbByJhid1(){
+	public void selectxjgcYbByJhid1(){
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
-		int count=gcglgcgzgjServer.selectgcgzgjYbByJhidCount1(gcglgcgzgj);
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectgcgzgjYbByJhid1(gcglgcgzgj);
+		int count=xjgcServer.selectgcgzgjYbByJhidCount1(gcglgcgzgj);
+		List<Gcglgcgzgj> list=xjgcServer.selectgcgzgjYbByJhid1(gcglgcgzgj);
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -237,7 +237,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//修改月报
 	public void updategcgzgjYb(){
-		Boolean bl=gcglgcgzgjServer.updategcgzgjYb(gcglgcgzgj);
+		Boolean bl=xjgcServer.updategcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -246,7 +246,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//删除月报
 	public void deletegcgzgjYb(){
-		Boolean bl=gcglgcgzgjServer.deletegcgzgjYb(gcglgcgzgj);
+		Boolean bl=xjgcServer.deletegcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -255,7 +255,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//审核月报
 	public void shgcgzgjYb(){
-		Boolean bl=gcglgcgzgjServer.shgcgzgjYb(gcglgcgzgj);
+		Boolean bl=xjgcServer.shgcgzgjYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -264,7 +264,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//添加车购税
 	public void insertGcgzgjCgs(){
-		Boolean bl=gcglgcgzgjServer.insertGcgzgjCgs(gcglgcgzgj);
+		Boolean bl=xjgcServer.insertGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -276,8 +276,8 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
 		gcglgcgzgj.setJhid(jhid);
-		int count=gcglgcgzgjServer.selectGcgzgjCgsListCount(gcglgcgzgj);
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectGcgzgjCgsList(gcglgcgzgj);
+		int count=xjgcServer.selectGcgzgjCgsListCount(gcglgcgzgj);
+		List<Gcglgcgzgj> list=xjgcServer.selectGcgzgjCgsList(gcglgcgzgj);
 		EasyUIPage<Gcglgcgzgj> e=new EasyUIPage<Gcglgcgzgj>();
 		e.setRows(list);
 		e.setTotal(count);
@@ -289,7 +289,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}
 	//修改cgs
 	public void updateGcgzgjCgs(){
-		Boolean bl=gcglgcgzgjServer.updateGcgzgjCgs(gcglgcgzgj);
+		Boolean bl=xjgcServer.updateGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -297,7 +297,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		}
 	}
 	public void deleteGcgzgjCgs(){
-		Boolean bl=gcglgcgzgjServer.deleteGcgzgjCgs(gcglgcgzgj);
+		Boolean bl=xjgcServer.deleteGcgzgjCgs(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -313,7 +313,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		String type1=type;
 		gcglgcgzgj.setJhid(jhid);
 		gcglgcgzgj.setTiaojian(type);
-		Gcglgcgzgj gcglgcgzgj1=gcglgcgzgjServer.downWqgzFile(gcglgcgzgj);
+		Gcglgcgzgj gcglgcgzgj1=xjgcServer.downWqgzFile(gcglgcgzgj);
 		System.out.println(gcglgcgzgj1);
 		if(gcglgcgzgj1!=null)
 		if(gcglgcgzgj1.getTiaojian()!=""||gcglgcgzgj1.getTiaojian()!=null){
@@ -333,15 +333,15 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		boolean bl = false;
 		if("sgxkwj".equals(type1)){
 			gcglgcgzgj.setSgxkwjfile(inputStreamToByte(inputStream));
-			bl=gcglgcgzgjServer.uploadWqgzFilesgxk(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilesgxk(gcglgcgzgj);
 		}
 		if("jgtcwj".equals(type1)){
 			gcglgcgzgj.setJgtcwjfile(inputStreamToByte(inputStream));
-			bl=gcglgcgzgjServer.uploadWqgzFilejgtc(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilejgtc(gcglgcgzgj);
 		}
 		if("jgyswj".equals(type1)){
 			gcglgcgzgj.setJgyswjfile(inputStreamToByte(inputStream));
-			bl=gcglgcgzgjServer.uploadWqgzFilejgys(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilejgys(gcglgcgzgj);
 		}
 		try {
 			if(bl)
@@ -360,7 +360,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		gcglgcgzgj.setJhid(jhid);
 		gcglgcgzgj.setTiaojian(type);
 		gcglgcgzgj.setLxmc(type+"file");
-		Gcglgcgzgj gcglgcgzgj1=gcglgcgzgjServer.downWqgzFile(gcglgcgzgj);
+		Gcglgcgzgj gcglgcgzgj1=xjgcServer.downWqgzFile(gcglgcgzgj);
 		byte[] data = gcglgcgzgj1.getSgxkwjfile();
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
 		String filename=gcglgcgzgj1.getTiaojian();
@@ -401,8 +401,8 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		e.printStackTrace();
 	}
 	}
-	public void insertGcgzgjkg(){
-		Boolean bl=gcglgcgzgjServer.insertWqgzkg(gcglgcgzgj);
+	public void insertXjgckg(){
+		Boolean bl=xjgcServer.insertWqgzkg(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -410,7 +410,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		}
 	}
 	public void insertGcgzgjwg(){
-		Boolean bl=gcglgcgzgjServer.insertWqgzwg(gcglgcgzgj);
+		Boolean bl=xjgcServer.insertWqgzwg(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -418,7 +418,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		}
 	}
 	public void insertGcgzgjwwg(){
-		Boolean bl=gcglgcgzgjServer.insertWqgzwwg(gcglgcgzgj);
+		Boolean bl=xjgcServer.insertWqgzwwg(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -431,7 +431,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 
 		gcglgcgzgj.setJhid(jhid);
 
-		List<Gcglgcgzgj> list=gcglgcgzgjServer.selectWqgzjhList1(gcglgcgzgj);
+		List<Gcglgcgzgj> list=xjgcServer.selectWqgzjhList1(gcglgcgzgj);
 		
 		try {
 			JsonUtils.write(list, getresponse().getWriter());
@@ -441,7 +441,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	}		
 	public void selectGcgzgjjhFile(){
 		gcglgcgzgj.setJhid(jhid);
-		Gcglgcgzgj g= gcglgcgzgjServer.selectWqgzjhFile(gcglgcgzgj);
+		Gcglgcgzgj g= xjgcServer.selectWqgzjhFile(gcglgcgzgj);
 		try {
 			JsonUtils.write(g, getresponse().getWriter());
 		} catch (IOException e) {
@@ -459,15 +459,15 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		boolean bl = false;
 		if("sgxkwj".equals(type)){
 			gcglgcgzgj.setSgxkwjfile(new byte[] {});
-			bl=gcglgcgzgjServer.uploadWqgzFilesgxk(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilesgxk(gcglgcgzgj);
 		}
 		if("jgtcwj".equals(type)){
 			gcglgcgzgj.setJgtcwjfile(new byte[] {});
-			bl=gcglgcgzgjServer.uploadWqgzFilejgtc(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilejgtc(gcglgcgzgj);
 		}
 		if("jgyswj".equals(type)){
 			gcglgcgzgj.setJgyswjfile(new byte[] {});
-			bl=gcglgcgzgjServer.uploadWqgzFilejgys(gcglgcgzgj);
+			bl=xjgcServer.uploadWqgzFilejgys(gcglgcgzgj);
 		}
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
@@ -479,7 +479,7 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	//修改月报状态
 	public void sbGcgzgjYb(){
 		System.out.println(gcglgcgzgj);
-		Boolean bl=gcglgcgzgjServer.sbWqgzYb(gcglgcgzgj);
+		Boolean bl=xjgcServer.sbWqgzYb(gcglgcgzgj);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
@@ -500,7 +500,8 @@ public class GcglgcgzgjController extends BaseActionSupport{
 	
 	
 	//查询jihua
-	public void selectGcgzgjjhList1(){
+	public void selectXjgcjhList1(){
+		//System.out.println("--------------------------------------------------");
 		try {
 		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 		String tiaojian1="";
@@ -527,9 +528,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzgj.setTiaojian("xjzt");
 		}
-		List<Map<String,Object>> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
+		List<Map<String,Object>> list=xjgcServer.queryGcgjList(gcglgcgzgj);
 		
-		int count=gcglgcgzgjServer.queryGcgjListCount(gcglgcgzgj);
+		int count=xjgcServer.queryGcgjListCount(gcglgcgzgj);
 		
 		EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 			e.setRows(list);
@@ -561,8 +562,8 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			gcglgcgzgj.setSbnf(xmnf);
 			gcglgcgzgj.setTiaojian(bfzt);
 			try{
-			List<Map<String,Object>> list=gcglgcgzgjServer.selectWqgzjhList2(gcglgcgzgj);
-			int count=gcglgcgzgjServer.selectWqgzjhListcount1(gcglgcgzgj);
+			List<Map<String,Object>> list=xjgcServer.selectWqgzjhList2(gcglgcgzgj);
+			int count=xjgcServer.selectWqgzjhListcount1(gcglgcgzgj);
 			EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 			e.setRows(list);
 			e.setTotal(count);
@@ -576,19 +577,16 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			boolean fanhui=false;
 		try{
 			if("gcgj".equals(flag)){
-				fanhui = gcglgcgzgjServer.updatagjSFQX(gcglgcgzgj);
-			}
-			if("xjgc".equals(flag)){
-				fanhui = gcglgcgzgjServer.updataxjSFQX(gcglgcgzgj);
+				fanhui = xjgcServer.updatagjSFQX(gcglgcgzgj);
 			}
 			if("gcsj".equals(flag)){
-				fanhui = gcglgcgzgjServer.updatasjSFQX(gcglgcgzgj);		
+				fanhui = xjgcServer.updatasjSFQX(gcglgcgzgj);		
 			}
 			if("sh".equals(flag)){
-				fanhui = gcglgcgzgjServer.updatashSFQX(gcglgcgzgj);
+				fanhui = xjgcServer.updatashSFQX(gcglgcgzgj);
 			}
 			if("hsly".equals(flag)){
-				fanhui = gcglgcgzgjServer.updatahslySFQX(gcglgcgzgj);
+				fanhui = xjgcServer.updatahslySFQX(gcglgcgzgj);
 			}
 			JsonUtils.write(fanhui, getresponse().getWriter());
 		} catch (Exception e1) {

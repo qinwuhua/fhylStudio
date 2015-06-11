@@ -17,7 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/YMLib.js"></script>
-<script type="text/javascript" src="js/gcgzsj.js"></script>
+<script type="text/javascript" src="js/gcgzgj.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#yssj").datebox({});  

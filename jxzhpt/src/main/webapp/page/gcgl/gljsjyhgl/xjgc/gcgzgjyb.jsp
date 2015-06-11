@@ -4,15 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>工程改造路面升级月报列表</title>
+	<title>工程改造路面改建月报列表</title>
 	<link href="${pageContext.request.contextPath}/css/searchAndNavigation.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="../../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="js/gcgzsj.js"></script>
+	<script type="text/javascript" src="js/gcgzgj.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			showYBlist();
@@ -68,9 +69,8 @@ a:active {
 <body>
 	<div style="text-align: left; font-size: 12px; margin: 0px;">
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
-        	
             <tr>
-                <td height="30" align="left" style="font-size: 12px;">
+               <td height="30" align="left" style="font-size: 12px;">
                     项目计划下达资金共【<span id="jhxdzj" style="color: Red; font-weight: bold;"></span>】万元，
                     累计拨付资金共【<span id="zbfzj" style="color: Red; font-weight: bold;"></span>】万元。
                     其中，<span id="nf"></span>年计划下达资金【<span id="nxdzj" style="color: Red; font-weight: bold;"></span>】万元，
@@ -78,9 +78,8 @@ a:active {
                 </td>
             </tr>
             <tr>
-                <td align="center">
-                    
-                            <table id="ybgrid">           		
+                <td align="center">                   
+                            <table id="ybgrid">
                             </table>
                 </td>
             </tr>
@@ -93,9 +92,11 @@ a:active {
                     <table>
                         <tr>
                             <td>
-                                <a href="javascript:void(0)" >
+                                <img id="imgAdd" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/tianj2.gif'" alt="添加" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/tianj1.gif'" onClick="AddInfo()" src="${pageContext.request.contextPath}/images/Button/tianj1.gif" style="border-width:0px;cursor: hand;" />
+                            </td>
+                            <td>
                                     <img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" style="border: 0" /></a>
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/fanhui1.GIF'" style="border: 0" />
                             </td>
                         </tr>
                     </table>

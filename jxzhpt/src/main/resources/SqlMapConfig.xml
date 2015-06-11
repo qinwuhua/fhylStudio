@@ -134,6 +134,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglyhdzx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglsh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzgj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/xjgc.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglhsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglaqyb.xml"/>
