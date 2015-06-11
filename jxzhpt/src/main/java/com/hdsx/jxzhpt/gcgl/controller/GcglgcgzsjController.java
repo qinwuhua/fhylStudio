@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -427,9 +428,9 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		Gcglgcgzsj gcglgcgzsj=new Gcglgcgzsj();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="and gydwdm in ("+gydw+")";
+			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
 		gcglgcgzsj.setPage(page);
 		gcglgcgzsj.setRows(rows);
@@ -449,9 +450,9 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzsj.setTiaojian("xjzt");
 		}
-		List<Plan_gcsj> list=gcglgcgzsjServer.queryGcgjList(gcglgcgzsj);
+		List<Map<String,Object>> list=gcglgcgzsjServer.queryGcgjList(gcglgcgzsj);
 		int count=gcglgcgzsjServer.queryGcgjListCount(gcglgcgzsj);
-		EasyUIPage<Plan_gcsj> e=new EasyUIPage<Plan_gcsj>();
+		EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -539,9 +540,9 @@ public class GcglgcgzsjController extends BaseActionSupport{
 		gcglgcgzsj.setTbyf(bfyf);
 		gcglgcgzsj.setSbnf(xmnf);
 		gcglgcgzsj.setTiaojian(bfzt);
-		List<Plan_gcgj> list=gcglgcgzsjServer.selectWqgzjhList2(gcglgcgzsj);
+		List<Map<String,Object>> list=gcglgcgzsjServer.selectWqgzjhList2(gcglgcgzsj);
 		int count=gcglgcgzsjServer.selectWqgzjhListcount1(gcglgcgzsj);
-		EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+		EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 		
