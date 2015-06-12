@@ -98,7 +98,7 @@ function showsjgzAll(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
@@ -107,17 +107,17 @@ function showsjgzAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
-	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
-	        		return '已上报';
-	        	else return '未知';
-	        }},
+//	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
+//	        	if(row.sbzt1=='0')
+//        		return '未上报';
+//	        	else if(row.sbzt1=='1'||sbthcd==7)
+//	        		return '已上报';
+//	        	else return '未知';
+//	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -222,16 +222,14 @@ function showlmgzAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
         		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	else 
 	        		return '已上报';
-	        	else return '未知';
+
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
@@ -337,17 +335,17 @@ function showxjAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
+//	            if(row.sbzt1=='1'||sbthcd==7)
+//	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
 	        }},
-	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
-	        		return '已上报';
-	        	else return '未知';
-	        }},
+//	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
+//	        	if(row.sbzt1=='0')
+//        		return '未上报';
+//	        	else if(row.sbzt1=='1'||sbthcd==7)
+//	        		return '已上报';
+//	        	else return '未知';
+//	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -419,7 +417,7 @@ function showAllsjsh(){
 	var gldj=$("#gldj").combobox('getValue');
 	
 	$('#datagrid').datagrid({    
-	    url:'/jxzhpt/qqgl/selectSjgzkxshList.do',
+	    url:'/jxzhpt/qqgl/selectSjgzkxList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -444,9 +442,9 @@ function showAllsjsh(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.shzt=='0')
+	        	if(row.sbzt1=='0')
         		return '未审核';
-	        	else if(row.shzt=='1')
+	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        	else return '未知';
 	        }},
@@ -692,14 +690,19 @@ function showAllxjsh(){
 function fileShow(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
-		data:'file.parentid='+xmbm+'&file.filetype='+type,
+//		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
+//		data:'file.parentid='+xmbm+'&file.filetype='+type,
+//		dataType:'json',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
+		data:'uploads.id='+xmbm,
 		success:function(data){
 			$("#gkpfTable").empty();
 			for ( var i = 0; i < data.length; i++) {
-				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
-				$("#gkpfTable").append(tr);
+				if(data[i].filetype==type){
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+					$("#gkpfTable").append(tr);
+				}
 			}
 		}
 	});
@@ -707,14 +710,19 @@ function fileShow(xmbm,type){
 function fileShow1(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
-		data:'file.parentid='+xmbm+'&file.filetype='+type,
+//		url:'../../../qqgl/queryFileByXmbm.do',
+//		data:'file.parentid='+xmbm+'&file.filetype='+type,
+//		dataType:'json',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
+		data:'uploads.id='+xmbm,
 		success:function(data){
 			$("#gkpfTable").empty();
 			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype==type){
 				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
 				$("#gkpfTable").append(tr);
+				}
 			}
 		}
 	});
