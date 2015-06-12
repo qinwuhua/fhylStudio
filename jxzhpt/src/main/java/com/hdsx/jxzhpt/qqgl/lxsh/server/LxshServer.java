@@ -114,5 +114,9 @@ public interface LxshServer {
 
 	boolean deleteLx(Lxsh lxsh);
 
+	Lxsh cxqdmc(Lxsh lxsh);
+
+	Lxsh cxzdmc(Lxsh lxsh);
+
 
 }

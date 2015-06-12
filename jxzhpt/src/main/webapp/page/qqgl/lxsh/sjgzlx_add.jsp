@@ -47,14 +47,12 @@ text-decoration:none;
 				$("#lxbm").focus();
 				return false;
 			}
-			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
+			if($("#qdmc").html()=="" || $("#qdmc").html()==null){
 				alert("请填写起点名称！");
-				$("#qdmc").focus();
 				return false;
 			}
-			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
+			if($("#zdmc").html()=="" || $("#zdmc").html()==null){
 				alert("请填写止点名称！");
-				$("#zdmc").focus();
 				return false;
 			}
 			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
@@ -157,8 +155,8 @@ text-decoration:none;
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#jsjsdj").combobox('setValue',item.xjsdj);
 					$("#xjsdj").html(item.xjsdj);
-					$("#qdmc").val(item.qdmc);
-					$("#zdmc").val(item.zdmc);
+					$("#qdmc").html(item.qdmc);
+					$("#zdmc").html(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
@@ -168,11 +166,11 @@ text-decoration:none;
 	function saveLxsh(){
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
-		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.xmlx=sjgz";
-		alert(data);
+		//alert(data);
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertLx.do',
@@ -202,6 +200,10 @@ text-decoration:none;
 		$("#lc").html(zlc);
 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		if($("#qdzh").val()!='')
+			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+		if($("#zdzh").val()!='')
+			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 	
 </script>
@@ -235,11 +237,11 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text"  id="qdmc" style="width: 156px" /><br/>
+					<span id="qdmc"></span><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="zdmc" style="width: 145px" /><br/>
+					<span id="zdmc"></span><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">

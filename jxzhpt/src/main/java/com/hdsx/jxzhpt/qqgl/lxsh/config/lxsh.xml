@@ -155,15 +155,15 @@
 		update LXSH_XJ set shzt=0 where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgz" parameterType="lxsh">
-		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq} 
+		update LXSH_SJGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq} 
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateLmgz" parameterType="lxsh">
-		update LXSH_LMGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
+		update LXSH_LMGZ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateXj" parameterType="lxsh">
-		update LXSH_XJ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=#{dfzc},gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
+		update LXSH_XJ set xmmc=#{xmmc},qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},jhkgn=#{jhkgn},jhwgn=#{jhwgn},tz=#{tz},bzys=#{bzys},dfzc=(to_number(#{tz})-to_number(#{bzys})),gydw=#{gydw},gydwdm=#{gydwdm},xzqhdm=#{xzqhdm},xzqh=#{xzqh},tsdq=#{tsdq}  
 		where xmbm=#{xmbm}
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
@@ -531,7 +531,23 @@
 	<update id="updatesjgz" parameterType="lxsh">
 		update lxsh_sjgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
 	</update>
+	<update id="updatelmgz" parameterType="lxsh">
+		update lxsh_lmgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+	</update>
+	<update id="updatexj" parameterType="lxsh">
+		update lxsh_xj set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+	</update>
 	<delete id="deleteLx" parameterType="lxsh">
 		delete from lxsh_lx where xmid=#{xmbm} and id=#{id}
 	</delete>
+	<select id="cxqdmc" parameterType="lxsh" resultType="lxsh">
+		select min(f006) qdmc from gpsroad g,
+       (SELECT MIN(ABS(ROADSTART- to_number(#{qdzh}))) a FROM gpsroad where SUBSTR(roadcode,1,4) = #{ghlxbh}) t
+       where SUBSTR(g.roadcode,1,4) = #{ghlxbh} and (g.roadstart=to_number(#{qdzh})+t.a or g.roadstart=to_number(#{qdzh})-t.a )
+	</select>
+	<select id="cxzdmc" parameterType="lxsh" resultType="lxsh">
+		select min(f010) zdmc from gpsroad g,
+       (SELECT MIN(ABS(ROADENDS-to_number(#{qdzh}))) a FROM gpsroad where SUBSTR(roadcode,1,4) = #{ghlxbh}) t
+       where SUBSTR(g.roadcode,1,4) = #{ghlxbh} and (g.ROADENDS=to_number(#{qdzh})+t.a or g.ROADENDS=to_number(#{qdzh})-t.a )
+	</select>
 </mapper>

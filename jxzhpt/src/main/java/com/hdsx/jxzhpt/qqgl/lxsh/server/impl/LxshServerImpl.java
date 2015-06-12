@@ -534,7 +534,14 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				if(update("updatesjgz", lxsh)>0)
 					return true;
 			}
-			
+			if("lmgz".equals(lxsh.getXmlx())){
+				if(update("updatelmgz", lxsh)>0)
+					return true;
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				if(update("updatexj", lxsh)>0)
+					return true;
+			}
 		}
 		return false;
 	}
@@ -552,9 +559,28 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 				if(update("updatesjgz", lxsh)>0)
 					return true;
 			}
-			
+			if("lmgz".equals(lxsh.getXmlx())){
+				if(update("updatelmgz", lxsh)>0)
+					return true;
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				if(update("updatexj", lxsh)>0)
+					return true;
+			}
 		}
 		return false;
+	}
+
+	@Override
+	public Lxsh cxqdmc(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("cxqdmc", lxsh);
+	}
+
+	@Override
+	public Lxsh cxzdmc(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("cxzdmc", lxsh);
 	}
 	
 }

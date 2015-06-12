@@ -4,6 +4,8 @@
 <struts>
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
+		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
+		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
 		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
 		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
 		  <action name="insertLx" class="lxshController" method="insertLx"/>
