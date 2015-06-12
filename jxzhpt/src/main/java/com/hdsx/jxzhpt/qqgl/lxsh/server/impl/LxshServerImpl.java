@@ -51,6 +51,14 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		return false;
 	}
 	@Override
+	public boolean selectSFCFLX(Lxsh lxsh) {
+		Lxsh l=queryOne("selectSFCFLX", lxsh);
+		if(l==null)
+			return true;
+		else
+		return false;
+	}
+	@Override
 	public boolean selectSFCF1(Lxsh lxsh) {
 		Lxsh l=queryOne("selectSFCF1", lxsh);
 		if(l==null)
@@ -69,7 +77,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean insertSjgz(Lxsh lxsh) {
 		insert("insertlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if (insert("insertSjgz", lxsh) > 0) {
 			return true;
@@ -80,7 +92,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean insertLmgz(Lxsh lxsh) {
 		insert("insertlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if (insert("insertLmgz", lxsh) > 0) {
 			return true;
@@ -90,7 +106,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	@Override
 	public boolean insertXj(Lxsh lxsh) {
 		insert("insertlx", lxsh);
-		double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
+		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if (insert("insertXj", lxsh) > 0) {
 			return true;
@@ -270,6 +290,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean updateSjgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateSjgz", lxsh)>0){
@@ -283,6 +306,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean updateLmgz(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateLmgz", lxsh)>0){
@@ -295,6 +321,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public boolean updateXj(Lxsh lxsh) {
 		update("updateSjgzlx", lxsh);
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
+		Double lc=queryOne("queryMaxlc",lxsh);
+		if(lc!=null)
+		lxsh.setLc(lc+"");
 		if(bzcs!=null)
 		lxsh.setBzys(bzcs+"");
 		if(update("updateXj", lxsh)>0){
@@ -492,5 +521,66 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		return queryList("qqglGpsroad", lxsh);
 	}
 
+	@Override
+	public boolean insertLx(Lxsh lxsh) {
+		if(insert("insertLx", lxsh)>0){
+			Double bzcs=queryOne("queryMaxbzcs",lxsh);
+			Double lc=queryOne("queryMaxlc",lxsh);
+			if(lc!=null)
+			lxsh.setLc(lc+"");
+			if(bzcs!=null)
+			lxsh.setBzys(bzcs+"");
+			if("sjgz".equals(lxsh.getXmlx())){
+				if(update("updatesjgz", lxsh)>0)
+					return true;
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				if(update("updatelmgz", lxsh)>0)
+					return true;
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				if(update("updatexj", lxsh)>0)
+					return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteLx(Lxsh lxsh) {
+		if(insert("deleteLx", lxsh)>0){
+			Double bzcs=queryOne("queryMaxbzcs",lxsh);
+			Double lc=queryOne("queryMaxlc",lxsh);
+			if(lc!=null)
+			lxsh.setLc(lc+"");
+			if(bzcs!=null)
+			lxsh.setBzys(bzcs+"");
+			if("sjgz".equals(lxsh.getXmlx())){
+				if(update("updatesjgz", lxsh)>0)
+					return true;
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				if(update("updatelmgz", lxsh)>0)
+					return true;
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				if(update("updatexj", lxsh)>0)
+					return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Lxsh cxqdmc(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("cxqdmc", lxsh);
+	}
+
+	@Override
+	public Lxsh cxzdmc(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("cxzdmc", lxsh);
+	}
 	
 }

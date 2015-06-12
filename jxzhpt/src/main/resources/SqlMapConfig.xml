@@ -49,6 +49,9 @@
      <!-- rh -->
      <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Cbsj" alias="cbsj"/>
      <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Jhsh" alias="jhsh"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Jhsh2" alias="jhsh2"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Xmsq" alias="xmsq"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Lx" alias="lx"/>
      
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
@@ -159,6 +162,7 @@
 	<!-- rh -->
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/cbsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/jhsh.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/config/xmsq.xml"/>
 	
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcsj.xml"/>

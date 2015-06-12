@@ -341,10 +341,10 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void queryTsdq(){
 		try {
 			List<TreeNode> result = abgcServer.queryTsdq();
-			TreeNode tree=new TreeNode();
+			/*TreeNode tree=new TreeNode();
 			tree.setId(null);
 			tree.setText("全部");
-			result.add(0, tree);
+			result.add(0, tree);*/
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();

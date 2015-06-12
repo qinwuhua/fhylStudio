@@ -25,7 +25,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
-import com.hdsx.jxzhpt.qqgl.server.impl.jhshServerImpl;
+import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
