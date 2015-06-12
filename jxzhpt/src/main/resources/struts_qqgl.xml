@@ -4,7 +4,10 @@
 <struts>
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
-		<action name="selectxmbm" class="lxshController" method="selectxmbm"/>
+		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
+		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
+		  <action name="insertLx" class="lxshController" method="insertLx"/>
+		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
 		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>

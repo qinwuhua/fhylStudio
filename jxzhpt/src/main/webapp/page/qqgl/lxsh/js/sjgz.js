@@ -128,6 +128,7 @@ function xmbm(id,xzqh,nf,xmlx){
 	 }
 	});	
 }
+var shzt1;
 function showAll(){
 	var gydw=$("#gydw").combotree("getValues");
 	if(gydw.length==0){
@@ -208,6 +209,12 @@ function showAll(){
 	        		return '已上报';
 	        	else return '未知';
 	        }},
+	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt1=='0')
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
+		        else if(row.sbzt1=='1')
+	        		return '添加路线';
+	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
@@ -223,12 +230,19 @@ function showAll(){
 	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
+	    	parentindex=index;
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
+		           {field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
+		        	   if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='0'){
+			        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="delsjlx('+parentindex+','+index+')">删除</a>   ';
+		        	   }if(($("#datagrid").datagrid('getRows')[parentindex].sbzt1)=='1')
+		        		   return '删除';
+		           }},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -851,4 +865,28 @@ function selectTSDQ(lxbm,qdzh,zdzh){
 			}
 		}
 	});	
+}
+function tjsjlx(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','添加路线信息','sjgzlx_add.jsp','lxxx',900,300);
+}
+function delsjlx(index1,index){
+	var data=$("#table_lx"+index1).datagrid('getRows')[index];
+	alert(data.xmbm+"--"+data.id);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/deleteLx.do',
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz",
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert("删除成功！");
+				showAll();
+				removes('lxxx');
+			}else{
+				alert('删除失败！');
+			}
+		}
+	});
 }

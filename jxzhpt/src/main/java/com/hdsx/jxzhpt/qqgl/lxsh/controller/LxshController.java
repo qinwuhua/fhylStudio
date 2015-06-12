@@ -718,5 +718,31 @@ public class LxshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	
+	public void selectSFCFLX(){
+		boolean bl=lxshServer.selectSFCFLX(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void insertLx(){
+		boolean bl=lxshServer.insertLx(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	public void deleteLx(){
+		boolean bl=lxshServer.deleteLx(lxsh);
+		if(bl){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }
 

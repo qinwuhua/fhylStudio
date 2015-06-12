@@ -16,6 +16,9 @@
 	<select id="selectSFCF" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
+	<select id="selectSFCFLX" parameterType="lxsh" resultType="lxsh">
+		select * from LXSH_LX where lxbm like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmid=#{xmbm}
+	</select>
 	<select id="selectSFCF1" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_LMGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
@@ -37,6 +40,10 @@
 	<insert id="insertlx" parameterType="lxsh">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1')
+	</insert>
+	<insert id="insertLx" parameterType="lxsh">
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0')
 	</insert>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -166,7 +173,9 @@
 	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
 		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm}
 	</select>
-	
+	<select id="queryMaxlc" parameterType="lxsh" resultType="double">
+		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm}
+	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,t.*  from LXSH_SJGZ t where 1=1
@@ -519,4 +528,10 @@
 		select lxbm ghlxbh,lxmc,qdzh,zdzh,qzlc lc,qdmc,zdmc,yjsdj xjsdj
 		from table(funNoLmlx(#{ghlxbh},#{xzqh})) order by lxbm,qdzh
 	</select>
+	<update id="updatesjgz" parameterType="lxsh">
+		update lxsh_sjgz set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
+	</update>
+	<delete id="deleteLx" parameterType="lxsh">
+		delete from lxsh_lx where xmid=#{xmbm} and id=#{id}
+	</delete>
 </mapper>
