@@ -153,6 +153,16 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+	</script>
+		<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -166,36 +176,40 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:160px;"></select>
-        						<span>&nbsp;规划路线编码：</span>
-        						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
-								<span>&nbsp;原技术等级：</span>
-								<select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select>
-								<span>&nbsp;建设技术等级：</span>
-								<select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select>
-								<span>&nbsp;是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>行政区划：</td>
+        						<td><select id="xzqh" style="width:160px;"></select></td>
+        						<td>规划路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+								<td>原技术等级：</td>
+								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
+								<td>建设技术等级：</td>
+								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
+								<td>是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
-								</select>
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
-								<span>&nbsp;上报状态：</span>
-        						<select id="sbzt" style="width:80px;" class="easyui-combobox">
+								</select></td>
+        					</tr>
+        				<tr height="32">
+        						<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td align="right">上报状态：</td>
+        						<td><select id="sbzt" style="width:105px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option>
 									<option value="4">已审核</option>
-								</select>
+								</select></td><tr>
+								<tr height="32">
+                              <td colspan="10">
 								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
-        					</p>
+        					</td>
+                            </tr></table>
         				</div>
         			</fieldset>
         		</td>
