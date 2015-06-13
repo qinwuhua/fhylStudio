@@ -29,9 +29,12 @@ public class Cbsj {
 	private String ql_ym;//桥梁延米
 	private String hd;//涵洞
 	private String hd_m;//涵洞米
-	private String mc;//面层
-	private String jc;//基层
-	private String dc;//垫层
+	private String mc;//面层类型
+	private String mc_lc;//面层里程
+	private String jc;//基层类型
+	private String jc_lc;//基层里程
+	private String dc;//垫层类型
+	private String dc_lc;//垫层里程
 	private String sd;//隧道（延米/座）
 	private String sd_ym;//隧道延米
 	private String dq;//大桥（名称/长度/单跨）
@@ -303,5 +306,23 @@ public class Cbsj {
 	}
 	public void setSfbj(String sfbj) {
 		this.sfbj = sfbj;
+	}
+	public String getMc_lc() {
+		return mc_lc;
+	}
+	public void setMc_lc(String mc_lc) {
+		this.mc_lc = mc_lc;
+	}
+	public String getJc_lc() {
+		return jc_lc;
+	}
+	public void setJc_lc(String jc_lc) {
+		this.jc_lc = jc_lc;
+	}
+	public String getDc_lc() {
+		return dc_lc;
+	}
+	public void setDc_lc(String dc_lc) {
+		this.dc_lc = dc_lc;
 	}
 }

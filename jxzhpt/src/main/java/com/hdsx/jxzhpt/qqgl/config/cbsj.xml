@@ -184,8 +184,11 @@
 		<if test="hd!=null">c.hd=#{hd},</if>
 		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
 		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
 		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="sd!=null">c.sd=#{sd},</if>
 		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
 		<if test="dq!=null">c.dq=#{dq},</if>
@@ -213,8 +216,11 @@
 		<if test="hd!=null">c.hd=#{hd},</if>
 		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
 		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
 		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="sd!=null">c.sd=#{sd},</if>
 		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
 		<if test="dq!=null">c.dq=#{dq},</if>
@@ -242,8 +248,11 @@
 		<if test="hd!=null">c.hd=#{hd},</if>
 		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
 		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
 		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="sd!=null">c.sd=#{sd},</if>
 		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
 		<if test="dq!=null">c.dq=#{dq},</if>
