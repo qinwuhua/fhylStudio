@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.qqgl.server;
 import java.util.List;
 
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface JhshServer {
@@ -120,4 +121,54 @@ public interface JhshServer {
 	 * @return 计划审核信息
 	 */
 	public Jhsh queryJhshxxXjByXmbm(String xmbm);
+	/**
+	 * 计划审核信息列表查询
+	 * @param jhsh2  养护大中修计划审核
+	 * @return 养护大中修计划审核集合
+	 */
+	public List<Jhsh> queryJhshYhdzx(Jhsh jhsh,int page,int rows);
+	/**
+	 * 计划审核总数量
+	 * @param jhsh2 养护大中修计划审核数量
+	 * @return 养护大中修计划审核数量
+	 */
+	public int queryJhshYhdzxCount(Jhsh jhsh);
+	/**
+	 * 养护大中修计划审核信息
+	 * @param jhsh2 计划审核信息
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxYhdzx(Jhsh jhsh);
+	/**
+	 * 水毁计划审核信息
+	 * @param jhsh2  计划审核信息
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxSh(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询养护大中修德计划审核信息
+	 * @param jhsh 计划审核信息项目编码
+	 * @return 审核信息
+	 */
+	public Jhsh queryJhshxxYhdzxByXmbm(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询养护大中修计划审核信息
+	 * @param jhsh 计划审核信息项目编码
+	 * @return 审核信息
+	 */
+	public Jhsh queryJhshxxShByXmbm(Jhsh jhsh);
+	/**
+	 * 查询计划审核信息列表
+	 * @param jhsh2 计划审核信息
+	 * @param page 页码
+	 * @param rows 展示数量
+	 * @return
+	 */
+	public List<Jhsh> queryJhshSh(Jhsh jhsh, int page, int rows);
+	/**
+	 * 查询水毁计划审核信息数量
+	 * @param jhsh2 计划审核信息
+	 * @return 总数量
+	 */
+	public int queryJhshShCount(Jhsh jhsh);
 }

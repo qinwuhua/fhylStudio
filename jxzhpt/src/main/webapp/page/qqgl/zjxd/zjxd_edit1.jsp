@@ -45,16 +45,16 @@
 				data:'zjxd.xmid='+parent.YMLib.Var.xmid,
 				success:function(data){
 					if(data!=null){
-						if(Number(parent.YMLib.Var.shxx.pfztz)<(Number(data.xdzj)-Number($('#yxdzj').val())+Number($('#xdzj').val()))){
-							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.pfztz+
+						if(Number(parent.YMLib.Var.shxx.ztz)<(Number(data.xdzj)-Number($('#yxdzj').val())+Number($('#xdzj').val()))){
+							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.ztz+
 									'，已经下达资金：'+(Number(data.xdzj)-Number($('#yxdzj').val())));
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.bbzzj)<(Number(data.btzzj)-Number($('#ybtzzj').val())+Number($('#btzzj').val()))){
-							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+parent.YMLib.Var.shxx.bbzzj+
+						}else if(Number(parent.YMLib.Var.shxx.yqdbcgs)<(Number(data.btzzj)-Number($('#ybtzzj').val())+Number($('#btzzj').val()))){
+							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+parent.YMLib.Var.shxx.yqdbcgs+
 									',已下达部补助资金：'+(data.btzzj-Number($('#ybtzzj').val())));
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.sbzzj)<(Number(data.stz)-Number($('#ystz').val())+Number($('#stz').val()))){
-							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+parent.YMLib.Var.shxx.sbzzj+
+						}else if(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs)<(Number(data.stz))-Number($('#ystz').val())+Number($('#stz').val())){
+							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs))+
 									',已下达省补助资金：'+(data.stz-Number($('#ystz').val())));
 							tj=false;
 						}

@@ -97,7 +97,105 @@
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
 	</select>
+	<select id="queryJhshYhdzx" parameterType="java.util.Map" resultType="jhsh">
+		select * from (	
+			select rownum num,t.* from (
+				select j.* from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm
+				where 1=1
+				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
+					and ${jhsh2.xzqhdm}
+				</if>
+				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
+					and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
+				</if>
+				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+				</if>
+				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
+					and l.tsdq = #{jhsh2.tsdq}
+				</if>
+				<if test="jhsh2.xdzt>=0">
+					and j.xdzt=${jhsh2.xdzt}
+				</if>
+				order by j.xdzt,j.xmbm desc
+			) t 
+		) 
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
+	<select id="queryJhshSh" parameterType="java.util.Map" resultType="jhsh">
+		select * from (	
+			select rownum num,t.* from (
+				select j.* from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm
+				where 1=1
+				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
+					and ${jhsh2.xzqhdm}
+				</if>
+				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
+					and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
+				</if>
+				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+				</if>
+				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
+					and l.tsdq = #{jhsh2.tsdq}
+				</if>
+				<if test="jhsh2.xdzt>=0">
+					and j.xdzt=${jhsh2.xdzt}
+				</if>
+				order by j.xdzt,j.xmbm desc
+			) t 
+		) 
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
 	
+	<select id="queryJhshYhdzxCount" parameterType="java.util.Map" resultType="int">
+		select count(t.xmbm) from (
+			select j.* from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm
+			where 1=1
+			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
+				and ${jhsh2.xzqhdm}
+			</if>
+			<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
+				and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
+			</if>
+			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+				and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+			</if>
+			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
+				and l.tsdq = #{jhsh2.tsdq}
+			</if>
+			<if test="jhsh2.xdzt>=0">
+				and j.xdzt=${jhsh2.xdzt}
+			</if>
+			order by j.xdzt,j.xmbm desc
+		) t 
+	</select>
+	<select id="queryJhshShCount" parameterType="java.util.Map" resultType="int">
+		select count(t.xmbm) from (
+			select j.* from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm
+			where 1=1
+			<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
+				and ${jhsh2.xzqhdm}
+			</if>
+			<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
+				and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
+			</if>
+			<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+				and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+			</if>
+			<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
+				and l.tsdq = #{jhsh2.tsdq}
+			</if>
+			<if test="jhsh2.xdzt>=0">
+				and j.xdzt=${jhsh2.xdzt}
+			</if>
+			order by j.xdzt,j.xmbm desc
+		) t 
+	</select>
 	<select id="queryJhshCountLmsj" parameterType="java.util.Map" resultType="int">
 		select count(j.xmbm) from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm where 1=1
 		<if test="jhsh.xzqhdm!=null and jhsh.xzqhdm!=''">
@@ -181,6 +279,44 @@
 		<if test="xdsj!=null">c.xdsj=#{xdsj},</if>
 		c.xdzt=${xdzt} where c.xmbm=#{xmbm}
 	</update>
+	<update id="updateJhshxxYhdzx" parameterType="jhsh">
+		update jhsh_yhdzx c set 
+		<if test="ztz!=null">ztz=#{ztz}</if>
+		<if test="yqdbcgs!=null">,yqdbcgs!=#{yqdbcgs}</if>
+		<if test="sysbbzj!=null">,sysbbzj=#{sysbbzj}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		<if test="mclmlx!=null">,mclmlx=#{mclmlx}</if>
+		<if test="mclx!=null">,mclx=#{mclx}</if>
+		<if test="mcsl!=null">,mcsl=#{mcsl}</if>
+		<if test="mcje!=null">,mcje=#{mcje}</if>
+		<if test="jclx!=null">,jclx=#{jclx}</if>
+		<if test="jcsl!=null">,jcsl=#{jcsl}</if>
+		<if test="jcje!=null">,jcje=#{jcje}</if>
+		<if test="xfcsl!=null">,xfcsl=#{xfcsl}</if>
+		<if test="xfcje!=null">,xfcje=#{xfcje}</if>
+		<if test="bxsl!=null">,bxsl=#{bxsl}</if>
+		<if test="bxje!=null">,bxje=#{bxje}</if>
+		<if test="gfcd!=null">,gfcd=#{gfcd}</if>
+		<if test="gfje!=null">,gfje=#{gfje}</if>
+		<if test="llcl!=null">,llcl=#{llcl}</if>
+		<if test="xdwh!=null">,xdwh=#{xdwh}</if>
+		<if test="xdsj!=null">,xdsj=#{xdsj}</if>
+		,xdzt=${xdzt} where c.xmbm=#{xmbm}
+	</update>
+	<update id="updateJhshxxSh" parameterType="jhsh">
+		update jhsh_sh c set 
+		<if test="pfztz!=null">c.pfztz=#{pfztz}</if>
+		<if test="bbzzj!=null">,c.bbzzj=#{bbzzj}</if>
+		<if test="sbzzj!=null">,c.sbzzj=#{sbzzj}</if>
+		<if test="xdwh!=null">,c.xdwh=#{xdwh}</if>
+		<if test="xdsj!=null">,c.xdsj=#{xdsj}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		,xdzt=${xdzt} where c.xmbm=#{xmbm}
+	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
 		select * from lxsh_sjgz l where l.xmbm=#{xmbm}
@@ -200,5 +336,11 @@
 	</select>
 	<select id="queryJhshxxXjByXmbm" parameterType="java.util.Map" resultType="jhsh">
 		select * from jhsh_xj where xmbm=#{xmbm}
+	</select>
+	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
+		select * from jhsh_yhdzx where xmbm=#{xmbm}
+	</select>
+	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
+		select * from jhsh_sh where xmbm=#{xmbm}
 	</select>
 </mapper>

@@ -268,13 +268,69 @@
 	</update>
 	
 	<insert id="insertJhshYhdzx" parameterType="xmsq">
-		insert into jhsh_yhdzx (xmbm,xmmc ,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
-		select x.xmbm,x.xmmc,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
+		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
 		where x.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertJhshSh" parameterType="xmsq">
-		insert into jhsh_sh (xmbm,xmmc ,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
-		select x.xmbm,x.xmmc,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
+		insert into jhsh_sh (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_sh x
 		where x.xmbm in (${xmbm})
 	</insert>
+	
+	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
+		select * from xmsq_yhdzx where xmbm=#{xmbm}
+	</select>
+	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
+		select * from xmsq_sh where xmbm=#{xmbm}
+	</select>
+	
+	<update id="updateYhdzx" parameterType="xmsq">
+		update xmsq_yhdzx set 
+		<if test="xmbm!=null">xmbm=#{xmbm}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="gcfl!=null">,gcfl=#{gcfl}</if>
+		<if test="ghlxbh!=null">,ghlxbh=#{ghlxbh}</if>
+		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
+		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
+		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
+		<if test="ntz!=null">,ntz=#{ntz}</if>
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="gq!=null">,gq=#{gq}</if>
+		<if test="tsdq!=null">,TSDQ=#{tsdq}</if>
+		<if test="gydw!=null">,gydw=#{gydw}</if>
+		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
+		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateSh" parameterType="xmsq">
+		update xmsq_sh set 
+		<if test="xmbm!=null">xmbm=#{xmbm}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="gcfl!=null">,gcfl=#{gcfl}</if>
+		<if test="ghlxbh!=null">,ghlxbh=#{ghlxbh}</if>
+		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
+		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
+		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
+		<if test="ntz!=null">,ntz=#{ntz}</if>
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="gq!=null">,gq=#{gq}</if>
+		<if test="tsdq!=null">,TSDQ=#{tsdq}</if>
+		<if test="gydw!=null">,gydw=#{gydw}</if>
+		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
+		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		where xmbm=#{xmbm}
+	</update>
 </mapper>

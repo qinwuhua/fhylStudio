@@ -209,6 +209,43 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}
 	}
 	/**
+	 * 根据项目编码查询项目申请信息
+	 * @throws Exception
+	 */
+	public void queryXmsqByXmbm() throws Exception{
+		try{
+			Xmsq obj=new Xmsq();
+			if(xmsq.getXmlx()==4){
+				obj = xmsqServer.queryYhdzxByXmbm(xmsq);
+			}else if(xmsq.getXmlx()==5){
+				obj = xmsqServer.queryShByXmbm(xmsq);
+			}
+			JsonUtils.write(obj, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 修改项目申请信息
+	 * @throws Exception 
+	 */
+	public void updateXmsq() throws Exception{
+		try{
+			boolean b=true;
+			if(xmsq.getXmlx()==4){
+				b = xmsqServer.updateYhdzx(xmsq);
+			}else if(xmsq.getXmlx()==5){
+				b = xmsqServer.updateSh(xmsq);
+			}
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
 	 * 处理行政区划编码为条件语句
 	 * @param bh
 	 * @param name

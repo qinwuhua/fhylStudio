@@ -34,6 +34,30 @@ public class Jhsh {
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
 	private String tsdq;//特殊地区
+	//养护和水毁的字段
+	private String ylxbh;//原路线编号
+	private String gcfl;//工程分类
+	private String jhkgsj;//计划开工时间
+	private String jhwgsj;//计划完工时间
+	private String lc;//里程
+	private String ztz;//总投资
+	private String sysbbzj;//省以上补助资金
+	private String yqdbcgs;//以确定部车购税
+	private String mclmlx;//面层路面类型
+	private String mclx;//面层类型
+	private String mcsl;//面层数量
+	private String mcje;//面层金额
+	private String jclx;//基层类型
+	private String jcsl;//基层数量
+	private String jcje;//基层金额
+	private String xfcsl;//下封层数量
+	private String xfcje;//下封层金额
+	private String bxsl;//标线数量
+	private String bxje;//标线金额
+	private String gfcd;//灌缝路线长度
+	private String gfje;//灌缝金额
+	private String llcl;//老路处理
+	private String jsdj;//技术等级
 	public String getId() {
 		return id;
 	}
@@ -159,5 +183,143 @@ public class Jhsh {
 	}
 	public void setXdzt(int xdzt) {
 		this.xdzt = xdzt;
+	}
+	public String getYlxbh() {
+		return ylxbh;
+	}
+	public void setYlxbh(String ylxbh) {
+		this.ylxbh = ylxbh;
+	}
+	public String getGcfl() {
+		return gcfl;
+	}
+	public void setGcfl(String gcfl) {
+		this.gcfl = gcfl;
+	}
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getLc() {
+		return lc;
+	}
+	public void setLc(String lc) {
+		this.lc = lc;
+	}
+	public String getZtz() {
+		return ztz;
+	}
+	public void setZtz(String ztz) {
+		this.ztz = ztz;
+	}
+	public String getSysbbzj() {
+		return sysbbzj;
+	}
+	public void setSysbbzj(String sysbbzj) {
+		this.sysbbzj = sysbbzj;
+	}
+	public String getYqdbcgs() {
+		return yqdbcgs;
+	}
+	public void setYqdbcgs(String yqdbcgs) {
+		this.yqdbcgs = yqdbcgs;
+	}
+	public String getMclmlx() {
+		return mclmlx;
+	}
+	public void setMclmlx(String mclmlx) {
+		this.mclmlx = mclmlx;
+	}
+	public String getMclx() {
+		return mclx;
+	}
+	public void setMclx(String mclx) {
+		this.mclx = mclx;
+	}
+	public String getMcsl() {
+		return mcsl;
+	}
+	public void setMcsl(String mcsl) {
+		this.mcsl = mcsl;
+	}
+	public String getMcje() {
+		return mcje;
+	}
+	public void setMcje(String mcje) {
+		this.mcje = mcje;
+	}
+	public String getJclx() {
+		return jclx;
+	}
+	public void setJclx(String jclx) {
+		this.jclx = jclx;
+	}
+	public String getJcsl() {
+		return jcsl;
+	}
+	public void setJcsl(String jcsl) {
+		this.jcsl = jcsl;
+	}
+	public String getJcje() {
+		return jcje;
+	}
+	public void setJcje(String jcje) {
+		this.jcje = jcje;
+	}
+	public String getXfcsl() {
+		return xfcsl;
+	}
+	public void setXfcsl(String xfcsl) {
+		this.xfcsl = xfcsl;
+	}
+	public String getXfcje() {
+		return xfcje;
+	}
+	public void setXfcje(String xfcje) {
+		this.xfcje = xfcje;
+	}
+	public String getBxsl() {
+		return bxsl;
+	}
+	public void setBxsl(String bxsl) {
+		this.bxsl = bxsl;
+	}
+	public String getBxje() {
+		return bxje;
+	}
+	public void setBxje(String bxje) {
+		this.bxje = bxje;
+	}
+	public String getGfcd() {
+		return gfcd;
+	}
+	public void setGfcd(String gfcd) {
+		this.gfcd = gfcd;
+	}
+	public String getGfje() {
+		return gfje;
+	}
+	public void setGfje(String gfje) {
+		this.gfje = gfje;
+	}
+	public String getLlcl() {
+		return llcl;
+	}
+	public void setLlcl(String llcl) {
+		this.llcl = llcl;
+	}
+	public String getJsdj() {
+		return jsdj;
+	}
+	public void setJsdj(String jsdj) {
+		this.jsdj = jsdj;
 	}
 }

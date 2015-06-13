@@ -130,5 +130,21 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 		String[] split = xmsq.getXmbm().split(",");
 		return insert("insertJhshSh", xmsq)==split.length;
 	}
+	@Override
+	public Xmsq queryYhdzxByXmbm(Xmsq xmsq) {
+		return queryOne("queryYhdzxByXmbm", xmsq);
+	}
+	@Override
+	public Xmsq queryShByXmbm(Xmsq xmsq) {
+		return queryOne("queryShByXmbm", xmsq);
+	}
+	@Override
+	public boolean updateYhdzx(Xmsq xmsq) {
+		return update("updateYhdzx", xmsq)>0;
+	}
+	@Override
+	public boolean updateSh(Xmsq xmsq) {
+		return update("updateSh", xmsq)>0;
+	}
 
 }

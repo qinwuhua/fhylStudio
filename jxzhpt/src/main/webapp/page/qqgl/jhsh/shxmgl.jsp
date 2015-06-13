@@ -64,8 +64,14 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						if(row.sqzt==0){
+							result+='    | <a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+						}else{
+							result+='    | <a style="color:black;">编辑</a>';
+						}
 						return result;
 					}
 				},
@@ -189,13 +195,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/updateXmsqSp.do',
-					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
+					data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("上报成功!");
-							queryYhdzx();
+							queryShxm();
 						}
 					}
 				});

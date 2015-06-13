@@ -22,6 +22,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -36,6 +37,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private Map<String, Object> result=new HashMap<String, Object>();
 	//计划审核对象
 	private Jhsh jhsh=new Jhsh();
+	private Jhsh2 jhsh2;
 	@Override
 	public Jhsh getModel() {
 		return jhsh;
@@ -78,6 +80,26 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	public void queryJhsh2() throws Exception{
+		List<Jhsh> listData=null;
+		int total=0;
+		try{
+			jhsh.setXzqhdm(xzqhBm(jhsh.getXzqhdm(), "xzqhdm"));
+			if(jhsh.getXmlx()==4){
+				listData=jhshServer.queryJhshYhdzx(jhsh,page,rows);
+				total=jhshServer.queryJhshYhdzxCount(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				listData=jhshServer.queryJhshSh(jhsh,page,rows);
+				total=jhshServer.queryJhshShCount(jhsh);
+			}
+			result.put("rows", listData);
+			result.put("total", total);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
 	/**
 	 * 计划下达，补充计划下达信息
 	 * @throws Exception
@@ -97,6 +119,40 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 养护大中修和水毁的计划下达
+	 * @throws Exception
+	 */
+	public void updateJhshxx2() throws Exception{
+		try{
+			boolean b=true;
+			if(jhsh.getXmlx()==4){
+				b = jhshServer.updateJhshxxYhdzx(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				b = jhshServer.updateJhshxxSh(jhsh);
+			}
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public void queryJhshxxByXmbm2() throws Exception{
+		try{
+			Jhsh obj=null;
+			if(jhsh.getXmlx()==4){
+				obj = jhshServer.queryJhshxxYhdzxByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==5){
+				obj = jhshServer.queryJhshxxShByXmbm(jhsh);
+			}
+			JsonUtils.write(obj, getresponse().getWriter());
+		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
 		}
@@ -357,5 +413,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void setFileuploadFileName(String fileuploadFileName) {
 		this.fileuploadFileName = fileuploadFileName;
+	}
+	public Jhsh2 getJhsh2() {
+		return jhsh2;
+	}
+	public void setJhsh2(Jhsh2 jhsh2) {
+		this.jhsh2 = jhsh2;
 	}
 }

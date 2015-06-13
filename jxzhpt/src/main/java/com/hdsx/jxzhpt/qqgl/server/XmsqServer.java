@@ -114,5 +114,29 @@ public interface XmsqServer {
 	 * @return 执行结果
 	 */
 	public boolean insertJhshSh(Xmsq xmsq);
+	/**
+	 * 根据项目编码查询项目信息
+	 * @param xmsq 项目申请信息
+	 * @return 项目申请信息
+	 */
+	public Xmsq queryYhdzxByXmbm(Xmsq xmsq);
+	/**
+	 * 根据项目编码查询项目信息
+	 * @param xmsq 项目申请信息
+	 * @return 项目申请信息
+	 */
+	public Xmsq queryShByXmbm(Xmsq xmsq);
+	/**
+	 * 修改养护大中修信息
+	 * @param xmsq 项目申请信息
+	 * @return 执行结果
+	 */
+	public boolean updateYhdzx(Xmsq xmsq);
+	/**
+	 * 修改水毁项目信息
+	 * @param xmsq 项目申请信息
+	 * @return 执行结果
+	 */
+	public boolean updateSh(Xmsq xmsq);
 
 }

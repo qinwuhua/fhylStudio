@@ -17,8 +17,31 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			var master ={'gydwdm':$.cookie("unit")};
+			$('#xmid').val(parent.YMLib.Var.xmid);
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryGydwmcById.do',
+				dataType:'json',
+				data:master,
+				success:function(data){
+					$('#tbdw').val(data.gydwmc);
+				}
+			});
+			var myDate = new Date();
+			var date=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
+			$('#tbsj').html(date);
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/queryZjxdExistById.do',
+				dataType:'json',
+				data:'zjxd.xmid='+parent.YMLib.Var.xmid,
+				success:function(data){
+					if(data.count!="0")
+						$('#sfzj').val("1");
+				}
+			});
 			var years=[];
-			var myDate=new Date();
 			for(var i=0;i<=10;i++){
 				years.push({text:(myDate.getFullYear()-i)});
 			}
@@ -27,12 +50,8 @@
 			    valueField:'text',
 			    textField:'text'
 			});
-			$('#zjxdForm').form("load",parent.YMLib.Var.row);
-			$('#yxdzj').val(parent.YMLib.Var.row.xdzj);
-			$('#ybtzzj').val(parent.YMLib.Var.row.btzzj);
-			$('#ystz').val(parent.YMLib.Var.row.stz);
 		});
-		function updateZjxd(){
+		function insertZjxd(){
 			isNumber($('#xdzj'));
 			isNumber($('#btzzj'));
 			isNumber($('#stz'));
@@ -45,17 +64,28 @@
 				data:'zjxd.xmid='+parent.YMLib.Var.xmid,
 				success:function(data){
 					if(data!=null){
-						if(Number(parent.YMLib.Var.shxx.pfztz)<(Number(data.xdzj)-Number($('#yxdzj').val())+Number($('#xdzj').val()))){
-							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.pfztz+
-									'，已经下达资金：'+(Number(data.xdzj)-Number($('#yxdzj').val())));
+						if(Number(parent.YMLib.Var.shxx.ztz)<Number(data.xdzj)+Number($('#xdzj').val())){
+							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.ztz+
+									'，已经下达资金：'+Number(data.xdzj));
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.bbzzj)<(Number(data.btzzj)-Number($('#ybtzzj').val())+Number($('#btzzj').val()))){
-							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+parent.YMLib.Var.shxx.bbzzj+
-									',已下达部补助资金：'+(data.btzzj-Number($('#ybtzzj').val())));
+						}else if(Number(parent.YMLib.Var.shxx.yqdbcgs)<Number(data.btzzj)+Number($('#btzzj').val())){
+							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+YMLib.Var.shxx.yqdbcgs+
+									',已下达部补助资金：'+data.btzzj);
 							tj=false;
-						}else if(Number(parent.YMLib.Var.shxx.sbzzj)<(Number(data.stz)-Number($('#ystz').val())+Number($('#stz').val()))){
-							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+parent.YMLib.Var.shxx.sbzzj+
-									',已下达省补助资金：'+(data.stz-Number($('#ystz').val())));
+						}else if(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs)<Number(data.stz)+Number($('#stz').val())){
+							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs))+
+									',已下达省补助资金：'+data.stz);
+							tj=false;
+						}
+					}else{
+						if(Number(parent.YMLib.Var.shxx.ztz)<Number($('#xdzj').val())){
+							alert("下达资金的总金额不能超过计划审核中的批复总投资。计划审核中批复总投资是："+parent.YMLib.Var.shxx.ztz);
+							tj=false;
+						}else if(Number(parent.YMLib.Var.shxx.yqdbcgs)<Number($('#btzzj').val())){
+							alert("下达的部补助资金的总金额不能超过计划审核中的部投资金额。计划审核中，部补助资金是："+parent.YMLib.Var.shxx.yqdbcgs);
+							tj=false;
+						}else if(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs)<Number($('#stz').val())){
+							alert("下达的省投资的总金额不能超过计划审核中的省投资金额。计划审核信息中，省投资金额是："+(Number(parent.YMLib.Var.shxx.sysbbzj)-Number(parent.YMLib.Var.shxx.yqdbcgs)));
 							tj=false;
 						}
 					}
@@ -68,7 +98,7 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("修改成功！");
+						alert("资金下达成功！");
 						parent.$('#zjxdList').datagrid("reload");
 						closeWindow("zjxd");
 					}
@@ -93,7 +123,7 @@
 		<table width="100%" height="60%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 10px; margin-left: 13px;">
 			<tr>
 				<td>
-					<form id="zjxdForm" action="../../../jhgl/editZjxdById.do">
+					<form id="zjxdForm" action="../../../jhgl/addZjxd.do">
 					<table width="100%" border="0"
 						style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
 						cellspacing="0" cellpadding="0">
@@ -104,9 +134,7 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="xdzj" name="xdzj" onblur="isNumber(this)" type="text" value="0" style="width: 80px;" />&nbsp;万元
-								<input id="yxdzj" name="yxdzj" type="hidden"/>
-								<input id="xmid" name="xmid" type="hidden" />
-								<input id="id" name="id" type="hidden" />
+								<input id="xmid" name="xmid" type="hidden" style="width: 80px;" />
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
@@ -114,7 +142,6 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="btzzj" name="btzzj" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
-								<input id="ybtzzj" name="ybtzzj" type="hidden"/>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">
@@ -122,7 +149,6 @@
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="stz" name="stz" onblur="isNumber(this)" type="text" value="0" style="width: 80px;"/>&nbsp;万元
-								<input id="ystz" name="ystz" type="hidden"/>
 							</td>
 						</tr>
 						<tr style="height: 35px;">
@@ -169,7 +195,7 @@
 						<tr style="height: 30px;">
 							<td align="center">
 							<td align="center">
-								<input type="image" name="btnAdd" id="btnAdd" onclick="updateZjxd()"
+								<input type="image" name="btnAdd" id="btnAdd" onclick="insertZjxd()"
 								onmouseover="this.src='../../../images/Button/baocun2.gif'" alt="保存"
 								onmouseout="this.src='../../../images/Button/baocun1.gif'"
 								src="../../../images/Button/baocun1.gif" style="border-width: 0px;" />

@@ -164,7 +164,10 @@ function queryZjxd(xmbm){
 	grid.columns=[[
 		{field:'cz',title:'操作',width:100,align:'center',
 			formatter : function(value, row, index) {
-				var result = '<a href="javascript:updateZjxdById('+"'"+index+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				var result = '<a href="javascript:updateZjxdById('+"'"+index+"','zjxd_edit.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				if(xmbm.substring(10,11)==4){
+					result = '<a href="javascript:updateZjxdById('+"'"+index+"','zjxd_edit1.jsp'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				}
 				result += '<a href="javascript:deleteZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
 				return result;
 			}
@@ -198,19 +201,31 @@ function deleteZjxdById(id){
 		}
 	});
 }
+/**
+ * 用于养护大中修合水毁的计划下达
+ */
+function openJhxd1(url,index){
+	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
+	YMLib.Var.xmlx=xmlx;
+	openWindow('jhxd','计划下达','/jxzhpt/page/qqgl/jhsh/'+url,920,300);
+}
 function openZjzj(index,xmlx){
 	YMLib.Var.row=$('#grid').datagrid("getRows")[index];
 	YMLib.Var.xmlx=xmlx;
 	openWindow('zjzj','资金追加','/jxzhpt/page/qqgl/jhsh/zjzj.jsp',800,300);
 }
-function updateZjxdById(index){
+function updateZjxdById(index,url){
 	YMLib.Var.row=$('#zjxdList').datagrid("getRows")[index];
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
-	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd_edit.jsp',800,300);
+	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/'+url,800,300);
 }
 function openZjxd(){
 	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
 	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd.jsp',800,300);
+}
+function openZjxd1(){
+	YMLib.Var.xmid=parent.YMLib.Var.xmbm;
+	openWindow('zjxd','资金下发','/jxzhpt/page/qqgl/zjxd/zjxd1.jsp',800,300);
 }
 /**
  * 弹出窗口
@@ -232,9 +247,9 @@ function openWindow(id,title,url,width,height){
 			queryLmgz();
 		}else if(id=="xjgcedit"){
 			queryXj();
-		}else if(id=="yhdzxadd"){
+		}else if(id=="yhdzxadd" || id=="yhdzxedit"){
 			queryYhdzx();
-		}else if(id=="shxmadd"){
+		}else if(id=="shxmadd" || id=="shxmedit"){
 			queryShxm();
 		}
 		if((id=="jhxd" || id=="zjzj") && xmlx==1){
@@ -243,6 +258,10 @@ function openWindow(id,title,url,width,height){
 			queryLmgz();
 		}else if((id=="jhxd" || id=="zjzj") && xmlx==3){
 			queryXj();
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==4){
+			queryYhdzx();
+		}else if((id=="jhxd" || id=="zjzj") && xmlx==5){
+			queryShxm();
 		}
 	});
 }

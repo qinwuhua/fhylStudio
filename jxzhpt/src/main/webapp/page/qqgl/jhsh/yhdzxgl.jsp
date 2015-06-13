@@ -63,8 +63,14 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						if(row.sqzt==0){
+							result+='    | <a href="javascript:openWindow('+"'yhdzxedit'"+','+"'养护大中修项目'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/yhdzx_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+						}else{
+							result+='    | <a style="color:black;">编辑</a>';
+						}
 						return result;
 					}
 				},
