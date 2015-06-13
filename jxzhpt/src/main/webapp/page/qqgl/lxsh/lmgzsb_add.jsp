@@ -51,14 +51,12 @@ text-decoration:none;
 				$("#xmmc").focus();
 				return false;
 			}
-			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
+			if($("#qdmc").html()=="" || $("#qdmc").html()==null){
 				alert("请填写起点名称！");
-				$("#qdmc").focus();
 				return false;
 			}
-			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
+			if($("#zdmc").html()=="" || $("#zdmc").html()==null){
 				alert("请填写止点名称！");
-				$("#zdmc").focus();
 				return false;
 			}
 			if($("#jsxz").val()=="" || $("#jsxz").val()==null){
@@ -71,9 +69,8 @@ text-decoration:none;
 				$("#tz").focus();
 				return false;
 			}
-			if($("#dfzc").val()=="" || $("#dfzc").val()==null){
+			if($("#dfzc").html()=="" || $("#dfzc").html()==null){
 				alert("请填写地方自筹！");
-				$("#dfzc").focus();
 				return false;
 			}
 			if($("#bzcs").html()=="" || $("#bzcs").html()==null){
@@ -179,8 +176,8 @@ text-decoration:none;
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
 					$("#jsjsdj").html(item.xjsdj);
 					$("#xjsdj").html(item.xjsdj);
-					$("#qdmc").val(item.qdmc);
-					$("#zdmc").val(item.zdmc);
+					$("#qdmc").html(item.qdmc);
+					$("#zdmc").html(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
@@ -189,17 +186,27 @@ text-decoration:none;
 	}
 	
 	function saveLxsh(){
+		$("#dfzc").html('');
+		var tz=0;var bzcs=0;
+		if($("#tz").val()!='')
+			tz=parseFloat($("#tz").val());
+		if($("#bzcs").html()!='')
+			bzcs=parseFloat($("#bzcs").html());
+		if(bzcs>tz){
+			alert("投资不能小于补助测算");
+			return
+		}
 		var sbthcd=$.cookie("unit2").length;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
-		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
-		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+$("#dfzc").val()+"&lxsh.tbbmbm="+$.cookie("unit")
+		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd;
 		$.ajax({
 			type:'post',
@@ -230,6 +237,10 @@ text-decoration:none;
 		$("#lc").html(zlc);
 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		if($("#qdzh").val()!='')
+			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+		if($("#zdzh").val()!='')
+			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 	
 </script>
@@ -264,11 +275,11 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text"  id="qdmc" style="width: 156px" /><br/>
+					<span id="qdmc"></span><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="zdmc" style="width: 145px" /><br/>
+					<span id="zdmc"></span><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -318,13 +329,13 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"/></td>
+					<input type="text" id="tz" onblur="checkdfzc()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				<span id="bzcs"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="dfzc"/>
+					<span id="dfzc"></span>
 				</td>
 			</tr>
 			

@@ -128,6 +128,15 @@
 		}
 		
 	</script>
+	<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -136,47 +145,50 @@
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
         		<td align="left" style="padding-left: 10px; padding-top: 10px;height: 100px;">
-        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;">
+        			<fieldset id="searchField" style="width:99%; text-align: left; vertical-align: middle;height: 100px;padding-bottom:10px;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:215px;"></select>
-        						<span>行政区划：</span>
-        						<select id="xzqh" style="width:220px;"></select>
-        						<span>项目名称：</span>
-        						<input type="text" id="xmmc" style="width:95px;" />
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>项目年份：</span>
-        						<select id="xmnf" style="width:70px;">
-								</select>
-        						<span>上报状态：</span>
-        						<select id="sbzt" style="width:80px;" class="easyui-combobox">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<td>行政区划：</td>
+        						<td colspan="3" style="width:220px;"><select id="xzqh" style="width:220px;"></select></td>
+        						<td>项目名称：</td>
+        						<td><input type="text" id="xmmc" style="width:95px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>项目年份：</td>
+        						<td><select id="xmnf" style="width:70px;">
+								</select></td>
+        						<td>上报状态：</td>
+        						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option>
-								</select>
-								<span>特殊地区：</span>
-								<select name="tsdq" id="tsdq" style="width:88px;" >
-								</select>
-								<span>技术等级：</span>
-								<select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select>
-								<span>公路等级：</span>
-								<select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select>
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:88px;" >
+								</select></td>
+								<td>技术等级：</td>
+								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
+								<td>公路等级：</td>
+								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        					</tr>
+        					<tr height="32">
+                              <td colspan="10">
         						<img onclick="showsjgzAll()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 <%-- 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Security')"/> --%>
 <%-- 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('abgc_jh')" style="vertical-align:middle;"/> --%>
-								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" />
+<!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;vertical-align:middle;" /> -->
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;vertical-align:middle;" /> -->
 <!-- 								<img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addLXSH('sjgzsb_add.jsp','900','400');" style="border-width:0px;vertical-align:middle;"/> -->
 <%-- 				                <img alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" onclick="delsjgz()" style="vertical-align:middle;"> --%>
 <%-- 				                <img onclick="exportExcel('abgc')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/> --%>
-				              </p>
+				           </td>
+                            </tr></table>
         				</div>
         			</fieldset>
         		</td>

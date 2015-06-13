@@ -108,5 +108,15 @@ public interface LxshServer {
 
 	List<Lxsh> qqglGpsroad(Lxsh lxsh);
 
+	boolean selectSFCFLX(Lxsh lxsh);
+
+	boolean insertLx(Lxsh lxsh);
+
+	boolean deleteLx(Lxsh lxsh);
+
+	Lxsh cxqdmc(Lxsh lxsh);
+
+	Lxsh cxzdmc(Lxsh lxsh);
+
 
 }
