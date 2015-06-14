@@ -75,7 +75,7 @@ function showsjgzAll(){
 	}
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -190,7 +190,7 @@ function showlmgzAll(){
 	}
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -213,7 +213,7 @@ function showlmgzAll(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
@@ -222,15 +222,17 @@ function showlmgzAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
+	        	 if(row.sbzt1=='1')
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    ';
+		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
 	        }},
-	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-        		return '未上报';
-	        	else 
-	        		return '已上报';
-
-	        }},
+//	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
+//	        	if(row.sbzt1=='0')
+//        		return '未上报';
+//	        	else 
+//	        		return '已上报';
+//
+//	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -303,7 +305,7 @@ function showxjAll(){
 	}
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -326,7 +328,7 @@ function showxjAll(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj,
@@ -335,9 +337,9 @@ function showxjAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-//	            if(row.sbzt1=='1'||sbthcd==7)
-//	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
+	        	 if(row.sbzt1=='1')
+		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    ';
+		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  ';
 	        }},
 //	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
 //	        	if(row.sbzt1=='0')
@@ -408,7 +410,7 @@ function showAllsjsh(){
 	
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -431,7 +433,7 @@ function showAllsjsh(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj
@@ -510,7 +512,7 @@ function showAlllmsh(){
 	
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -519,7 +521,7 @@ function showAlllmsh(){
 	var gldj=$("#gldj").combobox('getValue');
 	
 	$('#datagrid').datagrid({    
-	    url:'/jxzhpt/qqgl/selectLmgzkxshList.do',
+	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -533,7 +535,7 @@ function showAlllmsh(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj
@@ -612,7 +614,7 @@ function showAllxjsh(){
 	
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
-	var sbzt=$("#sbzt").combobox('getValue');
+	
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -621,7 +623,7 @@ function showAllxjsh(){
 	var gldj=$("#gldj").combobox('getValue');
 	
 	$('#datagrid').datagrid({    
-	    url:'/jxzhpt/qqgl/selectXjkxshList.do',
+	    url:'/jxzhpt/qqgl/selectXjkxList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -635,7 +637,7 @@ function showAllxjsh(){
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
 			xmnf:xmnf,
-			sbzt:sbzt,
+//			sbzt:sbzt,
 			tsdq:tsdq,
 			jsdj:jsdj,
 			gldj:gldj
@@ -646,9 +648,9 @@ function showAllxjsh(){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    ';
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.shzt=='0')
+	        	if(row.sbzt1=='0')
         		return '未审核';
-	        	else if(row.shzt=='1')
+	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        	else return '未知';
 	        }},

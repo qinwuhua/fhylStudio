@@ -4,7 +4,7 @@
 	<select id="selectSjgzList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
 		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,<!--  decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt))--> t.shzt sbzt1  from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
-			and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+			and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -35,7 +35,7 @@
 	</select>
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
-		and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -64,8 +64,8 @@
 	</select>
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) sbzt1  from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm where 1=1
-			and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,<!-- decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) -->t.shzt sbzt1  from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm where 1=1
+			and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -78,9 +78,9 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and t1.xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
@@ -95,7 +95,7 @@
 	</select>
 	<select id="selectLmgzkxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm where 1=1
-		and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -108,9 +108,9 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and t1.xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
@@ -123,8 +123,8 @@
 	</select>
 	<select id="selectXjkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) sbzt1  from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
-			and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,<!-- decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) -->t.shzt sbzt1  from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
+			and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -137,9 +137,9 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and t1.xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
@@ -154,7 +154,7 @@
 	</select>
 	<select id="selectXjkxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm where 1=1
-		and  t.sbthcd &lt;=#{sbthcd} or t.sbthcd is null
+		and  t.sbthcd &lt;=7 or t.sbthcd is null
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -167,9 +167,9 @@
 		<if test="xmnf!='' and xmnf!= null ">
 			and t1.xmnf like '%'||#{xmnf}||'%'
 		</if>
-		<if test="sbzt1!='' and sbzt1!= null ">
-			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%'
-		</if>
+<!-- 		<if test="sbzt1!='' and sbzt1!= null "> -->
+<!-- 			and decode(t.sbthcd,#{sbthcd},'0',to_char(t.sbzt)) like '%'||#{sbzt1}||'%' -->
+<!-- 		</if> -->
 		<if test="tsdq!='' and tsdq!= null ">
 			and t1.tsdq like '%'||#{tsdq}||'%'
 		</if>
