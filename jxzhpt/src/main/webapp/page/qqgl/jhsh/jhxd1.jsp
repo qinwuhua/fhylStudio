@@ -62,7 +62,6 @@
 			});
 		}
 		function updataJhsh(){
-			alert($('#xmlx').val());
 			$('#jhxdFrom').ajaxSubmit({
 				dataType:'json',
 				success:function(msg){

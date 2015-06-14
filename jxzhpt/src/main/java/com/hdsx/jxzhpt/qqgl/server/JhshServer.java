@@ -171,4 +171,17 @@ public interface JhshServer {
 	 * @return 总数量
 	 */
 	public int queryJhshShCount(Jhsh jhsh);
+	/**
+	 * 添加养护大中修到计划审核
+	 * @param xmbm 项目编码
+	 * @return 执行结果
+	 */
+	public boolean insertJhshYhdzxFromCbsj(String xmbm);
+	/**
+	 * 将初步设计信息插入到计划审核中
+	 * @param xmbm 项目编码
+	 * @return 执行结果
+	 */
+	public boolean insertJhshShFromCbsj(String xmbm);
+	
 }

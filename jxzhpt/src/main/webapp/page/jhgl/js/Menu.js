@@ -129,7 +129,7 @@ $(function() {
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu1',
 		href:'./jhkgl/gclmgj.jsp'
-	});*/
+	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030106',
 		title:'养护大中修项目',
@@ -143,7 +143,7 @@ $(function() {
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu1',
 		href:'../qqgl/jhsh/shxmgl.jsp'
-	});
+	});*/
 	createMenux('LeftMenu',{
 		id:'menu_0101030108',
 		title:'红色旅游公路项目',

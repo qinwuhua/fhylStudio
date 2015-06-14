@@ -195,5 +195,71 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		}
 		return updateBatch("shCbsjXjByXmbm", list)==list.size();
 	}
+	@Override
+	public Cbsj queryCbsjYhdzxByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjYhdzxByXmbm", params);
+	}
+	@Override
+	public List<Cbsj> queryCbsjYhdzx(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjYhdzx",params);
+	}
+	@Override
+	public int queryCbsjYhdzxCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjYhdzxCount", params);
+	}
+	@Override
+	public boolean updateCbsjYhdzx(Cbsj cbsj) {
+		return update("updateCbsjYhdzx", cbsj)>0;
+	}
+	@Override
+	public boolean shCbsjYhdzxByXmbm(Cbsj cbsj, String shzt1) {
+		String[] split = cbsj.getXmbm().split(",");
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (int j = 0; j < split.length; j++) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(split[j]);
+			obj.setShzt(cbsj.getShzt());
+			list.add(obj);
+		}
+		return updateBatch("shCbsjYhdzxByXmbm", list)==list.size();
+	}
+	@Override
+	public List<Cbsj> queryCbsjSh(Cbsj cbsj, int page, int rows) {
+		params.put("cbsj", cbsj);
+		params.put("page", page);
+		params.put("rows", rows);
+		return queryList("queryCbsjSh",params);
+	}
+	@Override
+	public int queryCbsjShCount(Cbsj cbsj) {
+		params.put("cbsj", cbsj);
+		return queryOne("queryCbsjShCount", params);
+	}
+	@Override
+	public Cbsj queryCbsjShByXmbm(String xmbm) {
+		params.put("xmbm", xmbm);
+		return queryOne("queryCbsjShByXmbm",params);
+	}
+	@Override
+	public boolean updateCbsjSh(Cbsj cbsj) {
+		return update("updateCbsjSh", cbsj)>0;
+	}
+	@Override
+	public boolean shCbsjShByXmbm(Cbsj cbsj, String shzt1) {
+		String[] split = cbsj.getXmbm().split(",");
+		List<Cbsj> list=new ArrayList<Cbsj>();
+		for (int j = 0; j < split.length; j++) {
+			Cbsj obj=new Cbsj();
+			obj.setXmbm(split[j]);
+			obj.setShzt(cbsj.getShzt());
+			list.add(obj);
+		}
+		return updateBatch("shCbsjShByXmbm", list)==list.size();
+	}
 
 }

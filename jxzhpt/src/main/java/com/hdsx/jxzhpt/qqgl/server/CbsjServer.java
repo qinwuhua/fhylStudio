@@ -135,4 +135,71 @@ public interface CbsjServer {
 	 * @return
 	 */
 	public boolean shCbsjXjByXmbm(Cbsj cbsj, String sbzt1, String shzt1);
+	/**
+	 * 根据项目编码查询养护大中修信息
+	 * @param xmbm
+	 * @return
+	 */
+	public Cbsj queryCbsjYhdzxByXmbm(String xmbm);
+	/**
+	 * 查询养护大中修初步设计信息
+	 * @param cbsj 
+	 * @param page 页码
+	 * @param rows 展示数量
+	 * @return 列表
+	 */
+	public List<Cbsj> queryCbsjYhdzx(Cbsj cbsj, int page, int rows);
+	/**
+	 * 查询养护大中修初步设计总数
+	 * @param cbsj
+	 * @return 总数
+	 */
+	public int queryCbsjYhdzxCount(Cbsj cbsj);
+	/**
+	 * 修改养护大中修初步设计信息
+	 * @param cbsj
+	 * @return
+	 */
+	public boolean updateCbsjYhdzx(Cbsj cbsj);
+	/**
+	 * 审核养护大中修
+	 * @param cbsj
+	 * @param shzt1
+	 * @return
+	 */
+	public boolean shCbsjYhdzxByXmbm(Cbsj cbsj, String shzt1);
+	/**
+	 * 查询水毁的初步设计信息
+	 * @param cbsj 初步设计信息
+	 * @param page 页码
+	 * @param rows 展示行数
+	 * @return 列表信息
+	 */
+	public List<Cbsj> queryCbsjSh(Cbsj cbsj, int page, int rows);
+	/**
+	 * 查询初步设计水毁总数
+	 * @param cbsj 水毁初步设计 
+	 * @return 总数
+	 */
+	public int queryCbsjShCount(Cbsj cbsj);
+	/**
+	 * 根据项目编码查询水毁项目信息
+	 * @param xmbm 项目编码
+	 * @return 水毁项目信息
+	 */
+	public Cbsj queryCbsjShByXmbm(String xmbm);
+	/**
+	 * 修改水毁初步设计ixnxi
+	 * @param cbsj 水毁初步设计信息
+	 * @return 执行结果
+	 */
+	public boolean updateCbsjSh(Cbsj cbsj);
+	/**
+	 * 修改初步设计审核状态
+	 * @param cbsj 初步设计
+	 * @param shzt1 审核状态
+	 * @return 执行结果
+	 */
+	public boolean shCbsjShByXmbm(Cbsj cbsj, String shzt1);
+	
 }

@@ -189,16 +189,19 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try{
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
-			System.out.println("状态长度："+xmsq.getXzqhdm().length());
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 				if(b){
-					xmsqServer.insertJhshYhdzx(xmsq);
+					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
+					//再次修改后，添加到初步设计
+					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateShSqzt(xmsq);
 				if(b){
-					xmsqServer.insertJhshSh(xmsq);
+					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
+					//再次修改后，添加到初步设计
+					boolean s = xmsqServer.insertCbsjSh(xmsq);
 				}
 			}
 			result.put("result", new Boolean(b).toString());

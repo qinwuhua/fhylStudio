@@ -138,5 +138,17 @@ public interface XmsqServer {
 	 * @return 执行结果
 	 */
 	public boolean updateSh(Xmsq xmsq);
+	/**
+	 * 添加养护大中修到初步设计
+	 * @param xmsq 项目申请信息
+	 * @return 执行结果
+	 */
+	public boolean insertCbsjYhdzx(Xmsq xmsq);
+	/**
+	 * 添加水毁项目到初步设计
+	 * @param xmsq
+	 * @return
+	 */
+	public boolean insertCbsjSh(Xmsq xmsq);
 
 }

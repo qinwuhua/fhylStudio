@@ -16,6 +16,17 @@
 		select sys_guid(),c.xmbm,c.xmmc,c.xzqh,c.qdzh,c.zdzh,c.kgsj,c.wgsj,c.gq,k.gkpfwh,c.sjpfwh
 		from cbsj_xj c left join kxxyj_xj k on c.xmbm=k.xmbm where c.xmbm=#{xmbm}
 	</insert>
+	<insert id="insertJhshYhdzxFromCbsj" parameterType="cbsj">
+		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
+		where x.xmbm in (${xmbm})
+	</insert>
+	<insert id="insertJhshShFromCbsj" parameterType="cbsj">
+		insert into jhsh_sh (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_sh x
+		where x.xmbm in (${xmbm})
+	</insert>
+	
 	<select id="queryJhshLmsj" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (

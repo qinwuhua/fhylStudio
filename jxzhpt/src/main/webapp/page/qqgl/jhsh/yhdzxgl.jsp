@@ -74,24 +74,24 @@
 						return result;
 					}
 				},
-				{field:'sqzt',title:'申请状态',width:100,align:'center',
+				{field:'sqzt',title:'上报状态',width:100,align:'center',
 					formatter:function(value,row,index){
 						var result="";
 						if(userPanduan($.cookie('unit2'))!="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
-								result="已申请";
+								result="已上报";
 							}else if(Number(value)>0 && Number(value)<Number($.cookie('unit2').length)){
-								result="已通过";
+								result="已审核";
 							}else if(Number(value)==0 || Number(value)>Number($.cookie('unit2').length)){
-								result="未申请";
+								result="未上报";
 							}
 						}else if(userPanduan($.cookie('unit2'))=="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
-								result="已通过";
+								result="已审核";
 							}else if(Number(value)==9){
-								result="未通过";
+								result="未审核";
 							}else{
-								result="未申请";
+								result="未上报";
 							}
 						}
 						return result;
@@ -241,7 +241,7 @@
        						<input name="xmmc" id="xmmc" style="width:80px;" type="text"/>
 							<span>&nbsp;技术等级:</span>
 							<select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select>
-							<span>&nbsp;申请状态：</span>
+							<span>&nbsp;上报状态：</span>
        						<select id="sqzt" class="easyui-combobox" style="width: 70px;"></select>
 							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 							<img id="tj" name="dishi" alt="添加" onclick="openYhdzx()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>

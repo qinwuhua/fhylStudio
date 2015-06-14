@@ -64,6 +64,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==3){
 				resultData = cbsjServer.queryCbsjXj(cbsj, page, rows);
 				total = cbsjServer.queryCbsjXjCount(cbsj);
+			}else if(cbsj.getXmlx()==4){
+				resultData = cbsjServer.queryCbsjYhdzx(cbsj, page, rows);
+				total = cbsjServer.queryCbsjYhdzxCount(cbsj);
+			}else if(cbsj.getXmlx()==5){
+				resultData = cbsjServer.queryCbsjSh(cbsj, page, rows);
+				total = cbsjServer.queryCbsjShCount(cbsj);
 			}
 			result.put("rows", resultData);
 			result.put("total", total);
@@ -78,7 +84,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * @throws Exception
 	 */
 	public void queryCbsjByXmbm() throws Exception{
-		Cbsj object=null;
+		Cbsj object=new Cbsj();
 		try {
 			if(cbsj.getXmlx()==1){
 				object=cbsjServer.queryCbsjLmsjByXmbm(cbsj.getXmbm());
@@ -86,8 +92,13 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				object = cbsjServer.queryCbsjLmgzByXmbm(cbsj.getXmbm());
 			}else if(cbsj.getXmlx()==3){
 				object =cbsjServer.queryCbsjXjByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==4){
+				object =cbsjServer.queryCbsjYhdzxByXmbm(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==5){
+				object =cbsjServer.queryCbsjShByXmbm(cbsj.getXmbm());
 			}
-			object.setXmlx(cbsj.getXmlx());
+			if(object!=null)
+				object.setXmlx(cbsj.getXmlx());
 			JsonUtils.write(object, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,6 +119,10 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b=cbsjServer.updateCbsjLmgz(cbsj);
 			}else if(cbsj.getXmlx()==3){
 				b=cbsjServer.updateCbsjXj(cbsj);
+			}else if(cbsj.getXmlx()==4){
+				b=cbsjServer.updateCbsjYhdzx(cbsj);
+			}else if(cbsj.getXmlx()==5){
+				b=cbsjServer.updateCbsjSh(cbsj);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -159,6 +174,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				if(b && (shzt1!=null && !shzt1.equals(""))){
 					jhshServer.insertJhshXjFromCbsj(cbsj.getXmbm());
 				}
+			}else if(cbsj.getXmlx()==4){
+				b = cbsjServer.shCbsjYhdzxByXmbm(cbsj,shzt1);
+				jhshServer.insertJhshYhdzxFromCbsj(cbsj.getXmbm());
+			}else if(cbsj.getXmlx()==5){
+				b = cbsjServer.shCbsjShByXmbm(cbsj,shzt1);
+				jhshServer.insertJhshShFromCbsj(cbsj.getXmbm());
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());

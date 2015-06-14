@@ -170,5 +170,19 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("jhsh2", jhsh);
 		return queryOne("queryJhshShCount",params);
 	}
+	@Override
+	public boolean insertJhshYhdzxFromCbsj(String xmbm) {
+		Cbsj cbsj=new Cbsj();
+		cbsj.setXmbm(xmbm);
+		String[] split = xmbm.split(",");
+		return insert("insertJhshYhdzxFromCbsj", cbsj)==split.length;
+	}
+	@Override
+	public boolean insertJhshShFromCbsj(String xmbm) {
+		Cbsj cbsj=new Cbsj();
+		cbsj.setXmbm(xmbm);
+		String[] split = xmbm.split(",");
+		return insert("insertJhshShFromCbsj", cbsj)==split.length;
+	}
 
 }

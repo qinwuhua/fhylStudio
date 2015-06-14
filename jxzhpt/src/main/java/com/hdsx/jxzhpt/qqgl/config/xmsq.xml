@@ -278,6 +278,17 @@
 		where x.xmbm in (${xmbm})
 	</insert>
 	
+	<insert id="insertCbsjYhdzx" parameterType="xmsq">
+		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj 
+		from xmsq_yhdzx x where x.xmbm in (${xmbm})
+	</insert>
+	<insert id="insertCbsjSh" parameterType="xmsq">
+		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj 
+		from xmsq_sh x where x.xmbm in (${xmbm})
+	</insert>
+	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
 		select * from xmsq_yhdzx where xmbm=#{xmbm}
 	</select>
