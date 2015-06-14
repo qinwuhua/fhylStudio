@@ -21,7 +21,7 @@ $(function() {
 		}else if(qx[i]=='01010803'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
-				title: '工程可行性研究申请',
+				title: '工程可行性研究填写',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -37,7 +37,7 @@ $(function() {
 		}else if(qx[i]=='01010805'){
 			$('#aa').accordion('add', {
 				id:"left_menu5",
-				title: '初步设计或施工图设计申请',
+				title: '初步设计或施工图设计填写',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
