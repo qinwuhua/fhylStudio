@@ -313,7 +313,7 @@
 	</resultMap>
 	<select id="queryGcgjList"  parameterType="gcglgcgzgj" resultType="hashmap">	
 		select * from (
-		select rownum num ,t.*  from JHSH_LMGZ t where 1=1
+		select rownum num ,t.*,lxsh.ghlxbh  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm where 1=1
 		
 		<if test="kgzt != null and  kgzt != ''">
 				and t.kgzt like '%'||trim(#{kgzt})||'%'
@@ -327,7 +327,7 @@
 		<if test="shzt != null and  shzt != ''">
 				and ${tiaojian} like '%'||trim(#{shzt})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -361,7 +361,7 @@
 	<!-- 拨付列表 -->
 	<select id="selectWqgzjhList2"  parameterType="gcglgcgzgj" resultType="hashmap">
 	select * from (
-		select rownum num ,t.*  from JHSH_LMGZ t left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+		select rownum num ,t.*,lxsh.ghlxbh  from JHSH_LMGZ t left join lxsh_lmgz lxsh on t.xmbm=lxsh.xmbm left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -380,7 +380,7 @@
 		<if test="sbnf != null and  sbnf != ''">
 				and t.xmbm like trim(#{sbnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
