@@ -250,6 +250,13 @@ $(function() {
 		renderTo:'left_menu6',
 		href:'./cbsj/yhdzx.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080605',
+		title:'水毁项目',
+		imgSrc:'../../images/wq_s.png',
+		renderTo:'left_menu6',
+		href:'./cbsj/shxm.jsp'
+	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101030509',
 //		title:'战备公路项目',
