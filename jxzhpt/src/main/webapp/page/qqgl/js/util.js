@@ -89,6 +89,27 @@ function fileShow(xmbm,type){
 	});
 }
 /**
+ * 查询设计批复文件
+ * @param id 元素ID
+ * @param xmbm 项目编码
+ * @param type 文件类型
+ */
+function fileShow1(id,xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/queryFileByXmbm.do',
+		data:'file.parentid='+xmbm+'&file.filetype='+type,
+		dataType:'json',
+		success:function(data){
+			$("#"+id).empty();
+			for ( var i = 0; i < data.length; i++) {
+				var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				$("#"+id).append(tr);
+			}
+		}
+	});
+}
+/**
  * 下载文件
  * @param id 文件ID
  */

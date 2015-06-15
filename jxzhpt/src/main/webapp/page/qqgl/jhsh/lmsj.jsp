@@ -39,7 +39,8 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						var result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
@@ -48,12 +49,8 @@
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=1;
-						if(row.xdzt==0){
-							var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
+						var result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
-						}else{
-							result="计划下达";
-						}
 						return result;
 					}
 				},

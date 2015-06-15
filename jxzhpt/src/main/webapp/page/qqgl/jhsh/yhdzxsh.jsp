@@ -47,7 +47,7 @@
 				{field:'xdzt',title:'下达状态',width:100,align:'center',
 					formatter:function(value,row,index){
 						xmlx=4;
-						var result=value==0 ? '<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:blue;">计划下达</a>' : "已下达";
+						var result='<a href="javascript:openJhxd1('+"'jhxd1.jsp',"+index+')" style="color:blue;">计划下达</a>';
 						return result;
 					}
 				},

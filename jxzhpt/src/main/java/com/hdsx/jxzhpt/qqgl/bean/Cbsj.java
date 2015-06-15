@@ -61,6 +61,13 @@ public class Cbsj {
 	private String tsdq;//特殊地区
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
+	private String jsfa;//建设方案
+	public String getJsfa() {
+		return jsfa;
+	}
+	public void setJsfa(String jsfa) {
+		this.jsfa = jsfa;
+	}
 	public int getXmlx() {
 		return xmlx;
 	}

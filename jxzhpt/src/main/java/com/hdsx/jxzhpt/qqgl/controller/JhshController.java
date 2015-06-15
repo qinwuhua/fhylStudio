@@ -1,7 +1,9 @@
 package com.hdsx.jxzhpt.qqgl.controller;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.xpath.operations.Bool;
 import org.codehaus.jackson.annotate.JsonUnwrapped;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
@@ -26,6 +31,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -109,6 +115,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		try {
 			List<Jhsh> list=new ArrayList<Jhsh>();
 			list.add(jhsh);
+			System.out.println("项目类型："+jhsh.getXmlx());
 			if(jhsh.getXmlx()==1){
 				b=jhshServer.updateJhshxxLmsj(list);
 			}else if(jhsh.getXmlx()==2){
@@ -138,6 +145,41 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 上传计划下达文件
+	 * @throws Exception
+	 */
+	public void uploadJhsh() throws Exception{
+		try {
+			System.out.println("项目编码："+jhsh.getXmbm());
+			HttpServletResponse response = ServletActionContext.getResponse();
+			Plan_upload uploads;
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=new byte[(int)uploadJhxd.length()];
+			inputStream=new FileInputStream(uploadJhxd);
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			uploads=new Plan_upload();
+			uploads.setParentid(jhsh.getXmbm());
+			uploads.setFiledata(file);
+			uploads.setFiletype("计划下达文件");
+			uploads.setFilename(uploadJhxdFileName);
+			CbsjServer cbsjServer =new CbsjServerImpl();
+			boolean result = cbsjServer.insertFile(uploads);
+			if(result){
+				response.getWriter().print(uploadJhxdFileName+"导入成功");
+			}else{
+				response.getWriter().print(uploadJhxdFileName+"导入成功");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
@@ -346,7 +388,6 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
 	}
 	/**

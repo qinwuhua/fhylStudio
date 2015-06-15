@@ -388,26 +388,7 @@
 	<update id="updateCbsjYhdzx" parameterType="cbsj">
 		update cbsj_yhdzx c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
 		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
-		<if test="lj!=null">c.lj=#{lj},</if> 
-		<if test="ql!=null">c.ql=#{ql},</if>
-		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
-		<if test="hd!=null">c.hd=#{hd},</if>
-		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
-		<if test="mc!=null">c.mc=#{mc},</if>
-		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
-		<if test="jc!=null">c.jc=#{jc},</if>
-		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
-		<if test="dc!=null">c.dc=#{dc},</if>
-		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
-		<if test="sd!=null">c.sd=#{sd},</if>
-		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
-		<if test="dq!=null">c.dq=#{dq},</if>
-		<if test="dq_cd!=null">c.dq_cd=#{dq_cd},</if>
-		<if test="dq_dk!=null">c.dq_dk=#{dq_dk},</if>
-		<if test="sdmc!=null">c.sdmc=#{sdmc},</if>
-		<if test="sd_sfcd!=null">c.sd_sfcd=#{sd_sfcd},</if>
-		<if test="sd_lx!=null">c.sd_lx=#{sd_lx},</if>
-		<if test="jaf!=null">c.jaf=#{jaf},</if>
+		<if test="jsfa!=null">c.jsfa=#{jsfa},</if>
 		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
 		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
 		<if test="gq!=null">c.gq=#{gq},</if>
@@ -420,26 +401,7 @@
 	<update id="updateCbsjSh" parameterType="cbsj">
 		update cbsj_sh c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
 		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
-		<if test="lj!=null">c.lj=#{lj},</if> 
-		<if test="ql!=null">c.ql=#{ql},</if>
-		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
-		<if test="hd!=null">c.hd=#{hd},</if>
-		<if test="hd_m!=null">c.hd_m=#{hd_m},</if>
-		<if test="mc!=null">c.mc=#{mc},</if>
-		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
-		<if test="jc!=null">c.jc=#{jc},</if>
-		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
-		<if test="dc!=null">c.dc=#{dc},</if>
-		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
-		<if test="sd!=null">c.sd=#{sd},</if>
-		<if test="sd_ym!=null">c.sd_ym=#{sd_ym},</if>
-		<if test="dq!=null">c.dq=#{dq},</if>
-		<if test="dq_cd!=null">c.dq_cd=#{dq_cd},</if>
-		<if test="dq_dk!=null">c.dq_dk=#{dq_dk},</if>
-		<if test="sdmc!=null">c.sdmc=#{sdmc},</if>
-		<if test="sd_sfcd!=null">c.sd_sfcd=#{sd_sfcd},</if>
-		<if test="sd_lx!=null">c.sd_lx=#{sd_lx},</if>
-		<if test="jaf!=null">c.jaf=#{jaf},</if>
+		<if test="jsfa!=null">c.jsfa=#{jsfa},</if>
 		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
 		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
 		<if test="gq!=null">c.gq=#{gq},</if>

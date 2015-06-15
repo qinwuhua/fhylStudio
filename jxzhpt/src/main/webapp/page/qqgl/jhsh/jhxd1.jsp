@@ -20,7 +20,17 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#xmbm').val(parent.YMLib.Var.xmbm);
-			$('#xmlx').val(parent.YMLib.Var.xmlx);
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshxxByXmbm2.do',
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmlx+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				dataType:'json',
+				success:function(data){
+					$('#jhxdFrom').form("load",data);
+					$('#xmlx').val(parent.YMLib.Var.xmlx);
+				}
+			});
+			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
 			$('#qdzh').val(parent.YMLib.Var.row.qdzh);
 			$('#zdzh').val(parent.YMLib.Var.row.zdzh);
 			$('#lc').val(parent.YMLib.Var.row.lc);
@@ -30,7 +40,7 @@
 			$("#uploadJhxd").uploadify({
 				/*注意前面需要书写path的代码*/
 				'uploader' : '../../../js/uploader/uploadify.swf',
-				'script' : '../../../qqgl/uploadSjpf.do',
+				'script' : '../../../qqgl/uploadJhsh.do',
 				'cancelImg' : '../../../js/uploader/cancel.png',
 				'queueID' : 'fileQueue',
 				'fileDataName' : 'uploadJhxd',
@@ -45,11 +55,11 @@
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {
-					'cbsj.xmbm':parent.YMLib.Var.xmbm
+					'jhsh.xmbm':parent.YMLib.Var.xmbm
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
 					alert(response);
-					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
+					fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");
@@ -274,7 +284,7 @@
 									src="../../../images/Button/baocun1.gif">
 								&nbsp; 
 								<input type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='../../../images/Button/fanhui2.GIF'" alt="返回"
-								onclick="closezjxd()" onmouseout="this.src='../../../images/Button/fanhui1.GIF'"
+								onclick="closeWindow('jhxd')" onmouseout="this.src='../../../images/Button/fanhui1.GIF'"
 								src="../../../images/Button/fanhui1.GIF" style="border-width: 0px;" />
 							</td>
 						</tr>
