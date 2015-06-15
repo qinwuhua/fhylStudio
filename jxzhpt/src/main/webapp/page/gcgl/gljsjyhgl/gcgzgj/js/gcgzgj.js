@@ -29,7 +29,7 @@ function sfqxkg(index){
 }
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.plan_lx_gcgjs[0].GHLXBH,"");
+	locationXm(data.GHLXBH,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];

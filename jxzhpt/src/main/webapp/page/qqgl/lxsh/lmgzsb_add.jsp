@@ -283,7 +283,7 @@ text-decoration:none;
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 145px" /></td>
+					<input type="text" id="jsxz" style="width: 145px"  value='路面改造'/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
@@ -327,13 +327,13 @@ text-decoration:none;
 					</select>	</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz" onblur="checkdfzc()"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
+					<input type="text" id="tz" onblur="checkdfzc(this)"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 				<span id="bzcs"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>

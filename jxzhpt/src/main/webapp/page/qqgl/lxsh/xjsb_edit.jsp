@@ -243,7 +243,7 @@ text-decoration:none;
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz" style="width: 145px" /></td>
+					<input type="text" id="jsxz" style="width: 145px"  value='新建'/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
@@ -285,13 +285,13 @@ text-decoration:none;
 					</select>	</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc1()"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
+					<input type="text" id="tz"  onblur="checkdfzc1(this)"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<input type="text" id="bzcs"  onblur="checkdfzc1()"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
+				<input type="text" id="bzcs"  onblur="checkdfzc1(this)"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="dfzc"></span>
 				</td>

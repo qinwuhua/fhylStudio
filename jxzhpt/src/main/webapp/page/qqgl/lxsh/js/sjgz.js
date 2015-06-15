@@ -991,7 +991,8 @@ function cxzdmc(lxbm,qdzh){
 	});
 }
 
-function checkdfzc(){
+function checkdfzc(str){
+	checkSZ(str);
 	$("#dfzc").html('');
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')
@@ -1005,7 +1006,8 @@ function checkdfzc(){
 	var dfzc=accSub(tz,bzcs);
 	$("#dfzc").html(dfzc);
 }
-function checkdfzc1(){
+function checkdfzc1(str){
+	checkSZ(str);
 	$("#dfzc").html('');
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')
