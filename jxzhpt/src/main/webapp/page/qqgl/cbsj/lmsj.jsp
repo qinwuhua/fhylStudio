@@ -34,15 +34,7 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':-1};
-			if($('#sbzt').combo("getText")=="未上报"){
-				params['cbsj.sbzt']=0;
-			}else if($('#sbzt').combo("getText")=="已上报"){
-				params['cbsj.sbzt']=1;
-				params['cbsj.shzt']=0;
-			}else if($('#sbzt').combo("getText")=="已审核"){
-				params['cbsj.shzt']=1;
-			}
+					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-$('#searchField').height();
 			grid.width=$('#searchField').width();
@@ -52,25 +44,22 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						if(row.sbzt==0){
-							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
+						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						if(row.shzt==0){
+							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
-							result='<a style="color:black;">编辑</a>';
+							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
-				{field:'sbzt',title:'上报状态',width:100,align:'center',
+				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						if(row.sbzt==0){
-							result="未上报";
-						}else if(row.sbzt==1){
-							result = row.shzt==1 ? "已审核" : "已上报";
-						}
+						result = row.shzt==0 ? "未审核" : "已审核";
 						return result;
 					}
 				},
@@ -153,7 +142,6 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-	</script>
 		<style type="text/css">
 TD {
 font-size: 12px;
@@ -196,18 +184,17 @@ text-decoration:none;
         				<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
-								<td align="right">上报状态：</td>
-        						<td><select id="sbzt" style="width:105px;" class="easyui-combobox">
+								<td align="right">审核状态：</td>
+        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
-									<option value="0">未上报</option>
-									<option value="1">已上报</option>
-									<option value="4">已审核</option>
+									<option value="0">未审核</option>
+									<option value="1">已审核</option>
 								</select></td><tr>
 								<tr height="32">
                               <td colspan="10">
 								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
-								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/>
+								<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
         					</td>
                             </tr></table>
         				</div>

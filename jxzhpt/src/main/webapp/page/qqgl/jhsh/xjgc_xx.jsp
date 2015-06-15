@@ -54,6 +54,11 @@
 	<div>
 		<form id="lxsh">
 			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
+				<tr style="height: 25px;">
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						新建工程项目 — 立项申请
+					</td>
+				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
@@ -142,7 +147,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 初步设计或施工图设计
+						新建工程项目 — 初步设计或施工图设计
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -354,7 +359,7 @@
 			<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 				<tr style="height: 25px;">
 					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-						升级改造工程项目 — 计划审核填报信息
+						新建工程项目 — 计划审核填报信息
 					</td>
 				</tr>
 				<tr>

@@ -38,7 +38,8 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						var result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
+						result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
@@ -54,7 +55,7 @@
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},

@@ -44,25 +44,22 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
+						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						if(row.shzt==0){
-							result='<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
+							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
-							result='<a style="color:black;">编辑</a>';
+							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
 						}
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}
 				},
 				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						if(row.shzt==0){
-							result="未审核";
-						}else if(row.shzt==1){
-							result="已审核";
-						}
+						result=row.shzt==0 ? '未审核' : '已审核';
 						return result;
 					}
 				},
@@ -230,7 +227,7 @@ text-decoration:none;
                               <td colspan="10">
 								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/>
+								<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
         					</td>
                             </tr></table>
         				</div>
