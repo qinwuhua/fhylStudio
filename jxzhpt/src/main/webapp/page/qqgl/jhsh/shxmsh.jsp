@@ -39,7 +39,7 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
-						result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						result+='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						return result;
 					}

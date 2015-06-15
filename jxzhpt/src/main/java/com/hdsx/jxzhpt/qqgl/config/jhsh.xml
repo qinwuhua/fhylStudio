@@ -293,7 +293,7 @@
 	<update id="updateJhshxxYhdzx" parameterType="jhsh">
 		update jhsh_yhdzx c set 
 		<if test="ztz!=null">ztz=#{ztz}</if>
-		<if test="yqdbcgs!=null">,yqdbcgs!=#{yqdbcgs}</if>
+		<if test="yqdbcgs!=null">,yqdbcgs=#{yqdbcgs}</if>
 		<if test="sysbbzj!=null">,sysbbzj=#{sysbbzj}</if>
 		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
 		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
