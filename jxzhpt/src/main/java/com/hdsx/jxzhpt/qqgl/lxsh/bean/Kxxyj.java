@@ -241,5 +241,19 @@ public class Kxxyj implements Serializable {
 	public void setSbzt1(String sbzt1) {
 		this.sbzt1 = sbzt1;
 	}
+	@Override
+	public String toString() {
+		return "Kxxyj [id=" + id + ", xmmc=" + xmmc + ", xmbm=" + xmbm
+				+ ", jsdw=" + jsdw + ", xzqh=" + xzqh + ", qdzh=" + qdzh
+				+ ", zdzh=" + zdzh + ", dq=" + dq + ", sd=" + sd + ", kgny="
+				+ kgny + ", wgny=" + wgny + ", jsjsdj=" + jsjsdj + ", jsxz="
+				+ jsxz + ", gkpfwh=" + gkpfwh + ", pfsj=" + pfsj + ", tzgs="
+				+ tzgs + ", bzdw=" + bzdw + ", xzqhdm=" + xzqhdm + ", shzt="
+				+ shzt + ", sbzt=" + sbzt + ", dq_m=" + dq_m + ", sd_m=" + sd_m
+				+ ", tbbmbm=" + tbbmbm + ", page=" + page + ", rows=" + rows
+				+ ", xmnf=" + xmnf + ", gldj=" + gldj + ", jsdj=" + jsdj
+				+ ", xmlx=" + xmlx + ", sbthcd=" + sbthcd + ", sbzt1=" + sbzt1
+				+ ", lxbh=" + lxbh + ", gydwdm=" + gydwdm + "]";
+	}
 	
 }

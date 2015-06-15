@@ -178,6 +178,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shsjgzkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshsjgz", str);
 			for (Kxxyj lxsh2 : list) {
+				if(lxsh2.getJsdw()==null){
+					lxsh2.setJsdw("");
+				}
 				insert("insertsjgzcb", lxsh2);
 			}
 			return true;
@@ -203,6 +206,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shlmgzkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshlmgz", str);
 			for (Kxxyj lxsh2 : list) {
+				if(lxsh2.getJsdw()==null){
+					lxsh2.setJsdw("");
+				}
 				insert("insertlmgzcb", lxsh2);
 			}
 			return true;
@@ -228,6 +234,9 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shxjkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshxj", str);
 			for (Kxxyj lxsh2 : list) {
+				if(lxsh2.getJsdw()==null){
+					lxsh2.setJsdw("");
+				}
 				insert("insertxjcb", lxsh2);
 			}
 			return true;
