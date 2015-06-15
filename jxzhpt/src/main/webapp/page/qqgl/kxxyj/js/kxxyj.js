@@ -121,10 +121,14 @@ function showsjgzAll(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
+
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -237,10 +241,13 @@ function showlmgzAll(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -353,11 +360,13 @@ function showxjAll(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
-	    ]],
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
 	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
@@ -456,10 +465,13 @@ function showAllsjsh(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -559,10 +571,13 @@ function showAlllmsh(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -662,10 +677,13 @@ function showAllxjsh(){
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'lxbh',title : '规划路线编号',width : 100,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field : 'lc',title : '里程',width : 100,align : 'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'kgny',title : '开工年月',width : 100,align : 'center'},
+		    {field : 'wgny',title : '完工年月',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
