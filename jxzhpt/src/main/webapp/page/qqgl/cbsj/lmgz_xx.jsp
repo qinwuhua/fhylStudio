@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$.ajax({
@@ -27,6 +28,7 @@
 					$.each(inputArray,function(index,item){
 						$(item).attr("disabled","disabled");
 					});
+					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 				}
 			});
 			
@@ -262,7 +264,9 @@
 						上传设计批复文件
 					</td>
 					<td colspan="3" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="sjpfTable"></tbody>
+						</table>
 					</td>
 				</tr>
 			</table>
