@@ -123,6 +123,7 @@ function showsjgzAll(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -238,6 +239,7 @@ function showlmgzAll(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -353,6 +355,7 @@ function showxjAll(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -455,6 +458,7 @@ function showAllsjsh(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -557,6 +561,7 @@ function showAlllmsh(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,
@@ -659,6 +664,7 @@ function showAllxjsh(){
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
 		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
 	    ]],
 		view: detailview,

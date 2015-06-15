@@ -42,7 +42,7 @@ public class Kxxyj implements Serializable {
 	private String sbzt1;
 	private String lxbh;
 	private String gydwdm;
-	
+	private String lc;
 	public String getGydwdm() {
 		return gydwdm;
 	}
@@ -240,6 +240,13 @@ public class Kxxyj implements Serializable {
 	}
 	public void setSbzt1(String sbzt1) {
 		this.sbzt1 = sbzt1;
+	}
+	
+	public String getLc() {
+		return lc;
+	}
+	public void setLc(String lc) {
+		this.lc = lc;
 	}
 	@Override
 	public String toString() {

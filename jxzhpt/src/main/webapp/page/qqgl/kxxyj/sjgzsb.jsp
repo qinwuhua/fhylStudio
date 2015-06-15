@@ -163,19 +163,19 @@ text-decoration:none;
         						<td>项目年份：</td>
         						<td><select id="xmnf" style="width:70px;">
 								</select></td>
-        						<td>上报状态：</td>
+        					<!-- 	<td>上报状态：</td>
         						<td><select id="sbzt" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="0">未上报</option>
 									<option value="1">已上报</option>
-								</select></td>
+								</select></td> -->
 								<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" style="width:88px;" >
 								</select></td>
 								<td>技术等级：</td>
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
-								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+								<td><select name="gldj" id="gldj" style="width:68px;" class="easyui-combobox"></select></td>
         					</tr>
         					<tr height="32">
                               <td colspan="10">
