@@ -32,7 +32,7 @@
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;

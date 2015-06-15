@@ -56,7 +56,7 @@
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;

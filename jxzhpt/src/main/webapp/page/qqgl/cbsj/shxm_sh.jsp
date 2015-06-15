@@ -74,22 +74,12 @@
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
-				{field:'lj',title:'路基（m3）',width:100,align:'center'},
-				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
-				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},
-				{field:'mc',title:'面层（类型/公里）',width:100,align:'center'},
-				{field:'jc',title:'基基（公里）',width:100,align:'center'},
-				{field:'dc',title:'垫基（公里）',width:100,align:'center'},
-				{field:'sd',title:'隧道（延米/座）',width:100,align:'center'},
-				{field:'dq',title:'大桥(名称/长度/单跨)',width:150,align:'center'},
-				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
-				{field:'pfsj',title:'批复时间',width:100,align:'center'},
-				{field:'jaf',title:'建安费',width:100,align:'center'}]];
+				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
 		}
 		/*function deleteLmgz(){

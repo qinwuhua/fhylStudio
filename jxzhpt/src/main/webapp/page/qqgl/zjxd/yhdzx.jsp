@@ -31,7 +31,7 @@
 			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'xdzt':1};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
