@@ -248,14 +248,14 @@ $(function() {
 		title:'养护大中修项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',
-		href:'./cbsj/yhdzx.jsp'
+		href:'./cbsj/yhdzx_sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080605',
 		title:'水毁项目',
 		imgSrc:'../../images/wq_s.png',
 		renderTo:'left_menu6',
-		href:'./cbsj/shxm.jsp'
+		href:'./cbsj/shxm_sh.jsp'
 	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101030509',

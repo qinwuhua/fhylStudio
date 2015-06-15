@@ -27,12 +27,12 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
-			queryShxm();
+			queryYhdzx();
 		});
-		function queryShxm(){
+		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryCbsj.do";
-			var params={'cbsj.xmlx':5,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
+			var params={'cbsj.xmlx':4,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
 					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue")};
 			grid.queryParams=params;
@@ -45,11 +45,11 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+							"'/jxzhpt/page/qqgl/cbsj/yhdzx_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						if(row.shzt==0){
-							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'yhdzxedit'"+','+"'养护大中修项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/yhdzx_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
 							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
 						}
@@ -136,13 +136,13 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+5+'&xmbm='+xmbm+'&shzt='+1,
+					data:'xmlx='+4+'&xmbm='+xmbm+'&shzt='+1,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
 							alert("审核成功!");
-							queryShxm();
+							queryYhdzx();
 						}
 					}
 				});
@@ -205,9 +205,9 @@ text-decoration:none;
 							</tr>
 							<tr height="32">
 								<td colspan="10">
-								<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
-								<!-- <img onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
+								<img onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
         						</td>
                         	</tr>
