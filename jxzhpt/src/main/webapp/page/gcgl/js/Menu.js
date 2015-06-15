@@ -26,6 +26,7 @@ $(function() {
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
+			j++;
 		}else if(qx[i]=='01010404'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
