@@ -44,14 +44,14 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						if(row.shzt==0){
-							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result+='&nbsp;<a href="javascript:openWindow('+"'lmsjedit'"+','+"'升级改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmsj_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						}else{
-							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
+							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
 					}

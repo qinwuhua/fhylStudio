@@ -40,14 +40,14 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'xjzjxd'"+','+"'新建工程项目 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/xjgc_zjxd.jsp'"+',900,400)" style="color:blue;">资金下发</a>';
+						"'/jxzhpt/page/qqgl/zjxd/xjgc_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
 						return result;
 					}
 				},
