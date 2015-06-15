@@ -62,15 +62,16 @@
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
-				{field:'cz',title:'操作',width:100,align:'center',
+				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						var result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
+						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
-						if(row.sqzt==0){
-							result+='    | <a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
+						if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
+							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
-							result+='    | <a style="color:black;">编辑</a>';
+							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
 					}
@@ -102,7 +103,7 @@
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
 				{field:'gydw',title:'管养单位',width:100,align:'center'},
-				{field:'ylxbh',title:'规划路线编码',width:100,align:'center'},
+				{field:'ylxbh',title:'原路线编码',width:100,align:'center'},
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'lc',title:'里程',width:100,align:'center'},
@@ -181,7 +182,7 @@
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;
 			$.each(selRow,function(index,item){
-				if(item.sqzt==7){
+				if(item.sqzt==7 || item.sqzt==0){
 					y=false;
 					return;
 				}
