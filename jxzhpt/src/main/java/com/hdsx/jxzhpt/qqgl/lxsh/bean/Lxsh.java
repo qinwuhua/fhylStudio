@@ -44,6 +44,7 @@ public class Lxsh implements Serializable {
 	private String sbzt1;
 	private int shzt;
 	private String lxmc;
+	private String jdbs;
 	
 	public String getLxmc() {
 		return lxmc;
@@ -255,6 +256,12 @@ public class Lxsh implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 
 }

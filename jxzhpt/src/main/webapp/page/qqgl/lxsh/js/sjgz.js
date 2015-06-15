@@ -241,6 +241,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -955,7 +956,7 @@ function delsjlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz",
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){

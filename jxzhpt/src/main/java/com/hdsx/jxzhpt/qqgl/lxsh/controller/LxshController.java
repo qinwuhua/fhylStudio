@@ -90,7 +90,14 @@ public class LxshController extends BaseActionSupport{
 	private int sbthcd;
 	private String xmbm;
 	private String ghlxbh;
+	private String jdbs;
 	
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
+	}
 	public String getGhlxbh() {
 		return ghlxbh;
 	}
@@ -381,6 +388,7 @@ public class LxshController extends BaseActionSupport{
 }
 	public void selectSjgzlxList(){
 		lxsh.setXmbm(xmbm);
+		lxsh.setJdbs(jdbs);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		List<Lxsh> list=lxshServer.selectSjgzlxList(lxsh);

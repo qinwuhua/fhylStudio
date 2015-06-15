@@ -211,7 +211,7 @@ text-decoration:none;
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
-		+"&lxsh.sbthcd="+sbthcd;
+		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0";
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertSjgz.do',

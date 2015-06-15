@@ -17,7 +17,7 @@
 		select * from LXSH_SJGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
 	</select>
 	<select id="selectSFCFLX" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_LX where lxbm like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmid=#{xmbm}
+		select * from LXSH_LX where lxbm like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSFCF1" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_LMGZ where ghlxbh like '%'||#{ghlxbh}||'%' and qdzh like '%'||#{qdzh}||'%' and zdzh like '%'||#{zdzh}||'%' and xmnf=#{xmnf}
@@ -38,8 +38,8 @@
 		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1')
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs})
 	</insert>
 	<insert id="insertLx" parameterType="lxsh">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
@@ -110,12 +110,18 @@
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
+		<if test="jdbs!='' and jdbs!= null ">
+			and jdbs like '%'||#{jdbs}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="selectSjgzlxListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_LX where 1=1 and sffirst!='1'
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
+		</if>
+		<if test="jdbs!='' and jdbs!= null ">
+			and jdbs like '%'||#{jdbs}||'%'
 		</if>
 	</select>
 	<update id="sbsjgzSbzt" parameterType="hashmap">
@@ -168,13 +174,13 @@
 	</update>
 	<update id="updateSjgzlx" parameterType="lxsh">
 		update LXSH_LX set qdzh=#{qdzh},zdzh=#{zdzh},qdmc=#{qdmc},zdmc=#{zdmc},lc=#{lc},jsxz=#{jsxz},jsjsdj=#{jsjsdj},bzcs=#{bzys}
-		where xmid=#{xmbm} and sffirst='1'
+		where xmid=#{xmbm} and sffirst='1' and jdbs=#{jdbs}
 	</update>
 	<select id="queryMaxbzcs" parameterType="lxsh" resultType="double">
-		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm}
+		select sum(to_number(bzcs)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="queryMaxlc" parameterType="lxsh" resultType="double">
-		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm}
+		select sum(to_number(lc)) from LXSH_LX where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -538,7 +544,7 @@
 		update lxsh_xj set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
 	</update>
 	<delete id="deleteLx" parameterType="lxsh">
-		delete from lxsh_lx where xmid=#{xmbm} and id=#{id}
+		delete from lxsh_lx where xmid=#{xmbm} and id=#{id} and jdbs=#{jdbs}
 	</delete>
 	<select id="cxqdmc" parameterType="lxsh" resultType="lxsh">
 		select min(f006) qdmc from gpsroad g,
