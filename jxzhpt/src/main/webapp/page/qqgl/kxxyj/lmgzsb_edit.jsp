@@ -56,7 +56,7 @@ text-decoration:none;
 		$("#wgny").datebox('setValue',data.wgny);
 		$("#pfsj").datebox('setValue',data.pfsj);
 		fileShow(parent.obj.xmbm,"工可批复文件");
-		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
+		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/qqglGpsroad.do',
