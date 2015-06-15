@@ -45,7 +45,14 @@ public class Lxsh implements Serializable {
 	private int shzt;
 	private String lxmc;
 	private String jdbs;
+	private String sffirst;
 	
+	public String getSffirst() {
+		return sffirst;
+	}
+	public void setSffirst(String sffirst) {
+		this.sffirst = sffirst;
+	}
 	public String getLxmc() {
 		return lxmc;
 	}

@@ -42,9 +42,16 @@
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs})
 	</insert>
 	<insert id="insertLx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0')
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs})
 	</insert>
+	<insert id="insertLx1" parameterType="lxsh">
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs})
+	</insert>
+	<select id="querylxlist" parameterType="lxsh" resultType="lxsh">
+		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
+	</select>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_SJGZ t where 1=1
@@ -74,7 +81,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by sbzt1,xmbm
 	</select>
 	<select id="selectSjgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_SJGZ where 1=1
@@ -211,7 +218,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by shzt,xmbm
 	</select>
 	<select id="selectSjgzshListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_SJGZ where 1=1
@@ -270,7 +277,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by shzt,xmbm
 	</select>
 	<select id="selectLmgzshListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_LMGZ where 1=1
@@ -330,7 +337,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by shzt,xmbm
 	</select>
 	<select id="selectXjshListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_XJ where 1=1
@@ -431,7 +438,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by sbzt1,xmbm
 	</select>
 	<select id="selectLmgzListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_LMGZ where 1=1
@@ -491,7 +498,7 @@
 			and ghlxbh like #{gldj}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
-		order by xmbm
+		order by sbzt1,xmbm
 	</select>
 	<select id="selectXjListCount" parameterType="lxsh" resultType="int">
 		select count(*) from LXSH_XJ where 1=1
