@@ -212,7 +212,7 @@
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("上报成功!");
+							alert("审核成功!");
 							queryShxm();
 						}
 					}

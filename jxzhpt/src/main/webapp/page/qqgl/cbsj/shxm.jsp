@@ -57,6 +57,15 @@
 						return result;
 					}
 				},
+				{field:'tjlx',title:'添加路线',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(row.shzt==0){
+							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+						}else{
+							return '添加路线';
+						}
+					}
+				},
 				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
