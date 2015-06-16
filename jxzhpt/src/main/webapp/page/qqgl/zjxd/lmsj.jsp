@@ -24,6 +24,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			YMLib.Var.jdbs=2;
 			queryLmsj();
 		});
 		function queryLmsj(){

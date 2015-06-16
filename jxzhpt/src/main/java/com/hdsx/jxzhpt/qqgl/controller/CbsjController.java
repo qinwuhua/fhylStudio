@@ -196,12 +196,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b = cbsjServer.shCbsjShByXmbm(cbsj,shzt1);
 				jhshServer.insertJhshShFromCbsj(cbsj.getXmbm());
 			}
-			if(b){
-				Lx lx=new Lx();
-				lx.setXmid(cbsj.getXmbm());
-				lx.setJdbs(jdbs);
-				jhshServer.insertLxJdbs(lx);
-			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {

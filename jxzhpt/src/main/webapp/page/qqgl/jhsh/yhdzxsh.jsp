@@ -23,7 +23,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2('jsdj','技术等级');
 			loadBmbm2('sqzt','申请状态省');
-			YMLib.Var.jdbs=3;
+			YMLib.Var.jdbs=2;
 			queryYhdzx();
 		});
 		function queryYhdzx(){

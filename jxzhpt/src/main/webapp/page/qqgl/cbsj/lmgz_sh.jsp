@@ -27,6 +27,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});
 		function queryLmgz(){
@@ -156,12 +157,12 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("上报成功!");
+							alert("审核成功!");
 							queryLmgz();
 						}
 					}
