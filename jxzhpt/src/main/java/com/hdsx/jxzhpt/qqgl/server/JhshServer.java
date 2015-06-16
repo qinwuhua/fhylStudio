@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface JhshServer {
@@ -183,5 +184,11 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean insertJhshShFromCbsj(String xmbm);
+	/**
+	 * 修改路线信息
+	 * @param lx 修改路线信息
+	 * @return 执行结果
+	 */
+	public boolean updateLx(Lx lx);
 	
 }

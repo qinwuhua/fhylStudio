@@ -58,6 +58,21 @@ public class Jhsh {
 	private String gfje;//灌缝金额
 	private String llcl;//老路处理
 	private String jsdj;//技术等级
+	//用于路线信息的字段
+	private String qdmc;//起点名称
+	private String zdmc;//止点名称
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
 	public String getId() {
 		return id;
 	}

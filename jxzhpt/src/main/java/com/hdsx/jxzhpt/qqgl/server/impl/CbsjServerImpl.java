@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 @Service
 public class CbsjServerImpl extends BaseOperate implements CbsjServer {

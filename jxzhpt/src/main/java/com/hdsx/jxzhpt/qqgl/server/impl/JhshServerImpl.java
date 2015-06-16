@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 @Service
@@ -183,6 +184,10 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		cbsj.setXmbm(xmbm);
 		String[] split = xmbm.split(",");
 		return insert("insertJhshShFromCbsj", cbsj)==split.length;
+	}
+	@Override
+	public boolean updateLx(Lx lx) {
+		return update("updateLx",lx)>0;
 	}
 
 }

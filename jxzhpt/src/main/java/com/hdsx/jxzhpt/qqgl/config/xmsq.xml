@@ -160,7 +160,7 @@
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -186,7 +186,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>

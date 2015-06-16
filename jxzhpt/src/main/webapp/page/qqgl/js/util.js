@@ -13,8 +13,51 @@ function userPanduan(unit2){
 		return "县";
 	}
 }
-//-------------------------------------------公用方法
-
+//--------------------------------------------------公用方法---------------------------------------
+/**
+ * 查询桩号地方名称
+ */
+function querymc(id){
+	if(id=="qdzh"){
+		cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+	}else if(id=="zdzh"){
+		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+	}
+	var lc = Number($('#zdzh').val())-Number($('#qdzh').val());
+	$('#lc').val(lc.toFixed(3));
+}
+/**
+ * 根据路线编码和起点桩号查询起点名称
+ * @param lxbm 路线编码
+ * @param qdzh  起点桩号
+ */
+function cxqdmc(lxbm,qdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxqdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#qdmc').val(msg.qdmc);
+		}
+	});
+}
+/**
+ * 根据路线编码和止点桩号查询止点名称
+ * @param lxbm 路线编码
+ * @param zdzh 止点桩号
+ */
+function cxzdmc(lxbm,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/cxzdmc.do',
+        data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#zdmc').val(msg.zdmc);
+		}
+	});
+}
 /**
  * 验证文本内容
  * @param id 元素ID
@@ -141,6 +184,11 @@ function deleteFile(id){
 		});
 	}
 }
+/**
+ * 导入计划审核信息
+ * @param xmlx 项目类型
+ * @returns {Boolean} 结果？
+ */
 function importJhsh(xmlx){
 	var url="/jxzhpt/qqgl/importExcelJhxd.do?xmlx="+xmlx;
 	var weatherDlg = new J.dialog( {
@@ -157,6 +205,11 @@ function importJhsh(xmlx){
 	weatherDlg.ShowDialog();
 	return false;
 }
+/**
+ * 导入资金下发信息
+ * @param xmlx
+ * @returns {Boolean}
+ */
 function importJhshZjzj(xmlx){
 	var url="/jxzhpt/jhgl/importJhshZjzj.do?gydwdm="+$.cookie("unit");
 	var weatherDlg = new J.dialog( {
@@ -173,6 +226,10 @@ function importJhshZjzj(xmlx){
 	weatherDlg.ShowDialog();
 	return false;
 }
+/**
+ * 查询资金下达列表
+ * @param xmbm
+ */
 function queryZjxd(xmbm){
 	grid.id="zjxdList";
 	grid.url="../../../jhgl/queryZjxdByXmId.do";
@@ -206,6 +263,10 @@ function queryZjxd(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+/**
+ * 删除资金下发
+ * @param id
+ */
 function deleteZjxdById(id){
 	$.ajax({
 		type:'post',
