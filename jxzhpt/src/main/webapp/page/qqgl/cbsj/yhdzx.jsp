@@ -27,6 +27,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			YMLib.Var.jdbs=2;
 			queryYhdzx();
 		});
 		function queryYhdzx(){

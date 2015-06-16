@@ -189,5 +189,21 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean updateLx(Lx lx) {
 		return update("updateLx",lx)>0;
 	}
+	@Override
+	public boolean insertLx(Lx lx) {
+		return insert("insertLx",lx)>0;
+	}
+	@Override
+	public boolean deleteLx(Lx lx) {
+		return delete("deleteLx",lx)>0;
+	}
+	@Override
+	public List<Lx> selectlxList(Lx lx) {
+		return queryList("selectlxList",lx);
+	}
+	@Override
+	public boolean insertLxJdbs(Lx lx) {
+		return insert("insertLxJdbs",lx)>0;
+	}
 
 }

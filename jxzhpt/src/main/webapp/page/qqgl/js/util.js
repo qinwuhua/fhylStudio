@@ -13,6 +13,41 @@ function userPanduan(unit2){
 		return "县";
 	}
 }
+//--------------------------------------------------路线操作--------------------------------------
+/**
+ * 添加路线弹窗
+ * @param xmbm 项目编码
+ * @param jdbs 阶段标示
+ */
+function openLxAdd(id,xmbm,jdbs){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.jdbs=jdbs;
+	YMLib.Var.id=id;
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add.jsp',980,400);
+}
+/**
+ * 删除路线
+ * @param id
+ */
+function deleteLx(id,xmlx){
+	var params={'lx.id':id};
+	$.ajax({
+		type:'post',
+		url:'../../../qqgl/deleteLx.do',
+		data:params,
+		dataType:'json',
+		success:function(msg){
+			if(msg.result=="true"){
+				alert("删除成功!");
+				if(xmlx=="4"){
+					queryYhdzx();
+				}else if(xmlx=="5"){
+					queryShxm();
+				}
+			}
+		}
+	});
+}
 //--------------------------------------------------公用方法---------------------------------------
 /**
  * 查询桩号地方名称
@@ -329,9 +364,9 @@ function openWindow(id,title,url,width,height){
 			queryLmgz();
 		}else if(id=="xjgcedit"){
 			queryXj();
-		}else if(id=="yhdzxadd" || id=="yhdzxedit"){
+		}else if(id=="yhdzxadd" || id=="yhdzxedit" || id=="yhdzx"){
 			queryYhdzx();
-		}else if(id=="shxmadd" || id=="shxmedit"){
+		}else if(id=="shxmadd" || id=="shxmedit" || id=="shxm"){
 			queryShxm();
 		}
 		if((id=="jhxd" || id=="zjzj") && xmlx==1){
@@ -404,15 +439,21 @@ var Rh={
 		},
 		onExpandRow:function(index,row){
 			$('#table_lx'+index).datagrid({
-				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+				url:'/jxzhpt/qqgl/selectlxList.do',
 				queryParams:{
-					xmbm:row.xmbm
+					'lx.xmid':row.xmbm,
+					'lx.jdbs':YMLib.Var.jdbs
 				},
     			columns:[[
+    			    {field:'cz',title:'删除',width:150,align:'center',
+    			    	formatter:function(value,row,index){
+    			    		return '<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    	}
+    			    },
 					{field:'gydw',title:'管养单位',width:150,align:'center'},    
 					{field:'xzqh',title:'行政区划',width:150,align:'center'},
 					{field:'lxmc',title:'路线名称',width:120,align:'center'},
-					{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+					{field:'lxbm',title:'路线编码',width:100,align:'center'},
 					{field:'qdzh',title:'起点桩号',width:80,align:'center'},
 					{field:'zdzh',title:'止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},

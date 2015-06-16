@@ -49,8 +49,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private JhshServer jhshServer;
 	//路线参数
 	private String jdbs;//阶段标示
-	private String qdmc;//起点桩号
-	private String zdmc;//止点桩号
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -122,8 +120,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setQdzh(cbsj.getQdzh());
 			lx.setZdzh(cbsj.getZdzh());
 			lx.setXmid(cbsj.getXmbm());
-			lx.setQdmc(qdmc);
-			lx.setZdmc(zdmc);
+			lx.setQdmc(cbsj.getQdmc());
+			lx.setZdmc(cbsj.getZdmc());
 			lx.setSffirst("1");
 			lx.setJdbs(jdbs);
 			
@@ -197,6 +195,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			}else if(cbsj.getXmlx()==5){
 				b = cbsjServer.shCbsjShByXmbm(cbsj,shzt1);
 				jhshServer.insertJhshShFromCbsj(cbsj.getXmbm());
+			}
+			if(b){
+				Lx lx=new Lx();
+				lx.setXmid(cbsj.getXmbm());
+				lx.setJdbs(jdbs);
+				jhshServer.insertLxJdbs(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -328,17 +332,5 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setJdbs(String jdbs) {
 		this.jdbs = jdbs;
-	}
-	public String getQdmc() {
-		return qdmc;
-	}
-	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
-	}
-	public String getZdmc() {
-		return zdmc;
-	}
-	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
 	}
 }

@@ -25,6 +25,9 @@ public class Xmsq {
 	private String lsjl;//历史记录
 	private int sqzt;//申请状态
 	private int xmlx;//项目类型 1：养护大中修；2：水毁
+	private String qdmc;//起点名称
+	private String zdmc;//止点名称
+	private String jdbs;//阶段标示
 	//----------------附加属性
 	private String lxmc;//路线名称
 	public String getLxmc() {
@@ -176,5 +179,23 @@ public class Xmsq {
 	}
 	public void setXmmc(String xmmc) {
 		this.xmmc = xmmc;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 }

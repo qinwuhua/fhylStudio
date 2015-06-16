@@ -34,10 +34,6 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	//分页参数
 	private int page = 1;
 	private int rows = 10;
-	//添加路线信息字段
-	private String qdmc;//起点名称
-	private String zdmc;//止点名称
-	private String jdbs;//阶段标示
 	//数据访问对象
 	@Resource(name="xmsqServerImpl")
 	private XmsqServer xmsqServer;
@@ -114,7 +110,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(b){
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-						xmsq.getGcfl(), qdmc, zdmc, "1");
+						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+				lx.setJdbs("1");
 				boolean s= xmsqServer.insertLx(lx);
 			}
 			result.put("result", new Boolean(b));
@@ -128,6 +125,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try {
 			List<Xmsq> list=null;
 			int total=0;
+			System.out.println("阶段："+xmsq.getJdbs());
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
@@ -172,7 +170,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try{
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
-			System.out.println("状态长度："+xmsq.getXzqhdm().length());
+			Lx lx=new Lx();
+			lx.setXmid(xmsq.getXmbm());
+			lx.setJdbs(xmsq.getJdbs());
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -196,17 +196,20 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 				if(b){
-					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
-					//再次修改后，添加到初步设计
 					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateShSqzt(xmsq);
 				if(b){
-					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
-					//再次修改后，添加到初步设计
 					boolean s = xmsqServer.insertCbsjSh(xmsq);
 				}
+			}
+			//路线阶段添加
+			if(b){
+				Lx lx=new Lx();
+				lx.setXmid(xmsq.getXmbm());
+				lx.setJdbs(xmsq.getJdbs());
+				jhshServer.insertLxJdbs(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -245,10 +248,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setQdzh(xmsq.getQdzh());
 			lx.setZdzh(xmsq.getZdzh());
 			lx.setXmid(xmsq.getXmbm());
-			lx.setQdmc(qdmc);
-			lx.setZdmc(zdmc);
+			lx.setQdmc(xmsq.getQdmc());
+			lx.setZdmc(xmsq.getZdmc());
 			lx.setSffirst("1");
-			lx.setJdbs(jdbs);
+			lx.setJdbs(xmsq.getJdbs());
 			
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
@@ -305,23 +308,5 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
-	}
-	public String getQdmc() {
-		return qdmc;
-	}
-	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
-	}
-	public String getZdmc() {
-		return zdmc;
-	}
-	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
-	}
-	public String getJdbs() {
-		return jdbs;
-	}
-	public void setJdbs(String jdbs) {
-		this.jdbs = jdbs;
 	}
 }

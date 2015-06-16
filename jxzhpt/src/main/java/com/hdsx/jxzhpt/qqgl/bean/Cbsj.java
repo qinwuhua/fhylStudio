@@ -59,6 +59,9 @@ public class Cbsj {
 	private String xzqhdm;//行政区划代码
 	private String xjsdj;//现技术等级
 	private String tsdq;//特殊地区
+	//路线字段
+	private String qdmc;//起点桩号
+	private String zdmc;//止点桩号
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
 	//路线编码
@@ -339,5 +342,17 @@ public class Cbsj {
 	}
 	public void setYlxbh(String ylxbh) {
 		this.ylxbh = ylxbh;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
 	}
 }

@@ -128,7 +128,7 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result){
-						alert("计划下达成功！");
+						alert("计划添加成功！");
 						closeWindow("shxmadd");
 					}
 				},

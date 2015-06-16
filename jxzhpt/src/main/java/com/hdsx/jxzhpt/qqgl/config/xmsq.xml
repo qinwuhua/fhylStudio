@@ -49,7 +49,10 @@
 		<if test="gydw!=null">,gydw</if>
 		<if test="gydwdm!=null">,gydwdm</if>
 		<if test="jsfa!=null">,JSFA</if>
-		<if test="lsjl!=null">,LSJL</if>) 
+		<if test="lsjl!=null">,LSJL</if>
+		<if test="qdmc!=null">,qdmc</if>
+		<if test="zdmc!=null">,zdmc</if>
+		<if test="lxmc!=null">,lxmc</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -71,7 +74,10 @@
 		<if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if>
 		<if test="jsfa!=null">,#{jsfa}</if>
-		<if test="lsjl!=null">,#{lsjl}</if>)
+		<if test="lsjl!=null">,#{lsjl}</if>
+		<if test="qdmc!=null">,#{qdmc}</if>
+		<if test="zdmc!=null">,#{zdmc}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>)
 	</insert>
 	<insert id="insertXmsqSh" parameterType="java.util.List">
 		insert into xmsq_sh (
@@ -95,7 +101,10 @@
 		<if test="gydw!=null">,gydw</if>
 		<if test="gydwdm!=null">,gydwdm</if>
 		<if test="jsfa!=null">,JSFA</if>
-		<if test="lsjl!=null">,LSJL</if>) 
+		<if test="lsjl!=null">,LSJL</if>
+		<if test="qdmc!=null">,qdmc</if>
+		<if test="zdmc!=null">,zdmc</if>
+		<if test="lxmc!=null">,lxmc</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -117,7 +126,10 @@
 		<if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if>
 		<if test="jsfa!=null">,#{jsfa}</if>
-		<if test="lsjl!=null">,#{lsjl}</if>)
+		<if test="lsjl!=null">,#{lsjl}</if>
+		<if test="qdmc!=null">,#{qdmc}</if>
+		<if test="zdmc!=null">,#{zdmc}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>)
 	</insert>
 	<insert id="insertLx" parameterType="lx">
 		insert into lxsh_lx (
@@ -137,7 +149,8 @@
 		<if test="qdmc!=null">,qdmc</if>
 		<if test="zdmc!=null">,zdmc</if>
 		<if test="bzcs!=null">,bzcs</if>
-		<if test="sffirst!=null">,sffirst</if>)
+		<if test="sffirst!=null">,sffirst</if>
+		<if test="jdbs!=null">,jdbs</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -154,13 +167,17 @@
 		<if test="qdmc!=null">,#{qdmc}</if>
 		<if test="zdmc!=null">,#{zdmc}</if>
 		<if test="bzcs!=null">,#{bzcs}</if>
-		<if test="sffirst!=null">,#{sffirst}</if>)
+		<if test="sffirst!=null">,#{sffirst}</if>
+		<if test="jdbs!=null">,#{jdbs}</if>)
 	</insert>
+	<delete id="deleteLxByXmbm" parameterType="xmsq">
+		delete from lxsh_lx where xmid=#{xmbm}
+	</delete>
 	
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
+				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1 and l.jdbs=#{xmsq.jdbs}
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -186,7 +203,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
+				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1 and l.jdbs=#{xmsq.jdbs}
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -211,7 +228,7 @@
 	</select>
 	
 	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		select count(x.xmbm) from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1 and l.jdbs=#{jdbs}
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
 		</if>
@@ -232,7 +249,7 @@
 		</if>
 	</select>
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		select count(x.xmbm) from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1 and l.jdbs=#{jdbs}
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
 		</if>

@@ -190,5 +190,29 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateLx(Lx lx);
+	/**
+	 * 添加路线
+	 * @param lx 路线信息
+	 * @return 执行结果
+	 */
+	public boolean insertLx(Lx lx);
+	/**
+	 * 根据ID删除路线
+	 * @param lx 路线信息
+	 * @return 执行结果
+	 */
+	public boolean deleteLx(Lx lx);
+	/**
+	 * 根据项目编码查询路线集合
+	 * @param lx 路线编码
+	 * @return 路线集合
+	 */
+	public List<Lx> selectlxList(Lx lx);
+	/**
+	 * 升级路线阶段标示
+	 * @param lx 路线编码  阶段标示
+	 * @return 执行结果
+	 */
+	public boolean insertLxJdbs(Lx lx);
 	
 }

@@ -44,7 +44,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private Map<String, Object> result=new HashMap<String, Object>();
 	//计划审核对象
 	private Jhsh jhsh=new Jhsh();
-	private Jhsh2 jhsh2;
+	private Lx lx;
 	@Override
 	public Jhsh getModel() {
 		return jhsh;
@@ -423,6 +423,45 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		return jhshServer.updateLx(lx);
 	}
 	/**
+	 * 添加路线
+	 * @throws Exception
+	 */
+	public void insertLx() throws Exception{
+		try {
+			lx.setSffirst("0");
+			boolean b = jhshServer.insertLx(lx);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 删除路线
+	 * @throws Exception
+	 */
+	public void deleteLx() throws Exception{
+		try {
+			lx.setSffirst("0");
+			boolean b = jhshServer.deleteLx(lx);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	public void selectlxList() throws Exception{
+		try {
+			lx.setSffirst("0");
+			JsonUtils.write(jhshServer.selectlxList(lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
 	 * 处理行政区划编码为条件语句
 	 * @param bh
 	 * @param name
@@ -487,11 +526,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void setFileuploadFileName(String fileuploadFileName) {
 		this.fileuploadFileName = fileuploadFileName;
 	}
-	public Jhsh2 getJhsh2() {
-		return jhsh2;
+	public Lx getLx() {
+		return lx;
 	}
-	public void setJhsh2(Jhsh2 jhsh2) {
-		this.jhsh2 = jhsh2;
+	public void setLx(Lx lx) {
+		this.lx = lx;
 	}
 	public String getJdbs() {
 		return jdbs;

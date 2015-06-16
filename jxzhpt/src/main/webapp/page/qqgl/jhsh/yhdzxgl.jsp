@@ -38,17 +38,19 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2('jsdj','技术等级');
-			if(userPanduan($.cookie("unit2"))!="省")
+			YMLib.Var.jdbs=1;
+			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
-			else
+			}else{
 				loadBmbm2('sqzt','申请状态省');
+			}
 			queryYhdzx();
 		});
 		function queryYhdzx(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':4,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,'jdbs':YMLib.Var.jdbs};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
@@ -73,6 +75,24 @@
 							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
+					}
+				},
+				{field:'tjlx',title:'添加路线',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
+							return '<a href="javascript:openLxAdd('+"'yhdzx','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+						}else{
+							return '添加路线';
+						}
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a  style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'sqzt',title:'上报状态',width:100,align:'center',
@@ -195,7 +215,7 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/updateXmsqSp.do',
-					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
+					data:'xmlx='+4+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){

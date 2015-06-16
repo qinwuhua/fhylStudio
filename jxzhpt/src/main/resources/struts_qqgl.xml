@@ -107,6 +107,9 @@
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
 		<action name="queryJhshxxByXmbm2" class="jhshController" method="queryJhshxxByXmbm2"></action>
 		<action name="uploadJhsh" class="jhshController" method="uploadJhsh"></action>
+		<action name="insertLx" class="jhshController" method="insertLx"></action>
+		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
+		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
 		
 	<!-- rh -->
 	</package>
