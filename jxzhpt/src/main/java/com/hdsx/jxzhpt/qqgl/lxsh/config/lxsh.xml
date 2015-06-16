@@ -551,7 +551,7 @@
 		update lxsh_xj set bzys=#{bzys},lc=#{lc},dfzc=(tz-#{bzys}) where xmbm=#{xmbm}
 	</update>
 	<delete id="deleteLx" parameterType="lxsh">
-		delete from lxsh_lx where xmid=#{xmbm} and id=#{id} and jdbs=#{jdbs}
+		delete from lxsh_lx where xmid=#{xmbm} and id=#{id} 
 	</delete>
 	<select id="cxqdmc" parameterType="lxsh" resultType="lxsh">
 		select min(f006) qdmc from gpsroad g,

@@ -178,6 +178,13 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shsjgzkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshsjgz", str);
 			for (Kxxyj lxsh2 : list) {
+				lxsh2.setJdbs("1");
+				System.out.println(lxsh2.getXmbm());
+				List<Lxsh> list3=queryList("querylxlist",lxsh2);
+				for (Lxsh lxsh3 : list3) {
+					lxsh3.setJdbs("2");
+					insert("insertLx1", lxsh3);
+				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");
 				}
@@ -206,6 +213,13 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shlmgzkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshlmgz", str);
 			for (Kxxyj lxsh2 : list) {
+				lxsh2.setJdbs("1");
+				System.out.println(lxsh2.getXmbm());
+				List<Lxsh> list3=queryList("querylxlist",lxsh2);
+				for (Lxsh lxsh3 : list3) {
+					lxsh3.setJdbs("2");
+					insert("insertLx1", lxsh3);
+				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");
 				}
@@ -234,6 +248,13 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		if(updateBatch("shxjkxx", lm)>0){
 			List<Kxxyj> list=queryList("queryshxj", str);
 			for (Kxxyj lxsh2 : list) {
+				lxsh2.setJdbs("1");
+				System.out.println(lxsh2.getXmbm());
+				List<Lxsh> list3=queryList("querylxlist",lxsh2);
+				for (Lxsh lxsh3 : list3) {
+					lxsh3.setJdbs("2");
+					insert("insertLx1", lxsh3);
+				}
 				if(lxsh2.getJsdw()==null){
 					lxsh2.setJsdw("");
 				}
