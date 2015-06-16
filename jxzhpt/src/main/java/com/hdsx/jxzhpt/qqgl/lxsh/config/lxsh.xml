@@ -566,4 +566,7 @@
 	<delete id="deletekxlx" parameterType="hashmap">
 		delete from lxsh_lx where xmid=#{xmbm} and jdbs='1'
 	</delete>
+	<select id="sfylx" parameterType="lxsh" resultType="lxsh">
+		select count(*) shzt from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs} and sffirst='0'
+	</select>
 </mapper>

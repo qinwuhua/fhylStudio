@@ -768,5 +768,13 @@ public class LxshController extends BaseActionSupport{
 			e1.printStackTrace();
 		}
 	}
+	public void sfylx(){
+		Lxsh l=lxshServer.sfylx(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }
 

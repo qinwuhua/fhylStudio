@@ -59,8 +59,50 @@ text-decoration:none;
 	
 	$(function(){
 		load();
+		sfylx();
 	});
+	function sfylx(){
+		var data="lxsh.xmbm="+parent.obj.xmbm+"&lxsh.jdbs=1";
+		$.ajax({
+			type:'post',
+			url:'/jxzhpt/qqgl/sfylx.do',
+			data:data,
+			dataType:'json',
+			success:function(msg){
+				if(msg.shzt>0){
+					$("#lxxx").attr('style','height: 35px;');
+					$("#lxxx1").attr('style','');
+					setlx();
+				}
+			},
+			error : function(){
+			 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+		 }
+		});	
+	}
+	function setlx(){
+		$('#table_lx').datagrid({
+    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+    		 queryParams: {
+    			 	jdbs:1,
+    		    	xmbm:parent.obj.xmbm
+    			},
+			columns:[[
+			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
+			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
+			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
+			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
+			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+			    {field:'lc',title:'里程',width:60,align:'center'}
+			]]
+    	});
 
+	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
@@ -142,6 +184,18 @@ text-decoration:none;
 					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
 							<tbody id="gkpfTable"></tbody>
 					</table>
+				</td>
+			</tr>
+			<tr id="lxxx"  style="height: 35px;display: none">
+				<td align="center" colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" >
+					<span>路线信息</span>
+				</td>
+			</tr>
+			<tr id="lxxx1" style="height: 35px;display: none">
+				<td align="center" colspan="6" style="background-color:#ffffff;color: #007DB3; font-weight: bold;width:15%" >
+					<div>
+						<table id="table_lx"></table>
+					</div>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
