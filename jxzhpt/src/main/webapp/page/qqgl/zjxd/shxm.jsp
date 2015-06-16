@@ -31,7 +31,7 @@
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'xdzt':1};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -39,14 +39,14 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
-						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'shxmzjxd'"+','+"'路面改造工程项目 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/shxm_zjxd.jsp'"+',900,400)" style="color:blue;">资金下发</a>';
+						"'/jxzhpt/page/qqgl/zjxd/shxm_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
 						return result;
 					}
 				},

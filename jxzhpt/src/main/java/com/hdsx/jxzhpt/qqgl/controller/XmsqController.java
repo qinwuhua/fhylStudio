@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -36,9 +37,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	//添加路线信息字段
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
+	private String jdbs;//阶段标示
 	//数据访问对象
 	@Resource(name="xmsqServerImpl")
 	private XmsqServer xmsqServer;
+	@Resource(name="jhshServerImpl")
+	private JhshServer jhshServer;
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
@@ -236,10 +240,23 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void updateXmsq() throws Exception{
 		try{
 			boolean b=true;
+			//准备路线桩号信息
+			Lx lx=new Lx();
+			lx.setQdzh(xmsq.getQdzh());
+			lx.setZdzh(xmsq.getZdzh());
+			lx.setXmid(xmsq.getXmbm());
+			lx.setQdmc(qdmc);
+			lx.setZdmc(zdmc);
+			lx.setSffirst("1");
+			lx.setJdbs(jdbs);
+			
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateSh(xmsq);
+			}
+			if(b){
+				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -300,5 +317,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void setZdmc(String zdmc) {
 		this.zdmc = zdmc;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 }

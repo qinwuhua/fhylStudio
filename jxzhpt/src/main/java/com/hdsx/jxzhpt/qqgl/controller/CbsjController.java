@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -46,6 +47,10 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private CbsjServer cbsjServer;
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
+	//路线参数
+	private String jdbs;//阶段标示
+	private String qdmc;//起点桩号
+	private String zdmc;//止点桩号
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -112,7 +117,16 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void updateCbsj() throws Exception{
 		try{
 			boolean b = false;
-			System.out.println("是否编辑："+cbsj.getSfbj());
+			//准备路线桩号信息
+			Lx lx=new Lx();
+			lx.setQdzh(cbsj.getQdzh());
+			lx.setZdzh(cbsj.getZdzh());
+			lx.setXmid(cbsj.getXmbm());
+			lx.setQdmc(qdmc);
+			lx.setZdmc(zdmc);
+			lx.setSffirst("1");
+			lx.setJdbs(jdbs);
+			
 			if(cbsj.getXmlx()==1){
 				b = cbsjServer.updateCbsjLmsj(cbsj);
 			}else if(cbsj.getXmlx()==2){
@@ -123,6 +137,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				b=cbsjServer.updateCbsjYhdzx(cbsj);
 			}else if(cbsj.getXmlx()==5){
 				b=cbsjServer.updateCbsjSh(cbsj);
+			}
+			if(b){
+				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -192,38 +209,33 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 * 上传设计批复文件
 	 * @throws IOException 
 	 */
-	public void uploadSjpf() throws IOException{
-		HttpServletResponse response = ServletActionContext.getResponse();
-		Plan_upload uploads;
-		response.setCharacterEncoding("utf-8"); 
-		FileInputStream inputStream = null;
-		byte [] file=new byte[(int)uploadSjpf.length()];
+	public void uploadSjpf() throws Exception{
 		try {
+			HttpServletResponse response = ServletActionContext.getResponse();
+			Plan_upload uploads;
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=new byte[(int)uploadSjpf.length()];
 			inputStream=new FileInputStream(uploadSjpf);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			throw e;
-		}
-		ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
-		int index=0;
-		try {
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
 			while((index=inputStream.read(file))!=-1){
 				byteOutpu.write(file, 0, index);
 			}
-		} catch (IOException e) {
+			uploads=new Plan_upload();
+			uploads.setParentid(cbsj.getXmbm());
+			uploads.setFiledata(file);
+			uploads.setFiletype("设计批复文件");
+			uploads.setFilename(uploadSjpfFileName);
+			boolean result = cbsjServer.insertFile(uploads);
+			if(result){
+				response.getWriter().print(uploadSjpfFileName+"导入成功");
+			}else{
+				response.getWriter().print(uploadSjpfFileName+"导入成功");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-		}
-		uploads=new Plan_upload();
-		uploads.setParentid(cbsj.getXmbm());
-		uploads.setFiledata(file);
-		uploads.setFiletype("设计批复文件");
-		uploads.setFilename(uploadSjpfFileName);
-		boolean result = cbsjServer.insertFile(uploads);
-		if(result){
-			response.getWriter().print(uploadSjpfFileName+"导入成功");
-		}else{
-			response.getWriter().print(uploadSjpfFileName+"导入成功");
 		}
 	}
 	public void queryFileByXmbm() throws Exception{
@@ -310,5 +322,23 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setFile(Plan_upload file) {
 		this.file = file;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
 	}
 }

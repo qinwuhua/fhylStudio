@@ -32,15 +32,16 @@
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
 				},
@@ -48,19 +49,15 @@
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=3;
-						if(row.xdzt==0){
-							result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
-						}else{
-							result='计划下达';
-						}
+						result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:#3399CC;">计划下达</a>';
 						return result;
 					}
 				},
 				{field:'zjzj',title:'资金追加',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a href="javascript:openZjzj('+"'"+index+"',"+"'3'"+')" style="color:blue;">资金追加</a>';
+						result='<a href="javascript:openZjzj('+"'"+index+"',"+"'3'"+')" style="color:#3399CC;">资金追加</a>';
 						return result;
 					}
 				},

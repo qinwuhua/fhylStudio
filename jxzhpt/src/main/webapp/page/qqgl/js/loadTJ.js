@@ -6,6 +6,17 @@ function tsdq(id){
 			})
 			$("#"+id).combobox('setValue','全部');
 	}
+function tsdq1(id,value){
+	$("#"+id).combotree({   
+		checkbox : true,
+		multiple:true,
+		async:false,
+	    url: '/jxzhpt/xmjzbb/settsdq.do?xzqh='+$.cookie("dist"),
+	})
+	if(value!=''){
+		$("#"+id).combotree('setValue',value);
+	}
+}
 
 function xmnf(id){
 	var myDate = new Date();
@@ -83,4 +94,16 @@ function loadUnit3(id, dwbm,yhdw) {
 		}
 	});
 	$('#' + id).combotree('setValue', dwbm);
+}
+function checkSZ(str){
+	
+	var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
+	if(str.value==''){
+		return;
+	}
+    if( !g.test(str.value)){
+    	alert("请输入正确的数字");
+    	$(str).val('');
+    	return;
+    }
 }

@@ -1,7 +1,9 @@
 package com.hdsx.jxzhpt.qqgl.controller;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +11,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.xpath.operations.Bool;
 import org.codehaus.jackson.annotate.JsonUnwrapped;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
@@ -23,9 +28,11 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.CbsjServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -53,6 +60,8 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	//数据访问对象
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
+	//其他参数
+	private String jdbs;//阶段标示，用于表明在计划的哪一阶段
 	/**
 	 * 查询计划审核列表
 	 * @throws Exception 
@@ -109,12 +118,23 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		try {
 			List<Jhsh> list=new ArrayList<Jhsh>();
 			list.add(jhsh);
+			//准备路线桩号信息
+			Lx lx=new Lx();
+			lx.setQdzh(jhsh.getQdzh());
+			lx.setZdzh(jhsh.getZdzh());
+			lx.setXmid(jhsh.getXmbm());
+			lx.setSffirst("1");
+			lx.setJdbs(jdbs);
+			
 			if(jhsh.getXmlx()==1){
 				b=jhshServer.updateJhshxxLmsj(list);
 			}else if(jhsh.getXmlx()==2){
 				b=jhshServer.updateJhshxxLmgz(list);
 			}else if(jhsh.getXmlx()==3){
 				b=jhshServer.updateJhshxxXj(list);
+			}
+			if(b){
+				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
@@ -130,14 +150,60 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void updateJhshxx2() throws Exception{
 		try{
 			boolean b=true;
+			//准备路线桩号信息
+			Lx lx=new Lx();
+			lx.setQdzh(jhsh.getQdzh());
+			lx.setZdzh(jhsh.getZdzh());
+			lx.setXmid(jhsh.getXmbm());
+			lx.setSffirst("1");
+			lx.setJdbs(jdbs);
+			
 			if(jhsh.getXmlx()==4){
 				b = jhshServer.updateJhshxxYhdzx(jhsh);
 			}else if(jhsh.getXmlx()==5){
 				b = jhshServer.updateJhshxxSh(jhsh);
 			}
+			if(b){
+				jhshServer.updateLx(lx);
+			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 上传计划下达文件
+	 * @throws Exception
+	 */
+	public void uploadJhsh() throws Exception{
+		try {
+			System.out.println("项目编码："+jhsh.getXmbm());
+			HttpServletResponse response = ServletActionContext.getResponse();
+			Plan_upload uploads;
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream inputStream = null;
+			byte [] file=new byte[(int)uploadJhxd.length()];
+			inputStream=new FileInputStream(uploadJhxd);
+			ByteArrayOutputStream byteOutpu=new ByteArrayOutputStream();
+			int index=0;
+			while((index=inputStream.read(file))!=-1){
+				byteOutpu.write(file, 0, index);
+			}
+			uploads=new Plan_upload();
+			uploads.setParentid(jhsh.getXmbm());
+			uploads.setFiledata(file);
+			uploads.setFiletype("计划下达文件");
+			uploads.setFilename(uploadJhxdFileName);
+			CbsjServer cbsjServer =new CbsjServerImpl();
+			boolean result = cbsjServer.insertFile(uploads);
+			if(result){
+				response.getWriter().print(uploadJhxdFileName+"导入成功");
+			}else{
+				response.getWriter().print(uploadJhxdFileName+"导入成功");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
@@ -346,8 +412,15 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
+	}
+	/**
+	 * 修改路线信息
+	 * @param lx 路线信息
+	 * @return 执行结果
+	 */
+	public boolean updateLx(Lx lx){
+		return jhshServer.updateLx(lx);
 	}
 	/**
 	 * 处理行政区划编码为条件语句
@@ -419,5 +492,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	}
 	public void setJhsh2(Jhsh2 jhsh2) {
 		this.jhsh2 = jhsh2;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 }

@@ -20,9 +20,21 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#xmbm').val(parent.YMLib.Var.xmbm);
-			$('#xmlx').val(parent.YMLib.Var.xmlx);
-			$('#qdzh').val(parent.YMLib.Var.row.qdzh);
-			$('#zdzh').val(parent.YMLib.Var.row.zdzh);
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/queryJhshxxByXmbm2.do',
+				data:'jhsh.xmlx='+parent.YMLib.Var.xmlx+'&jhsh.xmbm='+parent.YMLib.Var.xmbm,
+				dataType:'json',
+				success:function(data){
+					$('#jhxdFrom').form("load",data);
+					$('#xmlx').val(parent.YMLib.Var.xmlx);
+					$('#qdzh').val(parent.YMLib.Var.row.qdzh);
+					$('#zdzh').val(parent.YMLib.Var.row.zdzh);
+					$('#span_qdzh').html(data.qdzh);
+					$('#span_zdzh').html(data.zdzh);
+				}
+			});
+			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
 			$('#lc').val(parent.YMLib.Var.row.lc);
 			loadFileUpload();
 		});
@@ -30,7 +42,7 @@
 			$("#uploadJhxd").uploadify({
 				/*注意前面需要书写path的代码*/
 				'uploader' : '../../../js/uploader/uploadify.swf',
-				'script' : '../../../qqgl/uploadSjpf.do',
+				'script' : '../../../qqgl/uploadJhsh.do',
 				'cancelImg' : '../../../js/uploader/cancel.png',
 				'queueID' : 'fileQueue',
 				'fileDataName' : 'uploadJhxd',
@@ -45,11 +57,11 @@
 				'height' : 30,
 				'width' : 92,
 				'scriptData' : {
-					'cbsj.xmbm':parent.YMLib.Var.xmbm
+					'jhsh.xmbm':parent.YMLib.Var.xmbm
 				},
 				onComplete : function(event, queueID, fileObj, response, data) {
 					alert(response);
-					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
+					fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
 				},
 				onError : function(event, queueID, fileObj) {
 					alert("文件:" + fileObj.name + "上传失败");
@@ -62,18 +74,34 @@
 			});
 		}
 		function updataJhsh(){
-			$('#jhxdFrom').ajaxSubmit({
-				dataType:'json',
-				success:function(msg){
-					if(msg.result){
-						alert("计划下达成功！");
-						closeWindow("jhxd");
+			if(zhuanghao()){
+				$('#jhxdFrom').ajaxSubmit({
+					dataType:'json',
+					success:function(msg){
+						if(msg.result){
+							alert("计划下达成功！");
+							closeWindow("jhxd");
+						}
+					},
+					error:function(msg){
+						alert("计划下达失败！");
 					}
-				},
-				error:function(msg){
-					alert("计划下达失败！");
-				}
-			});
+				});
+			}
+		}
+		function zhuanghao(){
+			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
+				alert("起点桩号不能小于"+$('#span_qdzh').html());
+				return false;
+			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
+				alert("止点桩号不能大于"+$('#span_zdzh').html());
+				return false;
+			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
+				alert("止点桩号不能小于起点桩号");
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </head>
@@ -90,6 +118,8 @@
 								<input id="xmbm" name="xmbm" type="hidden"/>
 								<input id="xmlx" name="xmlx" value="4" type="hidden"/>
 								<input id="xdzt" name="xdzt" value="1" type="hidden"/>
+								<input id="qdmc" name="qdmc" value="" type="hidden"/>
+								<input id="zdmc" name="zdmc" value="" type="hidden"/>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
 								<input id="ztz" name="ztz" type="text"  style="width: 100px;height: 20px;" />&nbsp;万元
@@ -109,16 +139,38 @@
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								计划下达文号
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
+								<input id="xdwh" name="xdwh" type="text"  style="width: 100px;height: 20px;" />
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								计划下达时间
+							</td>
+							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="xdsj" name="xdsj" type="text" class="easyui-datebox" style="width: 105px;height: 25px;" />
+							</td>
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+								原路线编号
+							</td>
+							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+								<input id="ylxbh" name="ylxbh" type="text" style="width:120px;"/>
+							</td>
+						</tr>
+						<tr style="height: 30px;font-size: 10px;">
+							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								起点桩号
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="qdzh" name="qdzh" type="text"  style="width: 100px;height: 20px;" />
+								<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text"  style="width: 100px;height: 20px;" />
+								<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								止点桩号
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="zdzh" name="zdzh" type="text"  style="width: 100px;height: 20px;" />
+								<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text"  style="width: 100px;height: 20px;" />
+								<br/><span style="font-size:small; color: red;">止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								里程
@@ -132,7 +184,7 @@
 								面层路面类型
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<select id="mclmlx" name="mclmlx" type="text"  style="width: 100px;height: 20px;">
+								<select id="mclmlx" name="mclmlx" style="width: 100px;height: 20px;">
 									<option value="沥青路面" selected="selected">沥青路面</option>
 									<option value="水泥路面">水泥路面</option>
 								</select>
@@ -228,22 +280,6 @@
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								计划下达文号
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="xdwh" name="xdwh" type="text"  style="width: 100px;height: 20px;" />
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
-								计划下达时间
-							</td>
-							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="xdsj" name="xdsj" type="text" class="easyui-datebox" style="width: 105px;height: 25px;" />
-							</td>
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;"></td>
-							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
-						</tr>
-						<tr style="height: 30px;font-size: 10px;">
-							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">计划下达文件：</font></b>
 							</td>
 							<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
@@ -274,7 +310,7 @@
 									src="../../../images/Button/baocun1.gif">
 								&nbsp; 
 								<input type="image" name="btnCancel" id="btnCancel" onmouseover="this.src='../../../images/Button/fanhui2.GIF'" alt="返回"
-								onclick="closezjxd()" onmouseout="this.src='../../../images/Button/fanhui1.GIF'"
+								onclick="closeWindow('jhxd')" onmouseout="this.src='../../../images/Button/fanhui1.GIF'"
 								src="../../../images/Button/fanhui1.GIF" style="border-width: 0px;" />
 							</td>
 						</tr>

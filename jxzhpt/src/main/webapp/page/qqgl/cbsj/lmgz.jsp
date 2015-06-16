@@ -36,7 +36,7 @@
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
 					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
 			grid.queryParams=params;
-			grid.height=$(window).height()-$('#searchField').height();
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
@@ -44,14 +44,14 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/cbsj/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						if(row.shzt==0){
-							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result+='&nbsp;<a href="javascript:openWindow('+"'lmgzedit'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/cbsj/lmgz_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						}else{
-							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
+							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
 					}
