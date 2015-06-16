@@ -611,5 +611,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		// TODO Auto-generated method stub
 		return queryOne("cxzdmc", lxsh);
 	}
+
+	@Override
+	public Lxsh sfylx(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("sfylx", lxsh);
+	}
 	
 }

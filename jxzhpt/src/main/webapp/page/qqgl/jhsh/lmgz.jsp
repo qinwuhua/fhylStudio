@@ -112,23 +112,22 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>行政区划：</td>
-        						<td><select id="xzqh" style="width:160px;"></select></td>
+        						<td >行政区划：</td>
+        						<td><select id="xzqh" style="width:120px;"></select></td>
         						<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:110px;"></select></td>
 								<td>项目名称：</td>
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" /></td>
         						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-        					</tr>
-        				<tr height="32">
         						<td>是否有补助历史：</td>
 								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select></td>
-								</tr>
+        					</tr>
+        				
 									<tr height="32">
                               <td colspan="10">
 								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
