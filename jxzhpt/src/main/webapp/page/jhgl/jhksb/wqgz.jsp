@@ -160,6 +160,15 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+		<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -173,44 +182,46 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;桥梁名称：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;上报状态：</span>
-        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+        						<td>行政区划：</td>
+        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
+        						<td>桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 75px;"></select></td>
+        						<td>上报状态：</td>
+        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
-								</select>
-								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
-								</select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
-								</select>
-								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:94px;">
-								</select>
-								<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:94px;">
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;">
+								</select></td>
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;">
+								</select></td>
+								<td>公路等级：</td>
+								<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:94px;">
+								</select></td>
+								<td>跨径分类：</td>
+        						<td><select name="ddlAKJFL" class="easyui-combobox" id="ddlAKJFL" style="width:94px;">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
-								</select>
-        					</p>
-							<p style="margin:8px 0px 8px 20px;">
+								</select></td>
+        					</tr>
+							<tr height="32">
+                              <td colspan="10">
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
@@ -220,7 +231,8 @@
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;padding-left: 8px;"/>
         						<img onclick="sbList()" id="btnShangbao" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_2.png'" alt="上报" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbshangbao_1.png'" src="${pageContext.request.contextPath}/images/Button/qbshangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-							</p>
+								</td>
+                            </tr></table>
         				</div>
         			</fieldset>
         		</td>

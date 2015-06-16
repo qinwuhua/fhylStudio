@@ -91,6 +91,15 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+	<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -104,27 +113,33 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:160px;"></select>
-        						<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
-								<span>&nbsp;项目名称：</span>
-        						<input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" />
-        						<span>&nbsp;路线编码：</span>
-        						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        					<td>行政区划：</td>
+        						<td><select id="xzqh" style="width:120px;"></select></td>
+        						<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:110px;"></select></td>
+								<td>项目名称：</td>
+        						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
+        					
+        						<td>是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>
-								</select>
+								</select></td>
+								</tr>
+								<tr height="32">
+                              <td colspan="10">
+        					
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhsh(3)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
-        					</p>
+        					</td>
+                                </tr>
+        					</table>
         				</div>
         			</fieldset>
         		</td>

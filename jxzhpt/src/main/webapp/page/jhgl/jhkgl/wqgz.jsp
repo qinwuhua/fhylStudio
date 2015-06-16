@@ -94,6 +94,15 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+				<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -107,29 +116,30 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:90px;" />
-        						<span>&nbsp;桥梁名称：</span>
-        						<input name="txtBridge" type="text" id="txtBridge" style="width:90px;" />
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;计划状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
+        				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td  colspan="3" style="width:220px;"><select id="gydw" style="width:220px;"></select></td>
+        						<td>行政区划：</td>
+        						<td  colspan="3" style="width:230px;"><select id="xzqh" style="width:230px;"></select></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:90px;" /></td>
+        						<td>桥梁名称：</td>
+        						<td><input name="txtBridge" type="text" id="txtBridge" style="width:90px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 80px;"></select></td>
+        						<td>计划状态：</td>
+        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
-								</select>
-								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="2FCE5964394642BAA014CBD9E3829F84">丘陵</option>
 									<option value="82C37FE603D54C969D86BAB42D7CABE0">河流</option>
@@ -137,23 +147,24 @@
 									<option value="AEF17CEA8582409CBDA7E7356D9C93B0">盆地</option>
 									<option value="FEE9AE40475863D6E040007F010045D7">cs</option>
 									<option value="517e0f37-12cd-4de9-a452-6aca259457c1">csss</option>
-								</select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
-								</select>
-								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
-								</select>
-								<span>&nbsp;跨径分类：</span>
-        						<select name="ddlAKJFL" id="ddlAKJFL" style="width:94px;" class="easyui-combobox">
+								</select></td>
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox">
+								</select></td>
+								<td>公路等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:94px;" class="easyui-combobox">
+								</select></td>
+								<td>跨径分类：</td>
+        						<td><select name="ddlAKJFL" id="ddlAKJFL" style="width:94px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="特大桥">特大桥</option>
 									<option value="大桥">大桥</option>
 									<option value="中桥">中桥</option>
 									<option value="小桥">小桥</option>
-								</select>
-        					</p>
-							<p style="margin:8px 0px 4px 20px;">
+								</select></td>
+        					</tr>
+								<tr height="32">
+                              <td colspan="10">
 								<span>是否有补助历史：</span>
 								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
@@ -166,7 +177,8 @@
 				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
 				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/>
 								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
-							</p>
+							</td>
+                            </tr></table>
         				</div>
         			</fieldset>
         		</td>

@@ -70,6 +70,15 @@
 			$('#grid').datagrid('resize');
 		});
 	</script>
+	<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -77,33 +86,36 @@
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
        	<tr>
-       		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+       		<td align="left" style="padding-left: 10px; padding-right: 10px; padding-top: 10px;">
        			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
        				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
        					<font style="color: #0866A0; font-weight: bold"></font>
        				</legend>
        				<div>
-       					<p style="margin:8px 0px 8px 20px;">
-       						<span>行政区划：</span>
-       						<select id="xzqh" style="width:170px;"></select>
-       						<span>&nbsp;特殊地区：</span>
-							<select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select>
-							<span>&nbsp;技术等级:</span>
-							<select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select>
-							<span>&nbsp;下达状态：</span>
-       						<select id="xdzt" class="easyui-combobox" style="width: 70px;">
+       				<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+       						<td>行政区划：</td>
+       						<td><select id="xzqh" style="width:115px;"></select></td>
+       						<td align="right">特殊地区：</td>
+							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
+							<td>技术等级:</td>
+							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
+							<td>下达状态：</td>
+       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
        							<option value="-1">全部</option>
        							<option value="0">未下达</option>
        							<option value="1">已下达</option>
-       						</select>
-       					</p>
-       					<p style="margin:8px 0px 8px 20px;">
-       						<span>项目名称：</span>
-       						<input name="xmmc" id="xmmc" style="width:80px;" type="text"/>
-       						<span>&nbsp;原路线编号：</span>
-       						<input name="ylxbh" id="ylxbh" style="width:80px;" type="text"/>
-							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
-       					</p>
+       						</select></td>
+       					</tr>
+       						<tr height="32">
+       						<td>项目名称：</td>
+       						<td><input name="xmmc" id="xmmc" style="width:110px;" type="text"/></td>
+       						<td>原路线编号：</td>
+       						<td><input name="ylxbh" id="ylxbh" style="width:150px;" type="text"/></td>
+							<td><img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/></td>
+       					</tr>
+       					
+        					</table>
        				</div>
        			</fieldset>
        		</td>
