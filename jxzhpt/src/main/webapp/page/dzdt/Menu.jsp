@@ -24,23 +24,24 @@
 .table_11{background-color:#b8bdc1;font-size:12px;border-collapse: collapse; border:1px solid #b8bdc1; margin:10px;}
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
 </style>
- <script type="text/javascript">
- var mapServerUrl = "http://127.0.0.1:8989/hdmapserver";
- var nameSpace = "jxmap2014";
- var tczName="jx_map";
- var map, baseLayers;
- var format = 'image/png';
- var bounds = new OpenLayers.Bounds(
-		112.573, 24.488,
-		124.482, 30.079
- );
- var styleMap = null;
- var selectedFeature = null;
- var infoControl = null;
- var layersConfig = [];
- var resultLayer = null;
+<script type="text/javascript">
+var mapServerUrl = "http://localhost:8989/hdmapserver";
+var nameSpace = "jxmap2014";
+var tczName="jx_map";
+var pointClick = null, geometry = null;
+var map, baseLayers, tolerance, resolution;
+var format = 'image/png';
+var queryResultCache = {};
+window.queryResultCache = queryResultCache;
+var qlQueryLayers = ["jx_guoshengtedaqiao", "jx_guoshengzhongxiaoqiao",
+    "jx_qlzadaoqiao", "jx_xianxiangtedaqiao", "jx_xianxiangzhongxiaoqiao"];
+var lxQueryLayes = ["jx_gaosugonglu", "jx_guodao", "jx_shengdao", "jx_xiandao", "jx_xiangdao",
+    "jx_cundao", "jx_zhuandao"];
+//全图视野范围
+var bounds = new OpenLayers.Bounds(113.573, 24.488, 118.482, 30.079);
+ 
 $(function(){
-	//$(".layout-button-right").click();
+	$(".layout-button-right").click();
 	xmlxTj();
 	var LeftHeight = $(window).height();
 	loadDataunit();
@@ -49,6 +50,7 @@ $(function(){
 	OpenLayers.ProxyHost = "../../proxy.jsp?";
 	initDefaultStyle();
 	initMap();
+	getLayersFeatures();
 });
 
 
@@ -80,16 +82,19 @@ $(function(){
 				<div id="mainTab" border="false" class="easyui-tabs" fit="true">
 
 					 <div title="地图" style="overflow: hidden;" iconCls="icon-note">
-						 <!--
+						 
 						 <div style="position: absolute;top: 35px;right:30px;z-index: 9999">
 							<a href="#" onclick="IQuery()"><img src="../../images/iSearch.png"/></a>
-						</div> -->
+							<!-- <button onclick="testQueryByLXBMZH()">根据路线编码和起止桩号查询</button>
+							<button onclick="testQueryQLByLXMBZH()">根据路线编码桩号查询桥梁</button> -->
+						</div>
+						
 						<div id="map" style="width:100%;height:100%;"></div>
 					</div>
 				</div>
 		    </div>
 		    <!-- 地图区域结束 -->
-		</div> 
+		</div>
     </div>
 </body>
 </html>
