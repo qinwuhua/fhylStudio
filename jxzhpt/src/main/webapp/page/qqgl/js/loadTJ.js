@@ -6,6 +6,17 @@ function tsdq(id){
 			})
 			$("#"+id).combobox('setValue','全部');
 	}
+function tsdq1(id,value){
+	$("#"+id).combotree({   
+		checkbox : true,
+		multiple:true,
+		async:false,
+	    url: '/jxzhpt/xmjzbb/settsdq.do?xzqh='+$.cookie("dist"),
+	})
+	if(value!=''){
+		$("#"+id).combotree('setValue',value);
+	}
+}
 
 function xmnf(id){
 	var myDate = new Date();
@@ -94,7 +105,5 @@ function checkSZ(str){
     	alert("请输入正确的数字");
     	$(str).val('');
     	return;
-    }else{
-    	shewcqk();
     }
 }

@@ -42,12 +42,17 @@ text-decoration:none;
 				$("#lxbm").focus();
 				return false;
 			}
-			if($("#qdmc").html()=="" || $("#qdmc").html()==null){
+			if($("#lxmc").val()=="" || $("#lxmc").val()==null){
+				alert("请填写路线名称！");
+				$("#lxmc").focus();
+				return false;
+			}
+			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
 				alert("请填写起点名称！");
 				$("#qdmc").focus();
 				return false;
 			}
-			if($("#zdmc").html()=="" || $("#zdmc").html()==null){
+			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
 				alert("请填写止点名称！");
 				$("#zdmc").focus();
 				return false;
@@ -102,7 +107,7 @@ text-decoration:none;
 				});
 				
 		});
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 	});
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/qqgl/qqglGpsroad.do";
@@ -161,11 +166,11 @@ text-decoration:none;
 				});
 	}
 	function saveLxsh(){
-		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()
+		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
-		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
-		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.jdbs=0";
 		//alert(data);
 		$.ajax({
@@ -193,14 +198,26 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var qd=0;
+		var zd=0;
+		if($("#zdzh").val()==''){
+			zd=0;
+		}else{
+			zd=parseFloat($("#zdzh").val());
+		}
+		if($("#qdzh").val()==''){
+			qd=0;
+		}else{
+			qd=parseFloat($("#qdzh").val());
+		}
+		var zlc=accSub(zd,qd);
 		$("#lc").html(zlc);
-		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").val(),$("#qdzh").val());
-		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+// 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+// 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+// 		if($("#qdzh").val()!='')
+// 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+// 		if($("#zdzh").val()!='')
+// 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 	
 </script>
@@ -216,7 +233,7 @@ text-decoration:none;
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lxmc"></span></td>
+					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
@@ -234,11 +251,11 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qdmc"></span><br/>
+					<input type="text" name="qdmc" id="qdmc" style="width: 156px" /><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zdmc"></span><br/>
+					<input type="text" name="zdmc" id="zdmc" style="width: 156px" /><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
@@ -255,13 +272,27 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsjsdj"></span></td>
+					<select id="jsjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+						<option value="等外公路">等外公路</option>
+						<option value="高速公路">高速公路</option>
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xjsdj"></span></td>
+					<select id="xjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+						<option value="等外公路">等外公路</option>
+						<option value="高速公路">高速公路</option>
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<input type="text" id='bzcs' /></td>
+				<input type="text" id='bzcs' onblur="checkSZ(this)"/></td>
 			</tr>
 		
 			<tr style="height: 35px;">
