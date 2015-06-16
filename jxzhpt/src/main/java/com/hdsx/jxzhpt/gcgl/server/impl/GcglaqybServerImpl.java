@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
 import com.hdsx.jxzhpt.gcgl.bean.Gcgltz;
@@ -318,6 +319,48 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	public List<Gcglaqyb> selectmbgllist1(Gcglaqyb gcglaqyb) {
 		// TODO Auto-generated method stub
 		return queryList("selectmbgllist1", gcglaqyb);
+	}
+
+	@Override
+	public boolean updateSGXK(Gcgl_jgys gcgl_jgys) {
+		if(insert("insertSgxk", gcgl_jgys)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public boolean updateJGTC(Gcgl_jgys gcgl_jgys) {
+		if(insert("insertJgtc", gcgl_jgys)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public boolean updateWGYS(Gcgl_jgys gcgl_jgys) {
+		if(insert("insertWgys", gcgl_jgys)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public boolean insertJGYS(Gcgl_jgys gcgl_jgys) {
+		Gcgl_jgys gcgl_jgys1=queryOne("queryJGYS", gcgl_jgys);
+		if(gcgl_jgys1==null){
+			if(insert("insertJGYS", gcgl_jgys)>0){
+				return true;
+			}else return false;
+		}else{
+			if(update("updateJGYS", gcgl_jgys)>0){
+				return true;
+			}else return false;
+		}
+		
+	}
+
+	@Override
+	public Gcgl_jgys queryJGYS(Gcgl_jgys gcgl_jgys) {
+		// TODO Auto-generated method stub
+		return queryOne("queryJGYS", gcgl_jgys);
 	}
 	
 }

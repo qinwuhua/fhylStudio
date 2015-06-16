@@ -67,9 +67,9 @@
 		<result property="tsdq" column="tsdq"/>
 	</resultMap>
 	<select id="queryYhdzxList" parameterType="java.util.Map" resultMap="yhdzx_jh">
-		select * from (
+		select t1.*,t2.* from (
 			select rownum as num,t.* from (
-	    		select * from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
+	    		select jh.* from plan_yhdzx jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
 	       		where 1=1 
 	       		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
 			 		and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -110,8 +110,9 @@
 				<if test="lx.tsdq!=null and lx.tsdq!=''">
 					and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdq})
 				</if>
-	       		order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd)
-		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+	       		order by jh.sbnf desc,jh.jh_sbthcd) t ) t1
+	       	left join plan_lx_yhdzx t2 on (t1.id=t2.jhid) 
+		where <![CDATA[ t1.num <= (#{page} * #{rows})]]> and t1.num>(#{page}-1)*#{rows} order by t1.sbnf desc,t1.jh_sbthcd
 	</select>
 	<select id="queryYhdzxList2" parameterType="java.util.Map" resultMap="yhdzx_jh">
 		select * from (
@@ -522,11 +523,11 @@
 	</insert>
 	<select id="yhdzxAutoCompleteLxbm" parameterType="plan_lx_yhdzx" resultType="plan_lx_yhdzx">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
-		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx,g.f018 as ylmkd
+		(max(g.roadends)-min(g.roadstart)) as qzlc,max(g.f114) as yjsdj,max(g.f116) as ylmlx,max(g.f018) as ylmkd
 		from  JXJCK_2013.GPSROAD g
 		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm}||'%'
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
-		group by roadname,roadcode,g.f114,g.f116,g.f018
+		group by roadname,roadcode order by lxbm
 	</select>
 	<select id="queryJhExist" parameterType="plan_lx_yhdzx" resultType="int">
 		select gj.gjCon+shuih.shCon+sj.sjCon+yh.yhCon from 

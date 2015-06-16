@@ -1,11 +1,13 @@
 var gridObj;//列表对象
 var oldIndex=-1;//之前选中的
 var selRow=new Array();//已选择的行号
-function querySumHsly(){
+function querySumHsly(hsly){
+	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/querySumHsly.do',
 		dataType:'json',
+		data:params,
 		success:function(data){
 			if(data.id>0){
 				$('#lblCount').html(data.id);
@@ -50,11 +52,11 @@ function sbnf(id){
 }
 function openWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'abgc_xx',1000,500);
+	YMLib.UI.createWindow('hsly_xx','红色旅游',"/jxzhpt/page/jhgl/jhkxx/hslygl.jsp",'hsly_xx',1000,500);
 }
 function openEditWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('abgc_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'abgc_edit',1000,500);
+	YMLib.UI.createWindow('hsly_edit','红色旅游',"/jxzhpt/page/jhgl/edit/hslygl.jsp",'hsly_edit',1000,500);
 }
 function hslyglxm(hsly){
 	var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
@@ -66,7 +68,7 @@ function hslyglxm(hsly){
 	        	var result='';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
-	        	result+='<a href="javascript:dropById()" style="text-decoration:none;color:#3399CC;">移除</a>';
+	        	result+='<a href="javascript:dropById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">移除</a>';
 	        	return result;
 	        }},
 	        {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
@@ -184,9 +186,12 @@ function queryHslyXx(id){
 			}
 		}
 	});
-	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></td></tr>');
+	$('#hslygl_xiangxi').append('<tr  align="center" style="height: 30px;text-align: center;"><td align="center" colspan="6"><a href="javascript:close()"><img alt="确定"  style="text-align: center;" src="/jxzhpt/images/Button/qd1.gif" onmouseover="this.src='+"'/jxzhpt/images/Button/qd2.gif'"+'" onmouseout="this.src='+"'/jxzhpt/images/Button/qd1.gif'"+'" onclick="" /></a></td></tr>');
 }
-function dropById(){
+function close(){
+	parent.$('#hsly_xx').window('destroy');
+}
+function dropHsly(){
 	if(confirm("确认移除选中计划吗？")){
 		var sel=gridObj.datagrid("getSelections");
 		var id="";
@@ -197,6 +202,22 @@ function dropById(){
 				id+=item.id+",";
 			}
 		});
+		$.ajax({
+			type:'post',
+			url:'../../../jhgl/dropHslyById.do',
+			data:"hsly.id="+id,
+			dataType:'json',
+			success:function(data){
+				if(data.result=='true'){
+					alert("移除成功！");
+					searchHsly();
+				}
+			}
+		});
+	}
+}
+function dropById(id){
+	if(confirm("确认移除选中计划吗？")){
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/dropHslyById.do',

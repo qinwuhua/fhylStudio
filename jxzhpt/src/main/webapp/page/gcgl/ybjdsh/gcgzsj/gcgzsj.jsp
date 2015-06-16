@@ -23,7 +23,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			if(getParam("t")=='1'){
 				$("#ybzt").val('未审核');
 			}
@@ -33,6 +33,7 @@
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
+			$("#ddlYear").val(myDate.getFullYear());
 			showAll();
 		});
 	</script>
@@ -59,7 +60,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;月报进度审核管理>&nbsp;工程改造路面升级施工过程管理</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;月报进度审核管理>&nbsp;升级改造工程项目</div>
 					</div>
         	</tr>
         	<tr>
@@ -70,8 +71,8 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 200px;">
         						<span>路线名称：</span>
         							<input type="text" id="lxmc" >
         						<span>项目年份：</span> 

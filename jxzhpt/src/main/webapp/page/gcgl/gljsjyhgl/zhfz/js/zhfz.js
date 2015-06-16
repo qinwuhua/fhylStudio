@@ -1,5 +1,10 @@
 var obj=new Object();
 var obj1=new Object();
+function jgys(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx','交工验收信息','jgys.jsp','wqxx',650,420);
+	}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationXm(data.lxbm,"");
@@ -112,7 +117,11 @@ function tjzhfzyb(){
 		alert("请填入本月完成其他投资");
 		return;
 	}
-	if($("#tj_bywc_gl").val()==''){
+	if($("#tj_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
+	if($("#tj_bywcgl").val()==''){
 		alert("请填入本月完成公里");
 		return;
 	}
@@ -143,10 +152,23 @@ function xgzhfzyb(){
 		alert("请填入本月完成部投资");
 		return;
 	}
-	if($("#xg_bywc_gl").val()==''){
+	if($("#xg_wc_stz").val()==''){
+		alert("请填入本月完成省投资");
+		return;
+	}
+	if($("#xg_wc_qttz").val()==''){
+		alert("请填入本月完成其他投资");
+		return;
+	}
+	if($("#xg_zjdw_qttz").val()==''){
+		alert("请填入本月到位其他投资");
+		return;
+	}
+	if($("#xg_bywcgl").val()==''){
 		alert("请填入本月完成公里");
 		return;
 	}
+	
 	var data = "gcglzhfz.wc_btz="+$("#xg_wc_btz").val()+"&gcglzhfz.wc_stz="+$("#xg_wc_stz").val()+"&gcglzhfz.wc_qttz="+$("#xg_wc_qttz").val()
 	+"&gcglzhfz.zjdw_btz="+$("#xg_zjdw_btz").val()+"&gcglzhfz.zjdw_stz="+$("#xg_zjdw_stz").val()+"&gcglzhfz.zjdw_qttz="+$("#xg_zjdw_qttz").val()
 	+"&gcglzhfz.bywcgl="+$("#xg_bywcgl").val()+"&gcglzhfz.kgdl="+$("#xg_kgdl").val()+"&gcglzhfz.qksm="+$("#xg_qksm").val()+"&gcglzhfz.wcqk="+$("#xg_wcqk").text()
@@ -192,7 +214,7 @@ function tjwqgzkg(){
 		return;
 	}
 	var data="gcglzhfz.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglzhfz.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglzhfz.yjjgsj="+$("#tj_yjjgsj").datebox('getValue')
-	+"&gcglzhfz.sgdw="+$("#tj_sgdw").val()+"&gcglzhfz.jldw="+$("#tj_jldw").val()+"&gcglzhfz.jsdw="+$("#tj_jsdw").val()
+	+"&gcglzhfz.sgdw="+$("#tj_sgdw").val()+"&gcglzhfz.jldw="+$("#tj_jldw").val()+"&gcglzhfz.jsdw="+$("#tj_jsdw").val()+"&gcglzhfz.xdwh="+$("#tj_xdwh").val()
 	+"&gcglzhfz.htje="+$("#tj_htje").val()+"&gcglzhfz.gys="+$("#tj_gys").val()+"&gcglzhfz.jhid="+parent.obj1.jhid;
 	//alert(data);
 	$.ajax({
@@ -312,9 +334,9 @@ function showAll(){
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	if(row.kgzt=='1'){
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wwangong('+index+')">未完工</a>  ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">交工验收</a>  ';
 	        	}else
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'未完工   ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'交工验收';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},

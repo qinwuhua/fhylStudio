@@ -90,7 +90,7 @@
 			window.location.href="/jxzhpt/jhgl/exportExcel_yhdzx.do?"+param;
 		}
 		function addYhdzx(){
-			YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,500);
+			YMLib.UI.createWindow('add_yhdzx','添加养护大中修',"/jxzhpt/page/jhgl/add/yhdzxAdd.jsp",'addyhdzx',980,400);
 		}
 	</script>
 </head>
@@ -100,7 +100,7 @@
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
-        		<td align="left" style="padding-left: 10px; padding-right: 10px;">
+        		<td align="left" style="padding-left: 10px; padding-top: 10px;">
         			<fieldset id="searchField" style="width:100%; text-align: left; vertical-align: middle;">
         				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
         					<font style="color: #0866A0; font-weight: bold"></font>

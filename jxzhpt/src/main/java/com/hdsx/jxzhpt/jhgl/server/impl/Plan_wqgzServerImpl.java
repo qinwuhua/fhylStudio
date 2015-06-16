@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -134,14 +136,9 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
-
-	@Override
-	public boolean updateGkbg(Plan_wqgz jh) {
-		return update("updateGkbg", jh)>0;
-	}
-	@Override
-	public boolean updateSjsgt(Plan_wqgz jh) {
-		return update("updateSjsgt", jh)>0;
+	
+	public boolean insertwqFile(Plan_upload upload){
+		return insert("insertwqFile", upload)>0;
 	}
 
 	@Override
@@ -150,8 +147,8 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-	public boolean editWqgzSckxx(Plan_wqgz jh) {
-		return update("editWqgzSckxx", jh)>0;
+	public boolean editWqgzSckxx(Sckwqgz sc) {
+		return update("editWqgzSckxx", sc)>0;
 	}
 
 	@Override
@@ -168,8 +165,8 @@ public class Plan_wqgzServerImpl extends BaseOperate implements Plan_wqgzServer 
 	}
 
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 
 	@Override

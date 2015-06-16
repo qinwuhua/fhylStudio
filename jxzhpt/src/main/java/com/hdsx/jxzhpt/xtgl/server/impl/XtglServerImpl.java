@@ -479,8 +479,8 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 
 	}
 	
-	public List<Yhdzxcs> queryYhdzxcs(){
-		return queryList("queryYhdzxcs");
+	public List<Yhdzxcs> queryYhdzxcs(Yhdzxcs yhdzxcs){
+		return queryList("queryYhdzxcs",yhdzxcs);
 	}
 
 	@Override
@@ -541,5 +541,15 @@ public class XtglServerImpl extends BaseOperate  implements XtglServer{
 	@Override
 	public List<Param> selJsUsedById(Param param) {
 		return queryList("selJsUsedById", param);
+	}
+
+	@Override
+	public boolean dropYhdzxcsById(String id) {
+		String [] idArray=id.split(",");
+		List<String> list=new ArrayList<String>();
+		for(int i=0;i<idArray.length;i++){
+			list.add(idArray[i]);
+		}
+		return deleteBatch("dropYhdzxcsById", list)==list.size();
 	}
 }

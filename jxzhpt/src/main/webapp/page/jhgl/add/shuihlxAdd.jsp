@@ -102,6 +102,34 @@
 	}
 	
 	function insert(){
+		if($("#lxbm").val()==''||$("#lxbm").val()==null){
+			alert("路线编码不能为空");
+			return;
+		}
+		if($("#lxmc").val()==''||$("#lxmc").val()==null){
+			alert("路线名称不能为空");
+			return;
+		}
+		if($('#yjsdj').combobox("getValue")==''||$('#yjsdj').combobox("getValue")==null){
+			alert("请选择原技术等级");
+			return;
+		}
+		if($("#qdzh").val()==''||$("#qdzh").val()==null){
+			alert("起点桩号不能为空");
+			return;
+		}
+		if($("#zdzh").val()==''||$("#zdzh").val()==null){
+			alert("止点桩号不能为空");
+			return;
+		}
+		if($("#qzlc").val()==''||$("#qzlc").val()==null){
+			alert("起止里程不能为空");
+			return;
+		}
+		if($("#xmlc").val()==''||$("#xmlc").val()==null){
+			alert("隐患里程不能为空");
+			return;
+		}
 		var myDate = new Date();
 		var tbsj=myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate();
 		var obj={'lx.lxmc':$('#lxmc').val(),'lx.lxbm':$('#lxbm').val(),'lx.jsdd':$('#jsdd').val(),

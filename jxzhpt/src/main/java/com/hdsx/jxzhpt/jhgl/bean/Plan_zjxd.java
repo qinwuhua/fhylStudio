@@ -2,12 +2,12 @@ package com.hdsx.jxzhpt.jhgl.bean;
 
 public class Plan_zjxd {
 	private String id;
-	private String xmid;
+	private String xmid;//对应项目编码
 	private String xdnf;
 	private String xdzj;
 	private String sfzj;//是否是追加资金
 	private String tbdw;
-	private String tbtime;
+	private String tbtime;//计划下达时间
 	private String btzzj;//部投资金额
 	private String stz;//省投资
 	private String xmmc;//项目名称

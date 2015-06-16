@@ -155,9 +155,9 @@ a:active {
                                 <div>
                                 <table>
                                 <tr>
-                                <td style="width: 157px;">部投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_btz"  onblur='check(this)' /></td>
-                                <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)'/></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /></td>
+                                <td style="width: 157px;">部投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_btz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
+                                <td style="width: 157px;">省投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_stz" onblur='check(this)'/><font color='red' size='2'>*&nbsp;</font></td>
+                                <td style="width: 157px;">其他投资：<input style="width: 50px" maxlength="20" type="text" id="tj_wc_qttz"  onblur='check(this)' /><font color='red' size='2'>*&nbsp;</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -176,7 +176,7 @@ a:active {
                                 <tr>
                                 <td style="width: 157px;">部投资：<span style="width: 50px" id="tjbtz"></span><input style="width: 50px" name="ZJ_BTZ" type="hidden" id="tj_zjdw_btz" /></td>
                                 <td style="width: 157px;">省投资：<span style="width: 50px" id="tjstz"></span><input style="width: 50px" name="ZJ_STZ" type="hidden" id="tj_zjdw_stz" /></td>
-                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/></td>
+                                <td style="width: 157px;">其他投资：<input style="width: 50px" name="ZJ_QTTZ" type="text" id="tj_zjdw_qttz"  onblur='check(this)'/><font color='red' size='2'>*</font></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -190,16 +190,16 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input maxlength="20"  type="text" id="tj_bywc_c" style="width: 50px;" />
+                                <input maxlength="20"  type="text" id="tj_bywc_c" style="width: 50px;" /><font color='red' size='2'>*&nbsp;</font>
                             </td>
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
                                 padding-right: 5px;">
-                                <b><font color="#009ACD" style="font-size: 12px">本月完成（公里）</font></b>
+                                <b><font color="#009ACD" style="font-size: 12px">本月完成<br>（公里）</font></b>
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                <input maxlength="20" type="text" id="tj_bywc_gl" style="width: 50px;" />
+                                <input maxlength="20" type="text" id="tj_bywc_gl" style="width: 50px;" /><font color='red' size='2'>*&nbsp;</font>
                             </td>
                              <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

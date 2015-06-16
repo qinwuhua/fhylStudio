@@ -266,8 +266,12 @@
 	<delete id="dropFlwbzbzById" parameterType="java.util.List">
 		delete from plan_flwbzbz where id=#{id}
 	</delete>
+	<delete id="dropYhdzxcsById" parameterType="java.util.List">
+		delete from xtgl_yhdzxcs where id=#{id}
+	</delete>
 	<select id="queryYhdzxcs" resultType="yhdzxcs">
-		select * from xtgl_yhdzxcs
+		select * from xtgl_yhdzxcs 
+		<if test="cslx!=null and cslx!=''">where  cslx=#{cslx}</if>
 	</select>
 	<select id="selectLxDataList" parameterType="hashmap" resultType="unit">
 		select name id,#{roadcode}||#{xzqh} parent ,name,#{roadcode} bmid from (

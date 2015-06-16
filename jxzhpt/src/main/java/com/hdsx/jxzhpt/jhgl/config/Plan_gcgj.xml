@@ -67,10 +67,10 @@
 	</resultMap>
 	
 	<select id="queryGcgjList"  parameterType="java.util.Map" resultMap="gcgj_lx">
-		select * from (
-			select rownum as num,t.* from(
-			select jh.tbbm,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,
-			lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc 
+		select t2.*,t1.gydw,t1.xzqhmc,t1.lxmc,t1.lxbm,t1.qdzh,t1.zdzh,t1.yhlc from PLAN_lx_GCGJ t1 right join (
+			select rownum as num,t.* from (
+			select distinct jh.tbbm,jh.xmmc,jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.jgzt,jh.kgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz
+			<!-- lx.gydw,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qdzh,lx.zdzh,lx.yhlc  -->
 			from PLAN_lx_GCGJ lx right JOIN Plan_Gcgj jh on  lx.jhid=jh.id
 			where 1=1
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">	
@@ -115,9 +115,9 @@
 			<if test="lx.tsdqbm!=null and lx.tsdqbm!=''">
 				and lx.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{lx.tsdqbm})
 			</if>
-			 order by jh.sbnf desc,jh.jh_sbthcd) t order by t.sbnf desc,t.jh_sbthcd
-			)
-		where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
+			 order by jh.sbnf desc,jh.jh_sbthcd
+			 ) t order by t.sbnf desc,t.jh_sbthcd
+			) t2 on t1.jhid=t2.id where <![CDATA[ t2.num <= (#{page} * #{rows})]]> and t2.num>(#{page}-1)*#{rows}
 	</select>
 	<select id="queryGcgjList2"  parameterType="java.util.Map" resultMap="gcgj_lx">
 		select * from (
@@ -415,21 +415,9 @@
 	<delete id="dropGcgjLxByJhid" parameterType="java.util.List">
 		delete from plan_lx_gcgj where jhid=#{String}
 	</delete>
-	<update id="uploadGcgjFile" parameterType="plan_gcgj">
-		update plan_gcgj jh set 
-		<if test="gkbgmc!=null and gkbgmc!=''">
-			jh.GKBGMC=#{gkbgmc},
-		</if>
-		<if test="gkbgwj!=null">
-			jh.gkbgwj=#{gkbgwj}
-		</if>
-		<if test="sjsgtmc!=null and sjsgtmc!=''">
-			jh.SJSGTMC=#{sjsgtmc},
-		</if>
-		<if test="sjsgtwj!=null">
-			jh.sjsgtwj=#{sjsgtwj}
-		</if>
-		where jh.id=#{id}
+	<update id="insertGcgjFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) 
+		values(#{filename},#{filedata},#{parentid},#{filetype})
 	</update>
 	<select id="queryGjwjById" parameterType="plan_gcgj" resultType="plan_gcgj">
 		select j.gkbgmc,j.gkbgwj,j.sjsgtmc,j.sjsgtwj from plan_gcgj j where id=#{id}
@@ -616,6 +604,9 @@
 		<if test="xmlx!=null and xmlx!=''">and xmlx = #{xmlx}</if>
 		<if test="start!=null and start!='' and end!=null and end!=''">
 			and id>=#{start} and <![CDATA[id<=#{end}]]>
+		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and xzqhdm like #{xzqhdm}
 		</if>
 		 group by id order by id
 	</select>

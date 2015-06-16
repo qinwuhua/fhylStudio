@@ -37,8 +37,6 @@
 		function searchShuih(){
 			var jh={sbnf:null,sbzt:'1',spzt:'1',jh_sbthcd:6,kgzt:null,jgzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh'),lxmc:null,yjsdj:null,lxbm:null};
-			lx.gydwdm = filterGydwdm(lx.gydwdm);
-			lx.xzqhdm=filterXzqhdm(lx.xzqhdm);
 			if($('#txtRoad').val()!=""){
 				lx.lxmc=$('#txtRoad').val();
 			}

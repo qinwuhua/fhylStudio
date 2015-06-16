@@ -23,6 +23,7 @@
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglgcgzsj" alias="gcglgcgzsj"/>
      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglhsly" alias="gcglhsly"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb" alias="gcglaqyb"/>
+      <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys" alias="gcgl_jgys"/>
       <typeAlias type="com.hdsx.jxzhpt.gcgl.bean.Gcgltz" alias="gcgltz"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Trqk" alias="trqk"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Lkmxb" alias="lkmxb"/>
@@ -33,6 +34,8 @@
       <typeAlias type="com.hdsx.jxzhpt.wjxt.bean.Zdxx" alias="zdxx"/>
       <typeAlias type="com.hdsx.jxzhpt.wjxt.controller.Excel_list" alias="elist"/>
       <typeAlias type="com.hdsx.jxzhpt.gcxmybb.bean.Xmbb" alias="xmbb"/>
+      <typeAlias type="com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh" alias="lxsh"/>
+      <typeAlias type="com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj" alias="kxxyj"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>
@@ -44,6 +47,12 @@
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz" alias="sckzhfz"/>
      <!-- lhp -->
      <!-- rh -->
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Cbsj" alias="cbsj"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Jhsh" alias="jhsh"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Jhsh2" alias="jhsh2"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Xmsq" alias="xmsq"/>
+     <typeAlias type="com.hdsx.jxzhpt.qqgl.bean.Lx" alias="lx"/>
+     
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj" alias="plan_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj" alias="plan_lx_gcgj"/>
      <typeAlias type="com.hdsx.jxzhpt.jhgl.bean.Plan_gcsj" alias="plan_gcsj"/>
@@ -128,6 +137,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglyhdzx.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglsh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzgj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/gcgl/config/xjgc.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglgcgzsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglhsly.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcgl/config/gcglaqyb.xml"/>
@@ -137,6 +147,8 @@
 	<mapper resource="com/hdsx/jxzhpt/wjxt/config/dbyh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/gcybb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/xmbb.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/lxsh.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/kxxyj.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/zdycx.xml"/>
@@ -148,6 +160,10 @@
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmsck/config/sckzhfz.xml"/>
 	<!-- lhp -->
 	<!-- rh -->
+	<mapper resource="com/hdsx/jxzhpt/qqgl/config/cbsj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/config/jhsh.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/qqgl/config/xmsq.xml"/>
+	
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_abgc.xml"/>

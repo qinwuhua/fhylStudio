@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -81,13 +83,12 @@ public interface Plan_zhfzServer {
 	 * @return
 	 */
 	boolean editZhfzStatus(Plan_zhfz jh);
-	boolean updateGkbg(Plan_zhfz jh);
-	boolean updateSjsgt(Plan_zhfz jh);
+	boolean insertZhFile(Plan_upload upload);
 	Plan_zhfz queryZhfzFjById(String id);
-	boolean editZhfzSckBysckid(Plan_zhfz jh);
+	boolean editZhfzSckBysckid(Sckzhfz jh);
 	List<Plan_zhfz> queryZhfzByStatus(Plan_zhfz jh, Jckzhfz lx);
 	boolean updateStatusBatch(List<Plan_zhfz> splist);
-	List<TreeNode> queryJcktj();
+	TreeNode queryJcktj(TreeNode treenode);
 	List<TreeNode> queryJcktj1(String nf);
 	List<TreeNode> queryJhktj2(String xzqhdm, String nf, String end);
 	/**

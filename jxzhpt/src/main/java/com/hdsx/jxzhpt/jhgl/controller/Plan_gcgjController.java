@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjzj;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
@@ -45,6 +46,7 @@ public class Plan_gcgjController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_gcgj jh;
 	private Plan_lx_gcgj lx;
+	private Plan_upload uploads;
 	private String gydwdm;
 	private String tbbmbm2;
 	private Plan_zjzj zjzj;
@@ -130,16 +132,25 @@ public class Plan_gcgjController extends BaseActionSupport{
 			while((index=inputStream.read(file))!=-1){
 				byteOutpu.write(file, 0, index);
 			}
+			uploads=new Plan_upload();
+			String fileName="";
 			if(uploadGkFileName!=null){
-				jh.setGkbgmc(uploadGkFileName);
-				jh.setGkbgwj(file);
+				uploads.setFiledata(file);
+				uploads.setFiletype("工可报告");
+				uploads.setFilename(uploadGkFileName);
+				fileName=uploadGkFileName;
 			}
 			if(uploadSjtFileName!=null){
-				jh.setSjsgtmc(uploadSjtFileName);
-				jh.setSjsgtwj(file);
+				uploads.setFiledata(file);
+				uploads.setFiletype("设计施工图");
+				uploads.setFilename(uploadSjtFileName);
+				fileName=uploadSjtFileName;
 			}
-			gcgjServer.uploadGcgjFile(jh);
-			response.getWriter().write(uploadGkFileName==null ? uploadSjtFileName : uploadGkFileName);
+			uploads.setParentid(jh.getId());
+			if(gcgjServer.insertGcgjFile(uploads))
+				response.getWriter().print(fileName+"导入成功");
+			else 
+				response.getWriter().print(fileName+"导入失败");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,8 +178,10 @@ public class Plan_gcgjController extends BaseActionSupport{
 			lx.setGydwdm(gydwOrxzqhBm(lx.getGydwdm(),"gydwdm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
+			List<Plan_gcgj> queryGcgjList = gcgjServer.queryGcgjList(page,rows,jh,lx);
 			jsonMap.put("total", gcgjServer.queryGcgjCount(jh,lx));
-			jsonMap.put("rows", gcgjServer.queryGcgjList(page,rows,jh,lx));
+			jsonMap.put("rows", queryGcgjList);
+			System.out.println("集合个数："+queryGcgjList.size());
 			JsonUtils.write(jsonMap, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -658,5 +671,11 @@ public class Plan_gcgjController extends BaseActionSupport{
 	}
 	public void setZjzj(Plan_zjzj zjzj) {
 		this.zjzj = zjzj;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
 	}
 }

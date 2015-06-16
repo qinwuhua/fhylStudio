@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理安保工程项目</title>
+
 <link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
@@ -168,11 +169,12 @@ function tuiHui(){
 </script>
 <style type="text/css">
 TD {
-font-size: 12px;
+font-size: 12px;margin:0px;padding:0px;
 }
 a{
 text-decoration:none;
 }
+.abgc_td td{padding-right:6px;}
 </style>
 </head>
 <body>
@@ -186,53 +188,52 @@ text-decoration:none;
 		</td></tr>
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
-			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
+			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 				<div>
-					<p style="margin:8px 0px 4px 20px;">
-								<span>管养单位：</span>
-                              	<select  id="gydw" style="width:218px">
-                              	</select>
-                             	<span>&nbsp;行政区划：</span>
-                              	<select id="xzqhmc" style="width:218px">
-                              	</select>
-                               <span>&nbsp;路线名称：</span>
-        						<input type="text" id="lxmc"  style="width:100px;" />
-        						<span>&nbsp;路线编码：</span>
-        						<input type="text" id="lxbm"  style="width:100px;" />
-						</p>
-                        <p style="margin:8px 0px 4px 20px;">
-							  <span>项目年份：</span>
-                              	<select id="xmnf" style="width:70px">
-                              	</select>
-                              <span style="display: none;">&nbsp;项目状态： </span>
-                              	<select id="xmtype" style="width:70px; display: none;">
-                              	</select>
-                               <span>&nbsp;上报状态：</span>
-                              	<select id="sbzt"  style="width:70px"class="easyui-combobox">
-                              	</select>
-                              <span>&nbsp;特殊地区：</span>
-                              	<select id="tsdq" style="width:70px"class="easyui-combobox">
-                              	</select>
-                               <span>&nbsp;技术等级：</span>
-                              	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
-                              	</select>
-                              	<span>&nbsp;公路等级：</span>
-                              	<select id="bz" style="width:105px" class="easyui-combobox">
-                              	</select>
-                              		
-                             </p>
-                             <p style="margin:8px 0px 4px 20px;">
-								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglAbgc();"style="border-width:0px;cursor: hand;" />
+						<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+							<tr height="32">
+							  <td>管养单位：</td>
+							  <td colspan="3" style="width:220px;"><select  id="gydw" style="width:220px;" ></select></td>
+							  <td>行政区划：</td>
+							  <td colspan="3" style="width:220px"><select id="xzqhmc" style="width:220px"></select></td>
+							  <td>路线名称：</td>
+							  <td><input type="text" id="lxmc"  style="width:100px;" /></td>
+							  <td>路线编码：</td>
+							  <td><input type="text" id="lxbm"  style="width:100px;" /></td>
+							  <td></td>
+							  <td></td>
+							</tr>
+							<tr  height="32">
+							  <td>项目年份：</td>
+							  <td><select id="xmnf" style="width:70px"></select></td>
+							  <td>上报状态：</td>
+							  <td>
+								  <select id="sbzt"  style="width:70px"class="easyui-combobox"></select>
+								  <select id="xmtype" style="width:70px; display: none;"></select>
+							  </td>
+							  <td>特殊地区：</td>
+							  <td><select id="tsdq" style="width:70px"class="easyui-combobox"></select></td>
+							  <td>技术等级：</td>
+							  <td><select id="lxjsdj" style="width:70px"class="easyui-combobox"></select></td>
+							  <td>公路等级：</td>
+							  <td><select id="bz" style="width:105px" class="easyui-combobox"></select></td>
+							  
+							</tr>
+							<tr   height="32">
+							  <td colspan="10">
+							 	<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif"  onclick="jckglAbgc();"style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
 								<img  name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Security');" style="border-width:0px;cursor: hand;" />
 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('abgc');" style="border-width:0px;" />
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('abgc_add.jsp','900','400');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:delJckabgc();" style="border-width:0px;" />
-                                <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_abgc();" style="border-width:0px;cursor: hand;" />
-						</p>
+			                    <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('abgc_add.jsp','900','400');" style="border-width:0px;" />
+			                    <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="javascript:delJckabgc();" style="border-width:0px;" />
+			                    <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_abgc();" style="border-width:0px;cursor: hand;" />
+							  </td>
+							 </tr>
+							</table>
 						</div>
 					</fieldset>
 					</td>

@@ -105,6 +105,72 @@
 	}
 	
 	function insert(){
+		if($("#lxbm").val()==''||$("#lxbm").val()==null){
+			alert("路线编码不能为空");
+			return;
+		}
+		if($("#lxmc").val()==''||$("#lxmc").val()==null){
+			alert("路线名称不能为空");
+			return;
+		}
+		if($('#yjsdj').combobox("getValue")==''||$('#yjsdj').combobox("getValue")==null){
+			alert("请选择原技术等级");
+			return;
+		}
+		if($("#qdzh").val()==''||$("#qdzh").val()==null){
+			alert("起点桩号不能为空");
+			return;
+		}
+		if($("#zdzh").val()==''||$("#zdzh").val()==null){
+			alert("止点桩号不能为空");
+			return;
+		}
+		if($("#qzlc").val()==''||$("#qzlc").val()==null){
+			alert("起止里程不能为空");
+			return;
+		}
+		if($("#yhlc").val()==''||$("#yhlc").val()==null){
+			alert("隐患里程不能为空");
+			return;
+		}
+		if($('#jhkgsj').datebox("getText")==''||$('#jhkgsj').datebox("getText")==null){
+			alert("计划开工时间不能为空");
+			return;
+		}
+		if($('#jhwgsj').datebox("getText")==''||$('#jhwgsj').datebox("getText")==null){
+			alert("计划完工时间不能为空");
+			return;
+		}
+		if($('#xmmc').val()==''||$('#xmmc').val()==null){
+			alert("项目名称不能为空");
+			return;
+		}
+		if($('#pfztz').val()==''||$('#pfztz').val()==null){
+			alert("批复总投资不能为空");
+			return;
+		}
+		if($('#bbz').val()==''||$('#bbz').val()==null){
+			alert("计划使用部补助金额不能为空");
+			return;
+		}
+		if($('#dfzc').val()==''||$('#dfzc').val()==null){
+			alert("计划使用省补助金额不能为空");
+			return;
+		}
+		
+		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
+			alert("起点桩号要大于或等于"+$('#spqdzh').html());
+			return;
+		}
+		if(Number($('#zdzh').val())>Number($('#spzdzh').html())){
+			alert("止点桩号要小于或等于"+$('#spzdzh').html());
+			return;
+		}
+		if(Number($('#qzlc').val())<Number($('#xmlc').val())){
+			alert("项目里程不能大于起止里程！");
+			return;
+		}
+		
 		if(Number($('#qdzh').val())<Number($('#spqdzh').html())){
 			alert("起点桩号要大于或等于"+$('#spqdzh').html());
 			return;
@@ -128,12 +194,13 @@
 				'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),'jh.faspsj':$('#faspsj').datebox('getValue'),
 				'jh.spwh':$('#spwh').val(),'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),'jh.jsnr':$('#jsnr').val(),
 				'jh.sbnf':$('#editjhnf').combobox("getValue"),'jh.jhkgsj':$('#jhkgsj').datebox("getText"),'jh.jhwgsj':$('#jhwgsj').datebox("getText"),
-				'jh.xdsj':$('#jhxdsj').datebox("getText"),'jh.xmmc':$('#xmmc').val(),'jh.yhlb':$('#yhlb').combobox("getValue"),
+				//'jh.xdsj':$('#jhxdsj').datebox("getText"),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.xmmc':$('#xmmc').val(),'jh.yhlb':$('#yhlb').combobox("getValue"),
 				'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),'jh.sjlmlx':$('#sjlmlx').val(),
 				'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),
 				'jh.pfwh':$('#pfwh').val(),'jh.pfsj':$('#pfsj').datebox("getText"),'jh.pfztz':$('#pfztz').val(),
 				'jh.jhsybzje':$('#bbz').val(),'jh.jhsydfzcje':$('#dfzc').val(),'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),
-				'jh.ablbzsqwh':$('#lblABLBZWH').val(),'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.ablbzsqwh':$('#lblABLBZWH').val(),'jh.sftqss':$("input[name='sftqss']:checked").val(),
 				'jh.gksjwh':$('#gkpfwh').val(),'jh.sjpfwh':$('#sjpfdw').val(),'jh.sfgyhbm':$("input[name='sfgyhbm']:checked").val(),
 				'jh.jhbz':$('#remarks').val(),'jh.tbbm':$.cookie("unit"),'lx.tsdq':$("#tsdq").html()};
 		$.ajax({
@@ -276,13 +343,13 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					行政区划
 				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="border-left: 1px solid #C0C0C0;border-right: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<select id="xzqhmc" class="easyui-combobox" style="width: 120px;"></select>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					行政区划代码
 				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<span id="xzqhdm"></span>
 				</td>
 			</tr>
@@ -399,23 +466,27 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+				<!-- <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					计划下达时间
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="jhxdsj" type="text" class="easyui-datebox" style="width: 100px;"></input>
-				</td>
+				</td> -->
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					项目名称
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="xmmc" style="width: 120px;"/><span style="color: red;">  *</span>
 				</td>
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					养护类别
 				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="yhlb" style="width:120px;"/><span style="color: red;">  *</span>
+				</td>
+				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+				</td>
+				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -521,12 +592,12 @@
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+				<!-- <td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					计划下达文号
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="jhxdwh" style="width: 120px;"/>
-				</td>
+				</td> -->
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					工可批复文号
 				</td>
@@ -539,20 +610,20 @@
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input type="text" id="sjpfwh" style="width: 120px;"/>
 				</td>
-			</tr>
-			<tr style="height: 40px;">
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					是否归口市局养护部门
 				</td>
-				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 					<input id="sfgyhbm0" name="sfgyhbm" value="是" type="radio"/>是
 					<input id="sfgyhbm1" name="sfgyhbm" value="否" checked="checked" type="radio"/>否
 				</td>
+			</tr>
+			<tr style="height: 60px;">
 				<td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; border-bottom: 1px solid #C0C0C0; background-color: #F1F8FF; padding-right: 5px;">
 					备&nbsp;&nbsp;&nbsp;注
 				</td>
-				<td colspan="3" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					<textarea id="remarks" style="width: 400px;height: 30px;"></textarea>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
+					<textarea id="remarks" style="width: 650px;height: 50px;"></textarea>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

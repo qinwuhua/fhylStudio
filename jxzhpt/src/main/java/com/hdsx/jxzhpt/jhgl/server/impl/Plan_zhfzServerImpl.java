@@ -8,13 +8,12 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
-import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
-import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -135,14 +134,10 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 		}
 		return updateBatch("updateLrztBySckid", idlist)==idlist.size();
 	}
-
+	
 	@Override
-	public boolean updateGkbg(Plan_zhfz jh) {
-		return update("updateGkbg", jh)>0;
-	}
-	@Override
-	public boolean updateSjsgt(Plan_zhfz jh) {
-		return update("updateSjsgt", jh)>0;
+	public boolean insertZhFile(Plan_upload upload){
+		return insert("insertZhFile",upload)>0;
 	}
 
 	@Override
@@ -151,8 +146,8 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public boolean editZhfzSckBysckid(Plan_zhfz jh) {
-		return update("editZhfzSckBysckid",jh)>0;
+	public boolean editZhfzSckBysckid(Sckzhfz sc) {
+		return update("editZhfzSckBysckid",sc)>0;
 	}
 
 	@Override
@@ -169,8 +164,8 @@ public class Plan_zhfzServerImpl extends BaseOperate  implements Plan_zhfzServer
 	}
 
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 
 	@Override

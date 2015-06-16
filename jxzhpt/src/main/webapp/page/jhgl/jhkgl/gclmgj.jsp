@@ -31,10 +31,11 @@
 			loadBmbm2('add_yjsdjxx','技术等级');
 			tsdq('tsdq');
 			sbnf("sbnf");
-			var jh={sbnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={sbnf:$("#sbnf").combo("getValue"),sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwdm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumGcgj(jh,lx);
 			gclmgjxm(jh,lx);
+			loadJhzt('jhzt');
 		});
 		function searchGcgj(){
 			var jh={jhnf:null,sbzt:null,spzt:null,sfylsjl:$('#sfylsjl').combo("getValue")};
@@ -55,28 +56,37 @@
 				lx.tsdqbm=$('#tsdq').combo("getValue");
 			}
 			if($('#jhzt').combo("getValue")!="" && $('#jhzt').combo("getValue")!='全部'){
-				var xian1=new RegExp("^[0-9]{9}[0-9][1-9]$");
-				var xian2=new RegExp("^[0-9]{9}[1-9][0-9]$");
-				var xian=true;
-				if(!xian1.test($.cookie("unit")) && !xian2.test($.cookie("unit"))){
-					xian=false;
-				}
-				if($('#jhzt').combo("getValue")=="未上报"){
-					if(xian){
+				if(roleName()=="县级"){
+					if($('#jhzt').combo("getValue")=="未上报"){
 						jh.jh_sbthcd=0;
-					}else{
+					}else if($('#jhzt').combo("getValue")=="已上报"){
 						jh.jh_sbthcd=2;
-					}
-				}else if($('#jhzt').combo("getValue")=="已上报"){
-					if(xian){
-						jh.jh_sbthcd=2;
-					}else{
+					}else if($('#jhzt').combo("getValue")=="未审核"){
 						jh.jh_sbthcd=4;
+					}else if($('#jhzt').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
 					}
-				}else if($('#jhzt').combo("getValue")=="未审核"){
-					jh.jh_sbthcd=4;
-				}else if($('#jhzt').combo("getValue")=="已审核"){
-					jh.jh_sbthcd=6;
+				}
+				if(roleName()=="市级"){
+					if($('#jhzt').combo("getValue")=="待上报"){
+						jh.jh_sbthcd=0;
+					}else if($('#jhzt').combo("getValue")=="未上报"){
+						jh.jh_sbthcd=2;
+					}else if($('#jhzt').combo("getValue")=="已上报"){
+						jh.jh_sbthcd=4;
+					}else if($('#jhzt').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
+					}
+				}
+				if(roleName()=="省级"){
+					if($('#jhzt').combo("getValue")=="未上报"){
+						jh.spzt="0";
+						jh.jh_sbthcd="0";
+					}else if($('#jhzt').combo("getValue")=="未审核"){
+						jh.jh_sbthcd=4;
+					}else if($('#jhzt').combo("getValue")=="已审核"){
+						jh.jh_sbthcd=6;
+					}
 				}
 			}
 			querySumGcgj(jh,lx);
@@ -110,6 +120,10 @@
 				}
 			});
 		}
+		function exportExcel_gcgj(){
+			var param="jh.jh_sbthcd="+"&jh.sbzt="+"&jh.spzt="+"&lx.gydwbm="+getgydw("gydw");
+			window.location.href="/jxzhpt/jhgl/exportGcgjZjxdExcel.do?"+param;
+		}
 		function addLmsj(){
 			YMLib.UI.createWindow('add_lmgj','添加路面改建',"/jxzhpt/page/jhgl/add/lmgjAdd.jsp",'addlmgj',980,500);
 		}
@@ -140,11 +154,6 @@
         						<select id="sbnf" style="width: 80px;"></select>
         						<span>&nbsp;计划状态：</span>
         						<select id="jhzt" class="easyui-combobox" name="dept" style="width: 70px;">
-									<option value="全部">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
-									<option value="未审核">未审核</option>
-									<option value="已审核">已审核</option>
 								</select>
 								<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:80px;"></select>
@@ -165,7 +174,7 @@
         						<img onclick="addLmsj()" name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src="" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						<img  onclick="importData_jh('gcgj_jh')" alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         						<img  onclick="dropGcgjs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-        						<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+        						<img onclick="exportExcel_gcgj()" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>
@@ -177,8 +186,8 @@
         			 个路面改建项目，总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			 隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里；
         			 批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			 其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			 地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			 其中中央车购税【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			 省投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

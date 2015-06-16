@@ -1,0 +1,115 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "/xsd/struts-2.1.7.dtd">
+<struts>
+	<package name="qqgl" extends="struts-default" namespace="/qqgl">
+		<!-- qwh -->
+		  <action name="sfylx" class="lxshController" method="sfylx"/>
+		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
+		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
+		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
+		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
+		  <action name="insertLx" class="lxshController" method="insertLx"/>
+		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
+		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
+		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
+		  <action name="selectSFCF" class="lxshController" method="selectSFCF"/>
+		  <action name="insertSjgz" class="lxshController" method="insertSjgz"/>
+		  <action name="insertLmgz" class="lxshController" method="insertLmgz"/>
+		  <action name="insertXj" class="lxshController" method="insertXj"/>
+		  <action name="selectSjgzList" class="lxshController" method="selectSjgzList"/>
+		  <action name="selectXjList" class="lxshController" method="selectXjList"/>
+		  <action name="selectSjgzlxList" class="lxshController" method="selectSjgzlxList"/>
+		  <action name="sbsjgzSbzt" class="lxshController" method="sbsjgzSbzt"/>
+		  <action name="sblmgzSbzt" class="lxshController" method="sblmgzSbzt"/>
+		  <action name="sbxjSbzt" class="lxshController" method="sbxjSbzt"/>
+		  <action name="thSjgzSbzt" class="lxshController" method="thSjgzSbzt"/>
+		  <action name="thSjgzSbzt1" class="lxshController" method="thSjgzSbzt1"/>
+		  <action name="thLmgzSbzt" class="lxshController" method="thLmgzSbzt"/>
+		  <action name="thLmgzSbzt1" class="lxshController" method="thLmgzSbzt1"/>
+		  <action name="thXjSbzt" class="lxshController" method="thXjSbzt"/>
+		  <action name="thXjSbzt1" class="lxshController" method="thXjSbzt1"/>
+		  <action name="updateSjgz" class="lxshController" method="updateSjgz"/>
+		  <action name="updateLmgz" class="lxshController" method="updateLmgz"/>
+		  <action name="updateXj" class="lxshController" method="updateXj"/>
+		  <action name="selectSjgzshList" class="lxshController" method="selectSjgzshList"/>
+		  <action name="selectLmgzshList" class="lxshController" method="selectLmgzshList"/>
+		  <action name="selectXjshList" class="lxshController" method="selectXjshList"/>
+		  <action name="delSjgz" class="lxshController" method="delSjgz"/>
+		  <action name="delLmgz" class="lxshController" method="delLmgz"/>
+		  <action name="delXj" class="lxshController" method="delXj"/>
+		  <action name="shsjgzSbzt" class="lxshController" method="shsjgzSbzt"/>
+		  <action name="shlmgzSbzt" class="lxshController" method="shlmgzSbzt"/>
+		  <action name="shxjSbzt" class="lxshController" method="shxjSbzt"/>
+		  <action name="selectLmgzList" class="lxshController" method="selectLmgzList"/>
+		  <action name="Lmgzsfkxx" class="lxshController" method="Lmgzsfkxx"/>
+		  <action name="sjgzsfkxx" class="lxshController" method="sjgzsfkxx"/>
+		  <action name="Xjsfkxx" class="lxshController" method="Xjsfkxx"/>
+		  <action name="qqglGpsroad" class="lxshController" method="qqglGpsroad"/>
+		  
+		  
+		  <action name="selectSjgzkxList" class="kxxyjController" method="selectSjgzkxList"/>
+		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
+		  <action name="selectXjkxList" class="kxxyjController" method="selectXjkxList"/>
+		  <action name="uploadGkpf" class="kxxyjController" method="uploadGkpf"/>
+		  <action name="updateSjgzkxx" class="kxxyjController" method="updateSjgzkxx"/>
+		  <action name="updateLmgzkxx" class="kxxyjController" method="updateLmgzkxx"/>
+		  <action name="updateXjkxx" class="kxxyjController" method="updateXjkxx"/>
+		  <action name="sbsjgzkxx" class="kxxyjController" method="sbsjgzkxx"/>
+		  <action name="sblmgzkxx" class="kxxyjController" method="sblmgzkxx"/>
+		  <action name="sbxjkxx" class="kxxyjController" method="sbxjkxx"/>
+	      <action name="thSjgzkxx" class="kxxyjController" method="thSjgzkxx"/>
+	      <action name="thLmgzkxx" class="kxxyjController" method="thLmgzkxx"/>
+	      <action name="thXjkxx" class="kxxyjController" method="thXjkxx"/>
+	      <action name="selectSjgzkxshList" class="kxxyjController" method="selectSjgzkxshList"/>
+	      <action name="selectLmgzkxshList" class="kxxyjController" method="selectLmgzkxshList"/>
+	      <action name="selectXjkxshList" class="kxxyjController" method="selectXjkxshList"/>
+	      <action name="shsjgzkxx" class="kxxyjController" method="shsjgzkxx"/>
+	      <action name="shlmgzkxx" class="kxxyjController" method="shlmgzkxx"/>
+	      <action name="shxjkxx" class="kxxyjController" method="shxjkxx"/>
+	      <action name="sjgzsfcb" class="kxxyjController" method="sjgzsfcb"/>
+	      <action name="thSjgzkxx1" class="kxxyjController" method="thSjgzkxx1"/>
+	       <action name="lmgzsfcb" class="kxxyjController" method="lmgzsfcb"/>
+	      <action name="thLmgzkxx1" class="kxxyjController" method="thLmgzkxx1"/>
+	       <action name="xjsfcb" class="kxxyjController" method="xjsfcb"/>
+	      <action name="thXjkxx1" class="kxxyjController" method="thXjkxx1"/>
+	 <!-- qwh -->
+	<!-- rh -->
+		<!-- 初步设计-->
+		<action name="queryLmsj" class="cbsjSelectController" method="queryLmsj"></action>
+		<action name="queryCbsj" class="cbsjController" method="queryCbsj"></action>
+		<action name="queryCbsjByXmbm" class="cbsjController" method="queryCbsjByXmbm"></action>
+		<action name="updateCbsj" class="cbsjController" method="updateCbsj"></action>
+		<action name="uploadSjpf" class="cbsjController" method="uploadSjpf"></action>
+		<action name="deleteCbsjByXmbm" class="cbsjController" method="deleteCbsjByXmbm"></action>
+		<action name="queryFileByXmbm" class="cbsjController" method="queryFileByXmbm"></action>
+		<action name="shCbsjByXmbm" class="cbsjController" method="shCbsjByXmbm"></action>
+		<!-- 计划审核 -->
+		<action name="queryJhsh" class="jhshController" method="queryJhsh"></action>
+		<action name="updateJhshxx" class="jhshController" method="updateJhshxx"></action>
+		<action name="queryLxshByXmbm" class="jhshController" method="queryLxshByXmbm"></action>
+		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
+		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
+		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
+		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
+		<!-- 养护大中修与水毁 -->
+		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
+		<action name="queryNextXmbm" class="xmsqController" method="queryNextXmbm"></action>
+		<action name="queryAutoList" class="xmsqController" method="queryAutoList"></action>
+		<action name="queryTsdq" class="xmsqController" method="queryTsdq"></action>
+		<action name="queryXmsq" class="xmsqController" method="queryXmsq"></action>
+		<action name="deleteXmsq" class="xmsqController" method="deleteXmsq"></action>
+		<action name="updateXmsqSbzt" class="xmsqController" method="updateXmsqSbzt"></action>
+		<action name="updateXmsqSp" class="xmsqController" method="updateXmsqSp"></action>
+		<action name="queryXmsqByXmbm" class="xmsqController" method="queryXmsqByXmbm"></action>
+		<action name="updateXmsq" class="xmsqController" method="updateXmsq"></action>
+		
+		<action name="queryJhsh2" class="jhshController" method="queryJhsh2"></action>
+		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
+		<action name="queryJhshxxByXmbm2" class="jhshController" method="queryJhshxxByXmbm2"></action>
+		<action name="uploadJhsh" class="jhshController" method="uploadJhsh"></action>
+		
+	<!-- rh -->
+	</package>
+</struts>
+

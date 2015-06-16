@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.gcgl.server;
 
 import java.util.List;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglaqyb;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglsh;
@@ -88,5 +89,15 @@ public interface GcglaqybServer {
 	int selectmbgllistCount1(Gcglaqyb gcglaqyb);
 
 	List<Gcglaqyb> selectmbgllist1(Gcglaqyb gcglaqyb);
+
+	boolean updateSGXK(Gcgl_jgys gcgl_jgys);
+
+	boolean updateJGTC(Gcgl_jgys gcgl_jgys);
+
+	boolean updateWGYS(Gcgl_jgys gcgl_jgys);
+
+	boolean insertJGYS(Gcgl_jgys gcgl_jgys);
+
+	Gcgl_jgys queryJGYS(Gcgl_jgys gcgl_jgys);
 
 }

@@ -149,8 +149,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="QLWCQK_Z" type="text" id="tj_qlwcqk_z" style="width: 30px;" />座
-                                <input name="QLWCQK_YM" type="text" id="tj_qlwcqk_ym" style="width: 30px;" />延米
+                                <input name="QLWCQK_Z" type="text" id="tj_qlwcqk_z" style="width: 30px;" />座<font color="red">*</font>
+                                <input name="QLWCQK_YM" type="text" id="tj_qlwcqk_ym" style="width: 30px;" />延米<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -159,8 +159,8 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="SDWCQK_Z" type="text" id="tj_sdwcqk_z" style="width: 30px;" />座
-                                <input name="SDWCQK_YM" type="text" id="tj_sdwcqk_ym" style="width: 30px;" />延米
+                                <input name="SDWCQK_Z" type="text" id="tj_sdwcqk_z" style="width: 30px;" />座<font color="red">*</font>
+                                <input name="SDWCQK_YM" type="text" id="tj_sdwcqk_ym" style="width: 30px;" />延米<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -169,7 +169,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="HDWCQK_M" type="text" id="tj_hdwcqk_m" style="width: 30px;" />米
+                                <input name="HDWCQK_M" type="text" id="tj_hdwcqk_m" style="width: 30px;" />米<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -189,7 +189,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="DCWCQK" type="text" id="tj_dcwcqk"  style="width: 30px;"/>公里
+                                <input name="DCWCQK" type="text" id="tj_dcwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -198,7 +198,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="JCWCQK" type="text" id="tj_jcwcqk"  style="width: 30px;"/>公里
+                                <input name="JCWCQK" type="text" id="tj_jcwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -209,7 +209,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 30px;" />公里
+                                <input name="BYWCMC" type="text" id="tj_bywcmc" style="width: 30px;" />公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -218,7 +218,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="LQLMWCQK" type="text" id="tj_lqlmwcqk"  style="width: 30px;"/>公里
+                                <input name="LQLMWCQK" type="text" id="tj_lqlmwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -227,7 +227,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input name="SNLMWCQK" type="text" id="tj_snlmwcqk"  style="width: 30px;"/>公里
+                                <input name="SNLMWCQK" type="text" id="tj_snlmwcqk"  style="width: 30px;"/>公里<font color="red">*</font>
                             </td>
                         </tr>
                         <tr style="height: 35px;">
@@ -254,7 +254,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;" >
-                                 <input onblur="check(this)" name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元
+                                 <input onblur="check(this)" name="BYWCTZE" type="text" id="tj_bywctze" style="width: 40px;"/>万元<font color="red">*</font>
                             </td>
                          <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                             color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -263,7 +263,7 @@ a:active {
                         </td>
                         <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                             border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-                            <input name="BYWCQK" type="text" id="tj_bywcgzl"  style="width: 40px;"/>公里
+                            <input name="BYWCQK" type="text" id="tj_bywcgzl"  style="width: 40px;"/>公里<font color="red">*</font>
                         </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #009ACD; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

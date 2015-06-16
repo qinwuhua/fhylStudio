@@ -22,16 +22,17 @@ import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.xtgl.server.XtglServer;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.opensymphony.xwork2.ModelDriven;
 
 @Scope("prototype")
 @Controller
-public class Plan_zjxdController extends BaseActionSupport {
+public class Plan_zjxdController extends BaseActionSupport implements ModelDriven<Plan_zjxd> {
 	private int page=1;
 	private int rows=3;
 	private String gydwdm;
 	private String fileuploadFileName;
 	private File fileupload;
-	private Plan_zjxd zjxd;
+	private Plan_zjxd zjxd=new Plan_zjxd();
 	private Plan_zjzj zjzj;
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
@@ -114,7 +115,33 @@ public class Plan_zjxdController extends BaseActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
+	public void queryZjzjByXmid(){
+		List<Plan_zjzj> list = zjxdServer.queryZjzjByXmid(zjzj);
+		try {
+			JsonUtils.write(list, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void importJhshZjzj(){
+		ExcelEntity excel=new ExcelEntity();
+		Map<String, String> attribute=new HashMap<String, String>();
+		String gydwmc = zjxdServer.queryGydwmcById(gydwdm);
+		attribute.put("1", "xmid");
+		attribute.put("8", "xdnf");
+		attribute.put("9", "xdzj");
+		attribute.put("10", "btzzj");
+		attribute.put("11", "stz");
+		excel.setAttributes(attribute);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Plan_zjxd> readerExcel = ExcelImportUtil.readerExcel(fileupload, Plan_zjxd.class, 1, excel);
+			eachPlanZjxdSfzj(readerExcel,gydwmc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	///////////////////////////////////旧方法
 	public void importGcsj_zjxd(){
 		ExcelEntity excel=new ExcelEntity();
 		Map<String, String> attribute=new HashMap<String, String>();
@@ -302,6 +329,18 @@ public class Plan_zjxdController extends BaseActionSupport {
 			getresponse().getWriter().print(fileuploadFileName+"导入成功");
 		}
 	}
+	private void eachPlanZjxdSfzj(List<Plan_zjxd> readerExcel,String gydwmc) throws IOException {
+		for (Plan_zjxd item : readerExcel) {
+			item.setTbdw(gydwmc);
+			int sfzj = zjxdServer.queryZjxdExistById(item.getXmid());
+			item.setSfzj(sfzj>0? "1" : "0");
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			item.setTbtime(df.format(new Date()));
+		}
+		if(zjxdServer.insertBatch(readerExcel)){
+			getresponse().getWriter().print(fileuploadFileName+"导入成功");
+		}
+	}
 	public void queryGydwmcById(){
 		String gydwmc = zjxdServer.queryGydwmcById(gydwdm);
 		Map<String,String> result=new HashMap<String, String>();
@@ -360,5 +399,9 @@ public class Plan_zjxdController extends BaseActionSupport {
 	}
 	public void setGydwdm(String gydwdm) {
 		this.gydwdm = gydwdm;
+	}
+	@Override
+	public Plan_zjxd getModel() {
+		return zjxd;
 	}
 }

@@ -6,6 +6,7 @@
 	<action name="setjhxdnf" class="xmbbController" method="setjhxdnf"/>
 	<action name="setjhxdnf1" class="xmbbController" method="setjhxdnf1"/>
 	<action name="settsdq" class="xmbbController" method="settsdq"/>
+	<action name="settsdq1" class="xmbbController" method="settsdq1"/>
 	<action name="getPtgxbb" class="xmbbController" method="getPtgxbb"/>
 	<action name="exportPtgx" class="xmbbController" method="exportPtgx"/>
 	

@@ -47,7 +47,7 @@
 				(
 					select jh.id,jh.sckid,jh.jhnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.jhsybbzje,jh.jhsydfzczj,jh.sfsqablbz,
 					jh.sbzt,jh.spzt,jh.jh_sbthcd,jh.kgzt,jh.jgzt,sc.bzls as sfylsjl,
-               		lx.gydw,lx.xzqhmc,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc as yhlc
+               		lx.gydw,lx.xzqhmc,lx.xzqhdm,lx.lxbm,lx.lxmc,sc.scqdzh as qdzh,sc.sczdzh as zdzh,sc.scyhlc as yhlc
                 	from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) 
 					left join xmk_abgc lx on (sc.xmkid=lx.id) where 1=1 
 					<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
@@ -340,20 +340,20 @@
 			<if test="remarks!=null">,remarks=#{remarks}</if>
 		where id=#{id}
 	</update>
-	<update id="editAbgcSckBysckid" parameterType="plan_abgc">
+	<update id="editAbgcSckBysckid" parameterType="sckabgc">
 		update SCK_ABGC set sckid=#{sckid}
-		<if test="!=null">,scqdzh=#{jckabgc.scqdzh}</if>
-		<if test="!=null">,sczdzh=#{jckabgc.sczdzh}</if>
-		<if test="!=null">,sczlc=#{jckabgc.sczlc}</if>
-		<if test="!=null">,scyhlc=#{jckabgc.scyhlc}</if>
-		<if test="!=null">,fapgdw=#{jckabgc.fapgdw}</if>
-		<if test="!=null">,fascdw=#{jckabgc.fascdw}</if>
-		<if test="!=null">,spwh=#{jckabgc.spwh}</if>
-		<if test="!=null">,tzgs=#{jckabgc.tzgs}</if>
-		<if test="!=null">,faspsj=#{jckabgc.faspsj}</if>
-		<if test="!=null">,jsxz=#{jckabgc.jsxz}</if>
-		<if test="!=null">,jsnr=#{jckabgc.jsnr}</if>
-		<if test="!=null">,scbz=#{jckabgc.scbz}</if>
+		<if test="scqdzh!=null">,scqdzh=#{scqdzh}</if>
+		<if test="sczdzh!=null">,sczdzh=#{sczdzh}</if>
+		<if test="sczlc!=null">,sczlc=#{sczlc}</if>
+		<if test="scyhlc!=null">,scyhlc=#{scyhlc}</if>
+		<if test="fapgdw!=null">,fapgdw=#{fapgdw}</if>
+		<if test="fascdw!=null">,fascdw=#{fascdw}</if>
+		<if test="spwh!=null">,spwh=#{spwh}</if>
+		<if test="tzgs!=null">,tzgs=#{tzgs}</if>
+		<if test="faspsj!=null">,faspsj=#{faspsj}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="jsnr!=null">,jsnr=#{jsnr}</if>
+		<if test="scbz!=null">,scbz=#{scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editStatus" parameterType="plan_abgc">
@@ -464,7 +464,12 @@
 	<select id="queryTsdq" resultType="treenode">
 		select t.id,t.name as text from xtgl_tsdq t
 	</select>
-	<select id="queryJcktj" resultType="treenode">
+	<select id="queryJcktj" resultType="treenode" parameterType="treenode">
+		<![CDATA[select substr(xm.xzqhdm,0,length(${id})) as id,count(xm.xzqhdm),sum(xm.yhlc) 
+		from plan_abgc jh left join sck_abgc sc on (jh.sckid=sc.sckid) left join 
+		xmk_abgc xm on (sc.xmkid=xm.id) left join  xtgl_xzqh xt on (xm.xzqhdm=xt.id)
+		where xm.xzqhdm like ${id}||'%' group by substr(xm.xzqhdm,0,length(${id}))]]>
+		<!-- 
 		select t1.*,xz.name from (
 	       	select t.parent as id,count(t.parent)-1 as text,NVL(sum(t.yhlc),'0') as parent
 	       		from(
@@ -472,7 +477,7 @@
 	              	from xmk_abgc jck right join xtgl_xzqh xt on (jck.xzqhdm=xt.id) 
 	              	order by xt.parent
 	       		) t where t.parent is not null group by t.parent
-		) t1 join xtgl_xzqh xz on (t1.id=xz.id) order by t1.id
+		) t1 join xtgl_xzqh xz on (t1.id=xz.id) order by t1.id-->
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
 		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (

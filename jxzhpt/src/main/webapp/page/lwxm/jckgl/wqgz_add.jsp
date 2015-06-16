@@ -32,7 +32,7 @@ text-decoration:none;
 $(function(){
 	xmnf1("xmnf");
 	$("#save_button").click(function(){
-		if($("#qlbh").val()=="" && $("#qlbh").val()==null){
+		if($("#qlbh").val()=="" || $("#qlbh").val()==null){
 			alert("请填写桥梁编码！");
 			$("#qlbh").focus();
 			return false;
@@ -185,7 +185,7 @@ function selectTSDQ(str){
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>桥梁编号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qlbh"id="qlbh" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁名称：</td>

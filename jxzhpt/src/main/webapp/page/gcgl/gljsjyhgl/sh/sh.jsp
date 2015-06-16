@@ -34,6 +34,7 @@
 			for(var x=y;x>=2010;x--){
 				$("#ddlYear").append("<option value="+x+">"+x+"</option>");
 			}
+			$("#ddlYear").val(myDate.getFullYear());
 			showAll();
 		});
 	</script>
@@ -60,7 +61,7 @@ a:active {
 		<table width="99.8%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;水毁施工过程管理</div>
+						<div id="p_top">当前位置>&nbsp;工程管理>&nbsp;公路建设及养护管理>&nbsp;水毁工程项目</div>
 					</div>
         	</tr>
         	<tr>

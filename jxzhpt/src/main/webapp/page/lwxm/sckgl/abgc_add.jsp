@@ -226,7 +226,7 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线编码：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="lxbm" id="lxbm" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线名称：</td>
@@ -297,11 +297,11 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="scqdzh" id="scqdzh" style="width: 150px" onblur="changeZlc()"/><br/>
 					<span id="qd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点桩号：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="sczdzh"id="sczdzh" style="width: 156px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span></td>
@@ -315,7 +315,7 @@ text-decoration:none;
 				<td style="background-color: #ffffff;" align="left">
 					<select id="scxmnf" style="width: 154px"></select>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隐患里程：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>隐患里程：</td>
 				<td colspan="3" style="background-color: #ffffff;" align="left">
 					<input type="text" id="scyhlc" style="width: 150px"value="0"/>&nbsp;公里
 				</td>
@@ -336,7 +336,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资估算：</td>
 				<td style="background-color: #ffffff;" align="left">
 					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>

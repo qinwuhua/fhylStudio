@@ -87,28 +87,54 @@ function gclmgjxm(jh,lx){
 		    	}
 		    },
 		    {field:'c5',title:'资金追加',width:80,align:'center',formatter:function(value,row,index){
-        		return '<a href="javascript:openZjzjWindow('+"'grid','editGjZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+		    	if(roleName()=="省级"){
+		    		return '<a href="javascript:openZjzjWindow('+"'grid','editGjZj'"+')" style="text-decoration:none;color:#3399CC;">资金追加</a>';
+		    	}else{
+					return '<a style="text-decoration:none;color:black;">资金追加</a>';
+				}
 			}},
 		    {field : 'c4',title : '计划状态',width : 80,align : 'center',
 				formatter : function(value, row, index) {
 					var result="";
-					if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd==2) || (roleName()=="省级" && row.jh_sbthcd<4)){
-						result="未上报";
-					}else if((roleName()=="县级" && row.jh_sbthcd==2) || (roleName()=="市级" && row.jh_sbthcd==4)){
-						result="已上报";
-					}else if((row.jh_sbthcd==4)){
-						result="未审核";
-					}else if((row.jh_sbthcd==6)){
-						result="已审核";
-					}else if((roleName()=="市级" && row.jh_sbthcd==0)){
-						result="待上报";
+					if(roleName()=="县级"){
+						if(row.jh_sbthcd==0){
+							result="未上报";
+						}else if(row.jh_sbthcd>=2 && row.jh_sbthcd<6){
+							result="已上报";
+						}else if(row.jh_sbthcd==6){
+							result="已审批";
+						}
+					}
+					if(roleName()=="市级"){
+						if(row.jh_sbthcd==0){
+							result="待上报";
+						}else if(row.jh_sbthcd==2){
+							result="未上报";
+						}else if(row.jh_sbthcd==4){
+							result="已上报";
+						}else if(row.jh_sbthcd==6){
+							result="已审批";
+						}
+					}
+					if(roleName()=="省级"){
+						if(row.jh_sbthcd<4){
+							result="未上报";
+						}else if(row.jh_sbthcd==4){
+							result="未审核";
+						}else if(row.jh_sbthcd==6){
+							result="已审核";
+						}
 					}
 					return result;
 				}
 		    },
 		    {field : 'id',title : '添加路线',width : 80,align : 'center',
 		    	formatter : function(value, row, index) {
-		    		return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		if((row.jh_sbthcd==0 && roleName()=="县级") || (row.jh_sbthcd<=2 && roleName()=="市级") || (row.jh_sbthcd<=4 && roleName()=="省级")){
+		    			return '<a href="javascript:openAddLx('+"'"+row.id+"',"+"'"+row.sbnf+"'"+')" style="text-decoration:none;color:#3399CC;">添加路线</a>';
+		    		}else{
+		    			return '<a style="text-decoration:none;color:black;">添加路线</a>';
+		    		}
 		    	}
 		    },
 		    {field:'xmmc',title : '项目名称',width : 80,align : 'center'},
@@ -465,10 +491,11 @@ function dropGcgjs(){
 function editGcgj(){
 	if(lxztz()){
 		var jh={'jh.id':$('#jhid').val(),'jh.sbnf':$('#editsbnf').combobox('getValue'),'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
-				'jh.xdsj':$('#xdsj').datebox('getValue'),'jh.xmmc':$('#xmmc').val(),'jh.yhlb':$('#yhlb').combobox('getValue'),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
+				//'jh.xdsj':$('#xdsj').datebox('getValue'),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.xmmc':$('#xmmc').val(),'jh.yhlb':$('#yhlb').combobox('getValue'),'jh.sjdw':$('#sjdw').val(),'jh.sjpfdw':$('#sjpfdw').val(),
 				'jh.sjlmlx':$('#sjlmlx').val(),'jh.dc':$('#dc').val(),'jh.jc':$('#jc').val(),'jh.mc':$('#mc').val(),'jh.lmkd':$('#lmkd').val(),'jh.pfwh':$('#pfwh').val(),
 				'jh.pfsj':$('#pfsj').datebox('getValue'),'jh.pfztz':$('#pfztz').val(),'jh.jhsybzje':$('#jhsybzje').val(),'jh.jhsydfzcje':$('#jhsydfzcje').val(),
-				'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.sftqss':$("input[name='sftqss']:checked").val(),'jh.jhxdwh':$('#jhxdwh').val(),
+				'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),'jh.ablbzsqwh':$('#ablbzsqwh').val(),'jh.sftqss':$("input[name='sftqss']:checked").val(),
 				'jh.gksjwh':$('#gksjwh').val(),'jh.sjpfwh':$('#sjpfwh').val(),'jh.sfgyhbm':$("input[name='sfgyhbm']:checked").val(),'jh.bz':$('#bz').val(),
 				'jh.fapgdw':$('#fapgdw').val(),'jh.fascdw':$('#fascdw').val(),'jh.faspsj':$('#faspsj').datebox('getValue'),'jh.spwh':$('#spwh').val(),'jh.tzgs':$('#tzgs').val(),'jh.jsxz':$('#jsxz').val(),
 				'jh.jsnr':$('#jsnr').val()

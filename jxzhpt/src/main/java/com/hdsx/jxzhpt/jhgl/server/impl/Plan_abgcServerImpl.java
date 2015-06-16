@@ -180,8 +180,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return delete("deleteFile", uploads)>0 ? true:false;
 	}
 	@Override
-	public boolean editAbgcSckBysckid(Plan_abgc jh) {
-		return update("editAbgcSckBysckid", jh)>0;
+	public boolean editAbgcSckBysckid(Sckabgc sc) {
+		return update("editAbgcSckBysckid", sc)>0;
 	}
 	@Override
 	public List<Plan_abgc> queryAbgcListByStatus(Plan_abgc jh, Jckabgc lx) {
@@ -202,8 +202,8 @@ public class Plan_abgcServerImpl extends BaseOperate implements Plan_abgcServer 
 		return updateBatch("editStatus", splist)==splist.size();
 	}
 	@Override
-	public List<TreeNode> queryJcktj() {
-		return queryList("queryJcktj",null);
+	public TreeNode queryJcktj(TreeNode treenode) {
+		return queryOne("queryJcktj",treenode);
 	}
 	@Override
 	public List<TreeNode> queryJcktj1(String nf) {

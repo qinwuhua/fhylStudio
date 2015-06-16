@@ -54,8 +54,8 @@ public class Plan_HslyServerImpl extends BaseOperate implements Plan_hslyServer 
 		return deleteBatch("dropHslyById",list)==list.size();
 	}
 	@Override
-	public Plan_hsly querySumHsly() {
-		return queryOne("querySumHsly", null);
+	public Plan_hsly querySumHsly(Plan_hsly hsly) {
+		return queryOne("querySumHsly", hsly);
 	}
 	@Override
 	public List<Plan_hsly> queryHslyList(Plan_hsly hsly) {

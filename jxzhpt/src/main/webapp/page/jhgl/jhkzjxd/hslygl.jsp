@@ -26,14 +26,34 @@
 			sbnf('jhnf');
 			var params={xzqhdm:getxzqhdm('xzqh'),xmmc:null,jhnf:null};
 			hslyglxm_zjxd(params);
+			querySum(params);
 		});
 		function searchHsly(){
 			var params={xzqhdm:getxzqhdm('xzqh'),jhnf:$('#jhnf').combo("getValue"),xmmc:$('#txtName').val()};
 			hslyglxm_zjxd(params);
+			querySum(params);
 		}
 		function exportExcelZjxd(){
 			var param="gydwdm="+$.cookie("unit")+"&hsly.xzqhdm="+getxzqhdm('xzqh');
 			window.location.href="/jxzhpt/jhgl/exportExcelHslyZjxd.do?"+param;
+		}
+		function querySum(hsly){
+			var params={'hsly.xzqhdm':hsly.xzqhdm,'hsly.jhnf':hsly.jhnf,'hsly.xmmc':hsly.xmmc};
+			$.ajax({
+				type:'post',
+				url:'../../../jhgl/querySumHsly.do',
+				dataType:'json',
+				data:params,
+				success:function(data){
+					if(data.id>0){
+						$('#lblCount').html(data.id);
+						$('#lblXDZJ').html(data.ztz);
+					}else{
+						$('#lblCount').html("0");
+						$('#lblXDZJ').html("0");
+					}
+				}
+			});
 		}
 	</script>
 </head>

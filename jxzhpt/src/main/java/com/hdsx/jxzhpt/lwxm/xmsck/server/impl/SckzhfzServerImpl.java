@@ -86,15 +86,28 @@ public class SckzhfzServerImpl extends BaseOperate implements SckzhfzServer {
 	}
 
 	@Override
-	public boolean xgSckZhfzShzt(String delstr,Sckzhfz zhfz) {
+	public boolean xgSckZhfzShzt(String delstr,Sckzhfz zhfz,String nf,String tbbmbm) {
 		String[] strs = delstr.split(",");
+		String[] nfs=nf.split(",");
+		String[] tbbmbms=tbbmbm.split(",");
 		lm=new ArrayList<Map<String,Object>>();
+		List<Plan_zhfz> list=new ArrayList<Plan_zhfz>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("sckid", strs[i]);
 			hm.put("sck_shbm", zhfz.getSck_shbm());
 			lm.add(hm);
+			Plan_zhfz z=new Plan_zhfz();
+			z.setSckid(strs[i]);
+			z.setSbnf(nfs[i]);
+			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
+				z.setJh_sbthcd("0");
+			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
+				z.setJh_sbthcd("2");
+			}
+			list.add(z);
 		}
+		boolean result = insertBatch("lrjhSckzhfz", list)==list.size();
 		return this.updateBatch("xgSckZhfzShzt", lm)==lm.size()?true:false;
 	}
 	@Override

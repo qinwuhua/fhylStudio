@@ -303,6 +303,11 @@ public class GcglabgcServerImpl extends BaseOperate implements GcglabgcServer {
 		return queryList("exportgjyb", gcglabgc);
 	}
 	@Override
+	public List<Excel_list> exportxjyb(Gcglabgc gcglabgc) {
+		// TODO Auto-generated method stub
+		return queryList("exportxjyb", gcglabgc);
+	}
+	@Override
 	public List<Excel_list> exportsjyb(Gcglabgc gcglabgc) {
 		// TODO Auto-generated method stub
 		return queryList("exportsjyb", gcglabgc);

@@ -916,14 +916,20 @@ public class XtglController extends BaseActionSupport{
 	}
 	public void queryYhdzxcs(){
 		try {
-			JsonUtils.write(xtglServer.queryYhdzxcs(), getresponse().getWriter());
+			JsonUtils.write(xtglServer.queryYhdzxcs(yhdzxcs), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void addYhdzxcs(){
-		xtglServer.addYhdzxcs(yhdzxcs);
+		try{
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.addYhdzxcs(yhdzxcs)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void queryYhdzxcsById(){
@@ -942,8 +948,28 @@ public class XtglController extends BaseActionSupport{
 		}
 	}
 	
-	public void updateYhdzxcs(){
-		xtglServer.updateYhdzxcs(yhdzxcs);
+	public void dropYhdzxcsById(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.dropYhdzxcsById(yhdzxcs.getId())).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void editYhdzxcs(){
+		try {
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("result", new Boolean(xtglServer.updateYhdzxcs(yhdzxcs)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void queryFlwxmFdfw(){

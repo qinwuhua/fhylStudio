@@ -25,7 +25,7 @@
 .table_11 td{border:1px solid #bedaf5; text-align:center;}
 </style>
 <script type="text/javascript">
-var mapServerUrl = "http://localhost:8989/hdmapserver";
+var mapServerUrl = "http://192.168.1.108:8989/hdmapserver";
 var nameSpace = "jxmap2014";
 var tczName="jx_map";
 var pointClick = null, geometry = null;

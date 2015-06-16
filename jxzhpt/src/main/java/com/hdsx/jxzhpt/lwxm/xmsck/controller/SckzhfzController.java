@@ -233,7 +233,7 @@ public class SckzhfzController extends BaseActionSupport implements ModelDriven<
 		}
 	}
 	public void xgSckZhfzShzt(){
-		if(zhfzServer.xgSckZhfzShzt(delstr,sckzhfz)){
+		if(zhfzServer.xgSckZhfzShzt(delstr,sckzhfz,nf,tbbmbm1)){
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_abgc;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_wqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zhfz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
@@ -35,6 +36,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckzhfz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckzhfz;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -52,7 +54,9 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	@Resource(name = "plan_zjxdServerImpl")
 	private Plan_zjxdServer zjxdServer;
 	private Plan_zhfz jh;
+	private Plan_upload uploads;
 	private Jckzhfz lx;
+	private Sckzhfz sc;
 	private Plan_zjzj zjzj;
 	private String fileuploadFileName;
 	private File fileupload;
@@ -108,6 +112,8 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_zhfz(){
+		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
 		List<SheetBean> sheetBeans=new ArrayList<SheetBean>(); 
@@ -216,7 +222,7 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		try {
 			Map<String, String> result=new HashMap<String, String>();
 			result.put("jh", new Boolean((zhfzServer.editZhfzById(jh)>0)).toString());
-			result.put("sc", new Boolean(zhfzServer.editZhfzSckBysckid(jh)).toString());
+			result.put("sc", new Boolean(zhfzServer.editZhfzSckBysckid(sc)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 			
 		} catch (IOException e) {
@@ -241,27 +247,29 @@ public class Plan_zhfzController  extends BaseActionSupport{
 		FileInputStream fs=null;
 		byte[] data;
 		try {
-				HttpServletResponse response = ServletActionContext.getResponse();
-				response.setCharacterEncoding("utf-8"); 		
-				if((uploadGk!=null)){
-						fs=new FileInputStream(this.uploadGk);
-						data=new byte[(int) this.uploadGk.length()];
-						fs.read(data);
-					   jh.setGkbgmc(uploadGkFileName);
-					   jh.setGkbgdata(data);
-					   if(zhfzServer.updateGkbg(jh))
-						   response.getWriter().print(uploadGkFileName+"导入成功");
-					   else response.getWriter().print(uploadGkFileName+"导入失败");
-				}else{
-					fs=new FileInputStream(this.uploadSjt);
-					data=new byte[(int) this.uploadSjt.length()];
-					fs.read(data);
-					jh.setSjsgtmc(uploadSjtFileName);
-					jh.setSjsgtdata(data);
-					if(zhfzServer.updateSjsgt(jh))
-						response.getWriter().print(uploadSjtFileName+"导入成功");
-					   else response.getWriter().print(uploadSjtFileName+"导入失败");
-				}	
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8");
+			uploads=new Plan_upload();
+			if((uploadGk!=null)){
+				fs=new FileInputStream(this.uploadGk);
+				data=new byte[(int) this.uploadGk.length()];
+				fs.read(data);
+				uploads.setFiledata(data);
+				uploads.setFilename(uploadGkFileName);
+				uploads.setFiletype("工可报告");
+			}else{
+				fs=new FileInputStream(this.uploadSjt);
+				data=new byte[(int) this.uploadSjt.length()];
+				fs.read(data);
+				uploads.setFiledata(data);
+				uploads.setFilename(uploadSjtFileName);
+				uploads.setFiletype("设计施工图");
+			}
+			uploads.setParentid(jh.getId());
+			if(zhfzServer.insertZhFile(uploads))
+				response.getWriter().print(uploadGkFileName+"导入成功");
+			else 
+				response.getWriter().print(uploadGkFileName+"导入失败");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -441,29 +449,34 @@ public class Plan_zhfzController  extends BaseActionSupport{
 	public void setUploadGk(File uploadGk) {
 		this.uploadGk = uploadGk;
 	}
-
 	public String getUploadGkFileName() {
 		return uploadGkFileName;
 	}
-
 	public void setUploadGkFileName(String uploadGkFileName) {
 		this.uploadGkFileName = uploadGkFileName;
 	}
-
 	public File getUploadSjt() {
 		return uploadSjt;
 	}
-
 	public void setUploadSjt(File uploadSjt) {
 		this.uploadSjt = uploadSjt;
 	}
-
 	public String getUploadSjtFileName() {
 		return uploadSjtFileName;
 	}
-
 	public void setUploadSjtFileName(String uploadSjtFileName) {
 		this.uploadSjtFileName = uploadSjtFileName;
 	}
-	
+	public Sckzhfz getSc() {
+		return sc;
+	}
+	public void setSc(Sckzhfz sc) {
+		this.sc = sc;
+	}
+	public Plan_upload getUploads() {
+		return uploads;
+	}
+	public void setUploads(Plan_upload uploads) {
+		this.uploads = uploads;
+	}
 }

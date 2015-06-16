@@ -34,12 +34,14 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjxdServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckabgc;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckabgc;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.SheetBean;
 import com.hdsx.jxzhpt.utile.SjbbMessage;
 import com.hdsx.jxzhpt.xtgl.bean.Bzbz;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.util.lang.JsonUtil;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -59,6 +61,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	private Plan_zjxdServer zjxdServer;
 	private Plan_abgc jh;
 	private Jckabgc lx;
+	private Sckabgc sc;
 	private Plan_zjzj zjzj;
 	private Plan_upload uploads;
 	private String flag;//标记是哪个模块
@@ -128,7 +131,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_abgc(){
-//		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -137,6 +140,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		String excelHtml="";
 		String tableName="";
 		list = abgcServer.exportExcel_jh(jh, lx);
+		System.out.println("行政区划："+lx.getXzqhdm()+"    管养单位："+lx.getGydwbm());
 		excelHtml="<tr><td>计划状态</td><td>上报年份</td><td>计划开工时间</td><td>计划完工时间</td><td>管养单位</td><td>行政区划名称</td><td>路线编码</td><td>路线名称</td><td>起点桩号</td><td>止点桩号</td><td>隐患里程</td><td>批复总投资</td></tr>";
 		sheetb.setTableName("安保工程项目");
 		sheetb.setHeader(excelHtml);
@@ -232,7 +236,7 @@ public class Plan_abgcController extends BaseActionSupport{
 			Map<String, String> result=new HashMap<String, String>();
 			System.out.println("审查："+jh.getSckid());
 			result.put("jh",new Boolean((abgcServer.editAbgcById(jh)>0)).toString());
-			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(jh)).toString());
+			result.put("sc", new Boolean(abgcServer.editAbgcSckBysckid(sc)).toString());
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -336,8 +340,12 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryTsdq(){
 		try {
-//		    System.out.println("特殊地区："+abgcServer.queryTsdq().size());
-			JsonUtils.write(abgcServer.queryTsdq(), getresponse().getWriter());
+			List<TreeNode> result = abgcServer.queryTsdq();
+			/*TreeNode tree=new TreeNode();
+			tree.setId(null);
+			tree.setText("全部");
+			result.add(0, tree);*/
+			JsonUtils.write(result, getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -551,6 +559,14 @@ public class Plan_abgcController extends BaseActionSupport{
 	}
 	public void setUploads(Plan_upload uploads) {
 		this.uploads = uploads;
+	}
+
+	public Sckabgc getSc() {
+		return sc;
+	}
+
+	public void setSc(Sckabgc sc) {
+		this.sc = sc;
 	}
 	
 }

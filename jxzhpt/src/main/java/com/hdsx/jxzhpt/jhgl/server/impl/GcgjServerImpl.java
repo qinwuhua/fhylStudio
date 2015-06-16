@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -126,8 +127,8 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 
 	@Override
-	public boolean uploadGcgjFile(Plan_gcgj jh) {
-		return update("uploadGcgjFile", jh)>0;
+	public boolean insertGcgjFile(Plan_upload upload) {
+		return update("insertGcgjFile", upload)>0;
 	}
 
 	@Override
@@ -173,11 +174,12 @@ public class GcgjServerImpl extends BaseOperate implements Plan_gcgjServer {
 	}
 	
 	@Override
-	public List<TreeNode> queryJhktj3(String xmlx, String nf, String end) {
+	public List<TreeNode> queryJhktj3(String xmlx, String nf, String end,String xzqhdm) {
 		Map<String, String> param=new HashMap<String, String>();
 		param.put("xmlx", xmlx);
 		param.put("start", nf);
 		param.put("end", end);
+		param.put("xzqhdm", xzqhdm);
 		return queryList("queryJhktj3",param);
 	}
 	

@@ -33,7 +33,8 @@
 			(
 				select rownum as num,t.* from
 				(
-					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
+					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh 
+					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
@@ -312,7 +313,7 @@
 		select decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.sbnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qlbh v_8,lx.qlmc v_9,jh.pfztz v_10 
 		from plan_wqgz jh
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
-		left join xmk_wqgz lx on (sc.xmkid = lx.id)
+		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -381,18 +382,18 @@
 		<if test="bz!=null">,bz=#{bz}</if>
 		where id=#{id}
 	</update>
-	<update id="editWqgzSckxx" parameterType="plan_wqgz">
+	<update id="editWqgzSckxx" parameterType="sckwqgz">
 		update SCK_WQGZ set sckid=#{sckid}
-		<if test="jh.jckwqgz.scqlqk!=null">,scqlqk=jckwqgz.scqlqk</if>
-		<if test="jh.jckwqgz.scqlqc!=null">,scqlqc=jckwqgz.scqlqc</if>
-		<if test="jckwqgz.faspsj!=null and jckwqgz.faspsj!=''">,faspsj=#{jckwqgz.faspsj}</if>
-		<if test="jckwqgz.fapgdw!=null">,fapgdw=#{jckwqgz.fapgdw}</if>
-		<if test="jckwqgz.fascdw!=null">,fascdw=#{jckwqgz.fascdw}</if>
-		<if test="jckwqgz.spwh!=null">,spwh=#{jckwqgz.spwh}</if>
-		<if test="jckwqgz.tzgs!=null">,tzgs=#{jckwqgz.tzgs}</if>
-		<if test="jckwqgz.jsxz!=null">,jsxz=#{jckwqgz.jsxz}</if>
-		<if test="jckwqgz.jsnr!=null">,jsnr=#{jckwqgz.jsnr}</if>
-		<if test="jckwqgz.scbz!=null">,scbz=#{jckwqgz.scbz}</if>
+		<if test="scqlqk!=null">,scqlqk=#{scqlqk}</if>
+		<if test="scqlqc!=null">,scqlqc=#{scqlqc}</if>
+		<if test="faspsj!=null">,faspsj=#{faspsj}</if>
+		<if test="fapgdw!=null">,fapgdw=#{fapgdw}</if>
+		<if test="fascdw!=null">,fascdw=#{fascdw}</if>
+		<if test="spwh!=null">,spwh=#{spwh}</if>
+		<if test="tzgs!=null">,tzgs=#{tzgs}</if>
+		<if test="jsxz!=null">,jsxz=#{jsxz}</if>
+		<if test="jsnr!=null">,jsnr=#{jsnr}</if>
+		<if test="scbz!=null">,scbz=#{scbz}</if>
 		where sckid=#{sckid}
 	</update>
 	<update id="editWqgzStatus" parameterType="plan_wqgz">
@@ -422,24 +423,26 @@
  	<select id="queryJckWqgz" parameterType="String" resultType="plan_wqgz">
 		select * from xmk_wqgz where qlbh=#{String}
 	</select>
-	<update id="updateGkbg" parameterType="plan_wqgz">
- 		update plan_wqgz set gkbgmc=#{gkbgmc},gkbgdata=#{gkbgdata} where id=#{id}
- 	</update>
- 	<update id="updateSjsgt" parameterType="plan_wqgz">
- 		update plan_wqgz set sjsgtmc=#{sjsgtmc},sjsgtdata=#{sjsgtdata} where id=#{id}
- 	</update>
+	<insert id="insertwqFile" parameterType="plan_upload">
+		insert into plan_upload(filename,filedata,parentid,filetype) 
+		values(#{filename},#{filedata},#{parentid},#{filetype})
+	</insert>
  	<select id="queryWqgzFjById" parameterType="string" resultType="plan_wqgz">
 		select gkbgmc,gkbgdata,sjsgtmc,sjsgtdata from plan_wqgz jh where jh.id=#{id}
 	</select>
 	<select id="queryJcktj" resultType="treenode">
-		select t1.*,xz.name from (
+		select substr(xm.xzqhdm,0,length(${id})) as id,count(xm.xzqhdm),sum(xm.qlqc) 
+		from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) left join xmk_wqgz xm 
+		on (sc.xmkid=xm.id) left join  xtgl_xzqh xt on (xm.xzqhdm=xt.id)
+		where xm.xzqhdm like ${id}||'%' group by substr(xm.xzqhdm,0,length(${id}))
+		<!-- select t1.*,xz.name from (
 			select t.parent as id,<![CDATA[count(t.parent)-1]]> as text,NVL(sum(t.qlqc),0) as parent
 			from (
 			      select distinct xt.parent,jck.xzqhdm,jck.qlqc 
 			      from xmk_wqgz jck right join xtgl_xzqh xt on (jck.xzqhdm=xt.id) 
 			      order by xt.parent
 			) t where t.parent is not null group by t.parent order by t.parent
-		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id
+		)  t1 join xtgl_xzqh xz on (t1.id=xz.id)  order by t1.id -->
 	</select>
 	<select id="queryJcktj1" resultType="treenode" parameterType="java.util.Map">
 		select t.parent as id,xz.name as name,NVL(sum(t.je),0) as text,sum(t.sl) as parent from (

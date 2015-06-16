@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.xmsq">
+	<select id="queryYhdzxNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),4000)+1 from xmsq_yhdzx c
+	</select>
+	<select id="queryShNextXmbm" resultType="string">
+		select NVL(max(substr(c.xmbm,11)),5000)+1 from xmsq_sh c
+	</select>
+	
+	<select id="queryAutoList" parameterType="xmsq" resultType="lx">
+		select x.lxbm,x.lxmc,x.qdzh,x.zdzh,x.qzlc lc,x.qdmc,x.zdmc,x.yjsdj xjsdj,x.ylmlx from (
+		select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
+	</select>
+	<select id="queryLsjl" parameterType="java.util.Map" resultType="int">
+		<![CDATA[select c1.CON1+c2.CON2 from
+			(select count(lx.id) CON1 from lxsh_lx lx
+			where lx.lxbm like #{lxbm}||'%' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})) c1,
+			(select count(*) CON2 from
+			(select lx.lxbm,lx.qdzh,lx.zdzh from lxsh_lx lx) j,
+			(select ylxbm,yqdzh,yzdzh from xtgl_lxsj where xlxbm like #{lxbm}||'%' and xqdzh<=${zdzh} and xzdzh>=${qdzh}) k
+			where j.lxbm=k.ylxbm and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2]]>
+	</select>
+	<select id="queryTsdq" parameterType="xmsq" resultType="string">
+		<![CDATA[SELECT DISTINCT X.NAME FROM XTGL_XZQHTSDQ T,XTGL_TSDQ X WHERE T.XZQHDM IN(
+		select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{ylxbh}
+		AND ROADSTART<=${zdzh} AND ROADENDS>=${qdzh}) AND X.ID=T.PARENT]]>
+	</select>
+	
+	<insert id="insertXmsqYhdzx" parameterType="java.util.List">
+		insert into xmsq_yhdzx (
+		<if test="xmbm!=null">xmbm</if>
+		<if test="xmmc!=null">,xmmc</if>
+		<if test="gcfl!=null">,gcfl</if>
+		<if test="ghlxbh!=null">,ghlxbh</if>
+		<if test="ylxbh!=null">,ylxbh</if>
+		<if test="xzqh!=null">,xzqh</if>
+		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="qdzh!=null">,qdzh</if>
+		<if test="zdzh!=null">,zdzh</if>
+		<if test="lc!=null">,lc</if>
+		<if test="lmkd!=null">,lmkd</if>
+		<if test="jsdj!=null">,jsdj</if>
+		<if test="ntz!=null">,ntz</if>
+		<if test="jhkgsj!=null">,jhkgsj</if>
+		<if test="jhwgsj!=null">,jhwgsj</if>
+		<if test="gq!=null">,gq</if>
+		<if test="tsdq!=null">,TSDQ</if>
+		<if test="gydw!=null">,gydw</if>
+		<if test="gydwdm!=null">,gydwdm</if>
+		<if test="jsfa!=null">,JSFA</if>
+		<if test="lsjl!=null">,LSJL</if>) 
+		values (
+		<if test="xmbm!=null">#{xmbm}</if>
+		<if test="xmmc!=null">,#{xmmc}</if>
+		<if test="gcfl!=null">,#{gcfl}</if>
+		<if test="ghlxbh!=null">,#{ghlxbh}</if>
+		<if test="ylxbh!=null">,#{ylxbh}</if>
+		<if test="xzqh!=null">,#{xzqh}</if>
+		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="qdzh!=null">,#{qdzh}</if>
+		<if test="zdzh!=null">,#{zdzh}</if>
+		<if test="lc!=null">,#{lc}</if>
+		<if test="lmkd!=null">,#{lmkd}</if>
+		<if test="jsdj!=null">,#{jsdj}</if>
+		<if test="ntz!=null">,#{ntz}</if>
+		<if test="jhkgsj!=null">,#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,#{jhwgsj}</if>
+		<if test="gq!=null">,#{gq}</if>
+		<if test="tsdq!=null">,#{tsdq}</if>
+		<if test="gydw!=null">,#{gydw}</if>
+		<if test="gydwdm!=null">,#{gydwdm}</if>
+		<if test="jsfa!=null">,#{jsfa}</if>
+		<if test="lsjl!=null">,#{lsjl}</if>)
+	</insert>
+	<insert id="insertXmsqSh" parameterType="java.util.List">
+		insert into xmsq_sh (
+		<if test="xmbm!=null">xmbm</if>
+		<if test="xmmc!=null">,xmmc</if>
+		<if test="gcfl!=null">,gcfl</if>
+		<if test="ghlxbh!=null">,ghlxbh</if>
+		<if test="ylxbh!=null">,ylxbh</if>
+		<if test="xzqh!=null">,xzqh</if>
+		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="qdzh!=null">,qdzh</if>
+		<if test="zdzh!=null">,zdzh</if>
+		<if test="lc!=null">,lc</if>
+		<if test="lmkd!=null">,lmkd</if>
+		<if test="jsdj!=null">,jsdj</if>
+		<if test="ntz!=null">,ntz</if>
+		<if test="jhkgsj!=null">,jhkgsj</if>
+		<if test="jhwgsj!=null">,jhwgsj</if>
+		<if test="gq!=null">,gq</if>
+		<if test="tsdq!=null">,TSDQ</if>
+		<if test="gydw!=null">,gydw</if>
+		<if test="gydwdm!=null">,gydwdm</if>
+		<if test="jsfa!=null">,JSFA</if>
+		<if test="lsjl!=null">,LSJL</if>) 
+		values (
+		<if test="xmbm!=null">#{xmbm}</if>
+		<if test="xmmc!=null">,#{xmmc}</if>
+		<if test="gcfl!=null">,#{gcfl}</if>
+		<if test="ghlxbh!=null">,#{ghlxbh}</if>
+		<if test="ylxbh!=null">,#{ylxbh}</if>
+		<if test="xzqh!=null">,#{xzqh}</if>
+		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="qdzh!=null">,#{qdzh}</if>
+		<if test="zdzh!=null">,#{zdzh}</if>
+		<if test="lc!=null">,#{lc}</if>
+		<if test="lmkd!=null">,#{lmkd}</if>
+		<if test="jsdj!=null">,#{jsdj}</if>
+		<if test="ntz!=null">,#{ntz}</if>
+		<if test="jhkgsj!=null">,#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,#{jhwgsj}</if>
+		<if test="gq!=null">,#{gq}</if>
+		<if test="tsdq!=null">,#{tsdq}</if>
+		<if test="gydw!=null">,#{gydw}</if>
+		<if test="gydwdm!=null">,#{gydwdm}</if>
+		<if test="jsfa!=null">,#{jsfa}</if>
+		<if test="lsjl!=null">,#{lsjl}</if>)
+	</insert>
+	<insert id="insertLx" parameterType="lx">
+		insert into lxsh_lx (
+		<if test="xmid!=null">xmid</if>
+		<if test="lxbm!=null">,lxbm</if>
+		<if test="lxmc!=null">,lxmc</if>
+		<if test="xzqh!=null">,xzqh</if>
+		<if test="xzqhdm!=null">,xzqhdm</if>
+		<if test="gydw!=null">,gydw</if>
+		<if test="gydwdm!=null">,gydwdm</if>
+		<if test="qdzh!=null">,qdzh</if>
+		<if test="zdzh!=null">,zdzh</if>
+		<if test="jsjsdj!=null">,jsjsdj</if>
+		<if test="lc!=null">,lc</if>
+		<if test="xjsdj!=null">,xjsdj</if>
+		<if test="jsxz!=null">,jsxz</if>
+		<if test="qdmc!=null">,qdmc</if>
+		<if test="zdmc!=null">,zdmc</if>
+		<if test="bzcs!=null">,bzcs</if>
+		<if test="sffirst!=null">,sffirst</if>)
+		values(<if test="xmid!=null">#{xmid}</if>
+		<if test="lxbm!=null">,#{lxbm}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>
+		<if test="xzqh!=null">,#{xzqh}</if>
+		<if test="xzqhdm!=null">,#{xzqhdm}</if>
+		<if test="gydw!=null">,#{gydw}</if>
+		<if test="gydwdm!=null">,#{gydwdm}</if>
+		<if test="qdzh!=null">,#{qdzh}</if>
+		<if test="zdzh!=null">,#{zdzh}</if>
+		<if test="jsjsdj!=null">,#{jsjsdj}</if>
+		<if test="lc!=null">,#{lc}</if>
+		<if test="xjsdj!=null">,#{xjsdj}</if>
+		<if test="jsxz!=null">,#{jsxz}</if>
+		<if test="qdmc!=null">,#{qdmc}</if>
+		<if test="zdmc!=null">,#{zdmc}</if>
+		<if test="bzcs!=null">,#{bzcs}</if>
+		<if test="sffirst!=null">,#{sffirst}</if>)
+	</insert>
+	
+	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
+		select * from (
+			select rownum num,t.* from (
+				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
+				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
+					and ${xmsq.gydwdm}
+				</if>
+				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">
+					and ${xmsq.xzqhdm}
+				</if>
+				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
+					and xmmc like '%'||#{xmsq.xmmc}||'%'
+				</if>
+				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
+					and (jsdj=#{xmsq.jsdj} or l.xjsdj=#{xmsq.jsdj})
+				</if>
+				<if test="xmsq.sqzt>=0">
+					and sqzt=${xmsq.sqzt}
+				</if>
+				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
+					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
+				</if> order by x.xmbm desc) t ) t2
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
+	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
+		select * from (
+			select rownum num,t.* from (
+				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where l.sffirst=1
+				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
+					and ${xmsq.gydwdm}
+				</if>
+				<if test="xmsq.xzqhdm!=null and xmsq.xzqhdm!=''">
+					and ${xmsq.xzqhdm}
+				</if>
+				<if test="xmsq.xmmc!=null and xmsq.xmmc!=''">
+					and xmmc like '%'||#{xmsq.xmmc}||'%'
+				</if>
+				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
+					and (jsdj=#{xmsq.jsdj} or l.xjsdj=#{xmsq.jsdj})
+				</if>
+				<if test="xmsq.sqzt>=0">
+					and sqzt=${xmsq.sqzt}
+				</if>
+				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
+					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
+				</if> order by x.xmbm desc) t ) t2
+		<if test="page!=null and page!='' and page!=0">
+			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
+		</if>
+	</select>
+	
+	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
+		select count(x.xmbm) from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		<if test="gydwdm!=null and gydwdm!=''">
+			and ${gydwdm}
+		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and (jsdj=#{jsdj} or l.xjsdj=#{jsdj})
+		</if>
+		<if test="sqzt>=0">
+			and sqzt=${sqzt}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and x.tsdq like '%'||#{tsdq}||'%'
+		</if>
+	</select>
+	<select id="queryShCount" parameterType="xmsq" resultType="int">
+		select count(x.xmbm) from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		<if test="gydwdm!=null and gydwdm!=''">
+			and ${gydwdm}
+		</if>
+		<if test="xzqhdm!=null and xzqhdm!=''">
+			and ${xzqhdm}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
+		<if test="jsdj!=null and jsdj!=''">
+			and (jsdj=#{jsdj} or l.xjsdj=#{jsdj})
+		</if>
+		<if test="sqzt>=0">
+			and sqzt=${sqzt}
+		</if>
+		<if test="tsdq!=null and tsdq!=''">
+			and x.tsdq like '%'||#{tsdq}||'%'
+		</if>
+	</select>
+	
+	<delete id="deleteYhdzxByXmbm" parameterType="xmsq">
+		delete from xmsq_yhdzx where xmbm=#{xmbm}
+	</delete>
+	<delete id="deleteShByXmbm" parameterType="xmsq">
+		delete from xmsq_sh where xmbm=#{xmbm}
+	</delete>
+	
+	<update id="updateYhdzxSqzt" parameterType="xmsq">
+		update xmsq_yhdzx set sqzt=${sqzt} where xmbm=#{xmbm}
+	</update>
+	<update id="updateShSqzt" parameterType="xmsq">
+		update xmsq_sh set sqzt=${sqzt} where xmbm=#{xmbm}
+	</update>
+	
+	<insert id="insertJhshYhdzx" parameterType="xmsq">
+		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
+		where x.xmbm in (${xmbm})
+	</insert>
+	<insert id="insertJhshSh" parameterType="xmsq">
+		insert into jhsh_sh (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
+		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_sh x
+		where x.xmbm in (${xmbm})
+	</insert>
+	
+	<insert id="insertCbsjYhdzx" parameterType="xmsq">
+		insert into cbsj_yhdzx c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj 
+		from xmsq_yhdzx x where x.xmbm in (${xmbm})
+	</insert>
+	<insert id="insertCbsjSh" parameterType="xmsq">
+		insert into cbsj_sh c (xmmc,xmbm,jsdw,xzqh,qdzh,zdzh,jsjsdj,jsxz,kgsj,wgsj)
+		select x.xmmc,x.xmbm,null,x.xzqh,x.qdzh,x.zdzh,x.jsdj,x.gcfl,x.jhkgsj,x.jhwgsj 
+		from xmsq_sh x where x.xmbm in (${xmbm})
+	</insert>
+	
+	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
+		select * from xmsq_yhdzx where xmbm=#{xmbm}
+	</select>
+	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
+		select * from xmsq_sh where xmbm=#{xmbm}
+	</select>
+	
+	<update id="updateYhdzx" parameterType="xmsq">
+		update xmsq_yhdzx set 
+		<if test="xmbm!=null">xmbm=#{xmbm}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="gcfl!=null">,gcfl=#{gcfl}</if>
+		<if test="ghlxbh!=null">,ghlxbh=#{ghlxbh}</if>
+		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
+		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
+		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
+		<if test="ntz!=null">,ntz=#{ntz}</if>
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="gq!=null">,gq=#{gq}</if>
+		<if test="tsdq!=null">,TSDQ=#{tsdq}</if>
+		<if test="gydw!=null">,gydw=#{gydw}</if>
+		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
+		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		where xmbm=#{xmbm}
+	</update>
+	<update id="updateSh" parameterType="xmsq">
+		update xmsq_sh set 
+		<if test="xmbm!=null">xmbm=#{xmbm}</if>
+		<if test="xmmc!=null">,xmmc=#{xmmc}</if>
+		<if test="gcfl!=null">,gcfl=#{gcfl}</if>
+		<if test="ghlxbh!=null">,ghlxbh=#{ghlxbh}</if>
+		<if test="ylxbh!=null">,ylxbh=#{ylxbh}</if>
+		<if test="xzqh!=null">,xzqh=#{xzqh}</if>
+		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
+		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
+		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="lc!=null">,lc=#{lc}</if>
+		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
+		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
+		<if test="ntz!=null">,ntz=#{ntz}</if>
+		<if test="jhkgsj!=null">,jhkgsj=#{jhkgsj}</if>
+		<if test="jhwgsj!=null">,jhwgsj=#{jhwgsj}</if>
+		<if test="gq!=null">,gq=#{gq}</if>
+		<if test="tsdq!=null">,TSDQ=#{tsdq}</if>
+		<if test="gydw!=null">,gydw=#{gydw}</if>
+		<if test="gydwdm!=null">,gydwdm=#{gydwdm}</if>
+		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
+		where xmbm=#{xmbm}
+	</update>
+</mapper>

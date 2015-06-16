@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -503,9 +505,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="and gydwdm in ("+gydw+")";
+			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
 		gcglgcgzgj.setPage(page);
 		gcglgcgzgj.setRows(rows);
@@ -525,11 +527,11 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglgcgzgj.setTiaojian("xjzt");
 		}
-		List<Plan_gcgj> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
+		List<Map<String,Object>> list=gcglgcgzgjServer.queryGcgjList(gcglgcgzgj);
 		
 		int count=gcglgcgzgjServer.queryGcgjListCount(gcglgcgzgj);
 		
-		EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+		EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 			e.setRows(list);
 			e.setTotal(count);
 			JsonUtils.write(e, getresponse().getWriter());
@@ -543,9 +545,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			Gcglgcgzgj gcglgcgzgj=new Gcglgcgzgj();
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+gydw+"%'";
+				tiaojian1="and xzqhdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="and gydwdm in ("+gydw+")";
+				tiaojian1="and xzqhdm in ("+gydw+")";
 			}
 			gcglgcgzgj.setPage(page);
 			gcglgcgzgj.setRows(rows);
@@ -559,9 +561,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 			gcglgcgzgj.setSbnf(xmnf);
 			gcglgcgzgj.setTiaojian(bfzt);
 			try{
-			List<Plan_gcgj> list=gcglgcgzgjServer.selectWqgzjhList2(gcglgcgzgj);
+			List<Map<String,Object>> list=gcglgcgzgjServer.selectWqgzjhList2(gcglgcgzgj);
 			int count=gcglgcgzgjServer.selectWqgzjhListcount1(gcglgcgzgj);
-			EasyUIPage<Plan_gcgj> e=new EasyUIPage<Plan_gcgj>();
+			EasyUIPage<Map<String,Object>> e=new EasyUIPage<Map<String,Object>>();
 			e.setRows(list);
 			e.setTotal(count);
 			
@@ -575,6 +577,9 @@ public class GcglgcgzgjController extends BaseActionSupport{
 		try{
 			if("gcgj".equals(flag)){
 				fanhui = gcglgcgzgjServer.updatagjSFQX(gcglgcgzgj);
+			}
+			if("xjgc".equals(flag)){
+				fanhui = gcglgcgzgjServer.updataxjSFQX(gcglgcgzgj);
 			}
 			if("gcsj".equals(flag)){
 				fanhui = gcglgcgzgjServer.updatasjSFQX(gcglgcgzgj);		

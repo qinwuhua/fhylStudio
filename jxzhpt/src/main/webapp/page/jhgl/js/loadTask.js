@@ -19,6 +19,28 @@ function isNumber(txt){
 		$(txt).focus();
 	}
 }
+function loadJhzt(id){
+	var ztxian=[{"value":'',"text":"全部"},{"value":'未上报',"text":"未上报"},{"value":'已上报',"text":"已上报"}
+		,{"value":'未审核',"text":"未审核"},{"value":'已审核',"text":"已审核"}];
+	var ztshi=[{"value":"","text":"全部"},{"value":'待上报',"text":"待上报"},{"value":'未上报',"text":"未上报"}
+		,{"value":'已上报',"text":"已上报"},{"value":'已审核',"text":"已审核"}];
+	var ztsheng=[{"value":"","text":"全部"},{"value":'未上报',"text":"未上报"},{"value":'未审核',"text":"未审核"}
+		,{"value":'已审核',"text":"已审核"}];
+	$('#'+id).combobox({    
+		readonly:true,
+		valueField:'value',
+		textField:'text'
+	});
+	if(roleName()=="县级"){
+		$('#'+id).combobox("loadData",ztxian);
+	}
+	if(roleName()=="市级"){
+		$('#'+id).combobox("loadData",ztshi);
+	}
+	if(roleName()=="省级"){
+		$('#'+id).combobox("loadData",ztsheng);
+	}
+}
 /**
  * 管养单位下拉框
  * @param id
@@ -89,7 +111,7 @@ function sbnf(id){
 	    valueField:'value',
 	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",'');
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 /**
  * 行政区划下拉框
@@ -122,7 +144,7 @@ function Addzhfz(){
 	openDialog("zhfz_xx", "添加灾害防治计划库信息", "../add/zhfzAdd.jsp");
 }
 //步骤(xx,sh)   点击详细时对应的ID   资金下达的ID
-var bz,xxId,zjId;
+var bz,xxId,zjId,sckid;
 /**
  * 弹出详细信息层
  * @param id ID
@@ -202,16 +224,26 @@ function exportExcel(flag){
 	param=param.replace(/null/g,'').replace(/undefined/g,'');
 	param=param.substring(1, param.length-1);
 	if(flag=='abgc'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+				"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+"&lx.tsdq="+$('#ddlTSDQ').combobox('getValue');
 		//param="jh.sbzt="+$("#ddlSHZT").val()+"&jh.spzt="+""+"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&jh.jhkgsj="+""+"&jh.jhwgsj"+""+"&jh.pfztz"+""+"&lx.gydw="+$('#gydw').combotree('getText')+"&lx.gydwdm="+$('#gydw').combotree('getValue')+"&lx.xzqhmc="+$('#xzqh').combotree('getText')+"&lx.xzqhdm="+$('#xzqh').combotree('getValue')+"&lx.lxmc="+$("#txtRoad").val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_abgc.do?flag="+flag+"&"+params;
 	}
 	if(flag=='wqgz'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&lx.qlmc="+$('#txtBridge').val()+"&jh.sbnf="+$('#sbnf').combobox('getValue')+
+				"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+
+				"&lx.akjfl="+$('#ddlAKJFL').combobox('getValue');
 		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_wqgz.do?flag="+flag+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_wqgz.do?flag="+flag+params;
 	}
 	if(flag=='zhfz'){
+		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
+				"&jh.sbnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
+				"&lx.lxbm="+$('#ddlGldj').combobox('getValue')+"&lx.tsdq="+$('#tsdq').combobox('getValue');
 		//param="jh.sbnf="+$('#sbnf').val()+"&jh.sbzt="+$('#sbzt').val()+"&jh.spzt="+""+"&jh.gydw="+$('#gydw').combotree('getText')+"&xzqhdm="+$('#xzqh').combotree('getValue')+"&jh.lxmc="+$("#txtRoad").val()+"&jh.jsdj="+$('#jsdj').val()+"&jh.qlmc="+$('#qlmc').val();
-		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+param;
+		window.location.href="/jxzhpt/jhgl/exportExcel_jh_zhfz.do?flag="+flag+"&"+params;
 	}
 }
 //excel审查库数据导入
@@ -443,7 +475,7 @@ function xmnf(id){
 	    valueField:'text',    
 	    textField:'text'   
 	});
-	$('#'+id).combobox("setValue","");
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 function loadTsdq(id){
 	$('#'+id).combobox({    
@@ -465,4 +497,56 @@ function getunit2(gydwdm){
 		result=11;
 	}
 	return result;
+}
+////////////文件上传、下载、删除
+function fileShow(){
+	//加载文件
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/queryFjByParentId.do',
+		dataType:'json',
+		data:'uploads.id='+xxId,
+		success:function(data){
+	/* 		var data=datas.rows; */
+		/* 	alert(data); */
+			$("#gkbgTable").empty();
+			$("#sjsgtTable").empty();
+			var gkbg="";
+			var sjsgt="";
+			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype=="工可报告"){
+					gkbg += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  |  <a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				}if(data[i].filetype=="设计施工图"){
+					sjsgt += "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a> |  <a href='javascript:void(0)' style='text-decoration:none;color:#3399CC; ' onclick=deleteFile('"+data[i].id+"')>删除</a></td></tr>";
+				}
+			}
+			
+			$("#gkbgTable").append(gkbg);
+			$("#sjsgtTable").append(sjsgt);
+		}
+	});
+}
+function downFile(id){
+	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+}
+function deleteFile(id){
+	if(confirm('确定删除所选数据？')){
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/jhgl/deleteFile.do",
+			 dataType : 'json',
+			 data : 'uploads.id=' +id,
+			 success : function(msg){
+				 if(msg){
+					 alert('删除成功！');
+					 fileShow();
+				 }else{
+					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
 }

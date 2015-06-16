@@ -10,9 +10,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/loadTask.js"></script>
 	<script type="text/javascript">
-		if(parent.YMLib.Var.bz!=null){
-			bz=parent.YMLib.Var.bz;
-		}
+		var xxId="";
 		if(parent.YMLib.Var.jhbm!=null){
 			xxId=parent.YMLib.Var.jhbm;
 		}
@@ -38,7 +36,7 @@
 						var tr6='<tr style="height: 30px;"><td style="color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">特殊地区</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; text-align: left; padding-left: 10px;"><span id="tsdq'+index+'">'+item.tsdq+'</span>&nbsp;</td></tr>';
 						var tr7='<tr style="height: 50px;"><td style="border-top: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">病害内容</td><td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px solid #C0C0C0; text-align: left; padding-left: 10px;"><span id="bhnr">'+item.bhnr+'</span>&nbsp;</td></tr>';
 						var tr8='';
-						$.ajax({
+						/*$.ajax({
 							type:'post',
 							url:'../../../jhgl/querySjzh.do',
 							async:false,
@@ -56,7 +54,7 @@
 									tr8+='</td></tr>';	
 								}
 							}
-						});
+						});*/
 						$('#tr_scxx').before(tr1+tr2+tr3+tr4+tr5+tr6+tr7+tr8);
 					});
 					$('#fapgdw').html(data.fapgdw);
@@ -104,19 +102,12 @@
 					$('#sfgyhbm').html(data.sfgyhbm);
 					$('#gkpfwh').html(data.gksjwh);
 					$('#remarks').html(data.remarks);
-					if(data.gkbgmc!=null){
-						var mc="'"+data.gkbgmc+"'";
-						$('#td_gkbg').html('<a href="javascript:downGkwj('+mc+')">'+data.gkbgmc+'</a>');
-					}
-					if(data.sjsgtmc!=null){
-						var mc="'"+data.sjsgtmc+"'";
-						$('#td_sjt').html('<a href="javascript:downSjt('+mc+')">'+data.sjsgtmc+'</a>');
-					}
 				}
 			});
+			fileShow();
 			//queryLxls(lxls);
 		});
-		function queryLxls(lxls){
+		/*function queryLxls(lxls){
 			$.each(lxls,function(index,item){
 				$.ajax({
 					type:'post',
@@ -137,7 +128,7 @@
 					}
 				});
 			});
-		}
+		}*/
 		function closeWindow(id){
 			parent.$('#'+id).window('destroy');
 		}
@@ -171,7 +162,7 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					方案审批时间</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<span id="fzspsj"></span>
+					<span id="faspsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -409,7 +400,9 @@
 					工可报告
 				</td>
 				<td id="td_gkbg" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; text-align: left; padding-left: 10px;">
-					
+					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="gkbgTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -417,7 +410,9 @@
 					设计施工图
 				</td>
 				<td id="td_sjt" colspan="5" style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+						<tbody id="sjsgtTable"></tbody>
+					</table>
 				</td>
 			</tr>
 			<tr style="height: 50px;">

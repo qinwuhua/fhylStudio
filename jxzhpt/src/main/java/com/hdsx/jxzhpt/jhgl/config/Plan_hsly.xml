@@ -120,11 +120,21 @@
 	<delete id="dropHslyById" parameterType="java.util.List">
 		delete from plan_hsly where id=#{id}
 	</delete>
-	<select id="querySumHsly" resultType="plan_hsly">
+	<select id="querySumHsly" resultType="plan_hsly" parameterType="plan_hsly">
 		select count(jh.id) as id,NVL(sum(jh.jsgmhj),'0') as jsgmhj,NVL(sum(jh.jsgmy),'0') as jsgmy,
        	NVL(sum(jh.jsgme),'0') as jsgme,NVL(sum(jh.jsgms),'0') as jsgms,NVL(sum(jh.jsgmf),'0') as jsgmf,
        	NVL(sum(jh.jsgmdldq),'0') as jsgmdldq,NVL(sum(jh.ztz),'0') as ztz,NVL(sum(jh.zytz),'0') as zytz
 		from plan_hsly jh
+		where 1=1
+		<if test="xzqhdm!=null and xzqhdm!='' and xzqhdm!='36'">
+			and ${xzqhdm}
+		</if>
+		<if test="jhnf!=null and jhnf!=''">
+			and jhnf=#{jhnf}
+		</if>
+		<if test="xmmc!=null and xmmc!=''">
+			and xmmc like '%'||#{xmmc}||'%'
+		</if>
 	</select>
 	<update id="editHslyZj" parameterType="plan_hsly">
 		update plan_hsly set ztz=#{ztz},zytz=#{zytz},dfta=#{dfta},gndk=#{gndk},lywz=#{lywz}

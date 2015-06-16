@@ -121,7 +121,7 @@
 			loadFdbz();
 		});
 		function addFlwbzbz(){
-			var bzbz={'flwbzbz.xmlx':$('#xmlx').val(),
+			var bzbz={'flwbzbz.xmlx':$('#selxmlx').val(),
 					'flwbzbz.gldj':$('#gldj').val(),
 					'flwbzbz.jsdj':$('#gljsdj').val(),
 					'flwbzbz.tsdq':$('#tsdq').combotree("getText"),
@@ -151,7 +151,7 @@
 				data:'flwbzbz.id='+id,
 				success:function(data){
 					$('#flwid').val(data.id);
-					$('#xmlx').val(data.xmlx),
+					$('#selxmlx').val(data.xmlx),
 					$('#gldj').val(data.gldj),
 					$('#gljsdj').val(data.jsdj),
 					$('#tsdq').combotree("setValue",data.tsdq),
@@ -162,7 +162,7 @@
 		}
 		
 		function updateFlwbzbz(){
-			var bzbz={'flwbzbz.xmlx':$('#xmlx').val(),
+			var bzbz={'flwbzbz.xmlx':$('#selxmlx').val(),
 					'flwbzbz.gldj':$('#gldj').val(),
 					'flwbzbz.jsdj':$('#gljsdj').val(),
 					'flwbzbz.tsdq':$('#tsdq').combotree("getText"),
@@ -266,10 +266,12 @@
 				<td width="100" align="right" style="padding-right: 10px;">项目类型</td>
 				<td width="150" align="left">
 				<input type="hidden" id="flwid"/>
-					<select id="xmlx" style="width: 125px;">
+					<select id="selxmlx" style="width: 125px;">
 						<option value="">--请选择--</option>
-						<option value="工程改造路面升级">工程改造路面升级</option>
-						<option value="工程改造路面改建">工程改造路面改建</option>
+						<option value="升级改造工程项目">升级改造工程项目</option>
+						<option value="路面改造工程项目">路面改造工程项目</option>
+						<option value="新建工程项目">新建工程项目</option>
+						<option value="大中修工程项目">大中修工程项目</option>
 						<option value="水毁项目">水毁项目</option>
 						<option value="红色旅游项目">红色旅游项目</option>
 					</select>

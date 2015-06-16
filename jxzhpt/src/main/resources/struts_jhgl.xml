@@ -107,6 +107,8 @@
 		<action name="editShuihStatusBatch" class="plan_shuihController" method="editShuihStatusBatch"/>
 		
 		<action name="queryZjxdByXmId" class="plan_zjxdController" method="queryZjxdByXmId"/>
+		<action name="importJhshZjzj" class="plan_zjxdController" method="importJhshZjzj"/>
+		<action name="queryZjzjByXmid" class="plan_zjxdController" method="queryZjzjByXmid"/>
 		<action name="queryZjxdExistById" class="plan_zjxdController" method="queryZjxdExistById"/>
 		<action name="addZjxd" class="plan_zjxdController" method="addZjxd"/>
 		<action name="dropZjxdById" class="plan_zjxdController" method="dropZjxdById"/>
@@ -168,6 +170,5 @@
 		<action name="editOrSave" class="plan_zjqfController" method="editOrSave"></action>
 		<action name="queryZjqfByZjqf" class="plan_zjqfController" method="queryZjqfByZjqf"></action>
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
-		
 	 </package>
 </struts>

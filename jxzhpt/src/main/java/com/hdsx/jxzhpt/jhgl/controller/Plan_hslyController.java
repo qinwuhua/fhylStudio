@@ -52,7 +52,8 @@ public class Plan_hslyController  extends BaseActionSupport{
 	
 	public void querySumHsly(){
 		try {
-			JsonUtils.write(hslyServer.querySumHsly(), getresponse().getWriter());
+			hsly.setXzqhdm(gydwOrxzqhBm(hsly.getXzqhdm(),"xzqhdm"));
+			JsonUtils.write(hslyServer.querySumHsly(hsly), getresponse().getWriter());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -165,6 +166,11 @@ public class Plan_hslyController  extends BaseActionSupport{
 				if(readerExcel.get(i).getGydwdm()==null || readerExcel.get(i).getGydwdm().equals("")){
 					readerExcel.remove(i);
 				}else{
+					readerExcel.get(i).setJsgmhj(new Double(new Double(readerExcel.get(i).getJsgmy()).doubleValue()+
+							new Double(readerExcel.get(i).getJsgme()).doubleValue()+
+							new Double(readerExcel.get(i).getJsgms()).doubleValue()+
+							new Double(readerExcel.get(i).getJsgmf()).doubleValue()+
+							new Double(readerExcel.get(i).getJsgmdldq()).doubleValue()).toString());
 					readerExcel.get(i).setZtz(new Double(new Double(readerExcel.get(i).getZytz()).doubleValue() + 
 							new Double(readerExcel.get(i).getLywz()).doubleValue() + 
 							new Double(readerExcel.get(i).getDfta()).doubleValue() + 
@@ -272,11 +278,11 @@ public class Plan_hslyController  extends BaseActionSupport{
 	public void editHslyzj() throws Exception{
 		try{
 			String str="false";
-			hsly.setZtz(new Integer(new Integer(hsly.getZtz()).intValue()+new Integer(zjzj.getZtz()).intValue()).toString());
-			hsly.setDfta(new Integer(new Integer(hsly.getDfta().equals("")?"0":hsly.getDfta()).intValue()+new Integer(zjzj.getDfzc()).intValue()).toString());
-			hsly.setGndk(new Integer(new Integer(hsly.getGndk().equals("")?"0":hsly.getGndk()).intValue()+new Integer(zjzj.getGndk()).intValue()).toString());
-			hsly.setLywz(new Integer(new Integer(hsly.getLywz().equals("")?"0":hsly.getLywz()).intValue()+new Integer(zjzj.getLywz()).intValue()).toString());
-			hsly.setZytz(new Integer(new Integer(hsly.getZytz().equals("")?"0":hsly.getZytz()).intValue()+new Integer(zjzj.getZytzcgs()).intValue()).toString());
+			hsly.setZtz(new Double(new Double(hsly.getZtz()).doubleValue()+new Double(zjzj.getZtz()).doubleValue()).toString());
+			hsly.setDfta(new Double(new Double(hsly.getDfta().equals("")?"0":hsly.getDfta()).doubleValue()+new Double(zjzj.getDfzc()).doubleValue()).toString());
+			hsly.setGndk(new Double(new Double(hsly.getGndk().equals("")?"0":hsly.getGndk()).doubleValue()+new Double(zjzj.getGndk()).doubleValue()).toString());
+			hsly.setLywz(new Double(new Double(hsly.getLywz().equals("")?"0":hsly.getLywz()).doubleValue()+new Double(zjzj.getLywz()).doubleValue()).toString());
+			hsly.setZytz(new Double(new Double(hsly.getZytz().equals("")?"0":hsly.getZytz()).doubleValue()+new Double(zjzj.getZytzcgs()).doubleValue()).toString());
 			if(hslyServer.editHslyZj(hsly) && zjxdServer.insertHslyZjzj(zjzj)) {
 				str="true";
 			}

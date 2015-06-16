@@ -50,7 +50,21 @@ public class Jckwqgz implements Serializable{
 	private int page;
 	private int rows;
 	private String sbzt2;
+	private String qdzh;
+	private String zdzh;
 	
+	public String getQdzh() {
+		return qdzh;
+	}
+	public void setQdzh(String qdzh) {
+		this.qdzh = qdzh;
+	}
+	public String getZdzh() {
+		return zdzh;
+	}
+	public void setZdzh(String zdzh) {
+		this.zdzh = zdzh;
+	}
 	public String getId() {
 		return id;
 	}

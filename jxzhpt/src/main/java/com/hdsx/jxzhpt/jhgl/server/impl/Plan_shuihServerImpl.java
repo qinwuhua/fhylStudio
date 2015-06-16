@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_shuih;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_shuih;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.server.Plan_shuihServer;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
@@ -115,8 +116,8 @@ public class Plan_shuihServerImpl extends BaseOperate implements Plan_shuihServe
 	}
 
 	@Override
-	public boolean uploadShuihFile(Plan_shuih jh) {
-		return update("uploadShuihFile", jh)>0;
+	public boolean insertShuihFile(Plan_upload jh) {
+		return update("insertShuihFile", jh)>0;
 	}
 
 	@Override

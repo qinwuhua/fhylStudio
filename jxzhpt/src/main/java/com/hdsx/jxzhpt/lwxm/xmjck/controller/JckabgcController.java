@@ -46,7 +46,7 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	private String tbbmbm1;
 	private String tbbmbm2;
 	private String sbthcd1;
-	
+	private String xmlx;
 	public void importAbgc(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
 		HttpServletResponse response = ServletActionContext.getResponse();
@@ -214,6 +214,13 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void xgShzt2(){
+		try {
+			JsonUtils.write(abgcServer.xgShzt2(delstr,xmlx),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void xgJckAbgcSbzt(){
 		try {
 			JsonUtils.write(abgcServer.xgJckAbgcSbzt(delstr,jckabgc),getresponse().getWriter());
@@ -355,6 +362,12 @@ public class JckabgcController extends BaseActionSupport implements ModelDriven<
 	}
 	public void setSbthcd1(String sbthcd1) {
 		this.sbthcd1 = sbthcd1;
+	}
+	public String getXmlx() {
+		return xmlx;
+	}
+	public void setXmlx(String xmlx) {
+		this.xmlx = xmlx;
 	}
 	
 }

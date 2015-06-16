@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_lx_gcgj;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.xtgl.bean.Plan_flwbzbz;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
@@ -46,7 +47,7 @@ public interface Plan_gcgjServer {
 	 * @param jh
 	 * @return
 	 */
-	boolean uploadGcgjFile(Plan_gcgj jh);
+	boolean insertGcgjFile(Plan_upload jh);
 	/**
 	 * 根据计划ID删除路线信息
 	 * @param id
@@ -169,5 +170,5 @@ public interface Plan_gcgjServer {
 	 */
 	boolean editZjById(Plan_gcgj jh);
 
-	List<TreeNode> queryJhktj3(String xmlx, String nf, String end);
+	List<TreeNode> queryJhktj3(String xmlx, String nf, String end,String xzqhdm);
 }

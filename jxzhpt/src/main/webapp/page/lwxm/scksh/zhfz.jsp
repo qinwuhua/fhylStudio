@@ -39,6 +39,8 @@ function xgShzt(){
 		return;
 	}
 	var sckid=rows[0].sckid;
+	var nf=rows[0].xmnf;
+	var tbbmbm=rows[0].tbbmbm;
 	for(var i=0;i<rows.length;i++){
 		if(rows[i].sck_shzt=='已审核'){
 			alert("有项目已审核，请勿重复操作！");
@@ -47,13 +49,15 @@ function xgShzt(){
 	}
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
+		nf+=","+rows[i].xmnf;
+		tbbmbm+=","+rows[i].tbbmbm;
 	}
 	if(confirm('您确定审核通过该项目？')){
 			$.ajax({
 				 type : "POST",
 				 url : "/jxzhpt/xmsck/xgSckZhfzShzt.do",
 				 dataType : 'json',
-				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit"),
+				 data : 'delstr=' +sckid+"&sck_shbm="+$.cookie("unit")+"&nf="+nf+"&tbbmbm1="+tbbmbm,
 				 success : function(msg){
 					 if(msg){
 						 alert('审核成功！');
@@ -92,6 +96,10 @@ function tuiHui(){
 		alert("对不起，该项目已上报，不能执行退回操作！");
 		return;
 	}
+	if(rows[i].shzt='已审核'){
+		alert("对不起，项目已审核，不能执行退回操作！");
+		return;
+	}
 	}	
 	for(var i=1;i<rows.length;i++){
 		sckid+=","+rows[i].sckid ;
@@ -125,6 +133,7 @@ font-size: 12px;
 a{
 text-decoration:none;
 }
+.abgc_td td{padding-right:6px;}
 </style>
 </head>
 <body>
@@ -134,51 +143,54 @@ text-decoration:none;
 	<table align="left" width="99%" cellpadding="0" cellspacing="0" border="0">
 		<tr>
 			<td align="left" style="padding-left:10px;padding-top: 10px;">
-			<fieldset style="width:100%;text-align:left;vertical-align:middle;">
+			<fieldset style="width:100%;text-align:left;vertical-align:middle;border:1px solid #cde0f3;">
 				<legend style="padding: 0 0 0 0; font-weight: bold; color: Gray; font-size: 12px;">
 				</legend>
 					<div>
-					<p style="margin:8px 0px 4px 20px;">
-								<span>管养单位：</span>
-                              	<select id="gydw" style="width:218px">
+					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+								<td>管养单位：</td>
+                              	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
+                              	</select></td>
+                             	<td>行政区划：</td>
+                              	<td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
+                              	</select></td>
+                                <td>路线名称：</td>
+        						<td><input type="text" id="lxmc" style="width:100px;" /></td>
+        						<td>路线编码：</td>
+        						<td><input type="text" id="lxbm" style="width:100px;" /></td>
+						</td>
+                        <tr height="32">
+							  <td>项目年份：</td>
+                              	<td><select id="xmnf" style="width:70px">
                               	</select>
-                             	<span>&nbsp;行政区划：</span>
-                              	<select id="xzqhmc" style="width:218px">
-                              	</select>
-                                <span>&nbsp;路线名称：</span>
-        						<input type="text" id="lxmc" style="width:100px;" />
-        						<span>&nbsp;路线编码：</span>
-        						<input type="text" id="lxbm" style="width:100px;" />
-						</p>
-                        <p style="margin:8px 0px 4px 20px;">
-							  <span>项目年份：</span>
-                              	<select id="xmnf" style="width:70px">
-                              	</select>
-                              <span style="display: none;">&nbsp;项目状态： </span>
+                              <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
-                              	</select>
-                              	<span>&nbsp;审核状态：</span>
-                              	<select id="shzt" style="width:70px"class="easyui-combobox">
-                              	</select>
-                              <span>&nbsp;特殊地区：</span>
-                              	<select id="tsdq"  style="width:70px"class="easyui-combobox">
-                              	</select>
-                              <span>&nbsp;技术等级：</span>
-                              	<select id="lxjsdj" style="width:70px"class="easyui-combobox">
-                              	</select>
-                              	<span>&nbsp;公路等级：</span>
-                              	<select id="bz" style="width:104px"class="easyui-combobox">
-                              	</select>
-                              	<span>&nbsp;补助历史：</span>
-                              	<select id="bzls" style="width:104px"class="easyui-combobox">
-                              	</select>
-                             </p>
-                             <p style="margin:8px 0px 4px 20px;">
+                              	</select></td>
+                              <td>审核状态：</td>
+                              	<td><select id="shzt" style="width:70px"class="easyui-combobox">
+                              	</select></td>
+                              <td>特殊地区：</td>
+                              	<td><select id="tsdq"  style="width:70px"class="easyui-combobox">
+                              	</select></td>
+                              <td>技术等级：</td>
+                              	<td><select id="lxjsdj" style="width:70px"class="easyui-combobox">
+                              	</select></td>
+                              	<td>公路等级：</td>
+                              	<td><select id="bz" style="width:104px"class="easyui-combobox">
+                              	</select></td>
+                              	<td>补助历史：</td>
+                              	<td><select id="bzls" style="width:104px"class="easyui-combobox">
+                              	</select></td>
+                             </tr>
+                            <tr height="32">
+                              <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'"onclick="sckshZhfz();" src="../../../images/Button/Serch01.gif" style="border-width:0px;cursor: hand;" />
 								<img name="shenPi" id="shenPi" src="../../../images/Button/sp1.jpg" onmouseover="this.src='../../../images/Button/sp2.jpg'" onmouseout="this.src='../../../images/Button/sp1.jpg'   " src="" onclick="xgShzt();" style="border-width:0px;" />
                                 <img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif"  onclick="exportExcel_zhfz_scsh();" style="border-width:0px;cursor: hand;" />
-							 </p>
+							</td>
+                            </tr></table>
 						</div>
 				</fieldset>
 			</td>

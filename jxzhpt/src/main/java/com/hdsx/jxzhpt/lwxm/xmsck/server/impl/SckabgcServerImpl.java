@@ -82,15 +82,28 @@ public class SckabgcServerImpl extends BaseOperate implements SckabgcServer{
 	}
 
 	@Override
-	public boolean xgSckAbgcShzt(String delstr,Sckabgc abgc) {
+	public boolean xgSckAbgcShzt(String delstr,Sckabgc abgc,String nf,String tbbmbm) {
 		String[] strs = delstr.split(",");
+		String[] nfs=nf.split(",");
+		String[] tbbmbms=tbbmbm.split(",");
 		lm=new ArrayList<Map<String,Object>>();
+		List<Plan_abgc> list=new ArrayList<Plan_abgc>();
 		for (int i = 0; i < strs.length; i++) {
 			hm=new HashMap<String, Object>();
 			hm.put("sckid", strs[i]);
 			hm.put("sck_shbm", abgc.getSck_shbm());
 			lm.add(hm);
+			Plan_abgc a=new Plan_abgc();
+			a.setSckid(strs[i]);
+			a.setJhnf(nfs[i]);
+			if(tbbmbms[i].matches("^[0-9]{7}[1-9][0-9]00$") || tbbmbms[i].matches("^[0-9]{7}[0-9][1-9]00$")){
+				a.setJh_sbthcd("0");
+			}else if(tbbmbms[i].matches("^[0-9]{9}[0-9][1-9]$") || tbbmbms[i].matches("^[0-9]{9}[1-9][0-9]$")){
+				a.setJh_sbthcd("2");
+			}
+			list.add(a);
 		}
+		boolean insertBatch = insertBatch("lrjhSckabgc", list)==list.size();
 		return this.updateBatch("xgSckAbgcShzt", lm)==lm.size()?true:false;
 	}
 	@Override

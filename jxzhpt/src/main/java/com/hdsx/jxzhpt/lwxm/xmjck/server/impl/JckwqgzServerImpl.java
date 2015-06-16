@@ -195,9 +195,9 @@ public class JckwqgzServerImpl extends BaseOperate implements JckwqgzServer {
 	}
 
 	@Override
-	public List<String> selectTSDQ(String xzqh) {
+	public List<String> selectTSDQ(Jckwqgz wqgz) {
 		// TODO Auto-generated method stub
-		return queryList("selectTSDQ",xzqh);
+		return queryList("selectTSDQ",wqgz);
 	}
 
 }

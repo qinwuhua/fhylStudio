@@ -94,7 +94,7 @@ public interface Plan_abgcServer {
 	List<Plan_upload> queryFjByParentId(Plan_upload uploads);
 	boolean deleteFile(Plan_upload uploads);
 
-	boolean editAbgcSckBysckid(Plan_abgc jh);
+	boolean editAbgcSckBysckid(Sckabgc sc);
 
 	List<Plan_abgc> queryAbgcListByStatus(Plan_abgc jh, Jckabgc lx);
 
@@ -102,7 +102,7 @@ public interface Plan_abgcServer {
 
 	boolean updateStatusBatch(List<Plan_abgc> splist);
 
-	List<TreeNode> queryJcktj();
+	TreeNode queryJcktj(TreeNode treenode);
 
 	List<TreeNode> queryJcktj1(String nf);
 

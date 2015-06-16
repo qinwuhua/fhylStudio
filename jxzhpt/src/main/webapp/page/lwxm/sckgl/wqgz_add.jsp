@@ -202,7 +202,7 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right">桥梁编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right"><font color='red' size='2'>*&nbsp;</font>桥梁编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:17%" align="left">
 					<input type="text" name="qlbh"id="qlbh" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:16%" align="right">桥梁名称：</td>
@@ -296,10 +296,10 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
@@ -323,7 +323,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">审批文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="spwh" id="spwh" style="width: 150px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="tzgs"id="tzgs" style="width: 115px" />&nbsp;万元</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>

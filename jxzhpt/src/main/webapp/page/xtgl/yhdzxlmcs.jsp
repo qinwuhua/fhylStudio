@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript">
+		var row;
 		$(function(){
 			$('#tsdq').combotree({    
 			    url:'../../jhgl/queryTsdq.do',
@@ -22,19 +23,26 @@
 			    textField:'text',
 			    width:125
 			});
-			
+			loadData();
+		});
+		function loadData(){
 			$('#xtgl_flwbzbz_table').datagrid({
 				url:'../../xtgl/queryYhdzxcs.do',
 				pagination:false,
 				rownumbers:true,
 			    pageNumber:1,
 			    fitColumns:true,
+			    queryParams:{
+			    	'yhdzxcs.cslx':$('#selCslx').val()
+			    },
 			    pageSize:10,
 			    height:455,
 			    //width:1000,
 				columns:[[
 					{field:'id',title:'操作',width:80,align:'center',
 						formatter : function(value, row, index){
+							$('#add').hide();
+							$('#update').show();
 							return '<a href="javascript:update('+"'"+row.id+"'"+')">编辑</a>';
 						}
 					},
@@ -43,6 +51,9 @@
 					{field:'lfmdj',title:'立方米单价',width:100,align:'center'},
 					{field:'sddj',title:'审定单价',width:150,align:'center'}
 				]],
+				onSelect:function(rowIndex,rowData){
+					row=rowData;
+				},
 				toolbar:[
 					{
 						iconCls: 'icon-add',
@@ -73,9 +84,9 @@
 							});
 							$.ajax({
 								type:'post',
-								url:'../../xtgl/dropFlwbzbzById.do',
+								url:'../../xtgl/dropYhdzxcsById.do',
 								dataType:'json',
-								data:'flwbzbz.id='+id,
+								data:'yhdzxcs.id='+id,
 								success:function(data){
 									if(data.result){
 										alert("删除成功！");
@@ -87,7 +98,52 @@
 					}
 				]
 			});
-		});
+		}
+		
+		function update(id){
+			$('#addFlwbzbz').dialog("open",false);
+			$('#yhdzxcsid').val(row.id);
+			$('#addsellmjg').val(row.cslx);
+			$('#txtclmc').val(row.clmc);
+			$('#txtlfmdj').val(row.lfmdj);
+			$('#txtsddj').val(row.sddj);
+		}
+		function updateBtn(){
+			var yhdzxcs={'yhdzxcs.id':$('#yhdzxcsid').val(),'yhdzxcs.cslx':$('#addsellmjg').val(),'yhdzxcs.clmc':$('#txtclmc').val(),
+					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.sddj':$('#txtsddj').val()};
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../xtgl/editYhdzxcs.do',
+				data:yhdzxcs,
+				dataType:'json',
+				success:function(data){
+					if(data.result=="true"){
+						alert("修改成功！");
+						$('#addFlwbzbz').dialog("close");
+						$('#xtgl_flwbzbz_table').datagrid("reload");
+					}
+				}
+			});
+		}
+		function addYhdzxcs(){
+			var yhdzxcs={'yhdzxcs.cslx':$('#addsellmjg').val(),'yhdzxcs.clmc':$('#txtclmc').val(),
+					'yhdzxcs.lfmdj':$('#txtlfmdj').val(),'yhdzxcs.sddj':$('#txtsddj').val()};
+			$.ajax({
+				type:'post',
+				async:false,
+				url:'../../xtgl/addYhdzxcs.do',
+				data:yhdzxcs,
+				dataType:'json',
+				success:function(data){
+					if(data.result=="true"){
+						alert("添加成功！");
+						$('#addFlwbzbz').dialog("close");
+						$('#xtgl_flwbzbz_table').datagrid("reload");
+					}
+				}
+			});
+		}
 	</script>
 </head>
 <body>
@@ -99,8 +155,8 @@
 		</div>
 		<div style="margin-left: 20px;margin-bottom: 5px;">
 			<span>参数类型：</span>
-			<select style="width: 80px;">
-				<option selected="selected">-请选择-</option>
+			<select id="selCslx" style="width: 80px;" onchange="loadData()">
+				<option value="" selected="selected">-请选择-</option>
 				<option value="上面层">上面层</option>
 				<option value="中面层">中面层</option>
 				<option value="下面层">下面层</option>
@@ -122,7 +178,7 @@
 			<tr style="height: 25px;">
 				<td width="100" align="right" style="padding-right: 10px;">参数类型</td>
 				<td width="150" align="left">
-					<input type="hidden" id="flwid"/>
+					<input type="hidden" id="yhdzxcsid"/>
 					<select id="addsellmjg" style="width: 80px;">
 						<option selected="selected">-请选择-</option>
 						<option value="上面层">上面层</option>
@@ -157,8 +213,8 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="2" align="center">
-					<input id="add" type="button" onclick="" value="添加" style="margin-top: 5px;"/>
-					<input id="update" type="button" onclick="" value="修改" style="margin-top: 5px;"/>
+					<input id="add" type="button" onclick="addYhdzxcs()" value="添加" style="margin-top: 5px;"/>
+					<input id="update" type="button" onclick="updateBtn()" value="修改" style="margin-top: 5px;"/>
 				</td>
 			</tr>
 		</table>

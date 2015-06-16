@@ -16,22 +16,22 @@
 	var sbsj;
 	var sbyf;
 	$(function(){
-			$("#tj_xdsj").datebox({        
-			});  
+			
 			$("#tj_sjkgsj").datebox({      
 			});  
 			$("#tj_yjjgsj").datebox({       
 			});  
 			
 			var data=parent.obj1;
-			$('#tj_xdsj').datebox('setValue', data.xdsj);
-			$('#tj_sjkgsj').datebox('setValue', data.sjkgsj);
-			$('#tj_yjjgsj').datebox('setValue', data.yjwgsj);
-			$('#tj_sgdw').val(data.sgdw);
-			$('#tj_jldw').val(data.jldw);
-			$('#tj_jsdw').val(data.jsdw);
-			$('#tj_htje').val(data.htje);
-			$('#tj_gys').val(data.gsztz);
+			$('#tj_xdsj').html(data.XDSJ);
+			$('#tj_sjkgsj').datebox('setValue', data.SJKGSJ);
+			$('#tj_yjjgsj').datebox('setValue', data.YJWGSJ);
+			$('#tj_sgdw').val(data.SGDW);
+			$('#tj_jldw').val(data.JLDW);
+			$('#tj_jsdw').val(data.JSDW);
+			$('#tj_htje').val(data.HTJE);
+			$('#tj_gys').val(data.GYS);
+			$('#sfgk').val(data.SFGK);
 		});
 	function checkZJ1(aa){
 		var g = /^[1-9]+(?=\.{0,1}\d+$|$)|(^0$)|(^0\.[0-9]*[1-9]$)|(^[1-9][0-9]*.[0-9]*$)/;
@@ -78,7 +78,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 105px" type="text" id="tj_xdsj" />
+                                <span id="tj_xdsj"></span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;
@@ -150,6 +150,7 @@ a:active {
                                 <input style="width: 100px" type="text" id="tj_gys"  onblur="checkZJ1(this)"/>
                             </td>
                         </tr>
+                       
                     </table>
                     <table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;
                         margin-top: 20px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"

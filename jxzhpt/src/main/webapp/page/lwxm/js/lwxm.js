@@ -4,7 +4,7 @@ function xmnf(id){
 	var myDate = new Date();
 	var years=[];
 	var first;
-	years.push({text:'所有年份',value:''});
+	years.push({text:'全部',value:''});
 	for(var i=0;i<=10;i++){
 		if(i==0)
 			first=myDate.getFullYear()-i;
@@ -15,7 +15,7 @@ function xmnf(id){
 	    valueField:'value',
 	    textField:'text'
 	});
-	$('#'+id).combobox("setValue",'');
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
 }
 function xmnf1(id){
 	var myDate = new Date();

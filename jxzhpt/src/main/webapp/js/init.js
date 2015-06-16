@@ -2,6 +2,7 @@ window.moveTo(0,0);
 window.resizeTo(window.screen.width,window.screen.height);
 var c1 = true;
 var c2 = true;
+var c8 = true;
 var c3 = true;
 var c4 = true;
 var c5 = true;
@@ -15,13 +16,13 @@ $(function(){
 	$("#index_user").html($.cookie("truename"));
 	menuQx();
 	
-	$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
-		$("#Menu_1,#Menu_2,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
+	$("#Menu_1,#Menu_2,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").click(function(e){
+		$("#Menu_1,#Menu_2,#Menu_8,#Menu_3,#Menu_4,#Menu_5,#Menu_6,#Menu_7").removeClass('now');
 		$("#" + this.id).addClass('now');
 	});
     
     $("#Menu_1").click(function () {
-        $("#c2,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c2,#c8,#c3,#c4,#c5,#c6,#c7").hide();
         $("#c1").show();
         if (c1){
             $("#c1f").attr("src", "page/dzdt/Menu.jsp");
@@ -29,16 +30,26 @@ $(function(){
     });
 
     $("#Menu_2").click(function () {
-        $("#c1,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c8,#c3,#c4,#c5,#c6,#c7").hide();
         $("#c2").show();
         if (c2) {
             $("#c2f").attr("src", "page/lwxm/Menu.jsp");
         }
 
     });
+    
+    $("#Menu_8").click(function () {
+        $("#c1,#c2,#c3,#c4,#c5,#c6,#c7").hide();
+        $("#c8").show();
+        if (c2) {
+            $("#c8f").attr("src", "page/qqgl/Menu.jsp");
+        }
+
+    });
+    
     //计划管理
     $("#Menu_3").click(function () {
-        $("#c1,#c2,#c4,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c8,#c4,#c5,#c6,#c7").hide();
         $("#c3").show();
         if (c3) {
             $("#c3f").attr("src", "page/jhgl/Menu.jsp");
@@ -46,7 +57,7 @@ $(function(){
     });
 
     $("#Menu_4").click(function () {
-        $("#c1,#c2,#c3,#c5,#c6,#c7").hide();
+        $("#c1,#c2,#c8,#c3,#c5,#c6,#c7").hide();
         $("#c4").show();
         if (c4) {
             $("#c4f").attr("src", "page/gcgl/Menu.jsp");
@@ -54,7 +65,7 @@ $(function(){
     });
 
     $("#Menu_5").click(function () {
-        $("#c1,#c2,#c3,#c4,#c6,#c7").hide();
+        $("#c1,#c2,#c8,#c3,#c4,#c6,#c7").hide();
         $("#c5").show();
         if (c5) {
             $("#c5f").attr("src", "page/gcbb/Menu.jsp");
@@ -64,7 +75,7 @@ $(function(){
 
    
     $("#Menu_6").click(function () {
-        $("#c1,#c2,#c3,#c4,#c5,#c7").hide();
+        $("#c1,#c2,#c8,#c3,#c4,#c5,#c7").hide();
         $("#c6").show();
         if (c6) {
             $("#c6f").attr("src", "page/sjcx/Menu.jsp");
@@ -73,7 +84,7 @@ $(function(){
     
 
     $("#Menu_7").click(function () {
-        $("#c1,#c2,#c3,#c4,#c5,#c6").hide();
+        $("#c1,#c2,#c8,#c3,#c4,#c5,#c6").hide();
         $("#c7").show();
         if (c7) {
             $("#c7f").attr("src", "page/tjfx/Menu.jsp");
@@ -94,6 +105,7 @@ function menuQx(){
 				switch(qx[i].substr(qx[i].length-1)){
 				case "1": url="page/dzdt/Menu.jsp";break;
 				case "2": url="page/lwxm/Menu.jsp";break;
+				case "8": url="page/qqgl/Menu.jsp";break;
 				case "3": url="page/jhgl/Menu.jsp";break;
 				case "4": url="page/gcgl/Menu.jsp";break;
 				case "5": url="page/gcbb/Menu.jsp";break;

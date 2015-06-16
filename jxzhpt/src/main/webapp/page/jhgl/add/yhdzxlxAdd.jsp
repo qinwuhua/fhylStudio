@@ -121,6 +121,13 @@
 		}
 		
 		function insert(){
+			if($('#txtLXBM').val()==""){alert("路线编码不能为空！");return;
+			}else if($('#txtLXMC').val()==""){alert("路线名称不能为空");return;
+			}else if($('#txtQDZH').val()==""){alert("起点桩号不能为空！");return;
+			}else if($('#txtZDZH').val()==""){alert("止点桩号不能为空！");return;
+			}else if($('#txtLC').val()==""){alert("起止里程不能为空！");return;
+			}else if($('#txtHDLC').val()==""){alert("核对里程不能为空！");return;
+			}else if($('#txtyhdzxkd').val()==""){alert("大中修宽度不能为空！");return;}
 			if(Number($('#txtQDZH').val())<Number($('#spqdzh').html())){
 				alert("起点桩号要大于或等于"+$('#spqdzh').html());
 				return;
@@ -202,13 +209,13 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					路线编码</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLXBM" type="text"/>
+					<input id="txtLXBM" type="text"/><span style="color: red;">  *</span>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					路线名称<input id="lxid" type="hidden"/>
 				</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLXMC" type="text"/>
+					<input id="txtLXMC" type="text"/><span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -220,13 +227,13 @@
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtQDZH" onblur="jisuanlc(this)" type="text"/>
+					<input id="txtQDZH" onblur="jisuanlc(this)" type="text"/><span style="color: red;">  *</span>
 					<div id="qdts" style="color:red;font-size:xx-small; ;display: none;">起点桩号要>=<span id="spqdzh">0</span></div>
 				</td>
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 18%; text-align: left; padding-left: 10px;">
-					<input id="txtZDZH" onblur="jisuanlc(this)" type="text"/>
+					<input id="txtZDZH" onblur="jisuanlc(this)" type="text"/><span style="color: red;">  *</span>
 					<div id="zdts" style="color:red;font-size:xx-small;display: none;">止点桩号要<=<span id="spzdzh">0</span></div>
 				</td>
 			</tr>
@@ -234,17 +241,17 @@
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					起止里程</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtLC" type="text" style="width:80px;"/>&nbsp;公里
+					<input id="txtLC" type="text" style="width:80px;"/>&nbsp;公里<span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					核对里程</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtHDLC" type="text" style="width:80px;"/>&nbsp;公里
+					<input id="txtHDLC" type="text" style="width:80px;"/>&nbsp;公里<span style="color: red;">  *</span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					大中修宽度</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="txtyhdzxkd" style="width: 80px;" type="text"/>&nbsp;米
+					<input id="txtyhdzxkd" style="width: 80px;" type="text"/>&nbsp;米<span style="color: red;">  *</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
