@@ -91,7 +91,7 @@
 	<select id="queryCbsjYhdzx" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
+				select c.*,l.ghlxbh,l.ylxbh from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
 				where 1=1
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 					and ${cbsj.xzqhdm}
@@ -120,7 +120,7 @@
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
+				select c.*,l.ghlxbh,l.ylxbh from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
 				where 1=1
 				<if test="cbsj.xzqhdm!=null and cbsj.xzqhdm!=''">
 					and ${cbsj.xzqhdm}
@@ -283,10 +283,10 @@
 		select * from cbsj_xj c where c.xmbm=#{xmbm}
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select * from cbsj_yhdzx c where c.xmbm=#{xmbm}
+		select c.*,l.ylxbh from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select * from cbsj_sh c where c.xmbm=#{xmbm}
+		select c.*,l.ylxbh from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
 	</select>
 	
 	<update id="updateCbsjLmgz" parameterType="cbsj">

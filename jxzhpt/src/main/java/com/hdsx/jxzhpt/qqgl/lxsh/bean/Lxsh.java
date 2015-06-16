@@ -46,7 +46,14 @@ public class Lxsh implements Serializable {
 	private String lxmc;
 	private String jdbs;
 	private String sffirst;
+	private String lsjl;//是否有历史记录
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public String getSffirst() {
 		return sffirst;
 	}

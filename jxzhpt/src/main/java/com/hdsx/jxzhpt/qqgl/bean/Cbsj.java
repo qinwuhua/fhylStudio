@@ -61,6 +61,8 @@ public class Cbsj {
 	private String tsdq;//特殊地区
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
+	//路线编码
+	private String ylxbh;//原路线编码
 	private String jsfa;//建设方案
 	public String getJsfa() {
 		return jsfa;
@@ -331,5 +333,11 @@ public class Cbsj {
 	}
 	public void setDc_lc(String dc_lc) {
 		this.dc_lc = dc_lc;
+	}
+	public String getYlxbh() {
+		return ylxbh;
+	}
+	public void setYlxbh(String ylxbh) {
+		this.ylxbh = ylxbh;
 	}
 }

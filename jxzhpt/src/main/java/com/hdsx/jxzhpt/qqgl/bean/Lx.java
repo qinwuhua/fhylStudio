@@ -68,6 +68,13 @@ public class Lx {
 	private String bzcs;//补助测算
 	private String sffirst;//是否是第一条路线
 	private String ylmlx;//路面类型
+	private String jdbs;//阶段备注
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
+	}
 	public String getYlmlx() {
 		return ylmlx;
 	}

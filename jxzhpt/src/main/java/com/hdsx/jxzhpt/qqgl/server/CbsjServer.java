@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 
 public interface CbsjServer {
 	/**

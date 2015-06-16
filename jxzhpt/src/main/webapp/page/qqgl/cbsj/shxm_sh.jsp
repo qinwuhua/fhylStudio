@@ -45,13 +45,13 @@
 					formatter: function(value,row,index){
 						var result="";
 						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
 						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
 						if(row.shzt==0){
-							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
+							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
 						}else{
-							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
+							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
 					}
@@ -156,7 +156,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;养护大中修项目</div>
+		<div id="p_top">前期管理>&nbsp;初步设计或施工图设计申请>&nbsp;水毁项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
