@@ -217,7 +217,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			hm.put("xmbm", ids[i]);
 			lm.add(hm);
 		}
-		if(updateBatch("thLmgzSbzt1", lm)>0&&deleteBatch("deletelmgzkxx",lm)>0) return true;
+		if(updateBatch("thLmgzSbzt1", lm)>0&&deleteBatch("deletelmgzkxx",lm)>0&&deleteBatch("deletekxlx", lm)>0){ 
+			return true;
+		}
 		else return false;
 	}
 	public boolean thSjgzSbzt1(Lxsh lxsh) {
@@ -229,7 +231,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			hm.put("xmbm", ids[i]);
 			lm.add(hm);
 		}
-		if(updateBatch("thSjgzSbzt1", lm)>0&&deleteBatch("deletesjgzkxx",lm)>0) return true;
+		if(updateBatch("thSjgzSbzt1", lm)>0&&deleteBatch("deletesjgzkxx",lm)>0&&deleteBatch("deletekxlx", lm)>0) return true;
 		else return false;
 	}
 	public boolean thXjSbzt1(Lxsh lxsh) {
@@ -240,7 +242,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			hm.put("xmbm", ids[i]);
 			lm.add(hm);
 		}
-		if(updateBatch("thXjSbzt1", lm)>0&&deleteBatch("deletexjkxx",lm)>0) return true;
+		if(updateBatch("thXjSbzt1", lm)>0&&deleteBatch("deletexjkxx",lm)>0&&deleteBatch("deletekxlx", lm)>0) return true;
 		else return false;
 	}
 	public boolean Lmgzsfkxx(Lxsh lxsh) {
@@ -549,17 +551,21 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setLc(lc+"");
 			if(bzcs!=null)
 			lxsh.setBzys(bzcs+"");
-			if("sjgz".equals(lxsh.getXmlx())){
-				if(update("updatesjgz", lxsh)>0)
-					return true;
-			}
-			if("lmgz".equals(lxsh.getXmlx())){
-				if(update("updatelmgz", lxsh)>0)
-					return true;
-			}
-			if("xj".equals(lxsh.getXmlx())){
-				if(update("updatexj", lxsh)>0)
-					return true;
+			if("0".equals(lxsh.getJdbs())){
+				if("sjgz".equals(lxsh.getXmlx())){
+					if(update("updatesjgz", lxsh)>0)
+						return true;
+				}
+				if("lmgz".equals(lxsh.getXmlx())){
+					if(update("updatelmgz", lxsh)>0)
+						return true;
+				}
+				if("xj".equals(lxsh.getXmlx())){
+					if(update("updatexj", lxsh)>0)
+						return true;
+				}
+			}else{
+				return true;
 			}
 		}
 		return false;
@@ -574,17 +580,21 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 			lxsh.setLc(lc+"");
 			if(bzcs!=null)
 			lxsh.setBzys(bzcs+"");
-			if("sjgz".equals(lxsh.getXmlx())){
-				if(update("updatesjgz", lxsh)>0)
-					return true;
-			}
-			if("lmgz".equals(lxsh.getXmlx())){
-				if(update("updatelmgz", lxsh)>0)
-					return true;
-			}
-			if("xj".equals(lxsh.getXmlx())){
-				if(update("updatexj", lxsh)>0)
-					return true;
+			if("0".equals(lxsh.getJdbs())){
+				if("sjgz".equals(lxsh.getXmlx())){
+					if(update("updatesjgz", lxsh)>0)
+						return true;
+				}
+				if("lmgz".equals(lxsh.getXmlx())){
+					if(update("updatelmgz", lxsh)>0)
+						return true;
+				}
+				if("xj".equals(lxsh.getXmlx())){
+					if(update("updatexj", lxsh)>0)
+						return true;
+				}
+			}else{
+				return true;
 			}
 		}
 		return false;
