@@ -444,7 +444,7 @@
 	 	update jhsh_xj set sfqxkg=#{sfqxkg} where xmbm=#{id}
 	 </select>
 	 <select id="updatashSFQX" parameterType="gcglgcgzgj">
-	 	update plan_shuih set sfqxkg=#{sfqxkg} where id=#{id}
+	 	update jhsh_sh set sfqxkg=#{sfqxkg} where xmbm=#{id}
 	 </select>
 	 <select id="updatahslySFQX" parameterType="gcglgcgzgj">
 	 	update plan_hsly set sfqxkg=#{sfqxkg} where id=#{id}

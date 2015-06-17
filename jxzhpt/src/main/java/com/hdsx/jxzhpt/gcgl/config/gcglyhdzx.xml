@@ -138,7 +138,7 @@
 		update JHSH_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglyhdzx">
-		update JHSH_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},jhwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where xmbm=#{jhid}
+		update JHSH_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where xmbm=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglyhdzx" resultType="gcglyhdzx">

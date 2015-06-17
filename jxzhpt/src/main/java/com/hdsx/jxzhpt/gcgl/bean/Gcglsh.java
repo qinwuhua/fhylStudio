@@ -68,8 +68,8 @@ public class Gcglsh implements Serializable {
 	private  byte[] jgtcwjfile;
 	private  byte[] jgyswjfile;
 	private String sbnf;//上报年份
-	private Date jhkgsj;//计划开工时间
-	private Date jhwgsj;//计划完工时间
+	private String jhkgsj;//计划开工时间
+	private String jhwgsj;//计划完工时间
 	private String xmmc;//项目名称
 	private String lmkd;//
 	private String sftqss;
@@ -80,7 +80,7 @@ public class Gcglsh implements Serializable {
 	private String mc;//面层
 	private String sjpfdw;//施工批复单位
 	private String pfwh;//批复文号
-	private Date pfsj;//批复时间
+	private String pfsj;//批复时间
 	private String pfztz;//批复总投资
 	private String jhsybzje;//计划使用部补助金额
 	private String jhsydfzcje;//计划使用地方自筹金额
@@ -92,12 +92,12 @@ public class Gcglsh implements Serializable {
 	private String gkbglj;//工可报告附件路径
 	private String sjsgtmc;//设计施工图名称
 	private String sjsgtlj;//设计施工图文件路径
-	private Date xdsj;//下达时间
-	private Date sjkgsj;//实际开工时间
-	private Date sjwgsj;//实际完工时间
+	private String xdsj;//下达时间
+	private String sjkgsj;//实际开工时间
+	private String sjwgsj;//实际完工时间
 	private String kgzt;//开工状态
 	private String jgzt;//竣工状态
-	private Date yjwgsj;//预计完工时间
+	private String yjwgsj;//预计完工时间
 	private String sfqxkg;
 	private String jsdw;//
 	private String sgdw;//施工单位
@@ -505,18 +505,7 @@ public class Gcglsh implements Serializable {
 	public void setSbnf(String sbnf) {
 		this.sbnf = sbnf;
 	}
-	public Date getJhkgsj() {
-		return jhkgsj;
-	}
-	public void setJhkgsj(Date jhkgsj) {
-		this.jhkgsj = jhkgsj;
-	}
-	public Date getJhwgsj() {
-		return jhwgsj;
-	}
-	public void setJhwgsj(Date jhwgsj) {
-		this.jhwgsj = jhwgsj;
-	}
+	
 	public String getXmmc() {
 		return xmmc;
 	}
@@ -577,12 +566,7 @@ public class Gcglsh implements Serializable {
 	public void setPfwh(String pfwh) {
 		this.pfwh = pfwh;
 	}
-	public Date getPfsj() {
-		return pfsj;
-	}
-	public void setPfsj(Date pfsj) {
-		this.pfsj = pfsj;
-	}
+	
 	public String getPfztz() {
 		return pfztz;
 	}
@@ -649,24 +633,7 @@ public class Gcglsh implements Serializable {
 	public void setSjsgtlj(String sjsgtlj) {
 		this.sjsgtlj = sjsgtlj;
 	}
-	public Date getXdsj() {
-		return xdsj;
-	}
-	public void setXdsj(Date xdsj) {
-		this.xdsj = xdsj;
-	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+	
 	public String getKgzt() {
 		return kgzt;
 	}
@@ -679,12 +646,7 @@ public class Gcglsh implements Serializable {
 	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
-	public Date getYjwgsj() {
-		return yjwgsj;
-	}
-	public void setYjwgsj(Date yjwgsj) {
-		this.yjwgsj = yjwgsj;
-	}
+	
 	public String getSfqxkg() {
 		return sfqxkg;
 	}
@@ -818,6 +780,47 @@ public class Gcglsh implements Serializable {
 	public void setLxjsdj(String lxjsdj) {
 		this.lxjsdj = lxjsdj;
 	}
-	
+	public String getJhkgsj() {
+		return jhkgsj;
+	}
+	public void setJhkgsj(String jhkgsj) {
+		this.jhkgsj = jhkgsj;
+	}
+	public String getJhwgsj() {
+		return jhwgsj;
+	}
+	public void setJhwgsj(String jhwgsj) {
+		this.jhwgsj = jhwgsj;
+	}
+	public String getPfsj() {
+		return pfsj;
+	}
+	public void setPfsj(String pfsj) {
+		this.pfsj = pfsj;
+	}
+	public String getXdsj() {
+		return xdsj;
+	}
+	public void setXdsj(String xdsj) {
+		this.xdsj = xdsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
+	}
+	public String getYjwgsj() {
+		return yjwgsj;
+	}
+	public void setYjwgsj(String yjwgsj) {
+		this.yjwgsj = yjwgsj;
+	}
 	
 }

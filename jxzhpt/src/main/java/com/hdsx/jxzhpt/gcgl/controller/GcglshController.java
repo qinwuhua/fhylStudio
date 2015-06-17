@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -420,9 +421,9 @@ public class GcglshController extends BaseActionSupport{
 		Gcglsh gcglsh=new Gcglsh();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="and gydwdm in ("+gydw+")";
+			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
 		gcglsh.setPage(page);
 		gcglsh.setRows(rows);
@@ -442,9 +443,9 @@ public class GcglshController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglsh.setTiaojian("xjzt");
 		}
-		List<Plan_shuih> list=gcglshServer.queryGcgjList(gcglsh);
+		List<Map<String, Object>> list=gcglshServer.queryGcgjList(gcglsh);
 		int count=gcglshServer.queryGcgjListCount(gcglsh);
-		EasyUIPage<Plan_shuih> e=new EasyUIPage<Plan_shuih>();
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 		try {
@@ -518,9 +519,9 @@ public class GcglshController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+gydw+"%'";
+				tiaojian1="and xzqhdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="and gydwdm in ("+gydw+")";
+				tiaojian1="and xzqhdm in ("+gydw+")";
 			}
 		gcglsh.setGydw(tiaojian1);
 		gcglsh.setKgzt(kgzt);
@@ -531,9 +532,9 @@ public class GcglshController extends BaseActionSupport{
 		gcglsh.setSbnf(xmnf);
 		gcglsh.setTiaojian(bfzt);
 		
-		List<Plan_shuih> list=gcglshServer.selectWqgzjhList2(gcglsh);
+		List<Map<String, Object>> list=gcglshServer.selectWqgzjhList2(gcglsh);
 		int count=gcglshServer.selectWqgzjhListcount1(gcglsh);
-		EasyUIPage<Plan_shuih> e=new EasyUIPage<Plan_shuih>();
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 		
