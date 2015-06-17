@@ -26,6 +26,17 @@ function openLxAdd(id,xmbm,jdbs){
 	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add.jsp',980,400);
 }
 /**
+ * 初步设计添加路线弹窗
+ * @param xmbm 项目编码
+ * @param jdbs 阶段标示
+ */
+function openLxAdd2(id,xmbm,jdbs){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.jdbs=jdbs;
+	YMLib.Var.id=id;
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/cbsj/lx_add.jsp',980,400);
+}
+/**
  * 删除路线
  * @param id
  */
@@ -58,8 +69,20 @@ function querymc(id){
 	}else if(id=="zdzh"){
 		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 	}
-	var lc = Number($('#zdzh').val())-Number($('#qdzh').val());
-	$('#lc').val(lc.toFixed(3));
+	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
+}
+/**
+ * 查询桩号地方名称
+ * @param id 桩号元素ID
+ * @param lxbm 路线编码元素ID
+ */
+function querymc2(id,lxbm){
+	if(id=="qdzh"){
+		cxqdmc($('#'+lxbm).val(),$('#qdzh').val());
+	}else if(id=="zdzh"){
+		cxzdmc($('#'+lxbm).val(),$('#zdzh').val());
+	}
+	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }
 /**
  * 根据路线编码和起点桩号查询起点名称
@@ -358,11 +381,11 @@ function openWindow(id,title,url,width,height){
 		YMLib.Var.xmlx=xmlx;
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
-		if(id=="lmsjedit"){
+		if(id=="lmsjedit" || id=="lmsj"){
 			queryLmsj();
-		}else if(id=="lmgzedit"){
+		}else if(id=="lmgzedit" || id=="lmgz"){
 			queryLmgz();
-		}else if(id=="xjgcedit"){
+		}else if(id=="xjgcedit" || id=="xjgc"){
 			queryXj();
 		}else if(id=="yhdzxadd" || id=="yhdzxedit" || id=="yhdzx"){
 			queryYhdzx();

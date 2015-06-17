@@ -214,5 +214,11 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean insertLxJdbs(Lx lx);
+	/**
+	 * 查询是否存在此路线
+	 * @param lx 路线信息
+	 * @return 是否存在
+	 */
+	public boolean queryHaveLx(Lx lx);
 	
 }

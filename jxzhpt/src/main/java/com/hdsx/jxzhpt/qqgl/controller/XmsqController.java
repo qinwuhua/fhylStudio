@@ -99,22 +99,26 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void insertXmsq() throws Exception{
 		try{
 			boolean b=false;
-			List<Xmsq> list=new ArrayList<Xmsq>();
-			xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh())>0 ? "是" : "否");
-			list.add(xmsq);
-			if(xmsq.getXmlx()==4){
-				b = xmsqServer.insertXmsqYhdzx(list);
-			}else if(xmsq.getXmlx()==5){
-				b = xmsqServer.insertXmsqSh(list);
+			Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
+					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
+					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+			lx.setJdbs("1");
+			if(jhshServer.queryHaveLx(lx)){
+				List<Xmsq> list=new ArrayList<Xmsq>();
+				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh())>0 ? "是" : "否");
+				list.add(xmsq);
+				if(xmsq.getXmlx()==4){
+					b = xmsqServer.insertXmsqYhdzx(list);
+				}else if(xmsq.getXmlx()==5){
+					b = xmsqServer.insertXmsqSh(list);
+				}
+				if(b){
+					xmsqServer.insertLx(lx);
+				}
+				result.put("result", new Boolean(b));
+			}else{
+				result.put("result", "have");
 			}
-			if(b){
-				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
-						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
-				lx.setJdbs("1");
-				boolean s= xmsqServer.insertLx(lx);
-			}
-			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
