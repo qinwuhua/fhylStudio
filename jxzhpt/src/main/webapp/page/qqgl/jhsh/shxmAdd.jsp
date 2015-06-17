@@ -130,6 +130,8 @@
 					if(msg.result){
 						alert("计划添加成功！");
 						closeWindow("shxmadd");
+					}else if(msg.result=="have"){
+						alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在项目！");
 					}
 				},
 				error:function(msg){

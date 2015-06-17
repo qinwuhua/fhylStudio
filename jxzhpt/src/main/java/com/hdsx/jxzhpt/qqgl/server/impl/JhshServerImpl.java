@@ -205,5 +205,9 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean insertLxJdbs(Lx lx) {
 		return insert("insertLxJdbs",lx)>0;
 	}
+	@Override
+	public boolean queryHaveLx(Lx lx) {
+		return new Integer((Integer) queryOne("queryHaveLx", lx)).intValue()==0;
+	}
 
 }

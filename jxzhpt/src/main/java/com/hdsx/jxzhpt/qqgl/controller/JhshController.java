@@ -89,6 +89,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	/**
+	 * 查询计划审核列表 养护和水毁
+	 * @throws Exception
+	 */
 	public void queryJhsh2() throws Exception{
 		List<Jhsh> listData=null;
 		int total=0;
@@ -209,6 +213,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
+	/**
+	 * 根据项目编码查询计划审核信息
+	 * @throws Exception
+	 */
 	public void queryJhshxxByXmbm2() throws Exception{
 		try{
 			Jhsh obj=null;
@@ -322,6 +330,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
+	/**
+	 * 导出资金下达Excel
+	 */
 	public void exportZjxd(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[12];
@@ -429,8 +440,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void insertLx() throws Exception{
 		try {
 			lx.setSffirst("0");
-			boolean b = jhshServer.insertLx(lx);
-			result.put("result", new Boolean(b).toString());
+			if(jhshServer.queryHaveLx(lx)){
+				boolean b = jhshServer.insertLx(lx);
+				result.put("result", new Boolean(b).toString());
+			}else{
+				result.put("result", "have");
+			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -452,6 +467,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	/**
+	 * 根据项目编码等查询路线列表
+	 * @throws Exception
+	 */
 	public void selectlxList() throws Exception{
 		try {
 			lx.setSffirst("0");
@@ -460,6 +479,12 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			e.printStackTrace();
 			throw e;
 		}
+	}
+	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx(){
+		
 	}
 	/**
 	 * 处理行政区划编码为条件语句
