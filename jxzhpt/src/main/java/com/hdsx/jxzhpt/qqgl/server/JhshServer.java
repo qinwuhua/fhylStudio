@@ -220,5 +220,11 @@ public interface JhshServer {
 	 * @return 是否存在
 	 */
 	public boolean queryHaveLx(Lx lx);
+	/**
+	 * 查询历史信息
+	 * @param xmbm 项目编码
+	 * @return 历史信息结果
+	 */
+	public List<Lx> queryLsxx(Jhsh jhsh);
 	
 }

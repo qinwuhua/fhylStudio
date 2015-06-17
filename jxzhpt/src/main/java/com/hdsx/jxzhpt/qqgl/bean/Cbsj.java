@@ -67,6 +67,13 @@ public class Cbsj {
 	//路线编码
 	private String ylxbh;//原路线编码
 	private String jsfa;//建设方案
+	private String lsjl;
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public String getJsfa() {
 		return jsfa;
 	}

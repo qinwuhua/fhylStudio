@@ -103,6 +103,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
 			lx.setJdbs("1");
+			lx.setJsjsdj(xmsq.getJsdj());
 			if(jhshServer.queryHaveLx(lx)){
 				List<Xmsq> list=new ArrayList<Xmsq>();
 				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh())>0 ? "是" : "否");

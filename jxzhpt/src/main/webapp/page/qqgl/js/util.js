@@ -61,7 +61,16 @@ function deleteLx(id,xmlx){
 }
 //--------------------------------------------------公用方法---------------------------------------
 /**
+ * 历史记录弹窗
+ * @param xmbm 项目编码
+ */
+function openLsjl(xmbm){
+	YMLib.Var.xmbm=xmbm;
+	openWindow('lsjl','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp',980,300);
+}
+/**
  * 查询桩号地方名称
+ * @param id 桩号元素ID
  */
 function querymc(id){
 	if(id=="qdzh"){

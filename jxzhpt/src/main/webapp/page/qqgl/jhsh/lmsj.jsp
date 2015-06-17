@@ -46,6 +46,15 @@
 						return result;
 					}
 				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
+					}
+				},
 				{field:'sbzt',title:'计划下达',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";

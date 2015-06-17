@@ -209,5 +209,23 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean queryHaveLx(Lx lx) {
 		return new Integer((Integer) queryOne("queryHaveLx", lx)).intValue()==0;
 	}
+	@Override
+	public List<Lx> queryLsxx(Jhsh jhsh) {
+		Lx lx=new Lx();
+		lx.setXmid(jhsh.getXmbm());
+		//返回结果
+		List<Lx> result =new ArrayList<Lx>();
+		//查询此计划所有的路线信息
+		List<Lx> lxList=queryList("queryLxMaxJdbs",lx);
+		for (Lx item : lxList) {
+			System.out.println("项目编码："+item.getXmid()+"     路线编码："+item.getLxbm()+"    起点桩号："+item.getQdzh()+"     止点桩号："+item.getZdzh());
+			 List<Lx> ylx = queryList("queryYLx",item);
+			 params.put("lx", item);
+			 params.put("ylx", ylx);
+			 List<Lx> queryList = queryList("queryLsjlList",params);
+			 result.addAll(queryList);
+		}
+		return result;
+	}
 
 }

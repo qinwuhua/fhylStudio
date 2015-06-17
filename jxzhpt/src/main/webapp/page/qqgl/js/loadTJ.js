@@ -107,3 +107,7 @@ function checkSZ(str){
     	return;
     }
 }
+function openLsjl(xmbm){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.UI.createWindow('lsjl','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp','lsjl',980,380);
+}

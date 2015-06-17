@@ -111,6 +111,7 @@
 		<action name="insertLx" class="jhshController" method="insertLx"></action>
 		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
+		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
 		
 	<!-- rh -->
 	</package>
