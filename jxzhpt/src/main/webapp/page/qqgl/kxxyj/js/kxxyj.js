@@ -9,6 +9,78 @@ function edit(index){
 	obj=data;
 	YMLib.UI.createWindow('lxxx','编辑可行性研究信息','sjgzsb_edit.jsp','lxxx',900,400);
 }
+function shenh(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shsjgzkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh1(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shlmgzkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh2(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shxjkxx.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 //
 function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -499,10 +571,9 @@ function showAllsjsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
@@ -606,10 +677,9 @@ function showAlllmsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
@@ -713,10 +783,9 @@ function showAllxjsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 

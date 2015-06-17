@@ -35,6 +35,174 @@ function del(index){
 	});
   }
 }
+function shangb(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sbsjgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shangb1(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sblmgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shangb2(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sbxjSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh1(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh2(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shxjSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 //
 function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -198,16 +366,15 @@ function showAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -366,10 +533,9 @@ function showAllsjsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
@@ -487,16 +653,15 @@ function showAlllmgz(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del1('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb1('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -618,10 +783,9 @@ function showAlllmsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
@@ -738,16 +902,15 @@ function showAllxj(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del2('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb2('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -869,10 +1032,9 @@ function showAllxjsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
