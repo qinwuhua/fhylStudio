@@ -1000,9 +1000,9 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t1.gydwdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%"+gydw+"%'";
 		}else{
-			tiaojian1="and t1.gydwdm in ("+gydw+")";
+			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
 		gcglabgc.setGydw(tiaojian1);
 		gcglabgc.setKgzt(kgzt);
@@ -1020,9 +1020,9 @@ public class GcglabgcController extends BaseActionSupport{
 		eldata.setFileName("养护大中修车购税拨付信息导入表");//设置文件名 
 		eldata.setEl(list);//将实体list放入类中
 		List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
-		et.add(new Excel_tilte("计划编码",1,1,0,0));
+		et.add(new Excel_tilte("项目编码",1,1,0,0));
 		et.add(new Excel_tilte("项目名称",1,1,1,1));
-		et.add(new Excel_tilte("计划年份",1,1,2,2));
+		et.add(new Excel_tilte("项目年份",1,1,2,2));
 		et.add(new Excel_tilte("计划开工时间",1,1,3,3));
 		et.add(new Excel_tilte("计划完工时间",1,1,4,4));
 		et.add(new Excel_tilte("批复总投资(万元) ",1,1,5,5));

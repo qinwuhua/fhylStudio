@@ -23,7 +23,7 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadUnit1("gydw",$.cookie("unit"));
+			loadDist1("xzqh",$.cookie("dist"));
 			//loadDist1("gydw",$.cookie("dist"));
 			loadBmbm2("kgzt","开工状态");
 			if(getParam("t")=='1'){
@@ -74,8 +74,8 @@ a:active {
         				</legend>
         				<div>
         					<p style="margin: 1% 0% 1% 2%;">
-        						<span>管养单位：</span>
-        						<input id="gydw" style="width: 200px;">
+        						<span>行政区划：</span>
+        						<input id="xzqh" style="width: 200px;">
         						
         						<span>开工状态：</span>
         						<input id="kgzt" style="width: 100px;">

@@ -173,6 +173,7 @@ function showAll(){
 			$('#table_lx'+index).datagrid({
 				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 				 queryParams: {
+					 	jdbs:2,
 				    	xmbm:row.XMBM
 					},
 				columns:[[

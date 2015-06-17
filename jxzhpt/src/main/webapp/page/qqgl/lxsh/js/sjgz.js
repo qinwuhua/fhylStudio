@@ -396,6 +396,7 @@ function showAllsjsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -529,6 +530,7 @@ function showAlllmgz(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,	
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -646,6 +648,7 @@ function showAlllmsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -778,6 +781,7 @@ function showAllxj(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    				jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -895,6 +899,7 @@ function showAllxjsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    				jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[

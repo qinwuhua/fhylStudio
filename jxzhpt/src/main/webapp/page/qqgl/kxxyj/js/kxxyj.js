@@ -387,7 +387,7 @@ function showxjAll(){
 //	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjxjlx('+index+')">添加路线</a>   ';
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
 	        }},

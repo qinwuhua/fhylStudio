@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.server;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
@@ -60,11 +61,11 @@ public interface GcglyhdzxServer {
 
 	Gcglyhdzx queryCGSByYf(Gcglyhdzx gcglyhdzx);
 
-	List<Plan_yhdzx> queryGcgjList(Gcglyhdzx gcglyhdzx);
+	List<Map<String, Object>> queryGcgjList(Gcglyhdzx gcglyhdzx);
 
 	int queryGcgjListCount(Gcglyhdzx gcglyhdzx);
 
-	List<Plan_yhdzx> selectWqgzjhList2(Gcglyhdzx gcglyhdzx);
+	List<Map<String, Object>> selectWqgzjhList2(Gcglyhdzx gcglyhdzx);
 
 	int selectWqgzjhListcount1(Gcglyhdzx gcglyhdzx);
 
