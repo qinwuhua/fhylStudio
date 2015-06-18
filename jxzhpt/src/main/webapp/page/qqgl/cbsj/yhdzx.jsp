@@ -42,6 +42,7 @@
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
