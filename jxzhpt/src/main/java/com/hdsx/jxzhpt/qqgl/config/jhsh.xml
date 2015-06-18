@@ -38,11 +38,14 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+					and l.lsjl=#{jhsh.lsjl}
 				</if>
 				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
+				</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
 				</if>
 				<if test="jhsh.xdzt>=0">
 					and j.xdzt=${jhsh.xdzt}
@@ -65,11 +68,14 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
-				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
+				<if test="jhsh.lsjl!=null and jhsh.lsjl!=''">
+					and l.lsjl=#{jhsh.lsjl}
 				</if>
 				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
+					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
+				</if>
+				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
 				</if>
 				<if test="jhsh.xdzt>=0">
 					and j.xdzt=${jhsh.xdzt}
@@ -92,11 +98,11 @@
 				<if test="jhsh.ghlxbh!=null and jhsh.ghlxbh!=''">
 					and l.ghlxbh like '%'||#{jhsh.ghlxbh}||'%'
 				</if>
+				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
+					and l.tsdq like '%'||#{jhsh.tsdq}||'%'
+				</if>
 				<if test="jhsh.xmmc!=null and jhsh.xmmc!=''">
 					and j.xmmc like '%'||#{jhsh.xmmc}||'%'
-				</if>
-				<if test="jhsh.tsdq!=null and jhsh.tsdq!=''">
-					and l.xzqhdm in (select t.xzqhdm from xtgl_xzqhtsdq t where t.parent =#{jhsh.tsdq})
 				</if>
 				<if test="jhsh.xdzt>=0">
 					and j.xdzt=${jhsh.xdzt}
@@ -119,11 +125,14 @@
 				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 					and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
 				</if>
-				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+				<if test="jhsh2.lsjl!=null and jhsh2.lsjl!=''">
+					and l.lsjl=#{jhsh2.lsjl}
 				</if>
 				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
-					and l.tsdq = #{jhsh2.tsdq}
+					and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
+				</if>
+				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
 				</if>
 				<if test="jhsh2.xdzt>=0">
 					and j.xdzt=${jhsh2.xdzt}
@@ -146,11 +155,14 @@
 				<if test="jhsh2.ghlxbh!=null and jhsh2.ghlxbh!=''">
 					and l.ghlxbh like '%'||#{jhsh2.ghlxbh}||'%'
 				</if>
-				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
-					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
+				<if test="jhsh2.lsjl!=null and jhsh2.lsjl!=''">
+					and l.lsjl=#{jhsh2.lsjl}
 				</if>
 				<if test="jhsh2.tsdq!=null and jhsh2.tsdq!=''">
-					and l.tsdq = #{jhsh2.tsdq}
+					and l.tsdq like '%'||#{jhsh2.tsdq}||'%'
+				</if>
+				<if test="jhsh2.xmmc!=null and jhsh2.xmmc!=''">
+					and j.xmmc like '%'||#{jhsh2.xmmc}||'%'
 				</if>
 				<if test="jhsh2.xdzt>=0">
 					and j.xdzt=${jhsh2.xdzt}

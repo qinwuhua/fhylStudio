@@ -31,6 +31,7 @@ public class Jhsh {
 	//用到立项审核表中的数据
 	private String ghlxbh;//路线编码
 	private String xzqhdm;//行政区划代码
+	private String lsjl;//历史记录
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
 	private String tsdq;//特殊地区
@@ -336,5 +337,11 @@ public class Jhsh {
 	}
 	public void setJsdj(String jsdj) {
 		this.jsdj = jsdj;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
 	}
 }

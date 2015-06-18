@@ -31,7 +31,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1,
+					'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -130,11 +131,11 @@ text-decoration:none;
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" /></td>
         						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-        						<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+        						<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
-									<option value="否">否</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
         					</tr>
         				<tr height="32">
