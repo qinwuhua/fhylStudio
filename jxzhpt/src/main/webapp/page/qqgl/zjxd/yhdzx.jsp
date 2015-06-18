@@ -30,7 +30,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'xdzt':1};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
+					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -42,6 +43,15 @@
 						var result='<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xdzt',title:'资金下发',width:100,align:'center',
@@ -97,6 +107,12 @@
        					<p style="margin:8px 0px 8px 20px;">
        						<span>原路线编号：</span>
        						<input name="ylxbh" id="ylxbh" style="width:100px;" type="text"/>
+       						<span>&nbsp;补助历史：</span>
+								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+									<option value="" selected="selected">全部</option>
+									<option value="否">否</option>
+									<option value="是">是</option>
+								</select>
 							<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
        					</p>
        				</div>
