@@ -66,7 +66,7 @@ function deleteLx(id,xmlx){
  */
 function openLsjl(xmbm){
 	YMLib.Var.xmbm=xmbm;
-	openWindow('lsjl','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp',980,300);
+	openWindow('lsjlwindow','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp',980,300);
 }
 /**
  * 查询桩号地方名称
