@@ -67,7 +67,6 @@
 		<if test="lsjl!='' and lsjl!= null ">
 			and t1.lsjl like '%'||#{lsjl}||'%'
 		</if>
-		order by t.shzt
 	</select>
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (

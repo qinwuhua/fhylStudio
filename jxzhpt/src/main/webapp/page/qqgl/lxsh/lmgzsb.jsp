@@ -127,6 +127,10 @@
 			}
 		}
 		function delsjgz(){
+			if($.cookie("unit2").length==7 ){
+				alert("省级用户请移到审核模块进行操作");
+				return;
+			}
 			var rows=$('#datagrid').datagrid('getSelections');
 			if(rows.length==0) {
 				alert("请选择要删除项目！");

@@ -8,9 +8,9 @@ function jgys(index){
 function sfqxkg(index){
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var sfqxkg='是';
-	if(data1.sfqxkg=='是')
+	if(data1.SFQXKG=='是')
 		sfqxkg='否';
-	if(data1.sfqxkg=='否')
+	if(data1.SFQXKG=='否')
 		sfqxkg='是';
 	var data="flag="+"sh"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
 	$.ajax({
