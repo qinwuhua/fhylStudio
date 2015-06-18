@@ -44,7 +44,14 @@ public class Kxxyj implements Serializable {
 	private String gydwdm;
 	private String lc;
 	private String jdbs;
+	private String lsjl;
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public String getJdbs() {
 		return jdbs;
 	}

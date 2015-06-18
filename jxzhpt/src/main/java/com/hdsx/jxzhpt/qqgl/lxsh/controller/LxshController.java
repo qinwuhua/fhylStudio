@@ -93,7 +93,14 @@ public class LxshController extends BaseActionSupport{
 	private String xmbm;
 	private String ghlxbh;
 	private String jdbs;
+	private String lsjl;
 	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public String getJdbs() {
 		return jdbs;
 	}
@@ -344,6 +351,7 @@ public class LxshController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 		List<Lxsh> list=lxshServer.selectSjgzList(lxsh);
@@ -554,6 +562,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 	List<Lxsh> list=lxshServer.selectSjgzshList(lxsh);
@@ -590,6 +599,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		List<Lxsh> list=lxshServer.selectLmgzshList(lxsh);
@@ -711,6 +721,7 @@ public class LxshController extends BaseActionSupport{
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		List<Lxsh> list=lxshServer.selectLmgzList(lxsh);

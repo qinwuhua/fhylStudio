@@ -154,7 +154,7 @@ function showsjgzAll(){
 	}
 	var jsdj=$("#jsdj").combobox('getValue');
 	var gldj=$("#gldj").combobox('getValue');
-	
+	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectSjgzkxList.do',
 	    striped:true,
@@ -166,6 +166,7 @@ function showsjgzAll(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -297,7 +298,7 @@ function showlmgzAll(){
 	}
 	var jsdj=$("#jsdj").combobox('getValue');
 	var gldj=$("#gldj").combobox('getValue');
-	
+	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
 	    striped:true,
@@ -309,6 +310,7 @@ function showlmgzAll(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -561,7 +563,7 @@ function showAllsjsh(){
 	}
 	var jsdj=$("#jsdj").combobox('getValue');
 	var gldj=$("#gldj").combobox('getValue');
-	
+	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectSjgzkxList.do',
 	    striped:true,
@@ -573,6 +575,7 @@ function showAllsjsh(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -676,7 +679,7 @@ function showAlllmsh(){
 	}
 	var jsdj=$("#jsdj").combobox('getValue');
 	var gldj=$("#gldj").combobox('getValue');
-	
+	var lsjl=$("#lsjl").combobox('getValue');
 	$('#datagrid').datagrid({    
 	    url:'/jxzhpt/qqgl/selectLmgzkxList.do',
 	    striped:true,
@@ -688,6 +691,7 @@ function showAlllmsh(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,

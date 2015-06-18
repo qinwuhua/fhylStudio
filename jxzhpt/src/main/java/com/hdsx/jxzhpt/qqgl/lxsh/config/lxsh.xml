@@ -54,7 +54,7 @@
 	</select>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,t.lsjl  from LXSH_SJGZ t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_SJGZ t where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -79,6 +79,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
@@ -109,6 +112,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
 		</if>
 	</select>
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
@@ -217,6 +223,9 @@
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by shzt,xmbm
 	</select>
@@ -247,6 +256,9 @@
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
+		</if>
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
@@ -275,6 +287,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
 		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by shzt,xmbm
@@ -305,6 +320,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
 		</if>
 	</select>
 	
@@ -437,6 +455,9 @@
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
 		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
+		</if>
 		) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows}
 		order by sbzt1,xmbm
 	</select>
@@ -466,6 +487,9 @@
 		</if>
 		<if test="gldj!='' and gldj!= null ">
 			and ghlxbh like #{gldj}||'%'
+		</if>
+		<if test="lsjl!='' and lsjl!= null ">
+			and lsjl like '%'||#{lsjl}||'%'
 		</if>
 	</select>
 	

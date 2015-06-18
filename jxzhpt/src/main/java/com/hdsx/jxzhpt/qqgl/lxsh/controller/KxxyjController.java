@@ -97,8 +97,14 @@ public class KxxyjController extends BaseActionSupport{
 	private String xmbm;
 	private File uploadGkpf;
 	private String uploadGkpfFileName;
+	private String lsjl;
 	
-	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public File getUploadGkpf() {
 		return uploadGkpf;
 	}
@@ -239,6 +245,7 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			System.out.println(gldj);
@@ -277,6 +284,7 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
