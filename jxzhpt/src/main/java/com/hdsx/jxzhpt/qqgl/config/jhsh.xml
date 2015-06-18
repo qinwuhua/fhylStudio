@@ -417,13 +417,13 @@
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs)
 		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1) from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
 	</insert>
+	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="int">
 		select count(*) from LXSH_LX where lxbm like '%'||#{lxbm}||'%' and 
 		((to_number(zdzh) > ${qdzh} and ${qdzh} > to_number(qdzh)) or 
 		(to_number(zdzh) > ${zdzh} and ${zdzh} > to_number(qdzh)))
 		and xmid like substr(#{xmid},0,4)||'%'
 	</select>
-	<!-- 历史记录查询部分 -->
 	<select id="queryLxMaxJdbs" parameterType="lx" resultType="lx">
 		select * from lxsh_lx where xmid=#{xmid} and 
 		jdbs= (select max(jdbs) from lxsh_lx x where x.xmid = #{xmid})

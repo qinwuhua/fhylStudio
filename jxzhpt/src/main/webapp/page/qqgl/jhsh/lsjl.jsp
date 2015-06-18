@@ -39,7 +39,7 @@
 					},
 					{field:'xmmc',title:'项目名称',width:200,fixed:true,align:'center',
 						formatter:function(value,row,index){
-							var a='<a href="javascript:onclickXx('+"'"+row.id+"','"+row.jhid+"'"+')" style="color:#0066CB;font-size:12px;">';
+							var a='<a href="javascript:void(0)" style="color:#0066CB;font-size:12px;">';
 							a+=value+'</a>';
 							return a;
 						}
@@ -63,20 +63,6 @@
 	</script>
 </head>
 <body>
-	<table id="grid" width="99%" border="0" class="easyui-datagrid" data-options="fitColumns:true" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0">
-		<thead>   
-        	<tr>
-        		<th data-options="field:'scbz',width:150,fixed:true,align:'center'">项目名称</th>
-				<th data-options="field:'lxbm',width:100,align:'center'">现路线编码</th>
-				<th data-options="field:'yjsjd',width:100,align:'center'">原技术等级</th>
-				<th data-options="field:'gjjsdj',width:100,align:'center'">现技术等级</th>
-				<th data-options="field:'xqdzh',width:100,align:'center'">现起点桩号</th>
-				<th data-options="field:'xzdzh',width:100,align:'center'">现指点桩号</th>
-				<th data-options="field:'ylxbm',width:100,align:'center'">原路线编码</th>
-				<th data-options="field:'yqdzh',width:100,align:'center'">原起点桩号</th>
-				<th data-options="field:'yzdzh',width:100,align:'center'">原止点桩号</th>
-        	</tr>
-    	</thead>
-	</table>
+	<table id="grid" width="99%" border="0" style="margin-top:1px;margin-left:1px;" cellspacing="0" cellpadding="0"></table>
 </body>
 </html>
