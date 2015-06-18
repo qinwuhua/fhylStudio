@@ -491,6 +491,16 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx2(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx2(lx), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
 	 * 处理行政区划编码为条件语句
 	 * @param bh
 	 * @param name

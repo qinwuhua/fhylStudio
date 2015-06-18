@@ -450,86 +450,91 @@
 	</select>
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
 		<![CDATA[
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,0 yqdzh, 0 yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=${lx.zdzh} and l.zdzh>=${lx.qdzh} and j.xmbm!=#{lx.xmid}
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=${lx.zdzh} and l.zdzh>=${lx.qdzh} 
 		]]>
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
 			<![CDATA[
 			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
 			lx.lxbm as ylxbm,
-			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-			case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
-			from lxsh_lx lx,jhsh_yhdzx jh where jh.xmid=lx.xmbm and lx.lxbm like '%'||#{item.ylxbm}||'%'
+			from lxsh_lx lx,jhsh_yhdzx jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}
 	        ]]>
 		</foreach>
 		<![CDATA[
 		union all
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,0 yqdzh, 0 yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh} and j.xmbm!=#{lx.xmid}
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sh j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh}
 		]]>
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
 			<![CDATA[
 			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
 			lx.lxbm as ylxbm,
-			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-			case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
-			from lxsh_lx lx,jhsh_sh jh where jh.xmid=lx.xmbm and lx.lxbm like '%'||#{item.ylxbm}||'%'
+			from lxsh_lx lx,jhsh_sh jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}
 	        ]]>
 		</foreach>
 		union all
 		<![CDATA[
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,0 yqdzh, 0 yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh} and j.xmbm!=#{lx.xmid}
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_lmgz j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh}
 		]]>
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
 			<![CDATA[
 			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
 			lx.lxbm as ylxbm,
-			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-			case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
-			from lxsh_lx lx,jhsh_lmgz jh where jh.xmid=lx.xmbm and lx.lxbm like '%'||#{item.ylxbm}||'%'
+			from lxsh_lx lx,jhsh_lmgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}
 	        ]]>
 		</foreach>
 		union all
 		<![CDATA[
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,0 yqdzh, 0 yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh} and j.xmbm!=#{lx.xmid}
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_sjgz j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh}
 		]]>
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
 			<![CDATA[
 			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
 			lx.lxbm as ylxbm,
-			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-			case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
-			from lxsh_lx lx,jhsh_sjgz jh where jh.xmid=lx.xmbm and lx.lxbm like '%'||#{item.ylxbm}||'%'
+			from lxsh_lx lx,jhsh_sjgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}
 	        ]]>
 		</foreach>
 		union all
 		<![CDATA[
-		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,0 yqdzh, 0 yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh} and j.xmbm!=#{lx.xmid}
+		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_xj j on l.xmid=j.xmbm 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=#{lx.zdzh} and l.zdzh>=#{lx.qdzh}
 		]]>
+		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
 			union all
 			<![CDATA[
 			select lx.xmid,jh.xmmc,#{item.lxbm} as lxbm,lx.lxmc as lxmc,#{item.qdzh} as qdzh,#{item.zdzh} as zdzh,
 			lx.lxbm as ylxbm,
-			case when to_number(lx.qdzh)<=${item.yqdzh} then ${item.yqdzh} else to_number(lx.qdzh) end yqdzh ,
-			case when to_number(lx.zdzh)>=${item.yzdzh} then ${item.yzdzh} else to_number(lx.zdzh) end  yzdzh,
+			case when to_number(lx.qdzh)<=${item.yqdzh} then to_char(${item.yqdzh}) else to_char(lx.qdzh) end yqdzh ,
+			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
-			from lxsh_lx lx,jhsh_xj jh where jh.xmid=lx.xmbm and lx.lxbm like '%'||#{item.ylxbm}||'%'
+			from lxsh_lx lx,jhsh_xj jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
 	        and lx.qdzh<${item.yzdzh} and lx.zdzh>${item.yqdzh}
 	        ]]>
 		</foreach>

@@ -215,19 +215,30 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		lx.setXmid(jhsh.getXmbm());
 		//返回结果
 		List<Lx> result =new ArrayList<Lx>();
-		System.out.println("路线编码："+lx.getXmid());
 		//查询此计划所有的路线信息
 		List<Lx> lxList=queryList("queryLxMaxJdbs",lx);
-		System.out.println("数量："+lxList.size());
 		for (Lx item : lxList) {
-			System.out.println("项目编码："+item.getXmid()+"     路线编码："+item.getLxbm()+"    起点桩号："+item.getQdzh()+"     止点桩号："+item.getZdzh());
-			List<Lx> ylx = queryList("queryYLx",item);
-			params.put("lx", item);
-			params.put("ylx", ylx);
-			List<Lx> queryList = queryList("queryLsjlList",params);
-			result.addAll(queryList);
+			queryLsjlList(result, item);
 		}
 		return result;
 	}
-
+	@Override
+	public List<Lx> queryLsxx2(Lx lx) {
+		List<Lx> result=new ArrayList<Lx>();
+		queryLsjlList(result, lx);
+		return result;
+	}
+	/**
+	 * 根据路线和原路线查询历史记录
+	 * @param result 返回结果
+	 * @param item 路线
+	 */
+	private void queryLsjlList(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		List<Lx> queryList = queryList("queryLsjlList",params);
+		result.addAll(queryList);
+	}
 }

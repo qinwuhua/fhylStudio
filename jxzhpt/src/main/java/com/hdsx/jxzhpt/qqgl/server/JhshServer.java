@@ -226,5 +226,6 @@ public interface JhshServer {
 	 * @return 历史信息结果
 	 */
 	public List<Lx> queryLsxx(Jhsh jhsh);
+	public List<Lx> queryLsxx2(Lx lx);
 	
 }

@@ -163,7 +163,7 @@ $(function() {
 		title:'补助历史查询',
 		imgSrc:'../../images/zjqf.png',
 		renderTo:'left_menu1',
-		href:'./jhkgl/sjlsxx.jsp'
+		href:'../qqgl/jhsh/lsjlSearch.jsp'
 	});
 //	createMenux('LeftMenu',{
 //		id:'menu_0101030109',
