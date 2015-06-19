@@ -8,7 +8,7 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+	YMLib.UI.createWindow('gclmsj_xx','升级改造项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -17,13 +17,13 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,450);
+	parent.YMLib.UI.createWindow('wqxx','升级改造月报详情','gcgzsjybxx.jsp','wqxx',900,450);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','工程改造路面升级月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','升级改造月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 

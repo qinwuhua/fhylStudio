@@ -13,6 +13,10 @@ function edit(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,380);
 }
 function del(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
@@ -215,6 +219,10 @@ function edit1(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,380);
 }
 function del1(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
@@ -249,6 +257,10 @@ function edit2(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,380);
 }
 function del2(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
