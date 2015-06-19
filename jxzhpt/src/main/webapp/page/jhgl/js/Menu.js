@@ -161,7 +161,7 @@ $(function() {
 	createMenux('LeftMenu',{
 		id:'menu_0101030111',
 		title:'补助历史查询',
-		imgSrc:'../../images/zjqf.png',
+		imgSrc:'../../images/bzlscx.png',
 		renderTo:'left_menu1',
 		href:'../qqgl/jhsh/lsjlSearch.jsp'
 	});
