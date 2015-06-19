@@ -113,6 +113,7 @@
 		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
+		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		
 	<!-- rh -->
 	</package>

@@ -25,12 +25,12 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
 			YMLib.Var.jdbs=2;
-			queryLmsj();
+			queryLmgz();
 		});
-		function queryLmsj(){
+		function queryLmgz(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
-			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
+			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),
 					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
@@ -42,9 +42,9 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						return result;
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+				return result;
 					}
 				},
 				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
@@ -54,13 +54,6 @@
 						}else{
 							return value;
 						}
-					}
-				},
-				{field:'xdzt',title:'资金下达',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjzjxd'"+','+"'升级改造工程项目 — 资金下发'"+','+
-							"'/jxzhpt/page/qqgl/zjxd/lmsj_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
-						return result;
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -82,7 +75,7 @@
 			gridBind(grid);
 		}
 		function exportZjxd(){
-			var param='jhsh.xmlx=1&jhsh.xdzt=1&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
+			var param='jhsh.xmlx=2&jhsh.xdzt=1&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#txtlxbm').val()+
 			'&jhsh.xmmc='+$('#txtxmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue");
 			window.location.href="/jxzhpt/qqgl/exportZjxd.do?"+param;
 		}
@@ -93,7 +86,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划资金下达>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;路面改造工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -120,9 +113,9 @@
 									<option value="否">否</option>
 									<option value="是">是</option>
 								</select>
-								<img onclick="queryLmsj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
-								<img onclick="importJhshZjzj(4)" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+								<img onclick="importJhshZjzj(5)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

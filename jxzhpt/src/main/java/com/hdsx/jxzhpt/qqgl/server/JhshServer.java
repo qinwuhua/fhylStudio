@@ -5,6 +5,7 @@ import java.util.List;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface JhshServer {
@@ -227,5 +228,23 @@ public interface JhshServer {
 	 */
 	public List<Lx> queryLsxx(Jhsh jhsh);
 	public List<Lx> queryLsxx2(Lx lx);
+	/**
+	 * 根据项目编码查询升级项目的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询改造路面的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryLmgzKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询新建项目的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh);
 	
 }

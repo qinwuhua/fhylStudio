@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 @Service
@@ -240,5 +241,17 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 		params.put("ylx", ylx);
 		List<Lx> queryList = queryList("queryLsjlList",params);
 		result.addAll(queryList);
+	}
+	@Override
+	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmsjKxxyjByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryLmgzKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmgzKxxyjByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryXjKxxyjByXmbm",jhsh);
 	}
 }

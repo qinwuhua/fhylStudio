@@ -56,13 +56,6 @@
 						}
 					}
 				},
-				{field:'xdzt',title:'资金下达',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmsjzjxd'"+','+"'升级改造工程项目 — 资金下发'"+','+
-							"'/jxzhpt/page/qqgl/zjxd/lmsj_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
-						return result;
-					}
-				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},
