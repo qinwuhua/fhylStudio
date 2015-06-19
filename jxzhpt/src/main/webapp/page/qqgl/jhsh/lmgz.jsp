@@ -31,7 +31,7 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1,
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':-1,
 					'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
