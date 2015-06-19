@@ -40,7 +40,8 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}

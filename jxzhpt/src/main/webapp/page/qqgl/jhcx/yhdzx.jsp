@@ -55,14 +55,6 @@
 						}
 					}
 				},
-				{field:'xdzt',title:'资金下发',width:100,align:'center',
-					formatter:function(value,row,index){
-						xmlx=4;
-						var result = '<a href="javascript:openWindow('+"'yhdzxzjxd'"+','+"'养护大中修 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/yhdzx_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
-						return result;
-					}
-				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
 				{field:'xmmc',title:'项目名称',width:250,align:'center'},
 				{field:'xzqh',title:'行政区划',width:100,align:'center'},

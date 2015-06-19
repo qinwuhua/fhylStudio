@@ -366,6 +366,15 @@
 	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
 		select j.*,l.ylxbh from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm where j.xmbm=#{xmbm}
 	</select>
+	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
+		select * from kxxyj_sjgz where xmbm =#{xmbm}
+	</select>
+	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
+		select * from kxxyj_lmgz where xmbm =#{xmbm}
+	</select>
+	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
+		select * from kxxyj_xj where xmbm =#{xmbm}
+	</select>
 	
 	<!-- 路线操作部分 -->
 	<update id="updateLx" parameterType="lx">

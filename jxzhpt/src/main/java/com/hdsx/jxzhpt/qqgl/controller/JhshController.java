@@ -31,6 +31,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -500,6 +501,22 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			JsonUtils.write(jhshServer.queryLsxx2(lx), getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	public void queryKxxyjByXmbm() throws Exception{
+		try {
+			Kxxyj kxxyj=new Kxxyj();
+			if(jhsh.getXmlx()==1){
+				kxxyj = jhshServer.queryLmsjKxxyjByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				kxxyj = jhshServer.queryLmgzKxxyjByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				kxxyj = jhshServer.queryXjKxxyjByXmbm(jhsh);
+			}
+			JsonUtils.write(kxxyj, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		}
 	}
 	/**

@@ -391,31 +391,31 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030504',
-		title:'工程改造路面升级项目',
+		title:'路面改造工程项目',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/gclmsj.jsp'
+		href:'../qqgl/jhcx/lmgz.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030505',
-		title:'工程改造路面改建项目',
+		title:'升级改造工程项目',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/gclmgj.jsp'
+		href:'../qqgl/jhcx/lmsj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030506',
 		title:'养护大中修项目',
 		imgSrc:'../../images/yh_s.png',
 		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/yhdzx.jsp'
+		href:'../qqgl/jhcx/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030507',
 		title:'水毁项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu5',
-		href:'../sjcx/jhkgl/shxm.jsp'
+		href:'../qqgl/jhcx/shxm.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030508',
