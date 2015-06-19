@@ -31,7 +31,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),
+					'jhsh.xdzt':$('#xdzt').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -44,6 +45,11 @@
 						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
+					}
+				},
+				{field:'xdzt',title:'下达状态',width:150,align:'center',
+					formatter: function(value,row,index){
+						return value=="0" ? "未下达" : "已下达";
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -95,6 +101,12 @@
         						<input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" />
         						<span>&nbsp;路线编码：</span>
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
+        						<span>&nbsp;下达状态：</span>
+        						<select id="xdzt" class="easyui-combobox">
+        							<option value="-1">全部</option>
+        							<option value="0">未下达</option>
+        							<option value="1">已下达</option>
+        						</select>
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

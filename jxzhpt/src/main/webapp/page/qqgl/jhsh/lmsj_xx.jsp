@@ -29,7 +29,7 @@
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/queryKxxyjByXmbm.do',
-				data:'xmlx='+3+'&xmbm='+parent.YMLib.Var.xmbm,
+				data:'xmlx='+1+'&xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#kxxyj').form("load",data);

@@ -41,7 +41,7 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}

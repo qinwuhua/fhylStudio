@@ -32,7 +32,7 @@
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
+					'jhsh.xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -54,6 +54,11 @@
 						}else{
 							return value;
 						}
+					}
+				},
+				{field:'xdzt',title:'下达状态',width:150,align:'center',
+					formatter: function(value,row,index){
+						return value=="0" ? "未下达" : "已下达";
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -107,6 +112,12 @@
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
+        						<span>&nbsp;下达状态：</span>
+        						<select id="xdzt" class="easyui-combobox">
+        							<option value="-1">全部</option>
+        							<option value="0">未下达</option>
+        							<option value="1">已下达</option>
+        						</select>
         						<span>&nbsp;补助历史：</span>
 								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>

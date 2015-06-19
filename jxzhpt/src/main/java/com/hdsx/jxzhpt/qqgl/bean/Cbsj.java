@@ -67,7 +67,8 @@ public class Cbsj {
 	//路线编码
 	private String ylxbh;//原路线编码
 	private String jsfa;//建设方案
-	private String lsjl;
+	private String lsjl;;//是否有历史记录
+	private String jdbs;//阶段标示
 	public String getLsjl() {
 		return lsjl;
 	}
@@ -361,5 +362,11 @@ public class Cbsj {
 	}
 	public void setZdmc(String zdmc) {
 		this.zdmc = zdmc;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 }

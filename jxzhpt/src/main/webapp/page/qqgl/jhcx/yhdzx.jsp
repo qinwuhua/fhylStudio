@@ -31,7 +31,7 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':4,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
+					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -41,7 +41,7 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
-						result+='<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
 						"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx1.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
@@ -53,6 +53,11 @@
 						}else{
 							return value;
 						}
+					}
+				},
+				{field:'xdzt',title:'下达状态',width:150,align:'center',
+					formatter: function(value,row,index){
+						return value=="0" ? "未下达" : "已下达";
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -100,6 +105,12 @@
        					<p style="margin:8px 0px 8px 20px;">
        						<span>原路线编号：</span>
        						<input name="ylxbh" id="ylxbh" style="width:100px;" type="text"/>
+       						<span>&nbsp;下达状态：</span>
+        					<select id="xdzt" class="easyui-combobox">
+        						<option value="-1">全部</option>
+        						<option value="0">未下达</option>
+        						<option value="1">已下达</option>
+        					</select>
        						<span>&nbsp;补助历史：</span>
 								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>

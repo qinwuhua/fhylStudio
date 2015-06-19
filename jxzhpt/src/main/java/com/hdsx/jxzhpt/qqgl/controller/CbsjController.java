@@ -47,8 +47,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private CbsjServer cbsjServer;
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
-	//路线参数
-	private String jdbs;//阶段标示
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -123,7 +121,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setQdmc(cbsj.getQdmc());
 			lx.setZdmc(cbsj.getZdmc());
 			lx.setSffirst("1");
-			lx.setJdbs(jdbs);
+			lx.setJdbs(cbsj.getJdbs());
 			
 			if(cbsj.getXmlx()==1){
 				b = cbsjServer.updateCbsjLmsj(cbsj);
@@ -320,11 +318,5 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setFile(Plan_upload file) {
 		this.file = file;
-	}
-	public String getJdbs() {
-		return jdbs;
-	}
-	public void setJdbs(String jdbs) {
-		this.jdbs = jdbs;
 	}
 }
