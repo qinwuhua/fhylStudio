@@ -139,9 +139,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==3){
 				b=jhshServer.updateJhshxxXj(list);
 			}
-			if(b){
+			/*错误if(b){
 				jhshServer.updateLx(lx);
-			}
+			}*/
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
