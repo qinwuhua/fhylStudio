@@ -27,6 +27,7 @@
 				success:function(data){
 					$('#jhxdFrom').form("load",data);
 					$('#xmlx').val(parent.YMLib.Var.xmlx);
+					$('#xdzt').val("1");
 				}
 			});
 			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");

@@ -32,6 +32,7 @@
 					$('#zdzh').val(parent.YMLib.Var.row.zdzh);
 					$('#span_qdzh').html(data.qdzh);
 					$('#span_zdzh').html(data.zdzh);
+					$('#xdzt').val("1");
 				}
 			});
 			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");

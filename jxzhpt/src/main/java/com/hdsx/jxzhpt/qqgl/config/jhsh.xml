@@ -451,7 +451,7 @@
 	<select id="queryLsjlList" parameterType="java.util.Map" resultType="lx">
 		<![CDATA[
 		select l.xmid,j.xmmc,l.lxbm,l.lxmc,l.qdzh,l.zdzh,'' ylxbm,'' yqdzh, '' yzdzh,l.xjsdj,l.jsjsdj from lxsh_lx l right join jhsh_yhdzx j on l.xmid=j.xmbm 
-		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=${lx.zdzh} and l.zdzh>=${lx.qdzh} 
+		where l.jdbs='2' and l.lxbm like '%'||#{lx.lxbm}||'%' and l.qdzh<=${lx.zdzh} and l.zdzh>=${lx.qdzh}
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
