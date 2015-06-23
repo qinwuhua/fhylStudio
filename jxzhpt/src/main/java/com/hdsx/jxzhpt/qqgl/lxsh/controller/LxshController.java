@@ -284,9 +284,15 @@ public class LxshController extends BaseActionSupport{
 		boolean bl=false;
 		if("sjgz".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF(lxsh);
+			if(bl){
+				bl=lxshServer.selectSFCF1(lxsh);
+			}
 		}
 		if("lmgz".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF1(lxsh);
+			if(bl){
+				bl=lxshServer.selectSFCF(lxsh);
+			}
 		}
 		if("xj".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF2(lxsh);
