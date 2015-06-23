@@ -14,16 +14,16 @@
 		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj=#{jsdj}
 	</select>
 	<select id="selectSFCF" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_SJGZ where ghlxbh =#{ghlxbh} and qdzh=#{qdzh} and zdzh=#{zdzh} and xmnf=#{xmnf}
+		select * from LXSH_SJGZ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<select id="selectSFCFLX" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_LX where lxbm=#{ghlxbh} and qdzh=#{qdzh} and zdzh=#{zdzh} and xmid=#{xmbm} and jdbs=#{jdbs}
+		select * from LXSH_LX where lxbm=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and substr(xmid,0,4)=substr(#{xmbm},0,4) and jdbs=#{jdbs}
 	</select>
 	<select id="selectSFCF1" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_LMGZ where ghlxbh =#{ghlxbh} and qdzh=#{qdzh} and zdzh=#{zdzh} and xmnf=#{xmnf}
+		select * from LXSH_LMGZ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<select id="selectSFCF2" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_XJ where ghlxbh =#{ghlxbh} and qdzh=#{qdzh} and zdzh=#{zdzh} and xmnf=#{xmnf}
+		select * from LXSH_XJ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
 	</select>
 	<insert id="insertSjgz" parameterType="lxsh">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,tsdq,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm,lsjl)
