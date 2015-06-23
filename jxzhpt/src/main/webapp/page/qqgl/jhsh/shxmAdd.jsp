@@ -127,7 +127,7 @@
 			$('#submit').ajaxSubmit({
 				dataType:'json',
 				success:function(msg){
-					if(msg.result){
+					if(msg.result=="true"){
 						alert("计划添加成功！");
 						closeWindow("shxmadd");
 					}else if(msg.result=="have"){
