@@ -456,7 +456,7 @@ function showYBlist(){
 	             [
 					{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		
-	              		if(yhtype=='县级'){
+/*	              		if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==11)
     			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=11)
@@ -475,7 +475,8 @@ function showYBlist(){
 	              		}
 	              		if(yhtype=='省级'){
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
-	              		}
+	              		}*/
+						return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
 	              	}},
 					{field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 					{field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
