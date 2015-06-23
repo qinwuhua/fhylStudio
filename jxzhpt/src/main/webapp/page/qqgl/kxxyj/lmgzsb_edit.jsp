@@ -56,18 +56,17 @@ text-decoration:none;
 		$("#wgny").datebox('setValue',data.wgny);
 		$("#pfsj").datebox('setValue',data.pfsj);
 		fileShow(parent.obj.xmbm,"工可批复文件");
-		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
+		var data1="lxsh.ghlxbh="+data.lxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/qqglGpsroad.do',
+			url:'/jxzhpt/qqgl/qqglGpszh.do',
 			data:data1,
 			dataType:'json',
 			success:function(msg){
-				var item=msg[0];
-				qdStr=parseFloat(item.qdzh);
-				zdStr=parseFloat(item.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+				qdStr=parseFloat(msg.qdzh);
+				zdStr=parseFloat(msg.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);

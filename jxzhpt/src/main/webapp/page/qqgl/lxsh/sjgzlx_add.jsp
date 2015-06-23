@@ -169,7 +169,7 @@ text-decoration:none;
 		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0";
+		+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		//alert(data);
 		$.ajax({
 			type:'post',

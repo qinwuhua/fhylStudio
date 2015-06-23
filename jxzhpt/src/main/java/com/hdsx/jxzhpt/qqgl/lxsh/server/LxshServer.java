@@ -120,5 +120,7 @@ public interface LxshServer {
 
 	Lxsh sfylx(Lxsh lxsh);
 
+	Lxsh qqglGpszh(Lxsh lxsh);
+
 
 }
