@@ -76,7 +76,7 @@ function setlx(){
 function fileShow1(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -91,7 +91,7 @@ function fileShow1(xmbm,type){
 function fileShow2(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
