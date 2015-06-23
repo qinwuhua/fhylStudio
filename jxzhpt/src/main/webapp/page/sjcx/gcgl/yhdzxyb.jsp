@@ -11,8 +11,8 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="js/yhdzx.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -21,10 +21,10 @@
 			shezhi();
 		});
 		function shezhi(){
-			var data="gcglwqgz.jhid="+parent.obj1.jhid+"&gcglwqgz.nf="+new Date().getFullYear();
+			var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM;
 			$.ajax({
 				type:'post',
-				url:'../../../../gcgl/selectWqgzbzzj.do',
+				url:'/jxzhpt/gcgl/selectWqgzbzzj.do',
 				data:data,
 				dataType:'json',
 				success:function(msg){
@@ -58,6 +58,7 @@ a:visited {
 }
 a:hover {
  text-decoration: none;
+ cursor: pointer;
 }
 a:active {
  text-decoration: none;
@@ -77,8 +78,7 @@ a:active {
                 </td>
             </tr>
             <tr>
-                <td align="center">
-                    
+                <td align="center">  
                     <table id="ybgrid">
        		 		</table>
         <table width="97%" border="0" style="border-style: solid; border-width: 0px 0px 0px 0px;
@@ -88,7 +88,6 @@ a:active {
                 <td align="center">
                     <table>
                         <tr>
-                            
                             <td>
                                 <a href="javascript:void(0)" >
                                     <img onclick="closes('wqxx1')" src="${pageContext.request.contextPath}/images/Button/fanhui1.GIF" alt="返回" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/fanhui2.GIF'"
