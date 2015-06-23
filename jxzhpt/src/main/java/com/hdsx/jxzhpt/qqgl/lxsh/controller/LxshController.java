@@ -284,15 +284,9 @@ public class LxshController extends BaseActionSupport{
 		boolean bl=false;
 		if("sjgz".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF(lxsh);
-			if(bl){
-				bl=lxshServer.selectSFCF1(lxsh);
-			}
 		}
 		if("lmgz".equals(lxsh.getXmlx())){
-			bl=lxshServer.selectSFCF1(lxsh);
-			if(bl){
 				bl=lxshServer.selectSFCF(lxsh);
-			}
 		}
 		if("xj".equals(lxsh.getXmlx())){
 			bl=lxshServer.selectSFCF2(lxsh);
@@ -795,6 +789,14 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void sfylx(){
 		Lxsh l=lxshServer.sfylx(lxsh);
+		try {
+			JsonUtils.write(l, getresponse().getWriter());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	public void qqglGpszh(){
+		Lxsh l=lxshServer.qqglGpszh(lxsh);
 		try {
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e1) {

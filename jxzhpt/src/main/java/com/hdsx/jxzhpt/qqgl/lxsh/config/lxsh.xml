@@ -14,7 +14,7 @@
 		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj=#{jsdj}
 	</select>
 	<select id="selectSFCF" parameterType="lxsh" resultType="lxsh">
-		select * from LXSH_SJGZ where ghlxbh =#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and xmnf=#{xmnf}
+		select * from LXSH_LX where lxbm=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and substr(xmid,0,4)=#{xmnf}
 	</select>
 	<select id="selectSFCFLX" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_LX where lxbm=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and substr(xmid,0,4)=substr(#{xmbm},0,4) and jdbs=#{jdbs}
@@ -38,16 +38,16 @@
 		values(sys_guid(),#{lxmc},#{xmmc},#{ghlxbh},#{lc},#{jsxz},#{qdzh},#{zdzh},#{qdmc},#{zdmc},#{jhkgn},#{jhwgn},#{jsjsdj},#{xjsdj},#{xmbm},#{tz},#{bzys},#{dfzc},#{tsdq},#{xzqh},#{gydw},#{xzqhdm},#{gydwdm},#{xmnf},#{sbthcd},#{tbbmbm},#{lsjl})
 	</insert>
 	<insert id="insertlx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs})
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'1',#{jdbs},#{gpsqdzh},#{gpszdzh})
 	</insert>
 	<insert id="insertLx" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs})
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},'0',#{jdbs},#{gpsqdzh},#{gpszdzh})
 	</insert>
 	<insert id="insertLx1" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs})
+		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh})
 	</insert>
 	<select id="querylxlist" parameterType="lxsh" resultType="lxsh">
 		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
@@ -592,6 +592,9 @@
 	</delete>
 	<select id="sfylx" parameterType="lxsh" resultType="lxsh">
 		select count(*) shzt from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs} and sffirst='0'
+	</select>
+	<select id="qqglGpszh" parameterType="lxsh" resultType="lxsh">
+		select gpsqdzh qdzh,gpszdzh zdzh from  lxsh_lx where lxbm=#{ghlxbh} and xmid=#{xmbm} and jdbs='0' and sffirst='1'
 	</select>
 </mapper>
 
