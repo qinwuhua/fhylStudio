@@ -18,10 +18,10 @@
 			(select count(lx.id) CON1 from lxsh_lx lx where lx.lxbm like #{lxbm}||'%' 
 			and lx.jdbs='2' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})) c1,
 			(select count(*) CON2 from 
-				(select lx.lxbm,lx.qdzh,lx.zdzh from lxsh_lx lx) j,
+				(select lx.lxbm,lx.qdzh,lx.zdzh from lxsh_lx lx where jdbs='2') j,
 				(select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
 				where xlxbm like #{lxbm}||'%' and xqdzh<=${zdzh} and xzdzh>=${qdzh}) k
-			where j.lxbm=k.ylxbm and j.jdbs='2' and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2
+			where j.lxbm=k.ylxbm and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2
 		]]>
 	</select>
 	<select id="queryTsdq" parameterType="xmsq" resultType="string">
