@@ -28,8 +28,22 @@ public class Xmsq {
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
 	private String jdbs;//阶段标示
-	//----------------附加属性
+	//----------------附加属性、路线表中的字段
 	private String lxmc;//路线名称
+	private String gpsqdzh;//GPSRoad中的起点桩号
+	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
 	public String getLxmc() {
 		return lxmc;
 	}

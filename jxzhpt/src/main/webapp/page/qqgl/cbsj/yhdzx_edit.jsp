@@ -28,8 +28,8 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
-					$('#span_qdzh').html(data.qdzh);
-					$('#span_zdzh').html(data.zdzh);
+					$('#span_qdzh').html(data.gpsqdzh);
+					$('#span_zdzh').html(data.gpszdzh);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
 				}

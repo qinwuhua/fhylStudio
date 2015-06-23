@@ -69,6 +69,20 @@ public class Cbsj {
 	private String jsfa;//建设方案
 	private String lsjl;;//是否有历史记录
 	private String jdbs;//阶段标示
+	private String gpsqdzh;//GPSRoad中的起点桩号
+	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
 	public String getLsjl() {
 		return lsjl;
 	}

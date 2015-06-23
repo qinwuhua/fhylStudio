@@ -74,8 +74,10 @@
 					$('#ghlxbh').val(item.lxbm);
 					$('#lxmc').val(item.lxmc);
 					$('#qdzh').val(item.qdzh);
+					$('#gpsqdzh').val(item.qdzh);
 					$('#span_qdzh').html(item.qdzh);
 					$('#zdzh').val(item.zdzh);
+					$('#gpszdzh').val(item.zdzh);
 					$('#span_zdzh').html(item.zdzh);
 					$('#lc').val(item.lc);
 					$('#jsdj').combobox("setValue",item.xjsdj);
@@ -174,6 +176,8 @@
 					<input id="ylxbh" name="ylxbh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 					<input id="lxmc" name="lxmc" type="hidden"/>
 					<input id="xmlx" name="xmlx" value="5" type="hidden"/>
+					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划路线编号</td>

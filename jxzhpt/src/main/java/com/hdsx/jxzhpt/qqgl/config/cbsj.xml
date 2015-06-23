@@ -286,19 +286,19 @@
 	</select>
 	
 	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.ghlxbh from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh from cbsj_lmgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.ghlxbh from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh from cbsj_sjgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.ghlxbh from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.ylxbh from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.ylxbh from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm where c.xmbm=#{xmbm}
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	
 	<update id="updateCbsjLmgz" parameterType="cbsj">

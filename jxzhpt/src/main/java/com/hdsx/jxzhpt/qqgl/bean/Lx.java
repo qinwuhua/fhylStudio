@@ -70,11 +70,25 @@ public class Lx {
 	private String zdzh;//止点桩号
 	private String xjsdj;//现技术等级
 	private String jsjsdj;//建设技术等级
+	private String gpsqdzh;//获取的GPSroad表中的起点装号
+	private String gpszdzh;//获取的GPSroad表中的止点桩号
 	//历史数据字段
 	private String ylxbm;//原路线编码
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
 	private String xmmc;//项目名称
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
 	public String getYlxbm() {
 		return ylxbm;
 	}

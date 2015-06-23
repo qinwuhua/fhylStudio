@@ -153,7 +153,9 @@
 		<if test="zdmc!=null">,zdmc</if>
 		<if test="bzcs!=null">,bzcs</if>
 		<if test="sffirst!=null">,sffirst</if>
-		<if test="jdbs!=null">,jdbs</if>)
+		<if test="jdbs!=null">,jdbs</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
+		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -171,7 +173,9 @@
 		<if test="zdmc!=null">,#{zdmc}</if>
 		<if test="bzcs!=null">,#{bzcs}</if>
 		<if test="sffirst!=null">,#{sffirst}</if>
-		<if test="jdbs!=null">,#{jdbs}</if>)
+		<if test="jdbs!=null">,#{jdbs}</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
+		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>)
 	</insert>
 	<delete id="deleteLxByXmbm" parameterType="xmsq">
 		delete from lxsh_lx where xmid=#{xmbm}
@@ -324,10 +328,10 @@
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
-		select * from xmsq_yhdzx where xmbm=#{xmbm}
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
-		select * from xmsq_sh where xmbm=#{xmbm}
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	
 	<update id="updateYhdzx" parameterType="xmsq">
