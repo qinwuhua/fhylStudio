@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="js/gcgzgj.js"></script>
+	<script type="text/javascript" src="js/xj.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			showYBlist();
@@ -24,7 +24,7 @@
 			var data="gcglwqgz.jhid="+parent.obj1.XMBM+"&gcglwqgz.nf="+new Date().getFullYear()+"&gcglwqgz.id="+parent.obj1.XMBM;
 			$.ajax({
 				type:'post',
-				url:'/jxzhpt/gcgl/selectWqgzbzzj.do',
+				url:'/jxzhpt//gcgl/selectWqgzbzzj.do',
 				data:data,
 				dataType:'json',
 				success:function(msg){

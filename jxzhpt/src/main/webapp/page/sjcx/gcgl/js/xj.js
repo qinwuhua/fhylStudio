@@ -12,10 +12,10 @@ function sfqxkg(index){
 		sfqxkg='否';
 	if(data1.SFQXKG=='否')
 		sfqxkg='是';
-	var data="flag="+"gcgj"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
+	var data="flag="+"xjgc"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/updataSFQX.do',
+		url:'/jxzhpt//gcgl/updataSFQX.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -35,8 +35,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.XMBM;
-	//YMLib.UI.createWindow('gclmgj_xx','路面改造工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','gcgzgjxx.jsp','wqxx',740,450);
+	//YMLib.UI.createWindow('gclmgj_xx','新建工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','新建工程项目开工详情','xjxx.jsp','wqxx',740,450);
 	//window.open("gcgzgjxx.jsp");
 }
 function closes(str){
@@ -46,44 +46,44 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目开工','wqgzkg.jsp','wqxx',700,330);
+		YMLib.UI.createWindow('wqxx','新建工程项目开工','wqgzkg.jsp','wqxx',700,330);
 	}
 }
 function ykaigong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','wqgzkg1.jsp','wqxx',700,330);
+		YMLib.UI.createWindow('wqxx','新建工程项目开工详情','wqgzkg1.jsp','wqxx',700,330);
 }
 	function wangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-			YMLib.UI.createWindow('wqxx','路面改造工程项目完工','wqgzwg.jsp','wqxx',500,300);
-		}	
+		YMLib.UI.createWindow('wqxx','新建工程项目完工','wqgzwg.jsp','wqxx',500,300);
+	}	
 	function wwangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目未完工','wqgzwwg.jsp','wqxx',400,220);
+		YMLib.UI.createWindow('wqxx','新建工程项目未完工','wqgzwwg.jsp','wqxx',400,220);
 	}	
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','xjyb.jsp','wqxx1',1059,467);
 	//window.open("gcgzgjyb.jsp");
 }
 function AddInfo(index){
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报添加','gcgzgjybtj.jsp','wqxx',780,340);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报添加','gcgzgjybtj.jsp','wqxx',780,340);
 	//window.open("gcgzgjybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','路面改造工程项目月报详情','gcgzgjybxx.jsp','wqxx',900,340);
+	parent.YMLib.UI.createWindow('wqxx','新建工程项目月报详情','xjybxx.jsp','wqxx',900,340);
 	//window.open("gcgzgjybxx.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报编辑','gcgzgjybxg.jsp','wqxx',780,340);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报编辑','gcgzgjybxg.jsp','wqxx',780,340);
 	//window.open("gcgzgjybxg.jsp");
 }
 function Delyb(index){
@@ -93,7 +93,7 @@ function Delyb(index){
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../gcgl/deletegcgzgjYb.do',
+			url:'/jxzhpt//gcgl/deletexjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -165,7 +165,7 @@ function tjgcgzgjyb(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/insertgcgzgjYb.do',
+		url:'/jxzhpt//gcgl/insertxjYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -219,7 +219,7 @@ function xggcgzgjyb(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/updategcgzgjYb.do',
+		url:'/jxzhpt//gcgl/updatexjgcYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -261,7 +261,7 @@ function tjwqgzkg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/insertGcgzgjkg.do',
+		url:'/jxzhpt//gcgl/insertXjgckg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -284,7 +284,7 @@ function tjwqgzwg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/insertGcgzgjwg.do',
+		url:'/jxzhpt//gcgl/insertXjwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -308,7 +308,7 @@ function tjwqgzwwg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/insertGcgzgjwwg.do',
+		url:'/jxzhpt//gcgl/insertXjwwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -355,7 +355,7 @@ function showAll(){
 	var xmnf=$("#ddlYear").val();
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
-	    url:'../../../gcgl/selectGcgzgjjhList1.do',
+	    url:'/jxzhpt//gcgl/selectXjgcjhList1.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -380,7 +380,7 @@ function showAll(){
   	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'未开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
   	        }},
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
-	        	return row.SFQXKG+'    ';
+	        	return row.SFQXKG+'   ';
 	        }},
 	        {field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
@@ -440,7 +440,7 @@ function showYBlist(){
 		sfsj=7;
 	}
 	$('#ybgrid').datagrid({    
-	    url:'../../../gcgl/selectgcgzgjYbByJhid.do',
+	    url:'/jxzhpt//gcgl/selectxjgcYbByJhid.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -456,7 +456,7 @@ function showYBlist(){
 	             [
 					{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		
-/*	              		if(yhtype=='县级'){
+	              		/*if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==11)
     			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=11)
@@ -526,7 +526,7 @@ function uploadFile(str){
 
 //function downFile(str){
 //	if($("#xz_"+str).text()=='下载附件'){
-//		parent.window.location.href="../../../gcgl/downGcgzgjFile.do?type="+str+"&jhid="+parent.obj1.id;
+//		parent.window.location.href="/jxzhpt//gcgl/downGcgzgjFile.do?type="+str+"&jhid="+parent.obj1.id;
 //	}
 //	else return;
 //}
@@ -538,7 +538,7 @@ function deleteFile(str){
 	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/deleteGcgzgjFile.do',
+		url:'/jxzhpt//gcgl/deleteGcgzgjFile.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -558,7 +558,7 @@ function jiazai(ooo){
 
 	$.ajax({
 		type:'post',
-		url:'../../../gcgl/selectGcgzgjjhFile.do',
+		url:'/jxzhpt//gcgl/selectGcgzgjjhFile.do',
 		data:data,
 		dataType:'json',
 		async:false,
@@ -594,7 +594,7 @@ function sbsjyb(index){
 	if(confirm("确认上报吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../gcgl/sbGcgzgjYb.do',
+			url:'/jxzhpt//gcgl/sbXjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -614,7 +614,7 @@ function thsjyb(index){
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../gcgl/sbGcgzgjYb.do',
+			url:'/jxzhpt//gcgl/sbXjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

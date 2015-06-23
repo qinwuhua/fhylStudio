@@ -14,7 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
-<script type="text/javascript" src="js/gcgzgj.js"></script>
+<script type="text/javascript" src="js/xj.js"></script>
 <script type="text/javascript"> 
 $(function(){
 	var data=parent.obj1;//$("#").text(data.);
@@ -73,11 +73,10 @@ function setlx(){
 	});
 
 }
-
 function fileShow1(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -92,7 +91,7 @@ function fileShow1(xmbm,type){
 function fileShow2(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
