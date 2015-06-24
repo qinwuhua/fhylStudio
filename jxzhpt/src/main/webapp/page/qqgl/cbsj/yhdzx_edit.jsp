@@ -30,6 +30,8 @@
 					$('#cbsj').form("load",data);
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
+					$('#ylxbh').val(data.ghlxbh);
+					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
 				}
@@ -73,22 +75,25 @@
 		}
 		function uploadYhdzx(){
 			var submit=true;
-			submit=zhuanghao();
+			submit = validateText('qdzh','number',submit);
+			submit = validateText('zdzh','number',submit);
 			if(!submit){
 				return;
 			}
-			$('#cbsj').ajaxSubmit({
-				dataType:'json',
-				success:function(msg){
-					if(msg.result){
-						alert("修改成功！");
-						closeWindow("yhdzxedit");
+			if(zhuanghao()){
+				$('#cbsj').ajaxSubmit({
+					dataType:'json',
+					success:function(msg){
+						if(msg.result){
+							alert("修改成功！");
+							closeWindow("yhdzxedit");
+						}
+					},
+					error:function(msg){
+						alert("修改失败！");
 					}
-				},
-				error:function(msg){
-					alert("修改失败！");
-				}
-			});
+				});
+			}
 		}
 		function zhuanghao(){
 			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
@@ -123,6 +128,7 @@
 						<input id="xmbm1" name="xmbm" style="width: 120px;" disabled="disabled" type="text"/>
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
+						<input id="jdbs" name="jdbs" type="hidden"/>
 						<input id="xmlx" name="xmlx" value="4" type="hidden"/>
 						<input id="sfbj" name="sfbj" value="1" type="hidden"/>
 						<input id="qdmc" name="qdmc" value="" type="hidden"/>

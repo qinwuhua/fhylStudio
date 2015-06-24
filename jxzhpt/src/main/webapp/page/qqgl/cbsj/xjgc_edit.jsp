@@ -28,6 +28,7 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
+					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
 				}
@@ -106,6 +107,7 @@
 						<input id="xmlx" name="xmlx" value="1" type="hidden"/>
 						<input id="sfbj" name="sfbj" value="1" type="hidden"/>
 						<!-- 此处ylxbh、qdmc、zdmc用于修改lxsh_lx中的信息 -->
+						<input id="jdbs" name="jdbs" type="hidden"/>
 						<input id="ylxbh" name="ghlxbh" type="hidden"/>
 						<input id="qdmc" name="qdmc" value="" type="hidden"/>
 						<input id="zdmc" name="zdmc" value="" type="hidden"/>

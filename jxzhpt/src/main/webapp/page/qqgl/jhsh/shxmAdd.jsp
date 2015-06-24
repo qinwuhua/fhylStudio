@@ -122,24 +122,28 @@
 			result = validateText('zdzh','number',result);
 			result = validateText('lc','number',result);
 			result = validateText('xmmc',null,result);
-			result = zhuanghao();
+			if($('#ntz').val()!="" && $('#ntz').val()!=null){
+				result = validateText('ntz','number',result);
+			}
 			if(!result){
 				return;
 			}
-			$('#submit').ajaxSubmit({
-				dataType:'json',
-				success:function(msg){
-					if(msg.result=="true"){
-						alert("计划添加成功！");
-						closeWindow("shxmadd");
-					}else if(msg.result=="have"){
-						alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在项目！");
+			if(zhuanghao()){
+				$('#submit').ajaxSubmit({
+					dataType:'json',
+					success:function(msg){
+						if(msg.result=="true"){
+							alert("计划添加成功！");
+							closeWindow("shxmadd");
+						}else if(msg.result=="have"){
+							alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在项目！");
+						}
+					},
+					error:function(msg){
+						alert("添加失败！");
 					}
-				},
-				error:function(msg){
-					alert("添加失败！");
-				}
-			});
+				});
+			}
 		}
 		function zhuanghao(){
 			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){

@@ -30,6 +30,8 @@
 					$('#cbsj').form("load",data);
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
+					$('#ylxbh').val(data.ghlxbh);
+					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
 				}
@@ -71,7 +73,13 @@
 				}
 			});
 		}
-		function uploadYhdzx(){
+		function uploadSh(){
+			var submit=true;
+			submit = validateText('qdzh','number',submit);
+			submit = validateText('zdzh','number',submit);
+			if(!submit){
+				return;
+			}
 			if(zhuanghao()){
 				$('#cbsj').ajaxSubmit({
 					dataType:'json',
@@ -121,6 +129,7 @@
 						<input id="xmbm" name="xmbm" type="hidden"/>
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="5" type="hidden"/>
+						<input id="jdbs" name="jdbs" type="hidden"/>
 						<input id="sfbj" name="sfbj" value="1" type="hidden"/>
 						<input id="qdmc" name="qdmc" value="" type="hidden"/>
 						<input id="zdmc" name="zdmc" value="" type="hidden"/>
@@ -251,7 +260,7 @@
 				</tr>
 				<tr style="height: 30px;text-align: center;">
 					<td colspan="6" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;padding-left: 10px;">
-						<img onclick="uploadYhdzx()" alt="确定" style="text-align:center;" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' "/>
+						<img onclick="uploadSh()" alt="确定" style="text-align:center;" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' "/>
 					</td>
 				</tr>
 			</table>
