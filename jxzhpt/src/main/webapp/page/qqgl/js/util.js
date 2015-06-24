@@ -154,7 +154,7 @@ function validateText(id,type,result){
 			reg = new RegExp("^[0-9]*$");
 			var double=new RegExp("^[0-9]*.[0-9]*$");
 			if(!reg.test($('#'+id).val()) && !double.test($('#'+id).val())){
-				alert("此处请输入数字！");
+				alert($('#'+id).parent().prev().html()+"需要输入数字！");
 				$('#'+id).focus();
 				return false;
 			}
