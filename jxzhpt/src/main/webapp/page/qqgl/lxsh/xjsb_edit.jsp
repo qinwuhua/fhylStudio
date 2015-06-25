@@ -50,7 +50,7 @@ text-decoration:none;
 		$("#xjsdj").combobox('setText',data.xjsdj);
 		$("#xmbm").html(data.xmbm);
 		$("#xmnf").html(data.xmnf);
-		$("#jhkgn").combobox('setText',data.xmnf);
+		$("#jhkgn").combobox('setText',data.jhkgn);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
 		$("#bzcs").val(data.bzys);
