@@ -495,7 +495,7 @@
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_XJ t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,tt.bzys1  from LXSH_XJ t left join (select xmid,sum(bzcs) bzys1 from lxsh_lx where sffirst='1' and jdbs='0' group by xmid)tt on t.xmbm=tt.xmid where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -590,6 +590,9 @@
 	<delete id="deletekxlx" parameterType="hashmap">
 		delete from lxsh_lx where xmid=#{xmbm} and jdbs='1'
 	</delete>
+	<select id="selectlxbyxmid" parameterType="lxsh" resultType="lxsh">
+		select * from lxsh_lx where xmid=#{xmbm} and jdbs='0' and sffirst='1'
+	</select>
 	<select id="sfylx" parameterType="lxsh" resultType="lxsh">
 		select count(*) shzt from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs} and sffirst='0'
 	</select>

@@ -41,7 +41,7 @@ text-decoration:none;
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
-		$("#lc").html(data.lc);
+		$("#lc").html(accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)));
 		$("#qdmc").val(data.qdmc);
 		$("#zdmc").val(data.zdmc);
 		$("#jsxz").val(data.jsxz);
@@ -53,7 +53,7 @@ text-decoration:none;
 		$("#jhkgn").combobox('setText',data.jhkgn);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
-		$("#bzcs").val(data.bzys);
+		$("#bzcs").val(data.bzys1);
 		$("#dfzc").html(data.dfzc);
 // 		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
 // 		$.ajax({

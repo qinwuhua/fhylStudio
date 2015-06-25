@@ -25,6 +25,7 @@ public class Lxsh implements Serializable {
 	private String xmbm ;
 	private String tz;
 	private String bzys;
+	private String bzys1;
 	private String  dfzc;
 	private String tsdq;
 	private String xzqh;
@@ -50,6 +51,12 @@ public class Lxsh implements Serializable {
 	private String gpsqdzh;
 	private String gpszdzh;
 	
+	public String getBzys1() {
+		return bzys1;
+	}
+	public void setBzys1(String bzys1) {
+		this.bzys1 = bzys1;
+	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}

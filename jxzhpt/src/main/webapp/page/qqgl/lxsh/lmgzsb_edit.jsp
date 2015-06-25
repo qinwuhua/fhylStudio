@@ -41,7 +41,7 @@ text-decoration:none;
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
-		$("#lc").html(data.lc);
+		$("#lc").html(accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)));
 		$("#qdmc").html(data.qdmc);
 		$("#zdmc").html(data.zdmc);
 		$("#jsxz").val(data.jsxz);
@@ -53,7 +53,7 @@ text-decoration:none;
 		$("#jhkgn").combobox('setText',data.jhkgn);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
-		$("#bzcs").html(data.bzys);
+		getbzcs(data.ghlxbh.substr(0,1),data.jsjsdj,accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)),'路面改造工程项目');
 		$("#dfzc").html(data.dfzc);
 		var data1="lxsh.ghlxbh="+data.ghlxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
