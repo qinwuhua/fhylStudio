@@ -1,14 +1,14 @@
 package com.hdsx.jxzhpt.jhgl.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import com.hdsx.jxzhpt.jhgl.server.Plan_abgcServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_gcgjServer;
@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.jhgl.server.Plan_wqgzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_yhdzxServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zhfzServer;
 import com.hdsx.jxzhpt.jhgl.server.Plan_zjqfServer;
+import com.hdsx.jxzhpt.jhgl.server.TjfxServer;
 import com.hdsx.jxzhpt.utile.AnyChartUtil;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.jxzhpt.utile.ResponseUtils;
@@ -43,6 +44,8 @@ public class TjfxController extends BaseActionSupport{
 	private Plan_shuihServer shuihServer;
 	@Resource(name = "plan_zjqfServerImpl")
 	private Plan_zjqfServer zjqfServer;
+	@Resource(name = "tjfxServerImpl")
+	private TjfxServer tjfxServer;
 	
 	private String xmlx;
 	private String nf;//年份，开始年份
@@ -501,6 +504,36 @@ public class TjfxController extends BaseActionSupport{
 		parameter.put("list",list);
 		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 		ResponseUtils.write(getresponse(), anyChartXml);
+	}
+	//-----------------------------------------------重做后
+	/**
+	 * 计划库统计中的年份统计
+	 * @throws Exception 
+	 */
+	@SuppressWarnings("unchecked")
+	public void queryNftj() throws Exception{
+		try {
+			Map<String, Object> result = tjfxServer.queryByNfAndXzqhdm(nf,xzqhdm);
+			List<Map<String, Object>> nftj=null;
+			if(getRequest().getSession().getAttribute("nftj")!=null){
+				nftj =(List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
+				nftj.add(result);
+			}else{
+				nftj=new ArrayList<Map<String,Object>>();
+				nftj.add(result);
+				getRequest().getSession().setAttribute("nftj", nftj);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 设置年份统计柱状图的数据参数
+	 */
+	public void queryNftjt(){
+		
 	}
 	
 	public String getXmlx() {

@@ -74,7 +74,11 @@
 					$('#ghlxbh').val(item.lxbm);
 					$('#lxmc').val(item.lxmc);
 					$('#qdzh').val(item.qdzh);
+					$('#gpsqdzh').val(item.qdzh);
+					$('#span_qdzh').html(item.qdzh);
 					$('#zdzh').val(item.zdzh);
+					$('#gpszdzh').val(item.zdzh);
+					$('#span_zdzh').html(item.zdzh);
 					$('#lc').val(item.lc);
 					$('#jsdj').combobox("setValue",item.xjsdj);
 					$('#lmkd').val(item.ylmlx);
@@ -118,21 +122,50 @@
 			result = validateText('zdzh','number',result);
 			result = validateText('lc','number',result);
 			result = validateText('xmmc',null,result);
+			if($('#ntz').val()!="" && $('#ntz').val()!=null){
+				result = validateText('ntz','number',result);
+			}
 			if(!result){
 				return;
 			}
-			$('#submit').ajaxSubmit({
-				dataType:'json',
-				success:function(msg){
-					if(msg.result){
-						alert("计划下达成功！");
-						closeWindow("shxmadd");
+			if(zhuanghao()){
+				$('#submit').ajaxSubmit({
+					dataType:'json',
+					success:function(msg){
+						if(msg.result=="true"){
+							alert("计划添加成功！");
+							closeWindow("shxmadd");
+						}else if(msg.result=="have"){
+							alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在项目！");
+						}
+					},
+					error:function(msg){
+						alert("添加失败！");
 					}
-				},
-				error:function(msg){
-					alert("添加失败！");
-				}
-			});
+				});
+			}
+		}
+		function zhuanghao(){
+			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
+				alert("起点桩号不能小于"+$('#span_qdzh').html());
+				return false;
+			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
+				alert("止点桩号不能大于"+$('#span_zdzh').html());
+				return false;
+			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
+				alert("止点桩号不能小于起点桩号");
+				return false;
+			}else{
+				return true;
+			}
+		}
+		function querymc(id){
+			if(id=="qdzh"){
+				cxqdmc($('#ylxbh').val(),$('#qdzh').val());
+			}else if(id=="zdzh"){
+				cxzdmc($('#ylxbh').val(),$('#zdzh').val());
+			}
+			$('#lc').val(Number($('#zdzh').val())-Number($('#qdzh').val()));
 		}
 	</script>
 </head>
@@ -147,6 +180,8 @@
 					<input id="ylxbh" name="ylxbh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
 					<input id="lxmc" name="lxmc" type="hidden"/>
 					<input id="xmlx" name="xmlx" value="5" type="hidden"/>
+					<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+					<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					规划路线编号</td>
@@ -163,12 +198,14 @@
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					起点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="qdzh" name="qdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					止点桩号</td>
 				<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-					<input id="zdzh" name="zdzh" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span>
+					<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 120px;"/>&nbsp;<span style="color: red;">*</span><br/>
+					<span style="font-size: small;color: red;">止点桩号桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
 				</td>
 				<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 					里程</td>

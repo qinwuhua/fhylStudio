@@ -38,10 +38,12 @@
 			loadDist1("xzqh",$.cookie("dist"));
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadBmbm2('jsdj','技术等级');
-			if(userPanduan($.cookie("unit2"))!="省")
+			YMLib.Var.jdbs=1;
+			if(userPanduan($.cookie("unit2"))!="省"){
 				loadBmbm2('sqzt','申请状态地市');
-			else
+			}else{
 				loadBmbm2('sqzt','申请状态省');
+			}
 			queryShxm();
 			
 		});
@@ -49,7 +51,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryXmsq.do";
 			var params={'xmlx':5,'gydwdm':getgydw('gydw'),'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),
-					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1};
+					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),'sqzt':-1,
+					'jdbs':YMLib.Var.jdbs,'lsjl':$('#lsjl').combobox("getValue")};
 			var sqzt = $('#sqzt').combobox("getValue");
 			if(userPanduan($.cookie("unit2"))!="省"){
 				params.sqzt=sqzt=='' ? -1 : sqzt;
@@ -57,23 +60,42 @@
 				params.sqzt=sqzt=='' ? -1 : sqzt;
 			}
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
-						var result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
-						result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
-							result+='&nbsp;|&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						}else{
-							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
+							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
+					}
+				},
+				{field:'tjlx',title:'添加路线',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
+							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+						}else{
+							return '添加路线';
+						}
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'sqzt',title:'上报状态',width:100,align:'center',
@@ -196,12 +218,12 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/updateXmsqSp.do',
-					data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
+					data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("上报成功!");
+							alert("审核成功!");
 							queryShxm();
 						}
 					}
@@ -245,6 +267,12 @@
 							<select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select>
 							<span>&nbsp;上报状态：</span>
 	      					<select id="sqzt" class="easyui-combobox" name="jhzt" style="width: 70px;"></select>
+	      					<span>&nbsp;历史记录：</span>
+       						<select id="lsjl" class="easyui-combobox" style="width: 70px;">
+       							<option value="" selected="selected">全部</option>
+       							<option value="是">是</option>
+       							<option value="否">否</option>
+       						</select>
 							<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 							<img id="tj" name="dishi" alt="添加" onclick="openSh()" style="disborder-width:0px;cursor: hand;vertical-align:middle;" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'" src=""/>
 							<img id="sb" name="dishi" alt="上报" onclick="batchSb()" style="border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png"/>

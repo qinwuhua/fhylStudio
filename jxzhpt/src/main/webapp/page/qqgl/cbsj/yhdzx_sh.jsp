@@ -27,6 +27,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			YMLib.Var.jdbs=2;
 			queryYhdzx();
 		});
 		function queryYhdzx(){
@@ -34,13 +35,15 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':4,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
-			grid.height=$(window).height()-$('#searchField').height();
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -54,6 +57,15 @@
 							result+='&nbsp;|&nbsp;<a style="color:black;">编辑</a>';
 						}
 						return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'shzt',title:'审核状态',width:100,align:'center',
@@ -74,22 +86,12 @@
 				{field:'qdzh',title:'起点桩号',width:100,align:'center'},
 				{field:'zdzh',title:'止点桩号',width:100,align:'center'},
 				{field:'jsxz',title:'建设性质',width:150,align:'center'},
-				{field:'lj',title:'路基（m3）',width:100,align:'center'},
-				{field:'ql',title:'桥梁(延米/座)',width:100,align:'center'},
-				{field:'hd',title:'涵洞（(米/座)）',width:100,align:'center'},
-				{field:'mc',title:'面层（类型/公里）',width:100,align:'center'},
-				{field:'jc',title:'基基（公里）',width:100,align:'center'},
-				{field:'dc',title:'垫基（公里）',width:100,align:'center'},
-				{field:'sd',title:'隧道（延米/座）',width:100,align:'center'},
-				{field:'dq',title:'大桥(名称/长度/单跨)',width:150,align:'center'},
-				{field:'sdmc',title:'隧道(名称/双幅长度/类型)',width:150,align:'center'},
 				{field:'kgsj',title:'开工时间',width:100,align:'center'},
 				{field:'wgsj',title:'完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
 				{field:'sjdw',title:'设计单位',width:100,align:'center'},
 				{field:'sjpfwh',title:'设计批复文号',width:100,align:'center'},
-				{field:'pfsj',title:'批复时间',width:100,align:'center'},
-				{field:'jaf',title:'建安费',width:100,align:'center'}]];
+				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
 		}
 		/*function deleteLmgz(){
@@ -136,7 +138,7 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+4+'&xmbm='+xmbm+'&shzt='+1,
+					data:'xmlx='+4+'&xmbm='+xmbm+'&shzt='+1+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
@@ -186,11 +188,11 @@ text-decoration:none;
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="-1" selected="selected">全部</option>
-									<option value="否">否</option>
+								<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
         					</tr>
         					<tr height="32">

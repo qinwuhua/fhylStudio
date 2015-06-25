@@ -13,13 +13,16 @@
 		select * from table(funlmkd(#{ylxbh},#{xzqhdm})) order by lxbm,qdzh) x
 	</select>
 	<select id="queryLsjl" parameterType="java.util.Map" resultType="int">
-		<![CDATA[select c1.CON1+c2.CON2 from
-			(select count(lx.id) CON1 from lxsh_lx lx
-			where lx.lxbm like #{lxbm}||'%' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})) c1,
-			(select count(*) CON2 from
-			(select lx.lxbm,lx.qdzh,lx.zdzh from lxsh_lx lx) j,
-			(select ylxbm,yqdzh,yzdzh from xtgl_lxsj where xlxbm like #{lxbm}||'%' and xqdzh<=${zdzh} and xzdzh>=${qdzh}) k
-			where j.lxbm=k.ylxbm and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2]]>
+		<![CDATA[
+		select c1.CON1+c2.CON2 from
+			(select count(lx.id) CON1 from lxsh_lx lx where lx.lxbm like #{lxbm}||'%' 
+			and lx.jdbs='2' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})) c1,
+			(select count(*) CON2 from 
+				(select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs from lxsh_lx lx where jdbs='2') j,
+				(select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+				where xlxbm like #{lxbm}||'%' and xqdzh<=${zdzh} and xzdzh>=${qdzh}) k
+			where j.lxbm=k.ylxbm and j.jdbs='2' and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2
+		]]>
 	</select>
 	<select id="queryTsdq" parameterType="xmsq" resultType="string">
 		<![CDATA[SELECT DISTINCT X.NAME FROM XTGL_XZQHTSDQ T,XTGL_TSDQ X WHERE T.XZQHDM IN(
@@ -49,7 +52,10 @@
 		<if test="gydw!=null">,gydw</if>
 		<if test="gydwdm!=null">,gydwdm</if>
 		<if test="jsfa!=null">,JSFA</if>
-		<if test="lsjl!=null">,LSJL</if>) 
+		<if test="lsjl!=null">,LSJL</if>
+		<if test="qdmc!=null">,qdmc</if>
+		<if test="zdmc!=null">,zdmc</if>
+		<if test="lxmc!=null">,lxmc</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -71,7 +77,10 @@
 		<if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if>
 		<if test="jsfa!=null">,#{jsfa}</if>
-		<if test="lsjl!=null">,#{lsjl}</if>)
+		<if test="lsjl!=null">,#{lsjl}</if>
+		<if test="qdmc!=null">,#{qdmc}</if>
+		<if test="zdmc!=null">,#{zdmc}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>)
 	</insert>
 	<insert id="insertXmsqSh" parameterType="java.util.List">
 		insert into xmsq_sh (
@@ -95,7 +104,10 @@
 		<if test="gydw!=null">,gydw</if>
 		<if test="gydwdm!=null">,gydwdm</if>
 		<if test="jsfa!=null">,JSFA</if>
-		<if test="lsjl!=null">,LSJL</if>) 
+		<if test="lsjl!=null">,LSJL</if>
+		<if test="qdmc!=null">,qdmc</if>
+		<if test="zdmc!=null">,zdmc</if>
+		<if test="lxmc!=null">,lxmc</if>) 
 		values (
 		<if test="xmbm!=null">#{xmbm}</if>
 		<if test="xmmc!=null">,#{xmmc}</if>
@@ -117,7 +129,10 @@
 		<if test="gydw!=null">,#{gydw}</if>
 		<if test="gydwdm!=null">,#{gydwdm}</if>
 		<if test="jsfa!=null">,#{jsfa}</if>
-		<if test="lsjl!=null">,#{lsjl}</if>)
+		<if test="lsjl!=null">,#{lsjl}</if>
+		<if test="qdmc!=null">,#{qdmc}</if>
+		<if test="zdmc!=null">,#{zdmc}</if>
+		<if test="lxmc!=null">,#{lxmc}</if>)
 	</insert>
 	<insert id="insertLx" parameterType="lx">
 		insert into lxsh_lx (
@@ -137,7 +152,10 @@
 		<if test="qdmc!=null">,qdmc</if>
 		<if test="zdmc!=null">,zdmc</if>
 		<if test="bzcs!=null">,bzcs</if>
-		<if test="sffirst!=null">,sffirst</if>)
+		<if test="sffirst!=null">,sffirst</if>
+		<if test="jdbs!=null">,jdbs</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
+		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -154,13 +172,19 @@
 		<if test="qdmc!=null">,#{qdmc}</if>
 		<if test="zdmc!=null">,#{zdmc}</if>
 		<if test="bzcs!=null">,#{bzcs}</if>
-		<if test="sffirst!=null">,#{sffirst}</if>)
+		<if test="sffirst!=null">,#{sffirst}</if>
+		<if test="jdbs!=null">,#{jdbs}</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
+		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>)
 	</insert>
+	<delete id="deleteLxByXmbm" parameterType="xmsq">
+		delete from lxsh_lx where xmid=#{xmbm}
+	</delete>
 	
 	<select id="queryYhdzxXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+				select x.* from xmsq_yhdzx x where 1=1
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -171,14 +195,18 @@
 					and xmmc like '%'||#{xmsq.xmmc}||'%'
 				</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
-					and (jsdj=#{xmsq.jsdj} or l.xjsdj=#{xmsq.jsdj})
+					and (jsdj=#{xmsq.jsdj})
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
-				</if> order by x.xmbm desc) t ) t2
+				</if>
+				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
+					and x.lsjl=#{xmsq.lsjl}
+				</if>
+				order by x.sqzt,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -186,7 +214,7 @@
 	<select id="queryShXmsq" parameterType="xmsq" resultType="xmsq">
 		select * from (
 			select rownum num,t.* from (
-				select x.* from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+				select x.* from xmsq_sh x where 1=1
 				<if test="xmsq.gydwdm!=null and xmsq.gydwdm!=''">
 					and ${xmsq.gydwdm}
 				</if>
@@ -197,21 +225,25 @@
 					and xmmc like '%'||#{xmsq.xmmc}||'%'
 				</if>
 				<if test="xmsq.jsdj!=null and xmsq.jsdj!=''">
-					and (jsdj=#{xmsq.jsdj} or l.xjsdj=#{xmsq.jsdj})
+					and (jsdj=#{xmsq.jsdj})
 				</if>
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
-				</if> order by x.xmbm desc) t ) t2
+				</if>
+				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
+					and x.lsjl=#{xmsq.lsjl}
+				</if>
+				order by x.sqzt,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
 	</select>
 	
 	<select id="queryYhdzxCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_yhdzx x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		select count(x.xmbm) from xmsq_yhdzx x where 1=1
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
 		</if>
@@ -222,17 +254,20 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="jsdj!=null and jsdj!=''">
-			and (jsdj=#{jsdj} or l.xjsdj=#{jsdj})
+			and (jsdj=#{jsdj})
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and x.lsjl=#{lsjl}
 		</if>
 	</select>
 	<select id="queryShCount" parameterType="xmsq" resultType="int">
-		select count(x.xmbm) from xmsq_sh x left join lxsh_lx l on x.xmbm=l.xmid where 1=1
+		select count(x.xmbm) from xmsq_sh x where 1=1
 		<if test="gydwdm!=null and gydwdm!=''">
 			and ${gydwdm}
 		</if>
@@ -243,13 +278,16 @@
 			and xmmc like '%'||#{xmmc}||'%'
 		</if>
 		<if test="jsdj!=null and jsdj!=''">
-			and (jsdj=#{jsdj} or l.xjsdj=#{jsdj})
+			and (jsdj=#{jsdj})
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'
+		</if>
+		<if test="lsjl!=null and lsjl!=''">
+			and x.lsjl=#{lsjl}
 		</if>
 	</select>
 	
@@ -290,10 +328,10 @@
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
-		select * from xmsq_yhdzx where xmbm=#{xmbm}
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
-		select * from xmsq_sh where xmbm=#{xmbm}
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	
 	<update id="updateYhdzx" parameterType="xmsq">

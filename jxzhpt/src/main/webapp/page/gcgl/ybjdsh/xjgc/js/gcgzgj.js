@@ -2,14 +2,14 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
+	locationXm(data.GHLXBH,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('gclmgj_xx','路面改造工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','gcgzgjxx.jsp','wqxx',740,450);
+	//YMLib.UI.createWindow('gclmgj_xx','新建工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','新建工程项目开工详情','gcgzgjxx.jsp','wqxx',740,450);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -18,19 +18,19 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','路面改造工程项目月报详情','gcgzgjybxx.jsp','wqxx',900,430);
+	parent.YMLib.UI.createWindow('wqxx','新建工程项目月报详情','gcgzgjybxx.jsp','wqxx',900,430);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报列表','gcgzgjyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','新建工程项目月报列表','gcgzgjyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报编辑','gcgzgjybxg.jsp','wqxx',680,360);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报编辑','gcgzgjybxg.jsp','wqxx',680,360);
 	//window.open("gcgzgjybxg.jsp");
 }
 //修改
@@ -62,7 +62,7 @@ function xggcgzgjyb(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报审核','gcgzgjybsh.jsp','wqxx',450,200);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报审核','gcgzgjybsh.jsp','wqxx',450,200);
 }
 function shgcgzgjyb(){
 	var myDate = new Date();
@@ -161,6 +161,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:2,
 	    		    	xmbm:row.XMBM
 	    			},
   			columns:[[

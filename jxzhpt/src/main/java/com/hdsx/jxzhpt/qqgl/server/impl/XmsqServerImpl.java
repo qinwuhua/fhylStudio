@@ -83,6 +83,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmsq.setXmbm(x);
 			list.add(xmsq);
 		}
+		deleteBatch("deleteLxByXmbm", list);
 		return deleteBatch("deleteYhdzxByXmbm", list)==list.size();
 	}
 	@Override
@@ -94,6 +95,7 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 			xmsq.setXmbm(x);
 			list.add(xmsq);
 		}
+		deleteBatch("deleteLxByXmbm", list);
 		return deleteBatch("deleteShByXmbm", list)==list.size();
 	}
 	@Override

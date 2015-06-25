@@ -93,7 +93,7 @@
 	}
 	function getYuefen(){
 		
-		var data="jhid="+parent.parent.obj1.id+"&bfyf="+$("#tj_sbyf").val();
+		var data="jhid="+parent.parent.obj1.XMBM+"&bfyf="+$("#tj_sbyf").val();
 		$.ajax({
 			type:'post',
 			url:'../../../../gcgl/selectcgsyf.do',

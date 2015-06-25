@@ -44,7 +44,36 @@ public class Lxsh implements Serializable {
 	private String sbzt1;
 	private int shzt;
 	private String lxmc;
+	private String jdbs;
+	private String sffirst;
+	private String lsjl;//是否有历史记录
+	private String gpsqdzh;
+	private String gpszdzh;
 	
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getSffirst() {
+		return sffirst;
+	}
+	public void setSffirst(String sffirst) {
+		this.sffirst = sffirst;
+	}
 	public String getLxmc() {
 		return lxmc;
 	}
@@ -255,6 +284,12 @@ public class Lxsh implements Serializable {
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 
 }

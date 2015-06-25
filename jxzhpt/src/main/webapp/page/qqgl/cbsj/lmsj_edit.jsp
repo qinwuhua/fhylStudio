@@ -28,6 +28,9 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
+					$('#span_qdzh').html(data.gpsqdzh);
+					$('#span_zdzh').html(data.gpszdzh);
+					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);
 				}
@@ -70,19 +73,35 @@
 			});
 		}
 		function uploadLmzj(){
-			$('#cbsj').ajaxSubmit({
-				dataType:'json',
-				success:function(msg){
-					if(msg.result){
-						alert("修改成功！");
-						//parent.$("#grid").datagrid("reload");
-						closeWindow("lmsjedit");
+			if(zhuanghao()){
+				$('#cbsj').ajaxSubmit({
+					dataType:'json',
+					success:function(msg){
+						if(msg.result){
+							alert("修改成功！");
+							//parent.$("#grid").datagrid("reload");
+							closeWindow("lmsjedit");
+						}
+					},
+					error:function(msg){
+						alert("修改失败！");
 					}
-				},
-				error:function(msg){
-					alert("修改失败！");
-				}
-			});
+				});
+			}
+		}
+		function zhuanghao(){
+			if(Number($('#qdzh').val())<Number($('#span_qdzh').html())){
+				alert("起点桩号不能小于"+$('#span_qdzh').html());
+				return false;
+			}else if(Number($('#zdzh').val())>Number($('#span_zdzh').html())){
+				alert("止点桩号不能大于"+$('#span_zdzh').html());
+				return false;
+			}else if(Number($("#zdzh"))<Number($('#qdzh').val())){
+				alert("止点桩号不能小于起点桩号");
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </head>
@@ -105,6 +124,11 @@
 						<input id="id" name="id" type="hidden">
 						<input id="xmlx" name="xmlx" value="1" type="hidden"/>
 						<input id="sfbj" name="sfbj" value="1" type="hidden"/>
+						<!-- 此处ylxbh、qdmc、zdmc用于修改lxsh_lx中的信息 -->
+						<input id="jdbs" name="jdbs" type="hidden"/>
+						<input id="ylxbh" name="ghlxbh" type="hidden"/>
+						<input id="qdmc" name="qdmc" value="" type="hidden"/>
+						<input id="zdmc" name="zdmc" value="" type="hidden"/>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						项目名称
@@ -144,13 +168,15 @@
 						起点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="qdzh" name="qdzh" style="width:120px;" type="text"/>
+						<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" style="width:120px;" type="text"/>
+						<br/><span style="font-size: small;color: red;">起点桩号不能小于</span><span id="span_qdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						讫点桩号
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="zdzh" name="zdzh" style="width: 120px;" type="text"/>
+						<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" style="width: 120px;" type="text"/>
+						<br/><span style="font-size:small; color: red;">止点桩号不能大于</span><span id="span_zdzh" style="font-size: small;color: red;"></span>
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						路基(m3)

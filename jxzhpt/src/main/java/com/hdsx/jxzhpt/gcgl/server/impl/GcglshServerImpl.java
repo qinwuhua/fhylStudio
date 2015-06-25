@@ -2,6 +2,7 @@ package com.hdsx.jxzhpt.gcgl.server.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -299,7 +300,7 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	}
 
 	@Override
-	public List<Plan_shuih> queryGcgjList(Gcglsh gcglsh) {
+	public List<Map<String, Object>> queryGcgjList(Gcglsh gcglsh) {
 		// TODO Auto-generated method stub
 		return queryList("queryGcgjList", gcglsh);
 	}
@@ -311,7 +312,7 @@ public class GcglshServerImpl extends BaseOperate implements GcglshServer {
 	}
 
 	@Override
-	public List<Plan_shuih> selectWqgzjhList2(Gcglsh gcglsh) {
+	public List<Map<String, Object>> selectWqgzjhList2(Gcglsh gcglsh) {
 		// TODO Auto-generated method stub
 		return queryList("selectWqgzjhList2", gcglsh);
 	}

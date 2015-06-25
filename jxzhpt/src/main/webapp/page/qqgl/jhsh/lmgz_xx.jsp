@@ -14,6 +14,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			$.ajax({
@@ -27,11 +28,22 @@
 			});
 			$.ajax({
 				type:'post',
+				url:'../../../qqgl/queryKxxyjByXmbm.do',
+				data:'xmlx='+2+'&xmbm='+parent.YMLib.Var.xmbm,
+				dataType:'json',
+				success:function(data){
+					$('#kxxyj').form("load",data);
+					fileShow1('gkpfTable',parent.YMLib.Var.xmbm,"工可批复文件");
+				}
+			});
+			$.ajax({
+				type:'post',
 				url:'../../../qqgl/queryCbsjByXmbm.do',
 				data:'cbsj.xmlx='+2+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
+					fileShow1('sjpfTable',parent.YMLib.Var.xmbm,"设计批复文件");
 				}
 			});
 			$.ajax({
@@ -41,6 +53,7 @@
 				dataType:'json',
 				success:function(data){
 					$('#jhsh').form("load",data);
+					fileShow1('jhxdTable',parent.YMLib.Var.xmbm,"计划下达文件");
 					var inputArray= $('input');
 					$.each(inputArray,function(index,item){
 						$(item).attr("disabled","disabled");
@@ -139,6 +152,96 @@
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">地方自筹：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="dfzc" style="width: 120px;" type="text"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<form id="kxxyj">
+			<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
+				<tr style="height: 25px;">
+					<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+						路面改造工程项目 — 可行性研究
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目名称：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="xmmc" name="xmmc" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目编码：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input id="xmbm" name="xmbm" type="text" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id='xzqh' name="xzqh" style="width: 120px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" name="qdzh" id="qdzh" style="width: 120px;"/>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" name="zdzh" id="zdzh" style="width: 120px;"/>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="jsxz" name="jsxz" style="width: 120px;"/></td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
+					<td style="background-color: #ffffff; height: 25px;" align="left">
+						<input type="text" id="dq_m" name="dq_m" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（座）：</td>
+					<td style="background-color: #ffffff; height: 25px;" align="left">
+						<input type="text" id="dq"  name="dq" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input id="jsjsdj" name="jsjsdj" type="text" style="width: 120px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="sd_m" name="sd_m" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="sd" name="sd" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="jsdw" name="jsdw" style="width: 120px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type='text' id='kgny' name="kgny" style="width: 120px;"/>
+					</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工年月：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type='text' id='wgny' name="wgny" style="width: 120px;"/>
+					</td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="bzdw" name="bzdw" style="width: 120px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="tzgs" name="tzgs" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="gkpfwh" name="gkpfwh" style="width: 120px;"/></td>
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						<input type="text" id="pfsj" name="pfsj" style="width: 120px;"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文件：</td>
+					<td style="background-color: #ffffff; height: 20px;width:18%" align="left" colspan="5">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="gkpfTable"></tbody>
+						</table>
 					</td>
 				</tr>
 			</table>
@@ -347,10 +450,12 @@
 				</tr>
 				<tr style="height: 30px;">
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
-						上传设计批复文件
+						设计批复文件
 					</td>
 					<td colspan="3" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="sjpfTable"></tbody>
+						</table>
 					</td>
 				</tr>
 			</table>
@@ -397,6 +502,16 @@
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;"></td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>
+				</tr>
+				<tr style="height: 60px;">
+					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
+						计划下达文件
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
+							<tbody id="jhxdTable"></tbody>
+						</table>
+					</td>
 				</tr>
 			</table>
 		</form>

@@ -13,6 +13,10 @@ function edit(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','sjgzsb_edit.jsp','lxxx',900,380);
 }
 function del(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
@@ -35,6 +39,174 @@ function del(index){
 	});
   }
 }
+function shangb(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sbsjgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shangb1(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sblmgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shangb2(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	var sbthcd=0;
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}else{
+		sbthcd=$.cookie("unit2").length-2;
+	}
+	
+	if(confirm('您确定上报该项目？')){
+		var data = "lxsh.id="+id+"&lxsh.sbthcd="+sbthcd;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/sbxjSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh1(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shlmgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
+function shenh2(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var id=data1.id;
+	if(confirm('您确定审核该项目？')){
+		var data = "lxsh.id="+id;
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/qqgl/shxjSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('审核成功！');
+					 $("#datagrid").datagrid('reload');
+				 }else{
+					 alert('审核失败,请选择要上报项目！');
+				 }
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
+	}
+}
 //
 function xiangxi1(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -47,6 +219,10 @@ function edit1(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','lmgzsb_edit.jsp','lxxx',900,380);
 }
 function del1(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
@@ -81,6 +257,10 @@ function edit2(index){
 	YMLib.UI.createWindow('lxxx','编辑立项信息','xjsb_edit.jsp','lxxx',900,380);
 }
 function del2(index){
+	if($.cookie("unit2").length==7 ){
+		alert("省级用户请移到审核模块进行操作");
+		return;
+	}
 	var data1=$("#datagrid").datagrid('getRows')[index];
 	var data="lxsh.xmbm="+data1.xmbm;
 	if(confirm('您确定删除该项目？')){
@@ -167,6 +347,7 @@ function showAll(){
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
 	var sbzt=$("#sbzt").combobox('getValue');
+	var lsjl=$("#lsjl").combobox('getValue');
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -185,6 +366,7 @@ function showAll(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -198,17 +380,25 @@ function showAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
@@ -219,11 +409,18 @@ function showAll(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -234,6 +431,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -324,6 +522,7 @@ function showAllsjsh(){
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
 	var sbzt=$("#sbzt").combobox('getValue');
+	var lsjl=$("#lsjl").combobox('getValue');
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -342,6 +541,7 @@ function showAllsjsh(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -356,22 +556,37 @@ function showAllsjsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){	        	
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -381,6 +596,7 @@ function showAllsjsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -440,6 +656,7 @@ function showAlllmgz(){
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
 	var sbzt=$("#sbzt").combobox('getValue');
+	var lsjl=$("#lsjl").combobox('getValue');
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -458,6 +675,7 @@ function showAlllmgz(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -471,17 +689,25 @@ function showAlllmgz(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del1('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb1('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjlmlx('+index+')">添加路线</a>   ';
@@ -492,11 +718,18 @@ function showAlllmgz(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -507,6 +740,7 @@ function showAlllmgz(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,	
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -560,6 +794,7 @@ function showAlllmsh(){
 	var xmmc=$("#xmmc").val();
 	var xmnf=$("#xmnf").combobox('getText');
 	var sbzt=$("#sbzt").combobox('getValue');
+	var lsjl=$("#lsjl").combobox('getValue');
 	var tsdq=$("#tsdq").combobox('getText');
 	if(tsdq=='全部'){
 		tsdq="";
@@ -578,6 +813,7 @@ function showAlllmsh(){
 	    height:$(window).height()-160,
 	    width:$(window).width()-30,
 	    queryParams: {
+	    	lsjl:lsjl,
 	    	xzqh:xzqhstr,
 	    	gydw:gydwstr,
 	    	xmmc:xmmc,
@@ -594,20 +830,26 @@ function showAlllmsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -617,6 +859,7 @@ function showAlllmsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -706,16 +949,15 @@ function showAllxj(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1'||sbthcd==7)
+	            if(row.sbzt1=='1')
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del2('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0'&&sbthcd!=7)
-        		return '未上报';
-	        	else if(row.sbzt1=='1'||sbthcd==7)
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shangb2('+index+')">未上报</a>  ';
+	        	else if(row.sbzt1=='1')
 	        		return '已上报';
-	        	else return '未知';
 	        }},
 	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
 	        	if(row.sbzt1=='0')
@@ -727,11 +969,18 @@ function showAllxj(){
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -742,6 +991,7 @@ function showAllxj(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    				jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -829,20 +1079,26 @@ function showAllxjsh(){
 	        }},
 	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
 	        	if(row.shzt=='0')
-        		return '未审核';
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh2('+index+')">未审核</a>';
 	        	else if(row.shzt=='1')
 	        		return '已审核';
-	        	else return '未知';
 	        }},
 	        {field : 'xmmc',title : '项目名称',width : 180,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'},
 		    {field : 'gydw',title : '管养单位',width : 180,align : 'center'},
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
+		    {field : 'ghlxbh',title : '规划路线编号',width : 180,align : 'center'},
 		    {field : 'qdzh',title : '起点桩号',width : 100,align : 'center'},
 		    {field : 'zdzh',title : '止点桩号',width : 100,align : 'center'},
 		    {field:'qdmc',title:'起点名称',width:150,align:'center'},
 		    {field:'zdmc',title:'止点名称',width:150,align:'center'},
-		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'}
+		    {field : 'lc',title : '里程',width : 100,align : 'center'},
+		    {field:'xjsdj',title:'现技术等级',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:100,align:'center'},
+		    {field : 'tz',title : '投资',width : 100,align : 'center'},
+		    {field : 'bzys',title : '补助测算',width : 100,align : 'center'},
+		    {field : 'dfzc',title : '地方自筹',width : 100,align : 'center'},
+		    {field : 'tsdq',title : '特殊地区',width : 100,align : 'center'}
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
@@ -852,6 +1108,7 @@ function showAllxjsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    				jdbs:0,
 	    		    	xmbm:row.xmbm
 	    			},
     			columns:[[
@@ -913,7 +1170,7 @@ function delsjlx(index1,index){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/deleteLx.do',
-        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz",
+        data:'lxsh.xmbm='+data.xmbm+'&lxsh.id='+data.id+"&lxsh.xmlx=sjgz"+"&lxsh.jdbs=0",
 		dataType:'json',
 		success:function(msg){
 			if(Boolean(msg)){
@@ -991,7 +1248,8 @@ function cxzdmc(lxbm,qdzh){
 	});
 }
 
-function checkdfzc(){
+function checkdfzc(str){
+	checkSZ(str);
 	$("#dfzc").html('');
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')
@@ -1005,7 +1263,8 @@ function checkdfzc(){
 	var dfzc=accSub(tz,bzcs);
 	$("#dfzc").html(dfzc);
 }
-function checkdfzc1(){
+function checkdfzc1(str){
+	checkSZ(str);
 	$("#dfzc").html('');
 	var tz=0;var bzcs=0;
 	if($("#tz").val()!='')

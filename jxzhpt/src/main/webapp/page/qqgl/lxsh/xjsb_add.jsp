@@ -39,11 +39,16 @@ text-decoration:none;
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'xj');
-		
+		tsdq1('tsdq','');
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
 				$("#lxbm").focus();
+				return false;
+			}
+			if($("#lxmc").val()=="" || $("#lxmc").val()==null){
+				alert("请填写路线名称！");
+				$("#lxmc").focus();
 				return false;
 			}
 			if($("#xmmc").val()=="" || $("#xmmc").val()==null){
@@ -51,11 +56,11 @@ text-decoration:none;
 				$("#xmmc").focus();
 				return false;
 			}
-			if($("#qdmc").html()=="" || $("#qdmc").html()==null){
+			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
 				alert("请填写起点名称！");
 				return false;
 			}
-			if($("#zdmc").html()=="" || $("#zdmc").html()==null){
+			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
 				alert("请填写止点名称！");
 				return false;
 			}
@@ -126,7 +131,7 @@ text-decoration:none;
 				});
 				
 		});
-		autoCompleteLXBM();
+		//autoCompleteLXBM();
 	});
 	function autoCompleteLXBM(){
 		var url = "/jxzhpt/qqgl/qqglGpsroad.do";
@@ -198,14 +203,15 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
+		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
-		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
-		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
+		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").combotree('getValues')
+		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
-		+"&lxsh.sbthcd="+sbthcd;
+		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
+		//alert(data);
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertXj.do',
@@ -231,14 +237,26 @@ text-decoration:none;
 			alert("止点桩号不能小于起点桩号");
 			$("#zdzh").val(zdStr);
 		}
-		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
+		var qd=0;
+		var zd=0;
+		if($("#zdzh").val()==''){
+			zd=0;
+		}else{
+			zd=parseFloat($("#zdzh").val());
+		}
+		if($("#qdzh").val()==''){
+			qd=0;
+		}else{
+			qd=parseFloat($("#qdzh").val());
+		}
+		var zlc=accSub(zd,qd);
 		$("#lc").html(zlc);
-		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
-		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
-		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").val(),$("#qdzh").val());
-		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+// 		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").html(),$("#lc").html(),'路面改造工程项目');
+// 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+// 		if($("#qdzh").val()!='')
+// 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
+// 		if($("#zdzh").val()!='')
+// 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 
 </script>
@@ -252,7 +270,7 @@ text-decoration:none;
 					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lxmc"></span></td>
+					<input type="text" name="lxmc" id="lxmc" style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="xmmc" style="width: 156px"/></td>
@@ -273,15 +291,15 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qdmc"></span><br/>
+					<input type="text" name="qdmc" id="qdmc" style="width: 156px" /><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zdmc"></span><br/>
+					<input type="text" name="zdmc" id="zdmc" style="width: 156px" /><br/>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 145px" /></td>
+					<input type="text" id="jsxz" style="width: 145px"  value='新建'/></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
@@ -292,15 +310,31 @@ text-decoration:none;
 					<input type='text' id='xzqh'></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<span id="tsdq" style="font-size: 14px"></span></td>
+<!-- 					<span id="tsdq" style="font-size: 14px"></span> -->
+					<input type="text" id="tsdq"/>
+					</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="jsjsdj"></span></td>
+					<select id="jsjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+						<option value="等外公路">等外公路</option>
+						<option value="高速公路">高速公路</option>
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xjsdj"></span></td>
+					<select id="xjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
+						<option value="一级公路">一级公路</option>
+						<option value="二级公路">二级公路</option>
+						<option value="三级公路">三级公路</option>
+						<option value="四级公路">四级公路</option>
+						<option value="等外公路">等外公路</option>
+						<option value="高速公路">高速公路</option>
+					</select></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmbm"></span>
@@ -325,15 +359,15 @@ text-decoration:none;
 					</select>	</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc1()"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算：</td>
+					<input type="text" id="tz"  onblur="checkdfzc1(this)"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 <!-- 				<span id="bzcs"></span> -->
-				<input type='text' id='bzcs' onblur="checkdfzc1()"/>
+				<input type='text' id='bzcs' onblur="checkdfzc1(this)"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>

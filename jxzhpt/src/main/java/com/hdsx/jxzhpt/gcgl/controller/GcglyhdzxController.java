@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -425,9 +426,9 @@ public class GcglyhdzxController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+gydw+"%'";
+				tiaojian1="and xzqhdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="and gydwdm in ("+gydw+")";
+				tiaojian1="and xzqhdm in ("+gydw+")";
 			}
 		gcglyhdzx.setPage(page);
 		gcglyhdzx.setRows(rows);
@@ -447,9 +448,9 @@ public class GcglyhdzxController extends BaseActionSupport{
 		if(sfsj==11){
 			gcglyhdzx.setTiaojian("xjzt");
 		}
-		List<Plan_yhdzx> list=gcglyhdzxServer.queryGcgjList(gcglyhdzx);
+		List<Map<String, Object>> list=gcglyhdzxServer.queryGcgjList(gcglyhdzx);
 		int count=gcglyhdzxServer.queryGcgjListCount(gcglyhdzx);
-		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 			JsonUtils.write(e, getresponse().getWriter());
@@ -521,9 +522,9 @@ public class GcglyhdzxController extends BaseActionSupport{
 		try {
 				String tiaojian1="";
 				if(gydw.indexOf(",")==-1){
-					tiaojian1="and gydwdm like '%"+gydw+"%'";
+					tiaojian1="and xzqhdm like '%"+gydw+"%'";
 				}else{
-					tiaojian1="and gydwdm in ("+gydw+")";
+					tiaojian1="and xzqhdm in ("+gydw+")";
 				}
 		gcglyhdzx.setGydw(tiaojian1);
 		gcglyhdzx.setKgzt(kgzt);
@@ -533,9 +534,9 @@ public class GcglyhdzxController extends BaseActionSupport{
 		gcglyhdzx.setTbyf(bfyf);
 		gcglyhdzx.setSbnf(xmnf);
 		gcglyhdzx.setTiaojian(bfzt);
-		List<Plan_yhdzx> list=gcglyhdzxServer.selectWqgzjhList2(gcglyhdzx);
+		List<Map<String, Object>> list=gcglyhdzxServer.selectWqgzjhList2(gcglyhdzx);
 		int count=gcglyhdzxServer.selectWqgzjhListcount1(gcglyhdzx);
-		EasyUIPage<Plan_yhdzx> e=new EasyUIPage<Plan_yhdzx>();
+		EasyUIPage<Map<String, Object>> e=new EasyUIPage<Map<String, Object>>();
 		e.setRows(list);
 		e.setTotal(count);
 		

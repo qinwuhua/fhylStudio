@@ -12,7 +12,7 @@ $(function() {
 		title:'年份项目统计',
 		imgSrc:'../../images/xzqhtj.png',
 		renderTo:'left_menu2',
-		href:'./jhktj/xzqhtj.jsp'
+		href:'./jhktj/nftj.jsp'
 	});
 	
 	createMenu('LeftMenu',{

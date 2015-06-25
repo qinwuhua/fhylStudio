@@ -163,6 +163,7 @@
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/cbsj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/jhsh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/config/xmsq.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/jhgl/config/tjfx.xml"/>
 	
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcgj.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/jhgl/config/Plan_gcsj.xml"/>

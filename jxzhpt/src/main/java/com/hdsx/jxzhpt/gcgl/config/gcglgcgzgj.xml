@@ -332,6 +332,9 @@
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
 				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
 			)
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
 		order by xmbm
@@ -355,6 +358,9 @@
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
 			)
 	</select>
@@ -384,6 +390,9 @@
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
 			)
 		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
@@ -416,6 +425,9 @@
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
 				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
 			)
 	</select>
 	 <!-- 查询最进展大月份 -->
@@ -432,7 +444,7 @@
 	 	update jhsh_xj set sfqxkg=#{sfqxkg} where xmbm=#{id}
 	 </select>
 	 <select id="updatashSFQX" parameterType="gcglgcgzgj">
-	 	update plan_shuih set sfqxkg=#{sfqxkg} where id=#{id}
+	 	update jhsh_sh set sfqxkg=#{sfqxkg} where xmbm=#{id}
 	 </select>
 	 <select id="updatahslySFQX" parameterType="gcglgcgzgj">
 	 	update plan_hsly set sfqxkg=#{sfqxkg} where id=#{id}

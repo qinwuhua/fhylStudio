@@ -2,7 +2,7 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
+	locationXm(data.GHLXBH,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
@@ -161,6 +161,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:2,
 	    		    	xmbm:row.XMBM
 	    			},
   			columns:[[

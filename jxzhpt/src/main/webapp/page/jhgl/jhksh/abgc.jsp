@@ -129,6 +129,15 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+					<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -142,39 +151,39 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        					</p>
-        					<p style="margin:8px 0px 4px 20px;">
-        						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;审批状态：</span>
-        						<select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+        						<td>行政区划：</td>
+        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
+        						<td>路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 75px;"></select></td>
+        						<td>审批状态：</td>
+        						<td><select name="ddlSHZT" class="easyui-combobox" id="ddlSHZT" style="width:70px;">
 									<option selected="selected" value="">全部</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
-								</select>
-								<span>&nbsp;特殊地区：</span>
-								<select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;"></select>
-								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select>
-								<span>是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="ddlTSDQ" class="easyui-combobox" id="ddlTSDQ" style="width:80px;"></select></td>
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" class="easyui-combobox" id="ddlPDDJ" style="width:65px;"></select></td>
+								<td>公路等级：</td>
+								<td><select name="ddlGldj" class="easyui-combobox" id="ddlGldj" style="width:104px;"></select></td>
+								<td>是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
-								</select>
-        					</p>
-        					<table style="margin:8px 0px 4px 20px;">
-        						<tr>
-        							<td>
+								</select></td>
+        					</tr>
+        					<tr height="32">
+                              <td colspan="10">
         								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchAbgc()" style="vertical-align:middle;padding-left: 10px;"/>
         								<img name="shenPi" id="shenPi" onclick="batchSp()" src="${pageContext.request.contextPath}/images/Button/qbsp1.png" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qbsp2.png'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qbsp1.png'" style="vertical-align:middle;padding-left: 3px;"/>
         								<img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>

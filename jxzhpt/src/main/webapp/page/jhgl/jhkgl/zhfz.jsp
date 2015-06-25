@@ -95,6 +95,15 @@
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
+	<style type="text/css">
+TD {
+font-size: 12px;
+}
+a{
+text-decoration:none;
+}
+.abgc_td td{padding-right:5px;}
+</style>
 </head>
 <body>
 	<div id="righttop">
@@ -108,49 +117,49 @@
         					<font style="color: #0866A0; font-weight: bold"></font>
         				</legend>
         				<div>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>管养单位：</span>
-        						<select id="gydw" style="width:227px;"></select>
-        						<span>&nbsp;行政区划：</span>
-        						<select id="xzqh" style="width:224px;"></select>
-        						<span>&nbsp;项目状态：</span>
-        						<select name="ddlXMtype" id="ddlXMtype" style="width:104px;" class="easyui-combobox">
+        					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
+					<tr height="32">
+        						<td>管养单位：</td>
+        						<td colspan="3" style="width:215px;"><select id="gydw" style="width:215px;"></select></td>
+        						<td>行政区划：</td>
+        						<td colspan="3" style="width:224px;"><select id="xzqh" style="width:224px;"></select></td>
+        						<td>项目状态：</td>
+        						<td><select name="ddlXMtype" id="ddlXMtype" style="width:104px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="待上报">待上报</option>
 									<option value="已上报">已上报</option>
 									<option value="已入库">已入库</option>
 									<option value="已下达">已下达</option>
-								</select>
-        						<span>&nbsp;路线名称：</span>
-        						<input name="txtRoad" type="text" id="txtRoad" style="width:100px;" />
-        					</p>
-        					<p style="margin:8px 0px 8px 20px;">
-        						<span>上报年份：</span>
-        						<select id="sbnf" style="width: 80px;"></select>
-        						<span>&nbsp;计划状态：</span>
-        						<select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
+								</select></td>
+        						<td align="right">路线名称：</td>
+        						<td><input name="txtRoad" type="text" id="txtRoad" style="width:100px;" /></td>
+        					</tr>
+        					<tr height="32">
+        						<td>上报年份：</td>
+        						<td><select id="sbnf" style="width: 75px;"></select></td>
+        						<td>计划状态：</td>
+        						<td><select name="ddlSHZT" id="ddlSHZT" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
 									<option value="未上报">未上报</option>
 									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
-								</select>
-								<span>&nbsp;特殊地区：</span>
-								<select name="tsdq" id="tsdq" style="width:80px;" class="easyui-combobox"></select>
-								<span>&nbsp;技术等级：</span>
-								<select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select>
-								<span>&nbsp;公路等级：</span>
-								<select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select>
-								<span>是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
+								</select></td>
+								<td>特殊地区：</td>
+								<td><select name="tsdq" id="tsdq" style="width:75px;" class="easyui-combobox"></select></td>
+								<td>技术等级：</td>
+								<td><select name="ddlPDDJ" id="ddlPDDJ" style="width:65px;" class="easyui-combobox"></select></td>
+								<td>公路等级：</td>
+								<td><select name="ddlGldj" id="ddlGldj" style="width:104px;" class="easyui-combobox"></select></td>
+								<td>是否有补助历史：</td>
+								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:104px;">
 									<option value="" selected="selected">全部</option>
 									<option value="无">否</option>
 									<option value="是">是</option>
-								</select>
-        					</p>
-        					<table style="margin:8px 0px 8px 20px;">
-        						<tr>
-        							<td>
+								</select></td>
+        					</tr>
+        					<tr height="32">
+                              <td colspan="10">
         								<img onclick="searchZhfz()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
 										<img onclick="exportModule('Plan_Disaster')" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 										<img onclick="importData_jh('zhfz_jh')" alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
@@ -158,8 +167,7 @@
 				                        <img onclick="exportExcel('zhfz')" alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
                                 		<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display:none;"  onclick="showLrjh('lrjh_zh.jsp','1100','500');"/> -->
                                 	</td>
-                                </tr>
-        					</table>
+                            </tr></table>
         				</div>
         			</fieldset>
         		</td>

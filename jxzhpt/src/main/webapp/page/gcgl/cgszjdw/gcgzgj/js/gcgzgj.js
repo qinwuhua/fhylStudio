@@ -2,13 +2,13 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.plan_lx_gcgjs[0].lxbm,"");
+	locationXm(data.GHLXBH,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('gclmgj_xx','工程改造路面改建项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+	//YMLib.UI.createWindow('gclmgj_xx','路面改造项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
 	YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','gcgzgjxx.jsp','wqxx',740,450);
 	//window.open("gcgzgjxx.jsp");
 }
@@ -172,6 +172,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:2,
 	    		    	xmbm:row.XMBM
 	    			},
     			columns:[[

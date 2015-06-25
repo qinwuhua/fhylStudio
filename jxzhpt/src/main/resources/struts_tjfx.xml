@@ -15,5 +15,7 @@
 		<action name="queryGcktjt" class="tjfxController" method="queryGcktjt"/>
 		<action name="queryGcktj2" class="tjfxController" method="queryGcktj2"/>
 		<action name="queryXmlxTj" class="tjfxController" method="queryXmlxTj"/>
+		<!-- 新方法 -->
+		<action name="queryNftj" class="tjfxController" method="queryNftj"></action>
 	</package>
 </struts>

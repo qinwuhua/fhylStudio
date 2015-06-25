@@ -24,43 +24,52 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});
 		function queryLmgz(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':-1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':-1,
+					'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xdzt',title:'计划下达',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
 						xmlx=2;
-						if(row.xdzt==0){
-							result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
-							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:blue;">计划下达</a>';
-						}else{
-							result='计划下达';
-						}
+						result='<a href="javascript:openWindow('+"'jhxd'"+','+"'计划下达'"+','+
+							"'/jxzhpt/page/qqgl/jhsh/jhxd.jsp'"+',900,400)" style="color:#3399CC;">计划下达</a>';
 						return result;
 					}
 				},
 				{field:'zjzj',title:'资金追加',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a href="javascript:openZjzj('+"'"+index+"',"+"'2'"+')" style="color:blue;">资金追加</a>';
+						result='<a href="javascript:openZjzj('+"'"+index+"',"+"'2'"+')" style="color:#3399CC;">资金追加</a>';
 						return result;
 					}
 				},
@@ -115,23 +124,22 @@ text-decoration:none;
         				<div>
         					<table style="margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-        						<td>行政区划：</td>
-        						<td><select id="xzqh" style="width:160px;"></select></td>
+        						<td >行政区划：</td>
+        						<td><select id="xzqh" style="width:120px;"></select></td>
         						<td>特殊地区：</td>
-								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:110px;"></select></td>
 								<td>项目名称：</td>
         						<td><input name="txtxmmc" type="text" id="txtxmmc" style="width:100px;" /></td>
         						<td>路线编码：</td>
         						<td><input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" /></td>
-        					</tr>
-        				<tr height="32">
-        						<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+        						<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
-									<option value="否">否</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
-								</tr>
+        					</tr>
+        				
 									<tr height="32">
                               <td colspan="10">
 								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>

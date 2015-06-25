@@ -43,6 +43,35 @@ public class Kxxyj implements Serializable {
 	private String lxbh;
 	private String gydwdm;
 	private String lc;
+	private String jdbs;
+	private String lsjl;
+	private String gpsqdzh;
+	private String gpszdzh;
+	
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
+	}
 	public String getGydwdm() {
 		return gydwdm;
 	}

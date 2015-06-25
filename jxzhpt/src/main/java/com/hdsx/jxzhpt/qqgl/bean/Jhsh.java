@@ -31,6 +31,7 @@ public class Jhsh {
 	//用到立项审核表中的数据
 	private String ghlxbh;//路线编码
 	private String xzqhdm;//行政区划代码
+	private String lsjl;//历史记录
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
 	private String tsdq;//特殊地区
@@ -58,6 +59,35 @@ public class Jhsh {
 	private String gfje;//灌缝金额
 	private String llcl;//老路处理
 	private String jsdj;//技术等级
+	//用于路线信息的字段
+	private String qdmc;//起点名称
+	private String zdmc;//止点名称
+	private String gpsqdzh;//GPSRoad中的起点桩号
+	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
 	public String getId() {
 		return id;
 	}
@@ -321,5 +351,11 @@ public class Jhsh {
 	}
 	public void setJsdj(String jsdj) {
 		this.jsdj = jsdj;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
 	}
 }

@@ -29,12 +29,55 @@ $(function(){
 	$("#gkpfwh").html(data.GKPFWH);$("#gys").html(data.GYS);
 	fileShow1(data.XMBM,"工可批复文件");
 	fileShow2(data.XMBM,"设计批复文件");
+	sfylx();
+});
+function sfylx(){
+	var data="lxsh.xmbm="+parent.obj1.XMBM+"&lxsh.jdbs=2";
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/sfylx.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(msg.shzt>0){
+				$("#lxxx").attr('style','height: 35px;');
+				$("#lxxx1").attr('style','');
+				setlx();
+			}
+		},
+		error : function(){
+		 YMLib.Tools.Show('未检索到数据错误！error code = 404',3000);
+	 }
+	});	
+}
+function setlx(){
+	$('#table_lx').datagrid({
+		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+		 queryParams: {
+			 	jdbs:2,
+		    	xmbm:parent.obj1.XMBM
+			},
+		columns:[[
+		    {field:'gydw',title:'管养单位',width:150,align:'center'},    
+		    {field:'xzqh',title:'行政区划',width:150,align:'center'},
+		    {field:'lxmc',title:'路线名称',width:120,align:'center'},
+		    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+		    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
+		    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+		    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+		    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+		    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+		    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+		    {field:'lc',title:'里程',width:60,align:'center'}
+		]]
 	});
+
+}
 
 function fileShow1(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -49,7 +92,7 @@ function fileShow1(xmbm,type){
 function fileShow2(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -135,6 +178,18 @@ a {
 				<td 
 					style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
 					<span id="gq"></span>
+				</td>
+			</tr>
+			<tr id="lxxx"  style="height: 35px;display: none">
+				<td align="center" colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" >
+					<span>路线信息</span>
+				</td>
+			</tr>
+			<tr id="lxxx1" style="height: 35px;display: none">
+				<td align="center" colspan="6" style="background-color:#ffffff;color: #007DB3; font-weight: bold;width:15%" >
+					<div>
+						<table id="table_lx"></table>
+					</div>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

@@ -118,5 +118,9 @@ public interface LxshServer {
 
 	Lxsh cxzdmc(Lxsh lxsh);
 
+	Lxsh sfylx(Lxsh lxsh);
+
+	Lxsh qqglGpszh(Lxsh lxsh);
+
 
 }

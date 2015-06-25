@@ -35,7 +35,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 
 /**
- * 系统管理Controller层
+ * 工程管理Controller层
  * @author qwh
  *
  */
@@ -376,7 +376,7 @@ public class GcglzhfzController extends BaseActionSupport{
 	            while ((size = in.read(data)) != -1) { 
 	                fos.write(data, 0, size); 
 	            }  
-	        } 
+	     } 
 		FileInputStream fis= new FileInputStream(file);
 		byte [] arr = new byte[1024*10];
 		int i;

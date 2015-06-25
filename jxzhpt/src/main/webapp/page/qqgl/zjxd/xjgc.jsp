@@ -24,6 +24,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			YMLib.Var.jdbs=2;
 			queryXj();
 		});
 		function queryXj(){
@@ -32,22 +33,23 @@
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
 					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
 			grid.queryParams=params;
-			grid.height=$(window).height()-180;
+			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
-								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
+								"'/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a href="javascript:openWindow('+"'xjzjxd'"+','+"'新建工程项目 — 资金下发'"+','+
-						"'/jxzhpt/page/qqgl/zjxd/xjgc_zjxd.jsp'"+',900,400)" style="color:blue;">资金下发</a>';
+						"'/jxzhpt/page/qqgl/zjxd/xjgc_zjxd.jsp'"+',900,400)" style="color:#3399CC;">资金下发</a>';
 						return result;
 					}
 				},
@@ -102,12 +104,6 @@
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="" selected="selected">全部</option>
-									<option value="否">否</option>
-									<option value="是">是</option>
-								</select>
 								<img onclick="queryXj()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
 								<img onclick="exportZjxd()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="importJhshZjzj(6)" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>

@@ -51,23 +51,68 @@ public class Lx {
 	}
 	private String id;//ID
 	private String xmid;//项目编码
-	private String lxbm;//路线编码
 	private String lxmc;//路线名称
 	private String xzqh;//行政区划
 	private String xzqhdm;//行政区划代码
 	private String gydw;//管养单位
 	private String gydwdm;//管养单位代码
-	private String qdzh;//起点桩号
-	private String zdzh;//止点桩号
-	private String jsjsdj;//建设技术等级
 	private String lc;//里程
-	private String xjsdj;//现技术等级
 	private String jsxz;//建设性质
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
 	private String bzcs;//补助测算
 	private String sffirst;//是否是第一条路线
 	private String ylmlx;//路面类型
+	private String jdbs;//阶段备注
+	
+	private String lxbm;//路线编码
+	private String qdzh;//起点桩号
+	private String zdzh;//止点桩号
+	private String xjsdj;//现技术等级
+	private String jsjsdj;//建设技术等级
+	private String gpsqdzh;//获取的GPSroad表中的起点装号
+	private String gpszdzh;//获取的GPSroad表中的止点桩号
+	//历史数据字段
+	private String ylxbm;//原路线编码
+	private String yqdzh;//原起点桩号
+	private String yzdzh;//原止点桩号
+	private String xmmc;//项目名称
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getYlxbm() {
+		return ylxbm;
+	}
+	public void setYlxbm(String ylxbm) {
+		this.ylxbm = ylxbm;
+	}
+	public String getYqdzh() {
+		return yqdzh;
+	}
+	public void setYqdzh(String yqdzh) {
+		this.yqdzh = yqdzh;
+	}
+	public String getYzdzh() {
+		return yzdzh;
+	}
+	public void setYzdzh(String yzdzh) {
+		this.yzdzh = yzdzh;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
+	}
 	public String getYlmlx() {
 		return ylmlx;
 	}
@@ -181,5 +226,11 @@ public class Lx {
 	}
 	public void setSffirst(String sffirst) {
 		this.sffirst = sffirst;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
 	}
 }

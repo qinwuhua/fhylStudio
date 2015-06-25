@@ -59,8 +59,42 @@ public class Cbsj {
 	private String xzqhdm;//行政区划代码
 	private String xjsdj;//现技术等级
 	private String tsdq;//特殊地区
+	//路线字段
+	private String qdmc;//起点桩号
+	private String zdmc;//止点桩号
 	//附加属性，用于代码判断
 	private int xmlx;//项目类型：1—升级项目、2 — 改造项目、3 — 新建
+	//路线编码
+	private String ylxbh;//原路线编码
+	private String jsfa;//建设方案
+	private String lsjl;;//是否有历史记录
+	private String jdbs;//阶段标示
+	private String gpsqdzh;//GPSRoad中的起点桩号
+	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
+	public String getJsfa() {
+		return jsfa;
+	}
+	public void setJsfa(String jsfa) {
+		this.jsfa = jsfa;
+	}
 	public int getXmlx() {
 		return xmlx;
 	}
@@ -324,5 +358,29 @@ public class Cbsj {
 	}
 	public void setDc_lc(String dc_lc) {
 		this.dc_lc = dc_lc;
+	}
+	public String getYlxbh() {
+		return ylxbh;
+	}
+	public void setYlxbh(String ylxbh) {
+		this.ylxbh = ylxbh;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
+	public String getJdbs() {
+		return jdbs;
+	}
+	public void setJdbs(String jdbs) {
+		this.jdbs = jdbs;
 	}
 }

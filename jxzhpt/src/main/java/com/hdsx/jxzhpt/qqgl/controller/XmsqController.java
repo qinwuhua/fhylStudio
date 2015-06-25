@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
@@ -33,12 +34,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	//分页参数
 	private int page = 1;
 	private int rows = 10;
-	//添加路线信息字段
-	private String qdmc;//起点名称
-	private String zdmc;//止点名称
 	//数据访问对象
 	@Resource(name="xmsqServerImpl")
 	private XmsqServer xmsqServer;
+	@Resource(name="jhshServerImpl")
+	private JhshServer jhshServer;
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
@@ -99,21 +99,29 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void insertXmsq() throws Exception{
 		try{
 			boolean b=false;
-			List<Xmsq> list=new ArrayList<Xmsq>();
-			xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh())>0 ? "是" : "否");
-			list.add(xmsq);
-			if(xmsq.getXmlx()==4){
-				b = xmsqServer.insertXmsqYhdzx(list);
-			}else if(xmsq.getXmlx()==5){
-				b = xmsqServer.insertXmsqSh(list);
+			Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
+					xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
+					xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+			lx.setJdbs("1");
+			lx.setJsjsdj(xmsq.getJsdj());
+			lx.setGpsqdzh(xmsq.getGpsqdzh());
+			lx.setGpszdzh(xmsq.getGpszdzh());
+			if(jhshServer.queryHaveLx(lx)){
+				List<Xmsq> list=new ArrayList<Xmsq>();
+				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh())>0 ? "是" : "否");
+				list.add(xmsq);
+				if(xmsq.getXmlx()==4){
+					b = xmsqServer.insertXmsqYhdzx(list);
+				}else if(xmsq.getXmlx()==5){
+					b = xmsqServer.insertXmsqSh(list);
+				}
+				if(b){
+					xmsqServer.insertLx(lx);
+				}
+				result.put("result", new Boolean(b).toString());
+			}else{
+				result.put("result", "have");
 			}
-			if(b){
-				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
-						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
-						xmsq.getGcfl(), qdmc, zdmc, "1");
-				boolean s= xmsqServer.insertLx(lx);
-			}
-			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -124,6 +132,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try {
 			List<Xmsq> list=null;
 			int total=0;
+			System.out.println("阶段："+xmsq.getJdbs());
 			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
 			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
 			if(xmsq.getXmlx()==4){
@@ -168,7 +177,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		try{
 			boolean b=true;
 			xmsq.setSqzt(xmsq.getXzqhdm().length());
-			System.out.println("状态长度："+xmsq.getXzqhdm().length());
+			Lx lx=new Lx();
+			lx.setXmid(xmsq.getXmbm());
+			lx.setJdbs(xmsq.getJdbs());
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 			}else if(xmsq.getXmlx()==5){
@@ -192,17 +203,20 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzxSqzt(xmsq);
 				if(b){
-					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
-					//再次修改后，添加到初步设计
 					xmsqServer.insertCbsjYhdzx(xmsq);
 				}
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateShSqzt(xmsq);
 				if(b){
-					//xmsqServer.insertJhshYhdzx(xmsq);//添加项目申请到计划审核
-					//再次修改后，添加到初步设计
 					boolean s = xmsqServer.insertCbsjSh(xmsq);
 				}
+			}
+			//路线阶段添加
+			if(b){
+				Lx lx=new Lx();
+				lx.setXmid(xmsq.getXmbm());
+				lx.setJdbs(xmsq.getJdbs());
+				jhshServer.insertLxJdbs(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -236,10 +250,23 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	public void updateXmsq() throws Exception{
 		try{
 			boolean b=true;
+			//准备路线桩号信息
+			Lx lx=new Lx();
+			lx.setQdzh(xmsq.getQdzh());
+			lx.setZdzh(xmsq.getZdzh());
+			lx.setXmid(xmsq.getXmbm());
+			lx.setQdmc(xmsq.getQdmc());
+			lx.setZdmc(xmsq.getZdmc());
+			lx.setSffirst("1");
+			lx.setJdbs(xmsq.getJdbs());
+			
 			if(xmsq.getXmlx()==4){
 				b = xmsqServer.updateYhdzx(xmsq);
 			}else if(xmsq.getXmlx()==5){
 				b = xmsqServer.updateSh(xmsq);
+			}
+			if(b){
+				jhshServer.updateLx(lx);
 			}
 			result.put("result", new Boolean(b).toString());
 			JsonUtils.write(result, getresponse().getWriter());
@@ -288,17 +315,5 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
-	}
-	public String getQdmc() {
-		return qdmc;
-	}
-	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
-	}
-	public String getZdmc() {
-		return zdmc;
-	}
-	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
 	}
 }
