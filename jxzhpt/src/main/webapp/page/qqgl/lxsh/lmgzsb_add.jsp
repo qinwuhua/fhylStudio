@@ -110,20 +110,22 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=lmgz";
-				$.ajax({
-					type:'post',
-					url:'/jxzhpt/qqgl/selectSFCF.do',
-					dataType:'json',
-			        data:datas,
-					success:function(msg){
-						if(Boolean(msg)){
-								saveLxsh();
-						}else{
-							alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
-						}
+			saveLxsh();
+			/*
+			var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=lmgz";
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/selectSFCF.do',
+				dataType:'json',
+			    data:datas,
+				success:function(msg){
+					if(Boolean(msg)){
+							saveLxsh();
+					}else{
+						alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
 					}
-				});
+				}
+			});*/
 				
 		});
 		autoCompleteLXBM();
@@ -214,12 +216,14 @@ text-decoration:none;
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
 					parent.showAlllmgz();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

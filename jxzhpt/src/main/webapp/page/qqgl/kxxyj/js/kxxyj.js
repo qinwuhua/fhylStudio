@@ -1,4 +1,25 @@
 var obj=new Object();
+/**
+ * 判断项目类型，返回文字
+ * @param xmbm 项目编码
+ * @result 返回项目类型
+ */
+function panduanxmlx(xmbm){
+	var result="";
+	var xmlx = xmbm.substring(10,11);
+	if(xmlx=="1"){
+		result="升级改造工程项目";
+	}else if(xmlx=="2"){
+		result="路面改造工程项目";
+	}else if(xmlx=="3"){
+		result="新建工程项目";
+	}else if(xmlx=="4"){
+		result="养护大中修项目";
+	}else if(xmlx=="5"){
+		result="水毁项目";
+	}
+	return result;
+}
 function xiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj=data;

@@ -171,7 +171,7 @@
 						alert("添加成功!");
 						closeWindow(parent.YMLib.Var.id);
 					}else if(msg.result=="have"){
-						alert("路线"+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在计划！");
+						alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
 					}
 				}
 			});

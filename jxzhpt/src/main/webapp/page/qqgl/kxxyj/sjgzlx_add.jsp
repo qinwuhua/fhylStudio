@@ -89,6 +89,8 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
+			saveLxsh();
+			/*
 				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmbm="+$("#xmbm").html()+"&lxsh.jdbs=1";
 				$.ajax({
 					type:'post',
@@ -103,7 +105,7 @@ text-decoration:none;
 						}
 					}
 				});
-				
+			*/
 		});
 		autoCompleteLXBM();
 	});
@@ -177,12 +179,14 @@ text-decoration:none;
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showsjgzAll();
+					parent.showlmgzAll();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

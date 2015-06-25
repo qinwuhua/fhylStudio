@@ -218,9 +218,9 @@ public interface JhshServer {
 	/**
 	 * 查询是否存在此路线
 	 * @param lx 路线信息
-	 * @return 是否存在
+	 * @return 所在的项目编码
 	 */
-	public boolean queryHaveLx(Lx lx);
+	public String queryHaveLx(Lx lx);
 	/**
 	 * 查询历史信息
 	 * @param xmbm 项目编码

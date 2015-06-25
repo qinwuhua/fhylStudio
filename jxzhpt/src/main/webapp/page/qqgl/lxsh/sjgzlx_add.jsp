@@ -89,21 +89,24 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
-				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmbm="+$("#xmbm").html()+"&lxsh.jdbs=0";
-				$.ajax({
-					type:'post',
-					url:'/jxzhpt/qqgl/selectSFCFLX.do',
-					dataType:'json',
-			        data:datas,
-					success:function(msg){
-						if(Boolean(msg)){
-								saveLxsh();
-						}else{
-							alert('该项目已添加过该条路线，请勿重复添加！');
-						}
+			saveLxsh();
+			
+			/*	
+			var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmbm="+$("#xmbm").html()+"&lxsh.jdbs=0";
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/selectSFCFLX.do',
+				dataType:'json',
+			    data:datas,
+				success:function(msg){
+					if(Boolean(msg)){
+							saveLxsh();
+					}else{
+						alert('该项目已添加过该条路线，请勿重复添加！');
 					}
-				});
-				
+				}
+			});
+			*/
 		});
 		autoCompleteLXBM();
 	});
@@ -177,12 +180,14 @@ text-decoration:none;
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showAll();
+					parent.showlmgzAll();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});
