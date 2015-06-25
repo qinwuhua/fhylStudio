@@ -218,10 +218,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq_m"  /></td>
+					<input type="text" id="dq_m"  onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（座）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq"  /></td>
+					<input type="text" id="dq"  onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id='jsjsdj'></span></td>
@@ -229,10 +229,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd_m"/></td>
+					<input type="text" id="sd_m" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd"/></td>
+					<input type="text" id="sd" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="jsdw"/>
@@ -255,7 +255,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="tzgs"/></td>
+					<input type="text" id="tzgs" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				<input type="text" id="gkpfwh"/></td>
