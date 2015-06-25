@@ -8,7 +8,7 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	YMLib.UI.createWindow('wqxx','水毁工程项目开工详情','shxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','水毁工程项目详情','shxx.jsp','wqxx',940,450);
 	//YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
 }
 function closes(str){
