@@ -71,6 +71,19 @@
 			});
 		}
 		function uploadLmzj(){
+			var submit=true;
+			submit=validateText('qdzh','number',submit);
+			submit=validateText('zdzh','number',submit);
+			submit=validateText('mc_lc','number',submit);
+			submit=validateText('jc_lc','number',submit);
+			submit=validateText('dc_lc','number',submit);
+			submit=validateText('dq_cd','number',submit);
+			submit=validateText('dq_dk','number',submit);
+			submit=validateText('sd_sfcd','number',submit);
+			submit=validateText('jaf','number',submit);
+			if(!submit){
+				return;
+			}
 			$('#cbsj').ajaxSubmit({
 				dataType:'json',
 				success:function(msg){

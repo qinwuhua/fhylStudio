@@ -222,6 +222,8 @@ text-decoration:none;
 					alert("保存成功！");
 					parent.showAll();
 					removes('lxxx');
+				}else if(msg=="have"){
+					alert("路线"+$("#lxbm").val()+"【"+$("#qdzh").val()+"-"+$("#zdzh").val()+"】已经存在计划！");
 				}else{
 					alert('保存失败！');
 				}

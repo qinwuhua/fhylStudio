@@ -61,7 +61,7 @@
 					});
 				}
 			});
-			queryZjxd(parent.YMLib.Var.xmbm);
+			queryZjxd1(parent.YMLib.Var.xmbm);
 		});
 	</script>
 </head>

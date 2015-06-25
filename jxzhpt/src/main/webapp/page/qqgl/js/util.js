@@ -340,6 +340,29 @@ function queryZjxd(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+function queryZjxd1(xmbm){
+	grid.id="zjxdList";
+	grid.url="../../../jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
 /**
  * 删除资金下发
  * @param id

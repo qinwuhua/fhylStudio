@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/js/util.js"></script>
 	<style type="text/css">
 		TD {font-size: 12px;} 
 		a{text-decoration:none;}
@@ -73,7 +73,9 @@
 					$('#lxbm').val(item.ghlxbh);
 					$('#lxmc').val(item.lxmc);
 					$('#qdzh').val(item.qdzh);
+					$('#gpsqdzh').val(item.qdzh);
 					$('#zdzh').val(item.zdzh);
+					$('#gpszdzh').val(item.zdzh);
 					$('#lc').val(item.lc);
 					$('#qdmc').val(item.qdmc);
 					$('#zdmc').val(item.zdmc);
@@ -83,10 +85,19 @@
 				});
 		}
 		function insert(){
+			var result =true;
+			result = validateText('qdzh','number',result);
+			result = validateText('zdzh','number',result);
+			result = validateText('lc','number',result);
+			if(!true){
+				return;
+			}
 			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').val(),'lx.lxmc':$('#lxmc').val(),'lx.qdzh':$('#qdzh').val(),
-					'lx.lxbm':$('#lxbm').val(),'lx.zdzh':$('#zdzh').val(),'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),'lx.zdmc':$('#zdmc').val(),
-					'lx.jsxz':$('#jsxz').val(),'lx.gydw':$('#gydw').combobox("getText"),'lx.gydwdm':$('#gydw').combobox("getValue"),
-					'lx.xzqh':$('#xzqh').combobox("getText"),'lx.xzqhdm':$('#xzqh').combobox("getValue"),'lx.xjsdj':$('#xjsdj').combobox("getValue")};
+					'lx.lxbm':$('#lxbm').val(),'lx.zdzh':$('#zdzh').val(),'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),
+					'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),'lx.gydw':$('#gydw').combobox("getText"),
+					'lx.gydwdm':$('#gydw').combobox("getValue"),'lx.xzqh':$('#xzqh').combobox("getText"),
+					'lx.xzqhdm':$('#xzqh').combobox("getValue"),'lx.xjsdj':$('#xjsdj').combobox("getValue"),
+					'lx.gpsqdzh':$('#gpsqdzh').val(),'lx.gpszdzh':$('#gpszdzh').val()};
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/insertLx.do',
@@ -117,6 +128,8 @@
 				<input id="xmbm1" name="xmbm" type="text" style="width: 120px;"/><font color='red' size='2'>&nbsp;*</font>
 				<input id="xmbm" name="xmbm" type="hidden"/>
 				<input id="jdbs" name="jdbs" type="hidden"/>
+				<input id="gpsqdzh" name="gpsqdzh" type="hidden"/>
+				<input id="gpszdzh" name="gpszdzh" type="hidden"/>
 			</td>
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 				路线编码</td>
