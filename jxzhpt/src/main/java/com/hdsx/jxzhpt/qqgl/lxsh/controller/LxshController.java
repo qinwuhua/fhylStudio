@@ -44,9 +44,12 @@ import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.qqgl.server.impl.XmsqServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
@@ -299,12 +302,21 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertSjgz(){
 		XmsqServer xmsqServer=new XmsqServerImpl();
-		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh())>0 ? "是" : "否");
-		boolean bl=lxshServer.insertSjgz(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
+		Lx lx=new Lx();
+		lx.setXmid(lxsh.getXmbm());
+		lx.setQdzh(lxsh.getQdzh());
+		lx.setZdzh(lxsh.getZdzh());
+		JhshServer jhshServer=new JhshServerImpl();
+		if(jhshServer.queryHaveLx(lx)){
+			lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh())>0 ? "是" : "否");
+			boolean bl=lxshServer.insertSjgz(lxsh);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
 		}else{
-			ResponseUtils.write(getresponse(), "false");
+			ResponseUtils.write(getresponse(), "have");
 		}
 	}
 	public void insertLmgz(){

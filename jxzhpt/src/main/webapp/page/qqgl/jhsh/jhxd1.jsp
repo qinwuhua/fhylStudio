@@ -132,19 +132,19 @@
 								总投资
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="ztz" name="ztz" type="text"  style="width: 100px;height: 20px;" />&nbsp;万元
+								<input id="ztz" name="ztz" type="text" value="0" style="width: 100px;height: 20px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								省以上补助资金
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="sysbbzj" name="sysbbzj" type="text"  style="width: 100px;height: 20px;" />&nbsp;万元
+								<input id="sysbbzj" name="sysbbzj" type="text" value="0" style="width: 100px;height: 20px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								已确定部车购税
 							</td>
 							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="yqdbcgs" name="yqdbcgs" type="text"  style="width: 80px;height: 20px;" />&nbsp;万元
+								<input id="yqdbcgs" name="yqdbcgs" type="text" value="0" style="width: 80px;height: 20px;" />&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">
