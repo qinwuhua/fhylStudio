@@ -10,7 +10,7 @@
 		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
 		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
 		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
-		  <action name="insertLx" class="lxshController" method="insertLx"/>
+		  <action name="insertLx1" class="lxshController" method="insertLx1"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>

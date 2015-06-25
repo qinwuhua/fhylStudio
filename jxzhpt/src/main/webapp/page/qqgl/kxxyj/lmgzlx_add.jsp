@@ -168,7 +168,7 @@ text-decoration:none;
 		//alert(data);
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/insertLx.do',
+			url:'/jxzhpt/qqgl/insertLx1.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){

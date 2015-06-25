@@ -755,7 +755,7 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	
-	public void insertLx(){
+	public void insertLx1(){
 		boolean bl=lxshServer.insertLx(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
