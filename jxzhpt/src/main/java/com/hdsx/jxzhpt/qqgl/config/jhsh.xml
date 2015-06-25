@@ -361,10 +361,10 @@
 		select * from jhsh_xj where xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.ylxbh from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm where j.xmbm=#{xmbm}
+		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh from jhsh_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.ylxbh from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm where j.xmbm=#{xmbm}
+		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
 		select * from kxxyj_sjgz where xmbm =#{xmbm}

@@ -62,6 +62,20 @@ public class Jhsh {
 	//用于路线信息的字段
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
+	private String gpsqdzh;//GPSRoad中的起点桩号
+	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
 	public String getQdmc() {
 		return qdmc;
 	}

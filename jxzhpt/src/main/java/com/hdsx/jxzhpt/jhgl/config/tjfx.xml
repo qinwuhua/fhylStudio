@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.tjfx">
+	<select id="queryLmgzNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select l.xzqhdm,NVL(sum(j.pfztz),0) lmgjztz,NVL(sum(j.bbzzj),0) lmgjcgs,NVL(sum(j.sbzzj),0) lmgjstz,count(j.xmbm) lmgjsl from jhsh_lmgz j left join lxsh_lmgz l on j.xmbm=l.xmbm 
+		where j.xmbm like #{nf}||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' 
+		group by l.xzqhdm
+	</select>
+	<select id="queryLmsjNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select l.xzqhdm,NVL(sum(j.pfztz),0) lmsjztz,NVL(sum(j.bbzzj),0) lmsjcgs,NVL(sum(j.sbzzj),0) lmsjstz,count(j.xmbm) lmsjsl from jhsh_sjgz j left join lxsh_sjgz l on j.xmbm=l.xmbm 
+		where j.xmbm like #{nf}||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by l.xzqhdm
+	</select>
+	<select id="queryXjNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select l.xzqhdm,NVL(sum(j.pfztz),0) xjztz,NVL(sum(j.bbzzj),0) xjcgs,NVL(sum(j.sbzzj),0) xjstz,count(j.xmbm) xjsl from jhsh_xj j left join lxsh_xj l on j.xmbm=l.xmbm 
+		where j.xmbm like #{nf}||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by l.xzqhdm
+	</select>
+	<select id="queryYhNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select l.xzqhdm,NVL(sum(j.ztz),0) yhdzxztz,NVL(sum(j.yqdbcgs),0) yhdzxcgs,NVL(sum(to_number(j.sysbbzj)-to_number(j.yqdbcgs)),0) yhdzxstz,count(j.xmbm) yhdzxsl from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm = l.xmbm
+		where j.xmbm like #{nf}||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by l.xzqhdm
+	</select>
+	<select id="queryShNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select l.xzqhdm,NVL(sum(j.pfztz),0) shztz,NVL(sum(j.bbzzj),0) shcgs,NVL(sum(j.sbzzj),0) shstz,count(j.xmbm) shsl from jhsh_sh j left join xmsq_sh l on j.xmbm = l.xmbm
+		where j.xmbm like #{nf}||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by l.xzqhdm
+	</select>
+	<select id="queryAbgcNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select #{xzqhdm} xzqhdm,NVL(sum(j.pfztz),0) abgcztz,NVL(sum(j.jhsybbzje),0) abgccgs,NVL(sum(j.jhsydfzczj),0) abgcstz,count(j.id) abgcsl
+		from plan_abgc j left join sck_abgc absc on (j.sckid=absc.sckid) left join xmk_abgc l on (absc.xmkid=l.id)
+		where j.jhnf=#{nf} and l.xzqhdm like '%'||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by substr(#{xzqhdm},0,4)
+	</select>
+	<select id="queryZhfzNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select #{xzqhdm} xzqhdm,NVL(sum(j.pfztz),0) zhfzztz,NVL(sum(j.jhsybzje),0) zhfzcgs,NVL(sum(j.jhsydfzcje),0) zhfzstz,count(j.id) zhfzsl
+		from plan_zhfz j left join sck_zhfz zhsc on (j.sckid=zhsc.sckid) left join xmk_zhfz l on (zhsc.xmkid=l.id)
+		where j.sbnf = #{nf} and l.xzqhdm like '%'||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' group by substr(#{xzqhdm},0,4)
+	</select>
+	<select id="queryWqgzNfByXzqhdm" resultType="java.util.Map" parameterType="java.util.Map">
+		select #{xzqhdm} xzqhdm,NVL(sum(j.pfztz),0) wqgzztz,NVL(sum(j.jhsybzje),0) wqgzcgs,NVL(sum(j.jhsydfzcje),0) wqgzstz,count(j.id) wqgzsl
+		from plan_wqgz j left join sck_wqgz jsc on (j.sckid=jsc.sckid) left join xmk_wqgz l on (jsc.xmkid=l.id)
+		where l.xzqhdm like '%'||<if test="xzqhdm!='360000'">substr(#{xzqhdm},0,4)</if><if test="xzqhdm=='360000'">rtrim(#{xzqhdm},'0')</if>||'%' and j.sbnf=#{nf} group by #{xzqhdm}
+	</select>
+</mapper>
