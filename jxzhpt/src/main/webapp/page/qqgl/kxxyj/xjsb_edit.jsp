@@ -56,23 +56,23 @@ text-decoration:none;
 		$("#wgny").datebox('setValue',data.wgny);
 		$("#pfsj").datebox('setValue',data.pfsj);
 		fileShow(parent.obj.xmbm,"工可批复文件");
-		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
-		$.ajax({
-			type:'post',
-			url:'/jxzhpt/qqgl/qqglGpsroad.do',
-			data:data1,
-			dataType:'json',
-			success:function(msg){
-				var item=msg[0];
-				qdStr=parseFloat(item.qdzh);
-				zdStr=parseFloat(item.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
-			},
-			error : function(){
-			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
-		 }
-		});	
+// 		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
+// 		$.ajax({
+// 			type:'post',
+// 			url:'/jxzhpt/qqgl/qqglGpsroad.do',
+// 			data:data1,
+// 			dataType:'json',
+// 			success:function(msg){
+// 				var item=msg[0];
+// 				qdStr=parseFloat(item.qdzh);
+// 				zdStr=parseFloat(item.zdzh);
+// 				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
+// 				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+// 			},
+// 			error : function(){
+// 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
+// 		 }
+// 		});	
 	}
 	
 	$(function(){
@@ -98,16 +98,7 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#qdzh").val())*1000<parseFloat(qdStr)*1000){
-				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#zdzh").val())*1000>parseFloat(zdStr)*1000){
-				alert("对不起，止点桩号不能大于"+zdStr+"！");
-				$("#zdzh").focus();
-				return false;
-			}
+
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();

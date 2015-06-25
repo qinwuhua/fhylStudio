@@ -675,7 +675,7 @@
 	<select id="gettsdq" resultType="treenode" parameterType="String">
 		select 
 		 distinct(t3.name) id,t3.name text
-		from XTGL_XZQH t1 right join XTGL_XZQHTSDQ t2 on t1.id=t2.xzqhdm right join XTGL_TSDQ t3 on t2.parent=t3.id
+		from XTGL_TSDQ t3 left join XTGL_XZQHTSDQ t2  on t2.parent=t3.id left join XTGL_XZQH t1  on t1.id=t2.xzqhdm
 		where t1.id like '%'||#{xzqh}||'%'
 		and t3.state not like '禁用'
 	</select>
