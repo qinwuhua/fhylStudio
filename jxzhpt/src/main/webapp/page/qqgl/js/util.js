@@ -512,7 +512,7 @@ var Rh={
 	};
 //此对象为绑定列表对象
 var grid={
-		url:null,queryParams:null,height:null,width:null,fitColumns:false,
+		id:null,url:null,queryParams:null,height:null,width:null,fitColumns:false,
 		columns:null,striped:true,pagination:true,
 		rownumbers:true,pageNumber:1,pageSize:10,
 		view:detailview,detailFormatter:null,onExpandRow:null};
