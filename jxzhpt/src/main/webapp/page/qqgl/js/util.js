@@ -374,7 +374,7 @@ function gridBind(grid){
 	    onUnselect:Rh.onUnselect,
 	    onClickRow:Rh.onClickRow,
 	    onLoadSuccess:Rh.onLoadSuccess,
-	    view:grid.view,
+	    //view:grid.view,
 	    detailFormatter:Rh.detailFormatter,
 	    onExpandRow:Rh.onExpandRow
 	});
