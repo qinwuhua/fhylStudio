@@ -44,7 +44,7 @@ function deleteLx(id,xmlx){
 	var params={'lx.id':id};
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/deleteLx.do',
+		url:'/jxzhpt/qqgl/deleteLx.do',
 		data:params,
 		dataType:'json',
 		success:function(msg){
@@ -168,7 +168,7 @@ function validateText(id,type,result){
  */
 function loadTsdq(id){
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryTsdq.do',
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
 	    valueField:'id',
 	    textField:'text'
 	});
@@ -180,7 +180,7 @@ function loadTsdq(id){
  */
 function loadTsdq(id,multiple){
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryTsdq.do',
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
 	    valueField:'id',
 	    textField:'text',
 	    multiple:multiple,
@@ -196,7 +196,7 @@ function loadTsdq(id,multiple){
 function fileShow(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -217,7 +217,7 @@ function fileShow(xmbm,type){
 function fileShow1(id,xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -309,7 +309,7 @@ function importJhshZjzj(xmlx){
  */
 function queryZjxd(xmbm){
 	grid.id="zjxdList";
-	grid.url="../../../jhgl/queryZjxdByXmId.do";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
 	var params={'zjxd.xmid':xmbm};
 	grid.queryParams=params;
 	grid.height=$(window).height()-180;
@@ -347,7 +347,7 @@ function queryZjxd(xmbm){
 function deleteZjxdById(id){
 	$.ajax({
 		type:'post',
-		url:'../../../jhgl/dropZjxdById.do',
+		url:'/jxzhpt/jhgl/dropZjxdById.do',
 		dataType:'json',
 		data:'zjxd.id='+id,
 		success:function(data){
