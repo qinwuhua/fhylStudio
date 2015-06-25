@@ -342,7 +342,7 @@ function queryZjxd(xmbm){
 }
 function queryZjxd1(xmbm){
 	grid.id="zjxdList";
-	grid.url="../../../jhgl/queryZjxdByXmId.do";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
 	var params={'zjxd.xmid':xmbm};
 	grid.queryParams=params;
 	grid.height=$(window).height()-180;

@@ -9,7 +9,7 @@ function wqxiangxi(index){
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
 	//YMLib.UI.createWindow('yhdzx_xx','养护大中修项目计划详情',"/jxzhpt/page/jhgl/jhkxx/yhdzx.jsp",'yhdzx_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','养护大中修工程项目开工详情','yhdzxxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','养护大中修工程项目详情','yhdzxxx.jsp','wqxx',940,450);
 	//window.open("yhdzxxx.jsp");
 }
 function zjdw(index){
