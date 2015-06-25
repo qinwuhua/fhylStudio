@@ -89,9 +89,11 @@
 			 		$.each(rows,function(index,item){
 			 			queryMsgByXzqhdm(index,item.id);
 			 		});
+			 		alert("ssss");
+			 		queryNftjt();
+			 		alert("eeeeee");
 			 	}
 			});
-			queryjhkBar();
 		});
 		/**根据传入的下标和行政区划代码更新对应行数据
 		* @param index grid的下标
@@ -111,6 +113,23 @@
 		 			});
 				}
  			});
+		}
+		function queryNftjt(){
+			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+		    barChart_1.width =980;
+		    barChart_1.height =300;
+		    barChart_1.padding =0;
+		    barChart_1.wMode="transparent";
+		    barChart_1.write("anychart_div");
+		    $.ajax({
+				type:"post",
+				url:"../../../tjfx/queryNftjt.do",
+				dataType:'text',
+				data:'nf='+$('#startYear').val()+'&xzqhdm=36__00',
+				success:function(msg){
+					barChart_1.setData(msg);
+				}
+			});
 		}
 		function search(){
 			jhkxzqhtj();

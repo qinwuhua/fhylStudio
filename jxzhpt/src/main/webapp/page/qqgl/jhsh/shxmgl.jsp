@@ -80,7 +80,7 @@
 						return result;
 					}
 				},
-				{field:'tjlx',title:'添加路线',width:150,align:'center',
+				{field:'tjlx',title:'添加路线',width:100,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
 							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
@@ -98,24 +98,24 @@
 						}
 					}
 				},
-				{field:'sqzt',title:'上报状态',width:100,align:'center',
+				{field:'sqzt',title:'申请状态',width:100,align:'center',
 					formatter:function(value,row,index){
 						var result="";
 						if(userPanduan($.cookie('unit2'))!="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
-								result="已上报";
+								result="已申请";
 							}else if(Number(value)>0 && Number(value)<Number($.cookie('unit2').length)){
 								result="已审核";
 							}else if(Number(value)==0 || Number(value)>Number($.cookie('unit2').length)){
-								result="未申请";
+								result='<a href="javascript:sb('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未申请</a>';
 							}
 						}else if(userPanduan($.cookie('unit2'))=="省"){
 							if(Number(value)==Number($.cookie('unit2').length)){
 								result="已审核";
 							}else if(Number(value)==9){
-								result="未审核";
+								result='<a href="javascript:sp('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>';
 							}else{
-								result="未上报";
+								result="未申请";
 							}
 						}
 						return result;
@@ -168,6 +168,21 @@
 				alert("请选择要删除的信息！");
 			}
 		}
+		function sb(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/updateXmsqSbzt.do',
+				data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2"),
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("上报成功!");
+						queryShxm();
+					}
+				}
+			});
+		}
 		function batchSb(){
 			var selRow = $('#grid').datagrid("getSelections");
 			var y=true;
@@ -199,6 +214,21 @@
 			}else{
 				alert("请选择要上报的信息！");
 			}
+		}
+		function sp(){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/updateXmsqSp.do',
+				data:'xmlx='+5+'&xmbm='+xmbm+'&xzqhdm='+$.cookie("unit2")+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("审核成功!");
+						queryShxm();
+					}
+				}
+			});
 		}
 		function batchSp(){
 			var selRow = $('#grid').datagrid("getSelections");

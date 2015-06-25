@@ -61,7 +61,7 @@
 				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result = row.shzt==0 ? '未审核' : '已审核';
+						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
 						return result;
 					}
 				},
@@ -130,6 +130,21 @@
 			}else{
 				alert("请选择要退回的信息！");
 			}
+		}
+		function sh(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/shCbsjByXmbm.do',
+				data:'xmlx='+3+'&xmbm='+xmbm+'&sbzt1='+1+'&shzt1='+1+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("审核成功!");
+						queryXj();
+					}
+				}
+			});
 		}
 		function batchSb(){
 			if(selArray.length!=0){

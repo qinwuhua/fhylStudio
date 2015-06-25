@@ -72,7 +72,7 @@
 					formatter: function(value,row,index){
 						var result="";
 						if(row.shzt==0){
-							result="未审核";
+							result='<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>';
 						}else if(row.shzt==1){
 							result="已审核";
 						}
@@ -114,6 +114,21 @@
 				alert("请选择要删除的信息！");
 			}
 		}*/
+		function sh(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/shCbsjByXmbm.do',
+				data:'xmlx='+4+'&xmbm='+xmbm+'&shzt='+1+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("审核成功!");
+						queryYhdzx();
+					}
+				}
+			});
+		}
 		function batchSh(){
 			if(selArray.length!=0){
 				var xmbm="",sbzt="",shzt="";

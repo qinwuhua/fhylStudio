@@ -517,7 +517,9 @@ public class TjfxController extends BaseActionSupport{
 			List<Map<String, Object>> nftj=null;
 			if(getRequest().getSession().getAttribute("nftj")!=null){
 				nftj =(List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
-				nftj.add(result);
+				if(nftj.size()!=12){
+					nftj.add(result);
+				}
 			}else{
 				nftj=new ArrayList<Map<String,Object>>();
 				nftj.add(result);
@@ -533,7 +535,36 @@ public class TjfxController extends BaseActionSupport{
 	 * 设置年份统计柱状图的数据参数
 	 */
 	public void queryNftjt(){
-		
+		TreeNode treenode=new TreeNode();
+		treenode.setId(xzqhdm);
+		List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> sessionData = (List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
+		for (Map<String, Object> map : sessionData) {
+			for (TreeNode node : xzqhlist) {
+				if(map.get("XZQHDM").toString().equals(node.getId())){
+					
+				}
+				System.out.println(node.getName()+"      "+node.getId());
+			}
+			//System.out.println(map.get("XZQHDM")+"  总投资："+map.get("ZTZ"));
+		}
+		//param.put("name", item.getName());
+		//param.put("je", new Double(je).toString());
+		//list.add(param);
+		Map<String,Object> parameter=new HashMap<String,Object>();
+//		parameter.put("chart_title", "行政区划");//title
+//		String yName="金额";//y单位
+//		parameter.put("chart_title_y", yName);
+//		int precision=3;//小数的位数
+//		parameter.put("precision",precision);
+//		String chartType = "jhkbar.ftl";
+//		parameter.put("list",list);
+//		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+//		Map<String, String> result=new HashMap<String, String>();
+//		result.put("bar", anyChartXml);
+//		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
 	public String getXmlx() {
