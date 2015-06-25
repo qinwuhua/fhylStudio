@@ -111,19 +111,20 @@ $(function() {
 		href:'./jhkgl/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101060204',
-		title:'路面改造工程项目',
-		imgSrc:'../../images/sj_s.png',
-		renderTo:'left_menu2',
-		href:'../qqgl/jhcx/lmgz.jsp'
-	});
-	createMenux('LeftMenu',{
 		id:'menu_0101060205',
 		title:'升级改造工程项目',
 		imgSrc:'../../images/gj_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhcx/lmsj.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101060204',
+		title:'路面改造工程项目',
+		imgSrc:'../../images/sj_s.png',
+		renderTo:'left_menu2',
+		href:'../qqgl/jhcx/lmgz.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101060206',
 		title:'养护大中修项目',
