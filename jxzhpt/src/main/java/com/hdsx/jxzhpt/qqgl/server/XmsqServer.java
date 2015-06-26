@@ -41,7 +41,7 @@ public interface XmsqServer {
 	 * @param zdzh 止点桩号
 	 * @return 历史记录个数
 	 */
-	public int queryLsjl(String ylxbh, String qdzh, String zdzh);
+	public int queryLsjl(String ylxbh, String qdzh, String zdzh,String xmbm);
 	/**
 	 * 添加路线信息到路线表
 	 * @param lx 路线对象

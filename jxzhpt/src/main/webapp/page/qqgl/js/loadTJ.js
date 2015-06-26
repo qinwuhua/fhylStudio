@@ -109,5 +109,5 @@ function checkSZ(str){
 }
 function openLsjl(xmbm){
 	YMLib.Var.xmbm=xmbm;
-	YMLib.UI.createWindow('lsjl','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp','lsjl',980,380);
+	YMLib.UI.createWindow('lsjlxx','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp','lsjlxx',980,380);
 }

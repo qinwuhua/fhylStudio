@@ -313,7 +313,7 @@ public class LxshController extends BaseActionSupport{
 			String queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				XmsqServer xmsqServer=new XmsqServerImpl();
-				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh())>0 ? "是" : "否");
+				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 				boolean bl=lxshServer.insertSjgz(lxsh);
 				if(bl){
 					result.put("result", "true");
@@ -341,7 +341,7 @@ public class LxshController extends BaseActionSupport{
 			String queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				XmsqServer xmsqServer=new XmsqServerImpl();
-				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh())>0 ? "是" : "否");
+				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 				boolean bl=lxshServer.insertLmgz(lxsh);
 				if(bl){
 					result.put("result", "true");
@@ -359,7 +359,7 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertXj(){
 		XmsqServer xmsqServer=new XmsqServerImpl();
-		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh())>0 ? "是" : "否");
+		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
 		boolean bl=lxshServer.insertXj(lxsh);
 		if(bl){
 			ResponseUtils.write(getresponse(), "true");
