@@ -67,7 +67,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 
 /**
- * 系统管理Controller层
+ * 进展报表Controller层
  * @author qwh
  *
  */
