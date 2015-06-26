@@ -36,7 +36,7 @@ function wqxiangxi(index){
 	obj1=data;
 	YMLib.Var.jhbm=data.XMBM;
 	//YMLib.UI.createWindow('gclmgj_xx','新建工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','新建工程项目开工详情','xjxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','新建工程项目详情','xjxx.jsp','wqxx',940,450);
 	//window.open("gcgzgjxx.jsp");
 }
 function closes(str){
