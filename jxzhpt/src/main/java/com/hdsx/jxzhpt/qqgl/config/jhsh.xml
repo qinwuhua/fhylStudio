@@ -447,8 +447,8 @@
 		select distinct xmid from LXSH_LX where lxbm like '%'||#{lxbm}||'%' and 
 		((to_number(zdzh) >= ${qdzh} and ${qdzh} >= to_number(qdzh)) or 
 		(to_number(zdzh) >= ${zdzh} and ${zdzh} >= to_number(qdzh))) and
-		(to_number(qdzh) != ${qdzh} and to_number(zdzh) != ${qdzh}) and
-		(to_number(qdzh) != ${zdzh} and to_number(zdzh) != ${zdzh})
+		(to_number(qdzh) = ${qdzh} or to_number(zdzh) = ${qdzh}) 
+		<!-- and (to_number(qdzh) != ${zdzh} and to_number(zdzh) != ${zdzh}) -->
 		and xmid like substr(#{xmid},0,4)||'%'
 	</select>
 	<select id="queryLxMaxJdbs" parameterType="lx" resultType="lx">

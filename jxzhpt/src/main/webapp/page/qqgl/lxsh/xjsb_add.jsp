@@ -106,6 +106,8 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
+			saveLxsh();
+			/*
 				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=xj";
 				$.ajax({
 					type:'post',
@@ -120,7 +122,7 @@ text-decoration:none;
 						}
 					}
 				});
-				
+			*/
 		});
 		//autoCompleteLXBM();
 	});
@@ -209,12 +211,14 @@ text-decoration:none;
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
 					parent.showAllxj();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

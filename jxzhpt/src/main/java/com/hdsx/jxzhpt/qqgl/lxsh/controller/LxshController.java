@@ -358,13 +358,31 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void insertXj(){
-		XmsqServer xmsqServer=new XmsqServerImpl();
-		lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
-		boolean bl=lxshServer.insertXj(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
+		try {
+			Map<String, String> result =new HashMap<String, String>();
+			Lx lx=new Lx();
+			lx.setXmid(lxsh.getXmbm());
+			lx.setLxbm(lxsh.getGhlxbh());
+			lx.setQdzh(lxsh.getQdzh());
+			lx.setZdzh(lxsh.getZdzh());
+			JhshServer jhshServer=new JhshServerImpl();
+			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			if(queryHaveLx==null){
+				XmsqServer xmsqServer=new XmsqServerImpl();
+				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
+				boolean bl=lxshServer.insertXj(lxsh);
+				if(bl){
+					result.put("result", "true");
+				}else{
+					result.put("result", "false");
+				}
+			}else{
+				result.put("result", "have");
+				result.put("xmbm", queryHaveLx);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	public void selectSjgzList(){
