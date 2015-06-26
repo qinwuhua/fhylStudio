@@ -445,8 +445,8 @@
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="string">
 		select distinct xmid from LXSH_LX where lxbm like '%'||#{lxbm}||'%' and 
-		((to_number(zdzh) > ${qdzh} and ${qdzh} > to_number(qdzh)) or 
-		(to_number(zdzh) > ${zdzh} and ${zdzh} > to_number(qdzh))) and
+		((to_number(zdzh) >= ${qdzh} and ${qdzh} >= to_number(qdzh)) or 
+		(to_number(zdzh) >= ${zdzh} and ${zdzh} >= to_number(qdzh))) and
 		(to_number(qdzh) = ${qdzh} or to_number(zdzh) = ${zdzh}) 
 		<!-- and (to_number(qdzh) != ${zdzh} and to_number(zdzh) != ${zdzh}) -->
 		and xmid like substr(#{xmid},0,4)||'%'
