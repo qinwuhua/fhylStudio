@@ -16,7 +16,8 @@
 		<![CDATA[
 		select c1.CON1+c2.CON2 from
 			(select count(lx.id) CON1 from lxsh_lx lx where lx.lxbm like #{lxbm}||'%' 
-			and lx.jdbs='2' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})) c1,
+			and lx.jdbs='2' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})
+			and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c1,
 			(select count(*) CON2 from 
 				(select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx where jdbs='2') j,
 				(select ylxbm,yqdzh,yzdzh from xtgl_lxsj 

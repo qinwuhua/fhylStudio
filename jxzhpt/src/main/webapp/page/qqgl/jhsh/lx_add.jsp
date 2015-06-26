@@ -86,10 +86,15 @@
 		}
 		function insert(){
 			var result =true;
+			result = validateText('lxbm',null,result);
+			result = validateText('lxmc',null,result);
+			result = validateText('qdmc',null,result);
+			result = validateText('zdmc',null,result);
+			result = validateText('jsxz',null,result);
 			result = validateText('qdzh','number',result);
 			result = validateText('zdzh','number',result);
 			result = validateText('lc','number',result);
-			if(!true){
+			if(!result){
 				return;
 			}
 			var params={'lx.jdbs':$('#jdbs').val(),'lx.xmid':$('#xmbm').val(),'lx.lxmc':$('#lxmc').val(),'lx.qdzh':$('#qdzh').val(),

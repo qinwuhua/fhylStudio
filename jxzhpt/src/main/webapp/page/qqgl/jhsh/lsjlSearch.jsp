@@ -42,7 +42,7 @@
 					},
 					{field:'xmmc',title:'项目名称',width:170,fixed:true,align:'center',
 						formatter:function(value,row,index){
-							var a='<a href="javascript:void(0)" style="color:#0066CB;font-size:12px;">';
+							var a='<a href="javascript:msgxx('+"'"+row.xmid+"'"+')" style="color:#0066CB;font-size:12px;">';
 							a+=value+'</a>';
 							return a;
 						}
@@ -62,6 +62,20 @@
 					{field:'yzdzh',title:'原止点桩号',width:100,align:'center'}
 				]]
 			});
+		}
+		function msgxx(xmid){
+			YMLib.Var.xmbm=xmid;
+			if(xmid.substring(10,11)=="1"){
+				YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+			}else if(xmid.substring(10,11)=="2"){
+				YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
+			}else if(xmid.substring(10,11)=="3"){
+				YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
+			}else if(xmid.substring(10,11)=="4"){
+				YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
+			}else if(xmid.substring(10,11)=="5"){
+				YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+			}
 		}
 	</script>
 </head>

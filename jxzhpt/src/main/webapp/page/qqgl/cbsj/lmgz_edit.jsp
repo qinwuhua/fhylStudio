@@ -232,7 +232,7 @@
 						面层里程
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="mc_lc" name="mc_lc" style="width: 120px;" type="text"/>&nbsp;km
+						<input id="mc_lc" name="mc_lc" style="width: 120px;" value="0" type="text"/>&nbsp;km
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						基层类型
@@ -246,7 +246,7 @@
 						基层里程
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jc_lc" name="jc_lc" style="width:120px;" type="text"/>&nbsp;km
+						<input id="jc_lc" name="jc_lc" style="width:120px;" value="0" type="text"/>&nbsp;km
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;">
 						垫层类型
@@ -258,7 +258,7 @@
 						垫层里程
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="dc_lc" name="dc_lc" style="width: 120px;" type="text"/>&nbsp;km
+						<input id="dc_lc" name="dc_lc" style="width: 120px;" value="0" type="text"/>&nbsp;km
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -272,13 +272,13 @@
 						大桥长度
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="dq_cd" name="dq_cd" style="width: 50px;margin-top: 5px;" type="text"/>米
+						<input id="dq_cd" name="dq_cd" style="width: 50px;margin-top: 5px;" value="0" type="text"/>米
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						大桥单跨
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="dq_dk" name="dq_dk" style="width:50px;" type="text"/>米
+						<input id="dq_dk" name="dq_dk" style="width:50px;" value="0" type="text"/>米
 					</td>
 				</tr>
 				<tr style="height: 30px;">
@@ -292,7 +292,7 @@
 						隧道双幅长度
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="sd_sfcd" name="sd_sfcd" style="width: 50px;margin-top: 5px;" type="text"/>米
+						<input id="sd_sfcd" name="sd_sfcd" style="width: 50px;margin-top: 5px;" value="0" type="text"/>米
 					</td>
 					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 						隧道类型
@@ -346,7 +346,7 @@
 						建安费
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-						<input id="jaf" name="jaf" style="width:120px;" type="text"/>
+						<input id="jaf" name="jaf" style="width:120px;" value="0" type="text"/>
 					</td>
 					<td style="border-left: 1px none #C0C0C0; border-right: 1px none #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; padding-right: 5px;"></td>
 					<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;"></td>

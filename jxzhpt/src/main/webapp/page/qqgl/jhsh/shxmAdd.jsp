@@ -159,14 +159,6 @@
 				return true;
 			}
 		}
-		function querymc(id){
-			if(id=="qdzh"){
-				cxqdmc($('#ylxbh').val(),$('#qdzh').val());
-			}else if(id=="zdzh"){
-				cxzdmc($('#ylxbh').val(),$('#zdzh').val());
-			}
-			$('#lc').val(Number($('#zdzh').val())-Number($('#qdzh').val()));
-		}
 	</script>
 </head>
 <body style="font-size: 12px;">
