@@ -14,16 +14,81 @@
 	</select>
 	<select id="queryLsjl" parameterType="java.util.Map" resultType="int">
 		<![CDATA[
-		select c1.CON1+c2.CON2 from
-			(select count(lx.id) CON1 from lxsh_lx lx where lx.lxbm like #{lxbm}||'%' 
-			and lx.jdbs='2' and (lx.qdzh<=${zdzh} or lx.zdzh>=${qdzh})
-			and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c1,
-			(select count(*) CON2 from 
-				(select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx where jdbs='2') j,
-				(select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
-				where xlxbm like #{lxbm}||'%' and xqdzh<=${zdzh} and xzdzh>=${qdzh}) k
-			where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
-			and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2
+		select c1_x.CON1+c1_y.CON2 + c2_x.CON1+c2_y.CON2 + c3_x.CON1+c3_y.CON2 + c4_x.CON1+c4_y.CON2 + c5_x.CON1+c5_y.CON2 from
+			(select count(lx.id) CON1 from lxsh_lx lx,jhsh_sjgz sj 
+		       where lx.xmid=sj.xmbm and lx.jdbs='2' and lx.lxbm like #{lxbm}||'%'
+		       and (((to_number(lx.zdzh) >= ${qdzh} and ${qdzh} >= to_number(lx.qdzh)) or 
+		       (to_number(lx.zdzh) >= ${zdzh} and ${zdzh} >= to_number(lx.qdzh))) or
+		       (to_number(lx.qdzh) = ${qdzh} or to_number(lx.zdzh) = ${zdzh}))
+		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c1_x,
+		   	(select count(*) CON2 from 
+		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_sjgz sj where lx.xmid=sj.xmbm and jdbs='2') j,
+		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
+		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
+		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
+		       where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
+		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c1_y,
+		       
+		   	(select count(lx.id) CON1 from lxsh_lx lx,jhsh_lmgz sj 
+		       where lx.xmid=sj.xmbm and lx.jdbs='2' and lx.lxbm like #{lxbm}||'%'
+		       and (((to_number(lx.zdzh) >= ${qdzh} and ${qdzh} >= to_number(lx.qdzh)) or 
+		       (to_number(lx.zdzh) >= ${zdzh} and ${zdzh} >= to_number(lx.qdzh))) or
+		       (to_number(lx.qdzh) = ${qdzh} or to_number(lx.zdzh) = ${zdzh}))
+		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c2_x,
+		   	(select count(*) CON2 from 
+		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_lmgz sj where lx.xmid=sj.xmbm and jdbs='2') j,
+		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
+		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
+		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
+		       where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
+		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c2_y,
+		       
+		   	(select count(lx.id) CON1 from lxsh_lx lx,jhsh_xj sj 
+		       where lx.xmid=sj.xmbm and lx.jdbs='2' and lx.lxbm like #{lxbm}||'%'
+		       and (((to_number(lx.zdzh) >= ${qdzh} and ${qdzh} >= to_number(lx.qdzh)) or 
+		       (to_number(lx.zdzh) >= ${zdzh} and ${zdzh} >= to_number(lx.qdzh))) or
+		       (to_number(lx.qdzh) = ${qdzh} or to_number(lx.zdzh) = ${zdzh}))
+		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c3_x,
+		   	(select count(*) CON2 from 
+		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_xj sj where lx.xmid=sj.xmbm and jdbs='2') j,
+		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
+		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
+		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
+		       where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
+		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c3_y,
+		       
+		   	(select count(lx.id) CON1 from lxsh_lx lx,jhsh_yhdzx sj 
+		       where lx.xmid=sj.xmbm and lx.jdbs='2' and lx.lxbm like #{lxbm}||'%'
+		       and (((to_number(lx.zdzh) >= ${qdzh} and ${qdzh} >= to_number(lx.qdzh)) or 
+		       (to_number(lx.zdzh) >= ${zdzh} and ${zdzh} >= to_number(lx.qdzh))) or
+		       (to_number(lx.qdzh) = ${qdzh} or to_number(lx.zdzh) = ${zdzh}))
+		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c4_x,
+		   	(select count(*) CON2 from 
+		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_yhdzx sj where lx.xmid=sj.xmbm and jdbs='2') j,
+		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
+		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
+		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
+		       where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
+		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c4_y,
+		       
+		   	(select count(lx.id) CON1 from lxsh_lx lx,jhsh_sh sj 
+		       where lx.xmid=sj.xmbm and lx.jdbs='2' and lx.lxbm like #{lxbm}||'%'
+		       and (((to_number(lx.zdzh) >= ${qdzh} and ${qdzh} >= to_number(lx.qdzh)) or 
+		       (to_number(lx.zdzh) >= ${zdzh} and ${zdzh} >= to_number(lx.qdzh))) or
+		       (to_number(lx.qdzh) = ${qdzh} or to_number(lx.zdzh) = ${zdzh}))
+		       and to_number(substr(lx.xmid,0,4))<to_number(substr(#{xmbm},0,4))) c5_x,
+		   	(select count(*) CON2 from 
+		       (select lx.lxbm,lx.qdzh,lx.zdzh,lx.jdbs,lx.xmid from lxsh_lx lx,jhsh_sh sj where lx.xmid=sj.xmbm and jdbs='2') j,
+		       (select ylxbm,yqdzh,yzdzh from xtgl_lxsj 
+		       where xlxbm like #{lxbm}||'%' and ((to_number(xzdzh) >= ${qdzh} and ${qdzh} >= to_number(xqdzh)) or 
+		       (to_number(xzdzh) >= ${zdzh} and ${zdzh} >= to_number(xqdzh))) or
+		       (to_number(xqdzh) = ${qdzh} or to_number(xzdzh) = ${zdzh})) k
+		       where j.lxbm=k.ylxbm and j.jdbs='2' and to_number(substr(j.xmid,0,4))<to_number(substr(#{xmbm},0,4)) 
+		       and j.qdzh<k.yzdzh and j.zdzh>k.yqdzh) c5_y
 		]]>
 	</select>
 	<select id="queryTsdq" parameterType="xmsq" resultType="string">
