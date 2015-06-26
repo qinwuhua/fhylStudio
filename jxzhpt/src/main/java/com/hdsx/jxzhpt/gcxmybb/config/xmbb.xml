@@ -701,16 +701,16 @@
 				and jszt  like '%'||trim(#{jszt})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
+				and sfqxkg  like '%'||trim(#{qxkg})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by substr(xmlx,1,1) 
 		order by substr(xmlx,1,1)
@@ -734,16 +734,16 @@
 				and jszt  like '%'||trim(#{jszt})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
+				and sfqxkg  like '%'||trim(#{qxkg})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by xmlx order by substr(xmlx,0,2)
 	</select>
@@ -766,16 +766,16 @@
 				and jszt  like '%'||trim(#{jszt})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
+				and sfqxkg  like '%'||trim(#{qxkg})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by xmlx,substr(xzqhdm,0,4)
 		order by substr(xmlx,0,2),substr(xzqhdm,0,4)
@@ -804,16 +804,16 @@
 				and jszt  like '%'||trim(#{jszt})||'%'
 		</if>
 		<if test="qxkg != null and  qxkg != ''">
-				and sfqxkg  like '%'||trim(#{sfqxkg})||'%'
+				and sfqxkg  like '%'||trim(#{qxkg})||'%'
 		</if>
 		<if test="tsdq != null and  tsdq != ''">
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		order by substr(xmlx,0,2),substr(xzqhdm,0,4),xmmc,xdnf
 	</select>
@@ -839,10 +839,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 	</select>
 	<select id="getyhbblist2" parameterType="xmbb" resultType="hashmap">
@@ -866,10 +866,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by substr(xzqhdm,0,4) order by substr(xzqhdm,0,4)
 	</select>
@@ -893,10 +893,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by substr(xzqhdm,0,4),dllx order by substr(xzqhdm,0,4),substr(dllx,0,1)
 	</select>
@@ -927,10 +927,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		order by substr(xzqhdm,0,4),substr(dllx,0,1)
 	</select>
@@ -959,10 +959,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 		group by xmlx 
 		order by xh1
@@ -993,10 +993,10 @@
 				and tsdq  like '%'||trim(#{tsdq})||'%'
 		</if>
 		<if test="ljbf != null and  ljbf != ''">
-				and bfzj  ${ljbf}
+				${ljbf}
 		</if>
 		<if test="wbf != null and  wbf != ''">
-				and wbfzj ${wbf}
+				 ${wbf}
 		</if>
 	 	order by substr(xzqhdm,0,4),xmlx
 	</select>
