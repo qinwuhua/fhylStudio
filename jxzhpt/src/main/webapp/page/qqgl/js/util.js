@@ -15,6 +15,27 @@ function userPanduan(unit2){
 }
 //--------------------------------------------------路线操作--------------------------------------
 /**
+ * 项目年份
+ * @param id 元素ID
+ */
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text'
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+}
+/**
  * 判断项目类型，返回文字
  * @param xmbm 项目编码
  * @result 返回项目类型

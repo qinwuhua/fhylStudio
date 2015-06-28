@@ -21,6 +21,9 @@
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
+				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
 				</if>
@@ -53,6 +56,9 @@
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
+				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
 				</if>
@@ -81,6 +87,9 @@
 				</if>
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
+				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
 				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
@@ -114,6 +123,9 @@
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
+				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
 				</if>
@@ -146,6 +158,9 @@
 				<if test="cbsj.tsdq!=null and cbsj.tsdq!=''">
 					and l.tsdq like '%'||#{cbsj.tsdq}||'%'
 				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
+				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
 				</if>
@@ -170,6 +185,9 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 			and l.xjsdj = #{cbsj.xjsdj}
+		</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+			and c.xmbm like #{cbsj.xmbm}||'%'
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -196,6 +214,9 @@
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 			and l.xjsdj = #{cbsj.xjsdj}
 		</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+			and c.xmbm like #{cbsj.xmbm}||'%'
+		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
 		</if>
@@ -220,6 +241,9 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 			and l.xjsdj = #{cbsj.xjsdj}
+		</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+			and c.xmbm like #{cbsj.xmbm}||'%'
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}
@@ -246,6 +270,9 @@
 				<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 					and l.xjsdj = #{cbsj.xjsdj}
 				</if>
+				<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+					and c.xmbm like #{cbsj.xmbm}||'%'
+				</if>
 				<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 					and c.jsjsdj=#{cbsj.jsjsdj}
 				</if>
@@ -270,6 +297,9 @@
 		</if>
 		<if test="cbsj.xjsdj!=null and cbsj.xjsdj!=''">
 			and l.xjsdj = #{cbsj.xjsdj}
+		</if>
+		<if test="cbsj.xmbm!=null and cbsj.xmbm!=''">
+			and c.xmbm like #{cbsj.xmbm}||'%'
 		</if>
 		<if test="cbsj.jsjsdj!=null and cbsj.jsjsdj!=''">
 			and c.jsjsdj=#{cbsj.jsjsdj}

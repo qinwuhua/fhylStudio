@@ -27,6 +27,7 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryXj();
 		});
@@ -35,7 +36,8 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':3,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'tsdq':$('#tsdq').combo("getText"),'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'tsdq':$('#tsdq').combo("getText"),'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),
+					'cbsj.xmbm':$('#xmnf').combobox("getValue"),};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -227,6 +229,8 @@ text-decoration:none;
         					<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">上报状态：</td>
         						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
