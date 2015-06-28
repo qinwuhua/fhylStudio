@@ -24,6 +24,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryLmsj();
 		});
@@ -31,8 +32,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':1,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),
-					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -104,7 +105,7 @@
         				</legend>
         				<div>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;行政区划：</span>
+        						<span>行政区划：</span>
         						<select id="xzqh" style="width:160px;"></select>
         						<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
@@ -114,6 +115,8 @@
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
+        						<span>项目年份：</span>
+        						<select id="xmnf" style="width: 60px;"></select>
         						<span>&nbsp;补助历史：</span>
 								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>

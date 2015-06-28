@@ -23,6 +23,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2('jsdj','技术等级');
 			loadBmbm2('sqzt','申请状态省');
+			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryShxm();
 		});
@@ -31,7 +32,7 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue")};
+					'xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'xmbm':$('#xmnf').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -105,6 +106,8 @@
        						<input name="ylxbh" id="ylxbh" style="width:100px;" type="text"/>
        					</p>
        					<p style="margin:8px 0px 8px 20px;">
+       						<span>项目年份：</span>
+        					<select id="xmnf" style="width: 60px;"></select>
        						<span>项目名称：</span>
        						<input name="xmmc" id="xmmc" style="width:100px;" type="text"/>
        						<span>&nbsp;补助历史：</span>

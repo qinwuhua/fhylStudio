@@ -23,6 +23,7 @@
 			loadUnit1("gydw",$.cookie("unit"));
 			loadBmbm2('jsdj','技术等级');
 			loadBmbm2('sqzt','申请状态省');
+			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryShxm();
 		});
@@ -31,7 +32,8 @@
 			grid.url="../../../qqgl/queryJhsh2.do";
 			var params={'xmlx':5,'xzqhdm':getxzqhdm('xzqh'),'xmmc':$('#xmmc').val(),'ylxbh':$('#ylxbh').val(),
 					'tsdq':$('#tsdq').combo("getText"),'jsdj':$('#jsdj').combobox("getValue"),
-					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue")};
+					'xdzt':$('#xdzt').combobox("getValue"),'lsjl':$('#lsjl').combobox("getValue"),
+					'xmbm':$('#xmnf').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -110,14 +112,18 @@ text-decoration:none;
        						<td><select id="xzqh" style="width:115px;"></select></td>
        						<td align="right">特殊地区：</td>
 							<td><select name="tsdq" class="easyui-combobox" id="tsdq" style="width:150px;"></select></td>
-							<td>技术等级:</td>
+							<td>技术等级：</td>
 							<td><select name="jsdj" class="easyui-combobox" id="jsdj" style="width:81px;"></select></td>
-							<td>下达状态：</td>
-       						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
-       							<option value="-1">全部</option>
-       							<option value="0">未下达</option>
-       							<option value="1">已下达</option>
-       						</select></td>
+							<td align="right">下达状态：</td>
+       						<td>
+       							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
+	       							<option value="-1">全部</option>
+	       							<option value="0">未下达</option>
+	       							<option value="1">已下达</option>
+       							</select>
+       						</td>
+       						<td>项目年份：</td>
+        					<td><select id="xmnf" style="width: 60px;"></select></td>
        					</tr>
        					<tr height="32">
        						<td>项目名称：</td>

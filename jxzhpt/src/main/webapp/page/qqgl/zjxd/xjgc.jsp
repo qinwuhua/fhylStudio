@@ -24,6 +24,7 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
 			queryXj();
 		});
@@ -31,7 +32,8 @@
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':3,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),'jhsh.xdzt':1,
+					'jhsh.xmbm':$('#xmnf').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -94,6 +96,8 @@
         				</legend>
         				<div>
         					<p style="margin:8px 0px 4px 20px;">
+        						<span>项目年份：</span>
+        						<select id="xmnf" style="width: 60px;"></select>
         						<span>&nbsp;行政区划：</span>
         						<select id="xzqh" style="width:160px;"></select>
         						<span>&nbsp;特殊地区：</span>
