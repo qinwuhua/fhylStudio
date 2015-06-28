@@ -28,6 +28,10 @@
 				dataType:'json',
 				success:function(data){
 					$('#cbsj').form("load",data);
+					$('#dq_cd').val("0");
+					$('#dq_dk').val("0");
+					$('#sd_sfcd').val("0");
+					$('#jaf').val("0");
 					$('#span_qdzh').html(data.gpsqdzh);
 					$('#span_zdzh').html(data.gpszdzh);
 					$('#jdbs').val(parent.YMLib.Var.jdbs);

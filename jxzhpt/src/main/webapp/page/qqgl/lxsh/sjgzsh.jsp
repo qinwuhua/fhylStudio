@@ -51,11 +51,13 @@
 				return;
 			}
 			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
+				xmbm+=','+rows[i].xmbm;
 			}
 			if(confirm('您确定审核该项目？')){
-				var data = "lxsh.id="+id;
+				var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
 				$.ajax({
 					 type : "POST",
 					 url : "/jxzhpt/qqgl/shsjgzSbzt.do",

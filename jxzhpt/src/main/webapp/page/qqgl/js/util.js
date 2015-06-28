@@ -516,6 +516,16 @@ var Rh={
 			xmbm=rowData.xmbm;
 			selArray.push(rowData.xmbm);
 		},
+		onSelectAll:function(rows){
+			if(selArray.length<rows.length){
+				selArray.splice(0,selArray.length);
+				$.each(rows,function(index,item){
+					selArray.push(item.xmbm);
+				});
+			}else if(selArray.length==rows.length){
+				selArray.splice(0,selArray.length);
+			}
+		},
 		onUnselect:function(rowIndex, rowData){
 			xmbm=rowData.xmbm;
 			selArray.pop(rowData.xmbm);
@@ -580,6 +590,7 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:Rh.onSelect,
+	    onSelectAll:Rh.onSelectAll,
 	    onUnselect:Rh.onUnselect,
 	    onClickRow:Rh.onClickRow,
 	    onLoadSuccess:Rh.onLoadSuccess,
