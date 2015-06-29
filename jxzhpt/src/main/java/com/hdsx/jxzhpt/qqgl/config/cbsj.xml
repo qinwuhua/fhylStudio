@@ -33,7 +33,7 @@
 				<if test="cbsj.shzt>=0">
 					and c.shzt=${cbsj.shzt}
 				</if>
-				order by c.shzt,c.sbzt ) t 
+				order by c.shzt,c.xmbm desc ) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjLmsj" parameterType="java.util.Map" resultType="cbsj">
@@ -68,7 +68,7 @@
 				<if test="cbsj.shzt>=0">
 					and c.shzt=${cbsj.shzt}
 				</if>
-				order by c.shzt,c.sbzt) t 
+				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjXj" parameterType="java.util.Map" resultType="cbsj">
@@ -100,7 +100,7 @@
 				<if test="cbsj.shzt>=0">
 					and c.shzt=${cbsj.shzt}
 				</if>
-				order by c.shzt,c.sbzt) t 
+				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjYhdzx" parameterType="java.util.Map" resultType="cbsj">
@@ -135,7 +135,7 @@
 				<if test="cbsj.shzt>=0">
 					and c.shzt=${cbsj.shzt}
 				</if>
-				order by c.shzt,c.sbzt) t 
+				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	<select id="queryCbsjSh" parameterType="java.util.Map" resultType="cbsj">
@@ -170,7 +170,7 @@
 				<if test="cbsj.shzt>=0">
 					and c.shzt=${cbsj.shzt}
 				</if>
-				order by c.shzt,c.sbzt) t 
+				order by c.shzt,c.xmbm desc) t 
 		) where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 	</select>
 	

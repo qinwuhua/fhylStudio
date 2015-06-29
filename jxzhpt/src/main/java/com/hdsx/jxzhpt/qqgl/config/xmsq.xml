@@ -275,7 +275,7 @@
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
 				</if>
-				order by x.sqzt,x.xmbm desc) t ) t2
+				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
@@ -305,7 +305,7 @@
 				<if test="xmsq.lsjl!=null and xmsq.lsjl!=''">
 					and x.lsjl=#{xmsq.lsjl}
 				</if>
-				order by x.sqzt,x.xmbm desc) t ) t2
+				order by x.sqzt desc,x.xmbm desc) t ) t2
 		<if test="page!=null and page!='' and page!=0">
 			where <![CDATA[ num>(${page}-1)*${rows} and num<=${page}*${rows}]]>
 		</if>
