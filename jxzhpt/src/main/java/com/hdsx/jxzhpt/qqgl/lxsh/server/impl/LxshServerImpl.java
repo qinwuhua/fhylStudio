@@ -623,5 +623,11 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		// TODO Auto-generated method stub
 		return queryOne("qqglGpszh", lxsh);
 	}
+
+	@Override
+	public List<Lxsh> selectlxbyxmid1(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("selectlxbyxmid1", lxsh);
+	}
 	
 }

@@ -2,7 +2,7 @@ var obj=new Object();
 var obj1=new Object();
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.qlbh,data.akjfl);
+	locationQl(data.qlbh,data.qlzxzh);
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];

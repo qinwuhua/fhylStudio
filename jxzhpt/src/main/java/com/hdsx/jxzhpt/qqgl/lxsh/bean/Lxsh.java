@@ -50,7 +50,14 @@ public class Lxsh implements Serializable {
 	private String lsjl;//是否有历史记录
 	private String gpsqdzh;
 	private String gpszdzh;
+	private String lxbm;
 	
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public String getBzys1() {
 		return bzys1;
 	}

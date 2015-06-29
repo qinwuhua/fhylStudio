@@ -777,7 +777,7 @@ public class GcybbController extends BaseActionSupport{
 		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
 		String tableName="";
 		try{
-			    if("路面升级".equals(gcglwqgz.getTiaojian()))
+			    if("升级改造".equals(gcglwqgz.getTiaojian()))
 			    	tableName="yb_sj";
 				
 				if("路面改造".equals(gcglwqgz.getTiaojian()))
