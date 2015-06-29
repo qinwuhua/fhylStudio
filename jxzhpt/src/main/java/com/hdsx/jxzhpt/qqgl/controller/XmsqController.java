@@ -107,7 +107,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setGpsqdzh(xmsq.getGpsqdzh());
 			lx.setGpszdzh(xmsq.getGpszdzh());
 			lx.setJsfa(xmsq.getJsfa());
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				List<Xmsq> list=new ArrayList<Xmsq>();
 				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
@@ -123,7 +123,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				result.put("result", new Boolean(b).toString());
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){

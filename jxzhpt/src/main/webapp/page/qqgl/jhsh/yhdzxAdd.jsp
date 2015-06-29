@@ -139,7 +139,7 @@
 							alert("计划添加成功！");
 							closeWindow("yhdzxadd");
 						}else if(msg.result=="have"){
-							alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
+							alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 						}
 					},
 					error:function(msg){

@@ -220,7 +220,7 @@ public interface JhshServer {
 	 * @param lx 路线信息
 	 * @return 所在的项目编码
 	 */
-	public String queryHaveLx(Lx lx);
+	public Lx queryHaveLx(Lx lx);
 	/**
 	 * 查询历史信息
 	 * @param xmbm 项目编码

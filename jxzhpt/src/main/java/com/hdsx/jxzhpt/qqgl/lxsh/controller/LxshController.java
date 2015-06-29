@@ -303,14 +303,14 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertSjgz(){
 		try {
-			Map<String, String> result =new HashMap<String, String>();
+			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
 			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			JhshServer jhshServer=new JhshServerImpl();
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				XmsqServer xmsqServer=new XmsqServerImpl();
 				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
@@ -322,7 +322,7 @@ public class LxshController extends BaseActionSupport{
 				}
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -331,14 +331,14 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertLmgz(){
 		try {
-			Map<String, String> result =new HashMap<String, String>();
+			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
 			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			JhshServer jhshServer=new JhshServerImpl();
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				XmsqServer xmsqServer=new XmsqServerImpl();
 				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
@@ -350,7 +350,7 @@ public class LxshController extends BaseActionSupport{
 				}
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -359,14 +359,14 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void insertXj(){
 		try {
-			Map<String, String> result =new HashMap<String, String>();
+			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
 			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			JhshServer jhshServer=new JhshServerImpl();
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				XmsqServer xmsqServer=new XmsqServerImpl();
 				lxsh.setLsjl(xmsqServer.queryLsjl(lxsh.getGhlxbh(), lxsh.getQdzh(), lxsh.getZdzh(),lxsh.getXmbm())>0 ? "是" : "否");
@@ -378,7 +378,7 @@ public class LxshController extends BaseActionSupport{
 				}
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -815,14 +815,14 @@ public class LxshController extends BaseActionSupport{
 	
 	public void insertLx1(){
 		try {
-			Map<String, String> result =new HashMap<String, String>();
+			Map<String, Object> result =new HashMap<String, Object>();
 			Lx lx=new Lx();
 			lx.setXmid(lxsh.getXmbm());
 			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			JhshServer jhshServer=new JhshServerImpl();
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				boolean bl=lxshServer.insertLx(lxsh);
 				if(bl){
@@ -832,7 +832,7 @@ public class LxshController extends BaseActionSupport{
 				}
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {

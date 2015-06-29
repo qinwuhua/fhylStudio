@@ -443,13 +443,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void insertLx() throws Exception{
 		try {
 			lx.setSffirst("0");
-			String queryHaveLx = jhshServer.queryHaveLx(lx);
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				boolean b = jhshServer.insertLx(lx);
 				result.put("result", new Boolean(b).toString());
 			}else{
 				result.put("result", "have");
-				result.put("xmbm", queryHaveLx);
+				result.put("lx", queryHaveLx);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
