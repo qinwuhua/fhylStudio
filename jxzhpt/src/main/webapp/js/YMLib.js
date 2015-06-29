@@ -1376,9 +1376,41 @@ function getParam(paras) {
 		return returnValue;
 	}
 }
+function locationQl(_roadbm,_roadpos){
+	var data=new Array();
+	
+	var jsonStr={
+	        ROADBM: _roadbm,
+	        ROADPOS: _roadpos
+	    };
+	
+	data.push(jsonStr);
+	YMLib.Var.bm=data;
+	YMLib.Var.type="2";
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+	
+}
 //项目定位
-function locationXm(_roadcode,_roadType){
-	YMLib.Var.bm=_roadcode;
-	YMLib.Var.type=_roadType;
+function locationXm(_roadcode,_roadstart,_roadends){
+	//_roadcode="S201361121-S225360828";
+	//_roadstart="179.59-42.514";
+	//_roadends="190.643-84.903";
+	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
+	var data=new Array();
+	var jsonStr="";
+	if(_roadcode.lastIndexOf("-")>-1){
+		var arr1=_roadcode.split("-");
+		var arr2=_roadstart.split("-");
+		var arr3=_roadends.split("-");
+		for(var i=0;i<arr1.length;i++){
+			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
+			data.push(jsonStr);
+		}
+	}else{
+		jsonStr={"BM": _roadcode,"ROADSTART": _roadstart,"ROADENDS": _roadends};
+		data.push(jsonStr);
+	}
+	YMLib.Var.bm=data;
+	YMLib.Var.type="1";
 	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
 }

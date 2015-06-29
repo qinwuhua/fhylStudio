@@ -28,84 +28,37 @@
         /**
          * 服务命名空间 不能随便填，请通过hdmapserver服务查看
          **/
-        var nameSpace = "jxmap2014";
+        var nameSpace = "jx_2014Query",iQueryNameSpace = "jxmap2014";
+        var qlIQueryLayers = ["jx_guoshengtedaqiao", "jx_guoshengzhongxiaoqiao",
+            "jx_qlzadaoqiao", "jx_xianxiangtedaqiao", "jx_xianxiangzhongxiaoqiao"];
+        var lxIQueryLayes = ["jx_gaosugonglu", "jx_guodao", "jx_shengdao", "jx_xiandao", "jx_xiangdao",
+            "jx_cundao", "jx_zhuandao"];
+        var qlQueryLayer = "jx_2014_ql", lxQueryLaye = "jx_2014_lx";
 
         var pointClick = null, geometry = null;
-        jQuery(document).ready(function () {
+         jQuery(document).ready(function () {
             OpenLayers.ProxyHost = "./proxy.jsp?";
             initMap();
             initDefaultStyle();
-            getLayersFeatures();
-             /*
-			var signFlag=parent.YMLib.Var.bm.substr(0,1);
-			var signName=parent.YMLib.Var.bm.length>11?"桥梁图层":"路线图层";
-			$.ajax({
-				type:"post",
-				url : '/jxzhpt/xtgl/getBmbmTreeByName2.do?yhm='
-					+ encodeURI(encodeURI(signName)),
-				dataType:'json',
-				async:false,
-				success:function(msg){
-					var showLayer="";
-					var lx="";
-					if(msg.length==4){
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[0].bmid;
-						if((signFlag=="G"||signFlag=="S")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[1].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="特大桥"||_lx=="大桥")) showLayer=msg[2].bmid;
-						if((signFlag=="X"||signFlag=="Y"||signFlag=="Z"||signFlag=="C")&&(_lx=="中桥"||_lx=="小桥")) showLayer=msg[3].bmid;
-						lx="ROADBM";
-					}else if(msg.length==6){
-						if(signFlag=="G") showLayer=msg[0].bmid;
-						if(signFlag=="S") showLayer=msg[1].bmid;
-						if(signFlag=="X") showLayer=msg[2].bmid;
-						if(signFlag=="Y") showLayer=msg[3].bmid;
-						if(signFlag=="Z") showLayer=msg[4].bmid;
-						if(signFlag=="C") showLayer=msg[5].bmid;
-						lx="ROADCODE";
-					}
-					wfsAttrQuery(showLayer, lx, parent.YMLib.Var.bm);
-				}
-			});*/
-            
+            test(parent.YMLib.Var.bm,parent.YMLib.Var.type);
         });
-
-		function test(){
-			var _lx=parent.YMLib.Var.type!=undefined?parent.YMLib.Var.type:"";
-            if(_lx!=""){
+		
+		function test(_data,_lx){
+            if(_lx!="1"){
             	//桥梁图层
-            	var qlList=[{
-                    ROADBM: "X784360824",
-                    ROADPOS: 602.7
-                },{
-                    ROADBM: "CJ55361128L0010",
-                    ROADPOS: 1.262
-                },{
-                    ROADBM: "Y252361128L0030",
-                    ROADPOS: 7.025
-                },{
-                    ROADBM: "G72360735L0100",
-                    ROADPOS: 356.034
-                }];
+            	var qlList=_data;
                 testQueryQLByLXMBZH(qlList);
             }else{
             	//路线图层
-            	var lxList=[{
-                    "BM": "X784360824",
-                    "ROADSTART": 5.700,
-                    "ROADENDS": 18.000
-                }];
+            	var lxList=_data;
             	testQueryByLXBMZH(lxList);
             }
 		}
-	
+		
+		
         var map, baseLayers, tolerance, resolution;
         var format = 'image/png';
-        var queryResultCache = {};
-        window.queryResultCache = queryResultCache;
-        var qlQueryLayers = ["jx_guoshengtedaqiao", "jx_guoshengzhongxiaoqiao",
-            "jx_qlzadaoqiao", "jx_xianxiangtedaqiao", "jx_xianxiangzhongxiaoqiao"];
-        var lxQueryLayes = ["jx_gaosugonglu", "jx_guodao", "jx_shengdao", "jx_xiandao", "jx_xiangdao",
-            "jx_cundao", "jx_zhuandao"];
+
         //全图视野范围
         var bounds = new OpenLayers.Bounds(113.573, 24.488, 118.482, 30.079);
         /**
@@ -201,8 +154,9 @@
         /**
          * 属性查询示例
          */
-          function attrQuery() {
-            wfsAttrQuery("jx_xianxiangtedaqiao", "ROADCODE", "X457360721");
+        function attrQuery() {
+            //wfsAttrQuery("jx_dist", "a", "1");
+            wfsAttrQuery(lxQueryLaye, "ROADCODE", "Y272360424");
         }
         /**
          * I查询
@@ -255,7 +209,7 @@
                 }
             }
             var layerName = tableNames[index];
-            var layers = lxQueryLayes.concat(generateM);
+            var layers = qlIQueryLayers.concat(lxIQueryLayes);
             if (layers.indexOf(layerName) !== -1) {
                 spatialQuery(layerName, geometry);
             }
@@ -276,7 +230,7 @@
                         resultLayer, {
                             onSelect: onFeatureSelect,
                             onUnselect: onFeatureUnselect,
-                            hover: true
+                            hover: false
                         });
 
                 map.addControl(selectControl);
@@ -320,7 +274,7 @@
                         resultLayer, {
                             onSelect: onFeatureSelect,
                             onUnselect: onFeatureUnselect,
-                            hover: true
+                            hover: false
                         });
                 map.addControl(selectControl);
                 selectControl.activate();
@@ -330,7 +284,7 @@
             var wfsProtocol = new OpenLayers.Protocol.WFS({
                 url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
                 featureType: layerName,
-                featureNS: nameSpace,//正式环境代码：nameSpace
+                featureNS: iQueryNameSpace,//正式环境代码：nameSpace
                 /**
                  * 更复杂的逻辑条件请参考OpenLayers的API
                  * */
@@ -354,7 +308,7 @@
          * I查询没有查询到数据的处理方法
          */
         function notGetInfo() {
-            //console.info("没有查询到数据");
+            ///console.info("没有查询到数据");
         }
 
         //构造弹出窗口的函数
@@ -376,91 +330,48 @@
             selectControl.unselect(selectedFeature);
         }
 
-        //初始化的时候调用，获取所有图层的所有要素并缓存起来
-        function getLayersFeatures() {
-            var queryLayers = qlQueryLayers.concat(lxQueryLayes);
-            var len = queryLayers.length;
-            for (var i = 0; i < len; i++) {
-                var layerName = queryLayers[i];
-                getLayerResults(layerName);
-			}
-			setTimeout(function(){test();}, 30000);
-            
+
+        function getQLFeatures(params) {
+            var wfsProtocol = new OpenLayers.Protocol.WFS({
+                url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
+                featureType: qlQueryLayer,
+                featureNS: nameSpace,//正式环境代码：nameSpace
+                maxFeatures: 2000,
+                filter: generatorQLFilter(params),
+                callback: function (req) {
+                    var features = req.features;
+                    if (features && features.length > 0) {
+                        addQLGraphicToMap(params, features);
+                    }
+                }
+            });
+            wfsProtocol.read();
         }
 
-        //根据图层名称,获取单个图层的要素
-        function getLayerResults(layerName) {
-            var attributeName = null;
-            if (qlQueryLayers.indexOf(layerName) !== -1) {
-                attributeName = "ROADPOS";
-            } else {
-                attributeName = "ROADSTART";
-            }
-            if (!queryResultCache[layerName]) {
-                var wfsProtocol = new OpenLayers.Protocol.WFS({
-                    url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
-                    featureType: layerName,
-                    featureNS: nameSpace,//正式环境代码：nameSpace
-                    maxFeatures: 2000,
-                    callback: function (req) {
-                        //debugger;
-                        var features = req.features;
-                        //根据attributeName代表的值的大小排序，从小到大排序
+        //根据查询参数,获取路线图层的要素
+        function getLXFeatures(param) {
+            var sortAttribute = "ROADSTART";
+            var wfsProtocol = new OpenLayers.Protocol.WFS({
+                url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
+                featureType: lxQueryLaye,
+                featureNS: nameSpace,//正式环境代码：nameSpace
+                maxFeatures: 2000,
+                filter: generatorLXFilter(param),
+                callback: function (req) {
+                    var features = req.features;
+                    if (features && features.length > 0) {
                         features = features.sort(
                                 function (a, b) {
-                                    return a.attributes[attributeName] - b.attributes[attributeName];
+                                    return a.attributes[sortAttribute] - b.attributes[sortAttribute];
                                 }
                         );
-                        queryResultCache[layerName] = features;
-                    }
-                });
-                wfsProtocol.read();
-            }
-        }
-
-        //根据查询参数得到该路线编码所在的图层
-        function configLXLayerName(param) {
-            var queryAttribute = "BM", layerName = "";
-            if (param.BM.length > 5) {
-                queryAttribute = "ROADCODE";
-            }
-            var len = lxQueryLayes.length;
-            for (var i = 0; i < len; i++) {
-                layerName = lxQueryLayes[i];
-                var features = queryResultCache[layerName];
-                if (features == null) {
-                    continue;
-                }
-                var mm = $.grep(features, function (obj) {
-                    return obj.attributes[queryAttribute] == param.BM;
-                });
-                if (mm.length !== 0) {
-                    return layerName;
-                }
-            }
-            return "";
-        }
-
-        //根据传入的条件确认某个桥梁属于哪个图层
-        function configQLLayerName(params) {
-            var len = qlQueryLayers.length;
-            for (var i = 0; i < len; i++) {
-                var layerName = qlQueryLayers[i];
-                var features = queryResultCache[layerName];
-                if (features == null) {
-                    continue;
-                }
-                var index = qlBinary(features, {
-                    key: "ROADPOS",
-                    value: params.ROADPOS
-                });
-                if (index !== -1) {
-                    if (features[index].attributes.ROADBM == params.ROADBM) {
-                        return layerName;
+                        addLXGraphicToMap(param, features);
+                    } else {
+                        console.info("没有查询到数据 : " + param.BM);
                     }
                 }
-            }
-            return null;
+            });
+            wfsProtocol.read();
         }
 
         //二分法查找桥梁数据
@@ -515,51 +426,66 @@
             return Filter;
         }
 
-        function testQueryByLXBMZH(_lxList) {
-            //S40的起止点桩号是1.677到191.59
-            var listQueryParams =_lxList;
-            var ldlx = 1;//代表上下行
-            var len = listQueryParams.length;
-            var queryAttribute = "BM";
-            //debugger;
-            for (var i = 0; i < len; i++) {
-                var param = listQueryParams[i];
-                var layerName = configLXLayerName(param);
-                //图层中编码有的用中文有的用的是英文，所以需要根据图层名字来区分
-                switch (layerName) {
-                    case "jx_xiangdao":
-                        queryAttribute = "编码";
-                        break;
-                    case "jx_zhuandao":
-                        queryAttribute = "编码";
-                        break;
-                    default:
-                        queryAttribute = "BM";
-                        break;
-                }
-                var lxFeatures = queryResultCache[layerName];
-                //通过长度来判断传递的是否是带有行政区划的编码
-                if (param.BM.length > 5) {
-                    queryAttribute = "ROADCODE";
-                }
-                //根据BM和上下行方向，过滤出某个编码的所有路线
-                //上下行方向根据起点桩号止点桩号可判断出来
-                var features = null;
-                if (layerName == "jx_gaosugonglu") {
-                    features = $.grep(lxFeatures, function (item) {
-                        return item.attributes[queryAttribute] == param.BM && item.attributes["LDLX"] == ldlx;
-                    });
-                } else {
-                    features = $.grep(lxFeatures, function (item) {
-                        return item.attributes[queryAttribute] == param.BM;
-                    });
-                }
-                //没有查到符合条件的数据
-                if (features.length === 0) {
-                    return;
-                }
-                var points = generateM(features);
-                var line = generateLine(points, param, ldlx);
+        //生成路线查询的过滤条件
+        function generatorLXFilter(listQueryParams) {
+            var Filter = new OpenLayers.Filter.Comparison({
+                type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                property: listQueryParams.queryAttribute,
+                value: listQueryParams.BM
+            });
+            return Filter;
+        }
+
+        function addQLGraphicToMap(params, features) {
+            if (resultLayer == null) {
+                resultLayer = new OpenLayers.Layer.Vector("resultLayer", {
+                    styleMap: styleMap
+                });
+                map.addLayer(resultLayer);
+                //添加数据移动上去显示气泡
+                var selectControl = new OpenLayers.Control.SelectFeature(
+                        resultLayer, {
+                            onSelect: onFeatureSelect,
+                            onUnselect: onFeatureUnselect,
+                            hover: false
+                        });
+                map.addControl(selectControl);
+                selectControl.activate();
+            }
+            resultLayer.addFeatures(features);
+            if (resultLayer.features && resultLayer.features.length > 0) {
+                map.zoomToExtent(resultLayer.getDataExtent());
+            }
+        }
+
+
+        function addLXGraphicToMap(param, features) {
+            var points = generateM(features);
+            var lineStrings = generateLine(points, param);
+            if (resultLayer == null) {
+                resultLayer = new OpenLayers.Layer.Vector("resultLayer", {
+                    styleMap: styleMap
+                });
+                map.addLayer(resultLayer);
+                //添加数据移动上去显示气泡
+                var selectControl = new OpenLayers.Control.SelectFeature(
+                        resultLayer, {
+                            onSelect: onFeatureSelect,
+                            onUnselect: onFeatureUnselect,
+                            hover: false
+                        });
+                map.addControl(selectControl);
+                selectControl.activate();
+            }
+
+            resultLayer.addFeatures(new OpenLayers.Feature.Vector(lineStrings, {
+                "路线编码": param.BM,
+                "起点桩号": param.ROADSTART,
+                "止点桩号": param.ROADENDS
+            }));
+
+            if (resultLayer.features && resultLayer.features.length > 0) {
+                map.zoomToExtent(resultLayer.getDataExtent());
             }
         }
 
@@ -627,45 +553,33 @@
                 point = pnts[m];
                 finalPoints.push(point);
             }
-            if (resultLayer == null) {
-                resultLayer = new OpenLayers.Layer.Vector("resultLayer", {
-                    styleMap: styleMap
-                });
-                map.addLayer(resultLayer);
-                //添加数据移动上去显示气泡
-                var selectControl = new OpenLayers.Control.SelectFeature(
-                        resultLayer, {
-                            onSelect: onFeatureSelect,
-                            onUnselect: onFeatureUnselect,
-                            hover: false
-                        });
-                map.addControl(selectControl);
-                selectControl.activate();
-            }
             var lineStrings = new OpenLayers.Geometry.LineString(finalPoints);
-            resultLayer.addFeatures(new OpenLayers.Feature.Vector(lineStrings, {
-                "路线编码": param.BM,
-                "起点桩号": param.ROADSTART,
-                "止点桩号": param.ROADENDS
-            }));
-
-            if (resultLayer.features && resultLayer.features.length > 0) {
-                map.zoomToExtent(resultLayer.getDataExtent());
-            }
+            return lineStrings;
         }
 
         //测试桥梁查询
-        function testQueryQLByLXMBZH(_ParamsList) {
-            var listQueryParams =_ParamsList;
+        function testQueryQLByLXMBZH(listQueryParams) {
             var len = listQueryParams.length;
             for (var i = 0; i < len; i++) {
                 var param = listQueryParams[i];
-                var layerName = configQLLayerName(param);
-                if (layerName) {
-                    queryQLByLXBMZH(param, layerName);
-                }
+                getQLFeatures(param);
             }
         }
+
+        function testQueryByLXBMZH(listQueryParams) {
+            var len = listQueryParams.length;
+            var queryAttribute = "BM";
+            for (var i = 0; i < len; i++) {
+                var param = listQueryParams[i];
+                if (param.BM.length > 7) {
+                    queryAttribute = "ROADCODE";
+                }
+                param.queryAttribute = queryAttribute;
+                var layerName = lxQueryLaye;
+                getLXFeatures(param);
+            }
+        }
+
 
         function addTempLayer(layerName) {
 
@@ -673,23 +587,6 @@
 
         //根据路线编码和桩号查询桥梁信息
         function queryQLByLXBMZH(queryParams, layerName) {
-            if (resultLayer == null) {
-                resultLayer = new OpenLayers.Layer.Vector("resultLayer", {
-                    styleMap: styleMap
-                });
-                map.addLayer(resultLayer);
-                //添加数据移动上去显示气泡
-                var selectControl = new OpenLayers.Control.SelectFeature(
-                        resultLayer, {
-                            onSelect: onFeatureSelect,
-                            onUnselect: onFeatureUnselect,
-                            hover: true
-                        });
-
-                map.addControl(selectControl);
-                selectControl.activate();
-            }
-
             var wfsProtocol = new OpenLayers.Protocol.WFS({
                 url: mapServerUrl + "/wfs",//正式环境代码：mapServerUrl+"/wfs",
                 featureType: layerName,
@@ -715,12 +612,12 @@
 <div style="position: absolute;top: 10px;right:10px;z-index: 9999">
 	<a href="#" onclick="IQuery()"><img src="./images/iSearch.png"/></a>
 	
-<!-- 
-	<button onclick="test()">test</button>
+
+	<!-- <button onclick="test()">test</button>
     <button onclick="attrQuery()">行政区划查询</button>
     <button onclick="IQuery()">I查询</button>
     <button onclick="testQueryByLXBMZH()">根据路线编码和起止桩号查询</button>
-    <button onclick="testQueryQLByLXMBZH()">根据路线编码桩号查询桥梁</button> -->
+    <button onclick="testQueryQLByLXMBZH()">根据路线编码桩号查询桥梁</button>-->
 </div>
 <div id="map" style="width:900px;height:800px">
 
