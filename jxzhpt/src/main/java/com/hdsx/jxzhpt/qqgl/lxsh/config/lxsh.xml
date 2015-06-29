@@ -119,7 +119,7 @@
 	</select>
 	<select id="selectSjgzlxList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc  from LXSH_LX t where 1=1 and sffirst!='1'
+		select rownum num ,t.id,xmid xmbm,lxbm ghlxbh,lxmc,xzqh,zdzh,qdzh,gydw,xzqhdm,gydwdm,jsjsdj,xjsdj,lc,jsxz,qdmc,zdmc,t.bzcs bzys  from LXSH_LX t where 1=1 and sffirst!='1'
 		<if test="xmbm!='' and xmbm!= null ">
 			and xmid like '%'||#{xmbm}||'%'
 		</if>
