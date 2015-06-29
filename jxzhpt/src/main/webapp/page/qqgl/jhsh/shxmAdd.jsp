@@ -133,7 +133,7 @@
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
-							alert("计划添加成功！");
+							alert("添加成功！");
 							closeWindow("shxmadd");
 						}else if(msg.result=="have"){
 							alert("路线 "+$('#ylxbh').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
