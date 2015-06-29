@@ -468,7 +468,7 @@
 	<select id="selectlxList" parameterType="lx" resultType="lx">
 		select * from lxsh_lx where xmid=#{xmid} 
 		<if test="jdbs!=null"> and jdbs=#{jdbs}</if>
-		and sffirst!=1
+		<if test="sffirst==1">and sffirst!='1'</if>
 	</select>
 	<insert id="insertLxJdbs" parameterType="lx">
 		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa)

@@ -559,7 +559,9 @@ var Rh={
 				url:'/jxzhpt/qqgl/selectlxList.do',
 				queryParams:{
 					'lx.xmid':row.xmbm,
-					'lx.jdbs':YMLib.Var.jdbs
+					'lx.jdbs':YMLib.Var.jdbs,
+					'lx.sffirst':'1'
+					
 				},
     			columns:[[
     			    {field:'cz',title:'删除',width:150,align:'center',
