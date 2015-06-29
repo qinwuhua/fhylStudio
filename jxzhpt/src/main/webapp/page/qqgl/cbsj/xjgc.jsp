@@ -60,6 +60,13 @@
 						return result;
 					}
 				},
+				{field:'shzt',title:'审核状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						result = row.shzt==0 ? '未审核' : '已审核';
+						return result;
+					}
+				},
 				{field:'tjlx',title:'添加路线',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(row.shzt==0){
@@ -69,11 +76,13 @@
 						}
 					}
 				},
-				{field:'shzt',title:'审核状态',width:100,align:'center',
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 					formatter: function(value,row,index){
-						var result="";
-						result = row.shzt==0 ? '未审核' : '已审核';
-						return result;
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},

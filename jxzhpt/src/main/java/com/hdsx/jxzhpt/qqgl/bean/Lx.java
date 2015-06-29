@@ -72,6 +72,7 @@ public class Lx {
 	private String jsjsdj;//建设技术等级
 	private String gpsqdzh;//获取的GPSroad表中的起点装号
 	private String gpszdzh;//获取的GPSroad表中的止点桩号
+	private String jsfa;//建设方案
 	//历史数据字段
 	private String ylxbm;//原路线编码
 	private String yqdzh;//原起点桩号
@@ -232,5 +233,11 @@ public class Lx {
 	}
 	public void setXmmc(String xmmc) {
 		this.xmmc = xmmc;
+	}
+	public String getJsfa() {
+		return jsfa;
+	}
+	public void setJsfa(String jsfa) {
+		this.jsfa = jsfa;
 	}
 }

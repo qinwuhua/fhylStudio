@@ -222,7 +222,8 @@
 		<if test="sffirst!=null">,sffirst</if>
 		<if test="jdbs!=null">,jdbs</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>)
+		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>
+		<if test="jsfa!=null and jsfa!=''">,jsfa</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -242,7 +243,8 @@
 		<if test="sffirst!=null">,#{sffirst}</if>
 		<if test="jdbs!=null">,#{jdbs}</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>)
+		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>
+		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>)
 	</insert>
 	<delete id="deleteLxByXmbm" parameterType="xmsq">
 		delete from lxsh_lx where xmid=#{xmbm}

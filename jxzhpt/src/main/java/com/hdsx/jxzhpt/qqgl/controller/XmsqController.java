@@ -106,6 +106,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setJsjsdj(xmsq.getJsdj());
 			lx.setGpsqdzh(xmsq.getGpsqdzh());
 			lx.setGpszdzh(xmsq.getGpszdzh());
+			lx.setJsfa(xmsq.getJsfa());
 			String queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
 				List<Xmsq> list=new ArrayList<Xmsq>();

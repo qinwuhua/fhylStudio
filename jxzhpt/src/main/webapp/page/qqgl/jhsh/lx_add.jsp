@@ -91,6 +91,7 @@
 			result = validateText('qdmc',null,result);
 			result = validateText('zdmc',null,result);
 			result = validateText('jsxz',null,result);
+			result = validateText('jsfa',null,result);
 			result = validateText('qdzh','number',result);
 			result = validateText('zdzh','number',result);
 			result = validateText('lc','number',result);
@@ -102,7 +103,7 @@
 					'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),'lx.gydw':$('#gydw').combobox("getText"),
 					'lx.gydwdm':$('#gydw').combobox("getValue"),'lx.xzqh':$('#xzqh').combobox("getText"),
 					'lx.xzqhdm':$('#xzqh').combobox("getValue"),'lx.xjsdj':$('#xjsdj').combobox("getValue"),
-					'lx.gpsqdzh':$('#gpsqdzh').val(),'lx.gpszdzh':$('#gpszdzh').val()};
+					'lx.gpsqdzh':$('#gpsqdzh').val(),'lx.gpszdzh':$('#gpszdzh').val(),'lx.jsfa':$('#jsfa').val()};
 			$.ajax({
 				type:'post',
 				url:'../../../qqgl/insertLx.do',
@@ -110,7 +111,7 @@
 				dataType:'json',
 				success:function(msg){
 					if(msg.result=="true"){
-						alert("添加路线成功!");
+						alert("保存成功!");
 						closeWindow(parent.YMLib.Var.id);
 					}else if(msg.result=="have"){
 						alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.xmbm)+"中！");
@@ -175,27 +176,35 @@
 				<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/><font color='red' size='2'>&nbsp;*</font>
 			</td>
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-					建设性质</td>
+				工程分类</td>
 			<td style="background-color: #ffffff; height: 20px;" align="left">
 				<input type="text" id="jsxz" style="width: 120px" value=''/><font color='red' size='2'>&nbsp;*</font>
 			</td>
 		</tr>
 		<tr style="height: 35px;">
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				管养单位：</td>
+				管养单位</td>
 			<td style="background-color: #ffffff; height: 25px;" align="left">
 				<input type='text' id='gydw' style="width: 124px;"><font color='red' size='2'>&nbsp;*</font>
 			</td>
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				行政区划：</td>
+				行政区划</td>
 			<td style="background-color: #ffffff; height: 25px;" align="left" >
 				<input type='text' id='xzqh' style="width: 124px;"><font color='red' size='2'>&nbsp;*</font>
 			</td>
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
-				现技术等级：
+				现技术等级
 			</td>
 			<td style="background-color: #ffffff; height: 20px;" align="left">
 				<input id="xjsdj" name="xjsdj" type="text" style="width: 120px;"/><font color='red' size='2'>&nbsp;*</font>
+			</td>
+		</tr>
+		<tr style="height: 35px;">
+			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+				建设方案</td>
+			<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
+				<textarea id="jsfa" name="jsfa" style="width: 620px;height: 40px;"></textarea>
+				<font color='red' size='2'>&nbsp;*</font>
 			</td>
 		</tr>
 		<tr style="height: 35px;">

@@ -438,7 +438,8 @@
 		<if test="sffirst!=null">,sffirst</if>
 		<if test="jdbs!=null">,jdbs</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>)
+		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>
+		<if test="jsfa!=null and jsfa!=''">,jsfa</if>)
 		values(<if test="xmid!=null">#{xmid}</if>
 		<if test="lxbm!=null">,#{lxbm}</if>
 		<if test="lxmc!=null">,#{lxmc}</if>
@@ -458,7 +459,8 @@
 		<if test="sffirst!=null">,#{sffirst}</if>
 		<if test="jdbs!=null">,#{jdbs}</if>
 		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>)
+		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>
+		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>)
 	</insert>
 	<delete id="deleteLx" parameterType="lx">
 		delete from lxsh_lx where id=#{id}
@@ -469,8 +471,8 @@
 		and sffirst!=1
 	</select>
 	<insert id="insertLxJdbs" parameterType="lx">
-		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
+		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
 	</insert>
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="string">
@@ -501,6 +503,7 @@
 		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
 	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
 	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
@@ -512,9 +515,10 @@
 			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
 			from lxsh_lx lx,jhsh_yhdzx jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
-	        and ((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
 		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
-		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh})
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
 		<![CDATA[
@@ -524,6 +528,7 @@
 		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
 	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
 	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
@@ -535,9 +540,10 @@
 			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
 			from lxsh_lx lx,jhsh_sh jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
-	        and ((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
 		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
-		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh})
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
 		union all
@@ -547,6 +553,7 @@
 		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
 	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
 	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
@@ -558,9 +565,10 @@
 			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
 			from lxsh_lx lx,jhsh_lmgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
-	        and ((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
 		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
-		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh})
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
 		union all
@@ -570,6 +578,7 @@
 		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
 	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
 	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
@@ -581,9 +590,10 @@
 			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
 			from lxsh_lx lx,jhsh_sjgz jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
-	        and ((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
 		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
-		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh})
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
 		union all
@@ -593,6 +603,7 @@
 		(((to_number(l.zdzh) >= ${lx.qdzh} and ${lx.qdzh} >= to_number(l.qdzh)) or 
 	    (to_number(l.zdzh) >= ${lx.zdzh} and ${lx.zdzh} >= to_number(l.qdzh))) or
 	    (to_number(l.qdzh) = ${lx.qdzh} or to_number(l.zdzh) = ${lx.zdzh}))
+	    and (to_number(l.qdzh) != ${lx.zdzh} and to_number(l.zdzh) != ${lx.qdzh})
 		]]>
 		<if test="lx.xmid!=null and lx.xmid!=''">and j.xmbm!=#{lx.xmid}</if>
 		<foreach collection="ylx" item="item">
@@ -604,9 +615,10 @@
 			case when to_number(lx.zdzh)>=${item.yzdzh} then to_char(${item.yzdzh}) else to_char(lx.zdzh) end  yzdzh,
 			lx.xjsdj as xjsdj,lx.jsjsdj as jsjsdj
 			from lxsh_lx lx,jhsh_xj jh where jh.xmbm=lx.xmid and lx.lxbm like '%'||#{item.ylxbm}||'%'
-	        and ((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
+	        and (((to_number(lx.zdzh) >= ${item.yqdzh} and ${item.yqdzh} >= to_number(lx.qdzh)) or 
 		    (to_number(lx.zdzh) >= ${item.yzdzh} and ${item.yzdzh} >= to_number(lx.qdzh))) or
-		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh})
+		    (to_number(lx.qdzh) = ${item.yqdzh} or to_number(lx.zdzh) = ${item.yzdzh}))
+		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
 	</select>

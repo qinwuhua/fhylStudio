@@ -205,6 +205,12 @@ function showsjgzAll(){
 	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  ';
 	        }},
+	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt1=='0')
+	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
+		        else if(row.sbzt1=='1')
+	        		return '添加路线';
+	        }},
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -221,12 +227,6 @@ function showsjgzAll(){
 //	        		return '已上报';
 //	        	else return '未知';
 //	        }},
-	        {field:'c2',title:'添加路线',width:70,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="tjsjlx('+index+')">添加路线</a>   ';
-		        else if(row.sbzt1=='1')
-	        		return '添加路线';
-	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -349,15 +349,6 @@ function showlmgzAll(){
 		        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    ';
 		        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  ';
 	        }},
-	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
-				formatter: function(value,row,index){
-					if(value=="是"){
-						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
-					}else{
-						return value;
-					}
-				}
-			},
 //	        {field:'c1',title:'上报状态',width:100,align:'center',formatter:function(value,row,index){
 //	        	if(row.sbzt1=='0')
 //        		return '未上报';
@@ -371,6 +362,15 @@ function showlmgzAll(){
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -504,6 +504,15 @@ function showxjAll(){
 		        else if(row.sbzt1=='1')
 	        		return '添加路线';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -611,6 +620,12 @@ function showAllsjsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){	        	
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    ';
 	        }},
+	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
+	        	if(row.sbzt1=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
+	        	else if(row.sbzt1=='1')
+	        		return '已审核';
+	        }},
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -620,12 +635,6 @@ function showAllsjsh(){
 					}
 				}
 			},
-	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.sbzt1=='0')
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh('+index+')">未审核</a>';
-	        	else if(row.sbzt1=='1')
-	        		return '已审核';
-	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -727,6 +736,12 @@ function showAlllmsh(){
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){	        	
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    ';
 	        }},
+	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
+	        	if(row.shzt=='0')
+        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
+	        	else if(row.shzt=='1')
+	        		return '已审核';
+	        }},
 	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 				formatter: function(value,row,index){
 					if(value=="是"){
@@ -736,12 +751,6 @@ function showAlllmsh(){
 					}
 				}
 			},
-	        {field:'c1',title:'审核状态',width:60,align:'center',formatter:function(value,row,index){
-	        	if(row.shzt=='0')
-        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="shenh1('+index+')">未审核</a>';
-	        	else if(row.shzt=='1')
-	        		return '已审核';
-	        }},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},
@@ -848,6 +857,15 @@ function showAllxjsh(){
 	        	else if(row.sbzt1=='1')
 	        		return '已审核';
 	        }},
+	        {field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 	        {field : 'xmmc',title : '项目名称',width : 220,align : 'center'},
 		    {field : 'xmbm',title : '项目编码',width : 120,align : 'center'}, 
 		    {field : 'xzqh',title : '行政区划',width : 180,align : 'center'},

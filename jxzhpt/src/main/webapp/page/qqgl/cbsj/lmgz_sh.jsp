@@ -60,6 +60,13 @@
 						return result;
 					}
 				},
+				{field:'shzt',title:'审核状态',width:100,align:'center',
+					formatter: function(value,row,index){
+						var result="";
+						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
+						return result;
+					}
+				},
 				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){
@@ -67,13 +74,6 @@
 						}else{
 							return value;
 						}
-					}
-				},
-				{field:'shzt',title:'审核状态',width:100,align:'center',
-					formatter: function(value,row,index){
-						var result="";
-						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
-						return result;
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
