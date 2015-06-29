@@ -268,7 +268,8 @@ function showsjgzAll(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -411,7 +412,8 @@ function showlmgzAll(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -552,7 +554,8 @@ function showxjAll(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -668,7 +671,8 @@ function showAllsjsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -784,7 +788,8 @@ function showAlllmsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
@@ -899,7 +904,8 @@ function showAllxjsh(){
     			    {field:'zdmc',title:'止点名称',width:100,align:'center'},
     			    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
     			    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
-    			    {field:'lc',title:'里程',width:60,align:'center'}
+    			    {field:'lc',title:'里程',width:60,align:'center'},
+    			    {field:'bzys',title:'补助测算',width:60,align:'center'}
     			]]
 	    	});
 	    }   
