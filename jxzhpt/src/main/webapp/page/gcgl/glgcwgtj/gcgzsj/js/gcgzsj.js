@@ -7,7 +7,32 @@ function jgys(index){
 	}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
-	locationXm(data.GHLXBH,"");
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/selectlxbyxmid.do',
+		data:"lxsh.xmbm="+data.XMBM+"&lxsh.jdbs=2",
+		dataType:'json',
+		success:function(msg){
+			var lxbm="";
+			var qdzh="";
+			var zdzh="";
+			for(var i=0;i<msg.length;i++){
+				if(i==msg.length-1){
+					lxbm=lxbm+msg[i].lxbm;
+					qdzh=qdzh+msg[i].qdzh;
+					zdzh=zdzh+msg[i].zdzh;
+				}else{
+					lxbm=lxbm+msg[i].lxbm+"-";
+					qdzh=qdzh+msg[i].qdzh+"-";
+					zdzh=zdzh+msg[i].zdzh+"-";
+				}
+			}
+			locationXm(lxbm,qdzh,zdzh);
+		},
+		error : function(){
+		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
+	 }
+});	
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];

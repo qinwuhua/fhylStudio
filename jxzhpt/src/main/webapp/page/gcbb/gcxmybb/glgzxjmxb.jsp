@@ -26,7 +26,7 @@
 			loadUnit("gydw",$.cookie("unit"));
 			loadDist("xzqh",$.cookie("dist"));
 			loadBmbm2("xmlx","项目类型2");
-			$("#xmlx").combobox("setValue",'路面升级');
+			$("#xmlx").combobox("setValue",'升级改造');
 			var myDate = new Date();
 			var y = myDate.getFullYear();
 			var arr = new Array(); 

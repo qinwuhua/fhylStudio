@@ -122,5 +122,7 @@ public interface LxshServer {
 
 	Lxsh qqglGpszh(Lxsh lxsh);
 
+	List<Lxsh> selectlxbyxmid1(Lxsh lxsh);
+
 
 }
