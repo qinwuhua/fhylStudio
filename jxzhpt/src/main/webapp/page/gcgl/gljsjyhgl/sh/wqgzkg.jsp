@@ -24,8 +24,8 @@
 // 			sbyf = y+"-"+m;
 // 			$("#tj_sbsj").text(sbsj);
 // 			$("#tj_sbyf").text(sbyf);
-			$("#tj_xdsj").datebox({        
-			});  
+// 			$("#tj_xdsj").datebox({        
+// 			});  
 			$("#tj_sjkgsj").datebox({      
 			});  
 			$("#tj_yjjgsj").datebox({       
@@ -41,7 +41,7 @@
 				d='0'+d;
 			}
 			var data=parent.obj1;
-			$('#tj_xdsj').datebox('setValue', data.xdsj);
+			$('#tj_xdsj').html(data.XDSJ);
 			$('#tj_sjkgsj').datebox('setValue', y+'-'+m+'-'+d);
 			$('#tj_yjjgsj').datebox('setValue', y+'-'+m+'-'+d);
 		});
@@ -88,7 +88,7 @@ a:active {
                             </td>
                             <td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0;
                                 border-bottom: 1px solid #C0C0C0;  text-align: left; padding-left: 10px;">
-                                <input style="width: 105px" type="text" id="tj_xdsj" />
+                                <span id="tj_xdsj"></span>
                             </td>
                             <td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0;
                                 color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF;

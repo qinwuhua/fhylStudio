@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +31,7 @@ import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -44,7 +47,7 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	private Map<String, Object> result=new HashMap<String, Object>();
 	//计划审核对象
 	private Jhsh jhsh=new Jhsh();
-	private Jhsh2 jhsh2;
+	private Lx lx;
 	@Override
 	public Jhsh getModel() {
 		return jhsh;
@@ -89,6 +92,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			throw e;
 		}
 	}
+	/**
+	 * 查询计划审核列表 养护和水毁
+	 * @throws Exception
+	 */
 	public void queryJhsh2() throws Exception{
 		List<Jhsh> listData=null;
 		int total=0;
@@ -133,9 +140,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			}else if(jhsh.getXmlx()==3){
 				b=jhshServer.updateJhshxxXj(list);
 			}
-			if(b){
+			/*错误if(b){
 				jhshServer.updateLx(lx);
-			}
+			}*/
 			result.put("result", new Boolean(b));
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
@@ -209,6 +216,10 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	
+	/**
+	 * 根据项目编码查询计划审核信息
+	 * @throws Exception
+	 */
 	public void queryJhshxxByXmbm2() throws Exception{
 		try{
 			Jhsh obj=null;
@@ -322,6 +333,9 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 		ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 	}
+	/**
+	 * 导出资金下达Excel
+	 */
 	public void exportZjxd(){
 		//设置表头
 		ExcelTitleCell [] title=new ExcelTitleCell[12];
@@ -423,6 +437,91 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		return jhshServer.updateLx(lx);
 	}
 	/**
+	 * 添加路线
+	 * @throws Exception
+	 */
+	public void insertLx() throws Exception{
+		try {
+			lx.setSffirst("0");
+			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
+			if(queryHaveLx==null){
+				boolean b = jhshServer.insertLx(lx);
+				result.put("result", new Boolean(b).toString());
+			}else{
+				result.put("result", "have");
+				result.put("lx", queryHaveLx);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 删除路线
+	 * @throws Exception
+	 */
+	public void deleteLx() throws Exception{
+		try {
+			lx.setSffirst("0");
+			boolean b = jhshServer.deleteLx(lx);
+			result.put("result", new Boolean(b).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 根据项目编码等查询路线列表
+	 * @throws Exception
+	 */
+	public void selectlxList() throws Exception{
+		try {
+			lx.setSffirst("0");
+			JsonUtils.write(jhshServer.selectlxList(lx), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx(jhsh), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 查询历史数据信息
+	 */
+	public void queryLsxx2(){
+		try{
+			JsonUtils.write(jhshServer.queryLsxx2(lx), getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void queryKxxyjByXmbm() throws Exception{
+		try {
+			Kxxyj kxxyj=new Kxxyj();
+			if(jhsh.getXmlx()==1){
+				kxxyj = jhshServer.queryLmsjKxxyjByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==2){
+				kxxyj = jhshServer.queryLmgzKxxyjByXmbm(jhsh);
+			}else if(jhsh.getXmlx()==3){
+				kxxyj = jhshServer.queryXjKxxyjByXmbm(jhsh);
+			}
+			JsonUtils.write(kxxyj, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
 	 * 处理行政区划编码为条件语句
 	 * @param bh
 	 * @param name
@@ -487,11 +586,11 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	public void setFileuploadFileName(String fileuploadFileName) {
 		this.fileuploadFileName = fileuploadFileName;
 	}
-	public Jhsh2 getJhsh2() {
-		return jhsh2;
+	public Lx getLx() {
+		return lx;
 	}
-	public void setJhsh2(Jhsh2 jhsh2) {
-		this.jhsh2 = jhsh2;
+	public void setLx(Lx lx) {
+		this.lx = lx;
 	}
 	public String getJdbs() {
 		return jdbs;

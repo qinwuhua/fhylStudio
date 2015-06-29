@@ -13,9 +13,116 @@ function userPanduan(unit2){
 		return "县";
 	}
 }
+//--------------------------------------------------路线操作--------------------------------------
+/**
+ * 项目年份
+ * @param id 元素ID
+ */
+function xmnf(id){
+	var myDate = new Date();
+	var years=[];
+	var first;
+	years.push({text:'全部',value:''});
+	for(var i=0;i<=10;i++){
+		if(i==0)
+			first=myDate.getFullYear()-i;
+		years.push({text:(myDate.getFullYear()-i),value:(myDate.getFullYear()-i)});
+	}
+	$('#'+id).combobox({
+	    data:years,
+	    valueField:'value',
+	    textField:'text'
+	});
+	$('#'+id).combobox("setValue",myDate.getFullYear()+'');
+}
+/**
+ * 判断项目类型，返回文字
+ * @param xmbm 项目编码
+ * @result 返回项目类型
+ */
+function panduanxmlx(xmbm){
+	var result="";
+	var xmlx = xmbm.substring(10,11);
+	if(xmlx=="1"){
+		result="升级改造工程项目";
+	}else if(xmlx=="2"){
+		result="路面改造工程项目";
+	}else if(xmlx=="3"){
+		result="新建工程项目";
+	}else if(xmlx=="4"){
+		result="养护大中修项目";
+	}else if(xmlx=="5"){
+		result="水毁项目";
+	}
+	return result;
+}
+/**
+ * 添加路线弹窗
+ * @param xmbm 项目编码
+ * @param jdbs 阶段标示
+ */
+function openLxAdd(id,xmbm,jdbs){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.jdbs=jdbs;
+	YMLib.Var.id=id;
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/jhsh/lx_add.jsp',980,400);
+}
+/**
+ * 初步设计添加路线弹窗
+ * @param xmbm 项目编码
+ * @param jdbs 阶段标示
+ */
+function openLxAdd2(id,xmbm,jdbs){
+	YMLib.Var.xmbm=xmbm;
+	YMLib.Var.jdbs=jdbs;
+	YMLib.Var.id=id;
+	openWindow(id,'添加路线','/jxzhpt/page/qqgl/cbsj/lx_add.jsp',980,400);
+}
+/**
+ * 删除路线
+ * @param id
+ */
+function deleteLx(id,xmlx){
+	var params={'lx.id':id};
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/deleteLx.do',
+		data:params,
+		dataType:'json',
+		success:function(msg){
+			if(msg.result=="true"){
+				alert("删除成功!");
+				if(xmlx=="4"){
+					queryYhdzx();
+				}else if(xmlx=="5"){
+					queryShxm();
+				}
+			}
+		}
+	});
+}
 //--------------------------------------------------公用方法---------------------------------------
+function accSub(arg1,arg2){
+	　　 var r1,r2,m,n;
+	　　 try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
+	　　 try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
+	　　 m=Math.pow(10,Math.max(r1,r2));
+	　　 //last modify by deeka
+	　　 //动态控制精度长度
+	　　 n=(r1>=r2)?r1:r2;
+	　　 return ((arg1*m-arg2*m)/m).toFixed(n);
+}
+/**
+ * 历史记录弹窗
+ * @param xmbm 项目编码
+ */
+function openLsjl(xmbm){
+	YMLib.Var.xmbm=xmbm;
+	openWindow('lsjlwindow','历史记录','/jxzhpt/page/qqgl/jhsh/lsjl.jsp',980,300);
+}
 /**
  * 查询桩号地方名称
+ * @param id 桩号元素ID
  */
 function querymc(id){
 	if(id=="qdzh"){
@@ -23,8 +130,20 @@ function querymc(id){
 	}else if(id=="zdzh"){
 		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 	}
-	var lc = Number($('#zdzh').val())-Number($('#qdzh').val());
-	$('#lc').val(lc.toFixed(3));
+	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
+}
+/**
+ * 查询桩号地方名称
+ * @param id 桩号元素ID
+ * @param lxbm 路线编码元素ID
+ */
+function querymc2(id,lxbm){
+	if(id=="qdzh"){
+		cxqdmc($('#'+lxbm).val(),$('#qdzh').val());
+	}else if(id=="zdzh"){
+		cxzdmc($('#'+lxbm).val(),$('#zdzh').val());
+	}
+	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }
 /**
  * 根据路线编码和起点桩号查询起点名称
@@ -77,7 +196,7 @@ function validateText(id,type,result){
 			reg = new RegExp("^[0-9]*$");
 			var double=new RegExp("^[0-9]*.[0-9]*$");
 			if(!reg.test($('#'+id).val()) && !double.test($('#'+id).val())){
-				alert("此处请输入数字！");
+				alert($('#'+id).parent().prev().html()+"需要输入数字！");
 				$('#'+id).focus();
 				return false;
 			}
@@ -91,7 +210,7 @@ function validateText(id,type,result){
  */
 function loadTsdq(id){
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryTsdq.do',
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
 	    valueField:'id',
 	    textField:'text'
 	});
@@ -103,7 +222,7 @@ function loadTsdq(id){
  */
 function loadTsdq(id,multiple){
 	$('#'+id).combobox({    
-	    url:'../../../jhgl/queryTsdq.do',
+	    url:'/jxzhpt/jhgl/queryTsdq.do',
 	    valueField:'id',
 	    textField:'text',
 	    multiple:multiple,
@@ -119,7 +238,7 @@ function loadTsdq(id,multiple){
 function fileShow(xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -140,7 +259,7 @@ function fileShow(xmbm,type){
 function fileShow1(id,xmbm,type){
 	$.ajax({
 		type:'post',
-		url:'../../../qqgl/queryFileByXmbm.do',
+		url:'/jxzhpt/qqgl/queryFileByXmbm.do',
 		data:'file.parentid='+xmbm+'&file.filetype='+type,
 		dataType:'json',
 		success:function(data){
@@ -232,7 +351,7 @@ function importJhshZjzj(xmlx){
  */
 function queryZjxd(xmbm){
 	grid.id="zjxdList";
-	grid.url="../../../jhgl/queryZjxdByXmId.do";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
 	var params={'zjxd.xmid':xmbm};
 	grid.queryParams=params;
 	grid.height=$(window).height()-180;
@@ -263,6 +382,29 @@ function queryZjxd(xmbm){
 		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
 	gridBind1(grid);
 }
+function queryZjxd1(xmbm){
+	grid.id="zjxdList";
+	grid.url="/jxzhpt/jhgl/queryZjxdByXmId.do";
+	var params={'zjxd.xmid':xmbm};
+	grid.queryParams=params;
+	grid.height=$(window).height()-180;
+	grid.width=$('#searchField').width();
+	grid.pageSize=5;
+	grid.pageNumber=1;
+	grid.columns=[[
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				return row.sfzj == "0" ? "否" : "是";
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}]];
+	gridBind1(grid);
+}
 /**
  * 删除资金下发
  * @param id
@@ -270,7 +412,7 @@ function queryZjxd(xmbm){
 function deleteZjxdById(id){
 	$.ajax({
 		type:'post',
-		url:'../../../jhgl/dropZjxdById.do',
+		url:'/jxzhpt/jhgl/dropZjxdById.do',
 		dataType:'json',
 		data:'zjxd.id='+id,
 		success:function(data){
@@ -323,15 +465,15 @@ function openWindow(id,title,url,width,height){
 		YMLib.Var.xmlx=xmlx;
 	}
 	YMLib.UI.createWindow1(id,title,url,id,width,height,function(){
-		if(id=="lmsjedit"){
+		if(id=="lmsjedit" || id=="lmsj"){
 			queryLmsj();
-		}else if(id=="lmgzedit"){
+		}else if(id=="lmgzedit" || id=="lmgz"){
 			queryLmgz();
-		}else if(id=="xjgcedit"){
+		}else if(id=="xjgcedit" || id=="xjgc"){
 			queryXj();
-		}else if(id=="yhdzxadd" || id=="yhdzxedit"){
+		}else if(id=="yhdzxadd" || id=="yhdzxedit" || id=="yhdzx"){
 			queryYhdzx();
-		}else if(id=="shxmadd" || id=="shxmedit"){
+		}else if(id=="shxmadd" || id=="shxmedit" || id=="shxm"){
 			queryShxm();
 		}
 		if((id=="jhxd" || id=="zjzj") && xmlx==1){
@@ -395,6 +537,16 @@ var Rh={
 			xmbm=rowData.xmbm;
 			selArray.push(rowData.xmbm);
 		},
+		onSelectAll:function(rows){
+			if(selArray.length<rows.length){
+				selArray.splice(0,selArray.length);
+				$.each(rows,function(index,item){
+					selArray.push(item.xmbm);
+				});
+			}else if(selArray.length==rows.length){
+				selArray.splice(0,selArray.length);
+			}
+		},
 		onUnselect:function(rowIndex, rowData){
 			xmbm=rowData.xmbm;
 			selArray.pop(rowData.xmbm);
@@ -404,15 +556,21 @@ var Rh={
 		},
 		onExpandRow:function(index,row){
 			$('#table_lx'+index).datagrid({
-				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+				url:'/jxzhpt/qqgl/selectlxList.do',
 				queryParams:{
-					xmbm:row.xmbm
+					'lx.xmid':row.xmbm,
+					'lx.jdbs':YMLib.Var.jdbs
 				},
     			columns:[[
+    			    {field:'cz',title:'删除',width:150,align:'center',
+    			    	formatter:function(value,row,index){
+    			    		return '<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    	}
+    			    },
 					{field:'gydw',title:'管养单位',width:150,align:'center'},    
 					{field:'xzqh',title:'行政区划',width:150,align:'center'},
 					{field:'lxmc',title:'路线名称',width:120,align:'center'},
-					{field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+					{field:'lxbm',title:'路线编码',width:100,align:'center'},
 					{field:'qdzh',title:'起点桩号',width:80,align:'center'},
 					{field:'zdzh',title:'止点桩号',width:80,align:'center'},
 					{field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -429,7 +587,7 @@ var Rh={
 	};
 //此对象为绑定列表对象
 var grid={
-		url:null,queryParams:null,height:null,width:null,fitColumns:false,
+		id:null,url:null,queryParams:null,height:null,width:null,fitColumns:false,
 		columns:null,striped:true,pagination:true,
 		rownumbers:true,pageNumber:1,pageSize:10,
 		view:detailview,detailFormatter:null,onExpandRow:null};
@@ -453,6 +611,7 @@ function gridBind(grid){
 	    width:grid.width,
 	    columns:grid.columns,
 	    onSelect:Rh.onSelect,
+	    onSelectAll:Rh.onSelectAll,
 	    onUnselect:Rh.onUnselect,
 	    onClickRow:Rh.onClickRow,
 	    onLoadSuccess:Rh.onLoadSuccess,

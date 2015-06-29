@@ -8,8 +8,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-	//YMLib.UI.createWindow('gclmsj_xx','工程改造路面升级项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
+	//YMLib.UI.createWindow('gclmsj_xx','升级改造项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -18,19 +18,19 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,430);
+	parent.YMLib.UI.createWindow('wqxx','升级改造月报详情','gcgzsjybxx.jsp','wqxx',900,430);
 	//window.open("wqgzybxx.jsp");
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','工程改造路面升级月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','升级改造月报列表','gcgzsjyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报编辑','gcgzsjybxg.jsp','wqxx',900,400);
+	YMLib.UI.createWindow('wqxx','升级改造月报编辑','gcgzsjybxg.jsp','wqxx',900,400);
 	//window.open("gcgzsjybxg.jsp");
 }
 //修改
@@ -62,7 +62,7 @@ function xggcgzsjyb(){
 function ybsh(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报审核','gcgzsjybsh.jsp','wqxx',450,200);
+	YMLib.UI.createWindow('wqxx','升级改造月报审核','gcgzsjybsh.jsp','wqxx',450,200);
 }
 function shgcgzsjyb(){
 	var myDate = new Date();
@@ -161,6 +161,7 @@ function showAll(){
 			$('#table_lx'+index).datagrid({
 				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 				 queryParams: {
+					 	jdbs:2,
 				    	xmbm:row.XMBM
 					},
 				columns:[[

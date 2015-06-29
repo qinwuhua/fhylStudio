@@ -124,8 +124,8 @@
 		where id=#{jhid}
 	</update>
 		<update id="uploadWqgzFilejgys" parameterType="gcglyhdzx">
-		update PLAN_YHDZX set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
-		where id=#{jhid}
+		update JHSH_YHDZX set JGYSWJ=#{tiaojian},JGYSWJFILE=#{jgyswjfile}
+		where xmbm=#{jhid}
 	</update>
 	<!-- 下载 -->
 	<select id="downWqgzFile" parameterType="gcglyhdzx" resultType="gcglyhdzx">
@@ -135,10 +135,10 @@
 		update PLAN_YHDZX set WJGYY=#{wjgyy} where id=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglyhdzx">
-		update PLAN_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
+		update JHSH_YHDZX set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglyhdzx">
-		update PLAN_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},jhwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where id=#{jhid}
+		update JHSH_YHDZX set xdsj=#{jhxdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gys},sfgk=#{sfgk} where xmbm=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglyhdzx" resultType="gcglyhdzx">
@@ -198,13 +198,13 @@
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_YHDZX where id=#{jhid}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set sjzt=#{sjzt} where id=#{jhid}
+	 update JHSH_YHDZX set sjzt=#{sjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updateXjZT" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set xjzt=#{xjzt} where id=#{jhid}
+	 update JHSH_YHDZX set xjzt=#{xjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglyhdzx" >
-	 update PLAN_YHDZX set sjsh=#{sjsh} where id=#{jhid}
+	 update JHSH_YHDZX set sjsh=#{sjsh} where xmbm=#{jhid}
 	 </update>
 	 <update id="updatezdyf" parameterType="gcglyhdzx" >
 	 update PLAN_YHDZX set zdyf=#{sbyf} where id=#{jhid}
@@ -286,102 +286,61 @@
 		<result property="glf" column="glf"/>
 	</resultMap>
 	 
-	 <select id="queryGcgjList"  parameterType="gcglyhdzx" resultMap="yhdzx_jh">
+	 <select id="queryGcgjList"  parameterType="gcglyhdzx" resultType="hashmap">
 	select * from (
-			select t.* from (
-	    		select * from 
-	    		(select * from (
-				select p.*,rownum num from plan_yhdzx p where 1=1
-				and spzt='1'
-				<if test="kgzt != null and  kgzt != ''">
-						and p.kgzt like '%'||trim(#{kgzt})||'%'
+		select rownum num ,t.*  from JHSH_YHDZX t where 1=1
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t.xmbm like trim(#{xmnf})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
 				</if>
-				<if test="jgzt != null and  jgzt != ''">
-						and p.jgzt like '%'||trim(#{jgzt})||'%'
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
-				<if test="xmnf != null and  xmnf != ''">
-						and p.sbnf like '%'||trim(#{xmnf})||'%'
-				</if>
-				<if test="shzt != null and  shzt != ''">
-						and ${tiaojian} like '%'||trim(#{shzt})||'%'
-				</if>
-				and p.id in (
-					select l.jhid from PLAN_lx_yhdzx l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
-				)
-				where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-				) jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) 
-			where 1=1 
-			
-					) t
 			)
-		
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglyhdzx">
-		select count(*) from PLAN_yhdzx jh where 1=1 and spzt='1'
-			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="xmnf != null and  xmnf != ''">
-					and jh.sbnf like '%'||trim(#{xmnf})||'%'
-			</if>
-			<if test="shzt != null and  shzt != ''">
-					and ${tiaojian} like '%'||trim(#{shzt})||'%'
-			</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_yhdzx l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
+		select count(*)  from JHSH_YHDZX t where 1=1
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="xmnf != null and  xmnf != ''">
+				and t.xmbm like trim(#{xmnf})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		and xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+			)
 	</select>
 	
-	 <select id="selectWqgzjhList2"  parameterType="gcglyhdzx" resultMap="yhdzx_jh">
+	 <select id="selectWqgzjhList2"  parameterType="gcglyhdzx" resultType="hashmap">
 	select * from (
-			select t.* from (
-	    		select * from 
-	    		(select * from (
-				select p.*,rownum num from plan_yhdzx p where 1=1
-				and spzt='1' 
-				<if test="sbnf != null and  sbnf != ''">
-						and p.sbnf like '%'||trim(#{sbnf})||'%'
-				</if>
-				<if test="kgzt != null and  kgzt != ''">
-						and p.kgzt like '%'||trim(#{kgzt})||'%'
-				</if>
-				<if test="jgzt != null and  jgzt != ''">
-						and p.jgzt like '%'||trim(#{jgzt})||'%'
-				</if>
-				and p.id in (
-					select l.jhid from PLAN_lx_yhdzx l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
-				)
-				where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-	    		 )jh left join plan_lx_yhdzx lx on (jh.id=lx.jhid) left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		select rownum num ,t.*  from JHSH_YHDZX t  left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -391,23 +350,30 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-			
-					) t
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
 			)
-		
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm 
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglyhdzx">
-		select count(*) from PLAN_yhdzx jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-		where 1=1 and spzt='1' 
-			<if test="sbnf != null and  sbnf != ''">
-					and jh.sbnf like '%'||trim(#{sbnf})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
+		select count(*) from JHSH_YHDZX t left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -416,15 +382,23 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_yhdzx l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-					     )
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		and xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+			)
 	</select>
 </mapper>

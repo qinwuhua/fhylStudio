@@ -44,8 +44,8 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 
 	@Override
 	public boolean selectSFCF(Lxsh lxsh) {
-		Lxsh l=queryOne("selectSFCF", lxsh);
-		if(l==null)
+		List<Lxsh> l=queryList("selectSFCF", lxsh);
+		if(l==null||l.size()==0)
 			return true;
 		else
 		return false;
@@ -616,6 +616,12 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public Lxsh sfylx(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryOne("sfylx", lxsh);
+	}
+
+	@Override
+	public Lxsh qqglGpszh(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryOne("qqglGpszh", lxsh);
 	}
 	
 }

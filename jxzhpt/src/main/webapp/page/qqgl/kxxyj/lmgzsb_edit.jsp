@@ -56,18 +56,17 @@ text-decoration:none;
 		$("#wgny").datebox('setValue',data.wgny);
 		$("#pfsj").datebox('setValue',data.pfsj);
 		fileShow(parent.obj.xmbm,"工可批复文件");
-		var data1="ghlxbh="+data.lxbh+"&xzqh="+data.xzqhdm;
+		var data1="lxsh.ghlxbh="+data.lxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/qqglGpsroad.do',
+			url:'/jxzhpt/qqgl/qqglGpszh.do',
 			data:data1,
 			dataType:'json',
 			success:function(msg){
-				var item=msg[0];
-				qdStr=parseFloat(item.qdzh);
-				zdStr=parseFloat(item.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+				qdStr=parseFloat(msg.qdzh);
+				zdStr=parseFloat(msg.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
@@ -227,10 +226,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq_m"  /></td>
+					<input type="text" id="dq_m"  onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（座）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type="text" id="dq"  /></td>
+					<input type="text" id="dq"  onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id='jsjsdj'></span></td>
@@ -238,10 +237,10 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd_m"/></td>
+					<input type="text" id="sd_m"  onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="sd"/></td>
+					<input type="text" id="sd" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="jsdw"/>
@@ -264,7 +263,7 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="tzgs"/></td>
+					<input type="text" id="tzgs" onblur="checkSZ(this)"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 				<input type="text" id="gkpfwh"/></td>

@@ -47,10 +47,6 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private CbsjServer cbsjServer;
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
-	//路线参数
-	private String jdbs;//阶段标示
-	private String qdmc;//起点桩号
-	private String zdmc;//止点桩号
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -122,10 +118,10 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setQdzh(cbsj.getQdzh());
 			lx.setZdzh(cbsj.getZdzh());
 			lx.setXmid(cbsj.getXmbm());
-			lx.setQdmc(qdmc);
-			lx.setZdmc(zdmc);
+			lx.setQdmc(cbsj.getQdmc());
+			lx.setZdmc(cbsj.getZdmc());
 			lx.setSffirst("1");
-			lx.setJdbs(jdbs);
+			lx.setJdbs(cbsj.getJdbs());
 			
 			if(cbsj.getXmlx()==1){
 				b = cbsjServer.updateCbsjLmsj(cbsj);
@@ -322,23 +318,5 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setFile(Plan_upload file) {
 		this.file = file;
-	}
-	public String getJdbs() {
-		return jdbs;
-	}
-	public void setJdbs(String jdbs) {
-		this.jdbs = jdbs;
-	}
-	public String getQdmc() {
-		return qdmc;
-	}
-	public void setQdmc(String qdmc) {
-		this.qdmc = qdmc;
-	}
-	public String getZdmc() {
-		return zdmc;
-	}
-	public void setZdmc(String zdmc) {
-		this.zdmc = zdmc;
 	}
 }

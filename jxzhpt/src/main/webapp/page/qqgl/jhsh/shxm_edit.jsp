@@ -31,8 +31,8 @@
 					loadDist("xzqh1",msg.xzqhdm);
 					loadUnit("gydw1",msg.gydwdm);
 					$('#submit').form("load",msg);
-					$('#span_qdzh').html(msg.qdzh);
-					$('#span_zdzh').html(msg.zdzh);
+					$('#span_qdzh').html(msg.gpsqdzh);
+					$('#span_zdzh').html(msg.gpszdzh);
 					$('#xmbm1').val(msg.xmbm);
 					$('#xmbm1').attr("disabled","disabled");
 					$('#xmlx').val(5);

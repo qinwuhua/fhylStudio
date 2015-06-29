@@ -5,6 +5,7 @@ import java.util.List;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 
 public interface JhshServer {
@@ -190,5 +191,60 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateLx(Lx lx);
+	/**
+	 * 添加路线
+	 * @param lx 路线信息
+	 * @return 执行结果
+	 */
+	public boolean insertLx(Lx lx);
+	/**
+	 * 根据ID删除路线
+	 * @param lx 路线信息
+	 * @return 执行结果
+	 */
+	public boolean deleteLx(Lx lx);
+	/**
+	 * 根据项目编码查询路线集合
+	 * @param lx 路线编码
+	 * @return 路线集合
+	 */
+	public List<Lx> selectlxList(Lx lx);
+	/**
+	 * 升级路线阶段标示
+	 * @param lx 路线编码  阶段标示
+	 * @return 执行结果
+	 */
+	public boolean insertLxJdbs(Lx lx);
+	/**
+	 * 查询是否存在此路线
+	 * @param lx 路线信息
+	 * @return 所在的项目编码
+	 */
+	public Lx queryHaveLx(Lx lx);
+	/**
+	 * 查询历史信息
+	 * @param xmbm 项目编码
+	 * @return 历史信息结果
+	 */
+	public List<Lx> queryLsxx(Jhsh jhsh);
+	public List<Lx> queryLsxx2(Lx lx);
+	/**
+	 * 根据项目编码查询升级项目的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询改造路面的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryLmgzKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 根据项目编码查询新建项目的可行性研究信息
+	 * @param jhsh 项目编码
+	 * @return 可行性研究信息
+	 */
+	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh);
 	
 }

@@ -45,10 +45,13 @@ import com.hdsx.jxzhpt.gcgl.server.GcglabgcServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglwqgzServer;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_gcgj;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
+import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.KxxyjServer;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
+import com.hdsx.jxzhpt.qqgl.server.JhshServer;
+import com.hdsx.jxzhpt.qqgl.server.impl.JhshServerImpl;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader1;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -97,8 +100,14 @@ public class KxxyjController extends BaseActionSupport{
 	private String xmbm;
 	private File uploadGkpf;
 	private String uploadGkpfFileName;
+	private String lsjl;
 	
-	
+	public String getLsjl() {
+		return lsjl;
+	}
+	public void setLsjl(String lsjl) {
+		this.lsjl = lsjl;
+	}
 	public File getUploadGkpf() {
 		return uploadGkpf;
 	}
@@ -239,6 +248,7 @@ public class KxxyjController extends BaseActionSupport{
 			lxsh.setTsdq(tsdq);
 			lxsh.setGldj(gldj);
 			lxsh.setJsdj(jsdj);
+			lxsh.setLsjl(lsjl);
 			lxsh.setPage(page);
 			lxsh.setRows(rows);
 			System.out.println(gldj);
@@ -277,6 +287,7 @@ public class KxxyjController extends BaseActionSupport{
 		lxsh.setTsdq(tsdq);
 		lxsh.setGldj(gldj);
 		lxsh.setJsdj(jsdj);
+		lxsh.setLsjl(lsjl);
 		lxsh.setPage(page);
 		lxsh.setRows(rows);
 		System.out.println(gldj);
@@ -368,6 +379,15 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateSjgzkxx(){
 		boolean bl=kxxyjServer.updateSjgzkxx(kxxyj);
 		if(bl){
+			Lx lx=new Lx();
+			lx.setXmid(kxxyj.getXmbm());
+			lx.setLxbm(kxxyj.getLxbh());
+			lx.setQdzh(kxxyj.getQdzh());
+			lx.setZdzh(kxxyj.getZdzh());
+			lx.setSffirst("1");
+			lx.setJdbs("1");
+			JhshServer jhshServer = new JhshServerImpl();
+			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -376,6 +396,15 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateLmgzkxx(){
 		boolean bl=kxxyjServer.updateLmgzkxx(kxxyj);
 		if(bl){
+			Lx lx=new Lx();
+			lx.setXmid(kxxyj.getXmbm());
+			lx.setLxbm(kxxyj.getLxbh());
+			lx.setQdzh(kxxyj.getQdzh());
+			lx.setZdzh(kxxyj.getZdzh());
+			lx.setSffirst("1");
+			lx.setJdbs("1");
+			JhshServer jhshServer = new JhshServerImpl();
+			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -384,6 +413,15 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateXjkxx(){
 		boolean bl=kxxyjServer.updateXjkxx(kxxyj);
 		if(bl){
+			Lx lx=new Lx();
+			lx.setXmid(kxxyj.getXmbm());
+			lx.setLxbm(kxxyj.getLxbh());
+			lx.setQdzh(kxxyj.getQdzh());
+			lx.setZdzh(kxxyj.getZdzh());
+			lx.setSffirst("1");
+			lx.setJdbs("1");
+			JhshServer jhshServer = new JhshServerImpl();
+			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");

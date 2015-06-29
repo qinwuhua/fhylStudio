@@ -41,7 +41,7 @@ text-decoration:none;
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
-		$("#lc").html(data.lc);
+		$("#lc").html(accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)));
 		$("#qdmc").val(data.qdmc);
 		$("#zdmc").val(data.zdmc);
 		$("#jsxz").val(data.jsxz);
@@ -50,10 +50,10 @@ text-decoration:none;
 		$("#xjsdj").combobox('setText',data.xjsdj);
 		$("#xmbm").html(data.xmbm);
 		$("#xmnf").html(data.xmnf);
-		$("#jhkgn").combobox('setText',data.xmnf);
+		$("#jhkgn").combobox('setText',data.jhkgn);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
-		$("#bzcs").val(data.bzys);
+		$("#bzcs").val(data.bzys1);
 		$("#dfzc").html(data.dfzc);
 // 		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
 // 		$.ajax({
@@ -122,16 +122,6 @@ text-decoration:none;
 			}
 			if($("#zdzh").val()==null || $("#zdzh").val()=='' || isNaN($("#zdzh").val()) || parseFloat($("#zdzh").val())<0){
 				alert("请填写正确的止点桩号！");
-				$("#zdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
-				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
-				alert("对不起，止点桩号不能大于"+zdStr+"！");
 				$("#zdzh").focus();
 				return false;
 			}

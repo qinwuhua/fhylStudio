@@ -35,8 +35,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.XMBM;
-	//YMLib.UI.createWindow('gclmgj_xx','路面改造工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','gcgzgjxx.jsp','wqxx',740,450);
+	//YMLib.UI.createWindow('gclmgj_xx','新建工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmgj.jsp",'gclmgj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','新建工程项目详情','gcgzgjxx.jsp','wqxx',940,450);
 	//window.open("gcgzgjxx.jsp");
 }
 function closes(str){
@@ -46,44 +46,44 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目开工','wqgzkg.jsp','wqxx',700,330);
+		YMLib.UI.createWindow('wqxx','新建工程项目开工','wqgzkg.jsp','wqxx',700,330);
 	}
 }
 function ykaigong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目开工详情','wqgzkg1.jsp','wqxx',700,330);
+		YMLib.UI.createWindow('wqxx','新建工程项目开工详情','wqgzkg1.jsp','wqxx',700,330);
 }
 	function wangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目完工','wqgzwg.jsp','wqxx',500,300);
+		YMLib.UI.createWindow('wqxx','新建工程项目完工','wqgzwg.jsp','wqxx',500,300);
 	}	
 	function wwangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','路面改造工程项目未完工','wqgzwwg.jsp','wqxx',400,220);
+		YMLib.UI.createWindow('wqxx','新建工程项目未完工','wqgzwwg.jsp','wqxx',400,220);
 	}	
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','路面改造工程项目月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
+	YMLib.UI.createWindow('wqxx1','新建工程项目月报信息','gcgzgjyb.jsp','wqxx1',1059,467);
 	//window.open("gcgzgjyb.jsp");
 }
 function AddInfo(index){
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报添加','gcgzgjybtj.jsp','wqxx',780,340);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报添加','gcgzgjybtj.jsp','wqxx',780,340);
 	//window.open("gcgzgjybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','路面改造工程项目月报详情','gcgzgjybxx.jsp','wqxx',900,340);
+	parent.YMLib.UI.createWindow('wqxx','新建工程项目月报详情','gcgzgjybxx.jsp','wqxx',900,340);
 	//window.open("gcgzgjybxx.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','路面改造工程项目月报编辑','gcgzgjybxg.jsp','wqxx',780,340);
+	YMLib.UI.createWindow('wqxx','新建工程项目月报编辑','gcgzgjybxg.jsp','wqxx',780,340);
 	//window.open("gcgzgjybxg.jsp");
 }
 function Delyb(index){
@@ -375,9 +375,9 @@ function showAll(){
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
   	        	if(row.KGZT=='1'){
-  	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="jgys('+index+')">交工验收</a>  ';
+  	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="ykaigong('+index+')">已开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wangong('+index+')">完工</a>  ';
   	        	}else
-  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   '+'交工验收   ';
+  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="kaigong('+index+')">未开工</a>  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   '+'完工   ';
   	        }},
 	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="sfqxkg('+index+')">'+row.SFQXKG+'</a>    ';
@@ -401,6 +401,7 @@ function showAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 	    		 queryParams: {
+	    			 	jdbs:2,
 	    		    	xmbm:row.XMBM
 	    			},
     			columns:[[

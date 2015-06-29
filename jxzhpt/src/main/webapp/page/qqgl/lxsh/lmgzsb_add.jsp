@@ -110,20 +110,22 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
-				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=lmgz";
-				$.ajax({
-					type:'post',
-					url:'/jxzhpt/qqgl/selectSFCF.do',
-					dataType:'json',
-			        data:datas,
-					success:function(msg){
-						if(Boolean(msg)){
-								saveLxsh();
-						}else{
-							alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
-						}
+			saveLxsh();
+			/*
+			var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=lmgz";
+			$.ajax({
+				type:'post',
+				url:'/jxzhpt/qqgl/selectSFCF.do',
+				dataType:'json',
+			    data:datas,
+				success:function(msg){
+					if(Boolean(msg)){
+							saveLxsh();
+					}else{
+						alert('该项目'+$("#xmnf").combobox('getText')+'年已添加过，请勿重复添加！');
 					}
-				});
+				}
+			});*/
 				
 		});
 		autoCompleteLXBM();
@@ -207,19 +209,21 @@ text-decoration:none;
 		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
-		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0";
+		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertLmgz.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
 					parent.showAlllmgz();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

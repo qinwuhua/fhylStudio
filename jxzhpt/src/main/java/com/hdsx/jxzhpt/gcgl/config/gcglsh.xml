@@ -134,10 +134,10 @@
 		update PLAN_SHUIH set WJGYY=#{wjgyy} where id=#{jhid}
 	</update>
 	<update id="insertWqgzwg" parameterType="gcglsh">
-		update PLAN_SHUIH set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where id=#{jhid}
+		update JHSH_SH set SJWGSJ=#{sjwgsj},JGZT=#{jgzt} where xmbm=#{jhid}
 	</update>
 	<update id="insertWqgzkg" parameterType="gcglsh">
-		update PLAN_SHUIH set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},GSZTZ=#{gsztz},sfgk=#{sfgk} where id=#{jhid}
+		update JHSH_SH set xdsj=#{xdsj},kgzt=#{kgzt},sjkgsj=#{sjkgsj},yjwgsj=#{yjwgsj},sgdw=#{sgdw},jldw=#{jldw},jsdw=#{jsdw},htje=#{htje},gys=#{gsztz},sfgk=#{sfgk} where xmbm=#{jhid}
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglsh" resultType="gcglsh">
@@ -193,16 +193,16 @@
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_SHUIH where id=#{jhid}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglsh" >
-	 update PLAN_SHUIH set sjzt=#{sjzt} where id=#{jhid}
+	 update JHSH_SH set sjzt=#{sjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updateXjZT" parameterType="gcglsh" >
-	 update PLAN_SHUIH set xjzt=#{xjzt} where id=#{jhid}
+	 update JHSH_SH set xjzt=#{xjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updatezdyf" parameterType="gcglsh" >
 	 update PLAN_SHUIH set zdyf=#{sbyf} where id=#{jhid}
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglsh" >
-	 update PLAN_SHUIH set sjsh=#{sjsh} where id=#{jhid}
+	 update JHSH_SH set sjsh=#{sjsh} where xmbm=#{jhid}
 	 </update>
 	 <select id="selectnumbyyh" parameterType="gcglsh" resultType="int">
 	 	select count(*) from GCGL_SH 
@@ -275,105 +275,61 @@
 		<result property="yhlc" column="yhlc"/>
 		<result property="bhnr" column="bhnr"/>
 	</resultMap>
-	<select id="queryGcgjList"  parameterType="gcglsh" resultMap="shuih_jh">
+	<select id="queryGcgjList"  parameterType="gcglsh" resultType="hashmap">
 	select * from (
-			select t.* from (	
-				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,jh.sfqxkg,jh.xmmc,jh.sjkgsj,jh.sjwgsj,jh.yjwgsj,jh.sgdw,jh.jldw,jh.jsdw,jh.gsztz,jh.htje,jh.sfgk,
-	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-	      		from PLAN_lx_shuih l right JOIN 
-	      		(select * from (
-				select p.*,rownum num from plan_shuih p where 1=1
-				and spzt='1'
-				<if test="kgzt != null and  kgzt != ''">
-						and p.kgzt like '%'||trim(#{kgzt})||'%'
+		select rownum num ,t.*  from JHSH_SH t where 1=1
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
 				</if>
-				<if test="jgzt != null and  jgzt != ''">
-						and p.jgzt like '%'||trim(#{jgzt})||'%'
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
 				</if>
-				<if test="sbnf != null and  sbnf != ''">
-						and p.sbnf like '%'||trim(#{sbnf})||'%'
-				</if>
-				<if test="shzt != null and  shzt != ''">
-						and ${tiaojian} like '%'||trim(#{shzt})||'%'
-				</if>
-				and p.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-								${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-					     )
-				)
-			where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-	      		 )jh on  l.jhid=jh.id 
-			where 1=1 
-			
-					) t
 			)
-		
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm
 	</select>
 	<select id="queryGcgjListCount" resultType="int" parameterType="gcglsh">
-		select count(*) from PLAN_shuih jh where 1=1 and spzt='1'
+		select count(*)  from JHSH_SH t where 1=1
 			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
-			<if test="sbnf != null and  sbnf != ''">
-					and jh.sbnf like '%'||trim(#{sbnf})||'%'
-			</if>
-			<if test="shzt != null and  shzt != ''">
-					and ${tiaojian} like '%'||trim(#{shzt})||'%'
-			</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		<if test="shzt != null and  shzt != ''">
+				and ${tiaojian} like '%'||trim(#{shzt})||'%'
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+			)
 	</select>
 	
-	<select id="selectWqgzjhList2"  parameterType="gcglsh" resultMap="shuih_jh">
+	<select id="selectWqgzjhList2"  parameterType="gcglsh" resultType="hashmap">
 	select * from (
-			select t.* from (	
-				select jh.jhsydfzcje,jh.JHSYBZJE,jh.sfylsjl,jh.kgzt,jh.jgzt,jh.jh_sbthcd,jh.id,jh.sbzt,jh.spzt,jh.sbnf,jh.jhkgsj,jh.jhwgsj,jh.pfztz,jh.xdsj,jh.xmmc,
-	      		l.gydw,l.xzqhmc,l.lxmc,l.lxbm,l.qdzh,l.zdzh,l.yhlc 
-	      		from PLAN_lx_shuih l right JOIN 
-	      		(select * from (
-				select p.*,rownum num from plan_shuih p where 1=1
-				and spzt='1' 
-				<if test="sbnf != null and  sbnf != ''">
-						and p.sbnf like '%'||trim(#{sbnf})||'%'
-				</if>
-				<if test="kgzt != null and  kgzt != ''">
-						and p.kgzt like '%'||trim(#{kgzt})||'%'
-				</if>
-				<if test="jgzt != null and  jgzt != ''">
-						and p.jgzt like '%'||trim(#{jgzt})||'%'
-				</if>
-				and p.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-						
-					     )
-				)
-				where <![CDATA[ num <= (#{page} * #{rows})]]> and num>(#{page}-1)*#{rows}
-				) jh on  l.jhid=jh.id left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
+		select rownum num ,t.*  from JHSH_SH t  left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
 			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
@@ -383,24 +339,30 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-			
-					) t
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		and t.xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
 			)
-		
+		) t2 where t2.num &lt;=(#{page} * #{rows}) and t2.num>(#{page}-1)*#{rows}
+		order by xmbm 
 	</select>
 	<select id="selectWqgzjhListcount1" resultType="int" parameterType="gcglsh">
-		select count(*) from PLAN_shuih jh left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on jh.id=c.jhid
-		
-		where 1=1 and spzt='1' 
-			<if test="sbnf != null and  sbnf != ''">
-					and jh.sbnf like '%'||trim(#{sbnf})||'%'
-			</if>
-			<if test="kgzt != null and  kgzt != ''">
-					and jh.kgzt like '%'||trim(#{kgzt})||'%'
-			</if>
-			<if test="jgzt != null and  jgzt != ''">
-					and jh.jgzt like '%'||trim(#{jgzt})||'%'
-			</if>
+		select count(*) from JHSH_SH t left join (select * from gcgl_cgs where tbyf=#{tbyf}) c on t.xmbm=c.jhid
+			where 1=1 
 			<if test="tiaojian != null and  tiaojian != ''">
 				<if test="tiaojian =='未拨付'">
 					and c.tbyf is null
@@ -409,15 +371,23 @@
 					and c.tbyf is not null
 				</if>
 			</if>
-				and jh.id in (
-					select l.jhid from PLAN_lx_shuih l
-					where 1=1 
-						<if test="gydw != null and  gydw != ''">
-							${gydw}
-						</if>
-						<if test="lxmc != null and  lxmc != ''">
-								and l.lxmc like '%'||trim(#{lxmc})||'%'
-						</if>
-					     )
+		<if test="kgzt != null and  kgzt != ''">
+				and t.kgzt like '%'||trim(#{kgzt})||'%'
+		</if>
+		<if test="jgzt != null and  jgzt != ''">
+				and t.jgzt like '%'||trim(#{jgzt})||'%'
+		</if>
+		<if test="sbnf != null and  sbnf != ''">
+				and t.xmbm like trim(#{sbnf})||'%'
+		</if>
+		and xmbm in (
+				select xmid from lxsh_lx where 1=1 
+				<if test="gydw!='' and gydw!= null ">
+				${gydw}
+				</if>
+				<if test="lxmc != null and  lxmc != ''">
+					and lxmc like '%'||trim(#{lxmc})||'%'
+				</if>
+			)
 	</select>
 </mapper>

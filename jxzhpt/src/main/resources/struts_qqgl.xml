@@ -4,12 +4,13 @@
 <struts>
 	<package name="qqgl" extends="struts-default" namespace="/qqgl">
 		<!-- qwh -->
+		  <action name="qqglGpszh" class="lxshController" method="qqglGpszh"/>
 		  <action name="sfylx" class="lxshController" method="sfylx"/>
 		  <action name="cxqdmc" class="lxshController" method="cxqdmc"/>
 		  <action name="cxzdmc" class="lxshController" method="cxzdmc"/>
 		  <action name="deleteLx" class="lxshController" method="deleteLx"/>
 		  <action name="selectSFCFLX" class="lxshController" method="selectSFCFLX"/>
-		  <action name="insertLx" class="lxshController" method="insertLx"/>
+		  <action name="insertLx1" class="lxshController" method="insertLx1"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectxmbm" class="lxshController" method="selectxmbm"/>
 		  <action name="selectbzcs" class="lxshController" method="selectbzcs"/>
@@ -108,6 +109,12 @@
 		<action name="updateJhshxx2" class="jhshController" method="updateJhshxx2"></action>
 		<action name="queryJhshxxByXmbm2" class="jhshController" method="queryJhshxxByXmbm2"></action>
 		<action name="uploadJhsh" class="jhshController" method="uploadJhsh"></action>
+		<action name="insertLx" class="jhshController" method="insertLx"></action>
+		<action name="deleteLx" class="jhshController" method="deleteLx"></action>
+		<action name="selectlxList" class="jhshController" method="selectlxList"></action>
+		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
+		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
+		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		
 	<!-- rh -->
 	</package>

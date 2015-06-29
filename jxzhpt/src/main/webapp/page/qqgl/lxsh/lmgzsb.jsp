@@ -127,6 +127,10 @@
 			}
 		}
 		function delsjgz(){
+			if($.cookie("unit2").length==7 ){
+				alert("省级用户请移到审核模块进行操作");
+				return;
+			}
 			var rows=$('#datagrid').datagrid('getSelections');
 			if(rows.length==0) {
 				alert("请选择要删除项目！");
@@ -214,6 +218,12 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        						<td>是否有历史记录：</td>
+        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select></td>
         					</tr>
         					<tr height="32">
                               <td colspan="10">

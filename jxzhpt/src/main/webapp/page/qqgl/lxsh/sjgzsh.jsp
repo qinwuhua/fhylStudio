@@ -51,11 +51,13 @@
 				return;
 			}
 			var id=rows[0].id;
+			var xmbm=rows[0].xmbm;
 			for(var i=1;i<rows.length;i++){
 				id+=","+rows[i].id ;
+				xmbm+=','+rows[i].xmbm;
 			}
 			if(confirm('您确定审核该项目？')){
-				var data = "lxsh.id="+id;
+				var data = "lxsh.id="+id+"&lxsh.xmbm="+xmbm;
 				$.ajax({
 					 type : "POST",
 					 url : "/jxzhpt/qqgl/shsjgzSbzt.do",
@@ -214,6 +216,12 @@ text-decoration:none;
 								<td><select name="jsdj" id="jsdj" style="width:65px;" class="easyui-combobox"></select></td>
 								<td>公路等级：</td>
 								<td><select name="gldj" id="gldj" style="width:100px;" class="easyui-combobox"></select></td>
+        						<td>是否有历史记录：</td>
+        						<td><select id="lsjl" style="width:80px;" class="easyui-combobox">
+									<option selected="selected" value="">全部</option>
+									<option value="是">是</option>
+									<option value="否">否</option>
+								</select></td>
         					</tr>
         					<tr height="32">
                               <td colspan="10">

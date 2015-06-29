@@ -1,12 +1,42 @@
 var obj=new Object();
 var obj1=new Object();
-function dingwei(){
-	alert("在地图上定位");
+function jgys(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx','交工验收信息','jgys.jsp','wqxx',650,420);
+	}
+function sfqxkg(index){
+	var data1=$("#datagrid").datagrid('getRows')[index];
+	var sfqxkg='是';
+	if(data1.SFQXKG=='是')
+		sfqxkg='否';
+	if(data1.SFQXKG=='否')
+		sfqxkg='是';
+	var data="flag="+"gcsj"+"&gcglgcgzgj.sfqxkg="+sfqxkg+"&gcglgcgzgj.id="+data1.XMBM;
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt//gcgl/updataSFQX.do',
+		data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				$("#datagrid").datagrid('reload');
+			}else{
+				alert('失败！');
+			}
+		}
+	});	
+}
+function dingwei(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	locationXm(data.GHLXBH,"");
 }
 function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级开工详情','gcgzsjxx.jsp','wqxx',740,450);
+	YMLib.Var.jhbm=data.id;
+	//YMLib.UI.createWindow('gclmsj_xx','升级改造工程项目项目计划详情',"/jxzhpt/page/jhgl/jhkxx/gclmsj.jsp",'gclmsj_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("gcgzsjxx.jsp");
 }
 function closes(str){
@@ -16,48 +46,53 @@ function kaigong(index){
 	if(confirm("确认开工吗？")){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','工程改造路面升级开工','wqgzkg.jsp','wqxx',650,330);
+		YMLib.UI.createWindow('wqxx','升级改造工程项目开工','wqgzkg.jsp','wqxx',650,330);
 	}
+}
+function ykaigong(index){
+		var data=$("#datagrid").datagrid('getRows')[index];
+		obj1=data;
+		YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','wqgzkg1.jsp','wqxx',650,330);
 }
 	function wangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-			YMLib.UI.createWindow('wqxx','工程改造路面升级完工','wqgzwg.jsp','wqxx',500,300);
+			YMLib.UI.createWindow('wqxx','升级改造工程项目完工','wqgzwg.jsp','wqxx',500,300);
 		}	
 	function wwangong(index){
 		var data=$("#datagrid").datagrid('getRows')[index];
 		obj1=data;
-		YMLib.UI.createWindow('wqxx','工程改造路面升级未完工','wqgzwwg.jsp','wqxx',400,220);
+		YMLib.UI.createWindow('wqxx','升级改造工程项目未完工','wqgzwwg.jsp','wqxx',400,220);
 	}	
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','工程改造路面升级月报信息','gcgzsjyb.jsp','wqxx1',1059,450);
+	YMLib.UI.createWindow('wqxx1','升级改造工程项目月报信息','gcgzsjyb.jsp','wqxx1',1059,467);
 	//window.open("gcgzsjyb.jsp");
 }
 function AddInfo(){
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报添加','gcgzsjybtj.jsp','wqxx',900,400);
+	YMLib.UI.createWindow('wqxx','升级改造工程项目月报添加','gcgzsjybtj.jsp','wqxx',950,340);
 	//window.open("gcgzsjybtj.jsp");
 }
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
-	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报详情','gcgzsjybxx.jsp','wqxx',900,430);
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','升级改造工程项目月报详情','gcgzsjybxx.jsp','wqxx',950,340);
 	//window.open("gcgzsjybxx.jsp");
 }
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
-	YMLib.UI.createWindow('wqxx','工程改造路面升级月报编辑','gcgzsjybxg.jsp','wqxx',900,400);
+	YMLib.UI.createWindow('wqxx','升级改造工程项目月报编辑','gcgzsjybxg.jsp','wqxx',900,340);
 	//window.open("gcgzsjybxg.jsp");
 }
 function Delyb(index){
 	var data1=$("#ybgrid").datagrid('getRows')[index];
-	var data="gcglgcgzsj.id="+data1.id;
+	var data="gcglgcgzsj.id="+data1.id+"&gcglgcgzsj.jhid="+data1.id;
 	if(confirm("确认删除吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/deletegcgzsjYb.do',
+			url:'/jxzhpt//gcgl/deletegcgzsjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -95,15 +130,20 @@ function tjgcgzsjyb(){
 		alert("页面信息未填写完整，请您检查漏填项");
 		return;
 	}
+	if($("#tj_sbyf").find("option:selected").text()==''){
+		alert("没有选择月份，若无月份可选，请先等待拨付车购税");
+		return;
+	}
 	var data = "gcglgcgzsj.qlwcqk_z="+$("#tj_qlwcqk_z").val()+"&gcglgcgzsj.qlwcqk_ym="+$("#tj_qlwcqk_ym").val()+"&gcglgcgzsj.sdwcqk_z="+$("#tj_sdwcqk_z").val()+"&gcglgcgzsj.sdwcqk_ym="+$("#tj_sdwcqk_ym").val()+"&gcglgcgzsj.hdwcqk_m="+$("#tj_hdwcqk_m").val()
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#tj_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#tj_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#tj_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#tj_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#tj_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#tj_snlmwcqk").val()
 	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
-	+"&gcglgcgzsj.kgdl="+$("#tj_kgdl").val()+"&gcglgcgzsj.qksm="+$("#tj_qksm").val()+"&gcglgcgzsj.bywctze="+$("#tj_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#tj_bywcgzl").val()
-	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+$("#tj_sbyf").find("option:selected").text()+"&gcglgcgzsj.jhid="+parent.parent.obj1.id+"&yhtype="+yhtype;
+	+"&gcglgcgzsj.kgdl="+$("#tj_kgdl").val()+"&gcglgcgzsj.qksm="+$("#tj_qksm").val()+"&gcglgcgzsj.bywctze="+$("#tj_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#tj_bywcgzl").val()+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
+	+"&gcglgcgzsj.wkglc="+$("#wkglc").val()
+	+"&gcglgcgzsj.sbsj="+sbsj+"&gcglgcgzsj.sbyf="+$("#tj_sbyf").val()+"&gcglgcgzsj.jhid="+parent.parent.obj1.XMBM+"&yhtype="+yhtype;
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertgcgzsjYb.do',
+		url:'/jxzhpt//gcgl/insertgcgzsjYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -126,13 +166,14 @@ function xggcgzsjyb(){
 	}
 	var data = "gcglgcgzsj.qlwcqk_z="+$("#xg_qlwcqk_z").val()+"&gcglgcgzsj.qlwcqk_ym="+$("#xg_qlwcqk_ym").val()+"&gcglgcgzsj.sdwcqk_z="+$("#xg_sdwcqk_z").val()+"&gcglgcgzsj.sdwcqk_ym="+$("#xg_sdwcqk_ym").val()+"&gcglgcgzsj.hdwcqk_m="+$("#xg_hdwcqk_m").val()
 	+"&gcglgcgzsj.ljtsfwcqk="+$("#xg_ljtsfwcqk").val()+"&gcglgcgzsj.dcwcqk="+$("#xg_dcwcqk").val()+"&gcglgcgzsj.jcwcqk="+$("#xg_jcwcqk").val()+"&gcglgcgzsj.bywcmc="+$("#xg_bywcmc").val()+"&gcglgcgzsj.lqlmwcqk="+$("#xg_lqlmwcqk").val()+"&gcglgcgzsj.snlmwcqk="+$("#xg_snlmwcqk").val()
-	+"&gcglgcgzsj.zycgs="+$("#xg_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#xg_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#xg_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#xg_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#xg_qtzj").val()
+	+"&gcglgcgzsj.zycgs="+$("#tj_zycgs").val()+"&gcglgcgzsj.dfbz="+$("#tj_dfbz").val()+"&gcglgcgzsj.yhdk="+$("#tj_yhdk").val()+"&gcglgcgzsj.sttxdk="+$("#tj_sttxdk").val()+"&gcglgcgzsj.qtzj="+$("#tj_qtzj").val()
 	+"&gcglgcgzsj.kgdl="+$("#xg_kgdl").val()+"&gcglgcgzsj.qksm="+$("#xg_qksm").val()+"&gcglgcgzsj.bywctze="+$("#xg_bywctze").val()+"&gcglgcgzsj.bywcgzl="+$("#xg_bywcgzl").val()
-	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.sbyf="+$("#xg_sbyf").find("option:selected").text();
+	+"&gcglgcgzsj.jhid="+parent.obj.jhid+"&gcglgcgzsj.id="+parent.obj.id+"&gcglgcgzsj.sbyf="+$("#xg_sbyf").val()+"&gcglgcgzsj.wcqk="+$("#wcqk").text()+"&gcglgcgzsj.ssdctc="+$("#ssdctc").val()+"&gcglgcgzsj.bndsslc="+$("#bndsslc").val()
+	+"&gcglgcgzsj.wkglc="+$("#wkglc").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/updategcgzsjYb.do',
+		url:'/jxzhpt//gcgl/updategcgzsjYb.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -168,13 +209,13 @@ function tjwqgzkg(){
 		alert("请您输入概预算");
 		return;
 	}
-	var data="gcglgcgzsj.xdsj="+$("#tj_xdsj").datebox('getValue')+"&gcglgcgzsj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzsj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
+	var data="gcglgcgzsj.sjkgsj="+$("#tj_sjkgsj").datebox('getValue')+"&gcglgcgzsj.yjwgsj="+$("#tj_yjjgsj").datebox('getValue')
 	+"&gcglgcgzsj.sgdw="+$("#tj_sgdw").val()+"&gcglgcgzsj.jldw="+$("#tj_jldw").val()+"&gcglgcgzsj.jsdw="+$("#tj_jsdw").val()
-	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+$("#tj_gys").val()+"&gcglgcgzsj.jhid="+parent.obj1.id;
+	+"&gcglgcgzsj.htje="+$("#tj_htje").val()+"&gcglgcgzsj.gsztz="+$("#tj_gys").val()+"&gcglgcgzsj.jhid="+parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzsjkg.do',
+		url:'/jxzhpt//gcgl/insertGcgzsjkg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -193,11 +234,11 @@ function tjwqgzwg(){
 	if(!confirm("确认完工吗？")){
 		return;
 	}
-	var data="gcglgcgzsj.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglgcgzsj.jhid="+parent.obj1.id;
+	var data="gcglgcgzsj.sjwgsj="+$("#tj_sjwgsj").datebox('getValue')+"&gcglgcgzsj.jhid="+parent.obj1.XMBM;
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzsjwg.do',
+		url:'/jxzhpt//gcgl/insertGcgzsjwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -221,7 +262,7 @@ function tjwqgzwwg(){
 	//alert(data);
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/insertGcgzsjwwg.do',
+		url:'/jxzhpt//gcgl/insertGcgzsjwwg.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -237,20 +278,18 @@ function tjwqgzwwg(){
 }
 
 function showAll(){
-	var gydw=$("#gydw").combotree("getValues");
-	if(gydw.length==0){
-		if($.cookie("unit2")=='_____36')
-			gydwstr=36;
-		else gydwstr= $.cookie("unit2");
-	}else if(gydw.length==1){
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-		gydwstr=gydw[0] ;
+	var xzqhdm=$("#xzqh").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
 	}else{
-		gydwstr= gydw.join(',');
+		xzqhstr= xzqhdm.join(',');
 	}
 	var jgzt='0';
-	var xmnf=$("#ddlYear").val();
 	var kgzt=$("#kgzt").combobox("getValue");
 	var lxmc=$("#lxmc").val();
 	var yhjb=$.cookie("unit2");
@@ -267,9 +306,10 @@ function showAll(){
 		yhtype='省级';
 		sfsj=7;
 	}
+	var xmnf=$("#ddlYear").val();
 	var ybzt=$("#ybzt").val();
 	$('#datagrid').datagrid({    
-	    url:'/jxzhpt/gcgl/selectGcgzsjjhList.do',
+	    url:'/jxzhpt//gcgl/selectGcgzsjjhList.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -278,7 +318,7 @@ function showAll(){
 	    height:$(window).height()-$(window).height()*0.22,
 	    width:$(window).width()-$(window).width()*0.019,
 	    queryParams: {
-	    	gydw: gydwstr,
+	    	gydw: xzqhstr,
 	    	kgzt: kgzt,
 	    	jgzt: jgzt,
 	    	lxmc:lxmc,
@@ -287,32 +327,57 @@ function showAll(){
 	    	xmnf:xmnf
 		},
 	    columns:[[
-			 {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-  	        	if(row.kgzt=='1'){
-  	        		return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
-  	        		+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
+			{field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+			  	if(row.KGZT=='1'){
+			  		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
   	        	}else
-  	        	return '<a href=javascript:locationXm("'+row.lxbm+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
-  	        	+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'未开工  ';
-  	        }},
-	        {field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="#" onclick="Showybxx()">否</a>    ';
-	        }},
-	        {field:'gydw',title:'管养单位',width:130,align:'center'},
-	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
-	        {field:'lxbm',title:'路线编码',width:120,align:'center'},
-	        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-	        {field:'qdzh',title:'起点桩号',width:60,align:'center'},
-	        {field:'zdzh',title:'止点桩号',width:60,align:'center'},
-	        {field:'qzlc',title:'总里程',width:80,align:'center'},
-	        {field:'xmlc',title:'项目里程',width:80,align:'center'},
-	        {field:'yjsdj',title:'技术等级',width:100,align:'center'}
-	    ]]    
+  	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'未开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
+			  }},
+			{field:'c1',title:'是否全线开工',width:80,align:'center',formatter:function(value,row,index){
+				return row.SFQXKG+'    ';
+			}},
+			{field : 'XMMC',title : '项目名称',width : 180,align : 'center'},
+			{field : 'XMBM',title : '项目编码',width : 120,align : 'center'},
+			{field : 'XZQH',title : '行政区划',width : 180,align : 'center'},
+			{field : 'QDZH',title : '起点桩号',width : 100,align : 'center'},
+			{field : 'ZDZH',title : '止点桩号',width : 100,align : 'center'},
+			{field:'KGSJ',title:'计划开工时间',width:150,align:'center'},
+			{field:'WGSJ',title:'计划完工时间',width:150,align:'center'},
+			{field:'GQ',title:'工期',width:100,align:'center'},
+			{field:'GKPFWH',title:'工可批复文号',width:100,align:'center'},
+			{field:'SJPFWH',title:'设计批复文号',width:100,align:'center'}
+			]],
+			view: detailview,
+			detailFormatter:function(index,row){   
+			return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+			},
+			onExpandRow: function(index,row){
+			$('#table_lx'+index).datagrid({
+				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+				 queryParams: {
+					 	jdbs:2,
+				    	xmbm:row.XMBM
+					},
+				columns:[[
+				    {field:'gydw',title:'管养单位',width:150,align:'center'},    
+				    {field:'xzqh',title:'行政区划',width:150,align:'center'},
+				    {field:'lxmc',title:'路线名称',width:120,align:'center'},
+				    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+				    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
+				    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
+				    {field:'qdmc',title:'起点名称',width:100,align:'center'},
+				    {field:'zdmc',title:'止点名称',width:100,align:'center'},
+				    {field:'jsjsdj',title:'建设技术等级',width:80,align:'center'},
+				    {field:'xjsdj',title:'现技术等级',width:80,align:'center'},
+				    {field:'lc',title:'里程',width:60,align:'center'}
+				]]
+			});
+		}   
 	}); 
 }
 
 function showYBlist(){
-	var jhid=parent.obj1.id;
+	var jhid=parent.obj1.XMBM;
 	var yhjb=$.cookie("unit2");
 	var yhtype='';
 	var sfsj='';
@@ -329,7 +394,7 @@ function showYBlist(){
 		sfsj=7;
 	}
 	$('#ybgrid').datagrid({    
-	    url:'/jxzhpt/gcgl/selectgcgzsjYbByJhid.do',
+	    url:'/jxzhpt//gcgl/selectgcgzsjYbByJhid.do',
 	    striped:true,
 	    pagination:true,
 	    rownumbers:true,
@@ -345,26 +410,27 @@ function showYBlist(){
 	             [
 	              	{field:'c',title:'操作',width:250,align:'center',rowspan:2,formatter:function(value,row,index){
 	              		
-	              		if(yhtype=='县级'){
+	              		/*if(yhtype=='县级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==11)
-    			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'未上报    '+'未审核    ';
+    			        return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除</a>   '+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=11)
-		    			    return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'未审核    ';
+		    			    return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    '+'未审核    ';
 	              			if(row.shzt=='已审核')
-	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'已审核    ';
+	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'已审核    ';
 
 	              		}
 	              		if(yhtype=='市级'){
 	              			if(row.shzt=='未审核'&&row.sfsj==9)
-	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'未上报    '+'未审核    ';
+	    			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="Edityb('+index+')">编辑</a>   '+'<a href="#" onclick="Delyb('+index+')">删除    </a>'+'<a href="#" onclick="sbsjyb('+index+')">未上报    </a>'+'<a href="#" onclick="thsjyb('+index+')">退回    </a>'+'未审核    ';
 	              			if(row.shzt=='未审核'&&row.sfsj!=9)
-	    	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'未审核    ';
+	    	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑   '+'删除   '+'已上报    '+'退回    '+'未审核    ';
 	              			if(row.shzt=='已审核')
-	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已上报    '+'已审核    ';
+	              				return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'编辑    '+'删除    '+'已上报    '+'退回    '+'已审核    ';
 	              		}
 	              		if(yhtype=='省级'){
 	              			return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
-	              		}
+	              		}*/
+	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:100,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:100,align:'center',rowspan:2},
@@ -412,7 +478,7 @@ function uploadFile(str){
 
 //function downFile(str){
 //	if($("#xz_"+str).text()=='下载附件'){
-//		parent.window.location.href="../../../../gcgl/downGcgzsjFile.do?type="+str+"&jhid="+parent.obj1.id;
+//		parent.window.location.href="/jxzhpt//gcgl/downGcgzsjFile.do?type="+str+"&jhid="+parent.obj1.id;
 //	}
 //	else return;
 //}
@@ -424,7 +490,7 @@ function deleteFile(str){
 	var data="jhid="+parent.obj1.id+"&type="+str;
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/deleteGcgzsjFile.do',
+		url:'/jxzhpt//gcgl/deleteGcgzsjFile.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -444,7 +510,7 @@ function jiazai(ooo){
 
 	$.ajax({
 		type:'post',
-		url:'../../../../gcgl/selectGcgzsjjhFile.do',
+		url:'/jxzhpt//gcgl/selectGcgzsjjhFile.do',
 		data:data,
 		dataType:'json',
 		async:false,
@@ -462,7 +528,7 @@ function jiazai(ooo){
 			if(msg.jgyswj!=''){
 				$("#xz_jgyswj").text(msg.jgyswj);
 				$("#xz_jgyswj").attr("style",'color: #2C7ED1;cursor:pointer;');
-				$("#xz_jgtcwj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
+				$("#xz_jgyswj").attr("href",'/jxzhpt/gcgl/downGcgzsjFile.do?type=jgyswj'+"&jhid="+parent.obj1.id);
 			}
 			}
 	});	
@@ -480,7 +546,7 @@ function sbsjyb(index){
 	if(confirm("确认上报吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbGcgzsjYb.do',
+			url:'/jxzhpt//gcgl/sbGcgzsjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){
@@ -500,7 +566,7 @@ function thsjyb(index){
 	if(confirm("确认退回吗？")){
 		$.ajax({
 			type:'post',
-			url:'../../../../gcgl/sbGcgzsjYb.do',
+			url:'/jxzhpt//gcgl/sbGcgzsjYb.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

@@ -76,16 +76,7 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
-				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
-				alert("对不起，止点桩号不能大于"+zdStr+"！");
-				$("#zdzh").focus();
-				return false;
-			}
+			
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
@@ -171,20 +162,22 @@ text-decoration:none;
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.jdbs=0";
+		+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.xmlx=xj"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
 		//alert(data);
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/insertLx.do',
+			url:'/jxzhpt/qqgl/insertLx1.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
 					parent.showAllxj();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

@@ -41,7 +41,7 @@ text-decoration:none;
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
-		$("#lc").html(data.lc);
+		$("#lc").html(accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)));
 		$("#qdmc").html(data.qdmc);
 		$("#zdmc").html(data.zdmc);
 		$("#jsxz").val(data.jsxz);
@@ -50,23 +50,22 @@ text-decoration:none;
 		$("#xjsdj").html(data.xjsdj);
 		$("#xmbm").html(data.xmbm);
 		$("#xmnf").html(data.xmnf);
-		$("#jhkgn").combobox('setText',data.xmnf);
+		$("#jhkgn").combobox('setText',data.jhkgn);
 		$("#jhwgn").combobox('setText',data.jhwgn);
 		$("#tz").val(data.tz);
-		$("#bzcs").html(data.bzys);
+		getbzcs(data.ghlxbh.substr(0,1),data.jsjsdj,accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)),'路面改造工程项目');
 		$("#dfzc").html(data.dfzc);
-		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
+		var data1="lxsh.ghlxbh="+data.ghlxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/qqglGpsroad.do',
+			url:'/jxzhpt/qqgl/qqglGpszh.do',
 			data:data1,
 			dataType:'json',
 			success:function(msg){
-				var item=msg[0];
-				qdStr=parseFloat(item.qdzh);
-				zdStr=parseFloat(item.zdzh);
-				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
-				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+				qdStr=parseFloat(msg.qdzh);
+				zdStr=parseFloat(msg.zdzh);
+				$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+msg.qdzh);
+				$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+msg.zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);

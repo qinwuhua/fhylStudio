@@ -86,12 +86,12 @@ public class Gcglyhdzx implements Serializable {
 	private String devisenumbder;
 	private String plandownnumber;
 	private String remarks;
-	private Date jhxdsj;
-	private Date sjkgsj;
-	private Date sjwgsj;
+	private String jhxdsj;
+	private String sjkgsj;
+	private String sjwgsj;
 	private String kgzt;
 	private String jgzt;
-	private Date yjwgsj;
+	private String yjwgsj;
 	private String jsdw;
 	private String sgdw;
 	private String jldw;
@@ -594,24 +594,7 @@ public class Gcglyhdzx implements Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public Date getJhxdsj() {
-		return jhxdsj;
-	}
-	public void setJhxdsj(Date jhxdsj) {
-		this.jhxdsj = jhxdsj;
-	}
-	public Date getSjkgsj() {
-		return sjkgsj;
-	}
-	public void setSjkgsj(Date sjkgsj) {
-		this.sjkgsj = sjkgsj;
-	}
-	public Date getSjwgsj() {
-		return sjwgsj;
-	}
-	public void setSjwgsj(Date sjwgsj) {
-		this.sjwgsj = sjwgsj;
-	}
+	
 	public String getKgzt() {
 		return kgzt;
 	}
@@ -624,12 +607,7 @@ public class Gcglyhdzx implements Serializable {
 	public void setJgzt(String jgzt) {
 		this.jgzt = jgzt;
 	}
-	public Date getYjwgsj() {
-		return yjwgsj;
-	}
-	public void setYjwgsj(Date yjwgsj) {
-		this.yjwgsj = yjwgsj;
-	}
+	
 	public String getJsdw() {
 		return jsdw;
 	}
@@ -847,6 +825,29 @@ public class Gcglyhdzx implements Serializable {
 	public void setGydwmc(String gydwmc) {
 		this.gydwmc = gydwmc;
 	}
-
+	public String getJhxdsj() {
+		return jhxdsj;
+	}
+	public void setJhxdsj(String jhxdsj) {
+		this.jhxdsj = jhxdsj;
+	}
+	public String getSjkgsj() {
+		return sjkgsj;
+	}
+	public void setSjkgsj(String sjkgsj) {
+		this.sjkgsj = sjkgsj;
+	}
+	public String getSjwgsj() {
+		return sjwgsj;
+	}
+	public void setSjwgsj(String sjwgsj) {
+		this.sjwgsj = sjwgsj;
+	}
+	public String getYjwgsj() {
+		return yjwgsj;
+	}
+	public void setYjwgsj(String yjwgsj) {
+		this.yjwgsj = yjwgsj;
+	}
 	
 }

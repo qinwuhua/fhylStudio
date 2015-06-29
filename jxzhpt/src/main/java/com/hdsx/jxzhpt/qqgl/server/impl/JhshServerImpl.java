@@ -12,6 +12,7 @@ import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh;
 import com.hdsx.jxzhpt.qqgl.bean.Jhsh2;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 @Service
@@ -189,5 +190,68 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public boolean updateLx(Lx lx) {
 		return update("updateLx",lx)>0;
 	}
-
+	@Override
+	public boolean insertLx(Lx lx) {
+		return insert("insertLx",lx)>0;
+	}
+	@Override
+	public boolean deleteLx(Lx lx) {
+		return delete("deleteLx",lx)>0;
+	}
+	@Override
+	public List<Lx> selectlxList(Lx lx) {
+		return queryList("selectlxList",lx);
+	}
+	@Override
+	public boolean insertLxJdbs(Lx lx) {
+		return insert("insertLxJdbs",lx)>0;
+	}
+	@Override
+	public Lx queryHaveLx(Lx lx) {
+		return queryOne("queryHaveLx", lx);
+	}
+	@Override
+	public List<Lx> queryLsxx(Jhsh jhsh) {
+		Lx lx=new Lx();
+		lx.setXmid(jhsh.getXmbm());
+		//返回结果
+		List<Lx> result =new ArrayList<Lx>();
+		//查询此计划所有的路线信息
+		List<Lx> lxList=queryList("queryLxMaxJdbs",lx);
+		for (Lx item : lxList) {
+			queryLsjlList(result, item);
+		}
+		return result;
+	}
+	@Override
+	public List<Lx> queryLsxx2(Lx lx) {
+		List<Lx> result=new ArrayList<Lx>();
+		queryLsjlList(result, lx);
+		return result;
+	}
+	/**
+	 * 根据路线和原路线查询历史记录
+	 * @param result 返回结果
+	 * @param item 路线
+	 */
+	private void queryLsjlList(List<Lx> result, Lx item) {
+		//查询原路线信息
+		List<Lx> ylx = queryList("queryYLx",item);
+		params.put("lx", item);
+		params.put("ylx", ylx);
+		List<Lx> queryList = queryList("queryLsjlList",params);
+		result.addAll(queryList);
+	}
+	@Override
+	public Kxxyj queryLmsjKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmsjKxxyjByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryLmgzKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryLmgzKxxyjByXmbm",jhsh);
+	}
+	@Override
+	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
+		return queryOne("queryXjKxxyjByXmbm",jhsh);
+	}
 }

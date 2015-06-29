@@ -124,9 +124,7 @@
 			<tr>
 				<td>
 					<form id="zjxdForm" action="../../../jhgl/addZjxd.do">
-					<table width="100%" border="0"
-						style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;"
-						cellspacing="0" cellpadding="0">
+					<table width="100%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 						<tr style="height: 35px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								<b><font color="#009ACD" style="cursor: hand; font-size: 12px">

@@ -28,8 +28,9 @@
 				success:function(data){
 					$('#jhxdFrom').form("load",data);
 					$('#xmlx').val(parent.YMLib.Var.xmlx);
-					$('#span_qdzh').html(data.qdzh);
-					$('#span_zdzh').html(data.zdzh);
+					$('#span_qdzh').html(data.gpsqdzh);
+					$('#span_zdzh').html(data.gpszdzh);
+					$('#xdzt').val("1");
 				}
 			});
 			fileShow(parent.YMLib.Var.xmbm,"计划下达文件");
@@ -72,6 +73,15 @@
 			});
 		}
 		function updataJhsh(){
+			var result =true;
+			result = validateText('pfztz','number',result);
+			result = validateText('bbzzj','number',result);
+			result = validateText('sbzzj','number',result);
+			result = validateText('qdzh','number',result);
+			result = validateText('zdzh','number',result);
+			if(!result){
+				return;
+			}
 			if(zhuanghao()){
 				$('#jhxdFrom').ajaxSubmit({
 					dataType:'json',
@@ -109,30 +119,30 @@
 			<tr>
 				<td>
 					<form id="jhxdFrom" action="../../../qqgl/updateJhshxx2.do">
+						<input id="xmbm" name="xmbm" type="hidden"/>
+						<input id="xmlx" name="xmlx" value="5" type="hidden"/>
+						<input id="xdzt" name="xdzt" value="1" type="hidden"/>
+						<input id="qdmc" name="qdmc" value="" type="hidden"/>
+						<input id="zdmc" name="zdmc" value="" type="hidden"/>
 					<table width="98%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; height: 45px;" cellspacing="0" cellpadding="0">
 						<tr style="height: 30px;font-size: 10px;">
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								批复总投资
-								<input id="xmbm" name="xmbm" type="hidden"/>
-								<input id="xmlx" name="xmlx" value="5" type="hidden"/>
-								<input id="xdzt" name="xdzt" value="1" type="hidden"/>
-								<input id="qdmc" name="qdmc" value="" type="hidden"/>
-								<input id="zdmc" name="zdmc" value="" type="hidden"/>
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px; font-size: 12px;">
-								<input id="pfztz" name="pfztz" type="text"  style="width: 100px;height: 20px;" />&nbsp;万元
+								<input id="pfztz" name="pfztz" type="text" value="0" style="width: 100px;height: 20px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								部补助资金
 							</td>
 							<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="bbzzj" name="bbzzj" type="text"  style="width: 100px;height: 20px;" />&nbsp;万元
+								<input id="bbzzj" name="bbzzj" type="text" value="0" style="width: 100px;height: 20px;" />&nbsp;万元
 							</td>
 							<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 								省补助资金
 							</td>
 							<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-								<input id="sbzzj" name="sbzzj" type="text"  style="width: 80px;height: 20px;" />&nbsp;万元
+								<input id="sbzzj" name="sbzzj" type="text" value="0" style="width: 80px;height: 20px;" />&nbsp;万元
 							</td>
 						</tr>
 						<tr style="height: 30px;font-size: 10px;">

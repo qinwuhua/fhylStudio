@@ -27,6 +27,8 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			xmnf("xmnf");
+			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});
 		function queryLmgz(){
@@ -34,13 +36,15 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':2,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -59,8 +63,17 @@
 				{field:'shzt',title:'审核状态',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result = row.shzt==0 ? '未审核' : '已审核';
+						result = row.shzt==0 ? '<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>' : '已审核';
 						return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -129,6 +142,21 @@
 				alert("请选择要退回的信息！");
 			}
 		}
+		function sh(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/shCbsjByXmbm.do',
+				data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+1+'&shzt1='+1+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("审核成功!");
+						queryLmgz();
+					}
+				}
+			});
+		}
 		function batchSb(){
 			if(selArray.length!=0){
 				var xmbm="",sbzt="",shzt="";
@@ -156,12 +184,12 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt,
+					data:'xmlx='+2+'&xmbm='+xmbm+'&sbzt1='+sbzt+'&shzt1='+shzt+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
 							selArray.splice(0,selArray.length);
-							alert("上报成功!");
+							alert("审核成功!");
 							queryLmgz();
 						}
 					}
@@ -206,16 +234,18 @@ text-decoration:none;
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="-1" selected="selected">全部</option>
-									<option value="否">否</option>
+								<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
         					</tr>
-        						<tr height="32">
+        					<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
         						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>

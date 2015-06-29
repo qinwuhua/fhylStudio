@@ -44,8 +44,8 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 
 
 /**
- * 系统管理Controller层
- * @author qwh 
+ * 工程管理Controller层
+ * @author qwh  
  *
  */
 @Scope("prototype")

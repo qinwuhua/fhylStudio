@@ -73,8 +73,8 @@
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var tsdq=$("#tsdq").combobox("getText");
-			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg+"&xmbb.tsdq="+tsdq;
-			//alert(data);
+			var data="xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.gydw="+gydwstr+"&xmbb.xzqh="+xzqhstr+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg="+qxkg+"&xmbb.tsdq="+tsdq;
+
 			var tbody = $("#ptgxlist");
 					tbody.empty();
 			$.ajax({
@@ -181,7 +181,7 @@
 			var ljbf=$("#ljbf").val();
 			var wbf=$("#wbf").val();
 			var tsdq=$("#tsdq").combobox("getValue");
-			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg"+qxkg+"&xmbb.tsdq="+tsdq;
+			var data="flag=flag&xmbb.jhxdnf="+jhxdnf+"&xmbb.jszt="+jszt+"&xmbb.ljbf="+ljbf+"&xmbb.wbf="+wbf+"&xmbb.qxkg="+qxkg+"&xmbb.tsdq="+tsdq;
 			$.post('/jxzhpt/gcbb/exportbbsj_set.do',{gydw:gydwstr,xzqh:xzqhstr},function(){
 				window.location.href='/jxzhpt/xmjzbb/getPtgxbb.do?'+data;
 			 });
@@ -267,14 +267,14 @@ table tbody tr td {
         						<span>累计拨付资金：</span>
         						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
+        							<option value=" and (bfzj is null or bfzj=0)">零</option>
+        							<option value=" and bfzj!=0">非零</option>
         						</select>
         						<span>未拨付资金：</span>
         						<select id="wbf" style="width:62px;">
         							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
+        							<option value="and wbfzj=0">零</option>
+        							<option value="and (wbfzj is null or wbfzj!=0)">非零</option>
         						</select>
         						&nbsp;&nbsp;
 									 <img alt="导出Ecel" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"

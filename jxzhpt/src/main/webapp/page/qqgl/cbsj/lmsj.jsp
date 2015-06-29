@@ -27,6 +27,8 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			xmnf("xmnf");
+			YMLib.Var.jdbs=2;
 			queryLmsj();
 		});
 		function queryLmsj(){
@@ -34,13 +36,15 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':1,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'cbsj.sbzt':1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
@@ -61,6 +65,24 @@
 						var result="";
 						result = row.shzt==0 ? "未审核" : "已审核";
 						return result;
+					}
+				},
+				{field:'tjlx',title:'添加路线',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(row.shzt==0){
+							return '<a href="javascript:openLxAdd2('+"'lmsj','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
+						}else{
+							return '添加路线';
+						}
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -174,18 +196,20 @@ text-decoration:none;
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+								<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
-									<option value="否">否</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
         					</tr>
-        				<tr height="32">
+        					<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+        						<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
-        						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
+        						<td><select id="shzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>
 									<option value="0">未审核</option>
 									<option value="1">已审核</option>
@@ -196,7 +220,8 @@ text-decoration:none;
 								<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="deleteLmsj()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
         					</td>
-                            </tr></table>
+                            </tr>
+                            </table>
         				</div>
         			</fieldset>
         		</td>

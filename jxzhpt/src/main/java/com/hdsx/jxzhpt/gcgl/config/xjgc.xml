@@ -193,13 +193,13 @@
 	 	select sgxkwj,jgtcwj,jgyswj from PLAN_GCGJ where id=#{jhid}
 	 </select>
 	 <update id="updateSjZT" parameterType="gcglgcgzgj" >
-	 update JHSH_LMGZ set sjzt=#{sjzt} where xmbm=#{jhid}
+	 update JHSH_XJ set sjzt=#{sjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updateXjZT" parameterType="gcglgcgzgj" >
-	 update JHSH_LMGZ set xjzt=#{xjzt} where xmbm=#{jhid}
+	 update JHSH_XJ set xjzt=#{xjzt} where xmbm=#{jhid}
 	 </update>
 	 <update id="updateSJSH" parameterType="gcglgcgzgj" >
-	 update JHSH_LMGZ set sjsh=#{sjsh} where xmbm=#{jhid}
+	 update JHSH_XJ set sjsh=#{sjsh} where xmbm=#{jhid}
 	 </update>
 	 <update id="updatezdyf" parameterType="gcglgcgzgj" >
 	 update PLAN_GCGJ set zdyf=#{sbyf} where id=#{jhid}

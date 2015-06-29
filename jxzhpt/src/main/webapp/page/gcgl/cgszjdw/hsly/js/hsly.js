@@ -166,6 +166,15 @@ var xzqhdm=$("#xzqh").combotree("getValues");
              {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 				return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="zjdw('+index+')">资金拨付</a>   ';
 			}},
+			{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+				formatter: function(value,row,index){
+					if(value=="是"){
+						return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+					}else{
+						return value;
+					}
+				}
+			},
 			{field:'xzqhmc',title:'行政区划',width:150,align:'center'},
 	        {field:'jhnf',title:'计划年份',width:150,align:'center'},
 	        {field:'xmmc',title:'项目名称',width:150,align:'center'},

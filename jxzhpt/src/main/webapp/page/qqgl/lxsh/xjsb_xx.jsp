@@ -48,7 +48,7 @@ text-decoration:none;
 		$("#xjsdj").html(data.xjsdj);
 		$("#xmbm").html(data.xmbm);
 		$("#xmnf").html(data.xmnf);
-		$("#jhkgn").html(data.xmnf);
+		$("#jhkgn").html(data.jhkgn);
 		$("#jhwgn").html(data.jhwgn);
 		$("#tz").html(data.tz);
 		$("#bzcs").html(data.bzys);

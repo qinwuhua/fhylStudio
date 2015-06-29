@@ -9,7 +9,7 @@ function wqxiangxi(index){
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
 	//YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
-	YMLib.UI.createWindow('wqxx','升级改造工程项目开工详情','gcgzsjxx.jsp','wqxx',740,450);
+	YMLib.UI.createWindow('wqxx','升级改造工程项目详情','gcgzsjxx.jsp','wqxx',940,450);
 	//window.open("gcgzsjxx.jsp");
 }
 function zjdw(index){
@@ -173,6 +173,7 @@ function showAll(){
 			$('#table_lx'+index).datagrid({
 				url:'/jxzhpt/qqgl/selectSjgzlxList.do',
 				 queryParams: {
+					 	jdbs:2,
 				    	xmbm:row.XMBM
 					},
 				columns:[[

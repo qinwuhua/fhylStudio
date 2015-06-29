@@ -84,6 +84,8 @@ text-decoration:none;
 				$("#qdzh").focus();
 				return false;
 			}
+			saveLxsh();
+			/*
 				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmbm="+$("#xmbm").html()+"&lxsh.jdbs=0";
 				$.ajax({
 					type:'post',
@@ -98,7 +100,7 @@ text-decoration:none;
 						}
 					}
 				});
-				
+			*/
 		});
 		autoCompleteLXBM();
 	});
@@ -164,20 +166,22 @@ text-decoration:none;
 		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")
 		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.xmlx=lmgz"+"&lxsh.jdbs=0";
+		+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.xmlx=lmgz"+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
 		//alert(data);
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/qqgl/insertLx.do',
+			url:'/jxzhpt/qqgl/insertLx1.do',
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showAlllmgz();
+					parent.showlmgzAll();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

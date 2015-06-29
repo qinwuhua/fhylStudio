@@ -27,6 +27,8 @@
 			loadBmbm2('yjsdj','技术等级');
 			loadBmbm2('gjhjsdj','技术等级');
 			loadBmbm2('gldj','公路等级');
+			xmnf("xmnf");
+			YMLib.Var.jdbs=2;
 			queryShxm();
 		});
 		function queryShxm(){
@@ -34,22 +36,24 @@
 			grid.url="../../../qqgl/queryCbsj.do";
 			var params={'cbsj.xmlx':5,'cbsj.xzqhdm':getxzqhdm('xzqh'),'cbsj.ghlxbh':$('#txtlxbm').val(),
 					'cbsj.xjsdj':$('#yjsdj').combo("getValue"),'cbsj.jsjsdj':$('#gjhjsdj').combo("getValue"),
-					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue")};
+					'cbsj.sbzt':-1,'cbsj.shzt':$('#shzt').combo("getValue"),'cbsj.xmbm':$('#xmnf').combobox("getValue"),
+					'tsdq':$('#tsdq').combo("getText"),'lsjl':$('#lsjl').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-$('#searchField').height();
 			grid.width=$('#searchField').width();
 			grid.pageSize=10;
 			grid.pageNumber=1;
 			grid.columns=[[
+				{field:'ck',checkbox:true},
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result="";
-						result='<a style="text-decoration:none;color:blue;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
-						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+',980,400)" style="color:blue;">详细</a>';
+						"'/jxzhpt/page/qqgl/cbsj/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						if(row.shzt==0){
 							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'水毁项目'"+','+
-								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:blue;">编辑</a>';
+								"'/jxzhpt/page/qqgl/cbsj/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						}else{
 							result+='&nbsp;<a style="color:black;">编辑</a>';
 						}
@@ -60,11 +64,20 @@
 					formatter: function(value,row,index){
 						var result="";
 						if(row.shzt==0){
-							result="未审核";
+							result='<a href="javascript:sh('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">未审核</a>';
 						}else if(row.shzt==1){
 							result="已审核";
 						}
 						return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xmbm',title:'项目编码',width:100,align:'center'},
@@ -102,6 +115,21 @@
 				alert("请选择要删除的信息！");
 			}
 		}*/
+		function sh(xmbm){
+			$.ajax({
+				type:'post',
+				url:'../../../qqgl/shCbsjByXmbm.do',
+				data:'xmlx='+5+'&xmbm='+xmbm+'&shzt='+1+'&jdbs='+YMLib.Var.jdbs,
+				dataType:'json',
+				success:function(msg){
+					if(msg.result=="true"){
+						selArray.splice(0,selArray.length);
+						alert("审核成功!");
+						queryShxm();
+					}
+				}
+			});
+		}
 		function batchSh(){
 			if(selArray.length!=0){
 				var xmbm="",sbzt="",shzt="";
@@ -126,7 +154,7 @@
 				$.ajax({
 					type:'post',
 					url:'../../../qqgl/shCbsjByXmbm.do',
-					data:'xmlx='+5+'&xmbm='+xmbm+'&shzt='+1,
+					data:'xmlx='+5+'&xmbm='+xmbm+'&shzt='+1+'&jdbs='+YMLib.Var.jdbs,
 					dataType:'json',
 					success:function(msg){
 						if(msg.result=="true"){
@@ -176,16 +204,18 @@ text-decoration:none;
 								<td><select name="yjsdj" id="yjsdj" class="easyui-combobox" style="width:70px;"></select></td>
 								<td>建设技术等级：</td>
 								<td><select name="yjsdj" id="gjhjsdj" class="easyui-combobox" style="width:70px;"></select></td>
-								<td>是否有补助历史：</td>
-								<td><select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
-									<option value="-1" selected="selected">全部</option>
-									<option value="否">否</option>
+								<td>补助历史：</td>
+								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
+									<option value="" selected="selected">全部</option>
 									<option value="是">是</option>
+									<option value="否">否</option>
 								</select></td>
         					</tr>
         					<tr height="32">
         						<td>特殊地区：</td>
 								<td><select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select></td>
+								<td align="right">项目年份：</td>
+        						<td><select id="xmnf" style="width: 100px;"></select></td>
 								<td align="right">审核状态：</td>
         						<td><select id="shzt" style="width:105px;" class="easyui-combobox">
 									<option selected="selected" value="-1">全部</option>

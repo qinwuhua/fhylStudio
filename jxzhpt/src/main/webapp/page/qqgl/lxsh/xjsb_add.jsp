@@ -92,16 +92,7 @@ text-decoration:none;
 				$("#zdzh").focus();
 				return false;
 			}
-			if(parseFloat($("#qdzh").val())*1000<qdStr*1000){
-				alert("对不起，起点桩号不能小于"+qdStr+"！");
-				$("#qdzh").focus();
-				return false;
-			}
-			if(parseFloat($("#zdzh").val())*1000>zdStr*1000){
-				alert("对不起，止点桩号不能大于"+zdStr+"！");
-				$("#zdzh").focus();
-				return false;
-			}
+			
 			if(parseFloat($("#qdzh").val())*1000>parseFloat($("#zdzh").val())*1000){
 				alert("对不起，起点桩号不能大于止点桩号！");
 				$("#qdzh").focus();
@@ -115,6 +106,8 @@ text-decoration:none;
 				alert("对不起，开工年不能大于完工年！");
 				return false;
 			}
+			saveLxsh();
+			/*
 				var datas="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.xmlx=xj";
 				$.ajax({
 					type:'post',
@@ -129,7 +122,7 @@ text-decoration:none;
 						}
 					}
 				});
-				
+			*/
 		});
 		//autoCompleteLXBM();
 	});
@@ -210,7 +203,7 @@ text-decoration:none;
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").combobox("getText")+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").val()))+"&lxsh.tbbmbm="+$.cookie("unit")
-		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0";
+		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh=''&lxsh.gpszdzh=''";
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -218,12 +211,14 @@ text-decoration:none;
 	        data:data,
 			dataType:'json',
 			success:function(msg){
-				if(Boolean(msg)){
+				if(msg.result=="true"){
 					alert("保存成功！");
 					parent.showAllxj();
 					removes('lxxx');
+				}else if(msg.result=="have"){
+					alert("路线 "+$('#lxbm').val()+"【"+$('#qdzh').val()+"-"+$('#zdzh').val()+"】已存在"+panduanxmlx(msg.lx.xmid)+"【"+msg.lx.xmmc+"】"+"中！");
 				}else{
-					alert('保存失败！');
+					alert("保存失败！");
 				}
 			}
 		});

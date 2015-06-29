@@ -68,20 +68,6 @@ $(function() {
 		href:'./gljsjyhgl/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101040104',
-		title:'养护大中修工程项目',
-		imgSrc:'../../images/yh_s.png',
-		renderTo:'left_menu1',
-		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101040105',
-		title:'水毁工程项目',
-		imgSrc:'../../images/sh_s.png',
-		renderTo:'left_menu1',
-		href:'./gljsjyhgl/sh/sh.jsp'
-	});
-	createMenux('LeftMenu',{
 		id:'menu_0101040107',
 		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -102,6 +88,21 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/xjgc/xjgc.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040104',
+		title:'养护大中修工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/yhdzx/yhdzx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040105',
+		title:'水毁工程项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu1',
+		href:'./gljsjyhgl/sh/sh.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101040108',
 		title:'红色旅游工程项目',
@@ -154,20 +155,6 @@ $(function() {
 		href:'./ybjdsh/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101040204',
-		title:'养护大中修工程项目',
-		imgSrc:'../../images/yh_s.png',
-		renderTo:'left_menu2',
-		href:'./ybjdsh/yhdzx/yhdzx.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101040205',
-		title:'水毁工程项目',
-		imgSrc:'../../images/sh_s.png',
-		renderTo:'left_menu2',
-		href:'./ybjdsh/sh/sh.jsp'
-	});
-	createMenux('LeftMenu',{
 		id:'menu_0101040207',
 		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -188,6 +175,21 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./ybjdsh/xjgc/xjgc.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040204',
+		title:'养护大中修工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu2',
+		href:'./ybjdsh/yhdzx/yhdzx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040205',
+		title:'水毁工程项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu2',
+		href:'./ybjdsh/sh/sh.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101040208',
 		title:'红色旅游工程项目',
@@ -240,20 +242,6 @@ $(function() {
 		href:'./cgszjdw/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101040304',
-		title:'养护大中修工程项目',
-		imgSrc:'../../images/yh_s.png',
-		renderTo:'left_menu3',
-		href:'./cgszjdw/yhdzx/yhdzx.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101040305',
-		title:'水毁工程项目',
-		imgSrc:'../../images/sh_s.png',
-		renderTo:'left_menu3',
-		href:'./cgszjdw/sh/sh.jsp'
-	});
-	createMenux('LeftMenu',{
 		id:'menu_0101040307',
 		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -274,6 +262,21 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./cgszjdw/xjgc/xjgc.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040304',
+		title:'养护大中修工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu3',
+		href:'./cgszjdw/yhdzx/yhdzx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040305',
+		title:'水毁工程项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu3',
+		href:'./cgszjdw/sh/sh.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101040308',
 		title:'红色旅游工程项目',
@@ -326,20 +329,6 @@ $(function() {
 		href:'./glgcwgtj/zhfz/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101040404',
-		title:'养护大中修工程项目',
-		imgSrc:'../../images/yh_s.png',
-		renderTo:'left_menu4',
-		href:'./glgcwgtj/yhdzx/yhdzx.jsp'
-	});
-	createMenux('LeftMenu',{
-		id:'menu_0101040405',
-		title:'水毁工程项目',
-		imgSrc:'../../images/sh_s.png',
-		renderTo:'left_menu4',
-		href:'./glgcwgtj/sh/sh.jsp'
-	});
-	createMenux('LeftMenu',{
 		id:'menu_0101040407',
 		title:'升级改造工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -360,6 +349,21 @@ $(function() {
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/xjgc/xjgc.jsp'
 	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040404',
+		title:'养护大中修工程项目',
+		imgSrc:'../../images/yh_s.png',
+		renderTo:'left_menu4',
+		href:'./glgcwgtj/yhdzx/yhdzx.jsp'
+	});
+	createMenux('LeftMenu',{
+		id:'menu_0101040405',
+		title:'水毁工程项目',
+		imgSrc:'../../images/sh_s.png',
+		renderTo:'left_menu4',
+		href:'./glgcwgtj/sh/sh.jsp'
+	});
+	
 	createMenux('LeftMenu',{
 		id:'menu_0101040408',
 		title:'红色旅游工程项目',

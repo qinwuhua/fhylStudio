@@ -25,6 +25,7 @@ public class Lxsh implements Serializable {
 	private String xmbm ;
 	private String tz;
 	private String bzys;
+	private String bzys1;
 	private String  dfzc;
 	private String tsdq;
 	private String xzqh;
@@ -47,7 +48,27 @@ public class Lxsh implements Serializable {
 	private String jdbs;
 	private String sffirst;
 	private String lsjl;//是否有历史记录
+	private String gpsqdzh;
+	private String gpszdzh;
 	
+	public String getBzys1() {
+		return bzys1;
+	}
+	public void setBzys1(String bzys1) {
+		this.bzys1 = bzys1;
+	}
+	public String getGpsqdzh() {
+		return gpsqdzh;
+	}
+	public void setGpsqdzh(String gpsqdzh) {
+		this.gpsqdzh = gpsqdzh;
+	}
+	public String getGpszdzh() {
+		return gpszdzh;
+	}
+	public void setGpszdzh(String gpszdzh) {
+		this.gpszdzh = gpszdzh;
+	}
 	public String getLsjl() {
 		return lsjl;
 	}

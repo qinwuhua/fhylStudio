@@ -24,13 +24,16 @@
 		$(function(){
 			loadDist1("xzqh",$.cookie("dist"));
 			loadTsdq("tsdq");
+			xmnf("xmnf");
+			YMLib.Var.jdbs=2;
 			queryLmgz();
 		});
 		function queryLmgz(){
 			grid.id="grid";
 			grid.url="../../../qqgl/queryJhsh.do";
 			var params={'jhsh.xmlx':2,'jhsh.xzqhdm':getxzqhdm('xzqh'),'jhsh.ghlxbh':$('#txtlxbm').val(),
-					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getValue"),'jhsh.xdzt':1};
+					'jhsh.xmmc':$('#txtxmmc').val(),'jhsh.tsdq':$('#tsdq').combo("getText"),
+					'jhsh.xdzt':1,'lsjl':$('#lsjl').combobox("getValue"),'jhsh.xmbm':$('#xmnf').combobox("getValue")};
 			grid.queryParams=params;
 			grid.height=$(window).height()-160;
 			grid.width=$('#searchField').width();
@@ -39,9 +42,19 @@
 			grid.columns=[[
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
-						var result='<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
-						"'/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
+						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ghlxbh+"'"+')">定位</a>';
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmgzxx'"+','+"'路面改造工程项目'"+','+
+						"'/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 				return result;
+					}
+				},
+				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
+					formatter: function(value,row,index){
+						if(value=="是"){
+							return '<a href="javascript:openLsjl('+"'"+row.xmbm+"'"+')" style="color:#3399CC;">是</a>';
+						}else{
+							return value;
+						}
 					}
 				},
 				{field:'xdzt',title:'资金下达',width:100,align:'center',
@@ -92,7 +105,7 @@
         				</legend>
         				<div>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;行政区划：</span>
+        						<span>行政区划：</span>
         						<select id="xzqh" style="width:160px;"></select>
         						<span>&nbsp;特殊地区：</span>
 								<select name="tsdq" id="tsdq" class="easyui-combobox" style="width:160px;"></select>
@@ -102,8 +115,10 @@
         						<input name="txtlxbm" type="text" id="txtlxbm" style="width:100px;" />
         					</p>
         					<p style="margin:8px 0px 4px 20px;">
-        						<span>&nbsp;是否有补助历史：</span>
-								<select name="sfylsjl" id="sfylsjl" class="easyui-combobox" style="width:69px;">
+        						<span>项目年份：</span>
+        						<select id="xmnf" style="width: 60px;"></select>
+        						<span>&nbsp;补助历史：</span>
+								<select name="lsjl" id="lsjl" class="easyui-combobox" style="width:69px;">
 									<option value="" selected="selected">全部</option>
 									<option value="否">否</option>
 									<option value="是">是</option>

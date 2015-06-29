@@ -36,6 +36,13 @@ $(function() {
 			j++;
 		}
 	}
+    createMenu('LeftMenu',{
+		id:'menu_0101020104',
+		title:'危桥改造项目（省局）',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu1',
+		href:'./jckgl/wqgzsj.jsp'
+	});
 	createMenu('LeftMenu',{
 		id:'menu_0101020101',
 		title:'危桥改造项目',
@@ -59,6 +66,13 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
+		id:'menu_0101020204',
+		title:'危桥改造项目（省局）',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu2',
+		href:'./jcksh/wqgzsj.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020201',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq.png',
@@ -81,6 +95,13 @@ $(function() {
 	});
 	
 	createMenu('LeftMenu',{
+		id:'menu_0101020304',
+		title:'危桥改造项目（省局）',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu3',
+		href:'./sckgl/wqgzsj.jsp'
+	});
+	createMenu('LeftMenu',{
 		id:'menu_0101020301',
 		title:'危桥改造项目',
 		imgSrc:'../../images/wq.png',
@@ -102,6 +123,13 @@ $(function() {
 		href:'./sckgl/zhfz.jsp'
 	});
 	
+	createMenu('LeftMenu',{
+		id:'menu_0101020404',
+		title:'危桥改造项目（省局）',
+		imgSrc:'../../images/wq.png',
+		renderTo:'left_menu4',
+		href:'./scksh/wqgzsj.jsp'
+	});
 	createMenu('LeftMenu',{
 		id:'menu_0101020401',
 		title:'危桥改造项目',

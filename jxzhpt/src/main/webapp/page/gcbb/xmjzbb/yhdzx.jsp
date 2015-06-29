@@ -248,14 +248,14 @@ table tbody tr td {
         						<span>累计拨付资金：</span>
         						<select id="ljbf" style="width:137px;">
         							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
+        							<option value=" and (bfzj is null or bfzj=0)">零</option>
+        							<option value=" and bfzj!=0">非零</option>
         						</select>
         						<span>未拨付资金：</span>
         						<select id="wbf" style="width:164px;">
         							<option value="">全部</option>
-        							<option value="=0">零</option>
-        							<option value="!=0">非零</option>
+        							<option value="and wbfzj=0">零</option>
+        							<option value="and (wbfzj is null or wbfzj!=0)">非零</option>
         						</select>
         							&nbsp;&nbsp;&nbsp;&nbsp;
 <%-- 									 <img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" --%>
