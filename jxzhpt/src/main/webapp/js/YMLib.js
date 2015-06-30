@@ -1427,10 +1427,11 @@ function locationXm(xmbm,jdbs){
 				_roadstart+=(index==0 ? item.qdzh : '-'+item.qdzh);
 				_roadends+=(index==0 ? item.zdzh : '-'+item.zdzh);
 			});
-			YMLib.Var._roadcode=_roadcode;
+			locationXm1(_roadcode,_roadstart,_roadends);
+			/*YMLib.Var._roadcode=_roadcode;
 			YMLib.Var._roadstart=_roadstart;
 			YMLib.Var._roadends=_roadends;
-			YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+			YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);*/
 		}
 	});
 }
