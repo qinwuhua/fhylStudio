@@ -1395,7 +1395,7 @@ function locationXm(_roadcode,_roadstart,_roadends){
 	//_roadcode="S201361121-S225360828";
 	//_roadstart="179.59-42.514";
 	//_roadends="190.643-84.903";
-	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
+	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903");
 	var data=new Array();
 	var jsonStr="";
 	if(_roadcode.lastIndexOf("-")>-1){
