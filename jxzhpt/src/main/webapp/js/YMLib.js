@@ -1391,7 +1391,7 @@ function locationQl(_roadbm,_roadpos){
 	
 }
 //项目定位
-function locationXm(_roadcode,_roadstart,_roadends){
+function locationXm1(_roadcode,_roadstart,_roadends){
 	//_roadcode="S201361121-S225360828";
 	//_roadstart="179.59-42.514";
 	//_roadends="190.643-84.903";
