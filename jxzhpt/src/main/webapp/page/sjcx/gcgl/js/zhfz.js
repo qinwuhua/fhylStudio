@@ -297,10 +297,10 @@ function showAll(){
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
 	        	if(row.kgzt=='1'){
-	        		return '<a href=javascript:locationXm("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
+	        		return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
 	        		+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'已开工  '+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="ybsb('+index+')">月报</a>   ';
 	        	}else
-	        	return '<a href=javascript:locationXm("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
+	        	return '<a href=javascript:locationXm1("'+row.lxbm+'","'+row.qdzh+'","'+row.zdzh+'") style="text-decoration:none;color:#3399CC;">定位</a>    '
 	        	+'<a style="text-decoration:none;color:#3399CC; href="#" onclick="wqxiangxi('+index+')">详细</a>    '+'未开工  ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
