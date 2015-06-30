@@ -1414,3 +1414,23 @@ function locationXm(_roadcode,_roadstart,_roadends){
 	YMLib.Var.type="1";
 	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
 }
+function locationXm(xmbm,jdbs){
+	var _roadcode="",_roadstart="",_roadends="";
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/selectlxList.do',
+		data:'lx.xmid='+xmbm+'&lx.jdbs='+jdbs,
+		dataType:'json',
+		success:function(data){
+			$.each(data,function(index,item){
+				_roadcode+=(index==0 ? item.lxbm : '-'+item.lxbm);
+				_roadstart+=(index==0 ? item.qdzh : '-'+item.qdzh);
+				_roadends+=(index==0 ? item.zdzh : '-'+item.zdzh);
+			});
+			YMLib.Var._roadcode=_roadcode;
+			YMLib.Var._roadstart=_roadstart;
+			YMLib.Var._roadends=_roadends;
+			YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
+		}
+	});
+}

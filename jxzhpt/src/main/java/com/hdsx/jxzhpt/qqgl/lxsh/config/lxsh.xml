@@ -599,5 +599,8 @@
 	<select id="qqglGpszh" parameterType="lxsh" resultType="lxsh">
 		select gpsqdzh qdzh,gpszdzh zdzh from  lxsh_lx where lxbm=#{ghlxbh} and xmid=#{xmbm} and jdbs='0' and sffirst='1'
 	</select>
+	<select id="selectlxbyxmid1" parameterType="lxsh" resultType="lxsh">
+		select * from lxsh_lx where xmid=#{xmbm} and jdbs=#{jdbs}
+	</select>
 </mapper>
 

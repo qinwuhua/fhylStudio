@@ -784,8 +784,8 @@
 		select decode(xmlx,null,' ',xmlx) xmlx,decode(xmmc,null,' ',xmmc) xmmc,decode(xzqhmc,null,' ',xzqhmc) xzqhmc,decode(xzqhdm,null,' ',xzqhdm) xzqhdm,decode(tsdq,null,' ',tsdq) tsdq,
 		decode(xdnf,null,' ',xdnf) xdnf,decode(qdzh,null,' ',qdzh) qdzh,decode(zdzh,null,' ',zdzh) zdzh,decode(yhlc,null,' ',yhlc) yhlc,decode(pfztz,null,' ',pfztz) pfztz,
 		decode(jhxdzj,null,' ',jhxdzj) jhxdzj,decode(bfzj,null,' ',bfzj) bfzj,decode(wbfzj,null,' ',wbfzj) wbfzj,decode(jszt,null,' ',jszt) jszt,decode(dc,null,' ',dc) dc,
-		decode(jc,null,' ',jc) jc,decode(wglc,null,' ',wglc) wglc,decode(wkglc,null,' ',wkglc) wkglc,decode(sjkgsj,null,' ',to_char(sjkgsj,'yyyy-mm-dd')) sjkgsj,decode(sfqxkg,null,' ',sfqxkg) sfqxkg,
-		decode(kgdl,null,' ',kgdl) kgdl,decode(sjwgsj,null,' ',to_char(sjwgsj,'yyyy-mm-dd')) sjwgsj,decode(yjwgsj,null,' ',to_char(yjwgsj,'yyyy-mm-dd')) yjwgsj,decode(qksm,null,' ',qksm) qksm,decode(xdwh,null,' ',xdwh) xdwh,
+		decode(jc,null,' ',jc) jc,decode(wglc,null,' ',wglc) wglc,decode(wkglc,null,' ',wkglc) wkglc,decode(sjkgsj,null,' ',sjkgsj) sjkgsj,decode(sfqxkg,null,' ',sfqxkg) sfqxkg,
+		decode(kgdl,null,' ',kgdl) kgdl,decode(sjwgsj,null,' ',sjwgsj) sjwgsj,decode(yjwgsj,null,' ',yjwgsj) yjwgsj,decode(qksm,null,' ',qksm) qksm,decode(xdwh,null,' ',xdwh) xdwh,
 		decode(xgcsyj,null,' ',xgcsyj) xgcsyj,decode(cscyj,null,' ',cscyj) cscyj,decode(gydw,null,' ',gydw) gydw,decode(t.id,null,' ',t.id) id,' 'xh,m.sl xmgs,m.sl from gljsxdjh_gsdgzxm t,(
 				select id,count(*) sl from gljsxdjh_gsdgzxm
 		<if test="jhxdnf != null and  jhxdnf != ''">
