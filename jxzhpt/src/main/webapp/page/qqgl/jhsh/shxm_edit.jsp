@@ -60,7 +60,7 @@
 					dataType:'json',
 					success:function(msg){
 						if(msg.result){
-							alert("计划修改成功！");
+							alert("修改成功！");
 							closeWindow("shxmedit");
 						}
 					},
