@@ -149,7 +149,7 @@ function dingwei(index){
 						zdzh=zdzh+msg[i].zdzh+"-";
 					}
 				}
-				locationXm1(lxbm,qdzh,zdzh);
+				locationXm(lxbm,qdzh,zdzh);
 			},
 			error : function(){
 			 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);

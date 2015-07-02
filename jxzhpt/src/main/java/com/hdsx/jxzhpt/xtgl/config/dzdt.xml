@@ -391,24 +391,7 @@ union all
 		
 	</select>
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
-		select sj.id,sj.xmmc as roadname,sjlx.qdzh as roadstart,sjlx.zdzh as roadends,sjlx.gydw,sjlx.xzqhmc,
-		to_char(sj.jhnf) as nf ,'路面升级' as unit
-		from plan_lx_gcsj sjlx right join plan_gcsj sj on sjlx.jhid=sj.id where (sjlx.lxbm like #{roadcode}||'%'
-		or sjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and 
-		sjlx.gydwdm like rtrim(#{gydw},'0')||'%' and sjlx.xzqhdm like #{xzqhmc}
-		union all
-		select gj.id,gj.xmmc as roadname,gjlx.qdzh as roadstart,gjlx.zdzh as roadends,gjlx.gydw,gjlx.xzqhmc,
-		to_char(gj.sbnf) as nf,'路面改建' as unit
-		from plan_lx_gcgj gjlx right join plan_gcgj gj on gjlx.jhid=gj.id where (gjlx.lxbm like #{roadcode}||'%'
-		or gjlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
-		and gjlx.gydwdm like rtrim(#{gydw},'0')||'%' and gjlx.xzqhdm like #{xzqhmc}
-		union all
-		select sh.id,sh.xmmc as roadname,shlx.qdzh as roadstart,shlx.zdzh as roadends,shlx.gydw,shlx.xzqhmc,
-		to_char(sh.sbnf) as nf,'水毁项目' as unit
-		from plan_lx_shuih shlx right join plan_shuih sh on shlx.jhid=sh.id where (shlx.lxbm like #{roadcode}||'%'
-		or shlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}))
-		and shlx.gydwdm like rtrim(#{gydw},'0')||'%' and shlx.xzqhdm like #{xzqhmc}
-		union all
+		
 		select abjh.id,ablx.lxmc as roadname,ablx.qdzh as roadstart,ablx.zdzh as roadends,ablx.gydw,ablx.xzqhmc,
 		to_char(abjh.jhnf) as nf,'安保工程' as unit
 		from xmk_abgc ablx right join sck_abgc absc on ablx.id=absc.xmkid right join plan_abgc abjh 
@@ -422,12 +405,6 @@ union all
 		on zhsc.sckid=zhjh.sckid where (zhlx.lxbm like #{roadcode}||'%' or 
 		zhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
 		and zhlx.gydwdm like rtrim(#{gydw},'0')||'%' and zhlx.xzqhdm like #{xzqhmc}
-		union all
-		select yhjh.id,yhlx.lxmc as roadname,yhlx.qdzh as roadstart,yhlx.zdzh as roadends,yhlx.gydwmc as gydw,yhlx.xzqhmc,
-		to_char(yhjh.sbnf),'养护大中修' as unit
-		from plan_lx_yhdzx yhlx right join plan_yhdzx yhjh on yhlx.jhid=yhjh.id where (yhlx.lxbm like #{roadcode}||'%'
-		or yhlx.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%'))
-		and yhlx.gydwdm like rtrim(#{gydw},'0')||'%' and yhlx.xzqhdm like #{xzqhmc}
 	</select>
 	<select id="selectExistLxProgramListCount" parameterType="param" resultType="int">
 		

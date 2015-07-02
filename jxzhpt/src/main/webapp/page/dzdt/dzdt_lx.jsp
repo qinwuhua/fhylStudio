@@ -56,7 +56,7 @@ $(function(){
 		queryParams : {
 			"pb.roadcode":parent.YMLib.Var.bm,
 			"pb.gydw":$.cookie("unit2"),
-			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
+			"pb.xzqhmc":parent.YMLib.Var.bm
 		},
 		singleSelect : false,
 		striped : true,
