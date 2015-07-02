@@ -36,6 +36,7 @@
       <typeAlias type="com.hdsx.jxzhpt.gcxmybb.bean.Xmbb" alias="xmbb"/>
       <typeAlias type="com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh" alias="lxsh"/>
       <typeAlias type="com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj" alias="kxxyj"/>
+      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj" alias="jckwqgzsj"/>
      <!-- qwh end -->
      <!-- lhp -->
      <typeAlias type="com.hdsx.jxzhpt.lwxm.xmjck.bean.Zdycx" alias="zdycx"/>
@@ -149,6 +150,7 @@
 	<mapper resource="com/hdsx/jxzhpt/gcxmybb/config/xmbb.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/lxsh.xml"/>
 	<mapper resource="com/hdsx/jxzhpt/qqgl/lxsh/config/kxxyj.xml"/>
+	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/jckwqgzsj.xml"/>
 	<!-- qwh end -->
 	<!-- lhp -->
 	<mapper resource="com/hdsx/jxzhpt/lwxm/xmjck/config/zdycx.xml"/>

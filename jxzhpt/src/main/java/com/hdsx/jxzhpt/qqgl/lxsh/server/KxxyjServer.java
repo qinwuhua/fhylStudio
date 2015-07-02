@@ -3,6 +3,7 @@ package com.hdsx.jxzhpt.qqgl.lxsh.server;
 import java.util.List;
 import java.util.Map;
 
+import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
@@ -79,5 +80,9 @@ public interface KxxyjServer {
 	boolean xjsfcb(Lxsh lxsh);
 
 	boolean thXjkxx1(Lxsh lxsh);
+
+	boolean updateJGTC(Gcgl_jgys gcgl_jgys);
+
+	boolean updateWGYS(Gcgl_jgys gcgl_jgys);
 
 }

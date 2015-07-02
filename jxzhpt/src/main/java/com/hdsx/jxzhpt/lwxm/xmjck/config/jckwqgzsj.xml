@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsx.jxzhpt.jckwqgzsj">
+	<delete id="deleteqlzpbyxmbm" parameterType="jckwqgzsj">
+		delete from plan_upload where parentid=#{id}
+	</delete>
+	<insert id="insertWqgz" parameterType="jckwqgzsj">
+		insert into xmk_wqgzsj(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy) 
+		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
+		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
+		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
+		sysdate,'未上报','未审核',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy})
+	</insert>
+	
+		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
+	 	select * from (
+	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgzsj t where 1=1
+	 			and  sbthcd &lt;=#{sbthcd}
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqhdm!='' and xzqhdm!= null ">
+				${xzqhdm}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="qlmc!='' and qlmc!= null ">
+	 			and qlmc like '%'||(#{qlmc})||'%'
+	 		</if>
+	 		<if test="xmnf!='' and xmnf!= null ">
+	 			and xmnf like '%'||(#{xmnf})||'%'
+	 		</if>
+	 		<if test="xmtype!='' and xmtype!= null ">
+	 			and xmtype like '%'||(#{xmtype})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+	 			and jsdj like '%'||(#{jsdj})||'%'
+	 		</if>
+	 		<if test="akjfl!='' and akjfl!= null ">
+	 			and akjfl like '%'||(#{akjfl})||'%'
+	 		</if>
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="qlbh!='' and qlbh!= null ">
+	 			and qlbh like '%'||(#{qlbh})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
+	 </select>
+	  <select id="selectWqgzCount" parameterType="jckwqgzsj" resultType="int">
+	 		select count(*) from xmk_wqgzsj t where 1=1
+	 			and  sbthcd &lt;=#{sbthcd}
+	 		<if test="gydw!='' and gydw!= null ">
+				${gydw}
+			</if>
+			<if test="xzqhdm!='' and xzqhdm!= null ">
+				${xzqhdm}
+			</if>
+	 		<if test="lxmc!='' and lxmc!= null ">
+	 			and lxmc like '%'||(#{lxmc})||'%'
+	 		</if>
+	 		<if test="qlmc!='' and qlmc!= null ">
+	 			and qlmc like '%'||(#{qlmc})||'%'
+	 		</if>
+	 		<if test="xmnf!='' and xmnf!= null ">
+	 			and xmnf like '%'||(#{xmnf})||'%'
+	 		</if>
+	 		<if test="xmtype!='' and xmtype!= null ">
+	 			and xmtype like '%'||(#{xmtype})||'%'
+	 		</if>
+	 		<if test="sbzt!='' and sbzt!= null ">
+	 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+	 		</if>
+	 		<if test="jsdj!='' and jsdj!= null ">
+	 			and jsdj like '%'||(#{jsdj})||'%'
+	 		</if>
+	 		<if test="akjfl!='' and akjfl!= null ">
+	 			and akjfl like '%'||(#{akjfl})||'%'
+	 		</if>
+	 		<if test="lxbm!='' and lxbm!= null ">
+	 			and lxbm like '%'||(#{lxbm})||'%'
+	 		</if>
+	 		<if test="qlbh!='' and qlbh!= null ">
+	 			and qlbh like '%'||(#{qlbh})||'%'
+	 		</if>
+	 		<if test="tsdq!='' and tsdq!= null ">
+	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+		 </select>
+</mapper>
+

@@ -480,4 +480,13 @@
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
 		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh})
 	</insert>
+	
+	<insert id="insertJgtc" parameterType="gcgl_jgys">
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{jhid},'桥梁正面文件')
+ 	</insert>
+ 	<insert id="insertWgys" parameterType="gcgl_jgys">
+ 		insert into plan_upload(filename,filedata,parentid,filetype)
+ 		 values(#{filename},#{filedata},#{jhid},'桥梁侧面文件')
+ 	</insert>
 </mapper>

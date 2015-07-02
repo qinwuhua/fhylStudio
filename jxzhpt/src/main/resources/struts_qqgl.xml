@@ -54,6 +54,7 @@
 		  <action name="selectLmgzkxList" class="kxxyjController" method="selectLmgzkxList"/>
 		  <action name="selectXjkxList" class="kxxyjController" method="selectXjkxList"/>
 		  <action name="uploadGkpf" class="kxxyjController" method="uploadGkpf"/>
+		  <action name="uploadJGYSFile" class="kxxyjController" method="uploadJGYSFile"/>
 		  <action name="updateSjgzkxx" class="kxxyjController" method="updateSjgzkxx"/>
 		  <action name="updateLmgzkxx" class="kxxyjController" method="updateLmgzkxx"/>
 		  <action name="updateXjkxx" class="kxxyjController" method="updateXjkxx"/>
