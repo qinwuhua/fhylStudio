@@ -76,7 +76,7 @@ function zhfzxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm1('+"'"+row.jckzhfz.lxbm+"',"+"'"+row.jckzhfz.qdzh+"',"+"'"+row.jckzhfz.zdzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	return result;
 	        }},

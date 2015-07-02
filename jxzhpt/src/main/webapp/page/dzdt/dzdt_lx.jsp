@@ -47,6 +47,9 @@ function deleteJs(_id){
 }
 
 $(function(){
+	if(parent.YMLib.Var.xmbm!=null){
+		parent.YMLib.Var.bm=parent.YMLib.Var.xmbm;
+	}
 	$("#jsgl_table").datagrid({
 		border:true,
 		fit : true,
@@ -56,7 +59,7 @@ $(function(){
 		queryParams : {
 			"pb.roadcode":parent.YMLib.Var.bm,
 			"pb.gydw":$.cookie("unit2"),
-			"pb.xzqhmc":parent.YMLib.Var.bm
+			"pb.xzqhmc":filterXzqhdm(parent.YMLib.Var.bm)
 		},
 		singleSelect : false,
 		striped : true,
@@ -119,23 +122,19 @@ function filterXzqhdm(xzqhdm){
 	}
 	return result;
 }
-function onclickXx(xmlx,id){
-	var url="/jxzhpt/page/jhgl/jhkxx/";
-	if(xmlx=="路面改建")
-		url+="gclmgj.jsp";
-	else if(xmlx=="路面升级")
-		url+="gclmsj.jsp";
-	else if(xmlx=="水毁项目")
-		url+="shxm.jsp";
-	else if(xmlx=="养护大中修")
-		url+="yhdzx.jsp";
-	else if(xmlx=="安保工程")
-		url+="abgc.jsp";
-	else if(xmlx=="灾害防治")
-		url+="zhfz.jsp";
-	parent.YMLib.Var.jhbm=id;
-	parent.YMLib.Var.bz="xx";
-	parent.YMLib.UI.createWindow('xmxx_xx','项目信息',url,'xmxx',1000,500);
+function onclickXx(xmlx,xmid){
+	parent.YMLib.Var.xmbm=xmid;
+	if(xmid.substring(10,11)=="1"){
+		parent.YMLib.UI.createWindow('lmsjxx','升级改造工程项目','/jxzhpt/page/qqgl/zjxd/lmsj_xx.jsp','lmsjxx',980,400);
+	}else if(xmid.substring(10,11)=="2"){
+		parent.YMLib.UI.createWindow('lmgzxx','路面改造工程项目','/jxzhpt/page/qqgl/zjxd/lmgz_xx.jsp','lmgzxx',980,400);
+	}else if(xmid.substring(10,11)=="3"){
+		parent.YMLib.UI.createWindow('xjgcxx','新建工程项目','/jxzhpt/page/qqgl/zjxd/xjgc_xx.jsp','xjgcxx',980,400);
+	}else if(xmid.substring(10,11)=="4"){
+		parent.YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
+	}else if(xmid.substring(10,11)=="5"){
+		parent.YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+	}
 }
 
 </script>

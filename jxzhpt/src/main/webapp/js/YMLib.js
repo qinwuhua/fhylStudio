@@ -1391,31 +1391,7 @@ function locationQl(_roadbm,_roadpos){
 	
 }
 //项目定位
-function locationXm(_roadcode,_roadstart,_roadends){
-//	_roadcode="S201361121-S225360828";
-//	_roadstart="179.59-42.514";
-//	_roadends="190.643-84.903";
-	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
-	var data=new Array();
-	var jsonStr="";
-	if(_roadcode.lastIndexOf("-")>-1){
-		var arr1=_roadcode.split("-");
-		var arr2=_roadstart.split("-");
-		var arr3=_roadends.split("-");
-		for(var i=0;i<arr1.length;i++){
-			alert(arr1[i]+"    "+arr2[i] +"    "+arr3[i]);
-			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
-			data.push(jsonStr);
-		}
-	}else{
-		jsonStr={"BM": _roadcode,"ROADSTART": _roadstart,"ROADENDS": _roadends};
-		data.push(jsonStr);
-	}
-	YMLib.Var.bm=data;
-	YMLib.Var.type="1";
-	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
-}
-function dingwei(xmbm,jdbs){
+function locationXm(xmbm,jdbs){
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/selectlxbyxmid.do',
@@ -1436,10 +1412,36 @@ function dingwei(xmbm,jdbs){
 					zdzh=zdzh+msg[i].zdzh+"-";
 				}
 			}
-			locationXm(lxbm,qdzh,zdzh);
+			locationXm1(lxbm,qdzh,zdzh);
 		},
 		error : function(){
 		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
 	 }
 });	
+}
+//项目定位
+function locationXm1(_roadcode,_roadstart,_roadends){
+//	_roadcode="S201361121-S225360828";
+//	_roadstart="179.59-42.514";
+//	_roadends="190.643-84.903";
+	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
+	YMLib.Var.xmbm=_roadcode+$.cookie("dist");
+	var data=new Array();
+	var jsonStr="";
+	if(_roadcode.lastIndexOf("-")>-1){
+		var arr1=_roadcode.split("-");
+		var arr2=_roadstart.split("-");
+		var arr3=_roadends.split("-");
+		for(var i=0;i<arr1.length;i++){
+			alert(arr1[i]+"    "+arr2[i] +"    "+arr3[i]);
+			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
+			data.push(jsonStr);
+		}
+	}else{
+		jsonStr={"BM": _roadcode,"ROADSTART": _roadstart,"ROADENDS": _roadends};
+		data.push(jsonStr);
+	}
+	YMLib.Var.bm=data;
+	YMLib.Var.type="1";
+	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
 }

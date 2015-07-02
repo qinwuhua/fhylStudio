@@ -391,7 +391,31 @@ union all
 		
 	</select>
 	<select id="selectExistLxProgramList" parameterType="pb" resultType="pb">
-		
+		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(j.xmbm,0,4) nf,'路面改造工程' unit 
+		from jhsh_lmgz j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2' 
+		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
+		l.gydwdm like #{gydw}||'%' and l.xzqhdm like #{xzqhmc}
+		union all
+		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh xzqhmc,substr(j.xmbm,0,4) nf,'升级改造工程' unit 
+		from jhsh_sjgz j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
+		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
+		l.gydwdm like #{gydw}||'%' and l.xzqhdm like #{xzqhmc}
+		union all
+		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'新建工程' unit 
+		from jhsh_xj j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
+		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
+		l.gydwdm like #{gydw}||'%' and l.xzqhdm like #{xzqhmc}
+		union all
+		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'养护大中修工程' unit 
+		from xmsq_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
+		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
+		l.gydwdm like #{gydw}||'%' and l.xzqhdm like #{xzqhmc}
+		union all
+		select j.xmbm id,l.lxmc roadname,l.qdzh roadstart,l.zdzh roadends,l.gydw,l.xzqh,substr(j.xmbm,0,4) nf,'水毁工程' unit 
+		from xmsq_sh j left join lxsh_lx l on j.xmbm=l.xmid and l.jdbs='2'
+		where (l.lxbm like '%'||#{roadcode}||'%' or l.lxbm in (select t.ylxbm from XTGL_LXSJ t where t.xlxbm like #{roadcode}||'%')) and
+		l.gydwdm like #{gydw}||'%' and l.xzqhdm like #{xzqhmc}
+		union all
 		select abjh.id,ablx.lxmc as roadname,ablx.qdzh as roadstart,ablx.zdzh as roadends,ablx.gydw,ablx.xzqhmc,
 		to_char(abjh.jhnf) as nf,'安保工程' as unit
 		from xmk_abgc ablx right join sck_abgc absc on ablx.id=absc.xmkid right join plan_abgc abjh 

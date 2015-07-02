@@ -33,7 +33,7 @@
 			(
 				select rownum as num,t.* from
 				(
-					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh 
+					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh 
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
