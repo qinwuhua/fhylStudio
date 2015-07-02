@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
+import com.hdsx.jxzhpt.gcgl.bean.Gcgl_jgys;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Kxxyj;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
@@ -384,5 +385,17 @@ public class KxxyjServerImpl extends BaseOperate implements KxxyjServer {
 		// TODO Auto-generated method stub
 		return queryOne("selectXjkxshListCount", lxsh);
 	}
-	
+	@Override
+	public boolean updateJGTC(Gcgl_jgys gcgl_jgys) {
+		if(insert("insertJgtc", gcgl_jgys)>0){
+			return true;
+		}else return false;
+	}
+
+	@Override
+	public boolean updateWGYS(Gcgl_jgys gcgl_jgys) {
+		if(insert("insertWgys", gcgl_jgys)>0){
+			return true;
+		}else return false;
+	}
 }
