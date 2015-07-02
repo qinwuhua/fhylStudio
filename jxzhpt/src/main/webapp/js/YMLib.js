@@ -1392,9 +1392,9 @@ function locationQl(_roadbm,_roadpos){
 }
 //项目定位
 function locationXm(_roadcode,_roadstart,_roadends){
-	//_roadcode="S201361121-S225360828";
-	//_roadstart="179.59-42.514";
-	//_roadends="190.643-84.903";
+//	_roadcode="S201361121-S225360828";
+//	_roadstart="179.59-42.514";
+//	_roadends="190.643-84.903";
 	//locationXm("S201361121-S225360828","179.59-42.514","190.643-84.903","1");
 	var data=new Array();
 	var jsonStr="";
@@ -1403,6 +1403,7 @@ function locationXm(_roadcode,_roadstart,_roadends){
 		var arr2=_roadstart.split("-");
 		var arr3=_roadends.split("-");
 		for(var i=0;i<arr1.length;i++){
+			alert(arr1[i]+"    "+arr2[i] +"    "+arr3[i]);
 			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
 			data.push(jsonStr);
 		}
@@ -1414,23 +1415,31 @@ function locationXm(_roadcode,_roadstart,_roadends){
 	YMLib.Var.type="1";
 	YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
 }
-function locationXm(xmbm,jdbs){
-	var _roadcode="",_roadstart="",_roadends="";
+function dingwei(xmbm,jdbs){
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/qqgl/selectlxList.do',
-		data:'lx.xmid='+xmbm+'&lx.jdbs='+jdbs,
+		url:'/jxzhpt/qqgl/selectlxbyxmid.do',
+		data:"lxsh.xmbm="+xmbm+"&lxsh.jdbs="+jdbs,
 		dataType:'json',
-		success:function(data){
-			$.each(data,function(index,item){
-				_roadcode+=(index==0 ? item.lxbm : '-'+item.lxbm);
-				_roadstart+=(index==0 ? item.qdzh : '-'+item.qdzh);
-				_roadends+=(index==0 ? item.zdzh : '-'+item.zdzh);
-			});
-			YMLib.Var._roadcode=_roadcode;
-			YMLib.Var._roadstart=_roadstart;
-			YMLib.Var._roadends=_roadends;
-			YMLib.UI.createWindow('locationXm','项目定位','/jxzhpt/openlayers.html','app_add',800,500);
-		}
-	});
+		success:function(msg){
+			var lxbm="";
+			var qdzh="";
+			var zdzh="";
+			for(var i=0;i<msg.length;i++){
+				if(i==msg.length-1){
+					lxbm=lxbm+msg[i].lxbm;
+					qdzh=qdzh+msg[i].qdzh;
+					zdzh=zdzh+msg[i].zdzh;
+				}else{
+					lxbm=lxbm+msg[i].lxbm+"-";
+					qdzh=qdzh+msg[i].qdzh+"-";
+					zdzh=zdzh+msg[i].zdzh+"-";
+				}
+			}
+			locationXm(lxbm,qdzh,zdzh);
+		},
+		error : function(){
+		 YMLib.Tools.Show('生成项目编码错误！error code = 404',3000);
+	 }
+});	
 }
