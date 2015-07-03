@@ -390,6 +390,13 @@ $(function() {
 		href:'../sjcx/jhkgl/zhfz.jsp'
 	});
 	createMenux('LeftMenu',{
+		id:'menu_0101030505',
+		title:'升级改造工程项目',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu5',
+		href:'../qqgl/jhcx/lmsj.jsp'
+	});
+	createMenux('LeftMenu',{
 		id:'menu_0101030504',
 		title:'路面改造工程项目',
 		imgSrc:'../../images/sj_s.png',
@@ -397,11 +404,11 @@ $(function() {
 		href:'../qqgl/jhcx/lmgz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030505',
-		title:'升级改造工程项目',
-		imgSrc:'../../images/gj_s.png',
+		id:'menu_0101030510',
+		title:'新建工程项目',
+		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu5',
-		href:'../qqgl/jhcx/lmsj.jsp'
+		href:'../qqgl/jhcx/xjgc.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030506',

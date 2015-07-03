@@ -97,15 +97,15 @@ public class DzdtController extends BaseActionSupport{
 	 * 路线弹出框
 	 * */
 	public void selectExistLxProgramList(){
-		if(pb.getRoadcode().length()>6){
-			pb.setRoadcode(pb.getRoadcode().substring(0,pb.getRoadcode().length()-6));
-		}
-		List<ProgBean> list=dzdtServer.selectExistLxProgramList(pb);
-		//int count=dzdtServer.selectExistLxProgramListCount(param);
-		EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
-		//ep.setTotal(count);
-		ep.setRows(list);
 		try {
+			if(pb.getRoadcode().length()>6){
+				pb.setRoadcode(pb.getRoadcode().substring(0,pb.getRoadcode().length()-6));
+			}
+			List<ProgBean> list=dzdtServer.selectExistLxProgramList(pb);
+			//int count=dzdtServer.selectExistLxProgramListCount(param);
+			EasyUIPage<ProgBean> ep = new EasyUIPage<ProgBean>();
+			//ep.setTotal(count);
+			ep.setRows(list);
 			JsonUtils.write(ep, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();

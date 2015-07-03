@@ -42,6 +42,7 @@
 	<action name="onceWqgz" class="jckwqgzController" method="onceWqgz"/>
 	<action name="selJsdj" class="jckwqgzController" method="selJsdj"/>
 	<action name="selectWqgzCount" class="jckwqgzController" method="selectWqgzCount"/>
+	<action name="selectWqgzCount1" class="jckwqgzController" method="selectWqgzCount1"/>
 	<action name="selectWqgzShCount" class="jckwqgzController" method="selectWqgzShCount"/>
 	<!-- 灾害防治 -->
 	<action name="insertZhfz" class="jckzhfzController" method="insertZhfz"/>
@@ -124,5 +125,20 @@
  <package name="zdycx" extends="struts-default" namespace="/zdycx">
  <action name="selZdy" class="zdycxController" method="selZdy"/>
   <action name="exportExcel_zdy" class="zdycxController" method="exportExcel_zdy"/>
+ </package>
+ <package name="wqgzsj" extends="struts-default" namespace="/wqgzsj">
+	 <action name="deleteqlzpbyxmbm" class="jckwqgzsjController" method="deleteqlzpbyxmbm"/>
+  	 <action name="insertWqgz" class="jckwqgzsjController" method="insertWqgz"/>
+ 	 <action name="selectWqgz" class="jckwqgzsjController" method="selectWqgz"/>
+ 	 <action name="deleteWqgzsjById" class="jckwqgzsjController" method="deleteWqgzsjById"/>
+ 	 <action name="getwqgzZP" class="jckwqgzsjController" method="getwqgzZP"/>
+ 	 <action name="xgJckWqgzSbzt" class="jckwqgzsjController" method="xgJckWqgzSbzt"/>
+ 	 <action name="shtyWqgzsjById" class="jckwqgzsjController" method="shtyWqgzsjById"/>
+ 	 <action name="shbtyWqgzsjById" class="jckwqgzsjController" method="shbtyWqgzsjById"/>
+ 	 <action name="selectJckShwqgz" class="jckwqgzsjController" method="selectJckShwqgz"/>
+ 	 <action name="selectWqgzShCount" class="jckwqgzsjController" method="selectWqgzShCount"/>
+ 	 <action name="sjshtyWqgzsjById" class="jckwqgzsjController" method="sjshtyWqgzsjById"/>
+ 	 <action name="sjshbtyWqgzsjById" class="jckwqgzsjController" method="sjshbtyWqgzsjById"/>
+ 	 <action name="updateWqgz" class="jckwqgzsjController" method="updateWqgz"/>
  </package>
 </struts>

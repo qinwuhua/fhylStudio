@@ -301,6 +301,23 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	public void selectWqgzCount1(){
+		try {
+			if(jckwqgz.getGydw().indexOf(",")==-1){
+				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+			}else{
+				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
+			}
+			if(jckwqgz.getXzqhdm().indexOf(",")==-1){
+				jckwqgz.setXzqhdm("and xzqhdm like '%"+jckwqgz.getXzqhdm()+"%'");
+			}else{
+				jckwqgz.setXzqhdm("and xzqhdm in ("+jckwqgz.getXzqhdm()+")");
+			}
+			ResponseUtils.write(getresponse(), wqgzServer.selectWqgzCount1(jckwqgz)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public void selectWqgzShCount(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){

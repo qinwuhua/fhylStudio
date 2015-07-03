@@ -93,6 +93,47 @@
  			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
  </select>
+ <select id="selectWqgzCount1" parameterType="jckwqgz" resultType="int">
+ 		select count(*) from xmk_wqgzsj t where 1=1
+ 			and  sbthcd &lt;=#{sbthcd}
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="sbzt!='' and sbzt!= null ">
+ 			and decode(sbthcd,#{sbthcd},'未上报',sbzt) like '%'||(#{sbzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
+ </select>
+ 
  <select id="selectJckwqgzById" parameterType="jckwqgz" resultType="jckwqgz">
  	select * from xmk_wqgz where id=#{id}
  </select>
