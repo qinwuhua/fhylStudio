@@ -24,16 +24,13 @@
 			sbnf("endYear");
 			$('#endYear').combobox("setValue",new Date().getFullYear());
 			sbnf("startYear");
-			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-10);
-			//loadData();
-			search();
+			$('#startYear').combobox("setValue",$('#endYear').combobox('getValue')-5);
+			loadData();
 		});
 		function loadData(){
 			//设置动态列
 			var colYears =[],colZj=[];
-			var trJson='{"xmlx":null';//每一行的Json数据的字符串，在下面转为JSON数据并添加入databox中
 			for (var i=$('#startYear').combobox("getValue");i<=$('#endYear').combobox("getValue");i++){
-				trJson+=',"'+i+'xmzj":0'+',"'+i+'je":0'+',"'+i+'xmcgs":0'+',"'+i+'xmstz":0';
 				var year ={title:i+'年',width:160,align:'center',colspan:4};
 				colYears.push(year);
 				var lczj={field:i+'je',title:'金额总计(万元)',width:90,align:'center'};
@@ -45,16 +42,6 @@
 				var xmgs={field:i+'xmzj',title:'项目总计(个)',width:80,align:'center'};
 				colZj.push(xmgs);
 			}
-			trJson+='}';
-			//处理行政区划编码
-			var xzqhdm=$('#xzqh').combotree("getValue");
-			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
-				xzqhdm=xzqhdm;
-			}else if(new RegExp("^36[0-9][1-9][0-9]{2}$").test(xzqhdm) || new RegExp("^36[1-9][0-9][0-9]{2}$").test(xzqhdm)){
-				xzqhdm=xzqhdm.substring(0,4)+"__";
-			}else if(new RegExp("^360000$").test(xzqhdm)){
-				xzqhdm=xzqhdm.replace(/0000/,"____");
-			}
 			//处理数据
 			var jsonData=new Array();
 			var l=["gcgj","gcsj","shuih","yhdzx","abgc","wqgz","zhfz"];
@@ -64,46 +51,37 @@
 					type:'post',
 					async : false,
 					url:'../../../tjfx/queryJhktj3.do',
-					data:'xmlx='+lname[i]+'&nf='+$('#startYear').val()+'&end='+$('#endYear').val()+'&xzqhdm='+xzqhdm,
+					data:'nf='+$('#startYear').val()+'&end='+$('#endYear').val(),
 					dataType:'json',
 					success:function(data){
-						var td=JSON.parse(trJson);
-						td['xmlx']=lname[i];
-						$.each(data,function(index,item){
-							td[item.id+"je"]=item.text;
-							td[item.id+"xmcgs"]=item.name;
-							td[item.id+"xmstz"]=item.parent;
-							td[item.id+"xmzj"]=item.bmid;
-						});
-						jsonData.push(td);
 					}
 				});
 			}
-			alert("水电费");
 			//绑定数据
 			var zjtitle={title:'各年份项目金额和数量统计',colspan:colYears.length*4,width:900};
-			var grid={id:'grid',data:jsonData,fitColumns:false,singleSelect:true,pagination:false,rownumbers:false,
-					pageNumber:1,pageSize:20,height:275,width:$('#grid').width(),
-				    columns:[
-					    [
-					     	{field:'xmlx',title:'项目类型',width:80,align:'center',rowspan:3,fixed:true},
-					     	zjtitle
+			$('#grid').datagrid({
+			    url:'../../../tjfx/queryXmlxtjqsfx.do',
+			    queryParams:{'xzqhdm':$('#xzqh').combobox("getValue"),'nf':$('#startYear').combobox('getValue'),end:$('#endYear').combobox('getValue')},
+			    striped:true,
+			    pagination:false,
+			    rownumbers:false,
+			    pageNumber:1,
+			    pageSize:20,
+			    height:275,
+			    width:$('#grid').width(),
+			    columns:[
+						    [
+						     	{field:'xmlx',title:'项目类型',width:100,align:'center',rowspan:3,fixed:true},
+						     	zjtitle
+						    ],
+						    colYears,colZj
 					    ],
-					    colYears,colZj
-				    ]
-			};
-			gridBind(grid);
+			    onLoadSuccess:function(){
+			    	queryTjt();
+			    }
+			});
 		}
-		function search(){
-			loadData();
-			var xzqhdm=$('#xzqh').combotree("getValue");
-			if(new RegExp("^36[0-9]{2}[1-9][0-9]$").test(xzqhdm) || new RegExp("^36[0-9]{2}[0-9][1-9]$").test(xzqhdm)){
-				xzqhdm=xzqhdm;
-			}else if(new RegExp("^36[0-9][1-9][0-9]{2}$").test(xzqhdm) || new RegExp("^36[1-9][0-9][0-9]{2}$").test(xzqhdm)){
-				xzqhdm=xzqhdm.substring(0,4)+"__";
-			}else if(new RegExp("^360000$").test(xzqhdm)){
-				xzqhdm=xzqhdm.replace(/0000/,"____");
-			}
+		function queryTjt(){
 			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
 		    barChart_1.width =980;
 		    barChart_1.height =450;
@@ -112,7 +90,7 @@
 		    barChart_1.write("anychart_div");
 			$.ajax({
 				type:'post',
-				url:"../../../tjfx/queryJhktjt3.do?xzqhdm="+xzqhdm+"&nf="+$('#startYear').combobox("getValue")+"&end="+$('#endYear').combobox("getValue"),
+				url:"../../../tjfx/queryXmlxtjqsfxt.do?nf="+$('#startYear').combobox("getValue")+"&end="+$('#endYear').combobox("getValue"),
 				dataType:'text',
 				success:function(data){
 					barChart_1.setData(data);

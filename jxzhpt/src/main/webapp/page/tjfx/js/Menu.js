@@ -38,10 +38,30 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./gcktj/xzqhtj.jsp'
 	});
-	
 	createMenu('LeftMenu',{
 		id:'menu_0101070302',
 		title:'项目类型统计',
+		imgSrc:'../../images/xmlxtj.png',
+		renderTo:'left_menu3',
+		href:'./gcktj/xmlxtj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101070303',
+		title:'计划工程量统计',
+		imgSrc:'../../images/xmlxtj.png',
+		renderTo:'left_menu3',
+		href:'./gcktj/xmlxtj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101070304',
+		title:'完成比例统计',
+		imgSrc:'../../images/xmlxtj.png',
+		renderTo:'left_menu3',
+		href:'./gcktj/xmlxtj.jsp'
+	});
+	createMenu('LeftMenu',{
+		id:'menu_0101070305',
+		title:'投资增长比例统计',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu3',
 		href:'./gcktj/xmlxtj.jsp'

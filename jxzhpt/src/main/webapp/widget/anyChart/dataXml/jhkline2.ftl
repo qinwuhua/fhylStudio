@@ -4,6 +4,32 @@
 	</settings>
   <charts>
     <chart plot_type="CategorizedVertical">
+    <styles>
+    			<line_style name="style1" parent="style1">
+          			<line color="red" thickness="2"/>
+        		</line_style>
+        		<line_style name="style2" parent="style2">
+          			<line color="blue" thickness="2"/>
+        		</line_style>
+        		<line_style name="style3" parent="style3">
+          			<line color="green" thickness="2"/>
+        		</line_style>
+        		<line_style name="style4" parent="style4">
+          			<line color="black" thickness="2"/>
+        		</line_style>
+        		<line_style name="style5" parent="style5">
+          			<line color="yellow" thickness="2"/>
+        		</line_style>
+        		<line_style name="style6" parent="style6">
+          			<line color="#ABABAB" thickness="2"/>
+        		</line_style>
+        		<line_style name="style7" parent="style7">
+          			<line color="#7D26CD" thickness="2"/>
+        		</line_style>
+        		<line_style name="style8" parent="style8">
+          			<line color="#8B3A3A" thickness="2"/>
+        		</line_style>
+    		</styles>
    <chart_settings>
 				<title enabled="true">
 					<text>${chart_title}</text>
@@ -58,37 +84,42 @@
     	</data_plot_settings>
     	   
 	    <data>
-                <series name="工程改建" palette="Default">
+                <series name="路面改造工程" style="style1">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.gcgj}"/>        
                       </#list>
 				</series>
-				<series name="工程升级" palette="Default">
+				<series name="升级改造工程" style="style2">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.gcsj}"/>        
                       </#list>
 				</series>
-				<series name="水毁" palette="Default">
+				<series name="新建工程" style="style3">
+				     <#list list as l >
+				          <point name="${l.year}" y="${l.xj}"/>        
+                      </#list>
+				</series>
+				<series name="水毁项目" style="style4">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.shuih}"/>        
                       </#list>
 				</series>
-				<series name="养护大中修" palette="Default">
+				<series name="养护大中修" style="style5">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.yhdzx}"/>        
                       </#list>
 				</series>
-				<series name="危桥改造" palette="Default">
+				<series name="危桥改造" style="style6">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.wqgz}"/>        
                       </#list>
 				</series>
-				<series name="安保工程" palette="Default">
+				<series name="安保工程" style="style7">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.abgc}"/>        
                       </#list>
 				</series>
-				<series name="灾害防治" palette="Default">
+				<series name="灾害防治" style="style8">
 				     <#list list as l >
 				          <point name="${l.year}" y="${l.zhfz}"/>        
                       </#list>

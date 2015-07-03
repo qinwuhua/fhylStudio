@@ -2,9 +2,12 @@ package com.hdsx.jxzhpt.jhgl.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
@@ -514,6 +517,7 @@ public class TjfxController extends BaseActionSupport{
 	public void queryNftj() throws Exception{
 		try {
 			Map<String, Object> result = tjfxServer.queryByNfAndXzqhdm(nf,xzqhdm);
+			result.put("XZQHDM", xzqhdm);
 			List<Map<String, Object>> nftj=null;
 			if(getRequest().getSession().getAttribute("nftj")!=null){
 				nftj =(List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
@@ -535,36 +539,195 @@ public class TjfxController extends BaseActionSupport{
 	 * 设置年份统计柱状图的数据参数
 	 */
 	public void queryNftjt(){
-		TreeNode treenode=new TreeNode();
-		treenode.setId(xzqhdm);
-		List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
-		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-		@SuppressWarnings("unchecked")
-		List<Map<String, Object>> sessionData = (List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
-		for (Map<String, Object> map : sessionData) {
-			for (TreeNode node : xzqhlist) {
-				if(map.get("XZQHDM").toString().equals(node.getId())){
-					
+		try{
+			TreeNode treenode=new TreeNode();
+			treenode.setId(xzqhdm);
+			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
+			
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			@SuppressWarnings("unchecked")
+			List<Map<String, Object>> sessionData = (List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
+			if(sessionData!=null){
+				for(int i=0;i<sessionData.size();i++){
+					Map<String, Object> map = sessionData.get(i);
+					System.out.println(map.get("XZQHDM"));
+					if(map.get("XZQHDM")!=null){
+						for (TreeNode node : xzqhlist) {
+							if(node.getId().equals(map.get("XZQHDM").toString())){
+								Map<String, String> item=new HashMap<String, String>();
+								item.put("name", node.getName());
+								item.put("je", new Double(map.get("ZTZ").toString()).toString());
+								list.add(item);
+							}
+						}
+					}
 				}
-				System.out.println(node.getName()+"      "+node.getId());
 			}
-			//System.out.println(map.get("XZQHDM")+"  总投资："+map.get("ZTZ"));
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("chart_title", "行政区划");//title
+			String yName="金额";//y单位
+			parameter.put("chart_title_y", yName);
+			int precision=3;//小数的位数
+			parameter.put("precision",precision);
+			String chartType = "jhkbar.ftl";
+			parameter.put("list",list);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			Map<String, String> result=new HashMap<String, String>();
+			result.put("bar", anyChartXml);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		//param.put("name", item.getName());
-		//param.put("je", new Double(je).toString());
-		//list.add(param);
+	}
+	/**
+	 * 行政区划统计趋势分析
+	 */
+	public void queryXzqhtjqsfx(){
+		try{
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			
+			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
+			for (TreeNode item : xzqh) {
+				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
+				//查询到此行政区划的总计信息
+				List<Map<String,Object>> qs = tjfxServer.queryXzqhQsfx(xzqhdm,nf,end);
+				//返回数据对象
+				Map<String, String> index =new HashMap<String, String>();
+				index.put("xzqh", item.getName());
+				index.put("xzqhdm", item.getId());
+				for (Map<String, Object> map : qs) {
+					index.put(map.get("NF").toString()+"je", map.get("ZTZ").toString());
+					index.put(map.get("NF").toString()+"xmcgs", map.get("BTZ").toString());
+					index.put(map.get("NF").toString()+"xmstz", map.get("STZ").toString());
+					index.put(map.get("NF").toString()+"xmzj", map.get("ZJ").toString());
+				}
+				result.add(index);
+			}
+			getRequest().getSession().setAttribute("xzqhqsfx", result);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 行政区划统计趋势分析图
+	 */
+	public void queryXzqhtjqsfxt(){
+		try {
+			//设置AnyChart信息
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			List<Map<String,String>> sessionData = (List<Map<String, String>>) getRequest().getSession().getAttribute("xzqhqsfx");
+			for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
+				Map<String, String> one=new HashMap<String, String>();
+				one.put("year", new Integer(i).toString());
+				for(int j=0;j<sessionData.size();j++){
+					if(sessionData.get(j).get("xzqhdm").equals("36") || sessionData.get(j).get("xzqhdm").equals("360000"))
+						continue;
+					String strje = sessionData.get(j).get(i+"je")==null ? "0" : sessionData.get(j).get(i+"je");
+					one.put("je"+sessionData.get(j).get("xzqhdm"), strje);
+				}
+				list.add(one);
+			}
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title", "区划金额趋势图");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=3;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("legend_title", "行政区划");
+			String chartType = "jhkline.ftl";
+			parameter.put("list",list);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 项目类型统计趋势分析
+	 */
+	public void queryXmlxtjqsfx(){
+		try{
+			List<Map<String,String>> result =new ArrayList<Map<String,String>>();
+			
+			xzqhdm = xzqhdm.equals("360000") ? xzqhdm.substring(0,2) : xzqhdm.substring(0,4);
+			List<Map<String,Object>> xmlxData = tjfxServer.queryXmlxtjqsfx(xzqhdm,nf,end);
+			String [] xmlx={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+			for (String item : xmlx) {
+				Map<String, String> index =new HashMap<String, String>();
+				xmlxfenlei(index,xmlxData,item);
+				System.out.println(index);
+				result.add(index);
+			}
+			getRequest().getSession().setAttribute("xmlxqs", result);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	public void xmlxfenlei(Map<String, String> index,List<Map<String,Object>> xmlxData,String xmlx){
+		List<Map<String,Object>> obj=new ArrayList<Map<String,Object>>();
+		for(int i=0;i<xmlxData.size();i++){
+			if(xmlxData.get(i).get("XMLX").toString().equals(xmlx)){
+				obj.add(xmlxData.get(i));
+			}
+		}
+		System.out.println(xmlx+"个数"+obj.size());
+		for (int i = 0; i < obj.size(); i++) {
+			index.put(obj.get(i).get("NF")+"je", obj.get(i).get("ZTZ").toString());
+			index.put(obj.get(i).get("NF")+"xmcgs", obj.get(i).get("BTZ").toString());
+			index.put(obj.get(i).get("NF")+"xmstz", obj.get(i).get("STZ").toString());
+			index.put(obj.get(i).get("NF")+"xmzj", obj.get(i).get("ZJ").toString());
+		}
+		index.put("xmlx", xmlx);
+	}
+	public void queryXmlxtjqsfxt(){
+		
+		@SuppressWarnings("unchecked")
+		List<Map<String,String>> sessionData = (List<Map<String, String>>) getRequest().getSession().getAttribute("xmlxqs");
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		String [] xmlx={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+		for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
+			Map<String, String> index =new HashMap<String, String>();
+			index.put("year", new Integer(i).toString());
+			for (Map<String,String> item : sessionData) {
+				if(item.get("xmlx").equals("安保工程")){
+					index.put("abgc", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("危桥工程")){
+					index.put("wqgz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("灾害工程")){
+					index.put("zhfz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("升级改造工程")){
+					index.put("gcsj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("路面改造工程")){
+					index.put("gcgj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("新建工程")){
+					index.put("xj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("养护大中修工程")){
+					index.put("yhdzx", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}else if(item.get("xmlx").equals("水毁工程")){
+					index.put("shuih", item.get(i+"je")==null ? "0" : item.get(i+"je"));
+				}
+			}
+			list.add(index);
+		}
+		
+		//设置AnyChart信息
 		Map<String,Object> parameter=new HashMap<String,Object>();
-//		parameter.put("chart_title", "行政区划");//title
-//		String yName="金额";//y单位
-//		parameter.put("chart_title_y", yName);
-//		int precision=3;//小数的位数
-//		parameter.put("precision",precision);
-//		String chartType = "jhkbar.ftl";
-//		parameter.put("list",list);
-//		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
-//		Map<String, String> result=new HashMap<String, String>();
-//		result.put("bar", anyChartXml);
-//		ResponseUtils.write(getresponse(), anyChartXml);
+		parameter.put("list",list);
+		String yName="总金额";//y单位
+		parameter.put("yName", yName);
+		int precision=3;//小数的位数
+		parameter.put("precision",precision);
+		parameter.put("xName", "年份");//title
+		parameter.put("chart_title", "区划金额趋势图");
+		parameter.put("legend_title", "行政区划");
+		String chartType = "jhkline2.ftl";
+		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+		ResponseUtils.write(getresponse(), anyChartXml);
 	}
 	
 	public String getXmlx() {

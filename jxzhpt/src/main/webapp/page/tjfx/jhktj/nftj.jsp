@@ -89,9 +89,7 @@
 			 		$.each(rows,function(index,item){
 			 			queryMsgByXzqhdm(index,item.id);
 			 		});
-			 		alert("ssss");
 			 		queryNftjt();
-			 		alert("eeeeee");
 			 	}
 			});
 		});

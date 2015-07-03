@@ -48,11 +48,11 @@
 			$.ajax({
 				type:'post',
 				async : false,
-				url:'../../../tjfx/queryGcktj.do',
+				url:'../../../tjfx/queryXzqhtjqsfx.do',
 				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo("getValue"),
 				dataType:'json',
 				success:function(data){
-					$.each(data.gcgj,function(index,item){
+					/*$.each(data.gcgj,function(index,item){
 						eachData(jsonTr,item);
 					});
 					$.each(data.gcsj,function(index,item){
@@ -72,7 +72,7 @@
 					});
 					$.each(data.zhfz,function(index,item){
 						eachData(jsonTr,item);
-					});
+					});*/
 				}
 			});
 			return jsonTr;

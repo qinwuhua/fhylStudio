@@ -18,6 +18,9 @@
 		<!-- 新方法 -->
 		<action name="queryNftj" class="tjfxController" method="queryNftj"></action>
 		<action name="queryNftjt" class="tjfxController" method="queryNftjt"></action>
-		
+		<action name="queryXzqhtjqsfx" class="tjfxController" method="queryXzqhtjqsfx"></action>
+		<action name="queryXzqhtjqsfxt" class="tjfxController" method="queryXzqhtjqsfxt"></action>
+		<action name="queryXmlxtjqsfx" class="tjfxController" method="queryXmlxtjqsfx"></action>
+		<action name="queryXmlxtjqsfxt" class="tjfxController" method="queryXmlxtjqsfxt"></action>
 	</package>
 </struts>

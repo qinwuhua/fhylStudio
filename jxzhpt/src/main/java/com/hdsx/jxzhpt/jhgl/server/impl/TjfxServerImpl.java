@@ -84,6 +84,29 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		result.put("CGS", cgs);
 		result.put("STZ", stz);
 		result.put("SL", sl);
+		result.put("XZQHDM", xzqhdm);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> queryXzqhQsfx(String xzqhdm, String nf,String end) {
+		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		params.put("start", nf);
+		params.put("end", end);
+		result = queryList("queryXzqhQsfx", params);
+		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> queryXmlxtjqsfx(String xzqhdm, String nf,String end) {
+		List<Map<String, Object>> result= new ArrayList<Map<String,Object>>();
+		Map<String, Object> params=new HashMap<String, Object>();
+		params.put("xzqhdm", xzqhdm);
+		params.put("start", nf);
+		params.put("end", end);
+		result = queryList("queryXmlxQsfx", params);
 		return result;
 	}
 	
