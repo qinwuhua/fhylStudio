@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * 项目基础库——危桥改造
- * @author LHP
+ * @author qwh
  *
  */
 public class Jckwqgzsj implements Serializable{
@@ -55,7 +55,36 @@ public class Jckwqgzsj implements Serializable{
 	private String qlyhgcs;
 	private String qljggcs;
 	private String czyjhjy;
+	private String shzt1;
+	private String shyj1;
+	private String shyj2;
+	private String xmrksj;
 	
+	
+	public String getXmrksj() {
+		return xmrksj;
+	}
+	public void setXmrksj(String xmrksj) {
+		this.xmrksj = xmrksj;
+	}
+	public String getShzt1() {
+		return shzt1;
+	}
+	public void setShzt1(String shzt1) {
+		this.shzt1 = shzt1;
+	}
+	public String getShyj1() {
+		return shyj1;
+	}
+	public void setShyj1(String shyj1) {
+		this.shyj1 = shyj1;
+	}
+	public String getShyj2() {
+		return shyj2;
+	}
+	public void setShyj2(String shyj2) {
+		this.shyj2 = shyj2;
+	}
 	public String getQlyhgcs() {
 		return qlyhgcs;
 	}

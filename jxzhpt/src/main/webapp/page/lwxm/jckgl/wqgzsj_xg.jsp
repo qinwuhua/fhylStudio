@@ -32,17 +32,13 @@ text-decoration:none;
 </head>
 <body>
 <script type="text/javascript">
-var xmbm;
+var xmbm=parent.obj.id;
 $(function(){
 	xmnf1("xmnf");
-	xmbm=newGuid();
 	loadUploadify();
+	fileShow(xmbm,"桥梁正面文件");
+	fileShow1(xmbm,"桥梁侧面文件");
 	$("#save_button").click(function(){
-		if($("#qlbh").val()=="" || $("#qlbh").val()==null){
-			alert("请填写桥梁编码！");
-			$("#qlbh").focus();
-			return false;
-		}
 			var datas="jckwqgzsj.id="+xmbm;
 			$.ajax({
 				type:'post',
@@ -59,124 +55,39 @@ $(function(){
 			});
 	});
 	$("#qx_window").click(function(){
-		$.ajax({
-			type:'post',
-//			url:'/jxzhpt/qqgl/queryFileByXmbm.do',
-//			data:'file.parentid='+xmbm+'&file.filetype='+type,
-//			dataType:'json',
-			url:'/jxzhpt/wqgzsj/deleteqlzpbyxmbm.do',
-			dataType:'json',
-			data:'jckwqgzsj.id='+xmbm,
-			success:function(data){
-				parent.$('#jck_add').window('destroy');
-			}
-		});
+		parent.$('#lxxx').window('destroy');
 	});	
- 	autoCompleteLXBM();
+ 	loadxx();
 });
-function autoCompleteLXBM(){
-	var url = "/jxzhpt/xmjck/wqgzGpsroad.do";
-	$("#qlbh").autocomplete(url, {
-		multiple : false,
-		minChars :2,
-		multipleSeparator : ' ',
-		mustMatch: true,
-  		cacheLength : 0,
-  		delay : 200,
-  		max : 50,
-  		extraParams : {
-  			qlbh:function() {
-  				var d = $("#qlbh").val();
-  				return d;
-  			},
-  			gydwbm:function() {
-  				var d = $.cookie("unit2");
-  				if(d=='_____36') return "";
-  				else return d;
-  			},
-  			xzqhdm:function() {
-  				var d = $.cookie("dist");
-  				if(d=='360000') return "";
-  				else return d;
-  			}
-			},
-  		dataType : 'json',// 返回类型
-  		// 对返回的json对象进行解析函数，函数返回一个数组
-  		parse : function(data) {
-  			var aa = [];
-  			aa = $.map(eval(data), function(row) {
-  					return {
-  						data : row,
-  						value : row.qlbh.replace(/(\s*$)/g,""),
-  						result : row.qlbh.replace(/(\s*$)/g,"")
-  					};
-  				});
-  			return aa;
-  		},
-  		formatItem : function(row, i, max) {
-  			return row.qlbh.replace(/(\s*$)/g,"")+"("+row.qlzxzh+")"+"<br/>"+row.qlmc.replace(/(\s*$)/g,"");
-  		}
-  	}).result(
-			function(e, item) {
-				if(item==undefined) return ;
-				selectTSDQ(item.xzqhdm);
-				$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
-				$("#qlmc").html(item.qlmc);
-				$("#qlzxzh").html(parseFloat(item.qlzxzh));
-				$("#gydw").html(item.gydw);
-				$("#xzqhdm").html(item.xzqhdm);
-				$("#xzqhmc").html(item.xzqhmc);
-				$("#lxmc").html(item.lxmc);
-				$("#lxbm").html(item.lxbm);
-				$("#kjzc").html(item.kjzc);
-				$("#qlqc").html(item.qlqc);
-				$("#qlkd").html(item.qlkd);
-				$("#dkzdkj").html(item.dkzdkj);
-				 $.ajax({
-					type : 'post',
-					url : '/jxzhpt/xmjck/selJsdj.do',
-					data :"lxbm="+item.lxbm+"&qlzxzh="+item.qlzxzh,
-					dataType:'json',
-					success : function(msg) {
-					$("#jsdj").html(msg.jsdj);
-					}
-				}); 
-				$("#pddj").html(item.pddj);
-				$("#xjgjnd").html(item.xjgjnd);
-				$("#akjfl").html(item.akjfl);
-				$("#sbjgxs").html(item.sbjgxs);
-				$("#xmtype").html('待上报');
-				$("#bhnr").val(item.bhnr);
-				$("#bz").val(item.bz);
-			});
+function loadxx(){
+	var item=parent.obj;
+	selectTSDQ(item.xzqhdm);
+	$("#qlmc,#qlzxzh,#gydw,#xzqhdm,#xzqhmc,#lxmc,#lxbm,#kjzc,#qlqc,#qlkd,#dkzdkj,#pddj,#xjgjnd,#akjfl,#sbjgxs,#bhnr,#bz").attr("value",'');
+	$("#qlbh").html(item.qlbh);
+	$("#qlmc").html(item.qlmc);
+	$("#qlzxzh").html(parseFloat(item.qlzxzh));
+	$("#gydw").html(item.gydw);
+	$("#xzqhdm").html(item.xzqhdm);
+	$("#xzqhmc").html(item.xzqhmc);
+	$("#lxmc").html(item.lxmc);
+	$("#lxbm").html(item.lxbm);
+	$("#kjzc").html(item.kjzc);
+	$("#qlqc").html(item.qlqc);
+	$("#qlkd").html(item.qlkd);
+	$("#dkzdkj").html(item.dkzdkj);
+	$("#jsdj").html(item.jsdj);
+	$("#pddj").html(item.pddj);
+	$("#xjgjnd").html(item.xjgjnd);
+	$("#akjfl").html(item.akjfl);
+	$("#sbjgxs").html(item.sbjgxs);
+	$("#xmtype").html(item.xmtype);
+	$("#bhnr").val(item.bhnr);
+	$("#bz").val(item.bz);
+	$("#qlyhgcs").val(item.qlyhgcs);
+	$("#qljggcs").val(item.qljggcs);
+	$("#czyjhjy").val(item.czyjhjy);
 }
-function saveWqgz(){
-	var sbthcd=$.cookie("unit2").length;
-	if($.cookie("unit2")=="______36"){
-		sbthcd=7;
-	}
-	var data ="jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.qlmc="+$("#qlmc").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+"&jckwqgzsj.gydwbm="+$("#gydwbm").val()+"&jckwqgzsj.gydw="+$("#gydw").html()
-	+"&jckwqgzsj.xzqhdm="+$("#xzqhdm").html()+"&jckwqgzsj.xzqhmc="+$("#xzqhmc").html()+"&jckwqgzsj.lxmc="+$("#lxmc").html()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.kjzc="+$("#kjzc").html()+
-	"&jckwqgzsj.qlqc="+$("#qlqc").html()+"&jckwqgzsj.qlkd="+$("#qlkd").html()+"&jckwqgzsj.dkzdkj="+$("#dkzdkj").html()+"&jckwqgzsj.jsdj="+$("#jsdj").html()+"&jckwqgzsj.pddj="+$("#pddj").html()+"&&jckwqgzsj.xjgjnd="+$("#xjgjnd").html()+"&&jckwqgzsj.tsdq="+$("#tsdq").html()
-	+"&jckwqgzsj.akjfl="+$("#akjfl").html()+"&jckwqgzsj.sbjgxs="+$("#sbjgxs").html()+"&jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.xmtype="+$("#xmtype").html()+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
-	"&jckwqgzsj.tbbmbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+sbthcd+"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm;
-	//alert(data);
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/wqgzsj/insertWqgz.do',
-        data:data,
-		dataType:'json',
-		success:function(msg){
-			if(Boolean(msg)){
-				alert("保存成功！");
-				parent.jckglWqgz();
-				parent.$('#jck_add').window('destroy');
-			}else{
-				alert('保存失败！');
-			}
-		}
-	});
-}
+
 function selectTSDQ(str){
 	$("#tsdq").text("");
 	var data="xzqhdm1="+str;
@@ -270,24 +181,34 @@ function loadUploadify(){
 	});
 }
 
-
-function newGuid()
-{
-    var guid = "";
-    for (var i = 1; i <= 32; i++){
-      var n = Math.floor(Math.random()*16.0).toString(16);
-      guid +=   n;
-    }
-    return guid;    
+function saveWqgz(){
+	var data ="jckwqgzsj.xmnf="+$("#xmnf").combobox("getValue")+"&jckwqgzsj.bhnr="+$("#bhnr").val()+"&jckwqgzsj.bz="+$("#bz").val()+
+	"&jckwqgzsj.qlyhgcs="+$("#qlyhgcs").val()+"&jckwqgzsj.qljggcs="+$("#qljggcs").val()+"&jckwqgzsj.czyjhjy="+$("#czyjhjy").val()+"&jckwqgzsj.id="+xmbm;
+	//alert(data);
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/wqgzsj/updateWqgz.do',
+        data:data,
+		dataType:'json',
+		success:function(msg){
+			if(Boolean(msg)){
+				alert("保存成功！");
+				parent.jckglWqgz();
+				parent.$('#lxxx').window('destroy');
+			}else{
+				alert('保存失败！');
+			}
+		}
+	});
 }
 </script>
 
 <table style="width: 98%; margin-top: 15px;margin-left: 10px; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>桥梁编号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁编号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="qlbh"id="qlbh" style="width: 150px" /></td>
+					<span id='qlbh'></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="qlmc"></span></td>

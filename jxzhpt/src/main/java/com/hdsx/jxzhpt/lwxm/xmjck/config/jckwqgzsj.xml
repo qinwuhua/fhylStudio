@@ -6,16 +6,16 @@
 	</delete>
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgzsj(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
-		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,shzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy) 
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
-		sysdate,'未上报','未审核',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy})
+		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy})
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 	 	select * from (
-	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2 from xmk_wqgzsj t where 1=1
+	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgzsj t where 1=1
 	 			and  sbthcd &lt;=#{sbthcd}
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -96,5 +96,117 @@
 	 			and tsdq like '%'||(#{tsdq})||'%'
 	 		</if>
 		 </select>
+		 <delete id="deleteWqgzsjById" parameterType="java.util.List" >
+		 	delete from xmk_wqgzsj where id =#{String}
+		 </delete>
+		 <select id="getwqgzZP1" resultType="plan_upload" parameterType="jckwqgzsj">
+		 	select id from plan_upload where parentid=#{id} and filetype='桥梁正面文件'
+		 </select>
+		 <select id="getwqgzZP2" resultType="plan_upload" parameterType="jckwqgzsj">
+		 	select id from plan_upload where parentid=#{id} and filetype='桥梁侧面文件'
+		 </select>
+		 <update id="xgJckwqgzSbzt" parameterType="hashmap" >
+ 			update xmk_wqgzsj set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd} where id =#{id}
+ 		</update>
+ 		 <update id="shtyWqgzsjById" parameterType="jckwqgzsj" >
+ 			update xmk_wqgzsj set sbzt='已上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd},shzt1='已审核',shyj1='同意' where id =#{id} 
+ 		</update>
+ 		<update id="shbtyWqgzsjById" parameterType="jckwqgzsj" >
+ 			update xmk_wqgzsj set sbzt='未上报',sbsj=sysdate,sbbm=#{sbbm},sbthcd=#{sbthcd},shzt1='未审核',shyj1=#{shyj1} where id =#{id} 
+ 		</update>
+ 		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
+ 	select * from (
+ 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgzsj t where sbthcd=7
+			and sbthcd>=#{sbthcd}
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
+ 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
+ 			order by shzt desc
+ </select>
+  <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
+ 		select count(*) from xmk_wqgzsj t where sbthcd=7
+			and sbthcd>=#{sbthcd}
+ 		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+ 		<if test="lxmc!='' and lxmc!= null ">
+ 			and lxmc like '%'||(#{lxmc})||'%'
+ 		</if>
+ 		<if test="qlmc!='' and qlmc!= null ">
+ 			and qlmc like '%'||(#{qlmc})||'%'
+ 		</if>
+ 		<if test="xmnf!='' and xmnf!= null ">
+ 			and xmnf like '%'||(#{xmnf})||'%'
+ 		</if>
+ 		<if test="xmtype!='' and xmtype!= null ">
+ 			and xmtype like '%'||(#{xmtype})||'%'
+ 		</if>
+ 		<if test="shzt!='' and shzt!= null ">
+ 			and shzt like '%'||(#{shzt})||'%'
+ 		</if>
+ 		<if test="jsdj!='' and jsdj!= null ">
+ 			and jsdj like '%'||(#{jsdj})||'%'
+ 		</if>
+ 		<if test="akjfl!='' and akjfl!= null ">
+ 			and akjfl like '%'||(#{akjfl})||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+ 			and lxbm like '%'||(#{lxbm})||'%'
+ 		</if>
+ 		<if test="qlbh!='' and qlbh!= null ">
+ 			and qlbh like '%'||(#{qlbh})||'%'
+ 		</if>
+ 		<if test="tsdq!='' and tsdq!= null ">
+ 			and tsdq like '%'||(#{tsdq})||'%'
+ 		</if>
+ </select>
+ 
+ 		<update id="sjshtyWqgzsjById" parameterType="jckwqgzsj" >
+ 			update xmk_wqgzsj set shzt='已审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shyj2='同意' where id =#{id} 
+ 		</update>
+ 		<update id="sjshbtyWqgzsjById" parameterType="jckwqgzsj" >
+ 			update xmk_wqgzsj set shzt='未审核',shsj=sysdate,shbm=#{shbm},sbthcd=#{sbthcd},shzt1='未审核',shyj2=#{shyj2} where id =#{id} 
+ 		</update>
+ 		<update id="updateWqgz" parameterType="jckwqgzsj">
+ 			update xmk_wqgzsj set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
+ 			czyjhjy=#{czyjhjy} where id=#{id}
+ 		</update>
 </mapper>
 

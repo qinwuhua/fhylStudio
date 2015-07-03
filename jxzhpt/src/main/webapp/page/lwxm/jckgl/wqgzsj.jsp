@@ -18,7 +18,26 @@
 <script type="text/javascript" src="../../../js/YMLib.js"></script>
 <script type="text/javascript" src="../js/lwxm.js"></script>
 <script type="text/javascript">
+var obj=new Object();
+var czzt="";
+function ckwqgz(index){
+	var data=$("#grid").datagrid('getRows')[index];
+	obj=data;
+	YMLib.UI.createWindow('lxxx','危桥详情','wqgzsj_ck.jsp','lxxx',900,450);
+}
 $(function(){
+	if($.cookie("unit2").length<11){
+		$("#shangBao").attr('style','display: none');
+	}
+	if($.cookie("unit2").length==11){
+		czzt="上报状态";
+	}
+	if($.cookie("unit2").length==9){
+		czzt="初审状态";
+	}
+	if($.cookie("unit2").length==7){
+		czzt="审核状态";
+	}
 	loadUnit1("gydw",$.cookie("unit"));
 	loadDist1("xzqhmc",$.cookie("dist"));
 	xmnf("xmnf"); 
@@ -40,8 +59,8 @@ function delJckwqgz(){
 	}
 	var id=rows[0].id;
 	for(var i=0;i<rows.length;i++){
-		if(rows[i].sbzt2=='已上报'){
-			alert("该项目已上报，不能执行删除操作！");
+		if(rows[i].tbbmbm!=$.cookie("unit")||rows[i].sbzt2=='已上报'){
+			alert("该项目不是您添加的或已上报，不能执行删除操作！");
 			return false;
 		}
 	}
@@ -51,9 +70,9 @@ function delJckwqgz(){
 	if(confirm('确定删除所选数据？')){
 			$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/xmjck/deleteWqgzById.do",
+				 url : "/jxzhpt/wqgzsj/deleteWqgzsjById.do",
 				 dataType : 'json',
-				 data : 'delstr=' +id,
+				 data : 'jckwqgzsj.id=' +id,
 				 success : function(msg){
 					 if(msg){
 						 alert('删除成功！');
@@ -67,6 +86,43 @@ function delJckwqgz(){
 				 }
 			});
 		}
+}
+function delJckwqgz1(index){
+	if($("#grid").datagrid('getRows')[index].tbbmbm!=$.cookie("unit")||$("#grid").datagrid('getRows')[index].sbzt2=='已上报'){
+		alert("该项目不是您添加的或已上报，不能执行删除操作！");
+		return false;
+	}
+	var id=$("#grid").datagrid('getRows')[index].id;
+	if(confirm('确定删除所选数据？')){
+			$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/wqgzsj/deleteWqgzsjById.do",
+				 dataType : 'json',
+				 data : 'jckwqgzsj.id=' +id,
+				 success : function(msg){
+					 if(msg){
+						 alert('删除成功！');
+						 jckglWqgz();
+					 }else{
+						 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
+					 }
+				 },
+				 error : function(){
+					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+				 }
+			});
+		}
+}
+
+function shangb(index){
+	if($.cookie("unit2").length==9){
+		var data=$("#grid").datagrid('getRows')[index];
+		obj=data;
+		YMLib.UI.createWindow('lxxx','市级初审','wqgzsj_sh.jsp','lxxx',500,300);
+	}
+	if($.cookie("unit2").length==11){
+		shangB();
+	}
 }
 
 function shangB(){
@@ -94,10 +150,10 @@ function shangB(){
 		id+=","+rows[i].id ;
 	}
 	if(confirm('您确定上报该项目？')){
-		var data = "delstr="+id+"&sbbm="+$.cookie("unit")+"&sbthcd="+($.cookie("unit2").length-2);
+		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length-2);
 		$.ajax({
 			 type : "POST",
-			 url : "/jxzhpt/xmjck/xgJckWqgzSbzt.do",
+			 url : "/jxzhpt/wqgzsj/xgJckWqgzSbzt.do",
 			 dataType : 'json',
 			 data : data,
 			 success : function(msg){
@@ -112,58 +168,35 @@ function shangB(){
 				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 			 }
 		});
-}
+	}
 } 
-function tuiHui(){
-	var rows=$('#grid').datagrid('getSelections');
-	if(rows.length==0) {
-		alert("请选择要退回项目！");
-		return;
-	}
-	var id=rows[0].id;
-	for(var i=0;i<rows.length;i++){
-	if($.cookie("unit2")=='______36'){
-			alert("对不起，无法退回！");
-			return;
-		}
-	if(rows[i].sbzt=='未上报' && rows[i].sbthcd==11){
-		alert("对不起，无法退回！");
-		return;
-	}
-	if(rows[i].tbbmbm==$.cookie("unit")){
-		alert("对不起，您添加的项目无法退回！");
-		return;
-	}
-	if(rows[i].sbthcd<$.cookie("unit2").length){
-		alert("对不起，该项目已上报，不能执行退回操作！");
-		return;
-	}
-	}	
-	for(var i=1;i<rows.length;i++){
-		id+=","+rows[i].id ;
-	}
-	if(confirm('您确定退回该项目？')){
-			$.ajax({
-				 type : "POST",
-				 url : "/jxzhpt/xmjck/xgJckWqgzTH.do",
-				 dataType : 'json',
-				 data : 'delstr=' +id,
-				 success : function(msg){
-					 if(msg){
-						 alert('退回成功！');
-						 $("#grid").datagrid('reload');
-					 }else{
-						 alert('退回失败,请选择要退回项目！');
-					 }
-				 },
-				 error : function(){
-					 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+function shangB1(index){
+	var id=$("#grid").datagrid('getRows')[index].id;
+	if(confirm('您确定上报该项目？')){
+		var data = "jckwqgzsj.id="+id+"&jckwqgzsj.sbbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length-2);
+		$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/wqgzsj/xgJckWqgzSbzt.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 if(msg){
+					 alert('上报成功！');
+					 $("#grid").datagrid('reload');
+				 }else{
+					 alert('上报失败,请选择要上报项目！');
 				 }
-			});
+			 },
+			 error : function(){
+				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
+			 }
+		});
 	}
+} 
+
+function shenghwtg(str){
+	alert("未通过原因："+str);
 }
-
-
 
 var gydwstr;
 var xzqhstr;
@@ -224,31 +257,44 @@ var xzqhstr;
 				{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
 					if(row.sbzt2=="未上报" && row.sbthcd!=7){
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<a href=javascript:delJckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
+						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}if(row.sbzt2=="未上报" && row.sbthcd==7 && row.shzt=="未审核"){
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-						'<a href=javascript:xgJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-						'<a href=javascript:delJckwqgz() style="text-decoration:none;color:#3399CC; ">删除</a>';
+						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:xgJckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
+						'<a href=javascript:delJckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
 					}else{
 						return '<a href=javascript:locationQl("'+row.qlbh+'","'+row.qlzxzh+'")  style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-						'<a href=javascript:ckJckwqgz("'+row.id+'") style="text-decoration:none;color:#3399CC; ">详细</a>  '+
+						'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
 						'<span style="color:grey;">编辑</span>  '+
 						'<span style="color:grey;">删除</span>';
 					}
 				}},    
-				{field:'sbzt',title:'上报状态',width:80,align:'center',formatter:function(value,row,index){
-					if(row.sbzt2=="未上报" && row.sbthcd!=7){
-						return '<a href=javascript:shangB() style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-						}else if(row.sbzt2=="未上报" && row.sbthcd==7){
+				{field:'sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
+					if(row.sbzt2=="未上报" && row.sbthcd==11){
+						if(row.shzt1=='未审核'){
+							return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
+						}else
+						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
+						}
+					else if(row.sbzt2=="未上报" && row.sbthcd==9){
+						if(row.shzt=='未审核'){
+							return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						}else
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+						}
+					else if(row.sbzt2=="已上报" && row.sbthcd==7&&$.cookie("unit2").length!=11){
+						return '已审核  ';
+						}
+					else if(row.sbzt2=="未上报" && row.sbthcd==7){
 							return '<span style="color:grey;">未上报</span>';
 						}else{
 						return '<span style="color:grey;">已上报</span>';
 					}
 				}},
-					{field:'shzt',title:'审核状态',width:80,align:'center'},
+					//{field:'shzt',title:'审核状态',width:80,align:'center'},
 				 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 			        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 			        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
@@ -270,13 +316,19 @@ var xzqhstr;
 	 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
 	$.ajax({
 		 type : "POST",
-		 url : "/jxzhpt/xmjck/selectWqgzCount.do",
+		 url : "/jxzhpt/xmjck/selectWqgzCount1.do",
 		 dataType : 'json',
 		 data : data,
 		 success : function(msg){
 			 $("#wqgz1").html(msg);
 		 },
 	});
+	}
+	
+	function xgJckwqgz(index){
+		var data=$("#grid").datagrid('getRows')[index];
+		obj=data;
+		YMLib.UI.createWindow('lxxx','危桥编辑','wqgzsj_xg.jsp','lxxx',900,450);
 	}
 </script>
 <style type="text/css">
@@ -333,7 +385,7 @@ text-decoration:none;
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="jckglWqgz();" style="border-width:0px;cursor: hand;" />
 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   "onclick="shangB()"  style="border-width:0px;" />
-								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" />
+<!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
 <!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule('XMK_Bridge')" style="border-width:0px;cursor: hand;" /> -->
 <!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData('wqgz');" style="border-width:0px;" /> -->
                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addJck('wqgzsj_add.jsp','900','450');" style="border-width:0px;" />

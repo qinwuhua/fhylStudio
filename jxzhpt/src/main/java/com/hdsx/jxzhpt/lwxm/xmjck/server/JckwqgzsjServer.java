@@ -17,5 +17,24 @@ public interface JckwqgzsjServer {
 	List<Jckwqgzsj> selectWqgzList(Jckwqgzsj jckwqgzsj);
 
 	int selectWqgzCount(Jckwqgzsj jckwqgzsj);
+
+	boolean deleteWqgzsjById(Jckwqgzsj jckwqgzsj);
+
+	boolean getwqgzZP(Jckwqgzsj jckwqgzsj);
+
+	boolean xgJckWqgzSbzt(Jckwqgzsj jckwqgzsj);
+
+	boolean shtyWqgzsjById(Jckwqgzsj jckwqgzsj);
 	
+	boolean shbtyWqgzsjById(Jckwqgzsj jckwqgzsj);
+
+	List<Jckwqgzsj> selectJckShwqgz(Jckwqgzsj jckwqgzsj);
+
+	int selectWqgzShCount(Jckwqgzsj jckwqgzsj);
+
+	boolean sjshtyWqgzsjById(Jckwqgzsj jckwqgzsj);
+
+	boolean sjshbtyWqgzsjById(Jckwqgzsj jckwqgzsj);
+
+	boolean updateWqgz(Jckwqgzsj jckwqgzsj);
 }

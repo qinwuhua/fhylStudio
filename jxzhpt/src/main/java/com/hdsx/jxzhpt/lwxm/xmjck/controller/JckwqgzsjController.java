@@ -31,7 +31,7 @@ import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 /**
  * 项目基础库——危桥改造Action层
- * @author lhp
+ * @author qwh
  *
  */
 @Scope("prototype")
@@ -203,6 +203,136 @@ public class JckwqgzsjController extends BaseActionSupport{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+	}
+	
+	public void deleteWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.deleteWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void getwqgzZP(){
+		try {
+			ResponseUtils.write(getresponse(), jckwqgzsjServer.getwqgzZP(jckwqgzsj)+"");
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void xgJckWqgzSbzt(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.xgJckWqgzSbzt(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void shtyWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.shtyWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void shbtyWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.shbtyWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectJckShwqgz(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setShzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+		List<Jckwqgzsj> wqgzList = jckwqgzsjServer.selectJckShwqgz(jckwqgzsj);
+		int count = jckwqgzsjServer.selectWqgzShCount(jckwqgzsj);
+		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
+		eui.setRows(wqgzList);
+		eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectWqgzShCount(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setShzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+			int count = jckwqgzsjServer.selectWqgzShCount(jckwqgzsj);
+			ResponseUtils.write(getresponse(), count+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sjshtyWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.sjshtyWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sjshbtyWqgzsjById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.sjshbtyWqgzsjById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateWqgz(){
+		try {
+			ResponseUtils.write(getresponse(), jckwqgzsjServer.updateWqgz(jckwqgzsj)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
 
