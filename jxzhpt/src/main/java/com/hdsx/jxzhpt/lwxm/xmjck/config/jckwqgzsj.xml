@@ -208,5 +208,97 @@
  			update xmk_wqgzsj set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy} where id=#{id}
  		</update>
+ 		
+ 		<select id="selectSckwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
+		select * from (
+		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from
+		 (select * from sck_wqgzsj t join xmk_wqgzsj on xmkid=xmk_wqgzsj.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgzsj.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t where 
+			sck_sbthcd &lt;=#{sck_sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and scxmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
+	</select>
+	<select id="selectSckwqgzCount" parameterType="jckwqgzsj" resultType="int">
+		select count(*) from (select * from sck_wqgzsj t join xmk_wqgzsj on xmkid=xmk_wqgzsj.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgzsj.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
+			where sck_sbthcd &lt;=#{sck_sbthcd}
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and scxmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+	</select>
 </mapper>
 

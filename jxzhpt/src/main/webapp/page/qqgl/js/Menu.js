@@ -86,7 +86,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080105',
-		title:'水毁项目',
+		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu1',
 		href:'../qqgl/jhsh/shxmgl.jsp'
@@ -122,7 +122,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080205',
-		title:'水毁项目',
+		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/shxmgl.jsp'
@@ -216,7 +216,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080505',
-		title:'水毁项目',
+		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu5',
 		href:'./cbsj/shxm.jsp'
@@ -252,7 +252,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101080605',
-		title:'水毁项目',
+		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu6',
 		href:'./cbsj/shxm_sh.jsp'

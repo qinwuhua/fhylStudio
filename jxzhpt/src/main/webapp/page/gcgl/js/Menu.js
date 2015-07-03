@@ -97,7 +97,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040105',
-		title:'水毁工程项目',
+		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu1',
 		href:'./gljsjyhgl/sh/sh.jsp'
@@ -184,7 +184,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040205',
-		title:'水毁工程项目',
+		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'./ybjdsh/sh/sh.jsp'
@@ -271,7 +271,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040305',
-		title:'水毁工程项目',
+		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
 		href:'./cgszjdw/sh/sh.jsp'
@@ -358,7 +358,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101040405',
-		title:'水毁工程项目',
+		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu4',
 		href:'./glgcwgtj/sh/sh.jsp'
@@ -456,7 +456,7 @@ $(function() {
 //	});
 //	createMenux('LeftMenu',{
 //		id:'menu5',
-//		title:'水毁工程项目',
+//		title:'灾毁重建工程项目',
 //		imgSrc:'../../images/sh_s.png',
 //		renderTo:'left_menu6',
 //		href:'./lxxx.jsp'

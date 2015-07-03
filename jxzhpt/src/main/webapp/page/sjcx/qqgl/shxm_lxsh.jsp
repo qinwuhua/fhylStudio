@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>水毁项目</title>
+	<title>灾毁重建项目</title>
 	<link rel="stylesheet" type="text/css" href="../../../css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="../../../css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
@@ -69,7 +69,7 @@
 				{field:'cz',title:'操作',width:150,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.ylxbh+"'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'水毁项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'灾毁重建项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
@@ -99,7 +99,7 @@
 			gridBind(grid);
 		}
 		function openSh(){
-			openWindow("shxmadd","添加水毁项目","shxmAdd.jsp",980,400);
+			openWindow("shxmadd","添加灾毁重建项目","shxmAdd.jsp",980,400);
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
@@ -108,7 +108,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;水毁项目管理</div>
+		<div id="p_top">计划管理>&nbsp;项目计划库管理>&nbsp;灾毁重建项目管理</div>
 	</div>
 	<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         <tr>

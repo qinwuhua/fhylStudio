@@ -128,4 +128,16 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			return true;
 		return false;
 	}
+
+	@Override
+	public List<Jckwqgzsj> selectSckwqgz(Jckwqgzsj jckwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryList("selectSckwqgz", jckwqgzsj);
+	}
+
+	@Override
+	public int selectSckwqgzCount(Jckwqgzsj jckwqgzsj) {
+		// TODO Auto-generated method stub
+		return queryOne("selectSckwqgzCount", jckwqgzsj);
+	}
 }

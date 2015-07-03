@@ -180,7 +180,7 @@ var xzqhstr;
 			 	'lxmc' : $('#lxmc').val(),
 			 	'qlmc':$("#qlmc").val(),
 			 	'xmnf':$("#xmnf").combobox("getValue"),
-			 	'shzt':$("#shzt").combobox("getValue"),
+			 	'sbzt':$("#shzt").combobox("getValue"),
 			 	'jsdj':$("#jsdj").combobox("getValue"),
 			 	'akjfl':$("#akjfl").combobox("getValue"),
 			 	'lxbm':$("#lxbm").val(),
@@ -271,7 +271,7 @@ text-decoration:none;
 								<td>管养单位：</td>
                               	 <td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
                               	</select></td>
-                             	<td>行政区划：</span>
+                             	<td>行政区划：
                               	 <td colspan="3" style="width:220px;"><select id="xzqhmc" style="width:220px">
                               	</select></td>
                                <td align="right">路线名称：</td>

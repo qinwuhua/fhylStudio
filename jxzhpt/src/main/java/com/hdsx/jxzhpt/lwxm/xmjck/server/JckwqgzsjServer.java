@@ -37,4 +37,8 @@ public interface JckwqgzsjServer {
 	boolean sjshbtyWqgzsjById(Jckwqgzsj jckwqgzsj);
 
 	boolean updateWqgz(Jckwqgzsj jckwqgzsj);
+
+	List<Jckwqgzsj> selectSckwqgz(Jckwqgzsj jckwqgzsj);
+
+	int selectSckwqgzCount(Jckwqgzsj jckwqgzsj);
 }

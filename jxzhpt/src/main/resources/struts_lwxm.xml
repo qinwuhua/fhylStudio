@@ -140,5 +140,8 @@
  	 <action name="sjshtyWqgzsjById" class="jckwqgzsjController" method="sjshtyWqgzsjById"/>
  	 <action name="sjshbtyWqgzsjById" class="jckwqgzsjController" method="sjshbtyWqgzsjById"/>
  	 <action name="updateWqgz" class="jckwqgzsjController" method="updateWqgz"/>
+ 	 
+ 	 <action name="selectSckwqgz" class="jckwqgzsjController" method="selectSckwqgz"/>
+ 	 <action name="selectSckwqgzCount" class="jckwqgzsjController" method="selectSckwqgzCount"/>
  </package>
 </struts>

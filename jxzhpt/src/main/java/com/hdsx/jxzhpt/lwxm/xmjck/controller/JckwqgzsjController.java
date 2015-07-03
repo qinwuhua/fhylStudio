@@ -20,6 +20,7 @@ import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgz;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
+import com.hdsx.jxzhpt.lwxm.xmsck.bean.Sckwqgz;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.ExcelReader;
 import com.hdsx.jxzhpt.utile.ExportExcel_new;
@@ -57,9 +58,15 @@ public class JckwqgzsjController extends BaseActionSupport{
  	private String tsdq;
  	private int page = 1;
 	private int rows = 10;
+	private String bzls;
 	
 	
-	
+	public String getBzls() {
+		return bzls;
+	}
+	public void setBzls(String bzls) {
+		this.bzls = bzls;
+	}
 	public int getPage() {
 		return page;
 	}
@@ -330,6 +337,74 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void updateWqgz(){
 		try {
 			ResponseUtils.write(getresponse(), jckwqgzsjServer.updateWqgz(jckwqgzsj)+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectSckwqgz(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setBzls(bzls);
+		List<Jckwqgzsj> list = jckwqgzsjServer.selectSckwqgz(jckwqgzsj);
+		int count = jckwqgzsjServer.selectSckwqgzCount(jckwqgzsj);
+		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
+		eui.setRows(list);
+		eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectSckwqgzCount(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setBzls(bzls);
+		int count = jckwqgzsjServer.selectSckwqgzCount(jckwqgzsj);
+		ResponseUtils.write(getresponse(), count+"");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -134,7 +134,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060207',
-		title:'水毁项目',
+		title:'灾毁重建项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhcx/shxm.jsp'
@@ -206,7 +206,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060307',
-		title:'水毁工程项目',
+		title:'灾毁重建工程项目',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
 		href:'./gcgl/sh.jsp'
@@ -265,7 +265,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060505',
-		title:'水毁项目立项审核',
+		title:'灾毁重建项目立项审核',
 		imgSrc:'../../images/zdycx.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/shxm_lxsh.jsp'
@@ -321,7 +321,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101060513',
-		title:'水毁项目初步设计',
+		title:'灾毁重建项目初步设计',
 		imgSrc:'../../images/zdycx.png',
 		renderTo:'left_menu5',
 		href:'./qqgl/shxm_cbsj.jsp'

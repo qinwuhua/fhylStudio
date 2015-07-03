@@ -38,8 +38,8 @@ function wqxiangxi(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.Var.jhbm=data.id;
-//	YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
-	YMLib.UI.createWindow('wqxx','水毁工程项目详情','shxx.jsp','wqxx',940,450);
+//	YMLib.UI.createWindow('shuih_xx','灾毁重建项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
+	YMLib.UI.createWindow('wqxx','灾毁重建工程项目详情','shxx.jsp','wqxx',940,450);
 	//window.open("wqgzxx.jsp");
 }
 function closes(str){
@@ -48,12 +48,12 @@ function closes(str){
 function Showybxx(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	parent.obj=data;
-	parent.YMLib.UI.createWindow('wqxx','水毁项目月报详情','shybxx.jsp','wqxx',900,450);
+	parent.YMLib.UI.createWindow('wqxx','灾毁重建项目月报详情','shybxx.jsp','wqxx',900,450);
 }
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
-	YMLib.UI.createWindow('wqxx1','水毁项目月报列表','shyb.jsp','wqxx1',1059,480);
+	YMLib.UI.createWindow('wqxx1','灾毁重建项目月报列表','shyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
 function showAll(){
