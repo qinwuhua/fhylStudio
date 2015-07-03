@@ -171,7 +171,9 @@
                 url: mapServerUrl + '/wms',
                 layers: [baseLayers],
                 queryVisible: true,//查找可见图层
-                drillDown: false,
+                output: 'features',
+                infoFormat: 'application/json',
+                format: new OpenLayers.Format.JSON,
                 maxFeatures: 1000
                 //最大返回要素数目1000个
             });
@@ -184,34 +186,27 @@
          * I查询查询到数据后的处理方法
          */
         var layersConfig = [];
-        function showInfo(event) {
-            var parser = new DOMParser();
-            var responseTest = parser.parseFromString(event.text, "text/html");
-            var jsonTables = [];
+        function showInfo(object) {
+            var features = object.features.features;
+            var len = features.length;
             var tableNames = [];
-            $("table.featureInfo", responseTest).each(function (i, obj) {
-                var table = $(obj).tableToJSON({
-                    ignoreHiddenRows: false
-                });
-                jsonTables[i] = table;
-                tableNames[i] = $(obj).find("caption").html();
-            });
-            var len = jsonTables.length;
-            var keyId = "ID";//主键字段
-            var keyValue = null;
-            var index = len - 1;
-            for (var i = len - 1; i >= 0; i--) {
-                var jsonTable = jsonTables[i];
-                if (jsonTable[0][keyId]) {
-                    index = i;
-                    keyValue = jsonTable[0][keyId];
-                    break;
+            for (var i = 0; i < len; i++) {
+                var name = features[i].id;
+                var layerNameTemp = name.split(".")[0];
+                var tableLenTemp = tableNames.length;
+
+                if ($.inArray(layerNameTemp, tableNames) == -1) {
+                    tableNames.push(layerNameTemp);
                 }
-            }
-            var layerName = tableNames[index];
-            var layers = qlIQueryLayers.concat(lxIQueryLayes);
-            if (layers.indexOf(layerName) !== -1) {
-                spatialQuery(layerName, geometry);
+                var layers = qlIQueryLayers.concat(lxIQueryLayes);
+                var tableLen = tableNames.length;
+                for (var n = tableLen - 1; n >= 0; n--) {
+                    var layerName = tableNames[n];
+                    if ($.inArray(layerName, layers) !== -1) {
+                        spatialQuery(layerName, geometry);
+                    }
+                }
+
             }
         }
         /**
@@ -314,6 +309,10 @@
         //构造弹出窗口的函数
         var selectedFeature = null;
         function onFeatureSelect(feature) {
+        	if(parent.YMLib.Var.bm==undefined){
+        		if(feature.attributes.ROADBM==undefined) parent.YMLib.Var.bm=feature.attributes.ROADCODE;
+        		else parent.YMLib.Var.bm=feature.attributes.ROADBM;
+        	}
         	YMLib.Var.bm=parent.YMLib.Var.bm;
         	if(parent.YMLib.Var.bm.length>11) parent.YMLib.UI.createWindow('ql_add','桥梁项目查询','/jxzhpt/page/dzdt/dzdt_ql.jsp','app_add',630,330);
          	else parent.YMLib.UI.createWindow('lx_add','路线项目查询','/jxzhpt/page/dzdt/dzdt_lx.jsp','app_add',630,330);
@@ -605,6 +604,11 @@
                 }
             });
             wfsProtocol.read();
+        }
+        
+        function clearGraphics() {
+            var resultLayer = map.getLayersByName("resultLayer")[0];
+            if(resultLayer!=undefined) resultLayer.removeAllFeatures();
         }
     </script>
 </head>
