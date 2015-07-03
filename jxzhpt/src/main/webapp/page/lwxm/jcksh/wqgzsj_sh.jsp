@@ -37,7 +37,7 @@ text-decoration:none;
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/sjshtyWqgzsjById.do",
 			 dataType : 'json',
-			 data : 'jckwqgzsj.id=' +parent.obj.id+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length-2),
+			 data : 'jckwqgzsj.id=' +parent.obj.id+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length),
 			 success : function(msg){
 				 if(msg){
 					 alert('审核成功！');

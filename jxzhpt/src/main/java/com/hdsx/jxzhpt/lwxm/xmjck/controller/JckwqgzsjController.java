@@ -409,6 +409,26 @@ public class JckwqgzsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void JckWqgzRoad(){
+		jckwqgzsj.setQlbh(qlbh);
+		jckwqgzsj.setGydwbm(gydw);
+		jckwqgzsj.setXzqhdm(xzqhdm);
+		try {
+			JsonUtils.write(jckwqgzsjServer.JckWqgzRoad(jckwqgzsj), getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertSckwqgz(){
+		boolean b = jckwqgzsjServer.insertSckwqgz(jckwqgzsj);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
 }
 
 	

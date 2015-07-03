@@ -143,5 +143,7 @@
  	 
  	 <action name="selectSckwqgz" class="jckwqgzsjController" method="selectSckwqgz"/>
  	 <action name="selectSckwqgzCount" class="jckwqgzsjController" method="selectSckwqgzCount"/>
+ 	 <action name="JckWqgzRoad" class="jckwqgzsjController" method="JckWqgzRoad"/>
+ 	 <action name="insertSckwqgz" class="jckwqgzsjController" method="insertSckwqgz"/>
  </package>
 </struts>

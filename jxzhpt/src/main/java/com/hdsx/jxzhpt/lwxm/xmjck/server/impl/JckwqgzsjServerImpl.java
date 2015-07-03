@@ -140,4 +140,19 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		// TODO Auto-generated method stub
 		return queryOne("selectSckwqgzCount", jckwqgzsj);
 	}
+
+	@Override
+	public List<Jckwqgzsj> JckWqgzRoad(Jckwqgzsj jckwqgzsj) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("qlbh", jckwqgzsj.getQlbh());
+		hm.put("gydwbm", jckwqgzsj.getGydwbm());
+		return queryList("JckWqgzRoad", hm);
+	}
+
+	@Override
+	public boolean insertSckwqgz(Jckwqgzsj jckwqgzsj) {
+		if(insert("insertSckwqgz",jckwqgzsj)>0)
+			return true;
+		else return false;
+	}
 }

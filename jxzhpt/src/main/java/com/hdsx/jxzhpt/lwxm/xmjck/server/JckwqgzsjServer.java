@@ -41,4 +41,8 @@ public interface JckwqgzsjServer {
 	List<Jckwqgzsj> selectSckwqgz(Jckwqgzsj jckwqgzsj);
 
 	int selectSckwqgzCount(Jckwqgzsj jckwqgzsj);
+
+	List<Jckwqgzsj> JckWqgzRoad(Jckwqgzsj jckwqgzsj);
+
+	boolean insertSckwqgz(Jckwqgzsj jckwqgzsj);
 }

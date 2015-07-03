@@ -300,5 +300,20 @@
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
 	</select>
+	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
+	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgzsj t where shzt='已审核' and qlbh like #{qlbh}||'%' 
+	 	<if test="gydwbm!='' and gydwbm!= null ">
+				and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+			</if>
+	 	order by qlbh
+ </select>
+ 
+ 	<insert id="insertSckwqgz" parameterType="jckwqgzsj">
+		insert into
+		sck_wqgzsj(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,
+		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,jsgmqc,jsgmqk,hzdj,sjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq)
+		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
+		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{sjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq})
+	</insert>
 </mapper>
 
