@@ -18,7 +18,8 @@ $(function() {
 				iconCls:'icon-note'
 			});
 			j++;
-		}else if(qx[i]=='01010803'){
+		}
+		/*else if(qx[i]=='01010803'){
 			$('#aa').accordion('add', {
 				id:"left_menu3",
 				title: '工程可行性研究填写',
@@ -26,18 +27,11 @@ $(function() {
 				iconCls:'icon-note'
 			});
 			j++;
-		}else if(qx[i]=='01010804'){
+		}*/
+		else if(qx[i]=='01010804'){
 			$('#aa').accordion('add', {
 				id:"left_menu4",
-				title: '工程可行性研究审核',
-				selected: j==1?true:false,
-				iconCls:'icon-note'
-			});
-			j++;
-		}else if(qx[i]=='01010805'){
-			$('#aa').accordion('add', {
-				id:"left_menu5",
-				title: '初步设计或施工图设计填写',
+				title: '工程可行性研究',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
@@ -45,13 +39,21 @@ $(function() {
 		}else if(qx[i]=='01010806'){
 			$('#aa').accordion('add', {
 				id:"left_menu6",
-				title: '初步设计或施工图设计审核',
+				title: '初步设计或施工图设计',
 				selected: j==1?true:false,
 				iconCls:'icon-note'
 			});
 			j++;
 		}
-		
+		/*else if(qx[i]=='01010805'){
+			$('#aa').accordion('add', {
+				id:"left_menu5",
+				title: '初步设计或施工图设计填写',
+				selected: j==1?true:false,
+				iconCls:'icon-note'
+			});
+			j++;
+		}*/
 	}
 	
 	
@@ -128,6 +130,7 @@ $(function() {
 		href:'../qqgl/jhsh/shxmgl.jsp'
 	});
 	
+	/**
 	createMenux('LeftMenu',{
 		id:'menu_0101080301',
 		title:'升级改造工程项目',
@@ -149,13 +152,13 @@ $(function() {
 		renderTo:'left_menu3',
 		href:'./kxxyj/xjsb.jsp'
 	});
-//	createMenux('LeftMenu',{
-//		id:'menu_0101080304',
-//		title:'大中修工程项目',
-//		imgSrc:'../../images/gj_s.png',
-//		renderTo:'left_menu3',
-//		href:'./jhkgl/wqgz.jsp'
-//	});
+	createMenux('LeftMenu',{
+		id:'menu_0101080304',
+		title:'大中修工程项目',
+		imgSrc:'../../images/gj_s.png',
+		renderTo:'left_menu3',
+		href:'./jhkgl/wqgz.jsp'
+	});*/
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101080401',
@@ -185,7 +188,7 @@ $(function() {
 //		renderTo:'left_menu4',
 //		href:'./jhkgl/wqgz.jsp'
 //	});
-	
+	/**
 	createMenux('LeftMenu',{
 		id:'menu_0101080501',
 		title:'升级改造工程项目',
@@ -220,7 +223,7 @@ $(function() {
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu5',
 		href:'./cbsj/shxm.jsp'
-	});
+	});*/
 	
 	createMenux('LeftMenu',{
 		id:'menu_0101080601',
