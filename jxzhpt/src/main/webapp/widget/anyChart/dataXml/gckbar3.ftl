@@ -30,7 +30,7 @@
 						<point name="${l.name}" y="${l.dnsl}"/>
 					</#list>
 				</series>
-        		<series name="历史计划投资">
+        		<series name="历史计划数量">
         			<#list list as l >
 						<point name="${l.name}" y="${l.lssl}"/>
 					</#list>

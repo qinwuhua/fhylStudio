@@ -20,62 +20,49 @@
 		$(function(){
 			var jsonData=new Array();
 			sbnf("searchYear");
-			$.ajax({
-				type:'post',
-				async : false,
-				url:'../../../jhgl/queryChildXzqh.do',
-				data:'xzqh.id=36__00',
-				dataType:'json',
-				success:function(data){
-					$.each(data,function(index,item){
-						var xzqhdm="";
-						if(item.id=="360000")
-							xzqhdm=item.id.substring(0,2)+"____";
-						else
-							xzqhdm=item.id.substring(0,4)+"__";
-						jsonData.push(loadData(xzqhdm,item.name));
-					});
-				}
-			});
-			gckxzqhtj(jsonData);
-			loadTjt();
+			loadGrid();
+			//loadTjt();
 		});
-		
-		function loadData(xzqhdm,xzqhmc){
-			var jsonTr={'xzqh':xzqhmc,'ztz':0,'wctz':0,'sl':0,'wkgztz':0,'wkgsl':0,
-					'zjztz':0,'zjwctz':0,'zjsl':0,'jgztz':0,
-					'jgwctz':0,'jgsl':0};
-			$.ajax({
-				type:'post',
-				async : false,
-				url:'../../../tjfx/queryXzqhtjqsfx.do',
-				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo("getValue"),
-				dataType:'json',
-				success:function(data){
-					/*$.each(data.gcgj,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.gcsj,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.shuih,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.yhdzx,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.abgc,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.wqgz,function(index,item){
-						eachData(jsonTr,item);
-					});
-					$.each(data.zhfz,function(index,item){
-						eachData(jsonTr,item);
-					});*/
-				}
+		function loadGrid(){
+			$('#grid').datagrid({
+			    url:'../../../tjfx/queryGckXzqhtj.do',
+			    queryParams:{'nf':$('#searchYear').combobox('getValue')},
+			    striped:true,
+			    pagination:false,
+			    rownumbers:false,
+			    pageNumber:1,
+			    pageSize:20,
+			    height:275,
+			    width:$('#grid').width(),
+			    columns:[
+						    [
+						     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
+						     	{title:'合计',colspan:3},
+						     	{title:'未开工项目',colspan:2},
+						     	{title:'在建项目',colspan:3},
+						     	{title:'竣工项目',colspan:3}
+						    ],
+						    [
+						     	{field:'ZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'WCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'SL',title:'数量',width:100,align:'center',rowspan:1},
+						     	{field:'WKGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'WKGSL',title:'数量',width:100,align:'center',rowspan:1},
+						     	{field:'ZJZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'ZJWCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'ZJSL',title:'数量',width:100,align:'center',rowspan:1},
+						     	{field:'JGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'JGWCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
+						     	{field:'JGSL',title:'数量',width:100,align:'center',rowspan:1}
+						    ]
+					    ],
+			    onLoadSuccess:function(){
+			    	loadTjt();
+			    },
+			    onSelect:function(){
+			    	window.location.href='../gcktj/xmlxtj.jsp';
+			    }
 			});
-			return jsonTr;
 		}
 		
 		function loadTjt(){
@@ -87,31 +74,13 @@
 		    barChart_1.write("anychart_div");
 			$.ajax({
 				type:'post',
-				url:'../../../tjfx/queryGcktjt.do',
-				data:'xzqhdm=36__00&nf='+$('#searchYear').val(),
+				url:'../../../tjfx/queryGckXzqhtjt.do',
+				data:'nf='+$('#searchYear').val(),
 				dataType:'text',
 				success:function(data){
 					barChart_1.setData(data);
 				}
 			});
-		}
-		
-		function eachData(jsonTr,item){
-			if(item.id=="0"){
-				jsonTr.wkgztz+=parseInt(item.text);
-				jsonTr.wkgsl+=parseInt(item.name);
-			}else if(item.id=="1"){
-				jsonTr.zjztz+=parseInt(item.text);
-				jsonTr.zjwctz+=parseInt(item.parent);
-				jsonTr.zjsl+=parseInt(item.name);
-			}else if(item.id=="2"){
-				jsonTr.jgztz+=parseInt(item.text);
-				jsonTr.jgwctz+=parseInt(item.parent);
-				jsonTr.jgsl+=parseInt(item.name);
-			}
-			jsonTr.ztz=jsonTr.wkgztz+jsonTr.zjztz+jsonTr.jgztz;
-			jsonTr.wctz=jsonTr.zjwctz+jsonTr.jgwctz;
-			jsonTr.sl=jsonTr.wkgsl+jsonTr.zjsl+jsonTr.jgsl;
 		}
 		
 		function sbnf(id){

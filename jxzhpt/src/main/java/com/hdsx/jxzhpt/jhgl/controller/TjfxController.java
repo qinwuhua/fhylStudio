@@ -684,8 +684,10 @@ public class TjfxController extends BaseActionSupport{
 		}
 		index.put("xmlx", xmlx);
 	}
+	/**
+	 * 项目类型统计趋势分析图
+	 */
 	public void queryXmlxtjqsfxt(){
-		
 		@SuppressWarnings("unchecked")
 		List<Map<String,String>> sessionData = (List<Map<String, String>>) getRequest().getSession().getAttribute("xmlxqs");
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
@@ -728,6 +730,120 @@ public class TjfxController extends BaseActionSupport{
 		String chartType = "jhkline2.ftl";
 		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 		ResponseUtils.write(getresponse(), anyChartXml);
+	}
+	/**
+	 * 工程库行政区划统计分析
+	 */
+	public void queryGckXzqhtj(){
+		try{
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			for (TreeNode item : xzqh) {
+				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
+				Map<String,Object> index = tjfxServer.queryGckXzqhtj(xzqhdm,nf);
+				index.put("xzqh", item.getName());
+				result.add(index);
+			}
+			getRequest().getSession().setAttribute("gckxzqh", result);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库行政区划统计分析图
+	 */
+	public void queryGckXzqhtjt(){
+		try {
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+			@SuppressWarnings("unchecked")
+			List<Map<String,Object>> attribute = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxzqh");
+			for (Map<String,Object> item : attribute) {
+				Map<String, String> index=new HashMap<String, String>();
+				index.put("name", item.get("xzqh").toString());
+				index.put("ztz", item.get("ZTZ").toString());
+				index.put("wg", item.get("WCTZ").toString());
+				list.add(index);
+			}
+			parameter.put("list",list);
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=3;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("chart_title", "行政区划统计图");
+			String chartType = "gckbar.ftl";
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库项目类型统计
+	 */
+	public void queryGckXmlxtj(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			xzqhdm = xzqhdm.equals("360000") ? xzqhdm.substring(0,2) : xzqhdm.substring(0,4);
+			result =tjfxServer.queryGckXmlxtj(nf,xzqhdm);
+			getRequest().getSession().setAttribute("gckxmlxtj", result);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库项目类型统计图1
+	 */
+	@SuppressWarnings("unchecked")
+	public void queryGckXmlxtjt(){
+		try{
+			List<Map<String, String>> data =new ArrayList<Map<String,String>>();
+			
+			List<Map<String,Object>> lstz = tjfxServer.queryGckXmlxTjtLstz(nf,xzqhdm);
+			List<Map<String,Object>> gckxmlxtj = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxmlxtj");
+			String [] xmlxs={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+			for (String xmlx : xmlxs) {
+				Map<String, String> index =new HashMap<String, String>();
+				index.put("name", xmlx);
+				b : for(int i=0;i<gckxmlxtj.size();i++){
+					if(gckxmlxtj.get(i).get("XMLX").toString().equals(xmlx)){
+						index.put("dntz", gckxmlxtj.get(i).get("ZTZ").toString());
+						index.put("dnsl", gckxmlxtj.get(i).get("SL").toString());
+						index.put("lstz", lstz.get(i).get("ZTZ").toString());
+						index.put("lssl", gckxmlxtj.get(i).get("SL").toString());
+						data.add(index);
+						break b;
+					}
+				}
+			}
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=3;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("chart_title", "行政区划统计图");
+			String chartType = ftlName;
+			parameter.put("list",data);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库项目类型统计图2
+	 */
+	public void queryGckXmlxtjt2(){
+		
 	}
 	
 	public String getXmlx() {
