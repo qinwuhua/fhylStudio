@@ -26,47 +26,46 @@
 		});
 		
 		function loadData(){
-			var xzqhdm=$('#xzqh').combobox('getValue');
-			if(xzqhdm=="360000"){
-				xzqhdm="36____";
-			}else if(new RegExp("^36[0-9][1-9]00$").test(xzqhdm) || new RegExp("^36[1-9][0-9]00$").test(xzqhdm)){
-				xzqhdm=xzqhdm.substring(0,4)+"__";
-			}
-			var jsonData=new Array();
-			$.ajax({
-				type:'post',
-				async : false,
-				url:'../../../tjfx/queryGcktj.do',
-				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue'),
-				dataType:'json',
-				success:function(data){
-					jsonData.push(eachData(data.gcgj,"路面改建"));
-					jsonData.push(eachData(data.gcsj,"路面升级"));
-					jsonData.push(eachData(data.shuih,"水毁项目"));
-					jsonData.push(eachData(data.yhdzx,"养护大中修"));
-					jsonData.push(eachData(data.abgc,"安保工程"));
-					jsonData.push(eachData(data.wqgz,"危桥改造"));
-					jsonData.push(eachData(data.zhfz,"灾害防治"));
-					var jsonTr={'xmlx':"合计",'ztz':0,'sl':0,'wkgztz':0,'wkgsl':0,
-							'zjztz':0,'zjsl':0,'jgztz':0,'jgsl':0};
-					$.each(jsonData,function(index,item){
-						jsonTr.ztz+=item.ztz;
-						jsonTr.sl+=item.sl;
-						jsonTr.wkgztz+=item.wkgztz;
-						jsonTr.wkgsl+=item.wkgsl;
-						jsonTr.zjztz+=item.zjztz;
-						jsonTr.zjsl+=item.zjsl;
-						jsonTr.jgztz+=item.jgztz;
-						jsonTr.jgsl+=item.jgsl;
-					});
-					jsonData.unshift(jsonTr);
+			var xzqhdm=$('#xzqh').combobox("getValue");
+			$('#grid').datagrid({
+				url:'../../../tjfx/queryGckXmlxtj.do',
+			    queryParams:{'nf':$('#searchYear').combobox('getValue'),'xzqhdm':xzqhdm},
+			    striped:true,
+			    pagination:false,
+			    rownumbers:false,
+			    pageNumber:1,
+			    pageSize:20,
+			    height:255,
+			    width:$('#searchDiv').width(),
+			    columns:[
+			             [
+					     	{field:'XMLX',title:'项目类型',width:100,align:'center',rowspan:2},
+					     	{title:'合计',colspan:2},
+					     	{title:'未开工项目合计',colspan:2},
+					     	{title:'在建项目合计',colspan:2},
+					     	{title:'竣工项目合计',colspan:2}
+					    ],
+					    [
+					     	{field:'ZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'SL',title:'数量',width:100,align:'center',rowspan:1},
+					     	{field:'WKGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'WKGSL',title:'数量',width:100,align:'center',rowspan:1},
+					     	{field:'ZJZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'ZJSL',title:'数量',width:100,align:'center',rowspan:1},
+					     	{field:'WGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
+					     	{field:'WGSL',title:'数量',width:100,align:'center',rowspan:1}
+					    ]
+				],
+				onLoadSuccess:function(){
+					loadBar1(xzqhdm);
+					loadBar2(xzqhdm);
+			    },
+				onSelect:function(rowIndex, rowData){
+					window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex+'&nf='+$('#searchYear').combo('getValue');
 				}
 			});
-			gckxmlxtj(jsonData);
-			loadBar(xzqhdm);
-			loadBar2(xzqhdm);
 		}
-		function loadBar(xzqhdm){
+		function loadBar1(xzqhdm){
 			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");
 		    barChart_1.width =980;
 		    barChart_1.height =300;
@@ -75,7 +74,7 @@
 		    barChart_1.write("anychart_div");
 		    $.ajax({
 				type:"post",
-				url:'../../../tjfx/queryGcktj2.do',
+				url:'../../../tjfx/queryGckXmlxtjt.do',
 				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar2.ftl',
 				dataType:'text',
 				success:function(msg){
@@ -95,7 +94,7 @@
 		    var date=new Date();
 		    $.ajax({
 				type:"post",
-				url:'../../../tjfx/queryGcktj2.do',
+				url:'../../../tjfx/queryGckXmlxtjt.do',
 				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar3.ftl',
 				dataType:'text',
 				success:function(msg){
@@ -103,26 +102,6 @@
 					barChart_2.setData(msg);
 				}
 			});
-		}
-		
-		function eachData(data,xmlx){
-			var jsonTr={'xmlx':xmlx,'ztz':0,'sl':0,'wkgztz':0,'wkgsl':0,
-					'zjztz':0,'zjsl':0,'jgztz':0,'jgsl':0};
-			$.each(data,function(index,item){
-				if(item.id=="0"){
-					jsonTr.wkgztz=parseFloat(item.text);
-					jsonTr.wkgsl=parseFloat(item.name);
-				}else if(item.id=="1"){
-					jsonTr.zjztz=parseFloat(item.text);
-					jsonTr.zjsl=parseFloat(item.name);
-				}else if(item.id=="2"){
-					jsonTr.jgztz=parseFloat(item.text);
-					jsonTr.jgsl=parseFloat(item.name);
-				}
-			});
-			jsonTr.ztz=jsonTr.wkgztz+jsonTr.zjztz+jsonTr.jgztz;
-			jsonTr.sl=jsonTr.wkgsl+jsonTr.zjsl+jsonTr.jgsl;
-			return jsonTr;
 		}
 		
 		function sbnf(id){
