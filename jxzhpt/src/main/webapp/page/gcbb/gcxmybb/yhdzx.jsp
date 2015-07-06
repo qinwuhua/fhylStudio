@@ -119,6 +119,10 @@
 							tr+="<td></td>";
 							tr+="<td></td>";
 							tr+="<td>"+item.yhlb+"</td>";
+						}else{
+							tr+="<td></td>";
+							tr+="<td></td>";
+							tr+="<td></td>";
 						}
 						tr+="<td>"+sjkgsj+"-"+sjwgsj+"</td>";
 						tr+="<td>"+item.ylmlx+"</td>";

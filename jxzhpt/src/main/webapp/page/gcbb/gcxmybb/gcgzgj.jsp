@@ -111,6 +111,10 @@
 							tr+="<td></td>";
 							tr+="<td></td>";
 							tr+="<td>"+item.yhlb+"</td>";
+						}else{
+							tr+="<td></td>";
+							tr+="<td></td>";
+							tr+="<td></td>";
 						}
 						tr+="<td>"+sjkgsj+"-"+sjwgsj+"</td>";
 						tr+="<td>"+item.ylmlx+"</td>";
@@ -193,7 +197,7 @@
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;工程改造路面改建进度报表</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;路面改造进度报表</div>
 			</div>
         	</tr>
         	<tr>
@@ -255,7 +259,7 @@
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="5200px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年工程改造路面改建工程进度报表 </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年路面改造工程进度报表 </caption>
 								<thead>
 									<tr>
 										<td rowspan="4" width="125px;">项目名称</td>

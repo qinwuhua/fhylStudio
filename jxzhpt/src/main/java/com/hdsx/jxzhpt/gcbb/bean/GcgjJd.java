@@ -10,14 +10,16 @@ public class GcgjJd {
 	public GcgjJd() {
 		super();
 	}
+	
 	public GcgjJd(String jhid, String sfgyhbm, String jsdd, String lxbm,
-			String qdzh, String zdzh, String yhlc, String yhlb, Date sjkgsj,
-			Date sjwgsj, String ylmlx, String sjlmlx, String dc, String bywcdc,
-			String bnwcdc, String zjwcdc, String jc, String bywcjc,
-			String bnwcjc, String zjwcjc, String mc, String bywcmc,
-			String bnwcmc, String zjwcmc, String pfztz, String gys,
-			String bywcje, String bnwcje, String zjwcje, String kgzt,
-			String jgzt, String xmmc) {
+			String qdzh, String zdzh, String yhlc, String yhlb, String sjkgsj,
+			String sjwgsj, String ylmlx, String sjlmlx, String dc,
+			String bywcdc, String bnwcdc, String zjwcdc, String jc,
+			String bywcjc, String bnwcjc, String zjwcjc, String mc,
+			String bywcmc, String bnwcmc, String zjwcmc, String pfztz,
+			String gys, String bywcje, String bnwcje, String zjwcje,
+			String kgzt, String jgzt, String xmmc, String bz,
+			List<Plan_lx_gcgj> gjjdlx, List<Plan_lx_shuih> shjdlx) {
 		super();
 		this.jhid = jhid;
 		this.sfgyhbm = sfgyhbm;
@@ -51,7 +53,11 @@ public class GcgjJd {
 		this.kgzt = kgzt;
 		this.jgzt = jgzt;
 		this.xmmc = xmmc;
+		this.bz = bz;
+		this.gjjdlx = gjjdlx;
+		this.shjdlx = shjdlx;
 	}
+
 	private String jhid;//计划ID
 	private String sfgyhbm;//是否归管养单位
 	private String jsdd;//建设地点
@@ -60,8 +66,8 @@ public class GcgjJd {
 	private String zdzh;//止点桩号
 	private String yhlc;//养护里程
 	private String yhlb;//养护类别
-	private Date sjkgsj;//实际开工时间
-	private Date sjwgsj;//实际完工时间
+	private String sjkgsj;//实际开工时间
+	private String sjwgsj;//实际完工时间
 	private String ylmlx;//原路面类型
 	private String sjlmlx;//设计路面类型
 	private String dc;//垫层
@@ -147,18 +153,23 @@ public class GcgjJd {
 	public void setYhlb(String yhlb) {
 		this.yhlb = yhlb;
 	}
-	public Date getSjkgsj() {
+	
+	public String getSjkgsj() {
 		return sjkgsj;
 	}
-	public void setSjkgsj(Date sjkgsj) {
+
+	public void setSjkgsj(String sjkgsj) {
 		this.sjkgsj = sjkgsj;
 	}
-	public Date getSjwgsj() {
+
+	public String getSjwgsj() {
 		return sjwgsj;
 	}
-	public void setSjwgsj(Date sjwgsj) {
+
+	public void setSjwgsj(String sjwgsj) {
 		this.sjwgsj = sjwgsj;
 	}
+
 	public String getYlmlx() {
 		return ylmlx;
 	}

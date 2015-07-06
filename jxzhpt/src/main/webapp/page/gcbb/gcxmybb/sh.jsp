@@ -196,7 +196,7 @@
 		<table width="99.9%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 			<div id="righttop">
-				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;水毁重建进度报表</div>
+				<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;灾毁重建进度报表</div>
 			</div>
         	</tr>
         	<tr>
@@ -259,7 +259,7 @@
                 		<div  class="easyui-layout" fit="true" >
 							<div data-options="region:'center',border:false" style="overflow:auto;">
 							<table width="5000px" >
-								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年水毁重建进度报表 </caption>
+								<caption align="top" style="font-size:x-large;font-weight: bolder;">2015年灾毁重建进度报表 </caption>
 								<thead>
 									<tr>
 										<td rowspan="4" style="width: 125px">项目名称</td>

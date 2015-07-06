@@ -63,7 +63,8 @@ public class GcbbController extends BaseActionSupport{
 		return bh.indexOf(",")==-1 ? name+" like '%"+bh+"%'": name+" in ("+bh+")";
 	}
 	
-	public void selGcgjJdbb() throws IOException, Exception{
+	public void selGcgjJdbb() {
+		try{
 		String tiaojian1="";
 		String tiaojian2="";
 		String gydwdm = "";
@@ -130,7 +131,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_13(gcgjJd.getBywcdc());
 				l.setV_14(gcgjJd.getBnwcdc());
 				l.setV_15(gcgjJd.getZjwcdc());
-				if("0".equals(gcgjJd.getDc()))
+				if("0".equals(gcgjJd.getDc())||" ".equals(gcgjJd.getDc()))
 				l.setV_16("0");
 				else
 					l.setV_16(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcdc())/Double.parseDouble(gcgjJd.getDc())*100)+"");
@@ -138,7 +139,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_18(gcgjJd.getBywcjc());
 				l.setV_19(gcgjJd.getBnwcjc());
 				l.setV_20(gcgjJd.getZjwcjc());
-				if("0".equals(gcgjJd.getJc()))
+				if("0".equals(gcgjJd.getJc())||" ".equals(gcgjJd.getJc()))
 					l.setV_21("0");
 					else
 						l.setV_21(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcjc())/Double.parseDouble(gcgjJd.getJc())*100)+"");
@@ -146,7 +147,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_23(gcgjJd.getBywcmc());
 				l.setV_24(gcgjJd.getBnwcmc());
 				l.setV_25(gcgjJd.getZjwcmc());
-				if("0".equals(gcgjJd.getMc()))
+				if("0".equals(gcgjJd.getMc())||" ".equals(gcgjJd.getMc()))
 					l.setV_26("0");
 					else
 						l.setV_26(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcmc())/Double.parseDouble(gcgjJd.getMc())*100)+"");
@@ -155,7 +156,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_29(gcgjJd.getBywcje());
 				l.setV_30(gcgjJd.getBnwcje());
 				l.setV_31(gcgjJd.getZjwcje());
-				if("0".equals(gcgjJd.getPfztz())){
+				if("0".equals(gcgjJd.getPfztz())||" ".equals(gcgjJd.getPfztz())){
 					l.setV_32("0");
 				}else{
 					l.setV_32(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcje())/Double.parseDouble(gcgjJd.getPfztz())*100)+"");
@@ -172,9 +173,9 @@ public class GcbbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("工程改造路面改建进度报表");//设置第一行
-			eldata.setSheetName("工程改造路面改建进度报表");//设置sheeet名
-			eldata.setFileName("工程改造路面改建进度报表");//设置文件名
+			eldata.setTitleName("路面改造进度报表");//设置第一行
+			eldata.setSheetName("路面改造进度报表");//设置sheeet名
+			eldata.setFileName("路面改造进度报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("项目名称",1,4,0,0));
@@ -227,6 +228,9 @@ public class GcbbController extends BaseActionSupport{
 			Excel_export.excel_export(eldata,response);
 		}else{
 			JsonUtils.write(selGcgjJdbb, getresponse().getWriter());
+		}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	public void selShuihJdbb() throws IOException, Exception{
@@ -298,7 +302,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_13(gcgjJd.getBywcdc());
 				l.setV_14(gcgjJd.getBnwcdc());
 				l.setV_15(gcgjJd.getZjwcdc());
-				if("0".equals(gcgjJd.getDc()))
+				if("0".equals(gcgjJd.getDc())||" ".equals(gcgjJd.getDc()))
 				l.setV_16("0");
 				else
 					l.setV_16(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcdc())/Double.parseDouble(gcgjJd.getDc())*100)+"");
@@ -306,7 +310,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_18(gcgjJd.getBywcjc());
 				l.setV_19(gcgjJd.getBnwcjc());
 				l.setV_20(gcgjJd.getZjwcjc());
-				if("0".equals(gcgjJd.getJc()))
+				if("0".equals(gcgjJd.getJc())||" ".equals(gcgjJd.getJc()))
 					l.setV_21("0");
 					else
 						l.setV_21(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcjc())/Double.parseDouble(gcgjJd.getJc())*100)+"");
@@ -314,7 +318,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_23(gcgjJd.getBywcmc());
 				l.setV_24(gcgjJd.getBnwcmc());
 				l.setV_25(gcgjJd.getZjwcmc());
-				if("0".equals(gcgjJd.getMc()))
+				if("0".equals(gcgjJd.getMc())||" ".equals(gcgjJd.getMc()))
 					l.setV_26("0");
 					else
 						l.setV_26(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcmc())/Double.parseDouble(gcgjJd.getMc())*100)+"");
@@ -323,7 +327,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_29(gcgjJd.getBywcje());
 				l.setV_30(gcgjJd.getBnwcje());
 				l.setV_31(gcgjJd.getZjwcje());
-				if("0".equals(gcgjJd.getPfztz())){
+				if("0".equals(gcgjJd.getPfztz())||" ".equals(gcgjJd.getPfztz())){
 					l.setV_32("0");
 				}else{
 					l.setV_32(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcje())/Double.parseDouble(gcgjJd.getPfztz())*100)+"");
@@ -340,9 +344,9 @@ public class GcbbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("水毁重建进度报表");//设置第一行
-			eldata.setSheetName("水毁重建进度报表");//设置sheeet名
-			eldata.setFileName("水毁重建进度报表");//设置文件名
+			eldata.setTitleName("灾毁重建进度报表");//设置第一行
+			eldata.setSheetName("灾毁重建进度报表");//设置sheeet名
+			eldata.setFileName("灾毁重建进度报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("项目名称",1,4,0,0));
@@ -412,14 +416,14 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+			tiaojian1="and l.gydwdm like '%"+gydwdm+"%'";
 		}else{
-			tiaojian1="and gydwdm in ("+gydwdm+")";
+			tiaojian1="and l.gydwdm in ("+gydwdm+")";
 		}
 		if(xzqhdm.indexOf(",")==-1){
-			tiaojian2="and xzqhdm like '%"+xzqhdm+"%'";
+			tiaojian2="and l.xzqhdm like '%"+xzqhdm+"%'";
 		}else{
-			tiaojian2="and xzqhdm in ("+xzqhdm+")";
+			tiaojian2="and l.xzqhdm in ("+xzqhdm+")";
 		}
 		xmbb.setGydw(tiaojian1);
 		xmbb.setXzqh(tiaojian2);
@@ -450,7 +454,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_17(gj.getLqlm());
 				l.setV_18(gj.getSnlm());
 				l.setV_19(gj.getBywcje());
-				if("0".equals(gj.getPftz()))
+				if("0".equals(gj.getPftz())||" ".equals(gj.getPftz()))
 					l.setV_20("0");
 					else
 						l.setV_20(String.format("%.2f", Double.parseDouble(gj.getBywcje())/Double.parseDouble(gj.getPftz())*100)+"");
@@ -490,9 +494,9 @@ public class GcbbController extends BaseActionSupport{
 				elist.add(l);
 			}
 			ExcelData eldata=new ExcelData();//创建一个类
-			eldata.setTitleName("公路工程改造进度完成情况汇总表");//设置第一行
-			eldata.setSheetName("公路工程改造进度完成情况汇总表");//设置sheeet名
-			eldata.setFileName("公路工程改造进度完成情况汇总表");//设置文件名
+			eldata.setTitleName("升级改造进度报表");//设置第一行
+			eldata.setSheetName("升级改造进度报表");//设置sheeet名
+			eldata.setFileName("升级改造进度报表");//设置文件名
 			eldata.setEl(elist);//将实体list放入类中
 			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 			et.add(new Excel_tilte("序号",1,3,0,0));
@@ -563,7 +567,8 @@ public class GcbbController extends BaseActionSupport{
 			JsonUtils.write(gcsj, getresponse().getWriter());
 		}
 	}
-	public void selYhdzxJdbb() throws IOException, Exception{
+	public void selYhdzxJdbb() {
+		try{
 		String tiaojian1="";
 		String tiaojian2="";
 		String gydwdm = "";
@@ -616,14 +621,12 @@ public class GcbbController extends BaseActionSupport{
 				else{
 					l.setV_8("");
 				}
-				SimpleDateFormat sdf =   new SimpleDateFormat( "yyyy-MM-dd" );
 				String kgrq="";
 				String wgrq="";
 				if(gcgjJd.getSjkgsj()!=null)
-					kgrq=sdf.format(gcgjJd.getSjkgsj());
+					kgrq=gcgjJd.getSjkgsj();
 				if(gcgjJd.getSjwgsj()!=null)
-					wgrq=sdf.format(gcgjJd.getSjwgsj());
-				
+					wgrq=gcgjJd.getSjwgsj();
 				l.setV_9(kgrq+" "+wgrq);
 				l.setV_10(gcgjJd.getYlmlx());
 				l.setV_11(gcgjJd.getSjlmlx());
@@ -631,7 +634,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_13(gcgjJd.getBywcdc());
 				l.setV_14(gcgjJd.getBnwcdc());
 				l.setV_15(gcgjJd.getZjwcdc());
-				if("0".equals(gcgjJd.getDc()))
+				if("0".equals(gcgjJd.getDc())||" ".equals(gcgjJd.getDc()))
 				l.setV_16("0");
 				else
 					l.setV_16(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcdc())/Double.parseDouble(gcgjJd.getDc())*100)+"");
@@ -639,7 +642,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_18(gcgjJd.getBywcjc());
 				l.setV_19(gcgjJd.getBnwcjc());
 				l.setV_20(gcgjJd.getZjwcjc());
-				if("0".equals(gcgjJd.getJc()))
+				if("0".equals(gcgjJd.getJc())||" ".equals(gcgjJd.getJc()))
 					l.setV_21("0");
 					else
 						l.setV_21(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcjc())/Double.parseDouble(gcgjJd.getJc())*100)+"");
@@ -647,7 +650,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_23(gcgjJd.getBywcmc());
 				l.setV_24(gcgjJd.getBnwcmc());
 				l.setV_25(gcgjJd.getZjwcmc());
-				if("0".equals(gcgjJd.getMc()))
+				if("0".equals(gcgjJd.getMc())||" ".equals(gcgjJd.getMc()))
 					l.setV_26("0");
 					else
 						l.setV_26(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcmc())/Double.parseDouble(gcgjJd.getMc())*100)+"");
@@ -656,7 +659,7 @@ public class GcbbController extends BaseActionSupport{
 				l.setV_29(gcgjJd.getBywcje());
 				l.setV_30(gcgjJd.getBnwcje());
 				l.setV_31(gcgjJd.getZjwcje());
-				if("0".equals(gcgjJd.getPfztz())){
+				if("0".equals(gcgjJd.getPfztz())||" ".equals(gcgjJd.getPfztz())){
 					l.setV_32("0");
 				}else{
 					l.setV_32(String.format("%.2f", Double.parseDouble(gcgjJd.getZjwcje())/Double.parseDouble(gcgjJd.getPfztz())*100)+"");
@@ -729,6 +732,9 @@ public class GcbbController extends BaseActionSupport{
 		}else{
 			JsonUtils.write(yhdzx, getresponse().getWriter());
 		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	public void selGcbb5() throws IOException, Exception{
 		try{
@@ -765,7 +771,7 @@ public class GcbbController extends BaseActionSupport{
 				for (Gcbb5 gb : s) {
 					Excel_list l=new Excel_list();
 					l.setV_0(gb.getJsdd());
-					l.setV_1(gb.getLxbm()+"["+gb.getQdzh()+"-"+gb.getZdzh()+"]"+gb.getXmmc());
+					l.setV_1(gb.getLxbm()+"["+gb.getQdzh()+"-"+gb.getZdzh()+"]、"+gb.getXmmc());
 					l.setV_2(gb.getYjsdj());
 					l.setV_3(gb.getJsjsbz());
 					l.setV_4(gb.getYhlc());
@@ -829,9 +835,9 @@ public class GcbbController extends BaseActionSupport{
 					elist.add(l);
 				}	
 				ExcelData eldata=new ExcelData();//创建一个类
-				eldata.setTitleName("公路改造工程新上、续建工程项目完成情况表");//设置第一行
-				eldata.setSheetName("公路改造工程新上、续建工程项目完成情况表");//设置sheeet名
-				eldata.setFileName("公路改造工程新上、续建工程项目完成情况表");//设置文件名
+				eldata.setTitleName("公路改造工程新上、续建工程项目完成情况明细表");//设置第一行
+				eldata.setSheetName("公路改造工程新上、续建工程项目完成情况明细表");//设置sheeet名
+				eldata.setFileName("公路改造工程新上、续建工程项目完成情况明细表");//设置文件名
 				eldata.setEl(elist);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("一、 项 目 计 划",1,1,0,12));

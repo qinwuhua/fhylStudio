@@ -85,7 +85,7 @@
 						tr+="<td>"+item.jsdd+"</td>";
 						//bmmc:项目名称【路线编码(起点-止点)】
 						//yjsdj:原技术等级;xmlc:项目里程
-						var bmmc=item.lxbm+'【'+item.qdzh+'-'+item.zdzh+'】',yjsdj=item.yjsdj,xmlc=item.yhlc;
+						var bmmc=item.lxbm+'【'+item.qdzh+'-'+item.zdzh+'】、'+item.xmmc,yjsdj=item.yjsdj,xmlc=item.yhlc;
 						tr+="<td>"+bmmc+"</td>";
 						tr+="<td>"+yjsdj+"</td>";
 						tr+="<td>"+item.jsjsbz+"</td>";
@@ -183,7 +183,7 @@
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
 			<tr>
 					<div id="righttop">
-						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;公路改造工程新上、续建工程项目完成情况表</div>
+						<div id="p_top">当前位置>&nbsp;工程报表>&nbsp;工程项目月报表>&nbsp;公路改造工程新上、续建工程项目完成情况明细表</div>
 					</div>
         	</tr>
         	<tr>

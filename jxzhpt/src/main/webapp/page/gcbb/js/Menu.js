@@ -102,44 +102,45 @@ $(function() {
 		renderTo:'left_menu2',
 		href:'./gcxmybb/zhfz.jsp'
 	});
+	
 	createMenux('LeftMenu',{
-		id:'menu_0101050204',
-		title:'水毁重建进度报表',
-		imgSrc:'../../images/menubutton/shcjjdbb.png',
+		id:'menu_0101050207',
+		title:'升级改造进度报表',
+		imgSrc:'../../images/menubutton/glgcgzjdqkwchzb.png',
 		renderTo:'left_menu2',
-		href:'./gcxmybb/sh.jsp'
+		href:'./gcxmybb/glgzjd.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050205',
-		title:'工程改造路面改建进度报表',
+		title:'路面改造进度报表',
 		imgSrc:'../../images/menubutton/gcgzlmgjjdbb.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/gcgzgj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050206',
-		title:'养护路面大中修工程进度报表',
+		title:'养护大中修工程进度报表',
 		imgSrc:'../../images/menubutton/dzxgcjdbb.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/yhdzx.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101050207',
-		title:'公路工程改造进度完成情况汇总表',
-		imgSrc:'../../images/menubutton/glgcgzjdqkwchzb.png',
+		id:'menu_0101050204',
+		title:'灾毁重建进度报表',
+		imgSrc:'../../images/menubutton/shcjjdbb.png',
 		renderTo:'left_menu2',
-		href:'./gcxmybb/glgzjd.jsp'
+		href:'./gcxmybb/sh.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050208',
-		title:'公路改造工程新上、续建工程项目完成情况汇总表',
+		title:'公路改造工程新上、续建工程项目完成情况明细表',
 		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxj.jsp'
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101050209',
-		title:'公路改造工程新上、续建工程项目完成情况明细表',
+		title:'公路改造工程新上、续建工程项目完成情况汇总表',
 		imgSrc:'../../images/menubutton/gzxsxjgcqk.png',
 		renderTo:'left_menu2',
 		href:'./gcxmybb/glgzxjmxb.jsp'

@@ -552,7 +552,7 @@
 					and t3.xzqhdm like '%'||trim(#{xzqhmc})||'%'
 			</if>
 	</select>
-	<!-- 水毁 -->
+	<!-- 灾毁重建 -->
 	<select id="getShybb" parameterType="gcglsh" resultType="hashmap">
 		select t1.lxmc v_0,t2.SFGYHBM v_1,t1.XZQHMC v_2,t1.lxbm v_3,t1.qdzh||'-'||t1.zdzh v_4,t1.qzlc v_5,
 		t1.yhlc v_6,t2.SJKGSJ v_9,t1.YLMLX v_10,t2.SJLMLX v_11,t2.DC v_12,t3.BYWCDC v_13,
@@ -1099,8 +1099,8 @@
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz pl,(select jhid,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_wqgz g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc,gcgl_jgys jg,
 			(select z.xmid jhid,sum(z.btzzj) xdbtz,sum(z.stz) xdstz,sum(z.xdzj)-sum(z.stz)-sum(z.btzzj) xddfzj from plan_zjxd z where to_number(z.xdnf)&lt;=to_number(#{sbyf}) group by z.xmid) zj,
 			(select b.jhid,decode(sum(b.cgsdwzj),null,0,sum(b.cgsdwzj)) dwbtz,decode(sum(b.stz),null,0,sum(b.stz)) dwstz from gcgl_cgs b where to_number(substr(b.tbyf,0,4))&lt;=to_number(#{sbyf}) group by b.jhid) bf,
-			(select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g where substr(g.sbyf,0,4)=#{sbyf} group by g.jhid) bf1
-			where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid(+) and pl.id=jg.jhid(+) and pl.id=zj.jhid(+) and pl.id=bf.jhid(+) and pl.id=bf1.jhid(+)
+			(select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g where substr(g.sbyf,0,4)&lt;=#{sbyf} group by g.jhid) bf1
+			where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid and pl.id=jg.jhid(+) and pl.id=zj.jhid and pl.id=bf.jhid and pl.id=bf1.jhid
 		)
 		where 1=1
 		<if test="gydw != null and  gydw != ''">
@@ -1129,11 +1129,11 @@
       
       from xmk_abgc xm,sck_abgc sc,plan_abgc pl,
       (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc,
-      (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))=to_number(#{sbyf}) group by jhid) gc1,
+      (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc1,
       (select z.xmid jhid,sum(z.btzzj) xdbtz,sum(z.stz) xdstz,sum(z.xdzj)-sum(z.stz)-sum(z.btzzj) xddfzj from plan_zjxd z where to_number(z.xdnf)&lt;=to_number(#{sbyf}) group by z.xmid) zj,
       (select b.jhid,decode(sum(b.cgsdwzj),null,0,sum(b.cgsdwzj)) dwbtz,decode(sum(b.stz),null,0,sum(b.stz)) dwstz from gcgl_cgs b where to_number(substr(b.tbyf,0,4))&lt;=to_number(#{sbyf}) group by b.jhid) bf
       
-      where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=zj.jhid(+) and pl.id=bf.jhid(+)
+      where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid and pl.id=gc1.jhid and pl.id=zj.jhid and pl.id=bf.jhid
 		)
 	where 1=1
 	<if test="gydw != null and  gydw != ''">
@@ -1167,8 +1167,8 @@
 			from xmk_wqgz xm,sck_wqgz sc,plan_wqgz pl,(select jhid,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_wqgz g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc,gcgl_jgys jg,
 			(select z.xmid jhid,sum(z.btzzj) xdbtz,sum(z.stz) xdstz,sum(z.xdzj)-sum(z.stz)-sum(z.btzzj) xddfzj from plan_zjxd z where to_number(z.xdnf)&lt;=to_number(#{sbyf}) group by z.xmid) zj,
 			(select b.jhid,decode(sum(b.cgsdwzj),null,0,sum(b.cgsdwzj)) dwbtz,decode(sum(b.stz),null,0,sum(b.stz)) dwstz from gcgl_cgs b where to_number(substr(b.tbyf,0,4))&lt;=to_number(#{sbyf}) group by b.jhid) bf,
-			(select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g where substr(g.sbyf,0,4)=#{sbyf} group by g.jhid) bf1
-			where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid(+) and pl.id=jg.jhid(+) and pl.id=zj.jhid(+) and pl.id=bf.jhid(+) and pl.id=bf1.jhid(+)
+			(select jhid,sum(g.wc_btz)+sum(g.wc_stz)+sum(g.wc_qttz) bnwctz from gcgl_wqgz g where substr(g.sbyf,0,4)&lt;=#{sbyf} group by g.jhid) bf1
+			where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid and pl.id=jg.jhid(+) and pl.id=zj.jhid and pl.id=bf.jhid and pl.id=bf1.jhid
 		)
 		where 1=1
 		<if test="gydw != null and  gydw != ''">
@@ -1189,20 +1189,18 @@
 	<select id="getAbgcJsb1" parameterType="gcglwqgz" resultType="elist">
 	select * from
 		(
-		 select nvl(substr(xm.xzqhmc,instr(xzqhmc, '市')+1,length(xm.xzqhmc)),' ') v_1,(case when tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when tsdq like '%原中央苏区%'and tsdq like '%国家贫困县%' then '是' else '否' end) v_3,(case when tsdq like '%原中央苏区%' then '是' else '否' end) v_4,xm.xzqhdm v_5,xm.xzqhmc v_6,xm.lxbm v_7,xm.lxmc v_8,sc.scqdzh v_9,sc.sczdzh v_10,sc.scyhlc v_11,sc.jsxz v_12,
+	  select nvl(substr(xm.xzqhmc,instr(xzqhmc, '市')+1,length(xm.xzqhmc)),' ') v_1,(case when tsdq like '%罗霄山脉连片特困地区%' then '是' else '否' end) v_2,(case when tsdq like '%原中央苏区%'and tsdq like '%国家贫困县%' then '是' else '否' end) v_3,(case when tsdq like '%原中央苏区%' then '是' else '否' end) v_4,xm.xzqhdm v_5,xm.xzqhmc v_6,xm.lxbm v_7,xm.lxmc v_8,sc.scqdzh v_9,sc.sczdzh v_10,sc.scyhlc v_11,sc.jsxz v_12,
       decode(pl.xdsj,null,' ',to_char(pl.xdsj,'yyyy-mm-dd')) v_13,decode(pl.jhkgsj,null,' ',to_char(pl.jhkgsj,'yyyy-mm-dd')) v_14, decode(pl.jhwgsj,null,' ',to_char(pl.jhwgsj,'yyyy-mm-dd')) v_15,decode(pl.yjwgsj,null,' ',to_char(pl.yjwgsj,'yyyy-mm-dd')) v_16,
       pl.pfztz v_17,pl.jhsybbzje v_18,decode(pl.sjkgsj,null,' ',to_char(pl.sjkgsj,'yyyy-mm-dd')) v_19,decode(pl.sjwgsj,null,' ',to_char(pl.sjwgsj,'yyyy-mm-dd')) v_20,nvl(pl.jsdw,' ') v_21,nvl(pl.sjdw,' ') v_22,nvl(pl.sgdw,' ') v_23,nvl(pl.jldw,' ') v_24,nvl(gc.wczlc,0) v_25,nvl(gc1.wczlc,0) v_26,
       nvl((gc.wcbtz+gc.wcqttz),0) v_27,nvl(gc.wcbtz,0) v_28,nvl(gc.wcqttz,0) v_29,nvl((gc1.wcbtz+gc1.wcqttz),0) v_30,'0' v_31,
       nvl(zj.xdbtz,0) v_32,nvl(bf.dwbtz,0) v_33,decode(zj.xdbtz,null,' ',0,0||'%',round((bf.dwbtz/zj.xdbtz*100),0)||'%') v_34,
       nvl(zj.xddfzj,0) v_35,nvl(gc.dwdfzj,0) v_36,decode(zj.xddfzj,null,' ',0,0||'%',decode(gc.dwdfzj,null,0||'%',round((gc.dwdfzj/zj.xddfzj*100),0)||'%')) v_37,' ' v_38,pl.jhnf sbnf,xm.gydwbm gydw,xm.xzqhdm,xm.lxbm
-      
       from xmk_abgc xm,sck_abgc sc,plan_abgc pl,
       (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc,
-      (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))=to_number(#{sbyf}) group by jhid) gc1,
+      (select jhid,nvl(sum(g.bywc_gl),0) wczlc,sum(g.wc_btz) wcbtz,sum(g.wc_qttz) wcqttz,decode(sum(g.zjdw_qttz),null,0,sum(g.zjdw_qttz)) dwdfzj from gcgl_abgc g where to_number(substr(g.sbyf,0,4))&lt;=to_number(#{sbyf}) group by jhid) gc1,
       (select z.xmid jhid,sum(z.btzzj) xdbtz,sum(z.stz) xdstz,sum(z.xdzj)-sum(z.stz)-sum(z.btzzj) xddfzj from plan_zjxd z where to_number(z.xdnf)&lt;=to_number(#{sbyf}) group by z.xmid) zj,
       (select b.jhid,decode(sum(b.cgsdwzj),null,0,sum(b.cgsdwzj)) dwbtz,decode(sum(b.stz),null,0,sum(b.stz)) dwstz from gcgl_cgs b where to_number(substr(b.tbyf,0,4))&lt;=to_number(#{sbyf}) group by b.jhid) bf
-      
-      where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid(+) and pl.id=gc1.jhid(+) and pl.id=zj.jhid(+) and pl.id=bf.jhid(+)
+      where xm.id=sc.xmkid and sc.sckid=pl.sckid and pl.id=gc.jhid and pl.id=gc1.jhid and pl.id=zj.jhid and pl.id=bf.jhid
 		)
 	where 1=1
 	<if test="gydw != null and  gydw != ''">

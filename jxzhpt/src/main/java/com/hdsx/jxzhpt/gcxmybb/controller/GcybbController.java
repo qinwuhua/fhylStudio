@@ -782,7 +782,7 @@ public class GcybbController extends BaseActionSupport{
 				
 				if("路面改造".equals(gcglwqgz.getTiaojian()))
 					tableName="yb_gj";
-				if("水毁".equals(gcglwqgz.getTiaojian()))
+				if("灾毁重建".equals(gcglwqgz.getTiaojian()))
 					tableName="yb_sh";
 				
 				String[] arr=gcglwqgz.getXmnf().split(",");
@@ -883,9 +883,9 @@ public class GcybbController extends BaseActionSupport{
 					}
 					//把数据放入elist
 					ExcelData eldata=new ExcelData();//创建一个类
-					eldata.setTitleName("公路改造工程新上、续建工程项目完成情况明细表");//设置第一行 
+					eldata.setTitleName("公路改造工程新上、续建工程项目完成情况汇总表");//设置第一行 
 					eldata.setSheetName("完成情况表");//设置sheeet名
-					eldata.setFileName("公路改造工程新上、续建工程项目完成情况明细表");//设置文件名
+					eldata.setFileName("公路改造工程新上、续建工程项目完成情况汇总表");//设置文件名
 					eldata.setEl(elist);//将实体list放入类中
 					List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 					et.add(new Excel_tilte("序号",1,3,0,0));
