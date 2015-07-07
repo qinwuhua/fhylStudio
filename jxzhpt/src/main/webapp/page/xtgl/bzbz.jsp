@@ -89,7 +89,7 @@ function selBzbz(){
 <div style="width:100%;">
     <div  style="height:34px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;补助标准</div>
+			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;路网补助标准</div>
 		</div>
     </div>
     <div style="height:700px;margin-top:10px;margin-left:10px;">

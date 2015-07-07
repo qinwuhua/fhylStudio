@@ -45,4 +45,6 @@ public interface JckwqgzsjServer {
 	List<Jckwqgzsj> JckWqgzRoad(Jckwqgzsj jckwqgzsj);
 
 	boolean insertSckwqgz(Jckwqgzsj jckwqgzsj);
+
+	boolean deleteSckWqgz(Jckwqgzsj jckwqgzsj);
 }

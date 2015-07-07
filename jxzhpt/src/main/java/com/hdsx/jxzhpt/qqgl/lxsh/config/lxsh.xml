@@ -54,7 +54,8 @@
 	</select>
 	<select id="selectSjgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_SJGZ t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,lx.minqdzh,lx.maxzdzh  from LXSH_SJGZ t left join
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -197,7 +198,7 @@
 	</select>
 	<select id="selectSjgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*  from LXSH_SJGZ t where 1=1
+		select rownum num ,t.*,lx.minqdzh,lx.maxzdzh  from LXSH_SJGZ t left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -262,7 +263,7 @@
 	</select>
 	<select id="selectLmgzshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*  from LXSH_LMGZ t where 1=1
+		select rownum num ,t.*,lx.minqdzh,lx.maxzdzh  from LXSH_LMGZ t left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -328,7 +329,7 @@
 	
 	<select id="selectXjshList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*  from LXSH_XJ t where 1=1
+		select rownum num ,t.*,lx.minqdzh,lx.maxzdzh  from LXSH_XJ t left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -429,7 +430,7 @@
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1  from LXSH_LMGZ t where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,lx.minqdzh,lx.maxzdzh  from LXSH_LMGZ t left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -495,7 +496,9 @@
 	
 	<select id="selectXjList" parameterType="lxsh" resultType="lxsh">
 		select * from (
-		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,tt.bzys1  from LXSH_XJ t left join (select xmid,sum(bzcs) bzys1 from lxsh_lx where sffirst='1' and jdbs='0' group by xmid)tt on t.xmbm=tt.xmid where 1=1
+		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'0',to_char(sbzt)) sbzt1,tt.bzys1,lx1.minqdzh,lx1.maxzdzh from LXSH_XJ t left join (select xmid,sum(bzcs) bzys1 from lxsh_lx where sffirst='1' and jdbs='0' group by xmid) tt on t.xmbm=tt.xmid 
+		left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx1 on t.xmbm=lx1.xmid
+		where 1=1
 			and  sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

@@ -155,4 +155,18 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			return true;
 		else return false;
 	}
+
+	@Override
+	public boolean deleteSckWqgz(Jckwqgzsj jckwqgzsj) {
+		String[] strs = jckwqgzsj.getId().split(",");
+		list = new ArrayList<String>();
+		for (int i = 0; i < strs.length; i++) {
+			Jckwqgzsj jckwqgzsj1=new Jckwqgzsj();
+			jckwqgzsj1.setId(strs[i]);
+			delete("deleteqlzpbyxmbm",jckwqgzsj1);
+			list.add(strs[i]);
+		}
+		if(deleteBatch("deleteSckWqgz", list)>0) return true;
+		else return false;
+	}
 }

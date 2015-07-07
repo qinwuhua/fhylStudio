@@ -23,7 +23,7 @@
 <script type="text/javascript" src="../js/wqsj.js"></script>
 <script type="text/javascript">
 var xmkid;
-var bzls;
+var bzls='';
 $(function(){
 	xxId=newGuid();
 	xmnf1("scxmnf");
@@ -74,7 +74,7 @@ $(function(){
 //			dataType:'json',
 			url:'/jxzhpt/wqgzsj/deleteqlzpbyxmbm.do',
 			dataType:'json',
-			data:'jckwqgzsj.id='+xxId,
+			data:'jckjckwqgzsj.id='+xxId,
 			success:function(data){
 				parent.$('#sck_add').window('destroy');
 			}
@@ -163,15 +163,16 @@ function saveWqgz(){
 	if($.cookie("unit2")=="______36"){
 		sbthcd=7;
 	}
-	var data ="wqgzsj.xmkid="+xmkid+"&wqgzsj.fapgdw="+$("#fapgdw").val()+"&wqgzsj.fascdw="+$("#fascdw").val()+
-	"&wqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&wqgzsj.spwh="+$("#spwh").val()+"&wqgzsj.tzgs="+$("#tzgs").val()+
-	"&wqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&wqgzsj.jsnr="+$("#jsnr").val()+"&wqgzsj.scbz="+$("#scbz").val()+
-	"&wqgzsj.scbmbm="+$.cookie("unit")+"&wqgzsj.qlbh="+$("#qlbh").val()+"&wqgzsj.lxbm="+$("#lxbm").html()+"&wqgzsj.qlzxzh="+$("#qlzxzh").html()+
-	"&wqgzsj.sck_sbthcd="+sbthcd+"&wqgzsj.bzls="+bzls+"&wqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&wqgzsj.scqlqc="+$("#scqlqc").val()+"&wqgzsj.scqlqk="+$("#scqlqk").val()
-	+"&wqgzsj.sjdwmc="+$("#sjdwmc").val()+"&wqgzsj.jsgmqc="+$("#jsgmqc").val()+"&wqgzsj.jsgmqk="+$("#jsgmqk").val()
-	+"&wqgzsj.hzdj="+$("#hzdj").val()+"&wqgzsj.sjhspl="+$("#sjhspl").val()+"&wqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
-	+"&wqgzsj.kjzh="+$("#kjzh").val()+"&wqgzsj.ztz="+$("#ztz").val()+"&wqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
-	+"&wqgzsj.sgtpfsj="+$("#sgtpfsj").val()+"&wqgzsj.pfwh="+$("#pfwh").val()+"&wqgzsj.zgq="+$("#zgq").val()+"&wqgzsj.sckid="+xxId;
+	var data ="jckwqgzsj.xmkid="+xmkid+"&jckwqgzsj.fapgdw="+$("#fapgdw").val()+"&jckwqgzsj.fascdw="+$("#fascdw").val()+
+	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+$("#tzgs").val()+
+	"&jckwqgzsj.jsxz="+$("#jsxz").combobox("getValue")+"&jckwqgzsj.jsnr="+$("#jsnr").val()+"&jckwqgzsj.scbz="+$("#scbz").val()+
+	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
+	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
+	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.jsgmqc="+$("#jsgmqc").val()+"&jckwqgzsj.jsgmqk="+$("#jsgmqk").val()
+	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
+	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
+	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId;
+	//alert(data);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/wqgzsj/insertSckwqgz.do',
@@ -533,7 +534,7 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工图批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text"  id="sgtpfsj" style="width: 150px" /></td>
+					<input type="text"  id="sgtpfsj"  class="easyui-datebox"  style="width: 156px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="pfwh" style="width: 150px" /></td>

@@ -51,7 +51,21 @@ public class Lxsh implements Serializable {
 	private String gpsqdzh;
 	private String gpszdzh;
 	private String lxbm;
+	private String minqdzh;
+	private String maxzdzh;
 	
+	public String getMinqdzh() {
+		return minqdzh;
+	}
+	public void setMinqdzh(String minqdzh) {
+		this.minqdzh = minqdzh;
+	}
+	public String getMaxzdzh() {
+		return maxzdzh;
+	}
+	public void setMaxzdzh(String maxzdzh) {
+		this.maxzdzh = maxzdzh;
+	}
 	public String getLxbm() {
 		return lxbm;
 	}

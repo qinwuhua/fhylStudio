@@ -354,7 +354,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			}else{
 				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
 			}
-			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setSck_sbthcd(sbthcd);
 			jckwqgzsj.setLxmc(lxmc);
 			jckwqgzsj.setQlmc(qlmc);
 			jckwqgzsj.setXmnf(xmnf);
@@ -390,7 +390,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			}else{
 				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
 			}
-			jckwqgzsj.setSbthcd(sbthcd);
+			jckwqgzsj.setSck_sbthcd(sbthcd);
 			jckwqgzsj.setLxmc(lxmc);
 			jckwqgzsj.setQlmc(qlmc);
 			jckwqgzsj.setXmnf(xmnf);
@@ -427,6 +427,14 @@ public class JckwqgzsjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void deleteSckWqgz(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.deleteSckWqgz(jckwqgzsj),getresponse().getWriter());
+		}  catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

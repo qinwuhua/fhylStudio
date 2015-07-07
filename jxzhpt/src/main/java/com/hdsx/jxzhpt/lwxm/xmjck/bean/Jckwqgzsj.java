@@ -653,9 +653,25 @@ public class Jckwqgzsj implements Serializable{
 				+ ", tsdq=" + tsdq + ", page=" + page + ", rows=" + rows
 				+ ", sbzt2=" + sbzt2 + ", qdzh=" + qdzh + ", zdzh=" + zdzh
 				+ ", qlyhgcs=" + qlyhgcs + ", qljggcs=" + qljggcs
-				+ ", czyjhjy=" + czyjhjy + "]";
+				+ ", czyjhjy=" + czyjhjy + ", shzt1=" + shzt1 + ", shyj1="
+				+ shyj1 + ", shyj2=" + shyj2 + ", xmrksj=" + xmrksj
+				+ ", sckid=" + sckid + ", xmkid=" + xmkid + ", scqdzh="
+				+ scqdzh + ", sczdzh=" + sczdzh + ", sczlc=" + sczlc
+				+ ", scyhlc=" + scyhlc + ", scqlqc=" + scqlqc + ", scqlqk="
+				+ scqlqk + ", scxmnf=" + scxmnf + ", tzgs=" + tzgs + ", spwh="
+				+ spwh + ", fapgdw=" + fapgdw + ", fascdw=" + fascdw
+				+ ", faspsj=" + faspsj + ", jsxz=" + jsxz + ", jsnr=" + jsnr
+				+ ", scbz=" + scbz + ", scbmbm=" + scbmbm + ", sck_sbzt="
+				+ sck_sbzt + ", sck_sbsj=" + sck_sbsj + ", sck_sbbm="
+				+ sck_sbbm + ", sck_shzt=" + sck_shzt + ", sck_shsj="
+				+ sck_shsj + ", sck_shbm=" + sck_shbm + ", sck_sbthcd="
+				+ sck_sbthcd + ", sck_sbzt2=" + sck_sbzt2 + ", lrjh=" + lrjh
+				+ ", bzls=" + bzls + ", sjdwmc=" + sjdwmc + ", jsgmqc="
+				+ jsgmqc + ", jsgmqk=" + jsgmqk + ", hzdj=" + hzdj
+				+ ", sjhspl=" + sjhspl + ", sck_sbjgxs=" + sck_sbjgxs
+				+ ", kjzh=" + kjzh + ", sck_xbjgxs=" + sck_xbjgxs + ", ztz="
+				+ ztz + ", sgtpfsj=" + sgtpfsj + ", pfwh=" + pfwh + ", zgq="
+				+ zgq + ", xmsqbzzjje=" + xmsqbzzjje + "]";
 	}
-
-
 	
 }

@@ -37,8 +37,8 @@ text-decoration:none;
 	function load(){
 		var data=parent.obj;
 		$("#xmmc").html(data.xmmc);
-		$("#qdzh").html(data.qdzh);
-		$("#zdzh").html(data.zdzh);
+		$("#qdzh").html(data.minqdzh);
+		$("#zdzh").html(data.maxzdzh);
 		$("#jsxz").html(data.jsxz);
 		$("#xzqh").html(data.xzqh);
 		$("#jsjsdj").html(data.jsjsdj);

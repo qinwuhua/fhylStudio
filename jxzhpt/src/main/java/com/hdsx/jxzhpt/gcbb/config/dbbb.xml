@@ -694,7 +694,7 @@ to_char(lqlm+snlm) v_17,'计划方案' v_18,to_char(PFTZ) v_19,JHSYBBZJE v_20 fr
       (select z.xmid,z.xdnf,sum(z.xdzj) snhj,sum(z.btzzj) snbtz from plan_zjxd z where z.xdnf=to_char(to_number(#{sbnf})-1) group by z.xmid,z.xdnf) zj2
       where p.xmbm=gk.xmbm and p.xmbm=lx.jhid(+) and p.xmbm=lx1.jhid(+) and p.xmbm=lx2.jhid(+) and p.xmbm= zj1.xmid(+) and p.xmbm=zj2.xmid(+) and p.xmbm=lxsh.xmbm and p.xmbm=cbsj.xmbm and zj1.xdnf is not null
 			union all
-			select '水毁' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'水毁' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
+			select '灾毁重建' xmlx,' ' bz,p.xmmc,lx2.xzdj,lx.qdzh,lx.zdzh,lx2.lxbh,lx2.jsdj,lxsh.tsdq,lx2.shi,lx2.xian,'灾毁重建' jsxz,lx1.yijgl+lx1.erjgl+lx1.sanjgl+lx1.sijgl hejgl,
       lx1.yijgl,lx1.erjgl,lx1.sanjgl,lx1.sijgl,' ' dqiao,' ' sdao,' ' lmkd,' ' jsfa,p.pfztz ztz,p.bbzzj btz,p.sbzzj stz,zj2.snhj,zj2.snbtz,zj1.bnhj,zj1.bnbtz,
       ' ' gkpfwh,cbsj.sjpfwh,zj1.jhxdwh,lxsh.gydwdm gydw,lx.xzqhdm xzqh
       from jhsh_sh p,xmsq_sh lxsh,cbsj_sh cbsj,
