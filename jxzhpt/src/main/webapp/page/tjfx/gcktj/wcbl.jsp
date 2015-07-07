@@ -18,69 +18,63 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var jsonData=new Array();
 			sbnf("searchYear");
 			loadGrid();
-			//loadTjt();
 		});
 		function loadGrid(){
 			$('#grid').datagrid({
-			    url:'../../../tjfx/queryGckXzqhtj.do',
+			    url:'../../../tjfx/queryGckWcbl.do',
 			    queryParams:{'nf':$('#searchYear').combobox('getValue')},
 			    striped:true,
 			    pagination:false,
 			    rownumbers:false,
 			    pageNumber:1,
 			    pageSize:20,
-			    height:275,
+			    height:330,
 			    width:$('#grid').width(),
-			    columns:[
-						    [
-						     	{field:'xzqh',title:'行政区划',width:100,align:'center',rowspan:2},
-						     	{title:'合计',colspan:3},
-						     	{title:'未开工项目',colspan:2},
-						     	{title:'在建项目',colspan:3},
-						     	{title:'竣工项目',colspan:3}
-						    ],
-						    [
-						     	{field:'ZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'WCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'SL',title:'数量',width:100,align:'center',rowspan:1},
-						     	{field:'WKGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'WKGSL',title:'数量',width:100,align:'center',rowspan:1},
-						     	{field:'ZJZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'ZJWCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'ZJSL',title:'数量',width:100,align:'center',rowspan:1},
-						     	{field:'JGZTZ',title:'总投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'JGWCTZ',title:'完成投资(万元)',width:100,align:'center',rowspan:1},
-						     	{field:'JGSL',title:'数量',width:100,align:'center',rowspan:1}
-						    ]
-					    ],
+			    columns:
+			    	[
+				    	[
+							{field:'XZQH',title:'行政区划',width:100,align:'center',rowspan:2},
+							{title:'里程',colspan:3},
+							{title:'车购税',colspan:3},
+							{title:'完成投资额',colspan:3}
+						],
+						[
+							{field:'ZLC',title:'总里程',width:100,align:'center',rowspan:1},
+							{field:'WCLC',title:'完成里程',width:100,align:'center',rowspan:1},
+							{field:'LCBL',title:'完成比例',width:100,align:'center',rowspan:1},
+							
+							{field:'CGS',title:'计划车购税',width:100,align:'center',rowspan:1},
+							{field:'DWCGS',title:'到位车购税',width:100,align:'center',rowspan:1},
+							{field:'CGSBL',title:'到位比例',width:100,align:'center',rowspan:1},
+							
+							{field:'ZTZ',title:'计划总投资',width:100,align:'center',rowspan:1},
+							{field:'WCTZ',title:'完成投资',width:100,align:'center',rowspan:1},
+							{field:'TZBL',title:'完成投资比例',width:100,align:'center',rowspan:1},
+						]
+			    	],
 			    onLoadSuccess:function(){
 			    	loadTjt();
-			    },
-			    onSelect:function(rowIndex, rowData){
-			    	alert(rowData.xzqhdm);
-			    	parent.YMLib.Var.xzqhdm=rowData.xzqhdm;
-			    	window.location.href='../gcktj/xmlxtj.jsp';
 			    }
 			});
+
 		}
 		
 		function loadTjt(){
-			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");
 		    barChart_1.width =980;
-		    barChart_1.height =450;
+		    barChart_1.height =300;
 		    barChart_1.padding =0;
 		    barChart_1.wMode="transparent";
 		    barChart_1.write("anychart_div");
-			$.ajax({
-				type:'post',
-				url:'../../../tjfx/queryGckXzqhtjt.do',
-				data:'nf='+$('#searchYear').val(),
+		    $.ajax({
+				type:"post",
+				url:'../../../tjfx/queryGckWcblt.do',
+				data:'nf='+$('#searchYear').combo('getValue')+'&ftlName=gck_wctj.ftl&xmlx=完成比例',
 				dataType:'text',
-				success:function(data){
-					barChart_1.setData(data);
+				success:function(msg){
+					barChart_1.setData(msg);
 				}
 			});
 		}
@@ -109,7 +103,7 @@
 			<tr>
 				<td>
 	                <div id="righttop">
-						<div id="p_top">统计分析>&nbsp;工程库统计分析>&nbsp;行政区划统计</div>
+						<div id="p_top">统计分析>&nbsp;工程库统计分析>&nbsp;与上年完成投资额比</div>
 					</div>
 	            </td>
         	</tr>
@@ -133,11 +127,11 @@
         	</tr>
         	<tr>
         		<td>
-	        		<div style="margin-left: 10px;margin-top: 10px;">
+	        		<div style="margin-left: 10px;margin-top: 5px;">
 	        			<div style="">
-	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">项目信息分布
+	        				<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">与上年完成投资额比柱状图
 	        			</div>
-	        			<div style="height: 500px;border: 1px #C0C0C0 solid;text-align: center;">
+	        			<div style="height: 300px;border: 1px #C0C0C0 solid;text-align: center;">
 	        				<div id="anychart_div" style="width:97%;height:300px;margin:10px;"> 
 								<div>
 									<param name="wmode" value="transparent" />

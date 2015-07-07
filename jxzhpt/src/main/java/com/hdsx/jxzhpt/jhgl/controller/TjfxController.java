@@ -745,6 +745,7 @@ public class TjfxController extends BaseActionSupport{
 				xzqhdm = item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0,4);
 				Map<String,Object> index = tjfxServer.queryGckXzqhtj(xzqhdm,nf);
 				index.put("xzqh", item.getName());
+				index.put("xzqhdm", item.getId());
 				result.add(index);
 			}
 			getRequest().getSession().setAttribute("gckxzqh", result);
@@ -756,11 +757,11 @@ public class TjfxController extends BaseActionSupport{
 	/**
 	 * 工程库行政区划统计分析图
 	 */
+	@SuppressWarnings("unchecked")
 	public void queryGckXzqhtjt(){
 		try {
 			Map<String,Object> parameter=new HashMap<String,Object>();
 			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-			@SuppressWarnings("unchecked")
 			List<Map<String,Object>> attribute = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxzqh");
 			for (Map<String,Object> item : attribute) {
 				Map<String, String> index=new HashMap<String, String>();
@@ -769,6 +770,7 @@ public class TjfxController extends BaseActionSupport{
 				index.put("wg", item.get("WCTZ").toString());
 				list.add(index);
 			}
+			getRequest().getSession().removeAttribute("gckxzqh");
 			parameter.put("list",list);
 			parameter.put("xName", "年份");//title
 			parameter.put("chart_title_y", "金额");
@@ -830,7 +832,7 @@ public class TjfxController extends BaseActionSupport{
 			parameter.put("yName", yName);
 			int precision=3;//小数的位数
 			parameter.put("precision",precision);
-			parameter.put("chart_title", "行政区划统计图");
+			parameter.put("chart_title", xmlx);
 			String chartType = ftlName;
 			parameter.put("list",data);
 			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
@@ -840,9 +842,149 @@ public class TjfxController extends BaseActionSupport{
 		}
 	}
 	/**
-	 * 工程库项目类型统计图2
+	 * 工程库投资额比例统计
 	 */
-	public void queryGckXmlxtjt2(){
+	public void queryTzebl(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			Map<String, Object> bnwc=new HashMap<String, Object>();
+			bnwc.put("sm", "本年完成投资");
+			Map<String, Object> snwc=new HashMap<String, Object>();
+			snwc.put("sm", "上年完成投资");
+			Map<String, Object> bl=new HashMap<String, Object>();
+			bl.put("sm", "同比增长比例");
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					Map<String,Object> index = tjfxServer.queryTzebl(nf,item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0, 4));
+					index.put("XZQHDM", item.getId());
+					index.put("XZQH", item.getName());
+					bnwc.put(item.getId(), index.get("BNWC"));
+					snwc.put(item.getId(), index.get("SNWC"));
+					bl.put(item.getId(), index.get("BL"));
+				}
+			}
+			result.add(bnwc);
+			result.add(snwc);
+			result.add(bl);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 与上一年完成投资额比例图
+	 */
+	public void queryTzeblt(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					Map<String,Object> index = tjfxServer.queryTzebl(nf,item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0, 4));
+					index.put("XZQHDM", item.getId());
+					index.put("XZQH", item.getName());
+					result.add(index);
+				}
+			}
+			
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=3;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("chart_title", xmlx);
+			String chartType = ftlName;
+			parameter.put("list",result);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库完成比例统计
+	 */
+	public void queryGckWcbl(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					String dm=item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0, 4);
+					Map<String,Object> index_lc = tjfxServer.queryGckLcWcbl(nf,dm);
+					Map<String,Object> index_cgs = tjfxServer.queryGckCgsWcbl(nf,dm);
+					Map<String,Object> index_tz = tjfxServer.queryGckTzWcbl(nf,dm);
+					Map<String, Object> index =new HashMap<String, Object>();
+					index.put("XZQHDM", item.getId());
+					index.put("XZQH", item.getName());
+					index.putAll(index_lc);
+					index.put("LCBL", index_lc.get("BL"));
+					index.putAll(index_cgs);
+					index.put("CGSBL", index_lc.get("BL"));
+					index.putAll(index_tz);
+					index.put("TZBL", index_lc.get("BL"));
+					result.add(index);
+				}
+			}
+			for (Map<String, Object> item : result) {
+				System.out.println(item);
+			}
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 工程库完成比例统计图
+	 */
+	public void queryGckWcblt(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					String dm=item.getId().equals("360000") ? item.getId().substring(0,2) : item.getId().substring(0, 4);
+					Map<String,Object> index_lc = tjfxServer.queryGckLcWcbl(nf,dm);
+					Map<String,Object> index_cgs = tjfxServer.queryGckCgsWcbl(nf,dm);
+					Map<String,Object> index_tz = tjfxServer.queryGckTzWcbl(nf,dm);
+					Map<String, Object> index =new HashMap<String, Object>();
+					index.put("XZQHDM", item.getId());
+					index.put("XZQH", item.getName());
+					index.put("lcbl", index_lc.get("BL"));
+					index.put("cgsbl", index_cgs.get("BL"));
+					index.put("tzbl", index_tz.get("BL"));
+					result.add(index);
+				}
+			}
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=2;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("chart_title", xmlx);
+			String chartType = ftlName;
+			parameter.put("list",result);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 	

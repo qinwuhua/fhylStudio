@@ -57,14 +57,14 @@ $(function() {
 		title:'完成比例统计',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu3',
-		href:'./gcktj/xmlxtj.jsp'
+		href:'./gcktj/wcbl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070305',
-		title:'投资增长比例统计',
+		title:'与上年完成投资额比',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu3',
-		href:'./gcktj/xmlxtj.jsp'
+		href:'./gcktj/snwctzebl.jsp'
 	});
 	menuQx();
 });

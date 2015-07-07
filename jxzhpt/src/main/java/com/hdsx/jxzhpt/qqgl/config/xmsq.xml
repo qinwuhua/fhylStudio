@@ -269,6 +269,9 @@
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
+					and x.xmbm like #{xmsq.xmbm}||'%'
+				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
 				</if>
@@ -299,6 +302,9 @@
 				<if test="xmsq.sqzt>=0">
 					and sqzt=${xmsq.sqzt}
 				</if>
+				<if test="xmsq.xmbm!=null and xmsq.xmbm!=''">
+					and x.xmbm like #{xmsq.xmbm}||'%'
+				</if>
 				<if test="xmsq.tsdq!=null and xmsq.tsdq!=''">
 					and x.tsdq like '%'||#{xmsq.tsdq}||'%'
 				</if>
@@ -328,6 +334,9 @@
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
 		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and x.xmbm like #{xmbm}||'%'
+		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'
 		</if>
@@ -351,6 +360,9 @@
 		</if>
 		<if test="sqzt>=0">
 			and sqzt=${sqzt}
+		</if>
+		<if test="xmbm!=null and xmbm!=''">
+			and x.xmbm like #{xmbm}||'%'
 		</if>
 		<if test="tsdq!=null and tsdq!=''">
 			and x.tsdq like '%'||#{tsdq}||'%'

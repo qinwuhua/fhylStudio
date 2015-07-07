@@ -12,6 +12,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
@@ -20,13 +21,14 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			xzqhComboxTree("xzqh");
+			loadXzqh("xzqh",$.cookie("dist"));
 			sbnf("searchYear");
 			loadData();
 		});
 		
 		function loadData(){
-			var xzqhdm=$('#xzqh').combobox("getValue");
+			var xzqhdm=parent.YMLib.Var.xzqhdm!=null ? parent.YMLib.Var.xzqhdm : $('#xzqh').combobox("getValue");
+			
 			$('#grid').datagrid({
 				url:'../../../tjfx/queryGckXmlxtj.do',
 			    queryParams:{'nf':$('#searchYear').combobox('getValue'),'xzqhdm':xzqhdm},
@@ -59,6 +61,7 @@
 				onLoadSuccess:function(){
 					loadBar1(xzqhdm);
 					loadBar2(xzqhdm);
+					parent.YMLib.Var.xzqhdm=null;
 			    },
 				onSelect:function(rowIndex, rowData){
 					window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex+'&nf='+$('#searchYear').combo('getValue');
@@ -75,7 +78,7 @@
 		    $.ajax({
 				type:"post",
 				url:'../../../tjfx/queryGckXmlxtjt.do',
-				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar2.ftl',
+				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar2.ftl&xmlx=项目类型-金额',
 				dataType:'text',
 				success:function(msg){
 					//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
@@ -95,7 +98,7 @@
 		    $.ajax({
 				type:"post",
 				url:'../../../tjfx/queryGckXmlxtjt.do',
-				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar3.ftl',
+				data:'xzqhdm='+xzqhdm+'&nf='+$('#searchYear').combo('getValue')+'&ftlName=gckbar3.ftl&xmlx=项目类型-数量',
 				dataType:'text',
 				success:function(msg){
 					//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
@@ -103,7 +106,20 @@
 				}
 			});
 		}
-		
+		function loadXzqh(id, dwbm) {
+			$('#' + id).combotree({
+				checkbox : true,
+				url : '/jxzhpt/xtgl/selAllXzqh.do?yhdw=' + dwbm,
+				onBeforeExpand : function(node, param) {
+					$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="
+							+ node.id;
+				},
+				onSelect : function(node) {
+					YMLib.Var.DistName = node.text;
+				}
+			});
+			$('#' + id).combotree('setValue', dwbm);
+		}
 		function sbnf(id){
 			var myDate = new Date();
 			var years=[];

@@ -17,4 +17,12 @@ public interface TjfxServer {
 	List<Map<String, Object>> queryGckXmlxtj(String nf, String xzqhdm);
 
 	List<Map<String,Object>> queryGckXmlxTjtLstz(String nf, String xzqhdm);
+
+	Map<String, Object> queryTzebl(String nf, String xzqhdm);
+
+	Map<String, Object> queryGckLcWcbl(String nf, String dm);
+
+	Map<String, Object> queryGckCgsWcbl(String nf, String dm);
+
+	Map<String, Object> queryGckTzWcbl(String nf, String dm);
 }

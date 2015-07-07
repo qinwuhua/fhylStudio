@@ -26,6 +26,10 @@
 		<action name="queryGckXzqhtjt" class="tjfxController" method="queryGckXzqhtjt"></action>
 		<action name="queryGckXmlxtj" class="tjfxController" method="queryGckXmlxtj"></action>
 		<action name="queryGckXmlxtjt" class="tjfxController" method="queryGckXmlxtjt"></action>
+		<action name="queryTzebl" class="tjfxController" method="queryTzebl"></action>
+		<action name="queryTzeblt" class="tjfxController" method="queryTzeblt"></action>
+		<action name="queryGckWcblt" class="tjfxController" method="queryGckWcblt"></action>
+		<action name="queryGckWcbl" class="tjfxController" method="queryGckWcbl"></action>
 		
 	</package>
 </struts>
