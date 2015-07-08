@@ -211,7 +211,7 @@
  		
  		<select id="selectSckwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select * from (
-		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from
+		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgzsj t join xmk_wqgzsj on xmkid=xmk_wqgzsj.id where 1=1
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgzsj.tsdq like '%'||#{tsdq}||'%'
@@ -310,14 +310,126 @@
  
  	<insert id="insertSckwqgz" parameterType="jckwqgzsj">
 		insert into
-		sck_wqgzsj(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_shzt,sck_qlbh,sck_qlzxzh,
+		sck_wqgzsj(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_qlbh,sck_qlzxzh,
 		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,jsgmqc,jsgmqk,hzdj,sjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq)
 		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报','未审核',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{sjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq})
+		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{sjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq})
 	</insert>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
-		 	delete from sck_wqgzsj where sckid =#{String}
+	 	delete from sck_wqgzsj where sckid =#{String}
 	</delete>
-	
+	<update id="xgSckWqgzSbzt" parameterType="hashmap" >
+ 		update sck_wqgzsj set sck_sbzt='已上报',sck_sbsj=sysdate,sck_sbbm=#{sbbm},sck_sbthcd=#{sbthcd} where sckid =#{id}
+	</update>
+ 	 <update id="shtyWqgzsckById" parameterType="jckwqgzsj" >
+		update sck_wqgzsj set sck_sbzt='已上报',sck_sbsj=sysdate,sck_sbbm=#{sbbm},sck_sbthcd=#{sbthcd},sck_shzt1='已审核',sck_shyj1='同意' where sckid =#{id} 
+	</update>
+	<update id="shbtyWqgzsckById" parameterType="jckwqgzsj" >
+		update sck_wqgzsj set sck_sbzt='未上报',sck_sbsj=sysdate,sck_sbbm=#{sbbm},sck_sbthcd=#{sbthcd},sck_shzt1='未审核',sck_shyj1=#{shyj1} where sckid =#{id} 
+	</update>	
+ 	<update id="updateSckwqgz" parameterType="jckwqgzsj">
+		update sck_wqgzsj
+		set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},
+		scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk},sjdwmc=#{sjdwmc},jsgmqc=#{jsgmqc},
+		jsgmqk=#{jsgmqk},hzdj=#{hzdj},sjhspl=#{sjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
+		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq} where sckid=#{sckid}
+	</update>
+ 	<select id="selectSckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
+		select * from (
+		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
+		 (select * from sck_wqgzsj t join xmk_wqgzsj on xmkid=xmk_wqgzsj.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgzsj.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t where 
+			sck_sbthcd &lt;=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and scxmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
+	</select>
+	<select id="selectSckShwqgzCount" parameterType="jckwqgzsj" resultType="int">
+		select count(*) from (select * from sck_wqgzsj t join xmk_wqgzsj on xmkid=xmk_wqgzsj.id where 1=1
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 				and xmk_wqgzsj.tsdq like '%'||#{tsdq}||'%'
+ 				</if>)
+			where sck_sbthcd &lt;=7
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="xmnf!='' and xmnf!= null ">
+			and scxmnf like '%'||(#{xmnf})||'%'
+		</if>
+		<if test="xmtype!='' and xmtype!= null ">
+			and xmtype like '%'||(#{xmtype})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="bzls!='' and bzls!= null ">
+ 			and bzls like #{bzls}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like '%'||(#{lxbm})||'%'
+		</if>
+		<if test="qlbh!='' and qlbh!= null ">
+			and qlbh like '%'||(#{qlbh})||'%'
+		</if>
+	</select>	
+	<update id="sjshtyWqgzsjwqgz" parameterType="jckwqgzsj" >
+		update sck_wqgzsj set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shyj2='同意' where sckid =#{id} 
+	</update>
+	<update id="sjshbtyWqgzsjwqgz" parameterType="jckwqgzsj" >
+		update sck_wqgzsj set sck_shzt='未审核',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shzt1='未审核',sck_shyj2=#{shyj2} where sckid =#{id} 
+	</update>
 </mapper>
 

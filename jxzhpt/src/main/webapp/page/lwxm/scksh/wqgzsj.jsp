@@ -192,106 +192,87 @@ function shenghwtg(str){
 	alert("未通过原因："+str);
 }
 
+function shangb(index){
+	if($.cookie("unit2").length==7){
+		var data=$("#grid").datagrid('getRows')[index];
+		obj=data;
+		YMLib.UI.createWindow('lxxx','市级初审','wqgzsj_sh.jsp','lxxx',500,300);
+	}
+}
+
 var gydwstr;
 var xzqhstr;
 //审查库管理
 function sckglWqgz(){
 	var gydw=$("#gydw").combotree("getValues");
-		if(gydw.length==0){
-			if($.cookie("unit2")=='_____36')
-				gydwstr=36;
-			else gydwstr= $.cookie("unit2");
-		}else if(gydw.length==1){
-			if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
- 		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
-			gydwstr=gydw[0] ;
-		}else{
-			gydwstr= gydw.join(',');
-		}
-	var xzqhdm=$("#xzqhmc").combotree("getValues");
-		if(xzqhdm.length==0){
-			xzqhstr= $.cookie("dist2");
-			
-		}else if(xzqhdm.length==1){
-			if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
- 		xzqhstr=xzqhdm[0] ;
-		}else{
-			xzqhstr= xzqhdm.join(',');
-		}
-	$("#grid").datagrid({    
-		 url:'/jxzhpt/wqgzsj/selectSckwqgz.do',
-		 queryParams : {
-			 	'sbthcd':function(){
-			 		if($.cookie("unit2")=='______36') return 7;
-			 		else return $.cookie("unit2").length;
-			 	},
-			 	'gydw': gydwstr,
-			 	'xzqhdm':xzqhstr,
-			 	'lxmc' : $('#lxmc').val(),
-			 	'qlmc':$("#qlmc").val(),
-			 	'xmnf':$("#xmnf").combobox("getValue"),
-			 	'sbzt':$('#sbzt').combobox("getValue"),
-			 	'jsdj':$("#jsdj").combobox("getValue"),
-			 	'akjfl':$("#akjfl").combobox("getValue"),
-			 	'bzls':$("#bzls").combobox("getValue"),
-			 	'lxbm': $('#lxbm').val(),
-			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
-			},
-		    striped:true,
-		    pagination:true,
-		    rownumbers:true,
-		    pageNumber:1,
-		    pageSize:10,
-		    height:$(window).height()-185,
-			width:$(window).width()-15,
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+var xzqhdm=$("#xzqhmc").combotree("getValues");
+	if(xzqhdm.length==0){
+		xzqhstr= $.cookie("dist2");
+		
+	}else if(xzqhdm.length==1){
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		if(xzqhdm[0].substr(xzqhdm[0].length-2,xzqhdm[0].length)=="00") xzqhdm[0]=xzqhdm[0].substr(0,xzqhdm[0].length-2);
+		xzqhstr=xzqhdm[0] ;
+	}else{
+		xzqhstr= xzqhdm.join(',');
+	}
+$("#grid").datagrid({    
+	 url:'/jxzhpt/wqgzsj/selectSckShwqgz.do',
+	 queryParams : {
+		 'sbthcd':function(){
+			 if($.cookie("unit2")=='______36') return 7;
+		 		else return $.cookie("unit2").length;
+		 	},
+		 	'gydw': gydwstr,
+		 	'xzqhdm':xzqhstr,
+		 	'lxmc':$('#lxmc').val(),
+		 	'qlmc':$("#qlmc").val(),
+		 	'xmnf':$("#xmnf").combobox("getValue"),
+		 	'shzt':$("#shzt").combobox("getValue"),
+		 	'jsdj':$("#jsdj").combobox("getValue"),
+		 	'akjfl':$("#akjfl").combobox("getValue"),
+		 	'bzls':$("#bzls").combobox("getValue"),
+		 	'lxbm': $('#lxbm').val(),
+		 	'qlbh':$("#qlbh").val(),
+		 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
+		},
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-185,
+		width:$(window).width()-15,
 	    columns:[[    
 			{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 			{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd!=7 && row.sck_sbthcd==$.cookie("unit2").length){
+				if(row.sck_shzt=="未审核"){
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-					'<a href=javascript:delSckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
-				}if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7 && row.sck_shzt=="未审核"){
-					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<a href=javascript:xgSckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">编辑</a>  '+
-					'<a href=javascript:delSckwqgz1('+index+') style="text-decoration:none;color:#3399CC; ">删除</a>';
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}else{
 					return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-					'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  '+
-					'<span style="color:grey;">编辑</span>  '+
-					'<span style="color:grey;">删除</span>';
+					'<a href=javascript:ckSckwqgz("'+row.sckid+'") style="text-decoration:none;color:#3399CC; ">详细</a>  ';
 				}
 			}},    
-			{field:'sck_sbzt',title:czzt,width:180,align:'center',formatter:function(value,row,index){
-				
-				if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==11){
-					if(row.sck_shzt1=='未审核'){
-						return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj1+'") style="text-decoration:none;color:#3399CC; ">市级初审未通过</a>  ';
-					}else
-					return '<a href=javascript:shangB1('+index+') style="text-decoration:none;color:#3399CC; ">未上报</a>  ';
-					}
-				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==9){
-					if(row.sck_shzt=='未审核'){
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
-					}else
-					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-					}
-				else if(row.sck_sbzt2=="已上报" && row.sck_sbthcd==7&&$.cookie("unit2").length!=11){
-					return '已审核  ';
-					}
-				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
-						return '<span style="color:grey;">未上报</span>';
-					}else{
-					return '<span style="color:grey;">已上报</span>';
+			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
+				if(row.sck_shzt=="未审核"){
+				return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+				}else{
+					return '<span style="color:grey;">已审核</span>';
 				}
-				
-				
 			}},
-				/* {field:'sck_shzt',title:'审核状态',width:80,align:'center'}, */
+// 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},
 				{field:'bzls',title:'补助历史',width:60,align:'center'},
 			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -304,26 +285,26 @@ function sckglWqgz(){
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
 		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
-	    ]]    
-	});  
-	var sbthcd;
- 	if($.cookie("unit2")=='______36'){
- 			sbthcd=7;
- 		}else  sbthcd=$.cookie("unit2").length;
- 	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
- 	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
- 	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
- 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
- 	$.ajax({
-	 type : "POST",
-	 url : "/jxzhpt/wqgzsj/selectSckwqgzCount.do",
-	 dataType : 'json',
-	 data : data,
-	 success : function(msg){
-		 $("#wqgz1").html(msg);
-	 },
-});
-}
+	    	]]    
+		});  
+		var sbthcd;
+			if($.cookie("unit2")=='______36'){
+					sbthcd=7;
+				}else  sbthcd=$.cookie("unit2").length;
+			var data="sck_sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+			"&xmnf="+$("#xmnf").combobox("getValue")+"&shzt="+$('#shzt').combobox("getValue")+
+			"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+
+			$("#bzls").combobox("getValue")+"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+			$.ajax({
+			 type : "POST",
+			 url : "/jxzhpt/wqgzsj/selectSckShwqgzCount.do",
+			 dataType : 'json',
+			 data : data,
+			 success : function(msg){
+				 $("#wqgz1").html(msg);
+			 },
+		});
+	}
 
 function ckwqgz(index){
 	var data=$("#grid").datagrid('getRows')[index];
@@ -358,7 +339,7 @@ text-decoration:none;
 				</legend>
 					<div>
 					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
-					<tr height="32">
+						<tr height="32">
 								<td>管养单位：</td>
                               	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
                               	</select></td>
@@ -372,41 +353,40 @@ text-decoration:none;
                               	<td>路线编码：</td>
         						<td><input type="text" id="lxbm" style="width:70px;" /></td>
 						</tr>
-                          <tr height="32">
-							  <td>项目年份：</td>
+                       <tr height="32">
+							  <td>项目年份：</span>
                               	<td><select id="xmnf" style="width:70px">
                               	</select>
                               <span style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;项目状态： </span>
                               	<select id="xmtype" style="width:70px;display: none;">
                               	</select></td>
-                              <td>上报状态：</td>
-                              	<td><select id="sbzt" style="width:70px"class="easyui-combobox">
+                               <td>审核状态：</td>
+                              	<td><select id="shzt" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                            <td>特殊地区：</td>
+                              <td>特殊地区：</td>
                               	<td><select id="tsdq" style="width:70px"class="easyui-combobox">
                               	</select></td>
-                              <td>技术等级：</td>
-                              	<td><select id="jsdj" style="width:70px"class="easyui-combobox">
+                             <td>技术等级：</td>
+                              <td>	<select id="jsdj" style="width:70px"class="easyui-combobox">
                               	</select></td>
                               	<td>按跨径分类：</td>
                               	<td><select id="akjfl" style="width:74px"class="easyui-combobox">
-                              	</select></td>
-                              <td>补助历史：</td>
+                              	</select>
+                              	<td>补助历史：</td>
                               	<td><select id="bzls" style="width:80px"class="easyui-combobox">
                               	</select></td>
-                              <td>路线名称：</td>
+                              	<td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
-                              	 
                              </tr>
                             <tr height="32">
                               <td colspan="10">
 								<img name="btnSelect" id="btnSelect" onmouseover="this.src='../../../images/Button/Serch02.gif'" alt="查询" onmouseout="this.src='../../../images/Button/Serch01.gif'" src="../../../images/Button/Serch01.gif" onclick="sckglWqgz();"style="border-width:0px;cursor: hand;" />
-								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" />
+<!-- 								<img name="shangBao" id="shangBao" src="../../../images/Button/shangbao_1.png" onmouseover="this.src='../../../images/Button/shangbao_2.png'" onmouseout="this.src='../../../images/Button/shangbao_1.png'   " src="" onclick="shangB();" style="border-width:0px;" /> -->
 <!-- 								<img name="tuiH" id="tuiH" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'   " src=""  onclick="tuiHui();" style="border-width:0px;" /> -->
 <!-- 								<img name="btnDCMB" id="btnDCMB" onmouseover="this.src='../../../images/Button/DC2.gif'" alt="导出模版" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" onclick="exportModule_sc('SCK_Bridge')" style="border-width:0px;cursor: hand;" /> -->
 <!-- 								<img name="insertData"id="insertData" alt="导入数据" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" onclick="importData_sc('wqgz_sc');" style="border-width:0px;" /> -->
-                                <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('wqgzsj_add.jsp','900','500');" style="border-width:0px;" />
-                                <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delSckwqgz();" style="border-width:0px;" />
+<!--                                 <img name="addOne" id="addOne" src="../../../images/Button/tianj1.gif" onmouseover="this.src='../../../images/Button/tianj2.gif'" onmouseout="this.src='../../../images/Button/tianj1.gif'   " src="" onclick="addSck('wqgzsj_add.jsp','900','500');" style="border-width:0px;" /> -->
+<!--                                 <img name="delAll" id="delAll" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'   " src="" onclick="delSckwqgz();" style="border-width:0px;" /> -->
 <!--                                 <img name="btnExcel" id="btnExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="导出Excel" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" onclick="exportExcel_wqgz_scgl()" style="border-width:0px;cursor: hand;" /> -->
 							  </td>
                             </tr></table>

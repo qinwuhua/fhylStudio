@@ -101,7 +101,28 @@ public class Jckwqgzsj implements Serializable{
 	private String pfwh;
 	private String zgq;
 	private String xmsqbzzjje;
+	private String sck_shzt1;
+	private String sck_shyj1;
+	private String sck_shyj2;
 	
+	public String getSck_shzt1() {
+		return sck_shzt1;
+	}
+	public void setSck_shzt1(String sck_shzt1) {
+		this.sck_shzt1 = sck_shzt1;
+	}
+	public String getSck_shyj1() {
+		return sck_shyj1;
+	}
+	public void setSck_shyj1(String sck_shyj1) {
+		this.sck_shyj1 = sck_shyj1;
+	}
+	public String getSck_shyj2() {
+		return sck_shyj2;
+	}
+	public void setSck_shyj2(String sck_shyj2) {
+		this.sck_shyj2 = sck_shyj2;
+	}
 	public String getSjdwmc() {
 		return sjdwmc;
 	}

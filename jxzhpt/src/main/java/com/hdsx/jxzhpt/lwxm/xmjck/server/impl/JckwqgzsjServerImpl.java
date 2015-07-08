@@ -169,4 +169,60 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 		if(deleteBatch("deleteSckWqgz", list)>0) return true;
 		else return false;
 	}
+	
+	@Override
+	public boolean xgSckWqgzSbzt(Jckwqgzsj jckwqgzsj) {
+		String[] strs = jckwqgzsj.getId().split(",");
+		lm=new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < strs.length; i++) {
+			hm=new HashMap<String, Object>();
+			hm.put("id", strs[i]);
+			hm.put("sbbm", jckwqgzsj.getSck_sbbm());
+			hm.put("sbthcd", jckwqgzsj.getSck_sbthcd());
+			lm.add(hm);
+		}
+		if(updateBatch("xgSckWqgzSbzt", lm)>0) return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean shtyWqgzsckById(Jckwqgzsj jckwqgzsj) {
+		if(update("shtyWqgzsckById", jckwqgzsj)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean shbtyWqgzsckById(Jckwqgzsj jckwqgzsj) {
+		if(update("shbtyWqgzsckById", jckwqgzsj)>0) return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean updateSckwqgz(Jckwqgzsj jckwqgzsj) {
+		if(insert("updateSckwqgz",jckwqgzsj)>0)
+			return true;
+		else return false;
+	}
+
+	@Override
+	public List<Jckwqgzsj> selectSckShwqgz(Jckwqgzsj jckwqgzsj) {
+		return queryList("selectSckShwqgz",jckwqgzsj);
+	}
+
+	@Override
+	public int selectSckShwqgzCount(Jckwqgzsj jckwqgzsj) {
+		return queryOne("selectSckShwqgzCount", jckwqgzsj);
+	}
+	
+	@Override
+	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
+		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean sjshbtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
+		if(update("sjshbtyWqgzsjwqgz", jckwqgzsj)>0) return true;
+		else return false;
+	}
 }

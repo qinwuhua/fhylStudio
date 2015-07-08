@@ -47,4 +47,20 @@ public interface JckwqgzsjServer {
 	boolean insertSckwqgz(Jckwqgzsj jckwqgzsj);
 
 	boolean deleteSckWqgz(Jckwqgzsj jckwqgzsj);
+
+	boolean xgSckWqgzSbzt(Jckwqgzsj jckwqgzsj);
+
+	boolean shtyWqgzsckById(Jckwqgzsj jckwqgzsj);
+
+	boolean shbtyWqgzsckById(Jckwqgzsj jckwqgzsj);
+
+	boolean updateSckwqgz(Jckwqgzsj jckwqgzsj);
+
+	List<Jckwqgzsj> selectSckShwqgz(Jckwqgzsj jckwqgzsj);
+
+	int selectSckShwqgzCount(Jckwqgzsj jckwqgzsj);
+
+	boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj);
+
+	boolean sjshbtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj);
 }

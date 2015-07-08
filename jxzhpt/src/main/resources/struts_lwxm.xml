@@ -146,6 +146,14 @@
  	 <action name="JckWqgzRoad" class="jckwqgzsjController" method="JckWqgzRoad"/>
  	 <action name="insertSckwqgz" class="jckwqgzsjController" method="insertSckwqgz"/>
  	 <action name="deleteSckWqgz" class="jckwqgzsjController" method="deleteSckWqgz"/>
+ 	 <action name="xgSckWqgzSbzt" class="jckwqgzsjController" method="xgSckWqgzSbzt"/>
+ 	 <action name="shtyWqgzsckById" class="jckwqgzsjController" method="shtyWqgzsckById"/>
+ 	 <action name="shbtyWqgzsckById" class="jckwqgzsjController" method="shbtyWqgzsckById"/>
+ 	 <action name="updateSckwqgz" class="jckwqgzsjController" method="updateSckwqgz"/>
+ 	 <action name="selectSckShwqgz" class="jckwqgzsjController" method="selectSckShwqgz"/>
+ 	 <action name="selectSckShwqgzCount" class="jckwqgzsjController" method="selectSckShwqgzCount"/>
+ 	 <action name="sjshtyWqgzsjwqgz" class="jckwqgzsjController" method="sjshtyWqgzsjwqgz"/>
+ 	 <action name="sjshbtyWqgzsjwqgz" class="jckwqgzsjController" method="sjshbtyWqgzsjwqgz"/>
  	 
  </package>
 </struts>

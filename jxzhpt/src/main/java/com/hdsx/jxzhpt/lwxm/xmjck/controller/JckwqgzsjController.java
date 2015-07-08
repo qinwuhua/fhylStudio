@@ -437,6 +437,123 @@ public class JckwqgzsjController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void xgSckWqgzSbzt(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.xgSckWqgzSbzt(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void shtyWqgzsckById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.shtyWqgzsckById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void shbtyWqgzsckById(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.shbtyWqgzsckById(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateSckwqgz(){
+		boolean b = jckwqgzsjServer.updateSckwqgz(jckwqgzsj);
+		if(b){
+			ResponseUtils.write(getresponse(), "true");
+		}else{
+			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void selectSckShwqgz(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSck_sbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setBzls(bzls);
+		List<Jckwqgzsj> list = jckwqgzsjServer.selectSckShwqgz(jckwqgzsj);
+		int count = jckwqgzsjServer.selectSckShwqgzCount(jckwqgzsj);
+		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
+		eui.setRows(list);
+		eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void selectSckShwqgzCount(){
+		try {
+			if(gydw.indexOf(",")==-1){
+				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				jckwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			jckwqgzsj.setSck_sbthcd(sbthcd);
+			jckwqgzsj.setLxmc(lxmc);
+			jckwqgzsj.setQlmc(qlmc);
+			jckwqgzsj.setXmnf(xmnf);
+			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setJsdj(jsdj);
+			jckwqgzsj.setAkjfl(akjfl);
+			jckwqgzsj.setLxbm(lxbm);
+			jckwqgzsj.setQlbh(qlbh);
+			jckwqgzsj.setTsdq(tsdq);
+			jckwqgzsj.setPage(page);
+			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setBzls(bzls);
+		int count = jckwqgzsjServer.selectSckShwqgzCount(jckwqgzsj);
+		ResponseUtils.write(getresponse(), count+"");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sjshtyWqgzsjwqgz(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.sjshtyWqgzsjwqgz(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sjshbtyWqgzsjwqgz(){
+		try {
+			JsonUtils.write(jckwqgzsjServer.sjshbtyWqgzsjwqgz(jckwqgzsj),getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 	
