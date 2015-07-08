@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>水毁项目明细</title>
+	<title>灾毁重建明细</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -41,13 +41,13 @@ function check(str){
 			<tr style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					<span id="labname3">水毁项目基本信息</span>
+					<span id="labname3">灾毁重建基本信息</span>
 				</td>
 			</tr>
 			<tr id="tr_scxx" style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					<span id="labname4">水毁项目审查信息</span>
+					<span id="labname4">灾毁重建审查信息</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -101,7 +101,7 @@ function check(str){
 			<tr style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					<span id="labname5">水毁项目计划信息</span>
+					<span id="labname5">灾毁重建计划信息</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

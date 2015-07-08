@@ -53,6 +53,7 @@ public class Cbsj {
 	private int sbzt;//上报状态
 	private int shzt;//审核状态
 	private String sfbj;//是否编辑
+	private String lc;//里程
 	//以上是初步设计表中的字段，以下是立项审核中的字段
 	private String ghlxbh;//路线编码
 	private String lxmc;//路线名称
@@ -382,5 +383,11 @@ public class Cbsj {
 	}
 	public void setJdbs(String jdbs) {
 		this.jdbs = jdbs;
+	}
+	public String getLc() {
+		return lc;
+	}
+	public void setLc(String lc) {
+		this.lc = lc;
 	}
 }

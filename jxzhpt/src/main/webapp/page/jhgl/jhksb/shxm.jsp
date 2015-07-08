@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>水毁项目</title>
+	<title>灾毁重建</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/Top.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
@@ -154,7 +154,7 @@
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">计划管理>&nbsp;项目计划库上报>&nbsp;水毁项目</div>
+		<div id="p_top">计划管理>&nbsp;项目计划库上报>&nbsp;灾毁重建</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
@@ -205,7 +205,7 @@
         	</tr>
         	<tr>
         		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
-        			共有【 <span id="lblCount" style="font-weight: bold;color: #FF0000">0</span> 】个水毁项目，总里程共
+        			共有【 <span id="lblCount" style="font-weight: bold;color: #FF0000">0</span> 】个灾毁重建，总里程共
         			【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，项目里程共【&nbsp;<span id="lblXMLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】
         			公里，批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】

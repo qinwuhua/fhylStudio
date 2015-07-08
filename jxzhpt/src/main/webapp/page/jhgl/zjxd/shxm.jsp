@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>水毁项目资金下达</title>
+	<title>灾毁重建资金下达</title>
 </head>
 <body>
 	<div>
@@ -14,7 +14,7 @@
 			<tr style="height: 25px;">
 				<td colspan="6"
 					style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					<span id="lblName2">水毁项目基本信息</span>
+					<span id="lblName2">灾毁重建基本信息</span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -133,7 +133,7 @@
 		<tr>
 			<td height="45" align="left" background="../images/page/jt.jpg"
 				style="padding-left: 15px; font-size: 14px; color: #007DB2; font-weight: bold; background-repeat: no-repeat; background-position: left center; background-repeat: no-repeat;">
-				<span id="lblName3">水毁项目资金下发信息</span>
+				<span id="lblName3">灾毁重建资金下发信息</span>
 			</td>
 		</tr>
 		<tr>

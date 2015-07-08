@@ -20,6 +20,10 @@
 	
 	<script type="text/javascript">
 		$(function(){
+			loadData();
+		});
+		
+		function loadData(){
 			$('#grid').datagrid({
 				url:'../../../jhgl/queryChildXzqh.do',
 			    queryParams:{'xzqh.id':'36__00'},
@@ -39,7 +43,7 @@
 						{title:'路面升级',colspan:4},
 						{title:'路面改建',colspan:4},
 						{title:'新建工程',colspan:4},
-						{title:'水毁项目',colspan:4},
+						{title:'灾毁重建',colspan:4},
 						{title:'养护大中修',colspan:4},
 						{title:'危桥改造',colspan:4},
 						{title:'安保工程',colspan:4},
@@ -92,7 +96,7 @@
 			 		queryNftjt();
 			 	}
 			});
-		});
+		}
 		/**根据传入的下标和行政区划代码更新对应行数据
 		* @param index grid的下标
 		* @param xzqhdm 行政区划代码
@@ -161,7 +165,7 @@
         							<option value="2014">2014年</option>
         							<option value="2015" selected="selected">2015年</option>
         						</select>
-        						<img onclick="search()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img onclick="loadData()" alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

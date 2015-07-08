@@ -81,7 +81,7 @@ function onclickXx(xmlx,id){
 		url+="gclmgj.jsp";
 	else if(xmlx=="路面升级")
 		url+="gclmsj.jsp";
-	else if(xmlx=="水毁项目")
+	else if(xmlx=="灾毁重建")
 		url+="shxm.jsp";
 	else if(xmlx=="养护大中修")
 		url+="yhdzx.jsp";

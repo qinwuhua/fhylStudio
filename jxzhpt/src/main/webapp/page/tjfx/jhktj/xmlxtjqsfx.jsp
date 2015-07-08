@@ -45,7 +45,7 @@
 			//处理数据
 			var jsonData=new Array();
 			var l=["gcgj","gcsj","shuih","yhdzx","abgc","wqgz","zhfz"];
-			var lname=["路面改建","路面升级","水毁项目","养护大中修","安保工程","危桥改造","灾害防治"];
+			var lname=["路面改建","路面升级","灾毁重建","养护大中修","安保工程","危桥改造","灾害防治"];
 			for(var i=0;i<l.length;i++){
 				$.ajax({
 					type:'post',

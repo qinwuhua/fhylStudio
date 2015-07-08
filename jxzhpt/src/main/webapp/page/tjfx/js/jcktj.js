@@ -50,12 +50,12 @@ function jckxzqhtj(){
 				jxzhxmzj=Number(jxzhxmzj)+Number(tr.zhxmzj);
 				jsonDate.push(tr);
 			}
-			/*jsonDate[0].wqlczj=jxwqlczj;
+			jsonDate[0].wqlczj=jxwqlczj;
 			jsonDate[0].wqxmzj=jxwqxmzj;
 			jsonDate[0].ablczj=jxablczj;
 			jsonDate[0].abxmzj=jxabxmzj;
 			jsonDate[0].zhlczj=jxzhlczj;
-			jsonDate[0].zhxmzj=jxzhxmzj;*/
+			jsonDate[0].zhxmzj=jxzhxmzj;
 			var grid={id:'grid',data:jsonDate,fitColumns:true,singleSelect:true,pagination:false,rownumbers:false,
 					pageNumber:1,pageSize:20,height:355,width:1030,
 				    columns:[
@@ -143,7 +143,7 @@ function jhkxzqhtj(){
 							}else if(result[i].id=="路面改建"){
 								t.lmgjztz=result[i].text;t.lmgjsl =result[i].bmid;
 								t.lmgjcgs=result[i].name;t.lmgjstz=result[i].parent;
-							}else if(result[i].id=="水毁项目"){
+							}else if(result[i].id=="灾毁重建"){
 								t.wqgzztz=result[i].text;t.wqgzsl =result[i].bmid;
 								t.wqgzcgs=result[i].name;t.wqgzstz=result[i].parent;
 							}else if(result[i].id=="养护大中修"){
@@ -165,7 +165,7 @@ function jhkxzqhtj(){
 			    {title:'合计',colspan:4},
 			    {title:'路面升级',colspan:4},
 			    {title:'路面改建',colspan:4},
-			    {title:'水毁项目',colspan:4},
+			    {title:'灾毁重建',colspan:4},
 			    {title:'养护大中修',colspan:4},
 			    {title:'危桥改造',colspan:4},
 			    {title:'安保工程',colspan:4},

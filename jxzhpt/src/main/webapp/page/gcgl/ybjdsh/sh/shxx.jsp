@@ -78,7 +78,7 @@ $(function(){
 <table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 	<tr style="height: 25px;">
 		<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-			水毁项目 — 项目申请信息
+			灾毁重建 — 项目申请信息
 		</td>
 	</tr>
 	<tr style="height: 30px;">
@@ -195,7 +195,7 @@ $(function(){
 	<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 		<tr style="height: 25px;">
 			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				水毁项目 — 初步设计或施工图设计
+				灾毁重建 — 初步设计或施工图设计
 			</td>
 		</tr>
 		<tr style="height: 30px;">
@@ -314,7 +314,7 @@ $(function(){
 	<table width="97%" border="0" style="border-style: solid;border-width: 3px 1px 1px 1px; border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;margin-left: 13px; height: 45px;"cellspacing="0" cellpadding="0">
         <tr style="height: 25px;">
 			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				水毁项目 — 计划审核信息
+				灾毁重建 — 计划审核信息
 			</td>
 		</tr>
 		<tr style="height: 30px;font-size: 10px;">
@@ -396,7 +396,7 @@ $(function(){
 	<table width="97%" border="0" style="border-style: solid; border-width: 3px 1px 1px 1px;border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0;" cellspacing="0" cellpadding="0">
 		<tr style="height: 25px;">
 			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				水毁项目 — 资金下发
+				灾毁重建 — 资金下发
 			</td>
 		</tr>
 		<tr>
@@ -411,7 +411,7 @@ $(function(){
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 		<tr style="height: 25px;">
 			<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-				水毁项目— 开工信息
+				灾毁重建— 开工信息
 			</td>
 		</tr>
 		<tr style="height: 35px;">

@@ -79,7 +79,6 @@ public class TjfxController extends BaseActionSupport{
 				zhObj.setName(item.getName());
 				zhfz.add(zhObj);
 			}
-			System.out.println("安保："+abgc.size());
 			result.put("abgc", abgc);
 			result.put("wqgz", wqgz);
 			result.put("zhfz", zhfz);
@@ -91,66 +90,19 @@ public class TjfxController extends BaseActionSupport{
 	
 	public void queryJcktj1(){
 		try {
-			/*Map<String, Object> result=new HashMap<String, Object>();
-			List<TreeNode> abgc=null;
-			List<TreeNode> wqgz=null;
-			List<TreeNode> zhfz=null;
-			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-			Map<String,Object> parameter=new HashMap<String,Object>();
-			if(xmlx.equals("abgc")){
-				abgc = abgcServer.queryJcktj();
-				parameter.put("chart_title_y", "个/公里");
-				for(int i=0;i<abgc.size();i++){
-					Map<String, String> t=new HashMap<String, String>();
-					String name=abgc.get(i).getName();
-					if(!name.equals("江西省")){
-						t.put("name", name);
-						t.put("count", abgc.get(i).getText());
-						t.put("length", abgc.get(i).getParent());
-						list.add(t);
-					}
-				}
-			}
-			else if(xmlx.equals("wqgz")){
-				wqgz= wqgzServer.queryJcktj();
-				parameter.put("chart_title_y", "个/米");
-				for(int i=0;i<wqgz.size();i++){
-					Map<String, String> t=new HashMap<String, String>();
-					String name=wqgz.get(i).getName();
-					if(!name.equals("江西省")){
-						t.put("name", name);
-						t.put("count", wqgz.get(i).getText());
-						t.put("length", wqgz.get(i).getParent());
-						list.add(t);
-					}
-				}
-			}
-			else if(xmlx.equals("zhfz")){
-				zhfz = zhfzServer.queryJcktj();
-				parameter.put("chart_title_y", "个/公里");
-				for(int i=0;i<zhfz.size();i++){
-					Map<String, String> t=new HashMap<String, String>();
-					String name=zhfz.get(i).getName();
-					if(!name.equals("江西省")){
-						t.put("name", name);
-						t.put("count", zhfz.get(i).getParent());
-						t.put("length", zhfz.get(i).getText());
-						list.add(t);
-					}
-				}
-			}
+			Map<String, Object> result=new HashMap<String, Object>();
 			
+			Map<String, Object> parameter=new HashMap<String, Object>();
 			parameter.put("chart_title", "行政区划");//title
 			String yName="里程";//y单位
 			int precision=0;//小数的位数
 			parameter.put("yName", yName);
 			parameter.put("precision",precision);
-			parameter.put("list",list);
+			parameter.put("list",result);
 			String chartType = "jckbar.ftl";
 			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 			result.put("bar", anyChartXml);
 			ResponseUtils.write(getresponse(), anyChartXml);
-			*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -534,6 +486,7 @@ public class TjfxController extends BaseActionSupport{
 	/**
 	 * 设置年份统计柱状图的数据参数
 	 */
+	@SuppressWarnings("unchecked")
 	public void queryNftjt(){
 		try{
 			TreeNode treenode=new TreeNode();
@@ -541,13 +494,11 @@ public class TjfxController extends BaseActionSupport{
 			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
 			
 			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-			@SuppressWarnings("unchecked")
 			List<Map<String, Object>> sessionData = (List<Map<String, Object>>) getRequest().getSession().getAttribute("nftj");
 			if(sessionData!=null){
 				for(int i=0;i<sessionData.size();i++){
 					Map<String, Object> map = sessionData.get(i);
-					System.out.println(map.get("XZQHDM"));
-					if(map.get("XZQHDM")!=null){
+					if(map.get("XZQHDM")!=null && !map.get("XZQHDM").toString().equals("360000")){
 						for (TreeNode node : xzqhlist) {
 							if(node.getId().equals(map.get("XZQHDM").toString())){
 								Map<String, String> item=new HashMap<String, String>();
@@ -559,6 +510,7 @@ public class TjfxController extends BaseActionSupport{
 					}
 				}
 			}
+			getRequest().getSession().removeAttribute("nftj");
 			Map<String,Object> parameter=new HashMap<String,Object>();
 			parameter.put("chart_title", "行政区划");//title
 			String yName="金额";//y单位
@@ -651,7 +603,7 @@ public class TjfxController extends BaseActionSupport{
 			
 			xzqhdm = xzqhdm.equals("360000") ? xzqhdm.substring(0,2) : xzqhdm.substring(0,4);
 			List<Map<String,Object>> xmlxData = tjfxServer.queryXmlxtjqsfx(xzqhdm,nf,end);
-			String [] xmlx={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+			String [] xmlx={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 			for (String item : xmlx) {
 				Map<String, String> index =new HashMap<String, String>();
 				xmlxfenlei(index,xmlxData,item);
@@ -687,7 +639,7 @@ public class TjfxController extends BaseActionSupport{
 		@SuppressWarnings("unchecked")
 		List<Map<String,String>> sessionData = (List<Map<String, String>>) getRequest().getSession().getAttribute("xmlxqs");
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-		String [] xmlx={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+		String [] xmlx={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 		for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
 			Map<String, String> index =new HashMap<String, String>();
 			index.put("year", new Integer(i).toString());
@@ -696,7 +648,7 @@ public class TjfxController extends BaseActionSupport{
 					index.put("abgc", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}else if(item.get("xmlx").equals("危桥工程")){
 					index.put("wqgz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
-				}else if(item.get("xmlx").equals("灾害工程")){
+				}else if(item.get("xmlx").equals("灾害防治")){
 					index.put("zhfz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}else if(item.get("xmlx").equals("升级改造工程")){
 					index.put("gcsj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
@@ -706,7 +658,7 @@ public class TjfxController extends BaseActionSupport{
 					index.put("xj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}else if(item.get("xmlx").equals("养护大中修工程")){
 					index.put("yhdzx", item.get(i+"je")==null ? "0" : item.get(i+"je"));
-				}else if(item.get("xmlx").equals("水毁工程")){
+				}else if(item.get("xmlx").equals("灾毁重建")){
 					index.put("shuih", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}
 			}
@@ -808,7 +760,7 @@ public class TjfxController extends BaseActionSupport{
 			
 			List<Map<String,Object>> lstz = tjfxServer.queryGckXmlxTjtLstz(nf,xzqhdm);
 			List<Map<String,Object>> gckxmlxtj = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxmlxtj");
-			String [] xmlxs={"安保工程","危桥工程","灾害工程","升级改造工程","路面改造工程","新建工程","养护大中修工程","水毁工程"};
+			String [] xmlxs={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 			for (String xmlx : xmlxs) {
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("name", xmlx);

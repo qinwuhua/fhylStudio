@@ -139,7 +139,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030107',
-		title:'水毁项目',
+		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu1',
 		href:'../qqgl/jhsh/shxmgl.jsp'
@@ -219,7 +219,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030207',
-		title:'水毁项目',
+		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu2',
 		href:'../qqgl/jhsh/shxmgl_sb.jsp'
@@ -284,7 +284,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030307',
-		title:'水毁项目',
+		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu3',
 		href:'../qqgl/jhsh/shxmsh.jsp'
@@ -349,7 +349,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030407',
-		title:'水毁项目',
+		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu4',
 		href:'../qqgl/zjxd/shxm.jsp'
@@ -419,7 +419,7 @@ $(function() {
 	});
 	createMenux('LeftMenu',{
 		id:'menu_0101030507',
-		title:'水毁项目',
+		title:'灾毁重建',
 		imgSrc:'../../images/sh_s.png',
 		renderTo:'left_menu5',
 		href:'../qqgl/jhcx/shxm.jsp'

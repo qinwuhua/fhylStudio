@@ -90,7 +90,7 @@
 		from plan_wqgz wq left join sck_wqgz wqsc on (wq.sckid=wqsc.sckid) left join xmk_wqgz wqlx on (wqsc.xmkid=wqlx.id)
 		where wqlx.xzqhdm like #{xzqhdm}||'%' and wq.sbnf>=${start} and wq.sbnf<=${end} group by wq.sbnf
 		union all
-		select zhjh.sbnf,sum(zhjh.pfztz),sum(zhjh.jhsybzje),sum(zhjh.jhsydfzcje),count(zhjh.id),'灾害工程' xmlx
+		select zhjh.sbnf,sum(zhjh.pfztz),sum(zhjh.jhsybzje),sum(zhjh.jhsydfzcje),count(zhjh.id),'灾害防治' xmlx
 		from plan_zhfz zhjh left join sck_zhfz zhsc on (zhjh.sckid=zhsc.sckid) left join xmk_zhfz zhlx on (zhsc.xmkid=zhlx.id)
 		where zhlx.xzqhdm like #{xzqhdm}||'%' and zhjh.sbnf>=${start} and zhjh.sbnf<=${end} group by zhjh.sbnf
 		union all
@@ -110,7 +110,7 @@
 		from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm 
 		where l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4)
 		union all
-		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,'水毁工程' xmlx
+		select substr(j.xmbm,0,4) nf,sum(j.pfztz) ztz,sum(j.sbzzj) stz,sum(j.bbzzj) btz,count(j.xmbm) zj,'灾毁重建' xmlx
 		from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm 
 		where l.xzqhdm like #{xzqhdm}||'%' and substr(j.xmbm,0,4)>=${start} and substr(j.xmbm,0,4)<=${end} group by substr(j.xmbm,0,4))
 		]]>
@@ -261,7 +261,7 @@
 		(select count(distinct p.id) wgsl from plan_zjxd z left join plan_wqgz p on z.xmid=p.id left join sck_wqgz s on p.sckid=s.sckid left join xmk_wqgz x on s.xmkid=x.id
 		where x.xzqhdm like #{xzqhdm}||'%' and p.sbnf=#{nf} and p.kgzt='1' and p.jgzt='1') wg3
 		union all
-		select '灾害工程' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
+		select '灾害防治' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
 		(wkgztz+zjztz+wgztz) ztz,(zjwc+wgwc) wctz,(wkgsl+zjsl+wgsl) sl from
 		(select nvl(sum(z.xdzj),0) wkgztz from plan_zjxd z left join plan_zhfz p on z.xmid=p.id left join sck_zhfz s on p.sckid=s.sckid left join xmk_zhfz x on s.xmkid=x.id
 		where x.xzqhdm like #{xzqhdm}||'%' and p.sbnf=#{nf} and p.kgzt='0') wkg1,
@@ -324,7 +324,7 @@
 		(select nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0)+nvl(sum(g.wc_qttz),0) wgwc from gcgl_yhdzx g left join jhsh_yhdzx j on g.jhid=j.xmbm where j.xmbm like #{nf}||#{xzqhdm}||'%' and j.xdzt='1' and j.kgzt='1' and j.jgzt='1') wg2,
 		(select count(distinct j.xmbm) wgsl from jhsh_yhdzx j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like #{nf}||#{xzqhdm}||'%' and j.xdzt='1' and j.kgzt='1' and j.jgzt='1') wg3
 		union all
-		select '水毁工程' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
+		select '灾毁重建' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
 		(wkgztz+zjztz+wgztz) ztz,(zjwc+wgwc) wctz,(wkgsl+zjsl+wgsl) sl from 
 		(select nvl(sum(z.xdzj),0) wkgztz from jhsh_sh j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like #{nf}||#{xzqhdm}||'%' and j.xdzt='1' and j.kgzt='0') wkg1,
 		(select count(distinct j.xmbm) wkgsl from jhsh_sh j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like #{nf}||#{xzqhdm}||'%' and j.xdzt='1' and j.kgzt='0') wkg2,
@@ -375,7 +375,7 @@
 	    (select count(distinct p.id) wgsl from plan_zjxd z left join plan_wqgz p on z.xmid=p.id left join sck_wqgz s on p.sckid=s.sckid left join xmk_wqgz x on s.xmkid=x.id
 	    where x.xzqhdm like #{xzqhdm}||'%' and p.sbnf<${nf} and p.kgzt='1' and p.jgzt='1') wg3
 	    union all
-	    select '灾害工程' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
+	    select '灾害防治' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
 	    (wkgztz+zjztz+wgztz) ztz,(zjwc+wgwc) wctz,(wkgsl+zjsl+wgsl) sl from
 	    (select nvl(sum(z.xdzj),0) wkgztz from plan_zjxd z left join plan_zhfz p on z.xmid=p.id left join sck_zhfz s on p.sckid=s.sckid left join xmk_zhfz x on s.xmkid=x.id
 	    where x.xzqhdm like #{xzqhdm}||'%' and p.sbnf<${nf} and p.kgzt='0') wkg1,
@@ -438,7 +438,7 @@
 	    (select nvl(sum(g.wc_btz),0)+nvl(sum(g.wc_stz),0)+nvl(sum(g.wc_qttz),0) wgwc from gcgl_yhdzx g left join jhsh_yhdzx j on g.jhid=j.xmbm where j.xmbm like '%'||#{xzqhdm}||'%' and substr(j.xmbm,0,4)<${nf} and j.xdzt='1' and j.kgzt='1' and j.jgzt='1') wg2,
 	    (select count(distinct j.xmbm) wgsl from jhsh_yhdzx j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like '%'||#{xzqhdm}||'%' and substr(j.xmbm,0,4)<${nf} and j.xdzt='1' and j.kgzt='1' and j.jgzt='1') wg3
 	    union all
-	    select '水毁工程' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
+	    select '灾毁重建' xmlx,wkg1.*,wkg2.*,zj1.*,zj2.*,zj3.*,wg1.*,wg2.*,wg3.*,
 	    (wkgztz+zjztz+wgztz) ztz,(zjwc+wgwc) wctz,(wkgsl+zjsl+wgsl) sl from 
 	    (select nvl(sum(z.xdzj),0) wkgztz from jhsh_sh j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like '%'||#{xzqhdm}||'%' and substr(j.xmbm,0,4)<${nf} and j.xdzt='1' and j.kgzt='0') wkg1,
 	    (select count(distinct j.xmbm) wkgsl from jhsh_sh j left join plan_zjxd z on j.xmbm=z.xmid where j.xmbm like '%'||#{xzqhdm}||'%' and substr(j.xmbm,0,4)<${nf} and j.xdzt='1' and j.kgzt='0') wkg2,

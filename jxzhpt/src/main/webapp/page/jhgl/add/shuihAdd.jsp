@@ -288,7 +288,7 @@
 			border-color: #55BEEE #C0C0C0 #C0C0C0 #C0C0C0; margin-left: 13px; height: 45px;" cellspacing="0" cellpadding="0">
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					水毁项目路线信息
+					灾毁重建路线信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -391,7 +391,7 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					水毁项目项目计划审核信息
+					灾毁重建项目计划审核信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">
@@ -442,7 +442,7 @@
 			</tr>
 			<tr style="height: 25px;">
 				<td colspan="6" style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
-					水毁项目计划信息
+					灾毁重建计划信息
 				</td>
 			</tr>
 			<tr style="height: 30px;">

@@ -47,11 +47,11 @@ function sbnf(id){
 }
 function openWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('shuih_xx','水毁项目',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
+	YMLib.UI.createWindow('shuih_xx','灾毁重建',"/jxzhpt/page/jhgl/jhkxx/shxm.jsp",'shuih_xx',1000,500);
 }
 function openEditWindow(id){
 	YMLib.Var.jhbm=id;
-	YMLib.UI.createWindow('shuih_edit','水毁项目',"/jxzhpt/page/jhgl/edit/shxm.jsp",'shuih_edit',1000,500);
+	YMLib.UI.createWindow('shuih_edit','灾毁重建',"/jxzhpt/page/jhgl/edit/shxm.jsp",'shuih_edit',1000,500);
 }
 function shxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.sbnf,'jh.sfylsjl':jh.sfylsjl,
@@ -270,7 +270,7 @@ function shxm_zjxd(jh,lx){
 	        	return result;
 	        }},
 	        {field:'zjxf',title:'资金下发',width:80,align:'center',formatter:function(value,row,index){
-	        	return '<a href="javascript:openDialog('+"'zjxd_shxm','水毁项目计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
+	        	return '<a href="javascript:openDialog('+"'zjxd_shxm','灾毁重建计划详情','../zjxd/shxm.jsp'"+')" style="text-decoration:none;color:#3399CC;">资金下发</a>';
 	        }},
 	        {field:'sbzt',title:'建设状态',width:80,align:'center',
 	        		formatter:function(value,row,index){
@@ -471,7 +471,7 @@ function lxztz(){
 		var lx={'lx.lxbm':$('#lxbm'+i).html(),'lx.qdzh':$('#qdzh'+i).html(),'lx.zdzh':$('#zdzh'+i).html(),
 				'lx.gydwdm':$.cookie("unit"),'lx.yhlc':$('#yhlc'+i).html(),'lx.qzlc':$('#qzlc'+i).html(),
 				'lx.jhid':$('#editsbnf').combobox('getValue'),'lx.xzqhdm':$('#xzqhdm'+i).html(),
-				'lx.yjsdj':$('#yjsdjxx'+i).html(),'xmlx':'水毁项目'};
+				'lx.yjsdj':$('#yjsdjxx'+i).html(),'xmlx':'灾毁重建'};
 		$.ajax({
 			type:'post',
 			url:'../../../jhgl/verifyLx.do',

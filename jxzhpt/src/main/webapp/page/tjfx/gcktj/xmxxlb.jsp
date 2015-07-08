@@ -39,7 +39,7 @@
 				url="../../../qqgl/queryJhsh2.do";
 				params={'jhsh.xmlx':4,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
 				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
-			}else if(parent.YMLib.Var.xmlx=='水毁工程'){
+			}else if(parent.YMLib.Var.xmlx=='灾毁重建'){
 				url="../../../qqgl/queryJhsh2.do";
 				params={'jhsh.xmlx':5,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
 				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
@@ -51,7 +51,7 @@
 				url="../../../jhgl/queryWqgzList.do";
 				params={'jh.sbnf':parent.YMLib.Var.nf,'lx.xzqhdm':parent.YMLib.Var.xzqhdm};
 				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckwqgz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(parent.YMLib.Var.xmlx=='灾害工程'){
+			}else if(parent.YMLib.Var.xmlx=='灾害防治'){
 				url="../../../jhgl/queryZhfzList.do";
 				params={'jh.sbnf':parent.YMLib.Var.nf,'lx.xzqhdm':parent.YMLib.Var.xzqhdm};
 				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckzhfz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
@@ -94,7 +94,7 @@
 			}else if(parent.YMLib.Var.xmlx=='新建工程'){
 				YMLib.Var.xmbm=id;
 				url="/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp";
-			}else if(parent.YMLib.Var.xmlx=='水毁工程'){
+			}else if(parent.YMLib.Var.xmlx=='灾害防治'){
 				YMLib.Var.xmbm=id;
 				url="/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp";
 			}else if(parent.YMLib.Var.xmlx=='养护大中修工程'){
@@ -106,7 +106,7 @@
 			}else if(parent.YMLib.Var.xmlx=='危桥改造'){
 				YMLib.Var.jhbm=id;
 				url="/jxzhpt/page/jhgl/jhkxx/wqgz.jsp";
-			}else if(parent.YMLib.Var.xmlx=='灾害工程'){
+			}else if(parent.YMLib.Var.xmlx=='灾害防治'){
 				YMLib.Var.jhbm=id;
 				url="/jxzhpt/page/jhgl/jhkxx/zhfz.jsp";
 			}

@@ -50,7 +50,7 @@ function xzqhtj(){
 			     	{title:'合计',colspan:2},
 			     	{title:'路面升级',colspan:2},
 			     	{title:'路面改建',colspan:2},
-			     	{title:'水毁项目',colspan:2},
+			     	{title:'灾毁重建',colspan:2},
 			     	{title:'养护大中修',colspan:2},
 			     	{title:'危桥改造',colspan:2},
 			     	{title:'安保工程',colspan:2},

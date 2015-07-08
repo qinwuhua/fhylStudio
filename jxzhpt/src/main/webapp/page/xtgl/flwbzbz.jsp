@@ -272,7 +272,7 @@
 						<option value="路面改造工程项目">路面改造工程项目</option>
 						<option value="新建工程项目">新建工程项目</option>
 						<option value="大中修工程项目">大中修工程项目</option>
-						<option value="水毁项目">水毁项目</option>
+						<option value="水毁项目">灾毁重建</option>
 						<option value="红色旅游项目">红色旅游项目</option>
 					</select>
 				</td>

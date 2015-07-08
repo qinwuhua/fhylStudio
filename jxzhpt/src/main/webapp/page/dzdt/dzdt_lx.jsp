@@ -133,7 +133,7 @@ function onclickXx(xmlx,xmid){
 	}else if(xmid.substring(10,11)=="4"){
 		parent.YMLib.UI.createWindow('yhdzxxx','养护大中修项目','/jxzhpt/page/qqgl/zjxd/yhdzx_xx.jsp','yhdzxxx',980,400);
 	}else if(xmid.substring(10,11)=="5"){
-		parent.YMLib.UI.createWindow('shxmxx','水毁项目','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
+		parent.YMLib.UI.createWindow('shxmxx','灾毁重建','/jxzhpt/page/qqgl/zjxd/shxm_xx.jsp','shxmxx',980,400);
 	}
 }
 

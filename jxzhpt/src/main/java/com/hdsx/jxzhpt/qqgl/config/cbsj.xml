@@ -437,6 +437,13 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
+		<if test="lc!=null">c.lc=#{lc},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
@@ -450,6 +457,13 @@
 		<if test="sjdw!=null">c.sjdw=#{sjdw},</if>
 		<if test="sjpfwh!=null">c.sjpfwh=#{sjpfwh},</if>
 		<if test="pfsj!=null">c.pfsj=#{pfsj},</if>
+		<if test="mc!=null">c.mc=#{mc},</if>
+		<if test="dc!=null">c.dc=#{dc},</if>
+		<if test="jc!=null">c.jc=#{jc},</if>
+		<if test="mc_lc!=null">c.mc_lc=#{mc_lc},</if>
+		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
+		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
+		<if test="lc!=null">c.lc=#{lc},</if>
 		sfbj=#{sfbj}
 		where c.xmbm=#{xmbm}
 	</update>
