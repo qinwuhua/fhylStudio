@@ -632,4 +632,10 @@
 		    (select nvl(sum(j.jhzlc),0) from plan_zhfz j left join sck_zhfz s on j.sckid=s.sckid left join xmk_zhfz x on s.xmkid=x.id where j.sbnf=#{nf} and x.xzqhdm like #{xzqhdm}||'%') zh2
 		)
 	</select>
+	<select id="queryJcktj" resultType="java.util.Map" parameterType="java.util.Map">
+		select * from 
+		(select nvl(sum(a.yhlc),0) ablczj,count(a.id) abxmzj from xmk_abgc a where a.xzqhdm like #{xzqhdm}||'%' and a.xmnf=#{nf}),
+		(select nvl(sum(z.yhlc),0) zhlczj,count(z.id) zhxmzj from xmk_zhfz z where z.xzqhdm like #{xzqhdm}||'%' and z.xmnf=#{nf}),
+		(select nvl(sum(w.qlqc),0) wqlczj,count(w.id) wqxmzj from xmk_wqgz w where w.xzqhdm like #{xzqhdm}||'%' and w.xmnf=#{nf})
+	</select>
 </mapper>

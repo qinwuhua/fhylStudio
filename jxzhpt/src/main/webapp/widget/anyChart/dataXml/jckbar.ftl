@@ -32,7 +32,7 @@
 				</series>
         		<series name="总长度">
         			<#list list as l >
-						<point name="${l.name}" y="${l.length}"/>        
+						<point name="${l.name}" y="${l.lc}"/>        
 					</#list>
         		</series>
 			</data>

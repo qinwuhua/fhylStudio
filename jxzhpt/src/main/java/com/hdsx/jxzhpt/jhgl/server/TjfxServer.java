@@ -27,4 +27,6 @@ public interface TjfxServer {
 	Map<String, Object> queryGckTzWcbl(String nf, String dm);
 
 	Map<String, Object> queryGckJhgcltj(String nf, String xzqhdm);
+
+	Map<String, Object> queryJcktj(String nf, String xzqh);
 }

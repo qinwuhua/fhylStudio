@@ -55,53 +55,60 @@ public class TjfxController extends BaseActionSupport{
 	private String end;//结束年份
 	private String xzqhdm;//行政区划代码
 	private String ftlName;
-	
+	/**
+	 * 基础库行政区划统计
+	 */
 	public void queryJcktj(){
 		try {
-			Map<String, Object> result=new HashMap<String, Object>();
+			getRequest().getSession().removeAttribute("jckxzqh");
+			List<Map<String, Object>> result=new ArrayList<Map<String,Object>>();
+			
 			TreeNode treenode=new TreeNode();
 			treenode.setId("36__00");
 			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
-			List<TreeNode> abgc = new ArrayList<TreeNode>();
-			List<TreeNode> wqgz = new ArrayList<TreeNode>();
-			List<TreeNode> zhfz = new ArrayList<TreeNode>();
 			for (TreeNode item : xzqhlist) {
 				String xzqh =item.getParent()==null ? item.getId().substring(0, 2) : item.getId().substring(0, 4);
-				xzqh="'"+xzqh+"'";
-				treenode.setId(xzqh);
-				TreeNode abObj = abgcServer.queryJcktj(treenode);
-				abObj.setName(item.getName());
-				abgc.add(abObj);
-				TreeNode wqObj = wqgzServer.queryJcktj(treenode);
-				wqObj.setName(item.getName());
-				wqgz.add(wqObj);
-				TreeNode zhObj = zhfzServer.queryJcktj(treenode);
-				zhObj.setName(item.getName());
-				zhfz.add(zhObj);
+				Map<String, Object> index = tjfxServer.queryJcktj(nf,xzqh);
+				index.put("xzqhmc", item.getName());
+				result.add(index);
 			}
-			result.put("abgc", abgc);
-			result.put("wqgz", wqgz);
-			result.put("zhfz", zhfz);
+			getRequest().getSession().setAttribute("jckxzqh", result);
 			JsonUtils.write(result, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * 基础库行政区划统计图
+	 */
+	@SuppressWarnings("unchecked")
 	public void queryJcktj1(){
 		try {
-			Map<String, Object> result=new HashMap<String, Object>();
-			
+			List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+			List<Map<String, Object>> session =(List<Map<String, Object>>) getRequest().getSession().getAttribute("jckxzqh");
+			for (Map<String, Object> item : session) {
+				Map<String, Object> index =new HashMap<String, Object>();
+				index.put("name", item.get("xzqhmc"));
+				if(xmlx.equals("abgc")){
+					index.put("count", item.get("ABLCZJ"));
+					index.put("lc", item.get("ABXMZJ"));
+				}else if(xmlx.equals("wqgz")){
+					index.put("count", item.get("WQLCZJ"));
+					index.put("lc", item.get("WQXMZJ"));
+				}else if(xmlx.equals("zhfz")){
+					index.put("count", item.get("ZHLCZJ"));
+					index.put("lc", item.get("ZHXMZJ"));
+				}
+			}
 			Map<String, Object> parameter=new HashMap<String, Object>();
 			parameter.put("chart_title", "行政区划");//title
 			String yName="里程";//y单位
 			int precision=0;//小数的位数
 			parameter.put("yName", yName);
 			parameter.put("precision",precision);
-			parameter.put("list",result);
+			parameter.put("list",list);
 			String chartType = "jckbar.ftl";
 			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
-			result.put("bar", anyChartXml);
 			ResponseUtils.write(getresponse(), anyChartXml);
 		} catch (Exception e) {
 			e.printStackTrace();

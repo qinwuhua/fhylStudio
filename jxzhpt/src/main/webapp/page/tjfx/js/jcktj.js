@@ -19,7 +19,7 @@ function loadXzqhCombo(id,dwbm){
 		}
 	});
 }
-function jckxzqhtj(){
+/*function jckxzqhtj(){
 	var jsonDate=new Array();
 	$.ajax({
 		type:'post',
@@ -81,7 +81,7 @@ function jckxzqhtj(){
 			gridBind(grid);
 		}
 	});
-}
+}*/
 function queryBar(){
 	barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
     barChart_1.width =980;

@@ -166,5 +166,12 @@ public class TjfxServerImpl extends BaseOperate implements TjfxServer {
 		params.put("xzqhdm", xzqhdm);
 		return queryOne("queryGckJhgcltj", params);
 	}
+
+	@Override
+	public Map<String, Object> queryJcktj(String nf, String xzqh) {
+		params.put("nf", nf);
+		params.put("xzqhdm", xzqh);
+		return queryOne("queryJcktj", params);
+	}
 	
 }
