@@ -50,7 +50,7 @@ $(function() {
 		title:'计划工程量统计',
 		imgSrc:'../../images/xmlxtj.png',
 		renderTo:'left_menu3',
-		href:'./gcktj/xmlxtj.jsp'
+		href:'./gcktj/gcltj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070304',

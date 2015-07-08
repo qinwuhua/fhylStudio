@@ -60,10 +60,17 @@ public class Jhsh {
 	private String llcl;//老路处理
 	private String jsdj;//技术等级
 	//用于路线信息的字段
+	private String gydw;//管养单位
 	private String qdmc;//起点名称
 	private String zdmc;//止点名称
 	private String gpsqdzh;//GPSRoad中的起点桩号
 	private String gpszdzh;//GPSRoad中的止点桩号
+	public String getGydw() {
+		return gydw;
+	}
+	public void setGydw(String gydw) {
+		this.gydw = gydw;
+	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}

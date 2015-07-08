@@ -21,13 +21,18 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadXzqh("xzqh",$.cookie("dist"));
+			var xzqhdm=parent.YMLib.Var.xzqhdm!=null ? parent.YMLib.Var.xzqhdm : $.cookie("dist");
+			loadXzqhCombo("xzqh",xzqhdm);
 			sbnf("searchYear");
+			if(parent.YMLib.Var.nf!=null){
+				$('#searchYear').combobox('setValue',parent.YMLib.Var.nf);
+			}
+			
 			loadData();
 		});
 		
 		function loadData(){
-			var xzqhdm=parent.YMLib.Var.xzqhdm!=null ? parent.YMLib.Var.xzqhdm : $('#xzqh').combobox("getValue");
+			var xzqhdm=parent.YMLib.Var.xzqhdm==$('#xzqh').combobox("getValue") ? parent.YMLib.Var.xzqhdm : $('#xzqh').combobox("getValue");
 			
 			$('#grid').datagrid({
 				url:'../../../tjfx/queryGckXmlxtj.do',
@@ -61,10 +66,13 @@
 				onLoadSuccess:function(){
 					loadBar1(xzqhdm);
 					loadBar2(xzqhdm);
-					parent.YMLib.Var.xzqhdm=null;
 			    },
 				onSelect:function(rowIndex, rowData){
-					window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex+'&nf='+$('#searchYear').combo('getValue');
+					parent.YMLib.Var.xmlx=rowData.XMLX;
+					parent.YMLib.Var.xzqhdm=$('#xzqh').combobox("getValue");
+					parent.YMLib.Var.xzqh=$('#xzqh').combobox("getText");
+					parent.YMLib.Var.nf=$('#searchYear').combo('getValue');
+					window.location.href='../gcktj/xmxxlb.jsp?xmlx='+rowIndex+'&nf='+$('#searchYear').combo('getValue')+'&xmlx='+rowData.XMLX;
 				}
 			});
 		}

@@ -161,7 +161,10 @@ public class Plan_abgcController extends BaseActionSupport{
 	 */
 	public void queryAbgcList(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
+			if(lx.getGydwbm()!=null){
+				lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", abgcServer.queryAbgcCount(jh, lx));

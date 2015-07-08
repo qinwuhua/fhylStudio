@@ -29,7 +29,7 @@
 			loadBmbm2('ddlPDDJ','技术等级');
 			loadBmbm2('ddlGldj','公路等级');
 			tsdq('ddlTSDQ');
-			var jh={jhnf:null,jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
+			var jh={jhnf:$('#sbnf').combobox('getValue'),jh_sbthcd:6,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			queryMessage(jh,lx);
 			zhfzxm_zjxd(jh,lx);

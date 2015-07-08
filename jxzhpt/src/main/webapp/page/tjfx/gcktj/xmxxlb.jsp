@@ -13,72 +13,107 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jscharts.plug.mb.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/widget/anyChart/js/AnyChart.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/page/tjfx/js/jcktj.js"></script>
 	<script type="text/javascript">
 		var xmlx;
 		$(function(){
 			var url,columns;
-			xmlx=getQueryString("xmlx");
-			if(getQueryString("xmlx")==1){
-				url="../../../jhgl/queryGcgjList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcgjs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==2){
-				url="../../../jhgl/queryGcsjList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_gcsjs[0].lxbm;}},{field:'pftz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==3){
-				url="../../../jhgl/queryShuihList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.shuihs[0].gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.shuihs[0].lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==4){
-				url="../../../jhgl/queryYhdzxList.do";
-				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].gydwmc;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.plan_lx_yhdzxs[0].lxbm;}},{field:'totalsubsidyfund',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==5){
+			var params;
+			if(parent.YMLib.Var.xmlx=='升级改造工程'){
+				url="../../../qqgl/queryJhsh.do";
+				params={'jhsh.xmlx':1,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
+				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
+			}else if(parent.YMLib.Var.xmlx=='路面改造工程'){
+				url="../../../qqgl/queryJhsh.do";
+				params={'jhsh.xmlx':2,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
+				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
+			}else if(parent.YMLib.Var.xmlx=='新建工程'){
+				url="../../../qqgl/queryJhsh.do";
+				params={'jhsh.xmlx':3,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
+				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
+			}else if(parent.YMLib.Var.xmlx=='养护大中修工程'){
+				url="../../../qqgl/queryJhsh2.do";
+				params={'jhsh.xmlx':4,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
+				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
+			}else if(parent.YMLib.Var.xmlx=='水毁工程'){
+				url="../../../qqgl/queryJhsh2.do";
+				params={'jhsh.xmlx':5,'jhsh.xdzt':-1,'jhsh.xzqhdm':parent.YMLib.Var.xzqhdm,'jhsh.xmbm':parent.YMLib.Var.nf};
+				columns=[[{field:'gydw',title:'管养单位',width:120,align:'center'},{field:'xmmc',title:'项目名称',width:90,align:'center'},{field:'ghlxbh',title:'路线编码',width:100,align:'center'},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'计划年份',width:80,align:'center',formatter:function(value,row,index){return row.xmbm.substring(0,4);}},{field:'jhjz',title:'查看详细',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.xmbm+"'"+')">查看详细</a>';}}]];
+			}else if(parent.YMLib.Var.xmlx=='安保工程'){
 				url="../../../jhgl/queryAbgcList.do";
+				params={'jh.jhnf':parent.YMLib.Var.nf,'lx.xzqhdm':parent.YMLib.Var.xzqhdm};
 				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckabgc.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckabgc.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckabgc.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'jhnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==6){
+			}else if(parent.YMLib.Var.xmlx=='危桥改造'){
 				url="../../../jhgl/queryWqgzList.do";
+				params={'jh.sbnf':parent.YMLib.Var.nf,'lx.xzqhdm':parent.YMLib.Var.xzqhdm};
 				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckwqgz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckwqgz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
-			}else if(getQueryString("xmlx")==7){
-				$('#xmlx').html("灾害防治");
+			}else if(parent.YMLib.Var.xmlx=='灾害工程'){
 				url="../../../jhgl/queryZhfzList.do";
+				params={'jh.sbnf':parent.YMLib.Var.nf,'lx.xzqhdm':parent.YMLib.Var.xzqhdm};
 				columns=[[{field:'gydwmc',title:'管养单位',width:120,align:'center',formatter:function(value,row,index){return row.jckzhfz.gydw;}},{field:'lxmc',title:'路线名称',width:90,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxmc;}},{field:'lxbm',title:'路线编码',width:100,align:'center',formatter:function(value,row,index){return row.jckzhfz.lxbm;}},{field:'pfztz',title:'批复金额',width:80,align:'center'},{field:'sbnf',title:'上报年份',width:80,align:'center'},{field:'jhjz',title:'计划进展',width:80,align:'center',formatter:function(value,row,index){return '<a href="javascript:openWin('+"'"+row.id+"'"+')">查看详细</a>';}}]];
 			}
-			xmxxlist(url, columns,getQueryString("nf"));
+			$('#xmlx').html(parent.YMLib.Var.xmlx);
+			$('#xzqhmc').html(parent.YMLib.Var.xzqh);
+			xmxxlist(url, columns,params);
 			getBarChart();
 		});
-		function openWin(id){
-			var url="/jxzhpt/page/jhgl/jhkxx/";
-			if(xmlx=="1")
-				url+="gclmgj.jsp";
-			else if(xmlx=="2")
-				url+="gclmsj.jsp";
-			else if(xmlx=="3")
-				url+="shxm.jsp";
-			else if(xmlx=="4")
-				url+="yhdzx.jsp";
-			else if(xmlx=="5")
-				url+="abgc.jsp";
-			else if(xmlx=="6")
-				url+="wqgz.jsp";
-			else if(xmlx=="7")
-				url+="zhfz.jsp";
-			openDialog('xmxx_xx','项目计划详情',url,id);
+		function xmxxlist(url,columns,params){
+			$('#grid').datagrid({
+			    url:url,
+			    queryParams:params,
+			    singleSelect:true,
+			    striped:true,
+			    pagination:true,
+			    rownumbers:false,
+			    pageNumber:1,
+			    pageSize:10,
+			    height:255,
+			    width:565,
+			    columns:columns,
+			    onSelect:function(rowIndex,rowData){
+			    	
+			    },
+			    onLoadSuccess:function(){
+			    	var d= $('#grid').datagrid('getData');
+			    	$('#xmcount').html(d.total);
+			    }
+			});
 		}
-		function getQueryString(name) {
-			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-			var r = window.location.search.substr(1).match(reg);
-			if (r != null)
-				return unescape(r[2]);
-			return null;
+		function openWin(id){
+			var url="";
+			if(parent.YMLib.Var.xmlx=='升级改造工程'){
+				YMLib.Var.xmbm=id;
+				url="/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp";
+			}else if(parent.YMLib.Var.xmlx=='路面改造工程'){
+				YMLib.Var.xmbm=id;
+				url="/jxzhpt/page/qqgl/jhsh/lmgz_xx.jsp";
+			}else if(parent.YMLib.Var.xmlx=='新建工程'){
+				YMLib.Var.xmbm=id;
+				url="/jxzhpt/page/qqgl/jhsh/xjgc_xx.jsp";
+			}else if(parent.YMLib.Var.xmlx=='水毁工程'){
+				YMLib.Var.xmbm=id;
+				url="/jxzhpt/page/qqgl/jhsh/shxm_xx1.jsp";
+			}else if(parent.YMLib.Var.xmlx=='养护大中修工程'){
+				YMLib.Var.xmbm=id;
+				url="/jxzhpt/page/qqgl/jhsh/yhdzx_xx1.jsp";
+			}else if(parent.YMLib.Var.xmlx=='安保工程'){
+				YMLib.Var.jhbm=id;
+				url="/jxzhpt/page/jhgl/jhkxx/abgc.jsp";
+			}else if(parent.YMLib.Var.xmlx=='危桥改造'){
+				YMLib.Var.jhbm=id;
+				url="/jxzhpt/page/jhgl/jhkxx/wqgz.jsp";
+			}else if(parent.YMLib.Var.xmlx=='灾害工程'){
+				YMLib.Var.jhbm=id;
+				url="/jxzhpt/page/jhgl/jhkxx/zhfz.jsp";
+			}
+			
+			YMLib.UI.createWindow1("xx",parent.YMLib.Var.xmlx,url,"xx",980,400);
 		}
 		function getBarChart(){
-			var xzqhdm=$.cookie("unit").substring(5);
-			if(xzqhdm=="360000")
-				xzqhdm=xzqhdm.substring(0,2)+"____";
-			else
-				xzqhdm=xzqhdm.substring(0,4)+"__";
 			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");
 		    barChart_1.width =580;
 		    barChart_1.height =300;
@@ -89,7 +124,7 @@
 				type:'post',
 				async : false,
 				url:'../../../tjfx/queryXmlxTj.do',
-				data:'xzqhdm='+xzqhdm+'&xmlx='+xmlx+'&ftlName='+$("input[name='radioTj']:checked").val()+'&nf='+getQueryString("nf"),
+				data:'xzqhdm='+parent.YMLib.Var.xzqhdm+'&xmlx='+parent.YMLib.Var.xmlx+'&ftlName='+$("input[name='radioTj']:checked").val()+'&nf='+parent.YMLib.Var.nf,
 				dataType:'text',
 				success:function(data){
 					barChart_1.setData(data);
@@ -113,7 +148,7 @@
         			<div>
         				<div>
         					<img alt="" src="${pageContext.request.contextPath}/images/jt.jpg">
-        					江西省—<span id="xmlx"></span>项目包含路线【<span id="xmcount"></span>】个
+        					<span id="xzqhmc"></span>—<span id="xmlx"></span>项目包含路线【<span id="xmcount"></span>】个
         				</div>
         				<div style="padding-top: 5px;">
         					<table id="grid"></table>

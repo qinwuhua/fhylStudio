@@ -381,7 +381,7 @@
 	<select id="querySumAbgc" resultMap="abgc_jh" parameterType="java.util.Map">
 		select count(id) as id,sum(zlc) as qzlc,sum(yhlc) as yhlc,
 		sum(pfztz) as pfztz,sum(jhsybbzje) as jhsybbzje,sum(jhsydfzczj) as jhsydfzczj from(
-			select count(jh.id) as id,sum(sc.sczlc) as zlc,sum(sc.scyhlc) as yhlc,
+			select count(jh.id) as id,sum(sc.sczlc) as zlc,sum(jh.jhzlc) as yhlc,
 			sum(jh.pfztz) as pfztz,sum(jh.jhsybbzje) as jhsybbzje,sum(jh.jhsydfzczj) as jhsydfzczj
 			from xmk_abgc lx right join sck_abgc sc on (lx.id=sc.xmkid) right join plan_abgc jh on (sc.sckid=jh.sckid)
 			where 1=1

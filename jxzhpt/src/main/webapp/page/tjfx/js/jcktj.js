@@ -1,3 +1,24 @@
+function loadXzqhCombo(id,dwbm){
+	$.ajax({
+		type:'post',
+		url:'../../../tjfx/queryXzqhCombo.do',
+		async:false,
+		dataType:'json',
+		success:function(data){
+			$('#' + id).combotree({
+				checkbox : true,
+				data : data,
+				onBeforeExpand : function(node, param) {
+					$('#' + id).combotree("tree").tree('options').url = "/jxzhpt/xtgl/selAllXzqh2.do?yhdw="+ node.id;
+				},
+				onSelect : function(node) {
+					YMLib.Var.DistName = node.text;
+				}
+			});
+			$('#' + id).combotree('setValue', dwbm);
+		}
+	});
+}
 function jckxzqhtj(){
 	var jsonDate=new Array();
 	$.ajax({
@@ -267,7 +288,7 @@ function gckxmlxtj(data){
 		};
 	gridBind(grid);
 }
-function xmxxlist(url,columns,nf){
+/*function xmxxlist(url,columns,nf){
 	var xzqhdm=$.cookie("unit").substring(5);
 	if(xzqhdm=="360000")
 		xzqhdm=xzqhdm.substring(0,2)+"____";
@@ -289,7 +310,7 @@ function xmxxlist(url,columns,nf){
 		    }
 		};
 	gridBind(grid);
-}
+}*/
 /**
  * dataGrid绑定数据方法
  * @param grid 为dataGrid配置的JSON对象

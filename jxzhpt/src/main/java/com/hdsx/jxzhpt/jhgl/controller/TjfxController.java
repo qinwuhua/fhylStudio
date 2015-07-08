@@ -463,8 +463,10 @@ public class TjfxController extends BaseActionSupport{
 	}
 	
 	public void queryXmlxTj(){
+		List<Map<String, Object>> result =new ArrayList<Map<String,Object>>();
+		xzqhdm =xzqhdm.equals("360000") ? xzqhdm.substring(0,2) : xzqhdm.substring(0, 4);
+		List<Map<String,Object>> data = tjfxServer.queryGckXmlxtj(nf, xzqhdm);
 		Map<String,Object> parameter=new HashMap<String,Object>();
-		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
 		parameter.put("xName", "年份");//title
 		parameter.put("chart_title_y", "金额");
 		String yName="总金额";//y单位
@@ -473,38 +475,32 @@ public class TjfxController extends BaseActionSupport{
 		parameter.put("precision",precision);
 		parameter.put("chart_title", "行政区划统计图");
 		String chartType = "gckxmlxbar.ftl";
-		List<TreeNode> data=null;
-		System.out.println("项目类型："+xmlx);
-		if(xmlx.equals("1"))
-			data = gcgjServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("2"))
-			data = gcsjServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("3"))
-			data=shuihServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("4"))
-			data=yhdzxServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("5"))
-			data=abgcServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("6"))
-			data=wqgzServer.queryGcktj(xzqhdm,nf);
-		else if(xmlx.equals("7"))
-			data=zhfzServer.queryGcktj(xzqhdm,nf);
-		for(TreeNode item :data){
-			Map<String, String> one=new HashMap<String, String>();
-			if(item.getId().equals("0")){
-				one.put("name", "未开工");
-			}else if(item.getId().equals("1")){
-				one.put("name", "在建");
-			}else if(item.getId().equals("2")){
-				one.put("name", "竣工");
+		
+		Map<String, Object> wkg=new HashMap<String, Object>();
+		wkg.put("name", "未开工");
+		Map<String, Object> zj=new HashMap<String, Object>();
+		zj.put("name", "在建");
+		Map<String, Object> jg=new HashMap<String, Object>();
+		jg.put("name", "竣工");
+		for(Map<String, Object> item :data){
+			if(xmlx.equals(item.get("XMLX").toString())){
+				if(ftlName.equals("ztz")){
+					wkg.put("value", item.get("ZTZ").toString());
+					zj.put("value", item.get("ZJZTZ").toString());
+					jg.put("value", item.get("WGZTZ").toString());
+				}else if(ftlName.equals("sl")){
+					wkg.put("value", item.get("SL").toString());
+					zj.put("value", item.get("ZJSL").toString());
+					jg.put("value", item.get("WGSL").toString());
+				}
+				break;
 			}
-			if(ftlName.equals("ztz"))
-				one.put("value", item.getText());
-			else if(ftlName.equals("sl"))
-				one.put("value", item.getName());
-			list.add(one);
+			result.add(wkg);
+			result.add(zj);
+			result.add(jg);
 		}
-		parameter.put("list",list);
+		System.out.println(result);
+		parameter.put("list",result);
 		String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
 		ResponseUtils.write(getresponse(), anyChartXml);
 	}
@@ -764,6 +760,8 @@ public class TjfxController extends BaseActionSupport{
 			List<Map<String,String>> list=new ArrayList<Map<String,String>>();
 			List<Map<String,Object>> attribute = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxzqh");
 			for (Map<String,Object> item : attribute) {
+				if(item.get("xzqhdm").toString().equals("360000"))
+					continue;
 				Map<String, String> index=new HashMap<String, String>();
 				index.put("name", item.get("xzqh").toString());
 				index.put("ztz", item.get("ZTZ").toString());
@@ -819,7 +817,7 @@ public class TjfxController extends BaseActionSupport{
 						index.put("dntz", gckxmlxtj.get(i).get("ZTZ").toString());
 						index.put("dnsl", gckxmlxtj.get(i).get("SL").toString());
 						index.put("lstz", lstz.get(i).get("ZTZ").toString());
-						index.put("lssl", gckxmlxtj.get(i).get("SL").toString());
+						index.put("lssl", lstz.get(i).get("SL").toString());
 						data.add(index);
 						break b;
 					}
@@ -986,6 +984,88 @@ public class TjfxController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 		
+	}
+	/**
+	 * 计划工程量统计
+	 */
+	public void queryGckJhgcltj(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			Map<String, Object> index_jhlc = new HashMap<String, Object>();
+			index_jhlc.put("sm", "计划工程量");
+			Map<String, Object> index_bnwc = new HashMap<String, Object>();
+			index_bnwc.put("sm", "本年完工");
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					Map<String, Object> index = tjfxServer.queryGckJhgcltj(nf,item.getId().substring(0, 4));
+					index_jhlc.put(item.getId(), index.get("ZLC"));
+					index_bnwc.put(item.getId(), index.get("WCLC"));
+				}
+			}
+			result.add(index_jhlc);
+			result.add(index_bnwc);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryGckJhgcltjt(){
+		try{
+			List<Map<String,Object>> result =new ArrayList<Map<String,Object>>();
+			
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			
+			for (TreeNode item : xzqh) {
+				if(!item.getId().equals("360000")){
+					Map<String, Object> index = tjfxServer.queryGckJhgcltj(nf,item.getId().substring(0, 4));
+					index.put("XZQH", item.getName());
+					result.add(index);
+				}
+			}
+			Map<String,Object> parameter=new HashMap<String,Object>();
+			parameter.put("xName", "年份");//title
+			parameter.put("chart_title_y", "金额");
+			String yName="总金额";//y单位
+			parameter.put("yName", yName);
+			int precision=2;//小数的位数
+			parameter.put("precision",precision);
+			parameter.put("chart_title", xmlx);
+			String chartType = ftlName;
+			parameter.put("list",result);
+			String anyChartXml = AnyChartUtil.getAnyChartXml(chartType, parameter);
+			ResponseUtils.write(getresponse(), anyChartXml);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void queryXzqhCombo(){
+		try{
+			List<TreeNode> result =new ArrayList<TreeNode>();
+			TreeNode node=new TreeNode();
+			node.setId("360000");
+			node.setText("江西省");
+			TreeNode treenode=new TreeNode();
+			treenode.setId("36__00");
+			List<TreeNode> xzqh = zjqfServer.queryChildXzqh(treenode);
+			xzqh.remove(0);
+			for (TreeNode item : xzqh) {
+				item.setText(item.getName());
+			}
+			node.setChildren(xzqh);
+			result.add(node);
+			System.out.println("江西省："+node.getChildren().size());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public String getXmlx() {

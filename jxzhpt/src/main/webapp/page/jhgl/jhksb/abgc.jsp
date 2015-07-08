@@ -36,7 +36,6 @@
 			var myDate = new Date();
 			sbnf("sbnf");
 			$('#sbnf').combobox("setValue",myDate.getFullYear());
-			queryZjqf($('#sbnf').combobox("getValue"));
 			var jh={jhnf:$('#sbnf').combobox("getValue"),sbzt:null,spzt:'0',jh_sbthcd:0,sfylsjl:$('#sfylsjl').combo("getValue")};
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			if(roleName()=="市级" || roleName()=="省级"){
@@ -241,7 +240,6 @@ text-decoration:none;
         	</tr>
         	<tr>
         		<td style="text-align: left;padding:8px 0px 5px 20px;font-size: 12px;">
-        			切分资金【&nbsp;<span id="lblQfzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
         			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个安保工程项目，
         			总里程共【&nbsp;<span id="lblZLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
         			隐患里程共【&nbsp;<span id="lblYHLC" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】公里，
