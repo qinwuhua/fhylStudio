@@ -13,6 +13,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 
 public interface LxshServer {
 
@@ -123,6 +124,18 @@ public interface LxshServer {
 	Lxsh qqglGpszh(Lxsh lxsh);
 
 	List<Lxsh> selectlxbyxmid1(Lxsh lxsh);
+
+	List<Excel_list> querylxshSjgz(Lxsh lxsh);
+
+	List<Excel_list> querylxshLmgz(Lxsh lxsh);
+
+	List<Excel_list> querylxshXj(Lxsh lxsh);
+
+	List<Excel_list> querykxxSjgz(Lxsh lxsh);
+
+	List<Excel_list> querykxxLmgz(Lxsh lxsh);
+
+	List<Excel_list> querykxxXj(Lxsh lxsh);
 
 
 }

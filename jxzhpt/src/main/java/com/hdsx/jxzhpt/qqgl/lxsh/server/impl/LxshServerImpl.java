@@ -18,6 +18,7 @@ import com.hdsx.jxzhpt.wjxt.bean.Lktjb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
 import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
@@ -628,6 +629,42 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public List<Lxsh> selectlxbyxmid1(Lxsh lxsh) {
 		// TODO Auto-generated method stub
 		return queryList("selectlxbyxmid1", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querylxshSjgz(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querylxshSjgz", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querylxshLmgz(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querylxshLmgz", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querylxshXj(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querylxshXj", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querykxxSjgz(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querykxxSjgz", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querykxxLmgz(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querykxxLmgz", lxsh);
+	}
+
+	@Override
+	public List<Excel_list> querykxxXj(Lxsh lxsh) {
+		// TODO Auto-generated method stub
+		return queryList("querykxxXj", lxsh);
 	}
 	
 }

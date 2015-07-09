@@ -76,6 +76,8 @@
 	      <action name="thLmgzkxx1" class="kxxyjController" method="thLmgzkxx1"/>
 	       <action name="xjsfcb" class="kxxyjController" method="xjsfcb"/>
 	      <action name="thXjkxx1" class="kxxyjController" method="thXjkxx1"/>
+	      <action name="dcModule" class="lxshController" method="dcModule"/>
+	      <action name="dckxxModule" class="lxshController" method="dckxxModule"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 初步设计-->

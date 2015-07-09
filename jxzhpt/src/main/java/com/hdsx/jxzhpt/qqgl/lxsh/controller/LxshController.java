@@ -20,7 +20,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -60,6 +62,10 @@ import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
 import com.hdsx.jxzhpt.wjxt.bean.Trqk;
 import com.hdsx.jxzhpt.wjxt.bean.Zdxx;
 import com.hdsx.jxzhpt.wjxt.bean.Zhqk;
+import com.hdsx.jxzhpt.wjxt.controller.ExcelData;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_export;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_list;
+import com.hdsx.jxzhpt.wjxt.controller.Excel_tilte;
 import com.hdsx.jxzhpt.wjxt.server.DbyhServer;
 import com.hdsx.jxzhpt.wjxt.server.TrqkServer;
 import com.hdsx.jxzhpt.wjxt.server.ZdxxServer;
@@ -885,6 +891,144 @@ public class LxshController extends BaseActionSupport{
 			JsonUtils.write(l, getresponse().getWriter());
 		} catch (Exception e1) {
 			e1.printStackTrace();
+		}
+	}
+	
+	public void dcModule(){
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydw=(String) session.getAttribute("gydwbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");	
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and lx.gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and lx.xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="andx lx.zqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			String xmbt="";
+			List<Excel_list> elist=new ArrayList<Excel_list>();
+			if("sjgz".equals(lxsh.getXmlx())){
+				xmbt="升级改造";
+				elist=lxshServer.querylxshSjgz(lxsh);
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				xmbt="路面改造";
+				elist=lxshServer.querylxshLmgz(lxsh);
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				xmbt="新建";
+				elist=lxshServer.querylxshXj(lxsh);
+			}
+			
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName(xmbt+"工程项目立项审核信息表");//设置第一行 
+			eldata.setSheetName("立项审核信息");//设置sheeet名
+			eldata.setFileName(xmbt+"工程项目立项审核信息表");//设置文件名
+			eldata.setEl(elist);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("项目编码",1,1,0,0));
+			et.add(new Excel_tilte("路线编码",1,1,1,1));
+			et.add(new Excel_tilte("路线名称",1,1,2,2));
+			et.add(new Excel_tilte("项目名称",1,1,3,3));
+			et.add(new Excel_tilte("起点桩号",1,1,4,4));
+			et.add(new Excel_tilte("止点桩号",1,1,5,5));
+			et.add(new Excel_tilte("起点名称",1,1,6,6));
+			et.add(new Excel_tilte("止点名称",1,1,7,7));
+			et.add(new Excel_tilte("建设性质",1,1,8,8));
+			et.add(new Excel_tilte("管养单位",1,1,9,9));		
+			et.add(new Excel_tilte("行政区划",1,1,10,10));
+			et.add(new Excel_tilte("特殊地区",1,1,11,11));
+			et.add(new Excel_tilte("建设技术等级",1,1,12,12));
+			et.add(new Excel_tilte("现技术等级",1,1,13,13));
+			et.add(new Excel_tilte("项目年份",1,1,14,14));
+			et.add(new Excel_tilte("计划开工年",1,1,15,15));
+			et.add(new Excel_tilte("计划完工年",1,1,16,16));
+			et.add(new Excel_tilte("投资(万元)",1,1,17,17));
+			et.add(new Excel_tilte("补助测算(万元)",1,1,18,18));
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void dckxxModule(){
+		try {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session = request.getSession();
+			gydw=(String) session.getAttribute("gydwbb");	
+			xzqh=(String) session.getAttribute("xzqhbb");	
+			String tiaojian1="";
+			String tiaojian2="";
+			if(gydw.indexOf(",")==-1){
+				tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
+			}else{
+				tiaojian1="and lx.gydwdm in ("+gydw+")";
+			}
+			if(xzqh.indexOf(",")==-1){
+				tiaojian2="and lx.xzqhdm like '%"+xzqh+"%'";
+			}else{
+				tiaojian2="andx lx.zqhdm in ("+xzqh+")";
+			}
+			lxsh.setXzqh(tiaojian2);
+			lxsh.setGydw(tiaojian1);
+			String xmbt="";
+			List<Excel_list> elist=new ArrayList<Excel_list>();
+			if("sjgz".equals(lxsh.getXmlx())){
+				xmbt="升级改造";
+				elist=lxshServer.querykxxSjgz(lxsh);
+			}
+			if("lmgz".equals(lxsh.getXmlx())){
+				xmbt="路面改造";
+				elist=lxshServer.querykxxLmgz(lxsh);
+			}
+			if("xj".equals(lxsh.getXmlx())){
+				xmbt="新建";
+				elist=lxshServer.querykxxXj(lxsh);
+			}
+			
+			ExcelData eldata=new ExcelData();//创建一个类
+			eldata.setTitleName(xmbt+"工程项目工可信息表");//设置第一行 
+			eldata.setSheetName("工可信息");//设置sheeet名
+			eldata.setFileName(xmbt+"工程项目工可信息表");//设置文件名
+			eldata.setEl(elist);//将实体list放入类中
+			List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
+			et.add(new Excel_tilte("项目编码",1,1,0,0));
+			et.add(new Excel_tilte("项目名称",1,1,1,1));
+			et.add(new Excel_tilte("行政区划",1,1,2,2));
+			et.add(new Excel_tilte("起点桩号",1,1,3,3));
+			et.add(new Excel_tilte("止点桩号",1,1,4,4));
+			et.add(new Excel_tilte("建设性质",1,1,5,5));
+			et.add(new Excel_tilte("大桥(米)",1,1,6,6));
+			et.add(new Excel_tilte("大桥(座)",1,1,7,7));
+			et.add(new Excel_tilte("建设技术等级",1,1,8,8));
+			et.add(new Excel_tilte("隧道(米)",1,1,9,9));		
+			et.add(new Excel_tilte("隧道(座)",1,1,10,10));
+			et.add(new Excel_tilte("建设单位",1,1,11,11));
+			et.add(new Excel_tilte("开工年月",1,1,12,12));
+			et.add(new Excel_tilte("完工年月",1,1,13,13));
+			et.add(new Excel_tilte("编制单位",1,1,14,14));
+			et.add(new Excel_tilte("投资估算",1,1,15,15));
+			et.add(new Excel_tilte("工可批复文号",1,1,16,16));
+			et.add(new Excel_tilte("批复时间",1,1,17,17));
+			eldata.setEt(et);//将表头内容设置到类里面
+			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
+			Excel_export.excel_export(eldata,response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
