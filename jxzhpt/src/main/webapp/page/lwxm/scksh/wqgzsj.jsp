@@ -266,10 +266,10 @@ $("#grid").datagrid({
 				}
 			}},    
 			{field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-				if(row.sck_shzt=="未审核"){
-				return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-				}else{
+				if(row.sck_shzt=="已审核"){
 					return '<span style="color:grey;">已审核</span>';
+				}else{
+					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
 				}
 			}},
 // 				{field:'lrjh',title:'列入计划状态',width:100,align:'center'},

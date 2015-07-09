@@ -216,13 +216,24 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	
 	@Override
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
-		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) return true;
+		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
+			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
+				jckwqgzsj.setBz("2");
+			}else {
+				jckwqgzsj.setBz("0");
+			}
+			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
+				System.out.println("nonono");
+			return true;
+			}
 		else return false;
 	}
 
 	@Override
 	public boolean sjshbtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
-		if(update("sjshbtyWqgzsjwqgz", jckwqgzsj)>0) return true;
+		if(update("sjshbtyWqgzsjwqgz", jckwqgzsj)>0){ 
+			return true;
+		}
 		else return false;
 	}
 }

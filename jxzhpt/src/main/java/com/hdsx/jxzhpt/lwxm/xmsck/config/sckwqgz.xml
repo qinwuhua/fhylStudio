@@ -19,7 +19,7 @@
 	<select id="selectSckwqgz" parameterType="sckwqgz" resultType="sckwqgz">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2 from
-		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
+		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='是'
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
@@ -65,7 +65,7 @@
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectWqgzCount" parameterType="sckwqgz" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='是'
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
@@ -112,7 +112,7 @@
 		update sck_wqgz set
 		tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},
 		jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk}
-		where sckid=#{sckid}
+		where sckid=#{sckid} 
 	</update>
 	<select id="selectSckwqgzById" parameterType="sckwqgz"
 		resultType="sckwqgz">
@@ -140,7 +140,7 @@
 		select * from (
 		select rownum num ,t.* from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id 
-		where 1=1
+		where 1=1 and t.SFYLRBWQK='是'
 		<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t
@@ -190,7 +190,7 @@
 		resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on
 		xmkid=xmk_wqgz.id
-		where 1=1
+		where 1=1 and t.SFYLRBWQK='是'
 		<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
