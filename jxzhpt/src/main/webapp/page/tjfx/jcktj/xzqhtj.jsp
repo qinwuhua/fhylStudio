@@ -19,9 +19,11 @@
 	<script type="text/javascript">
 		$(function(){
 			sbnf("searchYear");
-			jckxzqhtj();
-			queryBar();
+			load();
 		});
+		function load(){
+			jckxzqhtj();
+		}
 		function jckxzqhtj(){
 			$('#grid').datagrid({
 			    url:'../../../tjfx/queryJcktj.do',
@@ -51,12 +53,29 @@
 						    ]
 					    ],
 			    onLoadSuccess:function(){
+			    	queryBar();
 			    },
 			    onSelect:function(rowIndex, rowData){
 			    }
 			});
 		}
-		
+		function queryBar(){
+			alert($('#selxmlx').val());
+			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
+		    barChart_1.width =980;
+		    barChart_1.height =300;
+		    barChart_1.padding =0;
+		    barChart_1.wMode="transparent";
+		    barChart_1.write("anychart_div");
+		    $.ajax({
+				type:"post",
+				url:"../../../tjfx/queryJcktj1.do?xmlx="+$('#selxmlx').val(),
+				dataType:'text',
+				success:function(msg){
+					barChart_1.setData(msg);
+				}
+			});
+		}
 		function sbnf(id){
 			var myDate = new Date();
 			var years=[];
@@ -96,7 +115,7 @@
 		        					<option value="2014">2014年</option>
 		        					<option selected="selected" value="2015">2015年</option>
 		        				</select>
-        						<img alt="搜索" onclick="loadData()" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+        						<img alt="搜索" onclick="load()" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" style="vertical-align:middle;"/>
         					</p>
         				</div>
         			</fieldset>

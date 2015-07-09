@@ -60,9 +60,8 @@ public class TjfxController extends BaseActionSupport{
 	 */
 	public void queryJcktj(){
 		try {
-			getRequest().getSession().removeAttribute("jckxzqh");
 			List<Map<String, Object>> result=new ArrayList<Map<String,Object>>();
-			
+			getRequest().getSession().removeAttribute("jckxzqh");
 			TreeNode treenode=new TreeNode();
 			treenode.setId("36__00");
 			List<TreeNode> xzqhlist = zjqfServer.queryChildXzqh(treenode);
@@ -70,6 +69,7 @@ public class TjfxController extends BaseActionSupport{
 				String xzqh =item.getParent()==null ? item.getId().substring(0, 2) : item.getId().substring(0, 4);
 				Map<String, Object> index = tjfxServer.queryJcktj(nf,xzqh);
 				index.put("xzqhmc", item.getName());
+				index.put("xzqhdm", item.getId());
 				result.add(index);
 			}
 			getRequest().getSession().setAttribute("jckxzqh", result);
@@ -87,21 +87,26 @@ public class TjfxController extends BaseActionSupport{
 			List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
 			List<Map<String, Object>> session =(List<Map<String, Object>>) getRequest().getSession().getAttribute("jckxzqh");
 			for (Map<String, Object> item : session) {
+				if(item.get("xzqhdm").equals("360000")){
+					continue;
+				}
 				Map<String, Object> index =new HashMap<String, Object>();
 				index.put("name", item.get("xzqhmc"));
 				if(xmlx.equals("abgc")){
-					index.put("count", item.get("ABLCZJ"));
-					index.put("lc", item.get("ABXMZJ"));
+					index.put("count", item.get("ABXMZJ"));
+					index.put("lc", item.get("ABLCZJ"));
 				}else if(xmlx.equals("wqgz")){
-					index.put("count", item.get("WQLCZJ"));
-					index.put("lc", item.get("WQXMZJ"));
+					index.put("count", item.get("WQXMZJ"));
+					index.put("lc", item.get("WQLCZJ"));
 				}else if(xmlx.equals("zhfz")){
-					index.put("count", item.get("ZHLCZJ"));
-					index.put("lc", item.get("ZHXMZJ"));
+					index.put("count", item.get("ZHXMZJ"));
+					index.put("lc", item.get("ZHLCZJ"));
 				}
+				list.add(index);
 			}
 			Map<String, Object> parameter=new HashMap<String, Object>();
 			parameter.put("chart_title", "行政区划");//title
+			parameter.put("chart_title_y", "里程/个数");//title
 			String yName="里程";//y单位
 			int precision=0;//小数的位数
 			parameter.put("yName", yName);

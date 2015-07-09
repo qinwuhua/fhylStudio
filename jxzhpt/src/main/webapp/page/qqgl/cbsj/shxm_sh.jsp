@@ -95,26 +95,6 @@
 				{field:'pfsj',title:'批复时间',width:100,align:'center'}]];
 			gridBind(grid);
 		}
-		/*function deleteLmgz(){
-			if(selArray.length!=0){
-				var xmbm = selArray.join(",");
-				$.ajax({
-					type:'post',
-					url:'../../../qqgl/deleteCbsjByXmbm.do',
-					data:'cbsj.xmlx='+4+'&cbsj.xmbm='+xmbm,
-					dataType:'json',
-					success:function(msg){
-						if(msg.result=="true"){
-							selArray.splice(0,selArray.length);
-							alert("删除成功!");
-							queryYhdzx();
-						}
-					}
-				});
-			}else{
-				alert("请选择要删除的信息！");
-			}
-		}*/
 		function sh(xmbm){
 			$.ajax({
 				type:'post',
@@ -167,6 +147,10 @@
 			}else{
 				alert("请选择要审核的信息！");
 			}
+		}
+		function exportCbsj(){
+			var param='xmlx=5&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -229,6 +213,7 @@ text-decoration:none;
 								<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/> -->
 								<img onclick="batchSh()" id="sh" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
+								<img onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						</td>
                         	</tr>
                         </table>

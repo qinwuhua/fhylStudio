@@ -157,5 +157,13 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public boolean insertCbsjSh(Xmsq xmsq) {
 		return insert("insertCbsjSh", xmsq)==xmsq.getXmbm().split(",").length;
 	}
+	@Override
+	public List<Object> queryYhdzxExport(Xmsq xmsq) {
+		return queryList("queryYhdzxExport",xmsq);
+	}
+	@Override
+	public List<Object> queryShExport(Xmsq xmsq) {
+		return queryList("queryShExport",xmsq);
+	}
 
 }

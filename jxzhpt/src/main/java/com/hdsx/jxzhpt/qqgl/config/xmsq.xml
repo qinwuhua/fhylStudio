@@ -463,4 +463,65 @@
 		<if test="jsfa!=null">,JSFA=#{jsfa}</if>
 		where xmbm=#{xmbm}
 	</update>
+	
+	<select id="queryYhdzxExport" parameterType="xmsq" resultType="xmsq">
+		select * from (
+			select rownum num,t.* from (
+				select x.* from xmsq_yhdzx x where 1=1
+				<if test="gydwdm!=null and gydwdm!=''">
+					and ${gydwdm}
+				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">
+					and ${xzqhdm}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">
+					and xmmc like '%'||#{xmmc}||'%'
+				</if>
+				<if test="jsdj!=null and jsdj!=''">
+					and (jsdj=#{jsdj})
+				</if>
+				<if test="sqzt>=0">
+					and sqzt=${sqzt}
+				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and x.xmbm like #{xmbm}||'%'
+				</if>
+				<if test="tsdq!=null and tsdq!=''">
+					and x.tsdq like '%'||#{tsdq}||'%'
+				</if>
+				<if test="lsjl!=null and lsjl!=''">
+					and x.lsjl=#{lsjl}
+				</if>
+				order by x.sqzt desc,x.xmbm desc) t ) t2
+	</select>
+	<select id="queryShExport" parameterType="xmsq" resultType="xmsq">
+		select * from (
+			select rownum num,t.* from (
+				select x.* from xmsq_sh x where 1=1
+				<if test="gydwdm!=null and gydwdm!=''">
+					and ${gydwdm}
+				</if>
+				<if test="xzqhdm!=null and xzqhdm!=''">
+					and ${xzqhdm}
+				</if>
+				<if test="xmmc!=null and xmmc!=''">
+					and xmmc like '%'||#{xmmc}||'%'
+				</if>
+				<if test="jsdj!=null and jsdj!=''">
+					and (jsdj=#{jsdj})
+				</if>
+				<if test="sqzt>=0">
+					and sqzt=${sqzt}
+				</if>
+				<if test="xmbm!=null and xmbm!=''">
+					and x.xmbm like #{xmbm}||'%'
+				</if>
+				<if test="tsdq!=null and tsdq!=''">
+					and x.tsdq like '%'||#{tsdq}||'%'
+				</if>
+				<if test="lsjl!=null and lsjl!=''">
+					and x.lsjl=#{lsjl}
+				</if>
+				order by x.sqzt desc,x.xmbm desc) t ) t2
+	</select>
 </mapper>
