@@ -160,19 +160,19 @@
 				alert("请选择要审核的信息！");
 			}
 		}
+		function exportCbsj(){
+			var param='xmlx=2&shzt=-1&xzqhdm='+getxzqhdm('xzqh');
+			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
 		});
 	</script>
-		<style type="text/css">
-TD {
-font-size: 12px;
-}
-a{
-text-decoration:none;
-}
-.abgc_td td{padding-right:5px;}
-</style>
+	<style type="text/css">
+		TD {font-size: 12px;}
+		a{text-decoration:none;}
+		.abgc_td td{padding-right:5px;}
+	</style>
 </head>
 <body>
 	<div id="righttop">
@@ -218,6 +218,7 @@ text-decoration:none;
 							<tr height="32">
                             	<td colspan="10">
 								<img onclick="queryLmgz()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;"/>
+								<img onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/shangbao_2.png'" alt="上报" onmouseout="this.src='../../../images/Button/shangbao_1.png'" src="../../../images/Button/shangbao_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="deleteLmgz()" alt="删除" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'" style="vertical-align:middle;"/> -->
         					  	</td>

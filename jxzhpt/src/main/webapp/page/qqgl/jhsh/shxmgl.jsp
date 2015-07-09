@@ -265,6 +265,12 @@
 				alert("请选择要上报的信息！");
 			}
 		}
+		function exportXmsq(){
+			var param='xmlx=5&sqzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&gydwdm='+getgydw("gydw")+
+			'&xmbm='+$('#xmnf').combobox("getValue")+'&jsdj='+$('#jsdj').combobox("getValue")+
+			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
+		}
 		function openSh(){
 			openWindow("shxmadd","添加灾毁重建项目","shxmAdd.jsp",980,400);
 		}
@@ -320,6 +326,7 @@
 									<img id="sc" name="dishi" alt="删除" onclick="deleteSh()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 					                <img id="th" name="sheng" alt="退回" onclick="" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
+					                <img onclick="exportXmsq()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 	       						</td>
 	       					</tr>
 	       				</table>

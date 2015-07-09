@@ -262,5 +262,25 @@ public class CbsjServerImpl extends BaseOperate implements CbsjServer {
 		}
 		return updateBatch("shCbsjShByXmbm", list)==list.size();
 	}
+	@Override
+	public List<Object> queryLmgzExcel(Cbsj cbsj) {
+		return queryList("queryLmgzExcel",cbsj);
+	}
+	@Override
+	public List<Object> queryYhdzxExcel(Cbsj cbsj) {
+		return queryList("queryYhdzxExcel",cbsj);
+	}
+	@Override
+	public List<Object> queryShExcel(Cbsj cbsj) {
+		return queryList("queryShExcel",cbsj);
+	}
+	@Override
+	public List<Object> queryLmsjExcel(Cbsj cbsj) {
+		return queryList("queryLmsjExcel",cbsj);
+	}
+	@Override
+	public List<Object> queryXjExcel(Cbsj cbsj) {
+		return queryList("queryXjExcel",cbsj);
+	}
 
 }

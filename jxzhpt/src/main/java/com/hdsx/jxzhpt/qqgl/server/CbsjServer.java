@@ -202,5 +202,35 @@ public interface CbsjServer {
 	 * @return 执行结果
 	 */
 	public boolean shCbsjShByXmbm(Cbsj cbsj, String shzt1);
+	/**
+	 * 导出路面改造
+	 * @param cbsj 查询条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryLmgzExcel(Cbsj cbsj);
+	/**
+	 * 导出养护大中修
+	 * @param cbsj 查询条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryYhdzxExcel(Cbsj cbsj);
+	/**
+	 * 导出灾毁重建
+	 * @param cbsj 查询条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryShExcel(Cbsj cbsj);
+	/**
+	 * 导出路面升级
+	 * @param cbsj 查询条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryLmsjExcel(Cbsj cbsj);
+	/**
+	 * 导出新建
+	 * @param cbsj 查询条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryXjExcel(Cbsj cbsj);
 	
 }

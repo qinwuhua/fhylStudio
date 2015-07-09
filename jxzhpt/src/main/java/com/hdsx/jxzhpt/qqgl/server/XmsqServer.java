@@ -150,5 +150,17 @@ public interface XmsqServer {
 	 * @return
 	 */
 	public boolean insertCbsjSh(Xmsq xmsq);
+	/**
+	 * 导出养护大中修项目
+	 * @param xmsq 搜索条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryYhdzxExport(Xmsq xmsq);
+	/**
+	 * 导出水毁项目
+	 * @param xmsq 搜索条件
+	 * @return 返回集合
+	 */
+	public List<Object> queryShExport(Xmsq xmsq);
 
 }

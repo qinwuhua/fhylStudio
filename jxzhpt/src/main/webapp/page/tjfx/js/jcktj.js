@@ -82,23 +82,6 @@ function loadXzqhCombo(id,dwbm){
 		}
 	});
 }*/
-function queryBar(){
-	barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
-    barChart_1.width =980;
-    barChart_1.height =300;
-    barChart_1.padding =0;
-    barChart_1.wMode="transparent";
-    barChart_1.write("anychart_div");
-    $.ajax({
-		type:"post",
-		url:"../../../tjfx/queryJcktj1.do?xmlx="+$('#selxmlx').val(),
-		dataType:'text',
-		success:function(msg){
-			//var right=window.parent.window.document.getElementById("rightContent").contentWindow;
-			barChart_1.setData(msg);
-		}
-	});
-}
 function jhkxzqhtj(){
 	var jsonData=new Array();
 	$.ajax({

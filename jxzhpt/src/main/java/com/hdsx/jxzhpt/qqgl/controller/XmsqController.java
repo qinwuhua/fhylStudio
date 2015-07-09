@@ -13,6 +13,10 @@ import org.codehaus.jackson.map.util.JSONWrappedObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
@@ -276,6 +280,71 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
+		}
+	}
+	public void exportExcelXmsq(){
+		try{
+			ExcelTitleCell [] title=new ExcelTitleCell[19];
+			title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
+			title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
+			title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
+			title[3]=new ExcelTitleCell("管养单位",false, new ExcelCoordinate(0, (short)2), null,20);
+			title[4]=new ExcelTitleCell("原路线编号",false, new ExcelCoordinate(0, (short)2), null,20);
+			title[5]=new ExcelTitleCell("路线名称",false, new ExcelCoordinate(0, (short)2), null,20);
+			title[6]=new ExcelTitleCell("起点名称",false, new ExcelCoordinate(0, (short)3), null,20);
+			title[7]=new ExcelTitleCell("讫点名称",false, new ExcelCoordinate(0, (short)4), null,20);
+			title[8]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)3), null,20);
+			title[9]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)4), null,20);
+			title[10]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)5), null,20);
+			title[11]=new ExcelTitleCell("路面宽度",false, new ExcelCoordinate(0, (short)5), null,20);
+			title[12]=new ExcelTitleCell("技术等级",false, new ExcelCoordinate(0, (short)5), null,20);
+			title[13]=new ExcelTitleCell("拟投资",false, new ExcelCoordinate(0, (short)5), null,20);
+			title[14]=new ExcelTitleCell("计划开工时间",false, new ExcelCoordinate(0, (short)5), null,20);
+			title[15]=new ExcelTitleCell("计划完工时间",false, new ExcelCoordinate(0, (short)6), null,20);
+			title[16]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)7), null,20);
+			title[17]=new ExcelTitleCell("工程分类",false, new ExcelCoordinate(0, (short)6), null,20);
+			title[18]=new ExcelTitleCell("建设方案",false, new ExcelCoordinate(0, (short)6), null,20);
+			//设置列与字段对应
+			Map<String, String> attribute=new HashMap<String, String>();
+			attribute.put("0", "xmmc");//项目名称
+			attribute.put("1", "xmbm");//项目编码
+			attribute.put("2", "xzqh");//行政区划
+			attribute.put("3", "gydw");//行政区划
+			attribute.put("4", "ylxbh");//行政区划
+			attribute.put("5", "lxmc");//行政区划
+			attribute.put("6", "qdmc");//起点桩号
+			attribute.put("7", "zdmc");//止点桩号
+			attribute.put("8", "qdzh");//起点桩号
+			attribute.put("9", "zdzh");//止点桩号
+			attribute.put("10", "lc");//开工时间
+			attribute.put("11", "lmkd");//开工时间
+			attribute.put("12", "jsdj");//开工时间
+			attribute.put("13", "ntz");//开工时间
+			attribute.put("14", "jhkgsj");//开工时间
+			attribute.put("15", "jhwgsj");//完工时间
+			attribute.put("16", "gq");//工期
+			attribute.put("17", "gcfl");//部补助资金
+			attribute.put("18", "jsfa");//省补助资金
+			//数据
+			List<Object> excelData=new ArrayList<Object>();
+			//设置标题、文件名称
+			String titleName="";
+			String fileName="";
+			xmsq.setGydwdm(xzqhBm(xmsq.getGydwdm(), "gydwdm"));
+			xmsq.setXzqhdm(xzqhBm(xmsq.getXzqhdm(), "xzqhdm"));
+			if(xmsq.getXmlx()==4){
+				titleName="立项审核";
+				fileName="养护大中修立项审核";
+				excelData = xmsqServer.queryYhdzxExport(xmsq);
+			}else if(xmsq.getXmlx()==5){
+				titleName="立项审核";
+				fileName="灾毁重建立项审核";
+				excelData = xmsqServer.queryShExport(xmsq);
+			}
+			ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
+			ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	/**
