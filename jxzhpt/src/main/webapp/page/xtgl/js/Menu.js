@@ -63,6 +63,13 @@ $(function() {
 		renderTo:'left_menu1',
 		href:'./yhdzxlmcs.jsp'
 	});
+	createMenu('LeftMenu',{
+		id:'menu_010410',
+		title:'危桥补助标准',
+		imgSrc:'../../images/jgcs.png',
+		renderTo:'left_menu1',
+		href:'./wqbzbz.jsp'
+	});
 	menuQx();
 });
 function menuQx(){

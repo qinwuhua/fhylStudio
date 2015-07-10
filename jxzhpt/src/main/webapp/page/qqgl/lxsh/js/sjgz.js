@@ -1358,3 +1358,51 @@ function checkdfzc1(str){
 	var dfzc=accSub(tz,bzcs);
 	$("#dfzc").html(dfzc);
 }
+
+function import_sjgz(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '立项审核信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importsjgzlxsh.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function dclmgzModule(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '立项审核信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importlmgzlxsh.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function dcxjModule(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '立项审核信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importxjlxsh.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}

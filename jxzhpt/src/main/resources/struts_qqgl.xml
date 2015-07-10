@@ -78,6 +78,12 @@
 	      <action name="thXjkxx1" class="kxxyjController" method="thXjkxx1"/>
 	      <action name="dcModule" class="lxshController" method="dcModule"/>
 	      <action name="dckxxModule" class="lxshController" method="dckxxModule"/>
+	      <action name="importsjgzlxsh" class="lxshController" method="importsjgzlxsh"/>
+	      <action name="importlmgzlxsh" class="lxshController" method="importlmgzlxsh"/>
+	       <action name="importxjlxsh" class="lxshController" method="importxjlxsh"/>
+	       
+	      
+	      <action name="selectWqbzbz" class="lxshController" method="selectWqbzbz"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 初步设计-->

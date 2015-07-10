@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.qqgl.lxsh.server.LxshServer;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
@@ -666,5 +667,31 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		// TODO Auto-generated method stub
 		return queryList("querykxxXj", lxsh);
 	}
+
+	@Override
+	public List<Wqbzbz> selectWqbzbz() {
+		// TODO Auto-generated method stub
+		return queryList("selectWqbzbz");
+	}
+
+	@Override
+	public boolean importsjgzlxsh(List<Map> data) {
+		if(insertBatch("importsjgzlxshlx", data)==data.size()&&insertBatch("importsjgzlxsh", data)==data.size())
+		return true;
+		else return false;
+	}
 	
+	@Override
+	public boolean importlmgzlxsh(List<Map> data) {
+		if(insertBatch("importsjgzlxshlx", data)==data.size()&&insertBatch("importlmgzlxsh", data)==data.size())
+		return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean importxjlxsh(List<Map> data) {
+		if(insertBatch("importsjgzlxshlx", data)==data.size()&&insertBatch("importxjlxsh", data)==data.size())
+		return true;
+		else return false;
+	}
 }
