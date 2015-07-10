@@ -1375,7 +1375,7 @@ function import_sjgz(flag){
 	return false;
 }
 
-function dclmgzModule(flag){
+function import_lmgz(flag){
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : '立项审核信息导入',
@@ -1391,7 +1391,7 @@ function dclmgzModule(flag){
 	return false;
 }
 
-function dcxjModule(flag){
+function import_xj(flag){
 	var weatherDlg = new J.dialog( {
 		id : 'id1',
 		title : '立项审核信息导入',
