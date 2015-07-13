@@ -1189,3 +1189,35 @@ function importsjgzkxx(flag){
 	weatherDlg.ShowDialog();
 	return false;
 }
+
+function importlmgzkxx(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '工可信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importlmgzkxx.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}
+
+function importxjkxx(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '工可信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importxjkxx.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}

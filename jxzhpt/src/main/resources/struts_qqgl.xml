@@ -80,9 +80,11 @@
 	      <action name="dckxxModule" class="lxshController" method="dckxxModule"/>
 	      <action name="importsjgzlxsh" class="lxshController" method="importsjgzlxsh"/>
 	      <action name="importlmgzlxsh" class="lxshController" method="importlmgzlxsh"/>
-	       <action name="importxjlxsh" class="lxshController" method="importxjlxsh"/>
-	       
-	      
+	      <action name="importxjlxsh" class="lxshController" method="importxjlxsh"/>
+	      <action name="importsjgzkxx" class="kxxyjController" method="importsjgzkxx"/>
+	      <action name="importlmgzkxx" class="kxxyjController" method="importlmgzkxx"/>
+          <action name="importxjkxx" class="kxxyjController" method="importxjkxx"/>
+	        
 	      <action name="selectWqbzbz" class="lxshController" method="selectWqbzbz"/>
 	 <!-- qwh -->
 	<!-- rh -->

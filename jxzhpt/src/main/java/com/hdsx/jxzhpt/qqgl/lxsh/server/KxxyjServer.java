@@ -85,4 +85,10 @@ public interface KxxyjServer {
 
 	boolean updateWGYS(Gcgl_jgys gcgl_jgys);
 
+	boolean importsjgzkxx(List<Map> data);
+
+	boolean importlmgzkxx(List<Map> data);
+
+	boolean importxjkxx(List<Map> data);
+
 }
