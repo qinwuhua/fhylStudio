@@ -234,7 +234,9 @@ public class ExcelReader1 {
                 // 如果是纯数字
                 else {
                     // 取得当前Cell的数值
-                    cellvalue = String.valueOf(cell.getNumericCellValue());
+                    //cellvalue = String.valueOf(cell.getNumericCellValue());
+                	cellvalue = cell.getRichStringCellValue().getString();
+                    System.out.println("-----------"+cellvalue);
                 }
                 break;
             }

@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglabgc;
 import com.hdsx.jxzhpt.gcgl.bean.Gcglwqgz;
 import com.hdsx.jxzhpt.qqgl.lxsh.bean.Lxsh;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhz;
 import com.hdsx.jxzhpt.wjxt.bean.Jtlhzgd;
 import com.hdsx.jxzhpt.wjxt.bean.Lkmxb;
@@ -136,6 +137,16 @@ public interface LxshServer {
 	List<Excel_list> querykxxLmgz(Lxsh lxsh);
 
 	List<Excel_list> querykxxXj(Lxsh lxsh);
+
+	List<Wqbzbz> selectWqbzbz();
+
+	boolean importsjgzlxsh(List<Map> data);
+
+	boolean importlmgzlxsh(List<Map> data);
+
+	boolean importxjlxsh(List<Map> data);
+
+	String selectimportXmbm(String tiaojian);
 
 
 }

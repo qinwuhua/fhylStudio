@@ -218,3 +218,8 @@ function dclxshModule(str){
 			window.location.href='/jxzhpt/qqgl/dckxxModule.do?'+data;
 		 });
 }
+	
+function dcMoBan(str){
+	var lxstr="lxsh_"+str;
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+lxstr;
+}
