@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.lxsh">
+	<select id="selectimportXmbm" parameterType="String" resultType="String">
+		${value}
+	</select>
 	<select id="selectXmbm" parameterType="String" resultType="String">
 		select max(substr(xmbm,-3)) from lxsh_sjgz where xmbm like ${value}||'%'
 	</select>
@@ -786,19 +789,19 @@
 	</select>
 	<insert id="importsjgzlxsh" parameterType="hashMap">
 		insert into LXSH_SJGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
-		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{15},#{16},#{12},#{13},#{0},#{17},#{18},to_char(to_number(#{17})-to_number(#{18})),#{10},#{9},(select id from XTGL_XZQH where name = #{10}),(select id from XTGL_DEPARTMENT where name = #{9}),substr(#{0},0,4),'11',(select id from XTGL_DEPARTMENT where name = #{9}))
+		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{14},#{15},#{12},#{13},#{xmbm},#{16},#{bzys},to_char(to_number(#{16})-to_number(#{bzys})),#{10},#{9},(select id from XTGL_XZQH where trim(name) = #{10}),(select id from XTGL_DEPARTMENT where trim(name) = #{9}),substr(#{xmbm},0,4),'11',(select id from XTGL_DEPARTMENT where trim(name) = #{9}))
 	</insert>
 	<insert id="importlmgzlxsh" parameterType="hashMap">
 		insert into LXSH_LMGZ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
-		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{15},#{16},#{12},#{13},#{0},#{17},#{18},to_char(to_number(#{17})-to_number(#{18})),#{10},#{9},(select id from XTGL_XZQH where name = #{10}),(select id from XTGL_DEPARTMENT where name = #{9}),substr(#{0},0,4),'11',(select id from XTGL_DEPARTMENT where name = #{9}))
+		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{14},#{15},#{12},#{13},#{xmbm},#{16},#{bzys},to_char(to_number(#{16})-to_number(#{bzys})),#{10},#{9},(select id from XTGL_XZQH where trim(name) = #{10}),(select id from XTGL_DEPARTMENT where trim(name) = #{9}),substr(#{xmbm},0,4),'11',(select id from XTGL_DEPARTMENT where trim(name) = #{9}))
 	</insert>
 	<insert id="importxjlxsh" parameterType="hashMap">
 		insert into LXSH_XJ( id,lxmc,xmmc,ghlxbh,lc,jsxz,qdzh,zdzh,qdmc,zdmc,jhkgn,jhwgn,jsjsdj,xjsdj,xmbm,tz,bzys,dfzc,xzqh,gydw,xzqhdm,gydwdm,xmnf,sbthcd,tbbmbm)
-		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{15},#{16},#{12},#{13},#{0},#{17},#{18},to_char(to_number(#{17})-to_number(#{18})),#{10},#{9},(select id from XTGL_XZQH where name = #{10}),(select id from XTGL_DEPARTMENT where name = #{9}),substr(#{0},0,4),'11',(select id from XTGL_DEPARTMENT where name = #{9}))
+		values(sys_guid(),#{2},#{3},#{1},to_char(to_number(#{5})-to_number(#{4})),#{8},#{4},#{5},#{6},#{7},#{15},#{16},#{12},#{13},#{xmbm},#{17},#{18},to_char(to_number(#{17})-to_number(#{18})),#{10},#{9},(select id from XTGL_XZQH where trim(name) = #{10}),(select id from XTGL_DEPARTMENT where trim(name) = #{9}),substr(#{xmbm},0,4),'11',(select id from XTGL_DEPARTMENT where trim(name) = #{9}))
 	</insert>
 	<insert id="importsjgzlxshlx" parameterType="hashMap">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{0},#{1},#{2},#{10},(select id from XTGL_XZQH where name = #{10}),#{9},(select id from XTGL_DEPARTMENT where name = #{9}),#{6},#{7},#{12},to_char(to_number(#{5})-to_number(#{4})),#{13},#{8},#{6},#{7},#{18},'0','0',#{4},#{5})
+		values(sys_guid(),#{xmbm},#{1},#{2},#{10},(select id from XTGL_XZQH where trim(name) = #{10}),#{9},(select id from XTGL_DEPARTMENT where trim(name) = #{9}),#{6},#{7},#{12},to_char(to_number(#{5})-to_number(#{4})),#{13},#{8},#{6},#{7},#{bzys},'0','0',#{4},#{5})
 	</insert>
 	
 	<select id="selectWqbzbz" resultType="wqbzbz">

@@ -694,4 +694,9 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 		return true;
 		else return false;
 	}
+
+	@Override
+	public String selectimportXmbm(String tiaojian) {
+		return queryOne("selectimportXmbm", tiaojian);
+	}
 }

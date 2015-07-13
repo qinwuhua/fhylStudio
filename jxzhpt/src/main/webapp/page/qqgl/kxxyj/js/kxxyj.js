@@ -1173,3 +1173,19 @@ function cxzdmc(lxbm,qdzh){
 		}
 	});
 }
+
+function importsjgzkxx(flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '工可信息导入',
+		page : 'upload.jsp?url='+"/jxzhpt/qqgl/importsjgzkxx.do"+'&flag='+flag,
+		width : 570,
+		height : 440,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+	return false;
+}

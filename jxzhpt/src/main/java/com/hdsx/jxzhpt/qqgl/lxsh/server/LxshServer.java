@@ -146,5 +146,7 @@ public interface LxshServer {
 
 	boolean importxjlxsh(List<Map> data);
 
+	String selectimportXmbm(String tiaojian);
+
 
 }
