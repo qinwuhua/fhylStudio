@@ -1227,7 +1227,7 @@ public class LxshController extends BaseActionSupport{
 						xmbm=map.get("0").toString()+xzqh+"3"+xmbm;
 					map.put("xmbm", xmbm);
 				}
-				map.put("bzys", map.get("18").toString());
+				map.put("bzys", map.get("17").toString());
 			}
 			boolean sfcg=true;
 			sfcg=lxshServer.importxjlxsh(data);
