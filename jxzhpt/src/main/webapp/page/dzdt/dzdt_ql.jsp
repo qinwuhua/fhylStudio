@@ -25,7 +25,7 @@ $(function(){
 		loadMsg : '正在加载请稍候...',
 		url:'../../xtgl/selectExistQlProgramList.do',
 		queryParams : {
-			'param.sourceid' : parent.YMLib.Var.bm
+			'param.sourceid' : parent.YMLib.Var.bm[0].ROADBM
 		},
 		striped : true,
 		singleSelect : false,

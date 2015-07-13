@@ -14,6 +14,10 @@
 	<script type="text/javascript" src="../../../easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
@@ -270,6 +274,9 @@
 			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
+		function importXmsq(){
+			importExcel("/jxzhpt/qqgl/importExcelXmsq.do","");
+		}
 		function openYhdzx(){
 			openWindow("yhdzxadd","添加养护大中修项目","yhdzxAdd.jsp",980,400);
 		}
@@ -325,7 +332,9 @@
 									<img id="sc" name="dishi" alt="删除" onclick="deleteYhdzx()" style="vertical-align:middle;" src="../../../images/Button/delete1.jpg" onmouseover="this.src='../../../images/Button/delete2.jpg'" onmouseout="this.src='../../../images/Button/delete1.jpg'">
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 					                <img id="th" name="sheng" alt="退回" onclick="" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
-					                <img onclick="exportXmsq()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+					                <img id="dcExcel" onclick="exportXmsq()" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+					                <img id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+					                <img id="dcmoban" onclick="exportTemplet('Lxsh_Yhdzx')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
        							</td>
        						</tr>
        					</table>

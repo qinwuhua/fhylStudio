@@ -1,8 +1,11 @@
 package com.hdsx.jxzhpt.qqgl.controller;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +16,11 @@ import org.codehaus.jackson.map.util.JSONWrappedObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.hdsx.jxzhpt.jhgl.bean.Plan_zjxd;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
@@ -43,6 +48,9 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	private XmsqServer xmsqServer;
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
+	//导入Excel
+	private String fileuploadFileName;
+	private File fileupload;
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
@@ -309,22 +317,22 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			attribute.put("0", "xmmc");//项目名称
 			attribute.put("1", "xmbm");//项目编码
 			attribute.put("2", "xzqh");//行政区划
-			attribute.put("3", "gydw");//行政区划
-			attribute.put("4", "ylxbh");//行政区划
-			attribute.put("5", "lxmc");//行政区划
-			attribute.put("6", "qdmc");//起点桩号
-			attribute.put("7", "zdmc");//止点桩号
+			attribute.put("3", "gydw");//管养单位
+			attribute.put("4", "ylxbh");//原路线编号
+			attribute.put("5", "lxmc");//路线名称
+			attribute.put("6", "qdmc");//起点名称
+			attribute.put("7", "zdmc");//止点名称
 			attribute.put("8", "qdzh");//起点桩号
 			attribute.put("9", "zdzh");//止点桩号
-			attribute.put("10", "lc");//开工时间
-			attribute.put("11", "lmkd");//开工时间
-			attribute.put("12", "jsdj");//开工时间
-			attribute.put("13", "ntz");//开工时间
+			attribute.put("10", "lc");//里程
+			attribute.put("11", "lmkd");//路面宽度
+			attribute.put("12", "jsdj");//建设等级
+			attribute.put("13", "ntz");//拟投资
 			attribute.put("14", "jhkgsj");//开工时间
 			attribute.put("15", "jhwgsj");//完工时间
 			attribute.put("16", "gq");//工期
-			attribute.put("17", "gcfl");//部补助资金
-			attribute.put("18", "jsfa");//省补助资金
+			attribute.put("17", "gcfl");//工程费雷
+			attribute.put("18", "jsfa");//建设方案
 			//数据
 			List<Object> excelData=new ArrayList<Object>();
 			//设置标题、文件名称
@@ -344,6 +352,68 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
 			ExcelExportUtil.excelWrite(excel, fileName, getresponse());
 		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 导入Excel
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelXmsq(){
+		//设置列与字段对应
+		Map<String, String> attribute=new HashMap<String, String>();
+		attribute.put("0", "xzqhdm");//行政区划代码
+		attribute.put("1", "xzqh");//行政区划
+		attribute.put("2", "gydw");//管养单位
+		attribute.put("3", "ylxbh");//原路线编号
+		attribute.put("4", "ghlxbh");//规划路线编号
+		attribute.put("5", "lmkd");//路面宽度
+		attribute.put("6", "lxmc");//路线名称
+		attribute.put("7", "qdmc");//起点桩号
+		attribute.put("8", "zdmc");//止点桩号
+		attribute.put("9", "qdzh");//起点桩号
+		attribute.put("10", "zdzh");//止点桩号
+		attribute.put("11", "lc");//里程
+		attribute.put("12", "jsdj");//技术等级
+		attribute.put("13", "xmmc");//项目名称
+		attribute.put("14", "gcfl");//工程分类
+		attribute.put("15", "jhkgsj");//开工时间
+		attribute.put("16", "jhwgsj");//完工时间
+		attribute.put("17", "gq");//工期
+		attribute.put("18", "ntz");//拟投资
+		attribute.put("19", "jsfa");//建设方案
+		
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try {
+			List<Xmsq> list = ExcelImportUtil.readerExcel(fileupload, Xmsq.class, 2, excel);
+			List<Lx> lxlist=new ArrayList<Lx>();
+			String nextXmbm = xmsqServer.queryYhdzxNextXmbm();
+			int num = new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue();
+			Calendar cal = Calendar.getInstance();
+			for (Xmsq xmsq : list) {
+				xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
+				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
+						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
+						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+				lx.setJdbs("1");
+				lx.setJsjsdj(xmsq.getJsdj());
+				lx.setGpsqdzh(xmsq.getGpsqdzh());
+				lx.setGpszdzh(xmsq.getGpszdzh());
+				lx.setJsfa(xmsq.getJsfa());
+				xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+				lxlist.add(lx);
+				num++;
+			}
+			if(xmsqServer.insertXmsqYhdzx(list)){
+				if(xmsqServer.insertLx(lxlist)){
+					getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+				}
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -387,5 +457,17 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void setRows(int rows) {
 		this.rows = rows;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
 }

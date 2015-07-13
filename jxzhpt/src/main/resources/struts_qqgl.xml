@@ -130,6 +130,8 @@
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		
+		<action name="importExcelXmsq" class="xmsqController" method="importExcelXmsq"></action>
+		
 	<!-- rh -->
 	</package>
 </struts>

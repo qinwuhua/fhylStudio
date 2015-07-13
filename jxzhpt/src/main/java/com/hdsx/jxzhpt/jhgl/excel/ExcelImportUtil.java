@@ -45,7 +45,31 @@ public class ExcelImportUtil {
 			for (Entry<String, String> entry : entrySet) {
 				newObj = getData(newObj, entry, row);
 			}
-			result.add(newObj);
+			if(isNullRow(newObj,entrySet))
+				result.add(newObj);
+		}
+		return result;
+	}
+	/**
+	 * 判断此对象是不是所有字段都为空
+	 * @param newObj 获取的对象
+	 * @param entrySet 字段与列的对应
+	 * @return
+	 */
+	public static boolean isNullRow(Object newObj,Set<Entry<String,String>> entrySet){
+		boolean result=false;
+		try {
+			for (Entry<String, String> entry : entrySet) {
+				String getMethodName="get"+entry.getValue().substring(0,1).toUpperCase()+entry.getValue().substring(1);
+				Method method = newObj.getClass().getMethod(getMethodName);
+				Object value = method.invoke(newObj);
+				if(value!=null){
+					result=true;
+					break;
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return result;
 	}

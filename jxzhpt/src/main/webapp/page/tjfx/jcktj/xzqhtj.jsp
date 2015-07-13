@@ -56,11 +56,11 @@
 			    	queryBar();
 			    },
 			    onSelect:function(rowIndex, rowData){
+			    	window.location.href='../jcktj/xmlxtj.jsp';
 			    }
 			});
 		}
 		function queryBar(){
-			alert($('#selxmlx').val());
 			barChart_1= new AnyChart("/jxzhpt/widget/anyChart/swf/AnyChart.swf");    
 		    barChart_1.width =980;
 		    barChart_1.height =300;
