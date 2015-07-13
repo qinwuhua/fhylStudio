@@ -1378,7 +1378,6 @@ function getParam(paras) {
 }
 function locationQl(_roadbm,_roadpos){
 	var data=new Array();
-	
 	var jsonStr={
 	        ROADBM: _roadbm,
 	        ROADPOS: _roadpos
@@ -1433,7 +1432,6 @@ function locationXm1(_roadcode,_roadstart,_roadends){
 		var arr2=_roadstart.split("-");
 		var arr3=_roadends.split("-");
 		for(var i=0;i<arr1.length;i++){
-			alert(arr1[i]+"    "+arr2[i] +"    "+arr3[i]);
 			jsonStr={"BM": arr1[i],"ROADSTART": arr2[i],"ROADENDS": arr3[i]};
 			data.push(jsonStr);
 		}

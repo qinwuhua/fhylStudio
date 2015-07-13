@@ -116,9 +116,6 @@ public class DzdtController extends BaseActionSupport{
 	 * 桥梁弹出框
 	 * */
 	public void selectExistQlProgramList(){
-		if(param.getSourceid().length()>8){
-			param.setSourceid(param.getSourceid().substring(0,param.getSourceid().length()-6));
-		}
 		List<Param> list=dzdtServer.selectExistQlProgramList(param);
 		EasyUIPage<Param> ep = new EasyUIPage<Param>();
 		ep.setRows(list);

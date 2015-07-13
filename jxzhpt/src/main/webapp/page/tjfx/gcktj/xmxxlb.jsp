@@ -156,7 +156,8 @@
         			</div>
         		</td>
         		<td style="text-align: center;vertical-align:middle;" rowspan="2">
-        			<img alt="表通" title="sdfds" src="${pageContext.request.contextPath}/page/tjfx/img/xmtjdt.png" height="600">
+        			<iframe id="dtContent" name="rightContent" src="${pageContext.request.contextPath}/openlayers.html" frameborder='0' height=100%' width='100%'></iframe>
+        			<!-- <img alt="表通" title="sdfds" src="${pageContext.request.contextPath}/page/tjfx/img/xmtjdt.png" height="600"> -->
         		</td>
         	</tr>
         	<tr>

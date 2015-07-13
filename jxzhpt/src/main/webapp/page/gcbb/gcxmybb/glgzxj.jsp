@@ -85,8 +85,10 @@
 						tr+="<td>"+item.jsdd+"</td>";
 						//bmmc:项目名称【路线编码(起点-止点)】
 						//yjsdj:原技术等级;xmlc:项目里程
-						var bmmc=item.lxbm+'【'+item.qdzh+'-'+item.zdzh+'】、'+item.xmmc,yjsdj=item.yjsdj,xmlc=item.yhlc;
+						var bmmc=item.xmmc+'【'+item.lxbm+'】',yjsdj=item.yjsdj,xmlc=item.yhlc;
 						tr+="<td>"+bmmc+"</td>";
+						tr+="<td>"+item.qdzh+"</td>";
+						tr+="<td>"+item.zdzh+"</td>";
 						tr+="<td>"+yjsdj+"</td>";
 						tr+="<td>"+item.jsjsbz+"</td>";
 						tr+="<td>"+xmlc+"</td>";
@@ -248,13 +250,15 @@
 								<caption align="top" style="font-size:x-large;font-weight: bolder;"> 江西省2015年公路路网结构改造工程统计月报表（三）    灾害防治 </caption>
 								<thead>
 									<tr>
-										<td colspan="13">一、 项 目 计 划</td>
+										<td colspan="15">一、 项 目 计 划</td>
 										<td colspan="19">二、 本年元月至本月完成情况</td>
 										<td colspan="16">四、 自开工至本月底累计完成情况</td>
 									</tr>
 									<tr>
 										<td rowspan="3"  style="width: 125px;">项目所在县市</td>
-										<td rowspan="3" style="width: 125px;">路线编码、项目名称及路线桩号</td>
+										<td rowspan="3" style="width: 125px;">路线编码、项目名称</td>
+										<td rowspan="3" style="width: 125px;">起点桩号</td>
+										<td rowspan="3" style="width: 125px;">讫点桩号</td>
 										<td rowspan="3" style="width: 125px;">原技术等级</td>
 										<td rowspan="3" style="width: 125px;">建设技术标准</td>
 										<td rowspan="3" style="width: 125px;">项目里程<br>（公里）</td>

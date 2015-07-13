@@ -165,5 +165,9 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public List<Object> queryShExport(Xmsq xmsq) {
 		return queryList("queryShExport",xmsq);
 	}
+	@Override
+	public boolean insertLx(List<Lx> lxlist) {
+		return insertBatch("insertLx", lxlist)==lxlist.size();
+	}
 
 }

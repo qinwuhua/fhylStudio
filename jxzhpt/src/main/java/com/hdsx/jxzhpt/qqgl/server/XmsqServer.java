@@ -162,5 +162,11 @@ public interface XmsqServer {
 	 * @return 返回集合
 	 */
 	public List<Object> queryShExport(Xmsq xmsq);
+	/**
+	 * 批量添加路线
+	 * @param lxlist 路线集合
+	 * @return 返回结果
+	 */
+	public boolean insertLx(List<Lx> lxlist);
 
 }

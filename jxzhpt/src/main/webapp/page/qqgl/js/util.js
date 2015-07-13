@@ -102,6 +102,32 @@ function deleteLx(id,xmlx){
 	});
 }
 //--------------------------------------------------公用方法---------------------------------------
+/**
+ * 导出模板
+ * @param fileName 模板文件名称
+ */
+function exportTemplet(fileName){
+	window.location.href="/jxzhpt/xtgl/getModule_jhfeiLw.do?moduleName="+fileName;
+}
+/**
+ * 导入Excel文件
+ * @param url 提交的URL路径
+ * @param flag
+ */
+function importExcel(url,flag){
+	var weatherDlg = new J.dialog( {
+		id : 'id1',
+		title : '请选择EXCEL文档！',
+		page : '/jxzhpt/js/uploader/upload.jsp?url='+url+'&flag='+flag,
+		width : 450,
+		height : 400,
+		top : 0,
+		rang : true,
+		resize : false,
+		cover : true
+	});
+	weatherDlg.ShowDialog();
+}
 function accSub(arg1,arg2){
 	　　 var r1,r2,m,n;
 	　　 try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}

@@ -77,7 +77,7 @@ function zhfzxm(jh,lx){
 	        {field:'ck',checkbox:true},
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm1('+"'"+row.jckzhfz.lxbm+"',"+"'"+row.jckzhfz.qdzh+"',"+"'"+row.jckzhfz.zhzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4)){
 	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
@@ -181,7 +181,7 @@ function zhfzxm_sb(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm1('+"'"+row.jckzhfz.lxbm+"',"+"'"+row.jckzhfz.qdzh+"',"+"'"+row.jckzhfz.zhzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<4))
 	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -269,7 +269,7 @@ function zhfzxm_sh(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result="";
-	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm1('+"'"+row.jckzhfz.lxbm+"',"+"'"+row.jckzhfz.qdzh+"',"+"'"+row.jckzhfz.zhzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>    ';
 	        	if((roleName()=="县级" && row.jh_sbthcd==0) || (roleName()=="市级" && row.jh_sbthcd<=2) || (roleName()=="省级" && row.jh_sbthcd<=4))
 	        		result+='<a href="javascript:openEditWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>';
@@ -357,7 +357,7 @@ function zhfzxm_zjxd(jh,lx){
 	    columns:[[
 	        {field:'c',title:'操作',width:150,align:'center',formatter:function(value,row,index){
 	        	var result='';
-	        	result+='<a href="javascript:locationXm('+"'"+row.jckzhfz.lxbm+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
+	        	result+='<a href="javascript:locationXm1('+"'"+row.jckzhfz.lxbm+"',"+"'"+row.jckzhfz.qdzh+"',"+"'"+row.jckzhfz.zhzh+"'"+')" style="text-decoration:none;color:#3399CC;">定位</a>    ';
 	        	result+='<a href="javascript:openWindow('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">详细</a>';
 	        	return result;
 	        }},
