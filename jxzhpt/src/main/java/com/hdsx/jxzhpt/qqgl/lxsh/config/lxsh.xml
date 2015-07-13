@@ -801,7 +801,7 @@
 	</insert>
 	<insert id="importsjgzlxshlx" parameterType="hashMap">
 		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{xmbm},#{1},#{2},#{10},(select id from XTGL_XZQH where trim(name) = #{10}),#{9},(select id from XTGL_DEPARTMENT where trim(name) = #{9}),#{6},#{7},#{12},to_char(to_number(#{5})-to_number(#{4})),#{13},#{8},#{6},#{7},#{bzys},'0','0',#{4},#{5})
+		values(sys_guid(),#{xmbm},#{1},#{2},#{10},(select id from XTGL_XZQH where trim(name) = #{10}),#{9},(select id from XTGL_DEPARTMENT where trim(name) = #{9}),#{6},#{7},#{12},to_char(to_number(#{5})-to_number(#{4})),#{13},#{8},#{6},#{7},#{bzys},'1','0',#{4},#{5})
 	</insert>
 	
 	<select id="selectWqbzbz" resultType="wqbzbz">
