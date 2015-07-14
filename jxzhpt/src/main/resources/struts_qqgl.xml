@@ -108,6 +108,7 @@
 		<action name="exportJhshSh" class="jhshController" method="exportJhshSh"></action>
 		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
 		<action name="importExcelJhxdYhdzx" class="jhshController" method="importExcelJhxdYhdzx"></action>
+		<action name="importExcelJhxdSh" class="jhshController" method="importExcelJhxdSh"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>

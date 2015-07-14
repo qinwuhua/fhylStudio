@@ -258,5 +258,11 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateJhshxxYhdzx(List<Jhsh> readerExcel);
+	/**
+	 * 修改灾毁重建的机会审核
+	 * @param readerExcel 灾毁重建集合
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxSh(List<Jhsh> readerExcel);
 	
 }

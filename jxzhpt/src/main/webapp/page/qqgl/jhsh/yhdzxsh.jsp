@@ -81,12 +81,39 @@
 				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
-				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+				{field:'ztz',title:'总投资',width:100,align:'center'},
+				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center'},
+				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
+				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'mc',title:'面层结构',width:300,align:'center',
+					formatter:function(value,row,index){
+						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;
+					}
+				},
+				{field:'jc',title:'基层结构',width:300,align:'center',
+					formatter:function(value,row,index){
+						return "基层材料："+row.jclx+";基层数量："+row.jcsl+";基层金额："+row.jcje;
+					}
+				},
+				{field:'xfc',title:'下封层结构',width:200,align:'center',
+					formatter:function(value,row,index){
+						return "下封层数量："+row.xfcsl+";下封层金额："+row.xfcje;
+					}
+				},
+				{field:'gf',title:'灌封',width:200,align:'center',
+					formatter:function(value,row,index){
+						return "灌封长度："+row.gfcd+";灌封金额："+row.gfje;
+					}
+				},
+				{field:'llcl',title:'老路处理',width:100,align:'center'}
+			]];
 			gridBind(grid);
 		}
 		function exportJhshxx(){
-			var param='jhsh.xmlx=4&jhsh.xdzt=0&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#ylxbh').val()+
-			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+'&lsjl='+$('#lsjl').combobox("getValue");
+			var param='jhsh.xmlx=4&jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#ylxbh').val()+
+			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&xmbm='+$('#xmnf').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param;
 		}
 		function importJhsh(){
@@ -129,7 +156,7 @@ text-decoration:none;
 							<td>下达状态：</td>
        						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
        							<option value="-1">全部</option>
-       							<option value="0">未下达</option>
+       							<option value="0" selected="selected">未下达</option>
        							<option value="1">已下达</option>
        						</select></td>
        						<td>项目年份：</td>
