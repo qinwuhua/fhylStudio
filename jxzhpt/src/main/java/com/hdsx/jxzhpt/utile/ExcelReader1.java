@@ -122,6 +122,7 @@ public class ExcelReader1 {
             	try{
             		value=getCellFormatValue(row.getCell((short) j)).trim();
             	}catch(Exception e){
+            		e.printStackTrace();
             		System.out.println("数据读取玩");
             		return null;
             	}
@@ -235,6 +236,7 @@ public class ExcelReader1 {
                 else {
                     // 取得当前Cell的数值
                     //cellvalue = String.valueOf(cell.getNumericCellValue());
+                	cell.setCellType(cell.CELL_TYPE_STRING);
                 	cellvalue = cell.getRichStringCellValue().getString();
                     System.out.println("-----------"+cellvalue);
                 }

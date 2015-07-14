@@ -102,6 +102,8 @@ public class KxxyjController extends BaseActionSupport{
 	private File uploadGkpf;
 	private String uploadGkpfFileName;
 	private String lsjl;
+	private String fileuploadFileName;
+	private File fileupload;
 	
 	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
 	private File uploadSGXK;
@@ -111,6 +113,19 @@ public class KxxyjController extends BaseActionSupport{
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
 	
+	
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
+	}
 	public KxxyjServer getKxxyjServer() {
 		return kxxyjServer;
 	}
@@ -749,6 +764,99 @@ public class KxxyjController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
+		}
+	}
+	
+	public void importsjgzkxx(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(2,18,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			boolean sfcg=true;
+			sfcg=kxxyjServer.importsjgzkxx(data);
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void importlmgzkxx(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(2,18,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			boolean sfcg=true;
+			sfcg=kxxyjServer.importlmgzkxx(data);
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void importxjkxx(){
+		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());
+		System.out.println("文件类型："+fileType);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		try{
+			if(!"xls".equals(fileType)){
+				response.getWriter().print(fileuploadFileName+"不是excel文件");
+				return ;
+			}
+			response.setCharacterEncoding("utf-8"); 
+			FileInputStream fs = new FileInputStream(this.fileupload);
+			List<Map>[] dataMapArray;
+			try{
+				dataMapArray = ExcelReader1.readExcelContent(2,18,fs,Plan_gcgj.class);
+
+			}catch(Exception e){
+				response.getWriter().print(fileuploadFileName+"数据有误");
+				return;
+			}
+			List<Map> data = ExcelReader1.removeBlankRow(dataMapArray[0]);
+			boolean sfcg=true;
+			sfcg=kxxyjServer.importxjkxx(data);
+			if(sfcg)
+				response.getWriter().print(fileuploadFileName+"导入成功");
+			else 
+				response.getWriter().print(fileuploadFileName+"导入失败\r");
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 }

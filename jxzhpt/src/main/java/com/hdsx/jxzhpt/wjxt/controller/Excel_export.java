@@ -64,6 +64,7 @@ public class Excel_export {
 		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
 		HSSFCell cell = row.createCell((short) 0);
+		cell.setCellType(HSSFCell.CELL_TYPE_STRING);
 		row.setHeightInPoints(30f);
 		HSSFFont font= wb.createFont();
 		HSSFFont font1= wb.createFont();
@@ -133,6 +134,7 @@ public class Excel_export {
          
             for (int j = 0; j <= maxy; j++) {
             	cell = row.createCell((short) j);
+            	cell.setCellType(HSSFCell.CELL_TYPE_STRING);
             	if(j==0){
             		cell.setCellValue(trqk1.getV_0());  
                     cell.setCellStyle(style);
