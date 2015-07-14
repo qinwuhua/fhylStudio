@@ -104,7 +104,28 @@ public class Jckwqgzsj implements Serializable{
 	private String sck_shzt1;
 	private String sck_shyj1;
 	private String sck_shyj2;
+	private String sck_qlbh;
+	private String shibz;
+	private String shengbz;
 	
+	public String getShibz() {
+		return shibz;
+	}
+	public void setShibz(String shibz) {
+		this.shibz = shibz;
+	}
+	public String getShengbz() {
+		return shengbz;
+	}
+	public void setShengbz(String shengbz) {
+		this.shengbz = shengbz;
+	}
+	public String getSck_qlbh() {
+		return sck_qlbh;
+	}
+	public void setSck_qlbh(String sck_qlbh) {
+		this.sck_qlbh = sck_qlbh;
+	}
 	public String getSck_shzt1() {
 		return sck_shzt1;
 	}

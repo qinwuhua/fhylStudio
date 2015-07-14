@@ -26,6 +26,7 @@
 $(function(){
 	loadTable();
 });
+var obj=new Object();
 var array=new  Array();
 function loadTable(){
 	$("#wqbztable").html("");
@@ -40,7 +41,7 @@ function loadTable(){
 				array[i]=data[i];
 				tbody=tbody+"<tr><td><a href='#' onclick=edit('"+i+"')>编辑</a>   <a href='#' onclick=del('"+data[i].id+"')>删除</a>"
 				+"<td>"+data[i].qllx+"</td>"+"<td>"+data[i].jsxz+"</td>"
-				+"<td>"+data[i].jsdj+"</td>"+"<td>"+data[i].zdkd+"</td>"
+				+"<td>"+data[i].jsdj1+"</td>"+"<td>"+data[i].zdkd+"</td>"
 				+"<td>"+data[i].bzje+"</td>"+"<td>"+data[i].bzjb+"</td></tr>"
 				;
 			}
@@ -49,22 +50,40 @@ function loadTable(){
 	});
 }
 function edit(index){
-	alert(array[index].qllx);
+	obj=array[index];
+	YMLib.UI.createWindow('lxxx','危桥补助标准编辑','wqbzbz_xg.jsp','lxxx',400,300);
+}
+function del(id){
+	if(confirm('您确认删除吗？'))
+	$.ajax({
+		data:'wqbzbz.id='+id,
+		type:'post',
+		datatype:'json',
+		url:'/jxzhpt/qqgl/delwqbzbz.do',
+		success:function(msg){
+			if(msg){
+				alert("删除成功！");
+				loadTable();
+			}else{
+				alert("删除失败！");
+			}
+		}
+	})
 }
 </script>
 <div style="width:100%;">
     <div  style="height:34px;" border="false">
 	    <div id="righttop">
-			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;路网补助标准</div>
+			<div id="p_top">当前位置>&nbsp;系统管理>&nbsp;危桥补助标准</div>
 		</div>
     </div>
-    <div style="height:700px;margin-top:10px;margin-left:10px;">
+    <div style="height:700px;margin-top:10px;margin-left:10px;overflow: auto;" >
     	<table width="100%" class="bgg" border="0" cellpadding="0" cellspacing="1">
     		<tr style="font-weight:700;font-size:16px;"><td width="16%">操作</td><td width="14%">桥梁类型</td><td width="14%">建设性质</td><td width="14%">技术等级</td><td width="14%">最大宽度</td><td width="14%">补助金额(元/每平方米)</td><td width="14%">补助级别</td></tr>
     		<tbody id="wqbztable"></tbody>
     	</table>
     	<div style="width:80%;margin-top:10px;text-align:center;">
-    		<a id="tjwqbz" iconCls="icon-add" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false" >添    加</a>
+    		<a id="tjwqbz" iconCls="icon-add" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false"  onclick="YMLib.UI.createWindow('lxxx','危桥补助标准添加','wqbzbz_add.jsp','lxxx',400,300);">添    加</a>
 <!--     		<a id="dwgl_btn_Save" iconCls="icon-save" href="javascript:void(0)"  class="easyui-linkbutton" style="margin:2px 3px 0px 0px;" plain="false" >保　存</a> -->
     	</div>
     </div>

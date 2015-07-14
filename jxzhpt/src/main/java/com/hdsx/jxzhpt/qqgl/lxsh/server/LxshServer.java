@@ -148,5 +148,11 @@ public interface LxshServer {
 
 	String selectimportXmbm(String tiaojian);
 
+	boolean tjwqbzbz(Wqbzbz wqbzbz);
+
+	boolean xgwqbzbz(Wqbzbz wqbzbz);
+
+	boolean delwqbzbz(Wqbzbz wqbzbz);
+
 
 }

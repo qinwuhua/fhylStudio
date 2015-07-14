@@ -805,8 +805,19 @@
 	</insert>
 	
 	<select id="selectWqbzbz" resultType="wqbzbz">
-		select * from xtgl_wqbzbz
+		select t.* from xtgl_wqbzbz t order by decode(t.bzjb,'省级',1,'市级',2),decode(t.qllx,'特大桥',1,'大桥',2,'中桥',3,'小桥',4),decode(t.jsxz,'拆除重建',1,'加固改造',2)
 	</select>
-	
+	<insert id="tjwqbzbz" parameterType="wqbzbz">
+		insert into xtgl_wqbzbz (id,qllx,jsxz,jsdj,bzje,zdkd,bzjb,jsdj1)
+		values(sys_guid(),#{qllx},#{jsxz},#{jsdj},#{bzje},#{zdkd},#{bzjb},#{jsdj1})
+	</insert>
+	<insert id="xgwqbzbz" parameterType="wqbzbz">
+		update xtgl_wqbzbz
+		set qllx=#{qllx},jsxz=#{jsxz},jsdj=#{jsdj},bzje=#{bzje},zdkd=#{zdkd},bzjb=#{bzjb},jsdj1=#{jsdj1})
+		where id=#{id}
+	</insert>
+	<delete id="delwqbzbz" parameterType="wqbzbz">
+		delete from xtgl_wqbzbz where id=#{id}
+	</delete>
 </mapper>
 

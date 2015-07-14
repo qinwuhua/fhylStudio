@@ -1250,5 +1250,23 @@ public class LxshController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	
+	public void tjwqbzbz(){
+		boolean bl=lxshServer.tjwqbzbz(wqbzbz);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void xgwqbzbz(){
+		String jsdj=wqbzbz.getJsdj1().replaceAll(",,,",",");
+		if(",".equals(jsdj.substring(0, 1))){
+			jsdj=jsdj.substring(1);
+		}
+		wqbzbz.setJsdj1(jsdj);
+		boolean bl=lxshServer.xgwqbzbz(wqbzbz);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void delwqbzbz(){
+		boolean bl=lxshServer.delwqbzbz(wqbzbz);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 }
 

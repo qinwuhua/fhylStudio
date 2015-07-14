@@ -16,6 +16,8 @@ public class Wqbzbz implements Serializable {
 	private String bzje;
 	private String zdkd;
 	private String bzjb;
+	private String jsdj1;
+	
 	public String getId() {
 		return id;
 	}
@@ -57,6 +59,12 @@ public class Wqbzbz implements Serializable {
 	}
 	public void setBzjb(String bzjb) {
 		this.bzjb = bzjb;
+	}
+	public String getJsdj1() {
+		return jsdj1;
+	}
+	public void setJsdj1(String jsdj1) {
+		this.jsdj1 = jsdj1;
 	}
 	
 }

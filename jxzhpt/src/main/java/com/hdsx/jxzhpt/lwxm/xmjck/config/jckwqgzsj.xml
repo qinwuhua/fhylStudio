@@ -433,7 +433,35 @@
 	</update>
 	
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz})
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz})
 	</insert>
+	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
+		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
+		where sckid=#{id}
+	</select>
+	<select id="selectshibz" parameterType="jckwqgzsj" resultType="wqbzbz">
+		select * from xtgl_wqbzbz where 1=1 and bzjb='市级'
+		<if test="sck_qlbh!='' and sck_qlbh!= null ">
+			and jsdj like '%'||(substr(#{sck_qlbh},0,1))||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and qllx = #{akjfl}
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz = #{jsxz}
+		</if>
+	</select>
+	<select id="selectshengbz" parameterType="jckwqgzsj" resultType="wqbzbz">
+		select * from xtgl_wqbzbz where 1=1 and bzjb='省级'
+		<if test="sck_qlbh!='' and sck_qlbh!= null ">
+			and jsdj like '%'||(substr(#{sck_qlbh},0,1))||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and qllx = #{akjfl}
+		</if>
+		<if test="jsxz!='' and jsxz!= null ">
+			and jsxz = #{jsxz}
+		</if>
+	</select>
 </mapper>
 

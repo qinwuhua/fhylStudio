@@ -1,5 +1,6 @@
 package com.hdsx.jxzhpt.lwxm.xmjck.server.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.lwxm.xmjck.server.JckwqgzsjServer;
+import com.hdsx.jxzhpt.qqgl.lxsh.bean.Wqbzbz;
 @Service
 public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer {
 	private Map<String, Object> hm;
@@ -222,6 +224,41 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			}else {
 				jckwqgzsj.setBz("0");
 			}
+			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
+			if("省直管试点县".equals(jck.getTsdq())){
+				Wqbzbz wq1=queryOne("selectshibz", jck);
+				if(wq1==null){
+					System.out.println("未查出市级补助，请在审核时检查代码");
+				}else{
+					BigDecimal b1=new BigDecimal(jck.getScqlqc()).multiply(new BigDecimal(jck.getScqlqk()));
+					BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+					jckwqgzsj.setShibz(b2+"");
+				}
+			}
+			Wqbzbz wq1=queryOne("selectshengbz", jck);
+			if(wq1==null){
+				System.out.println("未查出市级补助，请在审核时检查代码");
+			}else{
+				if(wq1.getZdkd()!=null||wq1.getZdkd()!=""||!"".equals(wq1.getZdkd())){
+					if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(jck.getScqlqk())){
+						jckwqgzsj.setScqlqk(wq1.getZdkd());
+					}else{
+						jckwqgzsj.setScqlqk(jck.getScqlqk());
+					}
+				}
+				else{
+					jckwqgzsj.setScqlqk(jck.getScqlqk());
+				}
+			}
+			jckwqgzsj.setScqlqc(jck.getScqlqc());
+			BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc()).multiply(new BigDecimal(jckwqgzsj.getScqlqk()));
+			BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+			jckwqgzsj.setShengbz(b2+"");
+			if(jckwqgzsj.getShibz()==null){
+				jckwqgzsj.setShibz("");
+			}
+			System.out.println(jckwqgzsj.getShengbz()+"------"+jckwqgzsj.getShibz());
+				
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;

@@ -18,14 +18,15 @@
 <body>
 <script type="text/javascript">
 	function tjwqbzbz(){
+		var jsdj1=$("#jsdj").combobox('getText');
 		var data="wqbzbz.qllx="+$("#qllx").combobox('getValue')+"&wqbzbz.jsxz="+$("#jsxz").combobox('getValue')
-		+"&wqbzbz.jsdj="+$("#jsdj").combobox('getValues')+"&wqbzbz.bzjb="+$("#bzjb").combobox('getValue')+"&wqbzbz.jsdj1="+$("#jsdj").combobox('getText')
-		+"&wqbzbz.zdkd="+$("#zdkd").val()+"&wqbzbz.bzje="+$("#bzje").val();
+		+"&wqbzbz.jsdj="+$("#jsdj").combobox('getValues')+"&wqbzbz.bzjb="+$("#bzjb").combobox('getValue')+"&wqbzbz.jsdj1="+jsdj1
+		+"&wqbzbz.zdkd="+$("#zdkd").val()+"&wqbzbz.bzje="+$("#bzje").val()+"&wqbzbz.bzje="+parent.obj.id;
 		$.ajax({
 			data:data,
 			type:'post',
 			datatype:'json',
-			url:'/jxzhpt/qqgl/tjwqbzbz.do',
+			url:'/jxzhpt/qqgl/xgwqbzbz.do',
 			success:function(msg){
 				if(msg){
 					alert("保存成功！");
@@ -35,9 +36,17 @@
 					alert("保存失败！");
 				}
 			}
-		}); 
+		});  
 	}
-
+	$(function(){
+		var data=parent.obj;
+		$("#qllx").combobox('setValue',data.qllx);
+		$("#jsxz").combobox('setValue',data.jsxz);
+		$("#jsdj").combobox('setValues',data.jsdj);
+		$("#zdkd").val(data.zdkd);
+		$("#bzje").val(data.bzje);
+		$("#bzjb").combobox('setValue',data.bzjb);
+	})
 </script>
 <div id="dwgl_layout" class="easyui-layout" fit="true">
 	<div region="center" border="false" style="padding:0px;border-bottom-width:1px;">

@@ -86,6 +86,9 @@
           <action name="importxjkxx" class="kxxyjController" method="importxjkxx"/>
 	        
 	      <action name="selectWqbzbz" class="lxshController" method="selectWqbzbz"/>
+	      <action name="tjwqbzbz" class="lxshController" method="tjwqbzbz"/>
+	      <action name="xgwqbzbz" class="lxshController" method="xgwqbzbz"/>
+	      <action name="delwqbzbz" class="lxshController" method="delwqbzbz"/>
 	 <!-- qwh -->
 	<!-- rh -->
 		<!-- 初步设计-->

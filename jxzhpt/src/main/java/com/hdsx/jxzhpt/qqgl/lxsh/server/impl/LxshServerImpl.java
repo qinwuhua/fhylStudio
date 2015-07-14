@@ -699,4 +699,22 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	public String selectimportXmbm(String tiaojian) {
 		return queryOne("selectimportXmbm", tiaojian);
 	}
+
+	@Override
+	public boolean tjwqbzbz(Wqbzbz wqbzbz) {
+		// TODO Auto-generated method stub
+		return insert("tjwqbzbz", wqbzbz)==1;
+	}
+
+	@Override
+	public boolean xgwqbzbz(Wqbzbz wqbzbz) {
+		// TODO Auto-generated method stub
+		return update("xgwqbzbz", wqbzbz)==1;
+	}
+
+	@Override
+	public boolean delwqbzbz(Wqbzbz wqbzbz) {
+		// TODO Auto-generated method stub
+		return delete("delwqbzbz", wqbzbz)==1;
+	}
 }

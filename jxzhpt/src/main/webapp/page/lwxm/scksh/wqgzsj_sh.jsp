@@ -37,7 +37,8 @@ text-decoration:none;
 			 type : "POST",
 			 url : "/jxzhpt/wqgzsj/sjshtyWqgzsjwqgz.do",
 			 dataType : 'json',
-			 data : 'jckwqgzsj.id=' +parent.obj.sckid+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length)+"&jckwqgzsj.scxmnf="+parent.obj.scxmnf+"&jckwqgzsj.scbmbm="+parent.obj.scbmbm,
+			 data : 'jckwqgzsj.id=' +parent.obj.sckid+"&jckwqgzsj.shbm="+$.cookie("unit")+"&jckwqgzsj.sbthcd="+($.cookie("unit2").length)+"&jckwqgzsj.scxmnf="+parent.obj.scxmnf
+			 +"&jckwqgzsj.scbmbm="+parent.obj.scbmbm,
 			 success : function(msg){
 				 if(msg){
 					 alert('审核成功！');
