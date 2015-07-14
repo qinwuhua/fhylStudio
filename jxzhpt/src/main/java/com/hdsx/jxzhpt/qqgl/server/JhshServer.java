@@ -252,5 +252,11 @@ public interface JhshServer {
 	 * @return 可行性研究信息
 	 */
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 修改计划审核的养护大中修
+	 * @param readerExcel 养护大中修集合
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxYhdzx(List<Jhsh> readerExcel);
 	
 }

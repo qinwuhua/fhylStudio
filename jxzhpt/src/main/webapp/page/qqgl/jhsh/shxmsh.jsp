@@ -80,6 +80,14 @@
 				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
 			gridBind(grid);
 		}
+		function exportJhshxx(){
+			var param='jhsh.xmlx=4&jhsh.xdzt=0&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#ylxbh').val()+
+			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+'&lsjl='+$('#lsjl').combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
+		}
+		function importJhsh(){
+			//importExcel("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");
+		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
 		});
@@ -136,7 +144,11 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-							<td><img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/></td>
+							<td colspan="3">
+								<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+							</td>
        					</tr>
        				</table>
        				</div>

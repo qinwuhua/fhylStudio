@@ -104,8 +104,10 @@
 		<action name="queryLxshByXmbm" class="jhshController" method="queryLxshByXmbm"></action>
 		<action name="queryJhshxxByXmbm" class="jhshController" method="queryJhshxxByXmbm"></action>
 		<action name="exportJhshxx" class="jhshController" method="exportJhshxx"></action>
-		<action name="exportJhshxx2" class="jhshController" method="exportJhshxx2"></action>
+		<action name="exportJhshYhdzx" class="jhshController" method="exportJhshYhdzx"></action>
+		<action name="exportJhshSh" class="jhshController" method="exportJhshSh"></action>
 		<action name="importExcelJhxd" class="jhshController" method="importExcelJhxd"></action>
+		<action name="importExcelJhxdYhdzx" class="jhshController" method="importExcelJhxdYhdzx"></action>
 		<action name="exportZjxd" class="jhshController" method="exportZjxd"></action>
 		
 		<action name="insertXmsq" class="xmsqController" method="insertXmsq"></action>
