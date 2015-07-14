@@ -51,6 +51,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	//导入Excel
 	private String fileuploadFileName;
 	private File fileupload;
+	private String tbbmbm2;//填报部门编码，用于Excel
 	/**
 	 * 查询下一个项目编码
 	 * @throws Exception
@@ -356,10 +357,10 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		}
 	}
 	/**
-	 * 导入Excel
+	 * 导入养护大中修Excel
 	 */
 	@SuppressWarnings("unchecked")
-	public void importExcelXmsq(){
+	public void importExcelYhdzx(){
 		//设置列与字段对应
 		Map<String, String> attribute=new HashMap<String, String>();
 		attribute.put("0", "xzqhdm");//行政区划代码
@@ -382,6 +383,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		attribute.put("17", "gq");//工期
 		attribute.put("18", "ntz");//拟投资
 		attribute.put("19", "jsfa");//建设方案
+		attribute.put("20", "tsdq");//建设方案
 		
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
@@ -393,6 +395,7 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			Calendar cal = Calendar.getInstance();
 			for (Xmsq xmsq : list) {
 				xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
+				xmsq.setGydwdm(tbbmbm2);
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
@@ -416,6 +419,70 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * 导入灾毁重建Excel
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelSh(){
+		//设置列与字段对应
+				Map<String, String> attribute=new HashMap<String, String>();
+				attribute.put("0", "xzqhdm");//行政区划代码
+				attribute.put("1", "xzqh");//行政区划
+				attribute.put("2", "gydw");//管养单位
+				attribute.put("3", "ylxbh");//原路线编号
+				attribute.put("4", "ghlxbh");//规划路线编号
+				attribute.put("5", "lmkd");//路面宽度
+				attribute.put("6", "lxmc");//路线名称
+				attribute.put("7", "qdmc");//起点桩号
+				attribute.put("8", "zdmc");//止点桩号
+				attribute.put("9", "qdzh");//起点桩号
+				attribute.put("10", "zdzh");//止点桩号
+				attribute.put("11", "lc");//里程
+				attribute.put("12", "jsdj");//技术等级
+				attribute.put("13", "xmmc");//项目名称
+				attribute.put("14", "gcfl");//工程分类
+				attribute.put("15", "jhkgsj");//开工时间
+				attribute.put("16", "jhwgsj");//完工时间
+				attribute.put("17", "gq");//工期
+				attribute.put("18", "ntz");//拟投资
+				attribute.put("19", "jsfa");//建设方案
+				attribute.put("20", "tsdq");//建设方案
+				
+				ExcelEntity excel=new ExcelEntity();
+				excel.setAttributes(attribute);
+				try {
+					List<Xmsq> list = ExcelImportUtil.readerExcel(fileupload, Xmsq.class, 2, excel);
+					List<Lx> lxlist=new ArrayList<Lx>();
+					String nextXmbm = xmsqServer.queryShNextXmbm();
+					int num = new Integer(nextXmbm.substring(nextXmbm.length()-4)).intValue();
+					Calendar cal = Calendar.getInstance();
+					for (Xmsq xmsq : list) {
+						xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
+						xmsq.setGydwdm(tbbmbm2);
+						Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
+								xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
+								xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
+						lx.setJdbs("1");
+						lx.setJsjsdj(xmsq.getJsdj());
+						lx.setGpsqdzh(xmsq.getGpsqdzh());
+						lx.setGpszdzh(xmsq.getGpszdzh());
+						lx.setJsfa(xmsq.getJsfa());
+						xmsq.setLsjl(xmsqServer.queryLsjl(xmsq.getYlxbh(),xmsq.getQdzh(),xmsq.getZdzh(),xmsq.getXmbm())>0 ? "是" : "否");
+						lxlist.add(lx);
+						num++;
+					}
+					if(xmsqServer.insertXmsqSh(list)){
+						if(xmsqServer.insertLx(lxlist)){
+							getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+						}
+					}else{
+						getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 	}
 	/**
 	 * 处理行政区划编码为条件语句
@@ -469,5 +536,11 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 	}
 	public void setFileupload(File fileupload) {
 		this.fileupload = fileupload;
+	}
+	public String getTbbmbm2() {
+		return tbbmbm2;
+	}
+	public void setTbbmbm2(String tbbmbm2) {
+		this.tbbmbm2 = tbbmbm2;
 	}
 }

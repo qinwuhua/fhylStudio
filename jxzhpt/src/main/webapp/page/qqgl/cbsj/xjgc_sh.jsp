@@ -51,12 +51,12 @@
 						result+='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'升级改造工程项目'"+','+
 						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						if(row.shzt==0){
+						//if(row.shzt==0){
 							result+='&nbsp;<a href="javascript:openWindow('+"'xjgcedit'"+','+"'升级改造工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
-						}else{
-							result+='&nbsp;<a style="color:black;">编辑</a>';
-						}
+						//}else{
+						//	result+='&nbsp;<a style="color:black;">编辑</a>';
+						//}
 						return result;
 					}
 				},
@@ -199,10 +199,13 @@
 			}
 		}
 		function exportCbsj(){
-			var param='xmlx=1&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValue")+
-			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValue")+'&jsjsdj='+$('#jsjsdj').combo("getValue")+
-			'&tsdq='+$('#tsdq').combo("getText")+'&xmbm='+$('#xmnf').combo('getValue');
+			var param='xmlx=3&shzt=-1&xzqhdm='+getxzqhdm('xzqh')+'&xmbm='+$('#xmnf').combobox("getValue")+
+			'&ghlxbh='+$('#txtlxbm').val()+'&xjsdj='+$('#yjsdj').combo("getValue")+'&jsjsdj='+$('#gjhjsdj').combo("getValue")+
+			'&tsdq='+$('#tsdq').combo("getText");
 			window.location.href="/jxzhpt/qqgl/exportExcelCbsj.do?"+param;
+		}
+		function importXmsq(){
+			importExcel("/jxzhpt/qqgl/importExcelXjCbsj.do","xjcbsj");
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize'); 
@@ -259,6 +262,7 @@ text-decoration:none;
 								<img onclick="batchSb()" id="btnShangbao" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<img onclick="exportCbsj()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 								<!-- <img onclick="batchTh()" alt="删除" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'" style="vertical-align:middle;"/> -->
+								<img id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
         					</td>
                             </tr></table>
         				</div>

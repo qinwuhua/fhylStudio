@@ -27,11 +27,11 @@
 				data:'cbsj.xmlx='+3+'&cbsj.xmbm='+parent.YMLib.Var.xmbm,
 				dataType:'json',
 				success:function(data){
-					$('#cbsj').form("load",data);
 					$('#dq_cd').val("0");
 					$('#dq_dk').val("0");
 					$('#sd_sfcd').val("0");
 					$('#jaf').val("0");
+					$('#cbsj').form("load",data);
 					$('#jdbs').val(parent.YMLib.Var.jdbs);
 					fileShow(parent.YMLib.Var.xmbm,"设计批复文件");
 					$('#sfbj').val(1);

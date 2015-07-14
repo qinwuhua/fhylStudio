@@ -77,12 +77,12 @@
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','1'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxxx'"+','+"'养护大中修项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/yhdzx_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
+						//if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
 							result+='&nbsp;<a href="javascript:openWindow('+"'yhdzxedit'"+','+"'养护大中修项目'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/yhdzx_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
-						}else{
-							result+='&nbsp;<a style="color:black;">编辑</a>';
-						}
+						//}else{
+						//	result+='&nbsp;<a style="color:black;">编辑</a>';
+						//}
 						return result;
 					}
 				},
@@ -275,7 +275,7 @@
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
 		function importXmsq(){
-			importExcel("/jxzhpt/qqgl/importExcelXmsq.do","");
+			importExcel("/jxzhpt/qqgl/importExcelYhdzx.do","yhlxsh");
 		}
 		function openYhdzx(){
 			openWindow("yhdzxadd","添加养护大中修项目","yhdzxAdd.jsp",980,400);

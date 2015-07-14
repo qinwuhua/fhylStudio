@@ -6,14 +6,21 @@ public class Cbsj {
 		return "Cbsj [id=" + id + ", xmbm=" + xmbm + ", xmmc=" + xmmc
 				+ ", jsdw=" + jsdw + ", xzqh=" + xzqh + ", qdzh=" + qdzh
 				+ ", zdzh=" + zdzh + ", jsjsdj=" + jsjsdj + ", jsxz=" + jsxz
-				+ ", lj=" + lj + ", ql=" + ql + ", hd=" + hd + ", mc=" + mc
-				+ ", jc=" + jc + ", dc=" + dc + ", sd=" + sd + ", dq=" + dq
-				+ ", sdmc=" + sdmc + ", kgsj=" + kgsj + ", wgsj=" + wgsj
-				+ ", gq=" + gq + ", sjdw=" + sjdw + ", sjpfwh=" + sjpfwh
-				+ ", pfsj=" + pfsj + ", jaf=" + jaf + ", sbzt=" + sbzt
-				+ ", shzt=" + shzt + ", ghlxbh=" + ghlxbh + ", lxmc=" + lxmc
+				+ ", lj=" + lj + ", ql=" + ql + ", ql_ym=" + ql_ym + ", hd="
+				+ hd + ", hd_m=" + hd_m + ", mc=" + mc + ", mc_lc=" + mc_lc
+				+ ", jc=" + jc + ", jc_lc=" + jc_lc + ", dc=" + dc + ", dc_lc="
+				+ dc_lc + ", sd=" + sd + ", sd_ym=" + sd_ym + ", dq=" + dq
+				+ ", dq_cd=" + dq_cd + ", dq_dk=" + dq_dk + ", sdmc=" + sdmc
+				+ ", sd_sfcd=" + sd_sfcd + ", sd_lx=" + sd_lx + ", kgsj="
+				+ kgsj + ", wgsj=" + wgsj + ", gq=" + gq + ", sjdw=" + sjdw
+				+ ", sjpfwh=" + sjpfwh + ", pfsj=" + pfsj + ", jaf=" + jaf
+				+ ", sbzt=" + sbzt + ", shzt=" + shzt + ", sfbj=" + sfbj
+				+ ", lc=" + lc + ", ghlxbh=" + ghlxbh + ", lxmc=" + lxmc
 				+ ", xzqhdm=" + xzqhdm + ", xjsdj=" + xjsdj + ", tsdq=" + tsdq
-				+ "]";
+				+ ", qdmc=" + qdmc + ", zdmc=" + zdmc + ", xmlx=" + xmlx
+				+ ", ylxbh=" + ylxbh + ", jsfa=" + jsfa + ", lsjl=" + lsjl
+				+ ", jdbs=" + jdbs + ", gpsqdzh=" + gpsqdzh + ", gpszdzh="
+				+ gpszdzh + "]";
 	}
 	private String id;//唯一ID
 	private String xmbm;//项目编码

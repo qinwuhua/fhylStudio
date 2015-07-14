@@ -22,9 +22,11 @@ import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelCoordinate;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelEntity;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelExportUtil;
+import com.hdsx.jxzhpt.jhgl.excel.ExcelImportUtil;
 import com.hdsx.jxzhpt.jhgl.excel.ExcelTitleCell;
 import com.hdsx.jxzhpt.qqgl.bean.Cbsj;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
+import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.CbsjServer;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
@@ -52,6 +54,9 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	private CbsjServer cbsjServer;
 	@Resource(name="jhshServerImpl")
 	private JhshServer jhshServer;
+	//导入Excel
+	private String fileuploadFileName;
+	private File fileupload;
 	/**
 	 * 分页查询路面升级项目信息
 	 * @throws Exception
@@ -356,20 +361,20 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				title[5]=new ExcelTitleCell("建设性质",false, new ExcelCoordinate(0, (short)5), null,20);
 				title[6]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)6), null,20);
 				title[7]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)7), null,20);
-				title[8]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)7), null,20);
-				title[9]=new ExcelTitleCell("面层类型",false, new ExcelCoordinate(0, (short)15), null,20);
-				title[10]=new ExcelTitleCell("面层里程",false, new ExcelCoordinate(0, (short)16), null,20);
-				title[11]=new ExcelTitleCell("基层类型",false, new ExcelCoordinate(0, (short)17), null,20);
-				title[12]=new ExcelTitleCell("基层里程",false, new ExcelCoordinate(0, (short)18), null,20);
-				title[13]=new ExcelTitleCell("垫层类型",false, new ExcelCoordinate(0, (short)19), null,20);
-				title[14]=new ExcelTitleCell("垫层里程",false, new ExcelCoordinate(0, (short)20), null,20);
-				title[15]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)27), null,20);
-				title[16]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)28), null,20);
-				title[17]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)29), null,20);
-				title[18]=new ExcelTitleCell("设计单位",false, new ExcelCoordinate(0, (short)30), null,20);
-				title[19]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)31), null,20);
-				title[20]=new ExcelTitleCell("批复时间",false, new ExcelCoordinate(0, (short)32), null,20);
-				title[21]=new ExcelTitleCell("建设方案",false, new ExcelCoordinate(0, (short)32), null,20);
+				title[8]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)8), null,20);
+				title[9]=new ExcelTitleCell("面层类型",false, new ExcelCoordinate(0, (short)9), null,20);
+				title[10]=new ExcelTitleCell("面层里程",false, new ExcelCoordinate(0, (short)10), null,20);
+				title[11]=new ExcelTitleCell("基层类型",false, new ExcelCoordinate(0, (short)11), null,20);
+				title[12]=new ExcelTitleCell("基层里程",false, new ExcelCoordinate(0, (short)12), null,20);
+				title[13]=new ExcelTitleCell("垫层类型",false, new ExcelCoordinate(0, (short)13), null,20);
+				title[14]=new ExcelTitleCell("垫层里程",false, new ExcelCoordinate(0, (short)14), null,20);
+				title[15]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)15), null,20);
+				title[16]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)16), null,20);
+				title[17]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)17), null,20);
+				title[18]=new ExcelTitleCell("设计单位",false, new ExcelCoordinate(0, (short)18), null,20);
+				title[19]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)19), null,20);
+				title[20]=new ExcelTitleCell("批复时间",false, new ExcelCoordinate(0, (short)20), null,20);
+				title[21]=new ExcelTitleCell("建设方案",false, new ExcelCoordinate(0, (short)21), null,20);
 				//设置列与字段对应
 				attribute=new HashMap<String, String>();
 				attribute.put("0", "xmmc");//项目名称
@@ -393,7 +398,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				attribute.put("18", "sjdw");
 				attribute.put("19", "sjpfwh");
 				attribute.put("20", "pfsj");
-				attribute.put("21", "jaf");
+				attribute.put("21", "jsfa");
 			}
 			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
 			//数据
@@ -429,7 +434,312 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 导入养护大中修初步设计
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelYhdzxCbsj(){
+		HashMap<String, String> attribute = new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "jsdw");
+		attribute.put("4", "jsjsdj");
+		attribute.put("5", "jsxz");
+		attribute.put("6", "qdzh");
+		attribute.put("7", "zdzh");
+		attribute.put("8", "lc");
+		attribute.put("9", "mc");
+		attribute.put("10", "mc_lc");
+		attribute.put("11", "jc");
+		attribute.put("12", "jc_lc");
+		attribute.put("13", "dc");
+		attribute.put("14", "dc_lc");
+		attribute.put("15", "kgsj");
+		attribute.put("16", "wgsj");
+		attribute.put("17", "gq");
+		attribute.put("18", "sjdw");
+		attribute.put("19", "sjpfwh");
+		attribute.put("20", "pfsj");
+		attribute.put("21", "jsfa");
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try{
+			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Lx> lxlist =new ArrayList<Lx>();
+			for (Cbsj cbsj : list) {
+				cbsj.setSfbj("1");
+				Lx lx=new Lx();
+				lx.setQdzh(cbsj.getQdzh());
+				lx.setZdzh(cbsj.getZdzh());
+				lx.setXmid(cbsj.getXmbm());
+//				lx.setQdmc(cbsj.getQdmc());
+//				lx.setZdmc(cbsj.getZdmc());
+				lx.setSffirst("1");
+				lx.setJdbs("2");
+				lxlist.add(lx);
+			}
+			if(cbsjServer.updateCbsjYhdzx(list) && jhshServer.updateLx(lxlist)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 导入灾毁重建初步设计
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelShCbsj(){
+		HashMap<String, String> attribute = new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "jsdw");
+		attribute.put("4", "jsjsdj");
+		attribute.put("5", "jsxz");
+		attribute.put("6", "qdzh");
+		attribute.put("7", "zdzh");
+		attribute.put("8", "lc");
+		attribute.put("9", "mc");
+		attribute.put("10", "mc_lc");
+		attribute.put("11", "jc");
+		attribute.put("12", "jc_lc");
+		attribute.put("13", "dc");
+		attribute.put("14", "dc_lc");
+		attribute.put("15", "kgsj");
+		attribute.put("16", "wgsj");
+		attribute.put("17", "gq");
+		attribute.put("18", "sjdw");
+		attribute.put("19", "sjpfwh");
+		attribute.put("20", "pfsj");
+		attribute.put("21", "jsfa");
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try{
+			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Lx> lxlist = new ArrayList<Lx>();
+			for (Cbsj cbsj : list) {
+				cbsj.setSfbj("1");
+				Lx lx=new Lx();
+				lx.setQdzh(cbsj.getQdzh());
+				lx.setZdzh(cbsj.getZdzh());
+				lx.setXmid(cbsj.getXmbm());
+//				lx.setQdmc(cbsj.getQdmc());
+//				lx.setZdmc(cbsj.getZdmc());
+				lx.setSffirst("1");
+				lx.setJdbs("2");
+				lxlist.add(lx);
+			}
+			if(cbsjServer.updateCbsjSh(list) && jhshServer.updateLx(lxlist)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 导入路面改造初步设计
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelLmgzCbsj(){
+		HashMap<String, String> attribute = new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "jsdw");
+		attribute.put("4", "jsjsdj");
+		attribute.put("5", "jsxz");
+		attribute.put("6", "qdzh");
+		attribute.put("7", "zdzh");
+		attribute.put("8", "lj");
+		attribute.put("9", "ql");
+		attribute.put("10", "ql_ym");
+		attribute.put("11", "hd");
+		attribute.put("12", "hd_m");
+		attribute.put("13", "sd");
+		attribute.put("14", "sd_ym");
+		attribute.put("15", "mc");
+		attribute.put("16", "mc_lc");
+		attribute.put("17", "jc");
+		attribute.put("18", "jc_lc");
+		attribute.put("19", "dc");
+		attribute.put("20", "dc_lc");
+		attribute.put("21", "dq");
+		attribute.put("22", "dq_cd");
+		attribute.put("23", "dq_dk");
+		attribute.put("24", "sdmc");
+		attribute.put("25", "sd_sfcd");
+		attribute.put("26", "sd_lx");
+		attribute.put("27", "kgsj");
+		attribute.put("28", "wgsj");
+		attribute.put("29", "gq");
+		attribute.put("30", "sjdw");
+		attribute.put("31", "sjpfwh");
+		attribute.put("32", "pfsj");
+		attribute.put("33", "jaf");
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try{
+			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Lx> lxlist =new ArrayList<Lx>();
+			for (Cbsj cbsj : list) {
+				cbsj.setSfbj("1");
+				Lx lx=new Lx();
+				lx.setQdzh(cbsj.getQdzh());
+				lx.setZdzh(cbsj.getZdzh());
+				lx.setXmid(cbsj.getXmbm());
+//				lx.setQdmc(cbsj.getQdmc());
+//				lx.setZdmc(cbsj.getZdmc());
+				lx.setSffirst("1");
+				lx.setJdbs("2");
+				lxlist.add(lx);
+			}
+			if(cbsjServer.updateCbsjLmgz(list) && jhshServer.updateLx(lxlist)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 导入升级初步设计
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelLmsjCbsj(){
+		HashMap<String, String> attribute = new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "jsdw");
+		attribute.put("4", "jsjsdj");
+		attribute.put("5", "jsxz");
+		attribute.put("6", "qdzh");
+		attribute.put("7", "zdzh");
+		attribute.put("8", "lj");
+		attribute.put("9", "ql");
+		attribute.put("10", "ql_ym");
+		attribute.put("11", "hd");
+		attribute.put("12", "hd_m");
+		attribute.put("13", "sd");
+		attribute.put("14", "sd_ym");
+		attribute.put("15", "mc");
+		attribute.put("16", "mc_lc");
+		attribute.put("17", "jc");
+		attribute.put("18", "jc_lc");
+		attribute.put("19", "dc");
+		attribute.put("20", "dc_lc");
+		attribute.put("21", "dq");
+		attribute.put("22", "dq_cd");
+		attribute.put("23", "dq_dk");
+		attribute.put("24", "sdmc");
+		attribute.put("25", "sd_sfcd");
+		attribute.put("26", "sd_lx");
+		attribute.put("27", "kgsj");
+		attribute.put("28", "wgsj");
+		attribute.put("29", "gq");
+		attribute.put("30", "sjdw");
+		attribute.put("31", "sjpfwh");
+		attribute.put("32", "pfsj");
+		attribute.put("33", "jaf");
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try{
+			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Lx> lxlist =new ArrayList<Lx>();
+			for (Cbsj cbsj : list) {
+				cbsj.setSfbj("1");
+				Lx lx=new Lx();
+				lx.setQdzh(cbsj.getQdzh());
+				lx.setZdzh(cbsj.getZdzh());
+				lx.setXmid(cbsj.getXmbm());
+//				lx.setQdmc(cbsj.getQdmc());
+//				lx.setZdmc(cbsj.getZdmc());
+				lx.setSffirst("1");
+				lx.setJdbs("2");
+				lxlist.add(lx);
+			}
+			if(cbsjServer.updateCbsjLmsj(list) && jhshServer.updateLx(lxlist)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 导入新建项目初步设计
+	 */
+	@SuppressWarnings("unchecked")
+	public void importExcelXjCbsj(){
+		HashMap<String, String> attribute = new HashMap<String, String>();
+		attribute.put("0", "xmmc");//项目名称
+		attribute.put("1", "xmbm");//项目编码
+		attribute.put("2", "xzqh");//行政区划
+		attribute.put("3", "jsdw");
+		attribute.put("4", "jsjsdj");
+		attribute.put("5", "jsxz");
+		attribute.put("6", "qdzh");
+		attribute.put("7", "zdzh");
+		attribute.put("8", "lj");
+		attribute.put("9", "ql");
+		attribute.put("10", "ql_ym");
+		attribute.put("11", "hd");
+		attribute.put("12", "hd_m");
+		attribute.put("13", "sd");
+		attribute.put("14", "sd_ym");
+		attribute.put("15", "mc");
+		attribute.put("16", "mc_lc");
+		attribute.put("17", "jc");
+		attribute.put("18", "jc_lc");
+		attribute.put("19", "dc");
+		attribute.put("20", "dc_lc");
+		attribute.put("21", "dq");
+		attribute.put("22", "dq_cd");
+		attribute.put("23", "dq_dk");
+		attribute.put("24", "sdmc");
+		attribute.put("25", "sd_sfcd");
+		attribute.put("26", "sd_lx");
+		attribute.put("27", "kgsj");
+		attribute.put("28", "wgsj");
+		attribute.put("29", "gq");
+		attribute.put("30", "sjdw");
+		attribute.put("31", "sjpfwh");
+		attribute.put("32", "pfsj");
+		attribute.put("33", "jaf");
+		ExcelEntity excel=new ExcelEntity();
+		excel.setAttributes(attribute);
+		try{
+			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Lx> lxlist=new ArrayList<Lx>();
+			for (Cbsj cbsj : list) {
+				cbsj.setSfbj("1");
+				Lx lx=new Lx();
+				lx.setQdzh(cbsj.getQdzh());
+				lx.setZdzh(cbsj.getZdzh());
+				lx.setXmid(cbsj.getXmbm());
+//				lx.setQdmc(cbsj.getQdmc());
+//				lx.setZdmc(cbsj.getZdmc());
+				lx.setSffirst("1");
+				lx.setJdbs("2");
+				lxlist.add(lx);
+			}
+			if(cbsjServer.updateCbsjXj(list) && jhshServer.updateLx(lxlist)){
+				getresponse().getWriter().print(fileuploadFileName+"导入成功！");
+			}else{
+				getresponse().getWriter().print(fileuploadFileName+"导入失败！");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//get set方法
 	public Cbsj getCbsj() {
 		return cbsj;
@@ -482,5 +792,17 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	}
 	public void setFile(Plan_upload file) {
 		this.file = file;
+	}
+	public String getFileuploadFileName() {
+		return fileuploadFileName;
+	}
+	public void setFileuploadFileName(String fileuploadFileName) {
+		this.fileuploadFileName = fileuploadFileName;
+	}
+	public File getFileupload() {
+		return fileupload;
+	}
+	public void setFileupload(File fileupload) {
+		this.fileupload = fileupload;
 	}
 }

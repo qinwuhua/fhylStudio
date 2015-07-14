@@ -254,4 +254,8 @@ public class JhshServerImpl extends BaseOperate implements JhshServer {
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh) {
 		return queryOne("queryXjKxxyjByXmbm",jhsh);
 	}
+	@Override
+	public boolean updateLx(List<Lx> lx) {
+		return updateBatch("updateLx", lx)==lx.size();
+	}
 }
