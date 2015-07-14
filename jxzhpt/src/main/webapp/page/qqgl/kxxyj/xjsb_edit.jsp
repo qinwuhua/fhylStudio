@@ -130,7 +130,7 @@ text-decoration:none;
 			success:function(msg){
 				if(Boolean(msg)){
 					alert("保存成功！");
-					parent.showxjAll();
+					parent.showAllxjsh();
 					removes('lxxx');
 				}else{
 					alert('保存失败！');

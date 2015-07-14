@@ -32,7 +32,7 @@
 			var lx={gydwbm:getgydw("gydw"),xzqhdm:getxzqhdm('xzqh')};
 			querySumWqgz(jh,lx);
 			
-			querySumWqgz(jh,lx);
+			//querySumWqgz(jh,lx);
 			if($.cookie("unit2").length==7 || $.cookie("unit2").length==2){
 				$('#imglrjh').show();
 			}

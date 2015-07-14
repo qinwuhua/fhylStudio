@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -77,8 +81,43 @@
 				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
-				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+				{field:'ztz',title:'总投资',width:100,align:'center'},
+				{field:'sysbbzj',title:'省以上补助资金',width:100,align:'center'},
+				{field:'yqdbcgs',title:'已确定部车购税',width:100,align:'center'},
+				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'计划下达时间',width:100,align:'center'},
+				{field:'mc',title:'面层结构',width:300,align:'center',
+					formatter:function(value,row,index){
+						return "路面类型："+row.mclmlx+";面层材料："+row.mclx+";面层数量："+row.mcsl+";面层金额："+row.mcje;
+					}
+				},
+				{field:'jc',title:'基层结构',width:300,align:'center',
+					formatter:function(value,row,index){
+						return "基层材料："+row.jclx+";基层数量："+row.jcsl+";基层金额："+row.jcje;
+					}
+				},
+				{field:'xfc',title:'下封层结构',width:200,align:'center',
+					formatter:function(value,row,index){
+						return "下封层数量："+row.xfcsl+";下封层金额："+row.xfcje;
+					}
+				},
+				{field:'gf',title:'灌封',width:200,align:'center',
+					formatter:function(value,row,index){
+						return "灌封长度："+row.gfcd+";灌封金额："+row.gfje;
+					}
+				},
+				{field:'llcl',title:'老路处理',width:100,align:'center'}
+			]];
 			gridBind(grid);
+		}
+		function exportJhshxx(){
+			var param='jhsh.xmlx=4&jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+'&jhsh.ghlxbh='+$('#ylxbh').val()+
+			'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+'&lsjl='+$('#lsjl').combobox("getValue")+
+			'&xmbm='+$('#xmnf').combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/exportJhshYhdzx.do?"+param;
+		}
+		function importJhsh(){
+			importExcel("/jxzhpt/qqgl/importExcelJhxdYhdzx.do","yhjhxd");
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
@@ -117,24 +156,28 @@ text-decoration:none;
 							<td>下达状态：</td>
        						<td><select id="xdzt" class="easyui-combobox" style="width: 70px;">
        							<option value="-1">全部</option>
-       							<option value="0">未下达</option>
+       							<option value="0" selected="selected">未下达</option>
        							<option value="1">已下达</option>
        						</select></td>
        						<td>项目年份：</td>
         					<td><select id="xmnf" style="width: 60px;"></select></td>
        					</tr>
-       						<tr height="32">
+       					<tr height="32">
        						<td>项目名称：</td>
        						<td><input name="xmmc" id="xmmc" style="width:110px;" type="text"/></td>
        						<td>原路线编号：</td>
        						<td><input name="ylxbh" id="ylxbh" style="width:150px;" type="text"/></td>
        						<td>补助历史：</td>
-								<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
-									<option value="" selected="selected">全部</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-								</select></td>
-							<td><img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/></td>
+							<td><select name="lsjl" id="lsjl" class="easyui-combobox" style="width:81px;">
+								<option value="" selected="selected">全部</option>
+								<option value="是">是</option>
+								<option value="否">否</option>
+							</select></td>
+							<td colspan="3">
+								<img onclick="queryYhdzx()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+							</td>
        					</tr>
        					
         					</table>

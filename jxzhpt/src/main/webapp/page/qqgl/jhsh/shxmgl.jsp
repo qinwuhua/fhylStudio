@@ -14,6 +14,10 @@
 	<script type="text/javascript" src="../../../easyui/datagrid-detailview.js"></script>
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
@@ -74,12 +78,12 @@
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','1'"+')">定位</a>';
 						result+='&nbsp;<a href="javascript:openWindow('+"'shxmxx'"+','+"'灾毁重建项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/shxm_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
-						if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
+						//if(row.sqzt==0 || row.sqzt==9 || row.sqzt==11){
 							result+='&nbsp;<a href="javascript:openWindow('+"'shxmedit'"+','+"'灾毁重建项目'"+','+
 							"'/jxzhpt/page/qqgl/jhsh/shxm_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
-						}else{
-							result+='&nbsp;<a style="color:black;">编辑</a>';
-						}
+						//}else{
+						//	result+='&nbsp;<a style="color:black;">编辑</a>';
+						//}
 						return result;
 					}
 				},
@@ -271,6 +275,9 @@
 			'&tsdq='+$('#tsdq').combo("getText")+'&xmmc='+$('#xmmc').val()+'&lsjl='+$('#lsjl').combobox("getValue");
 			window.location.href="/jxzhpt/qqgl/exportExcelXmsq.do?"+param;
 		}
+		function importXmsq(){
+			importExcel("/jxzhpt/qqgl/importExcelSh.do","shlxsh");
+		}
 		function openSh(){
 			openWindow("shxmadd","添加灾毁重建项目","shxmAdd.jsp",980,400);
 		}
@@ -327,6 +334,8 @@
 									<img id="sp" name="sheng" alt="审批" onclick="batchSp()" style="display:none;border-width:0px;cursor: hand;vertical-align:middle;" onmouseover="this.src='../../../images/Button/sp2.jpg'" alt="上报" onmouseout="this.src='../../../images/Button/sp1.jpg'" src="../../../images/Button/sp1.jpg"/>
 					                <img id="th" name="sheng" alt="退回" onclick="" style="display:none;vertical-align:middle;" alt="退回" src="../../../images/Button/tuihui1.gif" onmouseover="this.src='../../../images/Button/tuihui2.gif'" onmouseout="this.src='../../../images/Button/tuihui1.gif'"/>
 					                <img onclick="exportXmsq()" id="dcExcel" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+					                <img id="drExcel" onclick="importXmsq()" alt="导入" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+					                <img id="dcmoban" onclick="exportTemplet('Lxsh_Sh')" alt="导出模版" onmouseover="this.src='../../../images/Button/DC2.gif'" onmouseout="this.src='../../../images/Button/DC1.gif'" src="../../../images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
 	       						</td>
 	       					</tr>
 	       				</table>

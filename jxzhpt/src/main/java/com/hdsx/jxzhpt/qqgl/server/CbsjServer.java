@@ -35,6 +35,12 @@ public interface CbsjServer {
 	 */
 	public boolean updateCbsjLmgz(Cbsj cbsj);
 	/**
+	 * 修改初步设计信息
+	 * @param cbsj 修改后的初步设计信息
+	 * @return 是否成功
+	 */
+	public boolean updateCbsjLmgz(List<Cbsj> cbsj);
+	/**
 	 * 上传设计批复文件
 	 * @param uploads
 	 * @return 执行结果
@@ -78,6 +84,12 @@ public interface CbsjServer {
 	 * @return 执行结果
 	 */
 	public boolean updateCbsjLmsj(Cbsj cbsj);
+	/**
+	 * 修改升级项目
+	 * @param cbsj 升级项目对象
+	 * @return 执行结果
+	 */
+	public boolean updateCbsjLmsj(List<Cbsj> cbsj);
 	/**
 	 * 删除升级项目
 	 * @param xmbm 项目编码
@@ -163,6 +175,12 @@ public interface CbsjServer {
 	 */
 	public boolean updateCbsjYhdzx(Cbsj cbsj);
 	/**
+	 * 修改养护大中修初步设计信息
+	 * @param cbsj
+	 * @return
+	 */
+	public boolean updateCbsjYhdzx(List<Cbsj> list);
+	/**
 	 * 审核养护大中修
 	 * @param cbsj
 	 * @param shzt1
@@ -195,6 +213,12 @@ public interface CbsjServer {
 	 * @return 执行结果
 	 */
 	public boolean updateCbsjSh(Cbsj cbsj);
+	/**
+	 * 修改水毁初步设计ixnxi
+	 * @param cbsj 水毁初步设计信息
+	 * @return 执行结果
+	 */
+	public boolean updateCbsjSh(List<Cbsj> cbsj);
 	/**
 	 * 修改初步设计审核状态
 	 * @param cbsj 初步设计
@@ -232,5 +256,11 @@ public interface CbsjServer {
 	 * @return 返回集合
 	 */
 	public List<Object> queryXjExcel(Cbsj cbsj);
+	/**
+	 * 修改新建项目初步设计
+	 * @param list
+	 * @return
+	 */
+	public boolean updateCbsjXj(List<Cbsj> list);
 	
 }

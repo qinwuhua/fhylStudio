@@ -164,6 +164,27 @@
 		if(flag==6){
 			parent.window.location = '/jxzhpt/page/qqgl/zjxd/xjgc.jsp';
 		}
+		if(flag=="yhlxsh"){
+			parent.window.location = '/jxzhpt/page/qqgl/jhsh/yhdzxgl.jsp';
+		}
+		if(flag=="shlxsh"){
+			parent.window.location = '/jxzhpt/page/qqgl/jhsh/shxmgl.jsp';
+		}
+		if(flag=="yhcbsj"){
+			parent.window.location = '/jxzhpt/page/qqgl/cbsj/yhdzx_sh.jsp';
+		}
+		if(flag=="shcbsj"){
+			parent.window.location = '/jxzhpt/page/qqgl/cbsj/shxm_sh.jsp';
+		}
+		if(flag=="gzcbsj"){
+			parent.window.location = '/jxzhpt/page/qqgl/cbsj/lmgz_sh.jsp';
+		}
+		if(flag=="sjcbsj"){
+			parent.window.location = '/jxzhpt/page/qqgl/cbsj/lmsj_sh.jsp';
+		}
+		if(flag=="xjcbsj"){
+			parent.window.location = '/jxzhpt/page/qqgl/cbsj/xjgc_sh.jsp';
+		}
  		dg.cancel();
 	}
 </script>

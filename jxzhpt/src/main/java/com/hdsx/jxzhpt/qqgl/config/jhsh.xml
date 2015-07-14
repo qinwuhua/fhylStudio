@@ -126,7 +126,8 @@
 	<select id="queryJhshYhdzx" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.lsjl,l.gydw from jhsh_yhdzx j left join xmsq_yhdzx l on j.xmbm=l.xmbm
+				select j.*,c.kgsj,c.wgsj,c.gq,l.lsjl,l.gydw,l.qdmc,l.zdmc,l.jsdj 
+				from jhsh_yhdzx j left join cbsj_yhdzx c on j.xmbm=c.xmbm left join xmsq_yhdzx l on c.xmbm = l.xmbm
 				where 1=1
 				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
 					and ${jhsh2.xzqhdm}
@@ -159,7 +160,8 @@
 	<select id="queryJhshSh" parameterType="java.util.Map" resultType="jhsh">
 		select * from (	
 			select rownum num,t.* from (
-				select j.*,l.lsjl,l.gydw from jhsh_sh j left join xmsq_sh l on j.xmbm=l.xmbm
+				select j.*, c.kgsj,c.wgsj,c.gq,l.lsjl, l.gydw, l.qdmc, l.zdmc,l.jsdj  
+				from jhsh_sh j left join cbsj_sh c on j.xmbm=c.xmbm left join xmsq_sh l on c.xmbm = l.xmbm
 				where 1=1
 				<if test="jhsh2.xzqhdm!=null and jhsh2.xzqhdm!=''">
 					and ${jhsh2.xzqhdm}

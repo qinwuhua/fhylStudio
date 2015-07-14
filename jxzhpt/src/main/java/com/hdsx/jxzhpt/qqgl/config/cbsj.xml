@@ -428,8 +428,14 @@
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjYhdzx" parameterType="cbsj">
-		update cbsj_yhdzx c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		update cbsj_yhdzx c set 
+		<if test="xmmc!=null">c.xmmc=#{xmmc},</if>
+		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
+		<if test="xzqh!=null">c.xzqh=#{xzqh},</if>
+		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
+		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
+		<if test="qdzh!=null">c.qdzh=#{qdzh},</if>
+		<if test="zdzh!=null">c.zdzh=#{zdzh},</if>
 		<if test="jsfa!=null">c.jsfa=#{jsfa},</if>
 		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
 		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
@@ -448,8 +454,14 @@
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjSh" parameterType="cbsj">
-		update cbsj_sh c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		update cbsj_sh c set 
+		<if test="xmmc!=null">c.xmmc=#{xmmc},</if>
+		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
+		<if test="xzqh!=null">c.xzqh=#{xzqh},</if>
+		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
+		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
+		<if test="qdzh!=null">c.qdzh=#{qdzh},</if>
+		<if test="zdzh!=null">c.zdzh=#{zdzh},</if>
 		<if test="jsfa!=null">c.jsfa=#{jsfa},</if>
 		<if test="kgsj!=null">c.kgsj=#{kgsj},</if>
 		<if test="wgsj!=null">c.wgsj=#{wgsj},</if>
@@ -464,7 +476,7 @@
 		<if test="dc_lc!=null">c.dc_lc=#{dc_lc},</if>
 		<if test="jc_lc!=null">c.jc_lc=#{jc_lc},</if>
 		<if test="lc!=null">c.lc=#{lc},</if>
-		sfbj=#{sfbj}
+		sfbj='1'
 		where c.xmbm=#{xmbm}
 	</update>
 	

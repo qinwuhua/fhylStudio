@@ -192,6 +192,12 @@ public interface JhshServer {
 	 */
 	public boolean updateLx(Lx lx);
 	/**
+	 * 修改路线信息
+	 * @param lx 修改路线信息
+	 * @return 执行结果
+	 */
+	public boolean updateLx(List<Lx> lx);
+	/**
 	 * 添加路线
 	 * @param lx 路线信息
 	 * @return 执行结果
@@ -246,5 +252,17 @@ public interface JhshServer {
 	 * @return 可行性研究信息
 	 */
 	public Kxxyj queryXjKxxyjByXmbm(Jhsh jhsh);
+	/**
+	 * 修改计划审核的养护大中修
+	 * @param readerExcel 养护大中修集合
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxYhdzx(List<Jhsh> readerExcel);
+	/**
+	 * 修改灾毁重建的机会审核
+	 * @param readerExcel 灾毁重建集合
+	 * @return 执行结果
+	 */
+	public boolean updateJhshxxSh(List<Jhsh> readerExcel);
 	
 }

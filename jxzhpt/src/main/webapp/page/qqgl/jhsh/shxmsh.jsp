@@ -15,6 +15,10 @@
 	<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../../../js/YMLib.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/swfobject.js"></script>
+	<script type="text/javascript" src="../../../js/uploader/jquery.uploadify.v2.1.4.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgcore.min.js"></script>
+	<script type="text/javascript" src="../../../widget/newlhgdialog/lhgdialog.min.js"></script>
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
@@ -77,8 +81,22 @@
 				{field:'jhkgsj',title:'计划开工时间',width:100,align:'center'},
 				{field:'jhwgsj',title:'计划完工时间',width:100,align:'center'},
 				{field:'gq',title:'工期',width:100,align:'center'},
-				{field:'ntz',title:'拟投资',width:100,align:'center'}]];
+				{field:'pfztz',title:'批复总投资',width:100,align:'center'},
+				{field:'bbzzj',title:'部补助资金',width:100,align:'center'},
+				{field:'sbzzj',title:'省补助资金',width:100,align:'center'},
+				{field:'xdwh',title:'计划下达文号',width:100,align:'center'},
+				{field:'xdsj',title:'计划下达时间',width:100,align:'center'}
+			]];
 			gridBind(grid);
+		}
+		function exportJhshxx(){
+			var param='jhsh.xdzt='+$('#xdzt').combobox("getValue")+'&jhsh.xzqhdm='+getxzqhdm('xzqh')+
+			'&jhsh.ghlxbh='+$('#ylxbh').val()+'&jhsh.xmmc='+$('#xmmc').val()+'&jhsh.tsdq='+$('#tsdq').combo("getValue")+
+			'&lsjl='+$('#lsjl').combobox("getValue")+'&xmbm='+$('#xmnf').combobox("getValue");
+			window.location.href="/jxzhpt/qqgl/exportJhshSh.do?"+param;
+		}
+		function importJhsh(){
+			importExcel("/jxzhpt/qqgl/importExcelJhxdSh.do","shjhxd");
 		}
 		$(window).resize(function () { 
 			$('#grid').datagrid('resize');
@@ -118,7 +136,7 @@ text-decoration:none;
        						<td>
        							<select id="xdzt" class="easyui-combobox" style="width: 70px;">
 	       							<option value="-1">全部</option>
-	       							<option value="0">未下达</option>
+	       							<option value="0" selected="selected">未下达</option>
 	       							<option value="1">已下达</option>
        							</select>
        						</td>
@@ -136,7 +154,11 @@ text-decoration:none;
 									<option value="是">是</option>
 									<option value="否">否</option>
 								</select></td>
-							<td><img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/></td>
+							<td colspan="3">
+								<img onclick="queryShxm()" alt="搜索" src="../../../images/Button/Serch01.gif" onmouseover="this.src='../../../images/Button/Serch02.gif'" onmouseout="this.src='../../../images/Button/Serch01.gif'" style="vertical-align:middle;padding-left: 8px;"/>
+								<img onclick="exportJhshxx()" id="btnShangbao" onmouseover="this.src='../../../images/Button/dcecl2.gif'" alt="上报" onmouseout="this.src='../../../images/Button/dcecl1.gif'" src="../../../images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
+								<img onclick="importJhsh()" alt="删除" src="../../../images/Button/dreclLeave.GIF" onmouseover="this.src='../../../images/Button/dreclClick.GIF'" onmouseout="this.src='../../../images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/>
+							</td>
        					</tr>
        				</table>
        				</div>
