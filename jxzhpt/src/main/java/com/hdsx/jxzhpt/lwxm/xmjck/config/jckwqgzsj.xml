@@ -426,7 +426,7 @@
 		</if>
 	</select>	
 	<update id="sjshtyWqgzsjwqgz" parameterType="jckwqgzsj" >
-		update sck_wqgz set sck_shzt='已审核',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shyj2='同意' where sckid =#{id} 
+		update sck_wqgz set sck_shzt='已审核',lrjh='已列入',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shyj2='同意' where sckid =#{id} 
 	</update>
 	<update id="sjshbtyWqgzsjwqgz" parameterType="jckwqgzsj" >
 		update sck_wqgz set sck_shzt='未审核',sck_shsj=sysdate,sck_shbm=#{shbm},sck_sbthcd=#{sbthcd},sck_shzt1='未审核',sck_shyj2=#{shyj2} where sckid =#{id} 
