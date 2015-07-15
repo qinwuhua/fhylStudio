@@ -220,9 +220,9 @@ function exportModule(filename){
 }
 //导出excel
 function exportExcel(flag){
-	var param=JSON.stringify(queryParams);
-	param=param.replace(/null/g,'').replace(/undefined/g,'');
-	param=param.substring(1, param.length-1);
+//	var param=JSON.stringify(queryParams);
+//	param=param.replace(/null/g,'').replace(/undefined/g,'');
+//	param=param.substring(1, param.length-1);
 	if(flag=='abgc'){
 		params="&lx.gydwbm="+getgydw("gydw")+"&lx.xzqhdm="+getxzqhdm('xzqh')+"&lx.lxmc="+$('#txtRoad').val()+
 				"&jh.jhnf="+$('#sbnf').combobox('getValue')+"&lx.lxjsdj="+$('#ddlPDDJ').combobox('getValue')+
