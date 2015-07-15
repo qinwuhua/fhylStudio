@@ -168,7 +168,7 @@
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd<!-- ,F010 akjfl -->,
  		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz
+ 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty
 		from JXJCK_2013.DATA50  where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
 		and F044 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
@@ -435,6 +435,8 @@
 	select distinct substr(roadcode,-6) from gpsroad where substr(roadcode,1,length(roadcode)-6) =#{lxbm}
 	and roadstart&lt;=#{zdzh} and roadends>=#{qdzh}) and x.id=t.parent 
 </select>
- 
+  <select id="selectTSDQ1" parameterType="String" resultType="String">
+ 	select distinct x.name from xtgl_xzqhtsdq t left join xtgl_tsdq x on t.parent=x.id where t.xzqhdm = ${value}
+</select>
 </mapper>
 

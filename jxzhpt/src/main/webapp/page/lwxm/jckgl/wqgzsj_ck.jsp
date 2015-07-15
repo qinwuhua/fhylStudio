@@ -68,6 +68,11 @@ function loadxx(){
 	$("#qljggcs").html(item.qljggcs);
 	$("#czyjhjy").html(item.czyjhjy);
 	$("#xmrksj").html(item.xmrksj);
+	$("#sqs").html(item.sqs);$("#xsq").html(item.xsq);$("#szxz").html(item.szxz);
+	$("#synf").html(item.synf);$("#sjhspl").html(item.sjhspl);$("#qxjkuan").html(item.qxjkuan);
+	$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
+	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
+	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
 }
 
 function selectTSDQ(str){
@@ -75,7 +80,7 @@ function selectTSDQ(str){
 	var data="xzqhdm1="+str;
 	$.ajax({
 		type:'post',
-		url:'/jxzhpt/xmjck/selectTSDQ.do',
+		url:'/jxzhpt/xmjck/selectTSDQ1.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
@@ -275,6 +280,76 @@ function saveWqgz(){
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥入库时间：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmrksj"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sqs"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xsq"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="szxz"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按建筑材料和&nbsp;&nbsp;<br>使用年限分类：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="synf"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率(年)：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjhspl"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净宽（米）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qxjkuan"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净空（米）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qxjkong"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主桥孔数（孔）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="zqks"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥面净宽（米）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qmjk"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨越地物类型：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="kydwlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="thdj"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路桥梁用途：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="glqlyt"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥墩类型：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qdlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥台类型：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qtlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">铺装类型：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="pzlx"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

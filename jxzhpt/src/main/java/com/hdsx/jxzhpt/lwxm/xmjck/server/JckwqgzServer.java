@@ -30,4 +30,5 @@ public interface JckwqgzServer {
 	boolean importWqgz2(List<Map<String,String>> list,String tbbmbm,String sbthcd);
 	List<String> selectTSDQ(Jckwqgz wqgz);
 	String selectWqgzCount1(Jckwqgz jckwqgz);
+	List<String> selectTSDQ1(String xzqhdm1);
 }

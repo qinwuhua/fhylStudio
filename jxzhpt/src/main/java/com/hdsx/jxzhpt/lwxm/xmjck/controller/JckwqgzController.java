@@ -390,7 +390,25 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 		this.sbthcd1 = sbthcd1;
 	}
 	public void selectTSDQ(){
+		
 		List<String> tsdqstr=wqgzServer.selectTSDQ(jckwqgz);
+		try {
+			JsonUtils.write(tsdqstr, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private String xzqhdm1;
+	
+	public String getXzqhdm1() {
+		return xzqhdm1;
+	}
+	public void setXzqhdm1(String xzqhdm1) {
+		this.xzqhdm1 = xzqhdm1;
+	}
+	public void selectTSDQ1(){
+		
+		List<String> tsdqstr=wqgzServer.selectTSDQ1(xzqhdm1);
 		try {
 			JsonUtils.write(tsdqstr, getresponse().getWriter());
 		} catch (Exception e) {

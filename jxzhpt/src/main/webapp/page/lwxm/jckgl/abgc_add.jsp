@@ -192,7 +192,7 @@ text-decoration:none;
 		var data="xzqhdm1="+str;
 		$.ajax({
 			type:'post',
-			url:'/jxzhpt/xmjck/selectTSDQ.do',
+			url:'/jxzhpt/xmjck/selectTSDQ1.do',
 			data:data,
 			dataType:'json',
 			success:function(msg){

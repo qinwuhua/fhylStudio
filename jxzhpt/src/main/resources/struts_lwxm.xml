@@ -5,6 +5,7 @@
 <package name="xmjck" extends="struts-default" namespace="/xmjck">
 	<!-- 安保工程 -->
 	<action name="selectTSDQ" class="jckwqgzController" method="selectTSDQ"/>
+	<action name="selectTSDQ1" class="jckwqgzController" method="selectTSDQ1"/>
 	<action name="insertAbgc" class="jckabgcController" method="insertAbgc"/>
 	<action name="selectAbgc" class="jckabgcController" method="selectAbgc"/>
 	<action name="selectAbgcById" class="jckabgcController" method="selectAbgcById"/>

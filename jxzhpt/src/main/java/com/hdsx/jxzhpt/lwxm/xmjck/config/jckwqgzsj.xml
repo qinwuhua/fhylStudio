@@ -6,11 +6,13 @@
 	</delete>
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
-		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,SFYLRBWQK) 
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,SFYLRBWQK,
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
-		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},'否')
+		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},'否',
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx})
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -206,7 +208,10 @@
  		</update>
  		<update id="updateWqgz" parameterType="jckwqgzsj">
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
- 			czyjhjy=#{czyjhjy} where id=#{id}
+ 			czyjhjy=#{czyjhjy},
+ 			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},
+ 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq} 
+ 			where id=#{id}
  		</update>
  		
  		<select id="selectSckwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
