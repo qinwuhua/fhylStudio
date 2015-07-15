@@ -14,7 +14,7 @@
 		select max(substr(xmbm,-3)) from lxsh_xj where xmbm like ${value}||'%'
 	</select>
 	<select id="selectbzcs" parameterType="lxsh" resultType="lxsh">
-		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj=#{jsdj}
+		select bzzj bzys from PLAN_FLWBZBZ where xmlx=#{xmlx} and gldj=#{gldj} and jsdj like #{jsdj}||'%'
 	</select>
 	<select id="selectSFCF" parameterType="lxsh" resultType="lxsh">
 		select * from LXSH_LX where lxbm=#{ghlxbh} and ((qdzh&lt;=#{qdzh} and zdzh>#{qdzh}) or (qdzh&lt;#{zdzh} and zdzh>=#{zdzh})) and substr(xmid,0,4)=#{xmnf}
