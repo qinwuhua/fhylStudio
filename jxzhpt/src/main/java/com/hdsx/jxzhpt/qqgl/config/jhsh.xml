@@ -413,6 +413,12 @@
 		update lxsh_lx l set 
 		<if test="qdmc!=null and qdmc!=''">l.qdmc=#{qdmc},</if>
 		<if test="zdmc!=null and zdmc!=''">l.zdmc=#{zdmc},</if>
+		<if test="yilc!=null and yilc!=''">l.yilc=#{yilc},</if>
+		<if test="erlc!=null and erlc!=''">l.erlc=#{erlc},</if>
+		<if test="sanlc!=null and sanlc!=''">l.sanlc=#{sanlc},</if>
+		<if test="silc!=null and silc!=''">l.silc=#{silc},</if>
+		<if test="dwlc!=null and dwlc!=''">l.dwlc=#{dwlc},</if>
+		<if test="gslc!=null and gslc!=''">l.gslc=#{gslc},</if>
 		l.qdzh=#{qdzh},l.zdzh=#{zdzh},l.lc=${zdzh}-${qdzh}
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
@@ -628,5 +634,18 @@
 		    and (to_number(lx.qdzh) != ${item.yzdzh} and to_number(lx.zdzh) != ${item.yqdzh})
 	        ]]>
 		</foreach>
+	</select>
+	<select id="queryJsdjAndLcByStartAndEnd" parameterType="lx" resultType="lx">
+		<![CDATA[
+		select nvl(case when f114='一级公路' then sum(roadends-roadstart) end,0) yilc,nvl(case when f114='二级公路' then sum(roadends-roadstart) end,0) erlc,
+		nvl(case when f114='三级公路' then sum(roadends-roadstart) end,0) sanlc,nvl(case when f114='四级公路' then sum(roadends-roadstart) end,0) silc,
+		nvl(case when f114='等外公路' then sum(roadends-roadstart) end,0) dwlc,nvl(case when f114='高速公路' then sum(roadends-roadstart) end,0) gslc
+		from (select g.roadcode, g.f114,
+		case when g.roadstart<${qdzh} then ${qdzh} when g.roadstart>${qdzh} then g.roadstart when g.roadstart=${qdzh} then g.roadstart end roadstart,
+		case when g.roadends<${zdzh} then g.roadends when g.roadends>${zdzh} then ${zdzh} when g.roadends=${zdzh} then g.roadends end roadends
+		from gpsroad g where substr(g.roadcode,1,1) in('G','S','X')
+		and g.roadcode like '%'||#{lxbm}||'%' and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends ) or 
+		(g.roadstart> ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh}))) group by f114
+		]]>
 	</select>
 </mapper>

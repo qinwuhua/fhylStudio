@@ -185,6 +185,12 @@
 		if(flag=="xjcbsj"){
 			parent.window.location = '/jxzhpt/page/qqgl/cbsj/xjgc_sh.jsp';
 		}
+		if(flag=="yhjhxd"){
+			parent.window.location = '/jxzhpt/page/qqgl/jhsh/yhdzxsh.jsp';
+		}
+		if(flag=="shjhxd"){
+			parent.window.location = '/jxzhpt/page/qqgl/jhsh/shxmsh.jsp';
+		}
  		dg.cancel();
 	}
 </script>

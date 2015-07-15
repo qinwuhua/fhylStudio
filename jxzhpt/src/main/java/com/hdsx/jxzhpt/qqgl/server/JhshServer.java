@@ -264,5 +264,11 @@ public interface JhshServer {
 	 * @return 执行结果
 	 */
 	public boolean updateJhshxxSh(List<Jhsh> readerExcel);
+	/**
+	 * 查询起止点之间路线等级及其里程
+	 * @param lx 路线实体
+	 * @return 路线等级和里程
+	 */
+	public Lx queryJsdjAndLcByStartAndEnd(Lx lx);
 	
 }

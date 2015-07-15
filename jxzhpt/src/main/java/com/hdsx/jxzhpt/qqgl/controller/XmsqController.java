@@ -273,6 +273,12 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			lx.setXmid(xmsq.getXmbm());
 			lx.setQdmc(xmsq.getQdmc());
 			lx.setZdmc(xmsq.getZdmc());
+			lx.setYilc(xmsq.getYilc());
+			lx.setErlc(xmsq.getErlc());
+			lx.setSanlc(xmsq.getSanlc());
+			lx.setSilc(xmsq.getSilc());
+			lx.setDwlc(xmsq.getDwlc());
+			lx.setGslc(xmsq.getGslc());
 			lx.setSffirst("1");
 			lx.setJdbs(xmsq.getJdbs());
 			
@@ -396,6 +402,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 			for (Xmsq xmsq : list) {
 				xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
 				xmsq.setGydwdm(tbbmbm2);
+				xmsq.setGpsqdzh(xmsq.getQdzh());
+				xmsq.setGpszdzh(xmsq.getZdzh());
 				Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 						xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 						xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");
@@ -460,6 +468,8 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 					for (Xmsq xmsq : list) {
 						xmsq.setXmbm(""+cal.get(Calendar.YEAR)+xmsq.getXzqhdm()+num);
 						xmsq.setGydwdm(tbbmbm2);
+						xmsq.setGpsqdzh(xmsq.getQdzh());
+						xmsq.setGpszdzh(xmsq.getZdzh());
 						Lx lx=new Lx(xmsq.getXmbm(), xmsq.getYlxbh(), xmsq.getLxmc(), xmsq.getXzqh(), xmsq.getXzqhdm(), 
 								xmsq.getGydw(), xmsq.getGydwdm(), xmsq.getQdzh(), xmsq.getZdzh(), xmsq.getLc(), xmsq.getJsdj(), 
 								xmsq.getGcfl(), xmsq.getQdmc(), xmsq.getZdmc(), "1");

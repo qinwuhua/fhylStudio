@@ -351,13 +351,13 @@ $(function(){
 				起点桩号
 			</td>
 			<td style="border-left: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-				<input id="qdzh" name="qdzh" onchange="querymc('qdzh')" type="text"  style="width: 100px;height: 20px;" />
+				<input id="qdzh" name="qdzh" type="text"  style="width: 100px;height: 20px;" />
 			</td>
 			<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 				止点桩号
 			</td>
 			<td style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
-				<input id="zdzh" name="zdzh" onchange="querymc('zdzh')" type="text" style="width: 100px;height: 20px;" />
+				<input id="zdzh" name="zdzh" type="text" style="width: 100px;height: 20px;" />
 			</td>
 		</tr>
 		<tr style="height: 30px;font-size: 10px;">

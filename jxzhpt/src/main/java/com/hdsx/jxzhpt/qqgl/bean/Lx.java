@@ -73,6 +73,12 @@ public class Lx {
 	private String gpsqdzh;//获取的GPSroad表中的起点装号
 	private String gpszdzh;//获取的GPSroad表中的止点桩号
 	private String jsfa;//建设方案
+	private String yilc;//一级公路里程
+	private String erlc;//二级公路里程
+	private String sanlc;//三级公路里程
+	private String silc;//四级公路里程
+	private String dwlc;//等外公路里程
+	private String gslc;//高速公路里程
 	//历史数据字段
 	private String ylxbm;//原路线编码
 	private String yqdzh;//原起点桩号
@@ -239,5 +245,41 @@ public class Lx {
 	}
 	public void setJsfa(String jsfa) {
 		this.jsfa = jsfa;
+	}
+	public String getYilc() {
+		return yilc;
+	}
+	public void setYilc(String yilc) {
+		this.yilc = yilc;
+	}
+	public String getErlc() {
+		return erlc;
+	}
+	public void setErlc(String erlc) {
+		this.erlc = erlc;
+	}
+	public String getSanlc() {
+		return sanlc;
+	}
+	public void setSanlc(String sanlc) {
+		this.sanlc = sanlc;
+	}
+	public String getSilc() {
+		return silc;
+	}
+	public void setSilc(String silc) {
+		this.silc = silc;
+	}
+	public String getDwlc() {
+		return dwlc;
+	}
+	public void setDwlc(String dwlc) {
+		this.dwlc = dwlc;
+	}
+	public String getGslc() {
+		return gslc;
+	}
+	public void setGslc(String gslc) {
+		this.gslc = gslc;
 	}
 }

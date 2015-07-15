@@ -148,7 +148,7 @@ function dclxshModule(str){
 		sbthcd=7;
 	}
 	var xmmc=$("#xmmc").val();
-	var xmnf=$("#xmnf").combobox('getText');
+	var xmnf=$("#xmnf").combobox('getValue');
 	var sbzt=$("#sbzt").combobox('getValue');
 	var lsjl="";
 	if(str!='xj'){

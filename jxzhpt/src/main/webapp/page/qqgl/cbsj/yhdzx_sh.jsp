@@ -29,6 +29,10 @@
 			loadBmbm2('gldj','公路等级');
 			xmnf("xmnf");
 			YMLib.Var.jdbs=2;
+			if($.cookie("dist")!="360000"){
+				$('#btnShangbao').hide();
+				//$('#drExcel').hide();
+			}
 			queryYhdzx();
 		});
 		function queryYhdzx(){

@@ -136,6 +136,7 @@
 		<action name="queryLsxx" class="jhshController" method="queryLsxx"></action>
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
+		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
 		
 		<action name="importExcelYhdzx" class="xmsqController" method="importExcelYhdzx"></action>
 		<action name="importExcelYhdzxCbsj" class="cbsjController" method="importExcelYhdzxCbsj"></action>

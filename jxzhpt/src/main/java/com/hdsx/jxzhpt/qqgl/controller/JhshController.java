@@ -237,6 +237,19 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 		}
 	}
 	/**
+	 * 根据路线编码和起止点桩号，查询技术等级以及里程
+	 * @throws Exception 
+	 */
+	public void queryJsdjAndLcByStartAndEnd() throws Exception{
+		try{
+			Lx result = jhshServer.queryJsdjAndLcByStartAndEnd(lx);
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	/**
 	 * 根据项目编码查询立项审核信息
 	 * @throws Exception
 	 */
