@@ -35,7 +35,7 @@
 				(
 					select jh.id,jh.sckid,jh.jh_sbthcd,jh.sbnf,jh.sbzt,jh.spzt,jh.kgzt,jh.jgzt,jh.jhkgsj,jh.jhwgsj,jh.pfztz,sc.bzls as sfylsjl,lx.gydw,lx.gydwbm,lx.xzqhdm,lx.xzqhmc,lx.lxmc,lx.lxbm,lx.qlmc,lx.qlbh,lx.qlzxzh 
 					from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
 	 				<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 						and jh.jh_sbthcd=#{jh.jh_sbthcd}
 					</if>
@@ -96,7 +96,7 @@
 				select rownum as num,t.* from
 				(
 					select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+					left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
 					<if test="jh.sbnf!=null and jh.sbnf!=''">
 	 					and jh.sbnf=#{jh.sbnf}
 	 				</if>
@@ -142,7 +142,7 @@
 	</select>
 	<select id="queryWqgzByStatus" parameterType="java.util.Map" resultType="plan_wqgz">
 		select * from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -164,7 +164,7 @@
 	</select>
 	<select id="queryWqgzCount"  parameterType="java.util.Map"  resultType="int">
 		select count(*) from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1
+		left join xmk_wqgz lx on (sc.xmkid=lx.id) where 1=1 and jh.sfylrbwqk='是'
 	 	<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -218,7 +218,7 @@
 			sum(jh.jhsydfzcje) as jhsydfzcje 
 			from xmk_wqgz lx right join sck_wqgz sc on (lx.id=sc.xmkid) 
 			right join plan_wqgz jh on (sc.sckid=jh.sckid)
-			where 1=1
+			where 1=1 and jh.sfylrbwqk='是'
 			<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -273,7 +273,7 @@
 		select 	id,sckid,sbnf,jhkgsj,jhwgsj, sjdw,sjpfdw,pfwh, pfsj,pfztz, jhsybzje, jhsydfzcje, sfsqablbz,ablbzsqwh, bz,tbsj,
 	 tbbm,spzt,spbm,spsj,sbzt, sbbm, sbsj, xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw,jldw,htje,sgxkwj,
 	jgtcwj,jgyswj,wjsczt,kgzt,jgzt,yjjgsj,wjgyy, jsdw, jhxdwh, xdzt, xfzt,xfsj,xfbm,wjzt,wjsj,gys, sbbmdm,spbmdm,sfylsjl
-	from plan_wqgz jh where jh.id=#{id}
+	from plan_wqgz jh where jh.id=#{id} and jh.sfylrbwqk='是'
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,
@@ -313,7 +313,7 @@
 		select decode(jh.sbzt,0,'未上报',decode(jh.spzt,0,'上报待审批','已审批')) v_0,jh.sbnf v_1,to_char(jh.jhkgsj,'yyyy-mm-dd') v_2,to_char(jh.jhwgsj,'yyyy-mm-dd') v_3,lx.gydw v_4,lx.xzqhmc v_5,lx.lxbm v_6,lx.lxmc v_7,lx.qlbh v_8,lx.qlmc v_9,jh.pfztz v_10 
 		from plan_wqgz jh
 		left join sck_wqgz sc on (jh.sckid = sc.sckid)
-		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1
+		left join xmk_wqgz lx on (sc.xmkid = lx.id) where 1=1 and jh.sfylrbwqk='是'
 		<if test="jh.jh_sbthcd!=null and jh.jh_sbthcd!='' and (jh.sbzt==null or jh.sbzt=='') and (jh.spzt==null or jh.spzt=='')">
 			and jh.jh_sbthcd=#{jh.jh_sbthcd}
 		</if>
@@ -453,7 +453,7 @@
 			(ab1.sckid=sc1.sckid) left join xmk_wqgz lx1 on (sc1.xmkid=lx1.id) where ab1.sbnf=#{nf} and ab1.id=jh.id) as sl
 			from plan_wqgz jh left join sck_wqgz sc on 
 			(jh.sckid=sc.sckid) left join xmk_wqgz lx on (sc.xmkid=lx.id) right join xtgl_xzqh xt on (lx.xzqhdm=xt.id)
-			where xt.parent is not null
+			where xt.parent is not null and jh.sfylrbwqk='是'
 		) t join xtgl_xzqh xz on (t.parent=xz.id)
 		group by t.parent,xz.name order by t.parent
 	</select>
@@ -462,7 +462,7 @@
 		select distinct jh.id,jh.sbnf,jh.jhsybzje from 
 		plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 		left join xmk_wqgz lx on (sc.xmkid=lx.id) 
-		where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%' and jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]>) t
+		where lx.xzqhdm like rtrim(#{xzqhdm},'0')||'%' and jh.sfylrbwqk='是' and jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]>) t
 		group by t.sbnf
 	</select>
 	<select id="queryJhktjt2" resultType="treenode" parameterType="java.util.Map">
@@ -470,7 +470,7 @@
 		select distinct jh.id,jh.sbnf,jh.jhsybzje from 
 		plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 		left join xmk_wqgz lx on (sc.xmkid=lx.id) 
-		where lx.xzqhdm like #{xzqhdm} and jh.sbnf=#{nf}) t
+		where lx.xzqhdm like #{xzqhdm} and jh.sfylrbwqk='是' and jh.sbnf=#{nf}) t
 		group by t.sbnf
 	</select>
 	<select id="queryJhktjt3" resultType="treenode" parameterType="java.util.Map">
@@ -478,14 +478,14 @@
 			select distinct jh.id,jh.sbnf,jh.jhsybzje 
 			from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
     		left join xmk_wqgz lx on (sc.xmkid=lx.id) 
-    		where jh.sbnf>=#{start} and <![CDATA[jh.sbnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) 
+    		where jh.sbnf>=#{start} and jh.sfylrbwqk='是' and <![CDATA[jh.sbnf<=#{end}]]> and lx.xzqhdm like #{xzqhdm}) 
     		group by sbnf
 	</select>
 	<select id="queryGcktj" resultType="treenode" parameterType="java.util.Map">
 		select (r.kgzt+r.jgzt) as id,count(r.kgzt+r.jgzt) as name,sum(r.jhsybzje) as text,sum(r.btz+r.qttz) as parent from (
 			select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz from gcgl_wqgz gcgl 
 				right join (select jh.id,jh.kgzt,jh.jgzt,jh.jhsybzje from  plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
-    			left join xmk_wqgz lx on (sc.xmkid=lx.id) where lx.xzqhdm like #{xzqhdm} and jh.sbnf=#{nf} and jh.spzt='1' and jh.jh_sbthcd='6') jh_lx on gcgl.jhid=jh_lx.id
+    			left join xmk_wqgz lx on (sc.xmkid=lx.id) where lx.xzqhdm like #{xzqhdm} and jh.sfylrbwqk='是' and jh.sbnf=#{nf} and jh.spzt='1' and jh.jh_sbthcd='6') jh_lx on gcgl.jhid=jh_lx.id
     	group by jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje) r group by r.kgzt,r.jgzt order by r.kgzt,r.jgzt
 	</select>
 	<select id="queryGcktjt" resultType="treenode" parameterType="java.util.Map">
@@ -493,7 +493,7 @@
 			select jh_lx.id,jh_lx.kgzt,jh_lx.jgzt,jh_lx.jhsybzje,sum(nvl(gcgl.wc_btz,0)) as btz,sum(nvl(gcgl.wc_qttz,0)) as qttz from gcgl_wqgz gcgl 
 				right join (select jh.id,jh.kgzt,jh.jgzt,jh.jhsybzje from  plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
     			left join xmk_wqgz lx on (sc.xmkid=lx.id) 
-    			where jh.spzt='1' and jh.jh_sbthcd='6' 
+    			where jh.spzt='1' and jh.jh_sbthcd='6'  and jh.sfylrbwqk='是'
     			<if test="xzqhdm!=null and xzqhdm!=''">
     				and lx.xzqhdm like #{xzqhdm}
     			</if>) jh_lx on gcgl.jhid=jh_lx.id
@@ -506,13 +506,13 @@
 				(select a.jhsybzje from plan_wqgz a where #{nf}>a.sbnf and a.id=jh.id) as fbn 
 			from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
 			left join xmk_wqgz lx on (sc.xmkid=lx.id) 
-			where jh.spzt='1' and jh.jh_sbthcd='6'
+			where jh.spzt='1' and jh.jh_sbthcd='6' and jh.sfylrbwqk='是'
 		and lx.xzqhdm like #{xzqhdm}) r
 	</select>
 	<select id="queryWqLs" parameterType="jckwqgz" resultMap="wqgz_jh">
 		select jh.id,jh.sbnf,lx.qlmc,lx.qlzxzh from plan_wqgz jh left join sck_wqgz sc on (jh.sckid=sc.sckid) 
     	left join xmk_wqgz lx on (sc.xmkid=lx.id) where (lx.qlbh=#{qlbh} or
-    	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})) and jh.id!=#{id}
+    	(lx.lxbm=#{lxbm} and lx.qlzxzh=#{qlzxzh})) and jh.id!=#{id} and jh.sfylrbwqk='是'
 	</select>
 	<update id="editZjById" parameterType="plan_wqgz">
 		update plan_wqgz jh set jh.pfztz=#{pfztz},jh.jhsybzje=#{jhsybzje},jh.jhsydfzcje=#{jhsydfzcje}

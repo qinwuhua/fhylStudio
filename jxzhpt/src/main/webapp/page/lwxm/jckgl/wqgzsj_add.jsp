@@ -152,6 +152,15 @@ function autoCompleteLXBM(){
 				$("#xmtype").html('待上报');
 				$("#bhnr").val(item.bhnr);
 				$("#bz").val(item.bz);
+				$("#qdlx").val(item.qdlx);
+				$("#qmjk").val(item.qmjk);
+				$("#qxjk").val(item.qxjk);
+				$("#zqks").val(item.zqks);
+				$("#kydwlx").val(item.kydwlx);
+				$("#thdj").val(item.thdj);
+				$("#qtlx").val(item.qtlx);
+				$("#pzlx").val(item.pzlx);
+				
 			});
 }
 function saveWqgz(){
@@ -169,7 +178,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
 	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()
-	+"&jckwqgzsj.ptx="+ptx+"&jckwqgzsj.pty="+pty;
+	+"&jckwqgzsj.ptx="+ptx+"&jckwqgzsj.pty="+pty+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 	//alert(data);
 	 $.ajax({
 		type:'post',
@@ -306,7 +315,7 @@ function newGuid()
 					<span id="qlzxzh"></span></td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养（监管）单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gydw"></span>
 					<input type="text" id="gydwbm" style="display:none"/></td>
@@ -363,7 +372,7 @@ function newGuid()
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<select id="xmnf"  style="width:155px" class="easyui-combobox" data-options="panelHeight:'100'">
                               	</select></td>
@@ -451,8 +460,15 @@ function newGuid()
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">铺装类型：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="pzlx" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否入部危桥库：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
+						<option value="否"selected>否</option>
+						<option value="是">是</option>
+					</select>
 				</td>
 			</tr>
 			

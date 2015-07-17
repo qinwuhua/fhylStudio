@@ -204,7 +204,7 @@ function saveWqgz(){
 					<span id="qlzxzh"></span></td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养（监管）单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gydw"></span>
 					<input type="text" id="gydwbm" style="display:none"/></td>
@@ -261,7 +261,7 @@ function saveWqgz(){
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmnf"></span>
 					</td>

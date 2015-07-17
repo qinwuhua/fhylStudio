@@ -16,11 +16,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
-<script type="text/javascript" src="../../../js/autocomplete/jquery.autocomplete.js" ></script>
-<script type="text/javascript" src="../../../js/util/jquery.cookie.js"></script>
-<script type="text/javascript" src="../../../js/YMLib.js"></script>
-<script type="text/javascript" src="../js/lwxm.js"></script>
-<script type="text/javascript" src="../js/wqsj.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lwxm/js/lwxm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lwxm/js/wqsj.js"></script>
 <script type="text/javascript">
 $(function(){
 	loadSckxx();

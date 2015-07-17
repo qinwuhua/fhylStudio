@@ -55,6 +55,11 @@ function loadxx(){
 	$("#qljggcs").html(item.qljggcs);
 	$("#xmrksj").html(item.xmrksj);
 	$("#czyjhjy").html(item.czyjhjy);
+	$("#sqs").html(item.sqs);$("#xsq").html(item.xsq);$("#szxz").html(item.szxz);
+	$("#synf").html(item.synf);$("#sjhspl").html(item.sjhspl);$("#qxjkuan").html(item.qxjkuan);
+	$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
+	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
+	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
 	
 	$("#scqlqc").val(item.scqlqc);
 	$("#scqlqk").val(item.scqlqk);
@@ -69,7 +74,7 @@ function loadxx(){
 	$("#jsgmqc").val(item.jsgmqc);
 	$("#jsgmqk").val(item.jsgmqk);
 	$("#hzdj").val(item.hzdj);
-	$("#sjhspl").val(item.sjhspl);
+	$("#scsjhspl").val(item.scsjhspl);
 	$("#sck_sbjgxs").val(item.sck_sbjgxs);
 	$("#kjzh").val(item.kjzh);
 	$("#ztz").val(item.ztz);
@@ -79,6 +84,9 @@ function loadxx(){
 	$("#zgq").val(item.zgq);
 	$("#jsnr").val(item.jsnr);
 	$("#scbz").val(item.scbz);
+	$("#nsqbbz").val(item.nsqbbz);$("#rksj").html(item.rksj);$("#cjqz").val(item.cjqz);
+	$("#scthdj").val(item.scthdj);$("#qljc").val(item.qljc);$("#ydgldj").val(item.ydgldj);
+	$("#sjsd").val(item.sjsd);$("#scsqs").val(item.scsqs);$("#scxsq").val(item.scxsq);$("#scszxz").val(item.scszxz);
 }
 $(function(){
 	
@@ -121,9 +129,12 @@ function saveWqgz(){
 	"&jckwqgzsj.scbmbm="+$.cookie("unit")+"&jckwqgzsj.qlbh="+$("#qlbh").val()+"&jckwqgzsj.lxbm="+$("#lxbm").html()+"&jckwqgzsj.qlzxzh="+$("#qlzxzh").html()+
 	"&jckwqgzsj.sck_sbthcd="+sbthcd+"&jckwqgzsj.bzls="+bzls+"&jckwqgzsj.scxmnf="+$("#scxmnf").combobox("getValue")+"&jckwqgzsj.scqlqc="+$("#scqlqc").val()+"&jckwqgzsj.scqlqk="+$("#scqlqk").val()
 	+"&jckwqgzsj.sjdwmc="+$("#sjdwmc").val()+"&jckwqgzsj.jsgmqc="+$("#jsgmqc").val()+"&jckwqgzsj.jsgmqk="+$("#jsgmqk").val()
-	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
+	+"&jckwqgzsj.hzdj="+$("#hzdj").val()+"&jckwqgzsj.scsjhspl="+$("#scsjhspl").val()+"&jckwqgzsj.sck_sbjgxs="+$("#sck_sbjgxs").val()
 	+"&jckwqgzsj.kjzh="+$("#kjzh").val()+"&jckwqgzsj.ztz="+$("#ztz").val()+"&jckwqgzsj.sck_xbjgxs="+$("#sck_xbjgxs").val()
-	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId;
+	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
+	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+$("#cjqz").val()
+	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()
+	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -278,7 +289,7 @@ text-decoration:none;
 					<span id="qlzxzh"></span></td>
 			</tr>
 			<tr style="height: 30px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">管养（监管）单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="gydw"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划代码：</td>
@@ -334,7 +345,7 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmnf"></span>
 					</td>
@@ -353,6 +364,76 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">危桥入库时间：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="xmrksj"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sqs"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xsq"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">所在乡镇：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="szxz"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按建筑材料和&nbsp;&nbsp;<br>使用年限分类：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="synf"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率(年)：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjhspl"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净宽（米）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qxjkuan"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥下净空（米）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qxjkong"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主桥孔数（孔）：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="zqks"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥面净宽（米）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qmjk"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">跨越地物类型：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="kydwlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="thdj"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">公路桥梁用途：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="glqlyt"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥墩类型：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qdlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥台类型：</td>
+				<td  style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="qtlx"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">铺装类型：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="pzlx"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -457,7 +538,7 @@ text-decoration:none;
 					<input type="text" id="hzdj" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计洪水频率：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="sjhspl" style="width: 150px" /></td>
+					<input type="text" id="scsjhspl" style="width: 150px" /></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上部结构形式：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="sck_sbjgxs" style="width: 150px" />
@@ -485,6 +566,48 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">总工期：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="zgq" style="width: 150px" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">入库时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id='rksj'></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">重建桥址：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="cjqz" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">通航等级：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="scthdj" style="width: 150px" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁基础：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qljc" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">引道公路等级：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="ydgldj" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计速度：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="sjsd" style="width: 150px" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">拟申请部（省）<br>级补助资金（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="nsqbbz" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设区市：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="scsqs" style="width: 150px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">县（市、区）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="scxsq" style="width: 150px" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">乡镇：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="scszxz" style="width: 150px" />
 				</td>
 			</tr>
 			

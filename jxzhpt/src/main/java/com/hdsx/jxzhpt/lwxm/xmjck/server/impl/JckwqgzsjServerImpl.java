@@ -220,9 +220,9 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
 			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
-				jckwqgzsj.setBz("2");
+				jckwqgzsj.setBz("9");
 			}else {
-				jckwqgzsj.setBz("0");
+				jckwqgzsj.setBz("11");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
 			if("省直管试点县".equals(jck.getTsdq())){
@@ -253,12 +253,11 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			jckwqgzsj.setScqlqc(jck.getScqlqc());
 			BigDecimal b1=new BigDecimal(jckwqgzsj.getScqlqc()).multiply(new BigDecimal(jckwqgzsj.getScqlqk()));
 			BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
-			jckwqgzsj.setShengbz(b2+"");
 			if(jckwqgzsj.getShibz()==null){
-				jckwqgzsj.setShibz("");
+				jckwqgzsj.setShibz("0");
 			}
-			System.out.println(jckwqgzsj.getShengbz()+"------"+jckwqgzsj.getShibz());
-				
+			jckwqgzsj.setShengbz(b2.add(new BigDecimal(jckwqgzsj.getShibz()))+"");	
+			jckwqgzsj.setShibz("0");
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;

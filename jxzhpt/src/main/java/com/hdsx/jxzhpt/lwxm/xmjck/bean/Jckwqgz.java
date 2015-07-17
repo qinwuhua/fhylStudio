@@ -52,7 +52,63 @@ public class Jckwqgz implements Serializable{
 	private String sbzt2;
 	private String qdzh;
 	private String zdzh;
+	private String sfylrbwqk;
+	private String qdlx;private String qmjk;private String qxjk;private String zqks;private String kydwlx;private String thdj;private String qtlx;private String pzlx;
 	
+	public String getQdlx() {
+		return qdlx;
+	}
+	public void setQdlx(String qdlx) {
+		this.qdlx = qdlx;
+	}
+	public String getQmjk() {
+		return qmjk;
+	}
+	public void setQmjk(String qmjk) {
+		this.qmjk = qmjk;
+	}
+	public String getQxjk() {
+		return qxjk;
+	}
+	public void setQxjk(String qxjk) {
+		this.qxjk = qxjk;
+	}
+	public String getZqks() {
+		return zqks;
+	}
+	public void setZqks(String zqks) {
+		this.zqks = zqks;
+	}
+	public String getKydwlx() {
+		return kydwlx;
+	}
+	public void setKydwlx(String kydwlx) {
+		this.kydwlx = kydwlx;
+	}
+	public String getThdj() {
+		return thdj;
+	}
+	public void setThdj(String thdj) {
+		this.thdj = thdj;
+	}
+	public String getQtlx() {
+		return qtlx;
+	}
+	public void setQtlx(String qtlx) {
+		this.qtlx = qtlx;
+	}
+	public String getPzlx() {
+		return pzlx;
+	}
+	public void setPzlx(String pzlx) {
+		this.pzlx = pzlx;
+	}
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getQdzh() {
 		return qdzh;
 	}

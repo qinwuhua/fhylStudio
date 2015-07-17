@@ -237,7 +237,8 @@ function sckglWqgz(){
 			 	'bzls':$("#bzls").combobox("getValue"),
 			 	'lxbm': $('#lxbm').val(),
 			 	'qlbh':$("#qlbh").val(),
-			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",'')
+			 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
+			 	'sfylrbwqk':$("#sfylrbwqk").combobox("getValue")
 			},
 		    striped:true,
 		    pagination:true,
@@ -293,7 +294,7 @@ function sckglWqgz(){
 			}},
 				/* {field:'sck_shzt',title:'审核状态',width:80,align:'center'}, */
 				{field:'bzls',title:'补助历史',width:60,align:'center'},
-			 	{field:'gydw',title:'管养单位',width:160,align:'center'},
+			 	{field:'gydw',title:'管养（监管）单位',width:160,align:'center'},
 		        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
 		        {field:'qlbh',title:'桥梁编号',width:120,align:'center'},
 		        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
@@ -302,7 +303,7 @@ function sckglWqgz(){
 		        {field:'lxmc',title:'路线名称',width:120,align:'center'},
 		        {field:'pddj',title:'桥梁评定等级',width:140,align:'center'},
 		        {field:'xjgjnd',title:'修建/改建年度',width:140,align:'center'},
-		        {field:'xmnf',title:'项目年份',width:140,align:'center'},
+		        {field:'scxmnf',title:'项目年份',width:140,align:'center'},
 		        {field:'jsxz',title:'建设性质',width:140,align:'center'}
 	    ]]    
 	});  
@@ -313,7 +314,7 @@ function sckglWqgz(){
  	var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
  	"&xmnf="+$("#xmnf").combobox("getValue")+"&sbzt="+$('#sbzt').combobox("getValue")+
  	"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&bzls="+$("#bzls").combobox("getValue")+
- 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val();
+ 	"&lxbm="+$("#lxbm").val()+"&qlbh="+$("#qlbh").val()+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
  	$.ajax({
 	 type : "POST",
 	 url : "/jxzhpt/wqgzsj/selectSckwqgzCount.do",
@@ -359,7 +360,7 @@ text-decoration:none;
 					<div>
 					<table style=" margin:7px; vertical-align:middle;" cellspacing="0" class="abgc_td" >
 					<tr height="32">
-								<td>管养单位：</td>
+								<td>管养（监管）单位：</td>
                               	<td colspan="3" style="width:220px;"><select id="gydw" style="width:220px">
                               	</select></td>
                              	<td>行政区划：</td>
@@ -396,7 +397,12 @@ text-decoration:none;
                               	</select></td>
                               <td>路线名称：</td>
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
-                              	 
+                              <td>是否部库：</td>
+                              	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 74px">
+								<option value=""selected>全部</option>
+								<option value="否"selected>否</option>
+								<option value="是">是</option>
+								</select></td>	 
                              </tr>
                             <tr height="32">
                               <td colspan="10">

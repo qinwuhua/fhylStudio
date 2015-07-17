@@ -170,5 +170,8 @@
 		<action name="editOrSave" class="plan_zjqfController" method="editOrSave"></action>
 		<action name="queryZjqfByZjqf" class="plan_zjqfController" method="queryZjqfByZjqf"></action>
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
+		<!-- qwh -->
+		<action name="selectwqjhkgl" class="PlanwqgzsjController" method="selectwqjhkgl"></action>
+		<!-- qwh -->
 	 </package>
 </struts>

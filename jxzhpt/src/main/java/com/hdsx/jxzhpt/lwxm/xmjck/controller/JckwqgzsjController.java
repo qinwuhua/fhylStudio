@@ -59,8 +59,14 @@ public class JckwqgzsjController extends BaseActionSupport{
  	private int page = 1;
 	private int rows = 10;
 	private String bzls;
+	private String sfylrbwqk;
 	
-	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getBzls() {
 		return bzls;
 	}
@@ -200,6 +206,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setTsdq(tsdq);
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 			List<Jckwqgzsj> wqgzList = jckwqgzsjServer.selectWqgzList(jckwqgzsj);
 			int count = jckwqgzsjServer.selectWqgzCount(jckwqgzsj);
 			EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
@@ -276,6 +283,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setTsdq(tsdq);
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 		List<Jckwqgzsj> wqgzList = jckwqgzsjServer.selectJckShwqgz(jckwqgzsj);
 		int count = jckwqgzsjServer.selectWqgzShCount(jckwqgzsj);
 		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
@@ -311,6 +319,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setTsdq(tsdq);
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 			int count = jckwqgzsjServer.selectWqgzShCount(jckwqgzsj);
 			ResponseUtils.write(getresponse(), count+"");
 		} catch (Exception e) {
@@ -367,6 +376,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 		List<Jckwqgzsj> list = jckwqgzsjServer.selectSckwqgz(jckwqgzsj);
 		int count = jckwqgzsjServer.selectSckwqgzCount(jckwqgzsj);
 		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
@@ -403,6 +413,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 		int count = jckwqgzsjServer.selectSckwqgzCount(jckwqgzsj);
 		ResponseUtils.write(getresponse(), count+"");
 		} catch (Exception e) {
@@ -496,6 +507,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 		List<Jckwqgzsj> list = jckwqgzsjServer.selectSckShwqgz(jckwqgzsj);
 		int count = jckwqgzsjServer.selectSckShwqgzCount(jckwqgzsj);
 		EasyUIPage<Jckwqgzsj> eui = new EasyUIPage<Jckwqgzsj>();
@@ -532,6 +544,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setPage(page);
 			jckwqgzsj.setRows(rows);
 			jckwqgzsj.setBzls(bzls);
+			jckwqgzsj.setSfylrbwqk(sfylrbwqk);
 		int count = jckwqgzsjServer.selectSckShwqgzCount(jckwqgzsj);
 		ResponseUtils.write(getresponse(), count+"");
 		} catch (Exception e) {

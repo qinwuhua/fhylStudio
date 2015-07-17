@@ -46,6 +46,14 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	private String sbthcd1;
 	private String fileuploadFileName;
 	private File fileupload;
+	private String sfylrbwqk;
+	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	//excel数据导入
 	public void importWqgz(){
 		String fileType=fileuploadFileName.substring(fileuploadFileName.length()-3, fileuploadFileName.length());

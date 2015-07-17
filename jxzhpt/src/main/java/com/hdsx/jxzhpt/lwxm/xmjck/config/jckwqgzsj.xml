@@ -6,18 +6,18 @@
 	</delete>
 	<insert id="insertWqgz" parameterType="jckwqgzsj">
 		insert into xmk_wqgz(id,qlmc,qlbh,xzqhmc,xzqhdm,lxmc,lxbm,gydw,gydwbm,xjgjnd,jsdj,pddj,qlzxzh,qlkd,qlqc,
-		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,SFYLRBWQK,
-		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx) 
+		kjzc,dkzdkj,akjfl,sbjgxs,bhnr,bz,tbbmbm,xmnf,xmtype,tbsj,sbzt,sbthcd,tsdq,qlyhgcs,qljggcs,czyjhjy,
+		ptx,pty,sqs,xsq,szxz,synf,sjhspl,qxjkuan,qxjkong,zqks,qmjk,kydwlx,thdj,glqlyt,qdlx,qtlx,pzlx,sfylrbwqk) 
 		values(#{id},#{qlmc},#{qlbh},#{xzqhmc},#{xzqhdm},#{lxmc},#{lxbm},#{gydw},
 		(select id from xtgl_department where name=#{gydw}),#{xjgjnd},#{jsdj},
 		#{pddj},#{qlzxzh},#{qlkd},#{qlqc},#{kjzc},#{dkzdkj},#{akjfl},#{sbjgxs},#{bhnr},#{bz},#{tbbmbm},#{xmnf},#{xmtype},
-		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},'否',
-		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx})
+		sysdate,'未上报',#{sbthcd},#{tsdq},#{qlyhgcs},#{qljggcs},#{czyjhjy},
+		#{ptx},#{pty},#{sqs},#{xsq},#{szxz},#{synf},#{sjhspl},#{qxjkuan},#{qxjkong},#{zqks},#{qmjk},#{kydwlx},#{thdj},#{glqlyt},#{qdlx},#{qtlx},#{pzlx},#{sfylrbwqk})
 	</insert>
 	
 		<select id="selectWqgzList" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 	 	select * from (
-	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 and t.SFYLRBWQK='否'
+	 		select rownum num ,t.*,decode(sbthcd,#{sbthcd},'未上报',sbzt) sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd}
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -54,12 +54,15 @@
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 	 			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
 	 			order by decode(sbthcd,#{sbthcd},'未上报',sbzt),shzt desc 
 	 </select>
 	  <select id="selectWqgzCount" parameterType="jckwqgzsj" resultType="int">
-	 		select count(*) from xmk_wqgz t where 1=1 and t.SFYLRBWQK='否'
+	 		select count(*) from xmk_wqgz t where 1=1 
 	 			and  sbthcd &lt;=#{sbthcd}
 	 		<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -96,6 +99,9 @@
 	 		</if>
 	 		<if test="tsdq!='' and tsdq!= null ">
 	 			and tsdq like '%'||(#{tsdq})||'%'
+	 		</if>
+	 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 		</if>
 		 </select>
 		 <delete id="deleteWqgzsjById" parameterType="java.util.List" >
@@ -118,7 +124,7 @@
  		</update>
  		<select id="selectJckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
  	select * from (
- 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 and t.SFYLRBWQK='否'
+ 		select rownum num ,t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where sbthcd=7 
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -156,11 +162,14 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
+ 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 		</if>
  			) t1 where t1.num &lt;=(#{page} * #{rows}) and t1.num>(#{page}-1)*#{rows} 
  			order by shzt desc
  </select>
   <select id="selectWqgzShCount" parameterType="jckwqgz" resultType="int">
- 		select count(*) from xmk_wqgz t where sbthcd=7 and t.SFYLRBWQK='否'
+ 		select count(*) from xmk_wqgz t where sbthcd=7 
 			and sbthcd>=#{sbthcd}
  		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -198,6 +207,9 @@
  		<if test="tsdq!='' and tsdq!= null ">
  			and tsdq like '%'||(#{tsdq})||'%'
  		</if>
+ 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 		</if>
  </select>
  
  		<update id="sjshtyWqgzsjById" parameterType="jckwqgzsj" >
@@ -210,14 +222,17 @@
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},
- 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq} 
+ 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk} 
  			where id=#{id}
  		</update>
  		
  		<select id="selectSckwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='否'
+		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			</if>
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
@@ -263,7 +278,10 @@
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectSckwqgzCount" parameterType="jckwqgzsj" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='否'
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+ 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			</if>
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
@@ -306,7 +324,7 @@
 		</if>
 	</select>
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
-	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核' and t.SFYLRBWQK='否' and qlbh like #{qlbh}||'%' 
+	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
 	 	<if test="gydwbm!='' and gydwbm!= null ">
 				and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 			</if>
@@ -316,9 +334,11 @@
  	<insert id="insertSckwqgz" parameterType="jckwqgzsj">
 		insert into
 		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_qlbh,sck_qlzxzh,
-		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,jsgmqc,jsgmqk,hzdj,sjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq,sfylrbwqk)
+		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,jsgmqc,jsgmqk,hzdj,scsjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq,sfylrbwqk,
+		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz)
 		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
-		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{sjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},'否')
+		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{scsjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},#{sfylrbwqk},
+		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz})
 	</insert>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
 	 	delete from sck_wqgz where sckid =#{String}
@@ -336,13 +356,18 @@
 		update sck_wqgz
 		set tzgs=#{tzgs},spwh=#{spwh},fapgdw=#{fapgdw},fascdw=#{fascdw},faspsj=#{faspsj},jsxz=#{jsxz},jsnr=#{jsnr},scbz=#{scbz},
 		scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk},sjdwmc=#{sjdwmc},jsgmqc=#{jsgmqc},
-		jsgmqk=#{jsgmqk},hzdj=#{hzdj},sjhspl=#{sjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
-		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq} where sckid=#{sckid}
+		jsgmqk=#{jsgmqk},hzdj=#{hzdj},scsjhspl=#{scsjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
+		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq}, 
+		rksj=#{rksj},cjqz=#{cjqz},scthdj=#{scthdj},qljc=#{qljc},ydgldj=#{ydgldj},sjsd=#{sjsd},scsqs=#{scsqs},scxsq=#{scxsq},scszxz=#{scszxz},nsqbbz=#{nsqbbz}
+		where sckid=#{sckid}
 	</update>
  	<select id="selectSckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select * from (
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
-		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='否'
+		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+ 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			</if>
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
@@ -388,8 +413,11 @@
 		order by decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt),sck_shzt desc
 	</select>
 	<select id="selectSckShwqgzCount" parameterType="jckwqgzsj" resultType="int">
-		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 and t.SFYLRBWQK='否'
- 				<if test="tsdq!='' and tsdq!= null ">
+		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
+ 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			</if>
+ 				<if test="tsdq!='' and tsdq!= null "> 
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
 			where sck_sbthcd &lt;=7
@@ -438,7 +466,7 @@
 	</update>
 	
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz})
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},'否')
 	</insert>
 	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
 		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
