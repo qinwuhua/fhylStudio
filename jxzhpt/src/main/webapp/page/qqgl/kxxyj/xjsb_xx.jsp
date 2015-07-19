@@ -54,6 +54,16 @@ text-decoration:none;
 		$("#kgny").html(data.kgny);
 		$("#wgny").html(data.wgny);
 		$("#pfsj").html(data.pfsj);
+		$("#xjlxbh").html(data.xjlxbm);
+		$("#xjqdzh").html(data.xjqdzh);
+		$("#xjzdzh").html(data.xjzdzh);
+		$('#yilc').html(data.yilc);
+		$('#erlc').html(data.erlc);
+		$('#sanlc').html(data.sanlc);
+		$('#silc').html(data.silc);
+		$('#dwlc').html(data.dwlc);
+		$('#wllc').html(data.wllc);
+		$("#lxbh").html(data.lxbh);
 		fileShow1(parent.obj.xmbm,"工可批复文件");		
 	}
 	
@@ -109,25 +119,56 @@ text-decoration:none;
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="xmmc"></span></td>
+					<span id="xmmc" ></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="xmbm"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">行政区划：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="xzqh"></span>
+					<span id='xzqh'></span>
 					</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="lxbh"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="qdzh"></span></td>
+					<span id="qdzh"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="zdzh"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+					<span id="zdzh"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsxz"></span></td>
+					<span id="xjlxbh"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="xjqdzh" ></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="xjzdzh"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					新建技术等<br/>级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<span id="yilc"></span>
+					二级公路：<span id="erlc"></span>
+					三级公路：<span id="sanlc"></span>
+					四级公路：<span id="silc"></span>
+					等外公路：<span id="dwlc"></span>
+					无路：<span id="wllc"></span>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
@@ -138,15 +179,16 @@ text-decoration:none;
 					<span id="dq"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsjsdj"></span></td>
+					<span id='jsjsdj'></span></td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（米）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="sd_m"></span></td>
+					<span id="sd_m" ></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">隧道（座）：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="sd"></span></td>
+					<span id="sd"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="jsdw"></span>
@@ -156,15 +198,15 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">开工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="kgny"></span>
-					</td>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="wgny"></span>
+					<span id='wgny'></span>
 					</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="bzdw"></span>
-					</td>
+						<span id="bzdw"></span>
+						</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
@@ -172,19 +214,21 @@ text-decoration:none;
 					<span id="tzgs"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<span id="gkpfwh"></span></td>
+					<span id="gkpfwh"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="pfsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文件：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left" colspan="5">
-					<table style="margin-top:5px;background-color: #aacbf8; font-size: 12px" border="0" cellpadding="1" cellspacing="1">
-							<tbody id="gkpfTable"></tbody>
-					</table>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="jsxz"></span>
 				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
 			</tr>
 			<tr id="lxxx"  style="height: 35px;display: none">
 				<td align="center" colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" >
