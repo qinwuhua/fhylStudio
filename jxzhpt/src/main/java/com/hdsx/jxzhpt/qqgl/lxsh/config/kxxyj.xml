@@ -3,10 +3,11 @@
 <mapper namespace="com.hdsx.jxzhpt.kxxyj">
 	<select id="selectSjgzList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,tt.lc,<!--  decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt))--> t.shzt sbzt1,lx.minqdzh,lx.maxzdzh  from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join (select sum(lc) lc,xmid xmbm from lxsh_lx where jdbs='1' group by xmid) tt on t.xmbm=tt.xmbm
-		left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid
-		  where 1=1
-			and (t.sbthcd &lt;=7 or t.sbthcd is null) 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*
+		from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join 
+    	(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc
+    	from lxsh_lx where jdbs='1' group by xmid,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc) lx on t.xmbm=lx.xmid
+		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -72,10 +73,11 @@
 	</select>
 	<select id="selectLmgzkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,tt.lc,<!-- decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) -->t.shzt sbzt1,lx.minqdzh,lx.maxzdzh  from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join (select sum(lc) lc,xmid xmbm from lxsh_lx where jdbs='1' group by xmid) tt on t.xmbm=tt.xmbm 
-		left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid
-		where 1=1
-			and (t.sbthcd &lt;=7 or t.sbthcd is null) 
+		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*
+		from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join 
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' 
+		group by xmid,yilc,erlc,sanlc,silc,dwlc,wllc) lx on t.xmbm=lx.xmid
+		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -139,10 +141,11 @@
 	</select>
 	<select id="selectXjkxList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,tt.lc,<!-- decode(t.sbthcd,null,'0',#{sbthcd},'0',to_char(t.sbzt)) -->t.shzt sbzt1,lx.minqdzh,lx.maxzdzh  from KXXYJ_XJ t Left join lxsh_xj t1 on t.xmbm=t1.xmbm left join (select sum(lc) lc,xmid xmbm from lxsh_lx where jdbs='1' group by xmid) tt on t.xmbm=tt.xmbm 
-		left join (select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid from lxsh_lx group by xmid) lx on t.xmbm=lx.xmid
-		where 1=1
-			and (t.sbthcd &lt;=7 or t.sbthcd is null) 
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*  from KXXYJ_XJ t 
+		Left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh  
+		from lxsh_lx where jdbs='1' group by xmid,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh ) lx on t.xmbm=lx.xmid
+		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -243,8 +246,8 @@
 	
 	<select id="selectSjgzkxshList" parameterType="lxsh" resultType="kxxyj">
 		select * from (
-		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm  from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm where 1=1
-			and  t.sbthcd=7
+		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc
+		from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join lxsh_lx l on t1.xmbm=l.xmid where 1=1 and  t.sbthcd=7
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -483,8 +486,10 @@
 		select t.*,bzcs bzys,xmid xmbm,lxbm ghlxbh from lxsh_lx t where xmid=#{xmbm} and jdbs=#{jdbs}
 	</select>
 	<insert id="insertLx1" parameterType="lxsh">
-		insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
-		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh})
+		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})),gpsqdzh,gpszdzh,jsfa,xjlxbm,xjqdzh,xjzdzh,xjlc,yilc,erlc,sanlc,silc,dwlc,wllc   ,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc from lxsh_lx where xmid = #{xmbm} and jdbs=to_char(to_number(#{jdbs})-1)
+		<!-- insert into LXSH_LX(id,xmid,lxbm,lxmc,xzqh,xzqhdm,gydw,gydwdm,qdzh,zdzh,jsjsdj,lc,xjsdj,jsxz,qdmc,zdmc,bzcs,sffirst,jdbs,gpsqdzh,gpszdzh)
+		values(sys_guid(),#{xmbm},#{ghlxbh},#{lxmc},#{xzqh},#{xzqhdm},#{gydw},#{gydwdm},#{qdzh},#{zdzh},#{jsjsdj},#{lc},#{xjsdj},#{jsxz},#{qdmc},#{zdmc},#{bzys},#{sffirst},#{jdbs},#{gpsqdzh},#{gpszdzh}) -->
 	</insert>
 	
 	<insert id="insertJgtc" parameterType="gcgl_jgys">

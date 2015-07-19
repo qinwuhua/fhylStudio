@@ -18,13 +18,13 @@
 	</insert>
 	<insert id="insertJhshYhdzxFromCbsj" parameterType="cbsj">
 		insert into jhsh_yhdzx (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
-		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_yhdzx x
-		where x.xmbm in (${xmbm})
+		select c.xmbm,c.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,c.xzqh,x.xzqhdm,c.qdzh,c.zdzh,c.lc,c.kgsj,c.wgsj 
+		from cbsj_yhdzx c left join xmsq_yhdzx x on c.xmbm=x.xmbm where c.xmbm in (${xmbm})
 	</insert>
 	<insert id="insertJhshShFromCbsj" parameterType="cbsj">
 		insert into jhsh_sh (xmbm,xmmc,ylxbh,ghlxbh,gcfl,xzqh,xzqhdm,qdzh,zdzh,lc,jhkgsj,jhwgsj)
-		select x.xmbm,x.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,x.xzqh,x.xzqhdm,x.qdzh,x.zdzh,x.lc,x.jhkgsj,x.jhwgsj from xmsq_sh x
-		where x.xmbm in (${xmbm})
+		select c.xmbm,c.xmmc,x.ylxbh,x.ghlxbh,x.gcfl,c.xzqh,x.xzqhdm,c.qdzh,c.zdzh,c.lc,c.kgsj,c.wgsj 
+		from cbsj_sh c left join xmsq_sh x on c.xmbm=x.xmbm where c.xmbm in (${xmbm})
 	</insert>
 	
 	<select id="queryJhshLmsj" parameterType="java.util.Map" resultType="jhsh">
@@ -374,13 +374,13 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_sjgz l where l.xmbm=#{xmbm}
+		select * from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
 	</select>
 	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_lmgz l where l.xmbm=#{xmbm}
+		select * from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
 	</select>
 	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_xj l where l.xmbm=#{xmbm}
+		select * from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
 	</select>
 	
 	<select id="queryJhshxxLmsjByXmbm" parameterType="java.util.Map" resultType="jhsh">
@@ -393,19 +393,19 @@
 		select * from jhsh_xj where xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxYhdzxByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh from jhsh_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
+		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_yhdzx j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryJhshxxShByXmbm" parameterType="jhsh" resultType="jhsh">
-		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
+		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_sjgz where xmbm =#{xmbm}
+		select * from kxxyj_sjgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_lmgz where xmbm =#{xmbm}
+		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
 	</select>
 	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_xj where xmbm =#{xmbm}
+		select * from kxxyj_xj k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
 	</select>
 	
 	<!-- 路线操作部分 -->
@@ -418,7 +418,17 @@
 		<if test="sanlc!=null and sanlc!=''">l.sanlc=#{sanlc},</if>
 		<if test="silc!=null and silc!=''">l.silc=#{silc},</if>
 		<if test="dwlc!=null and dwlc!=''">l.dwlc=#{dwlc},</if>
-		<if test="gslc!=null and gslc!=''">l.gslc=#{gslc},</if>
+		<if test="wllc!=null and wllc!=''">l.wllc=#{wllc},</if>
+		<if test="jhyilc!=null and jhyilc!=''">l.jhyilc=#{jhyilc},</if>
+		<if test="jherlc!=null and jherlc!=''">l.jherlc=#{jherlc},</if>
+		<if test="jhsanlc!=null and jhsanlc!=''">l.jhsanlc=#{jhsanlc},</if>
+		<if test="jhsilc!=null and jhsilc!=''">l.jhsilc=#{jhsilc},</if>
+		<if test="jhdwlc!=null and jhdwlc!=''">l.jhdwlc=#{jhdwlc},</if>
+		<if test="jhwllc!=null and jhwllc!=''">l.jhwllc=#{jhwllc},</if>
+		<if test="xjlxbm!=null and xjlxbm!=''">l.xjlxbm=#{xjlxbm},</if>
+		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
+		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
+		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
 		l.qdzh=#{qdzh},l.zdzh=#{zdzh},l.lc=${zdzh}-${qdzh}
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
@@ -479,8 +489,8 @@
 		<if test="sffirst==1">and sffirst!='1'</if>
 	</select>
 	<insert id="insertLxJdbs" parameterType="lx">
-		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa)
-		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
+		insert into lxsh_lx (xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, jdbs,gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc)
+		select xmid, lxbm, lxmc, xzqh, xzqhdm, gydw, gydwdm, qdzh, zdzh, jsjsdj, lc, xjsdj, jsxz, qdmc, zdmc, bzcs, sffirst, to_char(to_number(#{jdbs})+1),gpsqdzh,gpszdzh,jsfa,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where xmid in (${xmid}) and jdbs=#{jdbs}
 	</insert>
 	<!-- 历史记录查询部分 -->
 	<select id="queryHaveLx" parameterType="lx" resultType="lx">
@@ -490,10 +500,10 @@
 		union all select xmbm,xmmc from xmsq_sh
 		union all select xmbm,xmmc from xmsq_yhdzx) x 
 		where l.xmid=x.xmbm and l.lxbm like '%'||#{lxbm}||'%' and 
-		(((to_number(l.zdzh) >= ${qdzh} and ${qdzh} >= to_number(l.qdzh)) or 
-		(to_number(l.zdzh) >= ${zdzh} and ${zdzh} >= to_number(l.qdzh))) or
-		(to_number(l.qdzh) = ${qdzh} or to_number(l.zdzh) = ${zdzh})) 
-		and (to_number(l.qdzh) != ${zdzh} and to_number(l.zdzh) != ${qdzh})
+		(((to_number(nvl(l.zdzh,0)) >= ${qdzh} and ${qdzh} >= to_number(nvl(l.qdzh,0))) or 
+		(to_number(nvl(l.zdzh,0)) >= ${zdzh} and ${zdzh} >= to_number(nvl(l.qdzh,0)))) or
+		(to_number(nvl(l.qdzh,0)) = ${qdzh} or to_number(nvl(l.zdzh,0)) = ${zdzh})) 
+		and (to_number(nvl(l.qdzh,0)) != ${zdzh} and to_number(nvl(l.zdzh,0)) != ${qdzh})
 		<!-- and (to_number(qdzh) != ${zdzh} and to_number(zdzh) != ${zdzh}) -->
 		and l.xmid like substr(#{xmid},0,4)||'%'
 	</select>
@@ -637,15 +647,19 @@
 	</select>
 	<select id="queryJsdjAndLcByStartAndEnd" parameterType="lx" resultType="lx">
 		<![CDATA[
-		select nvl(case when f114='一级公路' then sum(roadends-roadstart) end,0) yilc,nvl(case when f114='二级公路' then sum(roadends-roadstart) end,0) erlc,
-		nvl(case when f114='三级公路' then sum(roadends-roadstart) end,0) sanlc,nvl(case when f114='四级公路' then sum(roadends-roadstart) end,0) silc,
-		nvl(case when f114='等外公路' then sum(roadends-roadstart) end,0) dwlc,nvl(case when f114='高速公路' then sum(roadends-roadstart) end,0) gslc
-		from (select g.roadcode, g.f114,
-		case when g.roadstart<${qdzh} then ${qdzh} when g.roadstart>${qdzh} then g.roadstart when g.roadstart=${qdzh} then g.roadstart end roadstart,
-		case when g.roadends<${zdzh} then g.roadends when g.roadends>${zdzh} then ${zdzh} when g.roadends=${zdzh} then g.roadends end roadends
-		from gpsroad g where substr(g.roadcode,1,1) in('G','S','X')
-		and g.roadcode like '%'||#{lxbm}||'%' and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends ) or 
-		(g.roadstart> ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh}))) group by f114
+		select to_char(sum(yilc), 'FM99990.099') yilc,to_char(sum(erlc), 'FM99990.099') erlc,to_char(sum(sanlc), 'FM99990.099') sanlc,to_char(sum(silc), 'FM99990.099') silc,to_char(sum(dwlc), 'FM99990.099') dwlc,to_char(sum(wllc), 'FM99990.099') wllc,replace(WMSYS.WM_CONCAT(f114),',','、') xjsdj
+		from (select nvl(case when f114 = '一级公路' then sum(roadends - roadstart) end,0) yilc,
+		nvl(case when f114 = '二级公路' then sum(roadends - roadstart) end,0) erlc,
+		nvl(case when f114 = '三级公路' then sum(roadends - roadstart) end,0) sanlc,
+		nvl(case when f114 = '四级公路' then sum(roadends - roadstart) end,0) silc,
+		nvl(case when f114 = '等外公路' then sum(roadends - roadstart) end,0) dwlc,
+		nvl(case when f114 is null then sum(roadends - roadstart) end,0) wllc,substr(f114,1,2) f114,f014
+		from (select g.roadcode,to_char(decode(g.f114,null,'无路',g.f114)) f114,f014,
+		case when g.roadstart < ${qdzh} then ${qdzh} when g.roadstart > ${qdzh} then g.roadstart when g.roadstart = ${qdzh} then g.roadstart end roadstart,
+		case when g.roadends < ${zdzh} then g.roadends when g.roadends > ${zdzh} then ${zdzh} when g.roadends = ${zdzh} then g.roadends end roadends from gpsroad g
+		where substr(g.roadcode, 1, 1) in ('G', 'S', 'X') and g.roadcode like '%' || #{lxbm} || '%'
+		and ((g.roadstart <= ${qdzh} and ${qdzh} < g.roadends) or (g.roadstart > ${qdzh} and g.roadends < ${zdzh}) or (g.roadstart < ${zdzh} and g.roadends >= ${zdzh})))
+		group by f114,f014 order by f014)
 		]]>
 	</select>
 </mapper>

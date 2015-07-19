@@ -427,8 +427,8 @@ function showAll(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
+	            //if(row.sbzt1=='1')
+	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
@@ -525,21 +525,72 @@ function xmnf1(id,xmlx){
 	});
 	$('#'+id).combobox("setValue",first);
 }
+function cesuan(){
+	var yi=0;
+	if($('#jhyilc').val()!="" && $('#jhyilc').val()!="0")
+		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
+	var er=0;
+	if($('#jherlc').val()!="" && $('#jherlc').val()!="0")
+		er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#jherlc').val(),'升级改造工程项目');
+	var san=0;
+	if($('#jhsanlc').val()!="" && $('#jhsanlc').val()!="0")
+		san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#jhsanlc').val(),'升级改造工程项目');
+	var si=0;
+	if($('#jhsilc').val()!="" && $('#jhsilc').val()!="0")
+		si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#jhsilc').val(),'升级改造工程项目');
+	var dw=0;
+	if($('#jhdwlc').val()!="" && $('#jhdwlc').val()!="0")
+		dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#jhdwlc').val(),'升级改造工程项目');
+	var wl=0;
+	if($('#jhwllc').val()!="" && $('#jhwllc').val()!="0")
+		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
+	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
+	$('#bzcs').html(zcs);
+	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
+}
+function cesuan2(){
+	var yi=0;
+	if($('#yilc').val()!="" && $('#yilc').val()!="0" && $('#yilc').val()!="0.0")
+		yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#yilc').val(),'升级改造工程项目');
+	var er=0;
+	if($('#erlc').val()!="" && $('#erlc').val()!="0" && $('#erlc').val()!="0.0")
+		er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#erlc').val(),'升级改造工程项目');
+	var san=0;
+	if($('#sanlc').val()!="" && $('#sanlc').val()!="0" && $('#sanlc').val()!="0.0")
+		san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#sanlc').val(),'升级改造工程项目');
+	var si=0;
+	if($('#silc').val()!="" && $('#silc').val()!="0" && $('#silc').val()!="0.0")
+		si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#silc').val(),'升级改造工程项目');
+	var dw=0;
+	if($('#dwlc').val()!="" && $('#dwlc').val()!="0" && $('#dwlc').val()!="0.0")
+		dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#dwlc').val(),'升级改造工程项目');
+	var wl=0;
+	if($('#wllc').val()!="" && $('#wllc').val()!="0" && $('#wllc').val()!="0.0")
+		wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#wllc').val(),'升级改造工程项目');
+	var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
+	$('#bzcs').html(zcs);
+	$('#dfzc').html(accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html())));
+}
 function getbzcs(gldj,jsdj,lc,xmlx){
 	var data="lxsh.xmlx="+xmlx+"&lxsh.gldj="+gldj+"&lxsh.jsdj="+jsdj+"&lxsh.lc="+lc;
-	$("#bzcs").html('');
+	//$("#bzcs").html('');
+	var newcs=0;
 	$.ajax({
 		type:'post',
+		async:false,
 		url:'/jxzhpt/qqgl/selectbzcs.do',
 		data:data,
 		dataType:'json',
 		success:function(msg){
-			$("#bzcs").html(msg.bzys);
+			//var zcs=parseFloat(oldcs)+parseFloat(msg.bzys);
+			//$('#bzcs').html(zcs);
+			newcs=msg.bzys;
 		},
 		error : function(){
 		 YMLib.Tools.Show('未检索到补助标准错误！error code = 404',3000);
 	 }
-	});	
+	});
+	return newcs;
 }
 //升级审核
 function showAllsjsh(){
@@ -740,8 +791,8 @@ function showAlllmgz(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    '+'删除 ';
+	            //if(row.sbzt1=='1')
+	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi1('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit1('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del1('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){
@@ -1013,8 +1064,8 @@ function showAllxj(){
 	    columns:[[
 	        {field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},
 	        {field:'c',title:'操作',width:200,align:'center',formatter:function(value,row,index){
-	            if(row.sbzt1=='1')
-	        		return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    '+'删除 ';
+	            //if(row.sbzt1=='1')
+	        	//	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'编辑    '+'删除 ';
 	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>   '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="xiangxi2('+index+')">详细</a>    '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="edit2('+index+')">编辑</a>  '+'<a style="text-decoration:none;color:#3399CC;" href="#" onclick="del2('+index+')">删除</a>  ';
 	        }},
 	        {field:'c1',title:'上报状态',width:60,align:'center',formatter:function(value,row,index){

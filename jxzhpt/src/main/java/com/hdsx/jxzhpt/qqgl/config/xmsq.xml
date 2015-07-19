@@ -203,48 +203,24 @@
 	</insert>
 	<insert id="insertLx" parameterType="lx">
 		insert into lxsh_lx (
-		<if test="xmid!=null">xmid</if>
-		<if test="lxbm!=null">,lxbm</if>
-		<if test="lxmc!=null">,lxmc</if>
-		<if test="xzqh!=null">,xzqh</if>
-		<if test="xzqhdm!=null">,xzqhdm</if>
-		<if test="gydw!=null">,gydw</if>
-		<if test="gydwdm!=null">,gydwdm</if>
-		<if test="qdzh!=null">,qdzh</if>
-		<if test="zdzh!=null">,zdzh</if>
-		<if test="jsjsdj!=null">,jsjsdj</if>
-		<if test="lc!=null">,lc</if>
-		<if test="xjsdj!=null">,xjsdj</if>
-		<if test="jsxz!=null">,jsxz</if>
-		<if test="qdmc!=null">,qdmc</if>
-		<if test="zdmc!=null">,zdmc</if>
-		<if test="bzcs!=null">,bzcs</if>
-		<if test="sffirst!=null">,sffirst</if>
-		<if test="jdbs!=null">,jdbs</if>
-		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if>
-		<if test="jsfa!=null and jsfa!=''">,jsfa</if>)
-		values(<if test="xmid!=null">#{xmid}</if>
-		<if test="lxbm!=null">,#{lxbm}</if>
-		<if test="lxmc!=null">,#{lxmc}</if>
-		<if test="xzqh!=null">,#{xzqh}</if>
-		<if test="xzqhdm!=null">,#{xzqhdm}</if>
-		<if test="gydw!=null">,#{gydw}</if>
-		<if test="gydwdm!=null">,#{gydwdm}</if>
-		<if test="qdzh!=null">,#{qdzh}</if>
-		<if test="zdzh!=null">,#{zdzh}</if>
-		<if test="jsjsdj!=null">,#{jsjsdj}</if>
-		<if test="lc!=null">,#{lc}</if>
-		<if test="xjsdj!=null">,#{xjsdj}</if>
-		<if test="jsxz!=null">,#{jsxz}</if>
-		<if test="qdmc!=null">,#{qdmc}</if>
-		<if test="zdmc!=null">,#{zdmc}</if>
-		<if test="bzcs!=null">,#{bzcs}</if>
-		<if test="sffirst!=null">,#{sffirst}</if>
-		<if test="jdbs!=null">,#{jdbs}</if>
-		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if>
-		<if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if>
-		<if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>)
+		<if test="xmid!=null">xmid</if><if test="lxbm!=null">,lxbm</if><if test="lxmc!=null">,lxmc</if>
+		<if test="xzqh!=null">,xzqh</if><if test="xzqhdm!=null">,xzqhdm</if><if test="gydw!=null">,gydw</if>
+		<if test="gydwdm!=null">,gydwdm</if><if test="qdzh!=null">,qdzh</if><if test="zdzh!=null">,zdzh</if>
+		<if test="jsjsdj!=null">,jsjsdj</if><if test="lc!=null">,lc</if><if test="xjsdj!=null">,xjsdj</if>
+		<if test="jsxz!=null">,jsxz</if><if test="qdmc!=null">,qdmc</if><if test="zdmc!=null">,zdmc</if>
+		<if test="bzcs!=null">,bzcs</if><if test="sffirst!=null">,sffirst</if><if test="jdbs!=null">,jdbs</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,gpsqdzh</if><if test="gpszdzh!=null and gpszdzh!=''">,gpszdzh</if><if test="jsfa!=null and jsfa!=''">,jsfa</if>
+		<if test="yilc!=null">,yilc</if><if test="erlc!=null">,erlc</if><if test="sanlc!=null">,sanlc</if>
+		<if test="silc!=null">,silc</if><if test="dwlc!=null">,dwlc</if><if test="wllc!=null">,wllc</if>)
+		values(<if test="xmid!=null">#{xmid}</if><if test="lxbm!=null">,#{lxbm}</if><if test="lxmc!=null">,#{lxmc}</if>
+		<if test="xzqh!=null">,#{xzqh}</if><if test="xzqhdm!=null">,#{xzqhdm}</if><if test="gydw!=null">,#{gydw}</if>
+		<if test="gydwdm!=null">,#{gydwdm}</if><if test="qdzh!=null">,#{qdzh}</if><if test="zdzh!=null">,#{zdzh}</if>
+		<if test="jsjsdj!=null">,#{jsjsdj}</if><if test="lc!=null">,#{lc}</if><if test="xjsdj!=null">,#{xjsdj}</if>
+		<if test="jsxz!=null">,#{jsxz}</if><if test="qdmc!=null">,#{qdmc}</if><if test="zdmc!=null">,#{zdmc}</if>
+		<if test="bzcs!=null">,#{bzcs}</if><if test="sffirst!=null">,#{sffirst}</if><if test="jdbs!=null">,#{jdbs}</if>
+		<if test="gpsqdzh!=null and gpsqdzh!=''">,#{gpsqdzh}</if><if test="gpszdzh!=null and gpszdzh!=''">,#{gpszdzh}</if><if test="jsfa!=null and jsfa!=''">,#{jsfa}</if>
+		<if test="yilc!=null">,#{yilc}</if><if test="erlc!=null">,#{erlc}</if><if test="sanlc!=null">,#{sanlc}</if>
+		<if test="silc!=null">,#{silc}</if><if test="dwlc!=null">,#{dwlc}</if><if test="wllc!=null">,#{wllc}</if>)
 	</insert>
 	<delete id="deleteLxByXmbm" parameterType="xmsq">
 		delete from lxsh_lx where xmid=#{xmbm}
@@ -409,11 +385,11 @@
 	</insert>
 	
 	<select id="queryYhdzxByXmbm" parameterType="xmsq" resultType="xmsq">
-		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.gslc 
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc 
 		from xmsq_yhdzx x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	<select id="queryShByXmbm" parameterType="xmsq" resultType="xmsq">
-		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.gslc
+		select x.*,l.gpsqdzh,l.gpszdzh,l.sffirst,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc
 		from xmsq_sh x inner join lxsh_lx l on x.xmbm=l.xmid where xmbm=#{xmbm} and l.sffirst='1' and l.jdbs='1'
 	</select>
 	

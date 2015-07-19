@@ -104,6 +104,7 @@ public class KxxyjController extends BaseActionSupport{
 	private String lsjl;
 	private String fileuploadFileName;
 	private File fileupload;
+	private Lx lx;
 	
 	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
 	private File uploadSGXK;
@@ -113,7 +114,12 @@ public class KxxyjController extends BaseActionSupport{
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
 	
-	
+	public Lx getLx() {
+		return lx;
+	}
+	public void setLx(Lx lx) {
+		this.lx = lx;
+	}
 	public String getFileuploadFileName() {
 		return fileuploadFileName;
 	}
@@ -484,7 +490,6 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateSjgzkxx(){
 		boolean bl=kxxyjServer.updateSjgzkxx(kxxyj);
 		if(bl){
-			Lx lx=new Lx();
 			lx.setXmid(kxxyj.getXmbm());
 			lx.setLxbm(kxxyj.getLxbh());
 			lx.setQdzh(kxxyj.getQdzh());
@@ -501,7 +506,6 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateLmgzkxx(){
 		boolean bl=kxxyjServer.updateLmgzkxx(kxxyj);
 		if(bl){
-			Lx lx=new Lx();
 			lx.setXmid(kxxyj.getXmbm());
 			lx.setLxbm(kxxyj.getLxbh());
 			lx.setQdzh(kxxyj.getQdzh());
@@ -518,7 +522,6 @@ public class KxxyjController extends BaseActionSupport{
 	public void updateXjkxx(){
 		boolean bl=kxxyjServer.updateXjkxx(kxxyj);
 		if(bl){
-			Lx lx=new Lx();
 			lx.setXmid(kxxyj.getXmbm());
 			lx.setLxbm(kxxyj.getLxbh());
 			lx.setQdzh(kxxyj.getQdzh());

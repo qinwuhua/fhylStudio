@@ -308,6 +308,7 @@ public class LxshServerImpl extends BaseOperate implements LxshServer {
 	
 	@Override
 	public boolean updateLmgz(Lxsh lxsh) {
+		System.out.println("备注："+lxsh.getBz());
 		update("updateSjgzlx", lxsh);
 		Double bzcs=queryOne("queryMaxbzcs",lxsh);
 		Double lc=queryOne("queryMaxlc",lxsh);

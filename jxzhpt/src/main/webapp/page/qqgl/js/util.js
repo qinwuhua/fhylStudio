@@ -156,20 +156,7 @@ function querymc(id){
 	}else if(id=="zdzh"){
 		cxzdmc($('#ylxbh').val(),$('#zdzh').val());
 	}
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
-        data:'lx.lxbm='+$('#ylxbh').val()+'&lx.qdzh='+$('#qdzh').val()+'&lx.zdzh='+$('#zdzh').val(),
-		dataType:'json',
-		success:function(msg){
-			$('#yilc').val(msg.yilc);
-			$('#erlc').val(msg.erlc);
-			$('#sanlc').val(msg.sanlc);
-			$('#silc').val(msg.silc);
-			$('#dwlc').val(msg.dwlc);
-			$('#gslc').val(msg.gslc);
-		}
-	});
+	queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }
 /**
@@ -183,15 +170,7 @@ function querymc2(id,lxbm){
 	}else if(id=="zdzh"){
 		cxzdmc($('#'+lxbm).val(),$('#zdzh').val());
 	}
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
-        data:'lx.lxbm='+$('#'+lxbm).val()+'&lx.qdzh='+$('#qdzh').val()+'&lx.zdzh='+$('#zdzh').val(),
-		dataType:'json',
-		success:function(msg){
-			alert(msg.yilc);
-		}
-	});
+	queryJsdjAndLc($('#'+lxbm).val(),$('#qdzh').val(),$('#zdzh').val());
 	$('#lc').val(accSub(parseFloat($('#zdzh').val()),parseFloat($('#qdzh').val())));
 }
 /**
@@ -223,6 +202,29 @@ function cxzdmc(lxbm,zdzh){
 		dataType:'json',
 		success:function(msg){
 			$('#zdmc').val(msg.zdmc);
+		}
+	});
+}
+/**
+ * 查询起止点桩号间的技术等级和里程
+ * @param lxbm
+ * @param qdzh
+ * @param zdzh
+ * @returns
+ */
+function queryJsdjAndLc(lxbm,qdzh,zdzh){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/qqgl/queryJsdjAndLcByStartAndEnd.do',
+        data:'lx.lxbm='+lxbm+'&lx.qdzh='+qdzh+'&lx.zdzh='+zdzh,
+		dataType:'json',
+		success:function(msg){
+			$('#yilc').val(msg.yilc);
+			$('#erlc').val(msg.erlc);
+			$('#sanlc').val(msg.sanlc);
+			$('#silc').val(msg.silc);
+			$('#dwlc').val(msg.dwlc);
+			$('#wllc').val(msg.wllc);
 		}
 	});
 }

@@ -79,6 +79,118 @@ public class Cbsj {
 	private String jdbs;//阶段标示
 	private String gpsqdzh;//GPSRoad中的起点桩号
 	private String gpszdzh;//GPSRoad中的止点桩号
+	private String xjlxbm;//新建录像编码
+	private String xjqdzh;//新建起点桩号
+	private String xjzdzh;//新建止点桩号
+	private String xjlc;//新建里程
+	private String yilc;//一级公路里程
+	private String erlc;//二级公路里程
+	private String sanlc;//三级公路里程
+	private String silc;//四级公路里程
+	private String dwlc;//等外公路里程
+	private String wllc;//无路里程
+	private String jhyilc;//建设后一级公路里程
+	private String jherlc;//建设后二级公路里程
+	private String jhsanlc;//建设后三级公路里程
+	private String jhsilc;//建设后四级公路里程
+	private String jhdwlc;//建设后等外公路里程
+	private String jhwllc;//建设后无路里程
+	public String getXjlxbm() {
+		return xjlxbm;
+	}
+	public void setXjlxbm(String xjlxbm) {
+		this.xjlxbm = xjlxbm;
+	}
+	public String getXjqdzh() {
+		return xjqdzh;
+	}
+	public void setXjqdzh(String xjqdzh) {
+		this.xjqdzh = xjqdzh;
+	}
+	public String getXjzdzh() {
+		return xjzdzh;
+	}
+	public void setXjzdzh(String xjzdzh) {
+		this.xjzdzh = xjzdzh;
+	}
+	public String getXjlc() {
+		return xjlc;
+	}
+	public void setXjlc(String xjlc) {
+		this.xjlc = xjlc;
+	}
+	public String getJhyilc() {
+		return jhyilc;
+	}
+	public void setJhyilc(String jhyilc) {
+		this.jhyilc = jhyilc;
+	}
+	public String getJherlc() {
+		return jherlc;
+	}
+	public void setJherlc(String jherlc) {
+		this.jherlc = jherlc;
+	}
+	public String getJhsanlc() {
+		return jhsanlc;
+	}
+	public void setJhsanlc(String jhsanlc) {
+		this.jhsanlc = jhsanlc;
+	}
+	public String getJhsilc() {
+		return jhsilc;
+	}
+	public void setJhsilc(String jhsilc) {
+		this.jhsilc = jhsilc;
+	}
+	public String getJhdwlc() {
+		return jhdwlc;
+	}
+	public void setJhdwlc(String jhdwlc) {
+		this.jhdwlc = jhdwlc;
+	}
+	public String getJhwllc() {
+		return jhwllc;
+	}
+	public void setJhwllc(String jhwllc) {
+		this.jhwllc = jhwllc;
+	}
+	public String getYilc() {
+		return yilc;
+	}
+	public void setYilc(String yilc) {
+		this.yilc = yilc;
+	}
+	public String getErlc() {
+		return erlc;
+	}
+	public void setErlc(String erlc) {
+		this.erlc = erlc;
+	}
+	public String getSanlc() {
+		return sanlc;
+	}
+	public void setSanlc(String sanlc) {
+		this.sanlc = sanlc;
+	}
+	public String getSilc() {
+		return silc;
+	}
+	public void setSilc(String silc) {
+		this.silc = silc;
+	}
+	public String getDwlc() {
+		return dwlc;
+	}
+	public void setDwlc(String dwlc) {
+		this.dwlc = dwlc;
+	}
+	public String getWllc() {
+		return wllc;
+	}
+	public void setWllc(String wllc) {
+		this.wllc = wllc;
+	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}

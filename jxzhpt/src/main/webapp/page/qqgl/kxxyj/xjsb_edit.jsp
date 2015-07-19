@@ -36,10 +36,20 @@ text-decoration:none;
 	var zdStr;
 	function load(){
 		var data=parent.obj;
-		$("#xmmc").val(data.xmmc);
-		$("#qdzh").val(data.qdzh);
 		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
+		$("#xmmc").val(data.xmmc);
+		$("#lxbh").val(data.lxbh);
+		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
+		$("#xjlxbh").val(data.xjlxbm);
+		$("#xjqdzh").val(data.xjqdzh);
+		$("#xjzdzh").val(data.xjzdzh);
+		$('#yilc').val(data.yilc);
+		$('#erlc').val(data.erlc);
+		$('#sanlc').val(data.sanlc);
+		$('#silc').val(data.silc);
+		$('#dwlc').val(data.dwlc);
+		$('#wllc').val(data.wllc);
 		$("#jsxz").val(data.jsxz);
 		$("#xzqh").html(data.xzqh);
 		$("#jsjsdj").html(data.jsjsdj);
@@ -121,6 +131,10 @@ text-decoration:none;
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="+$('#jsdw').val()
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue');
+		data+="&lx.xjlxbm="+$('#xjlxbh').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()+
+		"&lx.xjlc="+(accSub(parseFloat($("#xjzdzh").val()),parseFloat($("#xjqdzh").val())));
+		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
+		"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -203,17 +217,47 @@ text-decoration:none;
 					</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">路线编码</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="lxbh" type="text" style="width: 120px;" />
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="qdzh" id="qdzh"  onblur="changeZlc()"/><br/>
-					<span id="qd"></span></td>
+					<span id="qd"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" name="zdzh"id="zdzh"  onblur="changeZlc()"/><br/>
-					<span id="zd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+					<span id="zd"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建路线编码</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="jsxz"  /></td>
+					<input id="xjlxbh" type="text" style="width: 120px;" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="zjqdzh" id="xjqdzh"  onblur="changeZlc()"/><br/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">新建止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" name="zjzdzh" id="xjzdzh"  onblur="changeZlc()"/><br/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					新建技术等<br/>级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
@@ -264,6 +308,17 @@ text-decoration:none;
 					<input type="text" id="pfsj"/>
 				</td>
 			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input type="text" id="jsxz" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left"></td>
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文件：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left" colspan="5">

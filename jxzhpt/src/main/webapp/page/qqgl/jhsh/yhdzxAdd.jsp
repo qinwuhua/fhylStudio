@@ -21,7 +21,6 @@
 	<script type="text/javascript" src="../../../page/qqgl/js/util.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm2('jsdj','技术等级');
 			loadDist("xzqh1",$.cookie("dist"));
 			loadUnit("gydw1",$.cookie("unit"));
 			$.ajax({
@@ -83,8 +82,9 @@
 					$('#gpszdzh').val(item.zdzh);
 					$('#span_zdzh').html(item.zdzh);
 					$('#lc').val(item.lc);
-					$('#jsdj').combobox("setValue",item.xjsdj);
+					$('#jsdj').val(item.xjsdj);
 					$('#lmkd').val(item.ylmlx);
+					queryJsdjAndLc($('#ylxbh').val(),$('#qdzh').val(),$('#zdzh').val());
 					$.ajax({
 						type:'post',
 						url:'../../../qqgl/queryTsdq.do',
@@ -224,6 +224,19 @@
 					<input id="lc" name="lc" type="text" style="width: 80px;"/>&nbsp;km&nbsp;<span style="color: red;">*</span>
 				</td>
             </tr>
+            <tr style="height: 30px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					技术等级及里程
+				</td>
+				<td colspan="5" style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+				</td>
+			</tr>
             <tr style="height: 30px;">
             	<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					技术等级</td>

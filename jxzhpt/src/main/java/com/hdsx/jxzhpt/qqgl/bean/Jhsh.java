@@ -65,6 +65,48 @@ public class Jhsh {
 	private String zdmc;//止点名称
 	private String gpsqdzh;//GPSRoad中的起点桩号
 	private String gpszdzh;//GPSRoad中的止点桩号
+	private String yilc;//一级公路里程
+	private String erlc;//二级公路里程
+	private String sanlc;//三级公路里程
+	private String silc;//四级公路里程
+	private String dwlc;//等外公路里程
+	private String wllc;//高速公路里程
+	public String getYilc() {
+		return yilc;
+	}
+	public void setYilc(String yilc) {
+		this.yilc = yilc;
+	}
+	public String getErlc() {
+		return erlc;
+	}
+	public void setErlc(String erlc) {
+		this.erlc = erlc;
+	}
+	public String getSanlc() {
+		return sanlc;
+	}
+	public void setSanlc(String sanlc) {
+		this.sanlc = sanlc;
+	}
+	public String getSilc() {
+		return silc;
+	}
+	public void setSilc(String silc) {
+		this.silc = silc;
+	}
+	public String getDwlc() {
+		return dwlc;
+	}
+	public void setDwlc(String dwlc) {
+		this.dwlc = dwlc;
+	}
+	public String getWllc() {
+		return wllc;
+	}
+	public void setWllc(String wllc) {
+		this.wllc = wllc;
+	}
 	public String getGydw() {
 		return gydw;
 	}

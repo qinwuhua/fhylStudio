@@ -23,7 +23,6 @@
 	</style>
 	<script type="text/javascript">
 		$(function(){
-			loadBmbm2('xjsdj','技术等级');
 			$('#xmbm1').val(parent.YMLib.Var.xmbm);
 			$('#xmbm').val(parent.YMLib.Var.xmbm);
 			$('#jdbs').val(parent.YMLib.Var.jdbs);
@@ -79,9 +78,10 @@
 					$('#lc').val(item.lc);
 					$('#qdmc').val(item.qdmc);
 					$('#zdmc').val(item.zdmc);
-					$('#xjsdj').combobox("setValue",item.xjsdj);
+					$('#xjsdj').val(item.xjsdj);
 					$("#qd").html("<font color='red' size='2'>&nbsp;*不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
 					$("#zd").html("<font color='red' size='2'>&nbsp;*不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					queryJsdjAndLc($('#lxbm').val(),$('#qdzh').val(),$('#zdzh').val());
 				});
 		}
 		function insert(){
@@ -102,7 +102,7 @@
 					'lx.lxbm':$('#lxbm').val(),'lx.zdzh':$('#zdzh').val(),'lx.lc':$('#lc').val(),'lx.qdmc':$('#qdmc').val(),
 					'lx.zdmc':$('#zdmc').val(),'lx.jsxz':$('#jsxz').val(),'lx.gydw':$('#gydw').combobox("getText"),
 					'lx.gydwdm':$('#gydw').combobox("getValue"),'lx.xzqh':$('#xzqh').combobox("getText"),
-					'lx.xzqhdm':$('#xzqh').combobox("getValue"),'lx.xjsdj':$('#xjsdj').combobox("getValue"),
+					'lx.xzqhdm':$('#xzqh').combobox("getValue"),'lx.xjsdj':$('#xjsdj').val(),
 					'lx.gpsqdzh':$('#gpsqdzh').val(),'lx.gpszdzh':$('#gpszdzh').val(),'lx.jsfa':$('#jsfa').val()};
 			$.ajax({
 				type:'post',
@@ -161,7 +161,20 @@
 			<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 				里程</td>
 			<td style="background-color: #ffffff; height: 20px;" align="left">
-				<input id="lc" name="lc" type="text" style="width: 90px;"/>&nbsp;公里<font color='red' size='2'>&nbsp;*</font>
+				<input id="lc" name="lc" type="text" style="width: 83px;"/>&nbsp;公里<font color='red' size='2'>&nbsp;*</font>
+			</td>
+		</tr>
+		<tr style="height: 30px;">
+			<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+				技术等级及里程
+			</td>
+			<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+				二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+				三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+				四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+				等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+				高速公路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
 			</td>
 		</tr>
 		<tr style="height: 35px;">

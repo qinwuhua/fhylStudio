@@ -89,7 +89,7 @@
 					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
 					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
 					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
-					高速公路：<input id="gslc" name="gslc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
 				</td>
 			</tr>
             <tr style="height: 30px;">

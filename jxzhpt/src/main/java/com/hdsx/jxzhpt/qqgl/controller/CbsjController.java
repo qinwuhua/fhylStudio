@@ -130,14 +130,31 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setXmid(cbsj.getXmbm());
 			lx.setQdmc(cbsj.getQdmc());
 			lx.setZdmc(cbsj.getZdmc());
+			lx.setYilc(cbsj.getYilc());
+			lx.setErlc(cbsj.getErlc());
+			lx.setSanlc(cbsj.getSanlc());
+			lx.setSilc(cbsj.getSilc());
+			lx.setDwlc(cbsj.getDwlc());
+			lx.setWllc(cbsj.getWllc());
 			lx.setSffirst("1");
 			lx.setJdbs(cbsj.getJdbs());
 			
 			if(cbsj.getXmlx()==1){
+				lx.setJhyilc(cbsj.getJhyilc());
+				lx.setJherlc(cbsj.getJherlc());
+				lx.setJhsanlc(cbsj.getJhsanlc());
+				lx.setJhsilc(cbsj.getJhsilc());
+				lx.setJhdwlc(cbsj.getJhdwlc());
+				lx.setJhwllc(cbsj.getJhwllc());
 				b = cbsjServer.updateCbsjLmsj(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				b=cbsjServer.updateCbsjLmgz(cbsj);
 			}else if(cbsj.getXmlx()==3){
+				lx.setXjlxbm(cbsj.getXjlxbm());
+				lx.setXjqdzh(cbsj.getXjqdzh());
+				lx.setXjzdzh(cbsj.getXjzdzh());
+				int xjlc=Integer.parseInt(cbsj.getXjzdzh())-Integer.parseInt(cbsj.getXjqdzh());
+				lx.setXjlc(cbsj.getXjlc()==null ? new Integer(xjlc).toString() : cbsj.getXjlc());
 				b=cbsjServer.updateCbsjXj(cbsj);
 			}else if(cbsj.getXmlx()==4){
 				b=cbsjServer.updateCbsjYhdzx(cbsj);

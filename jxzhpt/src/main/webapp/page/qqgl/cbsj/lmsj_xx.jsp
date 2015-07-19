@@ -85,6 +85,32 @@
 						<input name="lc" type="text" style="font-size: 14px;width: 120px;"/>&nbsp;公里</td>
 				</tr>
 				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						一级公路：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级公路：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级公路：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级公路：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外公路：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
 					<td style="background-color: #ffffff; height: 20px;" align="left">
 						<input name="qdmc" type="text" style="width:120px;"/><br/>
@@ -175,6 +201,32 @@
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 					<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 						<input type="text" id="jsxz" name="jsxz" style="width: 120px;"/></td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+						一级公路：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级公路：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级公路：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级公路：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外公路：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+					</td>
 				</tr>
 				<tr style="height: 35px;">
 					<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
@@ -301,6 +353,32 @@
 					</td>
 					<td style="border-left: 1px solid #C0C0C0; border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
 						<input id="lj" name="lj" style="width: 120px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						现技术等<br/>级及里程
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+						二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+						三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+						四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+						等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+						无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+					</td>
+				</tr>
+				<tr style="height: 35px;">
+					<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+						建设技术<br/>等级及里程
+					</td>
+					<td colspan="5" style="border-left: 1px solid #C0C0C0;border-top: 1px none #C0C0C0; border-bottom: 1px solid #C0C0C0; width: 19%; text-align: left; padding-left: 10px;">
+						一级公路：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+						二级公路：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+						三级公路：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+						四级公路：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+						等外公路：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+						无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
 					</td>
 				</tr>
 				<tr style="height: 30px;">

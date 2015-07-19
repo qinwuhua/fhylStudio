@@ -4,6 +4,20 @@ public class Lx {
 	public Lx(){
 		super();
 	};
+	public Lx(String xmid,String qdzh,String zdzh,String qdmc,String zdmc,String yilc,String erlc,String sanlc,String silc,String dwlc,String wllc){
+		super();
+		this.xmid=xmid;
+		this.qdzh=qdzh;
+		this.zdzh=zdzh;
+		this.qdmc=qdmc;
+		this.zdmc=zdmc;
+		this.yilc=yilc;
+		this.erlc=erlc;
+		this.sanlc=sanlc;
+		this.silc=silc;
+		this.dwlc=dwlc;
+		this.wllc=wllc;
+	}
 	public Lx(String xmid,String lxbm,String lxmc,String xzqh,
 			String xzqhdm, String gydw, String gydwdm, String qdzh,
 			String zdzh,String lc,String xjsdj,String jsxz,
@@ -78,12 +92,83 @@ public class Lx {
 	private String sanlc;//三级公路里程
 	private String silc;//四级公路里程
 	private String dwlc;//等外公路里程
-	private String gslc;//高速公路里程
+	private String wllc;//无路里程
+	private String jhyilc;//建设后一级公路里程
+	private String jherlc;//建设后二级公路里程
+	private String jhsanlc;//建设后三级公路里程
+	private String jhsilc;//建设后四级公路里程
+	private String jhdwlc;//建设后等外公路里程
+	private String jhwllc;//建设后无路里程
+	private String xjlxbm;//新建路线编码
+	private String xjqdzh;//新建起点桩号
+	private String xjzdzh;//新建止点桩号
+	private String xjlc;//新建里程
 	//历史数据字段
 	private String ylxbm;//原路线编码
 	private String yqdzh;//原起点桩号
 	private String yzdzh;//原止点桩号
 	private String xmmc;//项目名称
+	
+	public String getJhyilc() {
+		return jhyilc;
+	}
+	public void setJhyilc(String jhyilc) {
+		this.jhyilc = jhyilc;
+	}
+	public String getJherlc() {
+		return jherlc;
+	}
+	public void setJherlc(String jherlc) {
+		this.jherlc = jherlc;
+	}
+	public String getJhsanlc() {
+		return jhsanlc;
+	}
+	public void setJhsanlc(String jhsanlc) {
+		this.jhsanlc = jhsanlc;
+	}
+	public String getJhsilc() {
+		return jhsilc;
+	}
+	public void setJhsilc(String jhsilc) {
+		this.jhsilc = jhsilc;
+	}
+	public String getJhdwlc() {
+		return jhdwlc;
+	}
+	public void setJhdwlc(String jhdwlc) {
+		this.jhdwlc = jhdwlc;
+	}
+	public String getJhwllc() {
+		return jhwllc;
+	}
+	public void setJhwllc(String jhwllc) {
+		this.jhwllc = jhwllc;
+	}
+	public String getXjlxbm() {
+		return xjlxbm;
+	}
+	public void setXjlxbm(String xjlxbm) {
+		this.xjlxbm = xjlxbm;
+	}
+	public String getXjqdzh() {
+		return xjqdzh;
+	}
+	public void setXjqdzh(String xjqdzh) {
+		this.xjqdzh = xjqdzh;
+	}
+	public String getXjzdzh() {
+		return xjzdzh;
+	}
+	public void setXjzdzh(String xjzdzh) {
+		this.xjzdzh = xjzdzh;
+	}
+	public String getXjlc() {
+		return xjlc;
+	}
+	public void setXjlc(String xjlc) {
+		this.xjlc = xjlc;
+	}
 	public String getGpsqdzh() {
 		return gpsqdzh;
 	}
@@ -276,10 +361,10 @@ public class Lx {
 	public void setDwlc(String dwlc) {
 		this.dwlc = dwlc;
 	}
-	public String getGslc() {
-		return gslc;
+	public String getWllc() {
+		return wllc;
 	}
-	public void setGslc(String gslc) {
-		this.gslc = gslc;
+	public void setWllc(String wllc) {
+		this.wllc = wllc;
 	}
 }

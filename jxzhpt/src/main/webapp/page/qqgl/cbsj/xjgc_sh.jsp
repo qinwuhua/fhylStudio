@@ -53,10 +53,10 @@
 					formatter: function(value,row,index){
 						var result="";
 						result+='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"',"+"'2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'升级改造工程项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'xjgcxx'"+','+"'新建工程项目'"+','+
 						"'/jxzhpt/page/qqgl/cbsj/xjgc_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						//if(row.shzt==0){
-							result+='&nbsp;<a href="javascript:openWindow('+"'xjgcedit'"+','+"'升级改造工程项目'"+','+
+							result+='&nbsp;<a href="javascript:openWindow('+"'xjgcedit'"+','+"'新建工程项目'"+','+
 								"'/jxzhpt/page/qqgl/cbsj/xjgc_edit.jsp'"+',980,400)" style="color:#3399CC;">编辑</a>';
 						//}else{
 						//	result+='&nbsp;<a style="color:black;">编辑</a>';

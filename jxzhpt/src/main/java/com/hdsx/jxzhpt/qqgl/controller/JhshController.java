@@ -162,7 +162,15 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 			Lx lx=new Lx();
 			lx.setQdzh(jhsh.getQdzh());
 			lx.setZdzh(jhsh.getZdzh());
+			lx.setQdmc(jhsh.getQdmc());
+			lx.setZdmc(jhsh.getZdmc());
 			lx.setXmid(jhsh.getXmbm());
+			lx.setYilc(jhsh.getYilc());
+			lx.setErlc(jhsh.getErlc());
+			lx.setSanlc(jhsh.getSanlc());
+			lx.setSilc(jhsh.getSilc());
+			lx.setDwlc(jhsh.getDwlc());
+			lx.setWllc(jhsh.getWllc());
 			lx.setSffirst("1");
 			lx.setJdbs(jdbs);
 			

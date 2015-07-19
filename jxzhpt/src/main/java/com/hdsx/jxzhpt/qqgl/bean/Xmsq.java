@@ -38,7 +38,7 @@ public class Xmsq {
 	private String sanlc;//三级公路里程
 	private String silc;//四级公路里程
 	private String dwlc;//等外公路里程
-	private String gslc;//高速公路里程
+	private String wllc;//高速公路里程
 	public String getYilc() {
 		return yilc;
 	}
@@ -69,11 +69,11 @@ public class Xmsq {
 	public void setDwlc(String dwlc) {
 		this.dwlc = dwlc;
 	}
-	public String getGslc() {
-		return gslc;
+	public String getWllc() {
+		return wllc;
 	}
-	public void setGslc(String gslc) {
-		this.gslc = gslc;
+	public void setWllc(String wllc) {
+		this.wllc = wllc;
 	}
 	public String getGpsqdzh() {
 		return gpsqdzh;

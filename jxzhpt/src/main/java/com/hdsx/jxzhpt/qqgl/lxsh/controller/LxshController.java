@@ -107,7 +107,10 @@ public class LxshController extends BaseActionSupport{
 	private String lsjl;
 	private String fileuploadFileName;
 	private File fileupload;
+	private Lx lx;
 	private Wqbzbz wqbzbz=new Wqbzbz();
+	@Resource(name="jhshServerImpl")
+	private JhshServer jhshServer;
 	
 	public File getFileupload() {
 		return fileupload;
@@ -300,13 +303,13 @@ public class LxshController extends BaseActionSupport{
 		}
 	}
 	public void selectbzcs(){
-		Lxsh l = lxshServer.selectbzcs(lxsh);
-		BigDecimal b1=new BigDecimal(l.getBzys());
-		BigDecimal b2=new BigDecimal(lxsh.getLc());
-		String bzys=b1.multiply(b2)+"";
-		l.setBzys(bzys);
 		try {
-			JsonUtils.write(l, getresponse().getWriter());
+			Lxsh l = lxshServer.selectbzcs(lxsh);
+			BigDecimal b1=new BigDecimal(l==null ? "0" : l.getBzys());
+			BigDecimal b2=new BigDecimal(lxsh.getLc());
+			String bzys=b1.multiply(b2)+"";
+			lxsh.setBzys(bzys);
+			JsonUtils.write(lxsh, getresponse().getWriter());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -393,6 +396,7 @@ public class LxshController extends BaseActionSupport{
 			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
+			
 			JhshServer jhshServer=new JhshServerImpl();
 			Lx queryHaveLx = jhshServer.queryHaveLx(lx);
 			if(queryHaveLx==null){
@@ -603,7 +607,16 @@ public class LxshController extends BaseActionSupport{
 	}
 	public void updateSjgz(){
 		boolean bl=lxshServer.updateSjgz(lxsh);
+		//准备路线桩号信息
+		lx.setXmid(lxsh.getXmbm());
+		lx.setQdzh(lxsh.getQdzh());
+		lx.setZdzh(lxsh.getZdzh());
+		lx.setQdmc(lxsh.getQdmc());
+		lx.setZdmc(lxsh.getZdmc());
+		lx.setSffirst("1");
+		lx.setJdbs("0");
 		if(bl){
+			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
@@ -612,17 +625,39 @@ public class LxshController extends BaseActionSupport{
 	public void updateLmgz(){
 		boolean bl=lxshServer.updateLmgz(lxsh);
 		if(bl){
+			//准备路线桩号信息
+			lx.setXmid(lxsh.getXmbm());
+			lx.setQdzh(lxsh.getQdzh());
+			lx.setZdzh(lxsh.getZdzh());
+			lx.setQdmc(lxsh.getQdmc());
+			lx.setZdmc(lxsh.getZdmc());
+			lx.setSffirst("1");
+			lx.setJdbs("0");
+			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");
 		}else{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
 	public void updateXj(){
-		boolean bl=lxshServer.updateXj(lxsh);
-		if(bl){
-			ResponseUtils.write(getresponse(), "true");
-		}else{
-			ResponseUtils.write(getresponse(), "false");
+		try{
+			boolean bl=lxshServer.updateXj(lxsh);
+			//准备路线桩号信息
+			lx.setXmid(lxsh.getXmbm());
+			lx.setQdzh(lxsh.getQdzh());
+			lx.setZdzh(lxsh.getZdzh());
+			lx.setQdmc(lxsh.getQdmc());
+			lx.setZdmc(lxsh.getZdmc());
+			lx.setSffirst("1");
+			lx.setJdbs("0");
+			jhshServer.updateLx(lx);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	public void selectSjgzshList(){
@@ -1267,6 +1302,12 @@ public class LxshController extends BaseActionSupport{
 	public void delwqbzbz(){
 		boolean bl=lxshServer.delwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public Lx getLx() {
+		return lx;
+	}
+	public void setLx(Lx lx) {
+		this.lx = lx;
 	}
 }
 

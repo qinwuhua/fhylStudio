@@ -39,11 +39,11 @@ text-decoration:none;
 		xmnf2("jhkgn");
 		xmnf2("jhwgn");
 		xmbm('xmbm',$.cookie("dist"),new Date().getFullYear(),'sjgz');
-		$('#jsjsdj').combobox({
+		/*$('#jsjsdj').combobox({
 		    onSelect:function(rec){
 		    	getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
 		    }
-		});
+		});*/
 		$("#save_button").click(function(){
 			if($("#lxbm").val()=="" || $("#lxbm").val()==null){
 				alert("请填写路线编码！");
@@ -178,9 +178,8 @@ text-decoration:none;
 					$("#qdzh").val(parseFloat(item.qdzh));
 					$("#zdzh").val(parseFloat(item.zdzh));
 					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
-					getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					$("#jsjsdj").combobox('setValue',item.xjsdj);
+					$("#jsjsdj").val(item.xjsdj);
 					$("#xjsdj").html(item.xjsdj);
 					$("#qdmc").html(item.qdmc);
 					$("#zdmc").html(item.zdmc);
@@ -188,6 +187,8 @@ text-decoration:none;
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
 					$("#zd").html("<font color='red' size='2'>*&nbsp;不能大于</font>"+"<font color='red' size='2'>"+item.zdzh);
+					queryJsdjAndLc(item.ghlxbh,$("#qdzh").val(),$("#zdzh").val());
+					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'升级改造工程项目');
 				});
 	}
 	function saveLxsh(){
@@ -209,10 +210,14 @@ text-decoration:none;
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
-		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox('getText')+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
+		+"&lxsh.jsjsdj="+$("#jsjsdj").val()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").html()+"&lxsh.dfzc="+accSub(parseFloat($("#tz").val()),parseFloat($("#bzcs").html()))+"&lxsh.tbbmbm="+$.cookie("unit")
 		+"&lxsh.sbthcd="+sbthcd+"&lxsh.jdbs=0"+"&lxsh.gpsqdzh="+qdStr+"&lxsh.gpszdzh="+zdStr;
+		data+="&lxsh.yilc="+$('#yilc').val()+"&lxsh.erlc="+$('#erlc').val()+"&lxsh.sanlc="+$('#sanlc').val()+
+		"&lxsh.silc="+$('#silc').val()+"&lxsh.dwlc="+$('#dwlc').val()+"&lxsh.wllc="+$('#wllc').val();
+		data+="&lxsh.jhyilc="+$('#jhyilc').val()+"&lxsh.jherlc="+$('#jherlc').val()+"&lxsh.jhsanlc="+$('#jhsanlc').val()+
+		"&lxsh.jhsilc="+$('#jhsilc').val()+"&lxsh.jhdwlc="+$('#jhdwlc').val()+"&lxsh.jhwllc="+$('#jhwllc').val();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/insertSjgz.do',
@@ -242,7 +247,8 @@ text-decoration:none;
 		}
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
 		$("#lc").html(zlc);
-		getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
+		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
 		cxqdmc($("#lxbm").val(),$("#qdzh").val());
@@ -254,97 +260,155 @@ text-decoration:none;
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线编码：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>路线编码：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="lxbm" id="lxbm" style="width: 156px" /></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>路线名称：</td>
+					<input type="text" name="lxbm" id="lxbm" style="width: 120px" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>路线名称：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="lxmc"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目名称：</td>
+					<span id="lxmc"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="xmmc" style="width: 156px"/></td>
+					<input type="text" name="qdzh" id="qdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<span id="qd"></span>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点桩号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>止点桩号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="qdzh" id="qdzh" style="width: 156px" onblur="changeZlc()"/><br/>
-					<span id="qd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点桩号：</td>
+					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<span id="zd"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 145px" onblur="changeZlc()"/><br/>
-					<span id="zd"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>里程：</td>
+					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里</td>
+					<span id="qdmc" style="font-size: 14px"></span>
+				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qdmc" style="font-size: 14px"></span><br/>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
+					<span id="zdmc" style="font-size: 14px"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zdmc" style="font-size: 14px"></span><br/>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设性质：</td>
+					<span id="xjsdj"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="jsxz" style="width: 145px" value='升级改造'/></td>
+					<input id="jsjsdj" name="jsjsdj" style="width: 120px;" />
+				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>管养单位：</td>
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					现技术等<br/>级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
+					建设技术<br/>等级及里程
+				</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					一级公路：<input id="jhyilc" onchange="cesuan()" name="jhyilc" style="width: 50px;" value="0" type="text"/>
+					二级公路：<input id="jherlc" onchange="cesuan()" name="jherlc" style="width: 50px;" value="0" type="text"/>
+					三级公路：<input id="jhsanlc" onchange="cesuan()" name="jhsanlc" style="width: 50px;" value="0" type="text"/>
+					四级公路：<input id="jhsilc" onchange="cesuan()" name="jhsilc" style="width: 50px;" value="0" type="text"/>
+					等外公路：<input id="jhdwlc" onchange="cesuan()" name="jhdwlc" style="width: 50px;" value="0" type="text"/>
+					无路：<input id="jhwllc" onchange="cesuan()" name="jhwllc" style="width: 50px;" type="text" value="0"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xmbm"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="xmmc" style="width: 120px"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="jsxz" style="width: 120px" value='升级改造'/></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>管养单位：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='gydw'></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>行政区划：</td>
+					<input type='text' id='gydw' style="width: 124px;"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>行政区划：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
-					<input type='text' id='xzqh'></td>
+					<input type='text' id='xzqh' style="width: 124px;"></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">特殊地区：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="tsdq" style="font-size: 14px"></span></td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>项目年份：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsjsdj" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						<option value="一级公路">一级公路</option>
-						<option value="二级公路">二级公路</option>
-						<option value="三级公路">三级公路</option>
-					</select></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>现状技术等级：</td>
+					<select id="xmnf" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>计划开工年：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xjsdj"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目编码：</td>
+					<select id="jhkgn" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>计划完工年：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xmbm"></span>
+					<select id="jhwgn" style="width:124px"class="easyui-combobox" data-options="panelHeight:'100'"></select>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>项目年份：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>投资(万元)：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="xmnf" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						
-					</select>
-					</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>计划开工年：</td>
+					<input type="text" id="tz"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jhkgn" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						
-					</select>	</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>计划完工年：</td>
+					<span id="bzcs">0</span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：
+				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jhwgn" style="width:155px"class="easyui-combobox" data-options="panelHeight:'100'">
-						
-					</select>	</td>
+					<span id="dfzc">0</span>
+				</td>
 			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>投资(万元)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc(this)"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<span id="bzcs"></span></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>地方自筹(万元)：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-				<span id="dfzc"></span>
+			<tr style="height: 60px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id="bz" style="width: 580px;height: 50px;"></textarea>
 				</td>
 			</tr>
 			
