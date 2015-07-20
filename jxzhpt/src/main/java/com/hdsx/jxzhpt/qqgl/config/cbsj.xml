@@ -334,7 +334,7 @@
 	
 	<update id="updateCbsjLmgz" parameterType="cbsj">
 		update cbsj_lmgz c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},c.dfzc=#{dfzc},c.yhdk=#{yhdk},
 		<if test="lj!=null">c.lj=#{lj},</if> 
 		<if test="ql!=null">c.ql=#{ql},</if>
 		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
@@ -366,7 +366,7 @@
 	</update>
 	<update id="updateCbsjLmsj" parameterType="cbsj">
 		update cbsj_sjgz c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},c.dfzc=#{dfzc},c.yhdk=#{yhdk},
 		<if test="lj!=null">c.lj=#{lj},</if> 
 		<if test="ql!=null">c.ql=#{ql},</if>
 		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
@@ -398,7 +398,7 @@
 	</update>
 	<update id="updateCbsjXj" parameterType="cbsj">
 		update cbsj_xj c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},c.dfzc=#{dfzc},c.yhdk=#{yhdk},
 		<if test="lj!=null">c.lj=#{lj},</if> 
 		<if test="ql!=null">c.ql=#{ql},</if>
 		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
