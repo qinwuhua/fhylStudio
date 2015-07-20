@@ -69,6 +69,8 @@ text-decoration:none;
 		$('#jhsilc').val(data.jhsilc);
 		$('#jhdwlc').val(data.jhdwlc);
 		$('#jhwllc').val(data.jhwllc);
+		$('#dfzc').val(data.dfzc);
+		$('#yhdk').val(data.yhdk);
 		fileShow(parent.obj.xmbm,"工可批复文件");
 		var data1="lxsh.ghlxbh="+data.lxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
@@ -142,7 +144,8 @@ text-decoration:none;
 		+"&kxxyj.dq="+$('#dq').val()+"&kxxyj.dq_m="+$('#dq_m').val()+"&kxxyj.jsjsdj="+$('#jsjsdj').val()+"&kxxyj.xzqh="+$('#xzqh').combobox('getText')+"&kxxyj.xzqhdm="+$('#xzqh').combobox('getValue')
 		+"&kxxyj.sd="+$('#sd').val()+"&kxxyj.sd_m="+$('#sd_m').val()+"&kxxyj.jsdw="+$('#jsdw').val()
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
-		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue');
+		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')+
+		"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val();
 		//alert(data);
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val();
@@ -312,13 +315,13 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">投资估算：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input style="width: 120px;" type="text" id="tzgs" onblur="checkSZ(this)"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="gkpfwh" style="width: 120px;"/>
+					<input type="text" id="dfzc" style="width: 120px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">银行贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input style="width: 124px;" type="text" id="pfsj"/>
+					<input style="width: 124px;" type="text" id="yhdk"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -326,10 +329,13 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<input type="text" id="jsxz" style="width: 120px;"/>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+					<input type="text" id="gkpfwh" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input style="width: 124px;" type="text" id="pfsj"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

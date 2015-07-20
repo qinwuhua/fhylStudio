@@ -65,6 +65,20 @@ public class Kxxyj implements Serializable {
 	private String jhsilc;//建设后四级公路里程
 	private String jhdwlc;//建设后等外公路里程
 	private String jhwllc;//建设后无路里程
+	private String yhdk;//银行贷款
+	private String dfzc;//地方自筹
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
+	public String getDfzc() {
+		return dfzc;
+	}
+	public void setDfzc(String dfzc) {
+		this.dfzc = dfzc;
+	}
 	public String getXjlc() {
 		return xjlc;
 	}

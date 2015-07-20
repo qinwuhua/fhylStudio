@@ -451,16 +451,16 @@
 		select * from LXSH_XJ where ${value}
 	</select>
 	<insert id="insertsjgzkxx" parameterType="lxsh">
-		insert into kxxyj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+		insert into kxxyj_sjgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc})
 	</insert>
 	<insert id="insertlmgzkxx" parameterType="lxsh">
-		insert into kxxyj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+		insert into kxxyj_lmgz(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc})
 	</insert>
 	<insert id="insertxjkxx" parameterType="lxsh">
-		insert into kxxyj_xj(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz)
-		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz})
+		insert into kxxyj_xj(id,xmmc,xmbm,xzqh,xzqhdm,qdzh,zdzh,jsjsdj,jsxz,yhdk,dfzc)
+		values(sys_guid(),#{xmmc},#{xmbm},#{xzqh},#{xzqhdm},#{qdzh},#{zdzh},#{jsjsdj},#{jsxz},#{yhdk},#{dfzc})
 	</insert>
 	<select id="selectLmgzList" parameterType="lxsh" resultType="lxsh">
 		select * from (

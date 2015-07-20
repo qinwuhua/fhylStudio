@@ -69,6 +69,8 @@ text-decoration:none;
 		$('#jhsilc').html(data.jhsilc);
 		$('#jhdwlc').html(data.jhdwlc);
 		$('#jhwllc').html(data.jhwllc);
+		$('#dfzc').html(data.dfzc);
+		$('#yhdk').html(data.yhdk);
 		fileShow1(parent.obj.xmbm,"工可批复文件");		
 	}
 	
@@ -221,13 +223,13 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="tzgs"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">地方自筹：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="gkpfwh"></span>
+					<span id="dfzc"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">银行贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="pfsj"></span>
+					<span id="yhdk"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -235,10 +237,13 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="jsxz"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+					<span id="gkpfwh"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="pfsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
