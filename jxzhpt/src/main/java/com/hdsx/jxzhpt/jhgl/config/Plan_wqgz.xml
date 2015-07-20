@@ -3,6 +3,7 @@
 <mapper namespace="com.hdsx.jxzhpt.plan_wqgz">
 	<resultMap type="plan_wqgz"  id="wqgz_jh">
 		<id property="id" column="id" />
+		<result property="sfylrbwqk" column="sfylrbwqk"/>
 		<result property="sckid" column="sckid"/>
 		<result property="sbnf" column="sbnf"/>
 		<result property="sbzt" column="sbzt"/>
@@ -367,6 +368,7 @@
 	<update id="editWqgzById" parameterType="plan_wqgz">
 		update plan_wqgz set sbnf=#{sbnf}
 		<if test="jhkgsj!=null and jhkgsj!=''">,jhkgsj=#{jhkgsj}</if>
+		<if test="sfylrbwqk!=null and sfylrbwqk!=''">,sfylrbwqk=#{sfylrbwqk}</if>
 		<if test="jhwgsj!=null and jhwgsj!=''">,jhwgsj=#{jhwgsj}</if>
 		<if test="xdsj!=null and xdsj!=''">,xdsj=#{xdsj}</if>
 		<if test="pfsj!=null and pfsj!=''">,pfsj=#{pfsj}</if>

@@ -74,7 +74,14 @@ public class Plan_wqgz {
 	private String qlmc;
 	private String qlzxzh;
 	private String xjgjnd;
+	private String sfylrbwqk;
 	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getJh_sbthcd() {
 		return jh_sbthcd;
 	}

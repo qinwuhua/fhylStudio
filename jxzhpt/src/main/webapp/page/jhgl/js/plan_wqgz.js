@@ -542,6 +542,7 @@ function dropWqgzs(){
 }
 function editWqgz(){
 	var jh={'jh.id':$('#jhid').val(),
+			'jh.sfylrbwqk':'是',
 			'jh.sbnf':$('#editjhnf').combobox('getValue'),
 			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),
 			'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
@@ -578,6 +579,7 @@ function editWqgz(){
 //
 function editWqgz1(){
 	var jh={'jh.id':$('#jhid').val(),
+			'jh.sfylrbwqk':$('#sfylrbwqk').combobox('getValue'),
 			'jh.sbnf':$('#editjhnf').combobox('getValue'),
 			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),
 			'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
