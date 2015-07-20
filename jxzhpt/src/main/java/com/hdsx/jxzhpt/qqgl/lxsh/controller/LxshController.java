@@ -960,14 +960,14 @@ public class LxshController extends BaseActionSupport{
 			String tiaojian1="";
 			String tiaojian2="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
+				tiaojian1="and t.gydwdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1=" and lx.gydwdm in ("+gydw+")";
+				tiaojian1=" and t.gydwdm in ("+gydw+")";
 			}
 			if(xzqh.indexOf(",")==-1){
-				tiaojian2=" and lx.xzqhdm like '%"+xzqh+"%'";
+				tiaojian2=" and t.xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2=" and lx.xzqhdm in ("+xzqh+")";
+				tiaojian2=" and t.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);

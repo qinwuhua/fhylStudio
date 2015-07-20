@@ -60,6 +60,17 @@ function loadxx(){
 	$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
 	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
 	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
+	if(item.sfkxg=='是'){
+		$("#sf1").attr('colspan','1');
+		$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;');
+		$("#sf3").attr('style','background-color: #ffffff; height: 20px;');
+		$("#sfylrbwqk").combobox('setValue',item.sfylrbwqk);
+	}else{
+		$("#sf1").attr('colspan','5');
+		$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;');
+		$("#sf3").attr('style','background-color: #ffffff; height: 20px;display: none;');
+		$("#sfylrbwqk").combobox('setValue',item.sfylrbwqk);
+	}
 	
 	$("#scqlqc").val(item.scqlqc);
 	$("#scqlqk").val(item.scqlqk);
@@ -134,8 +145,8 @@ function saveWqgz(){
 	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+$("#cjqz").val()
 	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()
-	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val();
-	//alert(data);
+	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	alert(data);
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/wqgzsj/updateSckwqgz.do',
@@ -606,9 +617,15 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">乡镇：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td id="sf1" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scszxz" style="width: 150px" />
 				</td>
+				<td id="sf2" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;" align="right">是否入部危桥库：</td>
+				<td id="sf3" colspan="3" style="background-color: #ffffff; height: 20px;display: none;" align="left">
+					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
+						<option value="否">否</option>
+						<option value="是" selected>是</option>
+					</select></td>
 			</tr>
 			
 			<tr style="height: 30px;">

@@ -1,5 +1,148 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.planwqgzsj">
-	
+	<select id="selectwqjhkgl" parameterType="planwqgzsj" resultType="planwqgzsj">
+			select * from (
+		select rownum num ,t.*,decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')) sbzt2 from
+		 (select t.*,xm.xzqhdm,xm.tbbmbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm, 
+		 xm.xzqhmc,xm.gydw,xm.qlbh
+		 from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+		) t1 where t1.num &lt;=(#{page} * #{rows}) and
+		t1.num>(#{page}-1)*#{rows}
+		order by decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报')),spzt desc
+	</select>
+	<select id="selectwqjhkglcount" parameterType="planwqgzsj" resultType="int">
+		select count(*) from 
+		(select t.*,xm.xzqhdm,xm.tbbmbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+	</select>
+		<select id="loadwqjhkglCount" parameterType="planwqgzsj" resultType="planwqgzsj">
+		select count(*) sl,sum(pfztz) pfztz,sum(jhsybzje) jhsybzje,sum(jhsydfzcje) jhsydfzcje,sum(shengbz) shengbz from 
+		(select t.*,xm.xzqhdm,xm.tbbmbm,xm.lxmc,xm.qlmc,xm.jsdj,xm.akjfl,xm.lxbm from plan_wqgz t join sck_wqgz sc on t.sckid=sc.sckid join xmk_wqgz xm on xmkid=xm.id where 1=1 
+		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
+ 				<if test="tsdq!='' and tsdq!= null ">
+ 					and xm.tsdq like '%'||#{tsdq}||'%'
+ 				</if>) t where 1=1
+		<if test="gydw!='' and gydw!= null ">
+			${gydw}
+		</if>
+		<if test="xzqhdm!='' and xzqhdm!= null ">
+			${xzqhdm}
+		</if>
+		<if test="lxmc!='' and lxmc!= null ">
+			and lxmc like '%'||(#{lxmc})||'%'
+		</if>
+		<if test="qlmc!='' and qlmc!= null ">
+			and qlmc like '%'||(#{qlmc})||'%'
+		</if>
+		<if test="jsdj!='' and jsdj!= null ">
+			and jsdj like '%'||(#{jsdj})||'%'
+		</if>
+		<if test="akjfl!='' and akjfl!= null ">
+			and akjfl like #{akjfl}||'%'
+		</if>
+		<if test="sfylsjl!='' and sfylsjl!= null ">
+ 			and sfylsjl like #{sfylsjl}||'%'
+ 		</if>
+ 		<if test="lxbm!='' and lxbm!= null ">
+			and lxbm like (#{lxbm})||'%'
+		</if>
+		<if test="sbnf!='' and sbnf!= null ">
+			and sbnf like '%'||(#{sbnf})||'%'
+		</if>
+		<if test="sbzt!='' and sbzt!= null ">
+			and decode(JH_SBTHCD,#{sbthcd},'未上报',decode(SBZT,0,'未上报',1,'已上报'))=#{sbzt}
+		</if>
+		<if test="shzt!='' and shzt!= null ">
+			and decode(SPZT,0,'未审核',1,'已审核')=#{shzt}
+		</if>
+	</select>
+	<select id="loadwqgzjhkbyid" parameterType="string" resultType="planwqgzsj">
+		select * from plan_wqgz where id=#{value}
+	</select>
+	<select id="loadwqgzsckbyid" parameterType="string" resultType="planwqgzsj">
+		select * from sck_wqgz where sckid=#{value}
+	</select>
+	<select id="loadwqgzxmkbyid" parameterType="string" resultType="planwqgzsj">
+		select * from xmk_wqgz where id=#{value}
+	</select>
 </mapper>

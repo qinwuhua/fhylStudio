@@ -19,87 +19,115 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMLib.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/lwxm/js/lwxm.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/lwxm/js/wqsj.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/lwxm/js/lwxm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/page/lwxm/js/wqsj.js"></script>
 <script type="text/javascript">
 $(function(){
-	loadSckxx();
-	loadJckxx();
-	sjtfileShow();
+	xmnf1("sbnf");
+	loadJhkxx();
 });
-function loadJckxx(){
-	var item=parent.obj;
-	fileShow2(item.xmkid,"桥梁正面文件");
-	fileShow3(item.xmkid,"桥梁侧面文件");
-	$("#qlbh").html(item.qlbh);
-	$("#qlmc").html(item.qlmc);
-	$("#qlzxzh").html(item.qlzxzh);
-	$("#gydw").html(item.gydw);
-	$("#xzqhmc").html(item.xzqhmc);
-	$("#xzqhdm").html(item.xzqhdm);
-	$("#lxmc").html(item.lxmc);
-	$("#lxbm").html(item.lxbm);
-	$("#kjzc").html(item.kjzc);
-	$("#qlqc").html(item.qlqc);
-	$("#qlkd").html(item.qlkd);
-	$("#dkzdkj").html(item.dkzdkj);
-	$("#jsdj").html(item.jsdj);
-	$("#pddj").html(item.pddj);
-	$("#xjgjnd").html(item.xjgjnd);
-	$("#akjfl").html(item.akjfl);
-	$("#sbjgxs").html(item.sbjgxs);
-	$("#xmnf").html(item.xmnf);
-	$("#xmtype").html(item.xmtype);
-	$("#bhnr").html(item.bhnr);
-	$("#bz").html(item.bz);
-	$("#tsdq").html(item.tsdq);
-	$("#qlyhgcs").html(item.qlyhgcs);
-	$("#qljggcs").html(item.qljggcs);
-	$("#xmrksj").html(item.xmrksj);
-	$("#czyjhjy").html(item.czyjhjy);
-	$("#sqs").html(item.sqs);$("#xsq").html(item.xsq);$("#szxz").html(item.szxz);
-	$("#synf").html(item.synf);$("#sjhspl").html(item.sjhspl);$("#qxjkuan").html(item.qxjkuan);
-	$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
-	$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
-	$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
+function loadJhkxx(){
+	alert(parent.obj+"----");
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzjhkbyid.do",
+		 dataType : 'json',
+		 data : 'id='+parent.obj,
+		 success : function(msg){
+			 loadSckxx(msg.sckid);
+			 
+		 }
+	});
 }
-function loadSckxx(){
-	var item=parent.obj;
-	$("#scqlqc").html(item.scqlqc);
-	$("#scqlqk").html(item.scqlqk);
-	$("#scxmnf").html(item.scxmnf);
-	$("#fapgdw").html(item.fapgdw);
-	$("#fascdw").html(item.fascdw);
-	$("#faspsj").html(item.faspsj);
-	$("#spwh").html(item.spwh);
-	$("#jsxz").html(item.jsxz);
-	$("#tzgs").html(item.tzgs);
-	$("#sjdwmc").html(item.sjdwmc);
-	$("#jsgmqc").html(item.jsgmqc);
-	$("#jsgmqk").html(item.jsgmqk);
-	$("#hzdj").html(item.hzdj);
-	$("#scsjhspl").html(item.scsjhspl);
-	$("#sck_sbjgxs").html(item.sck_sbjgxs);
-	$("#kjzh").html(item.kjzh);
-	$("#ztz").html(item.ztz);
-	$("#sck_xbjgxs").html(item.sck_xbjgxs);
-	$("#sgtpfsj").html(item.sgtpfsj);
-	$("#pfwh").html(item.pfwh);
-	$("#zgq").html(item.zgq);
-	$("#jsnr").html(item.jsnr);
-	$("#scbz").html(item.scbz);
-	$("#nsqbbz").html(item.nsqbbz);$("#rksj").html(item.rksj);$("#cjqz").html(item.cjqz);
-	$("#scthdj").html(item.scthdj);$("#qljc").html(item.qljc);$("#ydgldj").html(item.ydgldj);
-	$("#sjsd").html(item.sjsd);$("#scsqs").html(item.scsqs);$("#scxsq").html(item.scxsq);$("#scszxz").html(item.scszxz);
+function loadJckxx(id){
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzxmkbyid.do",
+		 dataType : 'json',
+		 data : 'id='+id,
+		 success : function(item){
+			 	fileShow2(item.id,"桥梁正面文件");
+				fileShow3(item.id,"桥梁侧面文件");
+				$("#qlbh").html(item.qlbh);
+				$("#qlmc").html(item.qlmc);
+				$("#qlzxzh").html(item.qlzxzh);
+				$("#gydw").html(item.gydw);
+				$("#xzqhmc").html(item.xzqhmc);
+				$("#xzqhdm").html(item.xzqhdm);
+				$("#lxmc").html(item.lxmc);
+				$("#lxbm").html(item.lxbm);
+				$("#kjzc").html(item.kjzc);
+				$("#qlqc").html(item.qlqc);
+				$("#qlkd").html(item.qlkd);
+				$("#dkzdkj").html(item.dkzdkj);
+				$("#jsdj").html(item.jsdj);
+				$("#pddj").html(item.pddj);
+				$("#xjgjnd").html(item.xjgjnd);
+				$("#akjfl").html(item.akjfl);
+				$("#sbjgxs").html(item.sbjgxs);
+				$("#xmnf").html(item.xmnf);
+				$("#xmtype").html(item.xmtype);
+				$("#bhnr").html(item.bhnr);
+				$("#bz").html(item.bz);
+				$("#tsdq").html(item.tsdq);
+				$("#qlyhgcs").html(item.qlyhgcs);
+				$("#qljggcs").html(item.qljggcs);
+				$("#xmrksj").html(item.xmrksj);
+				$("#czyjhjy").html(item.czyjhjy);
+				$("#sqs").html(item.sqs);$("#xsq").html(item.xsq);$("#szxz").html(item.szxz);
+				$("#synf").html(item.synf);$("#sjhspl").html(item.sjhspl);$("#qxjkuan").html(item.qxjkuan);
+				$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
+				$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
+				$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
+		 }
+	});
+}
+function loadSckxx(id){
+	$.ajax({
+		 type : "POST",
+		 url : "/jxzhpt/jhgl/loadwqgzsckbyid.do",
+		 dataType : 'json',
+		 data : 'id='+id,
+		 success : function(item){
+			 loadJckxx(item.xmkid);
+			 sjtfileShow(item.sckid);
+			 $("#scqlqc").html(item.scqlqc);
+				$("#scqlqk").html(item.scqlqk);
+				$("#scxmnf").html(item.scxmnf);
+				$("#fapgdw").html(item.fapgdw);
+				$("#fascdw").html(item.fascdw);
+				$("#faspsj").html(item.faspsj);
+				$("#spwh").html(item.spwh);
+				$("#jsxz").html(item.jsxz);
+				$("#tzgs").html(item.tzgs);
+				$("#sjdwmc").html(item.sjdwmc);
+				$("#jsgmqc").html(item.jsgmqc);
+				$("#jsgmqk").html(item.jsgmqk);
+				$("#hzdj").html(item.hzdj);
+				$("#scsjhspl").html(item.scsjhspl);
+				$("#sck_sbjgxs").html(item.sck_sbjgxs);
+				$("#kjzh").html(item.kjzh);
+				$("#ztz").html(item.ztz);
+				$("#sck_xbjgxs").html(item.sck_xbjgxs);
+				$("#sgtpfsj").html(item.sgtpfsj);
+				$("#pfwh").html(item.pfwh);
+				$("#zgq").html(item.zgq);
+				$("#jsnr").html(item.jsnr);
+				$("#scbz").html(item.scbz);
+				$("#nsqbbz").html(item.nsqbbz);$("#rksj").html(item.rksj);$("#cjqz").html(item.cjqz);
+				$("#scthdj").html(item.scthdj);$("#qljc").html(item.qljc);$("#ydgldj").html(item.ydgldj);
+				$("#sjsd").html(item.sjsd);$("#scsqs").html(item.scsqs);$("#scxsq").html(item.scxsq);$("#scszxz").html(item.scszxz);
+		 }
+	});
 }
 
-function sjtfileShow(){
+function sjtfileShow(id){
 	//加载文件
 	$.ajax({
 		type:'post',
 		url:'../../../jhgl/queryFjByParentId.do',
 		dataType:'json',
-		data:'uploads.id='+parent.obj.sckid,
+		data:'uploads.id='+id,
 		success:function(data){
 	/* 		var data=datas.rows; */
 		/* 	alert(data); */
@@ -487,6 +515,92 @@ text-decoration:none;
 						<tbody id="sjsgtTable"></tbody>
 					</table>
 				</td>
+			</tr>
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					危桥改造项目计划信息
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上报年份：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="sbnf" type="text" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="jhkgsj" type="text" class="easyui-datebox"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="jhwgsj" type="text" class="easyui-datebox"/>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="sjdw" type="text" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计批复单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="sjpfdw" type="text" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="pfwh" type="text" />
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input id="pfsj" type="text" class="easyui-datebox"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="radio" name="sfsqablbz" onchange="ablwhDis('是')" id="sfsqablbz0" value="是"/>是
+					<input type="radio" name="sfsqablbz" onchange="ablwhDis('否')" id="sfsqablbz1" value="否"/>否</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="ablbzwh" style="display:;"/>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="pfztz" onblur="bzSum()"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用省补助金额(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="shengbz" onblur="bzSum()"/></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用地方自筹资金(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="dfzc"></span>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qlszxz" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="qljsgm" /></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主要建设内容：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="zyjsnr" /></td>
+			</tr>
+			<tr id="sftr" style="height: 30px;display: none;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
+						<option value="否">否</option>
+						<option value="是" selected>是</option>
+					</select></td>
+				
+			</tr>
+			<tr  style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">备注：</td>
+				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<textarea id="jhbz" style="width: 700px;height:40px;"></textarea></td>
+				
+			</tr>
+			<tr  style="height: 30px;">
+				<td align="center" colspan="6" style="background-color: #ffffff; height: 20px;" >
+                	<img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " onclick="editWqgz()" />
+                	<input type="hidden" id="jhid"/>
+                </td>
 			</tr>
 		</table>
 	</body>

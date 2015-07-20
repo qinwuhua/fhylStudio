@@ -136,7 +136,14 @@ public class Jckwqgzsj implements Serializable{
 	private String nsqbbz;
 	private String scsjhspl;  
 	private String sfylrbwqk;
+	private String sfkxg;
 	
+	public String getSfkxg() {
+		return sfkxg;
+	}
+	public void setSfkxg(String sfkxg) {
+		this.sfkxg = sfkxg;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}

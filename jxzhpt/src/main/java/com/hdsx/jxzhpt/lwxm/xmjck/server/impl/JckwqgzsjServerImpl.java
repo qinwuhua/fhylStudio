@@ -220,9 +220,9 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 	public boolean sjshtyWqgzsjwqgz(Jckwqgzsj jckwqgzsj) {
 		if(update("sjshtyWqgzsjwqgz", jckwqgzsj)>0) {
 			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
-				jckwqgzsj.setBz("9");
+				jckwqgzsj.setBz("0");
 			}else {
-				jckwqgzsj.setBz("11");
+				jckwqgzsj.setBz("2");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
 			if("省直管试点县".equals(jck.getTsdq())){
@@ -258,6 +258,8 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			}
 			jckwqgzsj.setShengbz(b2.add(new BigDecimal(jckwqgzsj.getShibz()))+"");	
 			jckwqgzsj.setShibz("0");
+			jckwqgzsj.setSfylrbwqk(jck.getSfylrbwqk());
+			jckwqgzsj.setBzls(jck.getBzls());
 			if(insert("lrjhSckwqgz", jckwqgzsj)>0)
 				System.out.println("nonono");
 			return true;

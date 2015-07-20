@@ -273,7 +273,7 @@
 		select 	id,sckid,sbnf,jhkgsj,jhwgsj, sjdw,sjpfdw,pfwh, pfsj,pfztz, jhsybzje, jhsydfzcje, sfsqablbz,ablbzsqwh, bz,tbsj,
 	 tbbm,spzt,spbm,spsj,sbzt, sbbm, sbsj, xdsj,gkbgmc,gkbglj,sjsgtmc,sjsgtlj,sjkgsj,sjwgsj,sgdw,jldw,htje,sgxkwj,
 	jgtcwj,jgyswj,wjsczt,kgzt,jgzt,yjjgsj,wjgyy, jsdw, jhxdwh, xdzt, xfzt,xfsj,xfbm,wjzt,wjsj,gys, sbbmdm,spbmdm,sfylsjl
-	from plan_wqgz jh where jh.id=#{id} and jh.sfylrbwqk='是'
+	from plan_wqgz jh where jh.id=#{id} 
 	</select>
 	<select id="insertToSheet" parameterType="hashMap" resultType="sjbb">
 		select xzqhdm v_0,

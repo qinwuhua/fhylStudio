@@ -25,8 +25,8 @@
 			sbnf("sbnf");
 			loadUnit1("gydw",$.cookie("unit")); 
 			loadDist1("xzqh",$.cookie("dist"));
-			loadBmbm2('ddlPDDJ','技术等级');
-			loadBmbm2('ddlGldj','公路等级');
+			loadBmbm2('jsdj','技术等级');
+			loadBmbm2('gldj','公路等级');
 			tsdq('tsdq');
 			loadwqjhkgl();
 		});
@@ -55,11 +55,12 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 		$("#grid").datagrid({    
-			 url:'/jxzhpt/wqgzsj/selectwqjhkgl.do',
+			 url:'/jxzhpt/jhgl/selectwqjhkgl.do',
 			 queryParams : {
 				 'sbthcd':function(){
-					 if($.cookie("unit2")=='______36') return 7;
-				 		else return $.cookie("unit2").length;
+					 if($.cookie("unit2").length==11) return 0;
+					 else if($.cookie("unit2").length==9) return 2;
+				 		else return 4;
 				 	},
 				 	'gydw': gydwstr,
 				 	'xzqhdm':xzqhstr,
@@ -68,6 +69,7 @@
 				 	'sbnf':$("#sbnf").combobox("getValue"),
 				 	'jhzt':$("#jhzt").combobox("getValue"),
 				 	'jsdj':$("#jsdj").combobox("getValue"),
+				 	'gldj':$("#gldj").combobox("getValue"),
 				 	'akjfl':$("#akjfl").combobox("getValue"),
 				 	'sfylsjl':$("#sfylsjl").combobox("getValue"),
 				 	'tsdq':$("#tsdq").combobox("getText").replace("全部",''),
@@ -83,9 +85,13 @@
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-						if(row.sck_shzt=="未审核"){
-							return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
-							'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  编辑';
+						if(row.sbzt2=="未上报"){
+							if(row.sfylrbwqk=='是')
+							return '<a href="javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'")" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+							'<a href="javascript:ckwqgz('+index+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
+							else
+								return '<a href="javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'")" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
+								'<a href="javascript:ckwqgz('+index+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 						}else{
 							return '<a href=javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'") style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href=javascript:ckwqgz('+index+') style="text-decoration:none;color:#3399CC; ">详细</a>  编辑';
@@ -111,13 +117,39 @@
 		        {field:'xzqhmc',title:'行政区划名称',width:100,align:'center'},
 		        {field:'lxbm',title:'路线编码',width:100,align:'center'},
 		        {field:'lxmc',title:'路线名称',width:100,align:'center'},
-		        {field:'qlbm',title:'桥梁编码',width:100,align:'center'},
+		        {field:'qlbh',title:'桥梁编码',width:100,align:'center'},
 		        {field:'qlmc',title:'桥梁名称',width:100,align:'center'},
 		        {field:'pfztz',title:'批复总投资',width:100,align:'center'}
 			    ]]    
-				});  
+				}); 
+				var sbthcd;
+				if($.cookie("unit2").length==11) sbthcd=0;
+			 	else if($.cookie("unit2").length==9) sbthcd=2;
+		 		else sbthcd=4;
+				var data="sbthcd="+sbthcd+"&gydw="+gydwstr+"&xzqhdm="+xzqhstr+"&lxmc="+$('#lxmc').val()+"&qlmc="+$("#qlmc").val()+
+				"&sbnf="+$("#sbnf").combobox("getValue")+"&jhzt="+$("#jhzt").combobox("getValue")+"&gldj="+$("#gldj").combobox("getValue")+
+				"&jsdj="+$("#jsdj").combobox("getValue")+"&akjfl="+$("#akjfl").combobox("getValue")+"&sfylsjl="+
+				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
+				$.ajax({
+				 type : "POST",
+				 url : "/jxzhpt/jhgl/loadwqjhkglCount.do",
+				 dataType : 'json',
+				 data : data,
+				 success : function(msg){
+					 $("#sl").html(msg.sl);
+					 $("#pfztz").html(msg.pfztz);
+					 $("#btz").html(msg.jhsybzje);
+					 $("#stz").html(msg.shengbz);
+					 $("#dftz").html(msg.jhsydfzcje);
+				 }
+			});
 		}
-		
+		var obj；
+		function edit(id){
+			obj=id;
+			alert(obj);
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);
+		}
 	</script>
 <style type="text/css">
 TD {
@@ -197,14 +229,14 @@ text-decoration:none;
 								</select></td>
 								<td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
-								<option value=""selected>全部</option>
-								<option value="否"selected>否</option>
+								<option value="">全部</option>
+								<option value="否" selected>否</option>
 								<option value="是">是</option>
 								</select></td>
         					</tr>
 								<tr height="32">
                               <td colspan="10">
-								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="searchWqgz()" style="vertical-align:middle;"/>
+								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
 								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
 				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
@@ -218,10 +250,11 @@ text-decoration:none;
         	</tr>
         	<tr style="margin: 0px;">
         		<td style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;">
-        			共有【&nbsp;<span id="lblCount" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
-        			批复总投资【&nbsp;<span id="lblZTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			其中部投资【&nbsp;<span id="lblBTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
-        			地方投资【&nbsp;<span id="lblDFTZ" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+        			共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个危桥改造项目，
+        			批复总投资【&nbsp;<span id="pfztz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中部投资【&nbsp;<span id="btz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			其中省投资【&nbsp;<span id="stz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元，
+        			地方投资【&nbsp;<span id="dftz" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
         		</td>
         	</tr>
         	<tr>

@@ -53,7 +53,20 @@ $(function(){
 		        data:datas,
 				success:function(msg){
 					if(Boolean(msg)){
-						saveWqgz();
+						var datas1="qlbh="+$("#qlbh").val()+"&lxbm="+$("#lxbm").val()+"&qlzxzh="+$("#qlzxzh").val();
+						$.ajax({
+							type:'post',
+							url:'/jxzhpt/xmjck/onceWqgz.do',
+							dataType:'json',
+					        data:datas1,
+							success:function(msg){
+								if(Boolean(msg)){
+									saveWqgz();
+								}else{
+									alert('该项目已添加过，请勿重复添加！');
+								}
+							}
+						});
 					}else{
 						alert('请您至少添加一张正面照片和一张侧面照片！');
 					}
@@ -468,7 +481,7 @@ function newGuid()
 					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
 						<option value="否"selected>否</option>
 						<option value="是">是</option>
-					</select>
+					</select><font color="red">&nbsp;* 该项填写后不可修改</font>
 				</td>
 			</tr>
 			

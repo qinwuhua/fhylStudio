@@ -399,8 +399,8 @@ text-decoration:none;
         						<td><input type="text" id="lxmc" style="width:70px;" /></td>
                               <td>是否部库：</td>
                               	<td><select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 74px">
-								<option value=""selected>全部</option>
-								<option value="否"selected>否</option>
+								<option value="">全部</option>
+								<option value="否" selected>否</option>
 								<option value="是">是</option>
 								</select></td>	 
                              </tr>

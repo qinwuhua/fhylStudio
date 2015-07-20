@@ -25,6 +25,7 @@
 var xmkid;
 var bzls='';
 var sfylrbwqk;
+var sfkxg; 
 $(function(){
 	xxId=newGuid();
 	xmnf1("scxmnf");
@@ -136,6 +137,17 @@ function autoCompleteQLBH(){
 				fileShow3(item.id,"桥梁侧面文件");
 				xmkid=item.id;
 				sfylrbwqk=item.sfylrbwqk;
+				if(item.sfylrbwqk=='是'){
+					sfkxg='是';
+					$("#sf1").attr('colspan','1');
+					$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;');
+					$("#sf3").attr('style','background-color: #ffffff; height: 20px;');
+				}else{
+					sfkxg='否';
+					$("#sf1").attr('colspan','5');
+					$("#sf2").attr('style','background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;');
+					$("#sf3").attr('style','background-color: #ffffff; height: 20px;display: none;');
+				}
 				$("#qlmc").html(item.qlmc);
 				$("#qlzxzh").html(item.qlzxzh);
 				$("#gydw").html(item.gydw);
@@ -166,12 +178,21 @@ function autoCompleteQLBH(){
 				$("#qxjkong").html(item.qxjkong);$("#zqks").html(item.zqks);$("#qmjk").html(item.qmjk);$("#kydwlx").html(item.kydwlx);
 				$("#thdj").html(item.thdj);$("#glqlyt").html(item.glqlyt);$("#qdlx").html(item.qdlx);
 				$("#qtlx").html(item.qtlx);$("#pzlx").html(item.pzlx);
+				$("#scqlqc").val(item.qlqc);$("#scqlqk").val(item.qlkd);$("#scsjhspl").val(item.sjhspl);$("#sck_sbjgxs").val(item.sbjgxs);
+				$("#scthdj").val(item.thdj);$("#ydgldj").val(item.jsdj);$("#scsqs").val(item.sqs);$("#scxsq").val(item.xsq);
+				$("#scszxz").val(item.szxz);
 			});
 }
 function saveWqgz(){
 	var sbthcd=$.cookie("unit2").length;
 	if($.cookie("unit2")=="______36"){
 		sbthcd=7;
+	}
+	var sfbk='';
+	if(sfkxg=='是'){
+		sfbk=$("#sfylrbwqk").combobox('getValue');
+	}else{
+		sfbk='否';
 	}
 	var data ="jckwqgzsj.xmkid="+xmkid+"&jckwqgzsj.fapgdw="+$("#fapgdw").val()+"&jckwqgzsj.fascdw="+$("#fascdw").val()+
 	"&jckwqgzsj.faspsj="+$("#faspsj").datebox('getValue')+"&jckwqgzsj.spwh="+$("#spwh").val()+"&jckwqgzsj.tzgs="+$("#tzgs").val()+
@@ -184,7 +205,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.sgtpfsj="+$("#sgtpfsj").datebox('getValue')+"&jckwqgzsj.pfwh="+$("#pfwh").val()+"&jckwqgzsj.zgq="+$("#zgq").val()+"&jckwqgzsj.sckid="+xxId
 	+"&jckwqgzsj.nsqbbz="+$("#nsqbbz").val()+"&jckwqgzsj.rksj="+$("#rksj").html()+"&jckwqgzsj.cjqz="+$("#cjqz").val()
 	+"&jckwqgzsj.scthdj="+$("#scthdj").val()+"&jckwqgzsj.qljc="+$("#qljc").val()+"&jckwqgzsj.ydgldj="+$("#ydgldj").val()
-	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+sfylrbwqk;
+	+"&jckwqgzsj.sjsd="+$("#sjsd").val()+"&jckwqgzsj.scsqs="+$("#scsqs").val()+"&jckwqgzsj.scxsq="+$("#scxsq").val()+"&jckwqgzsj.scszxz="+$("#scszxz").val()+"&jckwqgzsj.sfylrbwqk="+sfbk+"&jckwqgzsj.sfkxg="+sfkxg;
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -664,8 +685,15 @@ text-decoration:none;
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">乡镇：</td>
-				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+				<td id="sf1" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" id="scszxz" style="width: 150px" />
+				</td>
+				<td id="sf2" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;display: none;" align="right">是否入部危桥库：</td>
+				<td id="sf3" colspan="3" style="background-color: #ffffff; height: 20px;display: none;" align="left">
+					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
+						<option value="否">否</option>
+						<option value="是" selected>是</option>
+					</select>
 				</td>
 			</tr>
 			<tr style="height: 30px;">

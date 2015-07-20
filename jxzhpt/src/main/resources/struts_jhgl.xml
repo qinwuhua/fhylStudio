@@ -171,7 +171,12 @@
 		<action name="queryZjqfByZjqf" class="plan_zjqfController" method="queryZjqfByZjqf"></action>
 		<action name="queryChildXzqh" class="plan_zjqfController" method="queryChildXzqh"></action>
 		<!-- qwh -->
-		<action name="selectwqjhkgl" class="PlanwqgzsjController" method="selectwqjhkgl"></action>
+		<action name="selectwqjhkgl" class="planwqgzsjController" method="selectwqjhkgl"></action>
+		<action name="loadwqjhkglCount" class="planwqgzsjController" method="loadwqjhkglCount"></action>
+		<action name="loadwqgzjhkbyid" class="planwqgzsjController" method="loadwqgzjhkbyid"></action>
+		<action name="loadwqgzsckbyid" class="planwqgzsjController" method="loadwqgzsckbyid"></action>
+		<action name="loadwqgzxmkbyid" class="planwqgzsjController" method="loadwqgzxmkbyid"></action>
+		
 		<!-- qwh -->
 	 </package>
 </struts>

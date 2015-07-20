@@ -425,8 +425,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 		jckwqgzsj.setQlbh(qlbh);
 		jckwqgzsj.setGydwbm(gydw);
 		jckwqgzsj.setXzqhdm(xzqhdm);
+		List<Jckwqgzsj> list = jckwqgzsjServer.JckWqgzRoad(jckwqgzsj);
 		try {
-			JsonUtils.write(jckwqgzsjServer.JckWqgzRoad(jckwqgzsj), getresponse().getWriter());
+			JsonUtils.write(list, getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

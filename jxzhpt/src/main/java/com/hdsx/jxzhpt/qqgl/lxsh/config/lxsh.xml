@@ -645,6 +645,7 @@
 	<select id="querylxshSjgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'升级改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_SJGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -676,6 +677,7 @@
 	<select id="querylxshLmgz" parameterType="lxsh" resultType="elist">
 		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'路面改造' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_LMGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>
@@ -705,8 +707,9 @@
 		</if>
 	</select>
 	<select id="querylxshXj" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_XJ t left join
-		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
+		select t.xmbm v_0,lx.lxbm v_1,lx.lxmc v_2,t.xmmc v_3,lx.qdzh v_4,lx.zdzh v_5,lx.qdmc v_6,lx.zdmc v_7,'新建' v_8,lx.gydw v_9,lx.xzqh v_10,t.tsdq v_11,lx.jsjsdj v_12,lx.xjsdj v_13,substr(t.xmbm,0,4) v_14,t.jhkgn v_15,t.jhwgn v_16,t.tz v_17,lx.bzcs v_18 from LXSH_XJ t,
+		(select * from lxsh_lx where 1=1 and jdbs='0' and sffirst='1') lx  where 1=1 and t.xmbm=lx.xmid(+)
+		and sbthcd &lt;=#{sbthcd}
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
 		</if>

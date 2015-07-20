@@ -47,7 +47,7 @@ public class Planwqgzsj implements Serializable{
 	private String shzt;
 	private Date shsj;
 	private String shbm;
-	private int sbthcd;
+	private String sbthcd;
 	private String tsdq;
 	private int page;
 	private int rows;
@@ -188,6 +188,28 @@ public class Planwqgzsj implements Serializable{
 	private byte[] gkbgdata;
 	private byte[] sjsgtdata;
 	
+	private String sfylrbwqk;
+	private String sfkxg;
+	private int sl;
+	
+	public int getSl() {
+		return sl;
+	}
+	public void setSl(int sl) {
+		this.sl = sl;
+	}
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
+	public String getSfkxg() {
+		return sfkxg;
+	}
+	public void setSfkxg(String sfkxg) {
+		this.sfkxg = sfkxg;
+	}
 	public String getScsjhspl() {
 		return scsjhspl;
 	}
@@ -884,10 +906,10 @@ public class Planwqgzsj implements Serializable{
 	public void setShbm(String shbm) {
 		this.shbm = shbm;
 	}
-	public int getSbthcd() {
+	public String getSbthcd() {
 		return sbthcd;
 	}
-	public void setSbthcd(int sbthcd) {
+	public void setSbthcd(String sbthcd) {
 		this.sbthcd = sbthcd;
 	}
 	public int getPage() {

@@ -76,7 +76,7 @@ function loadxx(){
 	$("#qxjkong").val(item.qxjkong);$("#zqks").val(item.zqks);$("#qmjk").val(item.qmjk);$("#kydwlx").val(item.kydwlx);
 	$("#thdj").val(item.thdj);$("#glqlyt").val(item.glqlyt);$("#qdlx").val(item.qdlx);
 	$("#qtlx").val(item.qtlx);$("#pzlx").val(item.pzlx);
-	$("#sfylrbwqk").combobox('setValue',item.sfylrbwqk);
+	$("#sfylrbwqk").html(item.sfylrbwqk);
 }
 
 function selectTSDQ(str){
@@ -179,7 +179,7 @@ function saveWqgz(){
 	+"&jckwqgzsj.synf="+$("#synf").combobox('getValue')+"&jckwqgzsj.sjhspl="+$("#sjhspl").val()+"&jckwqgzsj.qxjkuan="+$("#qxjkuan").val()
 	+"&jckwqgzsj.qxjkong="+$("#qxjkong").val()+"&jckwqgzsj.zqks="+$("#zqks").val()+"&jckwqgzsj.qmjk="+$("#qmjk").val()
 	+"&jckwqgzsj.kydwlx="+$("#kydwlx").val()+"&jckwqgzsj.thdj="+$("#thdj").val()+"&jckwqgzsj.glqlyt="+$("#glqlyt").val()
-	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html()+"&jckwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
+	+"&jckwqgzsj.qdlx="+$("#qdlx").val()+"&jckwqgzsj.qtlx="+$("#qtlx").val()+"&jckwqgzsj.pzlx="+$("#pzlx").val()+"&jckwqgzsj.tsdq="+$("#tsdq").html();
 	//alert(data);
 	$.ajax({
 		type:'post',
@@ -363,10 +363,7 @@ function saveWqgz(){
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否入部危桥库：</td>
 				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
-						<option value="否"selected>否</option>
-						<option value="是">是</option>
-					</select>
+					<span id="sfylrbwqk"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

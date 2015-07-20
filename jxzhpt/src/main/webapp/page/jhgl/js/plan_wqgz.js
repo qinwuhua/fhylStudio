@@ -69,6 +69,10 @@ function openEditWindow(id){
 	YMLib.Var.jhbm=id;
 	YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/edit/wqgz.jsp",'wq_edit',1000,500);
 }
+function openEditWindow1(id){
+	YMLib.Var.jhbm=id;
+	YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/edit/wqgz1.jsp",'wq_edit',1000,500);
+}
 function wqxm(jh,lx){
 	var params={"jh.sbzt":jh.sbzt,"jh.spzt":jh.spzt,"jh.sbnf":jh.jhnf,"jh.jhkgsj":jh.jhkgsj,
 			'jh.sfylsjl':jh.sfylsjl,'jh.jh_sbthcd':jh.jh_sbthcd,
@@ -571,6 +575,43 @@ function editWqgz(){
 		}
 	});
 }
+//
+function editWqgz1(){
+	var jh={'jh.id':$('#jhid').val(),
+			'jh.sbnf':$('#editjhnf').combobox('getValue'),
+			'jh.jhkgsj':$('#jhkgsj').datebox('getValue'),
+			'jh.jhwgsj':$('#jhwgsj').datebox('getValue'),
+			//'jh.xdsj':$('#jhxdsj').datebox('getValue'),
+			//'jh.jhxdwh':$('#jhxdwh').val(),
+			'jh.sjdw':$('#sjdw').val(),
+			'jh.sjpfdw':$('#sjpfdw').val(),
+			'jh.pfwh':$('#pfwh').val(),
+			'jh.pfsj':$('#pfsj').datebox('getValue'),
+			'jh.pfztz':$('#jhztz').val(),
+			'jh.jhsybzje':$('#bbz').val(),
+			'jh.jhsydfzcje':$('#zfzc').html(),
+			'jh.sfsqablbz':$("input[name='sfsqablbz']:checked").val(),
+			'jh.ablbzsqwh':$('#ablbzwh').val(),
+			'jh.bz':$('#JHRemarks').val(),
+			'sc.scqlqk':$('#scqlqk').val(),'sc.scqlqc':$('#scqlqc').val(),
+			'sc.fapgdw':$('#fapgdw').val(),'sc.fascdw':$('#fascdw').val(),
+			'sc.faspsj':$('#faspsj').datebox('getValue'),'sc.spwh':$('#spwh').val(),
+			'sc.tzgs':$('#tzgs').val(),'sc.jsxz':$('#jsxz').val(),'sc.sckid':$('#sckid').val(),
+			'jh.sckid':$('#sckid').val(),'sc.jsnr':$('#jsnr').val(),'sc.scbz':$('#scbz').val(),
+	};
+	$.ajax({
+		type:'post',
+		url:'../../../jhgl/editWqgzById.do',
+		dataType:'text',
+		data:jh,
+		success:function(data){
+			alert("修改成功！");
+			parent.$('#grid').datagrid('reload');
+			parent.$('#wq_edit').window('destroy');
+		}
+	});
+}
+//
 function downFile1(){
 	parent.window.location.href="/jxzhpt/jhgl/downWqgzFile.do?jh.gkbgmc="+'gkbg'+"&jh.id="+$('#jhid').val();
 }

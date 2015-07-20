@@ -222,7 +222,7 @@
  			update xmk_wqgz set xmnf=#{xmnf},bhnr=#{bhnr},bz=#{bz},qlyhgcs=#{qlyhgcs},qljggcs=#{qljggcs},
  			czyjhjy=#{czyjhjy},
  			sqs=#{sqs},xsq=#{xsq},szxz=#{szxz},synf=#{synf},sjhspl=#{sjhspl},qxjkuan=#{qxjkuan},qxjkong=#{qxjkong},
- 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq},sfylrbwqk=#{sfylrbwqk} 
+ 			zqks=#{zqks},qmjk=#{qmjk},kydwlx=#{kydwlx},thdj=#{thdj},glqlyt=#{glqlyt},qdlx=#{qdlx},qtlx=#{qtlx},pzlx=#{pzlx},tsdq=#{tsdq}
  			where id=#{id}
  		</update>
  		
@@ -231,10 +231,10 @@
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
 		 		<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 			</if>
+ 					and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
  				<if test="tsdq!='' and tsdq!= null ">
- 				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
+ 					and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>) t where 
 			sck_sbthcd &lt;=#{sck_sbthcd}
 		<if test="gydw!='' and gydw!= null ">
@@ -279,9 +279,9 @@
 	</select>
 	<select id="selectSckwqgzCount" parameterType="jckwqgzsj" resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
- 				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
-	 			</if>
+				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
+		 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+				</if>
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
  				</if>)
@@ -322,6 +322,7 @@
 		<if test="qlbh!='' and qlbh!= null ">
 			and qlbh like '%'||(#{qlbh})||'%'
 		</if>
+		
 	</select>
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
 	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
@@ -335,10 +336,10 @@
 		insert into
 		sck_wqgz(sckid,xmkid,tzgs,spwh,fapgdw,fascdw,faspsj,jsxz,jsnr,scbz,scbmbm,sck_sbzt,sck_qlbh,sck_qlzxzh,
 		sck_lxbm,sck_sbthcd,lrjh,bzls,scxmnf,scqlqc,scqlqk,sjdwmc,jsgmqc,jsgmqk,hzdj,scsjhspl,sck_sbjgxs,kjzh,sck_xbjgxs,ztz,sgtpfsj,pfwh,zgq,sfylrbwqk,
-		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz)
+		rksj,cjqz,scthdj,qljc,ydgldj,sjsd,scsqs,scxsq,scszxz,nsqbbz,sfkxg)
 		values(#{sckid},#{xmkid},#{tzgs},#{spwh},#{fapgdw},#{fascdw},#{faspsj},#{jsxz},#{jsnr},#{scbz},
 		#{scbmbm},'未上报',#{qlbh},#{qlzxzh},#{lxbm},#{sck_sbthcd},'未列入',#{bzls},#{scxmnf},#{scqlqc},#{scqlqk},#{sjdwmc},#{jsgmqc},#{jsgmqk},#{hzdj},#{scsjhspl},#{sck_sbjgxs},#{kjzh},#{sck_xbjgxs},#{ztz},#{sgtpfsj},#{pfwh},#{zgq},#{sfylrbwqk},
-		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz})
+		#{rksj},#{cjqz},#{scthdj},#{qljc},#{ydgldj},#{sjsd},#{scsqs},#{scxsq},#{scszxz},#{nsqbbz},#{sfkxg})
 	</insert>
 	<delete id="deleteSckWqgz" parameterType="java.util.List" >
 	 	delete from sck_wqgz where sckid =#{String}
@@ -358,7 +359,7 @@
 		scxmnf=#{scxmnf},scqlqc=#{scqlqc},scqlqk=#{scqlqk},sjdwmc=#{sjdwmc},jsgmqc=#{jsgmqc},
 		jsgmqk=#{jsgmqk},hzdj=#{hzdj},scsjhspl=#{scsjhspl},sck_sbjgxs=#{sck_sbjgxs},kjzh=#{kjzh},sck_xbjgxs=#{sck_xbjgxs},
 		ztz=#{ztz},sgtpfsj=#{sgtpfsj},pfwh=#{pfwh},zgq=#{zgq}, 
-		rksj=#{rksj},cjqz=#{cjqz},scthdj=#{scthdj},qljc=#{qljc},ydgldj=#{ydgldj},sjsd=#{sjsd},scsqs=#{scsqs},scxsq=#{scxsq},scszxz=#{scszxz},nsqbbz=#{nsqbbz}
+		rksj=#{rksj},cjqz=#{cjqz},scthdj=#{scthdj},qljc=#{qljc},ydgldj=#{ydgldj},sjsd=#{sjsd},scsqs=#{scsqs},scxsq=#{scxsq},scszxz=#{scszxz},nsqbbz=#{nsqbbz},sfylrbwqk=#{sfylrbwqk}
 		where sckid=#{sckid}
 	</update>
  	<select id="selectSckShwqgz" parameterType="jckwqgzsj" resultType="jckwqgzsj">
@@ -366,7 +367,7 @@
 		select rownum num ,t.*,decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) sck_sbzt2,to_char(wqrksj,'yyyy-mm-dd') xmrksj from
 		 (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 			</if>
  				<if test="tsdq!='' and tsdq!= null ">
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
@@ -415,7 +416,7 @@
 	<select id="selectSckShwqgzCount" parameterType="jckwqgzsj" resultType="int">
 		select count(*) from (select * from sck_wqgz t join xmk_wqgz on xmkid=xmk_wqgz.id where 1=1 
  				<if test="sfylrbwqk!='' and sfylrbwqk!= null ">
-	 			and xmk_wqgz.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
+	 			and t.sfylrbwqk like '%'||(#{sfylrbwqk})||'%'
 	 			</if>
  				<if test="tsdq!='' and tsdq!= null "> 
  				and xmk_wqgz.tsdq like '%'||#{tsdq}||'%'
@@ -466,10 +467,10 @@
 	</update>
 	
 	<insert id="lrjhSckwqgz"  parameterType="jckwqgzsj">
-		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},'否')
+		insert into plan_wqgz(id,sckid,xdzt,sbnf,jh_sbthcd,shibz,shengbz,sfylrbwqk,sfkxg,sfylsjl) values(sys_guid(),#{id},'未下达',#{scxmnf},#{bz},#{shibz},#{shengbz},#{sfylrbwqk},decode(#{sfylrbwqk},'是','是','否','否'),#{bzls})
 	</insert>
 	<select id="cxtiaojian" parameterType="jckwqgzsj" resultType="jckwqgzsj">
-		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
+		select sckid,sc.jsxz,sc.sck_qlbh,scqlqk,scqlqc,xm.tsdq,xm.akjfl,sc.sfylrbwqk,sc.bzls from sck_wqgz sc left join xmk_wqgz xm on sc.xmkid=xm.id
 		where sckid=#{id}
 	</select>
 	<select id="selectshibz" parameterType="jckwqgzsj" resultType="wqbzbz">
