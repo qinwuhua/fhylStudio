@@ -14,6 +14,7 @@ public class Kxxyj implements Serializable {
 	private String xmbm;
 	private String jsdw;
 	private String xzqh;
+	private String lxbm;//路线编码
 	private String qdzh;
 	private String zdzh;
 	private String dq  ;
@@ -67,6 +68,12 @@ public class Kxxyj implements Serializable {
 	private String jhwllc;//建设后无路里程
 	private String yhdk;//银行贷款
 	private String dfzc;//地方自筹
+	public String getLxbm() {
+		return lxbm;
+	}
+	public void setLxbm(String lxbm) {
+		this.lxbm = lxbm;
+	}
 	public String getYhdk() {
 		return yhdk;
 	}
