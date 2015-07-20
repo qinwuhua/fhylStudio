@@ -962,12 +962,12 @@ public class LxshController extends BaseActionSupport{
 			if(gydw.indexOf(",")==-1){
 				tiaojian1="and lx.gydwdm like '%"+gydw+"%'";
 			}else{
-				tiaojian1="and lx.gydwdm in ("+gydw+")";
+				tiaojian1=" and lx.gydwdm in ("+gydw+")";
 			}
 			if(xzqh.indexOf(",")==-1){
-				tiaojian2="and lx.xzqhdm like '%"+xzqh+"%'";
+				tiaojian2=" and lx.xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2="andx lx.zqhdm in ("+xzqh+")";
+				tiaojian2=" and lx.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
