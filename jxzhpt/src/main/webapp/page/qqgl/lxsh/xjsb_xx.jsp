@@ -64,6 +64,8 @@ text-decoration:none;
 		$('#silc').html(data.silc);
 		$('#dwlc').html(data.dwlc);
 		$('#wllc').html(data.wllc);
+		$('#yhdk').html(data.yhdk);
+		$('#bz').html(data.bz);
 		sfylx();
 	});
 	function sfylx(){
@@ -266,8 +268,10 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">银行贷款(万元)：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="yhdk"></span>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>

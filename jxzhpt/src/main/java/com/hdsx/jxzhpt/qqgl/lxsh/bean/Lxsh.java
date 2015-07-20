@@ -71,6 +71,13 @@ public class Lxsh implements Serializable {
 	private String jhdwlc;//建设后等外公路里程
 	private String jhwllc;//建设后无路里程
 	private String bz;//备注
+	private String yhdk;//银行贷款
+	public String getYhdk() {
+		return yhdk;
+	}
+	public void setYhdk(String yhdk) {
+		this.yhdk = yhdk;
+	}
 	public String getBz() {
 		return bz;
 	}

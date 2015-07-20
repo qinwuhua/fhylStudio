@@ -66,6 +66,7 @@ text-decoration:none;
 		$('#silc').val(data.silc);
 		$('#dwlc').val(data.dwlc);
 		$('#wllc').val(data.wllc);
+		$('#yhdk').val(data.yhdk);
 		$('#bz').val(data.bz);
 // 		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
 // 		$.ajax({
@@ -180,7 +181,8 @@ text-decoration:none;
 		data+="&lx.xjlxbm="+$('#xjlxbm').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()+
 		"&lx.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+
-		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val();
+		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
+		"&lxsh.yhdk="+$('#yhdk').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -435,8 +437,12 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
-				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="yhdk" style="width: 120px;"/>
+				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>

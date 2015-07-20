@@ -67,8 +67,10 @@ text-decoration:none;
 		$('#jhsilc').val(data.jhsilc);
 		$('#jhdwlc').val(data.jhdwlc);
 		$('#jhwllc').val(data.jhwllc);
+		$("#yhdk").val(data.yhdk);
 		$("#tz").val(data.tz);
 		$('#bzcs').html(data.bzys);
+		$("#bz").val(data.bz);
 		//getbzcs(data.ghlxbh.substr(0,1),data.jsjsdj,accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)),'升级改造工程项目');
 		$("#dfzc").html(data.dfzc);
 		var data1="lxsh.ghlxbh="+data.ghlxbh+"&lxsh.xmbm="+data.xmbm;
@@ -194,7 +196,8 @@ text-decoration:none;
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
 			"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val();
 		data+="&lx.jhyilc="+$('#jhyilc').val()+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+
-		"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val();
+		"&lx.jhsilc="+$('#jhsilc').val()+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+
+		"&lxsh.yhdk="+$('#yhdk').val()+"&lxsh.bz="+$('#bz').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -379,6 +382,18 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="dfzc">0</span>
 				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" id="yhdk" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
 			</tr>
 			<tr style="height: 60px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>
