@@ -48,21 +48,21 @@ $(function() {
 	createMenu('LeftMenu',{
 		id:'menu_0101070303',
 		title:'计划工程量统计',
-		imgSrc:'../../images/xmlxtj.png',
+		imgSrc:'../../images/jhgcl.png',
 		renderTo:'left_menu3',
 		href:'./gcktj/gcltj.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070304',
 		title:'完成比例统计',
-		imgSrc:'../../images/xmlxtj.png',
+		imgSrc:'../../images/wcbltj.png',
 		renderTo:'left_menu3',
 		href:'./gcktj/wcbl.jsp'
 	});
 	createMenu('LeftMenu',{
 		id:'menu_0101070305',
 		title:'与上年完成投资额比',
-		imgSrc:'../../images/xmlxtj.png',
+		imgSrc:'../../images/ysnwctzb.png',
 		renderTo:'left_menu3',
 		href:'./gcktj/snwctzebl.jsp'
 	});

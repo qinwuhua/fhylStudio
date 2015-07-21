@@ -615,7 +615,7 @@ public class TjfxController extends BaseActionSupport{
 			
 			xzqhdm = xzqhdm.equals("360000") ? xzqhdm.substring(0,2) : xzqhdm.substring(0,4);
 			List<Map<String,Object>> xmlxData = tjfxServer.queryXmlxtjqsfx(xzqhdm,nf,end);
-			String [] xmlx={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
+			String [] xmlx={"安保工程","危桥工程","灾害防治","改建工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 			for (String item : xmlx) {
 				Map<String, String> index =new HashMap<String, String>();
 				xmlxfenlei(index,xmlxData,item);
@@ -651,7 +651,7 @@ public class TjfxController extends BaseActionSupport{
 		@SuppressWarnings("unchecked")
 		List<Map<String,String>> sessionData = (List<Map<String, String>>) getRequest().getSession().getAttribute("xmlxqs");
 		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
-		String [] xmlx={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
+		String [] xmlx={"安保工程","危桥工程","灾害防治","改建工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 		for(int i=Integer.parseInt(nf);i<=Integer.parseInt(end);i++){
 			Map<String, String> index =new HashMap<String, String>();
 			index.put("year", new Integer(i).toString());
@@ -662,7 +662,7 @@ public class TjfxController extends BaseActionSupport{
 					index.put("wqgz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}else if(item.get("xmlx").equals("灾害防治")){
 					index.put("zhfz", item.get(i+"je")==null ? "0" : item.get(i+"je"));
-				}else if(item.get("xmlx").equals("升级改造工程")){
+				}else if(item.get("xmlx").equals("改建工程")){
 					index.put("gcsj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
 				}else if(item.get("xmlx").equals("路面改造工程")){
 					index.put("gcgj", item.get(i+"je")==null ? "0" : item.get(i+"je"));
@@ -772,7 +772,7 @@ public class TjfxController extends BaseActionSupport{
 			
 			List<Map<String,Object>> lstz = tjfxServer.queryGckXmlxTjtLstz(nf,xzqhdm);
 			List<Map<String,Object>> gckxmlxtj = (List<Map<String, Object>>) getRequest().getSession().getAttribute("gckxmlxtj");
-			String [] xmlxs={"安保工程","危桥工程","灾害防治","升级改造工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
+			String [] xmlxs={"安保工程","危桥工程","灾害防治","改建工程","路面改造工程","新建工程","养护大中修工程","灾毁重建"};
 			for (String xmlx : xmlxs) {
 				Map<String, String> index =new HashMap<String, String>();
 				index.put("name", xmlx);
@@ -898,9 +898,6 @@ public class TjfxController extends BaseActionSupport{
 					index.put("TZBL", index_lc.get("BL"));
 					result.add(index);
 				}
-			}
-			for (Map<String, Object> item : result) {
-				System.out.println(item);
 			}
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){

@@ -1361,26 +1361,26 @@ function delxjlx(index1,index){
 }
 
 function cxqdmc(lxbm,qdzh){
-	$('#qdmc').html('');
+	$('#qdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxqdmc.do',
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#qdmc').html(msg.qdmc);
+			$('#qdmc').val(msg.qdmc);
 		}
 	});
 }
 function cxzdmc(lxbm,qdzh){
-	$('#zdmc').html('');
+	$('#zdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxzdmc.do',
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#zdmc').html(msg.zdmc);
+			$('#zdmc').val(msg.zdmc);
 		}
 	});
 }
