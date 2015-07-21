@@ -1361,7 +1361,7 @@ function delxjlx(index1,index){
 }
 
 function cxqdmc(lxbm,qdzh){
-	$('#qdmc').html('');
+	$('#qdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxqdmc.do',
@@ -1373,7 +1373,7 @@ function cxqdmc(lxbm,qdzh){
 	});
 }
 function cxzdmc(lxbm,qdzh){
-	$('#zdmc').html('');
+	$('#zdmc').val('');
 	$.ajax({
 		type:'post',
 		url:'/jxzhpt/qqgl/cxzdmc.do',
