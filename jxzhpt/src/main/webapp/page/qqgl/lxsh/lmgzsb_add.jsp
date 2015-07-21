@@ -47,11 +47,11 @@ a{text-decoration:none;}
 				$("#xmmc").focus();
 				return false;
 			}
-			if($("#qdmc").html()=="" || $("#qdmc").html()==null){
+			if($("#qdmc").val()=="" || $("#qdmc").val()==null){
 				alert("请填写起点名称！");
 				return false;
 			}
-			if($("#zdmc").html()=="" || $("#zdmc").html()==null){
+			if($("#zdmc").val()=="" || $("#zdmc").val()==null){
 				alert("请填写止点名称！");
 				return false;
 			}
@@ -172,8 +172,8 @@ a{text-decoration:none;}
 					selectTSDQ(item.ghlxbh,item.qdzh,item.zdzh);
 					//getbzcs(item.ghlxbh.substr(0,1),item.xjsdj,accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())),'路面改造工程项目');
 					$("#lc").html(accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val())));
-					$("#qdmc").html(item.qdmc);
-					$("#zdmc").html(item.zdmc);
+					$("#qdmc").val(item.qdmc);
+					$("#zdmc").val(item.zdmc);
 					qdStr=parseFloat(item.qdzh);
 					zdStr=parseFloat(item.zdzh);
 					$("#qd").html("<font color='red' size='2'>*&nbsp;不能小于</font>"+"<font color='red' size='2'>"+item.qdzh);
@@ -200,7 +200,7 @@ a{text-decoration:none;}
 		}
 		var data ="lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").html()+"&lxsh.xmmc="+$("#xmmc").val()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
-		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
+		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").html()+"&lxsh.xjsdj="+$("#xjsdj").html()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.xmnf="+$("#xmnf").combobox('getText')+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
@@ -284,14 +284,14 @@ a{text-decoration:none;}
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="qdmc"></span>
+					<input id="qdmc" name="qdmc" type="text" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="zdmc"></span>
+					<input id="zdmc" name="zdmc" type="text" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设技术等级：</td>

@@ -899,9 +899,6 @@ public class TjfxController extends BaseActionSupport{
 					result.add(index);
 				}
 			}
-			for (Map<String, Object> item : result) {
-				System.out.println(item);
-			}
 			JsonUtils.write(result, getresponse().getWriter());
 		}catch(Exception e){
 			e.printStackTrace();

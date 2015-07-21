@@ -1368,7 +1368,7 @@ function cxqdmc(lxbm,qdzh){
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#qdmc').html(msg.qdmc);
+			$('#qdmc').val(msg.qdmc);
 		}
 	});
 }
@@ -1380,7 +1380,7 @@ function cxzdmc(lxbm,qdzh){
         data:'lxsh.ghlxbh='+lxbm+'&lxsh.qdzh='+qdzh,
 		dataType:'json',
 		success:function(msg){
-			$('#zdmc').html(msg.zdmc);
+			$('#zdmc').val(msg.zdmc);
 		}
 	});
 }
