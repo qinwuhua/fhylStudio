@@ -44,7 +44,7 @@
 				{field:'cz',title:'操作',width:100,align:'center',
 					formatter: function(value,row,index){
 						var result='<a style="text-decoration:none;color:#3399CC;" href="#" onclick="locationXm('+"'"+row.xmbm+"','2'"+')">定位</a>';
-						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'升级改造工程项目'"+','+
+						result+='&nbsp;<a href="javascript:openWindow('+"'lmsjxx'"+','+"'改建工程项目'"+','+
 								"'/jxzhpt/page/qqgl/jhsh/lmsj_xx.jsp'"+',980,400)" style="color:#3399CC;">详细</a>';
 						return result;
 					}
@@ -113,7 +113,7 @@ text-decoration:none;
 </head>
 <body>
 	<div id="righttop">
-		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;升级改造工程项目</div>
+		<div id="p_top">前期管理>&nbsp;项目计划库审核>&nbsp;改建工程项目</div>
 	</div>
 		<table width="99%" border="0" style="margin-top: 1px; margin-left: 1px;" cellspacing="0" cellpadding="0">
         	<tr>
