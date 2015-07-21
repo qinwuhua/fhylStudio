@@ -277,12 +277,12 @@ function sckglWqgz(){
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==9){
 					if(row.sck_shzt=='未审核'){
-						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
+						return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  &nbsp;  '+'<a href=javascript:shenghwtg("'+row.sck_shyj2+'") style="text-decoration:none;color:#3399CC; ">省级审核未通过</a>  ';
 					}else
-					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+					return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未初审</a>  ';
 					}
 				else if(row.sck_sbzt2=="已上报" && row.sck_sbthcd==7&&$.cookie("unit2").length!=11){
-					return '已审核  ';
+					return '已初审  ';
 					}
 				else if(row.sck_sbzt2=="未上报" && row.sck_sbthcd==7){
 						return '<span style="color:grey;">未上报</span>';

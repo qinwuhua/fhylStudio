@@ -24,7 +24,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/jhgl/js/wqsj.js"></script>
 <script type="text/javascript">
 $(function(){
-	xmnf1("sbnf");
 	loadJhkxx();
 });
 function loadJhkxx(){
@@ -35,55 +34,33 @@ function loadJhkxx(){
 		 data : 'id='+parent.obj,
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
-			 if(msg.sfkxg=='是'){
-				 $("#sftr").attr('style','height: 30px;');
-				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
+			 $("#sfylrbwqk").html(msg.sfylrbwqk);
+			 $("#sbnf").html(msg.sbnf);
+			 $("#jhkgsj").html(msg.jhkgsj);
+			 $("#jhwgsj").html(msg.jhwgsj);
+			 $("#sjdw").html(msg.sjdw);
+			 $("#sjpfdw").html(msg.sjpfdw);
+			 $("#jhpfwh").html(msg.pfwh);
+			 $("#pfsj").html(msg.pfsj);
+			 $("#sfsqablbz").html(msg.sfsqablbz);
+			 $("#ablbzwh").html(msg.ablbzwh);
+			 $("#pfztz").html(msg.pfztz);
+			 if(msg.sfylrbwqk=='是'){
+				 $("#wenz").html('计划使用部补助金额(万元)：');
+				 $("#shengbz").html(msg.jhsybzje);
 			 }else{
-				 $("#sftr").attr('style','height: 30px;display: none;');
-				 $("#sfylrbwqk").combobox('setValue',msg.sfylrbwqk);
+				 $("#wenz").html('计划使用省补助金额(万元)：');
+				 $("#shengbz").html(msg.shengbz);
 			 }
-			 
-			 $("#sbnf").combobox('setValue',msg.sbnf);
-			 $("#jhkgsj").datebox('setValue',msg.jhkgsj);
-			 $("#jhwgsj").datebox('setValue',msg.jhwgsj);
-			 $("#sjdw").val(msg.sjdw);
-			 $("#sjpfdw").val(msg.sjpfdw);
-			 $("#jhpfwh").val(msg.pfwh);
-			 $("#pfsj").datebox('setValue',msg.pfsj);
-			 radioChecked("sfsqablbz",msg.sfsqablbz);
-			if(msg.sfsqablbz=="否"){
-				$('#ablbzwh').attr("disabled",'true');
-			}
-			 $("#ablbzwh").val(msg.ablbzwh);
-			 $("#pfztz").val(msg.pfztz);
-			 $("#shengbz").html(msg.shengbz);
 			 $("#dfzc").html(msg.jhsydfzcje);
-			 $("#qlszxz").val(msg.qlszxz);
-			 $("#qljsgm").val(msg.qljsgm);
-			 $("#zyjsnr").val(msg.zyjsnr);
-			 $("#jhbz").val(msg.bz);
-			 loadSbz(msg.sckid);
+			 $("#qlszxz").html(msg.qlszxz);
+			 $("#qljsgm").html(msg.qljsgm);
+			 $("#zyjsnr").html(msg.zyjsnr);
+			 $("#jhbz").html(msg.bz);
 		 }
 	});
 }
-function loadSbz(id){
-	$.ajax({
-		 type : "POST",
-		 url : "/jxzhpt/jhgl/loadwqgzsbzbyid.do",
-		 dataType : 'json',
-		 data : 'id='+id,
-		 success : function(item){
-			 $("#shengbz").html(item.shengbz);
-			 var pfztz;
-			 if($("#pfztz").val()==null||$("#pfztz").val()==''){
-				 pfztz=0;
-			 }else{
-				 pfztz=$("#pfztz").val();
-			 }
-			 $("#dfzc").html(accSub(pfztz,item.shengbz));
-		 }
-	 })
-}
+
 function loadJckxx(id){
 	$.ajax({
 		 type : "POST",
@@ -191,50 +168,7 @@ function sjtfileShow(id){
 function sjtdownFile(id){
 	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 }
-function radioChecked(name,value){
-	$.each($("input[name='"+name+"']"),function(index,item){
-		if($(item).val()==value){
-			$(item).attr('checked','true');
-		}
-	});
-}
-function ablwhDis(value){
-	if(value=="是"){
-		$('#ablbzwh').removeAttr("disabled");
-	}else{
-		$('#ablbzwh').attr("disabled",'true');
-	}
-}
-function bzSum(){
-	var pfztz;
-	 if($("#pfztz").val()==null||$("#pfztz").val()==''){
-		 pfztz=0;
-	 }else{
-		 pfztz=$("#pfztz").val();
-	 }
-	 $("#dfzc").html(accSub(pfztz, $("#shengbz").html()));
-}
-function editWqgz(){
-	var data="planwqgzsj.id="+parent.obj+"&planwqgzsj.sbnf="+$("#sbnf").combobox('getValue')+"&planwqgzsj.jhkgsj="+$("#jhkgsj").datebox('getValue')
-	+"&planwqgzsj.jhwgsj="+$("#jhwgsj").datebox('getValue')+"&planwqgzsj.sjdw="+$("#sjdw").val()+"&planwqgzsj.sjpfdw="+$("#sjpfdw").val()
-	+"&planwqgzsj.pfwh="+$("#jhpfwh").val()+"&planwqgzsj.pfsj="+$("#pfsj").datebox('getValue')+"&planwqgzsj.sfsqablbz="+$("input[name='sfsqablbz']:checked").val()
-	+"&planwqgzsj.ablbzwh="+$("#ablbzwh").val()+"&planwqgzsj.pfztz="+$("#pfztz").val()+"&planwqgzsj.shengbz="+$("#shengbz").html()+"&planwqgzsj.jhsydfzcje="+$("#dfzc").html()
-	+"&planwqgzsj.qlszxz="+$("#qlszxz").val()+"&planwqgzsj.qljsgm="+$("#qljsgm").val()+"&planwqgzsj.zyjsnr="+$("#zyjsnr").val()
-	+"&planwqgzsj.sfylrbwqk="+$("#sfylrbwqk").combobox('getValue')+"&planwqgzsj.bz="+$("#jhbz").val();
-	$.ajax({
-		type:'post',
-		url:'/jxzhpt/jhgl/editwqgzsj.do',
-		dataType:'json',
-		data:data,
-		success:function(msg){
-			if(msg){
-				alert("保存成功");
-				parent.loadwqjhkgl();
-				parent.$('#wq_edit').window('destroy');
-			}
-		}
-	});
-}
+
 </script>
 <style type="text/css">
 TD {
@@ -613,45 +547,44 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">上报年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="sbnf" type="text" /></td>
+					<span id="sbnf"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划开工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jhkgsj" type="text" class="easyui-datebox"/></td>
+					<span id="jhkgsj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划完工时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jhwgsj" type="text" class="easyui-datebox"/>
+					<span id="jhwgsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="sjdw" type="text" /></td>
+					<span id="sjdw"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">设计批复单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="sjpfdw" type="text" /></td>
+					<span id="sjpfdw"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="jhpfwh" type="text" />
+					<span id="jhpfwh"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="pfsj" type="text" class="easyui-datebox"/></td>
+					<span id="pfsj"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">是否申请按比例补助：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="radio" name="sfsqablbz" onchange="ablwhDis('是')" id="sfsqablbz0" value="是"/>是
-					<input type="radio" name="sfsqablbz" onchange="ablwhDis('否')" id="sfsqablbz1" value="否"/>否</td>
+					<span id="sfsqablbz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">按比例补助申请文号：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="ablbzwh" style="display:;"/>
+					<span id="ablbzwh"></span>
 				</td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复总投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="pfztz" onblur="bzSum()"/></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用省补助金额(万元)：</td>
+					<span id="pfztz"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font id="wenz">计划使用省补助金额(万元)：</font></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="shengbz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">计划使用地方自筹资金(万元)：</td>
@@ -662,33 +595,25 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁所在乡镇：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qlszxz" /></td>
+					<span id="qlszxz"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁建设规模：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="qljsgm" /></td>
+					<span id="qljsgm"></span></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">主要建设内容：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="zyjsnr" /></td>
+					<span id="zyjsnr"></span></td>
 			</tr>
-			<tr id="sftr" style="height: 30px;display: none;">
+			<tr id="sftr" style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">是否入部危桥库：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="sfylrbwqk" class="easyui-combobox" data-options="panelHeight:'70'" style="width: 156px">
-						<option value="否">否</option>
-						<option value="是" selected>是</option>
-					</select></td>
+					<span id="sfylrbwqk"></span>
+					</td>
 				
 			</tr>
 			<tr  style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">备注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="jhbz" style="width: 700px;height:40px;"></textarea></td>
-				
-			</tr>
-			<tr  style="height: 30px;">
-				<td align="center" colspan="6" style="background-color: #ffffff; height: 20px;" >
-                	<img alt="确定" src="${pageContext.request.contextPath}/images/Button/qd1.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/qd2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/qd1.gif' " onclick="editWqgz()" />
-                </td>
+					<span id="jhbz"></span></td>
 			</tr>
 		</table>
 	</body>

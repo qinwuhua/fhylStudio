@@ -608,7 +608,7 @@ function editWqgz1(){
 		data:jh,
 		success:function(data){
 			alert("修改成功！");
-			parent.$('#grid').datagrid('reload');
+			parent.loadwqjhkgl();
 			parent.$('#wq_edit').window('destroy');
 		}
 	});

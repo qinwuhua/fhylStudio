@@ -32,5 +32,25 @@ public interface PlanwqgzsjServer {
 	Planwqgzsj loadwqgzsckbyid(String id);
 
 	Planwqgzsj loadwqgzxmkbyid(String id);
+
+	Planwqgzsj loadwqgzsbzbyid(String id);
+
+	boolean editwqgzsj(Planwqgzsj planwqgzsj);
+
+	List<Planwqgzsj> selectwqjhksb(Planwqgzsj planwqgzsj);
+
+	int selectwqjhksbcount(Planwqgzsj planwqgzsj);
+
+	Planwqgzsj loadwqjhksbCount(Planwqgzsj planwqgzsj);
+
+	boolean sbWqgzjh(Planwqgzsj planwqgzsj);
+
+	boolean shtyWqgzsbById(Planwqgzsj planwqgzsj);
+
+	boolean shbtyWqgzsbById(Planwqgzsj planwqgzsj);
+
+	boolean shtyWqgzshById(Planwqgzsj planwqgzsj);
+
+	boolean shbtyWqgzshById(Planwqgzsj planwqgzsj);
 	
 }

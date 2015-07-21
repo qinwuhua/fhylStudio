@@ -55,7 +55,7 @@
 				xzqhstr= xzqhdm.join(',');
 			}
 		$("#grid").datagrid({    
-			 url:'/jxzhpt/jhgl/selectwqjhkgl.do',
+			 url:'/jxzhpt/jhgl/selectwqjhksb.do',
 			 queryParams : {
 				 'sbthcd':function(){
 					 if($.cookie("unit2").length==11) return 0;
@@ -85,20 +85,18 @@
 			    columns:[[    
 					{field:'allSel',title:'全选',width:60,align:'center',checkbox:'true'},         
 					{field:'cz',title:'操作',width:130,align:'center',formatter:function(value,row,index){
-							if(row.sfylrbwqk=='是')
+						if(row.sfylrbwqk=='是')
 							return '<a href="javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'")" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 							'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:openEditWindow1('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 							else
 								return '<a href="javascript:locationQl("'+row.sck_qlbh+'","'+row.sck_qlzxzh+'")" style="text-decoration:none;color:#3399CC; ">定位</a>  '+
 								'<a href="javascript:ckwqgz('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">详细</a>  <a href="javascript:edit('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC; ">编辑</a>';
 					}},    
-					/* {field:'sck_shzt',title:'审核状态',width:80,align:'center',formatter:function(value,row,index){
-						if(row.sck_shzt=="已审核"){
-							return '<span style="color:grey;">已审核</span>';
-						}else{
-							return '<a href=javascript:shangb('+index+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
-						}
-					}}, */
+					 {field:'sbzt2',title:'审核状态',width:180,align:'center',formatter:function(value,row,index){
+								 if(row.spzt=='0')
+								 return '<a href=javascript:shangb1('+"'"+row.id+"'"+') style="text-decoration:none;color:#3399CC; ">未审核</a>  ';
+								 else  return "已审核";
+					}}, 
 		 		{field:'sfylsjl',title:'是否有修建记录',width:120,align:'center',formatter:function(value,row,index){
 		        	if(row.sfylsjl=='无')
 		        		return '无';
@@ -127,7 +125,7 @@
 				$("#sfylsjl").combobox("getValue")+"&tsdq="+$("#tsdq").combobox("getValue")+'&sfylrbwqk='+$("#sfylrbwqk").combobox("getValue");
 				$.ajax({
 				 type : "POST",
-				 url : "/jxzhpt/jhgl/loadwqjhkglCount.do",
+				 url : "/jxzhpt/jhgl/loadwqjhksbCount.do",
 				 dataType : 'json',
 				 data : data,
 				 success : function(msg){
@@ -147,6 +145,11 @@
 		function ckwqgz(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
+		}
+
+		function shangb1(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_edit','省级审核',"/jxzhpt/page/jhgl/jhksh/wqgzsj_sh.jsp",'wq_edit',500,300);
 		}
 	</script>
 <style type="text/css">
@@ -193,11 +196,9 @@ text-decoration:none;
         					<tr height="32">
         						<td>上报年份：</td>
         						<td><select id="sbnf" style="width: 80px;"></select></td>
-        						<td>计划状态：</td>
+        						<td>审核状态：</td>
         						<td><select name="ddlSHZT" id="jhzt" style="width:70px;" class="easyui-combobox">
 									<option selected="selected" value="">全部</option>
-									<option value="未上报">未上报</option>
-									<option value="已上报">已上报</option>
 									<option value="未审核">未审核</option>
 									<option value="已审核">已审核</option>
 								</select></td>
@@ -235,10 +236,10 @@ text-decoration:none;
 								<tr height="32">
                               <td colspan="10">
 								<img alt="搜索" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif'" onclick="loadwqjhkgl()" style="vertical-align:middle;"/>
-								<img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
+								<%-- <img alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportModule('Plan_Bridge')"/>
 								<img alt="导入" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" onclick="importData_jh('wqgz_jh')" style="vertical-align:middle;"/>
 				                <img onclick="dropWqgzs()" alt="删除" src="${pageContext.request.contextPath}/images/Button/delete1.jpg" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/delete2.jpg'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/delete1.jpg'" style="vertical-align:middle;">
-				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/>
+				                <img alt="导出Excel" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dcecl2.gif'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dcecl1.gif'" src="${pageContext.request.contextPath}/images/Button/dcecl1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;" onclick="exportExcel('wqgz')"/> --%>
 								<!-- <img id="imglrjh" alt="列入计划" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/lrjh_2.png'"  onmouseout="this.src='${pageContext.request.contextPath}/images/Button/lrjh_1.png'" src="${pageContext.request.contextPath}/images/Button/lrjh_1.png" style="border-width:0px;cursor: hand;vertical-align:middle;display: none;"  onclick="showLrjh('lrjh_wq.jsp','1100','500');"/> -->
 							</td>
                             </tr></table>

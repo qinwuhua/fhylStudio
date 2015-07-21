@@ -10,6 +10,7 @@ import com.hdsx.jxzhpt.jhgl.server.PlanwqgzsjServer;
 import com.hdsx.jxzhpt.lwxm.xmjck.bean.Jckwqgzsj;
 import com.hdsx.jxzhpt.utile.EasyUIPage;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
 import com.hdsx.webutil.struts.BaseActionSupport;
 
 @Scope("prototype")
@@ -241,5 +242,118 @@ public class PlanwqgzsjController extends BaseActionSupport {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void loadwqgzsbzbyid(){
+		try{
+			Planwqgzsj p = planwqgzsjServer.loadwqgzsbzbyid(id);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void editwqgzsj(){
+		
+		if(planwqgzsj.getAblbzsqwh()==null)
+			planwqgzsj.setAblbzsqwh("");
+		boolean bl=planwqgzsjServer.editwqgzsj(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	
+	public void selectwqjhksb(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			List<Planwqgzsj> list = planwqgzsjServer.selectwqjhksb(planwqgzsj);
+			int count = planwqgzsjServer.selectwqjhksbcount(planwqgzsj);
+			
+			EasyUIPage<Planwqgzsj> eui = new EasyUIPage<Planwqgzsj>();
+			eui.setRows(list);
+			eui.setTotal(count);
+			JsonUtils.write(eui, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadwqjhksbCount(){
+		try{
+			if(gydw.indexOf(",")==-1){
+				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+			}else{
+				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+			}
+			if(xzqhdm.indexOf(",")==-1){
+				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
+			}else{
+				planwqgzsj.setXzqhdm("and xzqhdm in ("+xzqhdm+")");
+			}
+			planwqgzsj.setLxmc(lxmc);
+			planwqgzsj.setQlmc(qlmc);
+			planwqgzsj.setSbnf(sbnf);
+			planwqgzsj.setAkjfl(akjfl);
+			planwqgzsj.setJsdj(jsdj);
+			planwqgzsj.setSfylsjl(sfylsjl);
+			planwqgzsj.setTsdq(tsdq);
+			planwqgzsj.setSfylrbwqk(sfylrbwqk);
+			planwqgzsj.setPage(page);
+			planwqgzsj.setRows(rows);
+			planwqgzsj.setLxbm(gldj);
+			if("未上报".equals(jhzt)||"已上报".equals(jhzt)){
+				planwqgzsj.setSbzt(jhzt);
+			}
+			if("未审核".equals(jhzt)||"已审核".equals(jhzt)){
+				planwqgzsj.setShzt(jhzt);
+			}
+			planwqgzsj.setSbthcd(sbthcd);
+			Planwqgzsj p = planwqgzsjServer.loadwqjhksbCount(planwqgzsj);
+			JsonUtils.write(p, getresponse().getWriter());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void sbWqgzjh(){
+		boolean bl=planwqgzsjServer.sbWqgzjh(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void shtyWqgzsbById(){
+		boolean bl=planwqgzsjServer.shtyWqgzsbById(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void shbtyWqgzsbById(){
+		boolean bl=planwqgzsjServer.shbtyWqgzsbById(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void shtyWqgzshById(){
+		boolean bl=planwqgzsjServer.shtyWqgzshById(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void shbtyWqgzshById(){
+		boolean bl=planwqgzsjServer.shbtyWqgzshById(planwqgzsj);
+		ResponseUtils.write(getresponse(), bl+"");
 	}
 }

@@ -176,7 +176,16 @@
 		<action name="loadwqgzjhkbyid" class="planwqgzsjController" method="loadwqgzjhkbyid"></action>
 		<action name="loadwqgzsckbyid" class="planwqgzsjController" method="loadwqgzsckbyid"></action>
 		<action name="loadwqgzxmkbyid" class="planwqgzsjController" method="loadwqgzxmkbyid"></action>
-		
+		<action name="loadwqgzsbzbyid" class="planwqgzsjController" method="loadwqgzsbzbyid"></action>
+		<action name="editwqgzsj" class="planwqgzsjController" method="editwqgzsj"></action>
+		<action name="selectwqjhksb" class="planwqgzsjController" method="selectwqjhksb"></action>
+		<action name="loadwqjhksbCount" class="planwqgzsjController" method="loadwqjhksbCount"></action>
+		<action name="sbWqgzjh" class="planwqgzsjController" method="sbWqgzjh"></action>
+		<action name="shtyWqgzsbById" class="planwqgzsjController" method="shtyWqgzsbById"></action>
+		<action name="shbtyWqgzsbById" class="planwqgzsjController" method="shbtyWqgzsbById"></action>
+		<action name="shtyWqgzshById" class="planwqgzsjController" method="shtyWqgzshById"></action>
+		<action name="shbtyWqgzshById" class="planwqgzsjController" method="shbtyWqgzshById"></action>
+
 		<!-- qwh -->
 	 </package>
 </struts>

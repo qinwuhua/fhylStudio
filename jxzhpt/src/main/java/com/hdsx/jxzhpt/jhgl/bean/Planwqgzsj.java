@@ -191,7 +191,113 @@ public class Planwqgzsj implements Serializable{
 	private String sfylrbwqk;
 	private String sfkxg;
 	private int sl;
+	private String qlszxz;
+	private String qljsgm;
+	private String zyjsnr;
+	private String shzt2;
+	private String shyj;
 	
+	private String xmid;//对应项目编码
+	private String xdnf;
+	private String xdzj;
+	private String sfzj;//是否是追加资金
+	private String tbdw;
+	private String tbtime;//计划下达时间
+	private String btzzj;//部投资金额
+	private String stz;//省投资
+	private String xmmc;//项目名称
+	private String lxxx;//路线信息
+	
+	public String getXmid() {
+		return xmid;
+	}
+	public void setXmid(String xmid) {
+		this.xmid = xmid;
+	}
+	public String getXdnf() {
+		return xdnf;
+	}
+	public void setXdnf(String xdnf) {
+		this.xdnf = xdnf;
+	}
+	public String getXdzj() {
+		return xdzj;
+	}
+	public void setXdzj(String xdzj) {
+		this.xdzj = xdzj;
+	}
+	public String getSfzj() {
+		return sfzj;
+	}
+	public void setSfzj(String sfzj) {
+		this.sfzj = sfzj;
+	}
+	public String getTbdw() {
+		return tbdw;
+	}
+	public void setTbdw(String tbdw) {
+		this.tbdw = tbdw;
+	}
+	public String getTbtime() {
+		return tbtime;
+	}
+	public void setTbtime(String tbtime) {
+		this.tbtime = tbtime;
+	}
+	public String getBtzzj() {
+		return btzzj;
+	}
+	public void setBtzzj(String btzzj) {
+		this.btzzj = btzzj;
+	}
+	public String getStz() {
+		return stz;
+	}
+	public void setStz(String stz) {
+		this.stz = stz;
+	}
+	public String getXmmc() {
+		return xmmc;
+	}
+	public void setXmmc(String xmmc) {
+		this.xmmc = xmmc;
+	}
+	public String getLxxx() {
+		return lxxx;
+	}
+	public void setLxxx(String lxxx) {
+		this.lxxx = lxxx;
+	}
+	public String getShzt2() {
+		return shzt2;
+	}
+	public void setShzt2(String shzt2) {
+		this.shzt2 = shzt2;
+	}
+	public String getShyj() {
+		return shyj;
+	}
+	public void setShyj(String shyj) {
+		this.shyj = shyj;
+	}
+	public String getQlszxz() {
+		return qlszxz;
+	}
+	public void setQlszxz(String qlszxz) {
+		this.qlszxz = qlszxz;
+	}
+	public String getQljsgm() {
+		return qljsgm;
+	}
+	public void setQljsgm(String qljsgm) {
+		this.qljsgm = qljsgm;
+	}
+	public String getZyjsnr() {
+		return zyjsnr;
+	}
+	public void setZyjsnr(String zyjsnr) {
+		this.zyjsnr = zyjsnr;
+	}
 	public int getSl() {
 		return sl;
 	}
