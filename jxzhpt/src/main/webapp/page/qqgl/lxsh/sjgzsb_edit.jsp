@@ -41,7 +41,7 @@ text-decoration:none;
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
-		$("#lc").html(accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)));
+		$("#lc").val(data.lc);
 		$("#qdmc").html(data.qdmc);
 		$("#zdmc").html(data.zdmc);
 		$("#jsxz").val(data.jsxz);
@@ -187,7 +187,7 @@ text-decoration:none;
 			sbthcd=7;
 		}
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").html()+"&lxsh.xmbm="+$("#xmbm").html()
-		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
+		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").val()
 		+"&lxsh.qdmc="+$("#qdmc").html()+"&lxsh.zdmc="+$("#zdmc").html()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").html()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").val()
@@ -225,14 +225,14 @@ text-decoration:none;
 			$("#zdzh").val(zdStr);
 		}
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		$("#lc").html(zlc);
-		queryJsdjAndLc($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
-		selectTSDQ($("#lxbm").html(),$("#qdzh").val(),$("#zdzh").val());
+		$("#lc").val(zlc);
+		queryJsdjAndLc($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		//getbzcs($("#lxbm").html().substr(0,1),$("#jsjsdj").val(),$("#lc").html(),'升级改造工程项目');
 		if($("#qdzh").val()!='')
-			cxqdmc($("#lxbm").html(),$("#qdzh").val());
+			cxqdmc($("#lxbm").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
-			cxzdmc($("#lxbm").html(),$("#zdzh").val());
+			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 </script>
 <table style="width: 100%; background-color: #aacbf8; font-size: 12px"
@@ -264,7 +264,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里
+					<input id="lc" type="text" style="width: 120px;"/>&nbsp;km
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>

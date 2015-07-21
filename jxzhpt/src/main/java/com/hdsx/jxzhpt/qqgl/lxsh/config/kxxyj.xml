@@ -511,7 +511,7 @@
 		where xmbm=#{0}
 	</update>
 	<update id="updatesjgzkxxlx" parameterType="hashMap">
-		update lxsh_lx set qdzh=#{4},zdzh=#{3},xzqh=#{2},lc=to_char(to_number(#{4})-to_number(#{3})),jsjsdj=#{8},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
+		update lxsh_lx set qdzh=#{4},zdzh=#{3},xzqh=#{2},lc=#{lc},jsjsdj=#{8},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
 		where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>
 	<update id="importlmgzkxx" parameterType="hashMap">

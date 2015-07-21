@@ -429,7 +429,9 @@
 		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
 		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
 		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
-		l.qdzh=#{qdzh},l.zdzh=#{zdzh},l.lc=${zdzh}-${qdzh}
+		l.qdzh=#{qdzh},l.zdzh=#{zdzh},
+		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
+		<if test="lc==null or lc==''">l.lc=${zdzh}-${qdzh}</if>
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst=1</if>
