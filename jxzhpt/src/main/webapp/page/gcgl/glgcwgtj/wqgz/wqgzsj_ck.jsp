@@ -26,7 +26,23 @@
 $(function(){
 	loadJhkxx();
 	loadZjxdList();
+	loadJzxx();
+	fileShow22(parent.obj1.id,'完工桥梁正面文件');
+	fileShow23(parent.obj1.id,'完工桥梁侧面文件');
 });
+function loadJzxx(){
+	var data=parent.obj1;
+	$('#xdsj').html(data.xdsj);
+	$('#sjkgsj').html(data.sjkgsj);
+	$('#yjwgsj').html(data.yjjgsj);
+	$('#xdwh').html(data.xdwh);
+	$('#sgdw').html(data.sgdw);
+	$('#jldw').html(data.jldw);
+	$('#jsdw').html(data.jsdw);
+	$('#htje').html(data.htje);
+	$('#gys').html(data.gys);
+	$('#sjwgsj').html(data.sjwgsj);
+}
 function loadJhkxx(){
 	$.ajax({
 		 type : "POST",
@@ -219,6 +235,40 @@ function loadZjxdSumByXmid(){
 	});
 }
 
+function fileShow22(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		dataType:'json',
+		data:'uploads.id='+xmbm,
+		success:function(data){
+			$("#wgqlzmTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype==type){
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
+				$("#wgqlzmTable").append(tr);
+				}
+			}
+		}
+	});
+}
+function fileShow23(xmbm,type){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
+		dataType:'json',
+		data:'uploads.id='+xmbm,
+		success:function(data){
+			$("#wgqlcmTable").empty();
+			for ( var i = 0; i < data.length; i++) {
+				if(data[i].filetype==type){
+					var tr = "<tr><td style='background-color: #ffffff; height: 25px;' align='left'>" + data[i].filename +"</td><td style='background-color: #ffffff; height: 25px;' align='left'><a href='javascript:void(0)'style='text-decoration:none;color:#3399CC; ' onclick=downFile('"+data[i].id+"')>下载</a>  </td></tr>";
+				$("#wgqlcmTable").append(tr);
+				}
+			}
+		}
+	});
+}
 </script>
 <style type="text/css">
 TD {
@@ -684,7 +734,61 @@ text-decoration:none;
             		</div>
 				</td>
 			</tr>
-			
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					危桥改造项目工程进展信息
+				</td>
+				
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际开工时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjkgsj"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">预计完工时间：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="yjwgsj"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">施工单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sgdw"></span></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">监理单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="jldw"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="jsdw"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">合同金额（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="htje"></span></td>
+			</tr>
+			<tr style="height: 30px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">概预算（万元）：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="gys"></span></td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">实际完工时间：</td>
+				<td colspan="3" style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="sjwgsj"></span></td>
+			</tr>
+			<tr>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工桥梁正面照片：</td>
+				<td id="td_jgtc" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="1">
+						<tbody id="wgqlzmTable"></tbody>
+					</table>
+					
+				</td>
+			</tr>
+			<tr>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工桥梁侧面照片：</td>
+				<td id="td_wgys" colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
+					<table style="margin-top:10px;background-color: #aacbf8; font-size: 12px" border="0"
+								cellpadding="1" cellspacing="2">
+						<tbody id="wgqlcmTable"></tbody>
+					</table>
+				</td>
+			</tr>
 		</table>
 	</body>
 </html>

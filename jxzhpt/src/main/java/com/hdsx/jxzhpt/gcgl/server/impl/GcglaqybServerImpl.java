@@ -17,6 +17,7 @@ import com.hdsx.jxzhpt.gcgl.server.GcglaqybServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglshServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglyhdzxServer;
 import com.hdsx.jxzhpt.gcgl.server.GcglzhfzServer;
+import com.hdsx.jxzhpt.jhgl.bean.Plan_upload;
 import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 @Service
@@ -361,6 +362,14 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	public Gcgl_jgys queryJGYS(Gcgl_jgys gcgl_jgys) {
 		// TODO Auto-generated method stub
 		return queryOne("queryJGYS", gcgl_jgys);
+	}
+
+	@Override
+	public boolean loadWqgzwgzp(Gcgl_jgys gcgl_jgys) {
+		List<Plan_upload> l=queryList("loadWqgzwgzp",gcgl_jgys);
+		if(l.size()>0)
+			return true;
+		return false;
 	}
 	
 }

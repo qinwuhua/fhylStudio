@@ -100,4 +100,6 @@ public interface GcglaqybServer {
 
 	Gcgl_jgys queryJGYS(Gcgl_jgys gcgl_jgys);
 
+	boolean loadWqgzwgzp(Gcgl_jgys gcgl_jgys);
+
 }

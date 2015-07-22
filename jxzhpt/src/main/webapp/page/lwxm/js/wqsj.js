@@ -42,9 +42,6 @@ function fileShow1(xmbm,type){
 function fileShow2(xmbm,type){
 	$.ajax({
 		type:'post',
-//		url:'../../../qqgl/queryFileByXmbm.do',
-//		data:'file.parentid='+xmbm+'&file.filetype='+type,
-//		dataType:'json',
 		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,
@@ -62,9 +59,6 @@ function fileShow2(xmbm,type){
 function fileShow3(xmbm,type){
 	$.ajax({
 		type:'post',
-//		url:'../../../qqgl/queryFileByXmbm.do',
-//		data:'file.parentid='+xmbm+'&file.filetype='+type,
-//		dataType:'json',
 		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
 		data:'uploads.id='+xmbm,

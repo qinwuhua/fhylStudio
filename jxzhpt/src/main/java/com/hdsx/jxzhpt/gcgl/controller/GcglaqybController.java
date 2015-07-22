@@ -976,4 +976,8 @@ public class GcglaqybController extends BaseActionSupport{
 			e.printStackTrace();
 		}
 	}
+	public void loadWqgzwgzp(){
+		boolean bl=gcglaqybServer.loadWqgzwgzp(gcgl_jgys);
+		ResponseUtils.write(getresponse(), bl+"");
+	}
 }

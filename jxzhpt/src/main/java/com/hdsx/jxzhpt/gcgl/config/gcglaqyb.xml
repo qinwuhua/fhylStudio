@@ -298,4 +298,7 @@
  	<select id="queryJGYS" parameterType="gcgl_jgys" resultType="gcgl_jgys">
  		select * from gcgl_jgys where jhid=#{jhid}
  	</select>
+ 	<select id="loadWqgzwgzp" parameterType="gcgl_jgys" resultType="plan_upload">
+ 		select *from PLAN_UPLOAD where 1=1 and parentid=#{id} and filetype=#{name}
+ 	</select>
 </mapper>

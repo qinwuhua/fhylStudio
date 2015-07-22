@@ -149,7 +149,7 @@ function sjtfileShow(id){
 	//加载文件
 	$.ajax({
 		type:'post',
-		url:'../../../jhgl/queryFjByParentId.do',
+		url:'/jxzhpt/jhgl/queryFjByParentId.do',
 		dataType:'json',
 		data:'uploads.id='+id,
 		success:function(data){

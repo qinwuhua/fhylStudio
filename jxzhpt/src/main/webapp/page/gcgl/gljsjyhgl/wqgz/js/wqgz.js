@@ -741,8 +741,8 @@ function deleteFile11(id){
 			 success : function(msg){
 				 if(msg){
 					 alert('删除成功！');
-					 fileShow11(xmbm,'完工桥梁正面文件');
-					 fileShow12(xmbm,'完工桥梁侧面文件');
+					 fileShow11(parent.obj1.id,'完工桥梁正面文件');
+					 fileShow12(parent.obj1.id,'完工桥梁侧面文件');
 				 }else{
 					 YMLib.Tools.Show('删除失败,请选择要删除数据！',3000);
 				 }
