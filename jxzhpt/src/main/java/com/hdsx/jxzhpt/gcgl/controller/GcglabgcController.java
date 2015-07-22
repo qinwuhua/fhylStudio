@@ -79,7 +79,14 @@ public class GcglabgcController extends BaseActionSupport{
 	private String bfzt;
 	private String bfyf;
 	private String xmnf;
+	private String sfylrbwqk;
 	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getXmnf() {
 		return xmnf;
 	}
@@ -1118,6 +1125,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gcglabgc.setTbr(tbr);
 		gcglabgc.setJhnf(xmnf);
 		gcglabgc.setTiaojian(qlmc);
+		gcglabgc.setSfylrbwqk(sfylrbwqk);
 		List<Excel_list> list=gcglabgcServer.exportwqyb(gcglabgc);
 
 		//到报表

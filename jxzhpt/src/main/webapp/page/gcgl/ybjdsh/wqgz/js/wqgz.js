@@ -11,6 +11,13 @@ function wqxiangxi(index){
 	YMLib.UI.createWindow('wq_xx','危桥改造',"/jxzhpt/page/jhgl/jhkxx/wqgz.jsp",'wq_xx',1000,500);
 	//window.open("wqgzxx.jsp");
 }
+function wqxiangxi1(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wq_xx','危桥改造',"wqgzsj_ck.jsp",'wq_xx',1000,500);
+	//YMLib.UI.createWindow('wqxx','危桥改造开工详情','wqgzxx.jsp','wqxx',740,450);
+	//window.open("wqgzxx.jsp");
+}
 function closes(str){
 	 parent.$('#'+str).window('destroy');
 }
@@ -137,7 +144,9 @@ function showAll(){
 	    	qlmc:qlmc,
 	    	ybzt:ybzt,
 	    	sfsj:sfsj,
-	    	xmnf:xmnf
+	    	xmnf:xmnf,
+	    	sfylrbwqk:'是'
+	    	
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
@@ -156,6 +165,77 @@ function showAll(){
 	    ]]    
 	}); 
 }
+function showAll1(){
+	var xmnf=$("#ddlYear").val();
+	var gydw=$("#gydw").combotree("getValues");
+	if(gydw.length==0){
+		if($.cookie("unit2")=='_____36')
+			gydwstr=36;
+		else gydwstr= $.cookie("unit2");
+	}else if(gydw.length==1){
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		if(gydw[0].substr(gydw[0].length-2,gydw[0].length)=="00") gydw[0]=gydw[0].substr(0,gydw[0].length-2);
+		gydwstr=gydw[0] ;
+	}else{
+		gydwstr= gydw.join(',');
+	}
+	var kgzt='';
+	var jgzt='0';
+	var lxmc=$("#lxmc").val();
+	var qlmc=$("#qlmc").val();
+	var yhjb=$.cookie("unit2").replace(/_/g,"");
+	var sfsj='';
+	if(yhjb.length==11){
+		yhtype='县级';
+		sfsj=11;
+	}
+	if(yhjb.length==9||yhjb.length==8){
+		yhtype='市级';
+		sfsj=9;
+	}
+	if(yhjb.length<8&&yhjb.length>=2){
+		yhtype='省级';
+		sfsj=7;
+	}
+	var ybzt=$("#ybzt").val();
+	$('#datagrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzjhList.do',
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:$(window).height()-$(window).height()*0.22,
+	    width:$(window).width()-$(window).width()*0.019,
+	    queryParams: {
+	    	gydw: gydwstr,
+	    	kgzt: kgzt,
+	    	jgzt: jgzt,
+	    	lxmc:lxmc,
+	    	qlmc:qlmc,
+	    	ybzt:ybzt,
+	    	sfsj:sfsj,
+	    	xmnf:xmnf,
+	    	sfylrbwqk:$("#sfylrbwqk").combobox('getValue')
+		},
+	    columns:[[
+	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
+	        }},
+	        {field:'gydw',title:'管养单位',width:150,align:'center'},
+	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
+	        {field:'qlbh',title:'桥梁编码',width:120,align:'center'},
+	        {field:'qlmc',title:'桥梁名称',width:120,align:'center'},
+	        {field:'qlzxzh',title:'桥梁中心桩号',width:100,align:'center'},
+	        {field:'qlkd',title:'桥梁全宽',width:80,align:'center'},
+	        {field:'qlqc',title:'桥梁全长',width:80,align:'center'},
+	        {field:'kjzc',title:'跨径总长',width:60,align:'center'},
+	        {field:'jsdj',title:'技术等级',width:60,align:'center'},
+	        {field:'xjgjnd',title:'改建/修建年度',width:100,align:'center'}
+	    ]]    
+	}); 
+}
+
 function showYBlist(){
 	$('#ybgrid').datagrid({    
 	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,

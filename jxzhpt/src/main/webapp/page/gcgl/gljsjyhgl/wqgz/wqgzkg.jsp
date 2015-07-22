@@ -16,6 +16,7 @@
 	var sbsj;
 	var sbyf;
 	$(function(){
+		$("#tj_xdwh").val(parent.obj1.jhxdwh);
 // 			var myDate = new Date();
 // 			var y = myDate.getFullYear();
 // 			var m = myDate.getMonth()+1;       //获取当前月份(0-11,0代表1月)

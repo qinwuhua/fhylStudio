@@ -152,13 +152,16 @@
 
 		function ckwqgz(id){
 			obj=id;
-			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_ck.jsp",'wq_edit',1000,500);
+			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_ck.jsp",'wq_edit',1000,500);
 		}
 		function shangb1(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','省级审核',"/jxzhpt/page/jhgl/jhksh/wqgzsj_sh.jsp",'wq_edit',500,300);
 		}
-		
+		function zjxf(id){
+			obj=id;
+			YMLib.UI.createWindow('wq_edit','危桥改造资金下达',"/jxzhpt/page/jhgl/jhkzjxd/wqgzsj_zj.jsp",'wq_edit',1000,500);
+		}
 	</script>
 <style type="text/css">
 TD {

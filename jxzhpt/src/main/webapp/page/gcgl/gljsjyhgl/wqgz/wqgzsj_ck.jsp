@@ -7,12 +7,12 @@
 	<title>Insert title here</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>基础库管理危桥改造项目</title>
-<link rel="stylesheet" type="text/css" href="../../../easyui/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="../../../easyui/themes/icon.css" />
-<link rel="stylesheet" type="text/css" href="../../../js/autocomplete/jquery.autocomplete.css" />
-<script type="text/javascript" src="../../../easyui/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="../../../easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="../../../easyui/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/easyui/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/js/autocomplete/jquery.autocomplete.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/uploader/swfobject.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
@@ -25,13 +25,14 @@
 <script type="text/javascript">
 $(function(){
 	loadJhkxx();
+	loadZjxdList();
 });
 function loadJhkxx(){
 	$.ajax({
 		 type : "POST",
 		 url : "/jxzhpt/jhgl/loadwqgzjhkbyid.do",
 		 dataType : 'json',
-		 data : 'id='+parent.obj,
+		 data : 'id='+parent.obj1.id,
 		 success : function(msg){
 			 loadSckxx(msg.sckid);
 			 $("#sfylrbwqk").html(msg.sfylrbwqk);
@@ -168,6 +169,54 @@ function sjtfileShow(id){
 }
 function sjtdownFile(id){
 	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
+}
+function loadZjxdList(){
+	var params={'zjxd.xmid':parent.obj1.id};
+	loadZjxdSumByXmid();
+	$('#zjxfgrid').datagrid({
+		url : '/jxzhpt/jhgl/queryZjxdByXmId.do',
+		queryParams : params,
+		striped : true,
+		pagination : true,
+		rownumbers : true,
+		pageNumber : 1,
+		pageSize : 3,
+		height : 140,
+		fitColumns:true,
+		columns : [[
+		
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				if (row.sfzj == "0") {
+					return "否";
+				} else {
+					return "是";
+				}
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
+		]]
+	});
+}
+function loadZjxdSumByXmid(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/queryZjxdSumByXmid.do',
+		data:'zjxd.xmid='+parent.obj1.id,
+		dataType:'json',
+		success:function(data){
+			if(data!=null){
+				$('#sl').html(data.xmid);
+				$('#xdzj').html(data.xdzj);
+			}
+		}
+	});
 }
 
 </script>
@@ -616,6 +665,26 @@ text-decoration:none;
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jhbz"></span></td>
 			</tr>
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					危桥改造项目资金下发信息
+				</td>
+				
+			</tr>
+			<tr style="margin: 0px;">
+				<td colspan="6" style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;background-color:#ffffff; ">
+				共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个下发信息，
+				下发资金共【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+				</td>
+			</tr>
+			<tr  style="height: 30px;">
+				<td colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:100%;" align="center">
+					<div>
+            			<table id="zjxfgrid" ></table>
+            		</div>
+				</td>
+			</tr>
+			
 		</table>
 	</body>
 </html>

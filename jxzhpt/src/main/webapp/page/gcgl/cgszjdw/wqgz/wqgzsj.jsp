@@ -74,7 +74,7 @@
 			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr3+">"+mystr3+"</option>");
 			$("#ddlMonth").append("<option id="+mystr1+" value="+mystr4+">"+mystr4+"</option>");
 			$("#ddlYear").val(myDate.getFullYear());
-			showAll();
+			showAll1();
 		});
 		function exportAbyb(){
 			var gydw=$("#gydw").combotree("getValues");
@@ -97,7 +97,7 @@
 			var y=$("#ddlYear").val();
 			var m=$("#ddlMonth").val();         //获取当前月份(0-11,0代表1月)
 			var sbyf=m;
-			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&qlmc="+qlmc+"&xmnf="+y+"&sfylrbwqk=是";
+			var data="jgzt="+jgzt+"&kgzt="+kgzt+"&lxmc="+lxmc+"&sbyf="+sbyf+"&tbr="+$.cookie("truename")+"&qlmc="+qlmc+"&xmnf="+y+"&sfylrbwqk="+$("#sfylrbwqk").combobox('getValue');
 			$.post('/jxzhpt/gcgl/exportsjyb_set.do',{gydw:gydwstr} ,function(){
 				window.location.href="/jxzhpt/gcgl/exportwqyb.do?"+data;
 			    });
@@ -171,8 +171,14 @@ a:active {
 									<option>已拨付</option>
 									<option>未拨付</option>
 								</select> 
+								<span>是否部库：</span>
+        						<select id="sfylrbwqk" class="easyui-combobox"  style="width: 74px">
+								<option value="">全部</option>
+								<option value="否" selected>否</option>
+								<option value="是">是</option>
+								</select>
         						<img alt="查询" src="${pageContext.request.contextPath}/images/Button/Serch01.gif" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/Serch02.gif'"
-                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -55%;" onclick="showAll()"/>        					
+                                        onmouseout="this.src='${pageContext.request.contextPath}/images/Button/Serch01.gif' "  style="border-width:0px;cursor: hand;vertical-align: -55%;" onclick="showAll1()"/>        					
                                        <img onclick="exportAbyb()" alt="导出模版" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/DC2.gif'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/DC1.gif'" src="${pageContext.request.contextPath}/images/Button/DC1.gif" style="border-width:0px;cursor: hand;vertical-align:middle;"/>
         						 <img onclick="importData_yb('cgszjdw/wqgz/wqgz')" alt="导入月报" src="${pageContext.request.contextPath}/images/Button/dreclLeave.GIF" onmouseover="this.src='${pageContext.request.contextPath}/images/Button/dreclClick.GIF'" onmouseout="this.src='${pageContext.request.contextPath}/images/Button/dreclLeave.GIF'" style="vertical-align:middle;"/> 
                                         </p>

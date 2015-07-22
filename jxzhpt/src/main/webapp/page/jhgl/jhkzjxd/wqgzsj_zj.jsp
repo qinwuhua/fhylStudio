@@ -25,6 +25,7 @@
 <script type="text/javascript">
 $(function(){
 	loadJhkxx();
+	loadZjxdList();
 });
 function loadJhkxx(){
 	$.ajax({
@@ -169,7 +170,85 @@ function sjtfileShow(id){
 function sjtdownFile(id){
 	parent.window.location.href="/jxzhpt/jhgl/downAbgcFile.do?uploads.id="+id;
 }
-
+function loadZjxdList(){
+	var params={'zjxd.xmid':parent.obj};
+	loadZjxdSumByXmid();
+	$('#zjxfgrid').datagrid({
+		url : '/jxzhpt/jhgl/queryZjxdByXmId.do',
+		queryParams : params,
+		striped : true,
+		pagination : true,
+		rownumbers : true,
+		pageNumber : 1,
+		pageSize : 3,
+		height : 140,
+		fitColumns:true,
+		columns : [[
+		{field : 'cz',title : '操作',width : 120,align : 'center',
+			formatter : function(value, row, index) {
+				var result = '<a href="javascript:editZjxd('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">编辑</a>    ';
+				result += '<a href="javascript:delZjxdById('+"'"+row.id+"'"+')" style="text-decoration:none;color:#3399CC;">删除</a>';
+				return result;
+			}
+		},
+		{field : 'sfzj',title : '是否追加',width : 100,align : 'center',
+			formatter : function(value, row, index) {
+				if (row.sfzj == "0") {
+					return "否";
+				} else {
+					return "是";
+				}
+			}
+		},
+		{field:'xdnf',title : '下达年份',width : 100,align : 'center'}, 
+		{field : 'xdzj',title : '下达总资金',width : 150,align : 'center'},
+		{field : 'btzzj',title : '车购税',width : 150,align : 'center'}, 
+		{field : 'stz',title : '省投资',width : 150,align : 'center'}, 
+		{field : 'tbdw',title : '填报部门',width : 150,align : 'center'}, 
+		{field : 'jhxdwh',title : '计划下达文号',width : 150,align : 'center'}, 
+		{field : 'tbtime',title : '填报时间',width : 150,align : 'center'}
+		]]
+	});
+}
+function loadZjxdSumByXmid(){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/queryZjxdSumByXmid.do',
+		data:'zjxd.xmid='+parent.obj,
+		dataType:'json',
+		success:function(data){
+			if(data!=null){
+				$('#sl').html(data.xmid);
+				$('#xdzj').html(data.xdzj);
+			}
+		}
+	});
+}
+var obj1;
+function addzjxd(){
+	obj1=parent.obj;
+	YMLib.UI.createWindow('zjxd','资金下达',"/jxzhpt/page/jhgl/zjxd/zjxd1.jsp",'zjxd',900,300);
+}
+function editZjxd(id){
+	obj1=id;
+	YMLib.UI.createWindow('zjxd','资金下达',"/jxzhpt/page/jhgl/zjxd/zjxd_edit1.jsp",'zjxd',900,300);
+}
+function delZjxdById(id){
+	$.ajax({
+		type:'post',
+		url:'/jxzhpt/jhgl/dropZjxdById.do',
+		dataType:'json',
+		data:'zjxd.id='+id,
+		success:function(data){
+			if(data.result=="true"){
+				alert("删除成功！");
+				loadZjxdList();
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
 </script>
 <style type="text/css">
 TD {
@@ -615,6 +694,32 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%;" align="right">备注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
 					<span id="jhbz"></span></td>
+			</tr>
+			<tr style="height: 25px;">
+				<td colspan="6" style="border-style: none none solid none; border-width: 1px; color: #55BEEE; font-weight: bold; font-size: small; text-align: left; background-color: #F1F8FF; width: 15%; padding-left: 10px;">
+					危桥改造项目资金下发信息
+				</td>
+				
+			</tr>
+			<tr style="margin: 0px;">
+				<td colspan="6" style="text-align: left; padding:8px 0px 5px 20px; font-size: 12px;background-color:#ffffff; ">
+				共有【&nbsp;<span id="sl" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】个下发信息，
+				下发资金共【&nbsp;<span id="xdzj" style="font-weight: bold; color: #FF0000">0</span>&nbsp;】万元。
+				</td>
+			</tr>
+			<tr  style="height: 30px;">
+				<td colspan="6" style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:100%;" align="center">
+					<div>
+            			<table id="zjxfgrid" ></table>
+            		</div>
+				</td>
+			</tr>
+			<tr style="height: 30px;">
+				<td colspan="6" style="background-color: #ffffff; height: 30px;"
+					align="center"><a href="javascript:addzjxd();" id="save_button"
+					class="easyui-linkbutton" plain="true" iconCls="icon-save">添加</a> <a
+					href="javascript:parent.$('#wq_edit').window('destroy');" id="qx_window"
+					class="easyui-linkbutton" plain="true" iconCls="icon-cancel">返回</a></td>
 			</tr>
 		</table>
 	</body>

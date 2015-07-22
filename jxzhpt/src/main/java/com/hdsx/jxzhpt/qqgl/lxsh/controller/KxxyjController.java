@@ -105,6 +105,7 @@ public class KxxyjController extends BaseActionSupport{
 	private String fileuploadFileName;
 	private File fileupload;
 	private Lx lx;
+	private String name;
 	
 	private Gcgl_jgys gcgl_jgys = new Gcgl_jgys();
 	private File uploadSGXK;
@@ -114,6 +115,12 @@ public class KxxyjController extends BaseActionSupport{
 	private String uploadJGTCFileName;
 	private String uploadWGYSFileName;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public Lx getLx() {
 		return lx;
 	}
@@ -458,6 +465,14 @@ public class KxxyjController extends BaseActionSupport{
 		FileInputStream fs=null;
 		byte[] data;
 		System.out.println(gcgl_jgys);
+		if("qlzmwj".equals(gcgl_jgys.getName()))
+			gcgl_jgys.setFiletype("桥梁正面文件");
+		if("qlcmwj".equals(gcgl_jgys.getName()))
+			gcgl_jgys.setFiletype("桥梁侧面文件");
+		if("wgqlzmwj".equals(gcgl_jgys.getName()))
+			gcgl_jgys.setFiletype("完工桥梁正面文件");
+		if("wgqlcmwj".equals(gcgl_jgys.getName()))
+			gcgl_jgys.setFiletype("完工桥梁侧面文件");
 		try {
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setCharacterEncoding("utf-8"); 		

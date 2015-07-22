@@ -491,6 +491,9 @@ where t1.spzt='1'
 			<if test="jhnf != null and  jhnf != ''">
 					and t1.sbnf like '%'||trim(#{jhnf})||'%'
 			</if>
+			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+					and t1.sfylrbwqk = #{sfylrbwqk}
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>

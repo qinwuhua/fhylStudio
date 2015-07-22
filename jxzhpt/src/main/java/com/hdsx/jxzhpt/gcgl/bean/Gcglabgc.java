@@ -121,7 +121,14 @@ public class Gcglabgc implements Serializable {
 	private String stz;
 	private String xmmc;
 	private String xdwh;
+	private String sfylrbwqk;
 	
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getXdwh() {
 		return xdwh;
 	}

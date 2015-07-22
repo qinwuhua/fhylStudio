@@ -142,47 +142,53 @@
 	</update>
 	
 	<select id="selectWqgzjhList" parameterType="gcglwqgz" resultType="gcglwqgz">
-select * from (
-select m.*,rownum rn from (
-select 
-t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,
-t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
-t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
-t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz
-from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
-where  t1.spzt='1'
-	<if test="gydw != null and  gydw != ''">
-			${gydw}
-	</if>
-	<if test="kgzt != null and  kgzt != ''">
-			and t1.kgzt like '%'||trim(#{kgzt})||'%'
-	</if>
-	<if test="jgzt != null and  jgzt != ''">
-			and t1.jgzt like '%'||trim(#{jgzt})||'%'
-	</if>
-	<if test="xmnf != null and  xmnf != ''">
-			and t1.sbnf like '%'||trim(#{xmnf})||'%'
-	</if>
-	<if test="lxmc != null and  lxmc != ''">
-			and t3.lxmc like '%'||trim(#{lxmc})||'%'
-	</if>
-	<if test="qlmc != null and  qlmc != ''">
-			and t3.qlmc like '%'||trim(#{qlmc})||'%'
-	</if>
-	<if test="shzt != null and  shzt != ''">
-			and ${tiaojian} like '%'||trim(#{shzt})||'%'
-	</if>
-	order by t1.sbnf
-	) m
-			where <![CDATA[rownum<=(#{page} * #{rows})]]>
-		) 
+		select * from (
+		select m.*,rownum rn from (
+		select 
+		t1.sbnf,t1.jhkgsj,t1.jhwgsj,t1.sjdw,t1.sjpfdw,t1.pfwh,t1.pfsj,t1.pfztz,t1.jhsybzje,t1.jhsydfzcje,t1.sfsqablbz,t1.ablbzsqwh,t1.gkbglj,t1.gkbgmc,t1.sjsgtlj,t1.sjsgtmc,t1.bz jhbz,t1.xdsj,t1.jhxdwh xdwh,t1.sjkgsj,t1.ID jhid,t1.id,
+		t1.yjjgsj,t1.sgdw,t1.jldw,t1.jsdw,t1.gys,t1.htje,t1.sjwgsj,t1.kgzt,t1.jgzt,t1.wjgyy,t1.sgxkwj,t1.jgtcwj,t1.jgyswj,
+		t3.qlmc,t3.qlbh,t3.qlzxzh,t3.xzqhmc,t3.xzqhdm,t3.gydw,t3.lxmc,t3.lxbm,t2.SCQLQK qlkd,t2.SCQLQC qlqc,t3.kjzc,t3.dkzdkj,t3.jsdj,t3.pddj,t3.xjgjnd,t3.akjfl,t3.sbjgxs,t3.xmnf,t3.xmtype,t3.ptx,t3.pty,t3.bhnr,t3.bz,t3.tsdq,
+		t2.tzgs,t2.spwh,t2.fapgdw,t2.fascdw,t2.faspsj,t2.jsxz,t2.jsnr,t2.scbz,zj.jhxdwh,t1.qljsgm
+		from PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id left join (select decode(max(jhxdwh),null,'-',max(jhxdwh)) jhxdwh,xmid from plan_zjxd group by xmid) zj on t1.id=zj.xmid
+		where  t1.spzt='1' 
+			<if test="gydw != null and  gydw != ''">
+					${gydw}
+			</if>
+			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+					and t1.sfylrbwqk = #{sfylrbwqk}
+			</if>
+			<if test="kgzt != null and  kgzt != ''">
+					and t1.kgzt like '%'||trim(#{kgzt})||'%'
+			</if>
+			<if test="jgzt != null and  jgzt != ''">
+					and t1.jgzt like '%'||trim(#{jgzt})||'%'
+			</if>
+			<if test="xmnf != null and  xmnf != ''">
+					and t1.sbnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="lxmc != null and  lxmc != ''">
+					and t3.lxmc like '%'||trim(#{lxmc})||'%'
+			</if>
+			<if test="qlmc != null and  qlmc != ''">
+					and t3.qlmc like '%'||trim(#{qlmc})||'%'
+			</if>
+			<if test="shzt != null and  shzt != ''">
+					and ${tiaojian} like '%'||trim(#{shzt})||'%'
+			</if>
+			order by t1.sbnf
+			) m
+					where <![CDATA[rownum<=(#{page} * #{rows})]]>
+				) 
 			where RN>((#{page} - 1) * #{rows})
 	</select>
 	 <select id="selectWqgzjhListCount" parameterType="gcglwqgz" resultType="int">
 	 	select count(*) from  PLAN_WQGZ t1 left join SCK_WQGZ  t2 on t1.SCKID=t2.SCKID left join XMK_WQGZ t3 on t2.xmkid=t3.id 
-		where  t1.spzt='1'
+		where  t1.spzt='1' 
 	<if test="gydw != null and  gydw != ''">
 			${gydw}
+	</if>
+	<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+			and t1.sfylrbwqk = #{sfylrbwqk}
 	</if>
 	<if test="kgzt != null and  kgzt != ''">
 			and t1.kgzt like '%'||trim(#{kgzt})||'%'
@@ -266,6 +272,9 @@ where  t1.spzt='1'
 			<if test="xmnf != null and  xmnf != ''">
 					and t1.sbnf like '%'||trim(#{xmnf})||'%'
 			</if>
+			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+					and t1.sfylrbwqk = #{sfylrbwqk}
+			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}
 			</if>
@@ -300,6 +309,9 @@ where  t1.spzt='1'
 		where  t1.spzt='1' 
 			<if test="xmnf != null and  xmnf != ''">
 				and t1.sbnf like '%'||trim(#{xmnf})||'%'
+			</if>
+			<if test="sfylrbwqk != null and  sfylrbwqk != ''">
+					and t1.sfylrbwqk = #{sfylrbwqk}
 			</if>
 			<if test="gydw != null and  gydw != ''">
 					${gydw}

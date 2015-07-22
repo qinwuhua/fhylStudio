@@ -129,7 +129,28 @@ public class Gcglwqgz implements Serializable {
 	private String sjsh;
 	private String stz;
 	private String xdwh;
+	private String sfylrbwqk;
+	private String jhxdwh;
+	private String qljsgm;
 	
+	public String getQljsgm() {
+		return qljsgm;
+	}
+	public void setQljsgm(String qljsgm) {
+		this.qljsgm = qljsgm;
+	}
+	public String getJhxdwh() {
+		return jhxdwh;
+	}
+	public void setJhxdwh(String jhxdwh) {
+		this.jhxdwh = jhxdwh;
+	}
+	public String getSfylrbwqk() {
+		return sfylrbwqk;
+	}
+	public void setSfylrbwqk(String sfylrbwqk) {
+		this.sfylrbwqk = sfylrbwqk;
+	}
 	public String getXdwh() {
 		return xdwh;
 	}

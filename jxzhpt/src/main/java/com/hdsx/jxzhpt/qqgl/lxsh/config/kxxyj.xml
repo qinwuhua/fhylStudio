@@ -497,11 +497,11 @@
 	
 	<insert id="insertJgtc" parameterType="gcgl_jgys">
  		insert into plan_upload(filename,filedata,parentid,filetype)
- 		 values(#{filename},#{filedata},#{jhid},'桥梁正面文件')
+ 		 values(#{filename},#{filedata},#{jhid},#{filetype})
  	</insert>
  	<insert id="insertWgys" parameterType="gcgl_jgys">
  		insert into plan_upload(filename,filedata,parentid,filetype)
- 		 values(#{filename},#{filedata},#{jhid},'桥梁侧面文件')
+ 		 values(#{filename},#{filedata},#{jhid},#{filetype})
  	</insert>
  	
  	<update id="importsjgzkxx" parameterType="hashMap">

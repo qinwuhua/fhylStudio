@@ -1,6 +1,7 @@
 package com.hdsx.jxzhpt.gcgl.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Gcgl_jgys implements Serializable {
@@ -17,7 +18,14 @@ public class Gcgl_jgys implements Serializable {
 	private String filetype;
 	private String jhid;
 	private String yssj;
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getYssj() {
 		return yssj;
 	}
@@ -66,5 +74,12 @@ public class Gcgl_jgys implements Serializable {
 	public void setJhid(String jhid) {
 		this.jhid = jhid;
 	}
-	
+	@Override
+	public String toString() {
+		return "Gcgl_jgys [id=" + id + ", ysdw=" + ysdw + ", ysyj=" + ysyj
+				+ ", filename=" + filename + ", filedata="
+				+ Arrays.toString(filedata) + ", filetype=" + filetype
+				+ ", jhid=" + jhid + ", yssj=" + yssj + ", name=" + name + "]";
+	}
+
 }

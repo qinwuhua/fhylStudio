@@ -250,6 +250,7 @@ function loadUploadify(){
 		'width' : 92,
 		'scriptData' : {
 			'gcgl_jgys.jhid':xmbm,
+			'gcgl_jgys.name':'qlzmwj'
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
 			alert(response);
@@ -285,6 +286,7 @@ function loadUploadify(){
 		'width' : 92,
 		'scriptData' : {
 			'gcgl_jgys.jhid':xmbm,
+			'gcgl_jgys.name':'qlcmwj'
 		},
 		onComplete : function(event, queueID, fileObj, response, data) {
 			alert(response);
