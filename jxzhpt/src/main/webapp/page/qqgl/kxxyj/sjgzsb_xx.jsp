@@ -71,7 +71,11 @@ text-decoration:none;
 		$('#jhwllc').html(data.jhwllc);
 		$('#dfzc').html(data.dfzc);
 		$('#yhdk').html(data.yhdk);
-		fileShow1(parent.obj.xmbm,"工可批复文件");		
+		
+		$('#lc').html(data.lc);
+		$('#qdmc').html(data.qdmc);
+		$('#zdmc').html(data.zdmc);
+		fileShow1(parent.obj.xmbm,"工可批复文件");
 	}
 	
 	$(function(){
@@ -151,6 +155,20 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">里程：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="lc"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="qdmc"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="zdmc"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程
 				</td>
@@ -177,6 +195,20 @@ text-decoration:none;
 				</td>
 			</tr>
 			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="gkpfwh"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="jsjsdj"></span>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<span id="jsxz"></span>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">大桥（米）：</td>
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="dq_m"></span>
@@ -185,9 +217,9 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 25px;" align="left">
 					<span id="dq"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设技术等级：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsjsdj"></span>
+					<span id="jsdw"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -199,9 +231,9 @@ text-decoration:none;
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="sd"></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsdw"></span>
+					<span id="bzdw"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -211,11 +243,11 @@ text-decoration:none;
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">完工年月：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id='wgny' ></span>
+					<span id='wgny'></span>
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">编制单位：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="bzdw"></span>
+					<span id="pfsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -230,20 +262,6 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">银行贷款：</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
 					<span id="yhdk"></span>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="jsxz"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">工可批复文号：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="gkpfwh"></span>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">批复时间：</td>
-				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<span id="pfsj"></span>
 				</td>
 			</tr>
 			<tr style="height: 35px;">

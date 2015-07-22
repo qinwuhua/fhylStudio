@@ -316,26 +316,26 @@
 	</select>
 	
 	<select id="queryCbsjLmgzByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_lmgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_lmgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjLmsjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.lc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc,l.jhyilc,l.jherlc,l.jhsanlc,l.jhsilc,l.jhdwlc,l.jhwllc
 		from cbsj_sjgz c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjXjByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.lc,l.qdmc,l.zdmc,l.gpszdzh,l.xjlxbm,l.xjqdzh,l.xjzdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_xj c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjYhdzxByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*, l.qdmc,l.zdmc,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_yhdzx c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	<select id="queryCbsjShByXmbm" parameterType="java.util.Map" resultType="cbsj">
-		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
+		select c.*,l.lxbm as ghlxbh,l.gpsqdzh,l.gpszdzh,l.qdmc,l.zdmc,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from cbsj_sh c left join lxsh_lx l on c.xmbm=l.xmid where l.sffirst='1' and c.xmbm=#{xmbm} and l.jdbs='2'
 	</select>
 	
 	<update id="updateCbsjLmgz" parameterType="cbsj">
 		update cbsj_lmgz c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
 		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},c.dfzc=#{dfzc},c.yhdk=#{yhdk},
-		<if test="lj!=null">c.lj=#{lj},</if> 
+		<if test="lj!=null">c.lj=#{lj},</if>
 		<if test="ql!=null">c.ql=#{ql},</if>
 		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>
 		<if test="hd!=null">c.hd=#{hd},</if>
@@ -509,7 +509,7 @@
 	
 	<!-- 文件操作部分 -->
 	<select id="queryFileByXmbm" parameterType="plan_upload" resultType="plan_upload">
-		select * from plan_upload where parentid=#{parentid} and filetype=#{filetype}
+		select id,filename,parentid,filetype from plan_upload where parentid=#{parentid} and filetype=#{filetype}
 	</select>
 	<insert id="insertFile" parameterType="plan_upload">
 		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
@@ -518,8 +518,13 @@
 	<select id="queryLmgzExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm=l.xmbm
-				where 1=1
+				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
+				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
+				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
+				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
+				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>
@@ -553,8 +558,12 @@
 	<select id="queryYhdzxExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm
-				where 1=1
+				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_yhdzx c left join xmsq_yhdzx l on c.xmbm=l.xmbm left join 
+				(select xmid,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
+				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
+				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx 
+				on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>
@@ -588,8 +597,12 @@
 	<select id="queryShExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.ylxbh,l.lsjl from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm
-				where 1=1
+			select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,
+			c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jsfa,lx.* from cbsj_sh c left join xmsq_sh l on c.xmbm=l.xmbm left join 
+			(select xmid,replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
+			replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
+			replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx 
+			on c.xmbm=lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>
@@ -620,8 +633,13 @@
 	<select id="queryLmsjExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm=l.xmbm
-				where 1=1
+				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
+				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
+				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
+				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
+				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>
@@ -652,8 +670,13 @@
 	<select id="queryXjExcel" parameterType="cbsj" resultType="cbsj">
 		select * from (
 			select rownum num,t.* from (
-				select c.*,l.ghlxbh,l.lsjl from cbsj_xj c left join lxsh_xj l on c.xmbm=l.xmbm
-				where 1=1
+				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
+				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
+				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
+				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
+				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
+				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}
 				</if>

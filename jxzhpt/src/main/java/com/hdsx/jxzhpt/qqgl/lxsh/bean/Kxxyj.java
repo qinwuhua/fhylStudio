@@ -68,6 +68,27 @@ public class Kxxyj implements Serializable {
 	private String jhwllc;//建设后无路里程
 	private String yhdk;//银行贷款
 	private String dfzc;//地方自筹
+	private String lxmc;//路线名称
+	private String qdmc;//起点名称
+	private String zdmc;//止点名称
+	public String getLxmc() {
+		return lxmc;
+	}
+	public void setLxmc(String lxmc) {
+		this.lxmc = lxmc;
+	}
+	public String getQdmc() {
+		return qdmc;
+	}
+	public void setQdmc(String qdmc) {
+		this.qdmc = qdmc;
+	}
+	public String getZdmc() {
+		return zdmc;
+	}
+	public void setZdmc(String zdmc) {
+		this.zdmc = zdmc;
+	}
 	public String getLxbm() {
 		return lxbm;
 	}
