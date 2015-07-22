@@ -520,7 +520,7 @@
 			select rownum num,t.* from (
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_lmgz c left join lxsh_lmgz l on c.xmbm = l.xmbm
 				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
 				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
 				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
@@ -635,7 +635,7 @@
 			select rownum num,t.* from (
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_sjgz c left join lxsh_sjgz l on c.xmbm = l.xmbm
 				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
 				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
 				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
@@ -672,7 +672,7 @@
 			select rownum num,t.* from (
 				select c.xmbm,c.xmmc,c.xzqh,c.jsdw,c.jsjsdj,c.jsxz,c.lj,c.ql,c.ql_ym,c.hd,c.hd_m,c.sd,c.sd_ym,
 				c.mc,c.mc_lc,c.jc,c.jc_lc,c.dc,c.dc_lc,c.dq,c.dq_cd,c.dq_dk,c.sdmc,c.sd_lx,c.sd_sfcd,
-				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
+				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
 				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
 				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
 				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx

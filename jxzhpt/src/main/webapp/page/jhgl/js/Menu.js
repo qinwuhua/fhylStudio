@@ -103,7 +103,7 @@ $(function() {
 		href:'./jhkgl/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030110',
+		id:'menu_0101030112',
 		title:'危桥改造项目(交通局)',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu1',
@@ -323,7 +323,7 @@ $(function() {
 		href:'./jhkzjxd/wqgz.jsp'
 	});
 	createMenux('LeftMenu',{
-		id:'menu_0101030410',
+		id:'menu_0101030411',
 		title:'危桥改造项目(交通局)',
 		imgSrc:'../../images/sj_s.png',
 		renderTo:'left_menu4',

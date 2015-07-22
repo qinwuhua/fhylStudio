@@ -304,7 +304,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			ExcelTitleCell [] title=null;
 			Map<String, String> attribute=null;
 			if(cbsj.getXmlx()<=3){
-				title=new ExcelTitleCell[34];
+				title=new ExcelTitleCell[36];
 				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
 				title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
 				title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
@@ -339,6 +339,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				title[31]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)31), null,20);
 				title[32]=new ExcelTitleCell("批复时间",false, new ExcelCoordinate(0, (short)32), null,20);
 				title[33]=new ExcelTitleCell("建安费",false, new ExcelCoordinate(0, (short)33), null,20);
+				title[34]=new ExcelTitleCell("地方自筹",false, new ExcelCoordinate(0, (short)34), null,20);
+				title[35]=new ExcelTitleCell("银行贷款",false, new ExcelCoordinate(0, (short)35), null,20);
 				//设置列与字段对应
 				attribute=new HashMap<String, String>();
 				attribute.put("0", "xmmc");//项目名称
@@ -375,6 +377,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				attribute.put("31", "sjpfwh");
 				attribute.put("32", "pfsj");
 				attribute.put("33", "jaf");
+				attribute.put("34", "dfzc");
+				attribute.put("35", "yhdk");
 			}else{
 				title=new ExcelTitleCell[22];
 				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
@@ -431,8 +435,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			String titleName="";
 			String fileName="";
 			if(cbsj.getXmlx()==1){
-				titleName="升级改造工程";
-				fileName="升级改造初步设计或施工图设计";
+				titleName="改建工程项目";
+				fileName="改建工程项目初步设计或施工图设计";
 				excelData = cbsjServer.queryLmsjExcel(cbsj);
 			}else if(cbsj.getXmlx()==2){
 				titleName="路面改造工程";
@@ -606,6 +610,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		attribute.put("31", "sjpfwh");
 		attribute.put("32", "pfsj");
 		attribute.put("33", "jaf");
+		attribute.put("34", "dfzc");
+		attribute.put("35", "yhdk");
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
