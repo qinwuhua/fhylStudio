@@ -509,7 +509,7 @@
 	
 	<!-- 文件操作部分 -->
 	<select id="queryFileByXmbm" parameterType="plan_upload" resultType="plan_upload">
-		select * from plan_upload where parentid=#{parentid} and filetype=#{filetype}
+		select id,filename,parentid,filetype from plan_upload where parentid=#{parentid} and filetype=#{filetype}
 	</select>
 	<insert id="insertFile" parameterType="plan_upload">
 		insert into plan_upload(filename,filedata,parentid,filetype) values(#{filename},#{filedata},#{parentid},#{filetype})
