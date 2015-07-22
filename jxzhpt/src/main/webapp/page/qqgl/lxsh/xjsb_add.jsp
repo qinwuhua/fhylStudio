@@ -312,30 +312,37 @@ text-decoration:none;
 					<span id="lc" style="font-size: 14px">0</span>&nbsp;公里</td>
 			</tr>
 			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>新建路线编码：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xjlxbm" id="xjlxbm" style="width: 120px"></td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>新建起点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xjqdzh" id="xjqdzh" style="width: 120px" onblur="changeZlc2()"/><br/>
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>新建止点桩号：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="xjzdzh"id="xjzdzh" style="width: 120px" onblur="changeZlc2()"/>
-				</td>
-			</tr>
-			<tr style="height: 35px;">
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>新建里程：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<span id="xjlc" style="font-size: 14px">0</span>&nbsp;公里
-				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>起点名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>原起点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="qdmc" id="qdmc" style="width: 120px" />
 				</td>
-				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>止点名称：</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>原止点名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input type="text" name="zdmc" id="zdmc" style="width: 120px" />
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>新建路线编码：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xjlxbm" id="xjlxbm" style="width: 120px">
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>新建起点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xjqdzh" id="xjqdzh" style="width: 120px" onblur="changeZlc2()"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>新建止点桩号：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<input type="text" name="xjzdzh"id="xjzdzh" style="width: 120px" onblur="changeZlc2()"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					<font color='red' size='2'>*&nbsp;</font>新建里程：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left">
+					<span id="xjlc" style="font-size: 14px">0</span>&nbsp;公里
 				</td>
 			</tr>
 			<tr style="height: 35px;">

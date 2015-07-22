@@ -41,6 +41,8 @@ text-decoration:none;
 		$('#lxbh').val(data.lxbh);
 		$("#qdzh").val(data.qdzh);
 		$("#zdzh").val(data.zdzh);
+		$("#qdmc").val(data.qdmc);
+		$("#zdmc").val(data.zdmc);
 		$("#jsxz").val(data.jsxz);
 		$("#xzqh").html(data.xzqh);
 		$("#jsjsdj").html(data.jsjsdj);
@@ -139,8 +141,8 @@ text-decoration:none;
 		+"&kxxyj.kgny="+$('#kgny').datebox('getValue')+"&kxxyj.wgny="+$('#wgny').datebox('getValue')+"&kxxyj.bzdw="+$('#bzdw').val()
 		+"&kxxyj.tzgs="+$('#tzgs').val()+"&kxxyj.gkpfwh="+$('#gkpfwh').val()+"&kxxyj.pfsj="+$('#pfsj').datebox('getValue')+
 		"&kxxyj.dfzc="+$('#dfzc').val()+"&kxxyj.yhdk="+$('#yhdk').val();
-		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()+
-		"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val();
+		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+"&lx.silc="+$('#silc').val()
+		+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val();
 		//alert(data);
 		$.ajax({
 			type:'post',
@@ -239,6 +241,21 @@ text-decoration:none;
 					<span id="zd"></span>
 				</td>
 			</tr>
+			
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">起点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="qdmc" type="text" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">止点名称：</td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+					<input id="zdmc" type="text" style="width: 120px;"/>
+				</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
+				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
+				</td>
+			</tr>
+			
 			<tr style="height: 35px;">
 				<td style="border-style: none none solid none; border-width: 1px; border-color: #C0C0C0; color: #007DB3; font-weight: bold; font-size: small; text-align: right; background-color: #F1F8FF; width: 15%; padding-right: 5px;">
 					现技术等<br/>级及里程

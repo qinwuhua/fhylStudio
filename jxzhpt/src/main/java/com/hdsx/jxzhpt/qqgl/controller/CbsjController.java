@@ -145,7 +145,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			lx.setLc(cbsj.getLc());
 			lx.setSffirst("1");
 			lx.setJdbs(cbsj.getJdbs());
-			
+			System.out.println("里程："+cbsj.getLc());
 			if(cbsj.getXmlx()==1){
 				lx.setJhyilc(cbsj.getJhyilc());
 				lx.setJherlc(cbsj.getJherlc());
