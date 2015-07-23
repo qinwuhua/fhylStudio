@@ -4,7 +4,12 @@ function jgys(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.UI.createWindow('wqxx','交工验收信息','jgys.jsp','wqxx',650,420);
-	}
+}
+function jgys1(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx','交工验收信息','jgys1.jsp','wqxx',700,420);
+}
 function dingwei(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	locationQl(data.qlbh,data.qlzxzh);

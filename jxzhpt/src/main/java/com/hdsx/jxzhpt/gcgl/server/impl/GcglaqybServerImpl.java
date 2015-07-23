@@ -347,9 +347,15 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 	public boolean insertJGYS(Gcgl_jgys gcgl_jgys) {
 		Gcgl_jgys gcgl_jgys1=queryOne("queryJGYS", gcgl_jgys);
 		if(gcgl_jgys1==null){
-			if(insert("insertJGYS", gcgl_jgys)>0){
-				return true;
-			}else return false;
+			if(gcgl_jgys.getNsqsjjlzj()==null){
+				if(insert("insertJGYS", gcgl_jgys)>0){
+					return true;
+				}else return false;
+			}else{
+				if(insert("insertJGYS1", gcgl_jgys)>0){
+					return true;
+				}else return false;
+			}
 		}else{
 			if(update("updateJGYS", gcgl_jgys)>0){
 				return true;
