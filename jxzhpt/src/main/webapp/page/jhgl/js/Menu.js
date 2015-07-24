@@ -646,7 +646,7 @@ $(function() {
 			$("#rightContent").attr("src", $("#menu_"+getParam("id").substr(0,6)+"03"+getParam("id").substr(getParam("id").length-2,getParam("id").length)).find("a").attr("href")+"?t=1");
 		}
 	}
-});
+}); 
 function menuQx(){
 	var qx=parent.$.cookie("qx4").split(",");
 	for(var i=0;i<qx.length;i++){
