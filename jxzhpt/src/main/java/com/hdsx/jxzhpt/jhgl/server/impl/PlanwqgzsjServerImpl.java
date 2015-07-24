@@ -117,7 +117,7 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		if(wq1==null){
 			System.out.println("未查出市级补助，请在审核时检查代码");
 		}else{
-			if(wq1.getZdkd()!=null||wq1.getZdkd()!=""||!"".equals(wq1.getZdkd())){
+			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
 				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(jck.getScqlqk())){
 					jck.setScqlqk(wq1.getZdkd());
 				}else{
@@ -185,5 +185,46 @@ public class PlanwqgzsjServerImpl extends BaseOperate implements PlanwqgzsjServe
 		// TODO Auto-generated method stub
 		return update("shbtyWqgzshById", planwqgzsj)==1;
 	}
-
+	@Override
+	public String lwBzsbz(Planwqgzsj planwqgzsj) {
+		try{
+		if("省直管试点县".equals(planwqgzsj.getTsdq())){
+			Wqbzbz wq1=queryOne("selectshibz", planwqgzsj);
+			if(wq1==null){
+				System.out.println("未查出市级补助，请在审核时检查代码");
+			}else{
+				BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
+				BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+				planwqgzsj.setShibz(b2+"");
+			}
+		}
+		Wqbzbz wq1=queryOne("selectshengbz", planwqgzsj);
+		if(wq1==null){
+			System.out.println("未查出市级补助，请在审核时检查代码");
+		}else{
+			if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
+				System.out.println(planwqgzsj.getScqlqk());
+				if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(planwqgzsj.getScqlqk())){
+					planwqgzsj.setScqlqk(wq1.getZdkd());
+				}else{
+					planwqgzsj.setScqlqk(planwqgzsj.getScqlqk());
+				}
+			}
+			else{
+				planwqgzsj.setScqlqk(planwqgzsj.getScqlqk());
+			}
+		}
+		planwqgzsj.setScqlqc(planwqgzsj.getScqlqc());
+		BigDecimal b1=new BigDecimal(planwqgzsj.getScqlqc()).multiply(new BigDecimal(planwqgzsj.getScqlqk()));
+		BigDecimal b2=b1.multiply(new BigDecimal(wq1.getBzje())).divide(new BigDecimal("10000"));
+		if(planwqgzsj.getShibz()==null){
+			planwqgzsj.setShibz("0");
+		}
+		planwqgzsj.setShengbz(b2.add(new BigDecimal(planwqgzsj.getShibz()))+"");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return planwqgzsj.getShengbz();
+	}
+		
 }

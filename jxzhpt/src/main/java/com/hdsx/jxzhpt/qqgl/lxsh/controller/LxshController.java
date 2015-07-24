@@ -1291,11 +1291,16 @@ public class LxshController extends BaseActionSupport{
 		ResponseUtils.write(getresponse(), bl+"");
 	}
 	public void xgwqbzbz(){
-		String jsdj=wqbzbz.getJsdj1().replaceAll(",,,",",");
-		if(",".equals(jsdj.substring(0, 1))){
-			jsdj=jsdj.substring(1);
+		String jsdj1=wqbzbz.getJsdj1().replaceAll(",,,",",");
+		if(",".equals(jsdj1.substring(0, 1))){
+			jsdj1=jsdj1.substring(1);
 		}
-		wqbzbz.setJsdj1(jsdj);
+		String jsdj2=wqbzbz.getJsdj().replaceAll(",,,",",");
+		if(",".equals(jsdj2.substring(0, 1))){
+			jsdj2=jsdj2.substring(1);
+		}
+		wqbzbz.setJsdj1(jsdj1);
+		wqbzbz.setJsdj(jsdj2);
 		boolean bl=lxshServer.xgwqbzbz(wqbzbz);
 		ResponseUtils.write(getresponse(), bl+"");
 	}

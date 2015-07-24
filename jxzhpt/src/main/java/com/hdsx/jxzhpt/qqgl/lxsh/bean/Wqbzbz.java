@@ -66,5 +66,11 @@ public class Wqbzbz implements Serializable {
 	public void setJsdj1(String jsdj1) {
 		this.jsdj1 = jsdj1;
 	}
+	@Override
+	public String toString() {
+		return "Wqbzbz [id=" + id + ", qllx=" + qllx + ", jsxz=" + jsxz
+				+ ", jsdj=" + jsdj + ", bzje=" + bzje + ", zdkd=" + zdkd
+				+ ", bzjb=" + bzjb + ", jsdj1=" + jsdj1 + "]";
+	}
 	
 }

@@ -29,6 +29,8 @@ function loadxx(){
 	fileShow2(item.xmkid,"桥梁正面文件");
 	fileShow3(item.xmkid,"桥梁侧面文件");
 	xmkid=item.id;
+	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
+	$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	$("#qlbh").html(item.qlbh);
 	$("#qlmc").html(item.qlmc);
 	$("#qlzxzh").html(item.qlzxzh);
@@ -270,6 +272,45 @@ function sjtdeleteFile(id){
 		});
 	}
 }
+
+function getBbz(){
+	$("#nsqbbz").val('');
+	 $.ajax({
+			type:'post',
+			url:'/jxzhpt/jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jsxz").combobox('getValue'),
+			dataType:'json',
+			success:function(data){
+				var bz=data.bz;
+				var bl=data.bl;
+				var fd=data.fd;
+				var bzzj=(parseFloat($('#scqlqc').val())*1000000000000000*parseFloat($('#scqlqk').val())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+				$("#nsqbbz").val(bzzj.toFixed(3));
+			}
+		}); 
+}
+function getSbz(){
+	$("#nsqbbz").val('');
+	 $.ajax({
+			type:'post',
+			url:'/jxzhpt/jhgl/lwBzsbz.do',
+			data:"planwqgzsj.tsdq="+$("#tsdq").html()+"&planwqgzsj.sck_qlbh="+$("#qlbh").html()+"&planwqgzsj.akjfl="+$("#akjfl").html()+"&planwqgzsj.jsxz="+$("#jsxz").combobox('getValue')
+			+"&planwqgzsj.scqlqc="+$("#scqlqc").val()+"&planwqgzsj.scqlqk="+$("#scqlqk").val(),
+			dataType:'json',
+			success:function(data){
+				$("#nsqbbz").val(data.shengbz);
+			}
+		}); 
+}
+function setbz(){
+	var sfbk='';
+		sfbk=$("#sfylrbwqk").combobox('getValue');
+	if(sfbk=='是'){
+		getBbz();
+	}else{
+		getSbz();
+	}
+}
 </script>
 <style type="text/css">
 TD {
@@ -493,10 +534,10 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" /></td>
+					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" /></td>
+					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="scxmnf" class="easyui-combobox"/>

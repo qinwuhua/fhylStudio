@@ -51,12 +51,19 @@
 		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt,sfsj,sfth)
 		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcmc},#{kgdl},#{qksm},#{wcqk},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否')
 	</insert>
+	<insert id="insertWqgzYb1" parameterType="gcglwqgz">
+		insert into GCGL_WQGZ(id,jhid,wc_btz,wc_stz,wc_qttz,zjdw_btz,zjdw_stz,zjdw_qttz,bywcmc,kgdl,qksm,wcqk,sbsj,sbyf,shzt,sfsj,sfth,zjc,xbgz,sbjg)
+		values(sys_guid(),#{jhid},#{wc_btz},#{wc_stz},#{wc_qttz},#{zjdw_btz},#{zjdw_stz},#{zjdw_qttz},#{bywcmc},#{kgdl},#{qksm},#{wcqk},#{sbsj},#{sbyf},#{shzt},#{sfsj},'否',#{zjc},#{xbgz},#{sbjg})
+	</insert>
 	<select id="queryYbByYf" parameterType="gcglwqgz" resultType="gcglwqgz">
 		select * from GCGL_WQGZ where sbyf=#{sbyf} and jhid=#{jhid}
 	</select>
 	<!-- 修改月报 -->
 	<update id="updateWqgzYb" parameterType="gcglwqgz">
-		update GCGL_WQGZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},wcqk=#{wcqk},sbyf=#{sbyf} 
+		update GCGL_WQGZ set wc_btz=#{wc_btz},wc_stz=#{wc_stz},wc_qttz=#{wc_qttz},zjdw_btz=#{zjdw_btz},zjdw_stz=#{zjdw_stz},zjdw_qttz=#{zjdw_qttz},bywcmc=#{bywcmc},kgdl=#{kgdl},qksm=#{qksm},wcqk=#{wcqk},sbyf=#{sbyf}
+		<if test="zjc !=null  and zjc !=''">,zjc=#{zjc}</if>
+	    <if test="xbgz !=null  and xbgz !=''">,xbgz=#{xbgz}</if>
+	    <if test="sbjg !=null  and sbjg !=''">,sbjg=#{sbjg}</if>
 		where id=#{id} and jhid=#{jhid}
 	</update>
 	<!-- 修改月报状态 -->

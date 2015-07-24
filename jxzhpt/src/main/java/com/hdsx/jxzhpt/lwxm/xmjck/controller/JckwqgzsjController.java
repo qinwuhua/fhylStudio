@@ -60,7 +60,14 @@ public class JckwqgzsjController extends BaseActionSupport{
 	private int rows = 10;
 	private String bzls;
 	private String sfylrbwqk;
+	private String shzt;
 	
+	public String getShzt() {
+		return shzt;
+	}
+	public void setShzt(String shzt) {
+		this.shzt = shzt;
+	}
 	public String getSfylrbwqk() {
 		return sfylrbwqk;
 	}
@@ -185,9 +192,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectWqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -262,9 +269,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectJckShwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -298,9 +305,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectWqgzShCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -354,9 +361,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -391,9 +398,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckwqgzCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -486,9 +493,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckShwqgz(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -499,7 +506,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setLxmc(lxmc);
 			jckwqgzsj.setQlmc(qlmc);
 			jckwqgzsj.setXmnf(xmnf);
-			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setShzt(shzt);
 			jckwqgzsj.setJsdj(jsdj);
 			jckwqgzsj.setAkjfl(akjfl);
 			jckwqgzsj.setLxbm(lxbm);
@@ -523,9 +530,9 @@ public class JckwqgzsjController extends BaseActionSupport{
 	public void selectSckShwqgzCount(){
 		try {
 			if(gydw.indexOf(",")==-1){
-				jckwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				jckwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				jckwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				jckwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				jckwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -536,7 +543,7 @@ public class JckwqgzsjController extends BaseActionSupport{
 			jckwqgzsj.setLxmc(lxmc);
 			jckwqgzsj.setQlmc(qlmc);
 			jckwqgzsj.setXmnf(xmnf);
-			jckwqgzsj.setSbzt(sbzt);
+			jckwqgzsj.setShzt(shzt);
 			jckwqgzsj.setJsdj(jsdj);
 			jckwqgzsj.setAkjfl(akjfl);
 			jckwqgzsj.setLxbm(lxbm);

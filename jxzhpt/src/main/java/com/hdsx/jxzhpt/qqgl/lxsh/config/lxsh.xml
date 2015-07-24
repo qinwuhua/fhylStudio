@@ -849,7 +849,7 @@
 	</insert>
 	<insert id="xgwqbzbz" parameterType="wqbzbz">
 		update xtgl_wqbzbz
-		set qllx=#{qllx},jsxz=#{jsxz},jsdj=#{jsdj},bzje=#{bzje},zdkd=#{zdkd},bzjb=#{bzjb},jsdj1=#{jsdj1})
+		set qllx=#{qllx},jsxz=#{jsxz},jsdj=#{jsdj},bzje=#{bzje},zdkd=#{zdkd},bzjb=#{bzjb},jsdj1=#{jsdj1}
 		where id=#{id}
 	</insert>
 	<delete id="delwqbzbz" parameterType="wqbzbz">

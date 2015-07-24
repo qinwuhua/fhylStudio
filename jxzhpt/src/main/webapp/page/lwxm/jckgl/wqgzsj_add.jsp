@@ -90,7 +90,7 @@ $(function(){
  	autoCompleteLXBM();
 });
 function autoCompleteLXBM(){
-	var url = "/jxzhpt/xmjck/wqgzGpsroad.do";
+	var url = "/jxzhpt/xmjck/wqgzGpsroad1.do";
 	$("#qlbh").autocomplete(url, {
 		multiple : false,
 		minChars :2,
@@ -173,7 +173,9 @@ function autoCompleteLXBM(){
 				$("#thdj").val(item.thdj);
 				$("#qtlx").val(item.qtlx);
 				$("#pzlx").val(item.pzlx);
-				
+				$("#sqs").val(item.sqs);
+				$("#xsq").val(item.xsq);
+				$("#szxz").val(item.szxz);
 			});
 }
 function saveWqgz(){

@@ -145,7 +145,12 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
+ 			<if test="shzt == '未审核'">
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ')
+ 			</if>
+ 			<if test="shzt == '已审核'">
  			and shzt like '%'||(#{shzt})||'%'
+ 			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and jsdj like '%'||(#{jsdj})||'%'
@@ -190,7 +195,12 @@
  			and xmtype like '%'||(#{xmtype})||'%'
  		</if>
  		<if test="shzt!='' and shzt!= null ">
+ 			<if test="shzt == '未审核'">
+ 			and (shzt like '%'||(#{shzt})||'%' or shzt=' ')
+ 			</if>
+ 			<if test="shzt == '已审核'">
  			and shzt like '%'||(#{shzt})||'%'
+ 			</if>
  		</if>
  		<if test="jsdj!='' and jsdj!= null ">
  			and jsdj like '%'||(#{jsdj})||'%'
@@ -327,7 +337,7 @@
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
 	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
 	 	<if test="gydwbm!='' and gydwbm!= null ">
-				and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+				and gydwbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
 			</if>
 	 	order by qlbh
  </select>
@@ -391,8 +401,13 @@
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '未审核'">
+ 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null)
+ 			</if>
+ 			<if test="shzt == '已审核'">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'
@@ -440,8 +455,13 @@
 		<if test="xmtype!='' and xmtype!= null ">
 			and xmtype like '%'||(#{xmtype})||'%'
 		</if>
-		<if test="sbzt!='' and sbzt!= null ">
-			and decode(sck_sbthcd,#{sck_sbthcd},'未上报',sck_sbzt) like '%'||(#{sbzt})||'%'
+		<if test="shzt!='' and shzt!= null ">
+			<if test="shzt == '未审核'">
+ 			and (sck_shzt like '%'||(#{shzt})||'%' or sck_shzt is null)
+ 			</if>
+ 			<if test="shzt == '已审核'">
+ 			and sck_shzt like '%'||(#{shzt})||'%'
+ 			</if>
 		</if>
 		<if test="jsdj!='' and jsdj!= null ">
 			and jsdj like '%'||(#{jsdj})||'%'

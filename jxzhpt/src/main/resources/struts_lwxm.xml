@@ -34,6 +34,7 @@
 	<action name="xgJckWqgzShzt" class="jckwqgzController" method="xgJckWqgzShzt"/>
 	<action name="xgJckWqgzSbzt" class="jckwqgzController" method="xgJckWqgzSbzt"/>
 	<action name="wqgzGpsroad" class="jckwqgzController" method="wqgzGpsroad"/>
+	<action name="wqgzGpsroad1" class="jckwqgzController" method="wqgzGpsroad1"/>
 	<action name="JckWqgzRoad" class="jckwqgzController" method="JckWqgzRoad"/>
 	<action name="selectJckShwqgz" class="jckwqgzController" method="selectJckShwqgz"/>
 	<action name="xgJckWqgzTH" class="jckwqgzController" method="xgJckWqgzTH"/>

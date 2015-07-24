@@ -70,5 +70,7 @@ public interface GcglwqgzServer {
 
 	Gcglwqgz selectcgsyf(Gcglwqgz gcglwqgz);
 
+	Boolean insertWqgzYb1(Gcglwqgz gcglwqgz);
+
 
 }
