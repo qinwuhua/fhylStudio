@@ -12,7 +12,7 @@ public class Gcgl_jgys implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String ysdw;
-	private String ysyj;
+	private String ysyj; 
 	private String filename;
 	private byte[] filedata;
 	private String filetype;
