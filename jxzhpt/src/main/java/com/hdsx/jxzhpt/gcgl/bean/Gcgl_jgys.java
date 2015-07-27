@@ -20,7 +20,21 @@ public class Gcgl_jgys implements Serializable {
 	private String yssj;
 	private String name;
 	private String nsqsjjlzj;
+	private String sfcclq;
+	private String bcdwcd;
 	
+	public String getSfcclq() {
+		return sfcclq;
+	}
+	public void setSfcclq(String sfcclq) {
+		this.sfcclq = sfcclq;
+	}
+	public String getBcdwcd() {
+		return bcdwcd;
+	}
+	public void setBcdwcd(String bcdwcd) {
+		this.bcdwcd = bcdwcd;
+	}
 	public String getNsqsjjlzj() {
 		return nsqsjjlzj;
 	}

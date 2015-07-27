@@ -357,6 +357,11 @@ public class GcglaqybServerImpl extends BaseOperate implements GcglaqybServer {
 				}else return false;
 			}
 		}else{
+			if(gcgl_jgys1.getBcdwcd()!=null){
+				if(Integer.parseInt(gcgl_jgys1.getBcdwcd()) < Integer.parseInt(gcgl_jgys.getBcdwcd())){
+					gcgl_jgys.setBcdwcd(gcgl_jgys1.getBcdwcd());
+				}
+			}
 			if(update("updateJGYS", gcgl_jgys)>0){
 				return true;
 			}else return false;

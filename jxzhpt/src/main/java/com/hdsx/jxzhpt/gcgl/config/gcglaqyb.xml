@@ -293,12 +293,14 @@
  		 values(sys_guid(),#{yssj},#{ysdw},#{ysyj},#{jhid})
  	</insert>
  	<insert id="insertJGYS1" parameterType="gcgl_jgys">
- 		insert into gcgl_jgys(id,yssj,ysdw,ysyj,jhid,nsqsjjlzj)
- 		 values(sys_guid(),#{yssj},#{ysdw},#{ysyj},#{jhid},#{nsqsjjlzj})
+ 		insert into gcgl_jgys(id,yssj,ysdw,ysyj,jhid,nsqsjjlzj,sfcclq,bcdwcd)
+ 		 values(sys_guid(),#{yssj},#{ysdw},#{ysyj},#{jhid},#{nsqsjjlzj},#{sfcclq},#{bcdwcd})
  	</insert>
  	<insert id="updateJGYS" parameterType="gcgl_jgys">
  		update gcgl_jgys set yssj=#{yssj},ysdw=#{ysdw},ysyj=#{ysyj}
  		<if test="nsqsjjlzj != null and nsqsjjlzj != ''">,nsqsjjlzj=#{nsqsjjlzj}</if>
+ 		<if test="sfcclq != null and sfcclq != ''">,sfcclq=#{sfcclq}</if>
+ 		<if test="bcdwcd != null and bcdwcd != ''">,bcdwcd=#{bcdwcd}</if>
  		where jhid=#{jhid}
  	</insert>
  	<select id="queryJGYS" parameterType="gcgl_jgys" resultType="gcgl_jgys">

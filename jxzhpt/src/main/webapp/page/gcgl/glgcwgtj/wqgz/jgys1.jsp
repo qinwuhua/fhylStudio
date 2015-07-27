@@ -16,6 +16,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/uploader/jquery.uploadify.v2.1.4.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgcore.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/widget/newlhgdialog/lhgdialog.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/util/jquery.cookie.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/YMLib.js"></script>
 <script type="text/javascript" src="js/wqgz.js"></script>
 <script type="text/javascript">
@@ -203,7 +204,7 @@
 		}
 	}
 function addjgys(){
-		var data='gcgl_jgys.yssj='+$('#yssj').datebox('getValue')+'&gcgl_jgys.ysdw='+$("#ysdw").val()+'&gcgl_jgys.ysyj='+$("#ysyj").val()+'&gcgl_jgys.jhid='+xxId+"&gcgl_jgys.nsqsjjlzj="+$("#nsqsjjlzj").val();
+		var data='gcgl_jgys.yssj='+$('#yssj').datebox('getValue')+'&gcgl_jgys.ysdw='+$("#ysdw").val()+'&gcgl_jgys.ysyj='+$("#ysyj").val()+'&gcgl_jgys.jhid='+xxId+"&gcgl_jgys.nsqsjjlzj="+$("#nsqsjjlzj").val()+"&gcgl_jgys.sfcclq="+$("#sfcclq").combobox('getValue')+"&gcgl_jgys.bcdwcd="+$.cookie("unit2").length;
 		if($('#yssj').datebox('getValue')=='' && $("#ysdw").val()=='' && $("#ysyj").val()==''){
 			return;
 		}
@@ -239,6 +240,10 @@ function showJGYS(){
 			$('#ysdw').val(msg.ysdw);
 			$('#ysyj').val(msg.ysyj);
 			$('#nsqsjjlzj').val(msg.nsqsjjlzj);
+			$('#sfcclq').combobox('setValue',msg.sfcclq);
+			if(parseInt($.cookie("unit2").length)>parseInt(msg.bcdwcd)){
+				$("#nsqsjjlzj").attr("disabled",'true');
+			}
 		 }
 	});
 }
@@ -263,15 +268,21 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">验收时间：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="2">
-					<input type="text"  id="yssj" style="width: 150px"/>
+					<input type="text"  id="yssj" style="width: 150px"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">验收单位：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="2">
-					<input type="text"  id="ysdw" style="width: 156px"/>
+					<input type="text"  id="ysdw" style="width: 156px"/></td>
 			</tr>
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">拟申请省级奖励资金：</td>
-				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					<input type="text"  id="nsqsjjlzj" style="width: 150px"/>
+				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="2">
+					<input type="text"  id="nsqsjjlzj" style="width: 150px"/>万元</td>
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">是否拆除老桥：</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="2">
+					<select id="sfcclq" class="easyui-combobox" data-options="panelHeight:'70'" >
+						<option value="是" selected="selected">是</option>
+						<option value="否">否</option>
+					</select></td>
 			</tr>
 			<tr style="height: 50px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:20%" align="right">验收意见：</td>
