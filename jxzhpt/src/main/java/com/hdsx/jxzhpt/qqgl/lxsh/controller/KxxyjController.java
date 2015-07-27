@@ -828,7 +828,7 @@ public class KxxyjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,18,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,20,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
@@ -859,7 +859,7 @@ public class KxxyjController extends BaseActionSupport{
 			FileInputStream fs = new FileInputStream(this.fileupload);
 			List<Map>[] dataMapArray;
 			try{
-				dataMapArray = ExcelReader1.readExcelContent(2,18,fs,Plan_gcgj.class);
+				dataMapArray = ExcelReader1.readExcelContent(2,20,fs,Plan_gcgj.class);
 
 			}catch(Exception e){
 				response.getWriter().print(fileuploadFileName+"数据有误");
