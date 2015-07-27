@@ -1037,7 +1037,7 @@ public class LxshController extends BaseActionSupport{
 			if(xzqh.indexOf(",")==-1){
 				tiaojian2="and lx.xzqhdm like '%"+xzqh+"%'";
 			}else{
-				tiaojian2="andx lx.zqhdm in ("+xzqh+")";
+				tiaojian2="and lx.xzqhdm in ("+xzqh+")";
 			}
 			lxsh.setXzqh(tiaojian2);
 			lxsh.setGydw(tiaojian1);
@@ -1078,8 +1078,10 @@ public class LxshController extends BaseActionSupport{
 			et.add(new Excel_tilte("完工年月",1,1,13,13));
 			et.add(new Excel_tilte("编制单位",1,1,14,14));
 			et.add(new Excel_tilte("投资估算",1,1,15,15));
-			et.add(new Excel_tilte("工可批复文号",1,1,16,16));
-			et.add(new Excel_tilte("批复时间",1,1,17,17));
+			et.add(new Excel_tilte("地方自筹",1,1,16,16));
+			et.add(new Excel_tilte("银行贷款",1,1,17,17));
+			et.add(new Excel_tilte("工可批复文号",1,1,18,18));
+			et.add(new Excel_tilte("批复时间",1,1,19,19));
 			eldata.setEt(et);//将表头内容设置到类里面
 			HttpServletResponse response= getresponse();//获得一个HttpServletResponse
 			Excel_export.excel_export(eldata,response);

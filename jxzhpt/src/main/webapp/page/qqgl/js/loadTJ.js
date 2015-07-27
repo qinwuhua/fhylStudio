@@ -224,7 +224,7 @@ function dclxshModule(str){
 			sbthcd=7;
 		}
 		var xmmc=$("#xmmc").val();
-		var xmnf=$("#xmnf").combobox('getText');
+		var xmnf=$("#xmnf").combobox('getValue');
 		var tsdq=$("#tsdq").combobox('getText');
 		if(tsdq=='全部'){
 			tsdq="";

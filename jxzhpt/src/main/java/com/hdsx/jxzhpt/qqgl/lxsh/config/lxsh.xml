@@ -745,7 +745,7 @@
 	</select>
 	
 	<select id="querykxxSjgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'升级改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.gkpfwh v_16,t.pfsj v_17 from KXXYJ_SJGZ t left join
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'升级改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_SJGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -773,7 +773,7 @@
 		</if>
 	</select>
 	<select id="querykxxLmgz" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'路面改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.gkpfwh v_16,t.pfsj v_17 from KXXYJ_LMGZ t left join
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'路面改造' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_LMGZ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -801,7 +801,7 @@
 		</if>
 	</select>
 	<select id="querykxxXj" parameterType="lxsh" resultType="elist">
-		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'新建' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.gkpfwh v_16,t.pfsj v_17 from KXXYJ_XJ t left join
+		select t.xmbm v_0,t.xmmc v_1,lx.xzqh v_2,lx.qdzh v_3,lx.zdzh v_4,'新建' v_5,t.dq_m v_6,t.dq v_7,t.jsjsdj v_8,t.sd_m v_9,t.sd v_10,t.jsdw v_11,t.kgny v_12,t.wgny v_13,t.bzdw v_14,t.tzgs v_15,t.dfzc v_16,t.yhdk v_17,t.gkpfwh v_18,t.pfsj v_19 from KXXYJ_XJ t left join
 		(select * from lxsh_lx where 1=1 and jdbs='1' and sffirst='1') lx on t.xmbm=lx.xmid where 1=1
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
