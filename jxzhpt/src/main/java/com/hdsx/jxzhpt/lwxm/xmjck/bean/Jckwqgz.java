@@ -54,7 +54,28 @@ public class Jckwqgz implements Serializable{
 	private String zdzh;
 	private String sfylrbwqk;
 	private String qdlx;private String qmjk;private String qxjk;private String zqks;private String kydwlx;private String thdj;private String qtlx;private String pzlx;
+	private String sqs;
+	private String xsq;
+	private String szxz;
 	
+	public String getSqs() {
+		return sqs;
+	}
+	public void setSqs(String sqs) {
+		this.sqs = sqs;
+	}
+	public String getXsq() {
+		return xsq;
+	}
+	public void setXsq(String xsq) {
+		this.xsq = xsq;
+	}
+	public String getSzxz() {
+		return szxz;
+	}
+	public void setSzxz(String szxz) {
+		this.szxz = szxz;
+	}
 	public String getQdlx() {
 		return qdlx;
 	}

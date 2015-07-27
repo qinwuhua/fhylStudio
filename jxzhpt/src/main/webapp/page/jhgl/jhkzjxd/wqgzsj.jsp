@@ -148,7 +148,7 @@
 				 }
 			});
 		}
-		var obj；
+		var obj;
 
 		function ckwqgz(id){
 			obj=id;

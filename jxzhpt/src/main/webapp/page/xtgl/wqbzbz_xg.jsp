@@ -21,7 +21,7 @@
 		var jsdj1=$("#jsdj").combobox('getText');
 		var data="wqbzbz.qllx="+$("#qllx").combobox('getValue')+"&wqbzbz.jsxz="+$("#jsxz").combobox('getValue')
 		+"&wqbzbz.jsdj="+$("#jsdj").combobox('getValues')+"&wqbzbz.bzjb="+$("#bzjb").combobox('getValue')+"&wqbzbz.jsdj1="+jsdj1
-		+"&wqbzbz.zdkd="+$("#zdkd").val()+"&wqbzbz.bzje="+$("#bzje").val()+"&wqbzbz.bzje="+parent.obj.id;
+		+"&wqbzbz.zdkd="+$("#zdkd").val()+"&wqbzbz.bzje="+$("#bzje").val()+"&wqbzbz.id="+parent.obj.id;
 		$.ajax({
 			data:data,
 			type:'post',

@@ -1,4 +1,5 @@
 package com.hdsx.jxzhpt.jhgl.controller;
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -145,9 +146,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhkgl(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -186,9 +187,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhkglCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -262,9 +263,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -303,9 +304,9 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhksbCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and tbbmbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
 			}else{
-				planwqgzsj.setGydw("and tbbmbm in ("+gydw+")");
+				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
 			if(xzqhdm.indexOf(",")==-1){
 				planwqgzsj.setXzqhdm("and xzqhdm like '%"+xzqhdm+"%'");
@@ -355,5 +356,15 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void shbtyWqgzshById(){
 		boolean bl=planwqgzsjServer.shbtyWqgzshById(planwqgzsj);
 		ResponseUtils.write(getresponse(), bl+"");
+	}
+	public void lwBzsbz(){
+		String sbz=planwqgzsjServer.lwBzsbz(planwqgzsj);
+		planwqgzsj.setShengbz(sbz);
+		try {
+			JsonUtils.write(planwqgzsj, getresponse().getWriter());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

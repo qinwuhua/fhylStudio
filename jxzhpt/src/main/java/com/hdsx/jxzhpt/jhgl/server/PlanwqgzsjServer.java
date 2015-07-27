@@ -52,5 +52,7 @@ public interface PlanwqgzsjServer {
 	boolean shtyWqgzshById(Planwqgzsj planwqgzsj);
 
 	boolean shbtyWqgzshById(Planwqgzsj planwqgzsj);
+
+	String lwBzsbz(Planwqgzsj planwqgzsj);
 	
 }

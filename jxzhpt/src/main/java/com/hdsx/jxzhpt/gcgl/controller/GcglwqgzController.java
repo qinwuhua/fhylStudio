@@ -199,6 +199,25 @@ public class GcglwqgzController extends BaseActionSupport{
 			ResponseUtils.write(getresponse(), "false");
 		}
 	}
+	//添加月报
+		public void insertWqgzYb1(){
+			System.out.println(gcglwqgz);
+			if("县级".equals(yhtype)){
+				gcglwqgz.setSfsj(11);
+			}
+			if("市级".equals(yhtype)){
+				gcglwqgz.setSfsj(9);
+			}
+			if("省级".equals(yhtype)){
+				gcglwqgz.setSfsj(7);
+			}
+			Boolean bl=gcglwqgzServer.insertWqgzYb1(gcglwqgz);
+			if(bl){
+				ResponseUtils.write(getresponse(), "true");
+			}else{
+				ResponseUtils.write(getresponse(), "false");
+			}
+		}
 	//查询月报
 	public void selectWqgzYbByJhid(){
 		Gcglwqgz gcglwqgz=new Gcglwqgz();

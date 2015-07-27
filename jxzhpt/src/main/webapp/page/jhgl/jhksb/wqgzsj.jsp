@@ -122,7 +122,7 @@
 								 return "未审核";
 								 else  return "已审核";
 							 }else{
-								 if(row.shzt1=='已审核'){
+								 if(row.shzt1=='已审核'&&czzt=='初审状态'){
 									 return "已初审";
 								 }
 								 return "已上报";
@@ -170,7 +170,7 @@
 				 }
 			});
 		}
-		var obj；
+		var obj;
 		function edit(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);

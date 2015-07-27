@@ -222,7 +222,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			if(jckwqgzsj.getScbmbm().substring(jckwqgzsj.getScbmbm().length()-2) .equals("0") ){
 				jckwqgzsj.setBz("0");
 			}else {
-				jckwqgzsj.setBz("2");
+				jckwqgzsj.setBz("0");
 			}
 			Jckwqgzsj jck=queryOne("cxtiaojian", jckwqgzsj);
 			if("省直管试点县".equals(jck.getTsdq())){
@@ -239,7 +239,7 @@ public class JckwqgzsjServerImpl extends BaseOperate implements JckwqgzsjServer 
 			if(wq1==null){
 				System.out.println("未查出市级补助，请在审核时检查代码");
 			}else{
-				if(wq1.getZdkd()!=null||wq1.getZdkd()!=""||!"".equals(wq1.getZdkd())){
+				if(wq1.getZdkd()!=null&&wq1.getZdkd()!=""){
 					if(Double.parseDouble(wq1.getZdkd())<Double.parseDouble(jck.getScqlqk())){
 						jckwqgzsj.setScqlqk(wq1.getZdkd());
 					}else{

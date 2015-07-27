@@ -27,6 +27,8 @@ var bzls='';
 var sfylrbwqk;
 var sfkxg; 
 $(function(){
+	$("#jsxz").combobox({onChange:function (n,o) {setbz();}});
+	$("#sfylrbwqk").combobox({onChange:function (n,o) {setbz();}});
 	xxId=newGuid();
 	xmnf1("scxmnf");
 	autoCompleteQLBH();
@@ -181,6 +183,7 @@ function autoCompleteQLBH(){
 				$("#scqlqc").val(item.qlqc);$("#scqlqk").val(item.qlkd);$("#scsjhspl").val(item.sjhspl);$("#sck_sbjgxs").val(item.sbjgxs);
 				$("#scthdj").val(item.thdj);$("#ydgldj").val(item.jsdj);$("#scsqs").val(item.sqs);$("#scxsq").val(item.xsq);
 				$("#scszxz").val(item.szxz);
+				setbz();
 			});
 }
 function saveWqgz(){
@@ -336,6 +339,49 @@ function sjtdeleteFile(id){
 				 YMLib.Tools.Show('服务器请求无响应！error code = 404',3000);
 			 }
 		});
+	}
+}
+
+function getBbz(){
+	$("#nsqbbz").val('');
+	 $.ajax({
+			type:'post',
+			url:'/jxzhpt/jhgl/lwBzbz.do',
+			data:"bzbz.xmlx="+"危桥"+"&bzbz.lx="+$("#jsxz").combobox('getValue'),
+			dataType:'json',
+			success:function(data){
+				var bz=data.bz;
+				var bl=data.bl;
+				var fd=data.fd;
+				var bzzj=(parseFloat($('#scqlqc').val())*1000000000000000*parseFloat($('#scqlqk').val())*parseFloat(bz)+parseFloat(fd)*1000000000000000)/1000000000000000;
+				$("#nsqbbz").val(bzzj.toFixed(3));
+			}
+		}); 
+}
+function getSbz(){
+	$("#nsqbbz").val('');
+	 $.ajax({
+			type:'post',
+			url:'/jxzhpt/jhgl/lwBzsbz.do',
+			data:"planwqgzsj.tsdq="+$("#tsdq").html()+"&planwqgzsj.sck_qlbh="+$("#qlbh").val()+"&planwqgzsj.akjfl="+$("#akjfl").html()+"&planwqgzsj.jsxz="+$("#jsxz").combobox('getValue')
+			+"&planwqgzsj.scqlqc="+$("#scqlqc").val()+"&planwqgzsj.scqlqk="+$("#scqlqk").val(),
+			dataType:'json',
+			success:function(data){
+				$("#nsqbbz").val(data.shengbz);
+			}
+		}); 
+}
+function setbz(){
+	var sfbk='';
+	if(sfkxg=='是'){
+		sfbk=$("#sfylrbwqk").combobox('getValue');
+	}else{
+		sfbk='否';
+	}
+	if(sfbk=='是'){
+		getBbz();
+	}else{
+		getSbz();
 	}
 }
 </script>
@@ -561,10 +607,10 @@ text-decoration:none;
 			<tr style="height: 30px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全长(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" /></td>
+					<input type="text" name="scqlqc" id="scqlqc" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">桥梁全宽(米)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" /></td>
+					<input type="text" name="scqlqk"id="scqlqk" style="width: 150px" onchange="setbz()"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">项目年份：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
 					<input id="scxmnf" />
@@ -589,7 +635,7 @@ text-decoration:none;
 				
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">建设性质：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'">
+					<select id="jsxz" class="easyui-combobox" data-options="panelHeight:'50'" onchange="setbz()">
 						<option value="加固改造"selected>加固改造</option>
 						<option value="拆除重建">拆除重建</option>
 					</select>

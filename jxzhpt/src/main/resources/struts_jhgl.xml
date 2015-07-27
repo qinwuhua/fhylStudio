@@ -185,7 +185,7 @@
 		<action name="shbtyWqgzsbById" class="planwqgzsjController" method="shbtyWqgzsbById"></action>
 		<action name="shtyWqgzshById" class="planwqgzsjController" method="shtyWqgzshById"></action>
 		<action name="shbtyWqgzshById" class="planwqgzsjController" method="shbtyWqgzshById"></action>
-
+		<action name="lwBzsbz" class="planwqgzsjController" method="lwBzsbz"></action>
 		<!-- qwh -->
 	 </package>
 </struts>

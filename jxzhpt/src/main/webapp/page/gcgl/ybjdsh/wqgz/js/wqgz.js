@@ -26,12 +26,24 @@ function Showybxx(index){
 	parent.obj=data;
 	parent.YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx.jsp','wqxx',700,430);
 }
+function Showybxx1(index){
+	var data=$("#ybgrid").datagrid('getRows')[index];
+	parent.obj=data;
+	parent.YMLib.UI.createWindow('wqxx','危桥改造月报详情','wqgzybxx1.jsp','wqxx',700,430);
+}
 function ybsb(index){
 	var data=$("#datagrid").datagrid('getRows')[index];
 	obj1=data;
 	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb.jsp','wqxx1',1059,480);
 	//window.open("wqgzyb.jsp");
 }
+function ybsb1(index){
+	var data=$("#datagrid").datagrid('getRows')[index];
+	obj1=data;
+	YMLib.UI.createWindow('wqxx1','危桥改造月报列表','wqgzyb1.jsp','wqxx1',1059,480);
+	//window.open("wqgzyb.jsp");
+}
+
 function Edityb(index){
 	var data=$("#ybgrid").datagrid('getRows')[index];
 	obj=data;
@@ -220,7 +232,7 @@ function showAll1(){
 		},
 	    columns:[[
 	        {field:'c',title:'操作',width:250,align:'center',formatter:function(value,row,index){
-	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb('+index+')">月报审核</a>    ';
+	        	return '<a style="text-decoration:none;color:#3399CC;" href="#" onclick="dingwei('+index+')">定位</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="wqxiangxi1('+index+')">详细</a>    '+'<a href="#" style="text-decoration:none;color:#3399CC;" onclick="ybsb1('+index+')">月报审核</a>    ';
 	        }},
 	        {field:'gydw',title:'管养单位',width:150,align:'center'},
 	        {field:'xzqhmc',title:'行政区划',width:120,align:'center'},
@@ -252,6 +264,42 @@ function showYBlist(){
 			        	return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
 	              		if(row.shzt=='已审核')
 	              		return '<a href="#" onclick="Showybxx('+index+')">详细</a>    '+'已审核   '+'退回   ';
+	              	}},
+			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
+			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},
+			        {field:'bywcmc',title:'本月完成面层（公里）',width:120,align:'center',rowspan:2},
+			        {field:'kgdl',title:'截至开工段落',width:120,align:'center',rowspan:2},
+			        {title:'本月完成投资（万元）',colspan:3},
+			        {title:'本月资金到位（万元）',colspan:3},
+			        {field:'qksm',title:'情况说明',width:100,align:'center',rowspan:2}
+	             ],
+	             [
+			        {field:'wc_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'wc_qttz',title:'其他投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_btz',title:'部投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_stz',title:'省投资',width:79,align:'center',rowspan:1},
+			        {field:'zjdw_qttz',title:'其他投资',width:79,align:'center',rowspan:1}
+			    ]
+	    ]
+	});
+}
+function showYBlist1(){
+	$('#ybgrid').datagrid({    
+	    url:'../../../../gcgl/selectWqgzYbByJhid1.do?jhid='+parent.obj1.jhid,
+	    striped:true,
+	    pagination:true,
+	    rownumbers:true,
+	    pageNumber:1,
+	    pageSize:10,
+	    height:325,
+	    columns:[
+	             [
+	              	{field:'c',title:'操作',width:150,align:'center',rowspan:2,formatter:function(value,row,index){
+	              		if(row.shzt=='未审核'&&row.sfsj==7)
+			        	return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'<a href="#" onclick="ybsh('+index+')">未审核</a>   '+'<a href="#" onclick="thsjyb('+index+')">退回</a>';
+	              		if(row.shzt=='已审核')
+	              		return '<a href="#" onclick="Showybxx1('+index+')">详细</a>    '+'已审核   '+'退回   ';
 	              	}},
 			        {field:'sbyf',title:'上报月份',width:120,align:'center',rowspan:2},
 			        {field:'sbsj',title:'上报时间',width:130,align:'center',rowspan:2},

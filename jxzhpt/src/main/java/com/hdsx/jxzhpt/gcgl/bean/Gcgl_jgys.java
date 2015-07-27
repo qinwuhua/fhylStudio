@@ -19,7 +19,14 @@ public class Gcgl_jgys implements Serializable {
 	private String jhid;
 	private String yssj;
 	private String name;
+	private String nsqsjjlzj;
 	
+	public String getNsqsjjlzj() {
+		return nsqsjjlzj;
+	}
+	public void setNsqsjjlzj(String nsqsjjlzj) {
+		this.nsqsjjlzj = nsqsjjlzj;
+	}
 	public String getName() {
 		return name;
 	}

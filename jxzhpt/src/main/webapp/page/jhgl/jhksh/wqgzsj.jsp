@@ -137,7 +137,7 @@
 				 }
 			});
 		}
-		var obj；
+		var obj;
 		function edit(id){
 			obj=id;
 			YMLib.UI.createWindow('wq_edit','危桥改造',"/jxzhpt/page/jhgl/jhkgl/wqgzsj_xg.jsp",'wq_edit',1000,500);

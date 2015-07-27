@@ -241,6 +241,14 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 			e.printStackTrace();
 		}
 	}
+	//自动填充LXMC
+		public void wqgzGpsroad1(){
+			try {
+				JsonUtils.write(wqgzServer.selectGpsroad1(jckwqgz), getresponse().getWriter());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	public void JckWqgzRoad(){
 		try {
 			JsonUtils.write(wqgzServer.JckWqgzRoad(jckwqgz), getresponse().getWriter());
@@ -312,9 +320,9 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void selectWqgzCount1(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and gydwbm like '%"+jckwqgz.getGydw()+"%'");
 			}else{
-				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
+				jckwqgz.setGydw("and gydwbm in ("+jckwqgz.getGydw()+")");
 			}
 			if(jckwqgz.getXzqhdm().indexOf(",")==-1){
 				jckwqgz.setXzqhdm("and xzqhdm like '%"+jckwqgz.getXzqhdm()+"%'");
