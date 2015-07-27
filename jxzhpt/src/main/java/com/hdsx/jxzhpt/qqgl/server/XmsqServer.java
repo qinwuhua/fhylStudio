@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 
 public interface XmsqServer {
 	/**
@@ -168,5 +169,12 @@ public interface XmsqServer {
 	 * @return 返回结果
 	 */
 	public boolean insertLx(List<Lx> lxlist);
+	/**
+	 * 查询所有的行政区划
+	 * @param xzqhdm
+	 * @return
+	 */
+	public List<TreeNode> queryAllXzqh(String xzqhdm);
+	public List<TreeNode> queryAllGydw(String gydwdm);
 
 }

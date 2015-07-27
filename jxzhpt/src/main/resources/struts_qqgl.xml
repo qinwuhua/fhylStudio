@@ -137,6 +137,7 @@
 		<action name="queryLsxx2" class="jhshController" method="queryLsxx2"></action>
 		<action name="queryKxxyjByXmbm" class="jhshController" method="queryKxxyjByXmbm"></action>
 		<action name="queryJsdjAndLcByStartAndEnd" class="jhshController" method="queryJsdjAndLcByStartAndEnd"></action>
+		<action name="updateLx" class="jhshController" method="updateLx"></action>
 		
 		<action name="importExcelYhdzx" class="xmsqController" method="importExcelYhdzx"></action>
 		<action name="importExcelYhdzxCbsj" class="cbsjController" method="importExcelYhdzxCbsj"></action>
@@ -145,7 +146,6 @@
 		<action name="importExcelLmgzCbsj" class="cbsjController" method="importExcelLmgzCbsj"></action>
 		<action name="importExcelLmsjCbsj" class="cbsjController" method="importExcelLmsjCbsj"></action>
 		<action name="importExcelXjCbsj" class="cbsjController" method="importExcelXjCbsj"></action>
-		
 	<!-- rh -->
 	</package>
 </struts>

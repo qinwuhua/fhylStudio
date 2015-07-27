@@ -404,6 +404,8 @@
 		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
 		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
 		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="qdmc!=null">,qdmc=#{qdmc}</if>
+		<if test="zdmc!=null">,zdmc=#{zdmc}</if>
 		<if test="lc!=null">,lc=#{lc}</if>
 		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
 		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
@@ -428,6 +430,8 @@
 		<if test="xzqhdm!=null">,xzqhdm=#{xzqhdm}</if>
 		<if test="qdzh!=null">,qdzh=#{qdzh}</if>
 		<if test="zdzh!=null">,zdzh=#{zdzh}</if>
+		<if test="qdmc!=null">,qdmc=#{qdmc}</if>
+		<if test="zdmc!=null">,zdmc=#{zdmc}</if>
 		<if test="lc!=null">,lc=#{lc}</if>
 		<if test="lmkd!=null">,lmkd=#{lmkd}</if>
 		<if test="jsdj!=null">,jsdj=#{jsdj}</if>
@@ -514,5 +518,11 @@
 					and x.lsjl=#{lsjl}
 				</if>
 				order by x.sqzt desc,x.xmbm desc) t ) t2
+	</select>
+	<select id="queryAllXzqh" parameterType="string" resultType="treenode">
+		select distinct x.id ,x.name text,parent ,'open' state from XTGL_XZQH x where  id like '%'||${value}||'%' order by to_number(id)
+	</select>
+	<select id="queryAllGydw" parameterType="string" resultType="treenode">
+		select distinct x.id ,x.name text,parent ,'open' state from XTGL_DEPARTMENT x where  id like '%'||#{value}||'%' order by to_number(id)
 	</select>
 </mapper>

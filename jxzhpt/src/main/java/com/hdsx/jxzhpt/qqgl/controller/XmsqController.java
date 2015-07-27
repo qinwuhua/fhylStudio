@@ -12,6 +12,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import net.sf.json.JSONArray;
+
 import org.codehaus.jackson.map.util.JSONWrappedObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.JhshServer;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
 import com.hdsx.jxzhpt.utile.JsonUtils;
+import com.hdsx.jxzhpt.utile.ResponseUtils;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 import com.hdsx.webutil.struts.BaseActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
@@ -499,6 +503,49 @@ public class XmsqController extends BaseActionSupport implements ModelDriven<Xms
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+	}
+	/**
+	 * 查询所有的行政区划
+	 */
+	public void queryAllXzqh(){
+		List<TreeNode> result =xmsqServer.queryAllXzqh(xmsq.getXzqhdm());
+		TreeNode root = returnRoot1(result,result.get(0));
+		List<TreeNode> children1 = new ArrayList<TreeNode>();
+		children1.add(result.get(0));
+		List<TreeNode> children = root.getChildren();
+		children1.get(0).setChildren(children);
+		try{
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void queryAllGydw(){
+		try{
+			List<TreeNode> result =xmsqServer.queryAllGydw(xmsq.getGydwdm());
+			TreeNode root = returnRoot1(result,result.get(0));
+			List<TreeNode> children1 = new ArrayList<TreeNode>();
+			children1.add(result.get(0));
+			List<TreeNode> children = root.getChildren();
+			children1.get(0).setChildren(children);
+		    String s=JSONArray.fromObject(children1).toString();
+            ResponseUtils.write(getresponse(), s);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	private TreeNode returnRoot1(List<TreeNode> list, TreeNode zzjgTree){
+		for(TreeNode temp : list){
+			if(temp!=zzjgTree){
+				if(temp.getParent() != null &&temp.getParent() !="" && temp.getParent().equals(zzjgTree.getId())){
+					zzjgTree.setState("open");
+					zzjgTree.getChildren().add(temp);
+					returnRoot1(list,temp);
+				}
+			}
+		}
+		return zzjgTree;
 	}
 	/**
 	 * 处理行政区划编码为条件语句

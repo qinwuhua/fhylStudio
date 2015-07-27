@@ -11,6 +11,7 @@ import com.hdsx.dao.query.base.BaseOperate;
 import com.hdsx.jxzhpt.qqgl.bean.Lx;
 import com.hdsx.jxzhpt.qqgl.bean.Xmsq;
 import com.hdsx.jxzhpt.qqgl.server.XmsqServer;
+import com.hdsx.jxzhpt.xtgl.bean.TreeNode;
 @Service
 public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	public XmsqServerImpl(){
@@ -168,6 +169,14 @@ public class XmsqServerImpl extends BaseOperate implements XmsqServer {
 	@Override
 	public boolean insertLx(List<Lx> lxlist) {
 		return insertBatch("insertLx", lxlist)==lxlist.size();
+	}
+	@Override
+	public List<TreeNode> queryAllXzqh(String xzqhdm) {
+		return queryList("queryAllXzqh",xzqhdm);
+	}
+	@Override
+	public List<TreeNode> queryAllGydw(String gydwdm) {
+		return queryList("queryAllGydw",gydwdm);
 	}
 
 }

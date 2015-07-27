@@ -110,7 +110,7 @@
 						return result;
 					}
 				},
-				{field:'tjlx',title:'添加路线',width:100,align:'center',
+				/*{field:'tjlx',title:'添加路线',width:100,align:'center',
 					formatter: function(value,row,index){
 						if(Number(row.sqzt)==0 || Number(row.sqzt)>Number($.cookie('unit2').length)){
 							return '<a href="javascript:openLxAdd('+"'shxm','"+row.xmbm+"','"+YMLib.Var.jdbs+"'"+')" style="color:#3399CC;">添加路线</a>';
@@ -118,7 +118,7 @@
 							return '添加路线';
 						}
 					}
-				},
+				},*/
 				{field:'lsjl',title:'是否有历史记录',width:150,align:'center',
 					formatter: function(value,row,index){
 						if(value=="是"){

@@ -303,130 +303,40 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		try {
 			ExcelTitleCell [] title=null;
 			Map<String, String> attribute=null;
-			if(cbsj.getXmlx()<=3){
-				title=new ExcelTitleCell[36];
-				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
-				title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
-				title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-				title[3]=new ExcelTitleCell("建设单位",false, new ExcelCoordinate(0, (short)3), null,20);
-				title[4]=new ExcelTitleCell("建设技术等级",false, new ExcelCoordinate(0, (short)4), null,20);
-				title[5]=new ExcelTitleCell("建设性质",false, new ExcelCoordinate(0, (short)5), null,20);
-				title[6]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)6), null,20);
-				title[7]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)7), null,20);
-				title[8]=new ExcelTitleCell("路基(m3)",false, new ExcelCoordinate(0, (short)8), null,20);
-				title[9]=new ExcelTitleCell("桥梁(座)",false, new ExcelCoordinate(0, (short)9), null,20);
-				title[10]=new ExcelTitleCell("桥梁延米",false, new ExcelCoordinate(0, (short)10), null,20);
-				title[11]=new ExcelTitleCell("涵洞(座)",false, new ExcelCoordinate(0, (short)11), null,20);
-				title[12]=new ExcelTitleCell("涵洞米",false, new ExcelCoordinate(0, (short)12), null,20);
-				title[13]=new ExcelTitleCell("隧道(座)",false, new ExcelCoordinate(0, (short)13), null,20);
-				title[14]=new ExcelTitleCell("隧道延米",false, new ExcelCoordinate(0, (short)14), null,20);
-				title[15]=new ExcelTitleCell("面层类型",false, new ExcelCoordinate(0, (short)15), null,20);
-				title[16]=new ExcelTitleCell("面层里程",false, new ExcelCoordinate(0, (short)16), null,20);
-				title[17]=new ExcelTitleCell("基层类型",false, new ExcelCoordinate(0, (short)17), null,20);
-				title[18]=new ExcelTitleCell("基层里程",false, new ExcelCoordinate(0, (short)18), null,20);
-				title[19]=new ExcelTitleCell("垫层类型",false, new ExcelCoordinate(0, (short)19), null,20);
-				title[20]=new ExcelTitleCell("垫层里程",false, new ExcelCoordinate(0, (short)20), null,20);
-				title[21]=new ExcelTitleCell("大桥名称",false, new ExcelCoordinate(0, (short)21), null,20);
-				title[22]=new ExcelTitleCell("大桥长度",false, new ExcelCoordinate(0, (short)22), null,20);
-				title[23]=new ExcelTitleCell("大桥单跨",false, new ExcelCoordinate(0, (short)23), null,20);
-				title[24]=new ExcelTitleCell("隧道名称",false, new ExcelCoordinate(0, (short)24), null,20);
-				title[25]=new ExcelTitleCell("隧道双幅长度",false, new ExcelCoordinate(0, (short)25), null,20);
-				title[26]=new ExcelTitleCell("隧道类型",false, new ExcelCoordinate(0, (short)26), null,20);
-				title[27]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)27), null,20);
-				title[28]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)28), null,20);
-				title[29]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)29), null,20);
-				title[30]=new ExcelTitleCell("设计单位",false, new ExcelCoordinate(0, (short)30), null,20);
-				title[31]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)31), null,20);
-				title[32]=new ExcelTitleCell("批复时间",false, new ExcelCoordinate(0, (short)32), null,20);
-				title[33]=new ExcelTitleCell("建安费",false, new ExcelCoordinate(0, (short)33), null,20);
-				title[34]=new ExcelTitleCell("地方自筹",false, new ExcelCoordinate(0, (short)34), null,20);
-				title[35]=new ExcelTitleCell("银行贷款",false, new ExcelCoordinate(0, (short)35), null,20);
-				//设置列与字段对应
-				attribute=new HashMap<String, String>();
-				attribute.put("0", "xmmc");//项目名称
-				attribute.put("1", "xmbm");//项目编码
-				attribute.put("2", "xzqh");//行政区划
-				attribute.put("3", "jsdw");
-				attribute.put("4", "jsjsdj");
-				attribute.put("5", "jsxz");
-				attribute.put("6", "qdzh");
-				attribute.put("7", "zdzh");
-				attribute.put("8", "lj");
-				attribute.put("9", "ql");
-				attribute.put("10", "ql_ym");
-				attribute.put("11", "hd");
-				attribute.put("12", "hd_m");
-				attribute.put("13", "sd");
-				attribute.put("14", "sd_ym");
-				attribute.put("15", "mc");
-				attribute.put("16", "mc_lc");
-				attribute.put("17", "jc");
-				attribute.put("18", "jc_lc");
-				attribute.put("19", "dc");
-				attribute.put("20", "dc_lc");
-				attribute.put("21", "dq");
-				attribute.put("22", "dq_cd");
-				attribute.put("23", "dq_dk");
-				attribute.put("24", "sdmc");
-				attribute.put("25", "sd_sfcd");
-				attribute.put("26", "sd_lx");
-				attribute.put("27", "kgsj");
-				attribute.put("28", "wgsj");
-				attribute.put("29", "gq");
-				attribute.put("30", "sjdw");
-				attribute.put("31", "sjpfwh");
-				attribute.put("32", "pfsj");
-				attribute.put("33", "jaf");
-				attribute.put("34", "dfzc");
-				attribute.put("35", "yhdk");
+			String fileTitle="";
+			if(cbsj.getXmlx()<=2){
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
+						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
+						"<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>," +
+						"<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>," +
+						"<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
+						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>," +
+						"<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>," +
+						"<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
+						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>," +
+						"<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+			}else if(cbsj.getXmlx()==3){
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
+						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
+						"<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
+						"<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>"+
+						"<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>," +
+						"<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>," +
+						"<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
+						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>," +
+						"<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>," +
+						"<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
+						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>," +
+						"<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else{
-				title=new ExcelTitleCell[22];
-				title[0]=new ExcelTitleCell("项目名称",false, new ExcelCoordinate(0, (short)0), null,20);
-				title[1]=new ExcelTitleCell("项目编码",false, new ExcelCoordinate(0, (short)1), null,20);
-				title[2]=new ExcelTitleCell("行政区划",false, new ExcelCoordinate(0, (short)2), null,20);
-				title[3]=new ExcelTitleCell("建设单位",false, new ExcelCoordinate(0, (short)3), null,20);
-				title[4]=new ExcelTitleCell("建设技术等级",false, new ExcelCoordinate(0, (short)4), null,20);
-				title[5]=new ExcelTitleCell("建设性质",false, new ExcelCoordinate(0, (short)5), null,20);
-				title[6]=new ExcelTitleCell("起点桩号",false, new ExcelCoordinate(0, (short)6), null,20);
-				title[7]=new ExcelTitleCell("讫点桩号",false, new ExcelCoordinate(0, (short)7), null,20);
-				title[8]=new ExcelTitleCell("里程",false, new ExcelCoordinate(0, (short)8), null,20);
-				title[9]=new ExcelTitleCell("面层类型",false, new ExcelCoordinate(0, (short)9), null,20);
-				title[10]=new ExcelTitleCell("面层里程",false, new ExcelCoordinate(0, (short)10), null,20);
-				title[11]=new ExcelTitleCell("基层类型",false, new ExcelCoordinate(0, (short)11), null,20);
-				title[12]=new ExcelTitleCell("基层里程",false, new ExcelCoordinate(0, (short)12), null,20);
-				title[13]=new ExcelTitleCell("垫层类型",false, new ExcelCoordinate(0, (short)13), null,20);
-				title[14]=new ExcelTitleCell("垫层里程",false, new ExcelCoordinate(0, (short)14), null,20);
-				title[15]=new ExcelTitleCell("开工时间",false, new ExcelCoordinate(0, (short)15), null,20);
-				title[16]=new ExcelTitleCell("完工时间",false, new ExcelCoordinate(0, (short)16), null,20);
-				title[17]=new ExcelTitleCell("工期",false, new ExcelCoordinate(0, (short)17), null,20);
-				title[18]=new ExcelTitleCell("设计单位",false, new ExcelCoordinate(0, (short)18), null,20);
-				title[19]=new ExcelTitleCell("设计批复文号",false, new ExcelCoordinate(0, (short)19), null,20);
-				title[20]=new ExcelTitleCell("批复时间",false, new ExcelCoordinate(0, (short)20), null,20);
-				title[21]=new ExcelTitleCell("建设方案",false, new ExcelCoordinate(0, (short)21), null,20);
-				//设置列与字段对应
-				attribute=new HashMap<String, String>();
-				attribute.put("0", "xmmc");//项目名称
-				attribute.put("1", "xmbm");//项目编码
-				attribute.put("2", "xzqh");//行政区划
-				attribute.put("3", "jsdw");
-				attribute.put("4", "jsjsdj");
-				attribute.put("5", "jsxz");
-				attribute.put("6", "qdzh");
-				attribute.put("7", "zdzh");
-				attribute.put("8", "lc");
-				attribute.put("9", "mc");
-				attribute.put("10", "mc_lc");
-				attribute.put("11", "jc");
-				attribute.put("12", "jc_lc");
-				attribute.put("13", "dc");
-				attribute.put("14", "dc_lc");
-				attribute.put("15", "kgsj");
-				attribute.put("16", "wgsj");
-				attribute.put("17", "gq");
-				attribute.put("18", "sjdw");
-				attribute.put("19", "sjpfwh");
-				attribute.put("20", "pfsj");
-				attribute.put("21", "jsfa");
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
+						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
+						"<title=起点桩号,fieid=qdzh>,<title=讫点桩号,fieid=zdzh>,<title=里程,fieid=lc>," +
+						"<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
+						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>," +
+						"<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
+						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>," +
+						"<title=建设方案,fieid=jsfa>";
 			}
 			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
 			//数据
@@ -455,9 +365,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				fileName="灾毁重建初步设计或施工图设计";
 				excelData = cbsjServer.queryShExcel(cbsj);
 			}
-			
-			ExcelEntity excel=new ExcelEntity(titleName,title,attribute,excelData);
-			ExcelExportUtil.excelWrite(excel, fileName, getresponse());
+			System.out.println(fileTitle);
+			ExcelExportUtil.excelWrite(excelData, fileName, fileTitle,getresponse());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -468,32 +377,12 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	@SuppressWarnings("unchecked")
 	public void importExcelYhdzxCbsj(){
 		HashMap<String, String> attribute = new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "jsdw");
-		attribute.put("4", "jsjsdj");
-		attribute.put("5", "jsxz");
-		attribute.put("6", "qdzh");
-		attribute.put("7", "zdzh");
-		attribute.put("8", "lc");
-		attribute.put("9", "mc");
-		attribute.put("10", "mc_lc");
-		attribute.put("11", "jc");
-		attribute.put("12", "jc_lc");
-		attribute.put("13", "dc");
-		attribute.put("14", "dc_lc");
-		attribute.put("15", "kgsj");
-		attribute.put("16", "wgsj");
-		attribute.put("17", "gq");
-		attribute.put("18", "sjdw");
-		attribute.put("19", "sjpfwh");
-		attribute.put("20", "pfsj");
-		attribute.put("21", "jsfa");
+		
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,mc,mc_lc,jc,jc_lc,dc,dc_lc,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jsfa";
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
-			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist =new ArrayList<Lx>();
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
@@ -678,6 +567,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		attribute.put("31", "sjpfwh");
 		attribute.put("32", "pfsj");
 		attribute.put("33", "jaf");
+		attribute.put("34", "dfzc");
+		attribute.put("35", "yhdk");
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
@@ -744,6 +635,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 		attribute.put("31", "sjpfwh");
 		attribute.put("32", "pfsj");
 		attribute.put("33", "jaf");
+		attribute.put("34", "dfzc");
+		attribute.put("35", "yhdk");
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
@@ -755,8 +648,8 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				lx.setQdzh(cbsj.getQdzh());
 				lx.setZdzh(cbsj.getZdzh());
 				lx.setXmid(cbsj.getXmbm());
-//				lx.setQdmc(cbsj.getQdmc());
-//				lx.setZdmc(cbsj.getZdmc());
+				lx.setQdmc(cbsj.getQdmc());
+				lx.setZdmc(cbsj.getZdmc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);

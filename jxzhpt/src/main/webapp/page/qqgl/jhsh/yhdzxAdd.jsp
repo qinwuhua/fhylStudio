@@ -106,6 +106,7 @@
 				},
 				onSelect:function(node) {
 					YMLib.Var.DistName = node.text;
+					alert("sss");
 					$('#xzqhdm').html(node.id);
 					selectTSDQ(node.id);
 				}

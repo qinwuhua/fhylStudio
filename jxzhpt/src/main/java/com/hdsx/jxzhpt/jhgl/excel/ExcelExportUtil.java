@@ -4,10 +4,13 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +28,42 @@ import org.apache.poi.hssf.util.Region;
  *
  */
 public class ExcelExportUtil {
+	/**
+	 * 导出Excel数据
+	 * @param excelData Excel要导出的数据
+	 * @param fileName 导出后的文件名称
+	 * @param fieidAndTitle 字段和列标题的对应，格式如下：<fieid=,title=,hidden=>
+	 * @param response HttpServletResponse对象
+	 */
+	public static void excelWrite(List<Object> excelData, String fileName,String fieidAndTitle,HttpServletResponse response) {
+		Pattern pattern = Pattern.compile("(<[^>]*>)");
+		Matcher matcher = pattern.matcher(fieidAndTitle);
+		int index=0;
+		List<Map<String, Object>> properties = new ArrayList();//存储字段和属性对应集合
+		//按照上面格式,遍历字符串获取数据
+		while(matcher.find()){
+			String[] replaceAll = matcher.group().replaceAll("<", "").replaceAll(">", "").split(",");
+			Map<String, Object> property= new HashMap<String, Object>();
+			property.put("index", index);
+			for (String string : replaceAll) {
+				property.put(string.substring(0,string.indexOf("=")), string.substring(string.indexOf("=")+1));
+			}
+			properties.add(property);
+			index++;
+		}
+		ExcelTitleCell [] title= new ExcelTitleCell[index];//表头标题数组
+		Map<String, String> attribute=new HashMap<String, String>();//字段与列的对应
+		//循环上步中获取的数据，设置表头标题集合和字段的对应
+		for (Map<String, Object> item : properties) {
+			boolean hidden = item.get("hidden")==null ? false : new Boolean(item.get("hidden").toString()).booleanValue();
+			int width = item.get("width")==null ? 15 : Integer.parseInt(item.get("width").toString());
+			title[Integer.parseInt(item.get("index").toString())]=new ExcelTitleCell(item.get("title").toString(),hidden, new ExcelCoordinate(0, (short)Integer.parseInt(item.get("index").toString())),width);
+			attribute.put(item.get("index").toString(), item.get("fieid").toString());
+		}
+		ExcelEntity excel=new ExcelEntity(fileName,title,attribute,excelData);
+		ExcelExportUtil.excelWrite(excel, fileName, response);
+	}
+	
 	/**
 	 * 导出Excel文件
 	 * @param excel ExcelEntity Excel实体类

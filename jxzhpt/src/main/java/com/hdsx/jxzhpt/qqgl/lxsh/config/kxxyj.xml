@@ -5,8 +5,10 @@
 		select * from (
 		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*
 		from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join 
-    	(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc
-    	from lxsh_lx where jdbs='1' group by qdmc,zdmc,xmid,yilc,erlc,sanlc,silc,dwlc,wllc,jhyilc,jherlc,jhsanlc,jhsilc,jhdwlc,jhwllc) lx on t.xmbm=lx.xmid
+    	(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
+    	sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc,
+    	sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc
+    	from lxsh_lx where jdbs='1' group by qdmc,zdmc,xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -75,8 +77,9 @@
 		select * from (
 		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*
 		from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join 
-		(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,yilc,erlc,sanlc,silc,dwlc,wllc from lxsh_lx where jdbs='1' 
-		group by qdmc,zdmc,xmid,yilc,erlc,sanlc,silc,dwlc,wllc) lx on t.xmbm=lx.xmid
+		(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
+		sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc from lxsh_lx where jdbs='1' 
+		group by qdmc,zdmc,xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -143,8 +146,9 @@
 		select * from (
 		select rownum num ,t.*,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*  from KXXYJ_XJ t 
 		Left join lxsh_xj t1 on t.xmbm=t1.xmbm left join 
-		(select qdmc,zdmc,lxmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(xjlc) xjlc,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh  
-		from lxsh_lx where jdbs='1' group by qdmc,zdmc,lxmc,xmid,yilc,erlc,sanlc,silc,dwlc,wllc,xjlxbm,xjqdzh,xjzdzh,xjlc ) lx on t.xmbm=lx.xmid
+		(select qdmc,zdmc,lxmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,sum(xjlc) xjlc,
+		sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc,xjlxbm,xjqdzh,xjzdzh  
+		from lxsh_lx where jdbs='1' group by qdmc,zdmc,lxmc,xmid,xjlxbm,xjqdzh,xjzdzh,xjlc ) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}

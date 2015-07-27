@@ -713,8 +713,13 @@ public class JhshController extends BaseActionSupport implements ModelDriven<Jhs
 	 * @param lx 路线信息
 	 * @return 执行结果
 	 */
-	public boolean updateLx(Lx lx){
-		return jhshServer.updateLx(lx);
+	public void updateLx(){
+		try{
+			result.put("result", new Boolean(jhshServer.updateLx(lx)).toString());
+			JsonUtils.write(result, getresponse().getWriter());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	/**
 	 * 添加路线

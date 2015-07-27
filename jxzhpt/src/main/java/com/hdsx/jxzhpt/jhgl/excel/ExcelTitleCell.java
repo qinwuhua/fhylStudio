@@ -9,6 +9,18 @@ public class ExcelTitleCell {
 	 * @param cellTitleName 标题名称
 	 * @param isHidden 是否隐藏
 	 * @param startCell 开始的坐标对象
+	 */
+	public ExcelTitleCell(String cellTitleName,boolean hidden, ExcelCoordinate startCell) {
+		super();
+		this.cellTitleName = cellTitleName;
+		this.hidden=hidden;
+		this.startCell = startCell;
+	}
+	/**
+	 * Excel的标头类
+	 * @param cellTitleName 标题名称
+	 * @param isHidden 是否隐藏
+	 * @param startCell 开始的坐标对象
 	 * @param width 单元格宽度
 	 */
 	public ExcelTitleCell(String cellTitleName,boolean hidden, ExcelCoordinate startCell,int width) {

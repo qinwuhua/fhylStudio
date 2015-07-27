@@ -675,7 +675,9 @@
 				c.kgsj,c.wgsj,c.gq,c.sjdw,c.sjpfwh,c.pfsj,c.jaf,c.dfzc,c.yhdk,lx.* from cbsj_xj c left join lxsh_xj l on c.xmbm = l.xmbm
 				left join (select xmid, replace(WMSYS.WM_CONCAT(to_char(lxbm)),',','、') ylxbh,
 				replace(WMSYS.WM_CONCAT(to_char(lxmc)),',','、') lxmc,replace(WMSYS.WM_CONCAT(to_char(qdzh)),',','、') qdzh,
-				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc from lxsh_lx where jdbs='2' group by xmid) lx
+				replace(WMSYS.WM_CONCAT(to_char(zdzh)),',','、') zdzh,sum(lc) lc,replace(WMSYS.WM_CONCAT(to_char(xjlxbm)),',','、') xjlxbm,
+				replace(WMSYS.WM_CONCAT(to_char(xjqdzh)),',','、') xjqdzh,replace(WMSYS.WM_CONCAT(to_char(xjzdzh)),',','、') xjzdzh
+				from lxsh_lx where jdbs='2' group by xmid) lx
 				on c.xmbm = lx.xmid where 1=1
 				<if test="xzqhdm!=null and xzqhdm!=''">
 					and ${xzqhdm}

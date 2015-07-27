@@ -2,6 +2,8 @@ package com.hdsx.jxzhpt.jhgl.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -10,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,6 +26,54 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.DateUtil;
 
 public class ExcelImportUtil {
+	/**
+	 * 读取Excel中的数据
+	 * @param string 字段字符串，每个字段以"，"分隔，顺序与Excel文件中要对应，如：id,url,text
+	 * @param sheetIndex HSSFSheet的下标
+	 * @param classType 返回集合的类型对象的Class属性
+	 * @param file 文件
+	 * @return 返回数组
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 * @throws Exception
+	 */
+	public static List readExcel(String string, int sheetIndex, Class classType,File file)throws IOException, FileNotFoundException, Exception {
+		String[] split = string.split(",");
+		HSSFWorkbook readWork=new HSSFWorkbook(new FileInputStream(file));
+		HSSFSheet sheet = readWork.getSheetAt(sheetIndex);
+		ExcelEntity excel=new ExcelEntity();
+		Map<String, String> attribute=new HashMap<String, String>();
+		for (int i = 0; i < split.length; i++) {
+			System.out.println("split："+i+"   "+split[i]);
+			attribute.put(new Integer(i).toString(), split[i]);
+		}
+		excel.setAttributes(attribute);
+		return ExcelImportUtil.readerExcel(sheet, classType, 1, excel);
+	}
+	/**
+	 * 导入读取Excel
+	 * @param sheet HSSFSheet对象
+	 * @param classType 实体类class属性
+	 * @param startRowNumber 开始行号
+	 * @param excel Excel操作对象
+	 * @return 读入的数据
+	 * @throws Exception
+	 */
+	public static List readerExcel(HSSFSheet sheet, Class classType,int startRowNumber,ExcelEntity excel) throws Exception{
+		List result=new ArrayList();
+		for (int i = startRowNumber; i <= sheet.getLastRowNum(); i++) {
+			HSSFRow row = sheet.getRow(i);
+			Map<String, String> attributes = excel.getAttributes();
+			Set<Entry<String,String>> entrySet = attributes.entrySet();
+			//newObj是根据Class反射创建的对象
+			Object newObj = classType.newInstance();
+			for (Entry<String, String> entry : entrySet) {
+				newObj = getData(newObj, entry, row);
+			}
+			result.add(newObj);
+		}
+		return result;
+	}
 	/**
 	 * 读取Excel文件
 	 * @param file Excel文件

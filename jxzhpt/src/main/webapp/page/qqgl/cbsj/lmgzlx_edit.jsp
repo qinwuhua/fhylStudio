@@ -40,7 +40,7 @@ a{text-decoration:none;}
 		+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()+"&lx.jsxz="+$('#jsxz').val()+"&lx.qdzh="+$('#qdzh').val()
 		+"&lx.zdzh="+$('#zdzh').val()+"&lx.lc="+$('#lc').val()+"&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()
 		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.jsjsdj="+$('#jsjsdj').val()+"&lx.xjsdj="+$('#xjsdj').val()
-		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=1"+"&lx.xmid="+$('#xmbm').html();
+		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=2"+"&lx.xmid="+$('#xmbm').html();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateLx.do',
@@ -49,8 +49,8 @@ a{text-decoration:none;}
 			success:function(msg){
 				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showAlllmsh();
-					removes('lxxx');
+					parent.queryLmgz();
+					removes(parent.YMLib.Var.id);
 				}else{
 					alert("保存失败！");
 				}

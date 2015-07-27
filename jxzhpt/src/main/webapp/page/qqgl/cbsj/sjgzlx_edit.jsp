@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-form.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/easyui/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery.autocomplete.js" ></script>
@@ -20,8 +21,8 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/page/qqgl/lxsh/js/sjgz.js"></script>
 
 <style type="text/css">
-TD {font-size: 12px;}
-a{text-decoration:none;}
+	TD {font-size: 12px;}
+	a{text-decoration:none;}
 </style>
 </head>
 <body>
@@ -34,13 +35,15 @@ a{text-decoration:none;}
 		loadDist("xzqh",parent.YMLib.Var.Obj.xzqhdm);
 		$('#xmbm').html(parent.YMLib.Var.Obj.xmid);
 	});
-	function saveLxsh(){
+	function updateLx(){
 		var params="lx.id="+$('#id').val()+"&lx.lxbm="+$('#lxbm').val()+"&lx.lxmc="+$('#lxmc').val()+"&lx.gydw="+$('#gydw').combotree("getText")
 		+"&lx.gydwdm="+$('#gydw').combotree("getValue")+"&lx.xzqh="+$('#xzqh').combotree("getText")+"&lx.xzqhdm="+$('#xzqh').combotree("getValue")
 		+"&lx.qdmc="+$('#qdmc').val()+"&lx.zdmc="+$('#zdmc').val()+"&lx.jsxz="+$('#jsxz').val()+"&lx.qdzh="+$('#qdzh').val()
 		+"&lx.zdzh="+$('#zdzh').val()+"&lx.lc="+$('#lc').val()+"&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()
-		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.jsjsdj="+$('#jsjsdj').val()+"&lx.xjsdj="+$('#xjsdj').val()
-		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=1"+"&lx.xmid="+$('#xmbm').html();
+		+"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lx.jhyilc="+$('#jhyilc').val()
+		+"&lx.jherlc="+$('#jherlc').val()+"&lx.jhsanlc="+$('#jhsanlc').val()+"&lx.jhsilc="+$('#jhsilc').val()
+		+"&lx.jhdwlc="+$('#jhdwlc').val()+"&lx.jhwllc="+$('#jhwllc').val()+"&lx.jsjsdj="+$('#jsjsdj').val()+"&lx.xjsdj="+$('#xjsdj').val()
+		+"&lx.bzcs="+$('#bzcs').val()+"&lx.jdbs=2"+"&lx.xmid="+$('#xmbm').html();
 		$.ajax({
 			type:'post',
 			url:'/jxzhpt/qqgl/updateLx.do',
@@ -49,8 +52,8 @@ a{text-decoration:none;}
 			success:function(msg){
 				if(msg.result=="true"){
 					alert("保存成功！");
-					parent.showAlllmsh();
-					removes('lxxx');
+					parent.queryLmsj();
+					removes(parent.YMLib.Var.id);
 				}else{
 					alert("保存失败！");
 				}
@@ -67,34 +70,35 @@ a{text-decoration:none;}
 			$("#zdzh").val(zdStr);
 		}
 		var zlc=accSub(parseFloat($("#zdzh").val()),parseFloat($("#qdzh").val()));
-		queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
 		$("#lc").val(zlc);
-		cesuan();
-		//selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
+		//getbzcs($("#lxbm").val().substr(0,1),$("#jsjsdj").combobox('getText'),$("#lc").html(),'升级改造工程项目');
+		queryJsdjAndLc($('#lxbm').val(),$("#qdzh").val(),$("#zdzh").val());
+		selectTSDQ($("#lxbm").val(),$("#qdzh").val(),$("#zdzh").val());
 		if($("#qdzh").val()!='')
 			cxqdmc($("#lxbm").val(),$("#qdzh").val());
 		if($("#zdzh").val()!='')
 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
+		cesuan();
 	}
 	function cesuan(){
 		var yi=0;
-		if($('#yilc').val()!="" && $('#yilc').val()!="0")
-			yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#yilc').val(),'升级改造工程项目');
+		if($('#jhyilc').val()!="" && $('#jhyilc').val()!="0")
+			yi = getbzcs($("#lxbm").val().substr(0,1),"一级",$('#jhyilc').val(),'升级改造工程项目');
 		var er=0;
-		if($('#erlc').val()!="" && $('#erlc').val()!="0")
-			er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#erlc').val(),'升级改造工程项目');
+		if($('#jherlc').val()!="" && $('#jherlc').val()!="0")
+			er = getbzcs($("#lxbm").val().substr(0,1),"二级",$('#jherlc').val(),'升级改造工程项目');
 		var san=0;
-		if($('#sanlc').val()!="" && $('#sanlc').val()!="0")
-			san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#sanlc').val(),'升级改造工程项目');
+		if($('#jhsanlc').val()!="" && $('#jhsanlc').val()!="0")
+			san = getbzcs($("#lxbm").val().substr(0,1),"三级",$('#jhsanlc').val(),'升级改造工程项目');
 		var si=0;
-		if($('#silc').val()!="" && $('#silc').val()!="0")
-			si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#silc').val(),'升级改造工程项目');
+		if($('#jhsilc').val()!="" && $('#jhsilc').val()!="0")
+			si = getbzcs($("#lxbm").val().substr(0,1),"四级",$('#jhsilc').val(),'升级改造工程项目');
 		var dw=0;
-		if($('#dwlc').val()!="" && $('#dwlc').val()!="0")
-			dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#dwlc').val(),'升级改造工程项目');
+		if($('#jhdwlc').val()!="" && $('#jhdwlc').val()!="0")
+			dw = getbzcs($("#lxbm").val().substr(0,1),"等外",$('#jhdwlc').val(),'升级改造工程项目');
 		var wl=0;
-		if($('#wllc').val()!="" && $('#wllc').val()!="0")
-			wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#wllc').val(),'升级改造工程项目');
+		if($('#jhwllc').val()!="" && $('#jhwllc').val()!="0")
+			wl = getbzcs($("#lxbm").val().substr(0,1),"无",$('#jhwllc').val(),'升级改造工程项目');
 		var zcs=parseFloat(yi)+parseFloat(er)+parseFloat(san)+parseFloat(si)+parseFloat(dw)+parseFloat(wl);
 		$('#bzcs').val(zcs);
 	}
@@ -179,12 +183,25 @@ a{text-decoration:none;}
 					现技术等<br/>级及里程
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
-					一级公路：<input id="yilc" name="yilc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					二级公路：<input id="erlc" name="erlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					三级公路：<input id="sanlc" name="sanlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					四级公路：<input id="silc" name="silc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					等外公路：<input id="dwlc" name="dwlc" onchange="cesuan()" style="width: 50px;" type="text"/>
-					无路：<input id="wllc" name="wllc" onchange="cesuan()" style="width: 50px;" type="text"/>
+					一级公路：<input id="yilc" name="yilc" style="width: 50px;" type="text"/>
+					二级公路：<input id="erlc" name="erlc" style="width: 50px;" type="text"/>
+					三级公路：<input id="sanlc" name="sanlc" style="width: 50px;" type="text"/>
+					四级公路：<input id="silc" name="silc" style="width: 50px;" type="text"/>
+					等外公路：<input id="dwlc" name="dwlc" style="width: 50px;" type="text"/>
+					无路：<input id="wllc" name="wllc" style="width: 50px;" type="text"/>
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
+					建设技术<br/>等级及里程
+				</td>
+				<td style="background-color: #ffffff; height: 20px;" align="left" colspan="5">
+					一级公路：<input id="jhyilc" name="jhyilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					二级公路：<input id="jherlc" name="jherlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					三级公路：<input id="jhsanlc" name="jhsanlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					四级公路：<input id="jhsilc" name="jhsilc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					等外公路：<input id="jhdwlc" name="jhdwlc" onchange="cesuan()" style="width: 50px;" value="0" type="text"/>
+					无路：<input id="jhwllc" name="jhwllc" onchange="cesuan()" style="width: 50px;" type="text" value="0"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -209,7 +226,7 @@ a{text-decoration:none;}
 			</tr>
 			<tr style="height: 35px;">
 				<td colspan="6" style="background-color: #ffffff;"align="center">
-				<a href="javascript:saveLxsh()" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
+				<a href="javascript:updateLx()" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
 				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
 			</tr>
 	</table>

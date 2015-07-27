@@ -429,7 +429,11 @@
 		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
 		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
 		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
-		l.qdzh=#{qdzh},l.zdzh=#{zdzh},
+		l.lxbm=#{lxbm},l.qdzh=#{qdzh},l.zdzh=#{zdzh},l.gydw=#{gydw},
+		l.gydwdm=#{gydwdm},l.xzqh=#{xzqh},l.xzqhdm=#{xzqhdm},
+		<if test="jsjsdj!=null">l.jsjsdj=#{jsjsdj},</if>
+		<if test="xjsdj!=null">l.xjsdj=#{xjsdj},</if>
+		<if test="bzcs!=null">l.bzcs=#{bzcs},</if>
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
 		<if test="lc==null or lc==''">l.lc=${zdzh}-${qdzh}</if>
 		where l.xmid=#{xmid} 

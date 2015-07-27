@@ -577,6 +577,17 @@ function getxzqhdm(id){
 	}
 	return result;
 }
+function updateLxWin(index,xmbm,id){
+	var data=$("#table_lx"+xmbm).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.Var.id=id;
+	if(xmbm.substring(10,11)=="1"){
+		YMLib.UI.createWindow(id,'编辑路线信息','sjgzlx_edit.jsp',id,900,350);
+	}else if(xmbm.substring(10,11)=="2"){
+		YMLib.UI.createWindow(id,'编辑路线信息','lmgzlx_edit.jsp',id,900,350);
+	}
+	YMLib.UI.createWindow(id,'编辑路线信息','lx_add.jsp',id,900,350);
+}
 //--------------------------------------------------------easyui部分
 var gridObj;//datagrid 对象
 var Rh={
@@ -603,10 +614,10 @@ var Rh={
 			selArray.pop(rowData.xmbm);
 		},
 		detailFormatter:function(index,row){
-			return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';
+			return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';
 		},
 		onExpandRow:function(index,row){
-			$('#table_lx'+index).datagrid({
+			$('#table_lx'+row.xmbm).datagrid({
 				url:'/jxzhpt/qqgl/selectlxList.do',
 				queryParams:{
 					'lx.xmid':row.xmbm,
@@ -617,7 +628,9 @@ var Rh={
     			columns:[[
     			    {field:'cz',title:'删除',width:150,align:'center',
     			    	formatter:function(value,row,index){
-    			    		return '<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		var result='<a href="javascript:updateLxWin('+"'"+index+"',"+"'"+row.xmid+"'"+')" style="color:#3399CC;">编辑</a>';
+    			    		result +='&nbsp;<a href="javascript:deleteLx('+"'"+row.id+"',"+"'"+row.xmid.substring(10,11)+"'"+')" style="color:#3399CC;">删除</a>';
+    			    		return result;
     			    	}
     			    },
 					{field:'gydw',title:'管养单位',width:150,align:'center'},    

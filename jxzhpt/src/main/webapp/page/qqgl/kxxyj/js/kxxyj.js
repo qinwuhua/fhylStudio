@@ -271,10 +271,11 @@ function showsjgzAll(){
 	    onExpandRow: function(index,row){
 	    	parentindex=index;
 	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
@@ -286,7 +287,7 @@ function showsjgzAll(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -415,10 +416,11 @@ function showlmgzAll(){
 	    onExpandRow: function(index,row){
 	    	parentindex=index;
 	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
@@ -430,7 +432,7 @@ function showlmgzAll(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -557,10 +559,11 @@ function showxjAll(){
 	    onExpandRow: function(index,row){
 	    	parentindex=index;
 	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
 					{field:'c3',title:'删除',width:70,align:'center',formatter:function(value,row,index){
@@ -572,7 +575,7 @@ function showxjAll(){
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -678,20 +681,26 @@ function showAllsjsh(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
-	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    	$('#table_lx'+row.xmbm).datagrid({
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
+					{field:'cz',title:'操作',width:150,align:'center',
+						formatter: function(value,row,index){
+							return '<a href="javascript:editSjlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						}
+					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -704,6 +713,11 @@ function showAllsjsh(){
 	    	});
 	    }   
 	}); 
+}
+function editSjlx(xmid,index){
+	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线信息','sjgzlx_add.jsp','lxxx',900,350);
 }
 //lm
 function showAlllmsh(){
@@ -801,16 +815,17 @@ function showAlllmsh(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
@@ -919,16 +934,17 @@ function showAllxjsh(){
 	    },
 	    onExpandRow: function(index,row){
 	    	$('#table_lx'+index).datagrid({
-	    		url:'/jxzhpt/qqgl/selectSjgzlxList.do',
+	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 	jdbs:1,
-	    		    	xmbm:row.xmbm
+	    			 'lx.jdbs':0,
+	    			 'lx.xmid':row.xmbm,
+	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
-    			    {field:'ghlxbh',title:'路线编码',width:100,align:'center'},
+    			    {field:'lxbm',title:'路线编码',width:100,align:'center'},
     			    {field:'qdzh',title:'起点桩号',width:80,align:'center'},
     			    {field:'zdzh',title:'止点桩号',width:80,align:'center'},
     			    {field:'qdmc',title:'起点名称',width:100,align:'center'},
