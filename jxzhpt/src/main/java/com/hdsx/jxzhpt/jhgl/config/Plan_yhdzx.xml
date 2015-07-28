@@ -524,7 +524,7 @@
 	<select id="yhdzxAutoCompleteLxbm" parameterType="plan_lx_yhdzx" resultType="plan_lx_yhdzx">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
 		(max(g.roadends)-min(g.roadstart)) as qzlc,max(g.f114) as yjsdj,max(g.f116) as ylmlx,max(g.f018) as ylmkd
-		from  JXJCK_2013.GPSROAD g
+		from  GPSROAD g
 		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm}||'%'
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		group by roadname,roadcode order by lxbm

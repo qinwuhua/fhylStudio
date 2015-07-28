@@ -334,7 +334,7 @@
 		select * from (
 			select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
 		    (max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
-		    from  JXJCK_2013.GPSROAD g
+		    from  GPSROAD g
 		    where substr(roadcode,1,1) in('G','S','X') and roadcode like #{lxbm}||'%'
 		    and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		    <if test="ylmlx!=null and ylmlx!=''">
@@ -572,7 +572,7 @@
 	<select id="shAutoCompleteLxbm" parameterType="plan_lx_shuih" resultType="plan_lx_shuih">
 		select g.roadname as lxmc,g.roadcode as lxbm,min(g.roadstart) as qdzh,max(g.roadends) as zdzh,
 		(max(g.roadends)-min(g.roadstart)) as qzlc,g.f114 as yjsdj,g.f116 as ylmlx
-		from  JXJCK_2013.GPSROAD g
+		from  GPSROAD g
 		where substr(roadcode,1,1) in('G','S','X') and F048='1' and roadcode like #{lxbm}||'%'
 		and roadcode like '%'||rtrim(#{xzqhdm},0)||'%'
 		group by roadname,roadcode,g.f114,g.f116

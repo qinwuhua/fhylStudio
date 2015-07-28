@@ -380,7 +380,7 @@
 		<if test="sbnf != null and  sbnf != ''">
 				and t.xmbm like trim(#{sbnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}

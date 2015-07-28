@@ -167,21 +167,21 @@
  	(select name from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) xzqhmc,
  		substr(roadcode,length(roadcode)-5,6) xzqhdm,
  		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,<!-- ,F045 pddj -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd<!-- ,F010 akjfl -->,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '跨越地物类型%' and F002=f006) kydwlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '通航等级%' and F002=F037) thdj,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '跨越地物类型%' and F002=f006) kydwlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '通航等级%' and F002=F037) thdj,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
  		F013 qmjk,F020 qxjk,F015 zqks
-		from JXJCK_2013.DATA50  where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
-		and F044 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
+		from DATA50  where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
-		and F009 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
+		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
 		and roadbm like #{qlbh} ||'%' 
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
@@ -199,21 +199,21 @@
  		(select decode(substr(name,instr(name, '市')+1,instr(name, '县')),null,substr(name,instr(name, '市')+1,instr(name, '区')),substr(name,instr(name, '市')+1,instr(name, '县'))) from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) xsq,
  		(select substr(name,decode(instr(name, '县'),null,decode(instr(name, '区'),null,length(name),instr(name, '区')+1),instr(name, '县')+1),length(name)) from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) szxz,
  		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,<!-- ,F045 pddj -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd<!-- ,F010 akjfl -->,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '跨越地物类型%' and F002=f006) kydwlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '通航等级%' and F002=F037) thdj,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz,ptx,pty,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '跨越地物类型%' and F002=f006) kydwlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '通航等级%' and F002=F037) thdj,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥墩类型%' and F002=F023) qdlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥台类型%' and F002=F025) qtlx,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥面铺装类型%' and F002=F027) pzlx,
  		F013 qmjk,F020 qxjk,F015 zqks
-		from JXJCK_2013.DATA50  where substr(roadcode,1,1) in('G','S','X','Y','C') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
-		and F044 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
+		from DATA50  where substr(roadcode,1,1) in('G','S','X','Y','C') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
-		and F009 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥','小桥'))
+		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥','小桥'))
 		and roadbm like #{qlbh} ||'%' 
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
@@ -426,21 +426,21 @@
  		substr(roadcode,length(roadcode)-5,6) xzqhdm,
  		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,F045 pddj,decode(substr(F052, 0, 4), null,
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,F010 akjfl,F022 sbjgxs,F112 bhnr,F074 bz 
-		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
+		from DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' and F045 in('四类','五类') 
 		and F010 in('中桥','大桥','特大桥')  -->
 		select roadbm qlbh,F002 qlmc,roadpos qlzxzh,gydw,<!-- DISTNAME xzqhmc -->
  		(select name from jxzhpt.xtgl_xzqh where id =substr(roadcode,length(roadcode)-5,6)) xzqhmc,
  		substr(roadcode,length(roadcode)-5,6) xzqhdm,
  		roadname lxmc,roadcode lxbm,F011 kjzc,F012 qlqc,F014 qlkd,F016 dkzdkj,<!-- ,F045 pddj -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,decode(substr(F052, 0, 4), null,
  		substr(F051,0,4),substr(F052, 0, 4)) xjgjnd<!-- ,F010 akjfl -->,
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
  		<!-- ,F022 sbjgxs -->
- 		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz 
-		from JXJCK_2013.DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
-		and F044 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
+ 		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,F112 bhnr,F074 bz 
+		from DATA50 where substr(roadcode,1,1) in('G','S','X','Y') and sfxzdm='1' <!-- and F045 in('四类','五类')  -->
+		and F044 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F003 in('四类','五类'))
 		<!-- and F010 in('中桥','大桥','特大桥')  -->
-		and F009 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
+		and F009 in(SELECT F002 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
 		</if>
@@ -448,7 +448,7 @@
 		order by roadbm,F002
  	</select>
    <select id="selJsdj"  parameterType="jckwqgz" resultType="jckwqgz">
-	   	select F114 jsdj from JXJCK_2013.GPSROAD where 
+	   	select F114 jsdj from GPSROAD where 
 	   		roadcode=#{lxbm}
 			and roadstart  &lt;=#{qlzxzh}
 	     	and roadends >#{qlzxzh}
@@ -461,13 +461,13 @@
 		select (select id from xtgl_department where name=#{0}) gydwbm ,#{0} gydw,#{1} xzqhdm,#{2} xzqhmc,#{3} lxbm,
 		#{4} lxmc,#{5} qlbh,#{6} qlmc,#{7} qlzxzh,decode(substr(F052, 0, 4), null,substr(F051,0,4),substr(F052, 0, 4)) xjgjnd,
 		to_char(F012) qlqc,to_char(F014) qlkd,to_char(F011) kjzc,to_char(F016) dkzdkj,<!-- F010 akjfl,F022 sbjgxs,F045 pddj, -->
-		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
-		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,
-		(SELECT F003 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,
+		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F002=F009) akjfl,
+		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '上部结构形式%' and F002=F113) sbjgxs,
+		(SELECT F003 FROM ROADTARGETVALUES WHERE F001 LIKE '技术状况评定%' and F002=F044) pddj,
 		#{8} xmnf,'待上报' xmtype,#{9} bhnr,#{10} bz,sysdate tbsj,#{tbbmbm} tbbmbm,
 		#{sbthcd} sbthcd,'未上报' sbzt,'未审核' shzt ,
-		(select F114 jsdj from JXJCK_2013.GPSROAD where roadcode=#{3} and roadstart  &lt;=#{7} and roadends >#{7})
-		from JXJCK_2013.DATA50 where roadbm =#{5}
+		(select F114 jsdj from GPSROAD where roadcode=#{3} and roadstart  &lt;=#{7} and roadends >#{7})
+		from DATA50 where roadbm =#{5}
 		
  </insert>
  

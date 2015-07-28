@@ -277,7 +277,7 @@
 		select name id,#{roadcode}||#{xzqh} parent ,name,#{roadcode} bmid from (
 		select 
 		    distinct roadcode name
-		    from JXJCK_2013.gpsroad 
+		    from gpsroad 
 		    where roadcode like #{roadcode}||'%' and substr(roadcode,length(roadcode)-5) like #{xzqh}||'%'
 		    and ldlx!='2.下行' and ldlx!='4.匝道' and f114!='高速公路'
 		    order by roadcode)
@@ -286,7 +286,7 @@
     	select t.*,(select name from xtgl_bmbm where id=t.parent) text from xtgl_bmbm t order by id 
 	</select>
 	<select id="selectQlDataList" parameterType="hashmap" resultType="unit">
-		select roadbm id,f002 name,#{roadcode} parent,f009 bmid from JXJCK_2013.data50 where roadcode=#{roadcode}
+		select roadbm id,f002 name,#{roadcode} parent,f009 bmid from data50 where roadcode=#{roadcode}
 	</select>
 	<select id="createGsAnyChartXml" parameterType="param" resultType="hashmap">
 		select * from xmk_abgc

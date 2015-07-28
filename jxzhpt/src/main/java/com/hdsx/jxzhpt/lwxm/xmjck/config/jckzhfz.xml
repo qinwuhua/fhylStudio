@@ -105,7 +105,7 @@
  	select roadcode lxbm,roadname lxmc,min(roadstart) qdzh,max(roadends) zdzh,(max(roadends)-min(roadstart)) qzlc,
  	substr(roadcode,length(roadcode)-5,6) xzqhdm, (select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6)) 
  	xzqhmc,F044 gydwbm,F045 gydw,decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4))) gjxjnd,
- 	F114 lxjsdj from JXJCK_2013.GPSROAD 
+ 	F114 lxjsdj from GPSROAD 
  	where substr(roadcode,1,1) in('G','S') and F048='1' and roadcode like #{lxbm} ||'%' 
  	<if test="gydwbm!='' and gydwbm!= null ">
 			and F044 in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
@@ -294,7 +294,7 @@
 		(select name from xtgl_xzqh where id=substr(roadcode,length(roadcode)-5,6))
 		xzqhmc,F044 gydwbm,F045 gydw,
 		decode(max(substr(F026, 0, 4)), null, max(substr(F025,0,4)), max(substr(F026, 0, 4)))
-		gjxjnd,F114 lxjsdj from JXJCK_2013.GPSROAD
+		gjxjnd,F114 lxjsdj from GPSROAD
 		where substr(roadcode,1,1) in('G','S') and F048='1' 
 		<if test="gydwbm!='' and gydwbm!= null ">
 			and F044 in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 

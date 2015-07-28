@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "/xsd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hdsx.jxzhpt.xtgl">
 	<select id="selLines" parameterType="dzdt" resultType="dzdt">
-		select * from JXJCK_2013.webroadline where roadcode='G6001'
+		select * from webroadline where roadcode='G6001'
 	</select>
 	<select id="xmlxCountTj" parameterType="param" resultType="param">
 		select id,name,(select name from xtgl_resource where id=t.parent) parent from xtgl_resource t where parent in ('01010201','01010203','01010301','01010402')

@@ -269,7 +269,7 @@ where t1.spzt='1'
 		<if test="jhnf != null and  jhnf != ''">
 				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -303,7 +303,7 @@ where t1.spzt='1'
 		<if test="jhnf != null and  jhnf != ''">
 				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -360,7 +360,7 @@ where t1.spzt='1'
 		<if test="jhnf != null and  jhnf != ''">
 				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -416,7 +416,7 @@ where t1.spzt='1'
 		<if test="jhnf != null and  jhnf != ''">
 				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
@@ -450,7 +450,7 @@ where t1.spzt='1'
 		<if test="jhnf != null and  jhnf != ''">
 				and t.xmbm like trim(#{jhnf})||'%'
 		</if>
-		and xmbm in (
+		and t.xmbm in (
 				select xmid from lxsh_lx where 1=1 
 				<if test="gydw!='' and gydw!= null ">
 				${gydw}
