@@ -406,8 +406,13 @@
 		where c.xmbm=#{xmbm}
 	</update>
 	<update id="updateCbsjXj" parameterType="cbsj">
-		update cbsj_xj c set c.xmmc=#{xmmc},c.jsdw=#{jsdw},c.xzqh=#{xzqh},c.jsjsdj=#{jsjsdj},
-		c.jsxz=#{jsxz},c.qdzh=#{qdzh},c.zdzh=#{zdzh},c.dfzc=#{dfzc},c.yhdk=#{yhdk},
+		update cbsj_xj c set c.xmmc=#{xmmc},c.xzqh=#{xzqh},
+		c.qdzh=#{qdzh},c.zdzh=#{zdzh},
+		<if test="dfzc!=null">c.dfzc=#{dfzc},</if>
+		<if test="yhdk!=null">c.yhdk=#{yhdk},</if>
+		<if test="jsdw!=null">c.jsdw=#{jsdw},</if>
+		<if test="jsjsdj!=null">c.jsjsdj=#{jsjsdj},</if>
+		<if test="jsxz!=null">c.jsxz=#{jsxz},</if>
 		<if test="lj!=null">c.lj=#{lj},</if> 
 		<if test="ql!=null">c.ql=#{ql},</if>
 		<if test="ql_ym!=null">c.ql_ym=#{ql_ym},</if>

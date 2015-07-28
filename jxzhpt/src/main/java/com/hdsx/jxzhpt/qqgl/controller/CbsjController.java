@@ -504,47 +504,13 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelXjCbsj(){
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,xjlxbm,xjqdzh,xjzdzh,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc,sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jaf,dfzc,yhdk";
 		HashMap<String, String> attribute = new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "jsdw");
-		attribute.put("4", "jsjsdj");
-		attribute.put("5", "jsxz");
-		attribute.put("6", "qdzh");
-		attribute.put("7", "zdzh");
-		attribute.put("8", "lj");
-		attribute.put("9", "ql");
-		attribute.put("10", "ql_ym");
-		attribute.put("11", "hd");
-		attribute.put("12", "hd_m");
-		attribute.put("13", "sd");
-		attribute.put("14", "sd_ym");
-		attribute.put("15", "mc");
-		attribute.put("16", "mc_lc");
-		attribute.put("17", "jc");
-		attribute.put("18", "jc_lc");
-		attribute.put("19", "dc");
-		attribute.put("20", "dc_lc");
-		attribute.put("21", "dq");
-		attribute.put("22", "dq_cd");
-		attribute.put("23", "dq_dk");
-		attribute.put("24", "sdmc");
-		attribute.put("25", "sd_sfcd");
-		attribute.put("26", "sd_lx");
-		attribute.put("27", "kgsj");
-		attribute.put("28", "wgsj");
-		attribute.put("29", "gq");
-		attribute.put("30", "sjdw");
-		attribute.put("31", "sjpfwh");
-		attribute.put("32", "pfsj");
-		attribute.put("33", "jaf");
-		attribute.put("34", "dfzc");
-		attribute.put("35", "yhdk");
+		
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
-			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist=new ArrayList<Lx>();
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
