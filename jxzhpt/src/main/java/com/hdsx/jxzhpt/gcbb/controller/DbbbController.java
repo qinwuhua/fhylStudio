@@ -729,7 +729,7 @@ public class DbbbController extends BaseActionSupport implements ModelDriven<Jck
 				xzqhdm	= xmbb.getXzqh();
 				}
 				if(gydwdm.indexOf(",")==-1){
-					tiaojian1="and gydw like '%"+gydwdm+"%'";
+					tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 				}else{
 					tiaojian1="and gydw in ("+gydwdm+")";
 				}

@@ -461,7 +461,7 @@ public class GcglabgcController extends BaseActionSupport{
 			Gcglabgc gcglabgc=new Gcglabgc();
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
+				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian1="and t3.gydwbm in ("+gydw+")";
 			}
@@ -559,7 +559,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
+			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t3.gydwbm in ("+gydw+")";
 		}
@@ -738,7 +738,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
@@ -790,7 +790,7 @@ public class GcglabgcController extends BaseActionSupport{
 			gydw=(String) session.getAttribute("gydw");	
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and xzqhdm like '%"+gydw+"%'";
+				tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian1="and xzqhdm in ("+gydw+")";
 			}
@@ -849,7 +849,7 @@ public class GcglabgcController extends BaseActionSupport{
 		Gcglabgc gcglabgc=new Gcglabgc();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
@@ -901,7 +901,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t2.gydwdm like '%"+gydw+"%'";
+			tiaojian1="and t2.gydwdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t2.gydwdm in ("+gydw+")";
 		}
@@ -955,7 +955,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
@@ -1007,7 +1007,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and xzqhdm like '%"+gydw+"%'";
+			tiaojian1="and xzqhdm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and xzqhdm in ("+gydw+")";
 		}
@@ -1058,7 +1058,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
+			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t3.gydwbm in ("+gydw+")";
 		}
@@ -1113,7 +1113,7 @@ public class GcglabgcController extends BaseActionSupport{
 		gydw=(String) session.getAttribute("gydw");	
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
+			tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and t3.gydwbm in ("+gydw+")";
 		}
@@ -1169,7 +1169,7 @@ public class GcglabgcController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and t3.gydwbm like '%"+gydw+"%'";
+				tiaojian1="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian1="and t3.gydwbm in ("+gydw+")";
 			}

@@ -79,7 +79,7 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+			tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydwdm in ("+gydwdm+")";
 		}
@@ -248,7 +248,7 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+			tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydwdm in ("+gydwdm+")";
 		}
@@ -416,7 +416,7 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and l.gydwdm like '%"+gydwdm+"%'";
+			tiaojian1="and l.gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and l.gydwdm in ("+gydwdm+")";
 		}
@@ -583,7 +583,7 @@ public class GcbbController extends BaseActionSupport{
 		xzqhdm	= xmbb.getXzqh();
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+			tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydwdm in ("+gydwdm+")";
 		}
@@ -752,7 +752,7 @@ public class GcbbController extends BaseActionSupport{
 			xzqhdm	= xmbb.getXzqh();
 			}
 			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydwdm like '%"+gydwdm+"%'";
+				tiaojian1="and gydwdm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
 				tiaojian1="and gydwdm in ("+gydwdm+")";
 			}

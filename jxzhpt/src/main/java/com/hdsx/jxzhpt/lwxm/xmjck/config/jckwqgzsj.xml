@@ -337,7 +337,7 @@
 	 <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgzsj">
 	 	select t.*,to_char(wqrksj,'yyyy-mm-dd') xmrksj from xmk_wqgz t where shzt='已审核'  and qlbh like #{qlbh}||'%' 
 	 	<if test="gydwbm!='' and gydwbm!= null ">
-				and gydwbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+				and gydwbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
 			</if>
 	 	order by qlbh
  </select>

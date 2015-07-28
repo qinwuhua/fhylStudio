@@ -421,7 +421,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		Gcglzhfz gcglzhfz=new Gcglzhfz();
 		String tiaojian1="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian1="and gydwbm like '%"+gydw+"%'";
+			tiaojian1="and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian1="and gydwbm in ("+gydw+")";
 		}
@@ -518,7 +518,7 @@ public class GcglzhfzController extends BaseActionSupport{
 		try {
 			String tiaojian1="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian1="and gydwbm like '%"+gydw+"%'";
+				tiaojian1="and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian1="and gydwbm in ("+gydw+")";
 			}

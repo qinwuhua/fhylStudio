@@ -184,7 +184,7 @@
 		and F009 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥'))
 		and roadbm like #{qlbh} ||'%' 
 		<if test="gydwbm!='' and gydwbm!= null ">
-			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
+			and gydw in(select name from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
 		</if>
 <!--  		<if test="xzqhdm!='' and xzqhdm!= null ">
 			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
@@ -216,7 +216,7 @@
 		and F009 in(SELECT F002 FROM JXJCK_2013.ROADTARGETVALUES WHERE F001 LIKE '桥梁跨径分类%' and F003 in('中桥','大桥','特大桥','小桥'))
 		and roadbm like #{qlbh} ||'%' 
 		<if test="gydwbm!='' and gydwbm!= null ">
-			and gydw in(select name from xtgl_department where id like #{gydwbm}||'%' or parent like #{gydwbm}||'%') 
+			and gydw in(select name from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
 		</if>
 <!--  		<if test="xzqhdm!='' and xzqhdm!= null ">
 			and substr(roadcode,length(roadcode)-5,6) in(select id from xtgl_xzqh where id=#{xzqhdm} or parent=#{xzqhdm}) 
@@ -228,7 +228,7 @@
   <select id="JckWqgzRoad" parameterType="hashmap" resultType="jckwqgz">
  	select * from xmk_wqgz where shzt='已审核' and qlbh like #{qlbh}||'%' and SFYLRBWQK='是'
  	<if test="gydwbm!='' and gydwbm!= null ">
-			and tbbmbm in(select id from xtgl_department where id like #{gydwbm} ||'%' or parent like #{gydwbm} ||'%') 
+			and tbbmbm in(select id from xtgl_department where id like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%' or parent like '%'||substr(#{gydwbm},0,4)||'_'||substr(#{gydwbm},6)||'%') 
 		</if>
  	order by qlbh
  </select>

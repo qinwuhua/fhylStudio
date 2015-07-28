@@ -205,7 +205,7 @@ public class GcybbController extends BaseActionSupport{
 		xzqhdm	= xzqh;
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydw like '%"+gydwdm+"%'";
+			tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydw in ("+gydwdm+")";
 		}
@@ -387,7 +387,7 @@ public class GcybbController extends BaseActionSupport{
 		xzqhdm	= xzqh;
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydw like '%"+gydwdm+"%'";
+			tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydw in ("+gydwdm+")";
 		}
@@ -549,7 +549,7 @@ public class GcybbController extends BaseActionSupport{
 		xzqhdm	= xzqh;
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydw like '%"+gydwdm+"%'";
+			tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydw in ("+gydwdm+")";
 		}
@@ -947,7 +947,7 @@ public class GcybbController extends BaseActionSupport{
 		xzqhdm	= xzqh;
 		}
 		if(gydwdm.indexOf(",")==-1){
-			tiaojian1="and gydw like '%"+gydwdm+"%'";
+			tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 		}else{
 			tiaojian1="and gydw in ("+gydwdm+")";
 		}
@@ -966,11 +966,21 @@ public class GcybbController extends BaseActionSupport{
 			for (int i = 0; i < list1.size(); i++) {
 				list1.get(i).setV_0(i+1+"");
 			}
+			List<Excel_list>  l=new ArrayList<Excel_list>();
+			Excel_list elis=new Excel_list();
+			elis.setV_0("1");elis.setV_1("2");elis.setV_2("3");elis.setV_3("4");elis.setV_4("5");elis.setV_5("6");elis.setV_6("7");elis.setV_7("8");elis.setV_8("9");elis.setV_9("10");
+			elis.setV_10("11");elis.setV_11("12");elis.setV_12("13");elis.setV_13("14");elis.setV_14("15");elis.setV_15("16");elis.setV_16("17");elis.setV_17("18");elis.setV_18("19");elis.setV_19("20");
+			elis.setV_20("21");elis.setV_21("22");elis.setV_22("23");elis.setV_23("24");elis.setV_24("25");elis.setV_25("26");elis.setV_26("27");elis.setV_27("28");elis.setV_28("29");elis.setV_29("30");
+			elis.setV_30("31");elis.setV_31("32");elis.setV_32("33");elis.setV_33("34");elis.setV_34("35");elis.setV_35("36");elis.setV_36("37");elis.setV_37("38");elis.setV_38("39");elis.setV_39("40");
+			elis.setV_40("41");elis.setV_41("42");elis.setV_42("43");elis.setV_43("44");elis.setV_44("45");elis.setV_45("46");elis.setV_46("47");elis.setV_47("48");elis.setV_48("49");elis.setV_49("50");
+			elis.setV_50("51");elis.setV_51("52");elis.setV_52("53");elis.setV_53(" ");
+			l.add(elis);
+			l.addAll(list1);
 				ExcelData eldata=new ExcelData();//创建一个类
 				eldata.setTitleName("市农村公路危桥改造工程项目建设表");//设置第一行
 				eldata.setSheetName("危桥");//设置sheeet名
 				eldata.setFileName("市农村公路危桥改造工程项目建设表");//设置文件名
-				eldata.setEl(list1);//将实体list放入类中
+				eldata.setEl(l);//将实体list放入类中
 				List<Excel_tilte> et=new ArrayList<Excel_tilte>();//创建一个list存放表头
 				et.add(new Excel_tilte("序号",1,3,0,0));
 				et.add(new Excel_tilte("县（市、区）",1,3,1,1));
@@ -1068,7 +1078,7 @@ public class GcybbController extends BaseActionSupport{
 			xzqhdm	= xzqh;
 			}
 			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydw like '%"+gydwdm+"%'";
+				tiaojian1="and gydw like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
 				tiaojian1="and gydw in ("+gydwdm+")";
 			}

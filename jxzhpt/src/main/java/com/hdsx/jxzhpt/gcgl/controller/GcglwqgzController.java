@@ -452,7 +452,7 @@ public class GcglwqgzController extends BaseActionSupport{
 			Gcglwqgz gcglwqgz=new Gcglwqgz();
 			String tiaojian="";
 			if(gydw.indexOf(",")==-1){
-				tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+				tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 			}else{
 				tiaojian="and t3.gydwbm in ("+gydw+")";
 			}
@@ -575,7 +575,7 @@ public class GcglwqgzController extends BaseActionSupport{
 	public void selectWqgzjhList1(){
 		String tiaojian="";
 		if(gydw.indexOf(",")==-1){
-			tiaojian="and t3.gydwbm like '%"+gydw+"%'";
+			tiaojian="and t3.gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'";
 		}else{
 			tiaojian="and t3.gydwbm in ("+gydw+")";
 		}

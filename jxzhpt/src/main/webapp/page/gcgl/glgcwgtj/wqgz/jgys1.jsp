@@ -356,6 +356,6 @@ text-decoration:none;
 					href="javascript:closes('wqxx')" id="qx_window"
 					class="easyui-linkbutton" plain="true" iconCls="icon-cancel">关闭</a></td>
 			</tr>
-			</table>
+		</table>
 </body>
 </html>

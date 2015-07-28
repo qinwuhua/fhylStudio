@@ -71,7 +71,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	public void editWqgzStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			List<Plan_wqgz> splist = wqgzServer.queryWqgzByStatus(jh,lx);
 			for (Plan_wqgz item : splist) {
 				System.out.println(item.getId());
@@ -92,7 +92,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 */
 	public void queryWqgzByStatus(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			JsonUtils.write(wqgzServer.queryWqgzByStatus(jh, lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,7 +103,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 */
 	public void queryWqgzList(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
 			jsonMap.put("total", wqgzServer.queryWqgzCount(jh, lx));
@@ -120,7 +120,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 */
 	public void querySumWqgz(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(wqgzServer.querySumWqgz(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
@@ -136,7 +136,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_wqgz(){
-		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		System.out.println("******************");
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
@@ -361,7 +361,7 @@ public class Plan_wqgzController extends BaseActionSupport {
 			lx.setGydwdm(null);
 		}
 		//此处遍历查询资金下达模块的所有项目
-		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		for (Plan_wqgz item : wqgzServer.queryWqgzList(jh, lx)) {
 			Plan_zjxd zjxd=new Plan_zjxd();
@@ -406,6 +406,22 @@ public class Plan_wqgzController extends BaseActionSupport {
 				bh=bh.substring(0,bh.length()-i);
 			}
 			result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	public String gydwBm(String bh,String name){
+		String result=null;
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$") || bh.matches("^[0-9]*[1-9][0-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+		result = bh.indexOf(",")==-1 ?  " lx."+name+" like '%'||substr('"+bh+"',0,4)||'_'||substr('"+bh+"',6)||'%'" : "lx."+name+" in ("+bh+")";
 		}
 		return result;
 	}

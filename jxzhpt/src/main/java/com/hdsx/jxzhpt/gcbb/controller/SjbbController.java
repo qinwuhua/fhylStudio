@@ -65,7 +65,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 			}
 			
 			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydwbm like '%"+gydwdm+"%'";
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
 				tiaojian1="and gydwbm in ("+gydwdm+")";
 			}
@@ -124,7 +124,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 				xzqhdm = sjbb.getDist();
 			}
 			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydwbm like '%"+gydwdm+"%'";
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
 				tiaojian1="and gydwbm in ("+gydwdm+")";
 			}
@@ -232,7 +232,7 @@ public class SjbbController extends BaseActionSupport implements ModelDriven<Sjb
 				xzqhdm = sjbb.getDist();
 			}
 			if(gydwdm.indexOf(",")==-1){
-				tiaojian1="and gydwbm like '%"+gydwdm+"%'";
+				tiaojian1="and gydwbm like '%'||substr('"+gydwdm+"',0,4)||'_'||substr('"+gydwdm+"',6)||'%'";
 			}else{
 				tiaojian1="and gydwbm in ("+gydwdm+")";
 			}

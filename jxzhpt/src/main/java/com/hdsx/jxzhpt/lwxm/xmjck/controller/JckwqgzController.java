@@ -94,7 +94,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void exportExcel_wqgz(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 			}
@@ -132,7 +132,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void exportExcel_wqgz_sh(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 			}
@@ -178,7 +178,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	
 	public void selectWqgz(){
 		if(jckwqgz.getGydw().indexOf(",")==-1){
-			jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+			jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 		}else{
 			jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 		}
@@ -258,7 +258,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	}
 	public void selectJckShwqgz(){
 		if(jckwqgz.getGydw().indexOf(",")==-1){
-			jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+			jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 		}else{
 			jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 		}
@@ -303,7 +303,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void selectWqgzCount(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 			}
@@ -320,7 +320,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void selectWqgzCount1(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and gydwbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and gydwbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and gydwbm in ("+jckwqgz.getGydw()+")");
 			}
@@ -337,7 +337,7 @@ public class JckwqgzController extends BaseActionSupport implements ModelDriven<
 	public void selectWqgzShCount(){
 		try {
 			if(jckwqgz.getGydw().indexOf(",")==-1){
-				jckwqgz.setGydw("and tbbmbm like '%"+jckwqgz.getGydw()+"%'");
+				jckwqgz.setGydw("and tbbmbm like '%'||substr('"+jckwqgz.getGydw()+"',0,4)||'_'||substr('"+jckwqgz.getGydw()+"',6)||'%'");
 			}else{
 				jckwqgz.setGydw("and tbbmbm in ("+jckwqgz.getGydw()+")");
 			}

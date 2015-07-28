@@ -75,7 +75,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void queryAbgcListByStatus(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			JsonUtils.write(abgcServer.queryAbgcListByStatus(jh,lx), getresponse().getWriter());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	
 	public void querySumAbgc(){
 		try {
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			JsonUtils.write(abgcServer.querySumAbgc(jh,lx), getresponse().getWriter());
 		} catch (IOException e) {
@@ -131,7 +131,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	 * 导出的excel将要设置sheet名，数据，表头，以及excel文件名
 	 */
 	public void exportExcel_jh_abgc(){
-		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		List<SjbbMessage> list = new ArrayList<SjbbMessage>();
 		ExportExcel_new ee = new ExportExcel_new();
@@ -163,7 +163,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		try {
 			System.out.println(lx.getGydwdm()+"    "+lx.getGydwbm());
 			if(lx.getGydwbm()!=null){
-				lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+				lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			}
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			Map<String, Object> jsonMap=new HashMap<String, Object>();
@@ -178,7 +178,7 @@ public class Plan_abgcController extends BaseActionSupport{
 	public void editAbgcStatusBatch(){
 		try {
 			Map<String, String> result=new HashMap<String, String>();
-			lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+			lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 			lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 			List<Plan_abgc> splist = abgcServer.queryAbgcByStatus(jh,lx);
 			for (Plan_abgc item : splist) {
@@ -402,7 +402,7 @@ public class Plan_abgcController extends BaseActionSupport{
 		//准备数据
 		String gydwmc=zjxdServer.queryGydwmcById(lx.getGydwdm());
 		List<Object> excelData = new ArrayList<Object>();
-		lx.setGydwbm(gydwOrxzqhBm(lx.getGydwbm(),"gydwbm"));
+		lx.setGydwbm(gydwBm(lx.getGydwbm(),"gydwbm"));
 		lx.setXzqhdm(gydwOrxzqhBm(lx.getXzqhdm(),"xzqhdm"));
 		//此处遍历查询资金下达模块的所有项目
 		for (Plan_abgc item : abgcServer.queryAbgcList(jh, lx)) {
@@ -439,6 +439,22 @@ public class Plan_abgcController extends BaseActionSupport{
 				bh=bh.substring(0,bh.length()-i);
 			}
 			result = bh.indexOf(",")==-1 ? " lx."+name+" like '%"+bh+"%'": "lx."+name+" in ("+bh+")";
+		}
+		return result;
+	}
+	public String gydwBm(String bh,String name){
+		String result=null;
+		if(bh!=null){
+			if(bh.indexOf(",")==-1){
+				int i=0;
+				if(bh.matches("^[0-9]*[1-9]00$") || bh.matches("^[0-9]*[1-9][0-9]00$")){
+					i=2;
+				}else if(bh.matches("^[0-9]*[1-9]0000$")){
+					i=4;
+				}
+				bh=bh.substring(0,bh.length()-i);
+			}
+		result = bh.indexOf(",")==-1 ?  " lx."+name+" like '%'||substr('"+bh+"',0,4)||'_'||substr('"+bh+"',6)||'%'" : "lx."+name+" in ("+bh+")";
 		}
 		return result;
 	}

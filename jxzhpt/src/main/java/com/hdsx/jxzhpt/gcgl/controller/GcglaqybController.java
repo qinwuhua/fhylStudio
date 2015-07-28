@@ -347,7 +347,7 @@ public class GcglaqybController extends BaseActionSupport{
 			gcglaqyb.setSendingunits(tiaojian);
 			}
 		if("接收".equals(type)){
-			tiaojian="and sendingunits like'%"+gydw+"%'";
+			tiaojian="and sendingunits like '%"+gydw+"%'";
 			gcglaqyb.setSendingunits(tiaojian);
 		}
 		int count=gcglaqybServer.selectaqyblistCount(gcglaqyb);

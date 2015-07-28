@@ -146,7 +146,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhkgl(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
@@ -187,7 +187,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhkglCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
@@ -263,7 +263,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void selectwqjhksb(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
@@ -304,7 +304,7 @@ public class PlanwqgzsjController extends BaseActionSupport {
 	public void loadwqjhksbCount(){
 		try{
 			if(gydw.indexOf(",")==-1){
-				planwqgzsj.setGydw("and gydwbm like '%"+gydw+"%'");
+				planwqgzsj.setGydw("and gydwbm like '%'||substr('"+gydw+"',0,4)||'_'||substr('"+gydw+"',6)||'%'");
 			}else{
 				planwqgzsj.setGydw("and gydwbm in ("+gydw+")");
 			}
