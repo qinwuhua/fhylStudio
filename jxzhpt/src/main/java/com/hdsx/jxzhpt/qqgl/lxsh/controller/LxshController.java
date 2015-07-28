@@ -609,6 +609,7 @@ public class LxshController extends BaseActionSupport{
 		boolean bl=lxshServer.updateSjgz(lxsh);
 		//准备路线桩号信息
 		lx.setXmid(lxsh.getXmbm());
+		lx.setLxbm(lxsh.getGhlxbh());
 		lx.setQdzh(lxsh.getQdzh());
 		lx.setZdzh(lxsh.getZdzh());
 		lx.setQdmc(lxsh.getQdmc());
@@ -627,6 +628,7 @@ public class LxshController extends BaseActionSupport{
 		if(bl){
 			//准备路线桩号信息
 			lx.setXmid(lxsh.getXmbm());
+			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			lx.setQdmc(lxsh.getQdmc());
@@ -644,6 +646,7 @@ public class LxshController extends BaseActionSupport{
 			boolean bl=lxshServer.updateXj(lxsh);
 			//准备路线桩号信息
 			lx.setXmid(lxsh.getXmbm());
+			lx.setLxbm(lxsh.getGhlxbh());
 			lx.setQdzh(lxsh.getQdzh());
 			lx.setZdzh(lxsh.getZdzh());
 			lx.setQdmc(lxsh.getQdmc());

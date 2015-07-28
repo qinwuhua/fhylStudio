@@ -34,9 +34,26 @@ text-decoration:none;
 	var zdStr;
 	function load(){
 		var data=parent.obj;
-		loadUnit3("gydw",data.gydwdm,$.cookie("unit"));
-		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
-		$("#lxbm").val(data.ghlxbh);
+		$.ajax({
+			type:'post',
+			url:'../../../qqgl/queryLxshByXmbm.do',
+			data:'jhsh.xmlx='+3+'&jhsh.xmbm='+data.xmbm,
+			dataType:'json',
+			success:function(msg){
+				$('#lxsh').form("load",msg);
+				loadUnit3("gydw",msg.gydwdm,$.cookie("unit"));
+				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+				$('#bzcs').val(msg.bzys);
+				$("#dfzc").html(msg.dfzc);
+				$("#lxmc").val(msg.lxmc);
+				$("#jsjsdj").val(msg.jsjsdj);
+				$("#tsdq").val(msg.tsdq);
+				$("#xjsdj").html(msg.xjsdj);
+				$("#xmbm").html(msg.xmbm);
+				$("#xmnf").html(msg.xmnf);
+			}
+		});
+		/*$("#lxbm").val(data.ghlxbh);
 		$("#lxmc").val(data.lxmc);
 		$("#xmmc").val(data.xmmc);
 		$("#qdzh").val(data.qdzh);
@@ -67,7 +84,7 @@ text-decoration:none;
 		$('#dwlc').val(data.dwlc);
 		$('#wllc').val(data.wllc);
 		$('#yhdk').val(data.yhdk);
-		$('#bz').val(data.bz);
+		$('#bz').val(data.bz);*/
 // 		var data1="ghlxbh="+data.ghlxbh+"&xzqh="+data.xzqhdm;
 // 		$.ajax({
 // 			type:'post',
@@ -171,15 +188,17 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
+		alert($("#jsjsdj").combobox("getText")+"     "+$("#xjsdj").val());
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
 		+"&lxsh.jsjsdj="+$("#jsjsdj").combobox("getText")+"&lxsh.xjsdj="+$("#xjsdj").val()
-		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").combotree('getValues')
+		+"&lxsh.gydw="+$("#gydw").combobox("getText")+"&lxsh.xzqh="+$("#xzqh").combobox("getText")+"&lxsh.gydwdm="
+		+$("#gydw").combobox("getValue")+"&lxsh.xzqhdm="+$("#xzqh").combobox("getValue")+"&lxsh.tsdq="+$("#tsdq").val()
 		+"&lxsh.jhkgn="+$("#jhkgn").combobox('getText')+"&lxsh.jhwgn="+$("#jhwgn").combobox('getText')
 		+"&lxsh.tz="+$("#tz").val()+"&lxsh.bzys="+$("#bzcs").val()+"&lxsh.dfzc="+$("#dfzc").html()+"&lxsh.jdbs=0";
-		data+="&lx.xjlxbm="+$('#xjlxbm').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()+
-		"&lx.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').html();
+		data+="&lx.xjlxbm="+$('#xjlxbm').val()+"&lx.xjqdzh="+$('#xjqdzh').val()+"&lx.xjzdzh="+$('#xjzdzh').val()
+		+"&lx.xjlc="+$('#xjlc').html()+"&lxsh.bz="+$('#bz').html();
 		data+="&lx.yilc="+$('#yilc').val()+"&lx.erlc="+$('#erlc').val()+"&lx.sanlc="+$('#sanlc').val()+
 		"&lx.silc="+$('#silc').val()+"&lx.dwlc="+$('#dwlc').val()+"&lx.wllc="+$('#wllc').val()+"&lxsh.bz="+$('#bz').val()+
 		"&lxsh.yhdk="+$('#yhdk').val();
@@ -255,25 +274,26 @@ text-decoration:none;
 		$("#xjlc").html(zlc);
 	}
 </script>
-<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
+<form action="" id="lxsh">
+	<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
 			border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>路线编码：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="lxbm" style="width: 120px"/></td>
+					<input type="text" id="lxbm" name="lxbm" style="width: 120px"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>路线名称：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="lxmc" style="width: 120px"/>
+					<input type="text" id="lxmc" name="lxmc" style="width: 120px"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>项目名称：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" id="xmmc" style="width: 120px"/>
+					<input type="text" id="xmmc" name="xmmc" style="width: 120px"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -288,7 +308,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>止点桩号：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;width:18%" align="left">
-					<input type="text" name="zdzh"id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
+					<input type="text" name="zdzh" id="zdzh" style="width: 120px" onblur="changeZlc()"/><br/>
 					<span id="zd"></span>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
@@ -423,11 +443,11 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>投资(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc1(this)" style="width: 120px;"/>
+					<input type="text" id="tz" name="tz" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"><font color='red' size='2'>*&nbsp;</font>补助测算(万元)：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type='text' id='bzcs' onblur="checkdfzc1(this)" style="width: 120px;"/>
+					<input type='text' id='bzcs' name="bzcs" onblur="checkdfzc1(this)" style="width: 120px;"/>
 				</td>
 			</tr>
 			<tr style="height: 35px;">
@@ -440,7 +460,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" style="width: 120px;"/>
+					<input type="text" id="yhdk" name="yhdk" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
@@ -456,6 +476,7 @@ text-decoration:none;
 				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
 				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
 			</tr>
-			</table>
+	</table>
+</form>
 </body>
 </html>

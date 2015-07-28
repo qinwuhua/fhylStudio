@@ -5,10 +5,10 @@
 		select * from (
 		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm, t.shzt sbzt1,lx.*
 		from KXXYJ_SJGZ t Left join lxsh_sjgz t1 on t.xmbm=t1.xmbm left join 
-    	(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
+    	(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
     	sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc,
     	sum(jhyilc) jhyilc,sum(jherlc) jherlc,sum(jhsanlc) jhsanlc,sum(jhsilc) jhsilc,sum(jhdwlc) jhdwlc,sum(jhwllc) jhwllc
-    	from lxsh_lx where jdbs='1' group by qdmc,zdmc,xmid) lx on t.xmbm=lx.xmid
+    	from lxsh_lx where jdbs='1' group by xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -77,9 +77,9 @@
 		select * from (
 		select rownum num ,t.*,t1.lsjl,t1.ghlxbh lxbh,t1.gydwdm,t.shzt sbzt1,lx.*
 		from KXXYJ_LMGZ t Left join lxsh_lmgz t1 on t.xmbm=t1.xmbm left join 
-		(select qdmc,zdmc,min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
+		(select min(qdzh) minqdzh,max(zdzh) maxzdzh,xmid,sum(lc) lc,
 		sum(yilc) yilc,sum(erlc) erlc,sum(sanlc) sanlc,sum(silc) silc,sum(dwlc) dwlc,sum(wllc) wllc from lxsh_lx where jdbs='1' 
-		group by qdmc,zdmc,xmid) lx on t.xmbm=lx.xmid
+		group by xmid) lx on t.xmbm=lx.xmid
 		where 1=1 and (t.sbthcd &lt;=7 or t.sbthcd is null) 
 		<if test="gydw!='' and gydw!= null ">
 			${gydw}
@@ -511,23 +511,23 @@
  	<update id="importsjgzkxx" parameterType="hashMap">
 		update kxxyj_sjgz set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
 		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
+		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="updatesjgzkxxlx" parameterType="hashMap">
-		update lxsh_lx set qdzh=#{4},zdzh=#{3},xzqh=#{2},lc=#{3}-#{4},jsjsdj=#{8},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
+		update lxsh_lx set qdzh=#{3},zdzh=#{4},xzqh=#{2},lc=#{4}-#{3},jsjsdj=#{8},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
 		where xmid=#{0} and jdbs='1' and sffirst='1'
 	</update>
 	<update id="importlmgzkxx" parameterType="hashMap">
 		update kxxyj_lmgz set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
 		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
+		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 	<update id="importxjkxx" parameterType="hashMap">
 		update kxxyj_xj set xmmc=#{1},qdzh=#{3},zdzh=#{4},jsxz=#{5},dq=#{7},
 		dq_m=#{6},jsjsdj=#{8},sd=#{10},sd_m=#{9},jsdw=#{11},sbthcd=7,tbbmbm='36',
-		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=(select id from xtgl_xzqh where trim(name)=#{2})
+		kgny=#{12},wgny=#{13},bzdw=#{14},tzgs=#{15},dfzc=#{16},yhdk=#{17},gkpfwh=#{18},pfsj=#{19},xzqh=#{2},xzqhdm=substr(#{0},5,6)
 		where xmbm=#{0}
 	</update>
 </mapper>

@@ -305,38 +305,11 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			Map<String, String> attribute=null;
 			String fileTitle="";
 			if(cbsj.getXmlx()<=2){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
-						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
-						"<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>," +
-						"<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>," +
-						"<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
-						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>," +
-						"<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>," +
-						"<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
-						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>," +
-						"<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else if(cbsj.getXmlx()==3){
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
-						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
-						"<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>," +
-						"<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>"+
-						"<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>," +
-						"<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>," +
-						"<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
-						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>," +
-						"<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>," +
-						"<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
-						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>," +
-						"<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=止点桩号,fieid=zdzh>,<title=新建路线编码,fieid=xjlxbm>,<title=新建起点桩号,fieid=xjqdzh>,<title=新建止点桩号,fieid=xjzdzh>,<title=路基(m3),fieid=lj>,<title=桥梁(座),fieid=ql>,<title=桥梁延米,fieid=ql_ym>,<title=涵洞(座),fieid=hd>,<title=涵洞(米),fieid=hd_m>,<title=隧道(座),fieid=sd>,<title=隧道延米,fieid=sd_ym>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=大桥名称,fieid=dq>,<title=大桥长度,fieid=dq_cd>,<title=大桥单跨,fieid=dq_dk>,<title=隧道名称,fieid=sdmc>,<title=隧道双幅长度,fieid=sd_sfcd>,<title=隧道类型,fieid=sd_lx>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建安费,fieid=jaf>,<title=地方自筹,fieid=dfzc>,<title=银行贷款,fieid=yhdk>";
 			}else{
-				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>," +
-						"<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>," +
-						"<title=起点桩号,fieid=qdzh>,<title=讫点桩号,fieid=zdzh>,<title=里程,fieid=lc>," +
-						"<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>," +
-						"<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>," +
-						"<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>," +
-						"<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>," +
-						"<title=建设方案,fieid=jsfa>";
+				fileTitle="<title=项目名称,fieid=xmmc>,<title=项目编码,fieid=xmbm>,<title=行政区划,fieid=xzqh>,<title=建设单位,fieid=jsdw>,<title=建设技术等级,fieid=jsjsdj>,<title=建设性质,fieid=jsxz>,<title=路线编码,fieid=ylxbh>,<title=起点桩号,fieid=qdzh>,<title=讫点桩号,fieid=zdzh>,<title=里程,fieid=lc>,<title=一级公路,fieid=yilc>,<title=二级公路,fieid=erlc>,<title=三级公路,fieid=sanlc>,<title=四级公路,fieid=silc>,<title=等外公路,fieid=dwlc>,<title=无路,fieid=wllc>,<title=面层类型,fieid=mc>,<title=面层里程,fieid=mc_lc>,<title=基层类型,fieid=jc>,<title=基层里程,fieid=jc_lc>,<title=垫层类型,fieid=dc>,<title=垫层里程,fieid=dc_lc>,<title=开工时间,fieid=kgsj>,<title=完工时间,fieid=wgsj>,<title=工期,fieid=gq>,<title=设计单位,fieid=sjdw>,<title=设计批复文号,fieid=sjpfwh>,<title=批复时间,fieid=pfsj>,<title=建设方案,fieid=jsfa>";
 			}
 			cbsj.setXzqhdm(xzqhBm(cbsj.getXzqhdm(),"xzqhdm"));
 			//数据
@@ -378,7 +351,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	public void importExcelYhdzxCbsj(){
 		HashMap<String, String> attribute = new HashMap<String, String>();
 		
-		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,mc,mc_lc,jc,jc_lc,dc,dc_lc,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jsfa";
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,mc,mc_lc,jc,jc_lc,dc,dc_lc,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jsfa";
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
@@ -387,11 +360,18 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
 				Lx lx=new Lx();
+				lx.setLxbm(cbsj.getYlxbh());
 				lx.setQdzh(cbsj.getQdzh());
 				lx.setZdzh(cbsj.getZdzh());
 				lx.setXmid(cbsj.getXmbm());
 //				lx.setQdmc(cbsj.getQdmc());
 //				lx.setZdmc(cbsj.getZdmc());
+				lx.setYilc(cbsj.getYilc());
+				lx.setErlc(cbsj.getErlc());
+				lx.setSanlc(cbsj.getSanlc());
+				lx.setSilc(cbsj.getSilc());
+				lx.setDwlc(cbsj.getDwlc());
+				lx.setWllc(cbsj.getWllc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -411,41 +391,28 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	@SuppressWarnings("unchecked")
 	public void importExcelShCbsj(){
 		HashMap<String, String> attribute = new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "jsdw");
-		attribute.put("4", "jsjsdj");
-		attribute.put("5", "jsxz");
-		attribute.put("6", "qdzh");
-		attribute.put("7", "zdzh");
-		attribute.put("8", "lc");
-		attribute.put("9", "mc");
-		attribute.put("10", "mc_lc");
-		attribute.put("11", "jc");
-		attribute.put("12", "jc_lc");
-		attribute.put("13", "dc");
-		attribute.put("14", "dc_lc");
-		attribute.put("15", "kgsj");
-		attribute.put("16", "wgsj");
-		attribute.put("17", "gq");
-		attribute.put("18", "sjdw");
-		attribute.put("19", "sjpfwh");
-		attribute.put("20", "pfsj");
-		attribute.put("21", "jsfa");
+		
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,ylxbh,qdzh,zdzh,lc,yilc,erlc,sanlc,silc,dwlc,wllc,mc,mc_lc,jc,jc_lc,dc,dc_lc,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,jsfa";
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
-			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist = new ArrayList<Lx>();
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
 				Lx lx=new Lx();
+				lx.setLxbm(cbsj.getYlxbh());
 				lx.setQdzh(cbsj.getQdzh());
 				lx.setZdzh(cbsj.getZdzh());
 				lx.setXmid(cbsj.getXmbm());
 //				lx.setQdmc(cbsj.getQdmc());
 //				lx.setZdmc(cbsj.getZdmc());
+				lx.setYilc(cbsj.getYilc());
+				lx.setErlc(cbsj.getErlc());
+				lx.setSanlc(cbsj.getSanlc());
+				lx.setSilc(cbsj.getSilc());
+				lx.setDwlc(cbsj.getDwlc());
+				lx.setWllc(cbsj.getWllc());
 				lx.setSffirst("1");
 				lx.setJdbs("2");
 				lxlist.add(lx);
@@ -464,47 +431,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelLmgzCbsj(){
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
+				"sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,dfzc,yhdk";
+		
 		HashMap<String, String> attribute = new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "jsdw");
-		attribute.put("4", "jsjsdj");
-		attribute.put("5", "jsxz");
-		attribute.put("6", "qdzh");
-		attribute.put("7", "zdzh");
-		attribute.put("8", "lj");
-		attribute.put("9", "ql");
-		attribute.put("10", "ql_ym");
-		attribute.put("11", "hd");
-		attribute.put("12", "hd_m");
-		attribute.put("13", "sd");
-		attribute.put("14", "sd_ym");
-		attribute.put("15", "mc");
-		attribute.put("16", "mc_lc");
-		attribute.put("17", "jc");
-		attribute.put("18", "jc_lc");
-		attribute.put("19", "dc");
-		attribute.put("20", "dc_lc");
-		attribute.put("21", "dq");
-		attribute.put("22", "dq_cd");
-		attribute.put("23", "dq_dk");
-		attribute.put("24", "sdmc");
-		attribute.put("25", "sd_sfcd");
-		attribute.put("26", "sd_lx");
-		attribute.put("27", "kgsj");
-		attribute.put("28", "wgsj");
-		attribute.put("29", "gq");
-		attribute.put("30", "sjdw");
-		attribute.put("31", "sjpfwh");
-		attribute.put("32", "pfsj");
-		attribute.put("33", "jaf");
-		attribute.put("34", "dfzc");
-		attribute.put("35", "yhdk");
+		
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
-			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist =new ArrayList<Lx>();
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
@@ -532,47 +467,15 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 	 */
 	@SuppressWarnings("unchecked")
 	public void importExcelLmsjCbsj(){
+		String str="xmmc,xmbm,xzqh,jsdw,jsjsdj,jsxz,qdzh,zdzh,lc,lj,ql,ql_ym,hd,hd_m,sd,sd_ym,mc,mc_lc,jc,jc_lc,dc,dc_lc,dq,dq_cd,dq_dk,sdmc," +
+				"sd_sfcd,sd_lx,kgsj,wgsj,gq,sjdw,sjpfwh,pfsj,dfzc,yhdk";
+		
 		HashMap<String, String> attribute = new HashMap<String, String>();
-		attribute.put("0", "xmmc");//项目名称
-		attribute.put("1", "xmbm");//项目编码
-		attribute.put("2", "xzqh");//行政区划
-		attribute.put("3", "jsdw");
-		attribute.put("4", "jsjsdj");
-		attribute.put("5", "jsxz");
-		attribute.put("6", "qdzh");
-		attribute.put("7", "zdzh");
-		attribute.put("8", "lj");
-		attribute.put("9", "ql");
-		attribute.put("10", "ql_ym");
-		attribute.put("11", "hd");
-		attribute.put("12", "hd_m");
-		attribute.put("13", "sd");
-		attribute.put("14", "sd_ym");
-		attribute.put("15", "mc");
-		attribute.put("16", "mc_lc");
-		attribute.put("17", "jc");
-		attribute.put("18", "jc_lc");
-		attribute.put("19", "dc");
-		attribute.put("20", "dc_lc");
-		attribute.put("21", "dq");
-		attribute.put("22", "dq_cd");
-		attribute.put("23", "dq_dk");
-		attribute.put("24", "sdmc");
-		attribute.put("25", "sd_sfcd");
-		attribute.put("26", "sd_lx");
-		attribute.put("27", "kgsj");
-		attribute.put("28", "wgsj");
-		attribute.put("29", "gq");
-		attribute.put("30", "sjdw");
-		attribute.put("31", "sjpfwh");
-		attribute.put("32", "pfsj");
-		attribute.put("33", "jaf");
-		attribute.put("34", "dfzc");
-		attribute.put("35", "yhdk");
+		
 		ExcelEntity excel=new ExcelEntity();
 		excel.setAttributes(attribute);
 		try{
-			List<Cbsj> list = ExcelImportUtil.readerExcel(fileupload, Cbsj.class, 1, excel);
+			List<Cbsj> list = ExcelImportUtil.readExcel(str, 0, Cbsj.class,fileupload);
 			List<Lx> lxlist =new ArrayList<Lx>();
 			for (Cbsj cbsj : list) {
 				cbsj.setSfbj("1");
@@ -580,6 +483,7 @@ public class CbsjController extends BaseActionSupport implements ModelDriven<Cbs
 				lx.setQdzh(cbsj.getQdzh());
 				lx.setZdzh(cbsj.getZdzh());
 				lx.setXmid(cbsj.getXmbm());
+				lx.setLc(cbsj.getLc());
 //				lx.setQdmc(cbsj.getQdmc());
 //				lx.setZdmc(cbsj.getZdmc());
 				lx.setSffirst("1");

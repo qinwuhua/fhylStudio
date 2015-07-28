@@ -150,7 +150,6 @@ public class ExcelImportUtil {
 	 */
 	private static String getCellValue(HSSFCell cell) {  
         String cellValue = "";  
-        DecimalFormat df = new DecimalFormat("#");
         switch (cell.getCellType()) {  
         case HSSFCell.CELL_TYPE_STRING:  
             cellValue = cell.getRichStringCellValue().getString().trim();  
@@ -160,6 +159,7 @@ public class ExcelImportUtil {
         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         		cellValue=sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
         	}else{
+        		DecimalFormat df = new DecimalFormat("#.#");
         		cellValue = df.format(cell.getNumericCellValue()).toString();  
         	}
             break;  

@@ -374,13 +374,24 @@
 	</update>
 	
 	<select id="queryLxshLmsjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, 
+		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,jhyilc, jherlc, jhsanlc, jhsilc, jhdwlc, jhwllc 
+		from lxsh_sjgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshLmgzByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, 
+		xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, 
+		xmid, lxbm, l1.lxmc,l1.qdzh, l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc from lxsh_lmgz l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	<select id="queryLxshXjByXmbm" parameterType="java.util.Map" resultType="lxsh">
-		select * from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0'
+		select xmmc, ghlxbh, jhkgn, jhwgn, l.jsjsdj, l.xjsdj, xmbm, tz, bzys, dfzc, tsdq, l.xzqh, l.gydw, l.xzqhdm, 
+		l.gydwdm, tbbmbm, tbbmmc, tbsj, shzt, sbzt, xmnf, sbthcd,  lsjl, bz, yhdk, xmid, lxbm, l1.lxmc,l1.qdzh, 
+		l1.zdzh, l1.jsjsdj, l1.lc, l1.xjsdj, l1.jsxz, l1.qdmc, l1.zdmc, bzcs, sffirst, jdbs, 
+		gpsqdzh, gpszdzh, jsfa, yilc, erlc, sanlc, silc, dwlc, wllc,l1.xjlxbm,l1.xjqdzh,l1.xjzdzh,l1.xjlc 
+		from lxsh_xj l left join lxsh_lx l1 on l.xmbm=l1.xmid where l.xmbm=#{xmbm} and l1.jdbs='0' and l1.sffirst='1'
 	</select>
 	
 	<select id="queryJhshxxLmsjByXmbm" parameterType="java.util.Map" resultType="jhsh">
@@ -399,13 +410,13 @@
 		select j.*,l.lxbm as ylxbh,l.gpsqdzh,l.gpszdzh,l.yilc,l.erlc,l.sanlc,l.silc,l.dwlc,l.wllc from jhsh_sh j left join lxsh_lx l on j.xmbm=l.xmid where jdbs='2' and l.sffirst='1' and j.xmbm=#{xmbm}
 	</select>
 	<select id="queryLmsjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_sjgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
+		select * from kxxyj_sjgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryLmgzKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
+		select * from kxxyj_lmgz k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	<select id="queryXjKxxyjByXmbm" parameterType="jhsh" resultType="kxxyj">
-		select * from kxxyj_xj k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1'
+		select * from kxxyj_xj k left join lxsh_lx l on k.xmbm=l.xmid where xmbm =#{xmbm} and l.jdbs='1' and l.sffirst='1'
 	</select>
 	
 	<!-- 路线操作部分 -->
@@ -429,13 +440,18 @@
 		<if test="xjqdzh!=null and xjqdzh!=''">l.xjqdzh=#{xjqdzh},</if>
 		<if test="xjzdzh!=null and xjzdzh!=''">l.xjzdzh=#{xjzdzh},</if>
 		<if test="xjlc!=null and xjlc!=''">l.xjlc=#{xjlc},</if>
-		l.lxbm=#{lxbm},l.qdzh=#{qdzh},l.zdzh=#{zdzh},l.gydw=#{gydw},
-		l.gydwdm=#{gydwdm},l.xzqh=#{xzqh},l.xzqhdm=#{xzqhdm},
+		<if test="lxbm!=null">l.lxbm=#{lxbm},</if>
+		<if test="qdzh!=null">l.qdzh=#{qdzh},</if>
+		<if test="zdzh!=null">l.zdzh=#{zdzh},</if>
+		<if test="gydw!=null">l.gydw=#{gydw},</if>
+		<if test="gydwdm!=null">l.gydwdm=#{gydwdm},</if>
+		<if test="xzqh!=null">l.xzqh=#{xzqh},</if>
+		<if test="xzqhdm!=null">l.xzqhdm=#{xzqhdm},</if>
 		<if test="jsjsdj!=null">l.jsjsdj=#{jsjsdj},</if>
 		<if test="xjsdj!=null">l.xjsdj=#{xjsdj},</if>
 		<if test="bzcs!=null">l.bzcs=#{bzcs},</if>
 		<if test="lc!=null and lc!=''">l.lc=#{lc}</if>
-		<if test="lc==null or lc==''">l.lc=${zdzh}-${qdzh}</if>
+		<if test="lc==null or lc==''">l.lc=to_number(#{zdzh})-to_number(#{qdzh})</if>
 		where l.xmid=#{xmid} 
 		<if test="jdbs!=null and jdbs!=''">and jdbs=#{jdbs}</if>
 		<if test="sffirst==1">and sffirst=1</if>

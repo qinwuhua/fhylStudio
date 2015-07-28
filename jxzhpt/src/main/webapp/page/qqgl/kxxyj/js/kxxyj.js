@@ -273,7 +273,7 @@ function showsjgzAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},
@@ -418,7 +418,7 @@ function showlmgzAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},
@@ -561,7 +561,7 @@ function showxjAll(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},
@@ -687,7 +687,7 @@ function showAllsjsh(){
 	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},
@@ -811,17 +811,22 @@ function showAlllmsh(){
 	    ]],
 		view: detailview,
 		detailFormatter:function(index,row){   
-	        return '<div style="padding:2px"><table id="table_lx' + index + '"></table></div>';   
+	        return '<div style="padding:2px"><table id="table_lx' + row.xmbm + '"></table></div>';   
 	    },
 	    onExpandRow: function(index,row){
-	    	$('#table_lx'+index).datagrid({
+	    	$('#table_lx'+row.xmbm).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},
     			columns:[[
+					{field:'cz',title:'操作',width:150,align:'center',
+						formatter: function(value,row,index){
+							return '<a href="javascript:editGzlx('+"'"+row.xmid+"',"+"'"+index+"'"+')" style="color:#3399CC;">编辑</a>';
+						}
+					},
     			    {field:'gydw',title:'管养单位',width:150,align:'center'},    
     			    {field:'xzqh',title:'行政区划',width:150,align:'center'},
     			    {field:'lxmc',title:'路线名称',width:120,align:'center'},
@@ -838,6 +843,11 @@ function showAlllmsh(){
 	    	});
 	    }   
 	}); 
+}
+function editGzlx(xmid,index){
+	var data=$("#table_lx"+xmid).datagrid('getRows')[index];
+	YMLib.Var.Obj=data;
+	YMLib.UI.createWindow('lxxx','编辑路线信息','lmgzlx_add.jsp','lxxx',900,350);
 }
 //xj
 function showAllxjsh(){
@@ -936,7 +946,7 @@ function showAllxjsh(){
 	    	$('#table_lx'+index).datagrid({
 	    		url:'/jxzhpt/qqgl/selectlxList.do',
 	    		 queryParams: {
-	    			 'lx.jdbs':0,
+	    			 'lx.jdbs':1,
 	    			 'lx.xmid':row.xmbm,
 	    			 'lx.sffirst':'1'
 	    			},

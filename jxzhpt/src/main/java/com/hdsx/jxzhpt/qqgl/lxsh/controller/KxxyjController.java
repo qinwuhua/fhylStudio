@@ -509,8 +509,11 @@ public class KxxyjController extends BaseActionSupport{
 			lx.setLxbm(kxxyj.getLxbh());
 			lx.setQdzh(kxxyj.getQdzh());
 			lx.setZdzh(kxxyj.getZdzh());
+			lx.setXzqh(kxxyj.getXzqh());
+			lx.setXzqhdm(kxxyj.getXzqhdm());
 			lx.setSffirst("1");
 			lx.setJdbs("1");
+			System.out.println("路线编码："+lx.getLxbm());
 			JhshServer jhshServer = new JhshServerImpl();
 			jhshServer.updateLx(lx);
 			ResponseUtils.write(getresponse(), "true");

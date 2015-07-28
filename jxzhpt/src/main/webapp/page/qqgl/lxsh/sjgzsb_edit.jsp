@@ -34,45 +34,26 @@ text-decoration:none;
 	var zdStr;
 	function load(){
 		var data=parent.obj;
-		loadUnit3("gydw",data.gydwdm,$.cookie("unit"));
-		loadDist3("xzqh",data.xzqhdm,$.cookie("dist"));
-		$("#lxbm").val(data.ghlxbh);
-		$("#lxmc").html(data.lxmc);
-		$("#xmmc").val(data.xmmc);
-		$("#qdzh").val(data.qdzh);
-		$("#zdzh").val(data.zdzh);
-		$("#lc").val(data.lc);
-		$("#qdmc").val(data.qdmc);
-		$("#zdmc").val(data.zdmc);
-		$("#jsxz").val(data.jsxz);
+		$.ajax({
+			type:'post',
+			url:'../../../qqgl/queryLxshByXmbm.do',
+			data:'jhsh.xmlx='+1+'&jhsh.xmbm='+data.xmbm,
+			dataType:'json',
+			success:function(msg){
+				$('#lxsh').form("load",msg);
+				$('#bzcs').html(msg.bzys);
+				$("#dfzc").html(msg.dfzc);
+				$("#lxmc").html(msg.lxmc);
+				$("#lxbm").val(msg.ghlxbh);
+				loadUnit3("gydw",msg.gydwdm,$.cookie("unit"));
+				loadDist3("xzqh",msg.xzqhdm,$.cookie("dist"));
+				$("#tsdq").html(msg.tsdq);
+				$("#xjsdj").html(msg.xjsdj);
+				$("#xmbm").html(msg.xmbm);
+				$("#xmnf").html(msg.xmnf);
+			}
+		});
 		
-		$("#tsdq").html(data.tsdq);
-		$("#jsjsdj").val(data.jsjsdj);
-		$("#xjsdj").html(data.xjsdj);
-		$("#xmbm").html(data.xmbm);
-		$("#xmnf").html(data.xmnf);
-		$("#jhkgn").combobox('setText',data.jhkgn);
-		$("#jhwgn").combobox('setText',data.jhwgn);
-		
-		$('#yilc').val(data.yilc);
-		$('#erlc').val(data.erlc);
-		$('#sanlc').val(data.sanlc);
-		$('#silc').val(data.silc);
-		$('#dwlc').val(data.dwlc);
-		$('#wllc').val(data.wllc);
-		
-		$('#jhyilc').val(data.jhyilc);
-		$('#jherlc').val(data.jherlc);
-		$('#jhsanlc').val(data.jhsanlc);
-		$('#jhsilc').val(data.jhsilc);
-		$('#jhdwlc').val(data.jhdwlc);
-		$('#jhwllc').val(data.jhwllc);
-		$("#yhdk").val(data.yhdk);
-		$("#tz").val(data.tz);
-		$('#bzcs').html(data.bzys);
-		$("#bz").val(data.bz);
-		//getbzcs(data.ghlxbh.substr(0,1),data.jsjsdj,accSub(parseFloat(data.zdzh),parseFloat(data.qdzh)),'升级改造工程项目');
-		$("#dfzc").html(data.dfzc);
 		var data1="lxsh.ghlxbh="+data.ghlxbh+"&lxsh.xmbm="+data.xmbm;
 		$.ajax({
 			type:'post',
@@ -235,8 +216,8 @@ text-decoration:none;
 			cxzdmc($("#lxbm").val(),$("#zdzh").val());
 	}
 </script>
-<table style="width: 100%; background-color: #aacbf8; font-size: 12px"
-			border="0" cellpadding="3" cellspacing="1">
+<form action="" id="lxsh">
+	<table style="width: 100%; background-color: #aacbf8; font-size: 12px" border="0" cellpadding="3" cellspacing="1">
 			<tr style="height: 35px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>路线编码：</td>
@@ -264,7 +245,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>里程：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input id="lc" type="text" style="width: 120px;"/>&nbsp;km
+					<input id="lc" name="lc" type="text" style="width: 120px;"/>&nbsp;km
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>起点名称：</td>
@@ -324,7 +305,7 @@ text-decoration:none;
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>项目名称：</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="xmmc" style="width: 120px"/>
+					<input type="text" id="xmmc" name="xmmc" style="width: 120px"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>建设性质：</td>
@@ -369,7 +350,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>投资(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="tz"  onblur="checkdfzc(this)" style="width: 120px;"/></td>
+					<input type="text" id="tz" name="tz" onblur="checkdfzc(this)" style="width: 120px;"/></td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">
 					<font color='red' size='2'>*&nbsp;</font>补助测算(万元)：
 				</td>
@@ -388,7 +369,7 @@ text-decoration:none;
 					<font color='red' size='2'>*&nbsp;</font>银行贷款(万元)：
 				</td>
 				<td style="background-color: #ffffff; height: 20px;" align="left">
-					<input type="text" id="yhdk" style="width: 120px;"/>
+					<input type="text" id="yhdk" name="yhdk" style="width: 120px;"/>
 				</td>
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right"></td>
 				<td style="background-color: #ffffff; height: 20px;" align="left"></td>
@@ -398,7 +379,7 @@ text-decoration:none;
 			<tr style="height: 60px;">
 				<td style="background-color:#F1F8FF;color: #007DB3; font-weight: bold;width:15%" align="right">备注：</td>
 				<td colspan="5" style="background-color: #ffffff; height: 20px;" align="left">
-					<textarea id="bz" style="width: 580px;height: 50px;"></textarea>
+					<textarea id="bz" name="bz" style="width: 580px;height: 50px;"></textarea>
 				</td>
 			</tr>
 			
@@ -407,6 +388,7 @@ text-decoration:none;
 				<a href="javascript:void(0)" id="save_button" class="easyui-linkbutton" plain="true" iconCls="icon-save">保存</a>
 				<a href="# "  onclick="removes('lxxx')" class="easyui-linkbutton"  plain="true" iconCls="icon-cancel">取消</a></td>
 			</tr>
-			</table>
+	</table>
+</form>
 </body>
 </html>
