@@ -225,6 +225,9 @@ function queryJsdjAndLc(lxbm,qdzh,zdzh){
 			$('#silc').val(msg.silc);
 			$('#dwlc').val(msg.dwlc);
 			$('#wllc').val(msg.wllc);
+			if($('#jsdj')){
+				$('#jsdj').val(msg.xjsdj);
+			}
 		}
 	});
 }

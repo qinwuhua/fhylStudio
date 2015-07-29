@@ -188,7 +188,6 @@ text-decoration:none;
 		if($.cookie("unit2")=="______36"){
 			sbthcd=7;
 		}
-		alert($("#jsjsdj").combobox("getText")+"     "+$("#xjsdj").val());
 		var data ="lxsh.xmmc="+$("#xmmc").val()+"&lxsh.ghlxbh="+$("#lxbm").val()+"&lxsh.lxmc="+$("#lxmc").val()+"&lxsh.xmbm="+$("#xmbm").html()
 		+"&lxsh.qdzh="+$("#qdzh").val()+"&lxsh.zdzh="+$("#zdzh").val()+"&lxsh.lc="+$("#lc").html()
 		+"&lxsh.qdmc="+$("#qdmc").val()+"&lxsh.zdmc="+$("#zdmc").val()+"&lxsh.jsxz="+$("#jsxz").val()
